@@ -105,7 +105,7 @@ This stage in the installation process is used to add a local SSD to be used by 
 **Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the Weka Support Team.
 {% endhint %}
 
-## Stage 7: **Scan Drives**
+## Stage 7: **Scanning Drives**
 
 **Command:**`weka cluster drive scan`
 
