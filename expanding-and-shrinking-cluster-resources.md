@@ -116,7 +116,7 @@ Follow the instructions appearing in [Configuration of SSDs](https://docs.weka.i
 
 ### Stage 6: Scanning Drives
 
-Follow the instructions appearing in [Scanning Drives](https://docs.weka.io/bare-metal/installation/untitled#stage-7-scanning-drives).
+Follow the instructions appearing in [Scanning Drives](https://docs.weka.io/bare-metal/installation/untitled#stage-7-scan-drives).
 
 ### Stage 7: Configuration of CPU Resources
 
@@ -163,7 +163,7 @@ If the expansion process only involves the addition of specific resources, use t
 The addition of new SSDs only to existing servers requires execution of the following stages:
 
 1. [Configuration of SSDs](https://docs.weka.io/bare-metal/installation/untitled#stage-6-configuration-of-ssds)
-2. [Scanning Drives](https://docs.weka.io/bare-metal/installation/untitled#stage-7-scanning-drives)
+2. [Scanning Drives](https://docs.weka.io/bare-metal/installation/untitled#stage-7-scan-drives)
 3. [Activation of Cluster SSDs](https://docs.weka.io/bare-metal/installation/untitled#stage-14-activation-of-cluster-ssds)
 
 ### Addition of Only CPU Cores
