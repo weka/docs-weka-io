@@ -105,13 +105,15 @@ This stage in the installation process is used to add a local SSD to be used by 
 **Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the Weka Support Team.
 {% endhint %}
 
-#### **Scan drives**
+## Stage 7: **Scan Drives**
 
-After provisioning the SSD to be used by a Weka filesystem using the previous command, it is also required to scan them so they're recognizable by the system internally. To perform this operation, use the following command line:
+**Command:**`weka cluster drive scan`
+
+After provisioning the SSDs to be used by a Weka filesystem using the previous command, it is also necessary to scan them so that they are recognizable by the system internally. To perform this operation, use the following command line:
 
 `weka cluster drive scan`
 
-## Stage 7: Configuration of CPU Resources
+## Stage 8: Configuration of CPU Resources
 
 **Command:** `cluster host cores`
 
@@ -130,7 +132,7 @@ This stage in the installation process is used to configure the amount of CPU re
 **Note:** Performance can be optimized by assigning different functions to the various Weka cores. If necessary, contact the Weka Support Team for more information.
 {% endhint %}
 
-## Stage 8: Configuration of Memory \(optional\)
+## Stage 9: Configuration of Memory \(optional\)
 
 **Command:** `cluster host memory`
 
@@ -143,7 +145,7 @@ As defined in the memory requirements, the fixed memory per host and the per cor
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | --- | --- | --- |
 | `host-id` | String | Identifier of host in which the memory configuration has to be defined | Must be a valid host identifier | Yes |  |
-| `memory` | Number | Required memory in bytes |  | Yes |  |
+| `capacity-emory` | Number | Required memory in bytes |  | Yes |  |
 
 {% hint style="info" %}
 **Note:** This command is for initialization phase only.  To adjust the memory of a running cluster, contact the Weka Support Team.
@@ -153,7 +155,7 @@ As defined in the memory requirements, the fixed memory per host and the per cor
 This commands sets only the capacity portion of the memory requirements. The per-host and per-core requirements are set automatically by Weka
 {% endhint %}
 
-## Stage 9: Configuration of Failure Domains \(optional\)
+## Stage 10: Configuration of Failure Domains \(optional\)
 
 **Command:** `cluster host fd-name`
 
@@ -174,7 +176,7 @@ This operation is performed using the following command line:
 | `host-id` | String | Identifier of host in which a core count should be configured | Must be a valid host identifier | Yes |  |
 | `fd-name` | String | The failure domain that will contain the host from now |  | Yes |  |
 
-## Stage 10: Configuration of Weka System Protection Scheme
+## Stage 11: Configuration of Weka System Protection Scheme
 
 **Command:** `cluster update`
 
@@ -193,7 +195,7 @@ To configure the Weka system protection scheme, use the following command line:
 **Note:** This command can only be used in the initialization phase.
 {% endhint %}
 
-## Stage 11: Configuration of Hot Spare
+## Stage 12: Configuration of Hot Spare
 
 **Command:** `cluster hot-spare`
 
@@ -211,7 +213,7 @@ To configure the Weka system hot spare, use the following command line:
 **Note**: If this command is not executed, the hot spare will be defined as 0.
 {% endhint %}
 
-## Stage 12: Activation of Cluster Hosts
+## Stage 13: Activation of Cluster Hosts
 
 **Command:** `weka cluster host activate`
 
@@ -227,7 +229,7 @@ To activate the cluster hosts, use the following command line:
 | --- | --- |
 | `host-ids` | Comma separated strings | Comma separated host identifiers | . | No | All hosts |
 
-## Stage 13: Activation of Cluster SSDs
+## Stage 14: Activation of Cluster SSDs
 
 **Command:** `cluster drive activate`
 
@@ -247,7 +249,7 @@ A comma-separated list of all SSD UUIDs is received. In the install phase all SS
 | --- | --- |
 | `uuids` | Comma-separated strings | Comma-separated host identifiers | . | No | All SSDs |
 
-## Stage 14: Running the Start IO Command
+## Stage 15: Running the Start IO Command
 
 **Command:** `cluster start-io`
 
@@ -256,6 +258,4 @@ To start the system IO and exit from the initialization phase, use the following
 `weka cluster start-io`
 
 After successful completion of this command, the system exits the initialization state and runs accept IOs from the user applications.
-
-TBD 1
 
