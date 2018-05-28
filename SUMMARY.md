@@ -28,6 +28,7 @@
   * [Adding Clients](bare-metal/aws-installation/adding-clients.md)
   * [Troubleshooting](bare-metal/aws-installation/troubleshooting.md)
 * [Expanding & Shrinking Cluster Resources](expanding-and-shrinking-cluster-resources.md)
+* [Shrinking a Cluster](shrinking-a-cluster.md)
 
 ## USING FILESYSTEMS
 
