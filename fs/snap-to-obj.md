@@ -12,18 +12,18 @@ Click Upload to upload the snapshot to the object store.
 
 #### Uploading a Snapshot Using the CLI
 
-**Command:** TBD
+**Command: `snapshot-upload`**
 
 Use the following command line to update an existing snapshot:
 
-TBD
+`wcli snapshot-upload --file-system=<fs> --snapshot=<snapshot>`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | --- | --- | --- |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
+| `<fs>` | String | Name of the filesystem |  | Yes |  |
+| `<snapshot>` | String | Name of snapshot to upload | Has to be a snapshot of the &lt;fs&gt; filesystem | Yes |  |
 
 ## Creating a Filesystem from an Uploaded Snapshot
 
@@ -37,18 +37,21 @@ Define all the fields and enter the location of the snapshot to be used in the O
 
 #### Creating a Filesystem from a Snapshot Using the CLI
 
-**Command:** TBD
+**Command: `filesystem-download`**
 
 Use the following command line to update an existing snapshot:
 
-TBD
+`wcli filesystem-download --name=<fs> --group-name=<group> --ssd-capacity=<ssd-capacity> --total-capacity=<total-capacity> --locator=<locator>`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
-|  |  |  |  |  |  |
-|  |  |  |  |  |  |
+| --- | --- | --- | --- | --- | --- |
+| `<fs>` | String | Name of filesystem to create |  | Yes |  |
+| `<group>` | String | Name of filesystem-group to place the new filesystem in |  | Yes |  |
+| `<ssd-capacity>` | Capacity | SSD capacity of the downloaded filesystem |  | Yes |  |
+| `<total-capacity>` | Capacity | Total capacity of the downloaded filesystem |  | Yes |  |
+| `<locator>` | String | The object-store locator obtained from a previously successful snapshot upload |  | Yes |  |
 
 
 
