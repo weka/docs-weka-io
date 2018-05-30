@@ -10,7 +10,7 @@ Each configuration can be immediately deployed as a CloudFormation stack by redi
 
 The self-service portal is available at [https://start.weka.io ](https://start.weka.io/). Its main screen is divided into two panes: the left where you input your requirements and the right where you can see possible configurations for those requirements:
 
-![](../.gitbook/assets/01-calculator-overview.png)
+![](../../.gitbook/assets/01-calculator-overview.png)
 
 As you can see, your configuration options include the total capacity, the desired deployment model, and additional performance requirements.
 
@@ -22,7 +22,7 @@ Once you found a configuration you want to deploy, click the “Deploy to AWS”
 
 At this point, you can specify additional options for your deployment, such as adding client instances or choosing the WekaIO version you want to deploy.
 
-![](../.gitbook/assets/02-deploy-cluster.png)
+![](../../.gitbook/assets/02-deploy-cluster.png)
 
 Once you’re ready to deploy the cluster, click the “Deploy Cluster” button. This would take you to AWS CloudFormation with a template containing the cluster you’ve just configured. **Before You Deploy**Make sure to check that your AWS account limits allow for deployment of your selected configuration.You can check your limits under the Limits tab in your EC2 console.
 
@@ -30,7 +30,7 @@ Once you’re ready to deploy the cluster, click the “Deploy Cluster” button
 
 After clicking the “Deploy Cluster” button you’ll be redirected to AWS CloudFormation where you’ll see a Create Stack screen similar to this:
 
-![](../.gitbook/assets/03-cloudformation-create-stack.png)
+![](../../.gitbook/assets/03-cloudformation-create-stack.png)
 
 In the Create Stack screen you have to specify some options which are specific to your AWS account:
 
@@ -42,7 +42,7 @@ In the Create Stack screen you have to specify some options which are specific t
 
 Once you have all parameters filled-in, make sure to check the “I acknowledge that AWS CloudFormation might create IAM resources” checkbox at the bottom and click the “Create” button:
 
-![](../.gitbook/assets/04-cloudformation-iam-creds.png)
+![](../../.gitbook/assets/04-cloudformation-iam-creds.png)
 
 ### Cluster Deployment Process {#cluster-deployment-process}
 

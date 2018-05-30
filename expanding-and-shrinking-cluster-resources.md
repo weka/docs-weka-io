@@ -32,7 +32,7 @@ In the Weka system, it is possible to expand and shrink a cluster as follows:
 **Note:** In the following descriptions, cluster expansion also relates to cluster shrinking.
 {% endhint %}
 
-Expansion procedures are similar to the [Bare Metal Weka system Installation Procedure](bare-metal/installation/planning-a-weka-system-installation.md). Similar to planning a new cluster, the objectives of the expansion, in terms of space and performance, need to be translated to the actual cluster resources. This process is practically a repeat of the planning process for new clusters, with the following options and limitations:
+Expansion procedures are similar to the [Bare Metal Weka system Installation Procedure](install/installation/planning-a-weka-system-installation.md). Similar to planning a new cluster, the objectives of the expansion, in terms of space and performance, need to be translated to the actual cluster resources. This process is practically a repeat of the planning process for new clusters, with the following options and limitations:
 
 #### Possible Expansion Options
 
