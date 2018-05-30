@@ -1,6 +1,6 @@
 # Weka.IO Documentation
 
-{% page-ref page="install/aws-installation/self-service-portal.md" %}
+{% page-ref page="install/aws/self-service-portal.md" %}
 
 
 
