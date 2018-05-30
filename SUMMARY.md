@@ -14,12 +14,12 @@
 
 ## Planning, Installation and Resource Management
 
-* [Bare Metal Installation](install/installation/README.md)
-  * [Planning a Weka System Installation](install/installation/planning-a-weka-system-installation.md)
-  * [Prerequisites for Installation](install/installation/prerequisites-for-installation-of-weka-dedicated-hosts.md)
-  * [Obtaining the Weka Install File](install/installation/obtaining-the-weka-install-file.md)
-  * [Weka System Installation Process Using the CLI](install/installation/untitled.md)
-  * [Adding Clients](install/installation/adding-clients-bare-metal.md)
+* [Bare Metal Installation](install/bare-metal/README.md)
+  * [Planning a Weka System Installation](install/bare-metal/planning-a-weka-system-installation.md)
+  * [Prerequisites for Installation](install/bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md)
+  * [Obtaining the Weka Install File](install/bare-metal/obtaining-the-weka-install-file.md)
+  * [Weka System Installation Process Using the CLI](install/bare-metal/untitled.md)
+  * [Adding Clients](install/bare-metal/adding-clients-bare-metal.md)
 * [AWS Installation](install/aws/README.md)
   * [Self-Service Portal](install/aws/self-service-portal.md)
   * [CloudFormation Template Generator](install/aws/cloudformation.md)
