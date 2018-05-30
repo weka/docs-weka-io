@@ -22,7 +22,7 @@
   * [Adding Clients](install/installation/adding-clients-bare-metal.md)
 * [AWS Installation](install/aws/README.md)
   * [Self-Service Portal](install/aws/self-service-portal.md)
-  * [CloudFormation Template Generator](install/aws/cloudformation-template-generator.md)
+  * [CloudFormation Template Generator](install/aws/cloudformation.md)
   * [Deployment Types](install/aws/deployment-types.md)
   * [Supported EC2 Instance Types](install/aws/supported-ec2-instance-types.md)
   * [Adding Clients](install/aws/adding-clients.md)

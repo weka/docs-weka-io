@@ -1,6 +1,6 @@
 # Adding Clients
 
-When launching a WekaIO cluster, either through the [self-service portal](self-service-portal.md) or via a [CloudFormation template](cloudformation-template-generator.md), you may also launch client instances as part of the cluster.
+When launching a WekaIO cluster, either through the [self-service portal](self-service-portal.md) or via a [CloudFormation template](cloudformation.md), you may also launch client instances as part of the cluster.
 
 However, sometimes you may want to add more clients after the cluster has been installed.
 
