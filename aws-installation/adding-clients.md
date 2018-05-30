@@ -61,5 +61,5 @@ You can now mount the filesystems on the clients instances. For example, this co
 mkdir -p /mnt/weka && mount -t wekafs default /mnt/weka
 ```
 
-To learn about all available mount options, please see the [Mounting Filesystems](../../fs/mounting-filesystems.md) page.
+To learn about all available mount options, please see the [Mounting Filesystems](../fs/mounting-filesystems.md) page.
 
