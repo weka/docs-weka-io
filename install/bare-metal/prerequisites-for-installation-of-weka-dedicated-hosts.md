@@ -55,10 +55,6 @@ SELINUX must be disabled.
 * Subnet manager: Configured to 4092
 * One Weka system IP address for management and data plane
 
-{% hint style="info" %}
-Note that you can't mix **Ethernet** and **Infiniband** in the same cluster
-{% endhint %}
-
 ### SSDs {#ssds}
 
 * Support PLP \(Power Loss Protection\)
