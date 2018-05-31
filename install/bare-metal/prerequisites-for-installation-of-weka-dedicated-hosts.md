@@ -7,14 +7,13 @@ description: >-
 # Prerequisites for Installation
 
 {% hint style="info" %}
-**Note:** Client installation will be described in [A](https://docs.weka.io/~/edit/drafts/-LAl1k_1hGk6BAYkmB9J/adding-clients)dding Clients.
+**Note:** Client installation will be described in [Adding Clients](adding-clients-bare-metal.md).
 {% endhint %}
 
 ### CPU {#cpu}
 
 * CPU: Intel V2 or above / AMD EPYC
 * Hyper-threading: Disabled in BIOS
-* SR-IOV: Enabled in BIOS for Ethernet installations \(not required for IB installations\)
 
 ### Memory {#memory}
 
@@ -45,7 +44,13 @@ SELINUX must be disabled.
 * Weka system data plane IP address: One per server per Weka system core
 * Weka system management IP: Ability to communicate with all Weka system data plane IPs
 * Connectivity between nodes: Ports 14000-14100
-* Network Manager: Disabled
+* [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
+* Maximum number of [virtual functions](https://en.wikipedia.org/wiki/Network_function_virtualization) supported by the device must be bigger than the number of physical cores on the host, some configuration may be required in the BIOS
+* SR-IOV: Enabled in BIOS
+
+{% hint style="info" %}
+When assigning a network device to Weka, no other application may create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
+{% endhint %}
 
 ### Networking – InfiniBand {#networking-infiniband}
 

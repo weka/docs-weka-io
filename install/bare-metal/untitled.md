@@ -20,13 +20,14 @@ On completion of this stage in the installation process, the Weka software is in
 
 This stage involves the formation of a cluster from the allocated hosts. It is performed using the following command line:
 
- `weka cluster create <hosts-hostnames>...`
+ `weka cluster create <hostnames>... [--hosts-ips=<ips>]...`
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** |
-| --- | --- |
-| `host-names` | Comma separated strings | Host names or IP addresses | Need at least 6 strings, as this is the minimal cluster size |
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** |
+| --- | --- | --- |
+| `hostnames` | Comma separated strings | Host names or IP addresses | Need at least 6 strings, as this is the minimal cluster size | Yes |
+| `hosts-ips` | Comma separated IP addresses | IP addresses of the management interfaces | Same number of values as in `hosts-hostnames`.  | Only in IB |
 
 {% hint style="info" %}
 **Note:** It is possible to use either a host name or an IP address; this string serves as the identifier of the host in subsequent commands.
@@ -40,6 +41,10 @@ On successful completion of the formation of the cluster, every host receives a 
 
 {% hint style="info" %}
 **Note:** After successful completion of this command, the cluster is in the initialization phase, and some commands can only run in this phase.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** In IB installations the `--hosts-ips` parameter must specify the IP addresses of the IPoIB interfaces.
 {% endhint %}
 
 ## Stage 3: Naming the Cluster \(optional\)
@@ -80,7 +85,7 @@ To perform this operation, the cluster host net add command must be run for each
 | --- | --- | --- | --- | --- | --- |
 | `host-id` | String | Identifier of host to which a network interface will be added | Must be a valid host identifier | Yes |  |
 | `device` | String | A device, e.g., `eth1` | Must be a valid Unix network device name | Yes |  |
-| `ips` | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic | Must be part of the data plane IP pool defined in the planning phase. Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | Yes |  |
+| `ips` | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic. In IB use the IPoIB address \(single address regardless of number of cores\). | Must be part of the data plane IP pool  defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | Yes |  |
 | `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 | `netmask` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 
