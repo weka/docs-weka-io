@@ -90,7 +90,7 @@ The creation of an SSD copy of data stored on object store only.
 
 A mode of the Weka software which has been installed and is running, but has not been attached to a cluster.
 
-### Snap To Object
+### Snap-To-Object
 
 A Weka feature for uploading snapshots to object stores.
 
