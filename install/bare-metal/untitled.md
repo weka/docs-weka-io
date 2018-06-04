@@ -85,7 +85,7 @@ To perform this operation, the cluster host net add command must be run for each
 | --- | --- | --- | --- | --- | --- |
 | `host-id` | String | Identifier of host to which a network interface will be added | Must be a valid host identifier | Yes |  |
 | `device` | String | A device, e.g., `eth1` | Must be a valid Unix network device name | Yes |  |
-| `ips` | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic. In IB use the IPoIB address \(single address regardless of number of cores\). | Must be part of the data plane IP pool  defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | Yes |  |
+| `ips` | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic. In IB, use the IPoIB address \(single address regardless of number of cores\) | Must be part of the data plane IP pool defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | Yes |  |
 | `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 | `netmask` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 
