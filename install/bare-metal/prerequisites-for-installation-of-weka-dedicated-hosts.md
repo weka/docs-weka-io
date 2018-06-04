@@ -7,7 +7,7 @@ description: >-
 # Prerequisites for Installation
 
 {% hint style="info" %}
-**Note:** Client installation will be described in [Adding Clients](adding-clients-bare-metal.md).
+**Note:** Client installation is described in [Adding Clients](adding-clients-bare-metal.md).
 {% endhint %}
 
 ### CPU {#cpu}
@@ -45,7 +45,7 @@ SELINUX must be disabled.
 * Weka system management IP: Ability to communicate with all Weka system data plane IPs
 * Connectivity between nodes: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
-* Maximum number of [virtual functions](https://en.wikipedia.org/wiki/Network_function_virtualization) supported by the device must be bigger than the number of physical cores on the host, some configuration may be required in the BIOS
+* Maximum number of [virtual functions](https://en.wikipedia.org/wiki/Network_function_virtualization) supported by the device must be bigger than the number of physical cores on the host; some configuration may be required in the BIOS
 * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
