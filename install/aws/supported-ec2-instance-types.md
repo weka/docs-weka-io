@@ -18,9 +18,10 @@ The following EC2 instance types can operate as **backend**, **client** or **hyp
 The following EC2 instance types can operate as **client** instances \(note that any backend instance can also be a client instance\):
 
 | **EC2 Instance Type** | **Supported Models** |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | C3 | c3.2xlarge, c3.4xlarge, c3.8xlarge |
 | C4 | c4.2xlarge, c4.4xlarge, c4.8xlarge |
+| C5 | c5.2xlarge, c5.4xlarge, c5.9xlarge, c5.18xlarge |
 | G3 | g3.4xlarge, g3.8xlarge, g3.16xlarge |
 | I3 | i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge |
 | M4 | m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, m4.16xlarge |
