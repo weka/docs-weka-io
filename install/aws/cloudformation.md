@@ -23,7 +23,7 @@ The APIs described below require an API token which can be obtained at [https://
 
 To generate a template we first need to decide which WekaIO version to install. To do this, we’ll call the `https://<token>@get.weka.io/dist/v1/release` API which returns a list of all available versions:
 
-```javascript
+```bash
 $ curl https://get.weka.io/v
 {
    "num_results" : 8,
@@ -64,7 +64,7 @@ Each release contains an `id` field which identifies the release. We'll use the 
 
 To generate a CloudFormation template, we’ll make a `POST` request to the `https://<token>@get.weka.io/dist/v1/aws/cfn/<version>`API:
 
-```text
+```bash
 $ spec='
 {
   "cluster": [
@@ -144,7 +144,7 @@ CloudFormation template URLs are valid for up to one week
 
 You can also get the template directly from the API call without saving it in a bucket. To do this, pass a `?type=template`query parameter:
 
-```text
+```bash
 $ spec='...'  # same as above
 $ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@get.weka.io/dist/v1/aws/cfn/3.1.6.2?type=template
 {"AWSTemplateFormatVersion": "2010-09-09", ...
