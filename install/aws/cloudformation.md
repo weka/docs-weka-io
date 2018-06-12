@@ -24,7 +24,7 @@ The APIs described below require an API token which can be obtained at [https://
 To generate a template we first need to decide which WekaIO version to install. To do this, we’ll call the `https://<token>@get.weka.io/dist/v1/release` API which returns a list of all available versions:
 
 ```bash
-$ curl https://get.weka.io/v
+$ curl https://<token>@get.weka.io/dist/v1/release
 {
    "num_results" : 8,
    "page" : 1,
