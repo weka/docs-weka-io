@@ -35,7 +35,7 @@
 * [Managing Filesystems](fs/managing-filesystems.md)
 * [Mounting Filesystems](fs/mounting-filesystems.md)
 * [Pre-Fetch API for Data Lifecycle Management](fs/tiering.md)
-* [Snap-To-Obj](fs/snap-to-obj.md)
+* [Snap-To-Object](fs/snap-to-obj.md)
 * [Snapshots](fs/snapshots.md)
 
 ## USAGE GUIDE
