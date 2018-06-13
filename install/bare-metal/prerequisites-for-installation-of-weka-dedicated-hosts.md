@@ -24,6 +24,7 @@ description: >-
 
 * RHEL / CentOS \(and it variations\): 7.2, 7.3, 7.4
 * Ubuntu: 14.04, 16.04
+* AWS: AWS 1703, AWS 1709,  AWS 1712,
 
 SELINUX must be disabled.
 
