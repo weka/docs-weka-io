@@ -33,3 +33,7 @@ The following EC2 instance types can operate as **client** instances \(note that
 
 _Read more about each instance type at_ [_https://aws.amazon.com/ec2/instance-types/_ ](https://aws.amazon.com/ec2/instance-types/)_._
 
+{% hint style="info" %}
+See [supported operating systems list](../bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md#operation-system)
+{% endhint %}
+
