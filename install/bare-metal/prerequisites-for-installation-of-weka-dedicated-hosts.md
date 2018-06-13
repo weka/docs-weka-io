@@ -24,7 +24,6 @@ description: >-
 
 * RHEL / CentOS \(and it variations\): 7.2, 7.3, 7.4
 * Ubuntu: 14.04, 16.04
-* AWS: AWS 1703, AWS 1709,  AWS 1712,
 
 SELINUX must be disabled.
 
@@ -42,7 +41,7 @@ SELINUX must be disabled.
 * NICs bonding: Not configured
 * Jumbo frames: Enabled on switch and on network port
 * Weka system management IP address: One per server
-* Weka system data plane IP address: One IP address for each [Weka core](planning-a-weka-system-installation.md) in each server
+* Weka system data plane IP address: One IP address for each [Weka core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server
 * Weka system management IP: Ability to communicate with all Weka system data plane IPs
 * Connectivity between nodes: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled

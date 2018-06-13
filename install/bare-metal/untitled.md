@@ -89,7 +89,7 @@ To perform this operation, the cluster host net add command must be run for each
 | `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 | `netmask` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 
-The number of IP addresses should be at least the number of cores specified in Stage 8. A larger number can be specified, in which case the unused IP addresses will be assigned if and when more cores will be allocated using the expand process.
+The number of IP addresses should be at least the number of cores [planned](planning-a-weka-system-installation.md#cpu-resource-planning). A larger number can be specified, in which case the unused IP addresses will be assigned if and when more cores will be allocated using the expand process.
 
 ## Stage 6: Configuration of SSDs
 
