@@ -37,13 +37,13 @@ The ENA driver is automatically available on recent operating-systems such as Re
 
 Now that the WekaIO software is installed, the clients are ready to join the cluster.
 
-To add the clients, run the following command from one of the backend instances deployed in the CloudFormation stack \(any resource whose name starts with `Backend`\):
+To add the clients, run the following command on each of the client instances:
 
 ```text
-weka local run aws-add-client <client-instance-id> [<client-instance-id>...]
+weka local run -e WEKA_HOST=<backend-ip> aws-add-client <client-instance-id>
 ```
 
-As you can see, you may add multiple clients in one command.
+where `<backend-ip>` is the IP addresses or hostname of one of the backend instances.
 
 {% hint style="info" %}
 **Dedicated Client Resources**
