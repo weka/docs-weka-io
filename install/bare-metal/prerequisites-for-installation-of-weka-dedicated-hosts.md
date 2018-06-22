@@ -32,7 +32,7 @@ SELINUX must be disabled.
 
 * Directory: /opt/weka
 * Should be on an SSD or SSD-like performance, e.g., SATADOM. Cannot be shared remotely NFS mounted or on RAM drive
-* At least 20 GB available for the Weka system installation
+* At least 48 GB available for the Weka system installation
 
 ### Networking – Ethernet {#networking-ethernet}
 
