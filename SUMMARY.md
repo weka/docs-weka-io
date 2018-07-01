@@ -50,5 +50,6 @@
 
 ## Upgrade
 
-* [Upgrading to v3.1.6.x](upgrade/upgrading-to-v3.1.6.x.md)
+* [Upgrade Guide: 3.1.7 And After](upgrade/upgrade-guide-3.1.7-and-after.md)
+* [Upgrading Guide: 3.1.6 and Before](upgrade/upgrading-to-v3.1.6.x.md)
 

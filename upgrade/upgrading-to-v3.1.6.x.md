@@ -4,7 +4,7 @@ description: >-
   to the latest 3.1.6.x version.
 ---
 
-# Upgrading to v3.1.6.x
+# Upgrading Guide: 3.1.6 and Before
 
 ## Preparing For The Upgrade
 
@@ -20,7 +20,7 @@ Before upgrading your cluster, you'll have to prepare a few things:
 Log-in to one of your cluster hosts from which you'll perform the upgrade. Then run the following commands to download the upgrade script:
 
 ```text
-curl -O https://wekaio-public.s3.amazonaws.com/upgrade/wekaio-upgrade.sh
+curl -O 
 chmod a+x wekaio-upgrade.sh
 ```
 
