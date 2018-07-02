@@ -21,7 +21,7 @@ A Weka system cluster runs on a group of hosts with local SSDs. To plan these ho
 3. **Failure Domains:** Determine whether failure domains are going to be used \(this is optional\), and if yes determine the number of failure domains and potential number of hosts in each failure domain, as described in [Failure Domains](https://docs.weka.io/ssd-capacity-management#failure-domains), and plan accordingly.
 4. **Hot Spare**: Define the required hot spare count, as described in [Hot Spare](https://docs.weka.io/ssd-capacity-management#hot-spare).
 
-Once all this data is clarified, you can plan the SSD net storage capacity accordingly, as defined in the S[SD Capacity Management formula](https://docs.weka.io/ssd-capacity-management#formula-for-calculating-ssd-net-storage-capacity). You should also have the following information which will be used during the installation process:
+Once all this data is clarified, you can plan the SSD net storage capacity accordingly, as defined in the [SSD Capacity Management formula](https://docs.weka.io/ssd-capacity-management#formula-for-calculating-ssd-net-storage-capacity). You should also have the following information which will be used during the installation process:
 
 1.  Cluster size \(number of hosts\).
 2.  SSD capacity for each host, e.g., 12 hosts with a capacity of 6 TB each.
