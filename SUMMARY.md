@@ -29,6 +29,7 @@
   * [Troubleshooting](install/aws/troubleshooting.md)
 * [Expanding & Shrinking Cluster Resources](expanding-and-shrinking-cluster-resources.md)
 * [Shrinking a Cluster](shrinking-a-cluster.md)
+* [NFS Support](nfs-support.md)
 
 ## USING FILESYSTEMS
 
@@ -55,5 +56,4 @@
 * [Upgrade Guide: 3.1.7 And After](upgrade/upgrade-guide-3.1.7-and-after.md)
 * [Upgrading Guide: 3.1.6 and Before](upgrade/upgrading-to-v3.1.6.x.md)
 * [Testing Weka System Performance](upgrade/testing-weka-system-performance.md)
-* [NFS Support](upgrade/nfs-support.md)
 
