@@ -47,7 +47,7 @@ Expansion procedures are similar to the [Bare Metal Weka system Installation Pro
 #### Expansion Limitations
 
 * It is not possible to change the defined Weka system protection scheme.
-* It is not possible to define failure domains on a system that was installed without failure domains..
+* It is not possible to define failure domains on a system that was installed without failure domains.
 * A Weka system configured with failure domains cannot be configured to be without failure domains.
 * Only the same network technology can be implemented i.e., it is not possible to mix between Ethernet and InfiniBand.
 
