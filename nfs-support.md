@@ -65,187 +65,209 @@ Load balancing is implemented via floating IPs. By default, the floating IPs are
 
 The same mechanism ensures the resiliency of the service. On a host failure, all IP addresses associated with the failed host will be reassigned to other hosts \(using the GARP network messages\) and the clients will reconnect to the new hosts without any reconfiguration or service interruption.
 
-## Managing NFS Support
+## Managing NFS Networking Configuration \(Interface Groups\)
 
-### Defining the NFS Networking Configuration \(Interface Groups\) {#defining-the-nfs-networking-configuration-interface-groups-1}
+### Defining Interface Groups
 
 #### Defining Interface Groups Using the GUI {#uploading-a-snapshot-using-the-ui}
 
-At the IP interfaces view, click the '+' button on the top-left side of the screen. Interface Group addition dialog box will be displayed.
+Access the IP Interfaces screen. 
 
-![IP Interfaces view screen](.gitbook/assets/screenshot-from-2018-07-04-16-25-02.png)
+![IP Interfaces Screen](.gitbook/assets/screenshot-from-2018-07-04-16-25-02.png)
 
-Input Group Name \(name has to be unique\), define default gateway and subnet mask, then click 'Save'.
+To define an interface group, click the '+' button at the top left-hand side of the screen. The add Interface Groups dialog box will be displayed.
 
-![Add Interface Group dialog box](.gitbook/assets/image%20%286%29.png)
+![Add Interface Group Dialog Box](.gitbook/assets/image%20%284%29.png)
 
-#### ​   {#uploading-a-snapshot-using-the-cli}
+Enter the Group Name \(this has to be unique\), the Default Gateway and the Subnet Mask. Then click Save.
 
-#### Defining Interface Groups Using the CLI {#uploading-a-snapshot-using-the-cli-1}
+#### Defining Interface Groups Using the CLI {#uploading-a-snapshot-using-the-cli}
 
 **Command:** `weka nfs interface-group add`
 
-Use the following command line to add an interface group:`weka nfs interface-group add <name> <type> [--subnet=<subnet>] [--gateway=<gw>]`
+Use the following command line to add an interface group:
+
+`weka nfs interface-group add <name> <type> [--subnet=<subnet>] [--gateway=<gw>]` 
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | --- | --- | --- | --- | --- |
-| `name` | String | Unique interface-group name | None | Yes | ​ |
-| `type` | String | Group type | Can be only NFS | Yes | NFS |
+| `name` | String | Unique interface group name   | None | Yes |  |
+| `type` | String | Group type | Can only be  NFS | Yes | NFS |
 | `subnet` | String | Subnet mask in the 255.255.0.0 format | Valid netmask | No | 255.255.255.255 |
 | `gw` | String | Gateway IP | Valid IP | No | 255.255.255.255 |
 
-​
+### Setting Interface Group Ports
 
-**Setting group ports using GUI**
+**Setting Interface Group Ports using the GUI**
 
-In order to set group ports. click on the `+` button displayed on the top right-hand side of the 'Group Ports' table. Choose the relevant hosts and ports and click 'save'.
+Access the Group Ports table.
 
-Removal of an unwanted port is done by clicking the trash icon that shown next to the host's status and adding new hosts.
+![Group Ports Table](.gitbook/assets/image%20%286%29.png)
 
-![Group port table](.gitbook/assets/image%20%285%29.png)
+To set interface group ports, click the '+' button on the top right-hand side of the Group Ports table. Then select the relevant hosts and ports and click Save.
 
-**Setting group ports using CLI**
+To remove an interface group port, click the trash symbol displayed next to the host's status.  
 
-**Commands:** `weka nfs interface-group port add`
 
- `weka nfs interface-group port delete`
+**Setting Interface Group Ports using the CLI**
 
-Use the following commands line to add/delete an interface-group port:`weka nfs interface-group port add <name> <host-id> <port>`
+**Commands:** `weka nfs interface-group port add`and `weka nfs interface-group port delete`
 
-`weka nfs interface-group port delete <name> <host-id> <port>`
+Use the following command lines to add/delete an interface group port:`weka nfs interface-group port add <name> <host-id> <port>   
+weka nfs interface-group port delete <name> <host-id> <port>` 
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | --- | --- | --- | --- |
-| `name` | String | Interface group name | None | Yes | ​ |
-| `host-id` | String | Host ID on which the port resides\* | Valid host ID | Yes | ​ |
-| `port` | String | port's device \(e.g. eth1\) | Valid device | Yes | ​ |
+| `name` | String | Interface group name | None | Yes |  |
+| `host-id` | String | Host ID on which the port resides\* | Valid host ID | Yes |  |
+| `port` | String | Port's device, e.g., eth1 | Valid device | Yes |  |
 
-\*You can get hosts IDs by using the following command: `weka cluster host -H=<hostname>`
+{% hint style="info" %}
+\*It is possible to obtain host IDs using the following command:  
+`weka cluster host -H=<hostname>`
+{% endhint %}
 
-**Setting group IPs using GUI**
+### **Setting Interface Group IPs**
 
-In order to set IPs for the selected group, click on the `+` button displayed on the top right-hand side of 'Group IP' table, input the relevant IP range and click 'save'.
+**Setting Interface Group IPs using the GUI**
 
-Removal of an unwanted IP is done by clicking on the trash symbol displayed next to them in the table.
+Access the Group IPs table.
 
-![Group IPs table](.gitbook/assets/image%20%282%29.png)
+![Group IPs Table](.gitbook/assets/image%20%281%29.png)
 
-**Setting group ports using CLI**
+To set IPs for the selected group, click the '+' button on the top right-hand side of Group IPs  table. Then enter the relevant IP range and click Save.
 
-**Commands:** `weka nfs interface-group ip-range add`
+To remove an IP, click the the trash symbol displayed next to the IP in the table.
 
- `weka nfs interface-group ip-range delete`
+**Setting Interface Group IPs using the CLI**
 
-Use the following commands line to add/delete an interface-group port:
+**Commands:** `weka nfs interface-group ip-range add`and `weka nfs interface-group ip-range delete`
 
-`weka nfs interface-group ip-range add <name> <ips>`
+Use the following command lines to add/delete an interface group IP:  
+`weka nfs interface-group ip-range add <name> <ips>     
+weka nfs interface-group ip-range delete <name> <ips>` 
 
-`weka nfs interface-group ip-range delete <name> <ips>`
-
- **Parameters in Command Line**
+**Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | --- | --- | --- |
-| `name` | String | Interface group name | None | Yes | ​ |
-| `ips` | String | IP range | Valid IP range | yes | ​ |
+| `name` | String | Interface group name | None | Yes |  |
+| `ips` | String | IP range | Valid IP range | Yes |  |
 
-​
+## **Managing NFS Access Control \(Client Access Groups\)**
 
-### **Defining NFS Access Control \(Client Access Groups\)** {#defining-nfs-access-control-client-access-groups-1}
+### Defining Client Access Groups
 
-#### Defining Client Access Groups Using the GUI {#uploading-a-snapshot-using-the-ui-1}
+#### Defining Client Access Groups Using the GUI {#uploading-a-snapshot-using-the-ui}
 
-From the NFS client permissions view click '+' button on the top left-hand side of the screen. Input a group name and click 'save'.
+Access the NFS Client Permissions screen.
 
-![NFS Client Permissions view screen](.gitbook/assets/image%20%281%29.png)
+![NFS Client Permissions Screen](.gitbook/assets/screenshot-from-2018-07-04-17-10-55.png)
 
-**Managing Client Group Rules Using the GUI**
+To define a client access group, click the '+' button on the top left-hand side of the screen. Enter the client access group name and click Save.
 
-To add IPs or DNS rule: to a group click '+Add IP' / '+Add DNS' and input the required values - IP and mask or DNS respectively.  Removal is done by clicking the trash icon that shown next to the unwanted element.
-
-![](.gitbook/assets/image%20%287%29.png)
-
-![](.gitbook/assets/image%20%283%29.png)
-
-![](.gitbook/assets/image.png)
-
- **Managing NFS Client Permissions Using the GUI**
-
-Click the top right `+` icon from the permission table, permission rule addition dialog box will be displayed.
-
-Fill in the following parameters:
-
-* client group
-* filesystem
-* path \(the given path will be the root of the share\)
-* access type: Read only or Read write
-* Squash root
-* Anonymous user ID \(relevant only for root squashing\)
-* Anonymous user group ID \(relevant only for root squashing\)
-
-click 'save'.
-
-![NFS permission rule addition dialog box](.gitbook/assets/image%20%284%29.png)
-
-#### Defining Client Access Groups Using the CLI {#uploading-a-snapshot-using-the-cli-2}
+#### Defining Client Access Groups Using the CLI {#uploading-a-snapshot-using-the-ui}
 
 **Command:** `weka nfs client-group`
 
-Use the following command line to add/delete client group:
-
- `weka nfs client-group add <name>`
-
-`weka nfs client-group delete <name>`
+Use the following command lines to add/delete a client access group:  
+`weka nfs client-group add <name>  
+weka nfs client-group delete <name>`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | --- | --- |
-|  `name` | String | Group name | Valid name | Yes | ​ |
+|  `name` | String | Group name | Valid name | Yes |  |
 
-​
+### Managing Client Access Groups
 
-#### Managing NFS rules Rules Using the CLI {#uploading-a-snapshot-using-the-cli-3}
+#### **Managing Client Access Groups Using the GUI**
 
-**Adding/deleting dns:**
+To add IPs or DNS rules to a group, access the relevant Client Groups dialog box.
 
-**Command:** `weka nfs rules`
+![Client Groups Dialog Box](.gitbook/assets/image%20%289%29.png)
 
-Use the following commands line to add/delete dns:
+Click +Add IP or +Add DNS. The appropriate dialog box will be displayed.
 
-`weka nfs rules add dns <name> <dns>`
+![Add DNS to a Client Group Dialog Box](.gitbook/assets/screenshot-from-2018-07-04-17-39-07.png)
 
-`weka nfs rules delete dns <name> <dns>`
+![Add IP to a Client Group](.gitbook/assets/screenshot-from-2018-07-04-17-38-48.png)
 
-**Parameters in Command Line**
+Enter the required values - DNS or IP and Mask, respectively, and click Save.
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
-|  `name` | String | Group name | Valid name | Yes | ​ |
-|  `dns` | String | DNS rule with \*?\[\] wildcards rule | ​ | Yes | ​ |
+To remove an IP or DNS from a client group, click the trash symbol displayed next to IP or DNS.
 
-​
+#### **Managing Client Access Groups Using the CLI**
 
-**Adding/deleting ip:**
+**Adding/Deleting DNS**
 
-**Command:** `weka nfs rules`
+**Command:** `weka nfs rules` 
 
-Use the following commands line to add/delete dns:
-
-`weka nfs rules add ip <name> <ip>`
-
-`weka nfs rules delete ip <name> <ip>`
+Use the following command lines to add/delete a client group DNS:  
+`weka nfs rules add dns <name> <dns>  
+weka nfs rules delete dns <name> <dns>`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | --- | --- | --- |
-|  `name` | String | Group name | Valid name | Yes | ​ |
-|  `ip` | String | IP with netmask rule, in the 1.1.1.1/255.255.0.0 format | Valid IP | Yes | ​ |
+|  `name` | String | Group name | Valid name | Yes |  |
+|   `dns` | String | DNS rule with \*?\[\] wildcard rules |  | Yes |  |
 
-​
+**Adding/Deleting an IP**
+
+**Command:** `weka nfs rules` 
+
+Use the following command lines to add/delete a client group IP:  
+`weka nfs rules add ip <name> <ip>  
+weka nfs rules delete ip <name> <ip>`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| --- | --- | --- |
+| `name` | String | Group name | Valid name | Yes |  |
+|   `ip` | String | IP with net mask rule, in the 1.1.1.1/255.255.0.0 format | Valid IP | Yes |  |
+
+### **Managing NFS Client Permissions**
+
+#### **Managing NFS Client Permissions Using the GUI**
+
+To add client permissions, click the top right-hand '+' icon in the Client Permissions table. The Permissions dialog box will be displayed.
+
+![NFS Permissions Dialog Box](.gitbook/assets/screenshot-from-2018-07-04-17-52-32.png)
+
+Define the the following parameters: 
+
+* Client Group: the client group to receive permissions.
+* Filesystem: the filesystem to receive permissions.
+* Path: The path that will be the root of the share.
+* Type: The type of access to be provided - RO \(read only\) or RW \(Read/Write\).
+* Squash Root: Set to ON or OFF.
+* Anom. UID: Anonymous user ID \(relevant only for root squashing\).
+* Anom. GID: Anonymous user group ID \(relevant only for root squashing\)
+
+Then click Save. 
+
+**Managing NFS Client Permissions Using the CLI**
+
+**Command:** `weka nfs permission` 
+
+Use the following commands line to add/delete DNS:
+
+`XXXXXXXXXXXXXXXX`
+
+`XXXXXXXXXXXXXXXX`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| --- | --- | --- |
+|   |  |  |  |  |  |
+|    |  |  |  |  |  |
 
