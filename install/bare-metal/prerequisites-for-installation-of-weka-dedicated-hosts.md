@@ -17,7 +17,7 @@ description: >-
 
 ### Memory {#memory}
 
-* Enough memory to support Weka needs as described in [memory requirements ](https://docs.weka.io/~/edit/primary/installation/planning-a-weka-system-installation#memory-resource-planning)
+* Enough memory to support Weka needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
 ### Operation System {#operation-system}
