@@ -10,12 +10,35 @@ To add more clients as separate instances, follow the instructions below:
 
 New client instances have to be of one of the types in [Supported EC2 Instance Types](supported-ec2-instance-types.md).
 
-There are a few things to ensure when launching the new clients:
+There are a few things to ensure when launching new clients:
 
-* New clients must have the same **security group** as the other client/backend instances
-* The clients **IAM role** must be the same as other client/backend instances
-* The clients must be in the same **subnet** as other client/backend instances in the same AZ
-* The clients **root volume** has to be at least 48GiB in size and of either `GP2` or `IO1` types
+#### **Networking**
+
+The new clients must be in the **same subnet** as the backend instances.
+
+The new clients must either:
+
+* Use the same **security group** as the backends they will connect to.
+* Use a **security group** which allows the clients to connect to the backend instances.
+
+When adding a client, the `aws-add-client` script needs permissions for the following AWS APIs to discover and optionally add a network interface to the instance \(see below\):
+
+* `ec2:Describe*`
+* `ec2:AttachNetworkInterface`
+* `ec2:CreateNetworkInterface`
+* `ec2:ModifyNetworkInterfaceAttribute`
+
+These permissions are automatically created in an instance profile as part of the CloudFormation stack. You can either use the same instance profile as one of the backend instances to ensure these credentials are given to the new client.
+
+The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the Weka client to preallocate the network resource for fastest performance.
+
+If you don't want to provide the client with these permissions, you can only provide `ec2:Describe*` and create an additional NIC yourself in the same security group and subnet as described above.
+
+#### Root Volume
+
+The clients **root volume** has to be at least 48GiB in size and of either `GP2` or `IO1` types.
+
+Weka installs its software under `/opt/weka`. If you can't change the size of your root volume, you can create an additional EBS volume, format it and mount under `/opt/weka`. Make sure that the new volume is of either `GP2` or `IO1` types
 
 ### Step 2: Install WekaIO Software {#step-2-install-wekaio-software}
 
