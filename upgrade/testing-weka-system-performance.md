@@ -55,9 +55,9 @@ mkdir -p $WORKING_DIR`
 The following is an example of the test output for an AWS Weka cluster of 6 instances of type i3.16xl.
 {% endhint %}
 
-![Example test output for an AWS Weka cluster of 6 instances of type i3.16xl](../.gitbook/assets/example-output3-page-001%20%281%29.jpg)
+![Example of test output for an AWS Weka cluster of 6 instances of type i3.16xl](../.gitbook/assets/example-output3-page-001%20%282%29.jpg)
 
-In this test output example, results show an average latency of 529 microseconds, where 99.9% of the writes terminated in 766 microseconds or less.
+In this test output example, results show an average latency of 529 microseconds, where 99.5% of the writes terminated in 766 microseconds or less.
 
 {% hint style="info" %}
 **Note:** Different hardware and networking configurations may yield different latency results, which can be as low as 150 microseconds for 100 Gbit networking and NVMe drives.
