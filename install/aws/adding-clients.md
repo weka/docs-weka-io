@@ -46,7 +46,7 @@ To download the WekaIO software, go to [https://get.weka.io ](https://get.weka.i
 
 After selecting the version, select the operating system you’re installing on and run the download command-line as `root`on all your new client instances.
 
-When download is complete, untar the downloaded package and run the `install.sh` script contained in the package directory.
+When download is complete, untar the downloaded package and run the `install.sh` within the package directory. For example, if you downloaded the 3.1.7 version, run `cd weka-3.1.7` and then run `./install.sh`.
 
 {% hint style="info" %}
 **ENA Driver Notice**
@@ -68,12 +68,20 @@ weka local run -e WEKA_HOST=<backend-ip> aws-add-client <client-instance-id>
 
 where `<backend-ip>` is the IP addresses or hostname of one of the backend instances.
 
+If all goes well, `aws-add-client` prints the following line:
+
+```text
+Client has joined the cluster
+```
+
 {% hint style="info" %}
 **Dedicated Client Resources**
 
-Once `aws-add-client` is done running, one core and 1.4GB of RAM are allocated for WekaIO on the client instance.
+Once `aws-add-client` is done running, one core and 6.3GB of RAM are allocated for WekaIO on the client instance.
 
 This is done as part of WekaIO's pre-allocation of resources, ensuring that variance in client activity doesn't result in allocation of resources that might affect the programs running on the client host.
+
+For more information, see the [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning) section of the installation guide.
 {% endhint %}
 
 ### Step 4: Mount Filesystem On Clients {#step-4-mount-filesystem-on-clients}
