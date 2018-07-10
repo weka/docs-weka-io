@@ -43,19 +43,15 @@ mkdir -p $WORKING_DIR`
 
 #### Run Benchmark
 
-`fio --name=$BENCHMARK_ID --directory=$WORKING_DIR --filesize=104857600   
-    --group_reporting --numjobs=1 --ioengine=posixaio --nrfiles=32 --invalidate=0   
-    --iodepth=1 --max-jobs=1 --rwmixread=0 --create_serialize=0 --runtime=70 --time_based  
-    --direct=1 --randrepeat=1 '--filename_format=$jobnum/$filenum' --clat_percentiles=1  
-    --blocksi ze=4096 --readwrite=randwrite`
+`fio --name=$BENCHMARK_ID --directory=$WORKING_DIR --filesize=104857600 --group_reporting --numjobs=1 --ioengine=posixaio --nrfiles=32 --invalidate=0 --iodepth=1 --max-jobs=1 --rwmixread=0 --create_serialize=0 --runtime=70 --time_based --direct=1 --randrepeat=1 --filename_format='$jobnum/$filenum' --clat_percentiles=1 --blocksize=4096 --readwrite=randwrite`
 
 #### Example of Test Output
 
 {% hint style="warning" %}
-The following is an example of the test output for an AWS Weka cluster of 6 instances of type i3.16xl.
+The following is an example of the test output for an AWS Weka cluster of 6 instances of type i3.16xlarge.
 {% endhint %}
 
-![Example of test output for an AWS Weka cluster of 6 instances of type i3.16xl](../.gitbook/assets/example-output3-page-001%20%282%29.jpg)
+![Example of test output for an AWS Weka cluster of 6 instances of type i3.16xlarge](../.gitbook/assets/example-output3-page-001%20%282%29.jpg)
 
 In this test output example, results show an average latency of 529 microseconds, where 99.5% of the writes terminated in 766 microseconds or less.
 
