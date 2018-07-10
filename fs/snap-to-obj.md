@@ -9,7 +9,7 @@ description: >-
 ## About Snap-To-Object
 
 {% hint style="info" %}
-**Note:** Check the latest release notes to determine whether the write cache mount mode is enabled as a production feature or a technology preview.
+**Note:** Check the latest release notes to determine whether the Snap-To-Object feature is enabled as a production feature or a technology preview.
 {% endhint %}
 
  The Snap-To-Object feature enables the committing of all the data of a specific snapshot, including metadata, to an object store. Unlike data lifecycle management processes, this feature involves all the snapshot, which includes data, metadata and every file.
