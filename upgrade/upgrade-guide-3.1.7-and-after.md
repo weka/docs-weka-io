@@ -28,7 +28,7 @@ At this point you should have an installed release on one of your backend hosts.
 To upgrade your cluster to the new release, run the following command on the backend host:
 
 ```text
-weka local run --in <new-version> upgrade --mode=one-shot
+weka local run --in <new-version> upgrade --mode one-shot
 ```
 
 `<new-version>` is the name of the new version you have downloaded from get.weka.io \(e.g. `3.1.7.2`\).
