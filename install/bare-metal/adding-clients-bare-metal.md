@@ -12,7 +12,7 @@ To add client hosts to the Weka system configuration, use the stages described b
 
 ## Stage 1: Install the Software
 
-Verify that the Weka software is installed on the client host according to the installation instructions. For further information, see [Obtaining the Weka Install File](https://docs.weka.io/installation/obtaining-the-weka-install-file) and stage 1 in [Weka System Installation Process.](https://docs.weka.io/installation/untitled#stage-1-installation-of-the-weka-software-on-each-host)
+Verify that the Weka software is installed on the client host according to the installation instructions. For further information, see [Obtaining the Weka Install File](obtaining-the-weka-install-file.md) and [stage 1 in Weka System Installation Process](adding-clients-bare-metal.md#stage-1-install-the-software).
 
 {% hint style="info" %}
 **Note:** All hosts, clients and backends in a Weka system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
