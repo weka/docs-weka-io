@@ -1,56 +1,43 @@
-# Pay-As-You-Go License
+---
+description: >-
+  This page describes PAYG licenses which allow cluster payment on an hourly
+  basis, as part of your AWS bill.
+---
 
-Pay-As-You-Go \(PAYG\) allows you to pay for your cluster, on an hourly basis, as part of your AWS bill.
+# Pay-As-You-Go \(PAYG\) License
 
-To enable PAYG you first have subscribe to [WekaIO Matrix distributed scalable file system ](https://aws.amazon.com/marketplace/pp/B074XFQH6F) in the AWS Marketplace:
+## Subscribing to AWS Marketplace
 
-### AWS Marketplace Subscription {#aws-marketplace-subscription}
-
-Follow these steps to subscribe to WekaIO in the AWS Marketplace:
+To enable PAYG, it is first necessary to subscribe to [WekaIO Matrix distributed scalable file system ](https://aws.amazon.com/marketplace/pp/B074XFQH6F)in the AWS Marketplace. This is performed using the following steps:
 
 1. [Click here ](https://aws.amazon.com/marketplace/pp/B074XFQH6F) to go to the AWS Marketplace subscription page.
-2. Review the pricing \(see “How Does Hourly Pricing Work” below for more details\).
-3. Click the **Continue** button, then confirm by clicking **Subscribe**.
-4. A few seconds later a popup will show up, click the **Set Up Your Account** button.
+2. Review the pricing \(see [How Does Hourly Pricing Work?](pay-as-you-go.md#how-does-hourly-pricing-work) below for more details\).
+3. Click the **Continue** button and then confirm by clicking **Subscribe**. A few seconds later a popup will be displayed.
+4. Click the **Set Up Your Account** button.
 
-After clicking **Set Up Your Account** you will be redirected to the WekaIO Portal:
+After clicking the **Set Up Your Account** button, you will be redirected to the WekaIO Portal:
 
-* If you already have a WekaIO account:
-  1. Enter your email address and password of your existing account.
-  2. Your WekaIO account will be linked to your AWS Marketplace subscription.
-* If you don’t have a WekaIO account yet:
-  1. Enter your email and choose a password for your new account.
-  2. A new account will be created for you.
-  3. Your new WekaIO account will be linked to your AWS Marketplace subscription.
+* **If you already have a WekaIO account:** Enter your email address and account password. Your WekaIO account will be linked to your AWS Marketplace subscription.
+* **If you do not have a WekaIO account:** Enter your email address and choose a password for your new account. A new WekaIO account will be created and it will be linked to your AWS Marketplace subscription.
 
-Your WekaIO account is now connected to the AWS Marketplace,
+Your WekaIO account is now connected to the AWS Marketplace.
 
-### Enabling PAYG In Your WekaIO Cluster {#enabling-payg-in-your-wekaio-cluster}
+## Enabling PAYG In Your Weka System Cluster
 
-After you’ve subscribed to the AWS Marketplace, you’d have to create a PAYG plan in your WekaIO account.
+After subscribing to the AWS Marketplace, a PAYG plan must be created in your WekaIO account. To do this, go to the **PAYG Plans** page and click the **Create PAYG Plan** button. Select the **AWS Marketplace** as the payment method and click the **Create PAYG Plan** to complete creation of the plan.
 
-1. To do this, go to the **PAYG Plans** page.
-2. Click **Create PAYG Plan** button
-3. Select the **AWS Marketplace** as the payment method
-4. Click the **Create PAYG Plan** to finish creating the plan
+A PAYG plan is simply an ID+secret connected to a payment method, which in this case is your AWS Marketplace. The payment method can be changed at any point without having to reconfigure the Weka system cluster, since the ID+secret pair does not expire unless you delete them yourself.
 
-A PAYG plan is simply an ID+secret which are connected to a payment method, in this case, your AWS Marketplace. You can replace the payment method at any point without having to reconfigure your WekaIO cluster, as the ID+secret pair don’t expire unless you delete them yourself.
+This method also allows the connection of multiple Weka system clusters to the same PAYG plan.
 
-This method also allows you to connect multiple WekaIO clusters using the same PAYG plan.
+Once a PAYG plan has been created, the final step is to enable the PAYG plan in the Weka system cluster. This is performed as follows:
 
-Once a PAYG plan has been created, the final step is to enable the PAYG plan in the WekaIO cluster:
+1. Open a terminal and connect to one of your cluster hosts.
+2. Copy and paste the `<plan-id>` and `<secret-key>` from the PAYG plan you created above to the following CLI command: $ weka cluster license payg &lt;plan-id&gt; &lt;secret-key&gt;
 
-1. Open a terminal and connect to one of your cluster hosts
-2. Copy and paste the `<plan-id>` and `<secret-key>` from the PAYG plan you created above to the CLI command below
-3. Enter the following CLI command:
+## What Happens When PAYG Is Enabled?
 
-   ```text
-    $ weka cluster license payg <plan-id> <secret-key>
-   ```
-
-### What Happens When PAYG Is Enabled? {#what-happens-when-payg-is-enabled}
-
-After enabling PAYG, you can check that it’s active by running the `weka status` command:
+After enabling PAYG, it is possible to verify that it is active by running the `weka status` command:
 
 ```text
 $ weka status
@@ -60,7 +47,7 @@ Weka v3.1.0 (CLI build 7f993d3)
 ...
 ```
 
-In case something went wrong, weka status shows an error indicating the issue:
+If something has gone wrong, the weka status shows an error indicating the issue. For example:
 
 ```text
 $ weka status
@@ -70,45 +57,39 @@ Weka v3.1.0 (CLI build 7f993d3)
 ...
 ```
 
-At any time, you can reset the licensing status to return to an unlicensed mode:
+At any time, it is possible to reset the licensing status to return to an unlicensed mode, using the follwoing command:
 
 ```text
 $ weka cluster license reset
 ```
 
-Resetting your license allows you to enter new PAYG plan details or switch to other licensing methods that might be available in the future.
+Resetting a license enables the entry of new PAYG plan details or switching to other licensing methods that might be available in the future.
 
-Momentarily disabling and re-enabling licensing does not affect the WekaIO cluster operation and is completely safe.
+{% hint style="info" %}
+**Note:** Momentary disabling and re-enabling of licensing does not affect operation of the Weka system cluster and is completely safe.
+{% endhint %}
 
-### How Does Hourly Pricing Work {#how-does-hourly-pricing-work}
+## How Does Hourly Pricing Work?
 
-WekaIO charges your AWS account on an hourly basis according to the pricing details published in the AWS Marketplace subscription. There are however some cases worth explaining in more detail:
+WekaIO charges your AWS account on an hourly basis, according to the pricing details published in the AWS Marketplace subscription. However, some cases are worth explaining in more detail.
 
-#### Client Instances Are Free {#client-instances-are-free}
+### Client Instances Are Free
 
-As you may have noticed, the pricing in the AWS Marketplace only includes r3 and i3 instances while you can install WekaIO on many other instance types \(see [Supported EC2 Instance Types](https://docs.weka.io/3.1/docs/aws/instance-types.html) for a complete list.\)
+Pricing in the AWS Marketplace only includes r3 and i3 instances, while it is possible to install the Weka system on many other types of instances \(see [Supported EC2 Instance Types](../install/aws/supported-ec2-instance-types.md) for a complete list\). This is because WekaIO only charges for **backend instances**, which are the instances storing the data in the cluster. Client instances, which also includes r3 instances when installing as clients, are free of charge.
 
-The reason for this is that WekaIO only charges for **backend instances**, which are the instances storing the data in the cluster. Client instances are free of charge, which also includes r3 instances when installing as clients.
+### Duplicate Charge Protection
 
-#### Duplicate Charge Protection {#duplicate-charge-protection}
+When enabling PAYG, the Weka system cluster sends a usage report to the WekaIO Portal. This usage report contains the information necessary for correctly charging your AWS account. If PAYG is enabled and disabled multiple times in the same hour, multiple usage reports will be sent, which may cause duplicate charges.
 
-When you enable PAYG, the WekaIO cluster sends a usage report to the WekaIO Portal. This usage report contains the necessary information to correctly charge your AWS account.
+The WekaIO Portal protects against such duplicate charges by ensuring that a cluster is never billed more than once in each given hour. It is possible to view a detailed list of usage reports in your WekaIO Portal account, with duplicate usage reports marked separately from the other reports.
 
-If you enable and disable PAYG multiple times in the same hour, it causes multiple usage reports to be sent, which may cause duplicate charges.
+### Billing Multiple Clusters
 
-The WekaIO Portal protects against duplicate charges by making sure to never bill the same cluster more than once in each given hour. You can see a detailed list of your usage reports in your WekaIO Portal account. Duplicate usage reports will be marked separately from the other reports.
+It is possible to use the same PAYG plan, or multiple PAYG plans assigned to the same AWS Marketplace subscription, with more than one Weka system cluster. In such situations, the accumulated charges will appear in your AWS bill, as the AWS Marketplace receives aggregated charges for each hour. it is possible to see the usage for each cluster separately under the usage reports screen in your WekaIO account.
 
-#### Billing Multiple Clusters {#billing-multiple-clusters}
+## Unsubscribing
 
-You may use the same PAYG plan, or multiple PAYG plans assigned to the same AWS Marketplace subscription, with more than one WekaIO cluster.
+When unsubscribing, make sure to cancel your subscription from your AWS account. Subscriptions take up to 1 hour to be canceled, after which it is possible to re-subscribe and update your PAYG plans to charge the new subscription.
 
-In this case, you will see the accumulated charges in your AWS bill, as the AWS Marketplace receives aggregated charges for each hour. You can see the usage for each cluster separately under the usage reports screen in your WekaIO account.
-
-### What Happens If I Unsubscribe? {#what-happens-if-i-unsubscribe}
-
-If you decide to unsubscribe, please make sure to cancel your subscription from your AWS account.
-
-Subscriptions take up to one hour to be canceled, after which you can re-subscribe and update your PAYG plans to charge the new subscription.
-
-Any existing clusters you may have will become unlicensed, just as if you’ve reset their licensing status through CLI.
+When unsubscribing, any existing clusters will become unlicensed, just as if their licensing status has been reset through the CLI.
 

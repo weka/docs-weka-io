@@ -50,7 +50,7 @@
 
 * [Overview](licensing/overview.md)
 * [Classic License](licensing/classic-licensing.md)
-* [Pay-As-You-Go License](licensing/pay-as-you-go.md)
+* [Pay-As-You-Go \(PAYG\) License](licensing/pay-as-you-go.md)
 
 ## Upgrade
 
