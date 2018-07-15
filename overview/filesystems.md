@@ -37,7 +37,7 @@ Each filesystem group may contain a data lifecycle management configuration and 
 Once a filesystem group is connected to an object store, it cannot be disconnected from the object store or changed to a different bucket or object store. However, if reconfiguration of the object store identification information is required, such as changing connectivity definitions, DNS name, bucket name, access control parameters or the password, it can be edited, after which all the filesystem groups will work according to the new definitions. It is assumed that after such a change the same objects will still be available without any change.
 
 {% hint style="info" %}
-**Note:** Each filesystem group has optional tiering control parameters \(see [Guidelines for Data Storage in Tiered Weka System Configurations](https://docs.weka.io/~/edit/primary/overview/data-storage#guidelines-for-data-storage-in-tiered-weka-system-configurations)\).
+**Note:** Each filesystem group has optional tiering control parameters \(see [Guidelines for Data Storage in Tiered Weka System Configurations](data-storage.md#guidelines-for-data-storage-in-tiered-weka-system-configurations)\).
 {% endhint %}
 
 {% hint style="info" %}
