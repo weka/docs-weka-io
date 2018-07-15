@@ -29,11 +29,11 @@
   * [Troubleshooting](install/aws/troubleshooting.md)
 * [Expanding & Shrinking Cluster Resources](expanding-and-shrinking-cluster-resources.md)
 * [Shrinking a Cluster](shrinking-a-cluster.md)
-* [NFS Support](nfs-support.md)
 
 ## USING FILESYSTEMS
 
 * [Managing Filesystems, Object Stores and Filesystem Groups](fs/managing-filesystems.md)
+* [NFS Support](fs/nfs-support.md)
 * [Mounting Filesystems](fs/mounting-filesystems.md)
 * [Pre-Fetch API for Data Lifecycle Management](fs/tiering.md)
 * [Snap-To-Object](fs/snap-to-obj.md)
