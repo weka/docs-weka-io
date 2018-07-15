@@ -1,8 +1,7 @@
 ---
 description: >-
   This page describes the three types of entities relevant to data storage in
-  the Weka system: filesystems, object stores and filesystem groups, and their
-  management.
+  the Weka system: filesystems, object stores and filesystem groups.
 ---
 
 # Filesystems, Object Stores & Filesystem Groups
