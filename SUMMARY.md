@@ -2,7 +2,7 @@
 
 * [Weka.IO Documentation](README.md)
 
-## Product Overview
+## Weka System Overview
 
 * [About the Weka System](overview/about.md)
 * [SSD Capacity Management](overview/ssd-capacity-management.md)
@@ -30,7 +30,7 @@
 * [Expanding & Shrinking Cluster Resources](expanding-and-shrinking-cluster-resources.md)
 * [Shrinking a Cluster](shrinking-a-cluster.md)
 
-## USING FILESYSTEMS
+## FILESYSTEMS
 
 * [Managing Filesystems, Object Stores and Filesystem Groups](fs/managing-filesystems.md)
 * [NFS Support](fs/nfs-support.md)
@@ -39,11 +39,12 @@
 * [Snap-To-Object](fs/snap-to-obj.md)
 * [Snapshots](fs/snapshots.md)
 
-## USAGE GUIDE
+## OPERATION GUIDE
 
 * [Events](usage/events.md)
 * [Statistics](usage/statistics.md)
 * [User Management](usage/user-management.md)
+* [Testing Weka System Performance](testing-weka-system-performance.md)
 
 ## Billing & Licensing
 
@@ -55,5 +56,4 @@
 
 * [Upgrade Guide: 3.1.7 And After](upgrade/upgrade-guide-3.1.7-and-after.md)
 * [Upgrading Guide: 3.1.6 and Before](upgrade/upgrading-to-v3.1.6.x.md)
-* [Testing Weka System Performance](upgrade/testing-weka-system-performance.md)
 
