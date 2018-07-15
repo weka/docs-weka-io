@@ -49,8 +49,8 @@
 ## Billing & Licensing
 
 * [Overview](licensing/overview.md)
-* [Classic Licensing](licensing/classic-licensing.md)
-* [Pay As You Go](licensing/pay-as-you-go.md)
+* [Classic License](licensing/classic-licensing.md)
+* [Pay-As-You-Go License](licensing/pay-as-you-go.md)
 
 ## Upgrade
 

@@ -1,4 +1,4 @@
-# Pay As You Go
+# Pay-As-You-Go License
 
 Pay-As-You-Go \(PAYG\) allows you to pay for your cluster, on an hourly basis, as part of your AWS bill.
 

@@ -4,7 +4,7 @@ description: >-
   predetermined period of time) and apply it to the Weka system cluster.
 ---
 
-# Classic Licensing
+# Classic License
 
 A classic license is a text element entered in the cluster using the UI or the CLI. The following is an example:
 
