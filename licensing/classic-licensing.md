@@ -1,34 +1,34 @@
+---
+description: >-
+  This page describes how to obtain classic WekaIO license (payment for a
+  predetermined period of time) and apply it to the Weka system cluster.
+---
+
 # Classic Licensing
 
-A classic license is a text element entered in the cluster UI or CLI, for example:
+A classic license is a text element entered in the cluster using the UI or the CLI. The following is an example:
 
-```text
+```
 eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZjQ4M2YxZi1jNGJhLTRkZDAtYTExNC04MTBmMzk0NGQ1MTUiLCJpc3MiOiJodHRwczovL2dldC53ZWthLmlvIiwibmJmIjoxNTMwNDM4NjI2LCJleHAiOjE1MzMwMzA2MjYsInctZ3VpZCI6IjZjZDI2ZTdlLWZmNDYtNGZmMC1iOGU2LTUzNmE0MzIwZTkyYyIsInctdHlwZSI6IkNsYXNzaWMiLCJ3LWNyZWRpdHMiOnsiZHJpdmVfY2FwYWNpdHlfZ2IiOjE2MSwib2JzX2NhcGFjaXR5X2diIjowfSwiaWF0IjoxNTMwNDM4NjQyfQ.oi1Vfp7nkJBN1jENfWTAxFyKkcKNKqmWR23ZlnPdvWHa78KnDvA2tgC8VXjVHPh6NM5s0nSfZLUv5HESjdnTG98hGxMSfTDhGLmK-jn6Kuk382p0sT5YSrWr7zyJu3AtGxSPCf0CMbXBsfvv3ivycTLx5ACpw9CSGl2CWvEhA5kDHi45EjM_Teo43z7AHvzog1HOEJDl6jZiEAMw0NLf6ZJ2Y6XCFgqxCIrmD0irGUI04GtHKsMPRSABUeakHshIFoy-TnaW1vMGS1GYNetYjyeQKyy74Baaos_SCzMHuLHMEjGXWJZjAN780KKSQN9DYEBC6HxZGpx4sEEqtyx_kg
 ```
 
-In this page we'll describe how to get your license and how to apply it to your WekaIO cluster.
+## Creating a get.weka.io Account
 
-## Create a get.weka.io Account
-
-Follow the instructions in the following page to create your get.weka.io account.
+Follow the instructions to create a get.weka.io account appearing in the [log-in instructions](../install/bare-metal/obtaining-the-weka-install-file.md#step-1-log-in).
 
 {% hint style="info" %}
-You can skip this step if you already have created an account
+**Note:** This step can be skipped if you already have created a WekaIO account.
 {% endhint %}
 
-{% page-ref page="../install/bare-metal/obtaining-the-weka-install-file.md" %}
+## Obtaining an Entitlement
 
-## Get an Entitlement
+After creating an account in get.weka.io, an entitlement will be applied to the account by a WekaIO sales or support person. Outstanding entitlements can be viewed in the account dashboard.
 
-After creating an account in get.weka.io, an entitlement will be applied to your new account by a WekaIO sales or support person.
+![Account Dashboard](../.gitbook/assets/screen-shot-2018-07-01-at-13.15.56.png)
 
-You can see your outstanding entitlements in your account dashboard:
+## Creating a License
 
-![](../.gitbook/assets/screen-shot-2018-07-01-at-13.15.56.png)
-
-##  Create a License
-
-Start by running the `weka cluster license` command. This command outputs all the information required for creating your license. An example output is:
+Start by running the `weka cluster license` command, which will output all the information required for creating your license. The following is an example output:
 
 ```text
 # weka cluster license 
@@ -49,51 +49,49 @@ If you already have a license, please enter it by running
 
 ```
 
-Then, click the "Create a license" action in the "Outstanding Entitlements" pane.
+Click Create a license in the Outstanding Entitlements pane in the Account dashboard. In the subsequent pane, select the line containing the entitlement for which a license is to be created \(there is probably only one line\) and then click the green Create a license button:
 
-In the "Create a license" page select the line containing the entitlement from which you want to create a license \(you will most likely have only one line\), then click the green "Create a license" button:
+![Create a License Pane](../.gitbook/assets/screen-shot-2018-07-01-at-13.33.03.png)
 
-![](../.gitbook/assets/screen-shot-2018-07-01-at-13.33.03.png)
+The Create License dialog box will be displayed. Enter the details obtained from the `weka cluster license` command.
 
-This will open up a dialog in which you'll have to enter the details obtained from the `weka cluster license` command:
+![Create License Dialog Box](../.gitbook/assets/screen-shot-2018-07-01-at-13.35.31%20%281%29.png)
 
-![](../.gitbook/assets/screen-shot-2018-07-01-at-13.35.31%20%281%29.png)
-
-Fill-in the cluster GUID and capacities, then click the "Create a License" button to confirm.
+Fill-in the cluster GUID and capacities. Then click the Create License button to confirm.
 
 {% hint style="info" %}
-You can fill-in capacities larger than what weka cluster license has printed out in case you plan to expand your cluster in the future.
+**Note:** If cluster expansion is planned for the future, it is possible to fill-in capacities larger than those appearing in the Weka cluster license.
 
-The capacities in your license represent the limits up to which you can expand your cluster, they do not have to match your actual usage.
+The capacities in the license represent the limits to which it is possible to expand the cluster and do not have to match actual usage.
 {% endhint %}
 
-## Applying the License to Your Cluster
+## Applying the License to the Cluster
 
-After creating your license, you are taken to the page showing your licenses. You can always return to this page to get your previously created licenses:
+After creating the license, the page showing licenses is displayed. it is always possible to return to this page to get previously-created licenses.
 
-![](../.gitbook/assets/screen-shot-2018-07-01-at-13.39.46.png)
+![Example of Licenses Page](../.gitbook/assets/screen-shot-2018-07-01-at-13.39.46.png)
 
-To apply the license to your cluster, click the three dots to the right of the license details, then select "Show License Text:
+To apply the license to the cluster, click the three dots to the right of the license details and then select Show License Text. 
 
-![](../.gitbook/assets/screen-shot-2018-07-01-at-13.41.36.png)
+![Applying a License to a Cluster Pane](../.gitbook/assets/screen-shot-2018-07-01-at-13.41.36.png)
 
-This opens the following dialog with your new license:
+The following dialog box with information on the new license is displayed.
 
-![](../.gitbook/assets/screen-shot-2018-07-01-at-13.42.24.png)
+![License Text Dialog Box](../.gitbook/assets/screen-shot-2018-07-01-at-13.42.24.png)
 
-Copy the license key, or click the "copy to clipboard" action, then run the following command on your cluster:
+Copy the license key or click copy to clipboard. Then run the following command on the cluster:
 
 ```text
 weka cluster license set <license-key>
 ```
 
-where &lt;license-key&gt; is the license you copied to your clipboard.
+where &lt;license-key&gt; is the license copied to the clipboard. 
 
-You cluster now has a license assigned to it.
+The cluster now has a license assigned to it.
 
 ## Getting the License Usage
 
-To see the details of your current license and the current cluster usage, run the `weka cluster license` command again. An example output is:
+To see the details of the current license and the current cluster usage, run the `weka cluster license` command again. The following is an example of the output obtained:
 
 ```text
 # weka cluster license 
@@ -111,15 +109,11 @@ Installed license: Valid from 2018-07-01T10:39:42Z
 
 ## Reinstalling a Cluster
 
-Every newly installed cluster is assigned a new GUID.
+Every newly-installed cluster is assigned a new GUID. It is possible to use an existing license for a cluster that has been reinstalled by selecting the Change Cluster GUID in the Applying a License to a Cluster pane.
 
-You can use an existing license for a cluster that has been reinstalled by selecting the "Change Cluster GUID" action of an existing license:
+![Applying a License to a Cluster Pane](../.gitbook/assets/screen-shot-2018-07-01-at-13.55.15.png)
 
-![](../.gitbook/assets/screen-shot-2018-07-01-at-13.55.15.png)
+![Change Cluster GUID Dialog Box](../.gitbook/assets/screen-shot-2018-07-01-at-13.56.06.png)
 
-![](../.gitbook/assets/screen-shot-2018-07-01-at-13.56.06.png)
-
-After entering a new cluster GUID, click the "Save Changes" button and repeat the steps above for getting and applying the license key to your cluster.
-
-
+After entering a new cluster GUID, click the Save Changes button and repeat the steps above for creating and applying the license key to your cluster.
 
