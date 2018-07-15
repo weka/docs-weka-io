@@ -1,10 +1,14 @@
+---
+description: This page lists all instance types supported by the Weka system version.
+---
+
 # Supported EC2 Instance Types
 
-This page lists all instance types supported by this WekaIO version.
+{% hint style="info" %}
+**Note:** To learn more about deployment types, see [Deployment Types](deployment-types.md).
+{% endhint %}
 
-To learn more about deployment types see the [Deployment Types](deployment-types.md) page.
-
-### Storage EC2 Instances {#storage-ec2-instances}
+## Storage EC2 Instances
 
 The following EC2 instance types can operate as **backend**, **client** or **hyper-converged** instances:
 
@@ -13,9 +17,13 @@ The following EC2 instance types can operate as **backend**, **client** or **hyp
 | I3 | i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge |
 | R3 | r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge |
 
-### Client EC2 Instances {#client-ec2-instances}
+## Client EC2 Instances
 
-The following EC2 instance types can operate as **client** instances \(note that any backend instance can also be a client instance\):
+The following EC2 instance types can operate as **client** instances.
+
+{% hint style="info" %}
+**Note:** Any backend instance can also be a client instance.
+{% endhint %}
 
 | **EC2 Instance Type** | **Supported Models** |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -31,9 +39,7 @@ The following EC2 instance types can operate as **client** instances \(note that
 | R4 | r4.xlarge, r4.2xlarge, r4.4xlarge, r4.8xlarge, r4.16xlarge |
 | X1 | x1.16xlarge, x1.32xlarge, x1e.32xlarge |
 
-_Read more about each instance type at_ [_https://aws.amazon.com/ec2/instance-types/_ ](https://aws.amazon.com/ec2/instance-types/)_._
-
 {% hint style="info" %}
-See [supported operating systems list](../bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md#operation-system)
+**Note:** Read more about [each instance type](https://aws.amazon.com/ec2/instance-types/). Read more about [supported operating systems](../bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md#operation-system).
 {% endhint %}
 
