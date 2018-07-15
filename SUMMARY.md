@@ -27,7 +27,7 @@
   * [Supported EC2 Instance Types](install/aws/supported-ec2-instance-types.md)
   * [Adding Clients](install/aws/adding-clients.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
-* [Expanding & Shrinking Cluster Resources](expanding-and-shrinking-cluster-resources.md)
+* [Expanding & Shrinking Cluster Resources](install/expanding-and-shrinking-cluster-resources.md)
 * [Shrinking a Cluster](shrinking-a-cluster.md)
 
 ## FILESYSTEMS
@@ -44,7 +44,7 @@
 * [Events](usage/events.md)
 * [Statistics](usage/statistics.md)
 * [User Management](usage/user-management.md)
-* [Testing Weka System Performance](testing-weka-system-performance.md)
+* [Testing Weka System Performance](usage/testing-weka-system-performance.md)
 
 ## Billing & Licensing
 
