@@ -1,96 +1,95 @@
+---
+description: >-
+  This page describes the process for adding clients to an already-installed
+  Weka system cluster.
+---
+
 # Adding Clients
 
-When launching a WekaIO cluster, either through the [self-service portal](self-service-portal.md) or via a [CloudFormation template](cloudformation.md), you may also launch client instances as part of the cluster.
+## Introduction
 
-However, sometimes you may want to add more clients after the cluster has been installed.
+When launching a Weka system cluster, either through the [Self-Service Portal](self-service-portal.md) or via a [CloudFormation template](cloudformation.md), it is also possible to launch client instances as part of the cluster. However, sometimes it may be required to add more clients after the cluster has been installed. To add more clients as separate instances, follow the instructions below.
 
-To add more clients as separate instances, follow the instructions below:
+## Adding Clients as Separate Instances
 
-### Step 1: Launch New Instances {#step-1-launch-new-instances}
+### Step 1: Launch the New Instances {#step-1-launch-new-instances}
 
-New client instances have to be of one of the types in [Supported EC2 Instance Types](supported-ec2-instance-types.md).
+{% hint style="info" %}
+**Note:** Any new client instances must be of one of the types appearing in [Supported EC2 Instance Types](supported-ec2-instance-types.md).
+{% endhint %}
 
-There are a few things to ensure when launching new clients:
+When launching new clients, ensure the following concerning networking and root volume:
 
 #### **Networking**
 
-The new clients must be in the **same subnet** as the backend instances.
+The new clients must be in the **same subnet** as the backend instances. They must use the same **security group** as the backends they will connect to, or alternatively use a **security group** which allows them to connect to the backend instances.
 
-The new clients must either:
-
-* Use the same **security group** as the backends they will connect to.
-* Use a **security group** which allows the clients to connect to the backend instances.
-
-When adding a client, the `aws-add-client` script needs permissions for the following AWS APIs to discover and optionally add a network interface to the instance \(see below\):
+When adding a client, the `aws-add-client` script requires permissions for the following AWS APIs to discover and optionally add a network interface to the instance \(see below\):
 
 * `ec2:Describe*`
 * `ec2:AttachNetworkInterface`
 * `ec2:CreateNetworkInterface`
 * `ec2:ModifyNetworkInterfaceAttribute`
 
-These permissions are automatically created in an instance profile as part of the CloudFormation stack. You can either use the same instance profile as one of the backend instances to ensure these credentials are given to the new client.
+These permissions are automatically created in an instance profile as part of the CloudFormation stack. It is possible to use the same instance profile as one of the backend instances to ensure that the same credentials are given to the new client.
 
-The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the Weka client to preallocate the network resource for fastest performance.
+The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the Weka system client to preallocate the network resource for fastest performance.
 
-If you don't want to provide the client with these permissions, you can only provide `ec2:Describe*` and create an additional NIC yourself in the same security group and subnet as described above.
+If the client is not to be provided with these permissions, it is possible to only provide `ec2:Describe*` and create an additional NIC in the same security group and subnet as described above.
 
 #### Root Volume
 
-The clients **root volume** has to be at least 48GiB in size and of either `GP2` or `IO1` types.
+The clients **root volume** must be at least 48 GiB in size and either `GP2` or `IO1` type.
 
-Weka installs its software under `/opt/weka`. If you can't change the size of your root volume, you can create an additional EBS volume, format it and mount under `/opt/weka`. Make sure that the new volume is of either `GP2` or `IO1` types
+The WekaIO software is installed under `/opt/weka`. If it is not possible to change the size of the root volume, an additional EBS volume can be created, formatted and mounted under `/opt/weka`. Make sure that the new volume is either `GP2` or `IO1` type.
 
-### Step 2: Install WekaIO Software {#step-2-install-wekaio-software}
+### Step 2: Install the WekaIO Software {#step-2-install-wekaio-software}
 
-To download the WekaIO software, go to [https://get.weka.io ](https://get.weka.io/) and select the version you want to download.
+To download the WekaIO software, go to [https://get.weka.io ](https://get.weka.io/) and select the software version to be downloaded. After selecting the version, select the operating system it is to be installed on and run the download command line as `root`on all the new client instances.
 
-After selecting the version, select the operating system you’re installing on and run the download command-line as `root`on all your new client instances.
+When the download is complete, untar the downloaded package and run the `install.sh` command in the package directory. 
 
-When download is complete, untar the downloaded package and run the `install.sh` within the package directory. For example, if you downloaded the 3.1.7 version, run `cd weka-3.1.7` and then run `./install.sh`.
-
-{% hint style="info" %}
-**ENA Driver Notice**
-
-If you're installing on an AWS instance with Elastic Network Adapter \(ENA\) but your kernel is not up-to-date, you may need to install the ENA drivers yourself or upgrade to a more recent operating-system version.
-
-The ENA driver is automatically available on recent operating-systems such as RedHat/Centos 7.4, Ubuntu 16 and Amazon Linux 2017.09.
+{% hint style="warning" %}
+**For Example:** If you downloaded version 3.1.7, run`cd weka-3.1.7` and then run `./install.sh`.
 {% endhint %}
 
-### Step 3: Add Clients To Cluster {#step-3-add-clients-to-cluster}
+{% hint style="info" %}
+**Note: ENA Driver Notice**
 
-Now that the WekaIO software is installed, the clients are ready to join the cluster.
+When installing on an AWS instance with Elastic Network Adapter \(ENA\) and a non-up-to-date kernel, it may be necessary to install the ENA drivers or upgrade to a more recent operating system version. The ENA driver is automatically available on recent operating systems, such as RedHat/Centos 7.4, Ubuntu 16 and Amazon Linux 2017.09.
+{% endhint %}
 
-To add the clients, run the following command on each of the client instances:
+### Step 3: Add Clients to the Cluster {#step-3-add-clients-to-cluster}
+
+Once the WekaIO software is installed, the clients are ready to join the cluster. To add the clients, run the following command line on each of the client instances:
 
 ```text
 weka local run -e WEKA_HOST=<backend-ip> aws-add-client <client-instance-id>
 ```
 
-where `<backend-ip>` is the IP addresses or hostname of one of the backend instances.
+where `<backend-ip>` is the IP address or hostname of one of the backend instances.
 
-If all goes well, `aws-add-client` prints the following line:
+If successful, running the`aws-add-client` command will display the following line:
 
 ```text
 Client has joined the cluster
 ```
 
 {% hint style="info" %}
-**Dedicated Client Resources**
+**Note: Dedicated Client Resources**
 
-Once `aws-add-client` is done running, one core and 6.3GB of RAM are allocated for WekaIO on the client instance.
-
-This is done as part of WekaIO's pre-allocation of resources, ensuring that variance in client activity doesn't result in allocation of resources that might affect the programs running on the client host.
-
-For more information, see the [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning) section of the installation guide.
+Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the Weka system on the client instance. This is performed as part of the Weka system pre-allocation of resources, ensuring that variance in client activity does not result in the allocation of resources that may affect the programs running on the client host. For more information, see [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
 {% endhint %}
 
-### Step 4: Mount Filesystem On Clients {#step-4-mount-filesystem-on-clients}
+### Step 4: Mount Filesystems on the Clients {#step-4-mount-filesystem-on-clients}
 
-You can now mount the filesystems on the clients instances. For example, this command would mount the `default`filesystem under `/mnt/weka`:
+It is now possible to mount the filesystems on the client instances.
 
-```text
-mkdir -p /mnt/weka && mount -t wekafs default /mnt/weka
-```
+{% hint style="warning" %}
+**For Example:** Using the`mkdir -p /mnt/weka && mount -t wekafs default /mnt/weka`  command will mount the `default`filesystem under `/mnt/weka.`
+{% endhint %}
 
-To learn about all available mount options, please see the [Mounting Filesystems](../../fs/mounting-filesystems.md) page.
+{% hint style="info" %}
+**Note:** For more information about available mount options, see [Mounting Filesystems](../../fs/mounting-filesystems.md).
+{% endhint %}
 
