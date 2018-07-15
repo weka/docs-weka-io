@@ -10,7 +10,7 @@ description: >-
 
 The basic Weka deployment model involves the creation of a sharable filesystem to be used by the application servers. This requires the installation of Weka client software which implements a POSIX filesystem driver on each application server intended to access data. This filesystem driver enables each of the application servers to access the Weka system as if it is a local drive, perceiving the Weka system as a local attached filesystem device while it is actually shared among multiple application servers.
 
-The file services are implemented by a group of [backend hosts](https://docs.weka.io/glossary#backend-host-a-host-that-runs-the-weka-software-and-can-also-be-installed-with-ssd-drives-dedicated-to-the-weka-system-providing-services-to-client-hosts) running the Weka software and fully dedicated to the Weka system. SSD drives for storing the data are installed on these servers. The resultant storage system is scalable to hundreds of backends and thousands of clients.
+The file services are implemented by a group of [backend hosts](glossary.md#backend-host) running the Weka software and fully dedicated to the Weka system. SSD drives for storing the data are installed on these servers. The resultant storage system is scalable to hundreds of backends and thousands of clients.
 
 ![](../.gitbook/assets/diagram-1a.jpg)
 
