@@ -46,11 +46,11 @@ SELINUX must be disabled.
 * Weka system management IP: Ability to communicate with all Weka system data plane IPs
 * Connectivity between nodes: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
-* Maximum number of [virtual functions](https://en.wikipedia.org/wiki/Network_function_virtualization) supported by the device must be bigger than the number of physical cores on the host; some configuration may be required in the BIOS
+* [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; some configuration may be required in the BIOS
 * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
-When assigning a network device to Weka, no other application may create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
+When assigning a network device to the Weka system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
 {% endhint %}
 
 ### Networking – InfiniBand {#networking-infiniband}
