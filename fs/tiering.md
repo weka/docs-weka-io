@@ -1,12 +1,16 @@
-# Pre-Fetch API for Data Lifecycle Management
+---
+description: >-
+  This page describes the process for pre-fetching data stored on object stores
+  to SSDs.
+---
 
-## Fetching Files From Object Store Tier
+# Pre-Fetching API for Data Lifecycle Management
 
-Tiered files are always accessible and should generally be treated as regular files. Moreover, while files may be tiered, their meta-data is always kept on the SSD tier. This allows traversing files and directories without worrying about the performance of such operations.
+## Fetching Files from an Object Store
 
-In some cases, files that were previously tiered need to be accessed quickly. Therefore it’s possible to ask WekaIO to fetch the files back to the SSD tier without accessing them directly.
+Tiered files are always accessible and should generally be treated as regular files. Moreover, while files may be tiered, their metadata is always maintained on the SSDs. This allows traversing files and directories without worrying how such operations may affect performance.
 
-Prefetch can be issued via the `weka fs tier fetch` CLI:
+Sometimes, it may be necessary to access previously-tiered files quickly. In such situations, it is possible to request the Weka system to fetch the files back to the SSD without accessing them directly. This is performed using the prefetch command, which can be issued via the `weka fs tier fetch` CLI:
 
 ```text
 weka fs tier fetch
@@ -30,16 +34,20 @@ Options:
      -J, --json                         Format output as JSON
 ```
 
-In order to fetch a directory that contains a large number of files, it is recommended to use `xargs` in a parallel manner like so:
+## Fetching a Directory Containing Many Files
+
+In order to fetch a directory that contains a large number of files, it is recommended to use the `xargs` command in a similar manner, as follows:
 
 ```bash
 find -L <directory path> -type f | xargs -r -n512 -P64 weka fs tier fetch -v
 ```
 
-Note that prefetching the files doesn’t guarantee they will reside in the SSD tier until they are accessed.
+{% hint style="info" %}
+**Note:** The pre-fetching of files does not guarantee that they will reside on the SSD until they are accessed.
+{% endhint %}
 
-In order to ensure the fetch will be effective, consider the following:
+In order to ensure the fetch is effective, the following must be taken into account:
 
-* **Free SSD capacity**: The filesystem should have enough free SSD capacity to retain the files you want to have fetched.
-* **Tiering policy**: The policy might demote some of the files back to the OBS tier after they have been fetched, or even during the fetch if it takes longer than expected. The policy should be long enough to allow for the fetch to complete and the data to be accessed before it’s demoted again.
+* **Free SSD Capacity**: There has to be sufficient free SSD capacity to retain the filesystems that are to be fetched.
+* **Tiering Policy**: The tiering policy may release some of the files back to the object store after they have been fetched, or even during the fetch, if it takes longer than expected. The policy should be long enough to allow for the fetch to complete and the data to be accessed before it is released again.
 
