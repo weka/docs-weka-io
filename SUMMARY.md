@@ -33,7 +33,7 @@
 
 ## USING FILESYSTEMS
 
-* [Managing Filesystems](fs/managing-filesystems.md)
+* [Managing Filesystems, Object Stores and Filesystem Groups](fs/managing-filesystems.md)
 * [Mounting Filesystems](fs/mounting-filesystems.md)
 * [Pre-Fetch API for Data Lifecycle Management](fs/tiering.md)
 * [Snap-To-Object](fs/snap-to-obj.md)

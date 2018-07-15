@@ -1,180 +1,354 @@
-# Managing Filesystems
+---
+description: >-
+  This page describes how to view and manage filesystems, filesystem groups and
+  object stores using the UI and the CLI.
+---
 
-A WekaIO filesystem is similar to a regular on-disk filesystem you may already be familiar with, with the key difference that it’s distributed across all the hosts in the cluster.
+# Managing Filesystems, Object Stores and Filesystem Groups
 
-In addition, each filesystem belongs to a filesystem-group, which allows for compound management operations across multiple filesystems in a single operation.
+## Viewing Filesystems and Filesystem Groups
 
-A WekaIO cluster can contain up to 1024 filesystems and up to 8 filesystem-groups.
+#### Viewing Filesystems / Filesystem Groups Using the UI
 
-### Listing Filesystems {#listing-filesystems}
+The main filesystem screen in the UI contains information about the filesystems and filesystem groups, including names, tiering status, total capacity and used capacity.
 
-The `weka fs` CLI command prints the list of filesystems currently defined in the cluster:
+![Main Filesystem / Filesystem Group View Screen](../.gitbook/assets/view-fs_fsg-screen.jpg)
 
-```text
-$ weka fs
-| Name    | Group   | SSD Budget | Total Budget | Ready | Creating | Removing
-+---------+---------+------------+--------------+-------+----------+----------
-| default | default | 57 GiB     | 57 GiB       | True  | False    | False
-```
+#### Viewing Filesystems / Filesystem Groups Using the CLI
 
-Let’s go over the columns in the returned table:
+**Command:** `weka fs` or `weka fs group`
 
-| Name | The name you provide when creating the filesystem |
-| --- | --- | --- | --- | --- |
-| Group | The name of the filesystem-group containing the filesystem |
-| SSD Budget | The SSD capacity allocated to this filesystem |
-| Total Budget | The total capacity provisioned for this filesystem |
-| Ready, Creating, Removing | These columns represent the status of the filesystem creation or deletion, as those might take some time to complete |
+These commands are used to view the filesystems \(`weka fs`\) or filesystem groups \(`weka fs group`\). To perform this operation, use the following command lines:
 
-As we’ll later in [Tiering](tiering.md), the total budget of a filesystem may be larger than its SSD budget.
+`weka fs info` or `weka fs group info`
 
-### Creating a Filesystem {#creating-a-filesystem}
+## Managing Object Stores
 
-Filesystems can be created using the `weka fs create` CLI command:
+### Viewing Object Stores
 
-```text
-weka fs create <name> <group-name> <total-capacity> [--ssd-capacity=<ssd>]
-```
+#### Viewing Object Stores Using the UI
 
-Before creating a filesystem you first have to check how much SSD storage is available. To do this, run the `weka status`command:
+The main object store screen in the UI lists all existing object stores and can also display information  about a specific object store, including the object store name, status and region.
 
-```text
-$ weka status
-  ...
-  ssd storage: 57 GiB total, 57 GiB free
-  ...
-```
+![Main Object Store View Screen](../.gitbook/assets/view-os-screen.jpg)
 
-This cluster has 57 GiB of free SSD storage, so let’s create a 10 GiB filesystem. We’ll assume a filesystem-group named `default` already exists \(filesystem-groups will be covered in the next sections\):
+####  Viewing Object Stores Using the CLI
 
-```text
-$ weka fs create demo default 10GiB 
-```
+**Command:** `weka fs tier s3`
 
-Now running `weka status` should show that 10GiB were taken from the SSD storage:
+This command is used to view information on all the object stores configured to the Weka system. 
 
-```text
-$ weka status
-  ...
-  ssd storage: 57 GiB total, 47 GiB free
-  ...
-```
+### Adding an Object Store
 
-And running `weka fs` should show the newly created filesystem:
+#### Adding an Object Store Using the UI
 
-```text
-$ weka fs
-| Name | Group   | SSD Budget | Total Budget | Ready | Creating | Removing 
-+------+---------+------------+--------------+-------+----------+----------
-| demo | default | 10 GiB     | 10 GiB       | True  | False    | False       
-```
+From the main object store view screen, click the "+" button at the top left-hand side of the screen. The Configure Object Store dialog box will be displayed.
 
-### Updating a Filesystem {#updating-a-filesystem}
+![Configure Object Store Dialog Box](../.gitbook/assets/configure-os-dialog-box.jpg)
 
-The `weka fs update` CLI command allows you to make changes to existing filesystems:
+Enter the relevant parameters and click Configure to create the object store.
 
-```text
-weka fs update <name> [--new-name=<new-name>] [--total-capacity=<total>] [--ssd-capacity=<ssd>]
-```
+If the object store is misconfigured, the Error in Object Store Configuration window will be displayed.
+
+![Object Store Configuration Error Window](../.gitbook/assets/os-configuration-error-window%20%281%29.jpg)
+
+ Click Save Anyway in order to save the configured object store.
+
+####  Adding an Object Store Using the CLI
+
+**Command:** `weka fs tier s3 add`
+
+Use the following command line to add an object store:
+
+`weka fs tier s3 add <name> [--hostname=<host>] [--port=<port>] [--bucket=<bucket>] [--auth-method=<auth>] [--region=<region>] [--access-key-id=<access>] [--secret-key=<secret>] [--dry-run] [--skip-verification] [--bandwidth=<bw>] [--verbose-errors] [--errors-timeout=<timeout>] [options]`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `name` | String | The name of the object store being created | Must be a valid name | Yes | ​ |
+| `host` | String | The object store host name | Must be a valid name | Yes |  |
+| `port` | String | The object store port | Must be a valid name | Yes |  |
+| `bucket` | Number | The object store bucket ID | Must be a valid name | Yes |  |
+| `auth` |  |  |  |  |  |
+| `region` |  |  |  |  |  |
+| `access` | Number | The object store access key ID | Must be a valid number | Yes |  |
+| `secret` |  |  |  |  |  |
+| `bw` | Number | The bandwidth |  |  |  |
+| `timeout` |  |  |  |  |  |
 
 {% hint style="info" %}
-The SSD-capacity and total-capacity are identical for non-tiered filesystems. As a result, you can't update the SSD-capacity of a non-tiered filesystem.
+**Note:** By default, when using the CLI, a misconfigured object store will not be created. To create the object store even when it is misconfigured, use the option `--skip-verification`.
 {% endhint %}
 
-For example, let’s increase the total capacity of the `demo` filesystem from the previous sections to 15GiB.
+### Editing an Object Store
 
-_In this example we would assume the filesystem is already mounted. We’ll learn how to mount filesystems in the next page._
+#### Editing an Object Store Using the UI
 
-We’ll start by checking the current size by using the `dh` command:
+From the main object store view screen, click the Edit button of the object store to be edited.
 
-```text
-$ df -h /mnt/weka/demo/
-Filesystem      Size  Used Avail Use% Mounted on
-demo             10G  4.0K   10G   1% /mnt/weka/demo
-```
+![Edit Object Store Screen](../.gitbook/assets/edit-os-screen.jpg)
 
-Now let’s run `weka fs update`:
+The Update Object Store dialog box \(which is similar to the Configure Object Store dialog box\) will be displayed with the current specifications for the object store.
 
-```text
-$ weka fs update demo --total-capacity=15GiB
-```
+![Update Object Store Dialog Box](../.gitbook/assets/edit-os-dialog-box.jpg)
 
-Checking `df` again would show the size has indeed increased:
+Make the relevant changes and click Update to update the object store.
 
-```text
-$ df -h /mnt/weka/demo/
-Filesystem      Size  Used Avail Use% Mounted on
-demo             15G  4.0K   15G   1% /mnt/weka/demo
-```
+#### Editing an Object Store Using the CLI
 
-As you can see from the usage of `weka fs update`, you can also update the filesystem name. Any existing mounts are not affected by this, but when running `mount` to create new mounts after renaming a filesystem you’d have to use the new filesystem name.
+**Command:** `weka fs tier s3 update`
 
-### Filesystem Groups {#filesystem-groups}
+Use the following command line to edit an object store:
 
-As mentioned above, filesystem-groups combine common parameters for a group of filesystems. Each filesystem must belong to one filesystem-group.
+`weka fs tier s3 update <name> [--hostname=<host>] [--port=<port>] [--bucket=<bucket>] [--auth-method=<auth>] [--region=<region>] [--access-key-id=<access>] [--secret-key=<secret>] [--dry-run] [--skip-verification] [--bandwidth=<bw>] [--verbose-errors] [--errors-timeout=<timeout>] [options]`
 
-To see a list of all filesystem-groups, run the `weka fs group` CLI command:
+**Parameters in Command Line**
 
-```text
-$ weka fs group
-| Name    | Is Tiered? | Object Store | Target SSD Retention | Start Demote 
-+---------+------------+--------------+----------------------+--------------
-| default | False      |              | 0                    | 0            
-```
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `name` | String | The name of the object store being edited | Must be a valid name | Yes | ​ |
+| `host` | String | The object store host name | Must be a valid name | Yes |  |
+| `port` | String | The object store port | Must be a valid name | Yes |  |
+| `bucket` | Number | The object store bucket ID | Must be a valid name | Yes |  |
+| `auth` |  |  |  |  |  |
+| `region` |  |  |  |  |  |
+| `access` | Number | The object store access key ID | Must be a valid number | Yes |  |
+| `secret` |  |  |  |  |  |
+| `bw` | Number | The bandwidth |  |  |  |
+| `timeout` |  |  |  |  |  |
 
-The columns returned by this command are:
+### Deleting an Object Store
 
-| Is Tiered? | Whether or not the file system is tiered to an object store |
+#### Deleting an Object Store Using the UI
+
+From the main object store view screen, click the Delete button of the object store to be deleted.
+
+![Delete Object Store Screen](../.gitbook/assets/delete-os-screen.jpg)
+
+The Deletion of Object Store window will be displayed.  
+
+![Deletion of Object Store Window](../.gitbook/assets/delete-os-window.jpg)
+
+Click Yes to delete the object store.
+
+#### Deleting an Object Store Using the CLI
+
+**Command:** `weka fs tier s3 delete`
+
+Use the following command line to delete an object store:
+
+ `weka fs tier s3 delete <name>`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| --- | --- |
+| `name` | String | The name of the object store being deleted | Must be a valid name | Yes | ​ |
+
+## Managing Filesystem Groups
+
+{% hint style="info" %}
+**Note:**  The following sections describe how to add, edit and delete filesystem groups using the UI and CLI.
+{% endhint %}
+
+### Adding a Filesystem Group
+
+#### Adding a Filesystem Group Using the UI
+
+From the main filesystem / filesystem group view screen, click the Add Group button at the top left-hand side of the screen. The Add Filesystem group screen will be displayed.
+
+![Add Filesystem Group Screen](../.gitbook/assets/fsg-add-screen.jpg)
+
+The Create Filesystem Group dialog box will be displayed.
+
+![Create Filesystem Group Dialog Box](../.gitbook/assets/fsg-create-dialog-box.jpg)
+
+Enter the relevant parameters and click Create to create the filesystem group.
+
+{% hint style="info" %}
+**Note:** The tiering status is selected in the UI using the switch. However, in the CLI, this requires the use of different commands.
+{% endhint %}
+
+#### Adding a Filesystem Group Using the CLI
+
+**Command:** `weka fs group create` or `weka fs group create-tiered`
+
+{% hint style="info" %}
+**Note:** In the CLI, defining the tiering status for a new filesystem group requires the use of a different command.
+{% endhint %}
+
+Use one of the following command lines to add a filesystem group:
+
+For a non-tiered filesystem group:
+
+`weka fs group create <name>`
+
+ For a tiered filesystem group:
+
+`weka fs group create-tiered <name> <storage> [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| --- | --- | --- | --- | --- |
+| `name` | String | The name of the filesystem group being created | Must be a valid name | Yes | ​ |
+| `storage` | String | The ID of the object store for storage | Must be a valid name | Yes |  |
+| `retention` | Number | The target retention period before tiering to the object store | Must be a valid number | Yes |  |
+| `demote` | Number | The target tiering cue before tiering to the object store. | Must be a valid number | Yes |  |
+
+### Editing a Filesystem Group
+
+#### Editing an Existing Filesystem Group Using the UI
+
+Click the Edit button of the filesystem group to be modified. The Configure Filesystem Group dialog box will be displayed.
+
+![Configure Filesystem Group Dialog Box](../.gitbook/assets/fsg-edit-dialog-box.jpg)
+
+Edit the existing filesystem group parameters and click Configure to execute the changes.
+
+#### Editing an Existing Filesystem Using the CLI
+
+**Command:** `wcli filesystem group update` or `weka fs group update-tiered`
+
+Use one of the following command lines to add a filesystem group:
+
+For a non-tiered filesystem group:
+
+`wcli filesystem-group-update --name=<file-system-group-name> [--new-name=<file-system-group-name>] [--is-tiered] [--target-ssd-retention=<number>] [--start-demote=<number>]`
+
+ For a tiered filesystem group:
+
+`weka fs group update-tiered <name> <storage> [--new-name=<new-name>] [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| --- | --- | --- | --- | --- | --- |
+| `name` | String | The name of the filesystem group being edited | Must be a valid name | Yes | ​ |
+| `new name` | String | The new name for the filesystem group | Must be a valid name | Yes |  |
+| `storage` | String | The ID of the object store for storage | Must be a valid name | Yes |  |
+| `retention` | Number | The target retention period before tiering to the object store | Must be a valid number | Yes |  |
+| `demote` | Number | the target tiering cue before tiering to the object store | Must be a valid number | Yes |  |
+
+### Deleting a Filesystem Group
+
+#### Deleting a Filesystem Using the UI
+
+{% hint style="info" %}
+**Note:** Before deleting a filesystem group, verify that it does not contain any filesystems. If it contains filesystems, first delete the filesystems.
+{% endhint %}
+
+Select the filesystem group to be deleted in the main filesystem / filesystem group view screen and click the Delete button below the group. The filesystem group deletion dialog box is displayed.
+
+![Filesystem Group Deletion Dialog Box](../.gitbook/assets/fsg-deletion-dialog-box.jpg)
+
+Click Yes to delete the filesystem group.
+
+#### Deleting a Filesystem Using the CLI
+
+**Command:** `weka fs group delete`
+
+Use the following command line to delete a filesystem group:
+
+`weka fs group delete <name>`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| --- | --- |
+| `name` | String | The name of the filesystem group to be deleted | Must be a valid name | Yes | ​ |
+
+## Managing Filesystems
+
+{% hint style="info" %}
+**Note:**  The following sections describe how to add, edit and delete filesystems using the UI and CLI.
+{% endhint %}
+
+### Adding a Filesystem
+
+#### Adding a Filesystem Using the UI
+
+From the main filesystem / filesystem group view screen, click the Add Filesystem button at the top right-hand side of the screen. The Add Filesystem screen will be displayed.
+
+![Add Filesystem Screen](../.gitbook/assets/add-filesystem-screen.jpg)
+
+The Create Filesystem dialog box will be displayed.
+
+![Create Filesystem Dialog Box](../.gitbook/assets/create-filesystem-screen.jpg)
+
+Enter the relevant parameters and click Create to create the filesystem.
+
+#### Adding a Filesystem Using the CLI
+
+**Command:** `weka fs create`
+
+Use the following command line to add a filesystem:
+
+`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity=<ssd>] [--filesystem-id=<id>]`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | --- | --- | --- | --- |
-| Object Store | When tiered, the object store to which the file system is connected to |
-| Target SSD Retention | The retention time, in seconds, of files on the filesystems in this group |
-| Start Demote | The demote time, in seconds, after which files can start being moved to object-store |
+| `name` | String | The name of the filesystem being created | Must be a valid name | Yes | ​ |
+| `group-name` | String | The name of the filesystem group to which the new filesystem is to be connected | Must be a valid name | Yes |  |
+| `total-capacity` | Number | The total capacity of the new filesystem; options are SSD capacity \(`ssd-capacity=<ssd>`\) or the filesystem ID \(`filesystem-id=<id>`\) | Must be valid SSD capacity or ID | Yes |  |
 
-Filesystem-groups can be tiered or local. Tiered filesystem-groups must connect to an object store, and specify where it tiers and its tiering policy. We’ll learn more about [Tiering](https://docs.weka.io/3.1/docs/fs/tiering.html) later.
+### Editing a Filesystem
 
-Filesystem-groups which are not tiered are sometimes referred to as local groups. Data of Local groups reside on SSD only.
+#### Editing an Existing Filesystem Using the UI
 
-### Creating Filesystem Groups {#creating-filesystem-groups}
+Select the filesystem to be modified in the main filesystem / filesystem group view screen and click the Edit button.
 
-To create a new filesystem-group, use the `weka fs group create` CLI command. For example, let’s create a new filesystem-group named `some-group`:
+![Edit Filesystem Screen](../.gitbook/assets/edit-fs-screen.jpg)
 
-```text
-$ weka fs group create some-group
-$ weka fs group
-| Name       | Is Tiered? | Object Store | Target SSD Retention | Start Demote 
-+------------+------------+--------------+----------------------+--------------
-| default    | False      |              | 0                    | 0            
-| some-group | False      |              | 0                    | 0            
-```
+ The Configure Filesystem dialog box will be displayed.
 
-In [Tiering](https://docs.weka.io/3.1/docs/fs/tiering.html) we’ll see how to define a tiered filesystem-group.
+![Configure Filesystem Dialog Box](../.gitbook/assets/configure-fs-screen.jpg)
 
-### Renaming Filesystem Groups {#renaming-filesystem-groups}
+Edit the existing filesystem parameters and click Configure to execute the changes.
 
-You can rename a filesystem-group by using the `weka fs group rename` CLI command.
+#### Editing an Existing Filesystem Using the CLI
 
-For example, let’s rename the `some-group` from the previous section to `group2`:
+**Command:** `weka fs update`
 
-```text
-$ weka fs group rename some-group group2
-$ weka fs group
-| Name    | Is Tiered? | Object Store | Target SSD Retention | Start Demote 
-+---------+------------+--------------+----------------------+--------------
-| default | False      |              | 0                    | 0            
-| group2  | False      |              | 0                    | 0
-```
+Use the following command line to edit an existing filesystem:
 
-### Deleting Filesystem Groups {#deleting-filesystem-groups}
+`weka fs update <name> [--new-name=<new-name>] [--total-capacity=<total>] [--ssd-capacity=<ssd>]`
 
-You can delete filesystem-groups as long as they don’t have any filesystems assigned to them.
+**Parameters in Command Line**
 
-For example, to delete the `group2` filesystem-group from the previous section, we’ll run
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| --- | --- | --- | --- | --- |
+| `name` | String | The name of the filesystem being edited | Must be a valid name | Yes | ​ |
+| `new-name` | String | The new name for the filesystem | Must be a valid name | Optional |  |
+| `total` | Number | The total capacity of the edited filesystem | Must be a valid number | Optional |  |
+| `ssd` | Number | The SSD capacity of the edited filesystem | Must be a valid number | Optional |  |
 
-```text
-$ weka fs group delete group2
-```
+### Deleting a Filesystem
 
-### What’s Next? {#whats-next}
+#### Deleting a Filesystem Using the UI
 
-Now that you’ve learned about filesystems and filesystem-groups, keep on reading [Mounting Filesystems](mounting-filesystems.md) to mount and use your filesystems.
+Select the filesystem to be deleted in the main filesystem / filesystem group view screen and click the Delete button.
+
+![Filesystem Delete Screen](../.gitbook/assets/fs-delete-screen.jpg)
+
+Then confirm the filesystem deletion by click Yes in the Filesystem Deletion dialog box.
+
+![Filesystem Deletion Dialog Box](../.gitbook/assets/fs-deletion-dialog-box.jpg)
+
+#### Deleting a Filesystem Using the CLI
+
+**Command:** `weka fs delete`
+
+Use the following command line to delete a filesystem:
+
+`weka fs delete <name>`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| --- | --- |
+| `name` | String | The name of the filesystem to be deleted | Must be a valid name | Yes | ​ |
 
