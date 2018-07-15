@@ -1,8 +1,12 @@
-# CLI Overview
+---
+description: This page is an overview of the Weka system CLI.
+---
 
-The WekaIO CLI is installed on each WekaIO host and is available through the `weka` command.
+# About the CLI
 
-Running `weka` without a command would show you the list of all available top-level commands:
+## Available Top-Level Commands
+
+The WekaIO CLI is installed on each WekaIO host and is available through the `weka` command. Running this command will display a list of all available top-level commands:
 
 ```text
 $ weka
@@ -30,11 +34,13 @@ Options:
 See 'weka <command> --help' for more help on a specific command
 ```
 
-### Command Hierarchy {#command-hierarchy}
+## Command Hierarchy
 
-Most top-level commands are the default list-command for their own collection, while additional sub-commands may be available under them.
+Most Weka system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
 
-One example would be the `weka fs` command. `weka fs` shows a list of all filesystems, while also being the top-level command for all filesystem, filesystem-group and snapshot-related operations. You can use the `-h`/`--help` flags or the `help` command to show a list of available commands in each level:
+{% hint style="warning" %}
+**For Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystem, filesystem group and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
+{% endhint %}
 
 ```text
 $ weka fs
@@ -68,15 +74,17 @@ Available subcommands:
 See 'weka fs <command> --help' for more help on a specific command
 ```
 
-### Connecting To Another Host {#connecting-to-another-host}
+## Connecting to Another Host
 
-Most commands have the same result on all cluster hosts, but sometimes you may need to execute a command on a specific host.
+Most Weka system commands deliver the same result on all cluster hosts. However, sometimes it is necessary to execute a command on a specific host. This is performed using the `-H`/`--hostname` option and specifying the host name or IP address of the target host.
 
-To do that, use the `-H`/`--hostname` option and specify the hostname or IP address of the target host.
+## Cluster Status
 
-### Cluster Status {#cluster-status}
+The `weka status` command displays the overall status of the Weka system. 
 
-`weka status` is a command that shows the overall status. For example, on a healthy cluster you should see a result similar to:
+{% hint style="warning" %}
+**For Example:** If the cluster is healthy, a result similar to the following should be displayed:
+{% endhint %}
 
 ```bash
 $ weka status
@@ -90,7 +98,9 @@ Weka v3.1 (CLI build 17No144)
        writes: 0 bytes/s (0 IO/s)
 ```
 
-On a cluster with one failed host you should see a result like this:
+{% hint style="warning" %}
+**For Example:** If the cluster has one failed host, a result similar to the following should be displayed:
+{% endhint %}
 
 ```bash
 $ weka status

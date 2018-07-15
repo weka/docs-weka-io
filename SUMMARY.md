@@ -8,7 +8,7 @@
 * [SSD Capacity Management](overview/ssd-capacity-management.md)
 * [Filesystems, Object Stores & Filesystem Groups](overview/filesystems.md)
 * [Data Lifecycle Management](overview/data-storage.md)
-* [CLI Overview](overview/cli-overview.md)
+* [About the CLI](overview/cli-overview.md)
 * [Weka Client & Mount Modes](overview/weka-client-and-mount-modes.md)
 * [Glossary](overview/glossary.md)
 
