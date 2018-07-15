@@ -17,11 +17,11 @@ The planning of a Weka system is essential prior to the actual installation proc
 A Weka system cluster runs on a group of hosts with local SSDs. To plan these hosts, the following information must be clarified and defined:
 
 1. **Capacity:** Plan your net SSD capacity. Note that data management to object stores can be added after the installation. In the context of the planning stage, only the SSD capacity is required.
-2. **Redundancy Scheme:** Define the optimal redundancy scheme required for the Weka system, as explained in [Selecting a Redundancy Scheme](https://docs.weka.io/what-is-wekaio#selecting-a-redundancy-scheme).
-3. **Failure Domains:** Determine whether failure domains are going to be used \(this is optional\), and if yes determine the number of failure domains and potential number of hosts in each failure domain, as described in [Failure Domains](https://docs.weka.io/ssd-capacity-management#failure-domains), and plan accordingly.
-4. **Hot Spare**: Define the required hot spare count, as described in [Hot Spare](https://docs.weka.io/ssd-capacity-management#hot-spare).
+2. **Redundancy Scheme:** Define the optimal redundancy scheme required for the Weka system, as explained in [Selecting a Redundancy Scheme](../../overview/about.md#selecting-a-redundancy-scheme).
+3. **Failure Domains:** Determine whether failure domains are going to be used \(this is optional\), and if yes determine the number of failure domains and potential number of hosts in each failure domain, as described in [Failure Domains](../../overview/ssd-capacity-management.md#failure-domains-optional), and plan accordingly.
+4. **Hot Spare**: Define the required hot spare count, as described in [Hot Spare](../../overview/ssd-capacity-management.md#hot-spare).
 
-Once all this data is clarified, you can plan the SSD net storage capacity accordingly, as defined in the [SSD Capacity Management formula](https://docs.weka.io/ssd-capacity-management#formula-for-calculating-ssd-net-storage-capacity). You should also have the following information which will be used during the installation process:
+Once all this data is clarified, you can plan the SSD net storage capacity accordingly, as defined in the [SSD Capacity Management formula](../../overview/ssd-capacity-management.md#formula-for-calculating-ssd-net-storage-capacity). You should also have the following information which will be used during the installation process:
 
 1.  Cluster size \(number of hosts\).
 2.  SSD capacity for each host, e.g., 12 hosts with a capacity of 6 TB each.
@@ -75,7 +75,7 @@ The capacity requirement for the host will be calculated according to the follow
 Consequently, the overall requirement per host is: 5 + 6 \* 6.3 + 7.3 = 50.1 GB
 
 {% hint style="info" %}
-**Note:** If the default capacity requirement memory is not big enough to satisfy the total size of the filesystems, the [memory allocation command ](untitled.md#stage-8-configuration-of-memory-optional)must be performed in the install process. Having sufficient system memory is not enough.
+**Note:** If the default capacity requirement memory is not big enough to satisfy the total size of the filesystems, the [memory allocation command](untitled.md#stage-9-configuration-of-memory-optional) must be performed in the install process. Having sufficient system memory is not enough.
 {% endhint %}
 
 {% hint style="info" %}
