@@ -12,7 +12,7 @@ To add client hosts to the Weka system configuration, use the stages described b
 
 ## Stage 1: Install the Software
 
-Verify that the Weka software is installed on the client host according to the installation instructions. For further information, see [Obtaining the Weka Install File](obtaining-the-weka-install-file.md) and [stage 1 in Weka System Installation Process](adding-clients-bare-metal.md#stage-1-install-the-software).
+Verify that the Weka software is installed on the client host according to the installation instructions. For further information, see [Obtaining the Weka Install File](obtaining-the-weka-install-file.md) and [Stage 1 in Weka System Installation Process](adding-clients-bare-metal.md#stage-1-install-the-software).
 
 {% hint style="info" %}
 **Note:** All hosts, clients and backends in a Weka system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
@@ -103,7 +103,7 @@ weka cluster host activate --host-ids=<host-id>
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | --- | --- |
-| `host-id` | Comma-separation string | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
+| `host-id` | Comma-separated string | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
 
-TBD 2
+
 
