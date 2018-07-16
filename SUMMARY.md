@@ -44,7 +44,6 @@
 * [Events](usage/events.md)
 * [Statistics](usage/statistics.md)
 * [User Management](usage/user-management.md)
-* [Testing Weka System Performance](usage/testing-weka-system-performance.md)
 
 ## Billing & Licensing
 
@@ -56,4 +55,7 @@
 
 * [Upgrade Guide: 3.1.7 and After](upgrade/upgrade-guide-3.1.7-and-after.md)
 * [Upgrading Guide: 3.1.6 and Before](upgrade/upgrading-to-v3.1.6.x.md)
+* [Testing Weka System Performance](testing-weka-system-performance.md)
+
+## TESTING & TROUBLESHOOTING
 
