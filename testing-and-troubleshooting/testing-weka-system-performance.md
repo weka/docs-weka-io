@@ -16,7 +16,7 @@ There are 3 main performance metrics when measuring a storage system performance
 
 Each of these performance metrics apply to read operations, write operations or a mixture of read and write operations.
 
-When measuring the Weka system performance, different [mount modes](overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration \(using either space networking or kernel UDP\) also have a significant effect on performance.
+When measuring the Weka system performance, different [mount modes](../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration \(using either space networking or kernel UDP\) also have a significant effect on performance.
 
 {% hint style="info" %}
 **Note:** All performance tests listed here are generic and not specific to the Weka system. They can be used to compare the Weka storage system to other storage systems or to a local storage device.
@@ -51,7 +51,7 @@ mkdir -p $WORKING_DIR`
 The following is an example of the test output for an AWS Weka cluster of 6 instances of type i3.16xlarge.
 {% endhint %}
 
-![Example of test output for an AWS Weka cluster of 6 instances of type i3.16xlarge](.gitbook/assets/example-output3-page-001%20%282%29.jpg)
+![Example of test output for an AWS Weka cluster of 6 instances of type i3.16xlarge](../.gitbook/assets/example-output3-page-001%20%282%29.jpg)
 
 In this test output example, results show an average latency of 529 microseconds, where 99.5% of the writes terminated in 766 microseconds or less.
 
