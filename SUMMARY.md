@@ -28,7 +28,7 @@
   * [Adding Clients](install/aws/adding-clients.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
 * [Expanding & Shrinking Cluster Resources](install/expanding-and-shrinking-cluster-resources.md)
-* [Shrinking a Cluster](shrinking-a-cluster.md)
+* [Shrinking a Cluster](install/shrinking-a-cluster.md)
 
 ## FILESYSTEMS
 
