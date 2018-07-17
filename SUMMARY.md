@@ -56,7 +56,7 @@
 * [Upgrade Guide: 3.1.7 and After](upgrade/upgrade-guide-3.1.7-and-after.md)
 * [Upgrading Guide: 3.1.6 and Before](upgrade/upgrading-to-v3.1.6.x.md)
 
-## TESTING & TROUBLESHOOTING
+## Performance Testing
 
 * [Testing Weka System Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
 
