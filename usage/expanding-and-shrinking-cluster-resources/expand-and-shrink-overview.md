@@ -32,7 +32,7 @@ In the Weka system, it is possible to expand and shrink a cluster as follows:
 **Note:** In the following descriptions, cluster expansion also relates to cluster shrinking.
 {% endhint %}
 
-Expansion procedures are similar to the [Bare Metal Weka system Installation Procedure](../install/bare-metal/). Similar to planning a new cluster, the objectives of the expansion, in terms of space and performance, need to be translated to the actual cluster resources. This process is practically a repeat of the planning process for new clusters, with the following options and limitations:
+Expansion procedures are similar to the [Bare Metal Weka system Installation Procedure](../../install/bare-metal/). Similar to planning a new cluster, the objectives of the expansion, in terms of space and performance, need to be translated to the actual cluster resources. This process is practically a repeat of the planning process for new clusters, with the following options and limitations:
 
 #### Possible Expansion Options
 
@@ -51,7 +51,7 @@ Expansion procedures are similar to the [Bare Metal Weka system Installation Pro
 * A Weka system configured with failure domains cannot be configured to be without failure domains.
 * Only the same network technology can be implemented i.e., it is not possible to mix between Ethernet and InfiniBand.
 
-To plan the capacity of the Weka system after expansion, refer to [SSD Capacity Management](../overview/ssd-capacity-management.md).
+To plan the capacity of the Weka system after expansion, refer to [SSD Capacity Management](../../overview/ssd-capacity-management.md).
 
 ## The Cluster Expansion Process
 

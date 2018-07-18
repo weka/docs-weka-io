@@ -30,7 +30,7 @@ Running the deactivation command will redistribute the stored data on the remain
 {% hint style="info" %}
 **Note:** After running this command, the deactivated drives will still appear in the list.
 
-**Note:** It is not possible to deactivate a drive if it will lead to an unstable state, i.e., if the [system capacity](../overview/ssd-capacity-management.md) after drive deactivation is insufficient for the currently provisioned filesystems SSD capacity.
+**Note:** It is not possible to deactivate a drive if it will lead to an unstable state, i.e., if the [system capacity](../../overview/ssd-capacity-management.md) after drive deactivation is insufficient for the currently provisioned filesystems SSD capacity.
 {% endhint %}
 
 Drive deactivation starts an asynchronous process known as phasing out, which is a gradual redistribution of the data between the remaining drives in the system. On completion, the phased-out drive is in an inactive state i.e., not in use by the Weka system, but still appearing in the list of drives.
@@ -69,7 +69,7 @@ To deactivate an entire host, run the following command line:
 
 **Command:** `weka cluster host remove`
 
-Running this command will eliminate the host from the cluster, i.e., the host will switch to the [stem mode](../overview/glossary.md#stem-mode) after the removal, at which point it can be reallocated either to another cluster or another purpose.
+Running this command will eliminate the host from the cluster, i.e., the host will switch to the [stem mode](../../overview/glossary.md#stem-mode) after the removal, at which point it can be reallocated either to another cluster or another purpose.
 
 To remove the host from the cluster, run the following command:
 
