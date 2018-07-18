@@ -27,8 +27,6 @@
   * [Supported EC2 Instance Types](install/aws/supported-ec2-instance-types.md)
   * [Adding Clients](install/aws/adding-clients.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
-* [Expanding & Shrinking Cluster Resources](install/expanding-and-shrinking-cluster-resources.md)
-* [Shrinking a Cluster](install/shrinking-a-cluster.md)
 
 ## FILESYSTEMS
 
@@ -44,6 +42,11 @@
 * [Events](usage/events.md)
 * [Statistics](usage/statistics.md)
 * [User Management](usage/user-management.md)
+* [Expanding & Shrinking Cluster Resources](expanding-and-shrinking-cluster-resources/README.md)
+  * [Expand & Shrink Overview](expanding-and-shrinking-cluster-resources/expand-and-shrink-overview.md)
+  * [Stages in Adding a Backend Host](expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
+  * [Expansion of Specific Resources](expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
+  * [Shrinking a Cluster](expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
 * [Upgrading Weka Versions](upgrading-weka-versions/README.md)
   * [Upgrading from Version 3.1.6 and Before](upgrading-weka-versions/upgrading-to-v3.1.6.x.md)
   * [Upgrading from Version 3.1.7 and After](upgrading-weka-versions/upgrade-guide-3.1.7-and-after.md)

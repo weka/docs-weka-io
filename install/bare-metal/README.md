@@ -1,8 +1,8 @@
 ---
 description: >-
-  This documentation describes the stages necessary for installing the Weka
-  system, which are system planning, prerequisites, obtaining the Weka
-  installation file and the actual stages of installation.
+  These pages describe the stages necessary for installing the Weka system,
+  which are system planning, prerequisites, obtaining the Weka installation file
+  and the actual stages of installation.
 ---
 
 # Bare Metal Installation
