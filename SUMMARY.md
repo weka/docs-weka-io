@@ -56,7 +56,7 @@
 
 ## Upgrade
 
-## Performance Testing
+## Performance
 
 * [Testing Weka System Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
 
