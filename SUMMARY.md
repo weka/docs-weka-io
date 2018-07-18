@@ -12,7 +12,7 @@
 * [Weka Client & Mount Modes](overview/weka-client-and-mount-modes.md)
 * [Glossary](overview/glossary.md)
 
-## Planning, Installation and Resource Management
+## Planning & Installation
 
 * [Bare Metal Installation](install/bare-metal/README.md)
   * [Planning a Weka System Installation](install/bare-metal/planning-a-weka-system-installation.md)
