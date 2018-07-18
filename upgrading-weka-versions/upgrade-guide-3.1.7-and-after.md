@@ -1,10 +1,10 @@
 ---
 description: >-
-  This guide describes how to upgrade from version 3.1.7 to the latest WekaIO
+  This page describes how to upgrade from version 3.1.7 to the latest WekaIO
   software version.
 ---
 
-# Upgrade Guide: 3.1.7 and After
+# Upgrading from Version 3.1.7 and After
 
 ## Preparing for the Upgrade
 

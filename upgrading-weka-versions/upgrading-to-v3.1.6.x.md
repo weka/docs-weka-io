@@ -1,10 +1,10 @@
 ---
 description: >-
-  This guide describes how to upgrade from all 3.1.2, 3.1.3 and 3.1.4 versions
-  to the latest 3.1.6.x version.
+  This page describes how to upgrade from all 3.1.2, 3.1.3 and 3.1.4 versions to
+  the latest 3.1.6.x version.
 ---
 
-# Upgrading Guide: 3.1.6 and Before
+# Upgrading from Version 3.1.6 and Before
 
 ## Preparing For The Upgrade
 

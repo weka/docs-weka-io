@@ -44,6 +44,9 @@
 * [Events](usage/events.md)
 * [Statistics](usage/statistics.md)
 * [User Management](usage/user-management.md)
+* [Upgrading Weka Versions](upgrading-weka-versions/README.md)
+  * [Upgrading from Version 3.1.6 and Before](upgrading-weka-versions/upgrading-to-v3.1.6.x.md)
+  * [Upgrading from Version 3.1.7 and After](upgrading-weka-versions/upgrade-guide-3.1.7-and-after.md)
 
 ## Billing & Licensing
 
@@ -52,9 +55,6 @@
 * [Pay-As-You-Go \(PAYG\) License](licensing/pay-as-you-go.md)
 
 ## Upgrade
-
-* [Upgrade Guide: 3.1.7 and After](upgrade/upgrade-guide-3.1.7-and-after.md)
-* [Upgrading Guide: 3.1.6 and Before](upgrade/upgrading-to-v3.1.6.x.md)
 
 ## Performance Testing
 
