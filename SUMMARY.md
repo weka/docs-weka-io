@@ -57,8 +57,6 @@
 * [Classic License](licensing/classic-licensing.md)
 * [Pay-As-You-Go \(PAYG\) License](licensing/pay-as-you-go.md)
 
-## Upgrade
-
 ## Performance
 
 * [Testing Weka System Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
