@@ -69,6 +69,12 @@ weka local run -e WEKA_HOST=<backend-ip> aws-add-client <client-instance-id>
 
 where `<backend-ip>` is the IP address or hostname of one of the backend instances.
 
+On most shells the following would get the client instance ID and add it to the cluster:
+
+```text
+weka local run -e WEKA_HOST=<backend-ip> aws-add-client `curl -s http://169.254.169.254/latest/meta-data/instance-id`
+```
+
 If successful, running the`aws-add-client` command will display the following line:
 
 ```text
