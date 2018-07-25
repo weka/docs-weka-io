@@ -61,3 +61,7 @@
 
 * [Testing Weka System Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
 
+## Support
+
+* [Getting Support for Your Weka System](support/getting-support-for-your-weka-system.md)
+
