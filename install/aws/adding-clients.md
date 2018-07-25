@@ -22,7 +22,12 @@ When launching new clients, ensure the following concerning networking and root 
 
 #### **Networking**
 
-The new clients must be in the **same subnet** as the backend instances. They must use the same **security group** as the backends they will connect to, or alternatively use a **security group** which allows them to connect to the backend instances.
+* The new clients must be in the **same subnet** as the backend instances.
+* They must use the same **security group** as the backends they will connect to, or alternatively use a **security group** which allows them to connect to the backend instances.
+* **Enhanced networking** is enabled as described in [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html).
+* The OS **network manager** must be disabled.
+
+#### IAM Instance Profile
 
 When adding a client, the `aws-add-client` script requires permissions for the following AWS APIs to discover and optionally add a network interface to the instance \(see below\):
 
