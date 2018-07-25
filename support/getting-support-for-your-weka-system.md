@@ -25,7 +25,7 @@ To be ready to get support from WekaIO, it is recommended to perform the followi
 
 1. Open a shared Slack channel with WekaIO. To arrange this get in touch with your Weka point of contact, open a case in our support portal at support.weka.io, or email [support@weka.io](mailto:support@weka.io)
 2. Sign-up as a Weka system user at [http://support.weka.io](http://support.weka.io/).
-3. For each cluster provisioned, [allow uploading events to the support cloud](the-wekaio-support-cloud.md)
+3. For each cluster provisioned, [allow uploading events to the support cloud](the-wekaio-support-cloud.md) to enable proactive support and improve the troubleshooting process if needed
 
 
 
