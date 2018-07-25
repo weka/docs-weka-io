@@ -69,6 +69,8 @@ This command enables cloud event notification, which increases the ability of th
 
 `weka cloud enable`
 
+To learn more, and learn and what else is needed in order to enable cloud event notification see the description of the [Weka support cloud](../../support/the-wekaio-support-cloud.md).
+
 ## Stage 5: Configuration of Networking
 
 **Command:** `cluster host net add`

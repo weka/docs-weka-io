@@ -64,5 +64,5 @@
 ## Support
 
 * [Getting Support for Your Weka System](support/getting-support-for-your-weka-system.md)
-* [Uploading Events to the WekaIO Support Cloud](support/the-wekaio-support-cloud.md)
+* [The WekaIO Support Cloud](support/the-wekaio-support-cloud.md)
 
