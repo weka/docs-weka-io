@@ -44,7 +44,7 @@ SELINUX must be disabled.
 * Weka system management IP address: One per server
 * Weka system data plane IP address: One IP address for each [Weka core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server
 * Weka system management IP: Ability to communicate with all Weka system data plane IPs
-* Connectivity between nodes: Ports 14000-14100
+* Connectivity between hosts: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
 * [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; some configuration may be required in the BIOS
 * SR-IOV: Enabled in BIOS
