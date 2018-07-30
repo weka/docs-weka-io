@@ -65,5 +65,4 @@
 
 * [Getting Support for Your Weka System](support/getting-support-for-your-weka-system.md)
 * [The WekaIO Support Cloud](support/the-wekaio-support-cloud.md)
-* [Test](support/test.md)
 
