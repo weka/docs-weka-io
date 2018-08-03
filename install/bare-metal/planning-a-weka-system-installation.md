@@ -51,7 +51,7 @@ SSD resource planning involves how the defined capacity is going to be implement
 The total per host memory requirements is the sum of the following requirements:
 
 | **Type** | **Per Host Memory** |
-| --- | --- | --- | --- |
+| :--- | :--- |
 | Fixed host | 5 GB |
 | Core-based host | 6.3 GB for each core |
 | Capacity requirement | See below. By default 1.4 GB |

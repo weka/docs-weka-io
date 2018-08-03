@@ -78,7 +78,7 @@ Use the following command line to add a snapshot:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
 | `name` | String | Unique name for filesystem snapshot | Must be a valid name | Yes |  |
 | `access-point` | String | Name of newly-created directory for filesystem level snapshots, which will serve as the access point for the snapshots | Must be a valid name | No | Snapshot name |
@@ -106,7 +106,7 @@ Use the following command line to delete a snapshot:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
 | `name` | String | Unique name for filesystem snapshot | Must be a valid name | Yes |  |
 
@@ -135,7 +135,7 @@ Use the following command line to restore a snapshot to another snapshot:
 **Parameters in Command Lines**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
 | `source-name` | String | Unique name for the source of the snapshot | Must be a valid name | Yes |  |
 | `destination-name` | String | Name of the destination to which the snapshot should be copied | Must be a valid name | Yes |  |
@@ -161,7 +161,7 @@ This commands changes the snapshot attributes. Use the following command line to
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
 | `name` | String | Unique name for the updated snapshot | Must be a valid name | Yes |  |
 | `new-name` | String | New name for the updated snapshot | Must be a valid name | No |  |

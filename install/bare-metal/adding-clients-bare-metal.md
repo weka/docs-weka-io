@@ -31,7 +31,7 @@ weka -H <backend-hostname> cluster host add <client-hostname>
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `backend-hostname` | String | IP/host name of one of the existing backend instances in the cluster | Valid host name \(DNS or IP\) | Yes |  |
 | `client-hostname` | String | IP/host name of the client currently being added |  Valid host name \(DNS or IP\) | Yes |  |
 
@@ -52,7 +52,7 @@ weka cluster host cores <host-id> --frontend-dedicated-cores=1
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
 | cores | Number | Number of cores | Must be 1 for this version | Yes |  |
 
@@ -74,7 +74,7 @@ weka cluster host net add <host-id> --device=<net-device> \
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
 | `net-device` | String | Network interface device name e.g., `eth1` | Must be a valid network device name | Yes |  |
 | `ip-address` | IP address | IP address of the new interface | Must be valid IP address | Yes |  |
@@ -102,7 +102,7 @@ weka cluster host activate --host-ids=<host-id>
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | Comma-separated string | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
 
 

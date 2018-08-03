@@ -12,7 +12,7 @@ description: >-
 WekaIO's technical support policy is based on the type and urgency of the inquiry, as described in the following table:  
 
 | Type/Urgency | Method of Contact | Comments |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- |
 | Critical | Call WekaIO support number +1 \(855\) 969-4030 | WekaIO provides a 24/7 technical suppport service and calls are directed to the active support personnel. Such requests for technical support should only be used for urgent issues in production systems. |
 | Critical/Major/Minor | Open a ticket in the Support Portal \([support.weka.io](http://support.weka.io/)\) | To open a ticket, you need to first sign-up as a user in our Support Portal. Tickets can be tracked and notifications and updates are provided on changes in tickets. When opening a ticket in the Support Portal, it is possible to specify if it is a critical production system issue, in which case the WekaIO support team will be alerted accordingly. |
 | Major/Minor | Email [support@weka.io](mailto:support@weka.io) | Sending an email also opens a ticket in the Support Portal. Note that it is first necessary to sign-up as a user in the Support Portal. Notification of problems by email are not considered as critical. |

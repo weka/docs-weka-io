@@ -30,7 +30,7 @@ weka -H <existing-backend-hostname> cluster host add <backend-hostname>
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `existing-backend-hostname` | String | IP/host name of one of the existing backend instances in the cluster | Valid host name \(DNS or IP\) | No | The host on which the command is executed |
 | `backend-hostname` | String | IP/host name of the backend currently being added |  Valid host name \(DNS or IP\) | Yes |  |
 

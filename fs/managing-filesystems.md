@@ -65,7 +65,7 @@ Use the following command line to add an object store:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the object store being created | Must be a valid name | Yes | ​ |
 | `host` | String | The object store host name | Must be a valid name | Yes |  |
 | `port` | String | The object store port | Must be a valid name | Yes |  |
@@ -106,7 +106,7 @@ Use the following command line to edit an object store:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the object store being edited | Must be a valid name | Yes | ​ |
 | `host` | String | The object store host name | Must be a valid name | Yes |  |
 | `port` | String | The object store port | Must be a valid name | Yes |  |
@@ -143,7 +143,7 @@ Use the following command line to delete an object store:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the object store being deleted | Must be a valid name | Yes | ​ |
 
 ## Managing Filesystem Groups
@@ -191,7 +191,7 @@ For a non-tiered filesystem group:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem group being created | Must be a valid name | Yes | ​ |
 | `storage` | String | The ID of the object store for storage | Must be a valid name | Yes |  |
 | `retention` | Number | The target retention period before tiering to the object store | Must be a valid number | Yes |  |
@@ -224,7 +224,7 @@ For a non-tiered filesystem group:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem group being edited | Must be a valid name | Yes | ​ |
 | `new name` | String | The new name for the filesystem group | Must be a valid name | Yes |  |
 | `storage` | String | The ID of the object store for storage | Must be a valid name | Yes |  |
@@ -256,7 +256,7 @@ Use the following command line to delete a filesystem group:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem group to be deleted | Must be a valid name | Yes | ​ |
 
 ## Managing Filesystems
@@ -290,7 +290,7 @@ Use the following command line to add a filesystem:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem being created | Must be a valid name | Yes | ​ |
 | `group-name` | String | The name of the filesystem group to which the new filesystem is to be connected | Must be a valid name | Yes |  |
 | `total-capacity` | Number | The total capacity of the new filesystem; options are SSD capacity \(`ssd-capacity=<ssd>`\) or the filesystem ID \(`filesystem-id=<id>`\) | Must be valid SSD capacity or ID | Yes |  |
@@ -320,7 +320,7 @@ Use the following command line to edit an existing filesystem:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem being edited | Must be a valid name | Yes | ​ |
 | `new-name` | String | The new name for the filesystem | Must be a valid name | Optional |  |
 | `total` | Number | The total capacity of the edited filesystem | Must be a valid number | Optional |  |
@@ -349,6 +349,6 @@ Use the following command line to delete a filesystem:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem to be deleted | Must be a valid name | Yes | ​ |
 

@@ -35,7 +35,7 @@ export NEW_VERSION_URL=<new-version-url>
 ```
 
 | Environment Variable | Description |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- |
 | `WEKA_SSH_USER` | The username to will be used to login to all cluster hosts. If you don't pass this variable, a default value of `root` is assumed. |
 | `WEKA_SSH_PARAMS` | Optional SSH parameters to pass when connecting to cluster hosts, such as `-i` to provide a key file. |
 | `OLD_VERSION` | The current cluster version. |

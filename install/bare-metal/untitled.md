@@ -25,7 +25,7 @@ This stage involves the formation of a cluster from the allocated hosts. It is p
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- |
 | `hostnames` | Comma- separated strings | Host names or IP addresses | Need at least 6 strings, as this is the minimal cluster size | Yes |
 | `hosts-ips` | Comma- separated IP addresses | IP addresses of the management interfaces | Same number of values as in `hosts-hostnames`.  | Only in IB |
 
@@ -58,7 +58,7 @@ This command is used to give the cluster a name. Although this is optional, it i
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `cluster-name` | String | Identifier of the cluster name | Must be a valid identifier | No |  |
 
 ## Stage 4: Enabling Cloud Event Notifications \(optional\)
@@ -84,7 +84,7 @@ To perform this operation, the cluster host net add command must be run for each
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to which a network interface will be added | Must be a valid host identifier | Yes |  |
 | `device` | String | A device, e.g., `eth1` | Must be a valid Unix network device name | Yes |  |
 | `ips` | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic. In IB, use the IPoIB address \(single address regardless of number of cores\) | Must be part of the data plane IP pool defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | Yes |  |
@@ -104,7 +104,7 @@ This stage in the installation process is used to add a local SSD to be used by 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to which a local SSD will be added | Must be a valid host identifier | Yes |  |
 | `device` | String | A block device that identifies a local SSD, e.g., `/dev/sdb` | Must be a valid Unix network device name | Yes |  |
 
@@ -131,7 +131,7 @@ This stage in the installation process is used to configure the amount of CPU re
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which a core count should be configured | Must be a valid host identifier | Yes |  |
 | `cores` | Number | Number of physical cores to be allocated to the Weka system | Should be less than the number of physical cores in the host \(leaving 1 core for the OS\) | Yes |  |
 
@@ -150,7 +150,7 @@ As defined in the memory requirements, the fixed memory per host and the per cor
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which the memory configuration has to be defined | Must be a valid host identifier | Yes |  |
 | `capacity-emory` | Number | Required memory in bytes |  | Yes |  |
 
@@ -179,7 +179,7 @@ This operation is performed using the following command line:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which a core count should be configured | Must be a valid host identifier | Yes |  |
 | `fd-name` | String | The failure domain that will contain the host from now |  | Yes |  |
 
@@ -194,7 +194,7 @@ To configure the Weka system protection scheme, use the following command line:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `data-drives` | Number | Protection stripe width | Between 3-16. The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 3 |
 | `parity-drives` | Number | Protection level | Either 2 or 4. The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 2 |
 
@@ -213,7 +213,7 @@ To configure the Weka system hot spare, use the following command line:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `hot-spare` | Number | Hot spare | The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 0 |
 
 {% hint style="info" %}
@@ -233,7 +233,7 @@ To activate the cluster hosts, use the following command line:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-ids` | Comma-separated strings | Comma-separated host identifiers | . | No | All hosts |
 
 ## Stage 14: Activation of Cluster SSDs
@@ -253,7 +253,7 @@ A comma-separated list of all SSD UUIDs is received. In the install phase all SS
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `uuids` | Comma-separated strings | Comma-separated host identifiers | . | No | All SSDs |
 
 ## Stage 15: Running the Start IO Command

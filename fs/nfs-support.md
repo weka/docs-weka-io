@@ -13,7 +13,7 @@ The NFS protocol allows client hosts to access the Weka filesystem without insta
 In order to implement NFS service from a Weka cluster, the following steps must be implemented:
 
 | **Step** | **Method of Implementation** |
-| --- | --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- |
 | Define a set of hosts that will provide the NFS service, which can be the whole cluster or a subset of the cluster. | By defining an interface group. |
 | Define Ethernet ports on each of the defined hosts that will be used to provide the NFS service. | By defining an interface group. |
 | Allocate a pool of IP addresses that will be used by the Weka software to provide the NFS service. | By defining an interface group. |
@@ -92,7 +92,7 @@ Use the following command line to add an interface group:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | Unique interface group name   | None | Yes |  |
 | `type` | String | Group type | Can only be  NFS | Yes | NFS |
 | `subnet` | String | Subnet mask in the 255.255.0.0 format | Valid netmask | No | 255.255.255.255 |
@@ -121,7 +121,7 @@ weka nfs interface-group port delete <name> <host-id> <port>`
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | Interface group name | None | Yes |  |
 | `host-id` | String | Host ID on which the port resides\* | Valid host ID | Yes |  |
 | `port` | String | Port's device, e.g., eth1 | Valid device | Yes |  |
@@ -154,7 +154,7 @@ weka nfs interface-group ip-range delete <name> <ips>`
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | Interface group name | None | Yes |  |
 | `ips` | String | IP range | Valid IP range | Yes |  |
 
@@ -181,7 +181,7 @@ weka nfs client-group delete <name>`
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 |  `name` | String | Group name | Valid name | Yes |  |
 
 ### Managing Client Access Groups
@@ -215,7 +215,7 @@ weka nfs rules delete dns <name> <dns>`
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 |  `name` | String | Group name | Valid name | Yes |  |
 |   `dns` | String | DNS rule with \*?\[\] wildcard rules |  | Yes |  |
 
@@ -230,7 +230,7 @@ weka nfs rules delete ip <name> <ip>`
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | Group name | Valid name | Yes |  |
 |   `ip` | String | IP with net mask rule, in the 1.1.1.1/255.255.0.0 format | Valid IP | Yes |  |
 
@@ -266,7 +266,7 @@ weka nfs permission delete <filesysten> <group> [--path=<path>]`
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `filesysten` | String | Filesystem name | Existing filesystem | Yes |  |
 |  `group` | String | Client group name | Existing client group | Yes |  |
 |  `path` | String | Root of the share | Valid path | No | / |
@@ -279,7 +279,7 @@ weka nfs permission update root-squshing <filesysten> <group> <permission-type> 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 |  `filesysten` | String | Filesystem name | Existing filesystem | Yes |  |
 |  `group` | String | Client group name | Existing client group | Yes |  |
 | `permission-type` | String | Permission type | RO: read only                             RW: read write | Yes |  |

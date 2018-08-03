@@ -40,7 +40,8 @@ SELINUX must be disabled.
 * Ethernet NICs: Intel 82599, Intel X710, Mellanox CX4 & CX5
 * Mellanox OFED 4.2: Installed
 * NICs bonding: Not configured
-* Jumbo frames: Enabled on switch and on network port
+* Jumbo frames: Enabled on switch and on network port, and at any switch or router used between any two Weka hosts \(clients and backends alike\)
+* No IP fragmentation is allowed between any two Weka hosts \(clients and backends alike\), and IP fragmentation should be disabled on any OS stack, hypervisor or router
 * Weka system management IP address: One per server
 * Weka system data plane IP address: One IP address for each [Weka core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server
 * Weka system management IP: Ability to communicate with all Weka system data plane IPs

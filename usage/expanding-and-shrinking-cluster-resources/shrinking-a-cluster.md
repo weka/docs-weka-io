@@ -46,7 +46,7 @@ To remove a drive, run the following command line:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `uuids` | Comma-separated strings | Comma-separated drive identifiers | . | Yes |  |
 
 ## Deactivating an Entire Host
@@ -62,7 +62,7 @@ To deactivate an entire host, run the following command line:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-ids` | Comma-separated strings | Comma-separated host identifiers | . | Yes |  |
 
 ## Removing a Host
@@ -78,6 +78,6 @@ To remove the host from the cluster, run the following command:
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | Comma-separated strings | Comma-separated host identifiers | . | Yes |  |
 
