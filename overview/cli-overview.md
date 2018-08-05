@@ -1,5 +1,5 @@
 ---
-description: This page is an overview of the Weka system CLI.
+description: This page is an overview of the WekaIO system CLI.
 ---
 
 # About the CLI
@@ -36,7 +36,7 @@ See 'weka <command> --help' for more help on a specific command
 
 ## Command Hierarchy
 
-Most Weka system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
+Most WekaIO system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
 
 {% hint style="warning" %}
 **For Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystem, filesystem group and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
@@ -76,11 +76,11 @@ See 'weka fs <command> --help' for more help on a specific command
 
 ## Connecting to Another Host
 
-Most Weka system commands deliver the same result on all cluster hosts. However, sometimes it is necessary to execute a command on a specific host. This is performed using the `-H`/`--hostname` option and specifying the host name or IP address of the target host.
+Most WekaIO system commands deliver the same result on all cluster hosts. However, sometimes it is necessary to execute a command on a specific host. This is performed using the `-H`/`--hostname` option and specifying the host name or IP address of the target host.
 
 ## Cluster Status
 
-The `weka status` command displays the overall status of the Weka system. 
+The `weka status` command displays the overall status of the WekaIO system. 
 
 {% hint style="warning" %}
 **For Example:** If the cluster is healthy, a result similar to the following should be displayed:
