@@ -6,19 +6,19 @@ description: Welcome to the WekaIO documentation portal.
 
 ## About this Documentation
 
-This portal contains all the documentation necessary for understanding and working with the Weka system. It covers the following subjects:
+This portal contains all the documentation necessary for understanding and working with the WekaIO system. It covers the following subjects:
 
-**Weka System Overview:** A review of the primary components, principles and entities that form every Weka system.
+**WekaIO System Overview:** A review of the primary components, principles and entities that form every WekaIO system.
 
-**Weka System Planning, Installation and Resource Management:** A detailed description of bare metal and AWS installation of the Weka system to the point that it is ready for operation.
+**WekaIO System Planning, Installation and Resource Management:** A detailed description of bare metal and AWS installation of the WekaIO system to the point that it is ready for operation.
 
-**Filesystems in the Weka System:** A review of the role and management of filesystems, object stores and filesystem groups in Weka system configurations.
+**Filesystems in the WekaIO System:** A review of the role and management of filesystems, object stores and filesystem groups in WekaIO system configurations.
 
-**Weka System Operation Guide:** Description of various operations in the Weka system, including events, the use of statistics, user management and testing Weka system performance.
+**WekaIO System Operation Guide:** Description of various operations in the WekaIO system, including events, the use of statistics, user management and testing WekaIO system performance.
 
-**Weka System Billing and Licensing:** Presentation of the alternatives for Weka system licensing and billing.
+**WekaIO System Billing and Licensing:** Presentation of the alternatives for WekaIO system licensing and billing.
 
-**Weka System Upgrade Guides:** Specific guidelines relevant for upgrading from one WekaIO software version to another.
+**WekaIO System Upgrade Guides:** Specific guidelines relevant for upgrading from one WekaIO software version to another.
 
 ## Help Us to Help You
 
