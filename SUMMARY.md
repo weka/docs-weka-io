@@ -2,7 +2,7 @@
 
 * [WekaIO Documentation](README.md)
 
-## Weka System Overview
+## WekaIO System Overview
 
 * [About the WekaIO System](overview/about.md)
 * [SSD Capacity Management](overview/ssd-capacity-management.md)

@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the hardware requirements for installation of the Weka
+  This page describes the hardware requirements for installation of the WekaIO
   system on dedicated hosts.
 ---
 
@@ -17,7 +17,7 @@ description: >-
 
 ### Memory {#memory}
 
-* Enough memory to support Weka system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
+* Enough memory to support WekaIO system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
 ### Operation System {#operation-system}
@@ -32,7 +32,7 @@ SELINUX must be disabled.
 
 * Directory: /opt/weka
 * Should be on an SSD or SSD-like performance, e.g., SATADOM. Cannot be shared remotely NFS mounted or on RAM drive
-* At least 48 GB available for the Weka system installation
+* At least 48 GB available for the WekaIO system installation
 
 ### Networking – Ethernet {#networking-ethernet}
 
@@ -41,16 +41,16 @@ SELINUX must be disabled.
 * Mellanox OFED 4.2: Installed
 * NICs bonding: Not configured
 * Jumbo frames: Enabled on switch and on network port
-* Weka system management IP address: One per server
-* Weka system data plane IP address: One IP address for each [WekaIO core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server
-* Weka system management IP: Ability to communicate with all Weka system data plane IPs
+* WekaIO system management IP address: One per server
+* WekaIO system data plane IP address: One IP address for each [WekaIO core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server
+* WekaIO system management IP: Ability to communicate with all WekaIO system data plane IPs
 * Connectivity between hosts: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
 * [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; some configuration may be required in the BIOS
 * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
-When assigning a network device to the Weka system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
+When assigning a network device to the WekaIO system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
 {% endhint %}
 
 ### Networking – InfiniBand {#networking-infiniband}
@@ -59,10 +59,10 @@ When assigning a network device to the Weka system, no other application can cre
 * Mellanox: CX4 & CX5
 * Mellanox OFED 4.2: installed
 * Subnet manager: Configured to 4092
-* One Weka system IP address for management and data plane
+* One WekaIO system IP address for management and data plane
 
 ### SSDs {#ssds}
 
 * Support PLP \(Power Loss Protection\)
-* Dedicated for Weka system storage \(partition not supported\)
+* Dedicated for WekaIO system storage \(partition not supported\)
 
