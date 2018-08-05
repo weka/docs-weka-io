@@ -1,6 +1,6 @@
-# Planning a Weka System Installation
+# Planning a WekaIO System Installation
 
-The planning of a Weka system is essential prior to the actual installation process. It involves the planning of the following:
+The planning of a WekaIO system is essential prior to the actual installation process. It involves the planning of the following:
 
 1.  Total SSD net capacity and performance requirements
 2.  SSD resources
@@ -14,10 +14,10 @@ The planning of a Weka system is essential prior to the actual installation proc
 
 ## Total SSD Net Capacity and Performance Planning
 
-A Weka system cluster runs on a group of hosts with local SSDs. To plan these hosts, the following information must be clarified and defined:
+A WekaIO system cluster runs on a group of hosts with local SSDs. To plan these hosts, the following information must be clarified and defined:
 
 1. **Capacity:** Plan your net SSD capacity. Note that data management to object stores can be added after the installation. In the context of the planning stage, only the SSD capacity is required.
-2. **Redundancy Scheme:** Define the optimal redundancy scheme required for the Weka system, as explained in [Selecting a Redundancy Scheme](../../overview/about.md#selecting-a-redundancy-scheme).
+2. **Redundancy Scheme:** Define the optimal redundancy scheme required for the WekaIO system, as explained in [Selecting a Redundancy Scheme](../../overview/about.md#selecting-a-redundancy-scheme).
 3. **Failure Domains:** Determine whether failure domains are going to be used \(this is optional\), and if yes determine the number of failure domains and potential number of hosts in each failure domain, as described in [Failure Domains](../../overview/ssd-capacity-management.md#failure-domains-optional), and plan accordingly.
 4. **Hot Spare**: Define the required hot spare count, as described in [Hot Spare](../../overview/ssd-capacity-management.md#hot-spare).
 
@@ -41,7 +41,7 @@ SSD resource planning involves how the defined capacity is going to be implement
 * The technology to be used \(NVME, SAS or SATA\) and the specific SSD models, which have implications on SSD endurance and performance.
 
 {% hint style="info" %}
-**Note:** For on-premises planning, it is possible to consult with the Weka Support Team in order to map between performance requirements and the recommended Weka system configuration.
+**Note:** For on-premises planning, it is possible to consult with the WekaIO Support Team in order to map between performance requirements and the recommended WekaIO system configuration.
 {% endhint %}
 
 ## Memory Resource Planning
@@ -65,7 +65,7 @@ The per host capacity requirement is calculated with the following formula:
 {% endhint %}
 
 {% hint style="warning" %}
-**For Example:** 12 hosts, 6 Weka system cores per host, 100 TB SSD system with 512 TB total system capacity \(with object store\), average file size 64 KB.
+**For Example:** 12 hosts, 6 WekaIO system cores per host, 100 TB SSD system with 512 TB total system capacity \(with object store\), average file size 64 KB.
 {% endhint %}
 
 The capacity requirement for the host will be calculated according to the following formula:
@@ -83,52 +83,52 @@ Consequently, the overall requirement per host is: 5 + 6 \* 6.3 + 7.3 = 50.1 GB
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** These capacity requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the Weka Support Team to receive an estimate for your specific configuration.
+**Note:** These capacity requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the WekaIO Support Team to receive an estimate for your specific configuration.
 {% endhint %}
 
 ### Client Hosts
 
-The Weka software on a client host requires 5 GB of memory.
+The WekaIO software on a client host requires 5 GB of memory.
 
 ## CPU  Resource Planning
 
 ### Backend Hosts
 
-The number of physical cores dedicated to the Weka software should be planned according to the following guidelines:
+The number of physical cores dedicated to the WekaIO software should be planned according to the following guidelines:
 
-* At least one physical core should be dedicated to the operating system; the rest can be allocated to the Weka software.
-* Enough cores should be allocated to support the performance targets. For help on planning this, contact the Weka Support Team.
+* At least one physical core should be dedicated to the operating system; the rest can be allocated to the WekaIO software.
+* Enough cores should be allocated to support the performance targets. For help on planning this, contact the WekaIO Support Team.
 * Enough memory should be allocated to match core allocation, as discussed above.
 
-In general, it is recommended to allocate as many cores as possible to the Weka system, with the following limitations:
+In general, it is recommended to allocate as many cores as possible to the WekaIO system, with the following limitations:
 
 1. There has to be one core for the operation system.
-2. The running of other applications on the same host \(hyper-converged Weka system deployment\) is supported. However, this is not covered in this documentation. For further information, contact the Weka Support Team.
+2. The running of other applications on the same host \(hyper-converged WekaIO system deployment\) is supported. However, this is not covered in this documentation. For further information, contact the WekaIO Support Team.
 3. There has to be sufficient memory, as described above.
-4. No more than 20 physical cores can be assigned to Weka system processes.
+4. No more than 20 physical cores can be assigned to WekaIO system processes.
 
 ### Client Hosts
 
-On a client host, by default the Weka software consumes a single physical core. If the client host is configured with hyper-threading, the Weka software will consume two logical cores.
+On a client host, by default the WekaIO software consumes a single physical core. If the client host is configured with hyper-threading, the WekaIO software will consume two logical cores.
 
-If the client networking is defined as based on UDP, there is no allocation of core resources and the CPU resources are allocated to the Weka processes by the operating system as any other process.
+If the client networking is defined as based on UDP, there is no allocation of core resources and the CPU resources are allocated to the WekaIO processes by the operating system as any other process.
 
 ## Network Planning
 
 ### Backend Hosts
 
-The Weka system supports the following types of networking technologies:
+The WekaIO system supports the following types of networking technologies:
 
 1. InfiniBand \(IB\).
 2. Ethernet directly for user space using DPDK supporting NIC.
 
-The choice between IB and Ethernet is dictated by the currently-available networking infrastructure. It is mandatory to determine which one of these two types of networking technologies are to be used in order to proceed to the Weka system initialization/installation process.
+The choice between IB and Ethernet is dictated by the currently-available networking infrastructure. It is mandatory to determine which one of these two types of networking technologies are to be used in order to proceed to the WekaIO system initialization/installation process.
 
 {% hint style="info" %}
-**Note:** A network port can either be dedicated to the Weka system or run the Weka system with other applications.
+**Note:** A network port can either be dedicated to the WekaIO system or run the WekaIO system with other applications.
 {% endhint %}
 
 ### Client Hosts
 
-Client hosts can be configured with networking as above, which provides the highest performance and lowest latency, but requires compatible hardware and dedicated core resources. If a compatible hardware is not available, or if allocating a physical core to the Weka system is problematic, the client networking can be configured to use the kernel UDP service. In such cases, performance is reduced and latency  increases.
+Client hosts can be configured with networking as above, which provides the highest performance and lowest latency, but requires compatible hardware and dedicated core resources. If a compatible hardware is not available, or if allocating a physical core to the WekaIO system is problematic, the client networking can be configured to use the kernel UDP service. In such cases, performance is reduced and latency  increases.
 
