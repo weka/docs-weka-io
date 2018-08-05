@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Weka.IO Documentation](README.md)
+* [WekaIO Documentation](README.md)
 
 ## Weka System Overview
 

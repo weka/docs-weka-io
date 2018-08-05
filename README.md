@@ -2,7 +2,7 @@
 description: Welcome to the WekaIO documentation portal.
 ---
 
-# Weka.IO Documentation
+# WekaIO Documentation
 
 ## About this Documentation
 
