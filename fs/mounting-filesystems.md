@@ -18,12 +18,41 @@ mount -t wekafs demo /mnt/weka/demo
 The general structure of a`mount` command for a WekaIO filesystem is:
 
 ```text
-mount -t wekafs [options] <fs-name> <mount-point>
+mount -t wekafs [option[,option]...]] <fs-name> <mount-point>
 ```
+
+There are three options for mounting a filesystem on a cluster client: coherent, read cache and write cache. Refer to the descriptions below to understand the differences between these modes.
+
+* [Coherent mount mode](../overview/weka-client-and-mount-modes.md#coherent-mount-mode)
+* [Read cache mount mode](../overview/weka-client-and-mount-modes.md#read-cache-mount-mode-default)
+* [Write cache mount mode](../overview/weka-client-and-mount-modes.md#write-cache-mount-mode)
+
+## Mount Mode Command Options
+
+| Option | Values | Description |
+| :--- | :--- | :--- |
+| `coherent` | None | Set mode to coherent |
+| `readcache` | None | Set mode to read cache |
+| `writecache` | None | Set mode to write cache |
+
+## Control of Metadata Caching
+
+The following two parameters exist for the fine-tuning of read or write caches of metadata in the Dentry cache:
+
+| Option | Value | Description | Default |
+| :--- | :--- | :--- | :--- |
+| `dentry_max_age_positive` | Positive number, time in milliseconds | After the defined time period, every metadata cached entry is refreshed from the system, allowing the host to take into account metadata changes performed by other hosts. | 1000 |
+| `dentry_max_age_negative` | Positive number, time in milliseconds | Each time a file or directory lookup fails, an entry specifying the file or directory does not exist is created in the local dentry cache. This entry is refreshed after the defined time, allowing the host to use files or directories created by other hosts. | 1000 |
+
+In addition, the `inode_bits` option is available:
+
+| Option | Value | Description | Default |
+| :--- | :--- | :--- | :--- |
+| `inode_bits` | 32, 64 or auto | Size of the inode in bits, which may be required for 32 bit applications. | Auto |
 
 ## Page Cache {#page-cache}
 
-WekaIO utilizes the Linux page cache for the mounted filesystem. This allows for better performance when accessing the same files multiple times at around the same time.
+WekaIO utilizes the Linux page cache for the mounted filesystem. This allows for better performance when accessing the same files multiple times at about the same time.
 
 ## Setting Up Automount \(autofs\)
 

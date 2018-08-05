@@ -22,6 +22,12 @@ Each filesystem can be mounted in one of three modes of operation in relation to
 * **Coherent,** where both data and metadata are guaranteed to be strongly consistent, at the cost of some performance compromise. Note that file content is still cached locally in the system page cache.
 * **Write Cache,** which does not ensure data consistency or data reliability but provides the highest performance.  
 
+{% hint style="info" %}
+**Note:** Symbolic links are always cached in all cached modes.
+{% endhint %}
+
+##  {#page-cache}
+
 ## Read Cache Mount Mode \(Default\)
 
 When mounting in read cache mode, the page cache uses write cache in the write through mode, so any write is acknowledged to the customer application only after being safely stored on resilient storage. This applies to both data and metadata writes. Consequently, only read operations are accelerated by the page cache. 
@@ -72,4 +78,6 @@ The write cache mount mode should only be used if:
 2. On a client host failure, it is not necessary to use the data written by the client host.
 
 It is possible to use the following system calls: sync, syncfs, fsync, where sync is for files and syncfs is to create consistent checkpoints of the write cache data. Similarly, the sync command can be used to sync the filesystem and commit all changes in the write cache.
+
+
 

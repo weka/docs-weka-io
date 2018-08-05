@@ -17,7 +17,7 @@ description: >-
 
 ### Memory {#memory}
 
-* Enough memory to support Weka needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
+* Enough memory to support Weka system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
 ### Operation System {#operation-system}
@@ -28,7 +28,7 @@ description: >-
 
 SELINUX must be disabled.
 
-### Weka Install Directory {#weka-install-directory}
+### WekaIO Install Directory {#weka-install-directory}
 
 * Directory: /opt/weka
 * Should be on an SSD or SSD-like performance, e.g., SATADOM. Cannot be shared remotely NFS mounted or on RAM drive
@@ -40,10 +40,9 @@ SELINUX must be disabled.
 * Ethernet NICs: Intel 82599, Intel X710, Mellanox CX4 & CX5
 * Mellanox OFED 4.2: Installed
 * NICs bonding: Not configured
-* Jumbo frames: Enabled on switch and on network port, and at any switch or router used between any two Weka hosts \(clients and backends alike\)
-* No IP fragmentation is allowed between any two Weka hosts \(clients and backends alike\), and IP fragmentation should be disabled on any OS stack, hypervisor or router
+* Jumbo frames: Enabled on switch and on network port
 * Weka system management IP address: One per server
-* Weka system data plane IP address: One IP address for each [Weka core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server
+* Weka system data plane IP address: One IP address for each [WekaIO core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server
 * Weka system management IP: Ability to communicate with all Weka system data plane IPs
 * Connectivity between hosts: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
