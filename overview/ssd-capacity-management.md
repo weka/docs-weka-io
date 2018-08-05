@@ -1,22 +1,22 @@
 ---
 description: >-
-  Understand the key terminologies relating to Weka system capacity management
-  and the formula for calculating the Weka system net data storage capacity.
+  Understand the key terminologies relating to WekaIO system capacity management
+  and the formula for calculating the WekaIO system net data storage capacity.
 ---
 
 # SSD Capacity Management
 
 ## Raw Capacity
 
-Raw capacity is the total capacity on all the SSDs assigned to a Weka system cluster, e.g., 10 SSDs of 1  terabyte each have a total raw capacity of 10 terabytes. This is the total capacity available for the Weka system. This will change automatically if more hosts or SSDs are added to the system.
+Raw capacity is the total capacity on all the SSDs assigned to a WekaIO system cluster, e.g., 10 SSDs of 1  terabyte each have a total raw capacity of 10 terabytes. This is the total capacity available for the WekaIO system. This will change automatically if more hosts or SSDs are added to the system.
 
 ## Net Capacity
 
-Net capacity is the amount of space available for user data on the SSDs in a configured Weka system. It is based on the raw capacity minus the WekaIO filesystem overheads for redundancy protection and other needs. This will change automatically if more hosts or SSDs are added to the system.
+Net capacity is the amount of space available for user data on the SSDs in a configured WekaIO system. It is based on the raw capacity minus the WekaIO filesystem overheads for redundancy protection and other needs. This will change automatically if more hosts or SSDs are added to the system.
 
 ## Stripe Width
 
-The stripe width is the number of blocks that share a common protection set, which can range from 3 to 16 \(the smallest possible stripe width is 3+2\). The Weka system has a distributed, any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various hosts protect each either \(rather than a group of 8 hosts forming a protection group\). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
+The stripe width is the number of blocks that share a common protection set, which can range from 3 to 16 \(the smallest possible stripe width is 3+2\). The WekaIO system has a distributed, any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various hosts protect each either \(rather than a group of 8 hosts forming a protection group\). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
 
 ## Protection Level
 
@@ -27,7 +27,7 @@ The protection level is the number of additional protection blocks added to each
 A failure domain is a group of WekaIO hosts, all of which can fail concurrently due to a single root cause, such as a power circuit or network switch failure. A system can be configured with or without failure domains. For a system with failure domains, each group of blocks that protect each other are spread on different failure domains. For a system without failure domains, the group of blocks is spread on different hosts. A system is defined with or without failure domains during the cluster formation, and this definition cannot be changed. For a system with failure domains, additional failure domains can be added, and new hosts can be added to any existing or new failure domain.
 
 {% hint style="info" %}
-Note: This documentation relates to a homogeneous Weka system deployment, i.e., the same number of hosts per failure domain \(if any\), and the same SSD capacity per host. For information about heterogeneous Weka system configurations, contact the WekaIO Support Team.
+Note: This documentation relates to a homogeneous WekaIO system deployment, i.e., the same number of hosts per failure domain \(if any\), and the same SSD capacity per host. For information about heterogeneous WekaIO system configurations, contact the WekaIO Support Team.
 {% endhint %}
 
 ## Hot Spare
@@ -52,7 +52,7 @@ Available capacity is the total capacity which can be used for the allocation of
 
 ## Deductions from Raw Capacity to Obtain Net Storage Capacity
 
-The net capacity of the Weka system is obtained after the following three deductions performed during configuration:
+The net capacity of the WekaIO system is obtained after the following three deductions performed during configuration:
 
 1. Level of protection required, i.e., the amount of storage capacity to be dedicated for system protection.
 2. Hot spare\(s\), i.e., the amount of storage capacity to be set aside for redundancy and to allow for rebuilding following a component failure.
@@ -60,11 +60,11 @@ The net capacity of the Weka system is obtained after the following three deduct
 
 ## Formula for Calculating SSD Net Storage Capacity
 
-**Formula for Weka System Configured with Failure Domains** 
+**Formula for WekaIO System Configured with Failure Domains** 
 
 ![](../.gitbook/assets/formula-with-failure-domains.jpg)
 
- **Formula for Weka System Configured without Failure Domains**
+**Formula for WekaIO System Configured without Failure Domains**
 
 ![](../.gitbook/assets/formula-without-failure-domains.jpg)
 
