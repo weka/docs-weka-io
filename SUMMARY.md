@@ -4,7 +4,7 @@
 
 ## Weka System Overview
 
-* [About the Weka System](overview/about.md)
+* [About the WekaIO System](overview/about.md)
 * [SSD Capacity Management](overview/ssd-capacity-management.md)
 * [Filesystems, Object Stores & Filesystem Groups](overview/filesystems.md)
 * [Data Lifecycle Management](overview/data-storage.md)
