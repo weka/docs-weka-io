@@ -12,7 +12,7 @@ Raw capacity is the total capacity on all the SSDs assigned to a Weka system clu
 
 ## Net Capacity
 
-Net capacity is the amount of space available for user data on the SSDs in a configured Weka system. It is based on the raw capacity minus the Weka filesystem overheads for redundancy protection and other needs. This will change automatically if more hosts or SSDs are added to the system.
+Net capacity is the amount of space available for user data on the SSDs in a configured Weka system. It is based on the raw capacity minus the WekaIO filesystem overheads for redundancy protection and other needs. This will change automatically if more hosts or SSDs are added to the system.
 
 ## Stripe Width
 
@@ -24,10 +24,10 @@ The protection level is the number of additional protection blocks added to each
 
 ## Failure Domains \(Optional\)
 
-A failure domain is a group of Weka hosts, all of which can fail concurrently due to a single root cause, such as a power circuit or network switch failure. A system can be configured with or without failure domains. For a system with failure domains, each group of blocks that protect each other are spread on different failure domains. For a system without failure domains, the group of blocks is spread on different hosts. A system is defined with or without failure domains during the cluster formation, and this definition cannot be changed. For a system with failure domains, additional failure domains can be added, and new hosts can be added to any existing or new failure domain.
+A failure domain is a group of WekaIO hosts, all of which can fail concurrently due to a single root cause, such as a power circuit or network switch failure. A system can be configured with or without failure domains. For a system with failure domains, each group of blocks that protect each other are spread on different failure domains. For a system without failure domains, the group of blocks is spread on different hosts. A system is defined with or without failure domains during the cluster formation, and this definition cannot be changed. For a system with failure domains, additional failure domains can be added, and new hosts can be added to any existing or new failure domain.
 
 {% hint style="info" %}
-Note: This documentation relates to a homogeneous Weka system deployment, i.e., the same number of hosts per failure domain \(if any\), and the same SSD capacity per host. For information about heterogeneous Weka system configurations, contact the Weka Support Team.
+Note: This documentation relates to a homogeneous Weka system deployment, i.e., the same number of hosts per failure domain \(if any\), and the same SSD capacity per host. For information about heterogeneous Weka system configurations, contact the WekaIO Support Team.
 {% endhint %}
 
 ## Hot Spare
@@ -38,9 +38,9 @@ Hot spare is the number of failure domains \(for a system configured with failur
 Note: The sum of the stripe width, protection level and hot spare must be less than or equal to the total number of failure domains or the number of hosts \(if no failure domains are defined\).
 {% endhint %}
 
-## Weka Filesystem Overhead
+## WekaIO Filesystem Overhead
 
-After deducting the capacity for the protection and hot spares, only 80% of the remaining capacity can be used as net user capacity, with the other 20% of capacity reserved for the Weka filesystems. This is a fixed formula that cannot be configured.
+After deducting the capacity for the protection and hot spares, only 80% of the remaining capacity can be used as net user capacity, with the other 20% of capacity reserved for the WekaIO filesystems. This is a fixed formula that cannot be configured.
 
 ## Provisioned Capacity
 
@@ -56,7 +56,7 @@ The net capacity of the Weka system is obtained after the following three deduct
 
 1. Level of protection required, i.e., the amount of storage capacity to be dedicated for system protection.
 2. Hot spare\(s\), i.e., the amount of storage capacity to be set aside for redundancy and to allow for rebuilding following a component failure.
-3. Weka filesystem overhead, in order to improve overall performance.      
+3. WekaIO filesystem overhead, in order to improve overall performance.      
 
 ## Formula for Calculating SSD Net Storage Capacity
 
