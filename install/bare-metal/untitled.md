@@ -4,14 +4,14 @@ description: This page describes the stages in the installation process when usi
 
 # Weka System Installation Process Using the CLI
 
-## Stage 1: Installation of the Weka Software on Each Host
+## Stage 1: Installation of the WekaIO Software on Each Host
 
 Run the untar command and `install.sh` command, according to the instructions, on each host.
 
-On completion of this stage in the installation process, the Weka software is installed on all the allocated hosts and running in the stem mode i.e., no cluster is attached and the Weka system is awaiting instructions.
+On completion of this stage in the installation process, the WekaIO software is installed on all the allocated hosts and running in the stem mode i.e., no cluster is attached and the Weka system is awaiting instructions.
 
 {% hint style="info" %}
-**Note:** If a failure occurs during this installation stage, an error message detailing the source of the failure will be received. If possible, try to recover this error or alternatively, contact the Weka Support Team.
+**Note:** If a failure occurs during this installation stage, an error message detailing the source of the failure will be received. If possible, try to recover this error or alternatively, contact the WekaIO Support Team.
 {% endhint %}
 
 ## Stage 2: Formation of a Cluster from the Hosts
@@ -51,7 +51,7 @@ On successful completion of the formation of the cluster, every host receives a 
 
 **Command:** `weka cluster update`
 
-This command is used to give the cluster a name. Although this is optional, it is highly recommended, because the name enables cloud event notification and increases the ability of the Weka Support Team to resolve any issues that may occur. To perform this operation, use the following command line:
+This command is used to give the cluster a name. Although this is optional, it is highly recommended, because the name enables cloud event notification and increases the ability of the WekaIO Support Team to resolve any issues that may occur. To perform this operation, use the following command line:
 
 `weka cluster update --cluster-name=<name>`
 
@@ -65,11 +65,11 @@ This command is used to give the cluster a name. Although this is optional, it i
 
 **Command** `weka cloud enable`
 
-This command enables cloud event notification, which increases the ability of the Weka Support Team to resolve any issues that may occur. To perform this operation, use the following command line:
+This command enables cloud event notification, which increases the ability of the WekaIO Support Team to resolve any issues that may occur. To perform this operation, use the following command line:
 
 `weka cloud enable`
 
-To learn more, and learn and what else is needed in order to enable cloud event notification see the description of the [Weka support cloud](../../support/the-wekaio-support-cloud.md).
+To learn more, and learn and what else is needed in order to enable cloud event notification see the description of the [WekaIO support cloud](../../support/the-wekaio-support-cloud.md).
 
 ## Stage 5: Configuration of Networking
 
@@ -97,7 +97,7 @@ The number of IP addresses should be at least the number of cores [planned](plan
 
 **Command:** `cluster drive add`
 
-This stage in the installation process is used to add a local SSD to be used by a Weka filesystem. To perform this operation, use the following command line:
+This stage in the installation process is used to add a local SSD to be used by a WekaIO filesystem. To perform this operation, use the following command line:
 
 `weka cluster drive add <host-id> <device-path>`
 
@@ -109,14 +109,14 @@ This stage in the installation process is used to add a local SSD to be used by 
 | `device` | String | A block device that identifies a local SSD, e.g., `/dev/sdb` | Must be a valid Unix network device name | Yes |  |
 
 {% hint style="info" %}
-**Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the Weka Support Team.
+**Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the WekaIO Support Team.
 {% endhint %}
 
 ## Stage 7: **Scanning Drives**
 
 **Command:**`weka cluster drive scan`
 
-After provisioning the SSDs to be used by a Weka filesystem using the previous command, it is also necessary to scan them so that they are recognizable by the system internally. To perform this operation, use the following command line:
+After provisioning the SSDs to be used by a WekaIO filesystem using the previous command, it is also necessary to scan them so that they are recognizable by the system internally. To perform this operation, use the following command line:
 
 `weka cluster drive scan`
 
@@ -136,7 +136,7 @@ This stage in the installation process is used to configure the amount of CPU re
 | `cores` | Number | Number of physical cores to be allocated to the Weka system | Should be less than the number of physical cores in the host \(leaving 1 core for the OS\) | Yes |  |
 
 {% hint style="info" %}
-**Note:** Performance can be optimized by assigning different functions to the various Weka cores. If necessary, contact the Weka Support Team for more information.
+**Note:** Performance can be optimized by assigning different functions to the various WekaIO cores. If necessary, contact the WekaIO Support Team for more information.
 {% endhint %}
 
 ## Stage 9: Configuration of Memory \(optional\)
@@ -155,7 +155,7 @@ As defined in the memory requirements, the fixed memory per host and the per cor
 | `capacity-emory` | Number | Required memory in bytes |  | Yes |  |
 
 {% hint style="info" %}
-**Note:** This command is for initialization phase only.  To adjust the memory of a running cluster, contact the Weka Support Team.
+**Note:** This command is for initialization phase only.  To adjust the memory of a running cluster, contact the WekaIO Support Team.
 {% endhint %}
 
 {% hint style="info" %}
