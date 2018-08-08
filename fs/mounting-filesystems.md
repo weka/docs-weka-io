@@ -18,7 +18,7 @@ mount -t wekafs demo /mnt/weka/demo
 The general structure of a`mount` command for a WekaIO filesystem is:
 
 ```text
-mount -t wekafs [option[,option]...]] <fs-name> <mount-point>
+mount -t wekafs [-o option[,option]...]] <fs-name> <mount-point>
 ```
 
 There are three options for mounting a filesystem on a cluster client: coherent, read cache and write cache. Refer to the descriptions below to understand the differences between these modes.
