@@ -17,7 +17,7 @@
 * [Bare Metal Installation](install/bare-metal/README.md)
   * [Planning a WekaIO System Installation](install/bare-metal/planning-a-weka-system-installation.md)
   * [Prerequisites for Installation](install/bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md)
-  * [Obtaining the Weka Install File](install/bare-metal/obtaining-the-weka-install-file.md)
+  * [Obtaining the WekaIO Install File](install/bare-metal/obtaining-the-weka-install-file.md)
   * [Weka System Installation Process Using the CLI](install/bare-metal/untitled.md)
   * [Adding Clients](install/bare-metal/adding-clients-bare-metal.md)
 * [AWS Installation](install/aws/README.md)

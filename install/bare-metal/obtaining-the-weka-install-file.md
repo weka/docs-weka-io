@@ -1,13 +1,13 @@
 ---
 description: >-
-  This page describes the process for obtaining the Weka software tar install
+  This page describes the process for obtaining the WekaIO software tar install
   file.
 ---
 
-# Obtaining the Weka Install File
+# Obtaining the WekaIO Install File
 
 {% hint style="info" %}
-**Note:** The Weka software tar installation file can be obtained either by a direct online download or from offline media containing the file. The following description is of the online download. It is possible to either download the installation file directly to each host, or distribute manually from a single download or offline media to all hosts.
+**Note:** The WekaIO software tar installation file can be obtained either by a direct online download or from offline media containing the file. The following description is of the online download. It is possible to either download the installation file directly to each host, or distribute manually from a single download or offline media to all hosts.
 {% endhint %}
 
 {% hint style="info" %}
@@ -18,7 +18,7 @@ description: >-
 
 Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site. Log in by entering your email address and password. Then click Continue.
 
-![Weka System Login Screen](../../.gitbook/assets/screen-1.jpg)
+![WekaIO System Login Screen](../../.gitbook/assets/screen-1.jpg)
 
 If you do not have an account, click Create an account. The following screen is displayed:
 
@@ -34,7 +34,7 @@ Create your account by entering your full name and password. Then click Create A
 
 ![WekaIO Dashboard Screen](../../.gitbook/assets/screen-4.jpg)
 
-## Step 2: Download the Weka Software
+## Step 2: Download the WekaIO Software
 
 To download the latest release, click the Latest Release button.
 
@@ -46,7 +46,7 @@ Follow the instructions for downloading the release appearing on the screen.
 
 ![WekaIO Download Screen](../../.gitbook/assets/screen-5-erased.jpg)
 
-Select your operating system distribution, which is the operating system for the Weka system dedicated hosts, from the dropdown list of systems.
+Select your operating system distribution, which is the operating system for the WekaIO system dedicated hosts, from the dropdown list of systems.
 
 ![Selecting Operating System Dropdown Menu](../../.gitbook/assets/screen-6.jpg)
 
