@@ -33,5 +33,5 @@ Hyper-converged deployments are more generic deployments in which every instance
 The deployment of a hyper-converged cluster is typically selected in the following cases:
 
 * When using very small applications that require a high-performance filesystem but do not require many resources themselves, in which case they can use resources in the same instances storing the data.
-* When cloud-bursting an application to AWS, in which case you seek to utilize as many resources as possible for the application but also seek to provide as many resources as possible to the Weka system cluster, in order to achieve maximum performance.
+* When cloud-bursting an application to AWS, in which case you seek to utilize as many resources as possible for the application but also seek to provide as many resources as possible to the WekaIO system cluster, in order to achieve maximum performance.
 

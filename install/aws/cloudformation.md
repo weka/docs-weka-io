@@ -21,7 +21,7 @@ The APIs described here require an API token which can be obtained at [https://g
 
 ## API Overview
 
-To generate a CloudFormation template, it is first necessary to decide which Weka system version is to be installed. This is performed using the `https://<token>@get.weka.io/dist/v1/release` API which provides a list of all available versions:
+To generate a CloudFormation template, it is first necessary to decide which WekaIO system version is to be installed. This is performed using the `https://<token>@get.weka.io/dist/v1/release` API which provides a list of all available versions:
 
 ```bash
 $ curl https://<token>@get.weka.io/dist/v1/release
@@ -111,9 +111,9 @@ It is possible to specify multiple groups of instances by adding more `role`/`in
 
 ### Custom Client AMI
 
-When specifying an `ami_id` in `client` groups, the specified AMI will be used when launching the client instances. The Weka system will be installed on top of this AMI in a separate EBS volume.
+When specifying an `ami_id` in `client` groups, the specified AMI will be used when launching the client instances. The WekaIO system will be installed on top of this AMI in a separate EBS volume.
 
-When `ami_id` is not specified, the client instances are launched with the latest Amazon Linux supported by the Weka system version selected to be installed.
+When `ami_id` is not specified, the client instances are launched with the latest Amazon Linux supported by the WekaIO system version selected to be installed.
 
 Note the following when using a custom AMI-ID:
 
@@ -128,7 +128,7 @@ Note the following when using a custom AMI-ID:
 
 By default, both client and backend instances are launched in the dedicated networking mode. Although this cannot be changed for backends, it can be controlled for client instances.
 
-Dedicated networking means that an ENI is created for internal cluster traffic in the client instances. This allows the Weka system to bypass the kernel and provide throughput that is only limited by the instance network.
+Dedicated networking means that an ENI is created for internal cluster traffic in the client instances. This allows the WekaIO system to bypass the kernel and provide throughput that is only limited by the instance network.
 
 In shared networking, the client shares the instance’s network interface with all traffic passing through the kernel. Although slower, this mode is sometimes desirable when an ENI cannot be allocated or if the operating system does not allow more than one NIC.
 
@@ -164,12 +164,12 @@ The CloudFormation template has the following parameters:
 | `DistToken` | The API token for WekaIO's distribution site. This can be obtained at [https://get.weka.io/ui/account/api-tokens](https://get.weka.io/ui/account/api-tokens). |
 
 {% hint style="info" %}
-**Note:** `SubnetId` must be a public subnet or a subnet that is routable to the Internet, since deployment is based on downloading the Weka system and various packages from the Internet.
+**Note:** `SubnetId` must be a public subnet or a subnet that is routable to the Internet, since deployment is based on downloading the WekaIO system and various packages from the Internet.
 {% endhint %}
 
 ## IAM Role Created In The Template
 
-The CloudFormation template contains an instance role that allows the Weka system instances to call several AWS APIs, such as `DescribeInstances` and `CreateNetworkInterface`.
+The CloudFormation template contains an instance role that allows the WekaIO system instances to call several AWS APIs, such as `DescribeInstances` and `CreateNetworkInterface`.
 
 These API calls are only required during installation and the credentials can be safely removed from the instance role once the CloudFormation reaches the CREATE\_COMPLETE state.
 
@@ -177,7 +177,7 @@ These API calls are only required during installation and the credentials can be
 
 Once a CloudFormation template has been generated, it is possible to create a stack from it using the AWS console or the AWS CLI.
 
-When the deployment is complete, the stack status will update to `CREATE_COMPLETE` and it is possible to access the Weka system cluster UI by going to the Outputs tab of the CloudFormation stack and clicking the UI link.
+When the deployment is complete, the stack status will update to `CREATE_COMPLETE` and it is possible to access the WekaIO system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link.
 
 {% hint style="info" %}
 **Notes:**
