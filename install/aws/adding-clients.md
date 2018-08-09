@@ -1,14 +1,14 @@
 ---
 description: >-
   This page describes the process for adding clients to an already-installed
-  Weka system cluster.
+  WekaIO system cluster.
 ---
 
 # Adding Clients
 
 ## Introduction
 
-When launching a Weka system cluster, either through the [Self-Service Portal](self-service-portal.md) or via a [CloudFormation template](cloudformation.md), it is also possible to launch client instances as part of the cluster. However, sometimes it may be required to add more clients after the cluster has been installed. To add more clients as separate instances, follow the instructions below.
+When launching a WekaIO system cluster, either through the [Self-Service Portal](self-service-portal.md) or via a [CloudFormation template](cloudformation.md), it is also possible to launch client instances as part of the cluster. However, sometimes it may be required to add more clients after the cluster has been installed. To add more clients as separate instances, follow the instructions below.
 
 ## Adding Clients as Separate Instances
 
@@ -38,7 +38,7 @@ When adding a client, the `aws-add-client` script requires permissions for the f
 
 These permissions are automatically created in an instance profile as part of the CloudFormation stack. It is possible to use the same instance profile as one of the backend instances to ensure that the same credentials are given to the new client.
 
-The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the Weka system client to preallocate the network resource for fastest performance.
+The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the WekaIO system client to preallocate the network resource for fastest performance.
 
 If the client is not to be provided with these permissions, it is possible to only provide `ec2:Describe*` and create an additional NIC in the same security group and subnet as described above.
 
@@ -89,7 +89,7 @@ Client has joined the cluster
 {% hint style="info" %}
 **Note: Dedicated Client Resources**
 
-Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the Weka system on the client instance. This is performed as part of the Weka system pre-allocation of resources, ensuring that variance in client activity does not result in the allocation of resources that may affect the programs running on the client host. For more information, see [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
+Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the WekaIO system on the client instance. This is performed as part of the WekaIO system preallocation of resources, ensuring that variance in client activity does not result in the allocation of resources that may affect the programs running on the client host. For more information, see [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
 {% endhint %}
 
 ### Step 4: Mount Filesystems on the Clients {#step-4-mount-filesystem-on-clients}
