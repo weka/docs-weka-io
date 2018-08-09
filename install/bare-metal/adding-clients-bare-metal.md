@@ -6,16 +6,16 @@ description: This page describes how to add clients to a bare metal cluster.
 
 ## About Client Hosts
 
-Client hosts are used to run applications which need to access the Weka filesystems. They are similar to backend hosts, except that they do not contribute CPUs or drives to the cluster. Consequently, they are only connected to the cluster to use its filesystems.
+Client hosts are used to run applications which need to access the WekaIO filesystems. They are similar to backend hosts, except that they do not contribute CPUs or drives to the cluster. Consequently, they are only connected to the cluster to use its filesystems.
 
-To add client hosts to the Weka system configuration, use the stages described below.
+To add client hosts to the WekaIO system configuration, use the stages described below.
 
 ## Stage 1: Install the Software
 
-Verify that the Weka software is installed on the client host according to the installation instructions. For further information, see [Obtaining the Weka Install File](obtaining-the-weka-install-file.md) and [Stage 1 in Weka System Installation Process](adding-clients-bare-metal.md#stage-1-install-the-software).
+Verify that the WekaIO software is installed on the client host according to the installation instructions. For further information, see [Obtaining the WekaIO Install File](obtaining-the-weka-install-file.md) and [Stage 1 in WekaIO System Installation Process](adding-clients-bare-metal.md#stage-1-install-the-software).
 
 {% hint style="info" %}
-**Note:** All hosts, clients and backends in a Weka system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
+**Note:** All hosts, clients and backends in a WekaIO system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
 {% endhint %}
 
 ## Stage 2: Joining the Cluster
@@ -61,10 +61,10 @@ weka cluster host cores <host-id> --frontend-dedicated-cores=1
 **Command:** `weka cluster host net add`
 
 {% hint style="info" %}
-**Note:** If the new client is to communicate with the Weka system cluster over the kernel UDP stack, it is not necessary to run this command.
+**Note:** If the new client is to communicate with the WekaIO system cluster over the kernel UDP stack, it is not necessary to run this command.
 {% endhint %}
 
-If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the Weka system cluster hosts:
+If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the WekaIO system cluster hosts:
 
 ```text
 weka cluster host net add <host-id> --device=<net-device> \
