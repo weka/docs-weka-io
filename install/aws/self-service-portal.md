@@ -1,7 +1,7 @@
 ---
 description: >-
   This page presents working with the WekaIO Self-Service Portal when installing
-  the Weka system in AWS.
+  the WekaIO system in AWS.
 ---
 
 # Self-Service Portal
@@ -24,7 +24,7 @@ As shown in the screen above, configuration options include the total capacity, 
 
 ## Deploying a Cluster
 
-Once the configuration to be deployed has been found, click the Deploy to AWS button next to the desired configuration. At this point, it is possible to specify additional options for the deployment, such as adding client instances or selecting the Weka system version to be deployed.
+Once the configuration to be deployed has been found, click the Deploy to AWS button next to the desired configuration. At this point, it is possible to specify additional options for the deployment, such as adding client instances or selecting the WekaIO system version to be deployed.
 
 ![Additional Deployment Options Dialog Box](../../.gitbook/assets/02-deploy-cluster.png)
 
@@ -40,10 +40,10 @@ In the Create Stack screen, define the options which are specific to your AWS ac
 
 * **Stack name** is the name that will be given to your stack in  theCloudFormation. This name has to be unique in your account.
 * **KeyName** is the SSH-key that you will use to connect to the instances.
-* **VpcId** and **SubnetId** are used to select the VPC and subnet in which the Weka system cluster will be deployed.
+* **VpcId** and **SubnetId** are used to select the VPC and subnet in which the WekaIO system cluster will be deployed.
 
 {% hint style="info" %}
-**Important Note Concerning Internet Connectivity:** Only public subnets are currently supported by the Weka system. Make sure to select a subnet that has the Enable Auto-Assign Public IPv4 Address setting turned on, or select a subnet that has Internet connectivity.
+**Important Note Concerning Internet Connectivity:** Only public subnets are currently supported by the WekaIO system. Make sure to select a subnet that has the Enable Auto-Assign Public IPv4 Address setting turned on, or select a subnet that has Internet connectivity.
 {% endhint %}
 
 Once all required parameters have been filled-in, make sure to check the "I acknowledge that AWS CloudFormation might create IAM resources” checkbox at the bottom and click the Create button:
@@ -55,12 +55,12 @@ Once all required parameters have been filled-in, make sure to check the "I ackn
 The cluster deployment process takes about 10 minutes. During this time, the following occurs:
 
 1. The AWS resources required for the cluster are provisioned.
-2. The Weka system is installed on each of the instances provisioned for the cluster.
+2. The WekaIO system is installed on each of the instances provisioned for the cluster.
 3. A cluster is created using all backend instances.
 4. All client instances join the cluster once the cluster has been created..
 5. A filesystem is created using all the available capacity and is mounted on all backend and client instances.This shared filesystem is mounted on `/mnt/weka` in each of the cluster instances.
 
-Once the deployment is complete, the stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the Weka system cluster UI by going to the Outputs tab of the CloudFormation stack and clicking the UI link. 
+Once the deployment is complete, the stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the WekaIO system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link. 
 
 {% hint style="info" %}
 **Note:** If the deployment is unsuccessful, see [Troubleshooting](troubleshooting.md) for how to resolve common deployment issues.
