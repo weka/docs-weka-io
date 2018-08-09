@@ -1,16 +1,16 @@
 ---
 description: >-
   This page describes how to view and manage filesystems, filesystem groups and
-  object stores using the UI and the CLI.
+  object stores using the GUI and the CLI.
 ---
 
-# Managing Filesystems, Object Stores and Filesystem Groups
+# Managing Filesystems, Object Stores & Filesystem Groups
 
 ## Viewing Filesystems and Filesystem Groups
 
-#### Viewing Filesystems / Filesystem Groups Using the UI
+#### Viewing Filesystems / Filesystem Groups Using the GUI
 
-The main filesystem screen in the UI contains information about the filesystems and filesystem groups, including names, tiering status, total capacity and used capacity.
+The main filesystem screen in the GUI contains information about the filesystems and filesystem groups, including names, tiering status, total capacity and used capacity.
 
 ![Main Filesystem / Filesystem Group View Screen](../.gitbook/assets/view-fs_fsg-screen.jpg)
 
@@ -26,9 +26,9 @@ These commands are used to view the filesystems \(`weka fs`\) or filesystem grou
 
 ### Viewing Object Stores
 
-#### Viewing Object Stores Using the UI
+#### Viewing Object Stores Using the GUI
 
-The main object store screen in the UI lists all existing object stores and can also display information  about a specific object store, including the object store name, status and region.
+The main object store screen in the GUI lists all existing object stores and can also display information  about a specific object store, including the object store name, status and region.
 
 ![Main Object Store View Screen](../.gitbook/assets/view-os-screen.jpg)
 
@@ -40,7 +40,7 @@ This command is used to view information on all the object stores configured to 
 
 ### Adding an Object Store
 
-#### Adding an Object Store Using the UI
+#### Adding an Object Store Using the GUI
 
 From the main object store view screen, click the "+" button at the top left-hand side of the screen. The Configure Object Store dialog box will be displayed.
 
@@ -83,7 +83,7 @@ Use the following command line to add an object store:
 
 ### Editing an Object Store
 
-#### Editing an Object Store Using the UI
+#### Editing an Object Store Using the GUI
 
 From the main object store view screen, click the Edit button of the object store to be edited.
 
@@ -120,7 +120,7 @@ Use the following command line to edit an object store:
 
 ### Deleting an Object Store
 
-#### Deleting an Object Store Using the UI
+#### Deleting an Object Store Using the GUI
 
 From the main object store view screen, click the Delete button of the object store to be deleted.
 
@@ -149,12 +149,12 @@ Use the following command line to delete an object store:
 ## Managing Filesystem Groups
 
 {% hint style="info" %}
-**Note:**  The following sections describe how to add, edit and delete filesystem groups using the UI and CLI.
+**Note:**  The following sections describe how to add, edit and delete filesystem groups using the GUI and CLI.
 {% endhint %}
 
 ### Adding a Filesystem Group
 
-#### Adding a Filesystem Group Using the UI
+#### Adding a Filesystem Group Using the GUI
 
 From the main filesystem / filesystem group view screen, click the Add Group button at the top left-hand side of the screen. The Add Filesystem group screen will be displayed.
 
@@ -167,7 +167,7 @@ The Create Filesystem Group dialog box will be displayed.
 Enter the relevant parameters and click Create to create the filesystem group.
 
 {% hint style="info" %}
-**Note:** The tiering status is selected in the UI using the switch. However, in the CLI, this requires the use of different commands.
+**Note:** The tiering status is selected in the GUI using the switch. However, in the CLI, this requires the use of different commands.
 {% endhint %}
 
 #### Adding a Filesystem Group Using the CLI
@@ -199,7 +199,7 @@ For a non-tiered filesystem group:
 
 ### Editing a Filesystem Group
 
-#### Editing an Existing Filesystem Group Using the UI
+#### Editing an Existing Filesystem Group Using the GUI
 
 Click the Edit button of the filesystem group to be modified. The Configure Filesystem Group dialog box will be displayed.
 
@@ -233,7 +233,7 @@ For a non-tiered filesystem group:
 
 ### Deleting a Filesystem Group
 
-#### Deleting a Filesystem Using the UI
+#### Deleting a Filesystem Using the GUI
 
 {% hint style="info" %}
 **Note:** Before deleting a filesystem group, verify that it does not contain any filesystems. If it contains filesystems, first delete the filesystems.
@@ -262,12 +262,12 @@ Use the following command line to delete a filesystem group:
 ## Managing Filesystems
 
 {% hint style="info" %}
-**Note:**  The following sections describe how to add, edit and delete filesystems using the UI and CLI.
+**Note:**  The following sections describe how to add, edit and delete filesystems using the GUI and CLI.
 {% endhint %}
 
 ### Adding a Filesystem
 
-#### Adding a Filesystem Using the UI
+#### Adding a Filesystem Using the GUI
 
 From the main filesystem / filesystem group view screen, click the Add Filesystem button at the top right-hand side of the screen. The Add Filesystem screen will be displayed.
 
@@ -297,7 +297,7 @@ Use the following command line to add a filesystem:
 
 ### Editing a Filesystem
 
-#### Editing an Existing Filesystem Using the UI
+#### Editing an Existing Filesystem Using the GUI
 
 Select the filesystem to be modified in the main filesystem / filesystem group view screen and click the Edit button.
 
@@ -328,7 +328,7 @@ Use the following command line to edit an existing filesystem:
 
 ### Deleting a Filesystem
 
-#### Deleting a Filesystem Using the UI
+#### Deleting a Filesystem Using the GUI
 
 Select the filesystem to be deleted in the main filesystem / filesystem group view screen and click the Delete button.
 

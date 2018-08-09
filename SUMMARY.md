@@ -30,7 +30,7 @@
 
 ## FILESYSTEMS
 
-* [Managing Filesystems, Object Stores and Filesystem Groups](fs/managing-filesystems.md)
+* [Managing Filesystems, Object Stores & Filesystem Groups](fs/managing-filesystems.md)
 * [NFS Support](fs/nfs-support.md)
 * [Mounting Filesystems](fs/mounting-filesystems.md)
 * [Pre-Fetching API for Data Lifecycle Management](fs/tiering.md)
