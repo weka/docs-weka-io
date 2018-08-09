@@ -1,5 +1,5 @@
 ---
-description: This page lists all instance types supported by the Weka system version.
+description: This page lists all instance types supported by the WekaIO system version.
 ---
 
 # Supported EC2 Instance Types
