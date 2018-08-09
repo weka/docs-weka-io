@@ -2,13 +2,13 @@
 description: This page describes the stages in the installation process when using the CLI.
 ---
 
-# Weka System Installation Process Using the CLI
+# WekaIO System Installation Process Using the CLI
 
 ## Stage 1: Installation of the WekaIO Software on Each Host
 
 Run the untar command and `install.sh` command, according to the instructions, on each host.
 
-On completion of this stage in the installation process, the WekaIO software is installed on all the allocated hosts and running in the stem mode i.e., no cluster is attached and the Weka system is awaiting instructions.
+On completion of this stage in the installation process, the WekaIO software is installed on all the allocated hosts and running in the stem mode i.e., no cluster is attached and the WekaIO system is awaiting instructions.
 
 {% hint style="info" %}
 **Note:** If a failure occurs during this installation stage, an error message detailing the source of the failure will be received. If possible, try to recover this error or alternatively, contact the WekaIO Support Team.
@@ -75,7 +75,7 @@ To learn more, and learn and what else is needed in order to enable cloud event 
 
 **Command:** `cluster host net add`
 
-The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(IB\). A physical network device must be specified for both types. This can be a device dedicated to the Weka system, or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
+The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(IB\). A physical network device must be specified for both types. This can be a device dedicated to the WekaIO system, or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
 
 To perform this operation, the cluster host net add command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
@@ -87,7 +87,7 @@ To perform this operation, the cluster host net add command must be run for each
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to which a network interface will be added | Must be a valid host identifier | Yes |  |
 | `device` | String | A device, e.g., `eth1` | Must be a valid Unix network device name | Yes |  |
-| `ips` | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic. In IB, use the IPoIB address \(single address regardless of number of cores\) | Must be part of the data plane IP pool defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | Yes |  |
+| `ips` | Comma-separated IP address | The data plane IP addresses for internal WekaIO system traffic. In IB, use the IPoIB address \(single address regardless of number of cores\) | Must be part of the data plane IP pool defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | Yes |  |
 | `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 | `netmask` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 
@@ -133,7 +133,7 @@ This stage in the installation process is used to configure the amount of CPU re
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which a core count should be configured | Must be a valid host identifier | Yes |  |
-| `cores` | Number | Number of physical cores to be allocated to the Weka system | Should be less than the number of physical cores in the host \(leaving 1 core for the OS\) | Yes |  |
+| `cores` | Number | Number of physical cores to be allocated to the WekaIO system | Should be less than the number of physical cores in the host \(leaving 1 core for the OS\) | Yes |  |
 
 {% hint style="info" %}
 **Note:** Performance can be optimized by assigning different functions to the various WekaIO cores. If necessary, contact the WekaIO Support Team for more information.
@@ -143,7 +143,7 @@ This stage in the installation process is used to configure the amount of CPU re
 
 **Command:** `cluster host memory`
 
-As defined in the memory requirements, the fixed memory per host and the per core memory are automatically computed by the Weka system. For the capacity-oriented memory, a default of 1.4 GB per host is allocated. If capacity requirements mandate more memory per host, the following command should be used: 
+As defined in the memory requirements, the fixed memory per host and the per core memory are automatically computed by the WekaIO system. For the capacity-oriented memory, a default of 1.4 GB per host is allocated. If capacity requirements mandate more memory per host, the following command should be used: 
 
 `weka cluster host memory <host-id> <capacity-memory>`
 
@@ -169,7 +169,7 @@ This commands sets only the capacity portion of the memory requirements. The per
 This optional stage in the installation process is used to assign a host to a failure domain. If the specified failure domain does not exist, it will be created by this command. If the host is assigned to another failure domain, it will be reassigned by this command.
 
 {% hint style="info" %}
-**Note:** All hosts not assigned to any failure domain will be considered by the Weka system as an additional failure domain. However, it is s good practice to either not define failure domains at all or to assign each host to a single failure domain.
+**Note:** All hosts not assigned to any failure domain will be considered by the WekaIO system as an additional failure domain. However, it is s good practice to either not define failure domains at all or to assign each host to a single failure domain.
 {% endhint %}
 
 This operation is performed using the following command line: 
@@ -183,11 +183,11 @@ This operation is performed using the following command line:
 | `host-id` | String | Identifier of host in which a core count should be configured | Must be a valid host identifier | Yes |  |
 | `fd-name` | String | The failure domain that will contain the host from now |  | Yes |  |
 
-## Stage 11: Configuration of Weka System Protection Scheme
+## Stage 11: Configuration of WekaIO System Protection Scheme
 
 **Command:** `cluster update`
 
-To configure the Weka system protection scheme, use the following command line:
+To configure the WekaIO system protection scheme, use the following command line:
 
 `weka cluster update [--data-drives=<num>] [--parity-drives=<num>]`
 
@@ -206,7 +206,7 @@ To configure the Weka system protection scheme, use the following command line:
 
 **Command:** `cluster hot-spare`
 
-To configure the Weka system hot spare, use the following command line:
+To configure the WekaIO system hot spare, use the following command line:
 
 `weka cluster hot-spare <count>`
 
@@ -224,7 +224,7 @@ To configure the Weka system hot spare, use the following command line:
 
 **Command:** `weka cluster host activate`
 
-This command is used to activate the Weka system cluster host. When it is run, a comma-separated list of all host names is received. In the install phase, all hosts need to be added, so the default of no parameter can be used.
+This command is used to activate the WekaIO system cluster host. When it is run, a comma-separated list of all host names is received. In the install phase, all hosts need to be added, so the default of no parameter can be used.
 
 To activate the cluster hosts, use the following command line:
 
@@ -240,7 +240,7 @@ To activate the cluster hosts, use the following command line:
 
 **Command:** `cluster drive activate`
 
-This command is used to mark the Weka system SSDs as active, so they are in-use by the cluster. To activate the cluster SSDs, use the following command line:
+This command is used to mark the WekaIO system SSDs as active, so they are in-use by the cluster. To activate the cluster SSDs, use the following command line:
 
 `cluster drive activate [<uuids>...]`
 
