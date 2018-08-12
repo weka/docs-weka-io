@@ -20,7 +20,7 @@ Snapshots allow the saving of a filesystem state to a directory \(`.snapshots)`l
 
 Snapshots have practically no impact on system performance and can be taken for each filesystem while applications are running. They consume minimal space, according to the actual differences between the filesystem and the snapshots, or between the snapshots, in 4K granularity. By default, snapshots are read-only, and any attempts to change the contents of a read-only snapshot returns an error message. However, it is possible to create a writable snapshot or update an existing snapshot to be writable. 
 
-Weka supports the following snapshots operations:
+WekaIO supports the following snapshots operations:
 
 * Viewing snapshots
 * Creating a snapshot of an existing filesystem
@@ -41,7 +41,7 @@ Weka supports the following snapshots operations:
 
 ### Viewing Snapshots
 
-#### Viewing Snapshots Using the UI
+#### Viewing Snapshots Using the GUI
 
 To view the snapshot of filesystem, click the filesystem Show Snapshots button.
 
@@ -59,7 +59,7 @@ This command is used to display all snapshots of all filesystems in a single tab
 
 ### Creating a Snapshot
 
-#### Creating a Snapshot Using the UI
+#### Creating a Snapshot Using the GUI
 
 From the main snapshot view screen, click Create Snapshot at the top right-hand side of the required filesystem snapshot screen. The Create Snapshot dialog box will be displayed.
 
@@ -87,7 +87,7 @@ Use the following command line to add a snapshot:
 
 ### Deleting a Snapshot
 
-#### Deleting a Snapshot Using the UI
+#### Deleting a Snapshot Using the GUI
 
 In the main snapshot view screen, select the filesystem to be deleted and click Delete. The Snapshot Deletion window will be displayed.
 
@@ -112,7 +112,7 @@ Use the following command line to delete a snapshot:
 
 ### Restoring a Filesystem from a Snapshot
 
-#### Restoring a Filesystem or a Snapshot from another Snapshot Using the UI
+#### Restoring a Filesystem or a Snapshot from another Snapshot Using the GUI
 
 In the main snapshot view screen, select the filesystem snapshot to be restored and click Restore To. The Snapshot Restore Destination window will be displayed.
 
@@ -142,7 +142,7 @@ Use the following command line to restore a snapshot to another snapshot:
 
 ### Updating a Snapshot
 
-#### Updating a Snapshot Using the UI
+#### Updating a Snapshot Using the GUI
 
 In the main snapshot view screen, select the filesystem snapshot to be updated and click Edit. The Update Snapshot window will be displayed.
 
