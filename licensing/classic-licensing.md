@@ -1,12 +1,12 @@
 ---
 description: >-
   This page describes how to obtain classic WekaIO license (payment for a
-  predetermined period of time) and apply it to the Weka system cluster.
+  predetermined period of time) and apply it to the WekaIO system cluster.
 ---
 
 # Classic License
 
-A classic license is a text element entered in the cluster using the UI or the CLI. The following is an example:
+A classic license is a text element entered in the cluster using the GUI or the CLI. The following is an example:
 
 ```
 eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZjQ4M2YxZi1jNGJhLTRkZDAtYTExNC04MTBmMzk0NGQ1MTUiLCJpc3MiOiJodHRwczovL2dldC53ZWthLmlvIiwibmJmIjoxNTMwNDM4NjI2LCJleHAiOjE1MzMwMzA2MjYsInctZ3VpZCI6IjZjZDI2ZTdlLWZmNDYtNGZmMC1iOGU2LTUzNmE0MzIwZTkyYyIsInctdHlwZSI6IkNsYXNzaWMiLCJ3LWNyZWRpdHMiOnsiZHJpdmVfY2FwYWNpdHlfZ2IiOjE2MSwib2JzX2NhcGFjaXR5X2diIjowfSwiaWF0IjoxNTMwNDM4NjQyfQ.oi1Vfp7nkJBN1jENfWTAxFyKkcKNKqmWR23ZlnPdvWHa78KnDvA2tgC8VXjVHPh6NM5s0nSfZLUv5HESjdnTG98hGxMSfTDhGLmK-jn6Kuk382p0sT5YSrWr7zyJu3AtGxSPCf0CMbXBsfvv3ivycTLx5ACpw9CSGl2CWvEhA5kDHi45EjM_Teo43z7AHvzog1HOEJDl6jZiEAMw0NLf6ZJ2Y6XCFgqxCIrmD0irGUI04GtHKsMPRSABUeakHshIFoy-TnaW1vMGS1GYNetYjyeQKyy74Baaos_SCzMHuLHMEjGXWJZjAN780KKSQN9DYEBC6HxZGpx4sEEqtyx_kg
@@ -60,7 +60,7 @@ The Create License dialog box will be displayed. Enter the details obtained from
 Fill-in the cluster GUID and capacities. Then click the Create License button to confirm.
 
 {% hint style="info" %}
-**Note:** If cluster expansion is planned for the future, it is possible to fill-in capacities larger than those appearing in the Weka cluster license.
+**Note:** If cluster expansion is planned for the future, it is possible to fill-in capacities larger than those appearing in the WekaIO cluster license.
 
 The capacities in the license represent the limits to which it is possible to expand the cluster and do not have to match actual usage.
 {% endhint %}
