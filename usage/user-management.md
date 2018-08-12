@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the management of users licensed to work with the Weka
+  This page describes the management of users licensed to work with the WekaIO
   system.
 ---
 
@@ -8,14 +8,14 @@ description: >-
 
 ## Types of Users
 
-Access to a Weka system cluster is controlled by creating, modifying and deleting users. Up to 128 users can be defined to work with a Weka system cluster. Each user is identified by a username and must provide a password for authentication to work with the Weka system UI or CLI.
+Access to a WekaIO system cluster is controlled by creating, modifying and deleting users. Up to 128 users can be defined to work with a WekaIO system cluster. Each user is identified by a username and must provide a password for authentication to work with the WekaIO system GUI or CLI.
 
-Every user of the Weka system has one of the following defined roles:
+Every user of the WekaIO system has one of the following defined roles:
 
 * **User**: An ordinary user.
 * **Admin**: A user with additional privileges, as described in [Admin Role Privileges](user-management.md#admin-role-privileges) below.
 
-When users open the UI, they are prompted to provide their username and password. To pass username and password to the CLI, use the `WEKA_USERNAME` and `WEKA_PASSWORD` environment variables. 
+When users open the GUI, they are prompted to provide their username and password. To pass username and password to the CLI, use the `WEKA_USERNAME` and `WEKA_PASSWORD` environment variables. 
 
 {% hint style="info" %}
 **Note:** If the`WEKA_USERNAME`/`WEKA_PASSWORD` environment variables are not specified, the CLI assumes the username and password are `admin`/`admin`.
@@ -25,7 +25,7 @@ When users open the UI, they are prompted to provide their username and password
 
 By default, when a WekaIO cluster is created, a first user with a username of `admin` and a password of `admin` is created. This user has an Admin role, which allows the running of all commands.
 
-The first Admin user is created because a Weka system cluster must have at least one admin user defined. However, you can create a user with a different name and delete the default admin user, if required.
+The first Admin user is created because a WekaIO system cluster must have at least one admin user defined. However, you can create a user with a different name and delete the default admin user, if required.
 
 ## Creating Users
 
@@ -84,7 +84,7 @@ As shown in the example above, Admin users have some additional privileges over 
 * Change a user’s password
 * Set a user’s role
 
-Additionally, the following restrictions are implemented for Admin users, in order to avoid a situation where an Admin loses access to a Weka system cluster:
+Additionally, the following restrictions are implemented for Admin users, in order to avoid a situation where an Admin loses access to a WekaIO system cluster:
 
 * Admins cannot delete themselves.
 * Admins cannot change their role to an ordinary user role.
