@@ -47,7 +47,7 @@
   * [Stages in Adding a Backend Host](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
   * [Expansion of Specific Resources](usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrinking a Cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
-* [Upgrading Weka Versions](usage/upgrading-weka-versions/README.md)
+* [Upgrading WekaIO Versions](usage/upgrading-weka-versions/README.md)
   * [Upgrading from Version 3.1.6 and Before](usage/upgrading-weka-versions/upgrading-to-v3.1.6.x.md)
   * [Upgrading from Version 3.1.7 and After](usage/upgrading-weka-versions/upgrade-guide-3.1.7-and-after.md)
 

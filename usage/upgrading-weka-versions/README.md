@@ -1,6 +1,6 @@
 ---
-description: These pages describe how to upgrade from different Weka system versions.
+description: These pages describe how to upgrade from different WekaIO system versions.
 ---
 
-# Upgrading Weka Versions
+# Upgrading WekaIO Versions
 
