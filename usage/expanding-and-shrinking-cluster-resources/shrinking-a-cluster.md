@@ -33,7 +33,7 @@ Running the deactivation command will redistribute the stored data on the remain
 **Note:** It is not possible to deactivate a drive if it will lead to an unstable state, i.e., if the [system capacity](../../overview/ssd-capacity-management.md) after drive deactivation is insufficient for the currently provisioned filesystems SSD capacity.
 {% endhint %}
 
-Drive deactivation starts an asynchronous process known as phasing out, which is a gradual redistribution of the data between the remaining drives in the system. On completion, the phased-out drive is in an inactive state i.e., not in use by the Weka system, but still appearing in the list of drives.
+Drive deactivation starts an asynchronous process known as phasing out, which is a gradual redistribution of the data between the remaining drives in the system. On completion, the phased-out drive is in an inactive state i.e., not in use by the WekaIO system, but still appearing in the list of drives.
 
 {% hint style="info" %}
 **Note:** Running the `weka cluster drive` command will display whether the redistribution is still being performed.

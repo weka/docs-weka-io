@@ -18,9 +18,9 @@ The addition of new SSDs only to existing servers requires execution of the foll
 
 The addition of only CPU cores to the cluster requires execution of [Configuration of CPU Resources](../../install/bare-metal/untitled.md#stage-8-configuration-of-cpu-resources).
 
-Contact the Weka Support Team for more information.
+Contact the WekaIO Support Team for more information.
 
 ## Addition of Memory and Network Interface
 
-Contact the Weka Support Team for more information.
+Contact the WekaIO Support Team for more information.
 
