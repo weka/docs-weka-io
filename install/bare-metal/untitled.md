@@ -152,7 +152,7 @@ As defined in the memory requirements, the fixed memory per host and the per cor
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which the memory configuration has to be defined | Must be a valid host identifier | Yes |  |
-| `capacity-emory` | Number | Required memory in bytes |  | Yes |  |
+| `capacity-memory` | Number | Required memory in bytes |  | Yes |  |
 
 {% hint style="info" %}
 **Note:** This command is for initialization phase only.  To adjust the memory of a running cluster, contact the WekaIO Support Team.
