@@ -169,7 +169,7 @@ This commands sets only the capacity portion of the memory requirements. The per
 This optional stage in the installation process is used to assign a host to a failure domain. If the specified failure domain does not exist, it will be created by this command. If the host is assigned to another failure domain, it will be reassigned by this command.
 
 {% hint style="info" %}
-**Note:** All hosts not assigned to any failure domain will be considered by the WekaIO system as an additional failure domain. However, it is s good practice to either not define failure domains at all or to assign each host to a single failure domain.
+**Note:** All hosts not assigned to any failure domain will be considered by the WekaIO system as an additional failure domain. However, it is good practice to either not define failure domains at all or to assign each host to a single failure domain.
 {% endhint %}
 
 This operation is performed using the following command line: 
