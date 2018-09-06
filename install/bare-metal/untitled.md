@@ -93,6 +93,26 @@ To perform this operation, the cluster host net add command must be run for each
 
 The number of IP addresses should be at least the number of cores [planned](planning-a-weka-system-installation.md#cpu-resource-planning). A larger number can be specified, in which case the unused IP addresses will be assigned if and when more cores will be allocated using the expand process.
 
+### Optional: Configure default data networking
+
+**Command:** `cluster default-net set`
+
+Instead of declaring IP/netmask/gateway specifically for every network device, WekaIO supports adding a pool of IPs \(as a range\) to be used across the system. It is possible to combine default-net with explicit IPs for some or all of the network devices. It can be useful in an environment where clients are spawned automatically. This setting is not allowed for Infiniband based clusters.
+
+`weka cluster default-net set --range <range> [--gateway=<gw>] [--netmask=<netmask>]`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `range` | IP range \(a.b.c.d-e | A range of IP addresses to use for data networking across all cluster | Must include at least one IP. | Yes |  |
+| `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. | No | Does not exist for L2 non-routable networks |
+| `netmask-bits` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. | No | Does not exist for L2 non-routable networks |
+
+To view the current default data networking settings use the command `weka cluster default-net`.
+
+If a default data networking was previously configured on a cluster and is no longer needed, it is possible to remove it using the command `weka cluster default-net reset`.
+
 ## Stage 6: Configuration of SSDs
 
 **Command:** `cluster drive add`
