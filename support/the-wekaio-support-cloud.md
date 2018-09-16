@@ -4,7 +4,7 @@ The WekaIO support cloud collects event information from the WekaIO clusters in 
 
 To enable the upload of events to the WekaIO support cloud, perform the following:
 
-1. Enable [cloud events](../install/bare-metal/untitled.md#stage-4-enabling-cloud-event-notifications-optional).
+1. Enable [cloud events](../install/bare-metal/using-cli.md#stage-4-enabling-cloud-event-notifications-optional).
 2. Make sure that your network allows the system to report events to WekaIO by allowing `https` connections from the WekaIO hosts management IP interfaces to `cloud.weka.io`, `*.s3.amazonaws.com` and `*.s3-*.amazonaws.com`
 3. [Install a valid commercial or evaluation license](../licensing/overview.md).  You can get a 30 days evaluation license from get.weka.io, and you can contact the WekaIO sales or support team you need to extend such an evaluation license.
 

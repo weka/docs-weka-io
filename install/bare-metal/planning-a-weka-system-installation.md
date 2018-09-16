@@ -75,7 +75,7 @@ The capacity requirement for the host will be calculated according to the follow
 Consequently, the overall requirement per host is: 5 + 6 \* 6.3 + 7.3 = 50.1 GB
 
 {% hint style="info" %}
-**Note:** If the default capacity requirement memory is not big enough to satisfy the total size of the filesystems, the [memory allocation command](untitled.md#stage-9-configuration-of-memory-optional) must be performed in the install process. Having sufficient system memory is not enough.
+**Note:** If the default capacity requirement memory is not big enough to satisfy the total size of the filesystems, the [memory allocation command](using-cli.md#stage-9-configuration-of-memory-optional) must be performed in the install process. Having sufficient system memory is not enough.
 {% endhint %}
 
 {% hint style="info" %}
