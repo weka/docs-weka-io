@@ -59,7 +59,7 @@
 
 ## Performance
 
-* [Testing Weka System Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
+* [Testing WekaIO System Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
 
 ## Support
 
