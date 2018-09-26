@@ -89,11 +89,13 @@ mkdir -p $WORKING_DIR
 
 #### Run Benchmark
 
-`fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY --ioengine=libaio  
-    --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 --clat_percentiles=1  
-    --max-jobs=1 --randrepeat=1 --create_serialize=0 --group_reporting '  
-    --filename_format=$jobnum/$filenum' --runtime=60 --rwmixread=0 --iodepth=256   
-    --readwrite=randread --filesize=10485760000`
+```text
+fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY \\
+    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 \\
+    --clat_percentiles=1 --max-jobs=1 --randrepeat=1 --create_serialize=0 \\
+    --group_reporting ' --filename_format=$jobnum/$filenum' --runtime=60 \\
+    --rwmixread=0 --iodepth=256 --readwrite=randread --filesize=10485760000
+```
 
 {% file src="../.gitbook/assets/fio-small-read-latency-test-script.txt" caption="FIO small read latency test script" %}
 
@@ -134,11 +136,13 @@ mkdir -p $WORKING_DIR
 
 #### Run Benchmark
 
-`fio --blocksize=1048576 --direct=1 --numjobs=32 --directory=$WORKING_DIRECTORY  
-    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1  
-    --clat_percentiles=1 --max-jobs=32 --randrepeat=1 --create_serialize=0  
-    --group_reporting '--filename_format=$jobnum/$filenum' --runtime=70 --rwmixread=0  
-    --iodepth=1 --readwrite=write --filesize=104857600`
+```text
+fio --blocksize=1048576 --direct=1 --numjobs=32 --directory=$WORKING_DIRECTORY \\
+    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 \\
+    --clat_percentiles=1 --max-jobs=32 --randrepeat=1 --create_serialize=0 \\
+    --group_reporting '--filename_format=$jobnum/$filenum' --runtime=70 --rwmixread=0 \\
+    --iodepth=1 --readwrite=write --filesize=104857600
+```
 
 {% file src="../.gitbook/assets/fio-large-bandwidth-writes-test-script.txt" caption="FIO large bandwidth writes test script" %}
 
@@ -171,11 +175,13 @@ mkdir -p $WORKING_DIR
 
 #### Run Benchmark
 
-`fio —blocksize=1048576 --direct=1 --numjobs=32 --directory=$WORKING_DIRECTORY  
-    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1  
-    --clat_percentiles=1 --max-jobs=32 --randrepeat=1 --create_serialize=0  
-    --group_reporting '--filename_format=$jobnum/$filenum' --runtime=70 --rwmixread=0  
-    --iodepth=1 --readwrite=read --filesize=104857600`
+```text
+fio —blocksize=1048576 --direct=1 --numjobs=32 --directory=$WORKING_DIRECTORY \\
+    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 \\
+    --clat_percentiles=1 --max-jobs=32 --randrepeat=1 --create_serialize=0 \\
+    --group_reporting '--filename_format=$jobnum/$filenum' --runtime=70 \\
+    --rwmixread=0 --iodepth=1 --readwrite=read --file
+```
 
 {% file src="../.gitbook/assets/fio-large-bandwidth-reads-test-script.txt" caption="FIO large bandwidth reads test script" %}
 
@@ -208,11 +214,13 @@ mkdir -p $WORKING_DIR
 
 #### Run  Benchmark
 
-`fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY --ioengine=libaio  
-    --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 --clat_percentiles=1  
-    --max-jobs=1 --randrepeat=1 --create_serialize=0 --group_reporting '  
-    --filename_format=$jobnum/$filenum' --runtime=60 --rwmixread=0 --iodepth=256  
-    --readwrite=randwrite --filesize=10485760000`
+```text
+fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY \\
+    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 \\
+    --clat_percentiles=1 --max-jobs=1 --randrepeat=1 --create_serialize=0 \\
+    --group_reporting '--filename_format=$jobnum/$filenum' --runtime=60 \\
+    --rwmixread=0 --iodepth=256 --readwrite=randwrite --filesize=10485760000
+```
 
 {% file src="../.gitbook/assets/fio-iops-write-test-script.txt" caption="FIO IOPS write test script" %}
 
@@ -245,11 +253,14 @@ mkdir -p $WORKING_DIR
 
 #### Run  Benchmark
 
-`fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY --ioengine=libaio  
-    --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 --clat_percentiles=1  
-    --max-jobs=1 --randrepeat=1 --create_serialize=0 --group_reporting '  
-    --filename_format=$jobnum/$filenum' --runtime=60 --rwmixread=0 --iodepth=256  
-    --readwrite=randread --filesize=10485760000`
+```text
+fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY \\
+    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME \\
+    --nrfiles=1 --clat_percentiles=1 --max-jobs=1 --randrepeat=1 \\
+    --create_serialize=0 --group_reporting '--filename_format=$jobnum/$filenum' \\
+    --runtime=60 --rwmixread=0 --iodepth=256 --readwrite=randread \\
+    --filesize=10485760000
+```
 
 {% file src="../.gitbook/assets/fio-iops-read-test-script.txt" caption="FIO IOPS read test script" %}
 
