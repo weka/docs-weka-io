@@ -12,10 +12,6 @@ A host that runs the WekaIO software and can also be installed with SSD drives d
 
 A collection of WekaIO backends, together with WekaIO clients installed on the application servers, forming one sharable, distributed and scalable file storage system.
 
-### Warm Data
-
-Infrequently-used data \(as opposed to hot data\).
-
 ## D
 
 ### Data Retention Period 
@@ -113,4 +109,10 @@ The minimum time to wait before considering data for tiering from an SSD to an o
 ### Unprovisioned Capacity
 
 The storage capacity available for new filesystems.
+
+## W
+
+### Warm Data
+
+Infrequently-used data \(as opposed 
 
