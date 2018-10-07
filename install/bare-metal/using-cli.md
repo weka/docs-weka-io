@@ -79,7 +79,7 @@ The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(
 
 To perform this operation, the cluster host net add command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
-`weka cluster host net add <host-id> --device=<device> [--ips=<ips>]... [--gateway=<gw>] [--netmask=<netmask>]`
+`weka cluster host net add <host-id> --device=<device> [--ips=<ips>]... [--gateway=<gw>] [--netmask-bits=<netmask-bits>]`
 
 **Parameters in Command Line**
 
@@ -89,7 +89,7 @@ To perform this operation, the cluster host net add command must be run for each
 | `device` | String | A device, e.g., `eth1` | Must be a valid Unix network device name | Yes |  |
 | `ips` | Comma-separated IP address | The data plane IP addresses for internal WekaIO system traffic. In IB, use the IPoIB address \(single address regardless of number of cores\) | Must be part of the data plane IP pool defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | Yes |  |
 | `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
-| `netmask` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
+| `netmask-bits` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 
 The number of IP addresses should be at least the number of cores [planned](planning-a-weka-system-installation.md#cpu-resource-planning). A larger number can be specified, in which case the unused IP addresses will be assigned if and when more cores will be allocated using the expand process.
 
@@ -258,11 +258,11 @@ To activate the cluster hosts, use the following command line:
 
 ## Stage 14: Activation of Cluster SSDs
 
-**Command:** `cluster drive activate`
+**Command:** `weka cluster drive activate`
 
 This command is used to mark the WekaIO system SSDs as active, so they are in-use by the cluster. To activate the cluster SSDs, use the following command line:
 
-`cluster drive activate [<uuids>...]`
+`weka cluster drive activate [<uuids>...]`
 
 A comma-separated list of all SSD UUIDs is received. In the install phase all SSDs need to be active, so the default of no parameter can be used.
 
@@ -278,7 +278,7 @@ A comma-separated list of all SSD UUIDs is received. In the install phase all SS
 
 ## Stage 15: Running the Start IO Command
 
-**Command:** `cluster start-io`
+**Command:** `weka cluster start-io`
 
 To start the system IO and exit from the initialization phase, use the following command line: 
 

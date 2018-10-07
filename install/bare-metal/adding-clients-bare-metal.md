@@ -46,7 +46,7 @@ weka -H <backend-hostname> cluster host add <client-hostname>
 To configure the new host as a client, run the following command:
 
 ```text
-weka cluster host cores <host-id> --frontend-dedicated-cores=1
+weka cluster host cores <host-id> 1 --frontend-dedicated-cores=1
 ```
 
 **Parameters in Command Line**
@@ -54,7 +54,6 @@ weka cluster host cores <host-id> --frontend-dedicated-cores=1
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
-| cores | Number | Number of cores | Must be 1 for this version | Yes |  |
 
 ## Stage 4: Configuring Client Networking
 
@@ -96,7 +95,7 @@ weka cluster host net add <host-id> --device=<net-device> \
 After successfully configuring the host and its network device, run the following command to finalize the configuration by activating the host:
 
 ```text
-weka cluster host activate --host-ids=<host-id>
+weka cluster host activate <host-id>
 ```
 
 **Parameters in Command Line**
