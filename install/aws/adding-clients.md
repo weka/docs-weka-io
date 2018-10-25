@@ -12,7 +12,7 @@ When launching a WekaIO system cluster, either through the [Self-Service Portal]
 
 ## Adding Clients as Separate Instances
 
-### Step 1: Launch the New Instances {#step-1-launch-new-instances}
+### Step 1: Launch the New Instances <a id="step-1-launch-new-instances"></a>
 
 {% hint style="info" %}
 **Note:** Any new client instances must be of one of the types appearing in [Supported EC2 Instance Types](supported-ec2-instance-types.md).
@@ -48,7 +48,7 @@ The clients **root volume** must be at least 48 GiB in size and either `GP2` or 
 
 The WekaIO software is installed under `/opt/weka`. If it is not possible to change the size of the root volume, an additional EBS volume can be created, formatted and mounted under `/opt/weka`. Make sure that the new volume is either `GP2` or `IO1` type.
 
-### Step 2: Install the WekaIO Software {#step-2-install-wekaio-software}
+### Step 2: Install the WekaIO Software <a id="step-2-install-wekaio-software"></a>
 
 To download the WekaIO software, go to [https://get.weka.io ](https://get.weka.io/) and select the software version to be downloaded. After selecting the version, select the operating system it is to be installed on and run the download command line as `root`on all the new client instances.
 
@@ -64,7 +64,7 @@ When the download is complete, untar the downloaded package and run the `install
 When installing on an AWS instance with Elastic Network Adapter \(ENA\) and a non-up-to-date kernel, it may be necessary to install the ENA drivers or upgrade to a more recent operating system version. The ENA driver is automatically available on recent operating systems, such as RedHat/Centos 7.4, Ubuntu 16 and Amazon Linux 2017.09.
 {% endhint %}
 
-### Step 3: Add Clients to the Cluster {#step-3-add-clients-to-cluster}
+### Step 3: Add Clients to the Cluster <a id="step-3-add-clients-to-cluster"></a>
 
 Once the WekaIO software is installed, the clients are ready to join the cluster. To add the clients, run the following command line on each of the client instances:
 
@@ -92,7 +92,7 @@ Client has joined the cluster
 Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the WekaIO system on the client instance. This is performed as part of the WekaIO system preallocation of resources, ensuring that variance in client activity does not result in the allocation of resources that may affect the programs running on the client host. For more information, see [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
 {% endhint %}
 
-### Step 4: Mount Filesystems on the Clients {#step-4-mount-filesystem-on-clients}
+### Step 4: Mount Filesystems on the Clients <a id="step-4-mount-filesystem-on-clients"></a>
 
 It is now possible to mount the filesystems on the client instances.
 

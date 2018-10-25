@@ -26,7 +26,7 @@ Each filesystem can be mounted in one of three modes of operation in relation to
 **Note:** Symbolic links are always cached in all cached modes.
 {% endhint %}
 
-##  {#page-cache}
+##  <a id="page-cache"></a>
 
 ## Read Cache Mount Mode \(Default\)
 

@@ -134,7 +134,7 @@ The WekaIO system integrates a rolling progress control with three rotating peri
 **Note:** The Tiering Cue cannot be more than 1/3 of the Retention Period. The Tiering Cue default is 10-30 seconds, i.e., tiering will be performed after 10-30 seconds.  
 {% endhint %}
 
-## Management of Data Retention Policies {#management-of-data-retention-policies}
+## Management of Data Retention Policies <a id="management-of-data-retention-policies"></a>
 
 Since the WekaIO system is a highly scalable data storage system, data storage policies in tiered WekaIO configurations cannot be based on cluster-wide FIFO methodology, because clusters can contain billions of files. Instead, data retention is managed by timestamping every piece of data, where the timestamp is based on a resolution of intervals which may extend from minutes to weeks. The WekaIO system maintains the interval in which each piece of data was created, accessed or last modified.
 
@@ -150,7 +150,7 @@ Users only specify the data Retention Period and based on this, each interval is
 
 ![](../.gitbook/assets/table-1b.jpg)
 
-## Data Release Process from SSD to Object Store {#data-release-process-from-ssd-to-object-store}
+## Data Release Process from SSD to Object Store <a id="data-release-process-from-ssd-to-object-store"></a>
 
 At any given moment, the WekaIO system releases the filesystem data of a single interval, transferring it from the SSD to the object store. This release process is based on the available SSD capacity. Consequently, if there is sufficient SSD capacity, only data which was modified or written before 7 intervals will be released.
 
@@ -184,7 +184,7 @@ Now consider the following filesystem view scenario, where the whole SSD storage
 
 When much more data is written and there is insufficient SSD capacity for storage, the data from interval 0 will be released when the 100 TB capacity is reached. This represents a violation of the Retention Period. In such a situation, it is also possible to either increase the SSD capacity or reduce the Retention Period.
 
-## Tiering Cue {#tiering-cue}
+## Tiering Cue <a id="tiering-cue"></a>
 
 The tiering process \(the tiering of data from the SSDs to the object stores\) is based on when data is created or modified. It is managed similar to the Retention Period, with the data timestamped in intervals. The length of each interval is the size of the user-defined Tiering Cue. The WekaIO system maintains 3 such intervals at any given time, and always tiers the data in the third interval.
 
@@ -204,7 +204,7 @@ The tiering process \(the tiering of data from the SSDs to the object stores\) i
 
 Since the tiering process applies to data in the first interval in this example, the data written or modified on January 1 will be tiered to the object store on January 3. Consequently, data will never be tiered before it is at least 1 day old \(which is the user-defined Tiering Cue\), with the worst case being the tiering of data written at the end of January 1 at the beginning of January 3. The Tiering Cue default is 10 seconds and cannot exceed 1/3 of the Data Retention period.
 
-## Transition Between Tiered and SSD-Only Filesystems {#transition-between-multiple-media-and-ssd-only-filesystems}
+## Transition Between Tiered and SSD-Only Filesystems <a id="transition-between-multiple-media-and-ssd-only-filesystems"></a>
 
 An SSD-only filesystem group can be reconfigured as a tiered one by adding an object store definition. In such a situation, the default is to maintain the filesystem size. In order to increase the filesystem size, the total capacity field can be modified, while the existing SSD capacity remains the same.
 
@@ -216,15 +216,15 @@ An SSD-only filesystem group can be reconfigured as a tiered one by adding an ob
 **Note:** Reconfiguration of a tiered filesystem group to an SSD filesystem group cannot be performed.
 {% endhint %}
 
-## Breaks in Retention Period or Tiering Cue Policies {#breaks-in-retention-period-or-tiering-cue-policies}
+## Breaks in Retention Period or Tiering Cue Policies <a id="breaks-in-retention-period-or-tiering-cue-policies"></a>
 
 If it is not possible to maintain the defined Retention Period or Tiering Cue policies, a TieredFilesystemBreakingPolicy event will occur, and random pieces of data will be released in order to free space on the SSDs. Users are alerted to such a situation through an ObjectStoragePossibleBottleneck event, enabling them to consider either raising the bandwidth or upgrading the object store performance.
 
-## Monitoring Object Store/SSD Access Statistics {#monitoring-object-store-ssd-access-statistics}
+## Monitoring Object Store/SSD Access Statistics <a id="monitoring-object-store-ssd-access-statistics"></a>
 
 Object store and SSD access statistics can be viewed in the WekaIO system UI or using CLI commands `OBS_READ`, `OBS_WRITE` and `OBS_TRUNCATE`.
 
-## Cancelling a Data Management Policy {#cancelling-a-data-management-policy}
+## Cancelling a Data Management Policy <a id="cancelling-a-data-management-policy"></a>
 
 A data management policy cannot be deleted once it is defined.
 

@@ -10,17 +10,17 @@ description: >-
 **Note:** Client installation is described in [Adding Clients](adding-clients-bare-metal.md).
 {% endhint %}
 
-### CPU {#cpu}
+### CPU <a id="cpu"></a>
 
 * CPU: Intel V2 or above / AMD EPYC
 * Hyper-threading: Disabled in BIOS
 
-### Memory {#memory}
+### Memory <a id="memory"></a>
 
 * Enough memory to support WekaIO system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
-### Operation System {#operation-system}
+### Operation System <a id="operation-system"></a>
 
 * RHEL / CentOS \(and its variations\): 7.2, 7.3, 7.4
 * Ubuntu: 14.04, 16.04
@@ -28,13 +28,13 @@ description: >-
 
 SELINUX must be disabled.
 
-### WekaIO Install Directory {#weka-install-directory}
+### WekaIO Install Directory <a id="weka-install-directory"></a>
 
 * Directory: /opt/weka
 * Should be on an SSD or SSD-like performance, e.g., SATADOM. Cannot be shared remotely NFS mounted or on RAM drive
-* At least 48 GB available for the WekaIO system installation
+* At least 26 GB available for the WekaIO system installation, with additional 10GB for each core used by Weka
 
-### Networking – Ethernet {#networking-ethernet}
+### Networking – Ethernet <a id="networking-ethernet"></a>
 
 * Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GBE / 100 GbE
 * Ethernet NICs: Intel 82599, Intel X710, Mellanox CX4 & CX5
@@ -53,7 +53,7 @@ SELINUX must be disabled.
 When assigning a network device to the WekaIO system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
 {% endhint %}
 
-### Networking – InfiniBand {#networking-infiniband}
+### Networking – InfiniBand <a id="networking-infiniband"></a>
 
 * InfiniBand speeds: FDR / EDR
 * Mellanox: CX4 & CX5
@@ -61,7 +61,7 @@ When assigning a network device to the WekaIO system, no other application can c
 * Subnet manager: Configured to 4092
 * One WekaIO system IP address for management and data plane
 
-### SSDs {#ssds}
+### SSDs <a id="ssds"></a>
 
 * Support PLP \(Power Loss Protection\)
 * Dedicated for WekaIO system storage \(partition not supported\)

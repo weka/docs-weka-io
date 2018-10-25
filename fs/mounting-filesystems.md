@@ -50,7 +50,7 @@ In addition, the `inode_bits` option is available:
 | :--- | :--- | :--- | :--- |
 | `inode_bits` | 32, 64 or auto | Size of the inode in bits, which may be required for 32 bit applications. | Auto |
 
-## Page Cache {#page-cache}
+## Page Cache <a id="page-cache"></a>
 
 WekaIO utilizes the Linux page cache for the mounted filesystem. This allows for better performance when accessing the same files multiple times at about the same time.
 

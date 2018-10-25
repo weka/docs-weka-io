@@ -69,7 +69,7 @@ The same mechanism ensures the resiliency of the service. On a host failure, all
 
 ### Defining Interface Groups
 
-#### Defining Interface Groups Using the GUI {#uploading-a-snapshot-using-the-ui}
+#### Defining Interface Groups Using the GUI <a id="uploading-a-snapshot-using-the-ui"></a>
 
 Access the IP Interfaces screen. 
 
@@ -81,7 +81,7 @@ To define an interface group, click the '+' button at the top left-hand side of 
 
 Enter the Group Name \(this has to be unique\), the Default Gateway and the Subnet Mask. Then click Save.
 
-#### Defining Interface Groups Using the CLI {#uploading-a-snapshot-using-the-cli}
+#### Defining Interface Groups Using the CLI <a id="uploading-a-snapshot-using-the-cli"></a>
 
 **Command:** `weka nfs interface-group add`
 
@@ -162,7 +162,7 @@ weka nfs interface-group ip-range delete <name> <ips>`
 
 ### Defining Client Access Groups
 
-#### Defining Client Access Groups Using the GUI {#uploading-a-snapshot-using-the-ui}
+#### Defining Client Access Groups Using the GUI <a id="uploading-a-snapshot-using-the-ui"></a>
 
 Access the NFS Client Permissions screen.
 
@@ -170,7 +170,7 @@ Access the NFS Client Permissions screen.
 
 To define a client access group, click the '+' button on the top left-hand side of the screen. Enter the client access group name and click Save.
 
-#### Defining Client Access Groups Using the CLI {#uploading-a-snapshot-using-the-ui}
+#### Defining Client Access Groups Using the CLI <a id="uploading-a-snapshot-using-the-ui"></a>
 
 **Command:** `weka nfs client-group`
 

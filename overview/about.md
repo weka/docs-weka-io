@@ -6,7 +6,7 @@ description: >-
 
 # About the WekaIO System
 
-## Basic WekaIO System Deployment {#basic-deployment-model}
+## Basic WekaIO System Deployment <a id="basic-deployment-model"></a>
 
 The basic WekaIO deployment model involves the creation of a sharable filesystem to be used by the application servers. This requires the installation of WekaIO client software which implements a POSIX filesystem driver on each application server intended to access data. This filesystem driver enables each of the application servers to access the WekaIO system as if it is a local drive, perceiving the WekaIO system as a local attached filesystem device while it is actually shared among multiple application servers.
 
@@ -22,7 +22,7 @@ The WekaIO backends are configured as a cluster which, together with the WekaIO 
 
 **Scalable:** The WekaIO system linear performance depends on the size of the cluster. Consequently, a certain amount of performance will be received for a cluster of size x, while doubling the size of the cluster to 2x will deliver double the performance. This applies to both data and metadata.
 
-## WekaIO System Functionality Features {#weka-functionality-features}
+## WekaIO System Functionality Features <a id="weka-functionality-features"></a>
 
 ### Protection
 
@@ -66,7 +66,7 @@ Furthermore, if a cluster is just grown modestly e.g., from 100 to 110 backends,
 
 The duration of all these completely seamless operations depends on the capacity of the root backends and the network bandwidth. Ongoing operations are not affected, and performance is improved as the redistribution of data is executed. Completion of the redistribution process delivers optimal capacity and performance.
 
-## Hyper-Converged WekaIO System Deployment {#hyper-cconverged-weka-deployment-model}
+## Hyper-Converged WekaIO System Deployment <a id="hyper-cconverged-weka-deployment-model"></a>
 
 The WekaIO system can be deployed in a hyper-converged configuration. An alternative to the basic WekaIO system deployment, this enables the configuration of hundreds of application servers running user applications and installed with WekaIO clients in order to access the WekaIO cluster. Consequently, instead of provisioning servers fully dedicated to WekaIO backends, it enables the installation of a WekaIO client on each application server, and the installation of one or more SSDs as well as backend processes on the existing application servers. In such a configuration, the WekaIO system backend processes operate as one big cluster, takeover the local SSDs and form a sharable, distributed and scalable filesystem available to the application servers, in the same way as in the basic WekaIO system deployment. The only difference is that instead of installing SSDs on backends dedicated to the WekaIO system, in this configuration the WekaIO backends share the same physical infrastructure with the application servers.
 
@@ -74,7 +74,7 @@ This mixture of different storage and computation abilities delivers more effect
 
 Otherwise, this is technically the same solution as the basic WekaIO system deployment, with all the same WekaIO system functionality features for protection, redundancy, failed component replacement, failure domains, prioritized data rebuilds and seamless distribution, scale and performance. Some of the servers may be installed with a WekaIO backend process and a local SSD, while others may have clients only. This means that there can be a cluster of application servers with WekaIO software installed on some and WekaIO clients installed on others.
 
-## Selecting a Redundancy Scheme {#selecting-a-redundancy-scheme}
+## Selecting a Redundancy Scheme <a id="selecting-a-redundancy-scheme"></a>
 
 Redundancy schemes in WekaIO system deployments can range from 4+2 to 16+4. There are a number of considerations for selecting the most suitable, optimal configuration. It all depends on redundancy, the data stripe width, the hot spare capacity and the performance required during a rebuild from a failure.
 
