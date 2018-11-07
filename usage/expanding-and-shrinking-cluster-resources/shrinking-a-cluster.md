@@ -39,7 +39,7 @@ Drive deactivation starts an asynchronous process known as phasing out, which is
 **Note:** Running the `weka cluster drive` command will display whether the redistribution is still being performed.
 {% endhint %}
 
-To remove a drive, run the following command line:
+To deactivate a drive, run the following command line:
 
 `weka cluster drive deactivate <drive-uuids>…`
 

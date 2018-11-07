@@ -50,6 +50,7 @@
 * [Upgrading WekaIO Versions](usage/upgrading-weka-versions/README.md)
   * [Upgrading from Version 3.1.6 and Before](usage/upgrading-weka-versions/upgrading-to-v3.1.6.x.md)
   * [Upgrading from Version 3.1.7 and After](usage/upgrading-weka-versions/upgrade-guide-3.1.7-and-after.md)
+  * [Feature-Specific Upgrade Procedures](usage/upgrading-weka-versions/feature-specific-upgrade-procedures.md)
 
 ## Billing & Licensing
 

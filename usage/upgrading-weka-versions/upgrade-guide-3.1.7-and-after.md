@@ -41,6 +41,8 @@ Before switching the cluster to the new release, the upgrade command will distri
 
 If every goes to plan, the upgrade will stop the cluster IO service, switch all hosts to the new release and then turn the IO service back on. This takes about 1 minute, depending on the size of the cluster.
 
+## 
+
 ## After the Upgrade
 
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command - in the example below, the system has been upgraded to version 3.1.7.2: 

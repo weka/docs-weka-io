@@ -18,6 +18,28 @@ A total of up to 1024 filesystems are supported, all of which are equally and pe
 
 A filesystem must have a defined capacity limit. A filesystem that belongs to a tiered filesystem group \(see below\) must have a total capacity limit and an SSD capacity limit. The total SSD capacity of all filesystems cannot exceed the total SSD capacity as defined in the total SSD net capacity.
 
+### Metadata Limitations
+
+In addition to the capacity limitation, each filesystem  also has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to WekaIO, as well as the RAM resources allocated to the WekaIO processes. By default, the metadata limit associated with a filesystem is proportional to the filesystem SSD size. It is possible to override this default by defining a filesystem-specific max-files parameter, although the total of the limits of the metadata for all the filesystems cannot exceed the total system metadata limits.
+
+### Metadata Calculations
+
+Throughout this documentation, the metadata limitation per filesystem is referred to as a parameter named `max-files` , which really describes the number of metadata units, and not the number of files. This parameter  encapsulates both the file count and the file sizes, as follows:
+
+* Each file requires two metadata units.
+* If a file exceeds 0.5 MB, an additional metadata unit is required.
+* For each additional 1 MB over the first one, an additional metadata unit is required.
+
+For the purpose of the definitions above, it is irrelevant if the file is on the SSD or the object store.
+
+{% hint style="warning" %}
+For Example:
+
+* For a filesystem with potentially 1,000,000,000 files of 64 KB in size,  2,000,000,000 metadata units are required.
+* For a file system with potentially 1,000,000 files of 128 MB in size, 130,000,000 metadata units are required.
+* For a file system with 1,000,000 files of 750 KB in size, 3,000,000 metadata units are required.
+{% endhint %}
+
 ## About Object Stores
 
 In the WekaIO system, object stores represent an optional external storage media, ideal for the storage of warm data. They can be purchased and configured independently by users \(provided they support the S3 protocol\) or supplied by WekaIO as part of the overall data storage solution. Object stores used in tiered WekaIO system configurations can be cloud-based, located in the same location or at a remote location.
