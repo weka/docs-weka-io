@@ -285,7 +285,7 @@ Enter the relevant parameters and click Create to create the filesystem.
 
 Use the following command line to add a filesystem:
 
-`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity=<ssd>] [--filesystem-id=<id>]`
+`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity=<ssd>] [--max-files=<max-files>]`
 
 **Parameters in Command Line**
 
@@ -293,7 +293,9 @@ Use the following command line to add a filesystem:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem being created | Must be a valid name | Yes | ​ |
 | `group-name` | String | The name of the filesystem group to which the new filesystem is to be connected | Must be a valid name | Yes |  |
-| `total-capacity` | Number | The total capacity of the new filesystem; options are SSD capacity \(`ssd-capacity=<ssd>`\) or the filesystem ID \(`filesystem-id=<id>`\) | Must be valid SSD capacity or ID | Yes |  |
+| `total-capacity` | Number | The total capacity of the new filesystem; options are SSD capacity \(`ssd-capacity=<ssd>`\), the filesystem ID \(`filesystem-id=<id>`\) or a value that correlates with the percentage of SSD capacity from the total SSD capacity for the cluster \(`max-files=<max-files>`\) | Must be a valid number | Yes |  |
+| `ssd-capacity` | Number | For tiered filesystems, this is the SSD capacity. If not specified, the filesystem is pinned to SSD | Must be a valid number | No | SSD capacity will be set to total capacity |
+| `max-files` | Number | Metadata allocation for this filesystem | Must be a valid number | No | Automatically calculated by the system based on the SSD capacity |
 
 ### Editing a Filesystem
 
@@ -315,16 +317,17 @@ Edit the existing filesystem parameters and click Configure to execute the chang
 
 Use the following command line to edit an existing filesystem:
 
-`weka fs update <name> [--new-name=<new-name>] [--total-capacity=<total>] [--ssd-capacity=<ssd>]`
+`weka fs update <name> [--new-name=<new-name>] [--total-capacity=<total>] [--ssd-capacity=<ssd>] [--max-files=<max-files>]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem being edited | Must be a valid name | Yes | ​ |
-| `new-name` | String | The new name for the filesystem | Must be a valid name | Optional |  |
-| `total` | Number | The total capacity of the edited filesystem | Must be a valid number | Optional |  |
-| `ssd` | Number | The SSD capacity of the edited filesystem | Must be a valid number | Optional |  |
+| `new-name` | String | The new name for the filesystem | Must be a valid name | Optional | Keep unchanged |
+| `total` | Number | The total capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
+| `ssd` | Number | The SSD capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
+| `max-files` | Number | The metadata limit for the filesystem | Must be a valid number | Optional | Keep unchanged |
 
 ### Deleting a Filesystem
 
