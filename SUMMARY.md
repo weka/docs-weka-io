@@ -66,4 +66,5 @@
 
 * [Getting Support for Your WekaIO System](support/getting-support-for-your-weka-system.md)
 * [The WekaIO Support Cloud](support/the-wekaio-support-cloud.md)
+* [Diagnostics CLI Command](support/diagnostics-utility.md)
 
