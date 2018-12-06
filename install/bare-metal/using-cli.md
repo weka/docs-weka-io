@@ -79,7 +79,7 @@ The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(
 
 To perform this operation, the cluster host net add command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
-`weka cluster host net add <host-id> --device=<device> [--ips=<ips>]... [--gateway=<gw>] [--netmask-bits=<netmask-bits>]`
+`weka cluster host net add <host-id> --device=<device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gw>] [--netmask=<netmask-bits>]`
 
 **Parameters in Command Line**
 
@@ -87,7 +87,8 @@ To perform this operation, the cluster host net add command must be run for each
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to which a network interface will be added | Must be a valid host identifier | Yes |  |
 | `device` | String | A device, e.g., `eth1` | Must be a valid Unix network device name | Yes |  |
-| `ips` | Comma-separated IP address | The data plane IP addresses for internal WekaIO system traffic. In IB, use the IPoIB address \(single address regardless of number of cores\) | Must be part of the data plane IP pool defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | Yes |  |
+| `ips-type` | String | POOL or USER | Must be one of the two options | No | POOL |
+| `ips` | Comma-separated IP address | The data plane IP addresses for internal WekaIO system traffic. In IB, use the IPoIB address \(single address regardless of number of cores\) | Must be part of the data plane IP pool defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | No | From Pool |
 | `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 | `netmask-bits` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 
