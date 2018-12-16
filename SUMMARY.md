@@ -39,7 +39,8 @@
 
 ## SMB Support
 
-* [Untitled](smb-support/untitled.md)
+* [Overview](smb-support/untitled.md)
+* [SMB Management](smb-support/untitled-1.md)
 
 ## OPERATION GUIDE
 
