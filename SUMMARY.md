@@ -40,7 +40,7 @@
 ## SMB Support
 
 * [Overview](smb-support/untitled.md)
-* [SMB Management](smb-support/untitled-1.md)
+* [SMB Management Using CLIs](smb-support/untitled-1.md)
 * [SMB Management Using the GUI](smb-support/smb-management-using-the-gui.md)
 
 ## OPERATION GUIDE
