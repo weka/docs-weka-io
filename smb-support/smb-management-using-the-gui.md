@@ -34,6 +34,10 @@ The following Samba Cluster Configuration window will be displayed:
 **Note:** The status of the hosts will change from not-ready to ready.
 {% endhint %}
 
+{% hint style="info" %}
+**Note:** In AWS installations, it is not possible to enter a list of SMB service addresses. The SMB service must be accessed using the primary addresses of the cluster nodes.
+{% endhint %}
+
 ## Deleting a Samba Cluster
 
 To delete a configured Samba cluster, click the Reset button in the Configure Samba Cluster window. The following window will be displayed:
@@ -44,7 +48,7 @@ Confirm the deletion by clicking the Reset button.
 
 ## **Listing SMB Users**
 
-To access the list of SMB users, click the Authentication tab in the SMB Service Overview screen. A list of all authenticated users will be displayed**:**
+To access the list of SMB users, click the Authentication tab in the SMB Service Overview screen. A list of all authorized users will be displayed**:**
 
 ![SMB Authenticated Users List](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LQnJwJhPXcMK56H0INC%2F-LTHtR0Dlva51U4IZHoC%2F-LTI-14rs2vp46wOPQ3k%2Fimage.png?alt=media&token=3984a6a2-1fe2-497c-8123-10ec8bbc9090)
 
