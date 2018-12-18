@@ -33,7 +33,7 @@ This requires setting up a cluster, which is performed as follows:
 1. Selecting the WekaIO hosts that will participate in the SMB cluster, and setting the workgroup name.
 2. Declaring the shares being offered. Each share has to have a name and a share path, i.e., the path into the WekaIO filesystem, which can be the root of the WekaIO filesystem or a subdirectory.
 3. Configuring the list of public IP addresses. These will be distributed across the SMB cluster. If a node fails, the IP addresses from that node are reassigned to another node.
-4. Configure local authentication – provision usernames and passwords for users of the SMB feature.
+4. Configuring local authentication – provision of usernames and passwords for users of the SMB feature.
 
 {% hint style="info" %}
 **Notes:**
@@ -43,17 +43,17 @@ Each WekaIO cluster can only support a single SMB cluster.
 For running Samba in AWS, contact the WekaIO Support Team for more information.
 {% endhint %}
 
-## Access Permissions and Order of Operations <a id="access-permissions-and-order-of-operations"></a>
+## Identity, Access Permissions and Order of Operations <a id="access-permissions-and-order-of-operations"></a>
 
-When connecting to an SMB host from a Windows host, it is necessary to correlate the way Windows and Linux store and interpret access permissions. When connecting to an SMB host, the Windows Access Control Entry \(ACE\) is translated to a Linux UID/GID pair. This is performed by configuring the translation of a specific SMB user/password pair to a UID/GID in the WekaIO system.
+When connecting to an SMB host from a Windows host, it is necessary to correlate the way Windows and Linux store and interpret user identities. Windows identifies users using a Security Identifier \(SID\) which must be translated to a Linux UID/GUD pair.  This translation is known as identity mapping.
 
-WekaIO stores two access control mechanisms: standard Linux and the SMB. Access control through the WekaIO SMB is implemented in two levels:
+Access is controlled using two different mechanisms: standard Linux permissions and the Windows Access Control Lists \(ACLs\). Access control through the WekaIO SMB is implemented in two levels:
 
-1. Each SMB operation is validated against the registered SMB access control entries, stored and accessible only by the WekaIO SMB gateway service. It is rejected if credentials do not match the access control.
-2. If only operation is validated in \(1\) above, the SMB user is mapped to a Unix UID/GID and access control is verified on the Unix permission system.
+1. Each SMB operation is validated against the ACLs, which are stored by and accessible only to the WekaIO SMB service. Access is denied if the credentials do not match the access control.
+2. If the requested operation is permitted by \(1\) above, then the SMB user SID is mapped to a Linux UID/GID and access is verified against the Unix permission system.
 
 {% hint style="info" %}
-**Note:** Operation is only possible after successful passing of both levels.
+**Note:** The requested operation is only permitted after successful passing of both levels.
 {% endhint %}
 
 \*\*\*\*

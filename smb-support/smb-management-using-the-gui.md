@@ -10,7 +10,7 @@ description: >-
 **Note:** For activating GUI control of Samba, contact the WekaIO Support Team.
 {% endhint %}
 
-### **Configuring a Samba Cluster**
+## **Configuring a Samba Cluster**
 
 To configure a Samba cluster, first access the SMB Service view.
 
@@ -34,7 +34,7 @@ The following Samba Cluster Configuration window will be displayed:
 **Note:** The status of the hosts will change from not-ready to ready.
 {% endhint %}
 
-### Deleting a Samba Cluster <a id="deleting-a-samba-cluster"></a>
+## Deleting a Samba Cluster
 
 To delete a configured Samba cluster, click the Reset button in the Configure Samba Cluster window. The following window will be displayed:
 
@@ -42,13 +42,13 @@ To delete a configured Samba cluster, click the Reset button in the Configure Sa
 
 Confirm the deletion by clicking the Reset button.
 
-### **Listing SMB Users** <a id="listing-smb-users-1"></a>
+## **Listing SMB Users**
 
 To access the list of SMB users, click the Authentication tab in the SMB Service Overview screen. A list of all authenticated users will be displayed**:**
 
 ![SMB Authenticated Users List](https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/assets%2F-LQnJwJhPXcMK56H0INC%2F-LTHtR0Dlva51U4IZHoC%2F-LTI-14rs2vp46wOPQ3k%2Fimage.png?alt=media&token=3984a6a2-1fe2-497c-8123-10ec8bbc9090)
 
-### Adding SMB Users <a id="adding-smb-users-1"></a>
+## Adding SMB Users
 
 To add a new user, click Create User at the top right-hand corner of the table. The following Create User window will be displayed:
 
@@ -56,7 +56,7 @@ To add a new user, click Create User at the top right-hand corner of the table. 
 
 Enter the username, UID \(must be unique\), GID, password and confirm the password by re-typing it. Then click the Create button. The newly-created user now appears in the SMB Authenticated Users list.
 
-### Removing SMB Users <a id="removing-smb-users-1"></a>
+## Removing SMB Users
 
 To remove an SMB user, click on a trash icon in the SMB Authenticated Users list. The following Samba User Deletion window is displayed:
 
@@ -64,7 +64,7 @@ To remove an SMB user, click on a trash icon in the SMB Authenticated Users list
 
 Click the Yes button to confirm deletion of the user. The deleted user will no longer appear in the SMB Authenticated Users list.
 
-### **Listing SMB Shares** <a id="listing-smb-shares-1"></a>
+## **Listing SMB Shares**
 
 To access SMB shares**,** click the SMB Shares tab in the SMB Service Overview screen. A list of all SMB shares will be displayed**:**
 
@@ -74,7 +74,7 @@ To access SMB shares**,** click the SMB Shares tab in the SMB Service Overview s
 **Note:** It is possible to filter this list using any column in the table.
 {% endhint %}
 
-### Adding an SMB Share <a id="adding-an-smb-share"></a>
+## Adding an SMB Share
 
 To add a new SMB share, click Create Share at the top right-hand corner of the table. The following Create Share window will be displayed:
 
@@ -82,7 +82,7 @@ To add a new SMB share, click Create Share at the top right-hand corner of the t
 
 Enter the new share name and description, select a filesystem, enter the path and select the mount mode. Then click the Create button.
 
-### Removing an SMB Share <a id="removing-an-smb-share"></a>
+## Removing an SMB Share
 
 To remove an SMB share, click anywhere on the row to be removed and then click the Delete button.
 
@@ -94,7 +94,7 @@ The Samba Share Deletion window will be displayed**:**
 
 Click the Yes button to confirm deletion of the share. The deleted share will no longer appear in the SMB Shares list.
 
-### Changing an SMB Share Owner <a id="changing-an-smb-share-owner"></a>
+## Changing an SMB Share Owner
 
 To change an SMB share owner, click anywhere on the relevant share row and then click the Chown button. The following Chown Share window will be displayed**:**
 
