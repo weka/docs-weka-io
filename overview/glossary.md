@@ -1,5 +1,12 @@
 # Glossary
 
+## A
+
+### Agent
+
+The WekaIO agent is software installed on user application servers that need access to the WekaIO file services. When using the Stateless Client feature, the agent is responsible for ensuring that the correct client software version is installed \(depending on the cluster version\) and that the client connects to the correct cluster.  
+
+
 ## B
 
 ### Backend Host
@@ -7,6 +14,10 @@
 A host that runs the WekaIO software and can also be installed with SSD drives dedicated to the WekaIO system, providing services to client hosts.
 
 ## C
+
+### Client
+
+The WekaIO client is software installed on user application servers that need access to the WekaIO file services. The WekaIO client implements a kernel-based filesystem driver and the logic and networking stack to connect to the WekaIO backend hosts and be part of a cluster.
 
 ### Cluster
 

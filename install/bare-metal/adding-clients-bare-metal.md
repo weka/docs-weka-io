@@ -10,6 +10,10 @@ Client hosts are used to run applications which need to access the WekaIO filesy
 
 To add client hosts to the WekaIO system configuration, use the stages described below.
 
+{% hint style="info" %}
+**Note:** The steps described below represent the traditional approach for mounting a filesystem. However, filesystems can also be mounted using the Stateless Clients feature, which which simplifies and improves the management of clients in the cluster and eliminates the process described below. For more information, refer to [Mounting Filesystems Using the Stateless Clients Feature](https://docs.weka.io/~/edit/drafts/-LTq8BSEMpeayMPh2Klz/v/3.1.9/fs/mounting-filesystems#mounting-filesystems-using-stateless-clients).
+{% endhint %}
+
 ## Stage 1: Install the Software
 
 Verify that the WekaIO software is installed on the client host according to the installation instructions. For further information, see [Obtaining the WekaIO Install File](obtaining-the-weka-install-file.md) and [Stage 1 in WekaIO System Installation Process](adding-clients-bare-metal.md#stage-1-install-the-software).
@@ -76,9 +80,9 @@ weka cluster host net add <host-id> --device=<net-device> \
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
 | `net-device` | String | Network interface device name e.g., `eth1` | Must be a valid network device name | Yes |  |
-| `ip-address` | IP address | IP address of the new interface | Must be valid IP address | Yes |  |
-| `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB | No |  |
-| `netmask-bits` | Number | Number of bits in the net mask, e.g., the net mask of `255.255.0.0` has `16` netmask bits | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB | No |  |
+| `ip-address` | IP address | IP address of the new interface | Must be a valid IP address | Yes |  |
+| `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask; not allowed for IB network interfaces | No |  |
+| `netmask-bits` | Number | Number of bits in the net mask, e.g., the net mask of `255.255.0.0` has `16` netmask bits | IP address and gateway may only be different on the last N bits, where N is the net mask; not allowed for IB network intrefaces | No |  |
 
 {% hint style="info" %}
 **Note:** When configuring an InfiniBand client, do not pass the `--ips`, `--netmask` and `--gateway` parameters.
