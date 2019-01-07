@@ -233,9 +233,9 @@ Running this command on a host installed with the WekaIO agent will download the
 Running this command on an AWS host will allocate two cores \(multiple-frontends\) and attach and configure 2 ENIs on the new client. The client will attempt to rejoin the cluster via all three backends used in the command line.
 {% endhint %}
 
-Any subsequent mount commands after the first `mount` command \(where the client software is installed and the host joins the cluster\) can only use the traditional mount parameters as defined in [Mounting Filesystems](mounting-filesystems.md#mount-mode-command-options), since it is not necessary to join a cluster. 
+Any subsequent mount commands after the first `mount` command \(where the client software is installed and the host joins the cluster\) can use the same command, or use just the traditional mount parameters as defined in [Mounting Filesystems](mounting-filesystems.md#mount-mode-command-options), since it is not necessary to join a cluster. 
 
-After the execution of an`unmount` command, which unmounts the last WekaIO filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores and networking parameters again.
+After the execution of an`unmount` command which unmounts the last WekaIO filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores and networking parameters again.
 
 {% hint style="info" %}
 **Note:** By default, the command selects the optimal core allocation for WekaIO. If necessary, contact the WekaIO Support Team to learn how to allocate specific cores to the WekaIO client.
