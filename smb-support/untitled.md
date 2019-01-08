@@ -10,7 +10,7 @@ description: >-
 
 SMB \(Server Message Block\) is a network file protocol originally created in the 1980s to allow DOS-based systems to connect to shared file and print services. It has evolved quite a bit over the years. WekaIO's implementation is based on the open-source Samba package, and provides support for SMB versions 2 and 3.
 
-The WekaIO implementation of SMB makes storage services available to Windows and MacOS clients. WekaIO provides shared access from multiple clients, as well as multi-protocol access to the same files from SMB, NSF, and WekaIO native filesystem drivers.
+The WekaIO implementation of SMB makes storage services available to Windows and MacOS clients. WekaIO provides shared access from multiple clients, as well as multi-protocol access to the same files from SMB, NFS, and WekaIO native filesystem drivers.
 
 ## Key Features of WekaIO Implementation of SMB
 
