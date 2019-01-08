@@ -16,7 +16,7 @@ The diagnostics CLI command is used for collecting and uploading diagnostic data
 ## Command Syntax
 
 ```text
-weka [local] diags <--collect|--upload>
+weka [local] diags <--collect|--upload> [--pack-to dir]
 ```
 
 This commands creates diagnostics information about the WekaIO software and saves it for further analysis by the WekaIO Support team. 
@@ -30,6 +30,8 @@ If the command is run with the `local` keyword, information is collected only fr
 {% endhint %}
 
 When running the command with the `--collect` option, the information is saved to local files, and a list of the output files is provided. These files should be sent to the WekaIO Support Team for analysis. When running the command with the `--upload` option, the information is uploaded to a WekaIO-owned S3 bucket, and an access identifier is provided as an output. This access identifier should be sent to the WekaIO Support Team, which will retrieve the information from the S3 bucket.
+
+When using the -`-pack-to` option, a single file is generated to the provided directory, as opposed to the default of creating a file per cluster host.
 
 {% hint style="info" %}
 **Note:** The `--upload` option requires Internet connectivity which allows https access to AWS S3 endpoints.
