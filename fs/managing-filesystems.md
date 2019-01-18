@@ -20,7 +20,7 @@ The main filesystem screen in the GUI contains information about the filesystems
 
 These commands are used to view the filesystems \(`weka fs`\) or filesystem groups \(`weka fs group`\). To perform this operation, use the following command lines:
 
-`weka fs info` or `weka fs group info`
+`weka fs`or `weka fs group`
 
 ## Managing Object Stores
 
