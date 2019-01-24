@@ -46,7 +46,7 @@ If a WekaIO cluster fails beyond recovery due to multiple failures or a structur
 **Note:** This type of deployment requires the ability to support a latency of hundreds of milliseconds. For performance issues on Snap-To-Object tiering cross-interactions/resonance, contact the WekaIO Support Team.
 {% endhint %}
 
-**Local Object Store Replicating to a Remote Object Store:** A local object store in one data center replicates data to another object store using the object store system features, such as [AWS S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html%29/). This deployment provides both integrated tiering and Snap-To-Object local high performance between the WekaIO object store and the additional object store, and remote copying of data will enable the survival of data in any data center failure.
+**Local Object Store Replicating to a Remote Object Store:** A local object store in one data center replicates data to another object store using the object store system features, such as [AWS S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html). This deployment provides both integrated tiering and Snap-To-Object local high performance between the WekaIO object store and the additional object store, and remote copying of data will enable the survival of data in any data center failure.
 
 {% hint style="info" %}
 **Note:** This deployment requires ensuring that the object store system perfectly replicates all objects.

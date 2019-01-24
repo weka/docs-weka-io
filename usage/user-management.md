@@ -100,7 +100,7 @@ $ weka user delete user1
 Then run the`weka user` command to verify that the user was deleted:
 
 ```text
-$ weka user list
+$ weka user
 | Username | Role  
 +----------+-------
 | admin    | Admin 
