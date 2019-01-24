@@ -116,7 +116,7 @@ Click Upload to upload the snapshot to the object store.
 
 Use the following command line to update an existing snapshot:
 
-`wcli snapshot-upload --file-system=<fs> --snapshot=<snapshot>`
+`weka fs snapshot upload <file-system> <snapshot>`
 
 **Parameters in Command Line**
 
