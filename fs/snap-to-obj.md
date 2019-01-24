@@ -141,7 +141,7 @@ Define all the fields and enter the location of the snapshot to be used in the O
 
 Use the following command line to update an existing snapshot:
 
-`wcli filesystem-download --name=<fs> --group-name=<group> --ssd-capacity=<ssd-capacity> --total-capacity=<total-capacity> --locator=<locator>`
+`weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <locator>`
 
 **Parameters in Command Line**
 
