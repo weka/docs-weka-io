@@ -1,0 +1,139 @@
+---
+description: >-
+  This page describes the hardware requirements for installation of the WekaIO
+  system on dedicated hosts.
+---
+
+# Prerequisites for Installation
+
+{% hint style="info" %}
+**Note:** Client installation is described in [Adding Clients](adding-clients-bare-metal.md).
+{% endhint %}
+
+### CPU <a id="cpu"></a>
+
+* Intel SandyBridge+ and AMD processors with equivalent instructions sets
+* AMD Epyc
+
+#### CPU Configuration 
+
+* Hyper-threading: Disabled in BIOS
+
+### Memory <a id="memory"></a>
+
+* Enough memory to support WekaIO system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
+* More memory support for the OS kernel or any other application
+
+### Operation System <a id="operation-system"></a>
+
+* Centos 6.8
+* Centos 6.9
+* Centos 6.10
+* Centos 7.2
+* Centos 7.3
+* Centos 7.4
+* Centos 7.5
+* Centos 7.6
+* Ubuntu 16.04
+* Ubuntu 18.04
+* Amazon linux 17.09
+* Amazon linux 18.03
+* Amazon linux 2 LTS \(formerly Amazon Linux 2 LTS 17.12\)
+* SELINUX must be disabled.
+
+### Kernel <a id="weka-install-directory"></a>
+
+* 2.6.32
+* 3.10
+* 4.4 - 4.15
+
+### WekaIO Install Directory <a id="weka-install-directory"></a>
+
+* Directory: /opt/weka
+* Should be on an SSD or SSD-like performance, e.g., SATADOM. Cannot be shared remotely NFS mounted or on RAM drive
+* At least 26 GB available for the WekaIO system installation, with additional 10GB for each core used by Weka
+
+### Networking - Ethernet <a id="networking-ethernet"></a>
+
+#### NIC
+
+* Intel 10 Gbit
+* Intel 40 Gbit \(PoC Grade\)
+* Amazon ENA
+* Mellanox ConnectX4 \(Ethernet and InfiniBand\)
+* Mellanox ConnectX5 \(Ethernet and InfiniBand\)
+
+#### Nic Drivers
+
+Supported OFED versions:
+
+* 4.2-1.0.0.0
+* 4.2-1.2.0.0
+* 4.3-1.0.1.0
+* 4.4-1.0.0.0
+* 4.4-2.0.7.0
+* 4.5-1.0.1.0
+
+Supported ENA drivers versions:
+
+* 1.0.2 - 2.0.2
+* Current driver from official OS repositories is recommended
+
+Supported ixgbevf drivers:
+
+* 3.2.2 - 4.1.2
+* Current driver from official OS repositories is recommended
+
+Supported intel 40 drivers:
+
+* 3.0.1-k - 4.1.0
+* Current driver from official OS repositories is recommended
+
+#### Ethernet Configuration
+
+* Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GBE / 100 GbE
+* NICs bonding: Not configured
+* Jumbo frames: Enabled on switch and on network port
+* WekaIO system management IP address: One per server
+* WekaIO system data plane IP address: One IP address for each [WekaIO core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server
+* WekaIO system management IP: Ability to communicate with all WekaIO system data plane IPs
+* Connectivity between hosts: Ports 14000-14100
+* [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
+* [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; some configuration may be required in the BIOS
+* SR-IOV: Enabled in BIOS
+
+
+
+{% hint style="info" %}
+When assigning a network device to the WekaIO system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
+{% endhint %}
+
+### Networking – InfiniBand <a id="networking-infiniband"></a>
+
+#### NIC
+
+* Mellanox ConnectX4 \(Ethernet and InfiniBand\)
+* Mellanox ConnectX5 \(Ethernet and InfiniBand\)
+
+#### Nic Drivers
+
+Supported OFED versions:
+
+* 4.2-1.0.0.0
+* 4.2-1.2.0.0
+* 4.3-1.0.1.0
+* 4.4-1.0.0.0
+* 4.4-2.0.7.0
+* 4.5-1.0.1.0
+
+#### Infiniband Configuration
+
+* InfiniBand speeds: FDR / EDR
+* Subnet manager: Configured to 4092
+* One WekaIO system IP address for management and data plane
+
+### SSDs <a id="ssds"></a>
+
+* Support PLP \(Power Loss Protection\)
+* Dedicated for WekaIO system storage \(partition not supported\)
+
