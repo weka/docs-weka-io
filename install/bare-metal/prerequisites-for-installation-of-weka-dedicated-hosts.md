@@ -37,8 +37,8 @@ SELINUX must be disabled.
 ### Networking – Ethernet <a id="networking-ethernet"></a>
 
 * Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GBE / 100 GbE
-* Ethernet NICs: Intel 82599, Intel X710, Mellanox CX4 & CX5
-* Mellanox OFED 4.2: Installed
+* Ethernet NICs: Intel 82599, Intel X710, Mellanox ConnectX-4 & ConnectX-5
+* Mellanox OFED 4.2.1.2: Installed
 * NICs bonding: Not configured
 * Jumbo frames: Enabled on switch and on network port
 * WekaIO system management IP address: One per server
@@ -56,8 +56,8 @@ When assigning a network device to the WekaIO system, no other application can c
 ### Networking – InfiniBand <a id="networking-infiniband"></a>
 
 * InfiniBand speeds: FDR / EDR
-* Mellanox: CX4 & CX5
-* Mellanox OFED 4.2: installed
+* Mellanox: ConnectX-4 & ConnectX-5
+* Mellanox OFED 4.2.1.2: installed
 * Subnet manager: Configured to 4092
 * One WekaIO system IP address for management and data plane
 
