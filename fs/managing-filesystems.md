@@ -285,7 +285,7 @@ Enter the relevant parameters and click Create to create the filesystem.
 
 Use the following command line to add a filesystem:
 
-`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity=<ssd>] [--max-files=<max-files>]`
+`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd>] [--max-files <max-files>] [--filesystem-id <id>]`
 
 **Parameters in Command Line**
 
@@ -293,7 +293,7 @@ Use the following command line to add a filesystem:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem being created | Must be a valid name | Yes | ​ |
 | `group-name` | String | The name of the filesystem group to which the new filesystem is to be connected | Must be a valid name | Yes |  |
-| `total-capacity` | Number | The total capacity of the new filesystem; options are SSD capacity \(`ssd-capacity=<ssd>`\), the filesystem ID \(`filesystem-id=<id>`\) or a value that correlates with the percentage of SSD capacity from the total SSD capacity for the cluster \(`max-files=<max-files>`\) | Must be a valid number | Yes |  |
+| `total-capacity` | Number | The total capacity of the new filesystem; options are SSD capacity \(`ssd-capacity <ssd>`\), the filesystem ID \(`filesystem-id <id>`\) or a value that correlates with the percentage of SSD capacity from the total SSD capacity for the cluster \(`max-files <max-files>`\) | Must be a valid number | Yes |  |
 | `ssd-capacity` | Number | For tiered filesystems, this is the SSD capacity. If not specified, the filesystem is pinned to SSD | Must be a valid number | No | SSD capacity will be set to total capacity |
 | `max-files` | Number | Metadata allocation for this filesystem | Must be a valid number | No | Automatically calculated by the system based on the SSD capacity |
 

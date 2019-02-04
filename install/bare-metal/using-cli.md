@@ -20,14 +20,14 @@ On completion of this stage in the installation process, the WekaIO software is 
 
 This stage involves the formation of a cluster from the allocated hosts. It is performed using the following command line:
 
- `weka cluster create <hostnames>... [--hosts-ips=<ips>]...`
+ `weka cluster create <hostnames>... [--host-ips <ips>]...`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** |
 | :--- | :--- | :--- | :--- | :--- |
 | `hostnames` | Space- separated strings | Host names or IP addresses | Need at least 6 strings, as this is the minimal cluster size | Yes |
-| `hosts-ips` | Comma- separated IP addresses | IP addresses of the management interfaces | Same number of values as in `hosts-hostnames`.  | Only in IB |
+| `hosts-ips` | Comma- separated IP addresses | IP addresses of the management interfaces | Same number of values as in `hostnames`.  | Only in IB |
 
 {% hint style="info" %}
 **Note:** It is possible to use either a host name or an IP address; this string serves as the identifier of the host in subsequent commands.
@@ -147,14 +147,17 @@ After provisioning the SSDs to be used by a WekaIO filesystem using the previous
 
 This stage in the installation process is used to configure the amount of CPU resources, which are physical rather than logical cores \(since hyper-threading must be disabled\). To perform this operation, use the following command line:
 
-`weka cluster host cores <host-id> <cores>`
+`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <fe_cores>] [--backend-dedicated-cores <be_cores>] [--cores-ids <cores_ids>]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which a core count should be configured | Must be a valid host identifier | Yes |  |
-| `cores` | Number | Number of physical cores to be allocated to the WekaIO system | Should be less than the number of physical cores in the host \(leaving 1 core for the OS\) | Yes |  |
+| `cores` | Number | Number of physical cores to be allocated to the WekaIO system | Should be less than the number of physical cores in the host \(leaving 1 core for the OS\) . Maximum 19 cores | Yes |  |
+| fe\_cores | Number | Number of physical cores to be dedicated to FrontEnd processes | The total of fe\_cores and be\_cores must be less than cores above | No | zero |
+| be\_cores | Number | Number of physical cores to be dedicated to Drive/SSD processes | The total of fe\_cores and be\_cores must be less than cores above | No | Typically 1 core per drive or 1/2 core per drive/SSD |
+| cores\_ids | Comma-separated list Numbers | Physical Core numbers | Specification of which cores to use. | No | Select cores automatically |
 
 {% hint style="info" %}
 **Note:** Performance can be optimized by assigning different functions to the various WekaIO cores. If necessary, contact the WekaIO Support Team for more information.
