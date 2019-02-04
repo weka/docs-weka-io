@@ -22,9 +22,9 @@ description: >-
 
 ### Operation System <a id="operation-system"></a>
 
-* RHEL / CentOS \(and its variations\): 7.2, 7.3, 7.4
-* Ubuntu: 14.04, 16.04
-* AWS Linux: 1703, 1709,  1712
+* RHEL / CentOS \(and its variations\): 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5
+* Ubuntu: 14.04, 16.04, 18.04
+* AWS Linux: 1703, 1709,  1712, 1803
 
 SELINUX must be disabled.
 
