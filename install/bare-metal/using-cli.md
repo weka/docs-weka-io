@@ -27,7 +27,7 @@ This stage involves the formation of a cluster from the allocated hosts. It is p
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** |
 | :--- | :--- | :--- | :--- | :--- |
 | `hostnames` | Space- separated strings | Host names or IP addresses | Need at least 6 strings, as this is the minimal cluster size | Yes |
-| `hosts-ips` | Comma- separated IP addresses | IP addresses of the management interfaces | Same number of values as in `hostnames`.  | Only in IB |
+| `host-ips` | Comma- separated IP addresses | IP addresses of the management interfaces | Same number of values as in `hostnames`.  | Only in IB |
 
 {% hint style="info" %}
 **Note:** It is possible to use either a host name or an IP address; this string serves as the identifier of the host in subsequent commands.
