@@ -17,7 +17,7 @@ description: >-
 
 #### CPU Configuration 
 
-* Hyper-threading: Disabled in BIOS
+* Hyper-threading: Disabled or Enabled in BIOS
 
 ### Memory <a id="memory"></a>
 
@@ -50,7 +50,7 @@ description: >-
 ### WekaIO Install Directory <a id="weka-install-directory"></a>
 
 * Directory: /opt/weka
-* Should be on an SSD or SSD-like performance, e.g., SATADOM. Cannot be shared remotely NFS mounted or on RAM drive
+* Should be on an SSD or SSD-like performance, e.g., M.2. Cannot be shared remotely NFS mounted or on RAM drive
 * At least 26 GB available for the WekaIO system installation, with additional 10GB for each core used by Weka
 
 ### Networking - Ethernet <a id="networking-ethernet"></a>
@@ -94,8 +94,8 @@ Supported intel 40 drivers:
 * Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GBE / 100 GbE
 * NICs bonding: Not configured
 * Jumbo frames: Enabled on switch and on network port
-* WekaIO system management IP address: One per server
-* WekaIO system data plane IP address: One IP address for each [WekaIO core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server
+* WekaIO system management IP address: One IP per server \(configured prior to weka installation\) 
+* WekaIO system data plane IP address: One IP address for each [WekaIO core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server \(Weka will apply these IPs during the cluster initialization\)
 * WekaIO system management IP: Ability to communicate with all WekaIO system data plane IPs
 * Connectivity between hosts: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
