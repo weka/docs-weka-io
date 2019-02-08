@@ -147,7 +147,7 @@ After provisioning the SSDs to be used by a WekaIO filesystem using the previous
 
 This stage in the installation process is used to configure the amount of CPU resources, which are physical rather than logical cores \(since hyper-threading must be disabled\). To perform this operation, use the following command line:
 
-`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <fe_cores>] [--backend-dedicated-cores <be_cores>] [--cores-ids <cores_ids>]`
+`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <fe_cores>] [--drives-dedicated-cores <drives_cores>] [--cores-ids <cores_ids>]`
 
 **Parameters in Command Line**
 
@@ -156,7 +156,7 @@ This stage in the installation process is used to configure the amount of CPU re
 | `host-id` | String | Identifier of host in which a core count should be configured | Must be a valid host identifier | Yes |  |
 | `cores` | Number | Number of physical cores to be allocated to the WekaIO system | Should be less than the number of physical cores in the host \(leaving 1 core for the OS\) . Maximum 19 cores | Yes |  |
 | fe\_cores | Number | Number of physical cores to be dedicated to FrontEnd processes | The total of fe\_cores and be\_cores must be less than cores above | No | zero |
-| be\_cores | Number | Number of physical cores to be dedicated to Drive/SSD processes | The total of fe\_cores and be\_cores must be less than cores above | No | Typically 1 core per drive or 1/2 core per drive/SSD |
+| drives\_cores | Number | Number of physical cores to be dedicated to Drive/SSD processes | The total of fe\_cores and drives\_cores must be less than cores above | No | Typically 1 core per drive or 1/2 core per drive/SSD |
 | cores\_ids | Comma-separated list Numbers | Physical Core numbers | Specification of which cores to use. | No | Select cores automatically |
 
 {% hint style="info" %}
