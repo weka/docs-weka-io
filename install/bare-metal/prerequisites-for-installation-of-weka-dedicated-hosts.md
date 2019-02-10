@@ -17,7 +17,7 @@ description: >-
 
 #### CPU Configuration 
 
-* Hyper-threading: Disabled or Enabled in BIOS
+* Hyper-threading: Can be enabled or disabled in BIOS
 
 ### Memory <a id="memory"></a>
 
@@ -102,10 +102,8 @@ Supported intel 40 drivers:
 * [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; some configuration may be required in the BIOS
 * SR-IOV: Enabled in BIOS
 
-
-
 {% hint style="info" %}
-When assigning a network device to the WekaIO system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
+**Note:** When assigning a network device to the WekaIO system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
 {% endhint %}
 
 ### Networking – InfiniBand <a id="networking-infiniband"></a>
