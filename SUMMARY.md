@@ -45,6 +45,7 @@
 
 ## OPERATION GUIDE
 
+* [Alerts](usage/alerts.md)
 * [Events](usage/events.md)
 * [Statistics](usage/statistics.md)
 * [User Management](usage/user-management.md)
