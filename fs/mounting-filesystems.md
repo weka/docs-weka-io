@@ -212,8 +212,18 @@ The following mount options are available in addition to the mount options descr
         <p>The network bandwidth limitation for the entire container, in Mb/s.</p>
         <p>This limitation is for all nodes running within the container, and an
           attempt is made to detect it automatically based on the environment e.g.,
-          when in AWS. Setting a per-node limitation can be performed in the container
-          definition file.</p>
+          when in AWS.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>core=&lt;cpu_id&gt;</code>
+      </td>
+      <td style="text-align:left">
+        <p>A core (specified by its cpu_id) to allocate for the client to be used
+          as frontend core. Passing multiple <code>core</code> parameters will allocate
+          multiple frontend cores for the client.</p>
+        <p>Either<code>&lt;num_cores&gt;</code> or<code>&lt;core&gt;</code> can be
+          specified, but not both.</p>
       </td>
     </tr>
   </tbody>
