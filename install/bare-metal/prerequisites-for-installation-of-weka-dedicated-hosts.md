@@ -40,6 +40,7 @@ description: >-
 * Amazon linux 18.03
 * Amazon linux 2 LTS \(formerly Amazon Linux 2 LTS 17.12\)
 * SELINUX must be disabled.
+* All Weka Nodes must be sync'd in date/time. \(NTP recommended\)
 
 ### Kernel <a id="weka-install-directory"></a>
 
