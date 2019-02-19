@@ -26,14 +26,14 @@ description: >-
 
 ### Operation System <a id="operation-system"></a>
 
-* Centos 6.8
-* Centos 6.9
-* Centos 6.10
-* Centos 7.2
-* Centos 7.3
-* Centos 7.4
-* Centos 7.5
-* Centos 7.6
+* RHEL/Centos 6.8
+* RHEL/Centos 6.9
+* RHEL/Centos 6.10
+* RHEL/Centos 7.2
+* RHEL/Centos 7.3
+* RHEL/Centos 7.4
+* RHEL/Centos 7.5
+* RHEL/Centos 7.6
 * Ubuntu 16.04
 * Ubuntu 18.04
 * Amazon linux 17.09
