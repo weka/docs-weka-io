@@ -147,7 +147,7 @@ After provisioning the SSDs to be used by a WekaIO filesystem using the previous
 
 This stage in the installation process is used to configure the amount of CPU resources, which are physical rather than logical cores \(since hyper-threading must be disabled\). To perform this operation, use the following command line:
 
-`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <fe_cores>] [--backend-dedicated-cores <be_cores>] [--cores-ids <cores_ids>]`
+`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <fe_cores>] [`--drives-dedicated-cores `<be_cores>] [--cores-ids <cores_ids>]`
 
 **Parameters in Command Line**
 

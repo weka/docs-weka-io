@@ -92,7 +92,7 @@ Supported intel 40 drivers:
 
 #### Ethernet Configuration
 
-* Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GBE / 100 GbE
+* Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GbE / 100 GbE
 * NICs bonding: Not configured
 * Jumbo frames: Enabled on switch and on network port
 * WekaIO system management IP address: One IP per server \(configured prior to weka installation\) 

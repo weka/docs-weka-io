@@ -104,6 +104,9 @@ Then run the following commands to create the `autofs` configuration files for W
 ```text
 echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
 echo "*   &" > /etc/auto.wekafs
+For stateless client need diffenet command:
+echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
+
 ```
 
 Finally, restart the `autofs` service:
