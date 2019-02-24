@@ -106,7 +106,7 @@ echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.a
 echo "*   &" > /etc/auto.wekafs
 ```
 
-Or the following commands for stateless clients \(which require the backend names as parameters\):
+Or run the following commands for stateless clients \(which require the backend names as parameters\):
 
 ```text
 echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
