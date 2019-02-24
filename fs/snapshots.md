@@ -81,7 +81,7 @@ Use the following command line to add a snapshot:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
 | `name` | String | Unique name for filesystem snapshot | Must be a valid name | Yes |  |
-| `access-point` | String | Name of newly-created directory for filesystem level snapshots, which will serve as the access point for the snapshots | Must be a valid name | No | Snapshot name |
+| `access-point` | String | Name of newly-created directory for filesystem level snapshots, which will serve as the access point for the snapshots | Must be a valid name | Yes |  |
 | `source` | String | Must be an existing snapshot | Must be a valid name | No | Filesystem snapshot the file system |
 | `is_writable` | Boolean | Sets the created snapshot to be writable |  | No | False |
 

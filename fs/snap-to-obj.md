@@ -112,7 +112,7 @@ Click Upload to upload the snapshot to the object store.
 
 #### Uploading a Snapshot Using the CLI
 
-**Command: `snapshot-upload`**
+**Command: `snapshot upload`**
 
 Use the following command line to update an existing snapshot:
 
@@ -137,7 +137,7 @@ Define all the fields and enter the location of the snapshot to be used in the O
 
 #### Creating a Filesystem from a Snapshot Using the CLI
 
-**Command: `filesystem-download`**
+**Command: `filesystem download`**
 
 Use the following command line to update an existing snapshot:
 
