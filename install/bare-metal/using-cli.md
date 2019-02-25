@@ -188,7 +188,7 @@ This commands sets only the capacity portion of the memory requirements. The per
 
 ## Stage 10: Configuration of Failure Domains \(optional\)
 
-**Command:** `cluster host fd-name`
+**Command:** `cluster host failure-domain`
 
 This optional stage in the installation process is used to assign a host to a failure domain. If the specified failure domain does not exist, it will be created by this command. If the host is assigned to another failure domain, it will be reassigned by this command.
 
@@ -198,14 +198,15 @@ This optional stage in the installation process is used to assign a host to a fa
 
 This operation is performed using the following command line: 
 
-`weka cluster host fd-name <host-id> <failure-domain>`
+`weka cluster host failure-domain <host-id> [--name <fd-name>] | [--auto]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `host-id` | String | Identifier of host in which a core count should be configured | Must be a valid host identifier | Yes |  |
-| `fd-name` | String | The failure domain that will contain the host from now |  | Yes |  |
+| `host-id` | String | Identifier of host in which the failure domain should be configured | Must be a valid host identifier | Yes |  |
+| `fd-name` | String | The failure domain that will contain the host from now |  | Yes \(either --name OR --auto must be specified\) | None |
+| --auto | n/a | n/a | Will automatically assign fd-name | Yes \(either --name OR --auto must be specified\) | None |
 
 ## Stage 11: Configuration of WekaIO System Protection Scheme
 
@@ -241,7 +242,7 @@ To configure the WekaIO system hot spare, use the following command line:
 | `hot-spare` | Number | Hot spare | The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 0 |
 
 {% hint style="info" %}
-**Note**: If this command is not executed, the hot spare will be defined as 0.
+**Note**: If this command is not executed, the hot spare will be defined as 0.  The cluster MUST be configured with failure-domains.
 {% endhint %}
 
 ## Stage 13: Activation of Cluster Hosts
