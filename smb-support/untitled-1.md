@@ -54,7 +54,7 @@ Use the following command line to create a new SMB cluster to be managed by Weka
       <td
       style="text-align:left">Must be a valid name</td>
         <td style="text-align:left">Yes</td>
-        <td style="text-align:left">​</td>
+        <td style="text-align:left">&#x200B;</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>samba-hosts</code>
@@ -64,14 +64,13 @@ Use the following command line to create a new SMB cluster to be managed by Weka
         on the host IDs in WekaIO</td>
       <td style="text-align:left">Must be valid host IDs</td>
       <td style="text-align:left">Yes</td>
-      <td style="text-align:left">​Pass</td>
+      <td style="text-align:left">&#x200B;Pass</td>
     </tr>
     <tr>
       <td style="text-align:left">
         <p><code>smb-ips-pool</code>
         </p>
-        <p><code></code>
-        </p>
+        <p>&lt;code&gt;&lt;/code&gt;</p>
       </td>
       <td style="text-align:left">Comma- separated IP addresses</td>
       <td style="text-align:left">The public IPs used as floating IPs that the SMB cluster will server the
@@ -79,7 +78,7 @@ Use the following command line to create a new SMB cluster to be managed by Weka
         the network</td>
       <td style="text-align:left">Must be valid IP addresses</td>
       <td style="text-align:left">No</td>
-      <td style="text-align:left">​</td>
+      <td style="text-align:left">&#x200B;</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>smb-ips-range</code>
@@ -89,7 +88,7 @@ Use the following command line to create a new SMB cluster to be managed by Weka
         SMB over and thereby provide HA; should not be assigned to any host on
         the network</td>
       <td style="text-align:left">Must be a valid name</td>
-      <td style="text-align:left">No​</td>
+      <td style="text-align:left">No&#x200B;</td>
       <td style="text-align:left"></td>
     </tr>
   </tbody>

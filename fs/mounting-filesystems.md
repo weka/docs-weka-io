@@ -109,7 +109,7 @@ echo "*   &" > /etc/auto.wekafs
 Or run the following commands for stateless clients \(which require the backend names as parameters\):
 
 ```text
-echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
+echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
 echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
 ```
 
