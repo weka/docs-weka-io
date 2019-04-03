@@ -27,7 +27,7 @@ The protection level is the number of additional protection blocks added to each
 A failure domain is a group of WekaIO hosts, all of which can fail concurrently due to a single root cause, such as a power circuit or network switch failure. A system can be configured with or without failure domains. For a system with failure domains, each group of blocks that protect each other are spread on different failure domains. For a system without failure domains, the group of blocks is spread on different hosts. A system is defined with or without failure domains during the cluster formation, and this definition cannot be changed. For a system with failure domains, additional failure domains can be added, and new hosts can be added to any existing or new failure domain.
 
 {% hint style="info" %}
-Note: This documentation relates to a homogeneous WekaIO system deployment, i.e., the same number of hosts per failure domain \(if any\), and the same SSD capacity per host. For information about heterogeneous WekaIO system configurations, contact the WekaIO Support Team.
+**Note:** This documentation relates to a homogeneous WekaIO system deployment, i.e., the same number of hosts per failure domain \(if any\), and the same SSD capacity per host. For information about heterogeneous WekaIO system configurations, contact the WekaIO Support Team.
 {% endhint %}
 
 ## Hot Spare
@@ -35,7 +35,7 @@ Note: This documentation relates to a homogeneous WekaIO system deployment, i.e.
 Hot spare is the number of failure domains \(for a system configured with failure domains\) or hosts \(for a system configured without failure domains\) that the system can lose, undergo a complete rebuild of data, and still maintain the same net capacity. Consequently, the higher the hot spare count, the more hardware required to obtain the same net capacity. On the other hand, the higher the hot spare count, the more relaxed the IT maintenance schedule for replacements. The hot spare is defined during cluster formation and can be reconfigured at any time.
 
 {% hint style="info" %}
-Note: The sum of the stripe width, protection level and hot spare must be less than or equal to the total number of failure domains or the number of hosts \(if no failure domains are defined\).
+**Note:** The sum of the stripe width, protection level and hot spare must be less than or equal to the total number of failure domains or the number of hosts \(if no failure domains are defined\).
 {% endhint %}
 
 ## WekaIO Filesystem Overhead
