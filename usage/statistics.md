@@ -189,20 +189,20 @@ This section details the statistics collected to analyze system performance and 
 
 | Statistic | Description |
 | :--- | :--- |
-| Direct Read Sizes \(total\) |  |
-| Direct Write Sizes \(total\) |  |
-| FILEATOMICOPEN OPS \(total\) |  |
-| FILEATOMICOPEN Latency \(per operation\) |  |
-| FILEOPEN OPS \(total\) |  |
-| FILEOPEN Latency \(per operation\) |  |
-| FILECLOSE OPS \(total\) |  |
-| FILECLOSE Latency \(per operation\) |  |
-| FLOCK OPS \(total\) |  |
-| FLOCK Latency \(per operation\) |  |
+| Direct Read Sizes \(total\) | Histogram of the sizes of read operations that were not cached. |
+| Direct Write Sizes \(total\) | Histogram of the sizes of write operations that were not cached. |
+| FILEATOMICOPEN OPS \(total\) | The number of atomic open operations \(operations that atomically create and open a file\). |
+| FILEATOMICOPEN Latency \(per operation\) | The time spent on atomic open operations. |
+| FILEOPEN OPS \(total\) | The number of file open operations. |
+| FILEOPEN Latency \(per operation\) | The time spent on file open operations. |
+| FILECLOSE OPS \(total\) | The number of file close operations. |
+| FILECLOSE Latency \(per operation\) | The time spent on file close operations. |
+| FLOCK OPS \(total\) | The number of file lock operations. |
+| FLOCK Latency \(per operation\) | The time spent on file lock operations \(without the time spent waiting for the lock to be granted\). |
 | GETATTR\_OPS \(total\) | The number of file attributes retrieved for a specified filesystem object.  |
 | GETATTR\_Latency \(per operation\) | The time spent retrieving file attributes for a specified filesystem object.  |
-| IOCTL\_OBS\_PREFETCH OPS \(total\) |  |
-| IOCTL\_OBS\_PREFETCH Latency \(per operation\) |  |
+| IOCTL\_OBS\_PREFETCH OPS \(total\) | The number of OBS prefetch operations. |
+| IOCTL\_OBS\_PREFETCH Latency \(per operation\) | The time spent on OBS prefetch operations. |
 | LINK\_OPS \(total\) | The number of hard links created from files to objects in the directory. The link.dir files and link.dir must reside on the same filesystem and server. |
 | LINK\_Latency \(per operation\) | The time spent creating hard links from files to objects in the directory. |
 | LOOKUP\_OPS \(total\) | The number of searches for specific names in a directory and returns of the file handles for the corresponding filesystem objects. |
@@ -210,33 +210,33 @@ This section details the statistics collected to analyze system performance and 
 | MKNOD\_OPS \(total\) | The number of new special files \(device files or named pipes\) created. |
 | MKNOD\_Latency \(per operation\) | The time spent creating new special files \(device files or named pipes\). |
 | OPS \(total\) | The total number of operations. |
-| Reads \(total\) |  |
+| Reads \(total\) | The total number of data read operations. |
 | Read Bytes \(total\) | The number of bytes read from a file. |
 | Read Duration \(total\) | Histogram of the time spent performing read operations. |
 | Read Latency \(per read\) | The time spent reading bytes from a file. |
-| Read Sizes \(total\) |  |
+| Read Sizes \(total\) | Histogram of sizes of read operations. |
 | READDIR\_OPS \(total\) | The total number of retrieval operations attempted i.e., retrieval of a variable number of entries, in sequence, from a directory and return of the name and file identifier for each, with information allowing the request of additional directory entries in a subsequent READDIR request. |
 | READDIR\_Latency \(per operation\) | The time spent performing retrieval operations. |
 | RENAME\_OPS \(total\) | The number of file or directory renames performed \(operation must be atomic to the client\). The To and From directories must reside on the same filesystem and server. |
 | RENAME\_Latency \(per operation\) | The time spent renaming files or directories.  |
-| RMDIR OPS \(total\) |  |
-| RMDIR Latency \(per operation\) |  |
+| RMDIR OPS \(total\) | The number of directory deletes performed. |
+| RMDIR Latency \(per operation\) | The time spent deleting directories. |
 | READLINK\_OPS \(total\) | The total number of reads performed on data associated with a symbolic link i.e., data that is not interpreted when created, but just stored. |
 | READLINK\_Latency \(per operation\) | The time spent performing read operations on data associated with a symbolic link. |
 | STATFS\_OPS \(total\) | The number of operations performed to retrieve static filesystem information. |
 | STATFS\_Latency \(per operation\) | The time spent retrieving static filesystem information. |
-| SETATTR OPS \(total\) |  |
-| SETATTR Latency \(per operation\) |  |
+| SETATTR OPS \(total\) | The number of explicit attribute changes performed by the user \(chown/chmod operations\). |
+| SETATTR Latency \(per operation\) | The time spent on attributes changing. |
 | SYMLINK\_OPS \(total\) | The number of symbolic links created. |
 | SYMLINK\_Latency \(per operation\) | The time spent creating symbolic links. |
 | Throughput \(total\) | The total number byte reads/writes. |
-| UNLINK OPS \(total\) |  |
-| UNLINK Latency \(per operation\) |  |
+| UNLINK OPS \(total\) | The number of file deletion operations. |
+| UNLINK Latency \(per operation\) | The time spent deleting files. |
 | Writes \(total\) | The total number of write operations. |
 | Write Bytes \(total\) | The number of bytes written to a file. |
 | Write Duration \(total\) | Histogram of the time spent performing write operations. |
 | Write Latency \(per write\) | The time spent writing bytes to a file. |
-| Write Sizes \(total\) |  |
+| Write Sizes \(total\) | The total amount of write operations. |
 
 ### Object Store Statistics
 
