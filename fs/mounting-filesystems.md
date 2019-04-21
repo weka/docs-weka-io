@@ -63,7 +63,7 @@ The following two parameters exist for the fine-tuning of read or write caches o
 | Option | Value | Description | Default |
 | :--- | :--- | :--- | :--- |
 | `dentry_max_age_positive` | Positive number, time in milliseconds | After the defined time period, every metadata cached entry is refreshed from the system, allowing the host to take into account metadata changes performed by other hosts. | 1000 |
-| `dentry_max_age_negative` | Positive number, time in milliseconds | Each time a file or directory lookup fails, an entry specifying that the file or directory does not exist is created in the local dentry cache. This entry is refreshed after the defined time, allowing the host to use files or directories created by other hosts. | 1000 |
+| `dentry_max_age_negative` | Positive number, time in milliseconds | Each time a file or directory lookup fails, an entry specifying that the file or directory does not exist is created in the local dentry cache. This entry is refreshed after the defined time, allowing the host to use files or directories created by other hosts. | 0 |
 
 In addition, the`inode_bits` option is available:
 
