@@ -53,7 +53,7 @@ The following are the Active Directory attributes relevant for users according t
 
 | AD Attribute | Description |
 | :--- | :--- |
-| uidNumber | Mandatory |
+| uidNumber | Mandatory, in range of 1,000 to 999,999 |
 | gidNumber | Mandatory, and must correlate with real group |
 | Loginshell | Optional |
 | unixHomeDirectory | Optional |
@@ -64,7 +64,7 @@ The following are the Active Directory attributes relevant for groups of users a
 
 | AD Attribute | Description |
 | :--- | :--- |
-| gidNumber | Mandatory |
+| gidNumber | Mandatory, in range of 1,000 to 999,999 |
 | MembersUid | Mandatory \(for members of the group, according to UID\) |
 | maSFU30NisDomain | Mandatory \(for the domain to which the group belongs\) |
 | NisDomain | Optional |
