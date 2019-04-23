@@ -54,7 +54,7 @@ The following are the Active Directory attributes relevant for users according t
 | AD Attribute | Description |
 | :--- | :--- |
 | uidNumber | Mandatory, in range of 1,000 to 999,999 |
-| gidNumber | Mandatory, and must correlate with real group |
+| gidNumber | Mandatory, in range of 1,000 to 999,999, and must correlate with real group |
 | Loginshell | Optional |
 | unixHomeDirectory | Optional |
 | MemberUID | Optional |
