@@ -53,21 +53,14 @@ The following are the Active Directory attributes relevant for users according t
 
 | AD Attribute | Description |
 | :--- | :--- |
-| uidNumber | Mandatory, in range of 1,000 to 999,999 |
-| gidNumber | Mandatory, in range of 1,000 to 999,999, and must correlate with real group |
-| Loginshell | Optional |
-| unixHomeDirectory | Optional |
-| MemberUID | Optional |
-| ipHostNumber | Optional |
+| uidNumber | in range of 1,000 to 999,999 |
+| gidNumber | in range of 1,000 to 999,999, and must correlate with real group |
 
 The following are the Active Directory attributes relevant for groups of users according to RFC2307:
 
 | AD Attribute | Description |
 | :--- | :--- |
-| gidNumber | Mandatory, in range of 1,000 to 999,999 |
-| MembersUid | Mandatory \(for members of the group, according to UID\) |
-| maSFU30NisDomain | Mandatory \(for the domain to which the group belongs\) |
-| NisDomain | Optional |
+| gidNumber | in range of 1,000 to 999,999 |
 
 {% hint style="info" %}
 **Note:** Read more about Active Directory properties [here](https://blogs.technet.microsoft.com/activedirectoryua/2016/02/09/identity-management-for-unix-idmu-is-deprecated-in-windows-server/).
