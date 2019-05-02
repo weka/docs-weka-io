@@ -44,6 +44,8 @@ Establishing an SMB cluster is performed as follows:
 
 Each WekaIO cluster can only support a single SMB cluster.
 
+DNS "nameserver" of the hosts participating in the SMB cluster should be configured to your AD server.
+
 For running Samba in AWS, contact the WekaIO Support Team for more information.
 {% endhint %}
 
