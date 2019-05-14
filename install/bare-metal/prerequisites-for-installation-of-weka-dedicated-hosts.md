@@ -66,7 +66,7 @@ description: >-
 
 #### Nic Drivers
 
-Supported OFED versions:
+Supported Mellanox OFED versions:
 
 * 4.2-1.0.0.0
 * 4.2-1.2.0.0
@@ -116,7 +116,7 @@ Supported intel 40 drivers:
 
 #### Nic Drivers
 
-Supported OFED versions:
+Supported Mellanox OFED versions:
 
 * 4.2-1.0.0.0
 * 4.2-1.2.0.0
