@@ -16,6 +16,66 @@ Alerts are indicated by a yellow triangle. Click the triangle to display a list 
 **Note:** If for any reason it is not possible to solve the root cause of an alert at any given time, the alert can be muted in order to hide it. This action is only possible from the CLI.
 {% endhint %}
 
+## Working with Alerts Using the GUI
+
+### Viewing Alerts
+
+The following Alerts Overview window presents the status of alerts:
+
+![Screenshot from 2019-05-16 14-20-39.png](https://mail.google.com/mail/u/0?ui=2&ik=eef4f3248e&attid=0.1&permmsgid=msg-f:1633690648021994243&th=16ac08fd1c3a8b03&view=fimg&sz=s0-l75-ft&attbid=ANGjdJ_bWDKMXYXZUioh-J6TmBvwdD8ICZdGjINJpNbgPqXxTZ4BzE3PXH_4Ov_m9AXRTiB3n_rsFGDlptVW3x8psEUQCi8M91oqtudI5wnR52Sfuv-W1lDDR18HNy8&disp=emb&realattid=ii_jvqlu8si0)
+
+{% hint style="info" %}
+**Note:** If there are no active alerts, the bell and text will not be displayed.
+{% endhint %}
+
+To view details of currently active alerts, click the Alerts Overview window. The following Currently Active Alerts window is displayed:
+
+![](../.gitbook/assets/currently-active-alerts-1.png)
+
+When hovering on the bell with the mouse, the bell will change color and display the opposite condition of the alert i.e., change active to mute, and vice versa. 
+
+### Muting Alerts
+
+To mute an alert, click the bell of an active alert in the Current Active Alerts window. A dialog box will be displayed, requesting the time period during which the alert is to be muted:
+
+![](../.gitbook/assets/currently-active-alerts-3.png)
+
+Enter the time period required and click Mute.
+
+{% hint style="info" %}
+**Note:** Alerts cannot be suppressed indefinitely. After expiry of the muted period, the alert is automatically unmuted.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** When there are muted alerts, the Alerts Overview window will appear as below:
+
+![Screenshot from 2019-05-16 14-26-34.png](https://mail.google.com/mail/u/0?ui=2&ik=eef4f3248e&attid=0.2&permmsgid=msg-f:1633690648021994243&th=16ac08fd1c3a8b03&view=fimg&sz=s0-l75-ft&attbid=ANGjdJ-MiIRbZeYMh_gx8rIs_UDpMAq1euCFeG2TQvrlJIX7C2vRqYgzo3ofO3lDUbVzAe14KaDQEGxpZqx9nnKotM4d34mSfO1a-imjEVD6igsY7E0MJZ514JVgLuE&disp=emb&realattid=ii_jvqlve1b1)
+{% endhint %}
+
+## Working with Alerts Using the CLI
+
+**Command:** `weka alerts`
+
+Use the following command line to list all alerts \(muted and unmuted\) in the WekaIO cluster:
+
+`weka alerts [--HOST HOST][PORT PORT] [--muted]`
+
+**Parameters in Command Lines**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `HOST` | String | Name of the host | Valid name | Yes |  |
+| `PORT` | String | Name of the port | Valid name | Yes |  |
+| `muted` | String | List muted alerts together with active alerts |  | No |  |
+
+**Optional Subcommands in Command Line**
+
+`[--types]`: Lists all alert types \(muted and unmuted\) that can be returned from the WekaIO cluster.
+
+`[--mute]`: Mutes an alert-type. Muted alerts will not be prompted when listing active alerts. Alerts cannot be suppressed indefinitely, so a duration for the muted period must be provided. After expiry of the muted period, the alert-type is automatically unmuted.
+
+`[--unmute]`: Unmutes and previously muted alert type.
+
 ## List of Alerts
 
 | Name | Description |
