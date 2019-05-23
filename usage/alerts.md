@@ -25,7 +25,7 @@ The following Alerts Overview window presents the status of alerts:
 ![Screenshot from 2019-05-16 14-20-39.png](https://mail.google.com/mail/u/0?ui=2&ik=eef4f3248e&attid=0.1&permmsgid=msg-f:1633690648021994243&th=16ac08fd1c3a8b03&view=fimg&sz=s0-l75-ft&attbid=ANGjdJ_bWDKMXYXZUioh-J6TmBvwdD8ICZdGjINJpNbgPqXxTZ4BzE3PXH_4Ov_m9AXRTiB3n_rsFGDlptVW3x8psEUQCi8M91oqtudI5wnR52Sfuv-W1lDDR18HNy8&disp=emb&realattid=ii_jvqlu8si0)
 
 {% hint style="info" %}
-**Note:** If there are no active alerts, the bell and text will not be displayed.
+**Note:** If there are no alerts at all \(active/muted\), the bell and text will not be displayed.
 {% endhint %}
 
 To view details of currently active alerts, click the Alerts Overview window. The following Currently Active Alerts window is displayed:
@@ -54,27 +54,17 @@ Enter the time period required and click Mute.
 
 ## Working with Alerts Using the CLI
 
-**Command:** `weka alerts`
+**Command:** `weka alerts --muted`
 
-Use the following command line to list all alerts \(muted and unmuted\) in the WekaIO cluster:
+Use this command line to list all alerts \(muted and unmuted\) in the WekaIO cluster.
 
-`weka alerts [--HOST HOST][PORT PORT] [--muted]`
+**Optional Sub-commands in Command Line**
 
-**Parameters in Command Lines**
-
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `HOST` | String | Name of the host | Valid name | Yes |  |
-| `PORT` | String | Name of the port | Valid name | Yes |  |
-| `muted` | String | List muted alerts together with active alerts |  | No |  |
-
-**Optional Subcommands in Command Line**
-
-`[--types]`: Lists all alert types \(muted and unmuted\) that can be returned from the WekaIO cluster.
+`[--types]`: Lists all possible types of alerts that can be returned from the WekaIO cluster.
 
 `[--mute]`: Mutes an alert-type. Muted alerts will not be prompted when listing active alerts. Alerts cannot be suppressed indefinitely, so a duration for the muted period must be provided. After expiry of the muted period, the alert-type is automatically unmuted.
 
-`[--unmute]`: Unmutes and previously muted alert type.
+`[--unmute]`: Unmutes a previously muted alert type.
 
 ## List of Alerts
 
