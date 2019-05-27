@@ -119,13 +119,11 @@ Finally, restart the `autofs` service:
 service autofs restart
 ```
 
-It is now possible to access WekaIO filesystems using the`/mnt/weka/<fs-name>` command. 
+It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
 
 {% hint style="warning" %}
 **For Example:** The`default`filesystem is automatically mounted under`/mnt/weka/default`.
 {% endhint %}
-
-## Mounting Filesystems Using the Stateless Clients Feature <a id="mounting-filesystems-using-stateless-clients"></a>
 
 ## Mounting Filesystems Using the Stateless Clients Feature <a id="mounting-filesystems-using-stateless-clients"></a>
 

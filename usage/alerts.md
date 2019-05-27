@@ -20,15 +20,15 @@ Alerts are indicated by a yellow triangle. Click the triangle to display a list 
 
 ### Viewing Alerts
 
-The following Alerts Overview window presents the status of alerts:
+The following Alerts Overview popup window is displayed in the System Overview, in the top left side of the screen. It presents the status of alerts:
 
-![Screenshot from 2019-05-16 14-20-39.png](https://mail.google.com/mail/u/0?ui=2&ik=eef4f3248e&attid=0.1&permmsgid=msg-f:1633690648021994243&th=16ac08fd1c3a8b03&view=fimg&sz=s0-l75-ft&attbid=ANGjdJ_bWDKMXYXZUioh-J6TmBvwdD8ICZdGjINJpNbgPqXxTZ4BzE3PXH_4Ov_m9AXRTiB3n_rsFGDlptVW3x8psEUQCi8M91oqtudI5wnR52Sfuv-W1lDDR18HNy8&disp=emb&realattid=ii_jvqlu8si0)
+![](../.gitbook/assets/alerts-1.png)
 
 {% hint style="info" %}
 **Note:** If there are no alerts at all \(active/muted\), the bell and text will not be displayed.
 {% endhint %}
 
-To view details of currently active alerts, click the Alerts Overview window. The following Currently Active Alerts window is displayed:
+To view details of currently active alerts, click the "X ACTIVE ALERTS" text. The following Currently Active Alerts window is displayed:
 
 ![](../.gitbook/assets/currently-active-alerts-1.png)
 
@@ -47,10 +47,10 @@ Enter the time period required and click Mute.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** When there are muted alerts, the Alerts Overview window will appear as below:
-
-![Screenshot from 2019-05-16 14-26-34.png](https://mail.google.com/mail/u/0?ui=2&ik=eef4f3248e&attid=0.2&permmsgid=msg-f:1633690648021994243&th=16ac08fd1c3a8b03&view=fimg&sz=s0-l75-ft&attbid=ANGjdJ-MiIRbZeYMh_gx8rIs_UDpMAq1euCFeG2TQvrlJIX7C2vRqYgzo3ofO3lDUbVzAe14KaDQEGxpZqx9nnKotM4d34mSfO1a-imjEVD6igsY7E0MJZ514JVgLuE&disp=emb&realattid=ii_jvqlve1b1)
+**Note:** When there are only muted alerts, the Alerts Overview popup window will appear as follows:
 {% endhint %}
+
+![](../.gitbook/assets/alerts-2.png)
 
 ## Working with Alerts Using the CLI
 
