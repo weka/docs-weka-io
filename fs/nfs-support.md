@@ -273,8 +273,8 @@ weka nfs permission delete <filesysten> <group> [--path=<path>]`
 | `perm` | String | Permission type  | RO: read only           RW: read write | No |  |
 
 Use the following command lines to add/update root-squashing:  
-`weka nfs permission add root-squshing <filesysten> <group> <permission-type> <anon-uid> <anon-gid> [--path=<path>]  
-weka nfs permission update root-squshing <filesysten> <group> <permission-type> <anon-uid> <anon-gid> [--path=<path>]`
+`weka nfs permission add root-squashing <filesysten> <group> <permission-type> <anon-uid> <anon-gid> [--path=<path>]  
+weka nfs permission update root-squashing <filesysten> <group> <permission-type> <anon-uid> <anon-gid> [--path=<path>]`
 
 **Parameters in Command Line**
 
