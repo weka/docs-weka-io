@@ -118,7 +118,7 @@ If a default data networking was previously configured on a cluster and is no lo
 
 **Command:** `cluster drive add`
 
-This stage in the installation process is used to add a local SSD to be used by a WekaIO filesystem. The same command can be sued for adding multiple drive paths. To perform this operation, use the following command line:
+This stage in the installation process is used to add a local SSD to be used by a WekaIO filesystem. The same command can be used for adding multiple drive paths. To perform this operation, use the following command line:
 
 `weka cluster drive add <host-id> <device-path>`
 
