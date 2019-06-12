@@ -11,7 +11,7 @@ Client hosts are used to run applications which need to access the WekaIO filesy
 To add client hosts to the WekaIO system configuration, use the stages described below.
 
 {% hint style="info" %}
-**Note:** The steps described below represent the traditional approach for mounting a filesystem. However, filesystems can also be mounted using the Stateless Clients feature, which which simplifies and improves the management of clients in the cluster and eliminates the process described below. For more information, refer to [Mounting Filesystems Using the Stateless Clients Feature](https://docs.weka.io/~/edit/drafts/-LTq8BSEMpeayMPh2Klz/v/3.1.9/fs/mounting-filesystems#mounting-filesystems-using-stateless-clients).
+**Note:** The steps described below represent the traditional approach for mounting a filesystem. However, filesystems can also be mounted using the Stateless Clients feature, which simplifies and improves the management of clients in the cluster and eliminates the process described below. For more information, refer to [Mounting Filesystems Using the Stateless Clients Feature](https://docs.weka.io/~/edit/drafts/-LTq8BSEMpeayMPh2Klz/v/3.1.9/fs/mounting-filesystems#mounting-filesystems-using-stateless-clients).
 {% endhint %}
 
 ## Stage 1: Install the Software

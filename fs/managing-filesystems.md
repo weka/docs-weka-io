@@ -10,7 +10,7 @@ description: >-
 
 #### Viewing Filesystems / Filesystem Groups Using the GUI
 
-The main filesystem screen in the GUI contains information about the filesystems and filesystem groups, including names, tiering status, total capacity and used capacity.
+The main filesystem screen in the GUI contains information about the filesystems and filesystem groups, including names, tiering status,  encryption status, total capacity and used capacity.
 
 ![Main Filesystem / Filesystem Group View Screen](../.gitbook/assets/view-fs_fsg-screen.jpg)
 
@@ -207,7 +207,7 @@ Click the Edit button of the filesystem group to be modified. The Configure File
 
 Edit the existing filesystem group parameters and click Configure to execute the changes.
 
-#### Editing an Existing Filesystem Using the CLI
+#### Editing an Existing Filesystem Group Using the CLI
 
 **Command:** `wcli filesystem group update` or `weka fs group update-tiered`
 
@@ -233,7 +233,7 @@ For a non-tiered filesystem group:
 
 ### Deleting a Filesystem Group
 
-#### Deleting a Filesystem Using the GUI
+#### Deleting a Filesystem Group Using the GUI
 
 {% hint style="info" %}
 **Note:** Before deleting a filesystem group, verify that it does not contain any filesystems. If it contains filesystems, first delete the filesystems.
@@ -245,7 +245,7 @@ Select the filesystem group to be deleted in the main filesystem / filesystem gr
 
 Click Yes to delete the filesystem group.
 
-#### Deleting a Filesystem Using the CLI
+#### Deleting a Filesystem Group Using the CLI
 
 **Command:** `weka fs group delete`
 
@@ -275,7 +275,7 @@ From the main filesystem / filesystem group view screen, click the Add Filesyste
 
 The Create Filesystem dialog box will be displayed.
 
-![Create Filesystem Dialog Box](../.gitbook/assets/create-filesystem-screen.jpg)
+![Create Filesystem Dialog Box](../.gitbook/assets/create-filesystem-with-encryption-window.png)
 
 Enter the relevant parameters and click Create to create the filesystem.
 
@@ -285,7 +285,7 @@ Enter the relevant parameters and click Create to create the filesystem.
 
 Use the following command line to add a filesystem:
 
-`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd>] [--max-files <max-files>] [--filesystem-id <id>]`
+`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd>] [--max-files <max-files>] [--filesystem-id <id>] [--encrypted <encrypted>]`
 
 **Parameters in Command Line**
 
@@ -296,6 +296,7 @@ Use the following command line to add a filesystem:
 | `total-capacity` | Number | The total capacity of the new filesystem; options are SSD capacity \(`ssd-capacity <ssd>`\), the filesystem ID \(`filesystem-id <id>`\) or a value that correlates with the percentage of SSD capacity from the total SSD capacity for the cluster \(`max-files <max-files>`\) | Must be a valid number | Yes |  |
 | `ssd-capacity` | Number | For tiered filesystems, this is the SSD capacity. If not specified, the filesystem is pinned to SSD | Must be a valid number | No | SSD capacity will be set to total capacity |
 | `max-files` | Number | Metadata allocation for this filesystem | Must be a valid number | No | Automatically calculated by the system based on the SSD capacity |
+| `encrypted` | Boolean | Encryption of filesystem | Yes/No | No | No |
 
 ### Editing a Filesystem
 
@@ -310,6 +311,10 @@ Select the filesystem to be modified in the main filesystem / filesystem group v
 ![Configure Filesystem Dialog Box](../.gitbook/assets/configure-fs-screen.jpg)
 
 Edit the existing filesystem parameters and click Configure to execute the changes.
+
+{% hint style="info" %}
+**Note:** It is not possible to change the encryption configuration of a filesystem.
+{% endhint %}
 
 #### Editing an Existing Filesystem Using the CLI
 

@@ -1,10 +1,10 @@
 ---
 description: >-
-  This page describes PAYG licenses which allow cluster payment on an hourly
-  basis, as part of your AWS bill.
+  This page describes Pay-As-You-Go (PAYG) licenses which allow cluster payment
+  on an hourly basis, as part of your AWS bill.
 ---
 
-# Pay-As-You-Go \(PAYG\) License
+# Pay-As-You-Go License
 
 ## Subscribing to AWS Marketplace
 

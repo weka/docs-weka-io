@@ -18,6 +18,18 @@ A total of up to 1024 filesystems are supported, all of which are equally and pe
 
 A filesystem must have a defined capacity limit. A filesystem that belongs to a tiered filesystem group \(see below\) must have a total capacity limit and an SSD capacity limit. The total SSD capacity of all filesystems cannot exceed the total SSD capacity as defined in the total SSD net capacity.
 
+### Encrypted Filesystems
+
+Both data at rest \(residing on SSD and object store\) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](https://app.gitbook.com/@wekaio/s/docs/~/edit/drafts/-Lgzu9o4vDeAXoRtUZ-H/v/3.4/fs/managing-filesystems#adding-a-filesystem).
+
+{% hint style="info" %}
+**Note:** For proper security, selection of encryption should be used with a KMS \(Key Management System\). For integration information regarding your KMS, contact the WekaIO Support Team. 
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** It is only possible to enable encryption of data in a filesystem when the filesystem is created. Furthermore, enablement of the encryption feature on a filesystem cannot be cancelled.
+{% endhint %}
+
 ### Metadata Limitations
 
 In addition to the capacity limitation, each filesystem  also has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to WekaIO, as well as the RAM resources allocated to the WekaIO processes. By default, the metadata limit associated with a filesystem is proportional to the filesystem SSD size. It is possible to override this default by defining a filesystem-specific max-files parameter, although the total of the limits of the metadata for all the filesystems cannot exceed the total system metadata limits.
