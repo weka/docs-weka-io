@@ -94,6 +94,7 @@ Supported intel 40 drivers:
 
 * Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GbE / 100 GbE
 * NICs bonding: Not configured
+* Add VLAN: Not supported
 * Jumbo frames: Enabled on switch and on network port
 * WekaIO system management IP address: One IP per server \(configured prior to weka installation\) 
 * WekaIO system data plane IP address: One IP address for each [WekaIO core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server \(Weka will apply these IPs during the cluster initialization\)
@@ -130,6 +131,11 @@ Supported Mellanox OFED versions:
 * InfiniBand speeds: FDR / EDR
 * Subnet manager: Configured to 4092
 * One WekaIO system IP address for management and data plane
+* PKEYs: Supported
+
+{% hint style="info" %}
+**Note:** If it is necessary to change PKEYs, contact the WekaIO Support Team.
+{% endhint %}
 
 ### SSDs <a id="ssds"></a>
 
