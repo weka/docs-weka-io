@@ -2,7 +2,7 @@
 
 * [WekaIO Documentation](README.md)
 
-## WekaIO System Overview
+## WekaIO System Overview <a id="overview"></a>
 
 * [About the WekaIO System](overview/about.md)
 * [SSD Capacity Management](overview/ssd-capacity-management.md)
@@ -12,7 +12,7 @@
 * [WekaIO Client & Mount Modes](overview/weka-client-and-mount-modes.md)
 * [Glossary](overview/glossary.md)
 
-## Planning & Installation
+## Planning & Installation <a id="install"></a>
 
 * [Bare Metal Installation](install/bare-metal/README.md)
   * [Planning a WekaIO System Installation](install/bare-metal/planning-a-weka-system-installation.md)
@@ -28,7 +28,7 @@
   * [Adding Clients](install/aws/adding-clients.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
 
-## FILESYSTEMS
+## FILESYSTEMS <a id="fs"></a>
 
 * [Managing Filesystems, Object Stores & Filesystem Groups](fs/managing-filesystems.md)
 * [NFS Support](fs/nfs-support.md)
@@ -37,7 +37,7 @@
 * [Snap-To-Object](fs/snap-to-obj.md)
 * [Snapshots](fs/snapshots.md)
 
-## OPERATION GUIDE
+## OPERATION GUIDE <a id="usage"></a>
 
 * [Events](usage/events.md)
 * [Statistics](usage/statistics.md)
@@ -51,13 +51,13 @@
   * [Upgrading from Version 3.1.6 and Before](usage/upgrading-weka-versions/upgrading-to-v3.1.6.x.md)
   * [Upgrading from Version 3.1.7 and After](usage/upgrading-weka-versions/upgrade-guide-3.1.7-and-after.md)
 
-## Billing & Licensing
+## Billing & Licensing <a id="licensing"></a>
 
 * [Overview](licensing/overview.md)
 * [Classic License](licensing/classic-licensing.md)
 * [Pay-As-You-Go \(PAYG\) License](licensing/pay-as-you-go.md)
 
-## Performance
+## Performance <a id="testing-and-troubleshooting"></a>
 
 * [Testing WekaIO System Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
 
