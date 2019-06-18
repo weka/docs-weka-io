@@ -10,10 +10,11 @@ description: >-
 
 Access to a WekaIO system cluster is controlled by creating, modifying and deleting users. Up to 128 users can be defined to work with a WekaIO system cluster. Each user is identified by a username and must provide a password for authentication to work with the WekaIO system GUI or CLI.
 
-Every user of the WekaIO system has one of the following defined roles:
+Every WekaIO system user has one of the following defined roles:
 
-* **User**: An ordinary user.
 * **Admin**: A user with additional privileges, as described in [Admin Role Privileges](user-management.md#admin-role-privileges) below.
+* **User**: A regular user with read and write privileges..
+* **Read-only:** A user with read-only privileges.
 
 When users open the GUI, they are prompted to provide their username and password. To pass username and password to the CLI, use the `WEKA_USERNAME` and `WEKA_PASSWORD` environment variables. 
 
@@ -21,13 +22,27 @@ When users open the GUI, they are prompted to provide their username and passwor
 **Note:** If the`WEKA_USERNAME`/`WEKA_PASSWORD` environment variables are not specified, the CLI assumes the username and password are `admin`/`admin`.
 {% endhint %}
 
-## First User
+## First User \(Admin\)
 
 By default, when a WekaIO cluster is created, a first user with a username of `admin` and a password of `admin` is created. This user has an Admin role, which allows the running of all commands.
 
-The first Admin user is created because a WekaIO system cluster must have at least one admin user defined. However, you can create a user with a different name and delete the default admin user, if required.
+The first Admin user is created because a WekaIO system cluster must have at least one admin user defined. However, it is possible to create a user with a different name and delete the default admin user, if required.
 
-## Creating Users
+## Admin Role Privileges
+
+Admin users have additional privileges over regular users. These include the ability to:
+
+* Create new users
+* Delete existing users
+* Change a user’s password
+* Set a user’s role
+
+Additionally, the following restrictions are implemented for Admin users, in order to avoid a situation where an Admin loses access to a WekaIO system cluster:
+
+* Admins cannot delete themselves.
+* Admins cannot change their role to a regular user role.
+
+### Creating Users
 
 To create a user, run the `weka user add` command:
 
@@ -53,17 +68,17 @@ username: user1
 role: User
 ```
 
-As you can see, the `weka user whoami` command returns information about the current user running the command.
+Using  the `weka user whoami` command, it is possible to receive information about the current user running the command. 
 
-## Changing a User’s Password
+### Managing Users
 
-To change a user password, use the `weka user passwd` command. Assuming `user1` still exists from the previous section, run the following command to the change the password of`user1`:
+To create/delete a local user or change a local user password, use the `weka user passwd` command. For example, assuming `user1` still exists from the Creating Users section, run the following command to change the password of`user1`:
 
 ```text
 $ WEKA_USERNAME=user1 WEKA_PASSWORD=S3cret weka user passwd user1 s3cret
 ```
 
-As can be seen, this command requires the user to specify the current username and password in order to change the password.
+As can be seen, this command requires the Admin to specify the current username and password in order to change the password.
 
 It is also possible for an Admin user to change a user’s password. This is performed as follows:
 
@@ -75,21 +90,7 @@ $ weka user passwd user1 BackToS3cret
 **Note:** `WEKA_USERNAME` or `WEKA_PASSWORD` are not specified because by default, they are `admin`/`admin.`
 {% endhint %}
 
-## Admin Role Privileges
-
-As shown in the example above, Admin users have some additional privileges over regular users. These include the ability to:
-
-* Create new users
-* Delete existing users
-* Change a user’s password
-* Set a user’s role
-
-Additionally, the following restrictions are implemented for Admin users, in order to avoid a situation where an Admin loses access to a WekaIO system cluster:
-
-* Admins cannot delete themselves.
-* Admins cannot change their role to an ordinary user role.
-
-## Deleting Users
+### Deleting Users
 
 To delete a user, run the `user-delete` command:
 
@@ -105,4 +106,108 @@ $ weka user
 +----------+-------
 | admin    | Admin 
 ```
+
+## User Log In
+
+When a login is attempted, the user is first searched in the list of internal users, i.e., users created using `weka user add` .  
+
+However, if a user does not exist in WekaIO but does exist in a LDAP directory, it is possible to [configure the LDAP user directory](https://app.gitbook.com/@wekaio/s/docs/~/edit/drafts/-Lh-M7iV6p8T7nyX9Ra8/v/3.4/usage/user-management#configuring-an-ldap-user-directory) to the WekaIO system. This will enable a search for the user in the directory, followed by password verification.
+
+On each successful login, a `UserLoggedIn` event is emitted, containing the username, role and whether the user is an internal or LDAP user.
+
+When a login fails, an "Invalid username or password" message is displayed and a `UserLoginFailed` event is emitted, containing the username and the reason for the login failure.
+
+## Authenticating Users from an LDAP User Directory
+
+To authenticate users from an LDAP user directory, the LDAP directory must first be configured to the WekaIO system. This is performed as follows.
+
+### Configuring an LDAP User Directory
+
+**Command:**  
+`weka user ldap setup  
+weka user ldap setup-ad`
+
+There are two CLI commands used to configure an LDAP user directory for user authentication - the first is for configuring an LDAP server and second is for configuring an Active Directory server.
+
+To configure an LDAP server, use the following command line:
+
+```text
+weka user ldap setup <server-uri>
+                     <base-dn>
+                     <user-object-class>
+                     <user-id-attribute>
+                     <group-object-class>
+                     <group-membership-attribute>
+                     <group-id-attribute>
+                     <reader-username>
+                     <reader-password>
+                     <admin-group>
+                     <regular-group>
+                     <readonly-group>
+                     [--server-timeout-secs server-timeout-secs]
+                     [--protocol-version protocol-version]
+                     [--user-signature-attribute user-signature-attribute]
+```
+
+To configure an Active Directory server, use the following command line:
+
+```text
+weka user ldap setup-ad <server-uri>
+                        <domain>
+                        <reader-username>
+                        <reader-password>
+                        <admin-group>
+                        <regular-group>
+                        <readonly-group>
+                        [--server-timeout-secs server-timeout-secs]
+```
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `server-uri` | String | Either the LDAP server host name/IP or a URI  | URI must be in format `ldap://hostname:port` or `ldaps://hostname:port` | Yes |  |
+| `base-dn` | String | Base DN under which users are stored | Must be valid name. | Yes |  |
+| `user-id-attribute` | String | Attribute storing user IDs | Must be valid name. | Yes |  |
+| `user-object-class` | String | Object class of users | Must be valid name. | Yes |  |
+| `group-object-class` | String | Object class of groups | Must be valid name. | Yes |  |
+| `group-membership-attribute` | String | Attribute of group containing the DN of a user membership in the group | Must be valid name. | Yes |  |
+| `group-id-attribute` | String | Attribute storing the group name | Name has to match names used in the `<admin-group>`, `<regular group>` and `<readonly group>` | Yes |  |
+| `reader-username` and `reader-password` | String | Credentials of a user with read access to the directory | Password is kept in the WekaIO cluster configuration in plain text, as it is used to authenticate against the directory during user authentication | Yes |  |
+| `admin-group`   | String | Name of group containing users defined with admin role | Must be valid name | Yes |  |
+| `regular-group` | String | Name of group containing users defined with regular privileges | Must be valid name | Yes |  |
+| `readonly-group` | String | Name of group containing users defined with read only privileges | Must be valid name | Yes |  |
+| `server-timeout-secs` | Number | Server connection timeout | Seconds | No |  |
+| `protocol-version` | String | Selection of LDAP version | LDAP v2 or v3 | No\` | LDAP v3 |
+| `user-signature-attribute` | Sring | Attribute that changes whenever user changes password | User must re-login after a password change | No |  |
+
+### Viewing a Configured LDAP User Directory
+
+**Command:**   
+`weka user ldap`
+
+This command is used for viewing the current LDAP configuration used for authenticating users. The following command line is used:
+
+`weka user ldap [--HOST HOST]{--PORT PORT]`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `HOST` | String | Host name | Only valid host name | Yes |  |
+| `PORT` | String | Port name | Only valid port name | Yes |  |
+
+### Disabling/Enabling a Configured LDAP User Directory
+
+**Command:**   
+`weka user ldap disable  
+weka user ldap enable`
+
+These commands are used for disabling or enabling user authentication through a configured LDAP user directory. 
+
+{% hint style="info" %}
+**Note:** It is not possible to delete an LDAP configuration; only disable it.
+{% endhint %}
+
+## 
 

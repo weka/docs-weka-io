@@ -6,6 +6,8 @@ description: >-
 
 # Events
 
+
+
 ### Alert Events
 
 | Type | Severity | Description |
