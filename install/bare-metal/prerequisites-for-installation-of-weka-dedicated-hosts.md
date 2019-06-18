@@ -101,7 +101,7 @@ Supported intel 40 drivers:
 * WekaIO system management IP: Ability to communicate with all WekaIO system data plane IPs
 * Connectivity between hosts: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
-* [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; some configuration may be required in the BIOS
+* [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs ot the number of cores you wish to dedicate to weka; some configuration may be required in the BIOS
 * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
@@ -132,6 +132,8 @@ Supported Mellanox OFED versions:
 * Subnet manager: Configured to 4092
 * One WekaIO system IP address for management and data plane
 * PKEYs: Supported
+* Support PLP \(Power Loss Protection\)
+* Dedicated for WekaIO system storage \(partition not supported\)
 
 {% hint style="info" %}
 **Note:** If it is necessary to change PKEYs, contact the WekaIO Support Team.
@@ -140,7 +142,4 @@ Supported Mellanox OFED versions:
 ###  <a id="ssds"></a>
 
 ### SSDs <a id="ssds"></a>
-
-* Support PLP \(Power Loss Protection\)
-* Dedicated for WekaIO system storage \(partition not supported\)
 
