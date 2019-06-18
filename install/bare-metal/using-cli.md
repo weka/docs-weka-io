@@ -77,6 +77,12 @@ To learn more, and learn and what else is needed in order to enable cloud event 
 
 The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(IB\). A physical network device must be specified for both types. This can be a device dedicated to the WekaIO system, or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
 
+When PKEYs are used, the device name for InfiniBand should follow the name.PKEY convention.
+
+{% hint style="info" %}
+**Note:** Although in general, devices can be renamed arbitrarily, WekaIO will only function correctly if the .PKEY naming convention is followed.
+{% endhint %}
+
 To perform this operation, the cluster host net add command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
 `weka cluster host net add <host-id> --device=<device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gw>] [--netmask=<netmask-bits>]`
