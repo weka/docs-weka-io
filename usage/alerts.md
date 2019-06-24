@@ -68,31 +68,35 @@ Use this command line to list all alerts \(muted and unmuted\) in the WekaIO clu
 
 ## List of Alerts
 
-| Name | Description |
-| :--- | :--- |
-| NodeDisconnected |  A node is disconnected from the cluster. Check network connectivity to make sure the node can communicate with the cluster. |
-| AdminDefault Password | The admin password is still set to the factory default. Change it to ensure only authorized users can access the cluster. |
-| CloudHealth | A host cannot upload events to the WekaIO cloud. Check Internet connectivity. |
-| NoClusterLicense | No license is assigned. |
-| LicenseError | A license conflict exists. |
-| ClusterIsUpgrading | Cluster is upgrading. |
-| HugePagesAlloc | WekaIO could not allocate RAM on a host via huge pages, because of the host allocation status. |
-| Negative UnprovisionedCapacity | The cluster unprovisioned capacity is negative from trying to improve the calculation of spare space required for data protection. |
-| HighDrivesCapacity | The average hot tier capacity level is high in relation to the total capacity available. Free-up space or add more hot tier drives to the cluster. |
-| DriveDown | A drive is not responding. |
-| DriveNeedsPhaseout | A drive has too many errors and is marked as requiring phaseout. |
-| JumboConnectivity | A host cannot send jumbo frames to any of its cluster peers. Check the host network settings and the switch to which it is connected. |
-| DataProtection | Partial data protection. |
-| NodeTiering Connectivity | A node cannot connect to an object store. Check the connection. |
-| OfedVersions | A host Mellanox OFED version ID does not match the one used by the WekaIO container. |
-| DedicatedWatchdog | A host is configured as a dedicated WekaIO host and requires the installation of a hardware watchdog driver. |
-| AgentNotRunning | The WekaIO local control agent is not running on a host. |
-| NumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance.  |
-| BucketHasNoQuorum | A number of compute nodes are down, causing the bucket compute resource to be unavailable. |
-| BucketUnresponsive | A compute resource bucket has failed, causing system unavailability. Check the connectivity and status of the drives. |
-| HangingIOs | Some IOs are hanging. |
-| ClockSkew | The clock of a host is skewed in relation to the cluster leader, with a time difference more than the permitted maximum of 30 seconds. |
-| FilesystemHasToo ManyFiles | The filesystem storage configuration is not large enough for the size of files and directory entries being stored.  |
-| NotEnoughConfigured MemoryForFilesystems | The total configured memory bytes for filesystems is insufficient to store the file and directory entries of the filesystems in the cluster.  |
-| NotEnoughAvailable MemoryForFilesystems | There are not enough working compute nodes in the cluster to store the file and directory entries for all the filesystems in the cluster.  |
+| Name | Description | Actions |
+| :--- | :--- | :--- |
+| AdminDefault Password | The admin password is still set to the factory default.  | Change the admin user password to ensure only authorized users can access the cluster. |
+| AgentNotRunning | The WekaIO local control agent is not running on a host. | Restart the agent with `service weka-agent start.` |
+| BucketHasNoQuorum | Too many compute nodes are down, causing the bucket compute resource to be unavailable. | Check that the compute nodes and their hosts are up and running and fully connected; contact the WekaIO Support Team if issue is not resolved. |
+| BucketUnresponsive | A compute resource has failed, causing system unavailability.  | Check that the compute nodes and their hosts are up and running and fully connected; contact the WekaIO Support Team if issue is not resolved. |
+| ClockSkew | The clock of a host is skewed in relation to the cluster leader, with a time difference more than the permitted maximum of 30 seconds. | Make sure NTP is configured correctly on the hosts and that their dates are synchronized. |
+| CloudHealth | A host cannot upload events to the WekaIO cloud.  | Check the host has Internet connectivity and is connected to the WekaIO cloud as explained in [WekaIO Support Cloud section](../support/the-wekaio-support-cloud.md). |
+| ClusterIsUpgrading | Cluster is upgrading. |  |
+| DataProtection | Some of the system's data is not fully redundant. | Check which node/host/drive is down and act accordingly. |
+| DriveDown | A drive is not responding. |  |
+| DriveNeedsPhaseout | A drive has too many errors. | Phase-out the drive and probably replace it. |
+| DedicatedWatchdog | A dedicated WekaIO host requires the installation of a hardware watchdog driver. | Make sure a hardware watchdog is available at /dev/watchdog. |
+| FilesystemHasToo ManyFiles | The filesystem storage configuration is not large enough for the size of files and directory entries being stored.  | Increase the max-files for the filesystem; it may be necessary decrease max-files from another filesystem or install more memory. |
+| HangingIOs | Some IOs are hanging on the node acting as a driver/NFS/backend. | Check that the compute nodes and their hosts are up and running, and fully connected. Also check that if a backend object store is configured, it is connected and responsive. Contact the WekaIO Support Team if issue is not resolved. |
+| HighDrivesCapacity | The average capacity of the SSDs is too high.  | Free-up space on the SSDs or [add more SSDs](https://docs.weka.io/v/3.4/usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources) to the cluster. |
+| HugePagesAlloc | WekaIO could not allocate Huge Pages on a host, perhaps because of insufficient memory on the host or if memory is fragmented by usage of other processes. | Reboot the host to avoid memory fragmentation and allow WekaIO to run startIO again. If this fails, verify that the host has enough free memory for use by WekaIO or configure WekaIO to use less memory. |
+| IPConflictDetected |  | Resolve the conflict of the reported IP. |
+| JumboConnectivity | A host cannot send jumbo frames to any of its cluster peers.  | Check the host network settings and the switch to which it is connected, even if WekaIO seems to be functional, since this will improve performance. |
+| LicenseError | A license conflict exists. | Make sure the cluster is using a correct license; that the license has not expired; and that the cluster allocated space does not exceed the license. |
+| Negative UnprovisionedCapacity | WekaIO capacity usage changes detected due to cluster upgrade. | One or more of the filesystems need to be resized in order to reclaim capacity; contact the WekaIO Support Team. |
+| NetworkInterfaceLinkDown |  |  |
+| NoClusterLicense | No license is assigned to the cluster. | Obtain and install a license from get.weka.io. |
+| NodeDisconnected |  A node is disconnected from the cluster.  | Check network connectivity to make sure the node can communicate with the cluster. |
+| NodeTiering Connectivity | A node cannot connect to an object store.  | Check connectivity with the object store and make sure the node can communicate with it. |
+| NotEnoughActiveDrives | There are not enough active failure domains. | Check connectivity, host status  and/or replace problematic drives. |
+| NotEnoughConfigured MemoryForFilesystems | The total configured memory bytes for filesystems is insufficient to store the file and directory entries of the filesystems in the cluster.  | Decrease the max-files for some of the filesystems, decrease their capacity or increase the configured RAM of the cluster backend hosts. |
+| NotEnoughAvailable MemoryForFilesystems | There are not enough working compute nodes in the cluster to store the file and directory entries for all the filesystems in the cluster.  | Either try to decrease the max-files for some of the filesystems or return the dead compute nodes to get their memory back. |
+| NumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance.  | To disable, run `echo > /proc/sys/kernel/numa_balancing` on the host. |
+| OfedVersions | A host Mellanox OFED version ID does not match the one used by the WekaIO container. | Install a supported OFED. If the current version needs to be retained or the alert continues after a supported version is installed, contact the WekaIO Support Team. |
+| PartiallyConnectedNode | A node seems to be only partially connected. | Make sure there is no network connectivity issue. |
 
