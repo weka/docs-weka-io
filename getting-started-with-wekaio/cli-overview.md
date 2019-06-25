@@ -1,8 +1,8 @@
 ---
-description: This page is an overview of the WekaIO system CLI.
+description: This page provides an overview of the WekaIO system CLI.
 ---
 
-# About the CLI
+# CLI Overview
 
 ## Available Top-Level Commands
 
@@ -42,7 +42,7 @@ Use 'weka <command> --help' for more help on a specific command
 
 `-J|--json`flag prints the raw JSON value returned by the cluster.
 
-`-H|--hostname`flag directs the CLI to communicate with the cluster through the given hostname.
+`-H|--hostname`flag directs the CLI to communicate with the cluster through the given host name.
 
 `--raw-units` flag causes units such as capacity and bytes to be printed in their raw format, as returned by the cluster.
 
@@ -54,7 +54,7 @@ Use 'weka <command> --help' for more help on a specific command
 Most WekaIO system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
 
 {% hint style="warning" %}
-**For Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystem, filesystem group and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
+**For Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystems, filesystem groups and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
 {% endhint %}
 
 ```text
@@ -91,7 +91,7 @@ See 'weka fs <command> --help' for more help on a specific command
 
 ## Connecting to Another Host
 
-Most WekaIO system commands deliver the same result on all cluster hosts. However, sometimes it is necessary to execute a command on a specific host. This is performed using the `-H`/`--hostname` option and specifying the host name or IP address of the target host.
+Most WekaIO system commands deliver the same result on all cluster hosts. However, it is sometimes necessary to execute a command on a specific host. This is performed using the `-H`/`--hostname` option and specifying the host name or IP address of the target host.
 
 ## Cluster Status
 

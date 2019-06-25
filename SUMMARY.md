@@ -8,7 +8,6 @@
 * [SSD Capacity Management](overview/ssd-capacity-management.md)
 * [Filesystems, Object Stores & Filesystem Groups](overview/filesystems.md)
 * [Data Lifecycle Management](overview/data-storage.md)
-* [About the CLI](overview/cli-overview.md)
 * [WekaIO Client & Mount Modes](overview/weka-client-and-mount-modes.md)
 * [Glossary](overview/glossary.md)
 
@@ -27,6 +26,12 @@
   * [Supported EC2 Instance Types](install/aws/supported-ec2-instance-types.md)
   * [Adding Clients](install/aws/adding-clients.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
+
+## Getting Started with WekaIO
+
+* [Managing the WekaIO System](getting-started-with-wekaio/managing-wekaio-system.md)
+* [CLI Overview](getting-started-with-wekaio/cli-overview.md)
+* [GUI Overview](getting-started-with-wekaio/gui.md)
 
 ## FILESYSTEMS <a id="fs"></a>
 
