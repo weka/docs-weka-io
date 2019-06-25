@@ -8,12 +8,12 @@ description: >-
 
 ## Types of Users
 
-Access to a WekaIO system cluster is controlled by creating, modifying and deleting users. Up to 128 users can be defined to work with a WekaIO system cluster. Each user is identified by a username and must provide a password for authentication to work with the WekaIO system GUI or CLI.
+Access to a WekaIO system cluster is controlled by creating, modifying and deleting users. Up to 128 local users can be defined to work with a WekaIO system cluster. Each user is identified by a username and must provide a password for authentication to work with the WekaIO system GUI or CLI.
 
 Every WekaIO system user has one of the following defined roles:
 
 * **Admin**: A user with additional privileges, as described in [Admin Role Privileges](user-management.md#admin-role-privileges) below.
-* **User**: A regular user with read and write privileges..
+* **Regular**: A user with read and write privileges.
 * **Read-only:** A user with read-only privileges.
 
 When users open the GUI, they are prompted to provide their username and password. To pass username and password to the CLI, use the `WEKA_USERNAME` and `WEKA_PASSWORD` environment variables. 
@@ -47,47 +47,40 @@ Additionally, the following restrictions are implemented for Admin users, in ord
 To create a user, run the `weka user add` command:
 
 ```text
-$ weka user add user1 S3cret user
+$ weka user add my_new_user S3cret regular
 ```
 
-This command line creates a user with a username of `user1`, a password of `S3cret` and a role of User. It is then possible to get a list of users and verify that the user was created:
+This command line creates a user with a username of `my_new_user`, a password of `S3cret` and a role of Regular user. It is then possible to display a list of users and verify that the user was created:
 
 ```text
 $ weka user
-| Username | Role  
-+----------+-------
-| user1    | User  
-| admin    | Admin 
+Username    | Source   | Role
+------------+----------+--------
+my_new_user | Internal | Regular
+admin       | Internal | Admin
 ```
 
 To use the new user credentials, use the`WEKA_USERNAME` and `WEKA_PASSWORD`environment variables:
 
 ```text
-$ WEKA_USERNAME=user1 WEKA_PASSWORD=S3cret weka user whoami
-username: user1
-role: User
+$ WEKA_USERNAME=my_new_user WEKA_PASSWORD=S3cret weka user whoami
+Username    | Source   | Role
+------------+----------+--------
+my_new_user | Internal | Regular
 ```
 
 Using  the `weka user whoami` command, it is possible to receive information about the current user running the command. 
 
 ### Managing Users
 
-To create/delete a local user or change a local user password, use the `weka user passwd` command. For example, assuming `user1` still exists from the Creating Users section, run the following command to change the password of`user1`:
+To create/delete a local user or change a local user password, use the `weka user passwd` command. For example, assuming `my_new_user` still exists from the Creating Users section, run the following command to change the password of`my_new_user`:
 
 ```text
-$ WEKA_USERNAME=user1 WEKA_PASSWORD=S3cret weka user passwd user1 s3cret
-```
-
-As can be seen, this command requires the Admin to specify the current username and password in order to change the password.
-
-It is also possible for an Admin user to change a user’s password. This is performed as follows:
-
-```text
-$ weka user passwd user1 BackToS3cret
+$ weka user passwd my_new_user BackToS3cret
 ```
 
 {% hint style="info" %}
-**Note:** `WEKA_USERNAME` or `WEKA_PASSWORD` are not specified because by default, they are `admin`/`admin.`
+**Note:**  If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
 {% endhint %}
 
 ### Deleting Users
@@ -95,16 +88,16 @@ $ weka user passwd user1 BackToS3cret
 To delete a user, run the `user-delete` command:
 
 ```text
-$ weka user delete user1
+$ weka user delete my_new_user
 ```
 
 Then run the`weka user` command to verify that the user was deleted:
 
 ```text
 $ weka user
-| Username | Role  
-+----------+-------
-| admin    | Admin 
+Username | Source   | Role
+---------+----------+------
+admin    | Internal | Admin
 ```
 
 ## User Log In
@@ -179,7 +172,7 @@ weka user ldap setup-ad <server-uri>
 | `readonly-group` | String | Name of group containing users defined with read only privileges | Must be valid name | Yes |  |
 | `server-timeout-secs` | Number | Server connection timeout | Seconds | No |  |
 | `protocol-version` | String | Selection of LDAP version | LDAP v2 or v3 | No\` | LDAP v3 |
-| `user-signature-attribute` | Sring | Attribute that changes whenever user changes password | User must re-login after a password change | No |  |
+| `user-signature-attribute` | String | Attribute that changes whenever user changes password | User must re-login after a password change | No |  |
 
 ### Viewing a Configured LDAP User Directory
 

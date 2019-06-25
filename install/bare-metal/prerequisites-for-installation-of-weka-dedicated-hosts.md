@@ -139,7 +139,8 @@ Supported Mellanox OFED versions:
 **Note:** If it is necessary to change PKEYs, contact the WekaIO Support Team.
 {% endhint %}
 
-###  <a id="ssds"></a>
-
 ### SSDs <a id="ssds"></a>
+
+* Support PLP \(Power Loss Protection\)
+* Dedicated for WekaIO system storage \(partition not supported\)
 

@@ -259,28 +259,28 @@ Then click Save.
 **Command:** `weka nfs permission` 
 
 Use the following command lines to add/update/delete NFS permissions:  
-`weka nfs permission add <filesysten> <group> [--path=<path>][--permission-type=<perm>]  
-weka nfs permission update <filesysten> <group> [--path=<path>][--permission-type=<perm>]  
-weka nfs permission delete <filesysten> <group> [--path=<path>]`
+`weka nfs permission add <filesystem> <group> [--path=<path>][--permission-type=<perm>]  
+weka nfs permission update <filesystem> <group> [--path=<path>][--permission-type=<perm>]  
+weka nfs permission delete <filesystem> <group> [--path=<path>]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `filesysten` | String | Filesystem name | Existing filesystem | Yes |  |
+| `filesystem` | String | Filesystem name | Existing filesystem | Yes |  |
 |  `group` | String | Client group name | Existing client group | Yes |  |
 |  `path` | String | Root of the share | Valid path | No | / |
 | `perm` | String | Permission type  | RO: read only           RW: read write | No |  |
 
 Use the following command lines to add/update root-squashing:  
-`weka nfs permission add root-squashing <filesysten> <group> <permission-type> <anon-uid> <anon-gid> [--path=<path>]  
-weka nfs permission update root-squashing <filesysten> <group> <permission-type> <anon-uid> <anon-gid> [--path=<path>]`
+`weka nfs permission add root-squashing <filesystem> <group> <permission-type> <anon-uid> <anon-gid> [--path=<path>]  
+weka nfs permission update root-squashing <filesystem> <group> <permission-type> <anon-uid> <anon-gid> [--path=<path>]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-|  `filesysten` | String | Filesystem name | Existing filesystem | Yes |  |
+|  `filesystem` | String | Filesystem name | Existing filesystem | Yes |  |
 |  `group` | String | Client group name | Existing client group | Yes |  |
 | `permission-type` | String | Permission type | RO: read only                             RW: read write | Yes |  |
 | `anon-uid` | Int | Anonymous user ID \(relevant only for root squashing\) | Valid UID \(between 0 and 65535\) | Yes |  |
