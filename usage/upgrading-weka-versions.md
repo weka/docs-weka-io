@@ -1,10 +1,10 @@
 ---
 description: >-
-  This page describes how to upgrade from version 3.1.7 to the latest WekaIO
+  This page describes how to upgrade from version 3.1.9 to the latest WekaIO
   software version.
 ---
 
-# Upgrading from Version 3.1.7 and After
+# Upgrading WekaIO Versions
 
 ## Preparing for the Upgrade
 
@@ -16,6 +16,18 @@ Before upgrading your cluster, ensure the following:
 {% hint style="info" %}
 **Note:** During the upgrade process, client IOs will hang for about 1 minute.
 {% endhint %}
+
+## Supported Upgrade Paths
+
+The WekaIO upgrade process supports upgrading to both higher minor versions and major versions of the WekaIO software. 
+
+When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
+
+* To upgrade to WekaIO software version 3.4.x, go through version 3.3.1 or above.
+* To upgrade to WekaIO software version 3.3.x, go through version 3.2.1 or above.
+* To upgrade to WekaIO software version 3.2.x, go through version 3.1.9.4 or above.
+
+For further information, contact the WekaIO Support Team.
 
 ## Downloading the New Release
 
@@ -51,11 +63,6 @@ Once the upgrade is complete, verify that the cluster is in the new version by r
 `# weka status   
 WekaIO v3.2.2 (CLI build 3.2.29)  
 ...`
-{% endhint %}
-
-{% hint style="info" %}
-**Note: Disconnected Clients During Upgrade**  
-In some cases, there may be clients disconnected from the cluster during the upgrade process.  From version 3.1.7, such clients are automatically upgraded when an out-of-date software version is detected.
 {% endhint %}
 
 ## 
