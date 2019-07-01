@@ -22,9 +22,13 @@ In order to implement NFS service from a WekaIO cluster, the following steps mus
 | Configure which client hosts can access which file system. | By creating a client permission group. |
 | Mount the file systems on the client hosts using the NFS mount operating system support. | On the client operating system; does not involve WekaIO management. |
 
-## Implementing NFS Service from a WekaIO Cluster
-
 ### Defining the NFS Networking Configuration \(Interface Groups\)
+
+{% hint style="info" %}
+**Note:** Since only a single port can be added to an interface group, for HA support in NFS, two interface groups must be created, with each of the host ports assigned to a different interface group. Additionally, the network topology \(switches\) must be considered when assigning the other host ports to these interface groups, to ensure that a single point of failure is not created in the switch.
+{% endhint %}
+
+## Implementing NFS Service from a WekaIO Cluster
 
 In order to define the NFS service, one or more interface groups must be defined. An interface group consists of the following:
 

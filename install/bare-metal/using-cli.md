@@ -20,7 +20,7 @@ On completion of this stage in the installation process, the WekaIO software is 
 
 This stage involves the formation of a cluster from the allocated hosts. It is performed using the following command line:
 
- `weka cluster create <hostnames>... [--host-ips <ips>]...`
+ `weka cluster create <hostnames>... [--host-ips <ips>]...[--host-ip+ip <ip+ip>]...`
 
 **Parameters in Command Line**
 
@@ -28,6 +28,7 @@ This stage involves the formation of a cluster from the allocated hosts. It is p
 | :--- | :--- | :--- | :--- | :--- |
 | `hostnames` | Space- separated strings | Host names or IP addresses | Need at least 6 strings, as this is the minimal cluster size | Yes |
 | `host-ips` | Comma- separated IP addresses | IP addresses of the management interfaces | Same number of values as in `hostnames`.  | Only in IB |
+| `ip+ip` | Comma-separated IP addresses | IP addresses of two cards for HA configuration | Pair of IPs |  |
 
 {% hint style="info" %}
 **Note:** It is possible to use either a host name or an IP address; this string serves as the identifier of the host in subsequent commands.
@@ -37,11 +38,15 @@ This stage involves the formation of a cluster from the allocated hosts. It is p
 **Note:** If a host name is used, make sure that the host name to IP resolution mechanism is reliable, since failure of this mechanism will cause a loss of service in the cluster. It is recommended to add the host names to `/etc/hosts`.
 {% endhint %}
 
-On successful completion of the formation of the cluster, every host receives a host ID specified in the host name parameter. Use of the command line `weka cluster host` will display a list of the hosts and IDs.
-
 {% hint style="info" %}
 **Note:** After successful completion of this command, the cluster is in the initialization phase, and some commands can only run in this phase.
 {% endhint %}
+
+{% hint style="info" %}
+**Note:** For configuring HA, at least two cards must be defined for each host.
+{% endhint %}
+
+On successful completion of the formation of the cluster, every host receives a host ID specified in the host name parameter. Use of the command line `weka cluster host` will display a list of the hosts and IDs.
 
 {% hint style="info" %}
 **Note:** In IB installations the `--hosts-ips` parameter must specify the IP addresses of the IPoIB interfaces.
@@ -75,13 +80,13 @@ To learn more, and learn and what else is needed in order to enable cloud event 
 
 **Command:** `cluster host net add`
 
-The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(IB\). A physical network device must be specified for both types. This can be a device dedicated to the WekaIO system, or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
-
 When PKEYs are used, the device name for InfiniBand should follow the name.PKEY convention.
 
 {% hint style="info" %}
 **Note:** Although in general, devices can be renamed arbitrarily, WekaIO will only function correctly if the .PKEY naming convention is followed.
 {% endhint %}
+
+The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(IB\). A physical network device must be specified for both types. This can be a device dedicated to the WekaIO system, or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
 
 To perform this operation, the cluster host net add command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
@@ -101,6 +106,10 @@ To perform this operation, the cluster host net add command must be run for each
 The number of IP addresses should be at least the number of cores [planned](planning-a-weka-system-installation.md#cpu-resource-planning). A larger number can be specified, in which case the unused IP addresses will be assigned if and when more cores will be allocated using the expand process.
 
 ### Optional: Configure default data networking
+
+{% hint style="info" %}
+**Note:** For HA configurations, this command has to be run separately for each interface.
+{% endhint %}
 
 **Command:** `cluster default-net set`
 
@@ -153,7 +162,7 @@ After provisioning the SSDs to be used by a WekaIO filesystem using the previous
 
 This stage in the installation process is used to configure the amount of CPU resources, which are physical rather than logical cores. To perform this operation, use the following command line:
 
-`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <fe_cores>] [`--drives-dedicated-cores `<be_cores>] [--cores-ids <cores_ids>]`
+`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <fe_cores>] [--drives-dedicated-cores <be_cores>] [--cores-ids <cores_ids>]`
 
 **Parameters in Command Line**
 
@@ -161,9 +170,9 @@ This stage in the installation process is used to configure the amount of CPU re
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which a core count should be configured | Must be a valid host identifier | Yes |  |
 | `cores` | Number | Number of physical cores to be allocated to the WekaIO system | Should be less than the number of physical cores in the host \(leaving 1 core for the OS\) . Maximum 19 cores | Yes |  |
-| fe\_cores | Number | Number of physical cores to be dedicated to FrontEnd processes | The total of fe\_cores and be\_cores must be less than cores above | No | zero |
-| be\_cores | Number | Number of physical cores to be dedicated to Drive/SSD processes | The total of fe\_cores and be\_cores must be less than cores above | No | Typically 1 core per drive or 1/2 core per drive/SSD |
-| cores\_ids | Comma-separated list Numbers | Physical Core numbers | Specification of which cores to use. | No | Select cores automatically |
+| `fe_cores` | Number | Number of physical cores to be dedicated to FrontEnd processes | The total of fe\_cores and be\_cores must be less than cores above | No | zero |
+| `be_cores` | Number | Number of physical cores to be dedicated to Drive/SSD processes | The total of fe\_cores and be\_cores must be less than cores above | No | Typically 1 core per drive or 1/2 core per drive/SSD |
+| `cores_ids` | Comma-separated list Numbers | Physical Core numbers | Specification of which cores to use. | No | Select cores automatically |
 
 {% hint style="info" %}
 **Note:** Performance can be optimized by assigning different functions to the various WekaIO cores. If necessary, contact the WekaIO Support Team for more information.
@@ -211,8 +220,8 @@ This operation is performed using the following command line:
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which the failure domain should be configured | Must be a valid host identifier | Yes |  |
-| `fd-name` | String | The failure domain that will contain the host from now |  | Yes \(either --name OR --auto must be specified\) | None |
-| --auto | n/a | n/a | Will automatically assign fd-name | Yes \(either --name OR --auto must be specified\) | None |
+| `fd-name` | String | The failure domain that will contain the host from now |  | Yes \(either `--name` OR `--auto` must be specified\) | None |
+| `--auto` | n/a | n/a | Will automatically assign fd-name | Yes \(either `--name` OR `--auto` must be specified\) | None |
 
 ## Stage 11: Configuration of WekaIO System Protection Scheme
 

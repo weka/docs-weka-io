@@ -54,6 +54,11 @@ description: >-
 * Should be on an SSD or SSD-like performance, e.g., M.2. Cannot be shared remotely NFS mounted or on RAM drive
 * At least 26 GB available for the WekaIO system installation, with additional 10GB for each core used by Weka
 
+### Networking - HA
+
+* System HA: Resilience on loss of one switch \(in configurations with 2 or more switches\)
+* Client HA: Supported on WekaIO, but not via LACP; therefore, validate compatibility of other applications running on the same ports with WekaIO HA
+
 ### Networking - Ethernet <a id="networking-ethernet"></a>
 
 #### NIC
@@ -134,6 +139,7 @@ Supported Mellanox OFED versions:
 * PKEYs: Supported
 * Support PLP \(Power Loss Protection\)
 * Dedicated for WekaIO system storage \(partition not supported\)
+* Dual InfiniBand can be used for both HA and higher bandwidth
 
 {% hint style="info" %}
 **Note:** If it is necessary to change PKEYs, contact the WekaIO Support Team.
