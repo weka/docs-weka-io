@@ -20,7 +20,7 @@ On completion of this stage in the installation process, the WekaIO software is 
 
 This stage involves the formation of a cluster from the allocated hosts. It is performed using the following command line:
 
- `weka cluster create <hostnames>... [--host-ips <ips>]...`
+ `weka cluster create <hostnames>... [--host-ips <ips>]...` 
 
 **Parameters in Command Line**
 
