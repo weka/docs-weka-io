@@ -51,7 +51,7 @@ A collection of filesystems which share a common connectivity to an object store
 
 ### Hot Data
 
-Frequently-used data \(as opposed to warm data\).
+Frequently-used data \(as opposed to warm data\),  usually residing on SSDs.
 
 ### Hyper-Converged Deployment
 
@@ -125,5 +125,5 @@ The storage capacity available for new filesystems.
 
 ### Warm Data
 
-Infrequently-used data \(as opposed 
+Less frequently-used data \(as opposed to hot data\), usually residing on an object store.
 
