@@ -82,7 +82,7 @@ WekaIO utilizes the Linux page cache for the mounted filesystem. This allows for
 ## Setting Up Automount \(autofs\)
 
 {% hint style="info" %}
-**Note:** The following information is relevant for mounting a filesystem using both the traditional method and the Stateless Clients feature.
+**Note:** The following information is relevant for mounting a filesystem using both the traditional method and the Stateless Clients feature \(for Stateless Clients, the WekaIO agent must already be installed\).
 {% endhint %}
 
 It is possible to mount a WekaIO filesystem using the `autofs` command. This is useful because mounting a WekaIO filesystem can only be performed after the WekaIO system has started running on a host, i.e., it is not possible to mount WekaIO filesystems at boot time by adding them to `/etc/fstab`.
@@ -119,11 +119,15 @@ Finally, restart the `autofs` service:
 service autofs restart
 ```
 
-It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
-
 {% hint style="warning" %}
 **For Example:** The`default`filesystem is automatically mounted under`/mnt/weka/default`.
 {% endhint %}
+
+{% hint style="info" %}
+**Note:** The configuration is distribution-dependent and it is necessary to ensure that the service is configured to start automatically after the host is rebooted. To verify that the  autofs service automatically starts after restarting the server, run the following command: `systemctl is-enabled autofs.` If output is `enabled`, the service is configured to start automatically.
+{% endhint %}
+
+It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
 
 ## Mounting Filesystems Using the Stateless Clients Feature <a id="mounting-filesystems-using-stateless-clients"></a>
 
@@ -223,7 +227,9 @@ The following mount options are available in addition to the mount options descr
       </td>
     </tr>
   </tbody>
-</table>{% hint style="warning" %}
+</table>\`\`
+
+{% hint style="warning" %}
 **For Example: On Premises Installations**
 
 `mount -t wekafs -o num_cores=1 -o net=ib0 backend-host-0/my_fs /mnt/weka`
@@ -234,8 +240,6 @@ Running this command on a host installed with the WekaIO agent will download the
 
 Running this command will use [UDP mode ](../install/bare-metal/planning-a-weka-system-installation.md#network-planning)\(usually selected when the use of DPDK is not available\)
 {% endhint %}
-
-\`\`
 
 {% hint style="warning" %}
 **For Example: AWS Installations**
