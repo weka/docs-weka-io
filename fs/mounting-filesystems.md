@@ -74,7 +74,7 @@ In addition, the`inode_bits` option is available:
 ## Page Cache <a id="page-cache"></a>
 
 {% hint style="info" %}
-**Note:** The following information is relevant for mounting a filesystem using both the traditional method and the Stateless Clients feature.
+**Note:** The following information is relevant for mounting a filesystem using both the traditional method and the Stateless Clients feature. 
 {% endhint %}
 
 WekaIO utilizes the Linux page cache for the mounted filesystem. This allows for better performance when accessing the same files multiple times at around the same time.
@@ -82,12 +82,12 @@ WekaIO utilizes the Linux page cache for the mounted filesystem. This allows for
 ## Setting Up Automount \(autofs\)
 
 {% hint style="info" %}
-**Note:** The following information is relevant for mounting a filesystem using both the traditional method and the Stateless Clients feature.
+**Note:** The following information is relevant for mounting a filesystem using both the traditional method and the Stateless Clients feature \(for Stateless Clients, the WekaIO agent must already be installed\).
 {% endhint %}
 
 It is possible to mount a WekaIO filesystem using the `autofs` command. This is useful because mounting a WekaIO filesystem can only be performed after the WekaIO system has started running on a host, i.e., it is not possible to mount WekaIO filesystems at boot time by adding them to `/etc/fstab`.
 
-To get started, install `autofs` on the host:
+To get started, install `autofs` on the host: 
 
 ```text
 # On RedHat/Centos
@@ -113,11 +113,15 @@ echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" >
 echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
 ```
 
-Finally, restart the `autofs` service:
+Finally, restart the `autofs` service: 
 
 ```text
 service autofs restart
 ```
+
+{% hint style="info" %}
+**Note:** The configuration is distribution-dependent and it is necessary to ensure that the service is configured to start automatically after the host is rebooted. To verify that the  autofs service automatically starts after restarting the server, run the following command: `systemctl is-enabled autofs.` If output is `enabled`, the service is configured to start automatically.
+{% endhint %}
 
 It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
 
