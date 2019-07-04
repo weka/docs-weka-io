@@ -11,7 +11,7 @@ description: >-
 There are two methods available for mounting a filesystem in one of the cluster hosts:
 
 1. Using the traditional method: See below and also refer to [Adding Clients](https://docs.weka.io/~/edit/drafts/-LTq8BSEMpeayMPh2Klz/v/3.1.9/install/bare-metal/adding-clients-bare-metal) \(Bare Metal Installation\) or [Adding Clients](../install/aws/adding-clients.md) \(AWS Installation\), where first a client is configured and joins a cluster, after which a mount command is executed.
-2. Using the Stateless Clients feature: See [Mounting Filesystems Using the Stateless Clients Feature](https://docs.weka.io/~/edit/drafts/-LTq8BSEMpeayMPh2Klz/v/3.1.9/fs/mounting-filesystems#mounting-filesystems-using-stateless-clients) below, which simplifies and improves the management of clients in the cluster and eliminates the Adding Clients process.
+2. Using the Stateless Clients feature: See [Mounting Filesystems Using the Stateless Clients Feature](mounting-filesystems.md#mounting-filesystems-using-stateless-clients) below, which simplifies and improves the management of clients in the cluster and eliminates the Adding Clients process.
 
 This page describes both these options.
 
