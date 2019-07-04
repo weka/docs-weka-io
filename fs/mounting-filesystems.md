@@ -154,7 +154,7 @@ Use the following command line to invoke the mount command:
 `mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-path>`
 
 {% hint style="info" %}
-**Note:** All mount options above \(see [Mount Mode Command Options](https://docs.weka.io/~/edit/drafts/-LTq8BSEMpeayMPh2Klz/v/3.1.9/fs/mounting-filesystems#mount-mode-command-options)\) are valid for this method of mounting filesystems.
+**Note:** All mount options above \(see [Mount Mode Command Options](mounting-filesystems.md#mount-mode-command-options)\) are valid for this method of mounting filesystems.
 {% endhint %}
 
 **Parameters in Command Line**
