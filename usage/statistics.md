@@ -18,10 +18,13 @@ By default, the main statistics page displays the last 3 hours of operation, pre
 
 This Statistics view screen offers a number of options to drill-down into the statistics, according to category. Options include:
 
-* Viewing the average number of operations per second \(by moving cursor on the time axis\).
+* Mousing over the scrollable graph area to view various performance metrics of the WekaIO matrix cluster.
 * Troubleshooting or obtaining a correlation between events and performance \(using the top line which provides links to events that occurred\).
 * Adding more statistics to the view \(using the Statistics menu\).
-* Displaying different dimensions simultaneously and toggling between them.
+* Displaying different statistics simultaneously and toggling between them. By default, the graph area shows Ops/sec for the last hour. Using the "Hour, Day, Week" buttons
+
+  at the bottom-right enables changing of the time interval.
+
 * Displaying, hiding. deleting, and zooming-in on statistics from defined timelines and dates.
 * Bookmarking specific statistics for future reference and sharing with others \(using the URL\).
 
@@ -43,13 +46,13 @@ To select the addition of specific statistics, click the + Add Statistics tab on
 
 Then select the component for which statistics required from the six possible categories. As each component is selected, the list of possible Statistics Names that can be selected changes. It is also possible to searching for a specific statistic by typing the name of the statistic in the Filter field at the top of the menu. 
 
-Up to 5 different statistics can be displayed simultaneously. When each statistic is selected, another graph is added to the Statistics view screen, together with a selector containing the category and name of the statistics which are displayed according to the appropriate units. 
+Up to 5 different statistics can be displayed simultaneously. Selecting a metric adds its graph to the Statistics view, together with a selector containing the category and name of the statistics which are displayed according to the appropriate units. 
 
 Switching the active unit scale is performed by clicking on one of the inactive units displayed in the left bottom corner of the graph display box.
 
 ### Hiding/Deleting Statistics
 
-To hide or delete statistics from a graph, hover with the mouse on the selector and click either the Hide or Delete button appearing under the selector.
+To hide or delete statistics from a graph, mouse-over the selector and click either the Hide or Delete button appearing under the selector.
 
 ![Example of Hide/Delete Buttons ](../.gitbook/assets/screenshot-from-2018-07-29-13-13-57.png)
 
