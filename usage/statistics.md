@@ -56,7 +56,7 @@ To hide or delete statistics from a graph, mouse-over the selector and click eit
 
 ![Example of Hide/Delete Buttons ](../.gitbook/assets/screenshot-from-2018-07-29-13-13-57.png)
 
-### Defining a Specific Timeline
+### Specifying a Time Frame
 
 To define a specific period of time \(start and end\) for the statistics to be displayed, click the From and To selectors appearing in the left corner of the graph display box. Then select the date of the statistics required from the calendar popup and the hours from the right scroller, or by using the up and down arrows that appear when hovering on the time selectors.
 
