@@ -106,9 +106,9 @@ When a login is attempted, the user is first searched in the list of internal us
 
 However, if a user does not exist in WekaIO but does exist in a LDAP directory, it is possible to [configure the LDAP user directory](https://app.gitbook.com/@wekaio/s/docs/~/edit/drafts/-Lh-M7iV6p8T7nyX9Ra8/v/3.4/usage/user-management#configuring-an-ldap-user-directory) to the WekaIO system. This will enable a search for the user in the directory, followed by password verification.
 
-On each successful login, a `UserLoggedIn` event is emitted, containing the username, role and whether the user is an internal or LDAP user.
+On each successful login, a `UserLoggedIn` event is issued, containing the username, role and whether the user is an internal or LDAP user.
 
-When a login fails, an "Invalid username or password" message is displayed and a `UserLoginFailed` event is emitted, containing the username and the reason for the login failure.
+When a login fails, an "Invalid username or password" message is displayed and a `UserLoginFailed` event is issued, containing the username and the reason for the login failure.
 
 ## Authenticating Users from an LDAP User Directory
 
