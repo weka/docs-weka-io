@@ -6,10 +6,6 @@ description: >-
 
 # SMB Management Using the GUI
 
-{% hint style="info" %}
-**Note:** For activating GUI control of Samba, contact the WekaIO Support Team.
-{% endhint %}
-
 ## **Configuring a Samba Cluster**
 
 To configure a Samba cluster, first access the SMB Service view.
@@ -26,16 +22,16 @@ Enter the name and domain, choose between 3 to 8 hosts and enter the IPs \(make 
 **Note:** in order to add an IP range, it is possible to use`a.b.c.x-y` notation.
 {% endhint %}
 
+{% hint style="info" %}
+**Note:** In AWS installations, it is not possible to enter a list of SMB service addresses. The SMB service must be accessed using the primary addresses of the cluster nodes.
+{% endhint %}
+
 The following Samba Cluster Configuration window will be displayed:
 
 ![Samba Cluster Configuration Window](../.gitbook/assets/samba-cluster-configuration-window%20%281%29.png)
 
 {% hint style="info" %}
 **Note:** The status of the hosts will change from not ready to ready.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** In AWS installations, it is not possible to enter a list of SMB service addresses. The SMB service must be accessed using the primary addresses of the cluster nodes.
 {% endhint %}
 
 ## Joining Samba to an Active Directory
@@ -48,6 +44,10 @@ Enter the provided username and password in order to access the Active Directory
 
 {% hint style="info" %}
 **Note:** WekaIO does not save the user password. A computer account is created on behalf of the user for the SMB cluster.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** The AD server must be the DNS server for the WekaIO storage nodes in order for them to join the AD domain
 {% endhint %}
 
 On successful completion, the join status next to the domain will change to "joined as &lt;username&gt;" as shown below:
