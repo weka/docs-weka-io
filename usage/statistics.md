@@ -12,7 +12,7 @@ As the WekaIO system runs, it collects hundreds of statistics on system performa
 
 Five different categories of statistics are available for review - Operations \(NFS\), Operations \(Driver\), Object Store, SSD and CPU – and when each category is selected, a list of the possible statistics that can be selected is displayed.
 
-By default, the main statistics page displays the last 3 hours of operation, presenting the WekaIO system operation per second on a time axis.
+By default, the main statistics page displays the last hour of operation, presenting the WekaIO system operation per second on a time axis.
 
 ![Statistics View Screen](../.gitbook/assets/statistics-main-screen.png)
 
@@ -131,162 +131,224 @@ or:
 
 ## List of Statistics Collected
 
-This section details the statistics collected to analyze system performance and determine the source of any problems as the WekaIO system runs, according to the following five categories: Operations \(NFS\), Operations \(Driver\), Object Storage, SSD and CPU. When each category is selected, a list of the possible statistics that can be selected is displayed.
+This section details the statistics collected to analyze system performance and determine the source of any problems as the WekaIO system runs, according to the following six categories: Operations, Operations \(NFS\), Operations \(Driver\), Object Storage, SSD and CPU. When each category is selected, a list of the possible statistics that can be selected is displayed.
 
 {% hint style="info" %}
 **Note:** All statistics are averaged over 1 second intervals. Consequently, "total" or other aggregates relate to a specific minute.
 {% endhint %}
 
+### Operations Statistics
+
+| Statistic | Description |
+| :--- | :--- |
+| ACCESS\_LATENCY | Average latency of ACCESS operations, in microseconds |
+| ACCESS\_OPS | Number of ACCESS operations per second |
+| COMMIT\_LATENCY | Average latency of COMMIT operations, in microseconds |
+| COMMIT\_OPS | Number of COMMIT operations per second |
+| CREATE\_LATENCY | Average latency of CREATE operations, in microseconds |
+| CREATE\_OPS | Number of CREATE operations per second |
+| FILEATOMICOPEN\_LATENCY | Average latency of FILEATOMICOPEN operations, in microseconds |
+| FILEATOMICOPEN\_OPS | Number of FILEATOMICOPEN operations per second |
+| FILECLOSE\_LATENCY | Average latency of FILECLOSE operations, in microseconds |
+| FILECLOSE\_OPS | Number of FILECLOSE operations per second |
+| FILEOPEN\_LATENCY | Average latency of FILEOPEN operations, in microseconds |
+| FILEOPEN\_OPS | Number of FILEOPEN operations per second |
+| FLOCK\_LATENCY | Average latency of FLOCK operations, in microseconds |
+| FLOCK\_OPS | Number of FLOCK operations per second |
+| FSINFO\_LATENCY | Average latency of FSINFO operations, in microseconds |
+| FSINFO\_OPS | Number of FSINFO operations per second |
+| GETATTR\_LATENCY | Average latency of GETATTR operations, in microseconds |
+| GATATTR\_OPS | Number of GETATTR operations per second |
+| LINK\_LATENCY | Average latency of LINK operations, in microseconds |
+| LINK\_OPS | Number of LINK operations per second |
+| LOOKUP\_LATENCY | Average latency of LOOKUP operations, in microseconds |
+| LOOKUP\_OPS | Number of LOOKUP operations per second |
+| MKDIR\_LATENCY | Average latency of MKDIR operations, in microseconds |
+| MKDIR\_OPS | Number of MKDIR operations per second |
+| MKNOD\_OPS | Number of MKNOD operations per second |
+| MKNOD\_LATENCY | Average latency of MKNOD operations per second |
+| OPS | Total number of operations per second |
+| PATHCONF\_LATENCY | Average latency of PATHCONF operations, in microseconds |
+| PATHCONF\_OPS | Number of PATHCONF operations per second |
+| READ\_BYTES | Number of byte reads per second |
+| READDIR\_LATENCY | Average latency of READDIR operations, in microseconds |
+| READDIR\_OPS | Number of READDIR operations per second |
+| READ\_DURATION | Histogram of read duration, in microseconds |
+| READLINK\_LATENCY | Average latency of READLINK operations, in microseconds |
+| READLINK\_OPS | Number of READLINK operations per second |
+| READ\_LATENCY | Average latency of READ operations, in microseconds |
+| READS | Number of READ operations per second |
+| REMOVE\_LATENCY | Average latency of REMOVE operations, in microseconds |
+| REMOVE\_OPS | Number of REMOVE operations per second |
+| RENAME\_LATENCY | Average latency of RENAME operations, in microseconds |
+| RENAME\_OPS | Number of RENAME operations per second |
+| RMDIR\_LATENCY | Average latency of RMDIR operations, in microseconds |
+| RMDIR\_OPS | Number of RMDIR operations per second |
+| SETATTR\_LATENCY | Average latency of SETATTR operations, in microseconds |
+| SETATTR\_OPS | Number of SETATTR operations per second |
+| STATFS\_LATENCY | Average latency of STATFS operations, in microseconds |
+| STATFS\_OP | Number of STATFS operations per second |
+| SYMLINK\_LATENCY | Average latency of SYMLINK operations, in microseconds |
+| SYMLINK\_OPS | Number of SYMLINK operations per second |
+| THROUGHPUT | Number of byte read/writes per second |
+| UNLINK\_LATENCY | Average latency of UNLINK operations, in microseconds |
+| UNLINK\_OPS | Number of UNLINK operations per second |
+| WRITES | Number of WRITE operations per second |
+| WRITE\_BYTES | Number of byte writes per second |
+| WRITE\_DURATION | Histogram of write duration, in microseconds |
+| WRITE\_LATENCY | Average latency of WRITE operations, in microseconds |
+
 ### Operations \(NFS\) Statistics
 
 | Statistic | Description |
 | :--- | :--- |
-| ACCESS\_OPS \(total\) | The number of checks of access permissions \(that a specified user has to a filesystem object\) performed. |
-| ACCESS\_Latency \(per operation\) | The time spent performing access permission checks that a specified user has to a filesystem. |
-| COMMIT\_OPS \(total\) | The number of commit operations of cached data on a server to stable storage. |
-| COMMIT\_Latency \(per operation\) | The time spent committing cached data on a server to stable storage. |
-| CREATE\_OPS \(total\) | The number of regular file creation operations.  |
-| CREATE\_Latency \(per operation\) | The time spent performing regular file creation operations. |
-| FSINFO\_OPS \(total\) | The number of operations performed to retrieve nonvolatile filesystem state information and general information about the NFS version 3 protocol server implementation. |
-| FSINFO\_Latency \(per operation\) | The time spent retrieving nonvolatile filesystem state information and general information about the NFS version 3 protocol server implementation. |
-| GETATTR\_OPS \(total\) | The number of file attributes retrieved for a specified filesystem object.  |
-| GETATTR\_Latency \(per operation\) | The time spent retrieving file attributes for a specified filesystem object.  |
-| LINK\_OPS \(total\) | The number of hard links created from files to objects in the directory. The link.dir files and link.dir must reside on the same filesystem and server. |
-| LINK\_Latency \(per operation\) | The time spent creating hard links from files to objects in the directory. |
-| LOOKUP\_OPS \(total\) | The number of searches for specific names in a directory and returns of the file handles for the corresponding filesystem objects. |
-| LOOKUP\_Latency \(per operation\) | The time spent searching for specific names in a directory and returns of the file handles for the corresponding filesystem objects. |
-| MKDIR\_OPS \(total\) | The number of new directories created. |
-| MKDIR\_Latency \(per operation\) | The time spent creating new directories. |
-| MKNOD\_OPS \(total\) | The number of new special files \(device files or named pipes\) created. |
-| MKNOD\_Latency \(per operation\) | The time spent creating new special files \(device files or named pipes\). |
-| NFS write sizes \(total\) | Histogram of NFS write sizes. |
-| NFS read sizes \(total\) | Histogram of NFS read sizes. |
-| OPS \(total\) | The total number of operations. |
-| PATHCONF\_OPS \(total\) | The number of retrievals of the PATHCONF information for a file or directory. If the FSF\_HOMOGENEOUS bit is set in SFINFO3resok.properties, the PATHCONF information will be the same for all files and directories in the exported filesystem in which this file or directory resides. |
-| PATHCONF\_Latency \(per operation\) | The time spent retrieving PATHCONF information for a file or directory. |
-| READ\_Bytes \(total\) | The number of bytes read from a file. |
-| READ\_Latency \(per read\) | The time spent reading bytes from a file. |
-| READ\_Duration \(total\) | Histogram of the time spent performing read operations. |
-| READDIR\_OPS \(total\) | The total number of retrieval operations attempted i.e., retrieval of a variable number of entries, in sequence, from a directory and return of the name and file identifier for each, with information allowing the request of additional directory entries in a subsequent READDIR request. |
-| READDIR\_Latency \(per operation\) | The time spent performing retrieval operations. |
-| READLINK\_OPS \(total\) | The total number of reads performed on data associated with a symbolic link i.e., data that is not interpreted when created, but just stored. |
-| READLINK\_Latency \(per operation\) | The time spent performing read operations on data associated with a symbolic link. |
-| READS \(total\) | The total number of read operations. |
-| REMOVE\_OPS \(total\) | The number of entries removed \(deleted\) from a directory \(if the entry in the directory was the last reference to the corresponding filesystem object, the object may be destroyed\). |
-| REMOVE\_Latency \(per operation\) | The time spent removing \(deleting\) entries from a directory. |
-| RENAME\_OPS \(total\) | The number of file or directory renames performed \(operation must be atomic to the client\). The To and From directories must reside on the same filesystem and server. |
-| RENAME\_Latency \(per operation\) | The time spent renaming files or directories.  |
-| SETATTR\_OPS \(total\) | The number of filesystem object attributes set on the server. |
-| SETATTR\_Latency \(per operation\) | The time spent setting filesystem object attributes on the server. |
-| STATFS\_OPS \(total\) | The number of operations performed to retrieve static filesystem information. |
-| STATFS\_Latency \(per operation\) | The time spent retrieving static filesystem information. |
-| SYMLINK\_OPS \(total\) | The number of symbolic links created. |
-| SYMLINK\_Latency \(per operation\) | The time spent creating symbolic links. |
-| Throughput \(total\) | The total number byte reads/writes. |
-| WRITE\_Bytes \(total\) | The number of bytes written to a file. |
-| WRITE\_Latency \(per write\) | The time spent writing bytes to a file. |
-| WRITE\_Duration \(total\) | Histogram of the time spent performing write operations. |
-| WRITES \(total\) | The total number of write operations. |
+| ACCESS\_OPS | The number of ACCESS operations per second |
+| ACCESS\_LATENCY | The average latency of ACCESS operations, in microseconds |
+| COMMIT\_OPS | The number of COMMIT operations per second |
+| COMMIT\_LATENCY | The average latency of COMMIT operations, in microseconds |
+| CREATE\_OPS | The number of CREATE operations per second  |
+| CREATE\_LATENCY | The average latency of CREATE operations, in microseconds |
+| FSINFO\_OPS | The number of FSINFO operations per second |
+| FSINFO\_LATENCY | The average latency of FSINFO operations, in microseconds |
+| GETATTR\_OPS | The number of GETATTR operations per second  |
+| GETATTR\_LATENCY | The average latency of GETATTR operations, in microseconds |
+| LINK\_OPS | The number of LINK operations per second |
+| LINK\_LATENCY | The average latency of LINK operations, in microseconds |
+| LOOKUP\_OPS | The number of LOOKUP operations per second |
+| LOOKUP\_LATENCY | The average latency of LOOKUP operations, in microseconds |
+| MKDIR\_OPS | The number of MKDIR operations per second |
+| MKDIR\_LATENCY | The average latency of MKDIR operations, in microseconds |
+| MKNOD\_OPS | The number of MKNOD operations per second |
+| MKNOD\_LATENCY | The average latency of MKNOD operations, in microseconds |
+| OPS | The total number of operations per second |
+| PATHCONF\_OPS | The number of PATHCONF operations per second |
+| PATHCONF\_LATENCY | The average latency of PATHCONF operations, in microseconds |
+| READ\_BYTES | The number of bytes read per second |
+| READ\_DURATION | Histogram of the time spent performing read operations, in ,microseconds |
+| READ\_LATENCY | The average latency of READ operations, in microseconds |
+| READ\_SIZES | Histogram of NFS read sizes |
+| READDIR\_OPS | The number of READDIR operations per second |
+| READDIR\_LATENCY | The average latency of READDIR operations, in microseconds |
+| READLINK\_OPS | The number of READLINK operations per second |
+| READLINK\_LATENCY | The average latency of READLINK operations, in microseconds |
+| READS | The number of read operations per second |
+| REMOVE\_OPS | The number of REMOVE operations per second |
+| REMOVE\_LATENCY | The average latency of REMOVE operations, in microseconds |
+| RENAME\_OPS | The number of RENAME operations per second |
+| RENAME\_LATENCY | The average latency of RENAME operations, in microseconds |
+| SETATTR\_OPS | The number of SETATTR operations per second |
+| SETATTR\_LATENCY | The average latency of SETATTR operations, in microseconds |
+| STATFS\_OPS | The number of STATFS operations per second |
+| STATFS\_LATENCY | The average latency of STATFS operations, in microseconds |
+| SYMLINK\_OPS | The number of SYMLINK operations per second |
+| SYMLINK\_LATENCY | The average latency of SYMLINK operations, in microseconds |
+| THROUGHPUT | The number byte read/write per second |
+| WRITES | The number of WRITE operations per second |
+| WRITE\_BYTES | The number of bytes written to a file per second |
+| WRITE\_LATENCY | The average latency of WRITE operations, in microseconds |
+| WRITE\_DURATION | Histogram of the time spent performing write operations |
+| WRITE\_SIZES | Histogram of NFS write sizes |
 
 ### Operations \(Driver\) Statistics
 
 | Statistic | Description |
 | :--- | :--- |
-| Direct Read Sizes \(total\) | Histogram of the sizes of read operations that were not cached. |
-| Direct Write Sizes \(total\) | Histogram of the sizes of write operations that were not cached. |
-| FILEATOMICOPEN OPS \(total\) | The number of atomic open operations \(operations that atomically create and open a file\). |
-| FILEATOMICOPEN Latency \(per operation\) | The time spent on atomic open operations. |
-| FILEOPEN OPS \(total\) | The number of file open operations. |
-| FILEOPEN Latency \(per operation\) | The time spent on file open operations. |
-| FILECLOSE OPS \(total\) | The number of file close operations. |
-| FILECLOSE Latency \(per operation\) | The time spent on file close operations. |
-| FLOCK OPS \(total\) | The number of file lock operations. |
-| FLOCK Latency \(per operation\) | The time spent on file lock operations \(without the time spent waiting for the lock to be granted\). |
-| GETATTR\_OPS \(total\) | The number of file attributes retrieved for a specified filesystem object.  |
-| GETATTR\_Latency \(per operation\) | The time spent retrieving file attributes for a specified filesystem object.  |
-| IOCTL\_OBS\_PREFETCH OPS \(total\) | The number of OBS prefetch operations. |
-| IOCTL\_OBS\_PREFETCH Latency \(per operation\) | The time spent on OBS prefetch operations. |
-| LINK\_OPS \(total\) | The number of hard links created from files to objects in the directory. The link.dir files and link.dir must reside on the same filesystem and server. |
-| LINK\_Latency \(per operation\) | The time spent creating hard links from files to objects in the directory. |
-| LOOKUP\_OPS \(total\) | The number of searches for specific names in a directory and returns of the file handles for the corresponding filesystem objects. |
-| LOOKUP\_Latency \(per operation\) | The time spent searching for specific names in a directory and returns of the file handles for the corresponding filesystem objects. |
-| MKNOD\_OPS \(total\) | The number of new special files \(device files or named pipes\) created. |
-| MKNOD\_Latency \(per operation\) | The time spent creating new special files \(device files or named pipes\). |
-| OPS \(total\) | The total number of operations. |
-| Reads \(total\) | The total number of data read operations. |
-| Read Bytes \(total\) | The number of bytes read from a file. |
-| Read Duration \(total\) | Histogram of the time spent performing read operations. |
-| Read Latency \(per read\) | The time spent reading bytes from a file. |
-| Read Sizes \(total\) | Histogram of sizes of read operations. |
-| READDIR\_OPS \(total\) | The total number of retrieval operations attempted i.e., retrieval of a variable number of entries, in sequence, from a directory and return of the name and file identifier for each, with information allowing the request of additional directory entries in a subsequent READDIR request. |
-| READDIR\_Latency \(per operation\) | The time spent performing retrieval operations. |
-| RENAME\_OPS \(total\) | The number of file or directory renames performed \(operation must be atomic to the client\). The To and From directories must reside on the same filesystem and server. |
-| RENAME\_Latency \(per operation\) | The time spent renaming files or directories.  |
-| RMDIR OPS \(total\) | The number of directory deletes performed. |
-| RMDIR Latency \(per operation\) | The time spent deleting directories. |
-| READLINK\_OPS \(total\) | The total number of reads performed on data associated with a symbolic link i.e., data that is not interpreted when created, but just stored. |
-| READLINK\_Latency \(per operation\) | The time spent performing read operations on data associated with a symbolic link. |
-| STATFS\_OPS \(total\) | The number of operations performed to retrieve static filesystem information. |
-| STATFS\_Latency \(per operation\) | The time spent retrieving static filesystem information. |
-| SETATTR OPS \(total\) | The number of explicit attribute changes performed by the user \(chown/chmod operations\). |
-| SETATTR Latency \(per operation\) | The time spent on attributes changing. |
-| SYMLINK\_OPS \(total\) | The number of symbolic links created. |
-| SYMLINK\_Latency \(per operation\) | The time spent creating symbolic links. |
-| Throughput \(total\) | The total number byte reads/writes. |
-| UNLINK OPS \(total\) | The number of file deletion operations. |
-| UNLINK Latency \(per operation\) | The time spent deleting files. |
-| Writes \(total\) | The total number of write operations. |
-| Write Bytes \(total\) | The number of bytes written to a file. |
-| Write Duration \(total\) | Histogram of the time spent performing write operations. |
-| Write Latency \(per write\) | The time spent writing bytes to a file. |
-| Write Sizes \(total\) | The total amount of write operations. |
+| DIRECT\_READ\_SIZES | Histogram of the sizes of read operations that were not cached, in blocks/second |
+| DIRECT\_WRITE\_SIZES | Histogram of the sizes of write operations that were not cached, in blocks/second |
+| FILEATOMICOPEN\_OPS | The number of FILEATOMICOPEN operations \(operations that atomically create and open a file\) per second |
+| FILEATOMICOPEN\_LATENCY | The average latency of FILEATOMICOPEN operations, in microseconds |
+| FILEOPEN\_OPS | The number of FILEOPEN operations per second |
+| FILEOPEN\_LATENCY | The average latency of FILEOPEN operations, in microseconds |
+| FILECLOSE\_OPS | The number of FILECLOSE operations per second |
+| FILECLOSE\_LATENCY | The average latency of FILECLOSE operations, in microseconds |
+| FLOCK\_OPS | The number of File LOCK operations  per second |
+| FLOCK\_LATENCY | The average latency of File LOCK operations, in microseconds |
+| GETATTR\_OPS | The number of GETATTR operations per second  |
+| GETATTR\_LATENCY | The average latency of GETATTR operations, in microseconds |
+| IOCTL\_OBS\_PREFETCH\_OPS  | The number of IOCTL OBS PREFETCH operations per second |
+| IOCTL\_OBS\_PREFETCH\_LATENCY | The average latency of IOCTL OBS PREFETCH operations, in microseconds |
+| LINK\_OPS | The number of LINK operations per second |
+| LINK\_LATENCY | The average latency of LINK operations, in microseconds |
+| LOOKUP\_OPS | The number of LOOKUP operations per second |
+| LOOKUP\_LATENCY | The average latency of LOOKUP operations, in microseconds |
+| MKNOD\_OPS | The number of MKNOD operations per second |
+| MKNOD\_LATENCY | The average latency of MKNOD operations, in microseconds |
+| OPS | The total number of operations per second |
+| READS | The number of READ operations per second |
+| READ\_BYTES | The number of bytes read per second |
+| READ\_DURATION | Histogram of the time spent performing read operations, in microseconds |
+| READ\_LATENCY | The average latency of READ operations, in microseconds |
+| READ\_SIZES | Histogram of sizes of read operations, in blocks/second |
+| READDIR\_OPS | The number of READDIR operations per second |
+| READDIR\_LATENCY | The average latency of READDIR operations, in microseconds |
+| RENAME\_OPS | The number of file or directory RENAME operations per second |
+| RENAME\_LATENCY | The average latency of RENAME operations, in microseconds |
+| RMDIR\_OPS | The number of RMDIR operations per second |
+| RMDIR\_LATENCY | The average latency of RMDIR operations, in microseconds |
+| READLINK\_OPS | The number of READLINK operations per second |
+| READLINK\_LATENCY | The average latency of READLINK operations, in microseconds |
+| STATFS\_OPS | The number of STATFS operations per second |
+| STATFS\_LATENCY | The average latency of STATFS operations, in microseconds |
+| SETATTR\_OPS | The number of SETATTR operations per second |
+| SETATTR\_LATENCY | The average latency of SETATTR operations, in microseconds |
+| SYMLINK\_OPS | The number of SYMLINK operations per second |
+| SYMLINK\_LATENCY | The average latency of SYMLINK operations, in microseconds |
+| THROUGHPUT | The total number byte reads/writes per second |
+| UNLINK\_OPS | The number of UNLINK operations per second |
+| UNLINK\_LATENCY | The average latency of UNLINK operations, in microseconds |
+| WRITES | The number of write operations per second |
+| WRITE\_BYTES | The number of bytes written per second |
+| WRITE\_DURATION | Histogram of the time spent performing write operations, in microseconds |
+| WRITE\_LATENCY | The average latency of WRITE operations, in microseconds |
+| WRITE\_SIZES | Histogram of the number of blocks written per second |
 
-### Object Store Statistics
+### Object Storage Statistics
 
 | Statistic | Description |
 | :--- | :--- |
-| Failed\_Object\_Deletes \(total\) | The number of HTTP DELETE \(remove\) operations attempted on all object stores. |
-| Failed\_Object\_Downloads \(total\) | The number of HTTP GET \(download\) operations that have failed on all object stores. |
-| Failed\_Object\_Operations \(total\) | The sum of 3 other statistics \(Failed Object Downloads, Failed Object Uploads and Failed Object Deletes\). |
-| Failed\_Object\_Uploads \(total\) | The number of failed HTTP PUT \(upload\) operations on all object stores. |
-| Object\_Delete\_Latency \(per delete\) | The time spent performing HTTP DELETE \(remove\) operations on all object stores. |
-| Object\_Deletes \(total\) | The number of HTTP DELETE \(remove\) operations attempted on all object stores. |
-| Object\_Downloads \(total\) | The number of HTTP GET \(download\) operations attempted on all object stores. |
-| Object\_Download\_Duration \(total\) | Histogram of the time spent performing HTTP GET \(download\) operations on all object stores. |
-| Object\_Download\_Latency \(per download\) | The time spent performing HTTP GET \(download\) operations on all object stores. |
-| Object\_Operations \(total\) | The sum of 3 other statistics \(Object Downloads, Object Uploads and Object Deletes\). |
-| Object\_Uploads \(total\) | The number of HTTP PUT \(upload\) operations attempted on all object stores. |
-| Object\_Upload\_Duration \(total\) | Histogram of the time spent performing HTTP PUT \(upload\) operations on all object stores. |
-| Object\_Upload\_Latency \(per upload\) | The time spent performing HTTP PUT \(upload\) operations on all object stores. |
-| OBS\_Read\_Bytes \(total\) | Deprecated alias for the object store Read Bytes statistic. |
-| OBS\_Write\_Bytes \(total\) | Deprecated alias for the object store Write Bytes statistic. |
-| Read\_Bytes \(total\) | The total number of bytes downloaded \(even in eventually failed operations\) on all object stores. |
-| Write\_Bytes \(total\) | The total number of bytes attempted to upload on all object stores. |
+| FAILED\_OBJECT\_DELETES | The number of FAILED OBJECT DELETE operations \(irrespective of the reason for failure\) on all object stores per second |
+| FAILED\_OBJECT\_DOWNLOADS | The number of FAILED OBJECT DOWNLOAD operations \(irrespective of the reason for failure\) on all object stores per second |
+| FAILED\_OBJECT\_OPERATIONS | The total number of FAILED OBJECT operations per second |
+| FAILED\_OBJECT\_UPLOADS | The number of FAILED OBJECT UPLOAD operations \(irrespective of the  reason for failure\) on all object stores per second |
+| OBJECT\_DELETE\_DURATION | Histogram of the time spent performing OBJECT DELETE operations, in microseconds  |
+| OBJECT\_DELETE\_LATENCY | The latency of OBJECT DELETE operations, in microseconds |
+| OBJECT\_DELETES | The number of OBJECT DELETE operations per second |
+| OBJECT\_DOWNLOADS | The number of OBJECT DOWNLOAD operations per second |
+| OBJECT\_DOWNLOAD\_DURATION | Histogram of the time spent performing OBJECT DOWNLOAD operations, in microseconds  |
+| OBJECT\_DOWNLOAD\_LATENCY | The time spent performing OBJECT DOWNLOAD operations, in microseconds |
+| OBJECT\_OPERATIONS | The total number of OBJECT operations per second |
+| OBJECT\_UPLOADS | The number of OBJECT UPLOAD operations per second |
+| OBJECT\_UPLOAD\_DURATION | Histogram of the time spent on OBJECT UPLOAD operations, in microseconds |
+| OBJECT\_UPLOAD\_LATENCY | The latency of OBJECT UPLOAD operations, in microsecondst stores. |
+| OBS\_READ\_BYTES | The number of READ BYTES read from the object store per second |
+| OBS\_WRITE\_BYTES | The number of WRITE BYTES sent to the object store per second |
+| READ\_BYTES | The number of bytes READ from the object store per second |
+| WRITE\_BYTES | The number of bytes sent to the object store per second |
 
 ### SSD Statistics
 
 | Statistic | Description |
 | :--- | :--- |
-| Drive\_Read\_Operations \(total\) | The number of read requests seen by the drive \(total number, not an average\). |
-| Drive\_Read\_Latency \(per IO\) | Histogram of the time spent performing read request operations. |
-| Drive\_Write\_Operations \(total\) | The number of write requests seen by the drive \(total number, not an average\). |
-| Drive\_Write\_Latency \(per IO\) | Histogram of the time spent performing write request operations. |
-| SSD\_Blocks\_Read \(total\) | The number of data blocks read from the drive. This is only user data requests and does not include any metadata operations performed. Counted in blocks of 4K. |
-| SSD\_Blocks\_Written \(total\) | The number of blocks written to the user data \(does not include metadata writes\). |
-| SSD\_Media\_Errors \(total\) | The total number of SSD media errors in 1 minute. |
-| SSD\_Non-Media\_Errors \(total\) | Non-media errors in NVME can be easily distinguished, while all errors in SATA/SAS are considered non-media errors. Media errors are treated differently and can be corrected; however, non-media errors are fatal to the request and can only be recovered by parities. |
-| SSD\_Reads \(total\) | The number of read requests performed for the user data. These can have multiple blocks and can be broken into multiple drive requests. |
-| SSD\_Read\_Errors \(total\) | The number of read errors observed in the minute of the SSD errors. |
-| SSD\_Read\_Latency \(per read\) | The latency of user data read requests includes the execution time on the disk and the queue time before the disk. If a single request has been broken into multiple requests, they can be executed in parallel or serially, depending on the disk load and internal behavior. |
-| SSD\_Writes \(total\) | The number of SSD write operations to the user data. |
-| SSD\_Write\_Latency \(per write\) | The average time the drive required to service the write requests received \(for all sizes, a single user write can be broken into multiple drive writes; this relates to the writes observed by the drive. |
-| SSD\_Write\_Errors \(total\) | The number of write errors observed in the minute of the SSD errors. |
+| DRIVE\_READ\_OPS | The rate of DRIVE READ operations, in IO/second |
+| DRIVE\_READ\_LATENCY | The latency of DRIVE READ operations, in microseconds |
+| DRIVE\_WRITE\_OPERATIONS | The rate of DRIVE WRITE operations, in IO/second |
+| DRIVE\_WRITE\_LATENCY | The latency of DRIVE WRITE operations, in microseconds |
+| SSD\_BLOCKS\_READ | The number of BLOCK READ operations from the SSD service, in blocks/second |
+| SSD\_BLOCKS\_WRITTEN | The number of BLOCK WRITE operations to the SSD service, in blocks/second |
+| SSD\_MEDIA\_ERRORS | The number of SSD MEDIA ERRORS, in IO/second |
+| SSD\_NON\_MEDIA\_ERRORS | The number of SSD NON-MEDIA ERRORS, in IO/second |
+| SSD\_READ\_REQS | The number of read requests from the SSD service, in IO/second |
+| SSD\_READ\_ERRORS | The number of ERRORS in reading blocks from the SSD service, in blocks/second |
+| SSD\_READ\_LATENCY | The average latency of READ requests from the SSD, in microseconds |
+| SSD\_WRITES | The number of WRITE request operations to the SSD service, in IO/second |
+| SSD\_WRITE\_LATENCY | The latency of writes to the SSD service, in microseconds |
+| SSD\_WRITE\_ERRORS | The number of ERRORS in writing blocks to the SSD service, in blocks/second |
 
 ### CPU Statistics
 
 | Statistic | Description |
 | :--- | :--- |
-| CPU\_Utilization \(average\) |  The average percentage of CPU time utilized by WekaIO \(from the cores used by WekaIO\). |
+| CPU\_UTILIZATION | Custom statistic on the handling of I/Os, representing the average percentage of CPU time utilized by WekaIO \(from the cores used by WekaIO\) |
 
 
 
