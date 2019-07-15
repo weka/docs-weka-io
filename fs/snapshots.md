@@ -32,8 +32,6 @@ WekaIO supports the following snapshots operations:
 * Listing of snapshots and obtaining their metadata
 
 {% hint style="info" %}
-**Note:** When moving a file in or out of a snapshot directory, or between snapshots, the kernel will implement the move operation as a copy operation, just as when moving a file between two different filesystems. Such operations for directories will fail.
-
 **Note:** The number of snapshots per system is limited to 4,096.
 {% endhint %}
 
@@ -167,6 +165,13 @@ This commands changes the snapshot attributes. Use the following command line to
 | `new-name` | String | New name for the updated snapshot | Must be a valid name | No |  |
 | `is-writable` | Boolean | Sets the snapshot to be writable |  | No |  |
 | `access-point` | String | Name of directory for snapshot, which will serve as the access point for the snapshot | Must be a valid name | No |  |
+
+## Working with Snapshots
+
+Note the following concerning working with snapshots:
+
+1. When moving a file in or out of a snapshot directory, or between snapshots, the kernel will implement the move operation as a copy operation, just as when moving a file between two different filesystems. Such operations for directories will fail.
+2. If symbolic links are accessed via the `.snapshots` directory, the symlinks with absolute paths can lead to the current filesystem. Consequently, depending on the usage, it may be preferable not follow symlinks.
 
 
 

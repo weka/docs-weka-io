@@ -8,10 +8,6 @@ description: >-
 
 ## About Snap-To-Object
 
-{% hint style="info" %}
-**Note:** Check the latest release notes to determine whether the Snap-To-Object feature is enabled as a production feature or a technology preview.
-{% endhint %}
-
  The Snap-To-Object feature enables the committing of all the data of a specific snapshot, including metadata, to an object store. Unlike data lifecycle management processes, this feature involves all the snapshot, which includes data, metadata and every file.
 
 The result of using the Snap-To-Object feature is that the object store contains a full copy of the snapshot of the data, which can be used to restore the data on the WekaIO cluster or on another cluster. Consequently, the Snap-To-Object feature is useful for a range of use cases, as follows:

@@ -39,8 +39,8 @@
 * [NFS Support](fs/nfs-support.md)
 * [Mounting Filesystems](fs/mounting-filesystems.md)
 * [Pre-Fetching API for Data Lifecycle Management](fs/tiering.md)
-* [Snap-To-Object](fs/snap-to-obj.md)
 * [Snapshots](fs/snapshots.md)
+* [Snap-To-Object](fs/snap-to-obj.md)
 
 ## SMB Support
 
