@@ -172,7 +172,7 @@ Enter the relevant parameters and click Create to create the filesystem group.
 
 #### Adding a Filesystem Group Using the CLI
 
-**Command:** `weka fs group create` or `weka fs group create-tiered`
+**Command:** `weka fs group create`
 
 {% hint style="info" %}
 **Note:** In the CLI, defining the tiering status for a new filesystem group requires the use of a different command.
@@ -186,7 +186,7 @@ For a non-tiered filesystem group:
 
  For a tiered filesystem group:
 
-`weka fs group create-tiered <name> <storage> [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
+`weka fs group create <name> --is-tiered=yes --storage=<object-store-name> [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
 
 **Parameters in Command Line**
 
@@ -194,8 +194,8 @@ For a non-tiered filesystem group:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem group being created | Must be a valid name | Yes | ​ |
 | `storage` | String | The ID of the object store for storage | Must be a valid name | Yes |  |
-| `retention` | Number | The target retention period before tiering to the object store | Must be a valid number | Yes |  |
-| `demote` | Number | The target tiering cue before tiering to the object store. | Must be a valid number | Yes |  |
+| `target-ssd-retention` | Number | The target retention period \(in seconds\) before tiering to the object store | Must be a valid number | No | 86400 \(24 hours\) |
+| `start-demote` | Number | The target tiering cue \(in seconds\) before tiering to the object store. | Must be a valid number | No | 10 |
 
 ### Editing a Filesystem Group
 
@@ -209,27 +209,27 @@ Edit the existing filesystem group parameters and click Configure to execute the
 
 #### Editing an Existing Filesystem Using the CLI
 
-**Command:** `wcli filesystem group update` or `weka fs group update-tiered`
+**Command:** `weka fs group update --is-tiered`
 
-Use one of the following command lines to add a filesystem group:
+Use one of the following command lines to edit a filesystem group:
 
 For a non-tiered filesystem group:
 
-`wcli filesystem-group-update --name=<file-system-group-name> [--new-name=<file-system-group-name>] [--is-tiered] [--target-ssd-retention=<number>] [--start-demote=<number>]`
+`weka fs group update <name> [--new-name=<new-name>]`
 
- For a tiered filesystem group:
+To add a tier to a filesystem group:
 
-`weka fs group update-tiered <name> <storage> [--new-name=<new-name>] [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
+`weka fs group update <name> <storage> [--new-name=<new-name>] --is-tiered=yes --storage=<object-store-name> [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem group being edited | Must be a valid name | Yes | ​ |
-| `new name` | String | The new name for the filesystem group | Must be a valid name | Yes |  |
+| `new-name` | String | The new name for the filesystem group | Must be a valid name | Yes |  |
 | `storage` | String | The ID of the object store for storage | Must be a valid name | Yes |  |
-| `retention` | Number | The target retention period before tiering to the object store | Must be a valid number | Yes |  |
-| `demote` | Number | the target tiering cue before tiering to the object store | Must be a valid number | Yes |  |
+| `target-ssd-retention` | Number | The new target retention period \(in seconds\) before tiering to the object store | Must be a valid number | No |  |
+| `start-demote` | Number | The new target tiering cue \(in seconds\) before tiering to the object store | Must be a valid number | No |  |
 
 ### Deleting a Filesystem Group
 

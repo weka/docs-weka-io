@@ -18,17 +18,15 @@ The WekaIO client can control the information stored in the page cache and also 
 
 Each filesystem can be mounted in one of three modes of operation in relation to the page cache:
 
-* **Read Cache \(default\),** where file data is consistent across hosts, but there may be some metadata inconsistency in extreme cases.
+* **Read Cache,** where file data is consistent across hosts, but there may be some metadata inconsistency in extreme cases.
 * **Coherent,** where both data and metadata are guaranteed to be strongly consistent, at the cost of some performance compromise. Note that file content is still cached locally in the system page cache.
-* **Write Cache,** which does not ensure data consistency or data reliability but provides the highest performance.  
+* **Write Cache \(default\),** which does not ensure data consistency or data reliability but provides the highest performance.  
 
 {% hint style="info" %}
 **Note:** Symbolic links are always cached in all cached modes.
 {% endhint %}
 
-##  <a id="page-cache"></a>
-
-## Read Cache Mount Mode \(Default\)
+## Read Cache Mount Mode
 
 When mounting in read cache mode, the page cache uses write cache in the write through mode, so any write is acknowledged to the customer application only after being safely stored on resilient storage. This applies to both data and metadata writes. Consequently, only read operations are accelerated by the page cache. 
 
@@ -59,11 +57,7 @@ This mode ensures the strong consistency of data and metadata. Any data or metad
 
 In the coherent mode, file data access still uses the performance enhancements of the local system page cache, as in the[ read cache mode](weka-client-and-mount-modes.md#read-cache-mount-mode-default). Only the handling of metadata is different between the coherent mount mode and the read cache mount mode.
 
-## Write Cache Mount Mode
-
-{% hint style="info" %}
-**Note:** Check the latest release notes to determine whether the write cache mount mode is enabled as a production feature or a technology preview.
-{% endhint %}
+## Write Cache Mount Mode \(Default\)
 
 In the write cache mount mode, the Linux operating system is used as write-back, rather than write-through, i.e., the write operation is acknowledged immediately by the WekaIO client and is stored in a resilient storage as a background operation.
 
