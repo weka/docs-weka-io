@@ -33,7 +33,7 @@ A number of functions are traditionally implemented by the DPDK layer, such as r
 
 The DPDK-based network used to connect all the backend hosts has its own MAC addresses \(known as virtual functions in DPDK\). Consequently, the same NIC can support multiple MAC addresses, some handled by the operating system and others by WekaIO.
 
-This internal WekaIO network also requires a separate IP address space \(see [Network Planning](https://app.gitbook.com/@wekaio/s/docs/v/3.4/install/bare-metal/planning-a-weka-system-installation#network-planning) and [Configuration of Networking](https://app.gitbook.com/@wekaio/s/docs/v/3.4/install/bare-metal/using-cli)\). For this, the WekaIO system maintains a separate ARP database for its IP addresses and virtual functions, and does not use the kernel or operating system ARP services.
+This internal WekaIO network also requires a separate IP address space \(see [Network Planning](../install/bare-metal/planning-a-weka-system-installation.md#network-planning) and [Configuration of Networking](../install/bare-metal/using-cli.md#stage-5-configuration-of-networking)\). For this, the WekaIO system maintains a separate ARP database for its IP addresses and virtual functions, and does not use the kernel or operating system ARP services.
 
 ## UDP Mode
 

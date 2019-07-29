@@ -57,7 +57,7 @@ When mounting in the coherent mode, the page cache uses write cache in the write
 
 This mode ensures the strong consistency of data and metadata. Any data or metadata change will always be acknowledged to the application only after being safely stored on resilient storage. This enables sharing of data and metadata between hosts concurrently accessing the same filesystem.
 
-In the coherent mode, file data access still uses the performance enhancements of the local system page cache, as in the[ read cache mode](weka-client-and-mount-modes.md#read-cache-mount-mode-default). Only the handling of metadata is different between the coherent mount mode and the read cache mount mode.
+In the coherent mode, file data access still uses the performance enhancements of the local system page cache, as in the[ read cache mode](weka-client-and-mount-modes.md#read-cache-mount-mode). Only the handling of metadata is different between the coherent mount mode and the read cache mount mode.
 
 ## Write Cache Mount Mode \(Default\)
 
