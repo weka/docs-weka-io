@@ -7,6 +7,7 @@
 * [About the WekaIO System](overview/about.md)
 * [SSD Capacity Management](overview/ssd-capacity-management.md)
 * [Filesystems, Object Stores & Filesystem Groups](overview/filesystems.md)
+* [WekaIO Networking](overview/networking-in-wekaio.md)
 * [Data Lifecycle Management](overview/data-storage.md)
 * [WekaIO Client & Mount Modes](overview/weka-client-and-mount-modes.md)
 * [Glossary](overview/glossary.md)

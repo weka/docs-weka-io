@@ -15,10 +15,6 @@ description: >-
 * Intel SandyBridge+ and AMD processors with equivalent instructions sets
 * AMD Epyc
 
-#### CPU Configuration 
-
-* Hyper-threading: Can be enabled or disabled in BIOS
-
 ### Memory <a id="memory"></a>
 
 * Enough memory to support WekaIO system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
@@ -39,8 +35,9 @@ description: >-
 * Amazon linux 17.09
 * Amazon linux 18.03
 * Amazon linux 2 LTS \(formerly Amazon Linux 2 LTS 17.12\)
-* SELINUX must be disabled.
-* All Weka Nodes must be sync'd in date/time. \(NTP recommended\)
+* SELINUX must be disabled
+* All Weka Nodes must be synchronized in date/time \(NTP recommended\)
+* A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the WekaIO knowledgebase in the [WekaIO support portal](http://support.weka.io) for more information and how-to articles 
 
 ### Kernel <a id="weka-install-directory"></a>
 
@@ -56,8 +53,7 @@ description: >-
 
 ### Networking - HA
 
-* System HA: Resilience on loss of one switch \(in configurations with 2 or more switches\)
-* Client HA: Supported on WekaIO, but not via LACP; therefore, validate compatibility of other applications running on the same ports with WekaIO HA
+* Network configured as described in [WekaIO Networking - HA](../../overview/networking-in-wekaio.md#ha).
 
 ### Networking - Ethernet <a id="networking-ethernet"></a>
 
@@ -68,6 +64,7 @@ description: >-
 * Amazon ENA
 * Mellanox ConnectX4 \(Ethernet and InfiniBand\)
 * Mellanox ConnectX5 \(Ethernet and InfiniBand\)
+* Mellanox ConnectX6 \(Ethernet and InfiniBand\)
 
 #### Nic Drivers
 
@@ -79,6 +76,7 @@ Supported Mellanox OFED versions:
 * 4.4-1.0.0.0
 * 4.4-2.0.7.0
 * 4.5-1.0.1.0
+* 4.6-1.0.1.1
 
 Supported ENA drivers versions:
 
@@ -119,6 +117,7 @@ Supported intel 40 drivers:
 
 * Mellanox ConnectX4 \(Ethernet and InfiniBand\)
 * Mellanox ConnectX5 \(Ethernet and InfiniBand\)
+* Mellanox ConnectX6 \(Ethernet and InfiniBand\)
 
 #### Nic Drivers
 
@@ -130,10 +129,11 @@ Supported Mellanox OFED versions:
 * 4.4-1.0.0.0
 * 4.4-2.0.7.0
 * 4.5-1.0.1.0
+* 4.6-1.0.1.1
 
 #### Infiniband Configuration
 
-* InfiniBand speeds: FDR / EDR
+* InfiniBand speeds: FDR / EDR / HDR
 * Subnet manager: Configured to 4092
 * One WekaIO system IP address for management and data plane
 * PKEYs: Supported

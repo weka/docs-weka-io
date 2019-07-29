@@ -13,7 +13,7 @@ Deploying a WekaIO cluster in AWS requires at least 6 EC2 instances with SSD/NVM
 Depending on the instance types being used and how they’re configured, there are two deployment types:
 
 * Client backend deployment
-* Hyper-converged deployment
+* Converged deployment
 
 ## Client Backend Deployment
 
@@ -26,11 +26,11 @@ In client backend deployments, it is possible to add or remove clients according
 
 Backend instances can be added to increase the cluster capacity or performance. They can also be removed, provided that they are deactivated to safely allow for data migration. 
 
-## Hyper-Converged Deployment
+## Converged Deployment
 
-Hyper-converged deployments are more generic deployments in which every instance is configured to contribute resources of some kind — drives, CPUs and/or network interfaces - to the cluster.
+Converged deployments are more generic deployments in which every instance is configured to contribute resources of some kind — drives, CPUs and/or network interfaces - to the cluster.
 
-The deployment of a hyper-converged cluster is typically selected in the following cases:
+The deployment of a converged cluster is typically selected in the following cases:
 
 * When using very small applications that require a high-performance filesystem but do not require many resources themselves, in which case they can use resources in the same instances storing the data.
 * When cloud-bursting an application to AWS, in which case you seek to utilize as many resources as possible for the application but also seek to provide as many resources as possible to the WekaIO system cluster, in order to achieve maximum performance.

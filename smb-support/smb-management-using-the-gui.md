@@ -40,7 +40,7 @@ To join Samba to an Active Directory, click the Join button when all hosts have 
 
 ![Join Samba to Active Directory Window](../.gitbook/assets/selection_758.png)
 
-Enter the provided username and password in order to access the Active Directory. The Server input field is optional, The default for the Computers Org.Unit field is the Computers directory, but it is possible to define any other directory in Active Directory to be connected, such as SMB servers or Corporate computer.
+Enter the provided username and password in order to access the Active Directory. The Server input field is optional. The default for the Computers Org.Unit field is the Computers directory, but it is possible to define any other directory in Active Directory to be connected, such as SMB servers or Corporate computer.
 
 {% hint style="info" %}
 **Note:** WekaIO does not save the user password. A computer account is created on behalf of the user for the SMB cluster.
@@ -82,9 +82,9 @@ To access SMB shares**,** click the SMB Shares tab in the SMB Service Overview s
 
 To add a new SMB share, click Create Share at the top right-hand corner of the table. The following Create Share window will be displayed:
 
-![Create Share Window](../.gitbook/assets/selection_755.png)
+![](../.gitbook/assets/screen-shot-2019-07-28-at-9.49.20.png)
 
-Enter the new share name and description, select a filesystem and enter the path. Then click the Create button. The new share will receive the default mount mode \(readcache\). 
+Enter the new share name and description, select a filesystem and enter the path \(valid and relative internal path within the filesystem which will be exposed\). Also determine the new default file/directory permissions created through the share. Then click the Create button. The new share will receive the `readcache` mount mode. 
 
 ## Removing an SMB Share
 

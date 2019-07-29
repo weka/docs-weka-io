@@ -103,7 +103,7 @@ The number of physical cores dedicated to the WekaIO software should be planned 
 In general, it is recommended to allocate as many cores as possible to the WekaIO system, with the following limitations:
 
 1. There has to be one core for the operation system.
-2. The running of other applications on the same host \(hyper-converged WekaIO system deployment\) is supported. However, this is not covered in this documentation. For further information, contact the WekaIO Support Team.
+2. The running of other applications on the same host \(converged WekaIO system deployment\) is supported. However, this is not covered in this documentation. For further information, contact the WekaIO Support Team.
 3. There has to be sufficient memory, as described above.
 4. No more than 20 physical cores can be assigned to WekaIO system processes.
 
@@ -117,12 +117,7 @@ If the client networking is defined as based on UDP, there is no allocation of c
 
 ### Backend Hosts
 
-The WekaIO system supports the following types of networking technologies:
-
-1. InfiniBand \(IB\).
-2. Ethernet directly for user space using DPDK supporting NIC.
-
-The choice between IB and Ethernet is dictated by the currently-available networking infrastructure. It is mandatory to determine which one of these two types of networking technologies are to be used in order to proceed to the WekaIO system initialization/installation process.
+It is mandatory to determine which one of the two networking technologies - InfiniBand or Ethernet - is to be used in order to proceed to the WekaIO system initialization/installation process.
 
 {% hint style="info" %}
 **Note:** A network port can either be dedicated to the WekaIO system or run the WekaIO system with other applications.

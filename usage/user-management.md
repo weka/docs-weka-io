@@ -18,8 +18,14 @@ Every WekaIO system user has one of the following defined roles:
 
 When users open the GUI, they are prompted to provide their username and password. To pass username and password to the CLI, use the `WEKA_USERNAME` and `WEKA_PASSWORD` environment variables. 
 
+Alternatively, it is possible to log into the CLI as a specific user using the`weka user login <username> <password>`command. This will run each CLI command from that user. To see the logged-in CLI user, run the`weka user whoami` command.
+
 {% hint style="info" %}
-**Note:** If the`WEKA_USERNAME`/`WEKA_PASSWORD` environment variables are not specified, the CLI assumes the username and password are `admin`/`admin`.
+**Note:** The`weka user login` command is persistent, but only applies to the host it was set on.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** If the`WEKA_USERNAME`/`WEKA_PASSWORD` environment variables are not specified, the CLI assumes the username and password of the logged-in CLI user. If no CLI user was explicitly logged-in, the CLI uses the default `admin`/`admin`.
 {% endhint %}
 
 ## First User \(Admin\)

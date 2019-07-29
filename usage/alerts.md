@@ -80,7 +80,7 @@ Use this command line to list all alerts \(muted and unmuted\) in the WekaIO clu
 | DataProtection | Some of the system's data is not fully redundant. | Check which node/host/drive is down and act accordingly. |
 | DriveDown | A drive is not responding. |  |
 | DriveNeedsPhaseout | A drive has too many errors. | Phase-out the drive and probably replace it. |
-| DedicatedWatchdog | A dedicated WekaIO host requires the installation of a hardware watchdog driver. | Make sure a hardware watchdog is available at /dev/watchdog. |
+| DedicatedWatchdog | A dedicated WekaIO host requires the installation of a  watchdog driver. | Make sure a watchdog is available at /dev/watchdog. For more information, search the WekaIO knowledgebase in the [WekaIO support portal](http://support.weka.io). |
 | FilesystemHasToo ManyFiles | The filesystem storage configuration is not large enough for the size of files and directory entries being stored.  | Increase the max-files for the filesystem; it may be necessary decrease max-files from another filesystem or install more memory. |
 | HangingIOs | Some IOs are hanging on the node acting as a driver/NFS/backend. | Check that the compute nodes and their hosts are up and running, and fully connected. Also check that if a backend object store is configured, it is connected and responsive. Contact the WekaIO Support Team if issue is not resolved. |
 | HighDrivesCapacity | The average capacity of the SSDs is too high.  | Free-up space on the SSDs or [add more SSDs](https://docs.weka.io/v/3.4/usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources) to the cluster. |

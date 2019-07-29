@@ -10,7 +10,7 @@ description: >-
 
 #### Viewing Filesystems / Filesystem Groups Using the GUI
 
-The main filesystem screen in the GUI contains information about the filesystems and filesystem groups, including names, tiering status,  encryption status, total capacity and used capacity.
+The main filesystem screen in the GUI contains information about the filesystems and filesystem groups, including names, tiering status, encryption status, total capacity and used capacity.
 
 ![Main Filesystem / Filesystem Group View Screen](../.gitbook/assets/view-fs_fsg-screen.jpg)
 
@@ -36,7 +36,7 @@ The main object store screen in the GUI lists all existing object stores and can
 
 **Command:** `weka fs tier s3`
 
-This command is used to view information on all the object stores configured to the Weka system. 
+This command is used to view information on all the object stores configured to the WekaIO system. 
 
 ### Adding an Object Store
 
@@ -60,22 +60,26 @@ If the object store is misconfigured, the Error in Object Store Configuration wi
 
 Use the following command line to add an object store:
 
-`weka fs tier s3 add <name> [--hostname=<host>] [--port=<port>] [--bucket=<bucket>] [--auth-method=<auth>] [--region=<region>] [--access-key-id=<access>] [--secret-key=<secret>] [--dry-run] [--skip-verification] [--bandwidth=<bw>] [--verbose-errors] [--errors-timeout=<timeout>] [options]`
+`weka fs tier s3 add <name> [--hostname=<host>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the object store being created | Must be a valid name | Yes | ​ |
-| `host` | String | The object store host name | Must be a valid name | Yes |  |
+| `hostname` | String | The object store host identifier | Must be a valid name/IP | Yes |  |
 | `port` | String | The object store port | Must be a valid name | Yes |  |
 | `bucket` | Number | The object store bucket ID | Must be a valid name | Yes |  |
-| `auth` |  |  |  |  |  |
-| `region` |  |  |  |  |  |
-| `access` | Number | The object store access key ID | Must be a valid number | Yes |  |
-| `secret` |  |  |  |  |  |
-| `bw` | Number | The bandwidth |  |  |  |
-| `timeout` |  |  |  |  |  |
+| `auth-method` | String | Authentication method | None, AWSSignature2 or AWSSignature4 | Yes |  |
+| `region` | String | Region name |  | Yes |  |
+| `access-key-id` | Number | The object store access key ID |  | Yes |  |
+| `secret-key` | String | The object store secret key |  | Yes |  |
+| `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
+| `errors-timeout` | Number | If the OBS link is down for longer than this, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
+| `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No | 0 |
+| `max-concurrent-downloads` | Number | Maximum number of downloads we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
+| `max-concurrent-uploads` | Number | Maximum number of uploads we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
+| `max-concurrent-removals` | Number | Maximum number of removals we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
 
 {% hint style="info" %}
 **Note:** By default, when using the CLI, a misconfigured object store will not be created. To create the object store even when it is misconfigured, use the option `--skip-verification`.
@@ -101,22 +105,27 @@ Make the relevant changes and click Update to update the object store.
 
 Use the following command line to edit an object store:
 
-`weka fs tier s3 update <name> [--hostname=<host>] [--port=<port>] [--bucket=<bucket>] [--auth-method=<auth>] [--region=<region>] [--access-key-id=<access>] [--secret-key=<secret>] [--dry-run] [--skip-verification] [--bandwidth=<bw>] [--verbose-errors] [--errors-timeout=<timeout>] [options]`
+`weka fs tier s3 update <name> [--new-name=<new-name>] [--hostname=<host>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the object store being edited | Must be a valid name | Yes | ​ |
-| `host` | String | The object store host name | Must be a valid name | Yes |  |
+| `new-name` | String  | The new name for the object store | Must be a valid name | No |  |
+| `hostname` | String | The object store host identifier | Must be a valid name/IP | Yes |  |
 | `port` | String | The object store port | Must be a valid name | Yes |  |
-| `bucket` | Number | The object store bucket ID | Must be a valid name | Yes |  |
-| `auth` |  |  |  |  |  |
-| `region` |  |  |  |  |  |
-| `access` | Number | The object store access key ID | Must be a valid number | Yes |  |
-| `secret` |  |  |  |  |  |
-| `bw` | Number | The bandwidth |  |  |  |
-| `timeout` |  |  |  |  |  |
+| `bucket` | String | The object store bucket name | Must be a valid name | Yes |  |
+| `auth-method` | String | Authentication method | None, AWSSignature2 or AWSSignature4 | Yes |  |
+| `region` | String | Region name |  | Yes |  |
+| `access-key-id` | String | The object store access key ID |  | Yes |  |
+| `secret-key` | String | The object store secret key |  | Yes |  |
+| `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
+| `errors-timeout` | Number | If the OBS link is down for longer than this, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
+| `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No | 0 |
+| `max-concurrent-downloads` | Number | Maximum number of downloads we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
+| `max-concurrent-uploads` | Number | Maximum number of uploads we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
+| `max-concurrent-removals` | Number | Maximum number of removals we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
 
 ### Deleting an Object Store
 
@@ -172,7 +181,7 @@ Enter the relevant parameters and click Create to create the filesystem group.
 
 #### Adding a Filesystem Group Using the CLI
 
-**Command:** `weka fs group create` or `weka fs group create-tiered`
+**Command:** `weka fs group create`
 
 {% hint style="info" %}
 **Note:** In the CLI, defining the tiering status for a new filesystem group requires the use of a different command.
@@ -186,7 +195,7 @@ For a non-tiered filesystem group:
 
  For a tiered filesystem group:
 
-`weka fs group create-tiered <name> <storage> [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
+`weka fs group create <name> --is-tiered=yes --storage=<object-store-name> [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
 
 **Parameters in Command Line**
 
@@ -194,8 +203,8 @@ For a non-tiered filesystem group:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem group being created | Must be a valid name | Yes | ​ |
 | `storage` | String | The ID of the object store for storage | Must be a valid name | Yes |  |
-| `retention` | Number | The target retention period before tiering to the object store | Must be a valid number | Yes |  |
-| `demote` | Number | The target tiering cue before tiering to the object store. | Must be a valid number | Yes |  |
+| `target-ssd-retention` | Number | The target retention period \(in seconds\) before tiering to the object store | Must be a valid number | No | 86400 \(24 hours\) |
+| `start-demote` | Number | The target tiering cue \(in seconds\) before tiering to the object store. | Must be a valid number | No | 10 |
 
 ### Editing a Filesystem Group
 
@@ -209,27 +218,27 @@ Edit the existing filesystem group parameters and click Configure to execute the
 
 #### Editing an Existing Filesystem Group Using the CLI
 
-**Command:** `wcli filesystem group update` or `weka fs group update-tiered`
+**Command:** `weka fs group update --is-tiered`
 
-Use one of the following command lines to add a filesystem group:
+Use one of the following command lines to edit a filesystem group:
 
 For a non-tiered filesystem group:
 
-`wcli filesystem-group-update --name=<file-system-group-name> [--new-name=<file-system-group-name>] [--is-tiered] [--target-ssd-retention=<number>] [--start-demote=<number>]`
+`weka fs group update <name> [--new-name=<new-name>]`
 
- For a tiered filesystem group:
+To add a tier to a filesystem group:
 
-`weka fs group update-tiered <name> <storage> [--new-name=<new-name>] [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
+`weka fs group update <name> <storage> [--new-name=<new-name>] --is-tiered=yes --storage=<object-store-name> [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the filesystem group being edited | Must be a valid name | Yes | ​ |
-| `new name` | String | The new name for the filesystem group | Must be a valid name | Yes |  |
+| `new-name` | String | The new name for the filesystem group | Must be a valid name | Yes |  |
 | `storage` | String | The ID of the object store for storage | Must be a valid name | Yes |  |
-| `retention` | Number | The target retention period before tiering to the object store | Must be a valid number | Yes |  |
-| `demote` | Number | the target tiering cue before tiering to the object store | Must be a valid number | Yes |  |
+| `target-ssd-retention` | Number | The new target retention period \(in seconds\) before tiering to the object store | Must be a valid number | No |  |
+| `start-demote` | Number | The new target tiering cue \(in seconds\) before tiering to the object store | Must be a valid number | No |  |
 
 ### Deleting a Filesystem Group
 
@@ -275,7 +284,7 @@ From the main filesystem / filesystem group view screen, click the Add Filesyste
 
 The Create Filesystem dialog box will be displayed.
 
-![Create Filesystem Dialog Box](../.gitbook/assets/create-filesystem-with-encryption-window.png)
+![Create Filesystem Dialog Box](../.gitbook/assets/create-filesystem-screen.jpg)
 
 Enter the relevant parameters and click Create to create the filesystem.
 
@@ -285,7 +294,7 @@ Enter the relevant parameters and click Create to create the filesystem.
 
 Use the following command line to add a filesystem:
 
-`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd>] [--max-files <max-files>] [--filesystem-id <id>] [--encrypted <encrypted>]`
+`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd>] [--max-files <max-files>] [--filesystem-id <id>] [encrypted <encrypted>]`
 
 **Parameters in Command Line**
 
@@ -358,5 +367,5 @@ Use the following command line to delete a filesystem:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | The name of the filesystem to be deleted | Must be a valid name | Yes | ​ |
+| `name` | String | The name of the filesystem to be deleted | Must be a valid name | Yes |  |
 

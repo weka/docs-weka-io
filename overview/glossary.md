@@ -35,7 +35,7 @@ The number of data blocks in each logical data protection group.
 
 ### Dedicated WekaIO Deployment 
 
-Basic WekaIO configuration involving the creation of a cluster by dedicating complete servers to WekaIO backends, as opposed to hyper-converged deployment.
+Basic WekaIO configuration involving the creation of a cluster by dedicating complete servers to WekaIO backends, as opposed to converged deployment.
 
 ## F
 
@@ -53,7 +53,7 @@ A collection of filesystems which share a common connectivity to an object store
 
 Frequently-used data \(as opposed to warm data\),  usually residing on SSDs.
 
-### Hyper-Converged Deployment
+### Converged Deployment
 
 The configuration of WekaIO backends running on the same host with other applications.
 
@@ -120,6 +120,12 @@ The minimum time to wait before considering data for tiering from an SSD to an o
 ### Unprovisioned Capacity
 
 The storage capacity available for new filesystems.
+
+## V
+
+### VF
+
+Virtual Function
 
 ## W
 

@@ -47,7 +47,13 @@ Once the new release is installed on one of the backend hosts, the cluster has t
 weka local run --in <new-version> upgrade --mode one-shot
 ```
 
-where `<new-version>` is the name of the new version downloaded from get.weka.io, e.g.,`3.2.2.`
+where `<new-version>` is the name of the new version downloaded from get.weka.io, e.g.,`3.4.2`.
+
+{% hint style="info" %}
+**Note:** When using non-default passwords, run this command with the environment variables. For example:
+
+`weka local run --in <new-version> -e WEKA_USERNAME=<user> -e WEKA_PASSWORD=<passwd> upgrade --mode=one-shot`
+{% endhint %}
 
 Before switching the cluster to the new release, the upgrade command will distribute the new release to all cluster hosts and make any necessary preparations, such as compiling the new `wekafs` driver. If any failure occurs during the preparations, such as disconnection of a host or failure to build a driver, the upgrade process will stop and an error will be received indicating the problematic host.
 
@@ -57,11 +63,11 @@ If everything goes to plan, the upgrade will stop the cluster IO service, switch
 
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
-{% hint style="warning" %}
-**For Example:** The following will be received when the system has been upgraded to version 3.2.2: 
+{% hint style="success" %}
+**For Example:** The following will be received when the system has been upgraded to version 3.4.2: 
 
 `# weka status   
-WekaIO v3.2.2 (CLI build 3.2.29)  
+WekaIO v3.4.2 (CLI build 3.4.42)  
 ...`
 {% endhint %}
 

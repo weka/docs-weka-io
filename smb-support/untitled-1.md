@@ -179,7 +179,7 @@ Use the following command line to list all existing SMB shares:
 
 Use the following command line to add a new share to be exposed to SMB:
 
-`smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path]`
+`smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [file-create-mask] [directory-create-mask]`
 
 **Parameters in Command Line**
 
@@ -188,7 +188,9 @@ Use the following command line to add a new share to be exposed to SMB:
 | `share-name` | String | The name of the share being added | Must be a valid name | Yes | ​ |
 | `fs-name` | String | The name of the filesystem to share | Must be a valid name | Yes | ​ |
 | `description` | String | Description of what the share will receive when viewed remotely | Must be a valid string | No | ​No description |
-| `internal-path` | String | An internal path within the filesystem \(relative to its root\) which will be exposed | Must be a valid path | No |  |
+| `internal-path` | String | An internal path within the filesystem \(relative to its root\) which will be exposed | Must be a valid path | No | . |
+| `file-create-mask` | String | POSIX permissions for file created through the SMB share | Numeric \(octal\) notation | No | 0744 |
+| `directory-create-mask` | String | POSIX permissions for directories created through the SMB share | Numeric \(octal\) notation | No | 0755 |
 
 {% hint style="info" %}
 **Note:**  If it is necessary to pass to the Samba library share specific options, contact the WekaIO Support Team.
