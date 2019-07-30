@@ -26,8 +26,6 @@ Each filesystem can be mounted in one of three modes of operation in relation to
 **Note:** Symbolic links are always cached in all cached modes.
 {% endhint %}
 
-##  <a id="page-cache"></a>
-
 ## Read Cache Mount Mode
 
 When mounting in read cache mode, the page cache uses write cache in the write through mode, so any write is acknowledged to the customer application only after being safely stored on resilient storage. This applies to both data and metadata writes. Consequently, only read operations are accelerated by the page cache. 
