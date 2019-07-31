@@ -61,7 +61,7 @@ description: >-
 | DriveRemoved | INFO | Drive removed |
 | DriveMediumError | MAJOR | Drive has a Medium error |
 | DriveIoError | MAJOR | Drive has an IO error |
-| DriveUnresponsive | MAJOR | Drive {driveId}  unresponsive and failed to return IOs for an extended period of time; consider power cycling the host |
+| DriveUnresponsive | MAJOR | Drive unresponsive and failed to return IOs for an extended period of time; consider power cycling the host |
 | DriveScanBlockLifted | MINOR | Drive blocked during scan is now responsive |
 | DriveScanBlocked | MINOR | Drive blocked during scan and is unresponsive |
 | DriveSignatureUnknown | MINOR | Drive has an unknown signature |
