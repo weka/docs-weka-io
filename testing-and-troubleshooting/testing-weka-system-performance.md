@@ -90,8 +90,8 @@ mkdir -p $WORKING_DIR
 #### Run Benchmark
 
 ```text
-fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY \\
-    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 \\
+fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIR \\
+    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_ID --nrfiles=1 \\
     --clat_percentiles=1 --max-jobs=1 --randrepeat=1 --create_serialize=0 \\
     --group_reporting ' --filename_format=$jobnum/$filenum' --runtime=60 \\
     --rwmixread=0 --iodepth=256 --readwrite=randread --filesize=10485760000
@@ -137,14 +137,14 @@ mkdir -p $WORKING_DIR
 #### Run Benchmark
 
 ```text
-fio --blocksize=1048576 --direct=1 --numjobs=32 --directory=$WORKING_DIRECTORY \\
-    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 \\
+fio --blocksize=1048576 --direct=1 --numjobs=32 --directory=$WORKING_DIR \\
+    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_ID --nrfiles=1 \\
     --clat_percentiles=1 --max-jobs=32 --randrepeat=1 --create_serialize=0 \\
     --group_reporting '--filename_format=$jobnum/$filenum' --runtime=70 --rwmixread=0 \\
     --iodepth=1 --readwrite=write --filesize=104857600
 ```
 
-{% file src="../.gitbook/assets/fio-large-bandwidth-writes-test-script.txt" caption="FIO large bandwidth writes test script" %}
+{% file src="../.gitbook/assets/fio-large-bandwidth-writes-test-script \(1\).txt" caption="FIO large bandwidth writes test script" %}
 
 #### Example of Test Output
 
@@ -176,8 +176,8 @@ mkdir -p $WORKING_DIR
 #### Run Benchmark
 
 ```text
-fio —blocksize=1048576 --direct=1 --numjobs=32 --directory=$WORKING_DIRECTORY \\
-    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 \\
+fio —blocksize=1048576 --direct=1 --numjobs=32 --directory=$WORKING_DIR \\
+    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_ID --nrfiles=1 \\
     --clat_percentiles=1 --max-jobs=32 --randrepeat=1 --create_serialize=0 \\
     --group_reporting '--filename_format=$jobnum/$filenum' --runtime=70 \\
     --rwmixread=0 --iodepth=1 --readwrite=read --file
@@ -215,8 +215,8 @@ mkdir -p $WORKING_DIR
 #### Run  Benchmark
 
 ```text
-fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY \\
-    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME --nrfiles=1 \\
+fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIR \\
+    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_ID --nrfiles=1 \\
     --clat_percentiles=1 --max-jobs=1 --randrepeat=1 --create_serialize=0 \\
     --group_reporting '--filename_format=$jobnum/$filenum' --runtime=60 \\
     --rwmixread=0 --iodepth=256 --readwrite=randwrite --filesize=10485760000
@@ -254,8 +254,8 @@ mkdir -p $WORKING_DIR
 #### Run  Benchmark
 
 ```text
-fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY \\
-    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_NAME \\
+fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIR \\
+    --ioengine=libaio --invalidate=0 --time_based --name=$BENCHMARK_ID \\
     --nrfiles=1 --clat_percentiles=1 --max-jobs=1 --randrepeat=1 \\
     --create_serialize=0 --group_reporting '--filename_format=$jobnum/$filenum' \\
     --runtime=60 --rwmixread=0 --iodepth=256 --readwrite=randread \\
@@ -268,10 +268,7 @@ fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY \\
 
 ![](../.gitbook/assets/iops-write-test-output-page-001-1-_final-2.jpg)
 
-In this test output example, results show an average IOPS of 127,402.  
-
-
-\`\`
+In this test output example, results show an average IOPS of 127,402.
 
 
 
