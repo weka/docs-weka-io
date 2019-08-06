@@ -97,7 +97,7 @@ fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY \\
     --rwmixread=0 --iodepth=256 --readwrite=randread --filesize=10485760000
 ```
 
-{% file src="../.gitbook/assets/fio-small-read-latency-test-script.txt" caption="FIO small read latency test script" %}
+{% file src="../.gitbook/assets/fio-small-read-latency-test-script \(1\).txt" caption="FIO small read latency test script" %}
 
 #### Example of Test Output
 
@@ -183,7 +183,7 @@ fio —blocksize=1048576 --direct=1 --numjobs=32 --directory=$WORKING_DIRECTORY 
     --rwmixread=0 --iodepth=1 --readwrite=read --file
 ```
 
-{% file src="../.gitbook/assets/fio-large-bandwidth-reads-test-script.txt" caption="FIO large bandwidth reads test script" %}
+{% file src="../.gitbook/assets/fio-large-bandwidth-reads-test-script \(1\).txt" caption="FIO large bandwidth reads test script" %}
 
 #### Example of Test Output
 
@@ -222,7 +222,7 @@ fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY \\
     --rwmixread=0 --iodepth=256 --readwrite=randwrite --filesize=10485760000
 ```
 
-{% file src="../.gitbook/assets/fio-iops-write-test-script.txt" caption="FIO IOPS write test script" %}
+{% file src="../.gitbook/assets/fio-iops-write-test-script \(1\).txt" caption="FIO IOPS write test script" %}
 
 #### Example of Test Output
 
@@ -262,7 +262,7 @@ fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIRECTORY \\
     --filesize=10485760000
 ```
 
-{% file src="../.gitbook/assets/fio-iops-read-test-script.txt" caption="FIO IOPS read test script" %}
+{% file src="../.gitbook/assets/fio-iops-read-test-script \(1\).txt" caption="FIO IOPS read test script" %}
 
 #### Example of Test Output
 
