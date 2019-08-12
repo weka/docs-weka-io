@@ -72,8 +72,8 @@ Use the following command line to add an object store:
 | `bucket` | Number | The object store bucket ID | Must be a valid name | Yes |  |
 | `auth-method` | String | Authentication method | None, AWSSignature2 or AWSSignature4 | Yes |  |
 | `region` | String | Region name |  | Yes |  |
-| `access-key-id` | Number | The object store access key ID |  | Yes |  |
-| `secret-key` | String | The object store secret key |  | Yes |  |
+| `access-key-id` | String | The object store access key ID |  | Yes \(In AWS when using IAM roles can be left empty\) |  |
+| `secret-key` | String | The object store secret key |  | Yes \(In AWS when using IAM role , can be left empty\) |  |
 | `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
 | `errors-timeout` | Number | If the OBS link is down for longer than this, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
 | `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No | 0 |
@@ -118,8 +118,8 @@ Use the following command line to edit an object store:
 | `bucket` | String | The object store bucket name | Must be a valid name | Yes |  |
 | `auth-method` | String | Authentication method | None, AWSSignature2 or AWSSignature4 | Yes |  |
 | `region` | String | Region name |  | Yes |  |
-| `access-key-id` | String | The object store access key ID |  | Yes |  |
-| `secret-key` | String | The object store secret key |  | Yes |  |
+| `access-key-id` | String | The object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
+| `secret-key` | String | The object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
 | `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
 | `errors-timeout` | Number | If the OBS link is down for longer than this, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
 | `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No | 0 |

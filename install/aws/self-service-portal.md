@@ -12,7 +12,11 @@ The WekaIO Self-Service Portal is a planning tool for WekaIO clusters to meet st
 
 It is possible to start by just entering the capacity required, configuring advanced parameters such as required performance and even provision of a multi-AZ cluster for added reliability.
 
-Each configuration can be immediately deployed as a CloudFormation stack by redirecting to the AWS console.
+Each configuration can be immediately deployed as a CloudFormation stack by redirecting to the AWS console. 
+
+{% hint style="info" %}
+**Note:** CloudFormation should only be used for initial deployment. To expand cluster resources, refer to [Expanding & Shrinking Cluster Resources](../../usage/expanding-and-shrinking-cluster-resources/).
+{% endhint %}
 
 ## Planning a Cluster
 

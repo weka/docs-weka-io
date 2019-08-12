@@ -7,7 +7,9 @@ description: >-
 # Expand & Shrink Overview
 
 {% hint style="info" %}
-**Note:** The cluster expansion process described here is only applicable to a homogeneous WekaIO system configuration, which is highly recommended. For non-homogeneous WekaIO system configurations, contact the WekaIO Support Team.
+**Note:** The cluster expansion process described here is only applicable to a homogeneous WekaIO system configuration, which is highly recommended. For non-homogeneous WekaIO system configurations, contact the WekaIO Support Team. 
+
+**Note:** For AWS deployments, ****CloudFormation should only be used for initial deployment, and not for expanding & shrinking cluster resources.
 {% endhint %}
 
 ## About Expanding & Shrinking Cluster

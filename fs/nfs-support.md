@@ -75,15 +75,15 @@ The same mechanism ensures the resiliency of the service. On a host failure, all
 
 #### Defining Interface Groups Using the GUI <a id="uploading-a-snapshot-using-the-ui"></a>
 
-Access the IP Interfaces screen. 
+Access the NFS IP Interfaces screen. 
 
-![IP Interfaces Screen](../.gitbook/assets/screenshot-from-2018-07-04-16-25-02.png)
+![NFS IP Interfaces Screen](../.gitbook/assets/nfs-interface-3.4.png)
 
 To define an interface group, click the '+' button at the top left-hand side of the screen. The add Interface Groups dialog box will be displayed.
 
-![Add Interface Group Dialog Box](../.gitbook/assets/image%20%284%29.png)
+![Add Interface Group Dialog Box](../.gitbook/assets/nfs-interfaces-3.4.png)
 
-Enter the Group Name \(this has to be unique\), the Default Gateway and the Subnet Mask. Then click Save.
+Enter the Group Name \(this has to be unique\) and the Gateway / Mask Bits. Then click Save.
 
 #### Defining Interface Groups Using the CLI <a id="uploading-a-snapshot-using-the-cli"></a>
 
@@ -108,7 +108,7 @@ Use the following command line to add an interface group:
 
 Access the Group Ports table.
 
-![Group Ports Table](../.gitbook/assets/image%20%286%29.png)
+![Group Ports Table](../.gitbook/assets/image%20%287%29.png)
 
 To set interface group ports, click the '+' button on the top right-hand side of the Group Ports table. Then select the relevant hosts and ports and click Save.
 
@@ -170,7 +170,7 @@ weka nfs interface-group ip-range delete <name> <ips>`
 
 Access the NFS Client Permissions screen.
 
-![NFS Client Permissions Screen](../.gitbook/assets/screenshot-from-2018-07-04-17-10-55.png)
+![NFS Client Permissions Screen](../.gitbook/assets/screen-shot-2019-08-12-at-10.12.27.png)
 
 To define a client access group, click the '+' button on the top left-hand side of the screen. Enter the client access group name and click Save.
 
@@ -194,13 +194,13 @@ weka nfs client-group delete <name>`
 
 To add IPs or DNS rules to a group, access the relevant Client Groups dialog box.
 
-![Client Groups Dialog Box](../.gitbook/assets/image%20%289%29.png)
+![Client Groups Dialog Box](../.gitbook/assets/nfs-client-group-3.4%20%281%29.png)
 
 Click +Add IP or +Add DNS. The appropriate dialog box will be displayed.
 
-![Add DNS to a Client Group Dialog Box](../.gitbook/assets/screenshot-from-2018-07-04-17-39-07.png)
+![Add DNS to a Client Group Dialog Box](../.gitbook/assets/nfs-client-group-dns-3.4.png)
 
-![Add IP to a Client Group](../.gitbook/assets/screenshot-from-2018-07-04-17-38-48.png)
+![Add IP to a Client Group](../.gitbook/assets/nfs-client-group-ip-3.4.png)
 
 Enter the required values - DNS or IP and Mask, respectively, and click Save.
 
@@ -263,35 +263,100 @@ Then click Save.
 **Command:** `weka nfs permission` 
 
 Use the following command lines to add/update/delete NFS permissions:  
-`weka nfs permission add <filesystem> <group> [--path=<path>][--permission-type=<perm>]  
-weka nfs permission update <filesystem> <group> [--path=<path>][--permission-type=<perm>]  
-weka nfs permission delete <filesystem> <group> [--path=<path>]`
+`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid]`
+
+`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid]`
+
+`weka nfs permission delete <filesystem> <group> [--path path]`
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `filesystem` | String | Filesystem name | Existing filesystem | Yes |  |
-|  `group` | String | Client group name | Existing client group | Yes |  |
-|  `path` | String | Root of the share | Valid path | No | / |
-| `perm` | String | Permission type  | RO: read only           RW: read write | No |  |
-
-Use the following command lines to add/update root-squashing:  
-`weka nfs permission add root-squashing <filesystem> <group> <permission-type> <anon-uid> <anon-gid> [--path=<path>]  
-weka nfs permission update root-squashing <filesystem> <group> <permission-type> <anon-uid> <anon-gid> [--path=<path>]`
-
-**Parameters in Command Line**
-
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-|  `filesystem` | String | Filesystem name | Existing filesystem | Yes |  |
-|  `group` | String | Client group name | Existing client group | Yes |  |
-| `permission-type` | String | Permission type | RO: read only                             RW: read write | Yes |  |
-| `anon-uid` | Int | Anonymous user ID \(relevant only for root squashing\) | Valid UID \(between 0 and 65535\) | Yes |  |
-| `anon-gid` | Int | Anonymous user group ID \(relevant only for root squashing\) | Valid GID \(between 0 and 65535\) | Yes |  |
-|  `path` | String | Root of the share | Valid path | No | / |
-
-## Client Mounts
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>filesystem</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Filesystem name</td>
+      <td style="text-align:left">Existing filesystem</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"> <code>group</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Client group name</td>
+      <td style="text-align:left">Existing client group</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"> <code>path</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Root of the share</td>
+      <td style="text-align:left">Valid path</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">/</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>permission-type</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Permission type</td>
+      <td style="text-align:left">
+        <p>RO: read only</p>
+        <p>RW: read write</p>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">RW</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>root-squashing</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Root squashing</td>
+      <td style="text-align:left">on/off</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">on</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>anon-uid</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Anonymous user ID (relevant only for root squashing)</td>
+      <td style="text-align:left">Valid UID (between 0 and 65535)</td>
+      <td style="text-align:left">Yes (if root squashing is enabled)</td>
+      <td style="text-align:left">65534</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>anon-gid</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Anonymous user group ID (relevant only for root squashing)</td>
+      <td style="text-align:left">Valid GID (between 0 and 65535)</td>
+      <td style="text-align:left">Yes (if root squashing is enabled)</td>
+      <td style="text-align:left">65534</td>
+    </tr>
+  </tbody>
+</table>## Client Mounts
 
 ### Supported Mount Options for NFS Clients
 
