@@ -93,10 +93,10 @@ Use the following command line to obtain the current performance status of the h
 `weka stats realtime`
 
 Use the following command line to manage filters and read statistics:  
-`weka stats --start-time=<start> [--end-time=<end>] [--category=<category>]... [--stat=<stat>]... [--resolution-secs=<secs>] [--accumulated] [--node-ids=<node>...] [--param=<key:val>]... [--no-zeroes] [--show-internal] [--per-node]`  
+`weka stats --start-time=<start> [--end-time=<end>] [--category=<category>]... [--stat=<stat>]... [--resolution-secs=<secs>] [--accumulated] [--node-ids=<node>...] [--param=<key:val>]... [--no-zeros] [--show-internal] [--per-node]`  
 or:
 
-`weka stats --interval=<interval> [--category=<category>]... [--stat=<stat>]... [--resolution-secs=<secs>] [--accumulated] [--node-ids=<node>...] [--param=<key:val>]... [--no-zeroes] [--show-internal] [--per-node]`
+`weka stats --interval=<interval> [--category=<category>]... [--stat=<stat>]... [--resolution-secs=<secs>] [--accumulated] [--node-ids=<node>...] [--param=<key:val>]... [--no-zeros] [--show-internal] [--per-node]`
 
 **Parameters in Command Lines**
 
@@ -123,7 +123,7 @@ or:
 
 `[--accumulated]`: Displays accumulated statistics, not rate statistics
 
-`[--no-zeroes]`: Filters results where the value is 0
+`[--no-zeros]`: Filters results where the value is 0
 
 `[--show-internal]`: Displays internal statistics
 
