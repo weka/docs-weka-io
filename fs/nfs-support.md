@@ -104,7 +104,7 @@ Use the following command line to add an interface group:
 
 Access the Group Ports table.
 
-![Group Ports Table](../.gitbook/assets/image%20%286%29.png)
+![Group Ports Table](../.gitbook/assets/image%20%287%29.png)
 
 To set interface group ports, click the '+' button on the top right-hand side of the Group Ports table. Then select the relevant hosts and ports and click Save.
 
@@ -190,7 +190,7 @@ weka nfs client-group delete <name>`
 
 To add IPs or DNS rules to a group, access the relevant Client Groups dialog box.
 
-![Client Groups Dialog Box](../.gitbook/assets/image%20%289%29.png)
+![Client Groups Dialog Box](../.gitbook/assets/image%20%2810%29.png)
 
 Click +Add IP or +Add DNS. The appropriate dialog box will be displayed.
 
