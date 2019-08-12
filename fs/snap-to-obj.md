@@ -90,6 +90,10 @@ Snap-To-Object and data lifecycle management both use SSDs and object stores for
 1. Data resides on the SSDs only and the object store is used only for the various Snap-To-Object use cases, such as backup, archiving and bursting. In this case, for each filesystem, the allocated SSD capacity should be identical to the filesystem size and the data Retention Period should be defined as the longest time possible, i.e., 5 years. The Tiering Cue should be defined using the same considerations as in data lifecycle management, based on IO patterns. In this scheme, the applications work all the time with a high-performance SSD storage system and use the object store only as a backup device.
 2. Use of Snap-To-Object on filesystems with active data lifecycle management between the object store and the SSDs. In this case, objects in the object store will be used for both tiering of all data and for backing-up the data using Snap-To-Object, i.e., whenever possible, the WekaIO system will use the same object for both purposes, thereby eliminating the need to acquire additional storage and to unnecessarily copy data.
 
+{% hint style="info" %}
+**Note:** When using Snap-To-Object to rehydrate data from an object store, some of the metadata may still be in the object store until it is accessed for the first time.
+{% endhint %}
+
 ## Working with Snapshots
 
 ### **Snapshot Management**

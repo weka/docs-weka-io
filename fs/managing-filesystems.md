@@ -72,8 +72,8 @@ Use the following command line to add an object store:
 | `bucket` | Number | The object store bucket ID | Must be a valid name | Yes |  |
 | `auth-method` | String | Authentication method | None, AWSSignature2 or AWSSignature4 | Yes |  |
 | `region` | String | Region name |  | Yes |  |
-| `access-key-id` | String | The object store access key ID |  | Yes \(In AWS when using IAM roles can be left empty\) |  |
-| `secret-key` | String | The object store secret key |  | Yes \(In AWS when using IAM role , can be left empty\) |  |
+| `access-key-id` | String | The object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
+| `secret-key` | String | The object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
 | `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
 | `errors-timeout` | Number | If the OBS link is down for longer than this, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
 | `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No | 0 |
@@ -157,10 +157,6 @@ Use the following command line to delete an object store:
 
 ## Managing Filesystem Groups
 
-{% hint style="info" %}
-**Note:**  The following sections describe how to add, edit and delete filesystem groups using the GUI and CLI.
-{% endhint %}
-
 ### Adding a Filesystem Group
 
 #### Adding a Filesystem Group Using the GUI
@@ -175,19 +171,11 @@ The Create Filesystem Group dialog box will be displayed.
 
 Enter the relevant parameters and click Create to create the filesystem group.
 
-{% hint style="info" %}
-**Note:** The tiering status is selected in the GUI using the switch. However, in the CLI, this requires the use of different commands.
-{% endhint %}
-
-#### Adding a Filesystem Group Using the CLI
-
 **Command:** `weka fs group create`
 
-{% hint style="info" %}
-**Note:** In the CLI, defining the tiering status for a new filesystem group requires the use of a different command.
-{% endhint %}
-
 Use one of the following command lines to add a filesystem group:
+
+#### Adding a Filesystem Group Using the CLI
 
 For a non-tiered filesystem group:
 
@@ -213,6 +201,8 @@ For a non-tiered filesystem group:
 Click the Edit button of the filesystem group to be modified. The Configure Filesystem Group dialog box will be displayed.
 
 ![Configure Filesystem Group Dialog Box](../.gitbook/assets/fsg-edit-dialog-box.jpg)
+
+A more in-depth explanation of the tiring policy appears in [Advanced Data Lifecycle Management](tiering.md).
 
 Edit the existing filesystem group parameters and click Configure to execute the changes.
 

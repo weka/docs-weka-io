@@ -37,9 +37,9 @@
 ## FILESYSTEMS <a id="fs"></a>
 
 * [Managing Filesystems, Object Stores & Filesystem Groups](fs/managing-filesystems.md)
+* [Advanced Data Lifecycle Management](fs/tiering.md)
 * [NFS Support](fs/nfs-support.md)
 * [Mounting Filesystems](fs/mounting-filesystems.md)
-* [Pre-Fetching API for Data Lifecycle Management](fs/tiering.md)
 * [Snapshots](fs/snapshots.md)
 * [Snap-To-Object](fs/snap-to-obj.md)
 
