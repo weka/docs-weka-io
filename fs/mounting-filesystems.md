@@ -89,7 +89,11 @@ Each mount option can be passed with an individual `-o` flag to `mount`
 | `inode_bits` | 32, 64 or auto | Size of the inode in bits, which may be required for 32 bit applications. | Auto |
 | `verbose` | None | Write debug logs to the console | No |
 | `quiet` | None | Don't show any logs to console | No |
-| `acl` | None | Per mount; can degrade access if defined | No |
+| `acl` | None | Can be defined per mount \(access can only be degraded if there are ACLs defined but the mount has no ACL\) | No |
+
+{% hint style="info" %}
+**Note:** Current ****ACL support is limited. It does not support inheritance of default ACLs and has some impact on performance.
+{% endhint %}
 
 ### **Additional Mount Options Available using the Stateless Clients Feature**
 
@@ -174,20 +178,20 @@ Each mount option can be passed with an individual `-o` flag to `mount`
 **Note:** These parameters are only effective on the first mount command for each client.
 {% endhint %}
 
-{% hint style="success" %}
-**For Example: On Premises Installations**
+{% hint style="warning" %}
+**For Example: On-Premise Installations**
 
 `mount -t wekafs -o num_cores=1 -o net=ib0 backend-host-0/my_fs /mnt/weka`
 
 Running this command on a host installed with the WekaIO agent will download the appropriate WekaIO version from the host`backend-host-0`and create a WekaIO container which allocates a single core and a named network interface \(`ib0`\). Then it will join the cluster that `backend-host-0` is part of and mount the filesystem `my_fs` on `/mnt/weka.`
 {% endhint %}
 
-{% hint style="success" %}
+{% hint style="warning" %}
 **For Example: AWS Installations**
 
 `mount -t wekafs -o num_cores=2 backend1,backend2,backend3/my_fs /mnt/weka`
 
-Running this command on an AWS host will allocate two cores \(multiple-frontends\) and attach and configure 2 ENIs on the new client. The client will attempt to rejoin the cluster via all three backends used in the command line.
+Running this command on an AWS host will allocate two cores \(multiple-frontends\) and attach and configure two ENIs on the new client. The client will attempt to rejoin the cluster via all three backends used in the command line.
 {% endhint %}
 
 Any subsequent mount commands after the first `mount` command \(where the client software is installed and the host joins the cluster\) can use the same command, or use just the traditional mount parameters as defined in [Mounting Filesystems](mounting-filesystems.md#mount-mode-command-options), since it is not necessary to join a cluster. 
@@ -258,7 +262,7 @@ service autofs restart
 
 It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
 
-{% hint style="success" %}
+{% hint style="warning" %}
 **For Example:** The`default`filesystem is automatically mounted under`/mnt/weka/default`.
 {% endhint %}
 
