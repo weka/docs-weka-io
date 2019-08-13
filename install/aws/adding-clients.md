@@ -54,7 +54,7 @@ To download the WekaIO software, go to [https://get.weka.io ](https://get.weka.i
 
 When the download is complete, untar the downloaded package and run the `install.sh` command in the package directory. 
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example:** If you downloaded version 3.1.7, run`cd weka-3.1.7` and then run `./install.sh`.
 {% endhint %}
 
@@ -96,7 +96,7 @@ Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are al
 
 It is now possible to mount the filesystems on the client instances.
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example:** Using the`mkdir -p /mnt/weka && mount -t wekafs default /mnt/weka`  command will mount the `default`filesystem under `/mnt/weka.`
 {% endhint %}
 

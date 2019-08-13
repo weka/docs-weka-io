@@ -178,7 +178,7 @@ Each mount option can be passed with an individual `-o` flag to `mount`
 **Note:** These parameters are only effective on the first mount command for each client.
 {% endhint %}
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example: On-Premise Installations**
 
 `mount -t wekafs -o num_cores=1 -o net=ib0 backend-host-0/my_fs /mnt/weka`
@@ -186,7 +186,7 @@ Each mount option can be passed with an individual `-o` flag to `mount`
 Running this command on a host installed with the WekaIO agent will download the appropriate WekaIO version from the host`backend-host-0`and create a WekaIO container which allocates a single core and a named network interface \(`ib0`\). Then it will join the cluster that `backend-host-0` is part of and mount the filesystem `my_fs` on `/mnt/weka.`
 {% endhint %}
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example: AWS Installations**
 
 `mount -t wekafs -o num_cores=2 backend1,backend2,backend3/my_fs /mnt/weka`
@@ -262,7 +262,7 @@ service autofs restart
 
 It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example:** The`default`filesystem is automatically mounted under`/mnt/weka/default`.
 {% endhint %}
 

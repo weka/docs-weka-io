@@ -118,7 +118,7 @@ The IPs **MUST NOT** be in use by any other application/host in the subnet, incl
 The `--smb-ips` parameter is supposed to accept the public IPs that the SMB cluster will expose. To mount the SMB cluster in an HA manner, they should be mounted via one of the exposed public IPs, thereby ensuring that they will not lose connection if one of the SMB hosts fails.
 {% endhint %}
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example:**
 
 `weka smb cluster create oab mydomain --samba-hosts 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5`
@@ -196,7 +196,7 @@ Use the following command line to add a new share to be exposed to SMB:
 **Note:**  If it is necessary to pass to the Samba library share specific options, contact the WekaIO Support Team.
 {% endhint %}
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example:** The following is an example for adding users to a share mounted on a filesystem named "default":
 
 `weka smb share add rootShare default  
@@ -219,7 +219,7 @@ Use the following command line to remove a share exposed to SMB:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `share-id` | String |  The ID of the share to be removed | Must be a valid name  of a currently-defined share | Yes | ​ |
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example:** The following is an example for removing an SMB share defined as ID 1:
 
 `weka smb share remove 1`

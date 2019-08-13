@@ -77,13 +77,13 @@ The net capacity of the WekaIO system is obtained after the following three dedu
 
 **For Example:**
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **Scenario 1:** A homogeneous system of 10 hosts, each with 1 terabyte of Raw SSD Capacity, 2 hot spare failure domains of capacity and a protection scheme of 3+2.
 {% endhint %}
 
 ![Formula for Calculating Scenario 1 SSD Net Capacity](../.gitbook/assets/net-capacity-formula_scenario-1_11_03_19-page-001-1.jpg)
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **Scenario 2:** A homogeneous system of 20 hosts, each with 1 terabyte of Raw SSD Capacity, 2 hot spare failure domains of capacity and a protection scheme of 16+2.
 {% endhint %}
 

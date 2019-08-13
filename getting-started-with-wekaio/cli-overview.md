@@ -53,7 +53,7 @@ Use 'weka <command> --help' for more help on a specific command
 
 Most WekaIO system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystems, filesystem groups and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
 {% endhint %}
 
@@ -97,7 +97,7 @@ Most WekaIO system commands deliver the same result on all cluster hosts. Howeve
 
 The `weka status` command displays the overall status of the WekaIO system. 
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example:** If the cluster is healthy, a result similar to the following should be displayed:
 {% endhint %}
 
@@ -113,7 +113,7 @@ Weka v3.1 (CLI build 17No144)
        writes: 0 bytes/s (0 IO/s)
 ```
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example:** If the cluster has one failed host, a result similar to the following should be displayed:
 {% endhint %}
 

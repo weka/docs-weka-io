@@ -60,7 +60,7 @@ fio --name=$BENCHMARK_ID --directory=$WORKING_DIR --filesize=104857600 \\
 
 #### Example of Test Output
 
-{% hint style="warning" %}
+{% hint style="success" %}
 The following is an example of the test output for an AWS WekaIO cluster of 6 instances of type i3.16xlarge.
 {% endhint %}
 
@@ -101,7 +101,7 @@ fio --blocksize=4k --direct=1 --numjobs=1 --directory=$WORKING_DIR \\
 
 #### Example of Test Output
 
-{% hint style="warning" %}
+{% hint style="success" %}
 The following is an example of the test output for an AWS WekaIO cluster of 6 instances of type i3.16xlarge.
 {% endhint %}
 

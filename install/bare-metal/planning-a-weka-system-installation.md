@@ -64,7 +64,7 @@ The per host capacity requirement is calculated with the following formula:
 **Note:** System capacity/average file size is the number of files that can be used accordingly.
 {% endhint %}
 
-{% hint style="warning" %}
+{% hint style="success" %}
 **For Example:** 12 hosts, 6 WekaIO system cores per host, 100 TB SSD system with 512 TB total system capacity \(with object store\), average file size 64 KB.
 {% endhint %}
 
