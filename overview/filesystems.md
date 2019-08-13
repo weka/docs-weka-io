@@ -44,7 +44,7 @@ Throughout this documentation, the metadata limitation per filesystem is referre
 
 For the purpose of the definitions above, it is irrelevant if the file is on the SSD or the object store.
 
-{% hint style="warning" %}
+{% hint style="success" %}
 For Example:
 
 * For a filesystem with potentially 1,000,000,000 files of 64 KB in size,  2,000,000,000 metadata units are required.
