@@ -16,7 +16,7 @@ To add client hosts to the WekaIO system configuration, use the stages described
 
 ## Stage 1: Install the Software
 
-Verify that the WekaIO software is installed on the client host according to the installation instructions. For further information, see [Obtaining the WekaIO Install File](obtaining-the-weka-install-file.md) and [Stage 1 in WekaIO System Installation Process](adding-clients-bare-metal.md#stage-1-install-the-software).
+Verify that the WekaIO software is installed on the client host according to the installation instructions. For further information, see [Obtaining the WekaIO Install File](obtaining-the-weka-install-file.md) and [Stage 1 in WekaIO System Installation Process.](using-cli.md#stage-1-installation-of-the-wekaio-software-on-each-host)
 
 {% hint style="info" %}
 **Note:** All hosts, clients and backends in a WekaIO system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
