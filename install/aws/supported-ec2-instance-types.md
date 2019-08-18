@@ -14,7 +14,7 @@ The following EC2 instance types can operate as **backend**, **client** or **con
 
 | **EC2 Instance Type** | **Supported Models** |
 | :--- | :--- |
-| I3 | i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge |
+| I3 | i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge, i3en.xlarge, i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge |
 | R3 | r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge |
 
 ## Client EC2 Instances
@@ -31,7 +31,7 @@ The following EC2 instance types can operate as **client** instances.
 | C4 | c4.2xlarge, c4.4xlarge, c4.8xlarge |
 | C5 | c5.2xlarge, c5.4xlarge, c5.9xlarge, c5.18xlarge |
 | G3 | g3.4xlarge, g3.8xlarge, g3.16xlarge |
-| I3 | i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge |
+| I3 | i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge, i3en.xlarge, i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge |
 | M4 | m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, m4.16xlarge |
 | P2 | p2.xlarge, p2.8xlarge, p2.16xlarge |
 | P3 | p3.2xlarge, p3.8xlarge, p3.16xlarge |
