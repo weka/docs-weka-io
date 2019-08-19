@@ -4,18 +4,16 @@ description: >-
   category.
 ---
 
-# Events
+# List of Events
 
-
-
-### Alert Events
+## Alert Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | AlertMuted | INFO | Alert muted |
 | AlertUnmuted | INFO | Alert unmuted |
 
-### Cloud Events
+## Cloud Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -26,7 +24,7 @@ description: >-
 | CloudSetUploadRate | INFO | Cloud upload rate changed |
 | DiagsUploaded | INFO | Diags uploaded |
 
-### Clustering Events
+## Cluster Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -47,7 +45,7 @@ description: >-
 | ClusteringFailure | MINOR | Node clustering failed |
 | RejoinFailureReport | MINOR | Node\(s\) failed to rejoin |
 
-### Drive Events
+## Drive Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -70,14 +68,14 @@ description: >-
 | DriveNvmeSmartChange | MINOR | NVMe drive SMART status changed |
 | DriveExcessiveErrors | WARNING | Drive has excessive error rate and will be phased out; call WekaIO Support Team |
 
-### Event Events
+## Event Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | EventsDedupReport | INFO | Event deduplication ended |
 | DedupEventsDiscarded | WARNING | Deduplication events discarded |
 
-### Filesystem Events
+## Filesystem Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -96,7 +94,7 @@ description: >-
 | CongestionStarted | WARNING | Congestion started |
 | ExtremeCongestionStarted | WARNING | Extreme congestion started |
 
-### Interface Group Events
+## InterfaceGroup Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -108,7 +106,7 @@ description: >-
 | InterfaceGroupPortAdded | INFO | Interface group port configuration change |
 | InterfaceGroupPortDeleted | INFO | Interface group port configuration change |
 
-### Licensing Events
+## Licensing Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -116,7 +114,7 @@ description: >-
 | NewLicenseInstalled | INFO | New license installed |
 | PaygLicensingEnabled | INFO | PAYG licensing enabled |
 
-### NFS Events
+## NFS Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -130,7 +128,7 @@ description: >-
 | NfsPortmapFail | MAJOR | NFS server failed to register in portmap |
 | NfsMountFail | WARNING | NFS mount request failed |
 
-### Network Events
+## Network Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -147,7 +145,7 @@ description: >-
 | MgmtNodeCannotFetchConfig | WARNING | Node cannot join cluster for too long |
 | NodeCannotJoinCluster | WARNING | Node cannot join cluster for too long |
 
-### Node Events
+## Node Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -155,7 +153,7 @@ description: >-
 | NodeStarted | INFO | Node started |
 | NodeStopped | INFO | Node stopped |
 
-### Object Storage Events
+## Object Storage Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -166,7 +164,7 @@ description: >-
 | ObjectStorageUpdated | INFO | Object storage configuration change |
 | TieredFilesystemBreakingPolicy | MINOR | Breaking policy; too much disk pressure |
 
-### RAID Events
+## RAID Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -179,18 +177,18 @@ description: >-
 | DisksFailureDetected | MAJOR | Disk\(s\) failures detected |
 | EnoughActiveFailureDomains | MINOR | Enough active failure domains |
 
-### System Events
+## System Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| NotEnoughSSDCapacity | CRITICAL | Not enough SSD capacity exists for all provisioned file systems |
+| NotEnoughSSDCapacity | CRITICAL | Not enough SSD capacity exists for all provisioned filesystems |
 | IOStarted | INFO | System has started |
 | IOStopped | INFO | System has stopped |
 | StartIORequested | INFO | Request made to start IO |
 | StopIORequested | INFO | Request made to stop IO |
 | HaveEnoughSSDCapacity | MINOR | Enough SSD capacity now exists for all provisioned file systems |
 
-### Upgrade Events
+## Upgrade Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -206,7 +204,7 @@ description: >-
 | HostUpgradeFailed | MAJOR | Host upgrade failed |
 | ClientFailedAutoUpgrade | WARNING | Node auto-upgrade failed |
 
-### User Events
+## User Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |

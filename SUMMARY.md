@@ -52,7 +52,8 @@
 ## OPERATION GUIDE <a id="usage"></a>
 
 * [Alerts](usage/alerts.md)
-* [Events](usage/events.md)
+* [Events](usage/events/README.md)
+  * [List of Events](usage/events/list-of-events.md)
 * [Statistics](usage/statistics.md)
 * [User Management](usage/user-management.md)
 * [Expanding & Shrinking Cluster Resources](usage/expanding-and-shrinking-cluster-resources/README.md)
