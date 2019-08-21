@@ -15,8 +15,8 @@ The choice between the two is dictated by the currently-available networking inf
 
 For networking, the WekaIO system does not use standard kernel-based TCP/IP services, but a proprietary infrastructure based on the following:
 
-1. Use of [DPDK](https://www.dpdk.org/) to map the network device in the user space and make use of the network device without any context switches and with zero-copy access. This bypassing of the kernel stack eliminates the consumption of kernel resources for networking operations and can be scaled to run on multiple hosts. It applies to both backend and client hosts and enables the WekaIO system to fully saturate 200 GB links.
-2. Implementation of a proprietary WekaIO protocol over UDP, i.e., the underlying network may involve routing between subnets or any other networking infrastructure that supports UDP.
+* Use of [DPDK](https://www.dpdk.org/) to map the network device in the user space and make use of the network device without any context switches and with zero-copy access. This bypassing of the kernel stack eliminates the consumption of kernel resources for networking operations and can be scaled to run on multiple hosts. It applies to both backend and client hosts and enables the WekaIO system to fully saturate 200 GB links.
+* Implementation of a proprietary WekaIO protocol over UDP, i.e., the underlying network may involve routing between subnets or any other networking infrastructure that supports UDP.
 
 The use of DPDK delivers operations with extremely low-latency and high throughput. Low latency is achieved by bypassing the kernel and sending and receiving packages directly from the NIC. High throughput is achieved because multiple cores in the same host can work in parallel, without a common bottleneck.
 
@@ -43,7 +43,7 @@ The WekaIO system can also be configured to work over UDP through the kernel. Th
 
 To support HA, the WekaIO system must be configured with no single component representing a single point of failure. Multiple switches are required and hosts must have one leg on each switch. 
 
-HA for hosts is achieved through the implementation of two network interfaces on the same host, with the WekaIO processes using the active interface. This is not LACP, which configures a single IP interface on a single host, but a redundancy that enables the WekaIO software to utilize two interfaces for HA and bandwidth, respectively. Consequently, it is necessary to validate the compatibility of other applications running on the same ports.
+HA for hosts is achieved through the implementation of two network interfaces on the same host. This is not LACP, which configures a single IP interface on a single host, but a redundancy that enables the WekaIO software to utilize two interfaces for HA and bandwidth, respectively. Consequently, it is necessary to validate the compatibility of other applications running on the same ports.
 
 HA performs fail-over and fail-back for reliability and load balancing on both interfaces, and is operational for both Ethernet and InfiniBand. It currently requires doubling of the number of IPs on both the host and the IO nodes.
 
