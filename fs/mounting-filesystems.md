@@ -148,6 +148,7 @@ Each mount option can be passed with an individual `-o` flag to `mount`
           there will be two devices named <code>net0</code> and <code>net1</code>as
           far as the host is concerned. The cluster names them by prefixing the host
           ID, e.g.,<code>host3net0</code>, <code>host3net1</code>.</p>
+        <p>Set <code>net=udp</code> to use <a href="../overview/networking-in-wekaio.md#udp-mode">UDP mode</a>.</p>
       </td>
       <td style="text-align:left"></td>
     </tr>
@@ -184,6 +185,10 @@ Each mount option can be passed with an individual `-o` flag to `mount`
 `mount -t wekafs -o num_cores=1 -o net=ib0 backend-host-0/my_fs /mnt/weka`
 
 Running this command on a host installed with the WekaIO agent will download the appropriate WekaIO version from the host`backend-host-0`and create a WekaIO container which allocates a single core and a named network interface \(`ib0`\). Then it will join the cluster that `backend-host-0` is part of and mount the filesystem `my_fs` on `/mnt/weka.`
+
+`mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka`
+
+Running this command will use [UDP mode ](../overview/networking-in-wekaio.md#udp-mode)\(usually selected when the use of DPDK is not available\)
 {% endhint %}
 
 {% hint style="success" %}
