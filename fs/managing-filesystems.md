@@ -202,8 +202,6 @@ Click the Edit button of the filesystem group to be modified. The Configure File
 
 ![Configure Filesystem Group Dialog Box](../.gitbook/assets/fsg-edit-dialog-box.jpg)
 
-A more in-depth explanation of the tiring policy appears in [Advanced Data Lifecycle Management](tiering.md).
-
 Edit the existing filesystem group parameters and click Configure to execute the changes.
 
 #### Editing an Existing Filesystem Group Using the CLI
@@ -229,6 +227,8 @@ To add a tier to a filesystem group:
 | `storage` | String | The ID of the object store for storage | Must be a valid name | Yes |  |
 | `target-ssd-retention` | Number | The new target retention period \(in seconds\) before tiering to the object store | Must be a valid number | No |  |
 | `start-demote` | Number | The new target tiering cue \(in seconds\) before tiering to the object store | Must be a valid number | No |  |
+
+A more in-depth explanation of the tiring policy appears in [Advanced Data Lifecycle Management](tiering.md).
 
 ### Deleting a Filesystem Group
 
