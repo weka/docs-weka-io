@@ -66,7 +66,7 @@ description: >-
 * Mellanox ConnectX5 \(Ethernet and InfiniBand\)
 * Mellanox ConnectX6 \(Ethernet and InfiniBand\)
 
-#### Nic Drivers
+#### NIC Drivers
 
 Supported Mellanox OFED versions:
 
@@ -99,13 +99,16 @@ Supported intel 40 drivers:
 * NICs bonding: Not configured
 * VLAN: Not supported
 * Jumbo frames: Enabled on switch and on network port
-* WekaIO system management IP address: One IP per server \(configured prior to weka installation\) 
-* WekaIO system data plane IP address: One IP address for each [WekaIO core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server \(Weka will apply these IPs during the cluster initialization\)
-* WekaIO system management IP: Ability to communicate with all WekaIO system data plane IPs
 * Connectivity between hosts: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
-* [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs ot the number of cores you wish to dedicate to weka; some configuration may be required in the BIOS
-* SR-IOV: Enabled in BIOS
+* Mellanox NICs:
+  * One WekaIO system IP address for management and data plane
+* Other vendors NICs
+  * WekaIO system management IP address: One IP per server \(configured prior to weka installation\) 
+  * WekaIO system data plane IP address: One IP address for each [WekaIO core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server \(Weka will apply these IPs during the cluster initialization\)
+  * WekaIO system management IP: Ability to communicate with all WekaIO system data plane IPs
+  * [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs to the number of cores you wish to dedicate to weka; some configuration may be required in the BIOS
+  * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
 **Note:** When assigning a network device to the WekaIO system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
@@ -119,7 +122,7 @@ Supported intel 40 drivers:
 * Mellanox ConnectX5 \(Ethernet and InfiniBand\)
 * Mellanox ConnectX6 \(Ethernet and InfiniBand\)
 
-#### Nic Drivers
+#### NIC Drivers
 
 Supported Mellanox OFED versions:
 
