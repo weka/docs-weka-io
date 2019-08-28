@@ -101,7 +101,7 @@ To perform this operation, the cluster host net add command must be run for each
 | `ips-type` | String | POOL or USER | Must be one of the two options | No | POOL |
 | `ips` | Comma-separated IP address | The data plane IP addresses for internal WekaIO system traffic. In IB, use the IPoIB address \(single address regardless of number of cores\) | Must be part of the data plane IP pool defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | No | From Pool |
 | `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
-| `netmask-bits` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
+| `netmask` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
 
 The number of IP addresses should be at least the number of cores [planned](planning-a-weka-system-installation.md#cpu-resource-planning). A larger number can be specified, in which case the unused IP addresses will be assigned if and when more cores will be allocated using the expand process.
 
@@ -115,7 +115,7 @@ The number of IP addresses should be at least the number of cores [planned](plan
 
 Instead of declaring IP/netmask/gateway specifically for every network device, WekaIO supports adding a pool of IPs \(as a range\) to be used across the system. It is possible to combine default-net with explicit IPs for some or all of the network devices. It can be useful in an environment where clients are spawned automatically. This setting is not allowed for Infiniband based clusters.
 
-`weka cluster default-net set --range <range> [--gateway=<gw>] [--netmask=<netmask>]`
+`weka cluster default-net set --range <range> [--gateway=<gw>] [--netmask-bits=<netmask>]`
 
 **Parameters in Command Line**
 
@@ -170,8 +170,8 @@ This stage in the installation process is used to configure the amount of CPU re
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which a core count should be configured | Must be a valid host identifier | Yes |  |
 | `cores` | Number | Number of physical cores to be allocated to the WekaIO system | Should be less than the number of physical cores in the host \(leaving 1 core for the OS\) . Maximum 19 cores | Yes |  |
-| `fe_cores` | Number | Number of physical cores to be dedicated to FrontEnd processes | The total of fe\_cores and be\_cores must be less than cores above | No | zero |
-| `be_cores` | Number | Number of physical cores to be dedicated to Drive/SSD processes | The total of fe\_cores and be\_cores must be less than cores above | No | Typically 1 core per drive or 1/2 core per drive/SSD |
+| `frontend-dedicated-cores` | Number | Number of physical cores to be dedicated to FrontEnd processes | The total of fe\_cores and be\_cores must be less than cores above | No | zero |
+| `drives-dedicated-cores` | Number | Number of physical cores to be dedicated to Drive/SSD processes | The total of fe\_cores and be\_cores must be less than cores above | No | Typically 1 core per drive or 1/2 core per drive/SSD |
 | `cores_ids` | Comma-separated list Numbers | Physical Core numbers | Specification of which cores to use. | No | Select cores automatically |
 
 {% hint style="info" %}
@@ -220,8 +220,8 @@ This operation is performed using the following command line:
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which the failure domain should be configured | Must be a valid host identifier | Yes |  |
-| `fd-name` | String | The failure domain that will contain the host from now |  | Yes \(either `--name` OR `--auto` must be specified\) | None |
-| `--auto` | n/a | n/a | Will automatically assign fd-name | Yes \(either `--name` OR `--auto` must be specified\) | None |
+| `name` | String | The failure domain that will contain the host from now |  | Yes \(either `--name` OR `--auto` must be specified\) | None |
+| `auto` | n/a | n/a | Will automatically assign fd-name | Yes \(either `--name` OR `--auto` must be specified\) | None |
 
 ## Stage 11: Configuration of WekaIO System Protection Scheme
 
@@ -243,7 +243,7 @@ To configure the WekaIO system protection scheme, use the following command line
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** If not configured,the data protection drives in the cluster stripes are automatically set, taking into account the number of backends with drives. There is also a default value for the cluster hot spare.
+**Note:** If not configured, the data protection drives in the cluster stripes are automatically set, taking into account the number of backends with drives. There is also a default value for the cluster hot spare.
 {% endhint %}
 
 ## Stage 12: Configuration of Hot Spare
@@ -258,11 +258,7 @@ To configure the WekaIO system hot spare, use the following command line:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `hot-spare` | Number | Hot spare | The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 0 |
-
-{% hint style="info" %}
-**Note**: If this command is not executed, the hot spare will be defined as 0.  The cluster MUST be configured with failure-domains.
-{% endhint %}
+| `hot-spare` | Number | Hot spare | The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 1 for clusters with 6 failure domains and 2 for clusters larger than this |
 
 ## Stage 13: Activation of Cluster Hosts
 
@@ -278,7 +274,7 @@ To activate the cluster hosts, use the following command line:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `host-ids` | Comma-separated strings | Comma-separated host identifiers | . | No | All hosts |
+| `host-ids` | Comma-separated strings | Comma-separated host identifiers |  | No | All hosts |
 
 ## Stage 14: Activation of Cluster SSDs
 
@@ -298,7 +294,7 @@ A comma-separated list of all SSD UUIDs is received. In the install phase all SS
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `uuids` | Comma-separated strings | Comma-separated host identifiers | . | No | All SSDs |
+| `uuids` | Comma-separated strings | Comma-separated host identifiers |  | No | All SSDs |
 
 ## Stage 15: Running the Start IO Command
 

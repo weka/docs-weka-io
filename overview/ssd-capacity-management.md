@@ -48,7 +48,7 @@ number of failure domains - stripe width - protection level.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The minimum hot spare configuration should be 1 hot spare for 6 failure domains and 2 hot spares for every cluster larger than this.
+**Note:** The default hot spare configuration is 1 hot spare for 6 failure domains and 2 hot spares for every cluster larger than this.
 {% endhint %}
 
 ## WekaIO Filesystem Overhead
