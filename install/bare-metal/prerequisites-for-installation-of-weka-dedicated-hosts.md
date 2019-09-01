@@ -20,7 +20,7 @@ description: >-
 * Enough memory to support WekaIO system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
-### Operation System <a id="operation-system"></a>
+### Operating System <a id="operation-system"></a>
 
 * RHEL/Centos 6.8
 * RHEL/Centos 6.9
