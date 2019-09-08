@@ -10,17 +10,17 @@ description: >-
 **Note:** Client installation is described in [Adding Clients](adding-clients-bare-metal.md).
 {% endhint %}
 
-### CPU <a id="cpu"></a>
+## CPU
 
 * Intel SandyBridge+ and AMD processors with equivalent instructions sets
 * AMD Epyc
 
-### Memory <a id="memory"></a>
+## Memory
 
 * Enough memory to support WekaIO system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
-### Operating System <a id="operation-system"></a>
+## Operating System
 
 * RHEL/Centos 6.8
 * RHEL/Centos 6.9
@@ -39,23 +39,22 @@ description: >-
 * All Weka Nodes must be synchronized in date/time \(NTP recommended\)
 * A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the WekaIO knowledgebase in the [WekaIO support portal](http://support.weka.io) for more information and how-to articles 
 
-### Kernel <a id="weka-install-directory"></a>
+### Kernel
 
 * 2.6.32
 * 3.10
 * 4.4 - 4.15
 
-### WekaIO Install Directory <a id="weka-install-directory"></a>
+## WekaIO Install Directory
 
 * Directory: /opt/weka
-* Should be on an SSD or SSD-like performance, e.g., M.2. Cannot be shared remotely NFS mounted or on RAM drive
+* Should be on an SSD or SSD-like performance, e.g., M.2. 
+  * Cannot be shared remotely, NFS mounted or on RAM drive
 * At least 26 GB available for the WekaIO system installation, with additional 10GB for each core used by Weka
 
-### Networking - HA
+## Networking
 
-* Network configured as described in [WekaIO Networking - HA](../../overview/networking-in-wekaio.md#ha).
-
-### Networking - Ethernet <a id="networking-ethernet"></a>
+### Ethernet <a id="networking-ethernet"></a>
 
 #### NIC
 
@@ -78,20 +77,20 @@ Supported Mellanox OFED versions:
 * 4.5-1.0.1.0
 * 4.6-1.0.1.1
 
-Supported ENA drivers versions:
+Supported ENA drivers:
 
 * 1.0.2 - 2.0.2
-* Current driver from official OS repositories is recommended
+* Current driver from official OS repository is recommended
 
 Supported ixgbevf drivers:
 
 * 3.2.2 - 4.1.2
-* Current driver from official OS repositories is recommended
+* Current driver from official OS repository is recommended
 
-Supported intel 40 drivers:
+Supported Intel 40 drivers:
 
 * 3.0.1-k - 4.1.0
-* Current driver from official OS repositories is recommended
+* Current driver from official OS repository is recommended
 
 #### Ethernet Configuration
 
@@ -114,7 +113,7 @@ Supported intel 40 drivers:
 **Note:** When assigning a network device to the WekaIO system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
 {% endhint %}
 
-### Networking – InfiniBand <a id="networking-infiniband"></a>
+### InfiniBand <a id="networking-infiniband"></a>
 
 #### NIC
 
@@ -148,8 +147,13 @@ Supported Mellanox OFED versions:
 **Note:** If it is necessary to change PKEYs, contact the WekaIO Support Team.
 {% endhint %}
 
-### SSDs <a id="ssds"></a>
+### HA
+
+* Network configured as described in [WekaIO Networking - HA](../../overview/networking-in-wekaio.md#ha).
+
+## SSDs
 
 * Support PLP \(Power Loss Protection\)
 * Dedicated for WekaIO system storage \(partition not supported\)
+* Supported drive capacity: Up to 128 TiB
 
