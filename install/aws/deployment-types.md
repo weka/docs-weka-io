@@ -26,6 +26,10 @@ In client backend deployments, it is possible to add or remove clients according
 
 Backend instances can be added to increase the cluster capacity or performance. They can also be removed, provided that they are deactivated to safely allow for data migration. 
 
+{% hint style="danger" %}
+**Note:** Stopping or terminating backend instances causes a lost of all data of the instance store. Refer to [Amazon EC2 Instance Store](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html) for more information\).
+{% endhint %}
+
 ## Converged Deployment
 
 Converged deployments are more generic deployments in which every instance is configured to contribute resources of some kind — drives, CPUs and/or network interfaces - to the cluster.

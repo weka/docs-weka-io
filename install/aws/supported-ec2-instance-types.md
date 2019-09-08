@@ -8,7 +8,7 @@ description: This page lists all instance types supported by the WekaIO system v
 **Note:** To learn more about deployment types, see [Deployment Types](deployment-types.md).
 {% endhint %}
 
-## Storage EC2 Instances
+## Storage EC2 Instances 
 
 The following EC2 instance types can operate as **backend**, **client** or **converged** instances:
 
