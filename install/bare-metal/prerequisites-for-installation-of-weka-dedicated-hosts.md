@@ -54,6 +54,10 @@ description: >-
 
 ## Networking
 
+{% hint style="info" %}
+**Note:** For both Ethernet and Infiniband configurations, the WekaIO system can work with any MTU larger than 1400. For best performance, enable jumbo frames both on the switch and the network ports.
+{% endhint %}
+
 ### Ethernet <a id="networking-ethernet"></a>
 
 #### NIC
@@ -97,7 +101,6 @@ Supported Intel 40 drivers:
 * Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GbE / 100 GbE
 * NICs bonding: Not configured
 * VLAN: Not supported
-* Jumbo frames: Enabled on switch and on network port
 * Connectivity between hosts: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
 * Mellanox NICs:
