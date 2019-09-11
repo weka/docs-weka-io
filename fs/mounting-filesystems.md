@@ -92,7 +92,7 @@ Each mount option can be passed with an individual `-o` flag to `mount`
 | `acl` | None | Can be defined per mount \(access can only be degraded if there are ACLs defined but the mount has no ACL\) | No |
 
 {% hint style="info" %}
-**Note:** Current ****ACL support is limited. It does not support inheritance of default ACLs and has some impact on performance.
+**Note:** Current ****ACL implementation does not support inheritance.
 {% endhint %}
 
 ### **Additional Mount Options Available using the Stateless Clients Feature**

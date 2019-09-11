@@ -20,7 +20,7 @@ Each filesystem can be mounted in one of three modes of operation in relation to
 
 * **Read Cache,** where file data is consistent across hosts, but there may be some metadata inconsistency in extreme cases.
 * **Coherent,** where both data and metadata are guaranteed to be strongly consistent, at the cost of some performance compromise. Note that file content is still cached locally in the system page cache.
-* **Write Cache \(default\),** which does not ensure data consistency or data reliability but provides the highest performance.  
+* **Write Cache \(default\),** which does not ensure data consistency but provides the highest performance.  
 
 {% hint style="info" %}
 **Note:** Symbolic links are always cached in all cached modes.
@@ -61,15 +61,7 @@ In the coherent mode, file data access still uses the performance enhancements o
 
 In the write cache mount mode, the Linux operating system is used as write-back, rather than write-through, i.e., the write operation is acknowledged immediately by the WekaIO client and is stored in a resilient storage as a background operation.
 
-This mode can provide significantly more performance, particularly in relation to write latency, with the following caveats:
-
-1. The filesystem is not coherent, i.e., another host trying to read the same data may receive the wrong version of the data.
-2. The filesystem is not resilient, i.e., if a client host failure occurs, data not yet committed to the WekaIO system may be lost, even though the write was acknowledged to the host.
-
-The write cache mount mode should only be used if:
-
-1. No concurrent data access between hosts is required.
-2. On a client host failure, it is not necessary to use the data written by the client host.
+This mode can provide significantly more performance, particularly in relation to write latency. In this mode, the filesystem is not coherent, i.e., another host trying to read the same data may receive the wrong version of the data. Consequently, the write cache mount mode should only be used if no concurrent data access between hosts is required.
 
 It is possible to use the following system calls: sync, syncfs, fsync, where sync is for files and syncfs is to create consistent checkpoints of the write cache data. Similarly, the sync command can be used to sync the filesystem and commit all changes in the write cache.
 
