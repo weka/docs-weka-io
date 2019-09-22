@@ -160,3 +160,16 @@ Supported Mellanox OFED versions:
 * Dedicated for WekaIO system storage \(partition not supported\)
 * Supported drive capacity: Up to 128 TiB
 
+## Object Store
+
+* API should be S3 compatible : GET \(including byte-range support\), PUT, DELETE
+* Data Consistency: [AWS S3 consistency guarantee](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel):
+  * GET after single PUT should be fully consistent
+  * Multiple PUTs should be eventually consistent
+
+Certified Object Stores:
+
+* AWS S3
+* WD ActiveScale \(version 5.6 and up\)
+* Scality \(version 7.4.4.8 and up\)
+
