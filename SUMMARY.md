@@ -51,10 +51,12 @@
 
 ## OPERATION GUIDE <a id="usage"></a>
 
-* [Alerts](usage/alerts.md)
+* [Alerts](usage/alerts/README.md)
+  * [List of Alerts](usage/alerts/list-of-alerts.md)
 * [Events](usage/events/README.md)
   * [List of Events](usage/events/list-of-events.md)
-* [Statistics](usage/statistics.md)
+* [Statistics](usage/statistics/README.md)
+  * [List of Statistics](usage/statistics/list-of-statistics.md)
 * [User Management](usage/user-management.md)
 * [Expanding & Shrinking Cluster Resources](usage/expanding-and-shrinking-cluster-resources/README.md)
   * [Expand & Shrink Overview](usage/expanding-and-shrinking-cluster-resources/expand-and-shrink-overview.md)

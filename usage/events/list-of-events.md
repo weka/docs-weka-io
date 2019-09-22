@@ -6,14 +6,14 @@ description: >-
 
 # List of Events
 
-## Alert Events
+## Alerts
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | AlertMuted | INFO | Alert muted |
 | AlertUnmuted | INFO | Alert unmuted |
 
-## Cloud Events
+## Cloud
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -21,16 +21,22 @@ description: >-
 | CloudCredentialsRefreshed | INFO | Cloud credentials refreshed |
 | CloudDisabled | INFO | Cloud disabled |
 | CloudEnabled | INFO | Cloud enabled |
+| CloudProxyUpdated | INFO | Cloud proxy updated |
 | CloudSetUploadRate | INFO | Cloud upload rate changed |
 | DiagsUploaded | INFO | Diags uploaded |
 
-## Cluster Events
+## Clustering
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| BucketRedist | INFO | Buckets were redistributed in the cluster |
 | ClientConnected | INFO | Client connected |
 | ClientDisconnected | INFO | Client disconnected |
 | ClientRemoved | INFO | Disconnected client is being removed from the cluster |
+| ClusteringFailure | MINOR | Node clustering failed |
+| ConfigChangeSetsSliderFull | MAJOR | Config changeset slider is full while the node is pulling config |
+| ConfigSnapshotPulled | MINOR | Config snapshot pulled |
+| GrimReaperFencingNode | MINOR | Partially connected node selected to be fenced by grim reaper |
 | HostActivated | INFO | Host configuration change |
 | HostAdded | INFO | Host configuration change |
 | HostAdding | INFO | Host configuration change |
@@ -39,82 +45,111 @@ description: >-
 | HostRemoved | INFO | Host configuration change |
 | HostRemoving | INFO | Host configuration change |
 | HostRemovingFailed | INFO | Host configuration change |
+| LeaderChanged | WARNING | Cluster leader has changed |
 | NodeRejoined | INFO | Node rejoined the cluster |
-| StartIONodeNotUp | MAJOR | Node has not joined the cluster during Start-IO |
 | NodeRemoved | MAJOR | Node removed from cluster \(failed\) |
-| ClusteringFailure | MINOR | Node clustering failed |
 | RejoinFailureReport | MINOR | Node\(s\) failed to rejoin |
+| StartIONodeNotUp | MAJOR | Node has not joined the cluster during Start-IO |
 
-## Drive Events
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| Custom | INFO | Custom event for use by QA |
+| LimitedCustom | INFO | Limited custom event for use by QA |
+
+## Drive
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | CorruptedDrive | CRITICAL | Drive has a valid header but is corrupt |
-| DriveInitFailed | CRITICAL | Drive failed to initialize |
-| DriveUnderIOMMU | CRITICAL | Drive under IOMMU and cannot be used |
-| NvmeBindTimingOut | CRITICAL | NVMe device bind stuck; server needs power cycle to recover |
 | DriveActivated | INFO | Drive activated |
 | DriveDeactivated | INFO | Drive deactivated |
+| DriveExcessiveErrors | WARNING | Drive has excessive error rate and will be phased out; call WekaIO Support Team |
+| DriveFormatUpgraded | INFO | Drive format was upgraded |
+| DriveInfoReport | INFO | Drive Information reporting |
+| DriveInitFailed | CRITICAL | Drive failed to initialize |
+| DriveIoError | MAJOR | Drive had an IO error |
+| DriveIoErrorBMS | MAJOR | Drive found an IO error in background media scan |
+| DriveLimitExceeded | WARNING | Attempted to add more drives than supported |
+| DriveMediumError | MAJOR | Drive had a Medium error |
+| DriveNvmeErrorLog | WARNING | NVMe Drive Error Log Entry |
+| DriveNvmeSmartChange | MINOR | NVMe Drive SMART status changed |
+| DriveNvmeSmartInfo | INFO | NVMe Drive SMART status update - drive normal |
 | DriveProvisioned | INFO | Drive provisioned |
 | DriveRemoved | INFO | Drive removed |
-| DriveMediumError | MAJOR | Drive has a Medium error |
-| DriveIoError | MAJOR | Drive has an IO error |
-| DriveUnresponsive | MAJOR | Drive unresponsive and failed to return IOs for an extended period of time; consider power cycling the host |
 | DriveScanBlockLifted | MINOR | Drive blocked during scan is now responsive |
 | DriveScanBlocked | MINOR | Drive blocked during scan and is unresponsive |
 | DriveSignatureUnknown | MINOR | Drive has an unknown signature |
-| DriveWrongFailureDomain | MINOR | Drive is attached to a host from an incorrect failure domain |
 | DriveStateChangesReport | MINOR | Drive state changes |
-| DriveNvmeSmartChange | MINOR | NVMe drive SMART status changed |
-| DriveExcessiveErrors | WARNING | Drive has excessive error rate and will be phased out; call WekaIO Support Team |
+| DriveUnderIOMMU | CRITICAL | Drive is under IOMMU and cannot be used |
+| DriveUnresponsive | MAJOR | Drive is unresponsive and failed to return IOs for an extended period of time; consider power cycling the host |
+| DriveWrongFailureDomain | MINOR | Drive is attached to a host from an incorrect failure domain |
+| NvmeBindTimingOut | CRITICAL | NVMe device bind is stuck, server needs power cycle to recover |
 
-## Event Events
+## Events
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| DedupEventsDiscarded | WARNING | Deduplicated events discarded |
 | EventsDedupReport | INFO | Event deduplication ended |
-| DedupEventsDiscarded | WARNING | Deduplication events discarded |
+| EventsDiscarded | CRITICAL | Too many events were generated in a short period of time, so some of them were discarded and lost |
+| Example | INFO | Example |
+| ExampleAggregated | INFO | Example Aggregated |
+| Quarantine | CRITICAL | Quarantine event for use by QA |
 
-## Filesystem Events
+## Filesystem
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| CongestionEnded | INFO | Congestion ended |
-| ExtremeCongestionEnded | INFO | Extreme congestion ended |
+| BlockReadFailure | CRITICAL | Failed to read a block |
+| BrokenExtentChainDetected | CRITICAL | Metadata corruption \(broken extent chain\) |
+| ChecksumErrorInCommit | MAJOR | Checksum error detected by SSD node in a committed block |
+| FailedToSplitSliceNoRetry | CRITICAL | Failed to split slice - wont retry |
 | FilesystemAdded | INFO | Filesystem configuration change |
 | FilesystemDeleted | INFO | Filesystem configuration change |
-| FilesystemUpdated | INFO | Filesystem configuration change |
 | FilesystemDownloadStarted | INFO | Filesystem download started |
 | FilesystemGroupAdded | INFO | Filesystem group configuration change |
 | FilesystemGroupDeleted | INFO | Filesystem group configuration change |
 | FilesystemGroupUpdated | INFO | Filesystem group configuration change |
+| FilesystemUpdated | INFO | Filesystem configuration change |
+| ManualOverride | MAJOR | Service has been manually-overridden |
+| SnapshotContentCopied | INFO | Snapshot content copied |
+| SnapshotCreated | INFO | Snapshot created |
+| SnapshotDeleted | INFO | Snapshot deleted |
 | SnapshotDownloadStarted | INFO | Snapshot download started |
+| SnapshotFilesystemRestored | INFO | Filesystem restored from snapshot |
+| SnapshotParamsUpdated | INFO | Snapshot updated |
 | SnapshotUploadAborted | INFO | Snapshot upload aborted |
 | SnapshotUploadStarted | INFO | Snapshot upload started |
-| CongestionStarted | WARNING | Congestion started |
-| ExtremeCongestionStarted | WARNING | Extreme congestion started |
+| UnflushedOpOnDeletingSnapview | CRITICAL | Unflushed IO on a deleting snapshot |
 
-## InterfaceGroup Events
+## IO
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| InterfaceGroupIpsAdded | INFO | Interface group IPs configuration change |
-| InterfaceGroupIpsDeleted | INFO | Interface group IPs configuration change |
+| LongIO | MAJOR | IO request takes too long to complete |
+| RaftHogger | MAJOR | Raft hogger |
+
+## InterfaceGroup
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
 | InterfaceGroupAdded | INFO | Interface group configuration change |
 | InterfaceGroupDeleted | INFO | Interface group configuration change |
-| InterfaceGroupUpdated | INFO | Interface group configuration change |
+| InterfaceGroupIpsAdded | INFO | Interface group IPs configuration change |
+| InterfaceGroupIpsDeleted | INFO | Interface group IPs configuration change |
 | InterfaceGroupPortAdded | INFO | Interface group port configuration change |
 | InterfaceGroupPortDeleted | INFO | Interface group port configuration change |
+| InterfaceGroupUpdated | INFO | Interface group configuration change |
 
-## Licensing Events
+## Licensing
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| LicensingReset | INFO | Licensing status has been reset |
+| LicensingReset | INFO | Licensing state has been reset |
 | NewLicenseInstalled | INFO | New license installed |
 | PaygLicensingEnabled | INFO | PAYG licensing enabled |
 
-## NFS Events
+## NFS
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -122,99 +157,127 @@ description: >-
 | NfsClientGroupDeleted | INFO | NFS client group configuration change |
 | NfsClientGroupRuleAdded | INFO | NFS client group rule configuration change |
 | NfsClientGroupRuleDeleted | INFO | NFS client group rule configuration change |
-| NfsExportsPermissionsAdded | INFO | NFS export permissions configuration change |
-| NfsExportsPermissionsDeleted | INFO | NFS export permissions  configuration change |
-| NfsExportsPermissionsUpdated | INFO | NFS export permissions  configuration change |
-| NfsPortmapFail | MAJOR | NFS server failed to register in portmap |
+| NfsExportsPermissionsAdded | INFO | NFS export permissions for configuration change |
+| NfsExportsPermissionsDeleted | INFO | NFS export permissions for configuration change |
+| NfsExportsPermissionsUpdated | INFO | NFS export permissions for configuration change |
 | NfsMountFail | WARNING | NFS mount request failed |
+| NfsPortmapFail | MAJOR | NFS server failed to register in portmap |
 
-## Network Events
+## Network
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| HardwareFailure | CRITICAL | Hardware failure |
 | DefaultDataNetworkingChange | INFO | Default data networking configuration changed |
-| IPConflictDetected | MAJOR | IP conflict detected |
-| NetDeviceLinkDown | MAJOR | Network interface down |
-| NoConnectivityToLivingNode | MAJOR | Node is disconnected from living peer\(s\) |
-| NetworkPortConfigFail | MINOR | Network port configuration failed |
-| NetDeviceLinkUp | MINOR | Network interface up |
-| NetDeviceWithNumaFittingNodeCore | WARNING | Cannot find net device with NUMA to match cores - performance warning |
-| NodeHasNetDevicesWithDifferentNu | WARNING | Multiple net devices with different NUMAs -  performance warning |
+| HangingRPCs | MAJOR | RPCs are hanging too long |
+| HardwareFailure | CRITICAL | Hardware failure |
 | IONodeCannotFetchConfig | WARNING | Node cannot join cluster for too long |
+| IPConflictDetected | MAJOR | IP conflict detected |
 | MgmtNodeCannotFetchConfig | WARNING | Node cannot join cluster for too long |
+| NICNotFound | INFO | NIC not found when initializing |
+| NetDeviceLinkDown | MAJOR | Network interface DOWN |
+| NetDeviceLinkUp | MINOR | Network interface UP |
+| NetDeviceWithNumaFittingNodeCore | WARNING | Cannot find net device with NUMA to match cores - performance warning |
+| NetworkPortConfigFail | MINOR | Network port configuration failed |
+| NetworkPortDead | MAJOR | Network Port hasn't passed packets for a long period of time, it is likely dead |
+| NoConnectivityToLivingNode | MAJOR | Node is disconnected from living peer\(s\) |
+| NoHardwareWatchdog | MAJOR | No hardware watchdog found |
+| NoJumboFrames | MAJOR | Network does not allow large-enough messages through |
 | NodeCannotJoinCluster | WARNING | Node cannot join cluster for too long |
+| NodeCannotSendJumboFrames | MAJOR | Node cannot send jumbo packets |
+| NodeDisconnected | MAJOR | Node disconnected from cluster |
+| NodeHasNetDevicesWithDifferentNu | WARNING | Multiple net devices with different NUMAs - performance warning |
 
-## Node Events
+## Node
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| CrashReport | MAJOR | Node has crashed on the previous run |
 | FailedToLoadDriver | CRITICAL | Failed to load the wekafs driver |
+| NodeAssertionFailed | CRITICAL | Node assertion failed |
+| NodeExceptionExit | CRITICAL | Node exited with an exception |
+| NodeHung | MAJOR | Node hung for too long |
+| NodeKernelStack | WARNING | Kernel stack of node before reset |
 | NodeStarted | INFO | Node started |
 | NodeStopped | INFO | Node stopped |
+| NodeTraceback | WARNING | Traceback of node before reset |
+| WatchdogResetClientNode | MINOR | Watchdog reset of a client node |
+| WatchdogResetNode | CRITICAL | Watchdog reset of node |
 
-## Object Storage Events
+## ObjectStorage
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| ObjectStorageIsFull | CRITICAL | Object storage is full |
-| ObjectStorageStatusChanged | INFO | Object storage status change |
 | ObjectStorageAdded | INFO | Object storage configuration change |
 | ObjectStorageDeleted | INFO | Object storage configuration change |
+| ObjectStorageIsFull | CRITICAL | Object storage is full |
+| ObjectStoragePossibleBottleneck | WARNING | Detected a possible bottleneck in Object Storage uploads. |
+| ObjectStorageStatusChanged | INFO | Object Storage status changed |
 | ObjectStorageUpdated | INFO | Object storage configuration change |
 | TieredFilesystemBreakingPolicy | MINOR | Breaking policy; too much disk pressure |
 
-## RAID Events
+## Raid
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| DataGenerationNumberBug | WARNING | Bug in the advancement of the applied data generation number report from a bucket |
 | DataProtectionLevelDecreased | CRITICAL | Data protection level decreased |
 | DataProtectionLevelIncreased | CRITICAL | Data protection level increased |
-| TooFewActiveFailureDomains | CRITICAL | Too few active failure domains |
-| DisksRecoveryDetected | INFO | Disk\(s\) quick recovery detected |
-| HotSpareFailureDomainsUpdated | INFO | Hot spare updated |
-| RaidScrubbingRateUpdated | INFO | RAID scrubber limit updated |
 | DisksFailureDetected | MAJOR | Disk\(s\) failures detected |
+| DisksRecoveryDetected | INFO | Disk\(s\) quick recovery detected |
 | EnoughActiveFailureDomains | MINOR | Enough active failure domains |
+| HotSpareFailureDomainsUpdated | INFO | Hot spare failure domains updated |
+| QuorumGenerationNumberBug | WARNING | Bug in the advancement of the applied quorum generation number report from a bucket |
+| RaidScrubbingRateUpdated | INFO | RAID scrubber limit updated |
+| RaidStarted | INFO | RAID started on bucket |
+| SwitchPlacementHanging | MINOR | SwitchPlacement has no non-dirty chunks |
+| SwitchPlacementRetrying | MINOR | SwitchPlacement retrying |
+| TooFewActiveFailureDomains | CRITICAL | Too few active failure domains |
 
-## System Events
+## Statistics
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| NotEnoughSSDCapacity | CRITICAL | Not enough SSD capacity exists for all provisioned filesystems |
+| StatLimitExceeded | WARNING | A set limit on a stat was exceeded |
+
+## System
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| BlockTaskAborted | INFO | A bucket task aborted successfully |
+| BlockTaskComplete | INFO | A bucket task completed successfully |
+| BucketsCreated | INFO | System has created buckets |
+| CapacitiesPullFailed | CRITICAL | Failed downloading capcities for synchronized snaps from previous versions |
+| HaveEnoughSSDCapacity | MINOR | Enough SSD capacity now exists for all provisioned file systems |
+| HugepagesAllocationRetries | WARNING | Hugepages allocation issues |
 | IOStarted | INFO | System has started |
 | IOStopped | INFO | System has stopped |
-| StartIORequested | INFO | Request made to start IO |
-| StopIORequested | INFO | Request made to stop IO |
-| HaveEnoughSSDCapacity | MINOR | Enough SSD capacity now exists for all provisioned file systems |
+| NotEnoughSSDCapacity | CRITICAL | Not enough SSD capacity exists for all provisioned file systems |
+| StartIORequested | INFO | The user has requested that IO be started |
+| StopIORequested | INFO | The user has requested that IO be stopped |
+| SystemInfoReport | INFO | Management node started; reporting OS info |
 
-## Upgrade Events
+## Upgrade
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| ExternalUpgradeFinished | INFO | External upgrade complete |
-| ExternalUpgradeCancelled | INFO | External upgrade cancelled |
-| ExternalUpgradeStarting | INFO | External upgrade started |
+| ExternalUpgradeCancelled | INFO | External Upgrade was cancelled |
+| ExternalUpgradeFinished | INFO | External Upgrade complete |
+| ExternalUpgradeStarting | INFO | External Upgrade was started |
 | FinishedExternalHostUpgrade | INFO | External host upgrade complete |
-| HostUpgradeDone | INFO | Host upgrade complete |
-| HostUpgradeStarted | INFO | Host upgrade started |
-| ClientAttemptingAutoUpgrade | INFO | Node is attempting to auto-upgrade in order to join cluster |
 | StartingExternalHostUpgrade | INFO | External host upgrade started |
-| HostPrepareUpgradeFailed | MAJOR | Host failed to prepare for upgrade |
-| HostUpgradeFailed | MAJOR | Host upgrade failed |
-| ClientFailedAutoUpgrade | WARNING | Node auto-upgrade failed |
 
-## User Events
+## User
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | LDAPAuthDisabled | INFO | LDAP authentication disabled |
 | LDAPAuthEnabled | INFO | LDAP authentication enabled |
 | LDAPConfigUpdated | INFO | LDAP configuration updated |
-| UserPasswordChanged | INFO | User changed password |
-| UserAdded | INFO | User configuration change |
-| UserDeleted | INFO | User configuration change |
+| UserCreated | INFO | User Created |
+| UserDeleted | INFO | User Deleted |
 | UserLoggedIn | INFO | User logged in |
 | UserLoginFailed | INFO | User login failed |
+| UserPasswordChanged | INFO | User changed password |
 | UserPasswordChangedByAnotherUser | INFO | User password changed by an admin |
+| UserRoleChanged | INFO | User role changed |
 

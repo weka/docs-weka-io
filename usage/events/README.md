@@ -28,9 +28,9 @@ Events can be filtered by choosing a filter. Filtering can be performed accordin
 
 **Command:** `weka events`
 
-Use this command line to list events in the WekaIO cluster.
+Use the following command line to list events in the WekaIO cluster:
 
-`weka events [--num-results num-results] [--start-time <start>] [--end-time <end>] [--severity severity] [--sort-order sort-order] [--fetch-order fetch-order]` 
+`weka events [--num-results num-results] [--start-time <start>] [--end-time <end>] [--severity severity] [--sort-order sort-order] [--fetch-order fetch-order] [--type-list type-list] [--exclude-type-list exclude-type-list] [--category-list category-list] [--by-digested-time] [--show-internal] [--raw-units] [--UTC]`
 
 **Parameters in Command Line**
 
@@ -47,7 +47,7 @@ Use this command line to list events in the WekaIO cluster.
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left"><code>-n, --num-results</code>
+      <td style="text-align:left"><code>num-results</code>
       </td>
       <td style="text-align:left">Integer</td>
       <td style="text-align:left">Maximum number of events to display</td>
@@ -59,7 +59,7 @@ Use this command line to list events in the WekaIO cluster.
       <td style="text-align:left">50</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>--start-time</code>
+      <td style="text-align:left"><code>start-time</code>
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Include events that occurred at this start time and later</td>
@@ -69,17 +69,17 @@ Use this command line to list events in the WekaIO cluster.
       <td style="text-align:left">-365 days</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>--end-time</code>
+      <td style="text-align:left"><code>end-time</code>
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Include events that occurred up to this time</td>
-      <td style="text-align:left">format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00,
+      <td style="text-align:left">Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00,
         2018/12/31 10:00, 2018-12-31T10:00, 9:15Z, 10:00+2:00</td>
       <td style="text-align:left">No</td>
       <td style="text-align:left">Set to a time represents &apos;now&apos;</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>-s, --severity</code>
+      <td style="text-align:left"><code>severity</code>
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Include events with this level of severity and higher</td>
@@ -89,7 +89,7 @@ Use this command line to list events in the WekaIO cluster.
       <td style="text-align:left">INFO</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>--sort-order</code>
+      <td style="text-align:left"><code>sort-order</code>
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Sort events by ascending or descending time</td>
@@ -98,7 +98,7 @@ Use this command line to list events in the WekaIO cluster.
       <td style="text-align:left">asc</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>--fetch-order</code>
+      <td style="text-align:left"><code>fetch-order</code>
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Fetch from end-time backwards or from start-time forwards</td>
@@ -107,28 +107,36 @@ Use this command line to list events in the WekaIO cluster.
       <td style="text-align:left">bw</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>-t, --type-list</code>
+      <td style="text-align:left"><code>type-list</code>
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Filter events by type (can be used multiple times)</td>
-      <td style="text-align:left">use &apos;weka events list-types&apos; to see available types</td>
-      <td
-      style="text-align:left">No</td>
-        <td style="text-align:left">None</td>
+      <td style="text-align:left">Use <code>weka events list-types</code> to see available types</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">None</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>-c, --category-list</code>
+      <td style="text-align:left"><code>exclude-type-list</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Filter-out events by type (can be used multiple times)</td>
+      <td style="text-align:left">Use <code>weka events list-types</code> to see available types</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>category-list</code>
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Include only events matching the defined category</td>
       <td style="text-align:left">Categories can be Alerts, Cloud, Clustering, Drive, Events, Filesystem,
-        InterfaceGroup, Licensing, NFS, Network, Node, ObjectStorage, Raid, System,
-        Upgrade, User</td>
+        IO, InterfaceGroup, Licensing, NFS, Network, Node, ObjectStorage, Raid,
+        Statistics, System, Upgrade, User</td>
       <td style="text-align:left">No</td>
       <td style="text-align:left">All</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>--by-digested-time</code>
+      <td style="text-align:left"><code>digested-time</code>
       </td>
       <td style="text-align:left">Boolean</td>
       <td style="text-align:left">Query and sort results by digested time</td>
@@ -136,5 +144,33 @@ Use this command line to list events in the WekaIO cluster.
       <td style="text-align:left">No</td>
       <td style="text-align:left">False</td>
     </tr>
+    <tr>
+      <td style="text-align:left"><code>show-internal</code>
+      </td>
+      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">Also displays internal events</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">False</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>raw-units</code>
+      </td>
+      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">Print values in raw units (bytes, seconds, etc.)</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">Human-readable format, e.g 1KiB 234MiB 2GiB</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>UTC</code>
+      </td>
+      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">Print times in UTC</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">Host&apos;s local time</td>
+    </tr>
   </tbody>
-</table>
+</table>{% page-ref page="list-of-events.md" %}
+
