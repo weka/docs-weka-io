@@ -28,25 +28,23 @@ The WekaIO SMB support is established either through the WekaIO system GUI or a 
 
 1. Define the WekaIO hosts to participate in the Samba cluster, i.e., configuration of the Samba cluster.
 2. Join the Samba cluster to the Active Directory, i.e., connection and definition of WekaIO in the Active Directory.
-3. Create shares and their folders, and set permissions. Initially, permissions can only be set via the drivers/NFS.
-4. Connect as an administrator and define permissions via Windows.
+3. Create shares and their folders, and set permissions. By default, the filesystem permission are root/root/755 and initially can only be set via a WekaFS/NFS mount.
+
+After completing these steps, it is possible to connect as an administrator and define permissions via Windows.
 
 ### Establishing an SMB Cluster
 
 Establishing an SMB cluster is performed as follows:
 
-1. Select the WekaIO hosts that will participate in the SMB cluster, and set the domain name.
-2. Declare the shares being offered. Each share has to have a name and a share path, i.e., the path into the WekaIO filesystem, which can be the root of the WekaIO filesystem or a subdirectory. This is created in the shell using either a driver mount or an NFS mount. If the share uses the root, it is not necessary to create a root folder \(it already exists\).  If the share is declared without giving a sub-directory, the root of wekafs will be used; If sub-folders have to be created \(this is performed manually\), their ACL has to be adjusted accordingly. 
-3. Configure the list of public IP addresses. These will be distributed across the SMB cluster. If a node fails, the IP addresses from that node are reassigned to another node.
+1. Select the WekaIO hosts that will participate in the SMB cluster and set the domain name.
+2. In on-premise deployments, it is possible to configure a list of public IP addresses which will be distributed across the SMB cluster. If a node fails, the IP addresses from that node will be reassigned to another node.
 
 {% hint style="info" %}
-**Notes:**
+**Notes:** Each WekaIO cluster can only support a single SMB cluster.
+{% endhint %}
 
-Each WekaIO cluster can only support a single SMB cluster.
-
-DNS "nameserver" of the hosts participating in the SMB cluster should be configured to your AD server.
-
-For running Samba in AWS, contact the WekaIO Support Team for more information.
+{% hint style="info" %}
+**Note:** The DNS "nameserver" of the hosts participating in the SMB cluster should be configured to the Active Directory server.
 {% endhint %}
 
 ### Active Directory Attributes
@@ -55,26 +53,32 @@ The following are the Active Directory attributes relevant for users according t
 
 | AD Attribute | Description |
 | :--- | :--- |
-| uidNumber | in range of 1,000 to 999,999 |
-| gidNumber | in range of 1,000 to 999,999, and must correlate with real group |
+| `uidNumber` | 0-4290000000 |
+| `gidNumber` | 0-4290000000; must correlate with real group |
 
 The following are the Active Directory attributes relevant for groups of users according to RFC2307:
 
 | AD Attribute | Description |
 | :--- | :--- |
-| gidNumber | in range of 1,000 to 999,999 |
+| `gidNumber` | 0-4290000000 |
 
-{% hint style="info" %}
-**Note:** Read more about Active Directory properties [here](https://blogs.technet.microsoft.com/activedirectoryua/2016/02/09/identity-management-for-unix-idmu-is-deprecated-in-windows-server/).
-{% endhint %}
+Read more about Active Directory properties [here](https://blogs.technet.microsoft.com/activedirectoryua/2016/02/09/identity-management-for-unix-idmu-is-deprecated-in-windows-server/).
+
+### Creating SMB Shares
+
+After establishing an SMB cluster, it is possible to declare SMB shares. Each share should have a name and a share path, i.e., the path into the WekaIO filesystem, which can be the root of the WekaIO filesystem or a subdirectory. This is created in the shell using either a WekaFS mount or an NFS mount.
+
+If the share uses the root, it is not necessary to create a root folder \(it already exists\). If the share is declared without providing a sub-directory, the WekaFS root will be used. If sub-folders have to be created \(an operation that is performed manually\), the permissions have to be adjusted accordingly. 
 
 ### Filesystem Permissions and Access Rights
 
-Once the Samba cluster is connected to the Active Directory, it is possible to assign permissions and access rights of Samba cluster filesystems to specific users or groups of users. This is performed according to POSIX permissions i.e., the Windows permissions system is stored in the POSIX permissions system, and any change in the Windows permissions will be adapted to the POSIX permissions.
+Once the Samba cluster is connected to the Active Directory, it is possible to assign permissions and access rights of Samba cluster filesystems to specific users or groups of users. This is performed according to POSIX permissions i.e., the Windows permissions system stored in the POSIX permissions system. Any change in the Windows permissions will be adapted in the POSIX permissions.
 
 {% hint style="info" %}
 **Note:** The initial set of POSIX permissions is performed via the driver/NFS.
 {% endhint %}
 
-##  <a id="smb-management-using-cli-commands"></a>
+{% hint style="info" %}
+**Note:** To obtain root access to the SMB shares, assign an Active Directory user with `uidNumber` and `gidNumber` of 0.
+{% endhint %}
 

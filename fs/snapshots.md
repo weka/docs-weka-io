@@ -8,19 +8,16 @@ description: >-
 
 ## About Snapshots
 
-Snapshots allow the saving of a filesystem state to a directory \(`.snapshots)`located under the root filesystem. They can be used for:
+Snapshots allow the saving of a filesystem state to a `.snapshots`directory located under the root filesystem. They can be used for:
 
-* **Physical Backup:** The snapshot directory can be copied into a different storage system, possibly on another site, using either Weka's Snap to Object feature or a third-party software.
-* **Logical Backup:** Periodic snapshots enable filesystem restoration to a previous state 
-
-  if logical data corruption occurs.
-
+* **Physical Backup:** The snapshot directory can be copied into a different storage system, possibly on another site, using either the WekaIO system Snap-To-Object feature or a third-party software.
+* **Logical Backup:** Periodic snapshots enable filesystem restoration to a previous state if logical data corruption occurs.
 * **Archive:** Periodic snapshots enable the accessing of a previous filesystem state for compliance or other needs.
 * **DevOps Environments:** Writable snapshots enable the execution of software tests on copies of the data.
 
-Snapshots have practically no impact on system performance and can be taken for each filesystem while applications are running. They consume minimal space, according to the actual differences between the filesystem and the snapshots, or between the snapshots, in 4K granularity. By default, snapshots are read-only, and any attempts to change the contents of a read-only snapshot returns an error message. However, it is possible to create a writable snapshot or update an existing snapshot to be writable. 
+Snapshots have practically no impact on system performance and can be taken for each filesystem while applications are running. They consume minimal space, according to the actual differences between the filesystem and the snapshots, or between the snapshots, in 4K granularity. By default, snapshots are read-only, and any attempts to change the contents of a read-only snapshot returns an error message. It is possible to create a writable snapshot or update an existing snapshot to be writable. However, a writable snapshot cannot be updated to be read-only.
 
-WekaIO supports the following snapshots operations:
+The WekaIO system supports the following snapshot operations:
 
 * Viewing snapshots
 * Creating a snapshot of an existing filesystem
@@ -28,11 +25,11 @@ WekaIO supports the following snapshots operations:
 * Accessing a snapshot under a dedicated directory name
 * Restoring a filesystem from a snapshot
 * Making snapshots writable
-* Creating a snapshot of a snapshot \(relevant for writable snapshots, or for read-only snapshot before being made writable\),
+* Creating a snapshot of a snapshot \(relevant for writable snapshots, or for read-only snapshots before being made writable\)
 * Listing of snapshots and obtaining their metadata
 
 {% hint style="info" %}
-**Note:** The number of snapshots per system is limited to 4,096.
+**Note:** The number of snapshots per system is limited to 4,096 \(the live filesystem consumes one of the total snapshots count\).
 {% endhint %}
 
 ## Managing Snapshots
@@ -41,13 +38,13 @@ WekaIO supports the following snapshots operations:
 
 #### Viewing Snapshots Using the GUI
 
-To view the snapshot of filesystem, click the filesystem Show Snapshots button.
+To view the snapshot of filesystem, click the filesystem Manage Snapshots button.
 
-![View Snapshot of a Filesystem Screen](../.gitbook/assets/view-snapshot-screen.jpg)
+![View Snapshot of a Filesystem Screen](../.gitbook/assets/snap-view-3.5.png)
 
-If the filesystem is tiered, this screen is slightly different, and includes an additional button, Upload to Object, and a corresponding Object Status value, as shown below: 
+If the filesystem is tiered, this screen is slightly different and includes an additional button \(Upload to Object\) and a corresponding Object Status value, as shown below: 
 
-![View Snapshot of a Tiered Filesystem Screen](../.gitbook/assets/view-snapshot-screen-2.jpg)
+![View Snapshot of a Tiered Filesystem Screen](../.gitbook/assets/snap-view-tiered-3.5.png)
 
 #### Viewing Snapshots Using the CLI
 
@@ -61,7 +58,7 @@ This command is used to display all snapshots of all filesystems in a single tab
 
 From the main snapshot view screen, click Create Snapshot at the top right-hand side of the required filesystem snapshot screen. The Create Snapshot dialog box will be displayed.
 
-![Create Snapshot Dialog Box](../.gitbook/assets/create-snapshot-dialog-box.jpg)
+![Create Snapshot Dialog Box](../.gitbook/assets/snap-create-diallog-3.5.png)
 
 Enter the name and access point, determine whether it is writable and the source \(the current filesystem or another snapshot\). Then click Create to create the snapshot.
 
@@ -89,7 +86,7 @@ Use the following command line to add a snapshot:
 
 In the main snapshot view screen, select the filesystem to be deleted and click Delete. The Snapshot Deletion window will be displayed.
 
-![Snapshot Deletion Window](../.gitbook/assets/delete-snapshot-window.jpg)
+![Snapshot Deletion Window](../.gitbook/assets/snap-delete-dialog-3.5.png)
 
 Click Delete to delete the selected snapshot.
 
@@ -110,15 +107,15 @@ Use the following command line to delete a snapshot:
 
 ### Restoring a Filesystem from a Snapshot
 
-#### Restoring a Filesystem or a Snapshot from another Snapshot Using the GUI
+#### Restoring a Filesystem or Snapshot from Another Snapshot Using the GUI
 
-In the main snapshot view screen, select the filesystem snapshot to be restored and click Restore To. The Snapshot Restore Destination window will be displayed.
+In the main snapshot view screen, select the filesystem snapshot to be restored and click Restore To. The Select Where to Restore window will be displayed. 
 
-![Snapshot Restore Destination Window](../.gitbook/assets/snapshot-restore-destination-window.jpg)
+![Select Where to Restore Window](../.gitbook/assets/snap-restore-dialog-3.5.png)
 
-Select the filesystem snapshot restore destination. 
+Select the filesystem snapshot restore destination and click Restore. 
 
-#### Restoring a Filesystem or a Snapshot from another Snapshot Using the CLI 
+#### Restoring a Filesystem or Snapshot from Another Snapshot Using the CLI 
 
 **Commands:** `weka fs restore` or `weka fs snapshot copy`
 
@@ -136,7 +133,7 @@ Use the following command line to restore a snapshot to another snapshot:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
 | `source-name` | String | Unique name for the source of the snapshot | Must be a valid name | Yes |  |
-| `destination-name` | String | Name of the destination to which the snapshot should be copied | Must be a valid name | Yes |  |
+| `destination-name` | String | Name of the destination to which the snapshot should be copied | Must be an existing  snapshot | Yes |  |
 
 ### Updating a Snapshot
 
@@ -144,9 +141,9 @@ Use the following command line to restore a snapshot to another snapshot:
 
 In the main snapshot view screen, select the filesystem snapshot to be updated and click Edit. The Update Snapshot window will be displayed.
 
-![Update Snapshot Window](../.gitbook/assets/update-snapshot-window.jpg)
+![Update Snapshot Window](../.gitbook/assets/snap-update-dialog-3.5.png)
 
-Enter the name and access point, determine whether it is writable and then click Update to update the snapshot.
+Enter the name and access point, determine whether the snapshot is writable and then click Update to update the snapshot.
 
 #### Updating a Snapshot Using the CLI
 
@@ -170,8 +167,8 @@ This commands changes the snapshot attributes. Use the following command line to
 
 Note the following concerning working with snapshots:
 
-1. When moving a file in or out of a snapshot directory, or between snapshots, the kernel will implement the move operation as a copy operation, just as when moving a file between two different filesystems. Such operations for directories will fail.
-2. If symbolic links are accessed via the `.snapshots` directory, the symlinks with absolute paths can lead to the current filesystem. Consequently, depending on the usage, it may be preferable not follow symlinks.
+1. When moving a file in or out of a snapshot directory, or between snapshots, the kernel will implement the move operation as a copy operation, similar to moving a file between two different filesystems. Such operations for directories will fail.
+2. If symbolic links are accessed via the `.snapshots` directory, the symlinks with absolute paths can lead to the current filesystem. Consequently, depending on the usage, it may be preferable not to follow symlinks or to use relative paths.
 
 
 

@@ -36,7 +36,7 @@ The WekaIO system integrates a rolling progress control with three rotating peri
 
 ## Management of Data Retention Policies <a id="management-of-data-retention-policies"></a>
 
-Since the WekaIO system is a highly scalable data storage system, data storage policies in tiered WekaIO configurations cannot be based on cluster-wide FIFO methodology, because clusters can contain billions of files. Instead, data retention is managed by timestamping every piece of data, where the timestamp is based on a resolution of intervals which may extend from minutes to weeks. The WekaIO system maintains the interval in which each piece of data was created, accessed or last modified.
+Since the WekaIO system is a highly scalable data storage system, data storage policies in tiered WekaIO configurations cannot be based on cluster-wide FIFO methodology, because clusters can contain billions of files. Instead, data retention is managed by time-stamping every piece of data, where the timestamp is based on a resolution of intervals which may extend from minutes to weeks. The WekaIO system maintains the interval in which each piece of data was created, accessed or last modified.
 
 Users only specify the data Retention Period and based on this, each interval is one quarter of the data Retention Period. Data written, modified or accessed prior to the last interval is always released, even if SSD space is available.
 
@@ -110,27 +110,19 @@ Since the tiering process applies to data in the first interval in this example,
 
 ## Transition Between Tiered and SSD-Only Filesystems <a id="transition-between-multiple-media-and-ssd-only-filesystems"></a>
 
-An SSD-only filesystem group can be reconfigured as a tiered one by adding an object store definition. In such a situation, the default is to maintain the filesystem size. In order to increase the filesystem size, the total capacity field can be modified, while the existing SSD capacity remains the same.
+An SSD-only filesystem can be reconfigured as a tiered filesystem by attaching an object store. In such a situation, the default is to maintain the filesystem size. In order to increase the filesystem size, the total capacity field can be modified, while the existing SSD capacity remains the same.
 
 {% hint style="info" %}
-**Note:** Once an SSD-only filesystem group has been reconfigured as tiered one, all existing data will be considered to belong to interval 0 and will be managed according to the 7-interval process. This means that the release process of the data created before the reconfiguration of the filesystem group is performed in an arbitrary order and does not depend on the timestamps.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** It is not possible to reconfigure a tiered filesystem group to an SSD filesystem group.
+**Note:** Once an SSD-only filesystem has been reconfigured as tiered filesystem, all existing data will be considered to belong to interval 0 and will be managed according to the 7-interval process. This means that the release process of the data created before the reconfiguration of the filesystem is performed in an arbitrary order and does not depend on the timestamps.
 {% endhint %}
 
 ## Breaks in Retention Period or Tiering Cue Policies <a id="breaks-in-retention-period-or-tiering-cue-policies"></a>
 
-If it is not possible to maintain the defined Retention Period or Tiering Cue policies, a TieredFilesystemBreakingPolicy event will occur, and random pieces of data will be released in order to free space on the SSDs. Users are alerted to such a situation through an ObjectStoragePossibleBottleneck event, enabling them to consider either raising the bandwidth or upgrading the object store performance.
+If it is not possible to maintain the defined Retention Period or Tiering Cue policies, a TieredFilesystemBreakingPolicy event will occur, and old data will be released in order to free space on the SSDs. Users are alerted to such a situation through an ObjectStoragePossibleBottleneck event, enabling them to consider either raising the bandwidth or upgrading the object store performance.
 
 ## Monitoring Object Store/SSD Access Statistics <a id="monitoring-object-store-ssd-access-statistics"></a>
 
-Object store and SSD access statistics can be viewed in the WekaIO system GUI or using CLI commands, e.g., `OBS_READ`, `OBS_WRITE` and `OBS_TRUNCATE`.
-
-## Cancelling a Data Management Policy <a id="cancelling-a-data-management-policy"></a>
-
-Once tiering has been defined, a defined data management policy cannot be deleted.
+[Object store](../usage/statistics/#object-storage-statistics) and [SSD access statistics](../usage/statistics/#ssd-statistics) can be viewed in the WekaIO system GUI or using CLI commands such as`OBS_READ`, `OBS_WRITE` and `OBS_TRUNCATE`.
 
 ## Pre-Fetching API for Data Lifecycle Management
 

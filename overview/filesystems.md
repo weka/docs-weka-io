@@ -45,7 +45,7 @@ Throughout this documentation, the metadata limitation per filesystem is referre
 For the purpose of the definitions above, it is irrelevant if the file is on the SSD or the object store.
 
 {% hint style="success" %}
-For Example:
+**For Example:**
 
 * For a filesystem with potentially 1,000,000,000 files of 64 KB in size,  2,000,000,000 metadata units are required.
 * For a file system with potentially 1,000,000 files of 128 MB in size, 130,000,000 metadata units are required.
@@ -56,25 +56,17 @@ For Example:
 
 In the WekaIO system, object stores represent an optional external storage media, ideal for the storage of warm data. They can be purchased and configured independently by users \(provided they support the S3 protocol\) or supplied by WekaIO as part of the overall data storage solution. Object stores used in tiered WekaIO system configurations can be cloud-based, located in the same location or at a remote location.
 
-Object stores are optimally used when a cost-effective data storage tier is required, at a price point which cannot be satisfied by server-based SSDs. An object store definition contains the object store DNS name, bucket identifier and access credentials. The bucket must be dedicated to the WekaIO system and must not be accessible by other applications. However, a single object store bucket may serve different filesystem groups, and even different filesystem groups that reside on different WekaIO systems.
+Object stores are optimally used when a cost-effective data storage tier is required, at a price point which cannot be satisfied by server-based SSDs. An object store definition contains the object store DNS name, bucket identifier and access credentials. The bucket must be dedicated to the WekaIO system and must not be accessible by other applications. However, a single object store bucket may serve different filesystems, and even different filesystems that reside on different WekaIO systems.
+
+Filesystem connectivity to object stores can be used in both the [data lifecycle management](data-storage.md) and [Snap to Object](../fs/snap-to-obj.md) features. It is possible to define two object store buckets for a filesystem, but only one bucket can be writable. In such cases, the WekaIO system will search for relevant data in both the SSD and the readable and writable object stores. This allows a range of use cases, including migration to different object stores, scaling of object store capacity and increasing the total tiering capacity of filesystems.
+
+The WekaIO system supports up to 64 different object store buckets. While object stores can be shared between filesystems, when possible, it is recommended to create and attach a different object store bucket per filesystem.
 
 ## About Filesystem Groups
 
-In the WekaIO system, filesystems are grouped into up to 8 filesystem groups. Each filesystem group consists of a collection of filesystems which share a common connectivity to an object store system. This connectivity to object stores can be used in both the data lifecycle management and Snap to Object features.
+In the WekaIO system, filesystems are grouped into up to 8 filesystem groups. 
 
-A filesystem group may have a single object store associated with it, and multiple filesystem groups can be associated with the same object store. A filesystem group that has an associated object store can also define data lifecycle management parameters.
+Each filesystem group has tiering control parameters \(see [Guidelines for Data Storage in Tiered WekaIO System Configurations](data-storage.md#guidelines-for-data-storage-in-tiered-weka-system-configurations)\). While tiered filesystems have their own object store, the tiering policy will be the same for each tiered filesystem under the same filesystem group.
 
-Each filesystem group may contain a data lifecycle management configuration and an object store definition, or alternatively be defined only to SSDs.
-
-![Filesystem Group Association to Object Stores](../.gitbook/assets/diagram-3.jpg)
-
-Once a filesystem group is connected to an object store, it cannot be disconnected from the object store or changed to a different bucket or object store. However, if reconfiguration of the object store identification information is required, such as changing connectivity definitions, DNS name, bucket name, access control parameters or the password, it can be edited, after which all the filesystem groups will work according to the new definitions. It is assumed that after such a change the same objects will still be available without any change.
-
-{% hint style="info" %}
-**Note:** Each filesystem group has optional tiering control parameters \(see [Guidelines for Data Storage in Tiered WekaIO System Configurations](data-storage.md#guidelines-for-data-storage-in-tiered-weka-system-configurations)\).
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** For information on managing these entities, refer to [Managing Filesystems, Object Stores and Filesystem Groups](../fs/managing-filesystems.md).
-{% endhint %}
+For information on managing these entities, refer to [Managing Filesystems, Object Stores and Filesystem Groups](../fs/managing-filesystems.md).
 

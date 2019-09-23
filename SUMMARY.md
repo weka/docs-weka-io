@@ -63,6 +63,7 @@
   * [Stages in Adding a Backend Host](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
   * [Expansion of Specific Resources](usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrinking a Cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
+* [Background Tasks](usage/background-tasks.md)
 * [Upgrading WekaIO Versions](usage/upgrading-weka-versions.md)
 
 ## Billing & Licensing <a id="licensing"></a>

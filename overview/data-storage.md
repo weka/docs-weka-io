@@ -35,7 +35,7 @@ This data management approach to data storage on one of two possible media requi
 
 Furthermore, the WekaIO system tiers data in chunks, rather than in complete files. This enables the smart tiering of subsets of a file \(and not only complete files\) between SSDs and object stores.
 
-The network resources allocated to the object store connections can be controlled. This enables cost control when using cloud-based object storage services, since the cost of data stored in the cloud depends on the quantity stored and the number of requests for access made.
+The network resources allocated to the object store connections can be [controlled](../fs/managing-filesystems.md#editing-an-object-store-using-the-cli). This enables cost control when using cloud-based object storage services, since the cost of data stored in the cloud depends on the quantity stored and the number of requests for access made.
 
 ## States in the WekaIO System Data Management Storage Process
 
@@ -79,24 +79,29 @@ The WekaIO system includes user-defined policies which serve as guidelines to co
 2. The capacity of the SSDs configured to the WekaIO system.
 3. The speed of the network between the WekaIO system and the object store, and the performance capabilities of the object store itself, e.g., how much the object store can actually contain.
 
-For tiered filesystems, the following parameters must be defined:
+Filesystem groups are used to define these policies, while a filesystem is placed in a filesystem group according to the desired policy if the filesystem is tiered.
+
+For tiered filesystems, the following parameters should be defined per filesystem:
 
 1. The size of the filesystem.
 2. The amount of filesystem data to be stored on the SSD.
-3. The data Retention Period, a time-based policy which is the target time for data to be stored on an SSD after creation, modification or access, and before release from the SSD, even if it is already tiered to the object store, for metadata processing and SSD caching purposes \(this is only a target; the actual release schedule depends on the amount of available space\). This is defined per filesystem group.
-4. The Tiering Cue, a time-based policy which determines the minimum amount of time that data will remain on an SSD before it is considered for release to the object store. As a rule of thumb, this should be configured to a third of the Retention Period, and in most cases, this will work well. The Tiering Cue is important because it is pointless to tier a file which is about to be modified or deleted to the object store. The Tiering Cue is defined per filesystem group.
+
+The following parameters should be defined per filesystem group:
+
+1. The [Data Retention Period Policy](../fs/tiering.md#data-retention-period-policy), a time-based policy which is the target time for data to be stored on an SSD after creation, modification or access, and before release from the SSD, even if it is already tiered to the object store, for metadata processing and SSD caching purposes \(this is only a target; the actual release schedule depends on the amount of available space\). 
+2. The [Tiering Cue Policy](../fs/tiering.md#tiering-cue-policy), a time-based policy which determines the minimum amount of time that data will remain on an SSD before it is considered for release to the object store. As a rule of thumb, this should be configured to a third of the Retention Period, and in most cases, this will work well. The Tiering Cue is important because it is pointless to tier a file which is about to be modified or deleted from the object store. 
 
 {% hint style="success" %}
-**For Example**
+**For Example:**
 
 _When writing log files which are processed every month but retained forever:_ It is recommended to define a Retention Period of 1 month, a Tiering Cue of 1 day, and ensure that there is sufficient SSD capacity to hold 1 month of log files.
 
-_When storing genomic data which is frequently accessed during the first 3 months after creation, requires a scratch space for 6 hours of processing, and whose output needs to be retained forever:_ It is recommended to define a Retention Period of 3 months and to allocate an SSD capacity that will be sufficient for 3 months of output data and the scratch space. The Tiering Cue should be defined as 1 day, in order to avoid a situation where the scratch space data is tiered to an object store and released from the SSD immediately afterwards.
+_When storing genomic data which is frequently accessed during the first 3 months after creation, requires a scratch space for 6 hours of processing, and requires output to be retained forever:_ It is recommended to define a Retention Period of 3 months and to allocate an SSD capacity that will be sufficient for 3 months of output data and the scratch space. The Tiering Cue should be defined as 1 day, in order to avoid a situation where the scratch space data is tiered to an object store and released from the SSD immediately afterwards.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Retention Period and Tiering Cue policies can be edited at any time, e.g., changing the data Retention Period from 3 to 5 days. However, such a policy change is only relevant for new data written after the update of the policy. Tiering of data written before a policy change can be unpredictable; contact the WekaIO Support Team for guidelines.
+**Note:** Using the [Snap-To-Object](../fs/snap-to-obj.md) feature causes data to be tiered regardless of the tiering policies.
 {% endhint %}
 
-A more in-depth explanation appears in [Advanced Data Lifecycle Management](../fs/tiering.md).
+For a more in-depth explanation, refer to [Advanced Data Lifecycle Management](../fs/tiering.md).
 

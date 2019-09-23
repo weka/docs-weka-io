@@ -71,5 +71,16 @@ WekaIO v3.4.2 (CLI build 3.4.42)
 ...`
 {% endhint %}
 
-## 
+## Performance Improvements with V3.5
+
+WekaIO version 3.5 provides performance improvements when working with object stores. To reap the benefits of improved object store performance and ensure the conversion of the internal WekaIO data structure, the following is recommended for each tiered filesystem when upgrading from version 3.4 to version 3.5:
+
+* Attach a new object store bucket.
+* Delete any unnecessary snapshots \(so unnecessary data is not copied to the new bucket\).
+* Detach the old object store bucket.
+* Perform all necessary checks to ensure that data is copied to the new object store bucket.
+
+{% hint style="info" %}
+**Note:** If there are any capacity constraints with the object store, it is recommended to perform this process one filesystem at a time.
+{% endhint %}
 

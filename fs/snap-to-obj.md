@@ -104,17 +104,23 @@ For information on snapshot viewing, creation, updating, deletion and restoring 
 
 #### Uploading a Snapshot Using the GUI
 
-To upload a snapshot to its filesystem's configured object store, in the main snapshot view screen, select the filesystem snapshot to be uploaded and click Upload To Object. The Snapshot Upload confirmation window will be displayed.
+To upload a snapshot to the object store configured to its filesystem, in the main snapshot view screen select the filesystem snapshot to be uploaded and click Upload To Object. The Snapshot Upload confirmation window will be displayed.
 
-![Snapshot Upload Confirmation Window](../.gitbook/assets/snapshot-upload-confirmation-window.jpg)
+![Snapshot Upload Confirmation Window](../.gitbook/assets/snap-upload-dialog-3.5.png)
 
 Click Upload to upload the snapshot to the object store.
 
+Each snapshot has a unique locator within the object store. This locator can be used in any of the described use cases. To ensure easy recovery operations in the event of a cluster disaster, it is recommended to save each locator.
+
+To view the object store locator of the uploaded snapshot, click the snapshot in the Snapshots View screen.
+
+![View Object Store Locator of Uploaded Snapshot](../.gitbook/assets/snap-upload-view-locator-3.5.png)
+
 #### Uploading a Snapshot Using the CLI
 
-**Command: `snapshot upload`**
+**Command:** `weka fs snapshot upload`
 
-Use the following command line to update an existing snapshot:
+Use the following command line to upload an existing snapshot:
 
 `weka fs snapshot upload <file-system> <snapshot>`
 
@@ -122,8 +128,8 @@ Use the following command line to update an existing snapshot:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `<fs>` | String | Name of the filesystem |  | Yes |  |
-| `<snapshot>` | String | Name of snapshot to upload | Has to be a snapshot of the &lt;fs&gt; filesystem | Yes |  |
+| `<file-system>` | String | Name of the filesystem |  | Yes |  |
+| `<snapshot>` | String | Name of snapshot to upload | Must be a snapshot of the `<file-system>` filesystem | Yes |  |
 
 ### Creating a Filesystem from an Uploaded Snapshot
 
@@ -131,15 +137,15 @@ Use the following command line to update an existing snapshot:
 
 To create a filesystem from an uploaded snapshot, switch the From Uploaded Snapshot field in the Filesystem Creation dialog box to On. The Create Filesystem dialog box is displayed.
 
-![Create Filesystem from an Uploaded Snapshot Dialog Box](../.gitbook/assets/create-fs-from-snapshot-dialog-box.jpg)
+![Create Filesystem from an Uploaded Snapshot Dialog Box](../.gitbook/assets/snap-create-fs-from-snap-3.5.png)
 
 Define all the fields and enter the location of the snapshot to be used in the Object Store Locator field.
 
 #### Creating a Filesystem from a Snapshot Using the CLI
 
-**Command: `filesystem download`**
+**Command:** `weka fs download`
 
-Use the following command line to update an existing snapshot:
+Use the following command line to create a filesystem from an existing snapshot:
 
 `weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <locator>`
 
@@ -147,13 +153,15 @@ Use the following command line to update an existing snapshot:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `<fs>` | String | Name of filesystem to create |  | Yes |  |
-| `<group>` | String | Name of filesystem-group to place the new filesystem in |  | Yes |  |
-| `<ssd-capacity>` | Capacity | SSD capacity of the downloaded filesystem |  | Yes |  |
+| `<name>` | String | Name of the filesystem to be created |  | Yes |  |
+| `<group-name>` | String | Name of the filesystem group in which the new filesystem will be placed |  | Yes |  |
 | `<total-capacity>` | Capacity | Total capacity of the downloaded filesystem |  | Yes |  |
-| `<locator>` | String | The object-store locator obtained from a previously successful snapshot upload |  | Yes |  |
+| `<ssd-capacity>` | Capacity | SSD capacity of the downloaded filesystem |  | Yes |  |
+| `<locator>` | String | Object store locator obtained from a previously successful snapshot upload |  | Yes |  |
 
+The `locator` is either a locator saved previously for disaster scenarios, or can be obtained using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
+### Deleting Snapshots Residing on an Object Store
 
-
+When deleting a snapshot residing on an object store, the snapshot data may be used by other snapshots or other filesystems. Consequently, the space reclamation may not be the same size as the snapshot, and in some cases, almost no space will be reclaimed.
 
