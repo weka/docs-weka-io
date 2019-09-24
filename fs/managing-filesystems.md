@@ -68,8 +68,8 @@ Use the following command line to add an object store:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | The name of the object store being created | Must be a valid name | Yes | ​ |
 | `hostname` | String | The object store host identifier | Must be a valid name/IP | Yes |  |
-| `port` | String | The object store port | Must be a valid name | Yes |  |
-| `bucket` | Number | The object store bucket ID | Must be a valid name | Yes |  |
+| `port` | String | The object store port | Must be a valid name | No | 80 |
+| `bucket` | String | The object store bucket name | Must be a valid name | Yes |  |
 | `auth-method` | String | Authentication method | None, AWSSignature2 or AWSSignature4 | Yes |  |
 | `region` | String | Region name |  | Yes |  |
 | `access-key-id` | String | The object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
