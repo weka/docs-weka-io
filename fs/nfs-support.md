@@ -108,7 +108,7 @@ Use the following command line to add an interface group:
 
 Access the Group Ports table.
 
-![Group Ports Table](../.gitbook/assets/image%20%287%29.png)
+![Group Ports Table](../.gitbook/assets/image%20%2812%29.png)
 
 To set interface group ports, click the '+' button on the top right-hand side of the Group Ports table. Then select the relevant hosts and ports and click Save.
 
@@ -141,7 +141,7 @@ weka nfs interface-group port delete <name> <host-id> <port>`
 
 Access the Group IPs table.
 
-![Group IPs Table](../.gitbook/assets/image%20%281%29.png)
+![Group IPs Table](../.gitbook/assets/image%20%282%29.png)
 
 To set IPs for the selected group, click the '+' button on the top right-hand side of Group IPs  table. Then enter the relevant IP range and click Save.
 
