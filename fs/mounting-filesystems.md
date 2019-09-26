@@ -52,8 +52,6 @@ Assuming the WekaIO cluster is using the backend IP of `1.2.3.4`, running the fo
 
 On completion, the agent is installed on the client machine.
 
-
-
 #### Invoking the Mount Command
 
 **Command:** `mount -t wekafs`
@@ -71,11 +69,11 @@ Use the following command line to invoke the mount command:
 | `fs` | String | Filesystem name | Must be a valid name | Yes | ​ |
 | `mount-path` | String | Path to mount on the local machine | Must be a valid path name | Yes | ​ |
 
-## Mount Mode Command Options
+## Mount Command Options
 
-Each mount option can be passed with an individual `-o` flag to `mount`
+Each mount option can be passed with an individual `-o` flag to `mount.`
 
-### For All Clients types
+### For All Clients Types
 
 | Option | Value | Description | Default |
 | :--- | :--- | :--- | :--- |
@@ -111,9 +109,8 @@ Each mount option can be passed with an individual `-o` flag to `mount`
       <td style="text-align:left"><code>memory_mb</code>
       </td>
       <td style="text-align:left">Number</td>
-      <td style="text-align:left">The amount of memory to be used by the client (for huge pages)</td>
-      <td
-      style="text-align:left">1400 MiB</td>
+      <td style="text-align:left">Amount of memory to be used by the client (for huge pages)</td>
+      <td style="text-align:left">1400 MiB</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>num_cores=&lt;frontend-cores&gt;</code>
@@ -157,7 +154,7 @@ Each mount option can be passed with an individual `-o` flag to `mount`
       </td>
       <td style="text-align:left">Number</td>
       <td style="text-align:left">
-        <p>The network bandwidth limitation for the entire container, in Mb/s.</p>
+        <p>Network bandwidth limitation for the entire container, in Mb/s.</p>
         <p>This limitation is for all nodes running within the container, and an
           attempt is made to detect it automatically based on the environment e.g.,
           when in AWS. Setting a per-node limitation can be performed in the container
@@ -169,8 +166,8 @@ Each mount option can be passed with an individual `-o` flag to `mount`
       <td style="text-align:left"><code>remove_after_secs=&lt;secs&gt;</code>
       </td>
       <td style="text-align:left">Number</td>
-      <td style="text-align:left">The number of seconds without connectivity after which the client will
-        be removed from the cluster.
+      <td style="text-align:left">Number of seconds without connectivity after which the client will be
+        removed from the cluster.
         <br />Minimum value: 60 seconds.</td>
       <td style="text-align:left">86,720 seconds (24 hours)</td>
     </tr>
@@ -188,7 +185,7 @@ Running this command on a host installed with the WekaIO agent will download the
 
 `mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka`
 
-Running this command will use [UDP mode ](../overview/networking-in-wekaio.md#udp-mode)\(usually selected when the use of DPDK is not available\)
+Running this command will use [UDP mode ](../overview/networking-in-wekaio.md#udp-mode)\(usually selected when the use of DPDK is not available\).
 {% endhint %}
 
 {% hint style="success" %}
@@ -202,7 +199,7 @@ Running this command on an AWS host will allocate two cores \(multiple-frontends
 Any subsequent mount commands after the first `mount` command \(where the client software is installed and the host joins the cluster\) can use the same command, or use just the traditional mount parameters as defined in [Mounting Filesystems](mounting-filesystems.md#mount-mode-command-options), since it is not necessary to join a cluster. 
 
 {% hint style="info" %}
-**Note:** The configuration is distribution-dependent and it is necessary to ensure that the service is configured to start automatically after the host is rebooted. To verify that the  autofs service automatically starts after restarting the server, run the following command: `systemctl is-enabled autofs.` If output is `enabled`, the service is configured to start automatically.
+**Note:** The configuration is distribution-dependent and is necessary to ensure that the service is configured to start automatically after the host is rebooted. To verify that the  autofs service starts automatically after restarting the server, run the following command: `systemctl is-enabled autofs.` If output is `enabled`, the service is configured to start automatically.
 {% endhint %}
 
 It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
@@ -214,7 +211,7 @@ After the execution of an`unmount` command which unmounts the last WekaIO filesy
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** When running in AWS, the instance IAM role must allow the following permissions:`ec2:AttachNetworkInterface`, `ec2:CreateNetworkInterface` and `ec2:ModifyNetworkInterfaceAttribute.`.
+**Note:** When running in AWS, the instance IAM role must allow the following permissions:`ec2:AttachNetworkInterface`, `ec2:CreateNetworkInterface` and `ec2:ModifyNetworkInterfaceAttribute.`
 {% endhint %}
 
 {% hint style="info" %}
@@ -223,7 +220,7 @@ After the execution of an`unmount` command which unmounts the last WekaIO filesy
 
 ## Page Cache <a id="page-cache"></a>
 
-WekaIO utilizes the Linux page cache for the mounted filesystem. This allows for better performance when accessing the same files multiple times at around the same time.
+The WekaIO system utilizes the Linux page cache for the mounted filesystem. This allows for better performance when accessing the same files multiple times at around the same time.
 
 ## Setting Up Automount \(autofs\)
 
@@ -268,6 +265,6 @@ service autofs restart
 It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
 
 {% hint style="success" %}
-**For Example:** The`default`filesystem is automatically mounted under`/mnt/weka/default`.
+**For Example:** The default filesystem is automatically mounted under`/mnt/weka/default`.
 {% endhint %}
 

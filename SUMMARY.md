@@ -63,6 +63,7 @@
 * [Statistics](usage/statistics/README.md)
   * [List of Statistics](usage/statistics/list-of-statistics.md)
 * [User Management](usage/user-management.md)
+* [Organizations](usage/organizations.md)
 * [Expanding & Shrinking Cluster Resources](usage/expanding-and-shrinking-cluster-resources/README.md)
   * [Expand & Shrink Overview](usage/expanding-and-shrinking-cluster-resources/expand-and-shrink-overview.md)
   * [Stages in Adding a Backend Host](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
