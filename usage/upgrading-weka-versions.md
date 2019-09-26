@@ -13,16 +13,13 @@ Before upgrading your cluster, ensure the following:
 1. All backend hosts are online.
 2. Any rebuild has been completed.
 
-{% hint style="info" %}
-**Note:** During the upgrade process, client IOs will hang for about 1 minute.
-{% endhint %}
-
 ## Supported Upgrade Paths
 
 The WekaIO upgrade process supports upgrading to both higher minor versions and major versions of the WekaIO software. 
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
+* To upgrade to WekaIO software version 3.5.x, go through version 3.4.6 or above.
 * To upgrade to WekaIO software version 3.4.x, go through version 3.3.1 or above.
 * To upgrade to WekaIO software version 3.3.x, go through version 3.2.1 or above.
 * To upgrade to WekaIO software version 3.2.x, go through version 3.1.9.4 or above.
@@ -39,15 +36,29 @@ Download the new release on one of the backend hosts, as follows:
 4. Untar the downloaded package.
 5. Run the`install.sh` script of the new release.
 
+## Upgrading to Version 3.5 and Above
+
+From WekaIO software version 3.5 onwards, the disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. WekaIO system guarantees that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window. 
+
 ## Running the Upgrade Command
 
-Once the new release is installed on one of the backend hosts, the cluster has to be upgraded to the new release. This is performed by running the following command on the backend host:
+Once a new software version is installed on one of the backend hosts, the cluster has to be upgraded to the new release. This is performed by running the following command on the backend host:
 
 ```text
 weka local run --in <new-version> upgrade --mode one-shot
 ```
 
-where `<new-version>` is the name of the new version downloaded from get.weka.io, e.g.,`3.4.2`.
+where `<new-version>` is the name of the new version downloaded from get.weka.io, e.g.,`3.4.6`.
+
+The limited upgrade window can be controlled by setting the following parameters in the `upgrade` command:
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `--stop-io-timeout` | Integer | Maximum time in seconds to wait for IO to successfully stop |  | No | 90 |
+| `--host-version-change-timeout` | Integer | Maximum time in seconds to wait for a host version update |  | No | 180 |
+| `--start-io-timeout` | Integer | Maximum time in seconds to wait for IO to successfully start |  | No | 300 |
 
 {% hint style="info" %}
 **Note:** When using non-default passwords, run this command with the environment variables. For example:
@@ -55,7 +66,7 @@ where `<new-version>` is the name of the new version downloaded from get.weka.io
 `weka local run --in <new-version> -e WEKA_USERNAME=<user> -e WEKA_PASSWORD=<passwd> upgrade --mode=one-shot`
 {% endhint %}
 
-Before switching the cluster to the new release, the upgrade command will distribute the new release to all cluster hosts and make any necessary preparations, such as compiling the new `wekafs` driver. If any failure occurs during the preparations, such as disconnection of a host or failure to build a driver, the upgrade process will stop and an error will be received indicating the problematic host.
+Before switching the cluster to the new release, the upgrade command will distribute the new release to all cluster hosts and make any necessary preparations, such as compiling the new `wekafs` driver. If any failure occurs during the preparations, such as disconnection of a host or failure to build a driver, the upgrade process will stop and a summary message will be received indicating the problematic host.
 
 If everything goes to plan, the upgrade will stop the cluster IO service, switch all hosts to the new release and then turn the IO service back on. This takes about 1 minute, depending on the size of the cluster.
 
@@ -64,10 +75,10 @@ If everything goes to plan, the upgrade will stop the cluster IO service, switch
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
 {% hint style="success" %}
-**For Example:** The following will be received when the system has been upgraded to version 3.4.2: 
+**For Example:** The following will be received when the system has been upgraded to version 3.4.6: 
 
 `# weka status   
-WekaIO v3.4.2 (CLI build 3.4.42)  
+WekaIO v3.4.2 (CLI build 3.6.106)  
 ...`
 {% endhint %}
 
