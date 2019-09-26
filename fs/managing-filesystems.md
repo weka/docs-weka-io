@@ -66,20 +66,20 @@ Use the following command line to add an object store:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | The name of the object store being created | Must be a valid name | Yes | ​ |
-| `hostname` | String | The object store host identifier | Must be a valid name/IP | Yes |  |
-| `port` | String | The object store port | Must be a valid name | No | 80 |
-| `bucket` | String | The object store bucket name | Must be a valid name | Yes |  |
+| `name` | String | Name of the object store being created | Must be a valid name | Yes | ​ |
+| `hostname` | String | Object store host identifier | Must be a valid name/IP | Yes |  |
+| `port` | String | Object store port | Must be a valid name | No | 80 |
+| `bucket` | String | Object store bucket name | Must be a valid name | Yes |  |
 | `auth-method` | String | Authentication method | None, AWSSignature2 or AWSSignature4 | Yes |  |
 | `region` | String | Region name |  | Yes |  |
-| `access-key-id` | String | The object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
-| `secret-key` | String | The object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
+| `access-key-id` | String | Object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
+| `secret-key` | String | Object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
 | `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
-| `errors-timeout` | Number | If the OBS link is down for longer than this, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
+| `errors-timeout` | Number | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
 | `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No | 0 |
-| `max-concurrent-downloads` | Number | Maximum number of downloads we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
-| `max-concurrent-uploads` | Number | Maximum number of uploads we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
-| `max-concurrent-removals` | Number | Maximum number of removals we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
+| `max-concurrent-downloads` | Number | Maximum number of downloads concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
+| `max-concurrent-uploads` | Number | Maximum number of uploads concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
+| `max-concurrent-removals` | Number | Maximum number of removals concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
 
 {% hint style="info" %}
 **Note:** When using the CLI, by default a misconfigured object store will not be created. To create an object store even when it is misconfigured, use the `--skip-verification`option.
@@ -115,21 +115,21 @@ Use the following command line to edit an object store:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | The name of the object store being edited | Must be a valid name | Yes | ​ |
-| `new-name` | String  | The new name for the object store | Must be a valid name | No |  |
-| `hostname` | String | The object store host identifier | Must be a valid name/IP | Yes |  |
-| `port` | String | The object store port | Must be a valid name | Yes |  |
-| `bucket` | String | The object store bucket name | Must be a valid name | Yes |  |
+| `name` | String | Name of the object store being edited | Must be a valid name | Yes | ​ |
+| `new-name` | String  | New name for the object store | Must be a valid name | No |  |
+| `hostname` | String | Object store host identifier | Must be a valid name/IP | Yes |  |
+| `port` | String | Object store port | Must be a valid name | Yes |  |
+| `bucket` | String | Object store bucket name | Must be a valid name | Yes |  |
 | `auth-method` | String | Authentication method | None, AWSSignature2 or AWSSignature4 | Yes |  |
 | `region` | String | Region name |  | Yes |  |
-| `access-key-id` | String | The object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
-| `secret-key` | String | The object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
+| `access-key-id` | String | Object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
+| `secret-key` | String | Object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
 | `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
-| `errors-timeout` | Number | If the OBS link is down for longer than this, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
+| `errors-timeout` | Number | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
 | `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No | 0 |
-| `max-concurrent-downloads` | Number | Maximum number of downloads we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
-| `max-concurrent-uploads` | Number | Maximum number of uploads we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
-| `max-concurrent-removals` | Number | Maximum number of removals we concurrently perform on this object store in a single IO node | 1-64 | No | 64 |
+| `max-concurrent-downloads` | Number | Maximum number of downloads concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
+| `max-concurrent-uploads` | Number | Maximum number of uploads concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
+| `max-concurrent-removals` | Number | Maximum number of removals concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
 
 ### Deleting an Object Store
 
@@ -157,7 +157,7 @@ Use the following command line to delete an object store:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | The name of the object store being deleted | Must be a valid name | Yes | ​ |
+| `name` | String | Name of the object store being deleted | Must be a valid name | Yes | ​ |
 
 ## Managing Filesystem Groups
 
@@ -175,11 +175,11 @@ The Create Filesystem Group dialog box will be displayed.
 
 Enter the relevant parameters and click Create to create the filesystem group.
 
-Use the following command to add a filesystem group:
-
 #### Adding a Filesystem Group Using the CLI
 
 **Command:** `weka fs group create`
+
+Use the following command to add a filesystem group:
 
 `weka fs group create <name> [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
 
@@ -187,9 +187,9 @@ Use the following command to add a filesystem group:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | The name of the filesystem group being created | Must be a valid name | Yes | ​ |
-| `target-ssd-retention` | Number | The target retention period \(in seconds\) before tiering to the object store | Must be a valid number | No | 86400 \(24 hours\) |
-| `start-demote` | Number | The target tiering cue \(in seconds\) before tiering to the object store | Must be a valid number | No | 10 |
+| `name` | String | Name of the filesystem group being created | Must be a valid name | Yes | ​ |
+| `target-ssd-retention` | Number | Target retention period \(in seconds\) before tiering to the object store | Must be a valid number | No | 86400 \(24 hours\) |
+| `start-demote` | Number | Target tiering cue \(in seconds\) before tiering to the object store | Must be a valid number | No | 10 |
 
 ### Editing a Filesystem Group
 
@@ -199,7 +199,7 @@ Click the Edit button of the filesystem group to be modified. The Configure File
 
 ![Configure Filesystem Group Dialog Box](../.gitbook/assets/edit-fs-group-3.5.png)
 
-For a more in-depth explanation of the tiring policy, refer to [Advanced Data Lifecycle Management](tiering.md).
+For a more in-depth explanation of the tiering policy, refer to [Advanced Data Lifecycle Management](tiering.md).
 
 Edit the existing filesystem group parameters and click Configure to execute the changes.
 
@@ -215,10 +215,12 @@ Use the following command to edit a filesystem group:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | The name of the filesystem group being edited | Must be a valid name | Yes | ​ |
-| `new-name` | String | The new name for the filesystem group | Must be a valid name | Yes |  |
-| `target-ssd-retention` | Number | The new target retention period \(in seconds\) before tiering to the object store | Must be a valid number | No |  |
-| `start-demote` | Number | The new target tiering cue \(in seconds\) before tiering to the object store | Must be a valid number | No |  |
+| `name` | String | Name of the filesystem group being edited | Must be a valid name | Yes | ​ |
+| `new-name` | String | New name for the filesystem group | Must be a valid name | Yes |  |
+| `target-ssd-retention` | Number | New target retention period \(in seconds\) before tiering to the object store | Must be a valid number | No |  |
+| `start-demote` | Number | New target tiering cue \(in seconds\) before tiering to the object store | Must be a valid number | No |  |
+
+### Deleting a Filesystem Group
 
 #### Deleting a Filesystem Group Using the GUI
 
@@ -236,8 +238,6 @@ Click Yes to delete the filesystem group.
 
 A more in-depth explanation of the tiring policy appears in [Advanced Data Lifecycle Management](tiering.md).
 
-### Deleting a Filesystem Group
-
 **Command:** `weka fs group delete`
 
 Use the following command line to delete a filesystem group:
@@ -248,7 +248,7 @@ Use the following command line to delete a filesystem group:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | The name of the filesystem group to be deleted | Must be a valid name | Yes | ​ |
+| `name` | String | Name of the filesystem group to be deleted | Must be a valid name | Yes | ​ |
 
 ## Managing Filesystems
 
@@ -278,13 +278,13 @@ Use the following command line to add a filesystem:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | The name of the filesystem being created | Must be a valid name | Yes | ​ |
-| `group-name` | String | The name of the filesystem group to which the new filesystem is to be connected | Must be a valid name | Yes |  |
-| `total-capacity` | Number | The total capacity of the new filesystem; options are SSD capacity \(`ssd-capacity <ssd>`\), the filesystem ID \(`filesystem-id <id>`\) or a value that correlates with the percentage of SSD capacity from the total SSD capacity for the cluster \(`max-files <max-files>`\) | Must be a valid number | Yes |  |
+| `name` | String | Name of the filesystem being created | Must be a valid name | Yes | ​ |
+| `group-name` | String | Name of the filesystem group to which the new filesystem is to be connected | Must be a valid name | Yes |  |
+| `total-capacity` | Number | Total capacity of the new filesystem; options are SSD capacity \(`ssd-capacity <ssd>`\), the filesystem ID \(`filesystem-id <id>`\) or a value that correlates with the percentage of SSD capacity from the total SSD capacity for the cluster \(`max-files <max-files>`\) | Must be a valid number | Yes |  |
 | `ssd-capacity` | Number | For tiered filesystems, this is the SSD capacity. If not specified, the filesystem is pinned to SSD | Must be a valid number | No | SSD capacity will be set to total capacity |
 | `max-files` | Number | Metadata allocation for this filesystem | Must be a valid number | No | Automatically calculated by the system based on the SSD capacity |
 | `encrypted` | Boolean | Encryption of filesystem |  | No | No |
-| `obs-name` | String | The object store name for tiering | Must be a valid name | No |  |
+| `obs-name` | String | Object store name for tiering | Must be a valid name | No |  |
 
 ### Editing a Filesystem
 
@@ -316,11 +316,13 @@ Use the following command line to edit an existing filesystem:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | The name of the filesystem being edited | Must be a valid name | Yes | ​ |
-| `new-name` | String | The new name for the filesystem | Must be a valid name | Optional | Keep unchanged |
-| `total` | Number | The total capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
-| `ssd` | Number | The SSD capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
-| `max-files` | Number | The metadata limit for the filesystem | Must be a valid number | Optional | Keep unchanged |
+| `name` | String | Name of the filesystem being edited | Must be a valid name | Yes | ​ |
+| `new-name` | String | New name for the filesystem | Must be a valid name | Optional | Keep unchanged |
+| `total` | Number | Total capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
+| `ssd` | Number | SSD capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
+| `max-files` | Number | Metadata limit for the filesystem | Must be a valid number | Optional | Keep unchanged |
+
+### Deleting a Filesystem
 
 #### Deleting a Filesystem Using the GUI
 
@@ -332,15 +334,13 @@ The Filesystem Deletion dialog box is displayed.
 
 ![Filesystem Deletion Dialog Box](../.gitbook/assets/fs-delete-dialog-3.5.png)
 
+Confirm the filesystem deletion by typing the name of the filesystem and clicking Confirm.
+
 #### Deleting a Filesystem Using the CLI
 
 **Command:** `weka fs delete`
 
 Use the following command line to delete a filesystem:
-
-### Deleting a Filesystem
-
-Confirm the filesystem deletion by typing the name of the filesystem and clicking Confirm.
 
 `weka fs delete <name>`
 
@@ -348,7 +348,7 @@ Confirm the filesystem deletion by typing the name of the filesystem and clickin
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | The name of the filesystem to be deleted | Must be a valid name | Yes |  |
+| `name` | String | Name of the filesystem to be deleted | Must be a valid name | Yes |  |
 
 ## Attaching/Detaching Object Stores to Filesystems
 
@@ -442,6 +442,6 @@ To detach an object store from a filesystem, use the following command:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `fs-name` | String | The name of the filesystem to be attached to / detached from the object store | Must be a valid name | Yes | ​ |
-| `obs-name` | String | The name of the object store to be  attached / detached | Must be a valid name | Yes |   |
+| `fs-name` | String | Name of the filesystem to be attached to / detached from the object store | Must be a valid name | Yes | ​ |
+| `obs-name` | String | Name of the object store to be  attached / detached | Must be a valid name | Yes |   |
 
