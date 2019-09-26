@@ -74,7 +74,7 @@
 
 ## Performance <a id="testing-and-troubleshooting"></a>
 
-* [Testing WekaIO System Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
+* [Testing WekaIO Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
 * [System Congestion](testing-and-troubleshooting/system-congestion.md)
 
 ## Support
