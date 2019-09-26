@@ -1,0 +1,65 @@
+[global]
+group_reporting
+ioengine=posixaio
+direct=1
+directory=${DIRECTORY}
+filename_format=$jobnum/$filenum
+size=10GB
+iodepth=1
+
+# Time options
+runtime=60
+time_based=1
+clocksource=gettimeofday
+
+# Run jobs serially
+stonewall
+
+
+; CREATE FILES
+[Create_Files]
+rw=rw
+rwmixread=0
+bs=1m
+numjobs=$ncpus-2
+create_only=1
+
+; READ JOBS
+
+[FioReads1MMultiThread]
+rw=randrw
+rwmixread=100
+bs=1m
+numjobs=$ncpus-2
+
+[IOPSRead4KMultiThread]
+rw=randrw
+rwmixread=100
+bs=4k
+numjobs=$ncpus-2
+
+[FioReads4KSingleThread]
+rw=randrw
+rwmixread=100
+bs=4k
+numjobs=1
+
+; WRITE JOBS
+
+[FioWrite1MMultiThread]
+rw=randrw
+rwmixread=0
+bs=1m
+numjobs=$ncpus-2
+
+[IOPSWrite4KMultiThread]
+rw=randrw
+rwmixread=0
+bs=4k
+numjobs=$ncpus-2
+
+[FioWrites4KSingleThread]
+rw=randrw
+rwmixread=0
+bs=4k
+numjobs=1
