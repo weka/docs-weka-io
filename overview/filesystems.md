@@ -20,36 +20,36 @@ A filesystem must have a defined capacity limit. A filesystem that belongs to a 
 
 ### Encrypted Filesystems
 
-Both data at rest \(residing on SSD and object store\) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](../fs/managing-filesystems.md#adding-a-filesystem).
+Both data at rest \(residing on SSD and object store\) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](../fs/managing-filesystems/managing-filesystems-1.md#adding-a-filesystem).
 
 {% hint style="info" %}
 **Note:** For proper security, selection of encryption should be used with a KMS \(Key Management System\). For integration information regarding your KMS, contact the WekaIO Support Team. 
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** It is only possible to enable encryption of data in a filesystem when the filesystem is created. Furthermore, enablement of the encryption feature on a filesystem cannot be cancelled.
+**Note:** Setting data encryption \(on/off\) can only be done when creating a filesystem.
 {% endhint %}
 
 ### Metadata Limitations
 
-In addition to the capacity limitation, each filesystem  also has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to WekaIO, as well as the RAM resources allocated to the WekaIO processes. By default, the metadata limit associated with a filesystem is proportional to the filesystem SSD size. It is possible to override this default by defining a filesystem-specific max-files parameter, although the total of the limits of the metadata for all the filesystems cannot exceed the total system metadata limits.
+In addition to the capacity limitation, each filesystem  also has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to the WekaIO system, as well as the RAM resources allocated to the WekaIO system processes. By default, the metadata limit associated with a filesystem is proportional to the filesystem SSD size. It is possible to override this default by defining a filesystem-specific max-files parameter, although the total of the limits of the metadata for all the filesystems cannot exceed the total system metadata limits.
 
 ### Metadata Calculations
 
-Throughout this documentation, the metadata limitation per filesystem is referred to as a parameter named `max-files` , which really describes the number of metadata units, and not the number of files. This parameter  encapsulates both the file count and the file sizes, as follows:
+Throughout this documentation, the metadata limitation per filesystem is referred to as a parameter named `max-files` , which describes the number of metadata units, and not the number of files. This parameter  encapsulates both the file count and the file sizes, as follows:
 
 * Each file requires two metadata units.
 * If a file exceeds 0.5 MB, an additional metadata unit is required.
-* For each additional 1 MB over the first one, an additional metadata unit is required.
+* For each additional 1 MB over the first MB, an additional metadata unit is required.
 
-For the purpose of the definitions above, it is irrelevant if the file is on the SSD or the object store.
+The definitions above apply to files residing on SSDs or object stores.
 
 {% hint style="success" %}
 **For Example:**
 
 * For a filesystem with potentially 1,000,000,000 files of 64 KB in size,  2,000,000,000 metadata units are required.
-* For a file system with potentially 1,000,000 files of 128 MB in size, 130,000,000 metadata units are required.
-* For a file system with 1,000,000 files of 750 KB in size, 3,000,000 metadata units are required.
+* For a filesystem with potentially 1,000,000 files of 128 MB in size, 130,000,000 metadata units are required.
+* For a filesystem with 1,000,000 files of 750 KB in size, 3,000,000 metadata units are required.
 {% endhint %}
 
 ## About Object Stores
@@ -68,5 +68,7 @@ In the WekaIO system, filesystems are grouped into up to 8 filesystem groups.
 
 Each filesystem group has tiering control parameters \(see [Guidelines for Data Storage in Tiered WekaIO System Configurations](data-storage.md#guidelines-for-data-storage-in-tiered-weka-system-configurations)\). While tiered filesystems have their own object store, the tiering policy will be the same for each tiered filesystem under the same filesystem group.
 
-For information on managing these entities, refer to [Managing Filesystems, Object Stores and Filesystem Groups](../fs/managing-filesystems.md).
+
+
+For information on managing these entities, refer to [Managing Filesystems, Object Stores and Filesystem Groups](../fs/managing-filesystems/).
 

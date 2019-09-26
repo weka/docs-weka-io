@@ -36,7 +36,11 @@
 
 ## FILESYSTEMS <a id="fs"></a>
 
-* [Managing Filesystems, Object Stores & Filesystem Groups](fs/managing-filesystems.md)
+* [Managing Filesystems, Object Stores & Filesystem Groups](fs/managing-filesystems/README.md)
+  * [Managing Object Stores](fs/managing-filesystems/managing-object-stores.md)
+  * [Managing Filesystem Groups](fs/managing-filesystems/managing-filesystem-groups.md)
+  * [Managing Filesystems](fs/managing-filesystems/managing-filesystems-1.md)
+  * [Attaching/Detaching Object Stores to/from Filesystems](fs/managing-filesystems/attaching-detaching-object-stores-to-from-filesystems.md)
 * [Advanced Data Lifecycle Management](fs/tiering.md)
 * [NFS Support](fs/nfs-support.md)
 * [Mounting Filesystems](fs/mounting-filesystems.md)

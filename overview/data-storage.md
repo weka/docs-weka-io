@@ -35,7 +35,7 @@ This data management approach to data storage on one of two possible media requi
 
 Furthermore, the WekaIO system tiers data in chunks, rather than in complete files. This enables the smart tiering of subsets of a file \(and not only complete files\) between SSDs and object stores.
 
-The network resources allocated to the object store connections can be [controlled](../fs/managing-filesystems.md#editing-an-object-store-using-the-cli). This enables cost control when using cloud-based object storage services, since the cost of data stored in the cloud depends on the quantity stored and the number of requests for access made.
+The network resources allocated to the object store connections can be [controlled](../fs/managing-filesystems/managing-object-stores.md#editing-an-object-store-using-the-cli). This enables cost control when using cloud-based object storage services, since the cost of data stored in the cloud depends on the quantity stored and the number of requests for access made.
 
 ## States in the WekaIO System Data Management Storage Process
 
