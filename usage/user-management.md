@@ -17,18 +17,6 @@ Every WekaIO system user has one of the following defined roles:
 * **Regular**: A user with read and write privileges.
 * **Read-only:** A user with read-only privileges.
 
-When users open the GUI, they are prompted to provide their username and password. To pass username and password to the CLI, use the `WEKA_USERNAME` and `WEKA_PASSWORD` environment variables. 
-
-Alternatively, it is possible to log into the CLI as a specific user using the`weka user login <username> <password>`command. This will run each CLI command from that user. To see the logged-in CLI user, run the`weka user whoami` command.
-
-{% hint style="info" %}
-**Note:** The`weka user login` command is persistent, but only applies to the host on which it was set.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** If the`WEKA_USERNAME`/`WEKA_PASSWORD` environment variables are not specified, the CLI assumes the username and password of the logged-in CLI user. If no CLI user is explicitly logged-in, the CLI uses the default `admin`/`admin`.
-{% endhint %}
-
 ## First User \(Cluster Admin\)
 
 By default, when a WekaIO cluster is created, a first user with a username of admin and a password of admin is created. This user has a Cluster Admin role, which allows the running of all commands.
@@ -120,6 +108,20 @@ However, if a user does not exist in the WekaIO system but does exist in an LDAP
 On each successful login, a `UserLoggedIn` event is issued, containing the username, role and whether the user is an internal or LDAP user.
 
 When a login fails, an "Invalid username or password" message is displayed and a `UserLoginFailed` event is issued, containing the username and the reason for the login failure.
+
+When users open the GUI, they are prompted to provide their username and password. To pass username and password to the CLI, use the `WEKA_USERNAME` and `WEKA_PASSWORD` environment variables. 
+
+Alternatively, it is possible to log into the CLI as a specific user using the`weka user login <username> <password>`command. This will run each CLI command from that user.  When a user logs in, a token file is created to be used for authentication \(default to `~/.weka/auth-token.json`, which can be changed using the `--path` attribute\).  To see the logged-in CLI user, run the`weka user whoami` command.
+
+{% hint style="info" %}
+**Note:** The`weka user login` command is persistent, but only applies to the host on which it was set.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** If the`WEKA_USERNAME`/`WEKA_PASSWORD` environment variables are not specified, the CLI uses the default token file. If no CLI user is explicitly logged-in, and no token file is present the CLI uses the default `admin`/`admin`. 
+
+To use a non-default path for the token file, use the `WEKA_TOKEN` environment variable.
+{% endhint %}
 
 ## Authenticating Users from an LDAP User Directory
 
