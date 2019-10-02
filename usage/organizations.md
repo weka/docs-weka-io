@@ -26,7 +26,7 @@ The Cluster Admin can perform the following activities:
 
 ## Use Cases for Working with Organizations
 
-### Logical Separation of Departments
+### Private Cloud Multi-Tenancy
 
 Working with organizations makes it possible to manage different departments. While this requires more configuration, e.g., different LDAP configurations are usually unnecessary between different departments in the same organization, the Cluster Admin is fully trusted. It is possible to separate and obscure specific departments - such as IT, Finance, Life Sciences, and Genomics - and even specific projects in departments.
 
