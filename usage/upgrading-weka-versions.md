@@ -59,6 +59,7 @@ The limited upgrade window can be controlled by setting the following parameters
 | `--stop-io-timeout` | Integer | Maximum time in seconds to wait for IO to successfully stop |  | No | 90 |
 | `--host-version-change-timeout` | Integer | Maximum time in seconds to wait for a host version update |  | No | 180 |
 | `--start-io-timeout` | Integer | Maximum time in seconds to wait for IO to successfully start |  | No | 300 |
+| `--prepare-only` | Boolean | Download and prepare a new software version across all hosts in the cluster, without performing the actual upgrade  |  | No | False |
 
 {% hint style="info" %}
 **Note:** When using non-default passwords, run this command with the environment variables. For example:
