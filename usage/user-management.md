@@ -148,6 +148,7 @@ weka user ldap setup <server-uri>
                      <reader-username>
                      <reader-password>
                      <admin-group>
+                     <org-admin-group>
                      <regular-group>
                      <readonly-group>
                      [--server-timeout-secs server-timeout-secs]
@@ -163,6 +164,7 @@ weka user ldap setup-ad <server-uri>
                         <reader-username>
                         <reader-password>
                         <admin-group>
+                        <org-admin-group>
                         <regular-group>
                         <readonly-group>
                         [--server-timeout-secs server-timeout-secs]
@@ -180,7 +182,8 @@ weka user ldap setup-ad <server-uri>
 | `group-membership-attribute` | String | Attribute of group containing the DN of a user membership in the group | Must be valid name | Yes |  |
 | `group-id-attribute` | String | Attribute storing the group name | Name has to match names used in the `<admin-group>`, `<regular group>` and `<readonly group>` | Yes |  |
 | `reader-username` and `reader-password` | String | Credentials of a user with read access to the directory | Password is kept in the WekaIO cluster configuration in plain text, as it is used to authenticate against the directory during user authentication | Yes |  |
-| `admin-group`   | String | Name of group containing users defined with admin role | Must be valid name | Yes |  |
+| `admin-group`   | String | Name of group containing users defined with cluster admin role | Must be valid name | Yes |  |
+| `org-admin-group`   | String | Name of group containing users defined with organization admin role | Must be valid name | Yes |  |
 | `regular-group` | String | Name of group containing users defined with regular privileges | Must be valid name | Yes |  |
 | `readonly-group` | String | Name of group containing users defined with read only privileges | Must be valid name | Yes |  |
 | `server-timeout-secs` | Number | Server connection timeout | Seconds | No |  |
