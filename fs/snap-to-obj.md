@@ -147,17 +147,18 @@ Define all the fields and enter the location of the snapshot to be used in the O
 
 Use the following command line to create a filesystem from an existing snapshot:
 
-`weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <locator>`
+`weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs> <locator>`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `<name>` | String | Name of the filesystem to be created |  | Yes |  |
-| `<group-name>` | String | Name of the filesystem group in which the new filesystem will be placed |  | Yes |  |
-| `<total-capacity>` | Capacity | Total capacity of the downloaded filesystem |  | Yes |  |
-| `<ssd-capacity>` | Capacity | SSD capacity of the downloaded filesystem |  | Yes |  |
-| `<locator>` | String | Object store locator obtained from a previously successful snapshot upload |  | Yes |  |
+| `name` | String | Name of the filesystem to be created |  | Yes |  |
+| `group-name` | String | Name of the filesystem group in which the new filesystem will be placed |  | Yes |  |
+| `total-capacity` | Capacity | Total capacity of the downloaded filesystem |  | Yes |  |
+| `ssd-capacity` | Capacity | SSD capacity of the downloaded filesystem |  | Yes |  |
+| `obs` | String | Object store name for tiering |  | Yes |  |
+| `locator` | String | Object store locator obtained from a previously successful snapshot upload |  | Yes |  |
 
 The `locator` is either a locator saved previously for disaster scenarios, or can be obtained using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
