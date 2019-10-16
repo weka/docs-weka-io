@@ -41,13 +41,28 @@ Additionally, the following restrictions are implemented for Cluster Admin users
 * Cluster Admins cannot delete themselves.
 * Cluster Admins cannot change their role to a regular user role.
 
+## Managing Users
+
 ### Creating Users
 
-To create a user, run the `weka user add` command:
+**Command:** `weka user add`
 
-```text
-$ weka user add my_new_user S3cret regular
-```
+Use the following command line to create a user:
+
+`weka user add <username> <role> [password]` 
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `username` | String | Name of the user to change the password for | Must be a valid local user | Yes |  |
+| `role` | String | Role of the new created user | `regular`, `readonly`, `orgadmin` or `clusteradmin` | Yes |  |
+| `password` | String |  New password |  | No | If not supplied, command will prompt to supply the password |
+
+{% hint style="success" %}
+**For Example:**
+
+`$ weka user add my_new_user S3cret regular`
 
 This command line creates a user with a username of `my_new_user`, a password of `S3cret` and a role of Regular user. It is then possible to display a list of users and verify that the user was created:
 
@@ -58,6 +73,9 @@ Username    | Source   | Role
 my_new_user | Internal | Regular
 admin       | Internal | Admin
 ```
+{% endhint %}
+
+Using  the `weka user whoami` command, it is possible to receive information about the current user running the command. 
 
 To use the new user credentials, use the`WEKA_USERNAME` and `WEKA_PASSWORD`environment variables:
 
@@ -68,15 +86,20 @@ Username    | Source   | Role
 my_new_user | Internal | Regular
 ```
 
-Using  the `weka user whoami` command, it is possible to receive information about the current user running the command. 
+### Changing Users Passwords
 
-### Managing Users
+**Command:** `weka user passwd`
 
-To create/delete a local user or change a local user password, use the `weka user passwd` command. For example, assuming `my_new_user` still exists from the Creating Users section, run the following command to change the password of`my_new_user`:
+Use the following command line to change a local user password:
 
-```text
-$ weka user passwd my_new_user BackToS3cret
-```
+`weka user passwd <password> [--username username]`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `password` | String |  New password |  | Yes |  |
+| `username` | String | Name of the user to change the password for | Must be a valid local user | No | Current logged-in user |
 
 {% hint style="info" %}
 **Note:**  If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
@@ -84,11 +107,24 @@ $ weka user passwd my_new_user BackToS3cret
 
 ### Deleting Users
 
-To delete a user, run the `user-delete` command:
+**Command:** `weka user delete`
+
+To delete a user, use the following command line:
 
 ```text
-$ weka user delete my_new_user
+weka user delete <username>
 ```
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `username` | String | Name of the user to delete | Must be a valid local user | Yes |  |
+
+{% hint style="success" %}
+**For Example:** 
+
+`$ weka user add my_new_user`
 
 Then run the`weka user` command to verify that the user was deleted:
 
@@ -98,6 +134,7 @@ Username | Source   | Role
 ---------+----------+------
 admin    | Internal | Admin
 ```
+{% endhint %}
 
 ## User Log In
 
