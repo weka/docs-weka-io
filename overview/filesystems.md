@@ -22,9 +22,7 @@ A filesystem must have a defined capacity limit. A filesystem that belongs to a 
 
 Both data at rest \(residing on SSD and object store\) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](../fs/managing-filesystems/managing-filesystems-1.md#adding-a-filesystem).
 
-{% hint style="info" %}
-**Note:** For proper security, selection of encryption should be used with a KMS \(Key Management System\). For integration information regarding your KMS, contact the WekaIO Support Team. 
-{% endhint %}
+For proper security, a KMS \(Key Management System\) must be used when creating encrypted filesystems. See [KMS Management](../fs/managing-filesystems/kms-management.md) for more information about KMS support in the WekaIO system.
 
 {% hint style="info" %}
 **Note:** Setting data encryption \(on/off\) can only be done when creating a filesystem.

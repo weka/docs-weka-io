@@ -54,6 +54,16 @@ Use the following command line to add a filesystem:
 | `encrypted` | Boolean | Encryption of filesystem |  | No | No |
 | `obs-name` | String | Object store name for tiering | Must be a valid name | No |  |
 
+{% hint style="info" %}
+**Note:** When creating an encrypted filesystem a KMS must be defined.
+{% endhint %}
+
+{% hint style="warning" %}
+**Note:** To define an encrypted filesystem without a KMS, it is possible to use the`--no-kms` parameter in the command. This can be useful when running POCs but should not be used in production, since the security chain is compromised when a KMS is not used.
+
+If filesystem keys exist when adding a KMS, they are automatically re-encrypted by the KMS for any future use.
+{% endhint %}
+
 ## Editing a Filesystem
 
 ### Editing an Existing Filesystem Using the GUI

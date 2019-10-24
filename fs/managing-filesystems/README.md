@@ -12,8 +12,9 @@ The management of object stores, filesystem groups and filesystems is an integra
 
 The pages in this section cover the following subjects:
 
-* Management of object stores
-* Management of filesystem groups
-* Management of filesystems
-* Attachment/detachment of object stores to/from filesystem 
+* Management of object stores.
+* Management of filesystem groups.
+* Management of filesystems.
+* Attachment/detachment of object stores to/from filesystem.
+* Management of the Key Management System \(KMS\) integrated with the WekaIO system to properly secure the encryption keys. 
 

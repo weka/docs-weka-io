@@ -42,6 +42,7 @@
   * [Managing Filesystem Groups](fs/managing-filesystems/managing-filesystem-groups.md)
   * [Managing Filesystems](fs/managing-filesystems/managing-filesystems-1.md)
   * [Attaching/Detaching Object Stores to/from Filesystems](fs/managing-filesystems/attaching-detaching-object-stores-to-from-filesystems.md)
+  * [KMS Management](fs/managing-filesystems/kms-management.md)
 * [Advanced Data Lifecycle Management](fs/tiering.md)
 * [NFS Support](fs/nfs-support.md)
 * [Mounting Filesystems](fs/mounting-filesystems.md)
