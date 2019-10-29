@@ -35,7 +35,7 @@
 * [CLI Overview](getting-started-with-wekaio/cli-overview.md)
 * [GUI Overview](getting-started-with-wekaio/gui.md)
 
-## FILESYSTEMS <a id="fs"></a>
+## Filesystems <a id="fs"></a>
 
 * [Managing Filesystems, Object Stores & Filesystem Groups](fs/managing-filesystems/README.md)
   * [Managing Object Stores](fs/managing-filesystems/managing-object-stores.md)
@@ -55,7 +55,7 @@
 * [SMB Management Using CLIs](smb-support/untitled-1.md)
 * [SMB Management Using the GUI](smb-support/smb-management-using-the-gui.md)
 
-## OPERATION GUIDE <a id="usage"></a>
+## Operation Guide <a id="usage"></a>
 
 * [Alerts](usage/alerts/README.md)
   * [List of Alerts](usage/alerts/list-of-alerts.md)
