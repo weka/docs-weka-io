@@ -258,9 +258,14 @@ Finally, restart the `autofs` service:
 service autofs restart
 ```
 
-{% hint style="info" %}
-**Note:** The configuration is distribution-dependent and it is necessary to ensure that the service is configured to start automatically after the host is rebooted. To verify that the  autofs service automatically starts after restarting the server, run the following command: `systemctl is-enabled autofs.` If output is `enabled`, the service is configured to start automatically.
-{% endhint %}
+The configuration is distribution-dependent, and it is necessary to ensure that the service is configured to start automatically after the host is rebooted. To verify that the  autofs service automatically starts after restarting the server, run the following command: `systemctl is-enabled autofs.` If the output is `enabled` the service is configured to start automatically.
+
+In Amazon Linux, for example, autofs service can be verified with `chkconfig` command. If the output is `on` for the current _runlevel_ \(can be checked with `runlevel` command\), autofs will be enabled upon reboot.
+
+```text
+# chkconfig | grep autofs
+autofs         0:off 1:off 2:off 3:on 4:on 5:on 6:off
+```
 
 It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
 
