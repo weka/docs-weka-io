@@ -94,38 +94,170 @@ To perform this operation, the cluster host net add command must be run for each
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `host-id` | String | Identifier of host to which a network interface will be added | Must be a valid host identifier | Yes |  |
-| `device` | String | A device, e.g., `eth1` | Must be a valid Unix network device name | Yes |  |
-| `ips-type` | String | POOL or USER | Must be one of the two options | No | POOL |
-| `ips` | Comma-separated IP address | The data plane IP addresses for internal WekaIO system traffic. In IB, use the IPoIB address \(single address regardless of number of cores\) | Must be part of the data plane IP pool defined in the planning phase \(Ethernet only\). Each IP can only be used once. The number of IP addresses specified must be at least the number of cores allocated \(see below\) | No | From Pool |
-| `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
-| `netmask` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. Not allowed for IB. | No | Does not exist for L2 non-routable networks |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>host-id</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Identifier of host to which a network interface will be added</td>
+      <td
+      style="text-align:left">Must be a valid host identifier</td>
+        <td style="text-align:left">Yes</td>
+        <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>device</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">A device, e.g., <code>eth1</code>
+      </td>
+      <td style="text-align:left">Must be a valid Unix network device name</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ips-type</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">POOL or USER</td>
+      <td style="text-align:left">Must be one of the two options</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">POOL</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ips</code>
+      </td>
+      <td style="text-align:left">Comma-separated IP address</td>
+      <td style="text-align:left">The data plane IP addresses for internal WekaIO system traffic. In IB,
+        use the IPoIB address</td>
+      <td style="text-align:left">Must be part of the data plane IP pool defined in the planning phase.
+        See <a href="../../overview/networking-in-wekaio.md#backend-hosts">WekaIO Networking</a> and
+        <a
+        href="prerequisites-for-installation-of-weka-dedicated-hosts.md#networking">Networking Prerequisites</a>.</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">From Pool</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>netmask</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Number of bits in the net mask</td>
+      <td style="text-align:left">Describes the number of bits that identify a network ID (also known as
+        CIDR).</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>gateway</code>
+      </td>
+      <td style="text-align:left">IP address</td>
+      <td style="text-align:left">IP address of the default routing gateway</td>
+      <td style="text-align:left">
+        <p>Gateway must reside within the same IP network of <code>ips</code> (as described
+          by <code>netmask</code> below).</p>
+        <p>Not relevant for IB / L2 non-routable networks.</p>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>The number of IP addresses should be according to [WekaIO Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
 
-The number of IP addresses should be at least the number of cores [planned](planning-a-weka-system-installation.md#cpu-resource-planning). A larger number can be specified, in which case the unused IP addresses will be assigned if and when more cores will be allocated using the expand process.
-
-### Optional: Configure default data networking
+{% hint style="info" %}
+Additional IP addresses may be assigned for each host, if IP per core is needed. In this case, unused IP addresses are reserved for future expansion process, and can be automatically assigned if number of cores assigned to WekaIO system on that host is increased.
+{% endhint %}
 
 {% hint style="info" %}
 **Note:** For HA configurations, this command has to be run separately for each interface.
 {% endhint %}
 
+### Optional: Configure default data networking
+
 **Command:** `cluster default-net set`
 
-Instead of declaring IP/netmask/gateway specifically for every network device, WekaIO supports adding a pool of IPs \(as a range\) to be used across the system. It is possible to combine default-net with explicit IPs for some or all of the network devices. It can be useful in an environment where clients are spawned automatically. This setting is not allowed for Infiniband based clusters.
+Instead of explicit IP address configuration per each network device, dynamic IP address allocation is supported. WekaIO supports adding a range of IP addresses to a dynamic pool, from which the IP addresses can be automatically allocated on demand. 
+
+{% hint style="info" %}
+**For Ethernet networking only**, a mixed approach is supported: for certain network devices the IP addresses are assigned explicitly by the administrator, while the other devices in cluster get an automatic allocation from IP range. Such an approach could be useful in an environment where clients are spawned automatically.
+{% endhint %}
 
 `weka cluster default-net set --range <range> [--gateway=<gw>] [--netmask-bits=<netmask>]`
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `range` | IP range \(a.b.c.d-e | A range of IP addresses to use for data networking across all cluster | Must include at least one IP. | Yes |  |
-| `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask. | No | Does not exist for L2 non-routable networks |
-| `netmask-bits` | Number | Number of bits in the net mask | IP address and gateway may only be different on the last N bits, where N is the net mask. | No | Does not exist for L2 non-routable networks |
-
-To view the current default data networking settings use the command `weka cluster default-net`.
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>range</code>
+      </td>
+      <td style="text-align:left">IP address range</td>
+      <td style="text-align:left">A range of IP addresses that can be used for dynamic allocation across
+        the whole cluster</td>
+      <td style="text-align:left">
+        <p>Format: A.B.C.D-E</p>
+        <p>E.g., 10.10.0.1-100</p>
+      </td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>netmask-bits</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Number of bits in the net mask</td>
+      <td style="text-align:left">Describes the number of bits that identify a network ID (also known as
+        CIDR).</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>gateway</code>
+      </td>
+      <td style="text-align:left">IP address</td>
+      <td style="text-align:left">IP address of the default routing gateway</td>
+      <td style="text-align:left">
+        <p>Gateway must reside within the same IP network of IPs in <code>range</code> (as
+          described by <code>netmask</code> below).</p>
+        <p>Not relevant for IB / L2 non-routable networks.</p>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>To view the current default data networking settings use the command `weka cluster default-net`.
 
 If a default data networking was previously configured on a cluster and is no longer needed, it is possible to remove it using the command `weka cluster default-net reset`.
 

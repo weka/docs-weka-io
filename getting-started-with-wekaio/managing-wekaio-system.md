@@ -4,7 +4,7 @@ description: This page describes the various ways to manage WekaIO system.
 
 # Managing the WekaIO System
 
-Great! The WekaIO system now installed. Now let's learn how to view, manage and operate it using either the CLI or the GUI.
+The WekaIO system is now installed. Now let's learn how to view, manage and operate it using either the [CLI](managing-wekaio-system.md#cli) or the [GUI](managing-wekaio-system.md#gui), and [perform the first IO](performing-the-first-io.md) to a WekaFS filesystem.
 
 ## CLI
 
@@ -36,7 +36,7 @@ The available subcommands are:
     diags       Commands for collecting weka-related diagnostics for support
 ```
 
-For more information about the CLI, go to [Getting Started with WekaIO CLI](cli-overview.md).
+For more information about the CLI, refer to [Getting Started with WekaIO CLI](cli-overview.md).
 
 ## GUI
 
@@ -50,5 +50,5 @@ The WekaIO GUI is accessible at port 14000. It can be accessed from any host or 
 
 The initial default username/password is _admin/admin,_ as described in [User Management.](../usage/user-management.md) It is recommended to change this. 
 
-For more information about the GUI, go to [Getting Started with WekaIO GUI](gui.md).
+For more information about the GUI, refer to [Getting Started with WekaIO GUI](gui.md).
 

@@ -52,13 +52,13 @@ The definitions above apply to files residing on SSDs or object stores.
 
 ## About Object Stores
 
-In the WekaIO system, object stores represent an optional external storage media, ideal for the storage of warm data. They can be purchased and configured independently by users \(provided they support the S3 protocol\) or supplied by WekaIO as part of the overall data storage solution. Object stores used in tiered WekaIO system configurations can be cloud-based, located in the same location or at a remote location.
+In the WekaIO system, object stores represent an optional external storage media, ideal for the storage of warm data. They can be purchased and configured independently by users \(provided they support the S3 protocol\) or supplied by WekaIO as part of the overall data storage solution. Object stores used in tiered WekaIO system configurations can be cloud-based, located in the same location, or at a remote location.
 
-Object stores are optimally used when a cost-effective data storage tier is required, at a price point which cannot be satisfied by server-based SSDs. An object store definition contains the object store DNS name, bucket identifier and access credentials. The bucket must be dedicated to the WekaIO system and must not be accessible by other applications. However, a single object store bucket may serve different filesystems, and even different filesystems that reside on different WekaIO systems.
+Object stores are optimally used when a cost-effective data storage tier is required at a price point that cannot be satisfied by server-based SSDs. An object store definition contains the object store DNS name, bucket identifier, and access credentials. The bucket must be dedicated to the WekaIO system and must not be accessible by other applications. However, a single object store bucket may serve different filesystems and multiple WekaIO systems.
 
-Filesystem connectivity to object stores can be used in both the [data lifecycle management](data-storage.md) and [Snap to Object](../fs/snap-to-obj.md) features. It is possible to define two object store buckets for a filesystem, but only one bucket can be writable. In such cases, the WekaIO system will search for relevant data in both the SSD and the readable and writable object stores. This allows a range of use cases, including migration to different object stores, scaling of object store capacity and increasing the total tiering capacity of filesystems.
+Filesystem connectivity to object stores can be used in both the [data lifecycle management](data-storage.md) and [Snap to Object](../fs/snap-to-obj.md) features. It is possible to define two object-store buckets for a filesystem, but only one bucket can be writable. In such cases, the WekaIO system will search for relevant data in both the SSD and the readable and writable object stores. This allows a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
 
-The WekaIO system supports up to 64 different object store buckets. While object stores can be shared between filesystems, when possible, it is recommended to create and attach a different object store bucket per filesystem.
+The WekaIO system supports up to 64 different object store buckets. While object stores can be shared between filesystems, when possible, it is recommended to create and attach a separate object store bucket per filesystem.
 
 ## About Filesystem Groups
 

@@ -101,7 +101,7 @@ The `weka status` command displays the overall status of the WekaIO system.
 **For Example:** If the cluster is healthy, a result similar to the following should be displayed:
 {% endhint %}
 
-```bash
+```text
 $ weka status
 Weka v3.1 (CLI build 17No144)
 
@@ -117,7 +117,7 @@ Weka v3.1 (CLI build 17No144)
 **For Example:** If the cluster has one failed host, a result similar to the following should be displayed:
 {% endhint %}
 
-```bash
+```text
 $ weka status
 Weka v3.1 (CLI build 17No144)
 

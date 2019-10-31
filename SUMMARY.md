@@ -34,6 +34,7 @@
 * [Managing the WekaIO System](getting-started-with-wekaio/managing-wekaio-system.md)
 * [CLI Overview](getting-started-with-wekaio/cli-overview.md)
 * [GUI Overview](getting-started-with-wekaio/gui.md)
+* [Performing the First IO](getting-started-with-wekaio/performing-the-first-io.md)
 
 ## Filesystems <a id="fs"></a>
 

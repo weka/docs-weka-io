@@ -36,8 +36,8 @@ weka -H <backend-hostname> cluster host add <client-hostname>
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `backend-hostname` | String | IP/host name of one of the existing backend instances in the cluster | Valid host name \(DNS or IP\) | Yes |  |
-| `client-hostname` | String | IP/host name of the client currently being added |  Valid host name \(DNS or IP\) | Yes |  |
+| `backend-hostname` | String | IP/host name of one of the existing backend instances in the cluster | Valid host name \(FQDN or IP\) | Yes |  |
+| `client-hostname` | String | IP/host name of the client currently being added |  Valid host name \(FQDN or IP\) | Yes |  |
 
 {% hint style="info" %}
 **Note:** On completion of this stage, the host-ID of the newly added host will be received. Make a note of it for the next steps.

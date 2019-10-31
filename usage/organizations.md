@@ -201,6 +201,6 @@ For LDAP users, access can be revoked by changing the `user-revocation-attribute
 | `username` | String/Integer | Valid user in the organization of the Organization Admin running the command |  | Yes |  |
 
 {% hint style="warning" %}
-**Note:** NFS and SMB are different protocols to the WekaFS which require additional security considerations when used, e.g., NFS permissions are granted per host, so permissions for accessing these hosts for NFS export should be handled carefully.
+**Note:** NFS and SMB are different protocols from WekaFS which require additional security considerations when used, e.g., NFS permissions are granted per host, so permissions for accessing these hosts for NFS export should be handled carefully.
 {% endhint %}
 
