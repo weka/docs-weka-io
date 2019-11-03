@@ -126,6 +126,14 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">1</td>
     </tr>
     <tr>
+      <td style="text-align:left"><code>core=&lt;core&gt;</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Specify explicit cores to be used by the WekaIO client. Multiple cores
+        can be specified.</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
       <td style="text-align:left"><code>net=&lt;netdev&gt;[/&lt;ip&gt;/&lt;bits&gt;[/&lt;gateway&gt;]]</code>
       </td>
       <td style="text-align:left">String</td>
@@ -176,6 +184,10 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 **Note:** These parameters are only effective on the first mount command for each client.
 {% endhint %}
 
+{% hint style="info" %}
+**Note:** By default, the command selects the optimal core allocation for WekaIO. If necessary, multiple `core` parameters can be used to allocate specific cores to the WekaIP client. E.g.,  `mount -t wekafs -o core=2 -o core=4 -o net=ib0 backend-host-0/my_fs /mnt/weka`
+{% endhint %}
+
 {% hint style="success" %}
 **For Example: On-Premise Installations**
 
@@ -198,17 +210,9 @@ Running this command on an AWS host will allocate two cores \(multiple-frontends
 
 Any subsequent mount commands after the first `mount` command \(where the client software is installed and the host joins the cluster\) can use the same command, or use just the traditional mount parameters as defined in [Mounting Filesystems](mounting-filesystems.md#mount-mode-command-options), since it is not necessary to join a cluster. 
 
-{% hint style="info" %}
-**Note:** The configuration is distribution-dependent and is necessary to ensure that the service is configured to start automatically after the host is rebooted. To verify that the  autofs service starts automatically after restarting the server, run the following command: `systemctl is-enabled autofs.` If output is `enabled`, the service is configured to start automatically.
-{% endhint %}
-
 It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
 
 After the execution of an`unmount` command which unmounts the last WekaIO filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores and networking parameters again.
-
-{% hint style="info" %}
-**Note:** By default, the command selects the optimal core allocation for WekaIO. If necessary, contact the WekaIO Support Team to learn how to allocate specific cores to the WekaIO client.
-{% endhint %}
 
 {% hint style="info" %}
 **Note:** When running in AWS, the instance IAM role must allow the following permissions:`ec2:AttachNetworkInterface`, `ec2:CreateNetworkInterface` and `ec2:ModifyNetworkInterfaceAttribute.`
