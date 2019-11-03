@@ -222,10 +222,6 @@ After the execution of an`unmount` command which unmounts the last WekaIO filesy
 **Note:** Memory allocation for a client is predefined. Contact the WekaIO Support Team when it is necessary to change the amount of memory allocated to a client.
 {% endhint %}
 
-## Page Cache <a id="page-cache"></a>
-
-The WekaIO system utilizes the Linux page cache for the mounted filesystem. This allows for better performance when accessing the same files multiple times at around the same time.
-
 ## Setting Up Automount \(autofs\)
 
 It is possible to mount a WekaIO filesystem using the `autofs` command. This is useful because mounting a WekaIO filesystem can only be performed after the WekaIO system has started running on a host, i.e., it is not possible to mount WekaIO filesystems at boot time by adding them to `/etc/fstab`.
