@@ -58,7 +58,7 @@ On completion, the agent is installed on the client machine.
 
 Use the following command line to invoke the mount command:
 
-`mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-path>`
+`mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-point>`
 
 **Parameters in Command Line**
 
@@ -210,7 +210,7 @@ Running this command on an AWS host will allocate two cores \(multiple-frontends
 
 Any subsequent mount commands after the first `mount` command \(where the client software is installed and the host joins the cluster\) can use the same command, or use just the traditional mount parameters as defined in [Mounting Filesystems](mounting-filesystems.md#mount-mode-command-options), since it is not necessary to join a cluster. 
 
-It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
+It is now possible to access WekaIO filesystems via the mount-point, e.g., by `cd /mnt/weka/` command. 
 
 After the execution of an`unmount` command which unmounts the last WekaIO filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores and networking parameters again.
 
