@@ -147,7 +147,7 @@ Use this command to show the details of the configured KMS.
 Use this command to remove the KMS from the WekaIO system. It is only possible to remove a KMS configuration if no encrypted filesystems exist. 
 
 {% hint style="warning" %}
-**Note:** To force removal of a KMS even if encrypted filesystems exist, use the `--allow-downgrade` attribute. In such cases, the encrypted filesystem keys are re-encrypted with local encryption and may be compromised.
+**Note:** To force remove a KMS even if encrypted filesystems exist, use the `--allow-downgrade` attribute. In such cases, the encrypted filesystem keys are re-encrypted with local encryption and may be compromised.
 {% endhint %}
 
 ### **Re-wrapping Filesystem Keys**
