@@ -66,6 +66,8 @@ The cluster deployment process takes about 10 minutes. During this time, the fol
 
 Once the deployment is complete, the stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the WekaIO system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link. 
 
+Visit [Managing the WekaIO System ](../../getting-started-with-wekaio/managing-wekaio-system.md)for getting started with WekaIO CLI and GUI, and, [Performing the First IO](../../getting-started-with-wekaio/performing-the-first-io.md) to quickly get familiar with creating, mounting and writing to a WekaFS filesystem.
+
 {% hint style="info" %}
 **Note:** If the deployment is unsuccessful, see [Troubleshooting](troubleshooting.md) for how to resolve common deployment issues.
 {% endhint %}
