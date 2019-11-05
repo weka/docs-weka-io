@@ -38,7 +38,9 @@ Download the new release on one of the backend hosts, as follows:
 
 ## Upgrading to Version 3.5 and Above
 
-From WekaIO software version 3.5 onwards, the disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. WekaIO system guarantees that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window. 
+From WekaIO software version 3.5 onwards, the disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. WekaIO system guarantees that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window.
+
+In case of a failure, the version is automatically reverted on the hosts, yet, `weka cluster start-io` command should be run manually after verifying all hosts have indeed been reverted to the old version by running `weka cluster host` command. 
 
 ## Running the Upgrade Command
 
