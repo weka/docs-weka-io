@@ -4,7 +4,11 @@ description: This page provides an overview of the WekaIO system GUI.
 
 # GUI Overview
 
-The WekaIO GUI is accessible through port 14000. After logging in, the WekaIO dashboard is displayed.
+The WekaIO system GUI is accessible through one of the servers on port 14000. 
+
+On AWS installations via the self-service portal, the WekaIO system GUI can be accessed by going to the Outputs tab of the CloudFormation stack and clicking the GUI link.
+
+After logging in, the WekaIO dashboard is displayed.
 
 ![WekaIO Dashboard](../.gitbook/assets/gui-dashboard-3.5.png)
 
