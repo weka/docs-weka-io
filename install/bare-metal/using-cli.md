@@ -90,7 +90,7 @@ The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(
 
 To perform this operation, the cluster host net add command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
-`weka cluster host net add <host-id> --device=<device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gw>] [--netmask=<netmask-bits>]`
+`weka cluster host net add <host-id> --device=<device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gw>] [--netmask=<netmask>]`
 
 **Parameters in Command Line**
 
@@ -171,7 +171,7 @@ To perform this operation, the cluster host net add command must be run for each
       <td style="text-align:left">IP address of the default routing gateway</td>
       <td style="text-align:left">
         <p>Gateway must reside within the same IP network of <code>ips</code> (as described
-          by <code>netmask</code> below).</p>
+          by <code>netmask</code>).</p>
         <p>Not relevant for IB / L2 non-routable networks.</p>
       </td>
       <td style="text-align:left">No</td>
@@ -250,7 +250,7 @@ Instead of explicit IP address configuration per each network device, dynamic IP
       <td style="text-align:left">IP address of the default routing gateway</td>
       <td style="text-align:left">
         <p>Gateway must reside within the same IP network of IPs in <code>range</code> (as
-          described by <code>netmask</code> below).</p>
+          described by <code>netmask-bits</code>).</p>
         <p>Not relevant for IB / L2 non-routable networks.</p>
       </td>
       <td style="text-align:left">No</td>

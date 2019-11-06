@@ -69,22 +69,82 @@ weka cluster host cores <host-id> 1 --frontend-dedicated-cores=1
 
 If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the WekaIO system cluster hosts:
 
-```text
-weka cluster host net add <host-id> --device=<net-device> \
-                  --ips=<ip-address> --netmask=<netmask-bits> --gateway=<gateway>
-```
+`weka cluster host net add <host-id> --device=<net-device> --ips=<ip-address> --netmask=<netmask> --gateway=<gateway>`
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `host-id` | String | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
-| `net-device` | String | Network interface device name e.g., `eth1` | Must be a valid network device name | Yes |  |
-| `ip-address` | IP address | IP address of the new interface | Must be a valid IP address | Yes |  |
-| `gateway` | IP address | IP address of the default routing gateway | IP address and gateway may only be different on the last N bits, where N is the net mask; not allowed for IB network interfaces | No |  |
-| `netmask-bits` | Number | Number of bits in the net mask, e.g., the net mask of `255.255.0.0` has `16` netmask bits | IP address and gateway may only be different on the last N bits, where N is the net mask; not allowed for IB network intrefaces | No |  |
-
-{% hint style="info" %}
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>host-id</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Identifier of host to be added to the cluster</td>
+      <td style="text-align:left">Must be a valid host identifier</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>net-device</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Network interface device name e.g., <code>eth1</code>
+      </td>
+      <td style="text-align:left">Must be a valid network device name</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ip-address</code>
+      </td>
+      <td style="text-align:left">IP address</td>
+      <td style="text-align:left">IP address of the new interface</td>
+      <td style="text-align:left">Must be a valid IP address</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>gateway</code>
+      </td>
+      <td style="text-align:left">IP address</td>
+      <td style="text-align:left">IP address of the default routing gateway</td>
+      <td style="text-align:left">
+        <p>Gateway must reside within the same IP network of <code>ip-address</code> (as
+          described by <code>netmask</code>).</p>
+        <p>Not relevant for IB / L2 non-routable networks.</p>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>netmask</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Number of bits in the net mask, e.g., the net mask of <code>255.255.0.0</code> has <code>16</code> netmask
+        bits</td>
+      <td style="text-align:left">Describes the number of bits that identify a network ID (also known as
+        CIDR).</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>{% hint style="info" %}
 **Note:** When configuring an InfiniBand client, do not pass the `--ips`, `--netmask` and `--gateway` parameters.
 {% endhint %}
 
