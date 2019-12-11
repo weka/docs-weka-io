@@ -21,6 +21,7 @@ Log-in to one of your cluster hosts from which you'll perform the upgrade. Then 
 
 ```text
 curl -O https://wekaio-public.s3.amazonaws.com/upgrade/wekaio-upgrade.sh
+chmod a+x wekaio-upgrade.sh
 ```
 
 To run the upgrade script, you'll have to export several environment variables:
