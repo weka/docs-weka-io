@@ -18,6 +18,11 @@ Each configuration can be immediately deployed as a CloudFormation stack by redi
 **Note:** CloudFormation should only be used for initial deployment. To expand cluster resources, refer to [Expanding & Shrinking Cluster Resources](../../usage/expanding-and-shrinking-cluster-resources/).
 {% endhint %}
 
+Once the cluster is deployed:
+
+1. Refer to [Managing the WekaIO System ](../../getting-started-with-wekaio/managing-wekaio-system.md)for getting started with WekaIO CLI and GUI.
+2. Refer to [Performing the First IO](../../getting-started-with-wekaio/performing-the-first-io.md) to quickly get familiar with creating, mounting and writing to a WekaFS filesystem.
+
 ## Planning a Cluster
 
 The Self-Service Portal is available at [https://start.weka.io](https://start.weka.io/). Its main screen is divided into two panes: the left pane, which is used for inputting requirements, and the right pane which displays possible configurations for the defined requirements.

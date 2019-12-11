@@ -32,16 +32,88 @@ Use the following command line to create a new SMB cluster to be managed by the 
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | NetBIOS name for the SMB cluster | Must be a valid name | Yes |  |
-| `domain` | String | Domain which the SMB cluster is to join | Must be a valid name | Yes | ​ |
-| `samba-hosts` | Comma- separated strings | List of 3-8 WekaIO system hosts to participate in the SMB cluster, based on the host IDs in WekaIO | Must be valid host IDs | Yes | ​Pass |
-| `smb-ips-pool` | Comma- separated IP addresses | Public IPs used as floating IPs for the SMB cluster to server the SMB over, and thereby provide HA; should not be assigned to any host on the network | Must be valid IP addresses | No | ​ |
-| `smb-ips-range` | IP address range | The public IPs used as floating IPs for the SMB cluster to server the SMB over and thereby provide HA; should not be assigned to any host on the network | Must be a valid name | No​ |  |
-| `domain-netbios-name` | String | Domain NetBIOS name | Must be a valid name | No | First part of`domain` parameter |
-
-{% hint style="info" %}
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>name</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">NetBIOS name for the SMB cluster</td>
+      <td style="text-align:left">Must be a valid name (ASCII)</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>domain</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Domain which the SMB cluster is to join</td>
+      <td style="text-align:left">Must be a valid name (ASCII)</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left">&#x200B;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>samba-hosts</code>
+      </td>
+      <td style="text-align:left">Comma- separated strings</td>
+      <td style="text-align:left">List of 3-8 WekaIO system hosts to participate in the SMB cluster, based
+        on the host IDs in WekaIO</td>
+      <td style="text-align:left">Must be valid host IDs</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left">&#x200B;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>smb-ips-pool</code>
+      </td>
+      <td style="text-align:left">Comma- separated IP addresses</td>
+      <td style="text-align:left">Public IPs used as floating IPs for the SMB cluster to server the SMB
+        over, and thereby provide HA; should not be assigned to any host on the
+        network</td>
+      <td style="text-align:left">Must be valid IP addresses</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">&#x200B;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>smb-ips-range</code>
+      </td>
+      <td style="text-align:left">IP address range</td>
+      <td style="text-align:left">The public IPs used as floating IPs for the SMB cluster to server the
+        SMB over and thereby provide HA; should not be assigned to any host on
+        the network</td>
+      <td style="text-align:left">
+        <p>Format: A.B.C.D-E</p>
+        <p>E.g., 10.10.0.1-100</p>
+      </td>
+      <td style="text-align:left">No&#x200B;</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>domain-netbios-name</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Domain NetBIOS name</td>
+      <td style="text-align:left">Must be a valid name (ASCII)</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">First part of<code>domain</code> parameter</td>
+    </tr>
+  </tbody>
+</table>{% hint style="info" %}
 **Note:** All IPs must reside on the same subnet, in order to enable HA through IP takeover.
 {% endhint %}
 
@@ -83,8 +155,8 @@ Use the following command line to join an SMB domain to an Active Directory:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `username` | String | Name of a user with permissions to add a machine to the domain | Must be a valid name | Yes | Addition of up to 10 machines into the Active Directory |
-| `password` | String | Password of the user | Must be a valid password | Yes |  |
+| `username` | String | Name of a user with permissions to add a machine to the domain | Must be a valid name \(ASCII\) | Yes |  |
+| `password` | String | Password of the user | Must be a valid password \(ASCII\) | Yes |  |
 
 In order to join another Active Directory to the current SMB cluster configuration, it is necessary to leave the current Active Directory. This is performed using the following command line:
 
@@ -126,7 +198,7 @@ Use the following command line to add a new share to be exposed to SMB:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `share-name` | String | Name of the share being added | Must be a valid name | Yes | ​ |
+| `share-name` | String | Name of the share being added | Must be a valid name \(ASCII\) | Yes | ​ |
 | `fs-name` | String | Name of the filesystem to share | Must be a valid name | Yes | ​ |
 | `description` | String | Description of what the share will receive when viewed remotely | Must be a valid string | No | ​No description |
 | `internal-path` | String | Internal path within the filesystem \(relative to its root\) which will be exposed | Must be a valid path | No | . |

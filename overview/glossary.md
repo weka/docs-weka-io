@@ -27,7 +27,7 @@ A collection of WekaIO backends, together with WekaIO clients installed on the a
 
 ### Data Retention Period 
 
-The target period of time to maintain data on an SSD, before tiering to an object store.
+The target period of time for tiered data to be retained on an SSD.
 
 ### Data Stripe Width 
 

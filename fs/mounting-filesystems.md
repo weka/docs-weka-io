@@ -177,7 +177,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">Number of seconds without connectivity after which the client will be
         removed from the cluster.
         <br />Minimum value: 60 seconds.</td>
-      <td style="text-align:left">86,720 seconds (24 hours)</td>
+      <td style="text-align:left">86,400 seconds (24 hours)</td>
     </tr>
   </tbody>
 </table>{% hint style="info" %}
@@ -212,7 +212,7 @@ Any subsequent mount commands after the first `mount` command \(where the client
 
 It is now possible to access WekaIO filesystems via the mount-point, e.g., by `cd /mnt/weka/` command. 
 
-After the execution of an`unmount` command which unmounts the last WekaIO filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores and networking parameters again.
+After the execution of an`umount` command which unmounts the last WekaIO filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores and networking parameters again.
 
 {% hint style="info" %}
 **Note:** When running in AWS, the instance IAM role must allow the following permissions:`ec2:AttachNetworkInterface`, `ec2:CreateNetworkInterface` and `ec2:ModifyNetworkInterfaceAttribute.`

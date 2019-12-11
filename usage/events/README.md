@@ -26,6 +26,8 @@ Events can be filtered by choosing a filter. Filtering can be performed accordin
 
 ## Working with Events Using the CLI
 
+### Viewing Events
+
 **Command:** `weka events`
 
 Use the following command line to list events in the WekaIO cluster:
@@ -172,5 +174,27 @@ Use the following command line to list events in the WekaIO cluster:
       <td style="text-align:left">Host&apos;s local time</td>
     </tr>
   </tbody>
-</table>{% page-ref page="list-of-events.md" %}
+</table>### Viewing Local Events
+
+**Command:** `weka events list-local`
+
+Use the following command line to list recent events on the specific host running the command from \(can be useful for cases there is no connectivity to support cloud, no connectivity from a specific host, or for hosts which are not part of the cluster\):
+
+`weka events list-local [--start-time <start>] [--end-time <end>] [--next next] [--stem-mode] [--show-internal] [--raw-units] [--UTC]`
+
+**Parameters in Command Line**
+
+| Name | Type | Value | Limitations | Mandatory | Default |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `start-time` | String | Include events that occurred at this start time and later  | Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 9:15Z, 10:00+2:00 | No | -365 days |
+| `end-time` | String | Include events that occurred up to this time | Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 9:15Z, 10:00+2:00 | No | Set to a time represents  'now' |
+| `next` | String | Identifier to the next page of events | As returned in the previous call to `weka events list-local` | No |  |
+| `stem-mode` | Boolean | Displays events when the host has not been attached to the cluster |  | No | False |
+| `show-internal` | Boolean | Also displays internal events |  | No | False |
+| `raw-units` | Boolean | Print values in raw units \(bytes, seconds, etc.\) |  | No | Human-readable format, e.g 1KiB 234MiB 2GiB |
+| `UTC` | Boolean | Print times in UTC |  | No | Host's local time |
+
+### List of Events
+
+{% page-ref page="list-of-events.md" %}
 

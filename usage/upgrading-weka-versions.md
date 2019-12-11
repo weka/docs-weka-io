@@ -93,6 +93,7 @@ WekaIO version 3.5 provides performance improvements when working with object st
 * Delete any unnecessary snapshots \(so unnecessary data is not copied to the new bucket\).
 * Detach the old object store bucket.
 * Perform all necessary checks to ensure that data is copied to the new object store bucket.
+* Re-upload relevant snapshots to the new object store bucket in order to re-create the snapshot locator on that bucket.
 
 {% hint style="info" %}
 **Note:** If there are any capacity constraints with the object store, it is recommended to perform this process one filesystem at a time.

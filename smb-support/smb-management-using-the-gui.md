@@ -6,6 +6,10 @@ description: >-
 
 # SMB Management Using the GUI
 
+{% hint style="info" %}
+**Note:** Use ASCII format when configuring name fields \(e.g., domain, shares, etc.\)
+{% endhint %}
+
 ## **Configuring a Samba Cluster**
 
 To configure a Samba cluster, first access the SMB Service view.

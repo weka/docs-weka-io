@@ -201,8 +201,7 @@ disabled
 
 The following example of ifcfg script is provided a reference for configuring the Ethernet interface.
 
-{% code-tabs %}
-{% code-tabs-item title="/etc/sysconfig/network-scripts/ifcfg-enp24s0" %}
+{% code title="/etc/sysconfig/network-scripts/ifcfg-enp24s0" %}
 ```text
 TYPE="Ethernet"
 PROXY_METHOD="none"
@@ -223,8 +222,7 @@ IPADDR=192.168.1.1
 NETMASK=255.255.0.0
 MTU=9000
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endcode %}
 
 MTU 9000 \(jumbo frame\) is recommended for best performance. Refer to your switch vendor documentation for jumbo frame configuration.
 
@@ -242,8 +240,7 @@ InfiniBand network configuration normally includes Subnet Manager \(SM\), but th
 
 Refer to the following ifcfg script when the IB network only has the default partition, i.e., "no pkey":
 
-{% code-tabs %}
-{% code-tabs-item title="/etc/sysconfig/network-scripts/ifcfg-ib1" %}
+{% code title="/etc/sysconfig/network-scripts/ifcfg-ib1" %}
 ```text
 TYPE=Infiniband
 ONBOOT=yes
@@ -256,8 +253,7 @@ IPADDR=192.168.1.1
 NETMASK=255.255.0.0
 MTU=4092
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endcode %}
 
 Bring the interface up using the following command:
 
@@ -290,8 +286,7 @@ On an InfiniBand network with a non-default partition number, _p-key_ must be co
 
 Two ifcfg scripts must be created for each pkey-ed IPoIB interface. To determine your own pkey-ed IPoIB interface configuration, refer to the following two examples where a pkey of `0x8002` is used:
 
-{% code-tabs %}
-{% code-tabs-item title="/etc/sysconfig/network-scripts/ifcfg-ib1" %}
+{% code title="/etc/sysconfig/network-scripts/ifcfg-ib1" %}
 ```text
 TYPE=Infiniband
 ONBOOT=yes
@@ -302,11 +297,9 @@ USERCTL=no
 NM_CONTROLLED=no
 DEVICE=ib1
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endcode %}
 
-{% code-tabs %}
-{% code-tabs-item title="/etc/sysconfig/network-scripts/ifcfg-ib1.8002" %}
+{% code title="/etc/sysconfig/network-scripts/ifcfg-ib1.8002" %}
 ```text
 TYPE=Infiniband
 BOOTPROTO=none
@@ -325,8 +318,7 @@ BROADCAST=192.168.255.255
 NETMASK=255.255.0.0
 IPADDR=192.168.1.1
 ```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+{% endcode %}
 
 Bring the interface up using the following command:
 

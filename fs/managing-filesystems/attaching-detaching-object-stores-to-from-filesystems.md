@@ -40,6 +40,10 @@ On completion of detaching, the object store does not appear under the filesyste
 **Note:** When there are two object stores attached and during the execution of migration, it is not possible to upload new snapshots to the object store.
 {% endhint %}
 
+{% hint style="warning" %}
+**Note:** After the migration process is done, while relevant data is migrated, old snapshots \(and old locators\) reside on the old object store bucket. To recreate snapshots locators on the new object store bucket, snapshots should be re-uploaded to the \(new\) object store bucket.
+{% endhint %}
+
 ## Attaching/Detaching Object Stores
 
 ### Attaching/Detaching Object Stores Using the GUI
