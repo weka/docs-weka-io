@@ -31,7 +31,7 @@ The following EC2 instance types can operate as **client** instances.
 | C3 | c3.2xlarge, c3.4xlarge, c3.8xlarge |
 | C4 | c4.2xlarge, c4.4xlarge, c4.8xlarge |
 | C5 | c5.2xlarge, c5.4xlarge, c5.9xlarge, c5.12xlarge, c5.18xlarge, c5.24xlarge |
-| C5n | c5n.2xlarge, c5n.4xlarge, c5.9nxlarge, c5n.18xlarge |
+| C5n | c5n.2xlarge, c5n.4xlarge, c5n.9xlarge, c5n.18xlarge |
 | G3 | g3.4xlarge, g3.8xlarge, g3.16xlarge |
 | I3 | i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge |
 | I3en | i3en.xlarge, i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge |
