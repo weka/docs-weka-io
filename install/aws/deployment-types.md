@@ -8,12 +8,18 @@ description: >-
 
 ## Prerequisites for Deployment
 
-Deploying a WekaIO cluster in AWS requires at least 6 EC2 instances with SSD/NVMe drives \(a.k.a instance store\), and potentially additional instances that may connect as clients.
+* Deploying a WekaIO cluster in AWS requires at least 6 EC2 instances with SSD/NVMe drives \(a.k.a instance store\), and potentially additional instances that may connect as clients.
+* WekaIO must have access to instance metadata 
+  * Only IMDSv1 is supported if using the Instance Metadata service.
+
+{% hint style="warning" %}
+**Note:** It is possible to set client hosts with IMDSv2, but, they would not benefit from seamless cloud configuration and should be manually managed similarly to [Adding Clients](../bare-metal/adding-clients-bare-metal.md) in bare-metal installations.
+{% endhint %}
 
 Depending on the instance types being used and how they’re configured, there are two deployment types:
 
-* Client backend deployment
-* Converged deployment
+* [Client backend deployment](deployment-types.md#client-backend-deployment)
+* [Converged deployment](deployment-types.md#converged-deployment)
 
 ## Client Backend Deployment
 
