@@ -20,15 +20,14 @@ On completion of this stage in the installation process, the WekaIO software is 
 
 This stage involves the formation of a cluster from the allocated hosts. It is performed using the following command line:
 
- `weka cluster create <hostnames>... [--host-ips <ips>]...[--host-ip+ip <ip+ip>]...`
+ `weka cluster create <hostnames> [--host-ips <ips | ip+ip>]`
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** |
-| :--- | :--- | :--- | :--- | :--- |
-| `hostnames` | Space- separated strings | Host names or IP addresses | Need at least 6 strings, as this is the minimal cluster size | Yes |
-| `host-ips` | Comma- separated IP addresses | IP addresses of the management interfaces | Same number of values as in `hostnames`.  | Only in IB |
-| `ip+ip` | Comma-separated IP addresses | IP addresses of two cards for HA configuration | Pair of IPs |  |
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | Default |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `hostnames` | Space- separated strings | Host names or IP addresses | Need at least 6 strings, as this is the minimal cluster size | Yes |  |
+| `host-ips` | Comma- separated IP addresses | IP addresses of the management interfaces. Use a list of ip+ip addresses pairs of two cards for HA configuration | Same number of values as in `hostnames`.  | Only in IB | Hostnames will be resolved |
 
 {% hint style="info" %}
 **Note:** It is possible to use either a host name or an IP address; this string serves as the identifier of the host in subsequent commands.
