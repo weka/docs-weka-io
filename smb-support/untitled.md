@@ -20,32 +20,11 @@ Implementation of the SMB feature in the WekaIO system is scalable, resilient an
 * **Resilient:** The WekaIO system implementation of SMB provides clustered access to files in a WekaIO file store, enabling multiple servers to work together. Consequently, if a server failure occurs, another server is available to take over operations, thereby ensuring failover support and high availability. WekaIO standard resiliency against failures also protects the SMB filesystems.
 * **Distributed:** A WekaIO implementation is distributed over a cluster, where all nodes in the cluster handle all SMB filesystems concurrently. Therefore, performance supported by SMB can scale with more hardware resources, and high availability is ensured.
 
-## Configuring SMB Support
+## SMB User-Mapping Prerequisites
 
-### Work Flow
+WekaIO maps Windows users and groups to a UID’s and GID’s for access to the filesystem. WekaIO pulls users and groups information from Active Directory automatically.
 
-The WekaIO SMB support is established either through the WekaIO system GUI or a series of CLIs. When configuring SMB support, it is necessary to:
-
-1. Define the WekaIO hosts to participate in the Samba cluster, i.e., configuration of the Samba cluster.
-2. Join the Samba cluster to the Active Directory, i.e., connection and definition of WekaIO in the Active Directory.
-3. Create shares and their folders, and set permissions. By default, the filesystem permission are root/root/755 and initially can only be set via a WekaFS/NFS mount.
-
-After completing these steps, it is possible to connect as an administrator and define permissions via Windows.
-
-### Establishing an SMB Cluster
-
-Establishing an SMB cluster is performed as follows:
-
-1. Select the WekaIO hosts that will participate in the SMB cluster and set the domain name.
-2. In on-premise deployments, it is possible to configure a list of public IP addresses which will be distributed across the SMB cluster. If a node fails, the IP addresses from that node will be reassigned to another node.
-
-{% hint style="info" %}
-**Notes:** Each WekaIO cluster can only support a single SMB cluster.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** The DNS "nameserver" of the hosts participating in the SMB cluster should be configured to the Active Directory server.
-{% endhint %}
+WekaIO requires the users and groups accessing the file system to have `uidNumber` and `gidNumber` attributes populated in active directory.
 
 ### Active Directory Attributes
 
@@ -63,6 +42,35 @@ The following are the Active Directory attributes relevant for groups of users a
 | `gidNumber` | 0-4290000000 |
 
 Read more about Active Directory properties [here](https://blogs.technet.microsoft.com/activedirectoryua/2016/02/09/identity-management-for-unix-idmu-is-deprecated-in-windows-server/).
+
+## Configuring SMB Support
+
+### Work Flow
+
+The WekaIO SMB support is established either through the WekaIO system GUI or a series of CLIs. When configuring SMB support, it is necessary to:
+
+1. Define the WekaIO hosts to participate in the Samba cluster, i.e., configuration of the Samba cluster.
+2. Join the Samba cluster to the Active Directory, i.e., connection and definition of WekaIO in the Active Directory.
+3. Create shares and their folders, and set permissions. By default, the filesystem permission are root/root/755 and initially can only be set via a WekaFS/NFS mount.
+
+After completing these steps, it is possible to connect as an administrator and define permissions via Windows.
+
+### Establishing an SMB Cluster
+
+Establishing an SMB cluster is performed as follows:
+
+1. Select the WekaIO hosts that will participate in the SMB cluster and set the domain name.
+2. In on-premises deployments, it is possible to configure a list of public IP addresses which will be distributed across the SMB cluster. If a node fails, the IP addresses from that node will be reassigned to another node.
+
+{% hint style="info" %}
+**Notes:** Each WekaIO cluster can only support a single SMB cluster.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** The DNS "nameserver" of the hosts participating in the SMB cluster should be configured to the Active Directory server.
+{% endhint %}
+
+### 
 
 ### Creating SMB Shares
 
