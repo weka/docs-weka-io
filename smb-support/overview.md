@@ -24,7 +24,7 @@ Implementation of the SMB feature in the WekaIO system is scalable, resilient an
 
 WekaIO maps Windows users and groups to a UID’s and GID’s for access to the filesystem. WekaIO pulls users and groups information from Active Directory automatically.
 
-WekaIO requires the users and groups accessing the file system to have `uidNumber` and `gidNumber` attributes populated in active directory.
+WekaIO requires the users and groups accessing the filesystem to have `uidNumber` and `gidNumber` attributes populated in active directory.
 
 ### Active Directory Attributes
 
@@ -69,8 +69,6 @@ Establishing an SMB cluster is performed as follows:
 {% hint style="info" %}
 **Note:** The DNS "nameserver" of the hosts participating in the SMB cluster should be configured to the Active Directory server.
 {% endhint %}
-
-### 
 
 ### Creating SMB Shares
 

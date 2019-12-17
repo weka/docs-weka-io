@@ -41,7 +41,7 @@
 * [Managing Filesystems, Object Stores & Filesystem Groups](fs/managing-filesystems/README.md)
   * [Managing Object Stores](fs/managing-filesystems/managing-object-stores.md)
   * [Managing Filesystem Groups](fs/managing-filesystems/managing-filesystem-groups.md)
-  * [Managing Filesystems](fs/managing-filesystems/managing-filesystems-1.md)
+  * [Managing Filesystems](fs/managing-filesystems/managing-filesystems.md)
   * [Attaching/Detaching Object Stores to/from Filesystems](fs/managing-filesystems/attaching-detaching-object-stores-to-from-filesystems.md)
   * [KMS Management](fs/managing-filesystems/kms-management.md)
 * [Advanced Data Lifecycle Management](fs/tiering.md)
@@ -52,8 +52,8 @@
 
 ## SMB Support
 
-* [Overview](smb-support/untitled.md)
-* [SMB Management Using CLIs](smb-support/untitled-1.md)
+* [Overview](smb-support/overview.md)
+* [SMB Management Using CLIs](smb-support/smb-management-using-the-cli.md)
 * [SMB Management Using the GUI](smb-support/smb-management-using-the-gui.md)
 
 ## Operation Guide <a id="usage"></a>
