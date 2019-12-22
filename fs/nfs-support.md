@@ -376,21 +376,33 @@ Use the following command lines to add/update/delete NFS permissions:
 
 #### Common Mount Options
 
+{% hint style="info" %}
+**Note:** The following options can be changed. These values are commonly used with the WekaIO system:
+{% endhint %}
+
 * `rw`
 * `hard`
-* `nolock`
-* `vers=3`
-* `mountvers=3`
-* `proto=tcp`
-* `mountproto=tcp`
 * `rsize=524288`
 * `wsize=524288`
 * `namlen=255`
 * `timeo=600`
 * `retrans=2`
-* `sec=sys`
+
+#### Fixed Mount options
+
+{% hint style="danger" %}
+**Note:** Please make sure to set these values on the mount command, as different values are not supported, and the server cannot enforce it.
+{% endhint %}
+
+* `nolock`
 
 {% hint style="info" %}
-**Note:** These are the NFS mount defaults.
+**Note:** The following options should have fixed values, but usually are either the NFS mount defaults or will be negotiated to these values by the protocol.
 {% endhint %}
+
+* `sec=sys`
+* `vers=3`
+* `mountvers=3`
+* `proto=tcp`
+* `mountproto=tcp`
 
