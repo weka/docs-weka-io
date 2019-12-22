@@ -277,7 +277,7 @@ brd 00:ff:ff:ff:ff:12:40:1b:ff:ff:00:00:00:00:00:00:ff:ff:ff:ff
 On an InfiniBand network with a non-default partition number, _p-key_ must be configured on the interface if the InfiniBand ports on your network are members of an InfiniBand partition other than the default \(`0x7FFF`\). The p-key should associate the port as a full member of the partition \(full members are those where the p-key number with the most-significant bit \(MSB\) of the 16-bits is set to 1\). 
 
 {% hint style="success" %}
-**For Example:** If the partition number is `0x2`, the limited member p-key will equal the p-key itself, i.e.,`0x2`. The full member p-key will be calculated as the logical AND of `0x8000` and the p-key \(`0x2`\) and therefore will be equal to `0x8002`. 
+**For Example:** If the partition number is `0x2`, the limited member p-key will equal the p-key itself, i.e.,`0x2`. The full member p-key will be calculated as the logical OR of `0x8000` and the p-key \(`0x2`\) and therefore will be equal to `0x8002`. 
 {% endhint %}
 
 {% hint style="info" %}
