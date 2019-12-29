@@ -35,7 +35,6 @@ description: >-
 * Amazon linux 17.09
 * Amazon linux 18.03
 * Amazon linux 2 LTS \(formerly Amazon Linux 2 LTS 17.12\)
-* SELINUX must be disabled
 * All Weka Nodes must be synchronized in date/time \(NTP recommended\)
 * A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the WekaIO knowledgebase in the [WekaIO support portal](http://support.weka.io) for more information and how-to articles 
 
@@ -80,6 +79,7 @@ Supported Mellanox OFED versions:
 * 4.4-2.0.7.0
 * 4.5-1.0.1.0
 * 4.6-1.0.1.1
+* 4.7-1.0.0.1
 
 Supported ENA drivers:
 
@@ -135,6 +135,7 @@ Supported Mellanox OFED versions:
 * 4.4-2.0.7.0
 * 4.5-1.0.1.0
 * 4.6-1.0.1.1
+* 4.7-1.0.0.1
 
 #### Infiniband Configuration
 
