@@ -31,8 +31,7 @@ When launching new clients, ensure the following concerning networking and root 
 
 When adding a client, the `aws-add-client` script requires permissions for the following AWS APIs to discover and optionally add a network interface to the instance \(see below\):
 
-* `ec2:DescribeInstances`
-* `ec2:DescribeNetworkInterfaces`
+* `ec2:Describe*`
 * `ec2:AttachNetworkInterface`
 * `ec2:CreateNetworkInterface`
 * `ec2:ModifyNetworkInterfaceAttribute`
