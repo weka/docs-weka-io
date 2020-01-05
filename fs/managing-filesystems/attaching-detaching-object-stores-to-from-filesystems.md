@@ -18,6 +18,10 @@ When attaching an object store to a non-tiered filesystem, the filesystem become
 
 Detaching an object store from a filesystem migrates the filesystem data residing in the object store bucket either to the writable object-store \(if one exists\) or to the SSD, as described below. When detaching, the background task of detaching the object store begins. Detaching can be a long process, depending on the amount of data and the load on the object stores. For more information, refer to [Background Tasks](../../usage/background-tasks.md).
 
+{% hint style="warning" %}
+**Note:** Detaching an object-store bucket is irreversible. Re-attaching the bucket is considered as re-attaching a new bucket regardless of the data that may still be there.
+{% endhint %}
+
 #### Migrating to a Different Object Store
 
 When detaching from a filesystem tiered to two object stores, only the read-only object store can be detached. In such cases, the background task will copy the relevant data to the writable object store. 
