@@ -22,20 +22,17 @@ description: >-
 
 ## Operating System
 
-* RHEL/Centos 6.8
-* RHEL/Centos 6.9
-* RHEL/Centos 6.10
-* RHEL/Centos 7.2
-* RHEL/Centos 7.3
-* RHEL/Centos 7.4
-* RHEL/Centos 7.5
-* RHEL/Centos 7.6
-* Ubuntu 16.04
-* Ubuntu 18.04
-* Amazon linux 17.09
-* Amazon linux 18.03
-* Amazon linux 2 LTS \(formerly Amazon Linux 2 LTS 17.12\)
-* SELINUX must be disabled
+### Types
+
+* **RHEL:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6
+* **CentOS:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6
+* **Ubuntu:** 16.04, 18.04
+* **Amazon Linux:** 17.09, 18.03
+* **Amazon Linux 2 LTS** \(formerly Amazon Linux 2 LTS 17.12\)
+
+### Configuration 
+
+* SELinux with MLS policy is not supported
 * All Weka Nodes must be synchronized in date/time \(NTP recommended\)
 * A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the WekaIO knowledgebase in the [WekaIO support portal](http://support.weka.io) for more information and how-to articles 
 
@@ -80,6 +77,8 @@ Supported Mellanox OFED versions:
 * 4.4-2.0.7.0
 * 4.5-1.0.1.0
 * 4.6-1.0.1.1
+* 4.7-1.0.0.1
+* 4.7-3.2.9.0
 
 Supported ENA drivers:
 
@@ -135,6 +134,8 @@ Supported Mellanox OFED versions:
 * 4.4-2.0.7.0
 * 4.5-1.0.1.0
 * 4.6-1.0.1.1
+* 4.7-1.0.0.1
+* 4.7-3.2.9.0
 
 #### Infiniband Configuration
 
