@@ -68,7 +68,7 @@ Use the following command line to add an object store:
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Up to 64 different object stores buckets can be configured in the WekaIO system.
+**Note:** Up to 2 different object stores buckets can be configured per filesystem in the WekaIO system.
 {% endhint %}
 
 ## Editing an Object Store
@@ -107,11 +107,11 @@ Use the following command line to edit an object store:
 | `access-key-id` | String | Object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
 | `secret-key` | String | Object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
 | `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
-| `errors-timeout` | Number | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
-| `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No | 0 |
-| `max-concurrent-downloads` | Number | Maximum number of downloads concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
-| `max-concurrent-uploads` | Number | Maximum number of uploads concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
-| `max-concurrent-removals` | Number | Maximum number of removals concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
+| `errors-timeout` | Number | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No |  |
+| `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No |  |
+| `max-concurrent-downloads` | Number | Maximum number of downloads concurrently performed on this object store in a single IO node | 1-64 | No |  |
+| `max-concurrent-uploads` | Number | Maximum number of uploads concurrently performed on this object store in a single IO node | 1-64 | No |  |
+| `max-concurrent-removals` | Number | Maximum number of removals concurrently performed on this object store in a single IO node | 1-64 | No |  |
 
 ## Deleting an Object Store
 
