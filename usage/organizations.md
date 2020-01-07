@@ -63,6 +63,10 @@ Only users defined as Cluster Admins can manage organizations. When no organizat
 
 Once a new organization is created, the organization name must be provided in every login command, using the `--org` attribute in the `weka user login` command.
 
+## Usage and Quota Management
+
+Cluster Admins can view an organization's usage \(both SSD and total\) and can limit usage with quotas per organization. This can be leveraged for charge-backs on either used or allocated capacity of SSD or object store data.
+
 ## Managing Organizations Using the GUI
 
 To create, delete or view organizations in the cluster using the GUI, go to the Organizations screen.
@@ -77,15 +81,17 @@ To create, delete or view organizations in the cluster using the GUI, go to the 
 
 Use the following command line to create an organization:
 
-`weka org create <name> <username> <password>`
+`weka org create <name> <username> <password> [--ssd-quota ssd-quota] [--total-quota total-quota]`
 
 **Parameters in Command Line**
 
 | Name | Type | Value | Limitations | Mandatory | Default |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | Organization name |  | Yes |  |
-| `username` | String | Username of the created Organization Admin |  | Yes |  |
+| `name` | String | Organization name | Must be a valid name | Yes |  |
+| `username` | String | Username of the created Organization Admin | Must be a valid name | Yes |  |
 | `password` | String | Password of the created Organization Admin |  | Yes |  |
+| `ssd-quota` | Number | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number | No | 0 \(not limited\) |
+| `total-quota` | Number | Total allowed quota for the organization \(SSD and object store\) | Must be a valid number | No | 0 \(not limited\) |
 
 ### Viewing Organizations 
 
@@ -93,14 +99,17 @@ Use the following command line to create an organization:
 
 ```text
 # weka org
-ID | Name
----+-----------
-0  | Root
-1  | Local IT
-2  | CUSTOMER_1
+
+ID | Name       | Allocated SSD | SSD Quota | Allocated Total | Total Quota
+---+------------+---------------+-----------+-----------------+-------------
+0  | Root       | 0 B           | 0 B       | 0 B             | 0 B
+1  | Local IT   | 500.00 GB     | 500.00 GB | 500.00 GB       | 0 B
+2  | CUSTOMER_1 | 100.00 GB     | 300.00 GB | 200.00 GB       | 900.00 GB
 ```
 
 ### Editing an Organization
+
+#### **Renaming an Organization**
 
 **Command:** `weka org rename`
 
@@ -113,7 +122,23 @@ Use the following command line to rename an organization: ****
 | Name | Type | Value | Limitations | Mandatory | Default |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `org` | String/Integer | Current organization name or ID |  | Yes |  |
-| `new-name` | String | New name for organization  |  | Yes |  |
+| `new-name` | String | New organization name |  | Yes |  |
+
+#### Updating an Organization's Quotas
+
+**Command:** `weka org set-quota`
+
+Use the following command line to update an organization's quota:
+
+`weka org set-quota <org> [--ssd-quota ssd-quota] [--total-quota total-quota]`
+
+**Parameters in Command Line**
+
+| Name | Type | Value | Limitations | Mandatory | Default |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `org` | String/Integer | Organization name or ID | The root organization \(org ID = 0 cannot be limited\) | Yes |  |
+| `ssd-quota` | Number | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number | No |  |
+| `total-quota` | Number | Total allowed quota for the organization \(SSD and object store\) | Must be a valid number | No |  |
 
 ### Deleting an Organization
 
