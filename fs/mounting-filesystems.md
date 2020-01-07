@@ -138,8 +138,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">
-        <p>This option must be specified for on-premises installation, and must not
-          be specified for AWS installations.</p>
+        <p>This option must be specified for on-premises installation, and <b>must not be specified for AWS</b> installations.</p>
         <p><code>&lt;netdev&gt;</code> is the name, MAC address or PCI address of
           the network device to allocate for the client. A mixture of Ethernet and
           IB is not allowed.</p>
@@ -215,7 +214,7 @@ It is now possible to access WekaIO filesystems via the mount-point, e.g., by `c
 After the execution of an`umount` command which unmounts the last WekaIO filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores and networking parameters again.
 
 {% hint style="info" %}
-**Note:** When running in AWS, the instance IAM role must allow the following permissions:`ec2:AttachNetworkInterface`, `ec2:CreateNetworkInterface` and `ec2:ModifyNetworkInterfaceAttribute.`
+**Note:** When running in AWS, the instance IAM role is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](../install/aws/cloudformation.md#iam-role-created-in-the-template).
 {% endhint %}
 
 {% hint style="info" %}
@@ -254,7 +253,7 @@ Reboot the machine for the `systemd` unit to be created and marked correctly.
 The filesystem should now be mounted at boot time.
 
 {% hint style="danger" %}
-**Note:** Do not configure this entry for a mounted filesystem before un-mounting it \(`umount`\), as the `systemd` needs to mark the filesystem as a network filesystem \(happens as part of the `reboot`\). Trying to reboot on a mounted filesystem when first configuring its `fstab` configuration might yield a failure to unmount the filesystem and leaves the system hanged.
+**Note:** Do not configure this entry for a mounted filesystem before un-mounting it \(`umount`\), as the `systemd` needs to mark the filesystem as a network filesystem \(occurs as part of the `reboot`\). Trying to reboot on a mounted filesystem when first configuring its `fstab` configuration might yield a failure to unmount the filesystem and leave the system hanged.
 {% endhint %}
 
 ## Mounting Filesystems Using autofs

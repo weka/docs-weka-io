@@ -29,25 +29,52 @@ When launching new clients, ensure the following concerning networking and root 
 
 #### IAM Instance Profile
 
-When adding a client, the `aws-add-client` script requires permissions for the following AWS APIs to discover and optionally add a network interface to the instance \(see below\):
-
-* `ec2:DescribeInstances`
-* `ec2:DescribeNetworkInterfaces`
-* `ec2:AttachNetworkInterface`
-* `ec2:CreateNetworkInterface`
-* `ec2:ModifyNetworkInterfaceAttribute`
+When adding a client, it is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](cloudformation.md#iam-role-created-in-the-template).
 
 These permissions are automatically created in an instance profile as part of the CloudFormation stack. It is possible to use the same instance profile as one of the backend instances to ensure that the same credentials are given to the new client.
 
 The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the WekaIO system client to preallocate the network resource for fastest performance.
 
-If the client is not to be provided with these permissions, it is possible to only provide `ec2:Describe*` and create an additional NIC in the same security group and subnet as described above.
+If the client is not to be provided with these permissions, it is possible to only provide `ec2:*` and create an additional NIC in the same security group and subnet as described above.
 
 #### Root Volume
 
 The clients **root volume** must be at least 48 GiB in size and either `GP2` or `IO1` type.
 
 The WekaIO software is installed under `/opt/weka`. If it is not possible to change the size of the root volume, an additional EBS volume can be created, formatted and mounted under `/opt/weka`. Make sure that the new volume is either `GP2` or `IO1` type.
+
+### Step 2: Mounting Filesystems
+
+{% hint style="info" %}
+**Note:** The clients created using the Self-Service Portal are stateless, and along with the mount command, the software version is automatically installed and it is not necessary to add the client to the cluster.
+{% endhint %}
+
+To mount a filesystem in this manner, first install the WekaIO agent from one of the backend instances and then mount the filesystem. For example:
+
+```
+# Agent Installation (one time)
+curl http://Backend-1:14000/dist/v1/install | sh
+
+# Creating a mount point (one time)
+mkdir -p /mnt/weka
+
+# Mounting a filesystem
+mount -t wekafs Backend-1/my_fs /mnt/weka
+```
+
+For the first mount, this will install the WekaIO software and automatically configure the client. For more information on mount and configuration options, refer to [Mounting Filesystems Using the Stateless Clients Feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
+
+It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information refer to [Mounting Filesystems Using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mounting Filesystems Using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs).
+
+## Adding Clients Which Are Always Part of the Cluster
+
+{% hint style="info" %}
+**Note:** It is possible to add instances which do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
+{% endhint %}
+
+### Step 1: [Launch the New Instances](adding-clients.md#step-1-launch-new-instances)
+
+This is the same step as in the previous method of adding a client.
 
 ### Step 2: Install the WekaIO Software <a id="step-2-install-wekaio-software"></a>
 
@@ -56,7 +83,7 @@ To download the WekaIO software, go to [https://get.weka.io ](https://get.weka.i
 When the download is complete, untar the downloaded package and run the `install.sh` command in the package directory. 
 
 {% hint style="success" %}
-**For Example:** If you downloaded version 3.1.7, run`cd weka-3.1.7` and then run `./install.sh`.
+**For Example:** If you downloaded version 3.6.1, run`cd weka-3.6.1` and then run `./install.sh`.
 {% endhint %}
 
 {% hint style="info" %}

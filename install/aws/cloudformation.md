@@ -7,12 +7,6 @@ description: >-
 
 # CloudFormation Template Generator
 
-{% hint style="info" %}
-**Important Note Concerning Backward Incompatible Changes**
-
-As of 31/Aug/2018, the `/v` and `/aws/cfn` APIs have been discontinued. Please switch to the new APIs described below.
-{% endhint %}
-
 ## Before Starting
 
 The APIs described here require an API token which can be obtained at [https://get.weka.io/ui/account/api-tokens](https://get.weka.io/ui/account/api-tokens). Obtaining this token requires registration if you do not have an account.
@@ -30,24 +24,14 @@ $ curl https://<token>@get.weka.io/dist/v1/release
    "num_pages" : 1,
    "objects" : [
       {
-         "id" : "3.1.6.2",
+         "id" : "3.6.1",
          "public" : true,
          "final" : true,
          "trunk_id" : "",
-         "s3_path" : "releases/3.1.6.2",
-         "revision" : "25c54a0e690f55f7d5c5730fd09f9ae6216c03ce",
-         "release_notes_url" : "https://wekaio-public.s3.amazonaws.com/release-notes/WekaIO-3.1.6.2.pdf",
-         "os_specific_tars" : {
-            "aws1709" : "weka-3.1.6.2.rpm.tar",
-            "centos74" : "weka-3.1.6.2.rpm.tar",
-            "centos72" : "weka-3.1.6.2.rpm.tar",
-            "ubuntu14" : "weka-3.1.6.2.deb.tar",
-            "aws1712" : "weka-3.1.6.2.rpm.tar",
-            "aws1703" : "weka-3.1.6.2.rpm.tar",
-            "ubuntu16" : "weka-3.1.6.2.deb.tar",
-            "centos73" : "weka-3.1.6.2.rpm.tar"
-         },
-         "created_at" : "2018-05-08T12:25:04.000Z"
+         "s3_path" : "releases/3.6.1"
+         .
+         .
+         .
       },
       ...
    ]
@@ -60,7 +44,7 @@ This list of releases available for installation is sorted backwards from the mo
 **Note:** Usually, a request from more results is not necessary, since the first page contains the most recent releases.
 {% endhint %}
 
-Each release contains an ID field which identifies the release. In the examples below, version 3.1.6.2 has been used. 
+Each release contains an ID field which identifies the release. In the examples below, version 3.6.1 has been used. 
 
 To generate a CloudFormation template, make a `POST` request to the `https://<token>@get.weka.io/dist/v1/aws/cfn/<version>`API:
 
@@ -81,7 +65,7 @@ $ spec='
   ]
 }
 '
-$ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@get.weka.io/dist/v1/aws/cfn/3.1.6.2
+$ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@get.weka.io/dist/v1/aws/cfn/3.6.1
 {
    "url" : "https://wekaio-cfn-templates-prod.s3.amazonaws.com/cjibjp7ps000001o9pncqywv6.json",
    "quick_create_stack" : {
@@ -116,11 +100,7 @@ When `ami_id` is not specified, the client instances are launched with the lates
 Note the following when using a custom AMI-ID:
 
 * AMIs are stored per region. Make sure to specify an AMI-ID that matches the region in which the CloudFormation template is being deployed.
-* The AMI operating system must be one of the supported operating-systems listed in the `os_specific_tars` attribute of the version being installed. If the AMI defined is not supported or an outdated operating system, the installation may fail and the CloudFormation stack will not be created successfully.
-
-{% hint style="info" %}
-**Note:** From version 3.1.7 onwards, the os\_specific\_tars attribute is not provided, since the distributed packages are OS-independent.
-{% endhint %}
+* The AMI operating system must be one of the supported operating systems listed in the [prerequisites](../bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md#operating-system) page of the version being installed. If the AMI defined is not supported or has an unsupported operating system, the installation may fail and the CloudFormation stack will not be created successfully.
 
 ### Dedicated vs. Shared Client Networking
 
@@ -146,7 +126,7 @@ It is also possible to receive the template directly from the API call ,without 
 
 ```bash
 $ spec='...'  # same as above
-$ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@get.weka.io/dist/v1/aws/cfn/3.1.6.2?type=template
+$ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@get.weka.io/dist/v1/aws/cfn/3.6.1?type=template
 {"AWSTemplateFormatVersion": "2010-09-09", ...
 ```
 
@@ -154,22 +134,99 @@ $ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@ge
 
 The CloudFormation template has the following parameters:
 
-| Parameter | Description |
-| :--- | :--- |
-| `KeyName` | SSH key for the `ec2-user` on the instances. |
-| `VpcId` | The VPC in which the cluster is to be created. |
-| `SubnetId` | The subnet in which the cluster is to be created. |
-| `DistToken` | The API token for WekaIO's distribution site. This can be obtained at [https://get.weka.io/ui/account/api-tokens](https://get.weka.io/ui/account/api-tokens). |
-
-{% hint style="info" %}
-**Note:** `SubnetId` must be a public subnet or a subnet that is routable to the Internet, since deployment is based on downloading the WekaIO system and various packages from the Internet.
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Parameter</th>
+      <th style="text-align:left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>KeyName</code>
+      </td>
+      <td style="text-align:left">SSH key for the <code>ec2-user</code> that will be used to connect to the
+        instances.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>VpcId</code>
+      </td>
+      <td style="text-align:left">VPC in which the WekaIO cluster will be deployed.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>SubnetId</code>
+      </td>
+      <td style="text-align:left">Subnet in which the WekaIO cluster will be deployed.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>LoadBalancerType</code>
+      </td>
+      <td style="text-align:left">
+        <p>Load balancer type for serving the cluster UI:</p>
+        <ul>
+          <li><code>Internet Facing</code> sets up the load balancer with a public IP.</li>
+          <li><code>Internal</code> sets up the load balancer with a private IP address
+            in the selected subnet.</li>
+          <li><code>No Load Balancer</code> skips load balancer creation, in which case
+            the UI can be accessed through port 14000 of any of the backend instances.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>HttpProxy</code>
+      </td>
+      <td style="text-align:left">Using HTTP/HTTPS proxy for the instances as an environment variable.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>DistToken</code>
+      </td>
+      <td style="text-align:left">API token for WekaIO&apos;s distribution site. This can be obtained at
+        <a
+        href="https://get.weka.io/ui/account/api-tokens">https://get.weka.io/ui/account/api-tokens</a>.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AdminPassword</code>
+      </td>
+      <td style="text-align:left">Sets the admin password after the cluster has been created. If no value
+        is provided, the password is set to <code>admin.</code> 
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>NewS3BucketName</code>
+      </td>
+      <td style="text-align:left">New S3 bucket name to create and attach to the filesystem created by the
+        template. The bucket will not be deleted when the stack is destroyed.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ExistingS3BucketName</code>
+      </td>
+      <td style="text-align:left">Existing S3 bucket name to attach to the filesystem created by the template.
+        The bucket has to be in the same region where the cluster is deployed.
+        If this parameter is provided, the <code>New S3 Bucket</code> parameter is
+        ignored.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>TieringSsdPercent</code>
+      </td>
+      <td style="text-align:left">Sets how much of the filesystem capacity (in percent) should reside on
+        SSD. This parameter is applicable only if<code> New S3 Bucket</code> or <code>Existing S3 Bucket</code> parameters
+        have been defined.</td>
+    </tr>
+  </tbody>
+</table>{% hint style="info" %}
+**Note:** It is possible using a NAT \(with `LoadBalancerType` other than `Internet Facing` or a proxy by setting the `HttpProxy` parameter. Otherwise,`SubnetId` must be a public subnet or a subnet that can be routed to the Internet, since deployment is based on downloading the WekaIO system and various packages from the Internet. 
 {% endhint %}
 
-## IAM Role Created In The Template
+## IAM Role Created in the Template
 
-The CloudFormation template contains an instance role that allows the WekaIO system instances to call several AWS APIs, such as `DescribeInstances` and `CreateNetworkInterface`.
+The CloudFormation template contains an instance role that allows the WekaIO system instances to call the following AWS APIs:
 
-These API calls are only required during installation and the credentials can be safely removed from the instance role once the CloudFormation reaches the CREATE\_COMPLETE state.
+* `ec2:DescribeInstances`
+* `ec2:DescribeNetworkInterfaces`
+* `ec2:AttachNetworkInterface`
+* `ec2:CreateNetworkInterface`
+* `ec2:ModifyNetworkInterfaceAttribute`
+* `ec2:DeleteNetworkInterface`
 
 ## Additional Operations
 
@@ -184,8 +241,4 @@ As part of the deployment, a filesystem is created and mounted on all instances.
 
 If the deployment was unsuccessful, see [Troubleshooting](troubleshooting.md) for the resolution of common deployment issues.
 {% endhint %}
-
-
-
-
 
