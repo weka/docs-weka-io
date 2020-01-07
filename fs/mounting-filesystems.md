@@ -222,9 +222,44 @@ After the execution of an`umount` command which unmounts the last WekaIO filesys
 **Note:** Memory allocation for a client is predefined. Contact the WekaIO Support Team when it is necessary to change the amount of memory allocated to a client.
 {% endhint %}
 
-## Setting Up Automount \(autofs\)
+## Mounting Filesystems Using fstab
 
-It is possible to mount a WekaIO filesystem using the `autofs` command. This is useful because mounting a WekaIO filesystem can only be performed after the WekaIO system has started running on a host, i.e., it is not possible to mount WekaIO filesystems at boot time by adding them to `/etc/fstab`.
+{% hint style="info" %}
+**Note:** This option works when using **stateless clients** and with OS that supports `systemd` \(e.g.: RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, Amazon Linux 2 LTS\) 
+{% endhint %}
+
+Edit `/etc/fstab` file to include the filesystem mount entry:
+
+* A comma-separated list of backend hosts, with the filesystem name
+* The mount point
+* Filesystem type - `wekafs`
+* Mount options:
+  * Configure `systemd` to wait for the `weka-agent` service to come up, and set the filesystem as a network filesystem, e.g.:
+    * `x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`
+  * Any additional `wekafs` supported mount option
+
+```text
+# create a mount point 
+mkdir -p /mnt/weka/my_fs
+
+#edit fstab file
+vi /etc/fstab
+
+#fstab
+backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev   0       0
+```
+
+Reboot the machine for the `systemd` unit to be created and marked correctly.
+
+The filesystem should now be mounted at boot time.
+
+{% hint style="danger" %}
+**Note:** Do not configure this entry for a mounted filesystem before un-mounting it \(`umount`\), as the `systemd` needs to mark the filesystem as a network filesystem \(happens as part of the `reboot`\). Trying to reboot on a mounted filesystem when first configuring its `fstab` configuration might yield a failure to unmount the filesystem and leaves the system hanged.
+{% endhint %}
+
+## Mounting Filesystems Using autofs
+
+It is possible to mount a WekaIO filesystem using the `autofs` command. 
 
 To get started, install `autofs` on the host:
 
@@ -268,8 +303,4 @@ autofs         0:off 1:off 2:off 3:on 4:on 5:on 6:off
 ```
 
 It is now possible to access WekaIO filesystems using the`cd /mnt/weka/<fs-name>` command. 
-
-{% hint style="success" %}
-**For Example:** The default filesystem is automatically mounted under`/mnt/weka/default`.
-{% endhint %}
 

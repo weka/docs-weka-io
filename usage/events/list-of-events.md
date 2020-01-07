@@ -51,11 +51,6 @@ description: >-
 | RejoinFailureReport | MINOR | Node\(s\) failed to rejoin |
 | StartIONodeNotUp | MAJOR | Node has not joined the cluster during Start-IO |
 
-| Type | Severity | Description |
-| :--- | :--- | :--- |
-| Custom | INFO | Custom event for use by QA |
-| LimitedCustom | INFO | Limited custom event for use by QA |
-
 ## Drive
 
 | Type | Severity | Description |
