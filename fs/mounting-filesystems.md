@@ -75,25 +75,106 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 
 ### For All Clients Types
 
-| Option | Value | Description | Default |
-| :--- | :--- | :--- | :--- |
-| `coherent` | None | Set mode to coherent | No |
-| `readcache` | None | Set mode to read cache | No |
-| `writecache` | None | Set mode to write cache | Yes |
-| `dentry_max_age_positive` | Positive number, time in milliseconds | After the defined time period, every metadata cached entry is refreshed from the system, allowing the host to take into account metadata changes performed by other hosts. | 1000 |
-| `dentry_max_age_negative` | Positive number, time in milliseconds | Each time a file or directory lookup fails, an entry specifying that the file or directory does not exist is created in the local dentry cache. This entry is refreshed after the defined time, allowing the host to use files or directories created by other hosts. | 0 |
-| `ro` | None | Mount filesystem as read-only | No |
-| `rw` | None | Mount filesystem as read-write | Yes |
-| `inode_bits` | 32, 64 or auto | Size of the inode in bits, which may be required for 32 bit applications. | Auto |
-| `verbose` | None | Write debug logs to the console | No |
-| `quiet` | None | Don't show any logs to console | No |
-| `acl` | None | Can be defined per mount \(access can only be degraded if there are ACLs defined but the mount has no ACL\) | No |
-
-{% hint style="info" %}
-**Note:** Current ****ACL implementation does not support inheritance.
-{% endhint %}
-
-### **Additional Mount Options Available using the Stateless Clients Feature**
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Option</th>
+      <th style="text-align:left">Value</th>
+      <th style="text-align:left">Description</th>
+      <th style="text-align:left">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>coherent</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Set mode to coherent</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>readcache</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Set mode to read cache</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>writecache</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Set mode to write cache</td>
+      <td style="text-align:left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>dentry_max_age_positive</code>
+      </td>
+      <td style="text-align:left">Positive number, time in milliseconds</td>
+      <td style="text-align:left">After the defined time period, every metadata cached entry is refreshed
+        from the system, allowing the host to take into account metadata changes
+        performed by other hosts.</td>
+      <td style="text-align:left">1000</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>dentry_max_age_negative</code>
+      </td>
+      <td style="text-align:left">Positive number, time in milliseconds</td>
+      <td style="text-align:left">Each time a file or directory lookup fails, an entry specifying that the
+        file or directory does not exist is created in the local dentry cache.
+        This entry is refreshed after the defined time, allowing the host to use
+        files or directories created by other hosts.</td>
+      <td style="text-align:left">0</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ro</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Mount filesystem as read-only</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>rw</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Mount filesystem as read-write</td>
+      <td style="text-align:left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>inode_bits</code>
+      </td>
+      <td style="text-align:left">32, 64 or auto</td>
+      <td style="text-align:left">Size of the inode in bits, which may be required for 32 bit applications.</td>
+      <td
+      style="text-align:left">Auto</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>verbose</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Write debug logs to the console</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>quiet</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Don&apos;t show any logs to console</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>acl</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">
+        <p>Can be defined per mount.</p>
+        <p>Setting POSIX ACLs can change the effective group permissions (via the <code>mask</code> permissions).
+          When ACLs defined but the mount has no ACL, the effective group permissions
+          is granted.)</p>
+      </td>
+      <td style="text-align:left">No</td>
+    </tr>
+  </tbody>
+</table>### **Additional Mount Options Available using the Stateless Clients Feature**
 
 <table>
   <thead>
