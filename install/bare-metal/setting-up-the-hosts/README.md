@@ -11,10 +11,11 @@ description: >-
 After meeting the hardware and software requirements, it is necessary to prepare the backend and client machines for installation of the WekaIO system. This preparation of the hosts consists of the following steps:
 
 1. NIC driver installation.
-2. SR-IOV enablement.
+2. SR-IOV enablement \(when needed\).
 3. Network configuration.
 4. Network configuration verification.
 5. Clock synchronization.
+6. Numa balancing disablement.
 
 {% hint style="info" %}
 **Note:** Some of the examples in this page contain version-specific information. Since software is updated frequently, the package versions available to you may differ to those presented here.
@@ -82,95 +83,11 @@ This concludes the Mellanox OFED installation procedure.
 
 ## SR-IOV Enablement
 
-SR-IOV enablement is mandatory for backend machines equipped with Intel NICs. However, it is not required for backend machines with Mellanox NICs \(CX-4 or newer\).
+SR-IOV enablement is not required for hosts with Mellanox NICs \(CX-4 or newer\).
 
-Many hardware vendors ship their products with the SR-IOV feature disabled. On such platforms, the feature must be enabled prior to installing the WekaIO system. This enablement applies to both the server BIOS and the NIC. If already enabled, it is recommend to verify the current state before proceeding with the installation of the WekaIO system.
+SR-IOV enablement is mandatory for hosts equipped with Intel NICs, or when working with client VMs where there is a need to expose VFs of a physical NIC to the virtual NICs.
 
-This section assumes that NIC drivers have been installed and loaded successfully. If this is not the case, complete the procedure described in NIC Driver Installation and then continue as described below.
-
-### SR-IOV Enablement in the Server BIOS
-
-Refer to the screenshots below to enable the SR-IOV support in the server BIOS.
-
-{% hint style="info" %}
-**Note:** The following screenshots are vendor-specific and provided as a courtesy. Depending on the vendor, the same settings may appear differently or be located in other places. Therefore, always refer to your hardware platform and NIC vendor documentation for the latest information and updates.
-{% endhint %}
-
-![Reboot Server and Force it to Enter the BIOS Setup](../../.gitbook/assets/image%20%2810%29.png)
-
-![Locate the PCIe Configuration and Drill Down](../../.gitbook/assets/image%20%2811%29.png)
-
-![Locate SR-IOV Support and Drill Down](../../.gitbook/assets/image%20%286%29.png)
-
-![Enable SR-IOV Support](../../.gitbook/assets/image%20%2821%29.png)
-
-![Save and Exit](../../.gitbook/assets/image%20%289%29.png)
-
-### SR-IOV Enablement in the **Mellanox** NICs
-
-While it is possible to change the SR-IOV configuration through the NIC BIOS, Mellanox OFED offers command line tools that allow for the convenient modification and validation of SR-IOV settings, as described below: 
-
-**Step 1**: Run Mellanox Software Tools \(mst\).
-
-```text
-# mst start
-```
-
-**Step 2**: Identify the device node for PCIe configuration access to the connected NIC device to be used with the WekaIO system.
-
-```text
-# ibdev2netdev
-mlx5_0 port 1 ==> enp24s0 (Up)
-mlx5_1 port 1 ==> ib0 (Down)
-mlx5_2 port 1 ==> ib1 (Down)
-mlx5_3 port 1 ==> ib2 (Down)
-mlx5_4 port 1 ==> ib3 (Down)
-```
-
-Using the output received from the above, ascertain the following:
-
-* The host is equipped with 5 Mellanox ports.
-* Only one of the ports \(the one marked Up\) has connectivity to the switch.
-* The connected port name is enp24s0. The Mellanox notation of the NIC is mlx5\_0.
-
-**Step 3**: Using the Mellanox device notation, find the device node that can be used for PCIe configuration access of the NIC.
-
-```text
-# mst status -v | grep mlx5_0
-ConnectX4(rev:0) /dev/mst/mt4115_pciconf0  18:00.0   mlx5_0  net-enp24s0               0
-```
-
-**Step 4**: Using the PCIe access device node, check the current SR-IOV setting on the NIC.
-
-```text
-# mlxconfig -d /dev/mst/mt4115_pciconf0 q | grep -e SRIOV_EN -e VFS
-         NUM_OF_VFS                          0
-         SRIOV_EN                            False(0)
-```
-
-**Step 5**: Modify the SR-IOV settings. In the following example, the SR-IOV is enabled and the number of Virtual Functions \(VFs\) is set to 16.
-
-```text
-# mlxconfig -y -d /dev/mst/mt4115_pciconf0 set SRIOV_EN=1 NUM_OF_VFS=16
-```
-
-**Step 6**: Reboot the host. 
-
-**Step 7:** On completion of the server reboot, validate the SR-IOV settings.
-
-```text
-# mst start && mlxconfig -d /dev/mst/mt4115_pciconf0 q | grep -e SRIOV_EN -e VFS
-Starting MST (Mellanox Software Tools) driver set
-Loading MST PCI module - Success
-Loading MST PCI configuration module - Success
-Create devices
--W- Missing "lsusb" command, skipping MTUSB devices detection
-Unloading MST PCI module (unused) - Success
-         NUM_OF_VFS                          16
-         SRIOV_EN                            True(1)
-```
-
-This concludes the SR-IOV enablement procedure.
+{% page-ref page="sr-iov-enablement.md" %}
 
 ## Network Configuration
 
@@ -178,7 +95,7 @@ This concludes the SR-IOV enablement procedure.
 
 NetworkManager is a dynamic network control and configuration daemon. It is the default network management tool in some operating systems such as RHEL 6 and 7. 
 
-The WekaIO system requires network management to be handled by Network Initscripts \(also known as "ifcfg configuration files"\). This method is a basic network interface start/stop framework that is part of the initscripts package, and is the method that the WekaIO system currently supports in Red Hat and it derivatives. 
+The WekaIO system requires network management to be handled by Network Initscripts \(also known as "ifcfg configuration files"\). This method is a basic network interface start/stop framework that is part of the `initscripts` package, and is the method that the WekaIO system currently supports in Red Hat and it derivatives. 
 
 The following commands can be used to permanently disable NetworkManager:
 
@@ -234,8 +151,8 @@ Bring the interface up using the following command:
 
 ### InfiniBand Configuration
 
-#### Default Partition
-
+{% tabs %}
+{% tab title="Default Partition" %}
 InfiniBand network configuration normally includes Subnet Manager \(SM\), but the procedure involved is beyond the scope of this document. However, it is important to be aware of the specifics of your SM configuration, such as partitioning and MTU, because they can affect the configuration of the endpoint ports in Linux. For best performance, MTU of 4092 is recommended.
 
 Refer to the following ifcfg script when the IB network only has the default partition, i.e., "no pkey":
@@ -271,9 +188,9 @@ brd 00:ff:ff:ff:ff:12:40:1b:ff:ff:00:00:00:00:00:00:ff:ff:ff:ff
     inet 10.0.20.84/24 brd 10.0.20.255 scope global noprefixroute ib0
        valid_lft forever preferred_lft forever
 ```
+{% endtab %}
 
-#### Non-default Partition \(PKEY\)
-
+{% tab title="Non-default Partition \(PKEY\)" %}
 On an InfiniBand network with a non-default partition number, _p-key_ must be configured on the interface if the InfiniBand ports on your network are members of an InfiniBand partition other than the default \(`0x7FFF`\). The p-key should associate the port as a full member of the partition \(full members are those where the p-key number with the most-significant bit \(MSB\) of the 16-bits is set to 1\). 
 
 {% hint style="success" %}
@@ -335,6 +252,8 @@ Verify the connection is up with all the non-default partition attributes set:
     inet 192.168.1.1/16 brd 192.168.255.255 scope global noprefixroute ib1.8002
        valid_lft forever preferred_lft forever
 ```
+{% endtab %}
+{% endtabs %}
 
 ## Network Configuration Verification
 
@@ -361,4 +280,14 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the WekaIO system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues. 
 
 Configure the time synchronization software on the backend and client machines according to the specific vendor instructions \(see your OS documentation\), prior to installing the WekaIO software.
+
+## **NUMA Balancing Disablement** 
+
+The WekaIO system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies on the operations.
+
+To disable NUMA balancing, run the following command on the host:
+
+```text
+echo 0 > /proc/sys/kernel/numa_balancing
+```
 
