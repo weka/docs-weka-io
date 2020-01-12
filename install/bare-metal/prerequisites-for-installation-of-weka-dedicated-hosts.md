@@ -13,7 +13,6 @@ description: >-
 ## CPU
 
 * Intel SandyBridge+ and AMD processors with equivalent instructions sets
-* AMD Epyc
 
 ## Memory
 
