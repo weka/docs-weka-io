@@ -67,13 +67,25 @@ This command is used to give the cluster a name. Although this is optional, it i
 
 ## Stage 4: Enabling Cloud Event Notifications \(optional\)
 
-**Command** `weka cloud enable`
+### **Enabling Support via Weka Home**
 
-This command enables cloud event notification, which increases the ability of the WekaIO Support Team to resolve any issues that may occur. To perform this operation, use the following command line:
+**Command:** `weka cloud enable`
 
-`weka cloud enable`
+This command enables cloud event notification \(via Weka Home\), which increases the ability of the WekaIO Support Team to resolve any issues that may occur. 
 
 To learn more, and learn and what else is needed in order to enable cloud event notification see the description of the [WekaIO support cloud](../../support/the-wekaio-support-cloud.md).
+
+### For Private instance of Weka Home
+
+In closed environment \(e.g., dark sites, private VPCs\) it is possible to install a private instance of Weka Home.
+
+**Command:** `weka cloud enable --cloud-url=http://<weka-home-ip>:<weka-home-port>`
+
+This command enables the use of a private instance of Weka Home. 
+
+{% hint style="info" %}
+For more information, refer to [Private instance of Weka Home](../../support/the-wekaio-support-cloud.md#private-instance-of-weka-home) and contact the WekaIO Support Team.
+{% endhint %}
 
 ## Stage 5: Configuration of Networking
 
