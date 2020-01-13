@@ -126,7 +126,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** If it is necessary to set global options to the Samba library, contact the WekaIO Support Team.
+**Note:** If it is necessary to set global options to the SMB library, contact the WekaIO Support Team.
 {% endhint %}
 
 {% hint style="success" %}
@@ -134,7 +134,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 
 `weka smb cluster create wekaSMB mydomain --samba-hosts 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5`
 
-In this example of a full command, an SMB cluster is configured over WekaIO system hosts 0-4. The Samba cluster is called `wekaSMB,`the domain name is called `mydomain`and is directed to use public IPs 1.1.1.1 to 1.1.1.5.
+In this example of a full command, an SMB cluster is configured over WekaIO system hosts 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`and is directed to use public IPs 1.1.1.1 to 1.1.1.5.
 {% endhint %}
 
 ## Checking Status of SMB Host Readiness
@@ -165,7 +165,7 @@ In order to join another Active Directory to the current SMB cluster configurati
 On completion of this operation, it is possible to join another Active Directory to the SMB cluster.
 
 {% hint style="info" %}
-**Note:** To configure a new Samba cluster, the current Samba cluster has to be deleted.
+**Note:** To configure a new SMB cluster, the current SMB cluster has to be deleted.
 {% endhint %}
 
 ## Deleting an SMB Cluster
@@ -206,7 +206,7 @@ Use the following command line to add a new share to be exposed to SMB:
 | `directory-create-mask` | String | POSIX permissions for directories created through the SMB share | Numeric \(octal\) notation | No | 0755 |
 
 {% hint style="info" %}
-**Note:**  If it is necessary to set share specific options to the Samba library, contact the WekaIO Support Team.
+**Note:**  If it is necessary to set share specific options to the SMB library, contact the WekaIO Support Team.
 {% endhint %}
 
 {% hint style="success" %}
@@ -215,7 +215,7 @@ Use the following command line to add a new share to be exposed to SMB:
 `weka smb share add rootShare default  
 weka smb share add internalShare default --internal-path some/dir --description "Exposed share"`
 
-In this example, the first Samba share added has the WekaIO system share for default.  The second Samba share has internal for default.
+In this example, the first SMB share added has the WekaIO system share for default.  The second SMB share has internal for default.
 {% endhint %}
 
 ## Removing SMB Shares

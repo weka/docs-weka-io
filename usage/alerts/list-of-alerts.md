@@ -37,7 +37,7 @@ description: >-
 | NotEnoughActiveDrives | There are not enough active failure domains. | Check connectivity, host status  and/or replace problematic drives. |
 | NotEnoughAvailable MemoryForFilesystems | There are not enough working compute nodes in the cluster to store the file and directory entries for all the filesystems in the cluster.  | Either try to decrease the max-files for some of the filesystems or return the dead compute nodes to get their memory back. |
 | NotEnoughConfigured MemoryForFilesystems | The total configured memory bytes for filesystems is insufficient to store the file and directory entries of the filesystems in the cluster.  | Decrease the max-files for some of the filesystems, decrease their capacity or increase the configured RAM of the cluster backend hosts. |
-| NumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance.  | To disable, run `echo > /proc/sys/kernel/numa_balancing` on the host. |
+| NumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance.  | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the host. |
 | OfedVersions | A host Mellanox OFED version ID does not match the one used by the WekaIO container. | Install a supported OFED. If the current version needs to be retained or the alert continues after a supported version is installed, contact the WekaIO Support Team. |
 | PartiallyConnectedNode | A node seems to be only partially connected. | Make sure there is no network connectivity issue. |
 

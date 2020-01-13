@@ -49,8 +49,8 @@ Read more about Active Directory properties [here](https://blogs.technet.microso
 
 The WekaIO SMB support is established either through the WekaIO system GUI or a series of CLIs. When configuring SMB support, it is necessary to:
 
-1. Define the WekaIO hosts to participate in the Samba cluster, i.e., configuration of the Samba cluster.
-2. Join the Samba cluster to the Active Directory, i.e., connection and definition of WekaIO in the Active Directory.
+1. Define the WekaIO hosts to participate in the SMB cluster, i.e., configuration of the SMB cluster.
+2. Join the SMB cluster to the Active Directory, i.e., connection and definition of WekaIO in the Active Directory.
 3. Create shares and their folders, and set permissions. By default, the filesystem permission are root/root/755 and initially can only be set via a WekaFS/NFS mount.
 
 After completing these steps, it is possible to connect as an administrator and define permissions via Windows.
@@ -78,7 +78,7 @@ If the share uses the root, it is not necessary to create a root folder \(it alr
 
 ### Filesystem Permissions and Access Rights
 
-Once the Samba cluster is connected to the Active Directory, it is possible to assign permissions and access rights of Samba cluster filesystems to specific users or groups of users. This is performed according to POSIX permissions i.e., the Windows permissions system stored in the POSIX permissions system. Any change in the Windows permissions will be adapted in the POSIX permissions.
+Once the SMB cluster is connected to the Active Directory, it is possible to assign permissions and access rights of SMB cluster filesystems to specific users or groups of users. This is performed according to POSIX permissions i.e., the Windows permissions system stored in the POSIX permissions system. Any change in the Windows permissions will be adapted in the POSIX permissions.
 
 {% hint style="info" %}
 **Note:** The initial set of POSIX permissions is performed via the driver/NFS.
