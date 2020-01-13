@@ -7,7 +7,7 @@ The WekaIO support cloud \(Weka Home\) collects event information from the WekaI
 To enable the upload of events to the Weka Home, perform the following:
 
 1. Enable [cloud events](../install/bare-metal/using-cli.md#stage-4-enabling-cloud-event-notifications-optional).
-2. Make sure that your network allows the system to report events to WekaIO by allowing `https` connections from the WekaIO hosts management IP interfaces to `cloud.weka.io`, `*.s3.amazonaws.com` and `*.s3-*.amazonaws.com` . Alternatively, if connecting to the cloud using a proxy, it is possible to set the proxy using the following command:`weka cloud proxy --set <proxy_url>`.
+2. Make sure that your network allows the system to report events to WekaIO by allowing `https` connections from the WekaIO hosts management IP interfaces to `api.home.weka.io`, `cloud.weka.io`, `*.s3.amazonaws.com` and `*.s3-*.amazonaws.com` . Alternatively, if connecting to the cloud using a proxy, it is possible to set the proxy using the following command:`weka cloud proxy --set <proxy_url>`.
 3. [Install a valid commercial or evaluation license](../licensing/overview.md).  It is possible to receive a 30-day evaluation license from get.weka.io. To extend an evaluation license, contact the WekaIO Sales or Support Team.
 
 {% hint style="info" %}
@@ -16,7 +16,7 @@ Optimally, both client and backend hosts should be able to upload information to
 
 ### Private Instance of Weka Home
 
-For proactive support, it is highly recommended to enable the public Weka Home. However, there are situations where there is no connectivity to the public instance of Weka Home \(e.g., when working in dark sites, or private VPCs\). In such cases, to be able to get proper support, it is important to at lease connect to a private instance of Weka Home, which can be installed in the private environment. 
+For proactive support, it is highly recommended to enable access to the public instance of Weka Home. However, there are situations where there is no connectivity to the public instance of Weka Home \(e.g., when working in dark sites, or private VPCs\). If such a need arises, in order to be able to get proper support, it is important to at least connect to a private instance of Weka Home, which can be installed in the private environment. 
 
 {% hint style="success" %}
 **Note:** For installation and maintenance of the private instance of Weka Home If such a need arise, please contact the WekaIO Support Team.
