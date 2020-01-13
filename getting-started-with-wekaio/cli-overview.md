@@ -47,6 +47,20 @@ Use 'weka <command> --help' for more help on a specific command
 `--raw-units` flag causes units such as capacity and bytes to be printed in their raw format, as returned by the cluster.
 
 `--UTC` flag causes timestamps to be printed in the UTC timezone, rather than in the local time of the machine running the CLI command.
+
+`-f|--format` flag specifies the format to output the result \(view, csv, markdown or JSON\)
+
+ `-o|--output` flag specifies the columns of the output to be included. 
+
+`-s|--sort` flag specifies the order to sort the output. May include a '+' or '-' before the column name to sort by ascending or descending order.
+
+ `-F| --filter` flag specifies the filter values for a member \(without forcing it to be in the output\). 
+
+ `--no-header` flag indicates that the column header should not be shown when printing the output.
+
+`-C|--CONNECT-TIMEOUT` flag can be used to change the default timeout used for connecting to the system via the JRPC protocol. 
+
+`-T|--TIMEOUT` flag  can be used to change the default timeout for which the commands waits for a response before giving up.
 {% endhint %}
 
 ## Command Hierarchy

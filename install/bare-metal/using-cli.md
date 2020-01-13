@@ -101,7 +101,7 @@ The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(
 
 To perform this operation, the cluster host net add command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
-`weka cluster host net add <host-id> --device=<device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gw>] [--netmask=<netmask>]`
+`weka cluster host net add <host-id> <device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gw>] [--netmask=<netmask>]`
 
 **Parameters in Command Line**
 

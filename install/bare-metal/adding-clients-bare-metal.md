@@ -69,7 +69,7 @@ weka cluster host cores <host-id> 1 --frontend-dedicated-cores=1
 
 If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the WekaIO system cluster hosts:
 
-`weka cluster host net add <host-id> --device=<net-device> --ips=<ip-address> --netmask=<netmask> --gateway=<gateway>`
+`weka cluster host net add <host-id> <device> --ips=<ip-address> --netmask=<netmask> --gateway=<gateway>`
 
 **Parameters in Command Line**
 
@@ -101,7 +101,7 @@ If a high-performance client is required and the appropriate network NIC is avai
       <td style="text-align:left"></td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>net-device</code>
+      <td style="text-align:left"><code>device</code>
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Network interface device name e.g., <code>eth1</code>
@@ -111,7 +111,7 @@ If a high-performance client is required and the appropriate network NIC is avai
       <td style="text-align:left"></td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>ip-address</code>
+      <td style="text-align:left"><code>ips</code>
       </td>
       <td style="text-align:left">IP address</td>
       <td style="text-align:left">IP address of the new interface</td>
