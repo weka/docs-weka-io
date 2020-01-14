@@ -8,10 +8,6 @@ description: This page describes how to add clients to a bare metal cluster.
 
 Client hosts are used to run applications which need to access the WekaIO filesystems. They are similar to backend hosts, except that they do not contribute CPUs or drives to the cluster. Consequently, they are only connected to the cluster to use its filesystems.
 
-{% hint style="info" %}
-**Note:** Clients can be deployed on [diskless-servers](https://en.wikipedia.org/wiki/Diskless_node). They can use RAM for WekaIO client software and NFS mount for the traces. For more information, contact the WekaIO Support Team.
-{% endhint %}
-
 To add client hosts to the WekaIO system configuration, use the stages described below.
 
 {% hint style="info" %}

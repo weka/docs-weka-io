@@ -32,7 +32,7 @@ Events can be filtered by choosing a filter. Filtering can be performed accordin
 
 Use the following command line to list events in the WekaIO cluster:
 
-`weka events [--num-results num-results] [--start-time <start>] [--end-time <end>] [--severity severity] [--sort-order sort-order] [--fetch-order fetch-order] [--type-list type-list] [--exclude-type-list exclude-type-list] [--category-list category-list] [--by-digested-time] [--show-internal] [--raw-units] [--UTC]`
+`weka events [--num-results num-results] [--start-time <start>] [--end-time <end>] [--severity severity] [--direction direction] [--fetch-order fetch-order] [--type-list type-list] [--exclude-type-list exclude-type-list] [--category-list category-list] [--by-digested-time] [--show-internal] [--raw-units] [--UTC]`
 
 **Parameters in Command Line**
 
@@ -91,7 +91,7 @@ Use the following command line to list events in the WekaIO cluster:
       <td style="text-align:left">INFO</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>sort-order</code>
+      <td style="text-align:left"><code>direction</code>
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Sort events by ascending or descending time</td>
