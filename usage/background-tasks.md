@@ -39,7 +39,19 @@ Type       | State   | Progress | Description
 OBS_DETACH | RUNNING | 94       | Detaching Object Storage `obs_1` from filesystem `default`
 ```
 
-‌
+### ‌Limiting Background Task Resources
+
+It is possible to limit the resources being used by background tasks.
+
+#### **Limiting Background Tasks Using the CLI**
+
+**Command:** `weka cluster tasks limits`
+
+This command is used to view the currently-defined limits. 
+
+**Command:** `weka cluster tasks limits set <cpu-limit limit>`
+
+This command is used to update the CPU limit.
 
 ###   <a id="limiting-background-task-resources"></a>
 
