@@ -120,17 +120,13 @@ description: >-
 | Type | Description | Units |
 | :--- | :--- | :--- |
 | CONCURRENT\_DEMOTES | How many demotes are executed concurrently | Demotes |
-| DEMOTES | Number of demotes operations per second | Ops/Sec |
-| DEMOTES\_ISSUED |  | Ops/Sec/Sec |
-| DEMOTE\_CHOKING\_LATENCY | Average latency of waiting for demote choking budget | Microseconds |
+| DEMOTE\_EXTENTS\_ISSUED |  | Ops/Sec/Sec |
 | DEMOTE\_EXTENT\_OBS\_FETCH | Number of extent fetch operations per second | Ops/Sec |
-| DEMOTE\_FAILED\_LATENCY | Latency of demote | Microseconds |
-| DEMOTE\_LATENCY | Latency of demote | Microseconds |
 | DEMOTE\_WAITING\_FOR\_SLOT | Average time waiting for a demotion concurrency slot | Microseconds |
 | DOWNLOADS | Number of promotes operations per second | Ops/Sec |
 | DOWNLOAD\_LATENCY | Latency of promote operations | Microseconds |
-| FAILED\_DEMOTES | Number of failed demotes operations per second | Ops/Sec |
 | FAILED\_DOWNLOADS | Number of failed promotes operations per second | Ops/Sec |
+| FAILED\_UPLOADS | Number of failed demotes operations per second | Ops/Sec |
 | OBS\_4K\_IOPS\_READ | Number of object storage dedicated 4K read operations per second | Ops/Sec |
 | OBS\_BACKPRESSURE\_FREED | Number of bytes freed from disk due to backpressure | Bytes/Sec |
 | OBS\_EXTENTS\_PREFETCH | Number of pre-fetched extents | Ops/Sec |
@@ -146,12 +142,16 @@ description: >-
 | OBS\_SHARED\_DOWNLOADS\_LATENCY |  | Microseconds |
 | OBS\_TRUNCATE | Truncates that needed data from the OBS | Ops/Sec |
 | OBS\_UNEXPECTED\_TAG\_ON\_DOWNLOAD | Unexpected tag when downloading an extent | Occurences |
+| OBS\_WAIT\_FOR\_SHARED\_DOWNLOADS\_SLOT\_DURATION |  | Ops |
 | OBS\_WRITE | Writes that needed data from the OBS | Ops/Sec |
-| TIMEOUT\_DEMOTES | Number of timeout'ed demotes operations per second | Ops/Sec |
 | TIMEOUT\_DOWNLOADS | Number of timeout'ed promotes operations per second | Ops/Sec |
 | TIMEOUT\_OPERATIONS | Total timeouted operations per second | Ops/Sec |
+| TIMEOUT\_UPLOADS | Number of timeout'ed demotes operations per second | Ops/Sec |
 | UNEXPECTED\_BLOCK\_VERSION\_POST\_UPGRADE | Unexpected block version after upgrade completed | Occurences |
 | UNEXPECTED\_HASHBLOCK\_KV\_VERSION\_POST\_UPGRADE | Unexpected hash block KV version after upgrade completed | Occurences |
+| UPLOADS | Number of upload attempts per second | Ops/Sec |
+| UPLOAD\_CHOKING\_LATENCY | Average latency of waiting for demote choking budget | Microseconds |
+| UPLOAD\_LATENCY | Latency of demote | Microseconds |
 
 ## Frontend
 
@@ -209,6 +209,7 @@ description: >-
 | FAULT\_SENT\_DROPPED\_PACKETS |  | Packets/Sec |
 | GW\_MAC\_RESOLVE\_FAILURES |  | Failures |
 | GW\_MAC\_RESOLVE\_SUCCESSES |  | Successes |
+| NODE\_RECONNECTED |  | Reconnects/Sec |
 | PACKETS\_PUMPED | Number of packets received in each call to recvPackets |  |
 | PEER\_RTT |  | Microseconds |
 | PING\_ROUNDTRIP |  |  |
@@ -233,6 +234,7 @@ description: >-
 | SENT\_PACKETS |  | Packets/Sec |
 | SENT\_REJECTS |  | Packets/Sec |
 | SHORT\_CIRCUIT\_SENDS |  | Packets/Sec |
+| SLOW\_PATH\_CSUM |  | Packets/Sec |
 | TIMELY\_RESENEDS |  | Packets/Sec |
 | TIME\_TO\_ACK |  |  |
 | TOO\_MANY\_TIMELY\_RESENDS |  | Packets/Sec |
@@ -255,15 +257,26 @@ description: >-
 | OBJECT\_DOWNLOADS | Number of objects downloaded per second | Ops/Sec |
 | OBJECT\_DOWNLOAD\_DURATION |  | Microseconds |
 | OBJECT\_DOWNLOAD\_LATENCY | Latency of downloading an object | Microseconds |
+| OBJECT\_DOWNLOAD\_SIZE |  | Bytes |
 | OBJECT\_OPERATIONS | Total operations per second | Ops/Sec |
 | OBJECT\_UPLOADS | Number of object uploads per second | Ops/Sec |
 | OBJECT\_UPLOAD\_DURATION |  | Microseconds |
 | OBJECT\_UPLOAD\_LATENCY | Latency of uploading an object | Microseconds |
+| OBJECT\_UPLOAD\_SIZE |  | Bytes |
 | OBS\_READ\_BYTES | Number of bytes read from the object storage | Bytes/Sec |
 | OBS\_WRITE\_BYTES | Number of bytes sent to the object storage | Bytes/Sec |
+| ONGOING\_DOWNLOADS | Number of ongoing downloads | Ops |
+| ONGOING\_REMOVES | Number of ongoing removes | Ops |
+| ONGOING\_UPLOADS | Number of ongoing uploads | Ops |
 | READ\_BYTES | Number of bytes read from the object storage | Bytes/Sec |
 | WAITING\_FOR\_DOWNLOAD\_BANDWIDTH |  | Ops |
+| WAITING\_FOR\_DOWNLOAD\_FLOW |  | Ops |
+| WAITING\_FOR\_REMOVE\_FLOW |  | Ops |
 | WAITING\_FOR\_UPLOAD\_BANDWIDTH |  | Ops |
+| WAITING\_FOR\_UPLOAD\_FLOW |  | Ops |
+| WAITING\_IN\_DOWNLOAD\_QUEUE |  | Ops |
+| WAITING\_IN\_REMOVE\_QUEUE |  | Ops |
+| WAITING\_IN\_UPLOAD\_QUEUE |  | Ops |
 | WRITE\_BYTES | Number of bytes sent to the object storage | Bytes/Sec |
 
 ## Operations\(NFS\)
@@ -530,6 +543,7 @@ description: >-
 | IDLE\_CALLBACK\_INVOCATIONS | Number of background work invocations | Invocations/Sec |
 | IDLE\_CYCLES |  | Cycles/Sec |
 | IDLE\_TIME | Percentage of the CPU time not utilized for handling I/Os | % |
+| NODE\_HANG |  |  |
 | NvmeIoRequest\_CAPACITY | Number of data structures allocated to the NvmeIoRequest pool | Structs |
 | NvmeIoRequest\_STRUCT\_SIZE | Number of bytes in each struct of the NvmeIoRequest pool | Bytes |
 | NvmeIoRequest\_USED | Number of structs in the NvmeIoRequest pool which are currently being used | Structs |
@@ -597,16 +611,18 @@ description: >-
 
 | Type | Description | Units |
 | :--- | :--- | :--- |
+| ACTUALLY\_FALSE\_FREE | Number of blocks that were detected as false-used and freed | Blocks/Sec |
 | ACTUALLY\_FALSE\_USED | Number of blocks that were detected as false-used and freed | Blocks/Sec |
 | CLEANED\_CHUNKS | Number of chunks that were cleaned by the scrubber | Chunks/Sec |
 | DEGRADED\_READS | Number of degraded reads for scrubbing | Requests/Sec |
+| FALSE\_FREE\_CHECKED\_BLOCKS | Number of blocks that were scrubbed-false-used | Blocks/Sec |
+| FALSE\_FREE\_CHECK\_LATENCY | Average latency of checking false free per block | Micros |
 | FALSE\_USED\_CHECKED\_BLOCKS | Number of blocks that were scrubbed-false-used | Blocks/Sec |
 | FALSE\_USED\_CHECK\_LATENCY | Average latency of checking false used per block | Micros |
 | FALSE\_USED\_EXTRA\_NOTIFIED | Number of blocks that were notified as used by the mark-extra-used mechanism | Blocks/Sec |
-| FALSE\_USED\_FAILED\_READS | Number of blocks that we failed to read for scrub-false-used | Blocks/Sec |
-| FALSE\_USED\_WAS\_UNPROTECTED | Number of blocks that were false marked used and unprotected | Blocks/Sec |
 | INTERRUPTS | Number of scrubs that were interrupted | Occurences/Sec |
 | NETWORK\_BUDGET\_WAIT\_LATENCY | Average latency of waiting for our network budget | Micros |
+| NOT\_ACTUALLY\_FALSE\_FREE | Number of blocks that were detected as used | Blocks/Sec |
 | NOT\_ACTUALLY\_FALSE\_USED | Number of blocks that were detected as used | Blocks/Sec |
 | NOT\_REALLY\_DIRTY\_BLOCKS | Number of marked dirty blocks that ScrubMissingWrites found were actually clean | Blocks/Sec |
 | NUM\_COPY\_DISCARDED\_BLOCKS | Number of copied blocks that were discarded | Blocks/Sec |
@@ -624,9 +640,15 @@ description: >-
 | RELOCATE\_BLOCKS\_LATENCY | Average latency of relocating blocks | Micros |
 | RETRUSTED\_UNPROTECTED\_DIRTY\_BLOCKS | Number of dirty blocks that ScrubMissingWrites retrusted because they were unprotected | Blocks/Sec |
 | REWRITTEN\_DIRTY\_BLOCKS | Number of dirty blocks that ScrubMissingWrites rewrote to clean them | Blocks/Sec |
-| SCRUBBED\_FALSE\_USED\_FAILED | Number of placements we failed to fully scrub-false-used | Occurences/Sec |
-| SCRUBBED\_FALSE\_USED\_PLACEMENTS | Number of placements we finished scrub-false-used | Occurences/Sec |
 | SCRUB\_BATCHES\_LATENCY | Average latency of scrub batches | Millis |
+| SCRUB\_FALSE\_FREE\_FAILED | Number of placements we failed to fully scrub-false-free | Occurences/Sec |
+| SCRUB\_FALSE\_FREE\_FAILED\_READS | Number of blocks that we failed to read for scrub-false-free | Blocks/Sec |
+| SCRUB\_FALSE\_FREE\_PLACEMENTS | Number of placements we finished scrub-false-used | Occurences/Sec |
+| SCRUB\_FALSE\_FREE\_WAS\_UNPROTECTED | Number of blocks that were false marked freed and unprotected | Blocks/Sec |
+| SCRUB\_FALSE\_USED\_FAILED | Number of placements we failed to fully scrub-false-used | Occurences/Sec |
+| SCRUB\_FALSE\_USED\_FAILED\_READS | Number of blocks that we failed to read for scrub-false-used | Blocks/Sec |
+| SCRUB\_FALSE\_USED\_PLACEMENTS | Number of placements we finished scrub-false-used | Occurences/Sec |
+| SCRUB\_FALSE\_USED\_WAS\_UNPROTECTED | Number of blocks that were false marked used and unprotected | Blocks/Sec |
 | SCRUB\_PREPARATION\_FAILED | Number of times we failed to prepare\(\) a task and aborted scrub of placement | Occurences/Sec |
 | SOURCE\_READS | Number of source/committed superset blocks directly read by the scrubber | Blocks/Sec |
 | TARGET\_COPIED\_CHUNKS | Number of chunks that were copied to target by the scrubber | Chunks/Sec |

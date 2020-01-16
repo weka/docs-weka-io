@@ -17,8 +17,6 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| CloudCredentialsManualSetup | INFO | Cloud credentials manually set |
-| CloudCredentialsRefreshed | INFO | Cloud credentials refreshed |
 | CloudDisabled | INFO | Cloud disabled |
 | CloudEnabled | INFO | Cloud enabled |
 | CloudProxyUpdated | INFO | Cloud proxy updated |
@@ -46,8 +44,10 @@ description: >-
 | HostRemoving | INFO | Host configuration change |
 | HostRemovingFailed | INFO | Host configuration change |
 | LeaderChanged | WARNING | Cluster leader has changed |
+| NodePartiallyConnected | MAJOR | A partially connected node was removed |
 | NodeRejoined | INFO | Node rejoined the cluster |
-| NodeRemoved | MAJOR | Node removed from cluster \(failed\) |
+| NodeUnreachable | MAJOR | An unreachable node was removed |
+| PreviousCluster | INFO | This host was part of another cluster before |
 | RejoinFailureReport | MINOR | Node\(s\) failed to rejoin |
 | StartIONodeNotUp | MAJOR | Node has not joined the cluster during Start-IO |
 
@@ -98,7 +98,7 @@ description: >-
 | BlockReadFailure | CRITICAL | Failed to read a block |
 | BrokenExtentChainDetected | CRITICAL | Metadata corruption \(broken extent chain\) |
 | ChecksumErrorInCommit | MAJOR | Checksum error detected by SSD node in a committed block |
-| FailedToSplitSliceNoRetry | CRITICAL | Failed to split slice - wont retry |
+| FailedToSplitSliceNoRetry | CRITICAL | Failed to split a directory slice - wont retry |
 | FilesystemAdded | INFO | Filesystem configuration change |
 | FilesystemDeleted | INFO | Filesystem configuration change |
 | FilesystemDownloadStarted | INFO | Filesystem download started |
@@ -106,7 +106,16 @@ description: >-
 | FilesystemGroupDeleted | INFO | Filesystem group configuration change |
 | FilesystemGroupUpdated | INFO | Filesystem group configuration change |
 | FilesystemUpdated | INFO | Filesystem configuration change |
+| HangingBackendIosDetected | CRITICAL | Some IOs are hanging |
+| HangingDirectorySplit | MAJOR | Directory split hasn't any made progress for a long time |
+| HangingDriverFrontendIosDetected | CRITICAL | Some IOs are hanging |
+| HangingNFSFrontendIosDetected | CRITICAL | Some IOs are hanging |
 | ManualOverride | MAJOR | Service has been manually-overridden |
+| ObjectStorageAttachedToFilesyste | INFO | Object Storage attached to filesystem |
+| ObjectStorageFinishedDetachingdF | INFO | Object Storage finished detaching from filesystem |
+| ObjectStorageStartedDetachingdFr | INFO | Object Storage started detaching from filesystem |
+| RAIDDataBlockReadFailureInSnapha | MAJOR | Failed to read data block from RAID when dumping the snapshot manifest |
+| RAIDMDReadFailureInSnaphashDump | MAJOR | Failed to read metadata block from RAID when dumping the snapshot manifest |
 | SnapshotContentCopied | INFO | Snapshot content copied |
 | SnapshotCreated | INFO | Snapshot created |
 | SnapshotDeleted | INFO | Snapshot deleted |
@@ -136,6 +145,16 @@ description: >-
 | InterfaceGroupPortDeleted | INFO | Interface group port configuration change |
 | InterfaceGroupUpdated | INFO | Interface group configuration change |
 
+## KMS
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| KmsConfigurationAdded | INFO | KMS configuration configuration change |
+| KmsConfigurationRemoved | INFO | KMS configuration configuration change |
+| KmsConfigurationUpdated | INFO | KMS configuration configuration change |
+| KmsSanityError | MAJOR | KMS sanity error |
+| KmsSanityRestored | MAJOR | KMS sanity restored |
+
 ## Licensing
 
 | Type | Severity | Description |
@@ -164,7 +183,7 @@ description: >-
 | :--- | :--- | :--- |
 | DefaultDataNetworkingChange | INFO | Default data networking configuration changed |
 | HangingRPCs | MAJOR | RPCs are hanging too long |
-| HardwareFailure | CRITICAL | Hardware failure |
+| HugepagesAllocationFailure | MAJOR | Hugepages allocation failure |
 | IONodeCannotFetchConfig | WARNING | Node cannot join cluster for too long |
 | IPConflictDetected | MAJOR | IP conflict detected |
 | MgmtNodeCannotFetchConfig | WARNING | Node cannot join cluster for too long |
@@ -188,6 +207,7 @@ description: >-
 | :--- | :--- | :--- |
 | CrashReport | MAJOR | Node has crashed on the previous run |
 | FailedToLoadDriver | CRITICAL | Failed to load the wekafs driver |
+| GCCrashReport | MAJOR | Node has crashed in GC on the previous run |
 | NodeAssertionFailed | CRITICAL | Node assertion failed |
 | NodeExceptionExit | CRITICAL | Node exited with an exception |
 | NodeHung | MAJOR | Node hung for too long |
@@ -202,15 +222,25 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| ChecksumErrorInDownloadedObject | CRITICAL | Checksum error detected by COMPUTE node in a downloaded OBS data block |
 | ObjectStorageAdded | INFO | Object storage configuration change |
 | ObjectStorageDeleted | INFO | Object storage configuration change |
 | ObjectStorageIsFull | CRITICAL | Object storage is full |
-| ObjectStoragePossibleBottleneck | WARNING | Detected a possible bottleneck in Object Storage uploads. |
 | ObjectStorageStatusChanged | INFO | Object Storage status changed |
 | ObjectStorageUpdated | INFO | Object storage configuration change |
 | TieredFilesystemBreakingPolicy | MINOR | Breaking policy; too much disk pressure |
 
-## Raid
+## Organization
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| OrgCreated | INFO | Org Created |
+| OrgDeleted | INFO | Org Deleted |
+| OrgRenamed | INFO | Org Renamed |
+| OrgSsdQuotaChanged | INFO | Org SSD Quota Changed |
+| OrgTotalQuotaChanged | INFO | Org Total Quota Changed |
+
+## RAID
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -220,6 +250,7 @@ description: >-
 | DisksFailureDetected | MAJOR | Disk\(s\) failures detected |
 | DisksRecoveryDetected | INFO | Disk\(s\) quick recovery detected |
 | EnoughActiveFailureDomains | MINOR | Enough active failure domains |
+| FixedFalseFreeBlock | CRITICAL | Found and fixed a false free block |
 | HotSpareFailureDomainsUpdated | INFO | Hot spare failure domains updated |
 | QuorumGenerationNumberBug | WARNING | Bug in the advancement of the applied quorum generation number report from a bucket |
 | RaidScrubbingRateUpdated | INFO | RAID scrubber limit updated |
@@ -227,6 +258,17 @@ description: >-
 | SwitchPlacementHanging | MINOR | SwitchPlacement has no non-dirty chunks |
 | SwitchPlacementRetrying | MINOR | SwitchPlacement retrying |
 | TooFewActiveFailureDomains | CRITICAL | Too few active failure domains |
+
+## SMB
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| SmbAdJoined | INFO | Active Directory configuration change |
+| SmbAdLeft | INFO | Active Directory configuration change |
+| SmbClusterCreated | INFO | SMB cluster configuration change |
+| SmbClusterDestroyed | INFO | SMB cluster configuration change |
+| SmbShareAdded | INFO | Share configuration change |
+| SmbShareRemoved | INFO | Share configuration change |
 
 ## Statistics
 
@@ -242,6 +284,7 @@ description: >-
 | BlockTaskComplete | INFO | A bucket task completed successfully |
 | BucketsCreated | INFO | System has created buckets |
 | CapacitiesPullFailed | CRITICAL | Failed downloading capcities for synchronized snaps from previous versions |
+| ClusterwideTaskChanged | INFO | Clusterwide task changed |
 | HaveEnoughSSDCapacity | MINOR | Enough SSD capacity now exists for all provisioned file systems |
 | HugepagesAllocationRetries | WARNING | Hugepages allocation issues |
 | IOStarted | INFO | System has started |
