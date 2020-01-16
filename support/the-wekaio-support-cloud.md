@@ -31,5 +31,9 @@ For installation and maintenance of a private instance of Weka Home, contact the
 * CentOS 7.x, Amazon Linux 2 LTS
 * 4 GB of RAM
 * 20 GB of local storage available \(not including the OS/base install\)
-*  Version 3.6 or later of the WekaIO cluster software
+* Version 3.6 or later of the WekaIO cluster software
+* Open port 8000 from the WekaIO cluster to the private Weka Home instance
+* Root access on the instance for WekaIO Support Team to install, run and manage the private Weka Home instance
+
+
 
