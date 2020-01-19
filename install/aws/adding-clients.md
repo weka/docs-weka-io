@@ -46,7 +46,7 @@ The WekaIO software is installed under `/opt/weka`. If it is not possible to cha
 ### Step 2: Mounting Filesystems
 
 {% hint style="info" %}
-**Note:** The clients created using the Self-Service Portal are stateless. The mount command  automatically installs the software version, and there is no need to join the client to the cluster.
+**Note:** The clients created using the Self-Service Portal are stateless, and along with the mount command, the software version is automatically installed and it is not necessary to add the client to the cluster.
 {% endhint %}
 
 To mount a filesystem in this manner, first install the WekaIO agent from one of the backend instances and then mount the filesystem. For example:

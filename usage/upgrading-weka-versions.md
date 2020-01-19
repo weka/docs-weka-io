@@ -19,7 +19,7 @@ The WekaIO upgrade process supports upgrading to both higher minor versions and 
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
-* To upgrade to WekaIO software version 3.6.x, go through version 3.5.2 or above
+* To upgrade to WekaIO software version 3.6.x, go through version 3.5.3 or above
 * To upgrade to WekaIO software version 3.5.x, go through version 3.4.6 or above.
 * To upgrade to WekaIO software version 3.4.x, go through version 3.3.1 or above.
 * To upgrade to WekaIO software version 3.3.x, go through version 3.2.1 or above.
