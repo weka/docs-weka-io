@@ -91,10 +91,6 @@ fio --name=$BENCHMARK_ID --clocksource=gettimeofday --group_reporting \
 
 #### Example of Test Output
 
-{% hint style="info" %}
-**Note:** Different hardware and networking configurations may yield different latency results, which can be as low as 150 microseconds for 100 Gbit networking and NVMe drives.
-{% endhint %}
-
 ![](../.gitbook/assets/bandwidth-reads.jpg)
 
 In this test output example, results show a bandwidth of 2.8 Gigabytes/second.
@@ -161,12 +157,16 @@ fio --name=$BENCHMARK_ID --clocksource=gettimeofday --group_reporting \
 
 #### Example of Test Output
 
+{% hint style="info" %}
+The following is an example of the test output for an AWS WekaIO cluster with 6 instances, type i3.16xlarge.
+{% endhint %}
+
 ![](../.gitbook/assets/4k-latency-reads.jpg)
 
 In this test output example, results show an average latency of 224 microseconds, where 99.5% of the writes terminated in 338 microseconds or less.
 
 {% hint style="info" %}
-The following is an example of the test output for an AWS WekaIO cluster with 6 instances, type i3.16xlarge.
+**Note:** Different hardware and networking configurations may yield different latency results, which can be as low as 150 microseconds for 100 Gbit networking and NVMe drives.
 {% endhint %}
 
 ### Testing Write Throughput
