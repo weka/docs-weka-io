@@ -317,15 +317,6 @@ This stage in the installation process is used to configure the amount of CPU re
 | `drives-dedicated-cores` | Number | Number of physical cores to be dedicated to Drive/SSD processes | The total of fe\_cores and be\_cores must be less than cores above | No | Typically 1 core per drive or 1/2 core per drive/SSD |
 | `cores_ids` | Comma-separated list Numbers | Physical Core numbers | Specification of which cores to use. | No | Select cores automatically |
 
-{% hint style="success" %}
-**Note:** `core_ids` are distributed in the following order: first, all the FrontEnd processes, second all the Compute processes, and last all the Drive processes. By ordering the `core_ids` list, it is possible to determine the exact assignment of cores to processes \(e.g., for taking into account NUMA distribution\).
-
-**For example:** If we have 1 FrontEnd, 2 Compute, and 3 Drive, setting `core_ids` to `1, 2, 4, 3, 5, 6` will put the FrontEnd on core 1, Compute on cores 2 and 4, and Drive on cores 3, 5 and 6. Assuming cores 1, 2, 3 are at NUMA 0 and cores 4, 5, 6 are at NUMA 1, we will have the following distribution of processes: 
-
-* NUMA 0: FrontEnd, Compute, Drive
-* NUMA 1: Compute, Drive, Drive
-{% endhint %}
-
 {% hint style="info" %}
 **Note:** Performance can be optimized by assigning different functions to the various WekaIO cores. If necessary, contact the WekaIO Support Team for more information.
 {% endhint %}
