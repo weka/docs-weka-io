@@ -8,17 +8,23 @@ description: Welcome to the WekaIO documentation portal.
 
 This portal contains all the documentation necessary for understanding and working with the WekaIO system. It covers the following subjects:
 
-**WekaIO System Overview:** A review of the primary components, principles and entities that form every WekaIO system.
+**WekaIO System Overview:** A review of the primary components, principles, and entities that form every WekaIO system.
 
-**WekaIO System Planning, Installation and Resource Management:** A detailed description of bare metal and AWS installation of the WekaIO system to the point that it is ready for operation.
+**WekaIO System Planning, Installation, and Resource Management:** A detailed description of bare metal and AWS installation of the WekaIO system, up to a point it is ready for operation.
 
-**Filesystems in the WekaIO System:** A review of the role and management of filesystems, object stores and filesystem groups in WekaIO system configurations.
+**Getting Started with WekaIO:** A short guide of how to use the WekaIO system, configure a WekaFS filesystem and conducting tests to understand the system is configured correctly.
 
-**WekaIO System Operation Guide:** Description of various operations in the WekaIO system, including events, the use of statistics, user management and testing WekaIO system performance.
+**Performance:** A description and results of the FIO performance tests on WekaFS.
+
+**WekaFS Filesystems in the WekaIO System:** A review of the role and management of filesystems, object stores**,**  filesystem groups, and key-management systems in WekaIO system configurations.
+
+**Additional Protocols:** A review of additional protocols support as NFS and SMB for accessing data stored in a WekaFS filesystem.
+
+**WekaIO System Operation Guide:** Description of various operations in the WekaIO system, including events, the use of statistics, user management, upgrading, etc.
 
 **WekaIO System Billing and Licensing:** Presentation of the alternatives for WekaIO system licensing and billing.
 
-**WekaIO System Upgrade Guides:** Specific guidelines relevant for upgrading from one WekaIO software version to another.
+**WekaIO Support:** Provides information on getting support for the WekaIO System.
 
 ## Help Us to Help You
 
