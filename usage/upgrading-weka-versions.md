@@ -19,10 +19,10 @@ The WekaIO upgrade process supports upgrading to both higher minor versions and 
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
+* To upgrade to WekaIO software version 3.6.x, go through version 3.5.2 or above
 * To upgrade to WekaIO software version 3.5.x, go through version 3.4.6 or above.
 * To upgrade to WekaIO software version 3.4.x, go through version 3.3.1 or above.
 * To upgrade to WekaIO software version 3.3.x, go through version 3.2.1 or above.
-* To upgrade to WekaIO software version 3.2.x, go through version 3.1.9.4 or above.
 
 For further information, contact the WekaIO Support Team.
 
@@ -85,7 +85,7 @@ WekaIO v3.4.6 (CLI build 3.6.106)
 ...`
 {% endhint %}
 
-## Performance Improvements with V3.5
+## Performance Improvements with V3.5 and Above
 
 WekaIO version 3.5 provides performance improvements when working with object stores. To reap the benefits of improved object store performance and ensure the conversion of the internal WekaIO data structure, the following is recommended for each tiered filesystem when upgrading from version 3.4 to version 3.5:
 

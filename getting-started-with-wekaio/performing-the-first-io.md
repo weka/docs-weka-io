@@ -4,17 +4,19 @@ description: >-
   IO in a WekaFS filesystem.
 ---
 
-# Performing the First IO
+# Serving IOs with WekaFS
 
 ## Overview
 
 Now that the system is installed and you've become familiar with the CLI/GUI, you can connect to one of the hosts and try it out. 
 
-This page will guide you through the steps needed for performing IOs using a WekaFS filesystem:
+This page will guide you through:
 
-* Creating a filesystem
-* Mounting a filesystem
-* Writing to a filesystem
+1. The steps needed for performing IOs using a WekaFS filesystem \(this is a sanity test for the configuration\):
+   * [Creating a filesystem](performing-the-first-io.md#creating-the-first-filesystem)
+   * [Mounting a filesystem](performing-the-first-io.md#mounting-the-first-filesystem)
+   * [Writing to a filesystem](performing-the-first-io.md#writing-to-the-filesystem)
+2. [Conducting performance testing](performing-the-first-io.md#validating-configuration-achieving-the-expected-performance) to make sure both the WekaIO cluster and the IT environment are best configured to reap the benefits of WekaFS.
 
 ## Creating the First Filesystem
 
@@ -36,14 +38,15 @@ Now, you can create a filesystem within that group:
 
 ```
 # to create a new filesystem
-$ weka fs create new_fs my_fs_group 1GiB
+$ weka fs create new_fs my_fs_group 1TiB
 FSId: 0
 
 # to view existing filesystems details in the WekaIO system
 $ weka fs
-Filesystem Name | Group       | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Auth Required | Object Storages
-----------------+-------------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+---------------+----------------
-new_fs          | my_fs_group | 0 B             | 4.09 KB         | 4.09 KB  | 1.07 GB  | 268.02 MB            | 1.07 GB       | 0 B               | 4.09 KB    | 1.07 GB    | 1.07 GB         | 21556     | READY  | False     | False         |
+Filesystem ID | Filesystem Name | Group       | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
+--------------+-----------------+-------------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------
+0             | new_fs          | my_fs_group | 0 B             | 4.09 KB         | 4.09 KB  | 1.09 TB  | 274.87 GB            | 1.09 TB       | 0 B               | 4.09 KB    | 1.09 TB    | 1.09 TB         | 22107463  | READY  | False     |                 | False
+
 ```
 
 {% hint style="info" %}
@@ -60,11 +63,10 @@ $ weka fs create new_fs default 1GiB
  
 # to view existing filesystems details in the WekaIO system
 $ weka fs
-Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted
-----------------+---------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+----------
-default         | default | 0 B             | 4.09 KB         | 4.09 KB  | 1.07 GB  | 268.43 MB            | 1.07 GB       | 0 B               | 4.09 KB    | 1.07 GB    | 1.07 GB         | 21589     | READY  | False
-new_fs          | default | 0 B             | 4.09 KB         | 4.09 KB  | 1.07 GB  | 268.43 MB            | 1.07 GB       | 0 B               | 4.09 KB    | 1.07 GB    | 1.07 GB         | 21589     | READY  | False
-
+Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
+--------------+-----------------+---------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------
+0             | default         | default | 0 B             | 4.09 KB         | 4.09 KB  | 1.07 GB  | 268.43 MB            | 1.07 GB       | 0 B               | 4.09 KB    | 1.07 GB    | 1.07 GB         | 21589     | READY  | False     |                 | False
+1             | new_fs          | default | 0 B             | 4.09 KB         | 4.09 KB  | 1.09 TB  | 274.87 GB            | 1.09 TB       | 0 B               | 4.09 KB    | 1.09 TB    | 1.09 TB         | 22107463  | READY  | False     |                 | False
 ```
 {% endhint %}
 
@@ -115,10 +117,22 @@ total 40000
 
 # to check the WekaFS filesystems via the CLI shows the used SSD capacity:
 $ weka fs
-Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted
-----------------+---------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+----------
-default         | default | 40.95 MB        | 180.22 KB       | 41.14 MB | 1.03 GB  | 268.43 MB            | 1.07 GB       | 40.95 MB          | 41.14 MB   | 1.03 GB    | 1.07 GB         | 21589     | READY  | False
+Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
+--------------+-----------------+---------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------
+0             | default         | default | 40.95 MB        | 180.22 KB       | 41.14 MB | 1.03 GB  | 268.43 MB            | 1.07 GB       | 40.95 MB          | 41.14 MB   | 1.03 GB    | 1.07 GB         | 21589     | READY  | False     |                 | False
 ```
 
-For more complex IO patterns and benchmark tests via the FIO utility, refer to [Testing WekaIO Performance](../testing-and-troubleshooting/testing-weka-system-performance.md).
+This has completed the sanity check that the WekaIO cluster is configured and IOs can be performed to it.
+
+## Validating Configuration - Achieving the Expected Performance
+
+To make sure that the WekaIO cluster and the IT environment are well configured, a more complex IO patterns and benchmark tests should be conducted using the FIO utility. 
+
+Although results can vary using different hosts and networking, it is not expected to be very different than what we and many other customers achieved. Properly configured WekaIO cluster and IT environment should yield similar results as described in [Testing WekaIO Performance](../testing-and-troubleshooting/testing-weka-system-performance.md).
+
+{% hint style="info" %}
+**Note:** The numbers achieved in the benchmark tests, as described in [Testing WekaIO Performance](../testing-and-troubleshooting/testing-weka-system-performance.md) are not "hero numbers," they are real numbers that should be achieved if the WekaIO cluster and IT environment are properly configured. If the numbers achieved in your environment significantly vary from those, please contact the WekaIO Sales or Support Team before putting any workload on the WekaIO cluster.
+{% endhint %}
+
+{% page-ref page="../testing-and-troubleshooting/testing-weka-system-performance.md" %}
 
