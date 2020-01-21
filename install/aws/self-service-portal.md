@@ -47,7 +47,7 @@ Once everything is ready to deploy the cluster, click the Deploy to AWS button. 
 
 After clicking the Deploy to AWS button, the AWS CloudFormation screen is displayed, requiring the creation of stacks. 
 
-![AWS Create Stack Screen](../../.gitbook/assets/3.6-cf-stack.png)
+![AWS Create Stack Screen](../../.gitbook/assets/cf-stack-3.6.png)
 
 In the Create Stack screen, define the parameters which are specific to your AWS account:
 
@@ -83,11 +83,6 @@ Define the parameters for WekaIO cluster configuration:
       </td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>HTTP/HTTPS Proxy</code>
-      </td>
-      <td style="text-align:left">Using HTTP/HTTPS proxy for the instances as an environment variables.</td>
-    </tr>
-    <tr>
       <td style="text-align:left"><code>API Token</code>
       </td>
       <td style="text-align:left">The API token for WekaIO&apos;s distribution site. This can be obtained
@@ -110,7 +105,7 @@ Define the parameters for WekaIO cluster configuration:
 | `Tiering SSD Percent` | Sets how much of the filesystem capacity \(in percent\) should reside on SSD. This parameter is applicable only if `New S3 Bucket` or `Existing S3 Bucket` parameters have been defined. |
 
 {% hint style="info" %}
-**Important Note Concerning Internet Connectivity:** WekaIO deployment requires ****internet connectivity. Ensure that there is either a NAT, proxy or public subnet, and configure the stack parameters accordingly. 
+**Important Note Concerning Internet Connectivity:** WekaIO deployment requires ****internet connectivity. Ensure that there is either a NAT or public subnet, and configure the stack parameters accordingly. 
 
 If using a NAT, make sure not to set the load balancer type as`Internet Facing`.
 

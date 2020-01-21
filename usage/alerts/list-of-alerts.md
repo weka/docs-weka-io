@@ -13,7 +13,7 @@ description: >-
 | BackendNumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance.  | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the backend host. |
 | BucketHasNoQuorum | Too many compute nodes are down, causing the bucket compute resource to be unavailable. | Check that the compute nodes and their hosts are up and running and fully connected; contact the WekaIO Support Team if issue is not resolved. |
 | BucketUnresponsive | A compute resource has failed, causing system unavailability.  | Check that the compute nodes and their hosts are up and running and fully connected; contact the WekaIO Support Team if issue is not resolved. |
-| ChokingDetected |  High congestion level detected in the cluster. | For more information, refer  to [System Congestion](../../testing-and-troubleshooting/system-congestion.md). |
+| ChokingDetected |  High congestion level detected in the cluster. | For more information, refer  to [System Congestion](../system-congestion.md). |
 | ClientNumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance.  | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the client host. |
 | ClockSkew | The clock of a host is skewed in relation to the cluster leader, with a time difference more than the permitted maximum of 30 seconds. | Make sure NTP is configured correctly on the hosts and that their dates are synchronized. |
 | CloudHealth | A host cannot upload events to the WekaIO cloud.  | Check the host has Internet connectivity and is connected to the WekaIO cloud as explained in [WekaIO Support Cloud section](../../support/the-wekaio-support-cloud.md). |

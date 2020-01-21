@@ -56,10 +56,10 @@
 
 ## Additional Protocols
 
-* [NFS Support](fs/nfs-support.md)
-* [SMB Support](smb-support/overview.md)
-  * [SMB Management Using CLIs](smb-support/smb-management-using-the-cli.md)
-  * [SMB Management Using the GUI](smb-support/smb-management-using-the-gui.md)
+* [NFS Support](additional-protocols/nfs-support.md)
+* [SMB Support](additional-protocols/smb-support/README.md)
+  * [SMB Management Using CLIs](additional-protocols/smb-support/smb-management-using-the-cli.md)
+  * [SMB Management Using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
 
 ## Operation Guide <a id="usage"></a>
 
@@ -69,7 +69,7 @@
   * [List of Events](usage/events/list-of-events.md)
 * [Statistics](usage/statistics/README.md)
   * [List of Statistics](usage/statistics/list-of-statistics.md)
-* [System Congestion](testing-and-troubleshooting/system-congestion.md)
+* [System Congestion](usage/system-congestion.md)
 * [User Management](usage/user-management.md)
 * [Organizations](usage/organizations.md)
 * [Expanding & Shrinking Cluster Resources](usage/expanding-and-shrinking-cluster-resources/README.md)

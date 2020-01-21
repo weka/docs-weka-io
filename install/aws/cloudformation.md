@@ -173,11 +173,6 @@ The CloudFormation template has the following parameters:
       </td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>HttpProxy</code>
-      </td>
-      <td style="text-align:left">Using HTTP/HTTPS proxy for the instances as an environment variable.</td>
-    </tr>
-    <tr>
       <td style="text-align:left"><code>DistToken</code>
       </td>
       <td style="text-align:left">API token for WekaIO&apos;s distribution site. This can be obtained at
@@ -214,7 +209,7 @@ The CloudFormation template has the following parameters:
     </tr>
   </tbody>
 </table>{% hint style="info" %}
-**Note:** It is possible using a NAT \(with `LoadBalancerType` other than `Internet Facing` or a proxy by setting the `HttpProxy` parameter. Otherwise,`SubnetId` must be a public subnet or a subnet that can be routed to the Internet, since deployment is based on downloading the WekaIO system and various packages from the Internet. 
+**Note:** It is possible using a NAT \(with `LoadBalancerType` other than `Internet Facing`\) parameter. Otherwise,`SubnetId` must be a public subnet or a subnet that can be routed to the Internet, since deployment is based on downloading the WekaIO system and various packages from the Internet. 
 {% endhint %}
 
 ## IAM Role Created in the Template

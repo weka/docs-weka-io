@@ -4,7 +4,7 @@ description: >-
   Windows clients.
 ---
 
-# Overview
+# SMB Support
 
 ## About SMB
 

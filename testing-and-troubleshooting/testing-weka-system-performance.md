@@ -17,7 +17,7 @@ There are 3 main performance metrics when measuring a storage system performance
 
 Each of these performance metrics applies to read operations, write operations or a mixture of read and write operations.
 
-‌When measuring the WekaIO system performance, different [mount modes](../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration \(using either space networking or kernel UDP\) also have a significant effect on performance.
+‌When measuring the WekaIO system performance, different [mount modes](../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration \(using either user-space DPDK networking or kernel UDP\) also have a significant effect on performance.
 
 {% hint style="info" %}
 **Note:** All performance tests listed here are generic and not specific to the WekaIO system. They can be used to compare the WekaIO storage system to other storage systems or to a local storage device.
@@ -32,6 +32,10 @@ Each of these performance metrics applies to read operations, write operations o
 The [FIO Utility](https://linux.die.net/man/1/fio) is a generic open source storage performance testing tool which can be defined as described [here](https://github.com/axboe/fio). In this documentation, the usage of FIO version 3.5 is assumed.
 
 ## WekaIO Client Performance Testing
+
+{% hint style="info" %}
+**Note:** All performance tests and numbers listed here have been conducted using an AWS WekaIO cluster with six [i3.16xlarge ](https://aws.amazon.com/ec2/instance-types/i3/)instances, a single client, and using DPDK networking.
+{% endhint %}
 
 ### Laying Out Files and File Structure for Testing
 
@@ -69,6 +73,10 @@ fio --name=$BENCHMARK_ID --clocksource=gettimeofday --group_reporting \
 **Note:** If the client uses a 100 Gbps NIC or above, mounting the WekaIO filesystem with more than one core is required to maximize client throughput.
 {% endhint %}
 
+{% hint style="info" %}
+**Note:** To maximize system throughput, multiple clients are required in most cases..
+{% endhint %}
+
 #### Preparation
 
 ```text
@@ -91,10 +99,6 @@ fio --name=$BENCHMARK_ID --clocksource=gettimeofday --group_reporting \
 
 #### Example of Test Output
 
-{% hint style="info" %}
-**Note:** Different hardware and networking configurations may yield different latency results, which can be as low as 150 microseconds for 100 Gbit networking and NVMe drives.
-{% endhint %}
-
 ![](../.gitbook/assets/bandwidth-reads.jpg)
 
 In this test output example, results show a bandwidth of 2.8 Gigabytes/second.
@@ -116,10 +120,6 @@ export JOBS=$((`lscpu | grep ^"CPU(s)" | awk '{print $2}'` - 2))
 ```
 
 #### Running the Benchmark
-
-{% hint style="info" %}
-**Note:** To maximize system throughput, multiple clients are required in most cases..
-{% endhint %}
 
 ```text
 fio --name=$BENCHMARK_ID --clocksource=gettimeofday --group_reporting \
@@ -166,7 +166,7 @@ fio --name=$BENCHMARK_ID --clocksource=gettimeofday --group_reporting \
 In this test output example, results show an average latency of 224 microseconds, where 99.5% of the writes terminated in 338 microseconds or less.
 
 {% hint style="info" %}
-The following is an example of the test output for an AWS WekaIO cluster with 6 instances, type i3.16xlarge.
+**Note:** Different hardware and networking configurations may yield different latency results, which can be as low as 150 microseconds for 100 Gbit networking and NVMe drives.
 {% endhint %}
 
 ### Testing Write Throughput
@@ -177,6 +177,10 @@ This test measures the client throughput for large \(1 MB\) writes. The scripts 
 
 {% hint style="info" %}
 **Note:** If the client uses a 100 Gbps NIC or above, mounting the WekaIO filesystem with more than one core is required to maximize client throughput.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** To maximize system throughput, multiple clients are required in most cases.
 {% endhint %}
 
 #### Preparation
@@ -210,10 +214,6 @@ In this test output example, results show a bandwidth of 2.8 Gigabytes/second.
 #### Description
 
 This test measures the ability of the client to deliver concurrent 4 KB reads. The following scripts try to maximize the system read IOPS from a single client. The test utilizes multiple threads, each one performing 4 KB reads.
-
-{% hint style="info" %}
-**Note:** To maximize system throughput, multiple clients are required in most cases.
-{% endhint %}
 
 #### Preparation
 
@@ -268,10 +268,6 @@ fio --name=$BENCHMARK_ID --clocksource=gettimeofday --group_reporting \
 ```
 
 #### Example of Test Output
-
-{% hint style="info" %}
-The following is an example of the test output for an AWS WekaIO cluster with 6 instances, type i3.16xlarge.
-{% endhint %}
 
 ![](../.gitbook/assets/4k-latency-write.jpg)
 
