@@ -202,7 +202,7 @@ Refer to [Mount Command Options](../fs/mounting-filesystems.md#mount-command-opt
 Once a user is authenticated, the mount command uses the default location of the authentication token. It is possible to change the token location/name and pass it as a parameter in the mount command using the`token` mount option, or the`WEKA_TOKEN` environment variable.
 
 ```text
-mount -t wekafs backend-host-0/my_fs /mnt/weka/my_fs -o token=<path>
+mount -t wekafs backend-host-0/my_fs /mnt/weka/my_fs -o auth_token=<path>
 ```
 
 This is useful when mounting several filesystems for several users/organizations on the same host or when using Autofs.

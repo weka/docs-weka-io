@@ -130,10 +130,10 @@ Use the following command line to delete a filesystem:
 | `purge-from-obs` | Boolean | For a tiered filesystem, if set, all filesystem data is deleted from the object store bucket. |  | No | False |
 
 {% hint style="danger" %}
-**Note:** Using `purge-from-obs` will remove all data from the object store. This includes any backup data or snapshots created from this filesystem \(if this filesystem has been downloaded from a snapshot of a different filesystem, it will leave the original snapshot data intact\). 
+**Note:** Using `purge-from-obs` will remove all data from the object store. This includes any backup data or snapshots created from this filesystem \(if a snapshot has been downloaded from a different filesystem, it will leave its data intact\). 
 
-* If any of the removed snapshots have been \(or are\) downloaded and used by a different filesystem, that filesystem will stop functioning correctly, data might be unavailable and errors might occur when accessing the data.
+* If any of these snapshots have been \(or are\) downloaded and used by a different filesystem, the filesystem will stop functioning correctly, data might be unavailable and errors might occur when accessing the data.
 
-It is possible to either un-tier or migrate such a filesystem to a different object store bucket before deleting the snapshots it has downloaded.
+It is possible to either un-tier or migrate the filesystem to a different object store bucket before deleting the snapshots it has downloaded.
 {% endhint %}
 
