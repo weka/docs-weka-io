@@ -334,7 +334,7 @@ This stage in the installation process is used to configure the amount of CPU re
 
 **Command:** `cluster host memory`
 
-As defined in the memory requirements, the fixed memory per host and the per core memory are automatically computed by the WekaIO system. For the capacity-oriented memory, a default of 1.4 GB per host is allocated. If capacity requirements mandate more memory per host, the following command should be used: 
+As defined in the memory requirements, the fixed memory per host and the per core memory are automatically computed by the WekaIO system. For the capacity-oriented memory, a default of 1.4 GB per node is allocated. If capacity requirements mandate more memory, the following command should be used:
 
 `weka cluster host memory <host-id> <capacity-memory>`
 
@@ -343,14 +343,18 @@ As defined in the memory requirements, the fixed memory per host and the per cor
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which the memory configuration has to be defined | Must be a valid host identifier | Yes |  |
-| `capacity-memory` | Number | Required memory in bytes |  | Yes |  |
+| `capacity-memory` | Number | Memory dedicated to weka in bytes. It is possible to set the format in other units, e.g.: 1MB, 1GB, 1MiB, 1GiB. | Setting to 0 determines this value automatically | Yes |  |
 
 {% hint style="info" %}
 **Note:** This command is for initialization phase only.  To adjust the memory of a running cluster, contact the WekaIO Support Team.
 {% endhint %}
 
 {% hint style="info" %}
-This commands sets only the capacity portion of the memory requirements. The per-host and per-core requirements are set automatically by Weka
+**Note:** This command sets only the capacity portion of the memory requirements. The per-host and per-core requirements are set automatically by Weka
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** This command is given the memory per-host and will later be distributed by the system per-node.
 {% endhint %}
 
 ## Stage 10: Configuration of Failure Domains \(optional\)
