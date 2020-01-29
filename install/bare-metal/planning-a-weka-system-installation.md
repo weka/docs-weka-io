@@ -92,6 +92,23 @@ The WekaIO software on a client host requires 5 GB of memory.
 
 ## CPU  Resource Planning
 
+### CPU Allocation strategy
+
+The WekaIO system implements a Non-Uniform Memory Access \(NUMA\) aware CPU allocation strategy to maximize the overall performance of the system. It takes into account the NUMA region of data plane network interface\(s\).
+
+In non-HA deployments, the strategy tries to allocate as many CPU cores as possible on the same NUMA node where the data plane interface is connected. If the Weka configuration requires more CPU cores than are available in the same NUMA region, cores from another region will be allocated.
+
+In HA deployments, there are two possible scenarios: 
+
+* When all data plane network interfaces are in the same NUMA region, the strategy is similar to the non-HA deployment: allocate as many cores from the same NUMA region where the ports are connected, before moving to the next
+* When data plane network interfaces are divided between two or more regions, the strategy allocates as many cores as possible in the lowest numbered NUMA region where a data interface\(s\) is connected \(usually NUMA region 0\), before moving to the next one. 
+
+The following should be noted with regards to the CPU allocation strategy:
+
+* The code allocates CPU resources by assigning individual cores to tasks in a cgroup
+* Cores in a WekaIO cgroup won't be available to run any other user processes
+* On systems with Intel hyperthreading enabled, the corresponding sibling cores will be placed into a cgroup along with the physical ones.
+
 ### Backend Hosts
 
 The number of physical cores dedicated to the WekaIO software should be planned according to the following guidelines:
@@ -102,10 +119,10 @@ The number of physical cores dedicated to the WekaIO software should be planned 
 
 In general, it is recommended to allocate as many cores as possible to the WekaIO system, with the following limitations:
 
-1. There has to be one core for the operation system.
-2. The running of other applications on the same host \(converged WekaIO system deployment\) is supported. However, this is not covered in this documentation. For further information, contact the WekaIO Support Team.
-3. There has to be sufficient memory, as described above.
-4. No more than 20 physical cores can be assigned to WekaIO system processes.
+* There has to be one core for the operation system.
+* The running of other applications on the same host \(converged WekaIO system deployment\) is supported. However, this is not covered in this documentation. For further information, contact the WekaIO Support Team.
+* There has to be sufficient memory, as described above.
+* No more than 20 physical cores can be assigned to WekaIO system processes.
 
 ### Client Hosts
 
