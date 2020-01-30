@@ -401,7 +401,7 @@ Reboot the machine for the `systemd` unit to be created and marked correctly.
 The filesystem should now be mounted at boot time.
 
 {% hint style="danger" %}
-**Note:** Do not configure this entry for a mounted filesystem before un-mounting it \(`umount`\), as the `systemd` needs to mark the filesystem as a network filesystem \(occurs as part of the `reboot`\). Trying to reboot on a mounted filesystem when first configuring its `fstab` configuration might yield a failure to unmount the filesystem and leave the system hanged.
+**Note:** Do not configure this entry for a mounted filesystem before un-mounting it \(`umount`\), as the `systemd` needs to mark the filesystem as a network filesystem \(occurs as part of the `reboot`\). Trying to reboot a host when there is a mounted WekaFS filesystem when setting its `fstab` configuration might yield a failure to unmount the filesystem and leave the system hanged.
 {% endhint %}
 
 ## Mounting Filesystems Using autofs
