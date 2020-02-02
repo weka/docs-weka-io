@@ -6,19 +6,40 @@ description: This page describes how to add clients to a bare metal cluster.
 
 ## About Client Hosts
 
-Client hosts are used to run applications which need to access the WekaIO filesystems. They are similar to backend hosts, except that they do not contribute CPUs or drives to the cluster. Consequently, they are only connected to the cluster to use its filesystems.
+Client hosts are used to run applications which need to access the WekaIO filesystems. They do not contribute CPUs or drives to the cluster, and only connect to the cluster to use its filesystems.
+
+## Adding \(Stateless\) Clients 
+
+To use the WekaIO filesystems from a client host, all that is needed is to call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
+
+To mount a filesystem in this manner, first install the WekaIO agent from one of the backend instances and then mount the filesystem. For example:
+
+```
+# Agent Installation (one time)
+curl http://Backend-1:14000/dist/v1/install | sh
+
+# Creating a mount point (one time)
+mkdir -p /mnt/weka
+
+# Mounting a filesystem
+mount -t wekafs Backend-1/my_fs /mnt/weka
+```
+
+For the first mount, this will install the WekaIO software and automatically configure the client. For more information on mount and configuration options, refer to [Mounting Filesystems Using the Stateless Clients Feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
+
+It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information refer to [Mounting Filesystems Using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mounting Filesystems Using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs).
 
 {% hint style="info" %}
 **Note:** Clients can be deployed on [diskless-servers](https://en.wikipedia.org/wiki/Diskless_node). They can use RAM for WekaIO client software and NFS mount for the traces. For more information, contact the WekaIO Support Team.
 {% endhint %}
 
-To add client hosts to the WekaIO system configuration, use the stages described below.
+## Adding Clients Which Are Always Part of the Cluster
 
 {% hint style="info" %}
-**Note:** The steps described below represent the traditional approach for mounting a filesystem. However, filesystems can also be mounted using the Stateless Clients feature, which simplifies and improves the management of clients in the cluster and eliminates the process described below. For more information, refer to [Mounting Filesystems Using the Stateless Clients Feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
+**Note:** It is possible to add instances which do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
 {% endhint %}
 
-## Stage 1: Install the Software
+### Stage 1: Install the Software
 
 Verify that the WekaIO software is installed on the client host according to the installation instructions. For further information, see [Obtaining the WekaIO Install File](obtaining-the-weka-install-file.md) and [Stage 1 in WekaIO System Installation Process.](using-cli.md#stage-1-installation-of-the-wekaio-software-on-each-host)
 
@@ -26,7 +47,7 @@ Verify that the WekaIO software is installed on the client host according to the
 **Note:** All hosts, clients and backends in a WekaIO system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
 {% endhint %}
 
-## Stage 2: Joining the Cluster
+### Stage 2: Joining the Cluster
 
 **Command:** `cluster host add`
 
@@ -47,7 +68,7 @@ weka -H <backend-hostname> cluster host add <client-hostname>
 **Note:** On completion of this stage, the host-ID of the newly added host will be received. Make a note of it for the next steps.
 {% endhint %}
 
-## Stage 3: Configuring the Host as Client
+### Stage 3: Configuring the Host as Client
 
 **Command:** `weka cluster host cores`
 
@@ -63,7 +84,7 @@ weka cluster host cores <host-id> 1 --frontend-dedicated-cores=1
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
 
-## Stage 4: Configuring Client Networking
+### Stage 4: Configuring Client Networking
 
 **Command:** `weka cluster host net add`
 
@@ -156,7 +177,7 @@ If a high-performance client is required and the appropriate network NIC is avai
 **Note:**  InfiniBand clients can only join a cluster with InfiniBand backends. It is not possible to mix InfiniBand and Ethernet clients/backends.
 {% endhint %}
 
-## Stage 5: Activating the Host
+### Stage 5: Activating the Host
 
 **Command:**  `weka cluster host activate`
 
