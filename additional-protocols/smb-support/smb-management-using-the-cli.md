@@ -118,7 +118,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The IPs **MUST NOT** be in use by any other application/host in the subnet, including WekaIO system management nodes, WekaIO system IO nodes, or WekaIO system NFS floating IPs. In AWS environments, this is not supported and these IPs should not be provided**.**
+**Note:** The IPs must be configured but **MUST NOT** be in use by any other application/host in the subnet, including WekaIO system management nodes, WekaIO system IO nodes, or WekaIO system NFS floating IPs. In AWS environments, this is not supported and these IPs should not be provided**.**
 {% endhint %}
 
 {% hint style="info" %}
