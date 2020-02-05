@@ -39,7 +39,7 @@ description: >-
 
 * 2.6.32
 * 3.10
-* 4.4 - 4.15
+* 4.4 - 4.18
 
 ## WekaIO Install Directory
 
