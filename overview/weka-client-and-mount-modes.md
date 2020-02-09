@@ -51,11 +51,9 @@ This mechanism ensures coherence, providing the WekaIO system with full page cac
 
 ## Coherent Mount Mode
 
-When mounting in the coherent mode, the page cache uses write cache in the write through mode, so any write is acknowledged to the customer application only after being safely stored on resilient storage. This applies to both data and metadata writes. Consequently, only read operations are accelerated by the page cache.
+When mounting in the coherent mode, the page cache uses read/write cache in the read/write through mode, so any read is directed to the resilient storage and any write is acknowledged to the customer application only after being safely stored on resilient storage. This applies to both data and metadata. 
 
 This mode ensures the strong consistency of data and metadata. Any data or metadata change will always be acknowledged to the application only after being safely stored on resilient storage. This enables sharing of data and metadata between hosts concurrently accessing the same filesystem.
-
-In the coherent mode, file data access still uses the performance enhancements of the local system page cache, as in the[ read cache mode](weka-client-and-mount-modes.md#read-cache-mount-mode). Only the handling of metadata is different between the coherent mount mode and the read cache mount mode.
 
 ## Write Cache Mount Mode \(Default\)
 
