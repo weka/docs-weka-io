@@ -131,8 +131,8 @@ weka nfs interface-group port delete <name> <host-id> <port>`
 | `port` | String | Port's device, e.g., eth1 | Valid device | Yes |  |
 
 {% hint style="info" %}
-\*It is possible to obtain host IDs using the following command:  
-`weka cluster host -H=<hostname>`
+\*It is possible to obtain a list of host IDs using the following command:  
+`weka cluster host`
 {% endhint %}
 
 ### **Setting Interface Group IPs**
