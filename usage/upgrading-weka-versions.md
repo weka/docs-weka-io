@@ -29,16 +29,15 @@ For further information, contact the WekaIO Support Team.
 Download the new release on one of the backend hosts, as follows:
 
 1. SSH into one of the backend hosts of the cluster.
-2. Go to [https://get.weka.io](https://get.weka.io) and navigate to the release to be downloaded.
-3. Run the `curl`/`wget` command line on the backend host.
-4. Untar the downloaded package.
-5. Run the`install.sh` script of the new release.
+2. Run `weka version get <new-version>` where `<new-version>` is the name of the new version \(as in get.weka.io, e.g.,`3.6.1`\).
+
+For upgrading in environments where there is no connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs, please contact the WekaIO Support Team.
 
 ## Preparing the Client Hosts for Upgrade \(Optional\)
 
-Once the WekaIO cluster upgrade is called, it will first prepare all the connected clients to the upgrade, which includes downloading the new version and get it ready to be applied. Only then, it will start the upgrade process of the cluster. This would reduce to a minimum any downtime that the client can experience.
+Once the WekaIO cluster upgrade is called, it will first prepare all the connected client hosts to the upgrade, which includes downloading the new version and get it ready to be applied. Only then, it will start the upgrade process of the cluster. This reduces to a minimum any downtime that the client host can experience from the WekaIO cluster.
 
-It is possible to prepare ahead for this, separated from the cluster upgrade \(e.g., to reduce the total upgrade window\), by using the following CLI commands for each client host:
+It is possible to prepare for this in advance, separated from the cluster upgrade \(e.g., to shorten the total upgrade window\), by using the following CLI commands for each client host:
 
 ```text
 # downloading the new version
@@ -47,8 +46,6 @@ weka version get <new-version>
 #preparing the new software version 
 weka version prepare <new-version>
 ```
-
-where `<new-version>` is the name of the new version downloaded from get.weka.io, e.g.,`3.6.1`.
 
 ## Upgrading to Version 3.5 and Above
 
@@ -64,7 +61,7 @@ Once a new software version is installed on one of the backend hosts, the cluste
 weka local run --in <new-version> upgrade --mode one-shot
 ```
 
-where `<new-version>` is the name of the new version downloaded from get.weka.io, e.g.,`3.6.1`.
+where `<new-version>` is the name of the new version \(as in get.weka.io, e.g.,`3.6.1`\).
 
 The limited upgrade window can be controlled by setting the following parameters in the `upgrade` command:
 
