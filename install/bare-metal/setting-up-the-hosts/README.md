@@ -275,6 +275,77 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 
 `-s 8972` is the maximum ICMP packet size that can be transferred with MTU 9000, due to the overhead of ICMP and IP protocols.
 
+## HA Networking Configuration
+
+As described in [WekaIO Networking HA](../../../overview/networking-in-wekaio.md#ha) section, bonded interfaces are not supported and each NIC must have its own IP address.
+
+To configure Dual Network \(IB or ETH\), you will need to properly configure the routing of the interfaces involved.
+
+{% tabs %}
+{% tab title="Infiniband" %}
+**Example using CentOS:**
+
+Add the following lines at the end of `/etc/sysctl.conf`:
+
+```text
+net.ipv4.conf.ib0.arp_announce =2
+net.ipv4.conf.ib1.arp_announce =2
+net.ipv4.conf.ib0.arp_filter =1
+net.ipv4.conf.ib1.arp_filter =1
+```
+
+This can be added per interface, as described above, or to all interfaces:
+
+```text
+net.ipv4.conf.all.arp_filter = 1 
+net.ipv4.conf.default.arp_filter = 1 
+net.ipv4.conf.all.arp_announce = 2 
+net.ipv4.conf.default.arp_announce = 2
+```
+
+**Routing Tables**
+
+Append the following to `/etc/iproute2/rt_tables`:
+
+```text
+100 weka1
+101 weka2
+```
+
+Assuming the interfaces are `mlnx0` and `mlnx1` and assuming that the network is 10.90.0.0/16 with IPs 10.90.0.1 and 10.90.1.1 and a default gw of 10.90.2.1, set the following routing rules:
+
+**/etc/sysconfig/network-scripts/route-mlnx0**
+
+```text
+10.90.0.0/16 dev mlnx0 src 10.90.0.1 table weka1
+default via 10.90.2.1 dev mlnx0 table weka1
+```
+
+**/etc/sysconfig/network-scripts/route-mlnx1**
+
+```text
+10.90.0.0/16 dev mlnx1 src 10.90.1.1 table weka2
+default via 10.90.2.1 dev mlnx1 table weka2
+```
+
+**/etc/sysconfig/network-scripts/rule-mlnx0**
+
+```text
+table weka1 from 10.90.0.1
+```
+
+**/etc/sysconfig/network-scripts/rule-mlnx1**
+
+```text
+table weka2 from 10.90.1.1
+```
+{% endtab %}
+
+{% tab title="Ethernet" %}
+Refer to this [link](https://access.redhat.com/solutions/30564) to learn how to configure dual Ethernet network in RHEL
+{% endtab %}
+{% endtabs %}
+
 ## Clock Synchronization
 
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the WekaIO system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues. 

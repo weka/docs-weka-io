@@ -223,6 +223,14 @@ The CloudFormation template contains an instance role that allows the WekaIO sys
 * `ec2:ModifyNetworkInterfaceAttribute`
 * `ec2:DeleteNetworkInterface`
 
+In case tiering is configured, additional AWS APIs permissions are given:
+
+* `s3:DeleteObject`
+* `s3:GetObject`
+* `s3:PutObject`
+* `s3:HeadBucket`
+* `s3:ListBucket`
+
 ## Additional Operations
 
 Once a CloudFormation template has been generated, it is possible to create a stack from it using the AWS console or the AWS CLI.

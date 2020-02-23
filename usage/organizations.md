@@ -199,7 +199,7 @@ Refer to [Mount Command Options](../fs/mounting-filesystems.md#mount-command-opt
 
 ‌Authentication is achieved by obtaining a mount token and including it in the mount command. Logging into the WekaIO system using the CLI \(the `weka user login` command\) creates an authentication token and saves it in the client \(default to `~/.weka/auth-token.json,` which can be changed using the`--path`attribute\). The WekaIO system assigns the token that relates to a specific organization. Only mounts that pass the path to a correct token can successfully access the filesystems of the organization. 
 
-Once a user is authenticated, the mount command uses the default location of the authentication token. It is possible to change the token location/name and pass it as a parameter in the mount command using the`token` mount option, or the`WEKA_TOKEN` environment variable.
+Once a user is authenticated, the mount command uses the default location of the authentication token. It is possible to change the token location/name and pass it as a parameter in the mount command using the `auth_token` mount option, or the`WEKA_TOKEN` environment variable.
 
 ```text
 mount -t wekafs backend-host-0/my_fs /mnt/weka/my_fs -o auth_token=<path>

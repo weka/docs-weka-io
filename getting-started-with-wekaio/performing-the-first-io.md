@@ -132,6 +132,8 @@ Although results can vary using different hosts and networking, it is not expect
 
 {% hint style="info" %}
 **Note:** The numbers achieved in the benchmark tests, as described in [Testing WekaIO Performance](../testing-and-troubleshooting/testing-weka-system-performance.md) are not just achieved in a closed/controlled environment. Similar numbers should be achieved when using similar configuration, if the WekaIO cluster and IT environment are properly configured. If the numbers achieved in your environment significantly vary from those, please contact the WekaIO Sales or Support Team before running any other workload on the WekaIO cluster.
+
+The example results shown in [Testing WekaIO Performance](../testing-and-troubleshooting/testing-weka-system-performance.md), are tested on AWS. In general, for any of WekaIO reference architecture you should expect lower than 300 microseconds latency and 5.5 GB/s throughput per host \(for a single 100gbps link\). 
 {% endhint %}
 
 {% page-ref page="../testing-and-troubleshooting/testing-weka-system-performance.md" %}
