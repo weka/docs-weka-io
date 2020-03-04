@@ -74,7 +74,9 @@ Establishing an SMB cluster is performed as follows:
 
 To ensure that the various NFS clients will balance the load on the various WekaIO hosts serving NFS, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS) entry which will resolve to the list of floating IPs, ensuring that client loads will be equally distributed across all hosts.
 
-
+{% hint style="info" %}
+Make sure to set the TTL, Time to Live, for all A records assigned to the NFS servers to 0 \(Zero\), this ensures that the IP won't be cached by the client or the DNS server.
+{% endhint %}
 
 ### Creating SMB Shares
 
