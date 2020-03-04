@@ -70,6 +70,12 @@ Establishing an SMB cluster is performed as follows:
 **Note:** The DNS "nameserver" of the hosts participating in the SMB cluster should be configured to the Active Directory server.
 {% endhint %}
 
+### Configuring the Round-Robin DNS Server
+
+To ensure that the various NFS clients will balance the load on the various WekaIO hosts serving NFS, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS) entry which will resolve to the list of floating IPs, ensuring that client loads will be equally distributed across all hosts.
+
+
+
 ### Creating SMB Shares
 
 After establishing an SMB cluster, it is possible to declare SMB shares. Each share should have a name and a share path, i.e., the path into the WekaIO filesystem, which can be the root of the WekaIO filesystem or a subdirectory. This is created in the shell using either a WekaFS mount or an NFS mount.
