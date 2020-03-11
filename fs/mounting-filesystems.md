@@ -347,7 +347,9 @@ mount -t wekafs -o num_cores=2 -o net:s2=mlnx0,net:s1=mlnx1 backend1/my_fs /mnt/
 
 #### Using multiple physical network devices for HA configuration
 
-The WekaIO cluster can be configured for high availability \(refer to [WekaIO Networking HA](../overview/networking-in-wekaio.md#ha) section\). It is also possible to configure the clients to these two networks for a complete, highly available solution. For that, use more than one physical device as previously described and, also, specify the PCI slots that will use them for high availability. Note, that for HA networking, two different management IPS should be configured, using  `-o mgmt_ip=<ip>+<ip2>`.
+The WekaIO cluster can be configured for high availability \(refer to [WekaIO Networking HA](../overview/networking-in-wekaio.md#ha) section\). It is also possible to configure the clients to these two networks for a complete, highly available solution. For that, use more than one physical device as previously described and, also, specify the PCI slots that will use them for high availability. 
+
+For HA networking, we cannot deduce the client's management IPs automatically, so two different local management IPs should be configured, using  `-o mgmt_ip=<ip>+<ip2>`.
 
 **For example:** The following command will allocate two cores and two physical network devices \(`mlnx0`, `mlnx1`\). By explicitly specifying `s2+1`, `s1-2` modifiers for network devices, both devices will be used by both slots \(`s2+1` stands for slot1 + slot2, and `s1-2` stands for slot range of 1-2\).
 
