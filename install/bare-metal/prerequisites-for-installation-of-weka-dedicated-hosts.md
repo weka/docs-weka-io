@@ -175,7 +175,7 @@ Supported Mellanox OFED versions:
 Certified Object Stores:
 
 * AWS S3
-* WD ActiveScale \(version 5.5.1 and up\)
+* Quantum ActiveScale \(version 5.5.1 and up\)
 * Scality \(version 7.4.4.8 and up\)
 * SwiftStack \(version 6.30 an up\)
 
