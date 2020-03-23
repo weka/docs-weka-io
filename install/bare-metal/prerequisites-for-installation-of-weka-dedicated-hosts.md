@@ -34,7 +34,6 @@ description: >-
 * SELinux with MLS policy is not supported
 * All Weka Nodes must be synchronized in date/time \(NTP recommended\)
 * A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the WekaIO knowledgebase in the [WekaIO support portal](http://support.weka.io) for more information and how-to articles 
-* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the WekasIO cluster servers \(e.g., due to specific applications when running the WekaIO cluster in converged mode\), please contact the WekaIO support team.
 
 ### Kernel
 
@@ -160,6 +159,7 @@ Supported Mellanox OFED versions:
 * Support PLP \(Power Loss Protection\)
 * Dedicated for WekaIO system storage \(partition not supported\)
 * Supported drive capacity: Up to 128 TiB
+* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the WekasIO cluster servers \(e.g., due to specific applications when running the WekaIO cluster in converged mode\), contact the WekaIO support team.
 
 ## Object Store
 
