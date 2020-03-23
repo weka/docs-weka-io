@@ -309,7 +309,7 @@ Use `-o net=<netdev>` mount option with the various modifiers as described below
 
 ### IP, Subnet, Gateway and Virtual Functions
 
-For higher performance, the usage of multiple frontends may be required. When using a NIC other than Mellanox, or when mounting a DPDK client on a VM, it is required to use [SR-IOV](../install/bare-metal/setting-up-the-hosts/#sr-iov-enablement) to expose a VF of the physical device to the client. Once exposed, it can be configured via the mount command.
+For higher performance, the usage of multiple Frontends may be required. When using a NIC other than Mellanox, or when mounting a DPDK client on a VM, it is required to use [SR-IOV](../install/bare-metal/setting-up-the-hosts/#sr-iov-enablement) to expose a VF of the physical device to the client. Once exposed, it can be configured via the mount command.
 
 When you want to determine the VFs IP addresses, or when the client resides in a different subnet and routing is needed in the data network, use`net=<netdev>/[ip]/[bits]/[gateway]`. 
 
@@ -327,7 +327,7 @@ For performance or high availability, it is possible to use more than one physic
 
 #### Using multiple physical network devices for better performance
 
-It's easy to maximise the bandwidth of a single network interface when using WekaFS.  To achieve higher throughput, users can leverage multiple network interface cards \(NICs\). The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to WekaFS host driver. 
+It's easy to saturate the bandwidth of a single network interface when using WekaFS. For higher throughput, it is possible to leverage multiple network interface cards \(NICs\). The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to WekaFS host driver.
 
 **For example**, the following command will allocate two cores and two physical network devices for increased throughput:
 
@@ -335,9 +335,9 @@ It's easy to maximise the bandwidth of a single network interface when using Wek
 mount -t wekafs -o num_cores=2 -o net=mlnx0,net=mlnx1 backend1/my_fs /mnt/weka
 ```
 
-With multiple Frontend driver process \(as expressed by `-o num_cores`\) users have the ability to control what processes use what NICs. This can be accomplished through the use of special command line modifiers called "slots". In WekaFS, a slot is synonymous for a process number. Typically, the first WekaFS Frontend process will occupy slot 1, then the second - slot 2 and so on.
+With multiple Frontend processes \(as expressed by `-o num_cores`\), it is possible to control what processes use what NICs. This can be accomplished through the use of special command line modifiers called "slots." In WekaFS, a slot is synonymous with a process number. Typically, the first WekaFS Frontend process will occupy slot 1, then the second - slot 2 and so on.
 
-**For example**, in the following command, `mlnx0` is bound to the second Frontend driver process while`mlnx1` to the first one:
+**For example**, in the following command, `mlnx0` is bound to the second Frontend  process while`mlnx1` to the first one:
 
 ```text
 mount -t wekafs -o num_cores=2 -o net:s2=mlnx0,net:s1=mlnx1 backend1/my_fs /mnt/weka
@@ -347,17 +347,17 @@ Other examples of slot notation include `s1`, `s2`, `s2+1`, `s1-2`, `slots1+3`, 
 
 #### Using multiple physical network devices for HA configuration
 
-Multiple NICs can also be configured to achieve redundancy \(refer to [WekaIO Networking HA](../overview/networking-in-wekaio.md#ha) section for more information\) in addition to higher throughput, for a complete, highly available solution. For that, use more than one physical device as previously described and, also, specify the compute processes that will use them for high availability. 
+Multiple NICs can also be configured to achieve redundancy \(refer to [WekaIO Networking HA](../overview/networking-in-wekaio.md#ha) section for more information\) in addition to higher throughput, for a complete, highly available solution. For that, use more than one physical device as previously described and, also, specify the Frontend processes that will use them for high availability. 
 
 For HA networking, we cannot deduce the client's management IPs automatically, so two different local management IPs should be configured, using  `-o mgmt_ip=<ip>+<ip2>`.
 
-**For example:** The following command will allocate two cores and two physical network devices \(`mlnx0`, `mlnx1`\). By explicitly specifying `s2+1`, `s1-2` modifiers for network devices, both devices will be used by both compute processes \(`s2+1` stands for the first and second compute processes, and `s1-2` stands for the range of 1-2 of compute-processes\).
+**For example:** The following command will allocate two cores \(two Frontend processes\) and two physical network devices \(`mlnx0`, `mlnx1`\). By explicitly specifying `s2+1`, `s1-2` modifiers for network devices, both devices will be used by both Frontend processes \(`s2+1` stands for the first and second processes, and `s1-2` stands for the range of 1 to 2\).
 
 ```text
 mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
 ```
 
-**For example**, the following command will use two network devices for HA networking and allocate both devices to four frontends on the client. Note the modifier `ha` is used here, which stands for using the device on all compute processes.
+**For example**, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. Note the modifier `ha` is used here, which stands for using the device on all processes.
 
 ```text
 mount -t wekafs -o num_cores=4 -o net:ha=mlnx0,net:ha=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
