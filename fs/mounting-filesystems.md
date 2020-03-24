@@ -335,32 +335,32 @@ It's easy to saturate the bandwidth of a single network interface when using Wek
 mount -t wekafs -o num_cores=2 -o net=mlnx0,net=mlnx1 backend1/my_fs /mnt/weka
 ```
 
-With multiple Frontend processes \(as expressed by `-o num_cores`\), it is possible to control what processes use what NICs. This can be accomplished through the use of special command line modifiers called "slots." In WekaFS, a slot is synonymous with a process number. Typically, the first WekaFS Frontend process will occupy slot 1, then the second - slot 2 and so on.
-
-**For example**, in the following command, `mlnx0` is bound to the second Frontend  process while`mlnx1` to the first one:
-
-```text
-mount -t wekafs -o num_cores=2 -o net:s2=mlnx0,net:s1=mlnx1 backend1/my_fs /mnt/weka
-```
-
-Other examples of slot notation include `s1`, `s2`, `s2+1`, `s1-2`, `slots1+3`, `slot1`, `slots1-4` , where `-` specifies a range of devices, while `+` specifies a list. For example, `s1-4` implies slots 1, 2, 3 and 4, while `s1+4` specifies slots 1 and 4 only.
-
 #### Using multiple physical network devices for HA configuration
 
-Multiple NICs can also be configured to achieve redundancy \(refer to [WekaIO Networking HA](../overview/networking-in-wekaio.md#ha) section for more information\) in addition to higher throughput, for a complete, highly available solution. For that, use more than one physical device as previously described and, also, specify the Frontend processes that will use them for high availability. 
-
-For HA networking, we cannot deduce the client's management IPs automatically, so two different local management IPs should be configured, using  `-o mgmt_ip=<ip>+<ip2>`.
-
-**For example:** The following command will allocate two cores \(two Frontend processes\) and two physical network devices \(`mlnx0`, `mlnx1`\). By explicitly specifying `s2+1`, `s1-2` modifiers for network devices, both devices will be used by both Frontend processes \(`s2+1` stands for the first and second processes, and `s1-2` stands for the range of 1 to 2\).
-
-```text
-mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
-```
+Multiple NICs can also be configured to achieve redundancy \(refer to [WekaIO Networking HA](../overview/networking-in-wekaio.md#ha) section for more information\) in addition to higher throughput, for a complete, highly available solution. For that, use more than one physical device as previously described and, also, specify the the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command line option.
 
 **For example**, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. Note the modifier `ha` is used here, which stands for using the device on all processes.
 
 ```text
 mount -t wekafs -o num_cores=4 -o net:ha=mlnx0,net:ha=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
+```
+
+**Advanced mounting options for multiple physical network devices**
+
+With multiple Frontend processes \(as expressed by `-o num_cores`\), it is possible to control what processes use what NICs. This can be accomplished through the use of special command line modifiers called _slots_. In WekaFS, _slot_ is synonymous with a process number. Typically, the first WekaFS Frontend process will occupy slot 1, then the second - slot 2 and so on.
+
+Examples of slot notation include `s1`, `s2`, `s2+1`, `s1-2`, `slots1+3`, `slot1`, `slots1-4` , where `-` specifies a range of devices, while `+` specifies a list. For example, `s1-4` implies slots 1, 2, 3 and 4, while `s1+4` specifies slots 1 and 4 only.
+
+**For example**, in the following command, `mlnx0` is bound to the second Frontend  process while`mlnx1` to the first one for improved performance.
+
+```text
+mount -t wekafs -o num_cores=2 -o net:s2=mlnx0,net:s1=mlnx1 backend1/my_fs /mnt/weka
+```
+
+**For example,** in the following HA mounting command, two cores \(two Frontend processes\) and two physical network devices \(`mlnx0`, `mlnx1`\) are allocated. By explicitly specifying `s2+1`, `s1-2` modifiers for network devices, both devices will be used by both Frontend processes. Notation `s2+1` stands for the first and second processes, while `s1-2` stands for the range of 1 to 2, and are effectively the same.
+
+```text
+mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
 ```
 
 ### UDP Mode
@@ -371,10 +371,14 @@ In cases were DPDK cannot be used, it is possible to use WekaFS in [UDP mode](..
 mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
 ```
 
+{% hint style="info" %}
+**Note:** A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster.
+{% endhint %}
+
 ## Mounting Filesystems Using fstab
 
 {% hint style="info" %}
-**Note:** This option works when using **stateless clients** and with OS that supports `systemd` \(e.g.: RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, Amazon Linux 2 LTS\) 
+**Note:** This option works when using **stateless clients** and with OS that supports `systemd` \(e.g.: RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, Amazon Linux 2 LTS\).
 {% endhint %}
 
 Edit `/etc/fstab` file to include the filesystem mount entry:
