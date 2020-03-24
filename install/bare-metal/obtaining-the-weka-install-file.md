@@ -18,21 +18,21 @@ description: >-
 
 Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site. Log in by entering your email address and password. Then click Continue.
 
-![WekaIO System Login Screen](../../.gitbook/assets/screen-1.jpg)
+![WekaIO System Login Screen](../../.gitbook/assets/get-weka-io-start.png)
 
 If you do not have an account, click Create an account. The following screen is displayed:
 
-![Registration Screen to Create an Account](../../.gitbook/assets/screen-2.jpg)
+![Registration Screen to Create an Account](../../.gitbook/assets/get-weka-io-register.png)
 
 Enter your email address, check the I’m not a robot box \(assuming you're not a robot!\), complete the questions and click Send Registration Email.
 
 You will now receive a registration confirmation email. Click the link in the email. The following screen will be displayed:
 
-![WekaIO Registration: Create Account Screen](../../.gitbook/assets/screen-3.jpg)
+![WekaIO Registration: Create Account Screen](../../.gitbook/assets/get-weka-io-create.png)
 
 Create your account by entering your full name and password. Then click Create Account. The WekaIO dashboard screen will be displayed.
 
-![WekaIO Dashboard Screen](../../.gitbook/assets/screen-4.jpg)
+![WekaIO Dashboard Screen](../../.gitbook/assets/get-weka-io-new.png)
 
 ## Step 2: Download the WekaIO Software
 
@@ -44,11 +44,7 @@ To download the latest release, click the Latest Release button.
 
 Follow the instructions for downloading the release appearing on the screen.
 
-![WekaIO Download Screen](../../.gitbook/assets/screen-5-erased.jpg)
+![WekaIO Download Screen](../../.gitbook/assets/get-weka-io-dl.png)
 
-Select your operating system distribution, which is the operating system for the WekaIO system dedicated hosts, from the dropdown list of systems.
-
-![Selecting Operating System Dropdown Menu](../../.gitbook/assets/screen-6.jpg)
-
-Once an operating system is selected, the details for the download and installation instructions for the selected operating system distribution are displayed. Download the file using the command provided.
+The details for the download and installation instructions are displayed. Download the file using either the command provided or the direct link.
 
