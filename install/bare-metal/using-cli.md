@@ -87,7 +87,13 @@ This command enables the use of a private instance of Weka Home.
 For more information, refer to [Private Instance of Weka Home](../../support/the-wekaio-support-cloud.md#private-instance-of-weka-home) and contact the WekaIO Support Team.
 {% endhint %}
 
-## Stage 5: Configuration of Networking
+## Stage 5: Setting hosts as dedicated to the cluster \(Optional\)
+
+**Command:** `cluster host dedicate`
+
+It is possible to set the host as dedicated to the WekaIO cluster. By setting the host to dedicated, no other application is expected to run on it, and the WekaIO system optimizes it for performance and stability. For example, the host can be rebooted by the system at need, and all the host's memory is allocatable by the WekaIO processes.
+
+## Stage 6: Configuration of Networking
 
 **Command:** `cluster host net add`
 
@@ -272,7 +278,7 @@ Instead of explicit IP address configuration per each network device, dynamic IP
 
 If a default data networking was previously configured on a cluster and is no longer needed, it is possible to remove it using the command `weka cluster default-net reset`.
 
-## Stage 6: Configuration of SSDs
+## Stage 7: Configuration of SSDs
 
 **Command:** `cluster drive add`
 
@@ -291,7 +297,7 @@ This stage in the installation process is used to add a local SSD to be used by 
 **Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the WekaIO Support Team.
 {% endhint %}
 
-## Stage 7: **Scanning Drives**
+## Stage 8: **Scanning Drives**
 
 **Command:**`weka cluster drive scan`
 
@@ -299,7 +305,7 @@ After provisioning the SSDs to be used by a WekaIO filesystem using the previous
 
 `weka cluster drive scan`
 
-## Stage 8: Configuration of CPU Resources
+## Stage 9: Configuration of CPU Resources
 
 **Command:** `cluster host cores`
 
@@ -330,11 +336,13 @@ This stage in the installation process is used to configure the amount of CPU re
 **Note:** Performance can be optimized by assigning different functions to the various WekaIO cores. If necessary, contact the WekaIO Support Team for more information.
 {% endhint %}
 
-## Stage 9: Configuration of Memory \(optional\)
+## Stage 10: Configuration of Memory \(optional\)
 
 **Command:** `cluster host memory`
 
-As defined in the memory requirements, the fixed memory per host and the per core memory are automatically computed by the WekaIO system. For the capacity-oriented memory, a default of 1.4 GB per node is allocated. If capacity requirements mandate more memory, the following command should be used:
+As defined in the memory requirements, the fixed memory per host and the per compute/SSD cores memory are automatically calculated by the WekaIO system. By default, 1.4 GB is allocated per compute-core, out of which 0.4 GB is left for the capacity-oriented memory. If the host is set as [dedicated](using-cli.md#stage-5-setting-hosts-as-dedicated-to-the-cluster-optional), all the memory left after reductions, as described in [Memory Resource Planning](planning-a-weka-system-installation.md#memory-resource-planning), is automatically allocated for the WekaIO system.
+
+If capacity requirements mandate more memory, the following command should be used:
 
 `weka cluster host memory <host-id> <capacity-memory>`
 
@@ -350,14 +358,10 @@ As defined in the memory requirements, the fixed memory per host and the per cor
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** This command sets only the capacity portion of the memory requirements. The per-host and per-core requirements are set automatically by Weka
+**Note:** This command is given the memory per-host and will later be distributed by the system per compute core. Out of this value, 1GB per compute core is reserved for other purposes \(as cache\) and not used for capacity.
 {% endhint %}
 
-{% hint style="info" %}
-**Note:** This command is given the memory per-host and will later be distributed by the system per-node.
-{% endhint %}
-
-## Stage 10: Configuration of Failure Domains \(optional\)
+## Stage 11: Configuration of Failure Domains \(optional\)
 
 **Command:** `cluster host failure-domain`
 
@@ -379,7 +383,7 @@ This operation is performed using the following command line:
 | `name` | String | The failure domain that will contain the host from now |  | Yes \(either `--name` OR `--auto` must be specified\) | None |
 | `auto` | n/a | n/a | Will automatically assign fd-name | Yes \(either `--name` OR `--auto` must be specified\) | None |
 
-## Stage 11: Configuration of WekaIO System Protection Scheme
+## Stage 12: Configuration of WekaIO System Protection Scheme
 
 **Command:** `cluster update`
 
@@ -402,7 +406,7 @@ To configure the WekaIO system protection scheme, use the following command line
 **Note:** If not configured, the data protection drives in the cluster stripes are automatically set, taking into account the number of backends with drives. There is also a default value for the cluster hot spare.
 {% endhint %}
 
-## Stage 12: Configuration of Hot Spare
+## Stage 13: Configuration of Hot Spare
 
 **Command:** `cluster hot-spare`
 
@@ -416,7 +420,7 @@ To configure the WekaIO system hot spare, use the following command line:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `hot-spare` | Number | Hot spare | The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 1 for clusters with 6 failure domains and 2 for clusters larger than this |
 
-## Stage 13: Activation of Cluster Hosts
+## Stage 14: Activation of Cluster Hosts
 
 **Command:** `weka cluster host activate`
 
@@ -432,7 +436,7 @@ To activate the cluster hosts, use the following command line:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-ids` | Comma-separated strings | Comma-separated host identifiers |  | No | All hosts |
 
-## Stage 14: Activation of Cluster SSDs
+## Stage 15: Activation of Cluster SSDs
 
 **Command:** `weka cluster drive activate`
 
@@ -452,7 +456,7 @@ A comma-separated list of all SSD UUIDs is received. In the install phase all SS
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `uuids` | Comma-separated strings | Comma-separated host identifiers |  | No | All SSDs |
 
-## Stage 15: Running the Start IO Command
+## Stage 16: Running the Start IO Command
 
 **Command:** `weka cluster start-io`
 
