@@ -62,7 +62,7 @@ The total per host memory requirements is the sum of the following requirements:
   <tbody>
     <tr>
       <td style="text-align:left">Fixed</td>
-      <td style="text-align:left">4.5 GB</td>
+      <td style="text-align:left">4 GB</td>
     </tr>
     <tr>
       <td style="text-align:left">Core-based</td>
@@ -104,7 +104,7 @@ The capacity requirement for the host will be calculated according to the follow
 
 ![](../../.gitbook/assets/formula-2-21_05_18.png)
 
-Consequently, the overall requirement per host is: 4.5 + 6 \* 4.2 + 4\*2.5 + 7.3 +15 +8 = 70 GB
+Consequently, the overall requirement per host is: 4 + 6 \* 4.2 + 4\*2.5 + 7.3 +15 +8 = 69.5 GB
 
 {% hint style="info" %}
 **Note:** The capacity requirement is according to the total size of all filesystems, including both SSDs and object stores.
