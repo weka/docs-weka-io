@@ -164,15 +164,7 @@ The `locator` is either a locator saved previously for disaster scenarios, or ca
 
 ### Deleting Snapshots Residing on an Object Store
 
-Deleting a snapshot, from a filesystem that uploaded it, will remove all of its data from the object store.
-
-{% hint style="danger" %}
-If the snapshot has been \(or is\) downloaded and used by a different filesystem, that filesystem will stop functioning correctly, data might be unavailable and errors might occur when accessing the data.
-
-It is possible to either un-tier or migrate the filesystem to a different object store bucket before deleting the snapshot it has downloaded.
-{% endhint %}
-
-
+When deleting a snapshot residing on an object store, the snapshot data may be used by other snapshots or other filesystems. Consequently, the space reclamation may not be the same size as the snapshot, and in some cases, almost no space will be reclaimed.
 
 
 
