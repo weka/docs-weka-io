@@ -4,7 +4,7 @@ description: This page describes how to upgrade to the latest WekaIO software ve
 
 # Upgrading WekaIO Versions
 
-## Preparing for the Upgrade
+## Prerequisites for Upgrade
 
 Before upgrading your cluster, ensure the following:
 
@@ -24,34 +24,29 @@ When upgrading to a major version, always upgrade to the latest minor version in
 
 For further information, contact the WekaIO Support Team.
 
-## Downloading the New Release
+## Preparing the Cluster for Upgrade
 
-Download the new release on one of the backend hosts, as follows:
+Download and prepare the new release on one of the backend hosts, using one of the following methods:
 
-1. SSH into one of the backend hosts of the cluster.
-2. Run `weka version get <new-version>` where `<new-version>` is the name of the new version \(as in get.weka.io, e.g.,`3.6.1`\).
-
-For upgrading in environments where there is no connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs, please contact the WekaIO Support Team.
+1. From the backend host, run `weka version get <new-version>` where `<new-version>` is the name of the new version \(as in get.weka.io, e.g.,`3.6.1`\), followed by `weka version prepare <new-version>`
+2. From the backend host, run the `curl` command as described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new version release page.
+3. Download the new version tar file to the backend host and run `install.sh` \(useful on environments where there is no connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs\).
 
 ## Preparing the Client Hosts for Upgrade \(Optional\)
 
 Once the WekaIO cluster upgrade is called, it will first prepare all the connected client hosts to the upgrade, which includes downloading the new version and get it ready to be applied. Only then, it will start the upgrade process of the cluster. This reduces to a minimum any downtime that the client host can experience from the WekaIO cluster.
 
-It is possible to prepare for this in advance, separated from the cluster upgrade \(e.g., to shorten the total upgrade window\), by using the following CLI commands for each client host:
+Although not needed, and distribution of the new version to the client hosts should be fast as part of the upgrade, when working with a large number of clients it is possible to prepare for this in advance, separated from the cluster upgrade \(e.g., to shorten the total upgrade window\). 
+
+First, obtain the new version on one of the backend host, as described above, then, use the following CLI commands for each client host:
 
 ```text
-# downloading the new version
-weka version get <new-version>
+# downloading the new version from one of the backend hosts
+weka version get <new-version> --from <backend-IP>:14000
 
-#preparing the new software version 
+# preparing the new software version 
 weka version prepare <new-version>
 ```
-
-## Upgrading to Version 3.5 and Above
-
-From WekaIO software version 3.5 onwards, the disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. WekaIO system guarantees that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window.
-
-In case of a failure, the version is automatically reverted on the hosts, yet, `weka cluster start-io` command should be run manually after verifying all hosts have indeed been reverted to the old version by running `weka cluster host` command. 
 
 ## Running the Upgrade Command
 
@@ -95,6 +90,12 @@ Once the upgrade is complete, verify that the cluster is in the new version by r
 WekaIO v3.6.1 (CLI build 3.6.106)  
 ...`
 {% endhint %}
+
+## Upgrading to Version 3.5 and Above
+
+From WekaIO software version 3.5 onwards, the disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. WekaIO system guarantees that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window.
+
+In case of a failure, the version is automatically reverted on the hosts, yet, `weka cluster start-io` command should be run manually after verifying all hosts have indeed been reverted to the old version by running `weka cluster host` command. 
 
 ## Performance Improvements with V3.5 and Above
 
