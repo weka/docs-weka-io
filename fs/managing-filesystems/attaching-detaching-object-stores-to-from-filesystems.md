@@ -48,6 +48,18 @@ On completion of detaching, the object store does not appear under the filesyste
 **Note:** After the migration process is done, while relevant data is migrated, old snapshots \(and old locators\) reside on the old object store bucket. To recreate snapshots locators on the new object store bucket, snapshots should be re-uploaded to the \(new\) object store bucket.
 {% endhint %}
 
+### Migration Considerations
+
+When migrating data \(using the detach operation\) you would like to copy only the necessary data \(to reduce migration time and capacity\), however, you may want to keep snapshots in the old object-store bucket. For that follow these steps:
+
+1. Attach a new object-store \(old object-store becomes read-only\).
+2. Delete any snapshot which doesn't need to be migrated - this will keep the snapshot on the old bucket, but will not migrate its data to the new bucket.
+3. Detach the old object-store
+
+{% hint style="info" %}
+**Note:** performing these steps in a different order might result in either the snapshots are completely deleted from any of the object-store or are already in the migration process \(and cannot be deleted until migration is done\).
+{% endhint %}
+
 ## Attaching/Detaching Object Stores
 
 ### Attaching/Detaching Object Stores Using the GUI

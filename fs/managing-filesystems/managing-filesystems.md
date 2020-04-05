@@ -52,7 +52,7 @@ Use the following command line to add a filesystem:
 | `ssd-capacity` | Number | For tiered filesystems, this is the SSD capacity. If not specified, the filesystem is pinned to SSD | Must be a valid number | No | SSD capacity will be set to total capacity |
 | `max-files` | Number | Metadata allocation for this filesystem | Must be a valid number | No | Automatically calculated by the system based on the SSD capacity |
 | `encrypted` | Boolean | Encryption of filesystem |  | No | No |
-| `obs-name` | String | Object store name for tiering | Must be a valid name | No |  |
+| `obs-name` | String | Object store name for tiering | Must be a valid name | Mandatory for tiered filesystems |  |
 
 {% hint style="info" %}
 **Note:** When creating an encrypted filesystem a KMS must be defined.

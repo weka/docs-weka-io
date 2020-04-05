@@ -58,7 +58,7 @@ Click the Edit button of the filesystem group to be modified. The Configure File
 
 ![Configure Filesystem Group Dialog Box](../../.gitbook/assets/edit-fs-group-3.5.png)
 
-For a more in-depth explanation of the tiering policy, refer to [Advanced Data Lifecycle Management](../tiering.md).
+For a more in-depth explanation of the tiering policy, refer to [Advanced Data Lifecycle Management](../tiering/).
 
 Edit the existing filesystem group parameters and click Configure to execute the changes.
 
@@ -95,7 +95,7 @@ Click Yes to delete the filesystem group.
 
 ### Deleting a Filesystem Group Using the CLI
 
-A more in-depth explanation of the tiring policy appears in [Advanced Data Lifecycle Management](../tiering.md).
+A more in-depth explanation of the tiring policy appears in [Advanced Data Lifecycle Management](../tiering/).
 
 **Command:** `weka fs group delete`
 

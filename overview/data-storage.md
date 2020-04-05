@@ -88,8 +88,8 @@ For tiered filesystems, the following parameters should be defined per filesyste
 
 The following parameters should be defined per filesystem group:
 
-1. The [Data Retention Period Policy](../fs/tiering.md#data-retention-period-policy), a time-based policy which is the target time for data to be stored on an SSD after creation, modification or access, and before release from the SSD, even if it is already tiered to the object store, for metadata processing and SSD caching purposes \(this is only a target; the actual release schedule depends on the amount of available space\). 
-2. The [Tiering Cue Policy](../fs/tiering.md#tiering-cue-policy), a time-based policy which determines the minimum amount of time that data will remain on an SSD before it is considered for release to the object store. As a rule of thumb, this should be configured to a third of the Retention Period, and in most cases, this will work well. The Tiering Cue is important because it is pointless to tier a file which is about to be modified or deleted from the object store. 
+1. The [Data Retention Period Policy](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#data-retention-period-policy), a time-based policy which is the target time for data to be stored on an SSD after creation, modification or access, and before release from the SSD, even if it is already tiered to the object store, for metadata processing and SSD caching purposes \(this is only a target; the actual release schedule depends on the amount of available space\). 
+2. The [Tiering Cue Policy](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy), a time-based policy which determines the minimum amount of time that data will remain on an SSD before it is considered for release to the object store. As a rule of thumb, this should be configured to a third of the Retention Period, and in most cases, this will work well. The Tiering Cue is important because it is pointless to tier a file which is about to be modified or deleted from the object store. 
 
 {% hint style="success" %}
 **For Example:**
@@ -103,5 +103,5 @@ _When storing genomic data which is frequently accessed during the first 3 month
 **Note:** Using the [Snap-To-Object](../fs/snap-to-obj.md) feature causes data to be tiered regardless of the tiering policies.
 {% endhint %}
 
-For a more in-depth explanation, refer to [Advanced Data Lifecycle Management](../fs/tiering.md).
+For a more in-depth explanation, refer to [Advanced Data Lifecycle Management](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md).
 
