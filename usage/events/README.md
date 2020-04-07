@@ -122,6 +122,14 @@ Use the following command line to list recent events on the specific host runnin
 | `raw-units` | Boolean | Print values in raw units \(bytes, seconds, etc.\) |  | No | Human-readable format, e.g 1KiB 234MiB 2GiB |
 | `UTC` | Boolean | Print times in UTC |  | No | Host's local time |
 
+### Triggering a Custom Event
+
+**Command:** `weka events trigger-event` 
+
+It can be useful to mark specific activities, maintenance work, or important changes/new usage of the system, and see that as part of the system events timeline. 
+
+To trigger a custom event use `weka events trigger-event <text>`
+
 ### List of Events
 
 {% page-ref page="list-of-events.md" %}
