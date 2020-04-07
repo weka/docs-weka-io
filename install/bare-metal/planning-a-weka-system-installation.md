@@ -50,38 +50,41 @@ SSD resource planning involves how the defined capacity is going to be implement
 
 The total per host memory requirements is the sum of the following requirements:
 
-| **Type** | **Per Host Memory** |
-| :--- | :--- |
-
-
-| Fixed | 4 GB |
-| :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Core-based</th>
-      <th style="text-align:left">
-        <p>4.2 GB for each compute core</p>
-        <p>2.5 GB for each Drive/SSD core</p>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Per Host Memory</b>
       </th>
     </tr>
   </thead>
-  <tbody></tbody>
-</table>| Capacity requirement | See below |
-| :--- | :--- |
-
-
-| Reserved for Operating System | 15 GB |
-| :--- | :--- |
-
-
-| Reserved for SMB/NFS services | 8 GB |
-| :--- | :--- |
-
-
-On a dedicated host, all memory left after the reductions above is used for capacity. Otherwise, by default, `weka host memory` is set to 1.4 GB per compute-core, out of which 0.4 GB is used for the capacity requirement memory. If the capacity requirement memory is not big enough to satisfy the total size of the filesystems, the [memory allocation command](using-cli.md#stage-9-configuration-of-memory-optional) must be performed in the install process. Having sufficient system memory is not enough.
+  <tbody>
+    <tr>
+      <td style="text-align:left">Fixed</td>
+      <td style="text-align:left">3.6 GB</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Core-based</td>
+      <td style="text-align:left">
+        <p>5.3 GB for each compute core</p>
+        <p>2.5 GB for each Drive/SSD core</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Capacity requirement</td>
+      <td style="text-align:left">See below</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Reserved for Operating System</td>
+      <td style="text-align:left">15 GB</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Reserved for SMB/NFS services</td>
+      <td style="text-align:left">8 GB</td>
+    </tr>
+  </tbody>
+</table>On a dedicated host, all memory left after the reductions above is used for capacity. Otherwise, by default, `weka host memory` is set to 1.4 GB per compute-core, out of which 0.4 GB is used for the capacity requirement memory. If the capacity requirement memory is not big enough to satisfy the total size of the filesystems, the [memory allocation command](using-cli.md#stage-9-configuration-of-memory-optional) must be performed in the install process. Having sufficient system memory is not enough.
 
 The per host capacity requirement is calculated with the following formula:
 
@@ -99,7 +102,7 @@ The capacity requirement for the host will be calculated according to the follow
 
 ![](../../.gitbook/assets/formula-2-21_05_18.png)
 
-Consequently, the overall requirement per host is: 4 + 6 \* 4.2 + 4\*2.5 + 7.3 +15 +8 = 69.5 GB
+Consequently, the overall requirement per host is: 3.6 + 6 \* 5.3 + 4\*2.5 + 7.3 +15 +8 = 75.7 GB
 
 {% hint style="info" %}
 **Note:** The capacity requirement is according to the total size of all filesystems, including both SSDs and object stores.
@@ -111,7 +114,7 @@ Consequently, the overall requirement per host is: 4 + 6 \* 4.2 + 4\*2.5 + 7.3 +
 
 ### Client Hosts
 
-The WEKA software on a client host requires 5.5 GB of additional memory.
+The WEKA software on a client host requires 4 GB of additional memory.
 
 ## CPU  Resource Planning
 
