@@ -165,6 +165,7 @@ Use the following command line to add a new share to be exposed to SMB:
 | `internal-path` | String | Internal path within the filesystem \(relative to its root\) which will be exposed | Must be a valid path | No | . |
 | `file-create-mask` | String | POSIX permissions for file created through the SMB share | Numeric \(octal\) notation | No | 0744 |
 | `directory-create-mask` | String | POSIX permissions for directories created through the SMB share | Numeric \(octal\) notation | No | 0755 |
+| `acl` | Boolean | Enable Windows ACLs on the share \(which will be translated to POSIX\) | Up to 16 ACEs per file | No | No |
 
 {% hint style="info" %}
 **Note:** If it is necessary to set share specific options to the SMB library, contact the WEKA Support Team.
