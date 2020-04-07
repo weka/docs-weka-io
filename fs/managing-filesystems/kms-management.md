@@ -73,41 +73,63 @@ Use the following command line to add or update the Vault KMS configuration in t
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `base-url` | String | URL for Vault KMS | Must be a valid URL | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `master-key-name` | String | Master key name to be used for encryption-as-a-service in Vault KMS | Must be a valid key name in Vault | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>token</code>
+      <th style="text-align:left"><b>Name</b>
       </th>
-      <th style="text-align:left">String</th>
-      <th style="text-align:left">API token to access Vault KMS</th>
-      <th style="text-align:left">
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>base-url</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">URL for Vault KMS</td>
+      <td style="text-align:left">Must be a valid URL</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>master-key-name</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Master key name to be used for encryption-as-a-service in Vault KMS</td>
+      <td
+      style="text-align:left">Must be a valid key name in Vault</td>
+        <td style="text-align:left">Yes</td>
+        <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>token</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">API token to access Vault KMS</td>
+      <td style="text-align:left">
         <p>Must have:</p>
         <ul>
           <li>read permissions to <code>transit/keys/&lt;master-key-name&gt;</code>
           </li>
-          <li>write permissions to <code>transit/encrypt/&lt;master-key-name&gt;</code> and <code>transit/decrypt/&lt;masterkeyname&gt;</code>
+          <li>write permissions to <code>transit/encrypt/&lt;master-key-name&gt;</code> and <code>transit/decrypt/&lt;masterkeyname&gt;</code> 
           </li>
-          <li>permissions to <code>/transit/rewrap</code> and <code>auth/token/lookup</code>
+          <li>permissions to <code>/transit/rewrap </code>and <code>auth/token/lookup</code>
           </li>
         </ul>
-      </th>
-      <th style="text-align:left">Yes</th>
-      <th style="text-align:left"></th>
+      </td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
     </tr>
-  </thead>
-  <tbody></tbody>
+  </tbody>
 </table>{% hint style="info" %}
 **Note:** For the add/update command to succeed, the KMS should be preconfigured and available with the key and a valid token.
 {% endhint %}

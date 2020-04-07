@@ -134,28 +134,34 @@ $ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@ge
 
 The CloudFormation template has the following parameters:
 
-| Parameter | Description |
-| :--- | :--- |
-
-
-| `KeyName` | SSH key for the `ec2-user` that will be used to connect to the instances. |
-| :--- | :--- |
-
-
-| `VpcId` | VPC in which the WEKA cluster will be deployed. |
-| :--- | :--- |
-
-
-| `SubnetId` | Subnet in which the WEKA cluster will be deployed. |
-| :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>LoadBalancerType</code>
-      </th>
-      <th style="text-align:left">
+      <th style="text-align:left">Parameter</th>
+      <th style="text-align:left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>KeyName</code>
+      </td>
+      <td style="text-align:left">SSH key for the <code>ec2-user</code> that will be used to connect to the
+        instances.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>VpcId</code>
+      </td>
+      <td style="text-align:left">VPC in which the WEKA cluster will be deployed.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>SubnetId</code>
+      </td>
+      <td style="text-align:left">Subnet in which the WEKA cluster will be deployed.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>LoadBalancerType</code>
+      </td>
+      <td style="text-align:left">
         <p>Load balancer type for serving the cluster UI:</p>
         <ul>
           <li><code>Internet Facing</code> sets up the load balancer with a public IP.</li>
@@ -164,31 +170,45 @@ The CloudFormation template has the following parameters:
           <li><code>No Load Balancer</code> skips load balancer creation, in which case
             the UI can be accessed through port 14000 of any of the backend instances.</li>
         </ul>
-      </th>
+      </td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table>| `DistToken` | API token for WEKA's distribution site. This can be obtained at [https://get.weka.io/ui/account/api-tokens](https://get.weka.io/ui/account/api-tokens). |
-| :--- | :--- |
-
-
-| `AdminPassword` | Sets the admin password after the cluster has been created. If no value is provided, the password is set to `admin.` |
-| :--- | :--- |
-
-
-| `NewS3BucketName` | New S3 bucket name to create and attach to the filesystem created by the template. The bucket will not be deleted when the stack is destroyed. |
-| :--- | :--- |
-
-
-| `ExistingS3BucketName` | Existing S3 bucket name to attach to the filesystem created by the template. The bucket has to be in the same region where the cluster is deployed. If this parameter is provided, the `New S3 Bucket` parameter is ignored. |
-| :--- | :--- |
-
-
-| `TieringSsdPercent` | Sets how much of the filesystem capacity \(in percent\) should reside on SSD. This parameter is applicable only if `New S3 Bucket` or `Existing S3 Bucket` parameters have been defined. |
-| :--- | :--- |
-
-
-{% hint style="info" %}
+    <tr>
+      <td style="text-align:left"><code>DistToken</code>
+      </td>
+      <td style="text-align:left">API token for WEKA&apos;s distribution site. This can be obtained at
+        <a
+        href="https://get.weka.io/ui/account/api-tokens">https://get.weka.io/ui/account/api-tokens</a>.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>AdminPassword</code>
+      </td>
+      <td style="text-align:left">Sets the admin password after the cluster has been created. If no value
+        is provided, the password is set to <code>admin.</code> 
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>NewS3BucketName</code>
+      </td>
+      <td style="text-align:left">New S3 bucket name to create and attach to the filesystem created by the
+        template. The bucket will not be deleted when the stack is destroyed.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ExistingS3BucketName</code>
+      </td>
+      <td style="text-align:left">Existing S3 bucket name to attach to the filesystem created by the template.
+        The bucket has to be in the same region where the cluster is deployed.
+        If this parameter is provided, the <code>New S3 Bucket</code> parameter is
+        ignored.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>TieringSsdPercent</code>
+      </td>
+      <td style="text-align:left">Sets how much of the filesystem capacity (in percent) should reside on
+        SSD. This parameter is applicable only if<code> New S3 Bucket</code> or <code>Existing S3 Bucket</code> parameters
+        have been defined.</td>
+    </tr>
+  </tbody>
+</table>{% hint style="info" %}
 **Note:** It is possible using a NAT \(with `LoadBalancerType` other than `Internet Facing`\) parameter. Otherwise,`SubnetId` must be a public subnet or a subnet that can be routed to the Internet, since deployment is based on downloading the WEKA system and various packages from the Internet.
 {% endhint %}
 

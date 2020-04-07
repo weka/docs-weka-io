@@ -60,16 +60,18 @@ In the Create Stack screen, define the parameters which are specific to your AWS
 
 Define the parameters for WEKA cluster configuration:
 
-| Parameter | Description |
-| :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>Load-Balancer Type</code>
-      </th>
-      <th style="text-align:left">
+      <th style="text-align:left">Parameter</th>
+      <th style="text-align:left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>Load-Balancer Type</code>
+      </td>
+      <td style="text-align:left">
         <p>Load balancer type for serving the cluster UI:</p>
         <ul>
           <li><code>Internet Facing</code> sets up the load balancer with a public IP.</li>
@@ -78,17 +80,23 @@ Define the parameters for WEKA cluster configuration:
           <li><code>No Load Balancer</code> skips load balancer creation, in which case
             the UI can be accessed through port 14000 of any of the backend instances.</li>
         </ul>
-      </th>
+      </td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table>| `API Token` | The API token for WEKA's distribution site. This can be obtained at [https://get.weka.io/ui/account/api-tokens](https://get.weka.io/ui/account/api-tokens). |
-| :--- | :--- |
-
-
-| `Admin Password` | Sets the admin password after the cluster has been created. If no value is provided, the password is set to `admin.` |
-| :--- | :--- |
-
+    <tr>
+      <td style="text-align:left"><code>API Token</code>
+      </td>
+      <td style="text-align:left">The API token for WEKA&apos;s distribution site. This can be obtained
+        at <a href="https://get.weka.io/ui/account/api-tokens">https://get.weka.io/ui/account/api-tokens</a>.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>Admin Password</code>
+      </td>
+      <td style="text-align:left">Sets the admin password after the cluster has been created. If no value
+        is provided, the password is set to <code>admin.</code> 
+      </td>
+    </tr>
+  </tbody>
+</table>Define the following optional parameters if tiering to S3 is desired:
 
 | Parameter | Description |
 | :--- | :--- |

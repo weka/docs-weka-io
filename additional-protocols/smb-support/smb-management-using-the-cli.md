@@ -32,49 +32,88 @@ Use the following command line to create a new SMB cluster to be managed by the 
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `name` | String | NetBIOS name for the SMB cluster | Must be a valid name \(ASCII\) | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `domain` | String | Domain which the SMB cluster is to join | Must be a valid name \(ASCII\) | Yes | ​ |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `samba-hosts` | Comma- separated strings | List of 3-8 WEKA system hosts to participate in the SMB cluster, based on the host IDs in WEKA | Must be valid host IDs | Yes | ​ |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `smb-ips-pool` | Comma- separated IP addresses | Public IPs used as floating IPs for the SMB cluster to server the SMB over, and thereby provide HA; should not be assigned to any host on the network | Must be valid IP addresses | No | ​ |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>smb-ips-range</code>
+      <th style="text-align:left"><b>Name</b>
       </th>
-      <th style="text-align:left">IP address range</th>
-      <th style="text-align:left">The public IPs used as floating IPs for the SMB cluster to server the
-        SMB over and thereby provide HA; should not be assigned to any host on
-        the network</th>
-      <th style="text-align:left">
-        <p>Format: A.B.C.D-E</p>
-        <p>E.g., 10.10.0.1-100</p>
+      <th style="text-align:left"><b>Type</b>
       </th>
-      <th style="text-align:left">No&#x200B;</th>
-      <th style="text-align:left"></th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
     </tr>
   </thead>
-  <tbody></tbody>
-</table>| `domain-netbios-name` | String | Domain NetBIOS name | Must be a valid name \(ASCII\) | No | First part of`domain` parameter |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-{% hint style="info" %}
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>name</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">NetBIOS name for the SMB cluster</td>
+      <td style="text-align:left">Must be a valid name (ASCII)</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>domain</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Domain which the SMB cluster is to join</td>
+      <td style="text-align:left">Must be a valid name (ASCII)</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left">&#x200B;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>samba-hosts</code>
+      </td>
+      <td style="text-align:left">Comma- separated strings</td>
+      <td style="text-align:left">List of 3-8 WEKA system hosts to participate in the SMB cluster, based
+        on the host IDs in WEKA</td>
+      <td style="text-align:left">Must be valid host IDs</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left">&#x200B;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>smb-ips-pool</code>
+      </td>
+      <td style="text-align:left">Comma- separated IP addresses</td>
+      <td style="text-align:left">Public IPs used as floating IPs for the SMB cluster to server the SMB
+        over, and thereby provide HA; should not be assigned to any host on the
+        network</td>
+      <td style="text-align:left">Must be valid IP addresses</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">&#x200B;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>smb-ips-range</code>
+      </td>
+      <td style="text-align:left">IP address range</td>
+      <td style="text-align:left">The public IPs used as floating IPs for the SMB cluster to server the
+        SMB over and thereby provide HA; should not be assigned to any host on
+        the network</td>
+      <td style="text-align:left">
+        <p>Format: A.B.C.D-E</p>
+        <p>E.g., 10.10.0.1-100</p>
+      </td>
+      <td style="text-align:left">No&#x200B;</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>domain-netbios-name</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Domain NetBIOS name</td>
+      <td style="text-align:left">Must be a valid name (ASCII)</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">First part of<code>domain</code> parameter</td>
+    </tr>
+  </tbody>
+</table>{% hint style="info" %}
 **Note:** All IPs must reside on the same subnet, in order to enable HA through IP takeover.
 {% endhint %}
 

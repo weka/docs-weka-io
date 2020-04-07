@@ -98,44 +98,78 @@ If a high-performance client is required and the appropriate network NIC is avai
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `host-id` | String | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `device` | String | Network interface device name e.g., `eth1` | Must be a valid network device name | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `ips` | IP address | IP address of the new interface | Must be a valid IP address | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>gateway</code>
+      <th style="text-align:left"><b>Name</b>
       </th>
-      <th style="text-align:left">IP address</th>
-      <th style="text-align:left">IP address of the default routing gateway</th>
-      <th style="text-align:left">
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>host-id</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Identifier of host to be added to the cluster</td>
+      <td style="text-align:left">Must be a valid host identifier</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>device</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Network interface device name e.g., <code>eth1</code>
+      </td>
+      <td style="text-align:left">Must be a valid network device name</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ips</code>
+      </td>
+      <td style="text-align:left">IP address</td>
+      <td style="text-align:left">IP address of the new interface</td>
+      <td style="text-align:left">Must be a valid IP address</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>gateway</code>
+      </td>
+      <td style="text-align:left">IP address</td>
+      <td style="text-align:left">IP address of the default routing gateway</td>
+      <td style="text-align:left">
         <p>Gateway must reside within the same IP network of <code>ip-address</code> (as
           described by <code>netmask</code>).</p>
         <p>Not relevant for IB / L2 non-routable networks.</p>
-      </th>
-      <th style="text-align:left">No</th>
-      <th style="text-align:left"></th>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table>| `netmask` | Number | Number of bits in the net mask, e.g., the net mask of `255.255.0.0` has `16` netmask bits | Describes the number of bits that identify a network ID \(also known as CIDR\). | No |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-{% hint style="info" %}
+    <tr>
+      <td style="text-align:left"><code>netmask</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Number of bits in the net mask, e.g., the net mask of <code>255.255.0.0</code> has <code>16</code> netmask
+        bits</td>
+      <td style="text-align:left">Describes the number of bits that identify a network ID (also known as
+        CIDR).</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>{% hint style="info" %}
 **Note:** When configuring an InfiniBand client, do not pass the `--ips`, `--netmask` and `--gateway` parameters.
 {% endhint %}
 

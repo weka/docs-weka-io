@@ -11,106 +11,119 @@ description: >-
 
 WEKA's technical support policy is based on the type and urgency of the inquiry, as described in the following table:
 
-| Type/Urgency | Method of Contact | Comments |
-| :--- | :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><b>Critical</b>
-      </th>
-      <th style="text-align:left">
+      <th style="text-align:left">Type/Urgency</th>
+      <th style="text-align:left">Method of Contact</th>
+      <th style="text-align:left">Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><b>Critical</b>
+      </td>
+      <td style="text-align:left">
         <p>Call WEKA support number +1 (844) 392-0665</p>
+        <p></p>
         <p>-or-</p>
+        <p></p>
         <p>Open a ticket in the Support Portal (<a href="http://support.weka.io/">support.weka.io</a>)</p>
-      </th>
-      <th style="text-align:left">
+        <p></p>
+      </td>
+      <td style="text-align:left">
         <p>WEKA provides a 24/7 technical support service and voice messages are
           directed to the active support personnel. Such requests for technical support
           should only be used for urgent issues in production systems.</p>
+        <p></p>
+        <p></p>
+        <p></p>
         <p>To open a ticket, you need to first sign-up as a user in our Support Portal.
           Tickets can be tracked and notifications and updates are provided upon
           changes in tickets. When opening a ticket in the Support Portal, please
           choose the severity in the severity field according to the issue severity
           level</p>
-      </th>
+      </td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
     <tr>
-      <th style="text-align:left"><b>Major</b>
-      </th>
-      <th style="text-align:left">
+      <td style="text-align:left"><b>Major</b>
+      </td>
+      <td style="text-align:left">
         <p>Open a ticket in the Support Portal (<a href="http://support.weka.io/">support.weka.io</a>)</p>
+        <p></p>
         <p>-or-
           <br />
           <br />Email <a href="mailto:support@weka.io">support@weka.io</a>
         </p>
-      </th>
-      <th style="text-align:left">
+      </td>
+      <td style="text-align:left">
         <p>To open a ticket, you need to first sign-up as a user in our Support Portal.
           Tickets can be tracked and notifications and updates are provided upon
           changes in tickets. When opening a ticket in the Support Portal, please
           choose the severity in the severity field according to the issue severity
           level</p>
+        <p>
+          <br />
+          <br />
+        </p>
         <p>Sending an email also opens a ticket in the Support Portal. Note that
           it is first necessary to sign-up as a user in the Support Portal. Notification
           of problems by email are not considered as critical.</p>
-      </th>
+      </td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
     <tr>
-      <th style="text-align:left"><b>Minor</b>
-      </th>
-      <th style="text-align:left">
+      <td style="text-align:left"><b>Minor</b>
+      </td>
+      <td style="text-align:left">
         <p>Open a ticket in the Support Portal (<a href="http://support.weka.io/">support.weka.io</a>)</p>
+        <p></p>
         <p>-or-</p>
+        <p></p>
         <p>Email <a href="mailto:support@weka.io">support@weka.io</a>
         </p>
-      </th>
-      <th style="text-align:left">
+      </td>
+      <td style="text-align:left">
         <p>To open a ticket, you need to first sign-up as a user in our Support Portal.
           Tickets can be tracked and notifications and updates are provided upon
           changes in tickets. When opening a ticket in the Support Portal, please
           choose the severity in the severity field according to the issue severity
           level</p>
+        <p></p>
+        <p>
+          <br />
+        </p>
         <p>Sending an email also opens a ticket in the Support Portal. Note that
           it is first necessary to sign-up as a user in the Support Portal. Notification
           of problems by email are not considered as critical.</p>
-      </th>
+      </td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
     <tr>
-      <th style="text-align:left"><b>Product Questions or Feature Request</b>
-      </th>
-      <th style="text-align:left">
+      <td style="text-align:left"><b>Product Questions or Feature Request </b>
+      </td>
+      <td style="text-align:left">
         <p>Open a ticket in the Support Portal (<a href="http://support.weka.io/">support.weka.io</a>)</p>
+        <p></p>
         <p>-or-</p>
+        <p></p>
         <p>Email <a href="mailto:support@weka.io">support@weka.io</a>
         </p>
-      </th>
-      <th style="text-align:left">
+      </td>
+      <td style="text-align:left">
         <p>To open a ticket, you need to first sign-up as a user in our Support Portal.
           Tickets can be tracked and notifications and updates are provided upon
           changes in tickets. When opening a ticket in the Support Portal, please
           choose the severity in the severity field according to the issue severity
           level</p>
+        <p>
+          <br />
+          <br />
+        </p>
         <p>Sending an email also opens a ticket in the Support Portal. Note that
           it is first necessary to sign-up as a user in the Support Portal. Notification
           of problems by email are not considered as critical.</p>
-      </th>
+      </td>
     </tr>
-  </thead>
-  <tbody></tbody>
+  </tbody>
 </table>To be ready to get support from WEKA, it is recommended to perform the following:
 
 1. For each cluster provisioned, [allow uploading events to the support cloud](the-wekaio-support-cloud.md) to enable proactive support and improve the troubleshooting process if needed

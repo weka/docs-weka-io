@@ -274,51 +274,92 @@ Use the following command lines to add/update/delete NFS permissions:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `filesystem` | String | Filesystem name | Existing filesystem | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-|  `group` | String | Client group name | Existing client group | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-|  `path` | String | Root of the share | Valid path | No | / |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>permission-type</code>
+      <th style="text-align:left"><b>Name</b>
       </th>
-      <th style="text-align:left">String</th>
-      <th style="text-align:left">Permission type</th>
-      <th style="text-align:left">
-        <p>RO: read only</p>
-        <p>RW: read write</p>
+      <th style="text-align:left"><b>Type</b>
       </th>
-      <th style="text-align:left">No</th>
-      <th style="text-align:left">RW</th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
     </tr>
   </thead>
-  <tbody></tbody>
-</table>| `root-squashing` | String | Root squashing | on/off | No | on |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `anon-uid` | Number | Anonymous user ID \(relevant only for root squashing\) | Valid UID \(between 0 and 65535\) | Yes \(if root squashing is enabled\) | 65534 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `anon-gid` | Number | Anonymous user group ID \(relevant only for root squashing\) | Valid GID \(between 0 and 65535\) | Yes \(if root squashing is enabled\) | 65534 |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-### Supported Mount Options for NFS Clients
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>filesystem</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Filesystem name</td>
+      <td style="text-align:left">Existing filesystem</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"> <code>group</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Client group name</td>
+      <td style="text-align:left">Existing client group</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"> <code>path</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Root of the share</td>
+      <td style="text-align:left">Valid path</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">/</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>permission-type</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Permission type</td>
+      <td style="text-align:left">
+        <p>RO: read only</p>
+        <p>RW: read write</p>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">RW</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>root-squashing</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Root squashing</td>
+      <td style="text-align:left">on/off</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">on</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>anon-uid</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Anonymous user ID (relevant only for root squashing)</td>
+      <td style="text-align:left">Valid UID (between 0 and 65535)</td>
+      <td style="text-align:left">Yes (if root squashing is enabled)</td>
+      <td style="text-align:left">65534</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>anon-gid</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Anonymous user group ID (relevant only for root squashing)</td>
+      <td style="text-align:left">Valid GID (between 0 and 65535)</td>
+      <td style="text-align:left">Yes (if root squashing is enabled)</td>
+      <td style="text-align:left">65534</td>
+    </tr>
+  </tbody>
+</table>### Supported Mount Options for NFS Clients
 
 #### Non-Coherent Mount Options
 
