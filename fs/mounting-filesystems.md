@@ -34,9 +34,8 @@ The general structure of a`mount` command for a WEKA filesystem is:
 mount -t wekafs [-o option[,option]...]] <fs-name> <mount-point>
 ```
 
-There are three options for mounting a filesystem on a cluster client: coherent, read cache and write cache. Refer to the descriptions in the links below to understand the differences between these modes:
+There are two options for mounting a filesystem on a cluster client: read cache and write cache. Refer to the descriptions in the links below to understand the differences between these modes:
 
-* [Coherent mount mode](../overview/weka-client-and-mount-modes.md#coherent-mount-mode)
 * [Read cache mount mode](../overview/weka-client-and-mount-modes.md#read-cache-mount-mode-default)
 * [Write cache mount mode](../overview/weka-client-and-mount-modes.md#write-cache-mount-mode)
 
@@ -75,131 +74,172 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 
 ### For All Clients Types
 
-| Option | Value | Description | Default |
-| :--- | :--- | :--- | :--- |
-
-
-| `coherent` | None | Set mode to coherent | No |
-| :--- | :--- | :--- | :--- |
-
-
-| `readcache` | None | Set mode to read cache | No |
-| :--- | :--- | :--- | :--- |
-
-
-| `writecache` | None | Set mode to write cache | Yes |
-| :--- | :--- | :--- | :--- |
-
-
-| `dentry_max_age_positive` | Positive number, time in milliseconds | After the defined time period, every metadata cached entry is refreshed from the system, allowing the host to take into account metadata changes performed by other hosts. | 1000 |
-| :--- | :--- | :--- | :--- |
-
-
-| `dentry_max_age_negative` | Positive number, time in milliseconds | Each time a file or directory lookup fails, an entry specifying that the file or directory does not exist is created in the local dentry cache. This entry is refreshed after the defined time, allowing the host to use files or directories created by other hosts. | 0 |
-| :--- | :--- | :--- | :--- |
-
-
-| `ro` | None | Mount filesystem as read-only | No |
-| :--- | :--- | :--- | :--- |
-
-
-| `rw` | None | Mount filesystem as read-write | Yes |
-| :--- | :--- | :--- | :--- |
-
-
-| `inode_bits` | 32, 64 or auto | Size of the inode in bits, which may be required for 32 bit applications. | Auto |
-| :--- | :--- | :--- | :--- |
-
-
-| `verbose` | None | Write debug logs to the console | No |
-| :--- | :--- | :--- | :--- |
-
-
-| `quiet` | None | Don't show any logs to console | No |
-| :--- | :--- | :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>acl</code>
-      </th>
-      <th style="text-align:left">None</th>
-      <th style="text-align:left">
+      <th style="text-align:left">Option</th>
+      <th style="text-align:left">Value</th>
+      <th style="text-align:left">Description</th>
+      <th style="text-align:left">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>readcache</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Set mode to read cache</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>writecache</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Set mode to write cache</td>
+      <td style="text-align:left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>dentry_max_age_positive</code>
+      </td>
+      <td style="text-align:left">Positive number, time in milliseconds</td>
+      <td style="text-align:left">After the defined time period, every metadata cached entry is refreshed
+        from the system, allowing the host to take into account metadata changes
+        performed by other hosts.</td>
+      <td style="text-align:left">1000</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>dentry_max_age_negative</code>
+      </td>
+      <td style="text-align:left">Positive number, time in milliseconds</td>
+      <td style="text-align:left">Each time a file or directory lookup fails, an entry specifying that the
+        file or directory does not exist is created in the local dentry cache.
+        This entry is refreshed after the defined time, allowing the host to use
+        files or directories created by other hosts.</td>
+      <td style="text-align:left">0</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ro</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Mount filesystem as read-only</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>rw</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Mount filesystem as read-write</td>
+      <td style="text-align:left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>inode_bits</code>
+      </td>
+      <td style="text-align:left">32, 64 or auto</td>
+      <td style="text-align:left">Size of the inode in bits, which may be required for 32 bit applications.</td>
+      <td
+      style="text-align:left">Auto</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>verbose</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Write debug logs to the console</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>quiet</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Don&apos;t show any logs to console</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>acl</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">
         <p>Can be defined per mount.</p>
         <p>Setting POSIX ACLs can change the effective group permissions (via the <code>mask</code> permissions).
           When ACLs defined but the mount has no ACL, the effective group permissions
           is granted.)</p>
-      </th>
-      <th style="text-align:left">No</th>
+      </td>
+      <td style="text-align:left">No</td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table>| Option | Value | Description | Default |
-| :--- | :--- | :--- | :--- |
-
-
-| `memory_mb` | Number | Amount of memory to be used by the client \(for huge pages\) | 1400 MiB |
-| :--- | :--- | :--- | :--- |
-
+  </tbody>
+</table>### **Additional Mount Options Available using the Stateless Clients Feature**
 
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>num_cores=&lt;frontend-cores&gt;</code>
-      </th>
-      <th style="text-align:left">Number</th>
-      <th style="text-align:left">
+      <th style="text-align:left">Option</th>
+      <th style="text-align:left">Value</th>
+      <th style="text-align:left">Description</th>
+      <th style="text-align:left">Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>memory_mb</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Amount of memory to be used by the client (for huge pages)</td>
+      <td style="text-align:left">1400 MiB</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>num_cores=&lt;frontend-cores&gt;</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">
         <p>Number of frontend cores to allocate for the client.</p>
         <p>Either<code>&lt;num_cores&gt;</code> or<code>&lt;core&gt;</code> can be
           specified, but not both.</p>
         <p>If none are specified, the client will be configured with 1 core.</p>
         <p>If 0 is specified then you must use <code>net=udp</code>.</p>
-      </th>
-      <th style="text-align:left">1</th>
+      </td>
+      <td style="text-align:left">1</td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table>| `core=<core>` | Number | Specify explicit cores to be used by the WEKA client. Multiple cores can be specified. |  |
-| :--- | :--- | :--- | :--- |
-
-
-<table>
-  <thead>
     <tr>
-      <th style="text-align:left"><code>net=&lt;netdev&gt;[/&lt;ip&gt;/&lt;bits&gt;[/&lt;gateway&gt;]]</code>
-      </th>
-      <th style="text-align:left">String</th>
-      <th style="text-align:left">
+      <td style="text-align:left"><code>core=&lt;core&gt;</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Specify explicit cores to be used by the WekaIO client. Multiple cores
+        can be specified.</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>net=&lt;netdev&gt;[/&lt;ip&gt;/&lt;bits&gt;[/&lt;gateway&gt;]]</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">
         <p>This option must be specified for on-premises installation, and <b>must not be specified for AWS</b> installations.</p>
         <p>For more info refer to <a href="mounting-filesystems.md#advanced-network-configuration-via-mount-options">Advanced Network Configuration via Mount Options</a> section.</p>
-      </th>
-      <th style="text-align:left"></th>
+      </td>
+      <td style="text-align:left"></td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table><table>
-  <thead>
     <tr>
-      <th style="text-align:left"><code>bandwidth_mbps=&lt;bandwidth_mbps&gt;</code>
-      </th>
-      <th style="text-align:left">Number</th>
-      <th style="text-align:left">
+      <td style="text-align:left"><code>bandwidth_mbps=&lt;bandwidth_mbps&gt;</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">
         <p>Network bandwidth limitation for the entire container, in Mb/s.</p>
         <p>This limitation is for all nodes running within the container, and an
           attempt is made to detect it automatically based on the environment e.g.,
           when in AWS. Setting a per-node limitation can be performed in the container
           definition file.</p>
-      </th>
-      <th style="text-align:left">Auto-select</th>
+      </td>
+      <td style="text-align:left">Auto-select</td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table>| `remove_after_secs=<secs>` | Number | Number of seconds without connectivity after which the client will be removed from the cluster. Minimum value: 60 seconds. | 86,400 seconds \(24 hours\) |
-| :--- | :--- | :--- | :--- |
-
-
-{% hint style="info" %}
+    <tr>
+      <td style="text-align:left"><code>remove_after_secs=&lt;secs&gt;</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Number of seconds without connectivity after which the client will be
+        removed from the cluster.
+        <br />Minimum value: 60 seconds.</td>
+      <td style="text-align:left">86,400 seconds (24 hours)</td>
+    </tr>
+  </tbody>
+</table>{% hint style="info" %}
 **Note:** These parameters are only effective on the first mount command for each client.
 {% endhint %}
 

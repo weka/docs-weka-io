@@ -16,11 +16,12 @@ The page cache is implemented in the Linux kernel and is fully transparent to ap
 
 The WEKA client can control the information stored in the page cache and also invalidate it, if necessary. Consequently, the WEKA system can utilize the page cache for cached high-performance data access while maintaining data consistency across multiple hosts.
 
-Each filesystem can be mounted in one of three modes of operation in relation to the page cache:
+Each filesystem can be mounted in one of two modes of operation in relation to the page cache:
 
 * **Read Cache,** where file data is consistent across hosts, but there may be some metadata inconsistency in extreme cases.
-* **Coherent,** where both data and metadata are guaranteed to be strongly consistent, at the cost of some performance compromise. Note that file content is still cached locally in the system page cache.
 * **Write Cache \(default\),** which does not ensure data consistency but provides the highest performance.  
+
+At the cost of some performance compromise, metadata ****can be configured to be strongly consistent.
 
 {% hint style="info" %}
 **Note:** Symbolic links are always cached in all cached modes.
@@ -42,18 +43,12 @@ This mechanism ensures coherence, providing the WEKA system with full page cache
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Unlike actual file data, the file metadata is managed in the Linux operation system by the Dentry \(directory entry\) cache, which maximizes efficiency in the handling of directory entries. Since the Dentry cache is not strongly consistent across WEKA client hosts in the read cache mount mode, consideration should be given to using the coherent mount mode if metadata consistency is critical for the application.
+**Note:** Unlike actual file data, the file metadata is managed in the Linux operation system by the Dentry \(directory entry\) cache, which maximizes efficiency in the handling of directory entries. Since the Dentry cache is not strongly consistent across WEKA client hosts in the read cache mount mode, consideration should be given to mount without Dentry cache \(using`dentry_max_age_positive=0, dentry_max_age_negative=0` mount options\) if metadata consistency is critical for the application, as described in [Mount Command Options](../fs/mounting-filesystems.md#mount-command-options). 
 {% endhint %}
 
 {% hint style="info" %}
 **Note:** In some scenarios, particularly random reads of small blocks of data from large files, a read cache enablement can create an amplification of reads, due to the Linux operating system prefetch mechanism. If necessary, this mechanism can be tuned as explained [here](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-bdi).
 {% endhint %}
-
-## Coherent Mount Mode
-
-When mounting in the coherent mode, the page cache uses read/write cache in the read/write through mode, so any read is directed to the resilient storage and any write is acknowledged to the customer application only after being safely stored on resilient storage. This applies to both data and metadata.
-
-This mode ensures the strong consistency of data and metadata. Any data or metadata change will always be acknowledged to the application only after being safely stored on resilient storage. This enables sharing of data and metadata between hosts concurrently accessing the same filesystem.
 
 ## Write Cache Mount Mode \(Default\)
 
