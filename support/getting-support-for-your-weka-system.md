@@ -7,8 +7,6 @@ description: >-
 
 # Getting Support for Your WekaIO System
 
-
-
 ## Contacting WekaIO Technical Support Team
 
 WekaIO's technical support policy is based on the type and urgency of the inquiry, as described in the following table:  
