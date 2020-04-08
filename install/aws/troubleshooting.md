@@ -46,7 +46,7 @@ If the error _The requested configuration is currently not supported. Please che
 
 ## ClusterBootCondition Timeout
 
-When a _ClusterBootCondition timeout_ occurs, there was a problem creating the initial Weka system cluster. To debug this error, look in the `Backend0-syslog` log-stream \(as described above\). The first backend instance is responsible for creating the cluster and therefore, its log should provide the information necessary to debug this error.
+When a _ClusterBootCondition timeout_ occurs, there was a problem creating the initial WEKA system cluster. To debug this error, look in the `Backend0-syslog` log-stream \(as described above\). The first backend instance is responsible for creating the cluster and therefore, its log should provide the information necessary to debug this error.
 
 ## Clients Failed to Join
 

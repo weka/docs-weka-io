@@ -60,7 +60,7 @@ It is possible to use the following system calls: sync, syncfs, fsync, where syn
 
 ## Multiple Mounts on a Single Host
 
-The Weka client supports multiple mount points of the same file system on the same host, even with different mount modes. This can be effective in environments such as containers where different processes in the host need to have different definitions of read/write access or caching schemes.
+The WEKA client supports multiple mount points of the same file system on the same host, even with different mount modes. This can be effective in environments such as containers where different processes in the host need to have different definitions of read/write access or caching schemes.
 
 {% hint style="info" %}
 Note that two mounts on the same hosts are treated as two different hosts with respect to the consistency of the cache as described above. So for example, two mounts on the same host, mounted with write cache mode might have different data in the same point in time.

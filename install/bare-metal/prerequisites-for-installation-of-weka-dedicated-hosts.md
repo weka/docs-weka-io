@@ -32,7 +32,7 @@ description: >-
 ### Configuration
 
 * SELinux with MLS policy is not supported
-* All Weka Nodes must be synchronized in date/time \(NTP recommended\)
+* All WEKA nodes must be synchronized in date/time \(NTP recommended\)
 * A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the WEKA knowledgebase in the [WEKA support portal](http://support.weka.io) for more information and how-to articles 
 
 ### Kernel
@@ -46,7 +46,7 @@ description: >-
 * Directory: /opt/weka
 * Should be on an SSD or SSD-like performance, e.g., M.2. 
   * Cannot be shared remotely, NFS mounted or on RAM drive
-* At least 26 GB available for the WEKA system installation, with additional 10GB for each core used by Weka
+* At least 26 GB available for the WEKA system installation, with additional 10GB for each core used by WEKA
 
 ## Networking
 
@@ -104,10 +104,10 @@ Supported Intel 40 drivers:
 * Mellanox NICs:
   * One WEKA system IP address for management and data plane
 * Other vendors NICs
-  * WEKA system management IP address: One IP per server \(configured prior to weka installation\) 
-  * WEKA system data plane IP address: One IP address for each [WEKA core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server \(Weka will apply these IPs during the cluster initialization\)
+  * WEKA system management IP address: One IP per server \(configured prior to WEKA installation\) 
+  * WEKA system data plane IP address: One IP address for each [WEKA core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server \(WEKA will apply these IPs during the cluster initialization\)
   * WEKA system management IP: Ability to communicate with all WEKA system data plane IPs
-  * [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs to the number of cores you wish to dedicate to weka; some configuration may be required in the BIOS
+  * [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs to the number of cores you wish to dedicate to WEKA; some configuration may be required in the BIOS
   * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
