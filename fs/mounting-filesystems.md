@@ -244,7 +244,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** By default, the command selects the optimal core allocation for WEKA. If necessary, multiple `core` parameters can be used to allocate specific cores to the WekaIP client. E.g., `mount -t wekafs -o core=2 -o core=4 -o net=ib0 backend-host-0/my_fs /mnt/weka`
+**Note:** By default, the command selects the optimal core allocation for WEKA. If necessary, multiple `core` parameters can be used to allocate specific cores to the WekaFS client. E.g., `mount -t wekafs -o core=2 -o core=4 -o net=ib0 backend-host-0/my_fs /mnt/weka`
 {% endhint %}
 
 {% hint style="success" %}
