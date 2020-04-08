@@ -202,7 +202,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left"><code>core=&lt;core&gt;</code>
       </td>
       <td style="text-align:left">Number</td>
-      <td style="text-align:left">Specify explicit cores to be used by the WekaIO client. Multiple cores
+      <td style="text-align:left">Specify explicit cores to be used by the WekaFS client. Multiple cores
         can be specified.</td>
       <td style="text-align:left"></td>
     </tr>
