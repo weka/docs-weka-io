@@ -165,7 +165,7 @@ Supported Mellanox OFED versions:
 
 * API should be S3 compatible: 
   * GET
-    * Including byte-range support
+    * Including byte-range support with expected performance gain when fetching partial objects
   * PUT
     * Supports any byte size of up to 65 MiB
   * DELETE
