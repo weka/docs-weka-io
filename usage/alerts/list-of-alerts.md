@@ -6,37 +6,252 @@ description: >-
 
 # List of Alerts
 
-| Name | Description | Actions |
-| :--- | :--- | :--- |
-| AdminDefault Password | The admin password is still set to the factory default. | Change the admin user password to ensure only authorized users can access the cluster. |
-| AgentNotRunning | The WEKA local control agent is not running on a host. | Restart the agent with `service weka-agent start.` |
-| BackendNumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance. | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the backend host. |
-| BucketHasNoQuorum | Too many compute nodes are down, causing the bucket compute resource to be unavailable. | Check that the compute nodes and their hosts are up and running and fully connected; contact the WEKA Support Team if issue is not resolved. |
-| BucketUnresponsive | A compute resource has failed, causing system unavailability. | Check that the compute nodes and their hosts are up and running and fully connected; contact the WEKA Support Team if issue is not resolved. |
-| ChokingDetected | High congestion level detected in the cluster. | For more information, refer  to [System Congestion](../system-congestion.md). |
-| ClientNumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance. | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the client host. |
-| ClockSkew | The clock of a host is skewed in relation to the cluster leader, with a time difference more than the permitted maximum of 30 seconds. | Make sure NTP is configured correctly on the hosts and that their dates are synchronized. |
-| CloudHealth | A host cannot upload events to the WEKA cloud. | Check the host has Internet connectivity and is connected to the WEKA cloud as explained in [WEKA Support Cloud section](../../support/the-wekaio-support-cloud.md). |
-| ClusterIsUpgrading | Cluster is upgrading. | If the upgrade doesn't finish normally, contact the WEKA support for assistance. |
-| DataProtection | Some of the system's data is not fully redundant. | Check which node/host/drive is down and act accordingly. |
-| DedicatedWatchdog | A dedicated WEKA host requires the installation of a  watchdog driver. | Make sure a watchdog is available at /dev/watchdog. For more information, search the WEKA knowledgebase in the [WEKA support portal](http://support.weka.io). |
-| DriveDown | A drive is not responding. | Contact WEKA support to check if the drive should be replaced. |
-| DriveEndurancePercentageUsed | Drive exceeding its life expectancy. | It is recommended to replace the drive before it fails. |
-| DriveEnduranceSparesRemaining | Drive internal spares running too low. | It is recommended to replace the drive before it fails. |
-| DriveNeedsPhaseout | A drive has too many errors. | Phase-out the drive and probably replace it. |
-| FilesystemHasToo ManyFiles | The filesystem storage configuration is not large enough for the size of files and directory entries being stored. | Increase the max-files for the filesystem; it may be necessary decrease max-files from another filesystem or install more memory. |
-| HangingIOs | Some IOs are hanging on the node acting as a driver/NFS/backend. | Check that the compute nodes and their hosts are up and running, and fully connected. Also check that if a backend object store is configured, it is connected and responsive. Contact the WEKA Support Team if issue is not resolved. |
-| HighDrivesCapacity | The average capacity of the SSDs is too high. | Free-up space on the SSDs or [add more SSDs](https://docs.weka.io/v/3.4/usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources) to the cluster. |
-| HugePagesAlloc | WEKA could not allocate Huge Pages on a host, perhaps because of insufficient memory on the host or if memory is fragmented by usage of other processes. | Reboot the host to avoid memory fragmentation and allow WEKA to run startIO again. If this fails, verify that the host has enough free memory for use by WEKA or configure WEKA to use less memory. |
-| IPConflictDetected | An IP conflict has been detected. | Resolve the conflict of the reported IP. |
-| JumboConnectivity | A host cannot send jumbo frames to any of its cluster peers. | Check the host network settings and the switch to which it is connected, even if WEKA seems to be functional, since this will improve performance. |
-| KmsConfigurationError | KMS Configuration Error | Review the KMS credentials, permissions and configuration, as suggested in [KMS management](../../fs/managing-filesystems/kms-management.md). |
-| LicenseError | A license conflict exists. | Make sure the cluster is using a correct license; that the license has not expired; and that the cluster allocated space does not exceed the license. |
-| MismatchedDriveFailureDomain | Drive failure domain does not match the failure domain of its attached host. | Either connect the mismatched drive to a host with a matching failure domain, or re-provision the drive to erase its failure domain. |
-| Negative UnprovisionedCapacity | WEKA capacity usage changes detected due to cluster upgrade. | One or more of the filesystems need to be resized in order to reclaim capacity; contact the WEKA Support Team. |
-| NetworkInterfaceLinkDown | A Network interface has link down. | Check the connectivity to the down interface and see if there is anything blocking it. |
-| NoClusterLicense | No license is assigned to the cluster. | Obtain and install a license from get.weka.io. |
-| NodeDisconnected |  |  |
-
-A node is disconnected from the cluster. \| Check network connectivity to make sure the node can communicate with the cluster. \| \| NodeTiering Connectivity \| A node cannot connect to an object store. \| Check connectivity with the object store and make sure the node can communicate with it. \| \| NotEnoughActiveDrives \| There are not enough active failure domains. \| Check connectivity, host status and/or replace problematic drives. \| \| NotEnoughAvailable MemoryForFilesystems \| There are not enough working compute nodes in the cluster to store the file and directory entries for all the filesystems in the cluster. \| Either try to decrease the max-files for some of the filesystems or return the dead compute nodes to get their memory back. \| \| NotEnoughConfigured MemoryForFilesystems \| The total configured memory bytes for filesystems is insufficient to store the file and directory entries of the filesystems in the cluster. \| Decrease the max-files for some of the filesystems, decrease their capacity or increase the configured RAM of the cluster backend hosts. \| \| \| \| \| \| OfedVersions \| A host Mellanox OFED version ID does not match the one used by the WEKA container. \| Install a supported OFED. If the current version needs to be retained or the alert continues after a supported version is installed, contact the WEKA Support Team. \| \| PartiallyConnectedNode \| A node seems to be only partially connected. \| Make sure there is no network connectivity issue. \|
-
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Name</th>
+      <th style="text-align:left">Description</th>
+      <th style="text-align:left">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">AdminDefault Password</td>
+      <td style="text-align:left">The admin password is still set to the factory default.</td>
+      <td style="text-align:left">Change the admin user password to ensure only authorized users can access
+        the cluster.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">AgentNotRunning</td>
+      <td style="text-align:left">The WEKA local control agent is not running on a host.</td>
+      <td style="text-align:left">Restart the agent with <code>service weka-agent start.</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left">AutoRemoveTimeoutTooLow</td>
+      <td style="text-align:left">Stateless Client auto remove timeout too low.</td>
+      <td style="text-align:left">Remount the host with a higher auto remove timeout value.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">BackendNumaBalancingEnabled</td>
+      <td style="text-align:left">A host has automatic NUMA balancing enabled which can negatively impact
+        performance.</td>
+      <td style="text-align:left">To disable, run <code>echo 0 &gt; /proc/sys/kernel/numa_balancing</code> on
+        the backend host.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">BucketHasNoQuorum</td>
+      <td style="text-align:left">Too many compute nodes are down, causing the bucket compute resource to
+        be unavailable.</td>
+      <td style="text-align:left">Check that the compute nodes and their hosts are up and running and fully
+        connected; contact the WEKA Support Team if issue is not resolved.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">BucketUnresponsive</td>
+      <td style="text-align:left">A compute resource has failed, causing system unavailability.</td>
+      <td
+      style="text-align:left">Check that the compute nodes and their hosts are up and running and fully
+        connected; contact the WEKA Support Team if issue is not resolved.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">ChokingDetected</td>
+      <td style="text-align:left">High congestion level detected in the cluster.</td>
+      <td style="text-align:left">For more information, refer to <a href="../system-congestion.md">System Congestion</a>.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">ClientNumaBalancingEnabled</td>
+      <td style="text-align:left">A host has automatic NUMA balancing enabled which can negatively impact
+        performance.</td>
+      <td style="text-align:left">To disable, run <code>echo 0 &gt; /proc/sys/kernel/numa_balancing</code> on
+        the client host.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">ClockSkew</td>
+      <td style="text-align:left">The clock of a host is skewed in relation to the cluster leader, with
+        a time difference more than the permitted maximum of 30 seconds.</td>
+      <td
+      style="text-align:left">Make sure NTP is configured correctly on the hosts and that their dates
+        are synchronized.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">CloudHealth</td>
+      <td style="text-align:left">A host cannot upload events to the WEKA cloud.</td>
+      <td style="text-align:left">Check the host has Internet connectivity and is connected to the WEKA
+        cloud as explained in <a href="../../support/the-wekaio-support-cloud.md">WEKA Support Cloud section</a>.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">ClusterIsUpgrading</td>
+      <td style="text-align:left">Cluster is upgrading.</td>
+      <td style="text-align:left">If the upgrade doesn&apos;t finish normally, contact the WEKA support
+        for assistance.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">DataProtection</td>
+      <td style="text-align:left">Some of the system&apos;s data is not fully redundant.</td>
+      <td style="text-align:left">Check which node/host/drive is down and act accordingly.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">DedicatedWatchdog</td>
+      <td style="text-align:left">A dedicated WEKA host requires the installation of a watchdog driver.</td>
+      <td
+      style="text-align:left">Make sure a watchdog is available at /dev/watchdog. For more information,
+        search the WEKA knowledgebase in the <a href="http://support.weka.io">WEKA support portal</a>.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">DriveDown</td>
+      <td style="text-align:left">A drive is not responding.</td>
+      <td style="text-align:left">Contact WEKA support to check if the drive should be replaced.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">DriveEndurancePercentageUsed</td>
+      <td style="text-align:left">Drive exceeding its life expectancy.</td>
+      <td style="text-align:left">It is recommended to replace the drive before it fails.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">DriveEnduranceSparesRemaining</td>
+      <td style="text-align:left">Drive internal spares running too low.</td>
+      <td style="text-align:left">It is recommended to replace the drive before it fails.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">DriveNeedsPhaseout</td>
+      <td style="text-align:left">A drive has too many errors.</td>
+      <td style="text-align:left">Phase-out the drive and probably replace it.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">FilesystemHasToo ManyFiles</td>
+      <td style="text-align:left">The filesystem storage configuration is not large enough for the size
+        of files and directory entries being stored.</td>
+      <td style="text-align:left">Increase the max-files for the filesystem; it may be necessary decrease
+        max-files from another filesystem or install more memory.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">HangingIOs</td>
+      <td style="text-align:left">Some IOs are hanging on the node acting as a driver/NFS/backend.</td>
+      <td
+      style="text-align:left">Check that the compute nodes and their hosts are up and running, and fully
+        connected. Also check that if a backend object store is configured, it
+        is connected and responsive. Contact the WEKA Support Team if issue is
+        not resolved.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">HighDrivesCapacity</td>
+      <td style="text-align:left">The average capacity of the SSDs is too high.</td>
+      <td style="text-align:left">Free-up space on the SSDs or <a href="https://docs.weka.io/v/3.4/usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources">add more SSDs</a> to
+        the cluster.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">HugePagesAlloc</td>
+      <td style="text-align:left">WEKA could not allocate Huge Pages on a host, perhaps because of insufficient
+        memory on the host or if memory is fragmented by usage of other processes.</td>
+      <td
+      style="text-align:left">Reboot the host to avoid memory fragmentation and allow WEKA to run startIO
+        again. If this fails, verify that the host has enough free memory for use
+        by WEKA or configure WEKA to use less memory.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">IPConflictDetected</td>
+      <td style="text-align:left">An IP conflict has been detected.</td>
+      <td style="text-align:left">Resolve the conflict of the reported IP.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">JumboConnectivity</td>
+      <td style="text-align:left">A host cannot send jumbo frames to any of its cluster peers.</td>
+      <td style="text-align:left">Check the host network settings and the switch to which it is connected,
+        even if WEKA seems to be functional, since this will improve performance.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">KmsConfigurationError</td>
+      <td style="text-align:left">KMS Configuration Error</td>
+      <td style="text-align:left">Review the KMS credentials, permissions and configuration, as suggested
+        in <a href="../../fs/managing-filesystems/kms-management.md">KMS management</a>.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">LicenseError</td>
+      <td style="text-align:left">A license conflict exists.</td>
+      <td style="text-align:left">Make sure the cluster is using a correct license; that the license has
+        not expired; and that the cluster allocated space does not exceed the license.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">MismatchedDriveFailureDomain</td>
+      <td style="text-align:left">Drive failure domain does not match the failure domain of its attached
+        host.</td>
+      <td style="text-align:left">Either connect the mismatched drive to a host with a matching failure
+        domain, or re-provision the drive to erase its failure domain.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">NegativeUnprovisionedCapacity</td>
+      <td style="text-align:left">WEKA capacity usage changes detected due to cluster upgrade.</td>
+      <td style="text-align:left">One or more of the filesystems need to be resized in order to reclaim
+        capacity; contact the WEKA Support Team.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">NetworkInterfaceLinkDown</td>
+      <td style="text-align:left">A Network interface has link down.</td>
+      <td style="text-align:left">Check the connectivity to the down interface and see if there is anything
+        blocking it.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">NoClusterLicense</td>
+      <td style="text-align:left">No license is assigned to the cluster.</td>
+      <td style="text-align:left">Obtain and install a license from get.weka.io.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">NodeBlacklisted</td>
+      <td style="text-align:left">Blacklisted node in the cluster.</td>
+      <td style="text-align:left">Use <code>weka debug blacklist disable</code> to whitelist nodes so they
+        can rejoin the cluster.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">NodeDisconnected</td>
+      <td style="text-align:left">A node is disconnected from the cluster.</td>
+      <td style="text-align:left">Check network connectivity to make sure the node can communicate with
+        the cluster.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">NodeTieringConnectivity</td>
+      <td style="text-align:left">A node cannot connect to an object store.</td>
+      <td style="text-align:left">Check connectivity with the object store and make sure the node can communicate
+        with it.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">NotEnoughActiveDrives</td>
+      <td style="text-align:left">There are not enough active failure domains.</td>
+      <td style="text-align:left">Check connectivity, host status and/or replace problematic drives.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p>NotEnoughAvailable</p>
+        <p>MemoryForFilesystems</p>
+      </td>
+      <td style="text-align:left">There are not enough working compute nodes in the cluster to store the
+        file and directory entries for all the filesystems in the cluster.</td>
+      <td
+      style="text-align:left">Either try to decrease the max-files for some of the filesystems or return
+        the dead compute nodes to get their memory back.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">
+        <p>NotEnoughConfigured</p>
+        <p>MemoryForFilesystems</p>
+      </td>
+      <td style="text-align:left">The total configured memory bytes for filesystems is insufficient to store
+        the file and directory entries of the filesystems in the cluster.</td>
+      <td
+      style="text-align:left">Decrease the max-files for some of the filesystems, decrease their capacity
+        or increase the configured RAM of the cluster backend hosts.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">OfedVersions</td>
+      <td style="text-align:left">A host Mellanox OFED version ID does not match the one used by the WEKA
+        container.</td>
+      <td style="text-align:left">Install a supported OFED. If the current version needs to be retained
+        or the alert continues after a supported version is installed, contact
+        the WEKA Support Team.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">PartiallyConnectedNode</td>
+      <td style="text-align:left">A node seems to be only partially connected.</td>
+      <td style="text-align:left">Make sure there is no network connectivity issue.</td>
+    </tr>
+  </tbody>
+</table>

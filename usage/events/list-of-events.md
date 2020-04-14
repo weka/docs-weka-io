@@ -51,17 +51,24 @@ description: >-
 | RejoinFailureReport | MINOR | Node\(s\) failed to rejoin |
 | StartIONodeNotUp | MAJOR | Node has not joined the cluster during Start-IO |
 
+## Custom
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| Custom | INFO | Custom event |
+
 ## Drive
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| CorruptedDrive | CRITICAL | Drive has a valid header but is corrupt |
+| CorruptedDrive | MAJOR | Drive has a valid header but is corrupt |
 | DriveActivated | INFO | Drive activated |
 | DriveDeactivated | INFO | Drive deactivated |
 | DriveExcessiveErrors | WARNING | Drive has excessive error rate and will be phased out; call WEKA Support Team |
 | DriveFormatUpgraded | INFO | Drive format was upgraded |
+| DriveImmediateShutdown | MAJOR | Drive had to be shutdown immediately; call WEKA Support Team |
 | DriveInfoReport | INFO | Drive Information reporting |
-| DriveInitFailed | CRITICAL | Drive failed to initialize |
+| DriveInitFailed | MAJOR | Drive failed to initialize |
 | DriveIoError | MAJOR | Drive had an IO error |
 | DriveIoErrorBMS | MAJOR | Drive found an IO error in background media scan |
 | DriveLimitExceeded | WARNING | Attempted to add more drives than supported |
@@ -75,10 +82,10 @@ description: >-
 | DriveScanBlocked | MINOR | Drive blocked during scan and is unresponsive |
 | DriveSignatureUnknown | MINOR | Drive has an unknown signature |
 | DriveStateChangesReport | MINOR | Drive state changes |
-| DriveUnderIOMMU | CRITICAL | Drive is under IOMMU and cannot be used |
+| DriveUnderIOMMU | MAJOR | Drive is under IOMMU and cannot be used |
 | DriveUnresponsive | MAJOR | Drive is unresponsive and failed to return IOs for an extended period of time; consider power cycling the host |
 | DriveWrongFailureDomain | MINOR | Drive is attached to a host from an incorrect failure domain |
-| NvmeBindTimingOut | CRITICAL | NVMe device bind is stuck, server needs power cycle to recover |
+| NvmeBindTimingOut | MAJOR | NVMe device bind is stuck, server needs power cycle to recover |
 
 ## Events
 
@@ -86,10 +93,10 @@ description: >-
 | :--- | :--- | :--- |
 | DedupEventsDiscarded | WARNING | Deduplicated events discarded |
 | EventsDedupReport | INFO | Event deduplication ended |
-| EventsDiscarded | CRITICAL | Too many events were generated in a short period of time, so some of them were discarded and lost |
+| EventsDiscarded | MAJOR | Too many events were generated in a short period of time, so some of them were discarded and lost |
 | Example | INFO | Example |
 | ExampleAggregated | INFO | Example Aggregated |
-| Quarantine | CRITICAL | Quarantine event for use by QA |
+| ExampleDebug | DEBUG | ExampleDebug |
 
 ## Filesystem
 
@@ -107,15 +114,19 @@ description: >-
 | FilesystemGroupUpdated | INFO | Filesystem group configuration change |
 | FilesystemUpdated | INFO | Filesystem configuration change |
 | HangingBackendIosDetected | CRITICAL | Some IOs are hanging |
-| HangingDirectorySplit | MAJOR | Directory split hasn't any made progress for a long time |
+| HangingBackendIosNoLongerDetected | INFO | IOs are no longer hanging |
+| HangingBucketStepDown | WARNING | Bucket step-down is hanging |
+| HangingDirectorySplit | CRITICAL | Directory split hasn't any made progress for a long time |
 | HangingDriverFrontendIosDetected | CRITICAL | Some IOs are hanging |
+| HangingDriverFrontendIosNoLongerDetected | INFO | IOs are no longer hanging |
 | HangingNFSFrontendIosDetected | CRITICAL | Some IOs are hanging |
-| ManualOverride | MAJOR | Service has been manually-overridden |
-| ObjectStorageAttachedToFilesyste | INFO | Object Storage attached to filesystem |
-| ObjectStorageFinishedDetachingdF | INFO | Object Storage finished detaching from filesystem |
-| ObjectStorageStartedDetachingdFr | INFO | Object Storage started detaching from filesystem |
-| RAIDDataBlockReadFailureInSnapha | MAJOR | Failed to read data block from RAID when dumping the snapshot manifest |
-| RAIDMDReadFailureInSnaphashDump | MAJOR | Failed to read metadata block from RAID when dumping the snapshot manifest |
+| HangingNFSFrontendIosNoLongerDetected | INFO | IOs are no longer hanging |
+| ManualOverride | WARNING | Service has been manually-overridden |
+| ObjectStorageAttachedToFilesystem | INFO | Object Storage attached to filesystem |
+| ObjectStorageFinishedDetachingdFromFilesystem | INFO | Object Storage finished detaching from filesystem |
+| ObjectStorageStartedDetachingdFromFilesystem | INFO | Object Storage started detaching from filesystem |
+| RAIDDataBlockReadFailureInSnaphashDump | WARNING | Failed to read data block from RAID when dumping the snapshot manifest |
+| RAIDMDReadFailureInSnaphashDump | WARNING | Failed to read metadata block from RAID when dumping the snapshot manifest |
 | SnapshotContentCopied | INFO | Snapshot content copied |
 | SnapshotCreated | INFO | Snapshot created |
 | SnapshotDeleted | INFO | Snapshot deleted |
@@ -124,13 +135,12 @@ description: >-
 | SnapshotParamsUpdated | INFO | Snapshot updated |
 | SnapshotUploadAborted | INFO | Snapshot upload aborted |
 | SnapshotUploadStarted | INFO | Snapshot upload started |
-| UnflushedOpOnDeletingSnapview | CRITICAL | Unflushed IO on a deleting snapshot |
+| UnflushedOpOnDeletingSnapview | MAJOR | Unflushed IO on a deleting snapshot |
 
 ## IO
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| LongIO | MAJOR | IO request takes too long to complete |
 | RaftHogger | MAJOR | Raft hogger |
 
 ## InterfaceGroup
@@ -190,39 +200,40 @@ description: >-
 | NICNotFound | INFO | NIC not found when initializing |
 | NetDeviceLinkDown | MAJOR | Network interface DOWN |
 | NetDeviceLinkUp | MINOR | Network interface UP |
-| NetDeviceWithNumaFittingNodeCore | WARNING | Cannot find net device with NUMA to match cores - performance warning |
+| NetDeviceWithNumaFittingNodeCoreNotFound | WARNING | Cannot find net device with NUMA to match cores - performance warning |
 | NetworkPortConfigFail | MINOR | Network port configuration failed |
 | NetworkPortDead | MAJOR | Network Port hasn't passed packets for a long period of time, it is likely dead |
 | NoConnectivityToLivingNode | MAJOR | Node is disconnected from living peer\(s\) |
 | NoHardwareWatchdog | MAJOR | No hardware watchdog found |
-| NoJumboFrames | MAJOR | Network does not allow large-enough messages through |
+| NoJumboFrames | MINOR | Network does not allow large-enough messages through |
 | NodeCannotJoinCluster | WARNING | Node cannot join cluster for too long |
-| NodeCannotSendJumboFrames | MAJOR | Node cannot send jumbo packets |
-| NodeDisconnected | MAJOR | Node disconnected from cluster |
-| NodeHasNetDevicesWithDifferentNu | WARNING | Multiple net devices with different NUMAs - performance warning |
+| NodeCannotSendJumboFrames | MINOR | Node cannot send jumbo packets |
+| NodeDisconnected | MINOR | Node disconnected from cluster |
+| NodeHasNetDevicesWithDifferentNumas | WARNING | Multiple net devices with different NUMAs - performance warning |
 
 ## Node
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | CrashReport | MAJOR | Node has crashed on the previous run |
-| FailedToLoadDriver | CRITICAL | Failed to load the wekafs driver |
-| GCCrashReport | MAJOR | Node has crashed in GC on the previous run |
-| NodeAssertionFailed | CRITICAL | Node assertion failed |
-| NodeExceptionExit | CRITICAL | Node exited with an exception |
-| NodeHung | MAJOR | Node hung for too long |
+| FailedToLoadDriver | MAJOR | Failed to load the wekafs driver |
+| GCCrashReport | MINOR | Node has crashed in GC on the previous run |
+| NodeAssertionFailed | MAJOR | Node assertion failed |
+| NodeExceptionExit | MAJOR | Node exited with an exception |
 | NodeKernelStack | WARNING | Kernel stack of node before reset |
 | NodeStarted | INFO | Node started |
 | NodeStopped | INFO | Node stopped |
 | NodeTraceback | WARNING | Traceback of node before reset |
 | WatchdogResetClientNode | MINOR | Watchdog reset of a client node |
-| WatchdogResetNode | CRITICAL | Watchdog reset of node |
+| WatchdogResetNode | MAJOR | Watchdog reset of node |
 
 ## ObjectStorage
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | ChecksumErrorInDownloadedObject | CRITICAL | Checksum error detected by COMPUTE node in a downloaded OBS data block |
+| DataBlobDownloadFailed | WARNING | Failed downloading data blob header |
+| InvalidDataBlobHeader | MAJOR | Invalid header detected by COMPUTE node in a downloaded OBS data blob |
 | ObjectStorageAdded | INFO | Object storage configuration change |
 | ObjectStorageDeleted | INFO | Object storage configuration change |
 | ObjectStorageIsFull | CRITICAL | Object storage is full |
@@ -230,7 +241,7 @@ description: >-
 | ObjectStorageUpdated | INFO | Object storage configuration change |
 | TieredFilesystemBreakingPolicy | MINOR | Breaking policy; too much disk pressure |
 
-## Organization
+## Org
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
@@ -244,20 +255,23 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| BitmapChecksumMismatch | MAJOR | Bitmap checksum mismatch detected |
 | DataGenerationNumberBug | WARNING | Bug in the advancement of the applied data generation number report from a bucket |
-| DataProtectionLevelDecreased | CRITICAL | Data protection level decreased |
-| DataProtectionLevelIncreased | CRITICAL | Data protection level increased |
-| DisksFailureDetected | MAJOR | Disk\(s\) failures detected |
+| DataProtectionLevelDecreased | MINOR | Data protection level decreased |
+| DataProtectionLevelIncreased | INFO | Data protection level increased |
+| DisksFailureDetected | MINOR | Disk\(s\) failures detected |
 | DisksRecoveryDetected | INFO | Disk\(s\) quick recovery detected |
 | EnoughActiveFailureDomains | MINOR | Enough active failure domains |
 | FixedFalseFreeBlock | CRITICAL | Found and fixed a false free block |
 | HotSpareFailureDomainsUpdated | INFO | Hot spare failure domains updated |
+| NoDataProtection | CRITICAL | No data protection |
 | QuorumGenerationNumberBug | WARNING | Bug in the advancement of the applied quorum generation number report from a bucket |
 | RaidScrubbingRateUpdated | INFO | RAID scrubber limit updated |
 | RaidStarted | INFO | RAID started on bucket |
 | SwitchPlacementHanging | MINOR | SwitchPlacement has no non-dirty chunks |
 | SwitchPlacementRetrying | MINOR | SwitchPlacement retrying |
 | TooFewActiveFailureDomains | CRITICAL | Too few active failure domains |
+| TooManyFailures | CRITICAL | Too many failures, some data is unavailable |
 
 ## SMB
 
@@ -283,7 +297,6 @@ description: >-
 | BlockTaskAborted | INFO | A bucket task aborted successfully |
 | BlockTaskComplete | INFO | A bucket task completed successfully |
 | BucketsCreated | INFO | System has created buckets |
-| CapacitiesPullFailed | CRITICAL | Failed downloading capcities for synchronized snaps from previous versions |
 | ClusterwideTaskChanged | INFO | Clusterwide task changed |
 | HaveEnoughSSDCapacity | MINOR | Enough SSD capacity now exists for all provisioned file systems |
 | HugepagesAllocationRetries | WARNING | Hugepages allocation issues |

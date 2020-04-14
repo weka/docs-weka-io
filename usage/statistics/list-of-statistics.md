@@ -37,6 +37,7 @@ description: >-
 | DESTAGE\_COUNT |  | Destages/Sec |
 | DIR\_MOVE\_TIME |  | Ops |
 | EXTENT\_BLOCKS\_COUNT |  | Blocks |
+| FAILED\_1HOP\_READS | Number of failed single hop reads per second | Ops/Sec |
 | FREEABLE\_LRU\_BUFFERS |  | Buffers |
 | HASH\_BLOCKS\_COUNT |  | Blocks |
 | INODE\_BLOCKS\_COUNT |  | Blocks |
@@ -197,51 +198,48 @@ description: >-
 
 | Type | Description | Units |
 | :--- | :--- | :--- |
-| BAD\_RECV\_CSUM |  | Packets/Sec |
-| CANCELED\_PACKETS |  | Packets/Sec |
-| CORRUPT\_PACKETS |  | Packets/Sec |
-| DOUBLY\_RECEIVED\_PACKETS |  | Packets/Sec |
-| DROPPED\_PACKETS |  | Packets/Sec |
-| ECN\_PACKETS |  | Packets/Sec |
-| FAULT\_RECV\_DELAYED\_PACKETS |  | Packets/Sec |
-| FAULT\_RECV\_DROPPED\_PACKETS |  | Packets/Sec |
-| FAULT\_SENT\_DELAYED\_PACKETS |  | Packets/Sec |
-| FAULT\_SENT\_DROPPED\_PACKETS |  | Packets/Sec |
-| GW\_MAC\_RESOLVE\_FAILURES |  | Failures |
-| GW\_MAC\_RESOLVE\_SUCCESSES |  | Successes |
-| NODE\_RECONNECTED |  | Reconnects/Sec |
+| BAD\_RECV\_CSUM | Number of packets received with a bad checksum | Packets/Sec |
+| CORRUPT\_PACKETS | Number of packets received and deemed corrupted | Packets/Sec |
+| DOUBLY\_RECEIVED\_PACKETS | Number of packets that were received multiple times | Packets/Sec |
+| DROPPED\_LARGE\_PACKETS | Number of large packets dropped in the socket backend | Packets/Sec |
+| DROPPED\_PACKETS | Number of packets received that we dropped | Packets/Sec |
+| FAULT\_RECV\_DELAYED\_PACKETS | Number of received packets delayed due to a fault injection | Packets/Sec |
+| FAULT\_RECV\_DROPPED\_PACKETS | Number of received packets dropped due to a fault injection | Packets/Sec |
+| FAULT\_SENT\_DELAYED\_PACKETS | Number of sent packets delayed due to a fault injection | Packets/Sec |
+| FAULT\_SENT\_DROPPED\_PACKETS | Number of sent packets dropped due to a fault injection | Packets/Sec |
+| GW\_MAC\_RESOLVE\_FAILURES | Number of times we failed to ARP resolve the gateway IP | Failures |
+| GW\_MAC\_RESOLVE\_SUCCESSES | Number of times we succeeded to ARP resolve the gateway IP | Successes |
+| NODE\_RECONNECTED | Number of reconnections | Reconnects/Sec |
 | PACKETS\_PUMPED | Number of packets received in each call to recvPackets |  |
-| PEER\_RTT |  | Microseconds |
-| PING\_ROUNDTRIP |  |  |
-| PORT\_RX\_BYTES |  | Bytes/Sec |
-| PORT\_RX\_PACKETS |  | Packets/Sec |
-| PORT\_TX\_BYTES |  | Bytes/Sec |
-| PORT\_TX\_PACKETS |  | Packets/Sec |
-| PUMP\_DURATION |  |  |
-| PUMP\_INTERVAL |  |  |
-| RECEIVED\_CONTROL\_PACKETS |  | Packets/Sec |
-| RECEIVED\_DATA\_PACKETS |  | Packets/Sec |
-| RECEIVED\_PACKETS |  | Packets/Sec |
+| PEER\_RTT | RTT per peer node | Microseconds |
+| PORT\_RX\_BYTES | Number of bytes received | Bytes/Sec |
+| PORT\_RX\_PACKETS | Number of packets received | Packets/Sec |
+| PORT\_TX\_BYTES | Number of bytes transmitted | Bytes/Sec |
+| PORT\_TX\_PACKETS | Number of packets transmitted | Packets/Sec |
+| PUMP\_DURATION | Duration of each pump |  |
+| PUMP\_INTERVAL | Interval between pumps |  |
+| RECEIVED\_CONTROL\_PACKETS | Number of received control packets | Packets/Sec |
+| RECEIVED\_DATA\_PACKETS | Number of received data packets | Packets/Sec |
+| RECEIVED\_PACKETS | Number of packets received | Packets/Sec |
 | RECEIVED\_PACKET\_GENERATIONS | The generation \("resend count"\) of the first incarnation of the packet seen by the receiver \(indicates packet loss\) |  |
-| REORDERED\_PACKETS |  | Packets/Sec |
+| REORDERED\_PACKETS | Number of reordered packets | Packets/Sec |
 | RESEND\_BATCH\_SIZE | Number of packets sent in a resend batch |  |
-| RESENT\_DATA\_PACKETS |  | Packets/Sec |
-| SEND\_QUEUE\_TIMEOUTS |  | Packets/Sec |
-| SEND\_WINDOW\_TIMEOUTS |  | Packets/Sec |
-| SENT\_ACKS |  | Packets/Sec |
-| SENT\_CONTROL\_PACKETS |  | Packets/Sec |
-| SENT\_DATA\_PACKETS |  | Packets/Sec |
-| SENT\_PACKETS |  | Packets/Sec |
-| SENT\_REJECTS |  | Packets/Sec |
-| SHORT\_CIRCUIT\_SENDS |  | Packets/Sec |
-| SLOW\_PATH\_CSUM |  | Packets/Sec |
-| TIMELY\_RESENEDS |  | Packets/Sec |
-| TIME\_TO\_ACK |  |  |
-| TOO\_MANY\_TIMELY\_RESENDS |  | Packets/Sec |
-| UDP\_SENDMSG\_FAILED\_EAGAIN |  | Packets/Sec |
-| UDP\_SENDMSG\_FAILED\_OTHER |  | Packets/Sec |
-| UDP\_SENDMSG\_PARTIAL\_SEND |  | Packets/Sec |
-| UNACKED\_RESENEDS |  | Packets/Sec |
+| RESENT\_DATA\_PACKETS | Number of data packets resent | Packets/Sec |
+| SEND\_QUEUE\_TIMEOUTS | Number of packets cancelled due to envelope timeout and were not in the send window | Packets/Sec |
+| SEND\_WINDOW\_TIMEOUTS | Number of packets cancelled due to envelope timeout while in the send window | Packets/Sec |
+| SENT\_ACKS | Number of ACK packets sent | Packets/Sec |
+| SENT\_CONTROL\_PACKETS | Number of control packets sent | Packets/Sec |
+| SENT\_DATA\_PACKETS | Number of data packets sent | Packets/Sec |
+| SENT\_PACKETS | Number of sent packets | Packets/Sec |
+| SENT\_REJECTS | Number of rejects sent | Packets/Sec |
+| SHORT\_CIRCUIT\_SENDS | Number of packets sent to the same node | Packets/Sec |
+| SLOW\_PATH\_CSUM | Number of packets that went through checksum calculation on the CPU | Packets/Sec |
+| TIMELY\_RESENEDS | Number of packets resent due to timely resend | Packets/Sec |
+| TIME\_TO\_ACK | Histogram of time to ack a data packet |  |
+| UDP\_SENDMSG\_FAILED\_EAGAIN | Number of packets that failed to be sent on the socket backend with EAGAIN | Packets/Sec |
+| UDP\_SENDMSG\_FAILED\_OTHER | Number of packets that failed to be sent on the socket backend with an unknown error | Packets/Sec |
+| UDP\_SENDMSG\_PARTIAL\_SEND | Number of packets that we failed to send but in the same pump some packets were sent | Packets/Sec |
+| UNACKED\_RESENEDS | Number of packets resent after receiving an ack | Packets/Sec |
 
 ## Object Storage
 
@@ -493,7 +491,6 @@ description: >-
 | CLIENT\_RPC\_CALLS\_LOW |  | RPC/Sec |
 | CLIENT\_SENT\_REQUESTS |  | Calls/Sec |
 | FIRST\_RESULTS | Number of first results per second | Ops/Sec |
-| HEARTBEAT\_ROUND\_TRIP |  | Milliseconds |
 | SERVER\_ABORTS |  | Calls/Sec |
 | SERVER\_DROPPED\_REQUESTS |  | Calls/Sec |
 | SERVER\_PROCESSING\_AVG |  | Microseconds |
@@ -515,7 +512,7 @@ description: >-
 | AioIoRequest\_CAPACITY | Number of data structures allocated to the AioIoRequest pool | Structs |
 | AioIoRequest\_STRUCT\_SIZE | Number of bytes in each struct of the AioIoRequest pool | Bytes |
 | AioIoRequest\_USED | Number of structs in the AioIoRequest pool which are currently being used | Structs |
-| BACKGROUND\_CYCLES |  | Cycles/Sec |
+| BACKGROUND\_CYCLES | Number of cycles spent in background fibers | Cycles/Sec |
 | BACKGROUND\_FIBERS | Number of background fibers that are ready to run and eager to get CPU cycles | Fibers |
 | BACKGROUND\_TIME | Percentage of the CPU time utilized for background operations | % |
 | BucketInvocationState\_CAPACITY | Number of data structures allocated to the BucketInvocationState pool | Structs |
@@ -527,7 +524,13 @@ description: >-
 | CLASS\_BLOB!\(RAID\)\_CAPACITY | Number of data structures allocated to the CLASS\_BLOB!\(RAID\) pool | Structs |
 | CLASS\_BLOB!\(RAID\)\_STRUCT\_SIZE | Number of bytes in each struct of the CLASS\_BLOB!\(RAID\) pool | Bytes |
 | CLASS\_BLOB!\(RAID\)\_USED | Number of structs in the CLASS\_BLOB!\(RAID\) pool which are currently being used | Structs |
-| CYCLES\_PER\_SECOND |  | Cycles/Sec |
+| CYCLES\_PER\_SECOND | Number of cycles the cpu runs per second | Cycles/Sec |
+| ChainedSpan\_CAPACITY | Number of data structures allocated to the ChainedSpan pool | Structs |
+| ChainedSpan\_STRUCT\_SIZE | Number of bytes in each struct of the ChainedSpan pool | Bytes |
+| ChainedSpan\_USED | Number of structs in the ChainedSpan pool which are currently being used | Structs |
+| Charter\_CAPACITY | Number of data structures allocated to the Charter pool | Structs |
+| Charter\_STRUCT\_SIZE | Number of bytes in each struct of the Charter pool | Bytes |
+| Charter\_USED | Number of structs in the Charter pool which are currently being used | Structs |
 | CrossDestageDesc\_CAPACITY | Number of data structures allocated to the CrossDestageDesc pool | Structs |
 | CrossDestageDesc\_STRUCT\_SIZE | Number of bytes in each struct of the CrossDestageDesc pool | Bytes |
 | CrossDestageDesc\_USED | Number of structs in the CrossDestageDesc pool which are currently being used | Structs |
@@ -539,15 +542,15 @@ description: >-
 | GenericBaseBlock\_CAPACITY | Number of data structures allocated to the GenericBaseBlock pool | Structs |
 | GenericBaseBlock\_STRUCT\_SIZE | Number of bytes in each struct of the GenericBaseBlock pool | Bytes |
 | GenericBaseBlock\_USED | Number of structs in the GenericBaseBlock pool which are currently being used | Structs |
-| HOGGED\_TIME |  |  |
+| HOGGED\_TIME | Histogram of time used by hogger fibers \(only in debug builds\) |  |
 | IDLE\_CALLBACK\_INVOCATIONS | Number of background work invocations | Invocations/Sec |
-| IDLE\_CYCLES |  | Cycles/Sec |
+| IDLE\_CYCLES | Number of cycles spent in idle | Cycles/Sec |
 | IDLE\_TIME | Percentage of the CPU time not utilized for handling I/Os | % |
 | NODE\_HANG |  |  |
 | NvmeIoRequest\_CAPACITY | Number of data structures allocated to the NvmeIoRequest pool | Structs |
 | NvmeIoRequest\_STRUCT\_SIZE | Number of bytes in each struct of the NvmeIoRequest pool | Bytes |
 | NvmeIoRequest\_USED | Number of structs in the NvmeIoRequest pool which are currently being used | Structs |
-| OUTRAGEOUS\_HOGGERS |  | Invocations |
+| OUTRAGEOUS\_HOGGERS | Number of hoggers taking really excessive amount of time to run | Invocations |
 | PENDING\_FIBERS | Number of fibers pending for external events, such as a network packet, or SSD response. Upon such external event they will change state to scheduled fibers | Fibers |
 | QueuedBlock\_CAPACITY | Number of data structures allocated to the QueuedBlock pool | Structs |
 | QueuedBlock\_STRUCT\_SIZE | Number of bytes in each struct of the QueuedBlock pool | Bytes |
@@ -559,7 +562,7 @@ description: >-
 | SSD\_CAPACITY | Number of data structures allocated to the SSD pool | Structs |
 | SSD\_STRUCT\_SIZE | Number of bytes in each struct of the SSD pool | Bytes |
 | SSD\_USED | Number of structs in the SSD pool which are currently being used | Structs |
-| STEP\_CYCLES |  |  |
+| STEP\_CYCLES | Histogram of time spent in a fiber |  |
 | TIMER\_CALLBACKS | Current number of timer callbacks | Callbacks |
 | TOTAL\_FIBERS\_COUNT | Number of fibers | Fibers |
 | TimedCallback\_CAPACITY | Number of data structures allocated to the TimedCallback pool | Structs |
@@ -575,13 +578,13 @@ description: >-
 
 | Type | Description | Units |
 | :--- | :--- | :--- |
-| ACTIVE\_SSD\_PUMPS |  | Pump/Sec |
-| AIO\_DELAYED |  | Operations/Sec |
-| AIO\_FORFEITS |  | Operations/Sec |
+| ACTIVE\_SSD\_PUMPS | Number of drive pumps that resulted in data flowin from/to drive | Pump/Sec |
+| AIO\_DELAYED | Number of Drive pumps that got delayed | Operations/Sec |
+| AIO\_FORFEITS | Number of IOs forfeited due to lack of memory buffers | Operations/Sec |
 | AIO\_LATENCY | Measure the latencies up to 5ms \(higher latencies will be grouped together\) |  |
-| AIO\_OVERLAPPED |  | Operations |
-| AIO\_SEVERELY\_DELAYED |  | Operations/Sec |
-| AIO\_TOO\_LONG |  | Operations/Sec |
+| AIO\_OVERLAPPED | Number of overlapping IOs | Operations |
+| AIO\_SEVERELY\_DELAYED | Number of Drive pumps that got severely delayed | Operations/Sec |
+| AIO\_TOO\_LONG | Number of IOs that took longer than expected | Operations/Sec |
 | DISKS\_IOS | IOs performed on the SSD | IO/Sec |
 | DISKS\_IO\_ERRORS | IO errors on the SSD | Blocks/Sec |
 | DISKS\_QUEUE\_LENGTH | The number of in flight IO against the SSD at the time of sampling | IOs |
