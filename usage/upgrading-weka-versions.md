@@ -113,29 +113,29 @@ WEKA version 3.5 provides performance improvements when working with object stor
 
 ## Upgrading to Version 3.7
 
-Version 3.7 introduces space reclamation on object-storage. It might have implications if you have downloaded filesystems from snapshots that have already been logically deleted or dependent on such. For that, the space reclamation will not be enabled by default on such filesystems after the upgrade. If ‘weka fs reclamation status’ shows filesystems with disabled space reclamation, a manual procedure is required. Please contact the WEKA customer support team to assist you with the procedure.
+Version 3.7 introduces space reclamation on object-storage. It might have implications if you have downloaded filesystems from snapshots that have already been logically deleted or dependent on such. For that, the space reclamation will not be enabled by default on such filesystems after the upgrade. If `weka fs` shows filesystems with disabled space reclamation, a manual procedure is required. Please contact the WEKA customer support team to assist you with the procedure.
 
 #### Before upgrading to version 3.7:
 
 If the original snapshot that a filesystem was created from has been logically deleted from the cluster that uploaded it, and the filesystem needs to be preserved, it can be migrated to a different object-store bucket.
 
-1. search for every downloaded filesystem in any of the clusters \(e.g., ‘weka fs snapshot \| grep downloaded’\)
+1. search for every downloaded filesystem in any of the clusters \(e.g., `weka fs snapshot | grep downloaded`\)
 2. in case it was downloaded from the upgrading cluster
    * check if that original snapshot exists in the upgrading cluster
    * if not, and the filesystem needs to be preserved, migrate it to a different object-store bucket
-     * note, it could be that the snapshot does not exist since it has been migrated; if you are certain this is the case, nothing needs to be done
+     * note, it could be that the snapshot does not exist since its filesystem has been migrated; if you are certain this is the case, nothing needs to be done
 
 #### After upgrading to version 3.7:
 
-1. check if there are filesystems where space reclamation has not been automatically enabled on them \(as shown by calling ‘weka fs’ CLI command\)
+1. check if there are filesystems where space reclamation has not been automatically enabled on them \(as shown by calling `weka fs` CLI command\)
 2. for those filesystems
-   * re-upload \(by calling ‘weka fs snapshot upload’ CLI command\) every snapshot that is marked as needed to be re-uploaded \(as shown by calling ‘weka fs snapshot’ CLI command\)
+   * re-upload \(by calling `weka fs snapshot upload` CLI command\) every snapshot that is marked as needed to be re-uploaded \(as shown by calling `weka fs snapshot` CLI command\)
      * note, if the snapshot is not needed and has not been downloaded by any filesystem, it is possible to delete it
      * note, it is also possible to migrate the filesystem containing the uploaded snapshot to a different object-store bucket and keep the old object-store bucket intact
-   * if the snapshot has been re-uploaded in the previous step, wait an additional 10 minutes _after the upload completes_ for the data to propagate in the object store
+   * if the snapshot has been re-uploaded in the previous step, wait an additional 10 minutes **after the upload completes** for the data to propagate in the object store
    * for filesystems, in any of the clusters, which were originally created by downloading any of the re-uploaded snapshots
      * in case the filesystem modifications need to be preserved - migrate the downloaded filesystem to a different object-store bucket
      * otherwise, re-create the downloaded filesystem using the re-uploaded snapshot's locator
-   * enable space reclamation for each filesystem \(by calling ‘weka fs tier reclamation enable’ CLI command\)
+   * enable space reclamation for each filesystem \(by calling `weka fs tier reclamation enable` CLI command\)
      * if the command fails, it means you have not re-uploaded all of the required snapshots
 
