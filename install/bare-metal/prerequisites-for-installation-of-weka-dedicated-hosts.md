@@ -179,5 +179,5 @@ Certified Object Stores:
 * Quantum ActiveScale \(version 5.5.1 and up\)
 * Scality \(version 7.4.4.8 and up\)
 * SwiftStack \(version 6.30 and up\)
-* IBM Cloud Object Storage \(version 3.14.7 and up\)
+* IBM Cloud Object Storage System \(version 3.14.7 and up\)
 
