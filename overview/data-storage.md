@@ -27,10 +27,6 @@ In tiered WEKA system configurations, there are various locations for data stora
 2. Writing of new files, adding data to existing files or modifying the content of files is always terminated on the SSD, irrespective of whether the file is currently stored on the SSD or tiered to an object store.
 3. When reading the content of a file, data can be accessed from either the SSD \(if it is available on the SSD\) or rehydrated from the object store \(if it is not available on the SSD\).  
 
-{% hint style="info" %}
-**Note:** In some cases, non-4 KB aligned write in the direct mode may be an exception to rule 2 above.
-{% endhint %}
-
 This data management approach to data storage on one of two possible media requires system planning to ensure that most commonly-used data \(hot data\) resides on the SSD to ensure high performance, while less-used data \(warm data\) is stored on the object store. In the WEKA system, this determination of the data storage media is a completely seamless, automatic and transparent process, with users and applications unaware of the transfer of data from SSDs to object stores, or from object stores to SSDs. The data is accessible at all times through the same strongly-consistent POSIX filesystem API, irrespective of where it is stored. Only latency, throughput and IOPS are affected by the actual storage media.
 
 Furthermore, the WEKA system tiers data in chunks, rather than in complete files. This enables the smart tiering of subsets of a file \(and not only complete files\) between SSDs and object stores.
