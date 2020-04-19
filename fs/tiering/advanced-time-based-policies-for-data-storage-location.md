@@ -8,7 +8,7 @@ description: >-
 
 ## Data Retention Period Policy
 
-Consider a scenario of a 100 TB filesystem, 500 TB of object store space and 100 TB of SSD space. If the data Retention Period policy is defined as 1 month and only 10 TB of data are written per month, it will probably be possible to maintain data from the last 10 months on the SSDs. On the other hand, if 200 TB of data are written per month, it will only be possible to maintain data from half of the month on the SSDs. Additionally, there is no guarantee that the data on the SSDs is the data written in the last 2 weeks of the month, which also depends on the Tiering Cue.
+Consider a scenario of a 100 TB filesystem \(total capacity\), with 100 TB of SSD space \(as explained in [The Role of SSDs in Tiered WekaIO Configurations](../../overview/data-storage.md#the-role-of-ssds-in-tiered-weka-configurations) section\). If the data Retention Period policy is defined as 1 month and only 10 TB of data are written per month, it will probably be possible to maintain data from the last 10 months on the SSDs. On the other hand, if 200 TB of data are written per month, it will only be possible to maintain data from half of the month on the SSDs. Additionally, there is no guarantee that the data on the SSDs is the data written in the last 2 weeks of the month, which also depends on the Tiering Cue.
 
 Consequently, the data Retention Period policy determines the resolution of the WEKA system release decisions. If it is set to 1 month and the SSD capacity is sufficient for 10 months of writing, then the first month will be kept on the SSDs.
 

@@ -67,6 +67,12 @@ Since writing directly to an object store demands high latency levels while wait
 
 Recently accessed or modified data is stored on SSDs, and most read operations will be of such data and served from SSDs. This is based on a single, large LRU clearing policy for the cache that ensures optimal read performance.
 
+{% hint style="info" %}
+**Note:** On a tiered filesystem, the total capacity determines the maximum capacity that will be used to store data. It could be that it will all reside on the object store due to the SSD uses above and the below time-based policies.
+
+E.g., consider a 100 TB filesystem \(total capacity\) with a 10TB SSD capacity for this filesystem. It could be that all the data will reside on the object-store, and no new writes will be allowed, although the SSD space is not completely used \(until deleting files or increasing filesystem total size\), leaving the SSD for metadata and cache only.
+{% endhint %}
+
 ## Time-based Policies for the Control of Data Storage Location
 
 The WEKA system includes user-defined policies which serve as guidelines to control the data storage management. They are derived from a number of factors:
