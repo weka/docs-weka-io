@@ -65,7 +65,7 @@ Click Yes to remove the KMS configuration.
 
 ### Adding/Updating a KMS
 
-**Command:** `weka fs kms set-vault` _\*\*_
+**Command:** `weka fs kms set-vault`
 
 Use the following command line to add or update the Vault KMS configuration in the WEKA system:
 
