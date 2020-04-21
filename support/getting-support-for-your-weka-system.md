@@ -124,7 +124,9 @@ WEKA's technical support policy is based on the type and urgency of the inquiry,
       </td>
     </tr>
   </tbody>
-</table>To be ready to get support from WEKA, it is recommended to perform the following:
+</table>## Recommended Actions
+
+To be ready to get support from WEKA, it is recommended to perform the following:
 
 1. For each cluster provisioned, [allow uploading events to the support cloud](the-wekaio-support-cloud.md) to enable proactive support and improve the troubleshooting process if needed
 2. Create an account on the WEKA Support Portal [support.weka.io](http://support.weka.io/).  This will allow you to easily submit and check status of tickets as well as to browse our online knowledgebase.

@@ -111,49 +111,94 @@ To perform this operation, the cluster host net add command must be run for each
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `host-id` | String | Identifier of host to which a network interface will be added | Must be a valid host identifier | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `device` | String | A device, e.g., `eth1` | Must be a valid Unix network device name | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `ips-type` | String | POOL or USER | Must be one of the two options | No | POOL |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `ips` | Comma-separated IP address | The data plane IP addresses for internal WEKA system traffic. In IB, use the IPoIB address | Must be part of the data plane IP pool defined in the planning phase. See [WEKA Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](prerequisites-for-installation-of-weka-dedicated-hosts.md#networking). | No | From Pool |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-| `netmask` | Number | Number of bits in the net mask | Describes the number of bits that identify a network ID \(also known as CIDR\). | No |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>gateway</code>
+      <th style="text-align:left"><b>Name</b>
       </th>
-      <th style="text-align:left">IP address</th>
-      <th style="text-align:left">IP address of the default routing gateway</th>
-      <th style="text-align:left">
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>host-id</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Identifier of host to which a network interface will be added</td>
+      <td
+      style="text-align:left">Must be a valid host identifier</td>
+        <td style="text-align:left">Yes</td>
+        <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>device</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">A device, e.g., <code>eth1</code>
+      </td>
+      <td style="text-align:left">Must be a valid Unix network device name</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ips-type</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">POOL or USER</td>
+      <td style="text-align:left">Must be one of the two options</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">POOL</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ips</code>
+      </td>
+      <td style="text-align:left">Comma-separated IP address</td>
+      <td style="text-align:left">The data plane IP addresses for internal WEKA system traffic. In IB, use
+        the IPoIB address</td>
+      <td style="text-align:left">Must be part of the data plane IP pool defined in the planning phase.
+        See <a href="../../overview/networking-in-wekaio.md#backend-hosts">WEKA Networking</a> and
+        <a
+        href="prerequisites-for-installation-of-weka-dedicated-hosts.md#networking">Networking Prerequisites</a>.</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">From Pool</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>netmask</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Number of bits in the net mask</td>
+      <td style="text-align:left">Describes the number of bits that identify a network ID (also known as
+        CIDR).</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>gateway</code>
+      </td>
+      <td style="text-align:left">IP address</td>
+      <td style="text-align:left">IP address of the default routing gateway</td>
+      <td style="text-align:left">
         <p>Gateway must reside within the same IP network of <code>ips</code> (as described
           by <code>netmask</code>).</p>
         <p>Not relevant for IB / L2 non-routable networks.</p>
-      </th>
-      <th style="text-align:left">No</th>
-      <th style="text-align:left"></th>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table>{% hint style="info" %}
-Additional IP addresses may be assigned for each host, if IP per core is needed. In this case, unused IP addresses are reserved for future expansion process, and can be automatically assigned if number of cores assigned to WEKA system on that host is increased.
+  </tbody>
+</table>The number of IP addresses should be according to [WEKA Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
+
+{% hint style="info" %}
+**Note:** Additional IP addresses may be assigned for each host, if IP per core is needed. In this case, unused IP addresses are reserved for future expansion process, and can be automatically assigned if number of cores assigned to WEKA system on that host is increased.
 {% endhint %}
 
 {% hint style="info" %}
@@ -174,49 +219,64 @@ Instead of explicit IP address configuration per each network device, dynamic IP
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
 <table>
   <thead>
     <tr>
-      <th style="text-align:left"><code>range</code>
+      <th style="text-align:left"><b>Name</b>
       </th>
-      <th style="text-align:left">IP address range</th>
-      <th style="text-align:left">A range of IP addresses that can be used for dynamic allocation across
-        the whole cluster</th>
-      <th style="text-align:left">
-        <p>Format: A.B.C.D-E</p>
-        <p>E.g., 10.10.0.1-100</p>
+      <th style="text-align:left"><b>Type</b>
       </th>
-      <th style="text-align:left">Yes</th>
-      <th style="text-align:left"></th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
     </tr>
   </thead>
-  <tbody></tbody>
-</table>| `netmask-bits` | Number | Number of bits in the net mask | Describes the number of bits that identify a network ID \(also known as CIDR\). | Yes |  |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-
-
-<table>
-  <thead>
+  <tbody>
     <tr>
-      <th style="text-align:left"><code>gateway</code>
-      </th>
-      <th style="text-align:left">IP address</th>
-      <th style="text-align:left">IP address of the default routing gateway</th>
-      <th style="text-align:left">
+      <td style="text-align:left"><code>range</code>
+      </td>
+      <td style="text-align:left">IP address range</td>
+      <td style="text-align:left">A range of IP addresses that can be used for dynamic allocation across
+        the whole cluster</td>
+      <td style="text-align:left">
+        <p>Format: A.B.C.D-E</p>
+        <p>E.g., 10.10.0.1-100</p>
+      </td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>netmask-bits</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Number of bits in the net mask</td>
+      <td style="text-align:left">Describes the number of bits that identify a network ID (also known as
+        CIDR).</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>gateway</code>
+      </td>
+      <td style="text-align:left">IP address</td>
+      <td style="text-align:left">IP address of the default routing gateway</td>
+      <td style="text-align:left">
         <p>Gateway must reside within the same IP network of IPs in <code>range</code> (as
           described by <code>netmask-bits</code>).</p>
         <p>Not relevant for IB / L2 non-routable networks.</p>
-      </th>
-      <th style="text-align:left">No</th>
-      <th style="text-align:left"></th>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
     </tr>
-  </thead>
-  <tbody></tbody>
-</table>If a default data networking was previously configured on a cluster and is no longer needed, it is possible to remove it using the command `weka cluster default-net reset`.
+  </tbody>
+</table>To view the current default data networking settings use the command `weka cluster default-net`.
+
+If a default data networking was previously configured on a cluster and is no longer needed, it is possible to remove it using the command `weka cluster default-net reset`.
 
 ## Stage 7: Configuration of SSDs
 
