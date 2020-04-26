@@ -12,7 +12,7 @@ description: >-
 
 ## CPU
 
-* Intel SandyBridge+ and AMD processors with equivalent instructions sets
+* Intel SandyBridge+ processors
 
 ## Memory
 
