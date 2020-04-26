@@ -48,8 +48,8 @@ Use the following command line to add a filesystem:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | Name of the filesystem being created | Must be a valid name | Yes | ​ |
 | `group-name` | String | Name of the filesystem group to which the new filesystem is to be connected | Must be a valid name | Yes |  |
-| `total-capacity` | Number | Total capacity of the new filesystem | Must be a valid number | Yes |  |
-| `ssd-capacity` | Number | For tiered filesystems, this is the SSD capacity. If not specified, the filesystem is pinned to SSD | Must be a valid number | No | SSD capacity will be set to total capacity |
+| `total-capacity` | Number | Total capacity of the new filesystem | Minimum of 1GiB | Yes |  |
+| `ssd-capacity` | Number | For tiered filesystems, this is the SSD capacity. If not specified, the filesystem is pinned to SSD | Minimum of 1GiB | No | SSD capacity will be set to total capacity |
 | `max-files` | Number | Metadata allocation for this filesystem | Must be a valid number | No | Automatically calculated by the system based on the SSD capacity |
 | `encrypted` | Boolean | Encryption of filesystem |  | No | No |
 | `obs-name` | String | Object store name for tiering | Must be a valid name | Mandatory for tiered filesystems |  |
