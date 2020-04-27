@@ -35,5 +35,3 @@ While the steady state of a filesystem requires up to 13% more raw capacity in t
 **Note:** If the threshold number needs to be changed or the object store space reclamation is not fast enough because of the workload, contact the WEKA Support Team.
 {% endhint %}
 
-To view the object store reclamation status per filesystem and potential overhead in capacity \(Raw capacity - Net Capacity\) use the `weka fs tier` command.
-
