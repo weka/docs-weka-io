@@ -87,7 +87,7 @@ Once the upgrade is complete, verify that the cluster is in the new version by r
 **For Example:** The following will be received when the system has been upgraded to version 3.6.1:
 
 `# weka status    
-WEKA v3.6.1 (CLI build 3.6.106)    
+Weka v3.6.1 (CLI build 3.6.106)    
 ...`
 {% endhint %}
 

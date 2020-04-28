@@ -21,7 +21,7 @@ To view the cluster licensing status, run the `weka status` command:
 
 ```text
 # weka status
-WEKA v3.1.7.2 (CLI build 2.5.3)
+Weka v3.1.7.2 (CLI build 2.5.3)
 ...
        license: OK, valid thru 2018-07-31T07:14:05Z
 ...
@@ -31,7 +31,7 @@ In the example status above, it is possible to see that the cluster has a valid 
 
 ```text
 # weka status
-WEKA v3.1.7.2 (CLI build 2.5.3)
+Weka v3.1.7.2 (CLI build 2.5.3)
 ...
        license: Unlicensed
 ...

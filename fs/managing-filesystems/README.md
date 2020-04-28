@@ -8,7 +8,7 @@ description: >-
 
 ## Overview
 
-The management of object stores, filesystem groups and filesystems is an integral part of the successful running and performance of the WEKA system and overall data lifecycle management.
+The management of object stores, filesystem groups and filesystems is an integral part of the successful running and performance of the Weka system and overall data lifecycle management.
 
 The pages in this section cover the following subjects:
 
@@ -16,5 +16,5 @@ The pages in this section cover the following subjects:
 * [Management of filesystem groups.](managing-filesystem-groups.md)
 * [Management of filesystems.](managing-filesystems.md)
 * [Attachment/detachment of object stores to/from filesystem.](attaching-detaching-object-stores-to-from-filesystems.md)
-* [Management of the Key Management System \(KMS\) integrated with the WEKA system to properly secure the encryption keys. ](kms-management.md)
+* [Management of the Key Management System \(KMS\) integrated with the Weka system to properly secure the encryption keys. ](kms-management.md)
 

@@ -197,7 +197,7 @@ On an InfiniBand network with a non-default partition number, _p-key_ must be co
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** All InfiniBand ports communicating with the WEKA cluster must be full members.
+**Note:** All InfiniBand ports communicating with the Weka cluster must be full members.
 {% endhint %}
 
 Two ifcfg scripts must be created for each pkey-ed IPoIB interface. To determine your own pkey-ed IPoIB interface configuration, refer to the following two examples where a pkey of `0x8002` is used:

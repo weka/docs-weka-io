@@ -1,6 +1,6 @@
 ---
 description: >-
-  This section provides the detailed instructions on how to install a WEKA
+  This section provides the detailed instructions on how to install a Weka
   filesystem in AWS.
 ---
 

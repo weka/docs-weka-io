@@ -27,7 +27,7 @@ A filesystem should reside in a filesystem group, so first, you will need to cre
 $ weka fs group create my_fs_group
 FSGroupId: 0
 
-# to view existing filesystem groups details in the WEKA system
+# to view existing filesystem groups details in the Weka system
 $weka fs group
 FileSystem Group ID | Name        | target-ssd-retention | start-demote
 --------------------+-------------+----------------------+-------------
@@ -41,7 +41,7 @@ Now, you can create a filesystem within that group:
 $ weka fs create new_fs my_fs_group 1TiB
 FSId: 0
 
-# to view existing filesystems details in the WEKA system
+# to view existing filesystems details in the Weka system
 $ weka fs
 Filesystem ID | Filesystem Name | Group       | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
 --------------+-----------------+-------------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------
@@ -60,7 +60,7 @@ $ weka fs update default --total-capacity 1GiB
 # to create a new filesystem in the default group
 $ weka fs create new_fs default 1GiB
 
-# to view existing filesystems details in the WEKA system
+# to view existing filesystems details in the Weka system
 $ weka fs
 Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
 --------------+-----------------+---------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------

@@ -8,7 +8,7 @@ description: Welcome to the Weka documentation portal.
 
 This portal contains all the documentation necessary for understanding and working with the Weka system. It covers the following subjects:
 
-**Weka System Overview:** A review of the primary components, principles, and entities that form every WEKA system.
+**Weka System Overview:** A review of the primary components, principles, and entities that form every Weka system.
 
 **Weka System Planning, Installation, and Resource Management:** A detailed description of bare metal and AWS installation of the Weka system, up to a point it is ready for operation.
 
