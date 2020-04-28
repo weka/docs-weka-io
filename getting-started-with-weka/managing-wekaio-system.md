@@ -1,14 +1,14 @@
 ---
-description: This page describes the various ways to manage WEKA system.
+description: This page describes the various ways to manage Weka system.
 ---
 
-# Managing the WEKA System
+# Managing the Weka System
 
-The WEKA system is now installed. Now let's learn how to view, manage and operate it using either the [CLI](managing-wekaio-system.md#cli) or the [GUI](managing-wekaio-system.md#gui), and [perform the first IO](performing-the-first-io.md) to a WekaFS filesystem.
+The Weka system is now installed. Now let's learn how to view, manage and operate it using either the [CLI](managing-wekaio-system.md#cli) or the [GUI](managing-wekaio-system.md#gui), and [perform the first IO](performing-the-first-io.md) to a WekaFS filesystem.
 
 ## CLI
 
-The WEKA CLI is installed on each WEKA host and is available through the `weka` command. It's possible to`ssh` one of the hosts and run the `weka` command. This displays a list of all available top-level commands. You can go ahead and explore them.
+The Weka CLI is installed on each Weka host and is available through the `weka` command. It's possible to`ssh` one of the hosts and run the `weka` command. This displays a list of all available top-level commands. You can go ahead and explore them.
 
 ```text
 # weka
@@ -36,19 +36,19 @@ The available subcommands are:
     diags       Commands for collecting weka-related diagnostics for support
 ```
 
-For more information about the CLI, refer to [Getting Started with WEKA CLI](cli-overview.md).
+For more information about the CLI, refer to [Getting Started with Weka CLI](cli-overview.md).
 
 ## GUI
 
-The WEKA GUI is accessible at port 14000. It can be accessed from any host or by using the cluster name. For example: [http://weka-host-0:14000](http://weka-host-0:14000) or [http://weka-host:14000](http://weka-host:14000).
+The Weka GUI is accessible at port 14000. It can be accessed from any host or by using the cluster name. For example: [http://weka-host-0:14000](http://weka-host-0:14000) or [http://weka-host:14000](http://weka-host:14000).
 
 {% hint style="info" %}
 **Note:** If it's not possible to access the GUI, make sure that it has been opened in your firewall, as described in the [Prerequisites](../install/bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md) page.
 {% endhint %}
 
-![WEKA Login Page](../.gitbook/assets/wekaio-login-page.png)
+![Weka Login Page](../.gitbook/assets/wekaio-login-page.png)
 
 The initial default username/password is _admin/admin,_ as described in [User Management.](../usage/user-management.md) It is recommended to change this.
 
-For more information about the GUI, refer to [Getting Started with WEKA GUI](gui.md).
+For more information about the GUI, refer to [Getting Started with Weka GUI](gui.md).
 

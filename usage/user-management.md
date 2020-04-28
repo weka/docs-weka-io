@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the management of users licensed to work with the WEKA
+  This page describes the management of users licensed to work with the Weka
   system.
 ---
 
@@ -8,9 +8,9 @@ description: >-
 
 ## Types of Users
 
-Access to a WEKA system cluster is controlled by creating, modifying and deleting users. Up to 128 local users can be defined to work with a WEKA system cluster. Each user is identified by a username and must provide a password for authentication to work with the WEKA system GUI or CLI.
+Access to a Weka system cluster is controlled by creating, modifying and deleting users. Up to 128 local users can be defined to work with a Weka system cluster. Each user is identified by a username and must provide a password for authentication to work with the Weka system GUI or CLI.
 
-Every WEKA system user has one of the following defined roles:
+Every Weka system user has one of the following defined roles:
 
 * **Cluster Admin**: A user with additional privileges, as described in [Cluster Admin Role Privileges](user-management.md#admin-role-privileges) below.
 * **Organization Admin**: A user with additional privileges within an organization \(when working with different organizations, as described in [Organization Admin Role Privileges](organizations.md#organization-admin-role-privileges)\).
@@ -19,11 +19,11 @@ Every WEKA system user has one of the following defined roles:
 
 ## First User \(Cluster Admin\)
 
-By default, when a WEKA cluster is created, a first user with a username of admin and a password of admin is created. This user has a Cluster Admin role, which allows the running of all commands.
+By default, when a Weka cluster is created, a first user with a username of admin and a password of admin is created. This user has a Cluster Admin role, which allows the running of all commands.
 
 Cluster Admin users are responsible for managing the cluster as a whole. When using multiple organizations, there is a difference between managing a single organization and managing the cluster because managing the cluster also covers management of the cluster hardware and resources. These are the additional permissions given to a Cluster Admin in comparison to a Organization Admin.
 
-A Cluster Admin user is created because a WEKA system cluster must have at least one defined Admin user. However, it is possible to create a user with a different name and delete the default admin user, if required.
+A Cluster Admin user is created because a Weka system cluster must have at least one defined Admin user. However, it is possible to create a user with a different name and delete the default admin user, if required.
 
 ## Cluster Admin Role Privileges
 
@@ -36,7 +36,7 @@ Cluster Admin users have additional privileges over regular users. These include
 * Manage LDAP configurations
 * Manage organizations
 
-Additionally, the following restrictions are implemented for Cluster Admin users, to avoid situations where a Cluster Admin loses access to a WEKA system cluster:
+Additionally, the following restrictions are implemented for Cluster Admin users, to avoid situations where a Cluster Admin loses access to a Weka system cluster:
 
 * Cluster Admins cannot delete themselves.
 * Cluster Admins cannot change their role to a regular user role.
@@ -140,7 +140,7 @@ admin    | Internal | Admin
 
 When a login is attempted, the user is first searched in the list of internal users, i.e., users created using the`weka user add` command.
 
-However, if a user does not exist in the WEKA system but does exist in an LDAP directory, it is possible to [configure the LDAP user directory](user-management.md#configuring-an-ldap-user-directory) to the WEKA system. This will enable a search for the user in the directory, followed by password verification.
+However, if a user does not exist in the Weka system but does exist in an LDAP directory, it is possible to [configure the LDAP user directory](user-management.md#configuring-an-ldap-user-directory) to the Weka system. This will enable a search for the user in the directory, followed by password verification.
 
 On each successful login, a `UserLoggedIn` event is issued, containing the username, role and whether the user is an internal or LDAP user.
 
@@ -162,7 +162,7 @@ To use a non-default path for the token file, use the `WEKA_TOKEN` environment v
 
 ## Authenticating Users from an LDAP User Directory
 
-To authenticate users from an LDAP user directory, the LDAP directory must first be configured to the WEKA system. This is performed as follows.
+To authenticate users from an LDAP user directory, the LDAP directory must first be configured to the Weka system. This is performed as follows.
 
 ### Configuring an LDAP User Directory
 
@@ -218,7 +218,7 @@ weka user ldap setup-ad <server-uri>
 | `group-object-class` | String | Object class of groups | Must be valid name | Yes |  |
 | `group-membership-attribute` | String | Attribute of group containing the DN of a user membership in the group | Must be valid name | Yes |  |
 | `group-id-attribute` | String | Attribute storing the group name | Name has to match names used in the `<admin-group>`, `<regular group>` and `<readonly group>` | Yes |  |
-| `reader-username` and `reader-password` | String | Credentials of a user with read access to the directory | Password is kept in the WEKA cluster configuration in plain text, as it is used to authenticate against the directory during user authentication | Yes |  |
+| `reader-username` and `reader-password` | String | Credentials of a user with read access to the directory | Password is kept in the Weka cluster configuration in plain text, as it is used to authenticate against the directory during user authentication | Yes |  |
 | `cluster-admin-group` | String | Name of group containing users defined with cluster admin role | Must be valid name | Yes |  |
 | `org-admin-group` | String | Name of group containing users defined with organization admin role | Must be valid name | Yes |  |
 | `regular-group` | String | Name of group containing users defined with regular privileges | Must be valid name | Yes |  |

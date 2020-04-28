@@ -10,7 +10,7 @@ description: This page describes how to manually force-fetching tiered data back
 
 Tiered files are always accessible and should generally be treated as regular files. Moreover, while files may be tiered, their metadata is always maintained on the SSDs. This allows traversing files and directories without worrying how such operations may affect performance.
 
-Sometimes, it may be necessary to access previously-tiered files quickly. In such situations, it is possible to request the WEKA system to fetch the files back to the SSD without accessing them directly. This is performed using the prefetch command, which can be issued via the`weka fs tier fetch`command, as follows:
+Sometimes, it may be necessary to access previously-tiered files quickly. In such situations, it is possible to request the Weka system to fetch the files back to the SSD without accessing them directly. This is performed using the prefetch command, which can be issued via the`weka fs tier fetch`command, as follows:
 
 ```text
 weka fs tier fetch

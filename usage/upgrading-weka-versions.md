@@ -1,8 +1,8 @@
 ---
-description: This page describes how to upgrade to the latest WEKA software version.
+description: This page describes how to upgrade to the latest Weka software version.
 ---
 
-# Upgrading WEKA Versions
+# Upgrading Weka Versions
 
 ## Prerequisites for Upgrade
 
@@ -13,16 +13,16 @@ Before upgrading your cluster, ensure the following:
 
 ## Supported Upgrade Paths
 
-The WEKA upgrade process supports upgrading to both higher minor versions and major versions of the WEKA software.
+The Weka upgrade process supports upgrading to both higher minor versions and major versions of the Weka software.
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
-* To upgrade to WEKA software version 3.7.x, go through version 3.6.2 or above
-* To upgrade to WEKA software version 3.6.x, go through version 3.5.3 or above
-* To upgrade to WEKA software version 3.5.x, go through version 3.4.6 or above.
-* To upgrade to WEKA software version 3.4.x, go through version 3.3.1 or above.
+* To upgrade to Weka software version 3.7.x, go through version 3.6.2 or above
+* To upgrade to Weka software version 3.6.x, go through version 3.5.3 or above
+* To upgrade to Weka software version 3.5.x, go through version 3.4.6 or above.
+* To upgrade to Weka software version 3.4.x, go through version 3.3.1 or above.
 
-For further information, contact the WEKA Support Team.
+For further information, contact the Weka Support Team.
 
 ## Preparing the Cluster for Upgrade
 
@@ -34,7 +34,7 @@ Download and prepare the new release on one of the backend hosts, using one of t
 
 ## Preparing the Client Hosts for Upgrade \(Optional\)
 
-Once the WEKA cluster upgrade is called, it will first prepare all the connected client hosts to the upgrade, which includes downloading the new version and get it ready to be applied. Only then, it will start the upgrade process of the cluster. This reduces to a minimum any downtime that the client host can experience from the WEKA cluster.
+Once the Weka cluster upgrade is called, it will first prepare all the connected client hosts to the upgrade, which includes downloading the new version and get it ready to be applied. Only then, it will start the upgrade process of the cluster. This reduces to a minimum any downtime that the client host can experience from the Weka cluster.
 
 Although not needed, and distribution of the new version to the client hosts should be fast as part of the upgrade, when working with a large number of clients it is possible to prepare for this in advance, separated from the cluster upgrade \(e.g., to shorten the total upgrade window\).
 
@@ -93,13 +93,13 @@ WEKA v3.6.1 (CLI build 3.6.106)
 
 ## Upgrading to Version 3.5 and Above
 
-From WEKA software version 3.5 onwards, the disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. WEKA system guarantees that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window.
+From Weka software version 3.5 onwards, the disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. Weka system guarantees that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window.
 
 In case of a failure, the version is automatically reverted on the hosts, yet, `weka cluster start-io` command should be run manually after verifying all hosts have indeed been reverted to the old version by running `weka cluster host` command.
 
 ## Performance Improvements with V3.5 and Above
 
-WEKA version 3.5 provides performance improvements when working with object stores. To reap the benefits of improved object store performance and ensure the conversion of the internal WEKA data structure, the following is recommended for each tiered filesystem when upgrading from version 3.4 to version 3.5:
+Weka version 3.5 provides performance improvements when working with object stores. To reap the benefits of improved object store performance and ensure the conversion of the internal Weka data structure, the following is recommended for each tiered filesystem when upgrading from version 3.4 to version 3.5:
 
 * Attach a new object store bucket.
 * Delete any unnecessary snapshots \(so unnecessary data is not copied to the new bucket\).
@@ -113,7 +113,7 @@ WEKA version 3.5 provides performance improvements when working with object stor
 
 ## Upgrading to Version 3.7
 
-Version 3.7 introduces space reclamation on object-storage. It might have implications if you have downloaded filesystems from snapshots that have already been logically deleted or dependent on such. For that, the space reclamation will not be enabled by default on such filesystems after the upgrade. If `weka fs` shows filesystems with disabled space reclamation, a manual procedure is required. Please contact the WEKA customer support team to assist you with the procedure.
+Version 3.7 introduces space reclamation on object-storage. It might have implications if you have downloaded filesystems from snapshots that have already been logically deleted or dependent on such. For that, the space reclamation will not be enabled by default on such filesystems after the upgrade. If `weka fs` shows filesystems with disabled space reclamation, a manual procedure is required. Please contact the Weka customer support team to assist you with the procedure.
 
 #### Before upgrading to version 3.7:
 

@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the events available in the WEKA system and how to work
+  This page describes the events available in the Weka system and how to work
   with them.
 ---
 
@@ -8,7 +8,7 @@ description: >-
 
 ## Overview
 
-WEKA events indicate relevant information concerning the WEKA cluster and customer environment. Triggered by a customer operation or an environment change, events can be informational, indicate a problem in the system or indicate a \(previous\) problem that has been resolved.
+Weka events indicate relevant information concerning the Weka cluster and customer environment. Triggered by a customer operation or an environment change, events can be informational, indicate a problem in the system or indicate a \(previous\) problem that has been resolved.
 
 ## Working with Events Using the GUI
 
@@ -30,7 +30,7 @@ Events can be filtered by choosing a filter. Filtering can be performed accordin
 
 **Command:** `weka events`
 
-Use the following command line to list events in the WEKA cluster:
+Use the following command line to list events in the Weka cluster:
 
 `weka events [--num-results num-results] [--start-time <start>] [--end-time <end>] [--severity severity] [--direction direction] [--fetch-order fetch-order] [--type-list type-list] [--exclude-type-list exclude-type-list] [--category-list category-list] [--by-digested-time] [--show-internal] [--raw-units] [--UTC]`
 

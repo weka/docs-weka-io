@@ -4,23 +4,23 @@
 
 ### Agent
 
-The WEKA agent is software installed on user application servers that need access to the WEKA file services. When using the Stateless Client feature, the agent is responsible for ensuring that the correct client software version is installed \(depending on the cluster version\) and that the client connects to the correct cluster.
+The Weka agent is software installed on user application servers that need access to the Weka file services. When using the Stateless Client feature, the agent is responsible for ensuring that the correct client software version is installed \(depending on the cluster version\) and that the client connects to the correct cluster.
 
 ## B
 
 ### Backend Host
 
-A host that runs the WEKA software and can also be installed with SSD drives dedicated to the WEKA system, providing services to client hosts.
+A host that runs the Weka software and can also be installed with SSD drives dedicated to the Weka system, providing services to client hosts.
 
 ## C
 
 ### Client
 
-The WEKA client is software installed on user application servers that need access to the WEKA file services. The WEKA client implements a kernel-based filesystem driver and the logic and networking stack to connect to the WEKA backend hosts and be part of a cluster.
+The Weka client is software installed on user application servers that need access to the Weka file services. The Weka client implements a kernel-based filesystem driver and the logic and networking stack to connect to the Weka backend hosts and be part of a cluster.
 
 ### Cluster
 
-A collection of WEKA backends, together with WEKA clients installed on the application servers, forming one sharable, distributed and scalable file storage system.
+A collection of Weka backends, together with Weka clients installed on the application servers, forming one sharable, distributed and scalable file storage system.
 
 ## D
 
@@ -32,9 +32,9 @@ The target period of time for tiered data to be retained on an SSD.
 
 The number of data blocks in each logical data protection group.
 
-### Dedicated WEKA Deployment
+### Dedicated Weka Deployment
 
-Basic WEKA configuration involving the creation of a cluster by dedicating complete servers to WEKA backends, as opposed to converged deployment.
+Basic Weka configuration involving the creation of a cluster by dedicating complete servers to Weka backends, as opposed to converged deployment.
 
 ## F
 
@@ -54,13 +54,13 @@ Frequently-used data \(as opposed to warm data\), usually residing on SSDs.
 
 ### Converged Deployment
 
-The configuration of WEKA backends running on the same host with other applications.
+The configuration of Weka backends running on the same host with other applications.
 
 ## N
 
 ### Net Capacity
 
-Amount of space available for user data on SSDs in a configured WEKA system.
+Amount of space available for user data on SSDs in a configured Weka system.
 
 ## P
 
@@ -70,7 +70,7 @@ The total capacity assigned to filesystems. This includes both SSD and object st
 
 ### Prefetch
 
-The WEKA process of rehydrating data from an object store to an SSD, based on a prediction of future data access.
+The Weka process of rehydrating data from an object store to an SSD, based on a prediction of future data access.
 
 ## R
 
@@ -94,17 +94,17 @@ The creation of an SSD copy of data stored on object store only.
 
 ### Stem Mode
 
-A mode of the WEKA software which has been installed and is running, but has not been attached to a cluster.
+A mode of the Weka software which has been installed and is running, but has not been attached to a cluster.
 
 ### Snap-To-Object
 
-A WEKA feature for uploading snapshots to object stores.
+A Weka feature for uploading snapshots to object stores.
 
 ## T
 
-### Tiered WEKA Configuration
+### Tiered Weka Configuration
 
-WEKA configuration consisting of SSDs and object stores for data storage.
+Weka configuration consisting of SSDs and object stores for data storage.
 
 ### Tiering
 

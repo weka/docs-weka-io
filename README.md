@@ -1,30 +1,30 @@
 ---
-description: Welcome to the WEKA documentation portal.
+description: Welcome to the Weka documentation portal.
 ---
 
-# WEKA Documentation
+# Weka Documentation
 
 ## About this Documentation
 
-This portal contains all the documentation necessary for understanding and working with the WEKA system. It covers the following subjects:
+This portal contains all the documentation necessary for understanding and working with the Weka system. It covers the following subjects:
 
-**WEKA System Overview:** A review of the primary components, principles, and entities that form every WEKA system.
+**Weka System Overview:** A review of the primary components, principles, and entities that form every WEKA system.
 
-**WEKA System Planning, Installation, and Resource Management:** A detailed description of bare metal and AWS installation of the WEKA system, up to a point it is ready for operation.
+**Weka System Planning, Installation, and Resource Management:** A detailed description of bare metal and AWS installation of the Weka system, up to a point it is ready for operation.
 
-**Getting Started with WEKA:** A short guide of how to use the WEKA system, configure a WekaFS filesystem and conducting tests to understand the system is configured correctly.
+**Getting Started with Weka:** A short guide of how to use the Weka system, configure a WekaFS filesystem and conducting tests to understand the system is configured correctly.
 
 **Performance:** A description and results of the FIO performance tests on WekaFS.
 
-**WekaFS Filesystems in the WEKA System:** A review of the role and management of filesystems, object stores**,** filesystem groups, and key-management systems in WEKA system configurations.
+**WekaFS Filesystems in the Weka System:** A review of the role and management of filesystems, object stores**,** filesystem groups, and key-management systems in Weka system configurations.
 
 **Additional Protocols:** A review of additional protocols support as NFS and SMB for accessing data stored in a WekaFS filesystem.
 
-**WEKA System Operation Guide:** Description of various operations in the WEKA system, including events, the use of statistics, user management, upgrading, etc.
+**Weka System Operation Guide:** Description of various operations in the Weka system, including events, the use of statistics, user management, upgrading, etc.
 
-**WEKA System Billing and Licensing:** Presentation of the alternatives for WEKA system licensing and billing.
+**Weka System Billing and Licensing:** Presentation of the alternatives for Weka system licensing and billing.
 
-**WEKA Support:** Provides information on getting support for the WEKA System.
+**Weka Support:** Provides information on getting support for the Weka System.
 
 ## Help Us to Help You
 

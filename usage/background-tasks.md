@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the management of background tasks running on WEKA
+  This page describes the management of background tasks running on Weka
   clusters.‌
 ---
 
@@ -8,9 +8,9 @@ description: >-
 
 ## Overview
 
-‌The WEKA system has some internal/external asynchronous operations and maintenance tasks, such as migrating an object store and downloading/uploading snapshots. These tasks are performed in the background and should not interfere nor starve the WEKA system from serving IOs with high performance.‌
+‌The Weka system has some internal/external asynchronous operations and maintenance tasks, such as migrating an object store and downloading/uploading snapshots. These tasks are performed in the background and should not interfere nor starve the Weka system from serving IOs with high performance.‌
 
-The WEKA system limit the CPU resources these tasks consume to 5% _\*\*_per host CPU.
+The Weka system limit the CPU resources these tasks consume to 5% _\*\*_per host CPU.
 
 {% hint style="info" %}
 **Note:** When the CPU is idle, background tasks can use more than the configured resources, but they are immediately freed if needed for serving IOs.

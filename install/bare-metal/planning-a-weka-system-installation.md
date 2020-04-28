@@ -1,6 +1,6 @@
-# Planning a WEKA System Installation
+# Planning a Weka System Installation
 
-The planning of a WEKA system is essential prior to the actual installation process. It involves the planning of the following:
+The planning of a Weka system is essential prior to the actual installation process. It involves the planning of the following:
 
 1. Total SSD net capacity and performance requirements
 2. SSD resources
@@ -14,10 +14,10 @@ The planning of a WEKA system is essential prior to the actual installation proc
 
 ## Total SSD Net Capacity and Performance Planning
 
-A WEKA system cluster runs on a group of hosts with local SSDs. To plan these hosts, the following information must be clarified and defined:
+A Weka system cluster runs on a group of hosts with local SSDs. To plan these hosts, the following information must be clarified and defined:
 
 1. **Capacity:** Plan your net SSD capacity. Note that data management to object stores can be added after the installation. In the context of the planning stage, only the SSD capacity is required.
-2. **Redundancy Scheme:** Define the optimal redundancy scheme required for the WEKA system, as explained in [Selecting a Redundancy Scheme](../../overview/about.md#selecting-a-redundancy-scheme).
+2. **Redundancy Scheme:** Define the optimal redundancy scheme required for the Weka system, as explained in [Selecting a Redundancy Scheme](../../overview/about.md#selecting-a-redundancy-scheme).
 3. **Failure Domains:** Determine whether failure domains are going to be used \(this is optional\), and if yes determine the number of failure domains and potential number of hosts in each failure domain, as described in [Failure Domains](../../overview/ssd-capacity-management.md#failure-domains-optional), and plan accordingly.
 4. **Hot Spare**: Define the required hot spare count, as described in [Hot Spare](../../overview/ssd-capacity-management.md#hot-spare).
 
@@ -41,7 +41,7 @@ SSD resource planning involves how the defined capacity is going to be implement
 * The technology to be used \(NVME, SAS or SATA\) and the specific SSD models, which have implications on SSD endurance and performance.
 
 {% hint style="info" %}
-**Note:** For on-premises planning, it is possible to consult with the WEKA Support Team in order to map between performance requirements and the recommended WEKA system configuration.
+**Note:** For on-premises planning, it is possible to consult with the Weka Support Team in order to map between performance requirements and the recommended Weka system configuration.
 {% endhint %}
 
 ## Memory Resource Planning
@@ -97,7 +97,7 @@ The per host capacity requirement is calculated with the following formula:
 {% endhint %}
 
 {% hint style="success" %}
-**For Example:** 12 hosts, 10 WEKA system cores per host \(6 for compute, 4 for SSDs\), 100 TB SSD system with 512 TB total system capacity \(with object store\), average file size 64 KB.
+**For Example:** 12 hosts, 10 Weka system cores per host \(6 for compute, 4 for SSDs\), 100 TB SSD system with 512 TB total system capacity \(with object store\), average file size 64 KB.
 {% endhint %}
 
 The capacity requirement for the host will be calculated according to the following formula:
@@ -111,20 +111,20 @@ Consequently, the overall requirement per host is: 3.6 + 6 \* 5.3 + 4\*2.5 + 7.3
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** These capacity requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the WEKA Support Team to receive an estimate for your specific configuration.
+**Note:** These capacity requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the Weka Support Team to receive an estimate for your specific configuration.
 {% endhint %}
 
 ### Client Hosts
 
-The WEKA software on a client host requires 4 GB of additional memory.
+The Weka software on a client host requires 4 GB of additional memory.
 
 ## CPU  Resource Planning
 
 ### CPU Allocation strategy
 
-The WEKA system implements a Non-Uniform Memory Access \(NUMA\) aware CPU allocation strategy to maximize the overall performance of the system. It takes into account the NUMA region of data plane network interface\(s\).
+The Weka system implements a Non-Uniform Memory Access \(NUMA\) aware CPU allocation strategy to maximize the overall performance of the system. It takes into account the NUMA region of data plane network interface\(s\).
 
-In non-HA deployments, the strategy tries to allocate as many CPU cores as possible on the same NUMA node where the data plane interface is connected. If the WEKA configuration requires more CPU cores than are available in the same NUMA region, cores from another region will be allocated.
+In non-HA deployments, the strategy tries to allocate as many CPU cores as possible on the same NUMA node where the data plane interface is connected. If the Weka configuration requires more CPU cores than are available in the same NUMA region, cores from another region will be allocated.
 
 In HA deployments, there are two possible scenarios:
 
@@ -134,41 +134,41 @@ In HA deployments, there are two possible scenarios:
 The following should be noted with regards to the CPU allocation strategy:
 
 * The code allocates CPU resources by assigning individual cores to tasks in a cgroup
-* Cores in a WEKA cgroup won't be available to run any other user processes
+* Cores in a Weka cgroup won't be available to run any other user processes
 * On systems with Intel hyperthreading enabled, the corresponding sibling cores will be placed into a cgroup along with the physical ones.
 
 ### Backend Hosts
 
-The number of physical cores dedicated to the WEKA software should be planned according to the following guidelines:
+The number of physical cores dedicated to the Weka software should be planned according to the following guidelines:
 
-* At least one physical core should be dedicated to the operating system; the rest can be allocated to the WEKA software.
-* Enough cores should be allocated to support the performance targets. For help on planning this, contact the WEKA Support Team.
+* At least one physical core should be dedicated to the operating system; the rest can be allocated to the Weka software.
+* Enough cores should be allocated to support the performance targets. For help on planning this, contact the Weka Support Team.
 * Enough memory should be allocated to match core allocation, as discussed above.
 
-In general, it is recommended to allocate as many cores as possible to the WEKA system, with the following limitations:
+In general, it is recommended to allocate as many cores as possible to the Weka system, with the following limitations:
 
 * There has to be one core for the operation system.
-* The running of other applications on the same host \(converged WEKA system deployment\) is supported. However, this is not covered in this documentation. For further information, contact the WEKA Support Team.
+* The running of other applications on the same host \(converged Weka system deployment\) is supported. However, this is not covered in this documentation. For further information, contact the Weka Support Team.
 * There has to be sufficient memory, as described above.
-* No more than 20 physical cores can be assigned to WEKA system processes.
+* No more than 20 physical cores can be assigned to Weka system processes.
 
 ### Client Hosts
 
-On a client host, by default the WEKA software consumes a single physical core. If the client host is configured with hyper-threading, the WEKA software will consume two logical cores.
+On a client host, by default the Weka software consumes a single physical core. If the client host is configured with hyper-threading, the Weka software will consume two logical cores.
 
-If the client networking is defined as based on UDP, there is no allocation of core resources and the CPU resources are allocated to the WEKA processes by the operating system as any other process.
+If the client networking is defined as based on UDP, there is no allocation of core resources and the CPU resources are allocated to the Weka processes by the operating system as any other process.
 
 ## Network Planning
 
 ### Backend Hosts
 
-It is mandatory to determine which one of the two networking technologies - InfiniBand or Ethernet - is to be used in order to proceed to the WEKA system initialization/installation process.
+It is mandatory to determine which one of the two networking technologies - InfiniBand or Ethernet - is to be used in order to proceed to the Weka system initialization/installation process.
 
 {% hint style="info" %}
-**Note:** A network port can either be dedicated to the WEKA system or run the WEKA system with other applications.
+**Note:** A network port can either be dedicated to the Weka system or run the Weka system with other applications.
 {% endhint %}
 
 ### Client Hosts
 
-Client hosts can be configured with networking as above, which provides the highest performance and lowest latency, but requires compatible hardware and dedicated core resources. If a compatible hardware is not available, or if allocating a physical core to the WEKA system is problematic, the client networking can be configured to use the kernel UDP service. In such cases, performance is reduced and latency increases.
+Client hosts can be configured with networking as above, which provides the highest performance and lowest latency, but requires compatible hardware and dedicated core resources. If a compatible hardware is not available, or if allocating a physical core to the Weka system is problematic, the client networking can be configured to use the kernel UDP service. In such cases, performance is reduced and latency increases.
 

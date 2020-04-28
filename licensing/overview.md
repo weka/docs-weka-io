@@ -1,12 +1,12 @@
 ---
-description: This page describes how licensing works in a WEKA system cluster.
+description: This page describes how licensing works in a Weka system cluster.
 ---
 
 # Overview
 
 ## License Metrics
 
-A WEKA system license measures usage at the cluster level and contains the following properties:
+A Weka system license measures usage at the cluster level and contains the following properties:
 
 1. Cluster GUID \(created at the time of installation\)
 2. Expiry date

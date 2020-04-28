@@ -1,26 +1,26 @@
 # Table of contents
 
-* [WEKA Documentation](README.md)
+* [Weka Documentation](README.md)
 
-## WEKA System Overview <a id="overview"></a>
+## Weka System Overview <a id="overview"></a>
 
-* [About the WEKA System](overview/about.md)
+* [About the Weka System](overview/about.md)
 * [SSD Capacity Management](overview/ssd-capacity-management.md)
 * [Filesystems, Object Stores & Filesystem Groups](overview/filesystems.md)
-* [WEKA Networking](overview/networking-in-wekaio.md)
+* [Weka Networking](overview/networking-in-wekaio.md)
 * [Data Lifecycle Management](overview/data-storage.md)
-* [WEKA Client & Mount Modes](overview/weka-client-and-mount-modes.md)
+* [Weka Client & Mount Modes](overview/weka-client-and-mount-modes.md)
 * [Glossary](overview/glossary.md)
 
 ## Planning & Installation <a id="install"></a>
 
 * [Bare Metal Installation](install/bare-metal/README.md)
-  * [Planning a WEKA System Installation](install/bare-metal/planning-a-weka-system-installation.md)
+  * [Planning a Weka System Installation](install/bare-metal/planning-a-weka-system-installation.md)
   * [Prerequisites for Installation](install/bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md)
   * [Setting Up the Hosts](install/bare-metal/setting-up-the-hosts/README.md)
     * [SR-IOV Enablement](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
-  * [Obtaining the WEKA Install File](install/bare-metal/obtaining-the-weka-install-file.md)
-  * [WEKA System Installation Process Using the CLI](install/bare-metal/using-cli.md)
+  * [Obtaining the Weka Install File](install/bare-metal/obtaining-the-weka-install-file.md)
+  * [Weka System Installation Process Using the CLI](install/bare-metal/using-cli.md)
   * [Adding Clients](install/bare-metal/adding-clients-bare-metal.md)
 * [AWS Installation](install/aws/README.md)
   * [Self-Service Portal](install/aws/self-service-portal.md)
@@ -30,16 +30,16 @@
   * [Adding Clients](install/aws/adding-clients.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
 
-## Getting Started with WEKA
+## Getting Started with Weka
 
-* [Managing the WEKA System](getting-started-with-weka/managing-wekaio-system.md)
+* [Managing the Weka System](getting-started-with-weka/managing-wekaio-system.md)
 * [CLI Overview](getting-started-with-weka/cli-overview.md)
 * [GUI Overview](getting-started-with-weka/gui.md)
 * [Serving IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
 
 ## Performance <a id="testing-and-troubleshooting"></a>
 
-* [Testing WEKA Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
+* [Testing Weka Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
 
 ## WekaFS Filesystems <a id="fs"></a>
 
@@ -82,7 +82,7 @@
   * [Expansion of Specific Resources](usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrinking a Cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
 * [Background Tasks](usage/background-tasks.md)
-* [Upgrading WEKA Versions](usage/upgrading-weka-versions.md)
+* [Upgrading Weka Versions](usage/upgrading-weka-versions.md)
 
 ## Billing & Licensing <a id="licensing"></a>
 
@@ -92,7 +92,7 @@
 
 ## Support
 
-* [Getting Support for Your WEKA System](support/getting-support-for-your-weka-system.md)
-* [The WEKA Support Cloud](support/the-wekaio-support-cloud.md)
+* [Getting Support for Your Weka System](support/getting-support-for-your-weka-system.md)
+* [The Weka Support Cloud](support/the-wekaio-support-cloud.md)
 * [Diagnostics CLI Command](support/diagnostics-utility.md)
 

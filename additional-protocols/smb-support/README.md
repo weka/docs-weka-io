@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the WEKA implementation of the SMB protocol for shared
+  This page describes the Weka implementation of the SMB protocol for shared
   Windows clients.
 ---
 
@@ -8,23 +8,23 @@ description: >-
 
 ## About SMB
 
-SMB \(Server Message Block\) is a network file sharing protocol that allows remote systems to connect to shared file and print services. WEKA's implementation is based on the open-source Samba package and provides support for SMB versions 2 and 3.
+SMB \(Server Message Block\) is a network file sharing protocol that allows remote systems to connect to shared file and print services. Weka's implementation is based on the open-source Samba package and provides support for SMB versions 2 and 3.
 
-The WEKA implementation of SMB makes storage services available to Windows and MacOS clients. WEKA provides shared access from multiple clients, as well as multi-protocol access to the same files from SMB, NFS, and WEKA native filesystem drivers.
+The Weka implementation of SMB makes storage services available to Windows and MacOS clients. Weka provides shared access from multiple clients, as well as multi-protocol access to the same files from SMB, NFS, and Weka native filesystem drivers.
 
-## Key Features of WEKA Implementation of SMB
+## Key Features of Weka Implementation of SMB
 
-Implementation of the SMB feature in the WEKA system is scalable, resilient and distributed.
+Implementation of the SMB feature in the Weka system is scalable, resilient and distributed.
 
-* **Scalable:** The WEKA system currently supports an SMB cluster of between 3 to 8 hosts. These hosts run the SMB gateway service, while the backend filesystem can be any WEKA filesystem. Therefore, it is practically unlimited in size and performance.
-* **Resilient:** The WEKA system implementation of SMB provides clustered access to files in a WEKA file store, enabling multiple servers to work together. Consequently, if a server failure occurs, another server is available to take over operations, thereby ensuring failover support and high availability. WEKA standard resiliency against failures also protects the SMB filesystems.
-* **Distributed:** A WEKA implementation is distributed over a cluster, where all nodes in the cluster handle all SMB filesystems concurrently. Therefore, performance supported by SMB can scale with more hardware resources, and high availability is ensured.
+* **Scalable:** The Weka system currently supports an SMB cluster of between 3 to 8 hosts. These hosts run the SMB gateway service, while the backend filesystem can be any Weka filesystem. Therefore, it is practically unlimited in size and performance.
+* **Resilient:** The Weka system implementation of SMB provides clustered access to files in a Weka file store, enabling multiple servers to work together. Consequently, if a server failure occurs, another server is available to take over operations, thereby ensuring failover support and high availability. Weka standard resiliency against failures also protects the SMB filesystems.
+* **Distributed:** A Weka implementation is distributed over a cluster, where all nodes in the cluster handle all SMB filesystems concurrently. Therefore, performance supported by SMB can scale with more hardware resources, and high availability is ensured.
 
 ## SMB User-Mapping Prerequisites
 
-WEKA maps Windows users and groups to a UID’s and GID’s for access to the filesystem. WEKA pulls users and groups information from Active Directory automatically.
+Weka maps Windows users and groups to a UID’s and GID’s for access to the filesystem. Weka pulls users and groups information from Active Directory automatically.
 
-WEKA requires the users and groups accessing the filesystem to have `uidNumber` and `gidNumber` attributes populated in active directory.
+Weka requires the users and groups accessing the filesystem to have `uidNumber` and `gidNumber` attributes populated in active directory.
 
 ### Active Directory Attributes
 
@@ -47,10 +47,10 @@ Read more about Active Directory properties [here](https://blogs.technet.microso
 
 ### Work Flow
 
-The WEKA SMB support is established either through the WEKA system GUI or a series of CLIs. When configuring SMB support, it is necessary to:
+The Weka SMB support is established either through the Weka system GUI or a series of CLIs. When configuring SMB support, it is necessary to:
 
-1. Define the WEKA hosts to participate in the SMB cluster, i.e., configuration of the SMB cluster.
-2. Join the SMB cluster to the Active Directory, i.e., connection and definition of WEKA in the Active Directory.
+1. Define the Weka hosts to participate in the SMB cluster, i.e., configuration of the SMB cluster.
+2. Join the SMB cluster to the Active Directory, i.e., connection and definition of Weka in the Active Directory.
 3. Create shares and their folders, and set permissions. By default, the filesystem permission are root/root/755 and initially can only be set via a WekaFS/NFS mount.
 
 After completing these steps, it is possible to connect as an administrator and define permissions via Windows.
@@ -59,11 +59,11 @@ After completing these steps, it is possible to connect as an administrator and 
 
 Establishing an SMB cluster is performed as follows:
 
-1. Select the WEKA hosts that will participate in the SMB cluster and set the domain name.
+1. Select the Weka hosts that will participate in the SMB cluster and set the domain name.
 2. In on-premises deployments, it is possible to configure a list of public IP addresses which will be distributed across the SMB cluster. If a node fails, the IP addresses from that node will be reassigned to another node.
 
 {% hint style="info" %}
-**Notes:** Each WEKA cluster can only support a single SMB cluster.
+**Notes:** Each Weka cluster can only support a single SMB cluster.
 {% endhint %}
 
 {% hint style="info" %}
@@ -72,7 +72,7 @@ Establishing an SMB cluster is performed as follows:
 
 ### Configuring the Round-Robin DNS Server
 
-To ensure that the various SMB clients will balance the load on the various WEKA hosts serving SMB, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS) entry which will resolve to the list of floating IPs, ensuring that client loads will be equally distributed across all hosts.
+To ensure that the various SMB clients will balance the load on the various Weka hosts serving SMB, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS) entry which will resolve to the list of floating IPs, ensuring that client loads will be equally distributed across all hosts.
 
 {% hint style="info" %}
 **Note:** Make sure to set the TTL \(Time to Live\) for all A records assigned to the SMB servers to 0 \(Zero\), this ensures that the IP won't be cached by the client or the DNS server.
@@ -80,7 +80,7 @@ To ensure that the various SMB clients will balance the load on the various WEKA
 
 ### Creating SMB Shares
 
-After establishing an SMB cluster, it is possible to declare SMB shares. Each share should have a name and a share path, i.e., the path into the WEKA filesystem, which can be the root of the WEKA filesystem or a subdirectory. This is created in the shell using either a WekaFS mount or an NFS mount.
+After establishing an SMB cluster, it is possible to declare SMB shares. Each share should have a name and a share path, i.e., the path into the Weka filesystem, which can be the root of the Weka filesystem or a subdirectory. This is created in the shell using either a WekaFS mount or an NFS mount.
 
 If the share uses the root, it is not necessary to create a root folder \(it already exists\). If the share is declared without providing a sub-directory, the WekaFS root will be used. If sub-folders have to be created \(an operation that is performed manually\), the permissions have to be adjusted accordingly.
 

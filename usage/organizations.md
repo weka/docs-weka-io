@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the concept of organizations and how different WEKA system
+  This page describes the concept of organizations and how different Weka system
   features operate within an organizational context.
 ---
 
@@ -8,9 +8,9 @@ description: >-
 
 ## Overview
 
-For the obscuration of data between different groups of users on the same WEKA system, it is possible to create multiple organizations.
+For the obscuration of data between different groups of users on the same Weka system, it is possible to create multiple organizations.
 
-The WEKA system supports up to 64 organizations. Within an organization, logical entities participating in obtaining control of data are managed by the Organization Admin, and not the Cluster Admin.
+The Weka system supports up to 64 organizations. Within an organization, logical entities participating in obtaining control of data are managed by the Organization Admin, and not the Cluster Admin.
 
 The Cluster Admin can perform the following activities:
 
@@ -18,10 +18,10 @@ The Cluster Admin can perform the following activities:
 * Delete existing organizations.
 * Monitor per organization the total capacity used by all the organization filesystems.
 
-‌While Cluster Admins are people trusted by the different organizations \(e.g., have root access to the backend hosts\), they are obscured from the organization data in the WEKA system. The Cluster Admin separation is partial, e.g., they can still see the events of all organizations. The WEKA system ensures the separation of any sensitive information between the different organizations.
+‌While Cluster Admins are people trusted by the different organizations \(e.g., have root access to the backend hosts\), they are obscured from the organization data in the Weka system. The Cluster Admin separation is partial, e.g., they can still see the events of all organizations. The Weka system ensures the separation of any sensitive information between the different organizations.
 
 {% hint style="info" %}
-**Note:** It is not possible to separate data at the hardware level. While the WEKA system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations and system limits are per organization. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
+**Note:** It is not possible to separate data at the hardware level. While the Weka system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations and system limits are per organization. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
 {% endhint %}
 
 ## Use Cases for Working with Organizations
@@ -170,7 +170,7 @@ Organization Admins have similar privileges to Cluster Admins, except that these
 * Set user roles
 * Manage the organization LDAP configuration
 
-Additionally, to avoid situations where an Organization Admin loses access to a WEKA system cluster, the following restrictions are implemented on Organization Admins:
+Additionally, to avoid situations where an Organization Admin loses access to a Weka system cluster, the following restrictions are implemented on Organization Admins:
 
 * Cannot delete themselves
 * Cannot change their role to a regular user role.
@@ -179,11 +179,11 @@ Additionally, to avoid situations where an Organization Admin loses access to a 
 
 Once the Cluster Admin has created an organization and the Organization Admin has created filesystems, users or configured the LDAP for the organization, regular users of the organization can mount filesystems.
 
-The purpose of organizations is to provide separation and security for organization data, which requires authentication of the WEKA system filesystem mounts. This authentication of mounts prevents users of other organizations and even the Cluster Admin from accessing organization filesystems.
+The purpose of organizations is to provide separation and security for organization data, which requires authentication of the Weka system filesystem mounts. This authentication of mounts prevents users of other organizations and even the Cluster Admin from accessing organization filesystems.
 
-Mounting filesystems in an organization \(other than the Root organization\) is only supported using a stateless client. If the user is not logged into the WEKA system, a login prompt will appear as part of the mount command.
+Mounting filesystems in an organization \(other than the Root organization\) is only supported using a stateless client. If the user is not logged into the Weka system, a login prompt will appear as part of the mount command.
 
-To securely mount a filesystem in the client, first log into the WEKA system:
+To securely mount a filesystem in the client, first log into the Weka system:
 
 ```text
 weka user login my_user my_password --org my_org -H backend-host-0
@@ -197,7 +197,7 @@ mount -t wekafs backend-host-0/my_fs /mnt/weka/my_fs
 
 Refer to [Mount Command Options](../fs/mounting-filesystems.md#mount-command-options) for all mount options.
 
-‌Authentication is achieved by obtaining a mount token and including it in the mount command. Logging into the WEKA system using the CLI \(the `weka user login` command\) creates an authentication token and saves it in the client \(default to `~/.weka/auth-token.json,` which can be changed using the`--path`attribute\). The WEKA system assigns the token that relates to a specific organization. Only mounts that pass the path to a correct token can successfully access the filesystems of the organization.
+‌Authentication is achieved by obtaining a mount token and including it in the mount command. Logging into the Weka system using the CLI \(the `weka user login` command\) creates an authentication token and saves it in the client \(default to `~/.weka/auth-token.json,` which can be changed using the`--path`attribute\). The Weka system assigns the token that relates to a specific organization. Only mounts that pass the path to a correct token can successfully access the filesystems of the organization.
 
 Once a user is authenticated, the mount command uses the default location of the authentication token. It is possible to change the token location/name and pass it as a parameter in the mount command using the `auth_token` mount option, or the`WEKA_TOKEN` environment variable.
 

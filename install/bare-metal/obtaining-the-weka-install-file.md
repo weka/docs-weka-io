@@ -1,13 +1,13 @@
 ---
 description: >-
-  This page describes the process for obtaining the WEKA software tar install
+  This page describes the process for obtaining the Weka software tar install
   file.
 ---
 
-# Obtaining the WEKA Install File
+# Obtaining the Weka Install File
 
 {% hint style="info" %}
-**Note:** The WEKA software tar installation file can be obtained either by a direct online download or from offline media containing the file. The following description is of the online download. It is possible to either download the installation file directly to each host, or distribute manually from a single download or offline media to all hosts.
+**Note:** The Weka software tar installation file can be obtained either by a direct online download or from offline media containing the file. The following description is of the online download. It is possible to either download the installation file directly to each host, or distribute manually from a single download or offline media to all hosts.
 {% endhint %}
 
 {% hint style="info" %}
@@ -18,7 +18,7 @@ description: >-
 
 Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site. Log in by entering your email address and password. Then click Continue.
 
-![WEKA System Login Screen](../../.gitbook/assets/get-weka-io-start.png)
+![Weka System Login Screen](../../.gitbook/assets/get-weka-io-start.png)
 
 If you do not have an account, click Create an account. The following screen is displayed:
 
@@ -28,13 +28,13 @@ Enter your email address, check the I’m not a robot box \(assuming you're not 
 
 You will now receive a registration confirmation email. Click the link in the email. The following screen will be displayed:
 
-![WEKA Registration: Create Account Screen](../../.gitbook/assets/get-weka-io-create.png)
+![Weka Registration: Create Account Screen](../../.gitbook/assets/get-weka-io-create.png)
 
-Create your account by entering your full name and password. Then click Create Account. The WEKA dashboard screen will be displayed.
+Create your account by entering your full name and password. Then click Create Account. The Weka dashboard screen will be displayed.
 
-![WEKA Dashboard Screen](../../.gitbook/assets/get-weka-io-new.png)
+![Weka Dashboard Screen](../../.gitbook/assets/get-weka-io-new.png)
 
-## Step 2: Download the WEKA Software
+## Step 2: Download the Weka Software
 
 To download the latest release, click the Latest Release button.
 
@@ -44,7 +44,7 @@ To download the latest release, click the Latest Release button.
 
 Follow the instructions for downloading the release appearing on the screen.
 
-![WEKA Download Screen](../../.gitbook/assets/get-weka-io-dl.png)
+![Weka Download Screen](../../.gitbook/assets/get-weka-io-dl.png)
 
 The details for the download and installation instructions are displayed. Download the file using either the command provided or the direct link.
 

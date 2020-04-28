@@ -1,14 +1,14 @@
 ---
 description: >-
   This page describes the alerts that can be received in this version of the
-  WEKA system.
+  Weka system.
 ---
 
 # Alerts
 
 ## Overview
 
-WEKA alerts indicate problematic ongoing states that the cluster is currently suffering from. They can only be dismissed by resolving the root cause of their existence. Usually, an alert is introduced alongside an equivalent event. This can help in identifying the point in time that the problematic state occurred and its root cause.
+Weka alerts indicate problematic ongoing states that the cluster is currently suffering from. They can only be dismissed by resolving the root cause of their existence. Usually, an alert is introduced alongside an equivalent event. This can help in identifying the point in time that the problematic state occurred and its root cause.
 
 Alerts are indicated by a yellow triangle. Click the triangle to display a list of active alerts in the system.
 
@@ -58,7 +58,7 @@ Enter the time period required and click Mute.
 
 **Command:** `weka alerts types`
 
-Use this command to lists all possible types of alerts that can be returned from the WEKA cluster.
+Use this command to lists all possible types of alerts that can be returned from the Weka cluster.
 
 **Command:**`weka alerts describe`
 
@@ -68,7 +68,7 @@ Use this command to describe all the alert types that might be returned from the
 
 **Command:** `weka alerts`
 
-Use the following command line to list all alerts \(muted and unmuted\) in the WEKA cluster:
+Use the following command line to list all alerts \(muted and unmuted\) in the Weka cluster:
 
 `weka alerts [--muted]`
 

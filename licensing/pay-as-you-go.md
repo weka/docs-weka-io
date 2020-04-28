@@ -8,29 +8,29 @@ description: >-
 
 ## Subscribing to AWS Marketplace
 
-To enable PAYG, it is first necessary to subscribe to [WEKA Matrix distributed scalable file system ](https://aws.amazon.com/marketplace/pp/B074XFQH6F)in the AWS Marketplace. This is performed using the following steps:
+To enable PAYG, it is first necessary to subscribe to [Weka Matrix distributed scalable file system ](https://aws.amazon.com/marketplace/pp/B074XFQH6F)in the AWS Marketplace. This is performed using the following steps:
 
 1. [Click here ](https://aws.amazon.com/marketplace/pp/B074XFQH6F) to go to the AWS Marketplace subscription page.
 2. Review the pricing \(see [How Does Hourly Pricing Work?](pay-as-you-go.md#how-does-hourly-pricing-work) below for more details\).
 3. Click the **Continue** button and then confirm by clicking **Subscribe**. A few seconds later a popup will be displayed.
 4. Click the **Set Up Your Account** button.
 
-After clicking the **Set Up Your Account** button, you will be redirected to the WEKA Portal:
+After clicking the **Set Up Your Account** button, you will be redirected to the Weka Portal:
 
-* **If you already have a WEKA account:** Enter your email address and account password. Your WEKA account will be linked to your AWS Marketplace subscription.
-* **If you do not have a WEKA account:** Enter your email address and choose a password for your new account. A new WEKA account will be created and it will be linked to your AWS Marketplace subscription.
+* **If you already have a Weka account:** Enter your email address and account password. Your Weka account will be linked to your AWS Marketplace subscription.
+* **If you do not have a Weka account:** Enter your email address and choose a password for your new account. A new Weka account will be created and it will be linked to your AWS Marketplace subscription.
 
-Your WEKA account is now connected to the AWS Marketplace.
+Your Weka account is now connected to the AWS Marketplace.
 
-## Enabling PAYG In Your WEKA System Cluster
+## Enabling PAYG In Your Weka System Cluster
 
-After subscribing to the AWS Marketplace, a PAYG plan must be created in your WEKA account. To do this, go to the **PAYG Plans** page and click the **Create PAYG Plan** button. Select the **AWS Marketplace** as the payment method and click the **Create PAYG Plan** to complete creation of the plan.
+After subscribing to the AWS Marketplace, a PAYG plan must be created in your Weka account. To do this, go to the **PAYG Plans** page and click the **Create PAYG Plan** button. Select the **AWS Marketplace** as the payment method and click the **Create PAYG Plan** to complete creation of the plan.
 
-A PAYG plan is simply an ID+secret connected to a payment method, which in this case is your AWS Marketplace. The payment method can be changed at any point without having to reconfigure the WEKA system cluster, since the ID+secret pair does not expire unless you delete them yourself.
+A PAYG plan is simply an ID+secret connected to a payment method, which in this case is your AWS Marketplace. The payment method can be changed at any point without having to reconfigure the Weka system cluster, since the ID+secret pair does not expire unless you delete them yourself.
 
-This method also allows the connection of multiple WEKA system clusters to the same PAYG plan.
+This method also allows the connection of multiple Weka system clusters to the same PAYG plan.
 
-Once a PAYG plan has been created, the final step is to enable the PAYG plan in the WEKA system cluster. This is performed as follows:
+Once a PAYG plan has been created, the final step is to enable the PAYG plan in the Weka system cluster. This is performed as follows:
 
 1. Open a terminal and connect to one of your cluster hosts.
 2. Copy and paste the `<plan-id>` and `<secret-key>` from the PAYG plan you created above to the following CLI command: `$ weka cluster license payg <plan-id> <secret-key>`
@@ -47,7 +47,7 @@ Weka v3.1.0 (CLI build 7f993d3)
 ...
 ```
 
-If something has gone wrong, the WEKA status shows an error indicating the issue. For example:
+If something has gone wrong, the Weka status shows an error indicating the issue. For example:
 
 ```text
 $ weka status
@@ -66,26 +66,26 @@ $ weka cluster license reset
 Resetting a license enables the entry of new PAYG plan details or switching to other licensing methods that might be available in the future.
 
 {% hint style="info" %}
-**Note:** Momentary disabling and re-enabling of licensing does not affect operation of the WEKA system cluster and is completely safe.
+**Note:** Momentary disabling and re-enabling of licensing does not affect operation of the Weka system cluster and is completely safe.
 {% endhint %}
 
 ## How Does Hourly Pricing Work?
 
-WEKA charges your AWS account on an hourly basis, according to the pricing details published in the AWS Marketplace subscription. However, some cases are worth explaining in more detail.
+Weka charges your AWS account on an hourly basis, according to the pricing details published in the AWS Marketplace subscription. However, some cases are worth explaining in more detail.
 
 ### Client Instances Are Free
 
-Pricing in the AWS Marketplace only includes r3 and i3 instances, while it is possible to install the WEKA system on many other types of instances \(see [Supported EC2 Instance Types](../install/aws/supported-ec2-instance-types.md) for a complete list\). This is because WEKA only charges for **backend instances**, which are the instances storing the data in the cluster. Client instances, which also includes r3 instances when installing as clients, are free of charge.
+Pricing in the AWS Marketplace only includes r3 and i3 instances, while it is possible to install the Weka system on many other types of instances \(see [Supported EC2 Instance Types](../install/aws/supported-ec2-instance-types.md) for a complete list\). This is because Weka only charges for **backend instances**, which are the instances storing the data in the cluster. Client instances, which also includes r3 instances when installing as clients, are free of charge.
 
 ### Duplicate Charge Protection
 
-When enabling PAYG, the WEKA system cluster sends a usage report to the WEKA Portal. This usage report contains the information necessary for correctly charging your AWS account. If PAYG is enabled and disabled multiple times in the same hour, multiple usage reports will be sent, which may cause duplicate charges.
+When enabling PAYG, the Weka system cluster sends a usage report to the Weka Portal. This usage report contains the information necessary for correctly charging your AWS account. If PAYG is enabled and disabled multiple times in the same hour, multiple usage reports will be sent, which may cause duplicate charges.
 
-The WEKA Portal protects against such duplicate charges by ensuring that a cluster is never billed more than once in each given hour. It is possible to view a detailed list of usage reports in your WEKA Portal account, with duplicate usage reports marked separately from the other reports.
+The Weka Portal protects against such duplicate charges by ensuring that a cluster is never billed more than once in each given hour. It is possible to view a detailed list of usage reports in your Weka Portal account, with duplicate usage reports marked separately from the other reports.
 
 ### Billing Multiple Clusters
 
-It is possible to use the same PAYG plan, or multiple PAYG plans assigned to the same AWS Marketplace subscription, with more than one WEKA system cluster. In such situations, the accumulated charges will appear in your AWS bill, as the AWS Marketplace receives aggregated charges for each hour. it is possible to see the usage for each cluster separately under the usage reports screen in your WEKA account.
+It is possible to use the same PAYG plan, or multiple PAYG plans assigned to the same AWS Marketplace subscription, with more than one Weka system cluster. In such situations, the accumulated charges will appear in your AWS bill, as the AWS Marketplace receives aggregated charges for each hour. it is possible to see the usage for each cluster separately under the usage reports screen in your Weka account.
 
 ## Unsubscribing
 

@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page details SMB management - setting up an SMB cluster over WEKA
+  This page details SMB management - setting up an SMB cluster over Weka
   filesystems and managing the cluster itself - using the GUI.
 ---
 
@@ -47,11 +47,11 @@ To join the SMB cluster to an Active Directory, click the Join button when all h
 Enter the provided username and password in order to access the Active Directory. The Server input field is optional. The default for the Computers Org.Unit field is the Computers directory, but it is possible to define any other directory in Active Directory to be connected, such as SMB servers or Corporate computer.
 
 {% hint style="info" %}
-**Note:** WEKA does not save the user password. A computer account is created on behalf of the user for the SMB cluster.
+**Note:** Weka does not save the user password. A computer account is created on behalf of the user for the SMB cluster.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The AD server must be the DNS server for the WEKA storage nodes in order for them to join the AD domain
+**Note:** The AD server must be the DNS server for the Weka storage nodes in order for them to join the AD domain
 {% endhint %}
 
 On successful completion, the join status next to the domain will change to "joined" as shown below:

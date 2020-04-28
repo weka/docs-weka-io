@@ -6,7 +6,7 @@ description: This page describes the procedure required in order to set up SR-IO
 
 ## Overview
 
-Many hardware vendors ship their products with the SR-IOV feature disabled. On such platforms, the feature must be enabled prior to installing the WEKA system. This enablement applies to both the server BIOS and the NIC. If already enabled, it is recommend to verify the current state before proceeding with the installation of the WEKA system.
+Many hardware vendors ship their products with the SR-IOV feature disabled. On such platforms, the feature must be enabled prior to installing the Weka system. This enablement applies to both the server BIOS and the NIC. If already enabled, it is recommend to verify the current state before proceeding with the installation of the Weka system.
 
 This section assumes that NIC drivers have been installed and loaded successfully. If this is not the case, complete the procedure described in NIC Driver Installation and then continue as described below.
 
@@ -38,7 +38,7 @@ While it is possible to change the SR-IOV configuration through the NIC BIOS, Me
 # mst start
 ```
 
-**Step 2**: Identify the device node for PCIe configuration access to the connected NIC device to be used with the WEKA system.
+**Step 2**: Identify the device node for PCIe configuration access to the connected NIC device to be used with the Weka system.
 
 ```text
 # ibdev2netdev

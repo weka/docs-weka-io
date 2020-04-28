@@ -16,7 +16,7 @@ This page will guide you through:
    * [Creating a filesystem](performing-the-first-io.md#creating-the-first-filesystem)
    * [Mounting a filesystem](performing-the-first-io.md#mounting-the-first-filesystem)
    * [Writing to a filesystem](performing-the-first-io.md#writing-to-the-filesystem)
-2. [Conducting performance testing](performing-the-first-io.md#validating-the-configuration-achieving-the-expected-performance) to make sure both the WEKA cluster and the IT environment are best configured to reap the benefits of WekaFS.
+2. [Conducting performance testing](performing-the-first-io.md#validating-the-configuration-achieving-the-expected-performance) to make sure both the Weka cluster and the IT environment are best configured to reap the benefits of WekaFS.
 
 ## Creating the First Filesystem
 
@@ -121,18 +121,18 @@ Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | 
 0             | default         | default | 40.95 MB        | 180.22 KB       | 41.14 MB | 1.03 GB  | 268.43 MB            | 1.07 GB       | 40.95 MB          | 41.14 MB   | 1.03 GB    | 1.07 GB         | 21589     | READY  | False     |                 | False
 ```
 
-This has completed the sanity check that the WEKA cluster is configured and IOs can be performed to it.
+This has completed the sanity check that the Weka cluster is configured and IOs can be performed to it.
 
 ## Validating the Configuration - Achieving the Expected Performance
 
-To make sure that the WEKA cluster and the IT environment are well configured, a more complex IO patterns and benchmark tests should be conducted using the FIO utility.
+To make sure that the Weka cluster and the IT environment are well configured, a more complex IO patterns and benchmark tests should be conducted using the FIO utility.
 
-Although results can vary using different hosts and networking, it is not expected to be very different than what we and many other customers achieved. Properly configured WEKA cluster and IT environment should yield similar results as described in [Testing WEKA Performance](../testing-and-troubleshooting/testing-weka-system-performance.md).
+Although results can vary using different hosts and networking, it is not expected to be very different than what we and many other customers achieved. Properly configured Weka cluster and IT environment should yield similar results as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance.md).
 
 {% hint style="info" %}
-**Note:** The numbers achieved in the benchmark tests, as described in [Testing WEKA Performance](../testing-and-troubleshooting/testing-weka-system-performance.md) are not just achieved in a closed/controlled environment. Similar numbers should be achieved when using similar configuration, if the WEKA cluster and IT environment are properly configured. If the numbers achieved in your environment significantly vary from those, please contact the WEKA Sales or Support Team before running any other workload on the WEKA cluster.
+**Note:** The numbers achieved in the benchmark tests, as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance.md) are not just achieved in a closed/controlled environment. Similar numbers should be achieved when using similar configuration, if the Weka cluster and IT environment are properly configured. If the numbers achieved in your environment significantly vary from those, please contact the Weka Sales or Support Team before running any other workload on the Weka cluster.
 
-The example results shown in [Testing WEKA Performance](../testing-and-troubleshooting/testing-weka-system-performance.md), are tested on AWS. In general, for any of WEKA reference architecture you should expect lower than 300 microseconds latency and 5.5 GB/s throughput per host \(for a single 100gbps link\).
+The example results shown in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance.md), are tested on AWS. In general, for any of Weka reference architecture you should expect lower than 300 microseconds latency and 5.5 GB/s throughput per host \(for a single 100gbps link\).
 {% endhint %}
 
 {% page-ref page="../testing-and-troubleshooting/testing-weka-system-performance.md" %}

@@ -1,15 +1,15 @@
 ---
 description: >-
-  This page describes WEKA policy and approach for responsive and proactive
+  This page describes Weka policy and approach for responsive and proactive
   technical support, together with some recommended helpful steps when starting
-  to work with WEKA.
+  to work with Weka.
 ---
 
-# Getting Support for Your WEKA System
+# Getting Support for Your Weka System
 
-## Contacting WEKA Technical Support Team
+## Contacting Weka Technical Support Team
 
-WEKA's technical support policy is based on the type and urgency of the inquiry, as described in the following table:
+Weka's technical support policy is based on the type and urgency of the inquiry, as described in the following table:
 
 <table>
   <thead>
@@ -24,7 +24,7 @@ WEKA's technical support policy is based on the type and urgency of the inquiry,
       <td style="text-align:left"><b>Critical</b>
       </td>
       <td style="text-align:left">
-        <p>Call WEKA support number +1 (844) 392-0665</p>
+        <p>Call Weka support number +1 (844) 392-0665</p>
         <p></p>
         <p>-or-</p>
         <p></p>
@@ -32,7 +32,7 @@ WEKA's technical support policy is based on the type and urgency of the inquiry,
         <p></p>
       </td>
       <td style="text-align:left">
-        <p>WEKA provides a 24/7 technical support service and voice messages are
+        <p>Weka provides a 24/7 technical support service and voice messages are
           directed to the active support personnel. Such requests for technical support
           should only be used for urgent issues in production systems.</p>
         <p></p>
@@ -126,9 +126,9 @@ WEKA's technical support policy is based on the type and urgency of the inquiry,
   </tbody>
 </table>## Recommended Actions
 
-To be ready to get support from WEKA, it is recommended to perform the following:
+To be ready to get support from Weka, it is recommended to perform the following:
 
 1. For each cluster provisioned, [allow uploading events to the support cloud](the-wekaio-support-cloud.md) to enable proactive support and improve the troubleshooting process if needed
-2. Create an account on the WEKA Support Portal [support.weka.io](http://support.weka.io/).  This will allow you to easily submit and check status of tickets as well as to browse our online knowledgebase.
-3. We suggest opening a shared Slack channel with WEKA for day to day activities, Slack activity will not substitute opening tickets for issues and WEKA can’t grantee any response time SLA while using Slack. To arrange the slack channel, get in touch with your WEKA point of contact, open a case in our support portal at [support.weka.io](http://support.weka.io/) or send an email to [support@weka.io](mailto:support@weka.io).
+2. Create an account on the Weka Support Portal [support.weka.io](http://support.weka.io/).  This will allow you to easily submit and check status of tickets as well as to browse our online knowledgebase.
+3. We suggest opening a shared Slack channel with Weka for day to day activities, Slack activity will not substitute opening tickets for issues and Weka can’t grantee any response time SLA while using Slack. To arrange the slack channel, get in touch with your Weka point of contact, open a case in our support portal at [support.weka.io](http://support.weka.io/) or send an email to [support@weka.io](mailto:support@weka.io).
 

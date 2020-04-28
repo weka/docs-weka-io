@@ -1,14 +1,14 @@
 ---
 description: >-
   This page describes the process for adding clients to an already-installed
-  WEKA system cluster.
+  Weka system cluster.
 ---
 
 # Adding Clients
 
 ## Introduction
 
-When launching a WEKA system cluster, either through the [Self-Service Portal](self-service-portal.md) or via a [CloudFormation template](cloudformation.md), it is also possible to launch client instances. However, sometimes it may be required to add more clients after the cluster has been installed. To add more clients as separate instances, follow the instructions below.
+When launching a Weka system cluster, either through the [Self-Service Portal](self-service-portal.md) or via a [CloudFormation template](cloudformation.md), it is also possible to launch client instances. However, sometimes it may be required to add more clients after the cluster has been installed. To add more clients as separate instances, follow the instructions below.
 
 ## Adding Clients as Separate Instances
 
@@ -33,7 +33,7 @@ When adding a client, it is required to provide permissions to several AWS APIs,
 
 These permissions are automatically created in an instance profile as part of the CloudFormation stack. It is possible to use the same instance profile as one of the backend instances to ensure that the same credentials are given to the new client.
 
-The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the WEKA system client to preallocate the network resource for fastest performance.
+The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the Weka system client to preallocate the network resource for fastest performance.
 
 If the client is not to be provided with these permissions, it is possible to only provide `ec2:*` and create an additional NIC in the same security group and subnet as described above.
 
@@ -41,7 +41,7 @@ If the client is not to be provided with these permissions, it is possible to on
 
 The clients **root volume** must be at least 48 GiB in size and either `GP2` or `IO1` type.
 
-The WEKA software is installed under `/opt/weka`. If it is not possible to change the size of the root volume, an additional EBS volume can be created, formatted and mounted under `/opt/weka`. Make sure that the new volume is either `GP2` or `IO1` type.
+The Weka software is installed under `/opt/weka`. If it is not possible to change the size of the root volume, an additional EBS volume can be created, formatted and mounted under `/opt/weka`. Make sure that the new volume is either `GP2` or `IO1` type.
 
 ### Step 2: Mounting Filesystems
 
@@ -49,7 +49,7 @@ The WEKA software is installed under `/opt/weka`. If it is not possible to chang
 **Note:** The clients created using the Self-Service Portal are stateless. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
 {% endhint %}
 
-To mount a filesystem in this manner, first install the WEKA agent from one of the backend instances and then mount the filesystem. For example:
+To mount a filesystem in this manner, first install the Weka agent from one of the backend instances and then mount the filesystem. For example:
 
 ```text
 # Agent Installation (one time)
@@ -62,7 +62,7 @@ mkdir -p /mnt/weka
 mount -t wekafs Backend-1/my_fs /mnt/weka
 ```
 
-For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, refer to [Mounting Filesystems Using the Stateless Clients Feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
+For the first mount, this will install the Weka software and automatically configure the client. For more information on mount and configuration options, refer to [Mounting Filesystems Using the Stateless Clients Feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
 
 It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information refer to [Mounting Filesystems Using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mounting Filesystems Using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs).
 
@@ -76,9 +76,9 @@ It is possible to configure the client OS to automatically mount the filesystem 
 
 This is the same step as in the previous method of adding a client.
 
-### Step 2: Install the WEKA Software <a id="step-2-install-wekaio-software"></a>
+### Step 2: Install the Weka Software <a id="step-2-install-wekaio-software"></a>
 
-To download the WEKA software, go to [https://get.weka.io ](https://get.weka.io/) and select the software version to be downloaded. After selecting the version, select the operating system it is to be installed on and run the download command line as `root`on all the new client instances.
+To download the Weka software, go to [https://get.weka.io ](https://get.weka.io/) and select the software version to be downloaded. After selecting the version, select the operating system it is to be installed on and run the download command line as `root`on all the new client instances.
 
 When the download is complete, untar the downloaded package and run the `install.sh` command in the package directory.
 
@@ -94,7 +94,7 @@ When installing on an AWS instance with Elastic Network Adapter \(ENA\) and a no
 
 ### Step 3: Add Clients to the Cluster <a id="step-3-add-clients-to-cluster"></a>
 
-Once the WEKA software is installed, the clients are ready to join the cluster. To add the clients, run the following command line on each of the client instances:
+Once the Weka software is installed, the clients are ready to join the cluster. To add the clients, run the following command line on each of the client instances:
 
 ```text
 weka local run -e WEKA_HOST=<backend-ip> aws-add-client <client-instance-id>
@@ -117,7 +117,7 @@ Client has joined the cluster
 {% hint style="info" %}
 **Note: Dedicated Client Resources**
 
-Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the WEKA system on the client instance. This is performed as part of the WEKA system preallocation of resources, ensuring that variance in client activity does not result in the allocation of resources that may affect the programs running on the client host. For more information, see [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
+Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the Weka system on the client instance. This is performed as part of the Weka system preallocation of resources, ensuring that variance in client activity does not result in the allocation of resources that may affect the programs running on the client host. For more information, see [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
 {% endhint %}
 
 ### Step 4: Mount Filesystems on the Clients <a id="step-4-mount-filesystem-on-clients"></a>

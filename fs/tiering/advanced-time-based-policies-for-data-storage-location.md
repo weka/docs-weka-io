@@ -1,30 +1,30 @@
 ---
 description: >-
   This page provides a detailed description of how data storage is managed in
-  tiered WEKA system configurations.
+  tiered Weka system configurations.
 ---
 
 # Advanced Time-based Policies for Data Storage Location
 
 ## Data Retention Period Policy
 
-Consider a scenario of a 100 TB filesystem \(total capacity\), with 100 TB of SSD space \(as explained in [The Role of SSDs in Tiered WekaIO Configurations](../../overview/data-storage.md#the-role-of-ssds-in-tiered-weka-configurations) section\). If the data Retention Period policy is defined as 1 month and only 10 TB of data are written per month, it will probably be possible to maintain data from the last 10 months on the SSDs. On the other hand, if 200 TB of data are written per month, it will only be possible to maintain data from half of the month on the SSDs. Additionally, there is no guarantee that the data on the SSDs is the data written in the last 2 weeks of the month, which also depends on the Tiering Cue.
+Consider a scenario of a 100 TB filesystem \(total capacity\), with 100 TB of SSD space \(as explained in [The Role of SSDs in Tiered Weka Configurations](../../overview/data-storage.md#the-role-of-ssds-in-tiered-weka-configurations) section\). If the data Retention Period policy is defined as 1 month and only 10 TB of data are written per month, it will probably be possible to maintain data from the last 10 months on the SSDs. On the other hand, if 200 TB of data are written per month, it will only be possible to maintain data from half of the month on the SSDs. Additionally, there is no guarantee that the data on the SSDs is the data written in the last 2 weeks of the month, which also depends on the Tiering Cue.
 
-Consequently, the data Retention Period policy determines the resolution of the WEKA system release decisions. If it is set to 1 month and the SSD capacity is sufficient for 10 months of writing, then the first month will be kept on the SSDs.
+Consequently, the data Retention Period policy determines the resolution of the Weka system release decisions. If it is set to 1 month and the SSD capacity is sufficient for 10 months of writing, then the first month will be kept on the SSDs.
 
 {% hint style="info" %}
-**Note:** If the WEKA system cannot comply with the defined Retention Period, e.g., the SSD is full and data has not been released from the SSD to the object store, a Break In Policy will occur. In such a situation, an event is received in the WEKA system event log, advising that the system has not succeeded in complying with the policy and that data has been automatically released from the SSD to the object store, before completion of the defined Retention Period. No data will be lost \(since the data has been transferred to the object store\), but slower performance may be experienced.
+**Note:** If the Weka system cannot comply with the defined Retention Period, e.g., the SSD is full and data has not been released from the SSD to the object store, a Break In Policy will occur. In such a situation, an event is received in the Weka system event log, advising that the system has not succeeded in complying with the policy and that data has been automatically released from the SSD to the object store, before completion of the defined Retention Period. No data will be lost \(since the data has been transferred to the object store\), but slower performance may be experienced.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** If the data writing rate is always high and the WEKA system fails to successfully release the data to the object store, an Object Store Bottleneck will occur. If the bottleneck continues, this will also result in a Policy Violation event.
+**Note:** If the data writing rate is always high and the Weka system fails to successfully release the data to the object store, an Object Store Bottleneck will occur. If the bottleneck continues, this will also result in a Policy Violation event.
 {% endhint %}
 
 ## Tiering Cue Policy
 
 The Tiering Cue policy defines the period of time to wait before the release of data from the SSD to the object store. It is typically used when it is expected that some of the data being written will be rewritten/modified/deleted in the short term.
 
-The WEKA system integrates a rolling progress control with three rotating periods of 0, 1 and 2.
+The Weka system integrates a rolling progress control with three rotating periods of 0, 1 and 2.
 
 1. Period 0: All data written is tagged as written in the current period.
 2. Period 1: The switch from 0 to 1 is according to the Tiering Cue policy.
@@ -36,7 +36,7 @@ The WEKA system integrates a rolling progress control with three rotating period
 
 ## Management of Data Retention Policies <a id="management-of-data-retention-policies"></a>
 
-Since the WEKA system is a highly scalable data storage system, data storage policies in tiered WEKA configurations cannot be based on cluster-wide FIFO methodology, because clusters can contain billions of files. Instead, data retention is managed by time-stamping every piece of data, where the timestamp is based on a resolution of intervals which may extend from minutes to weeks. The WEKA system maintains the interval in which each piece of data was created, accessed or last modified.
+Since the Weka system is a highly scalable data storage system, data storage policies in tiered Weka configurations cannot be based on cluster-wide FIFO methodology, because clusters can contain billions of files. Instead, data retention is managed by time-stamping every piece of data, where the timestamp is based on a resolution of intervals which may extend from minutes to weeks. The Weka system maintains the interval in which each piece of data was created, accessed or last modified.
 
 Users only specify the data Retention Period and based on this, each interval is one quarter of the data Retention Period. Data written, modified or accessed prior to the last interval is always released, even if SSD space is available.
 
@@ -45,14 +45,14 @@ Users only specify the data Retention Period and based on this, each interval is
 {% endhint %}
 
 {% hint style="success" %}
-**For Example:** In a WEKA system that is configured with a data Retention Period of 20 days, data is split into 7 interval groups, with each group spanning a total of 5 days \(5 being 25% of 20, the data Retention Period\). If the system starts operating on January 1, then data written, accessed or modified between January 1-5 is classified as belonging to interval 1, data written, accessed or modified between January 6-10 belongs to interval 2, and so on. In such a case, the 7 intervals will be timestamped and divided as follows:
+**For Example:** In a Weka system that is configured with a data Retention Period of 20 days, data is split into 7 interval groups, with each group spanning a total of 5 days \(5 being 25% of 20, the data Retention Period\). If the system starts operating on January 1, then data written, accessed or modified between January 1-5 is classified as belonging to interval 1, data written, accessed or modified between January 6-10 belongs to interval 2, and so on. In such a case, the 7 intervals will be timestamped and divided as follows:
 {% endhint %}
 
 ![](../../.gitbook/assets/table-1b.jpg)
 
 ## Data Release Process from SSD to Object Store <a id="data-release-process-from-ssd-to-object-store"></a>
 
-At any given moment, the WEKA system releases the filesystem data of a single interval, transferring it from the SSD to the object store. This release process is based on the available SSD capacity. Consequently, if there is sufficient SSD capacity, only data which was modified or written before 7 intervals will be released.
+At any given moment, the Weka system releases the filesystem data of a single interval, transferring it from the SSD to the object store. This release process is based on the available SSD capacity. Consequently, if there is sufficient SSD capacity, only data which was modified or written before 7 intervals will be released.
 
 {% hint style="success" %}
 **For Example:** If 3 TB of data is produced every day, i.e., 15 TB of data in each interval, the division of data will be as follows:
@@ -64,7 +64,7 @@ Now consider a situation where the total capacity of the SSD is 100 TB. The situ
 
 ![](../../.gitbook/assets/table-3.jpg)
 
-Since the resolution in the WEKA system is the interval, in the example above the SSD capacity of 100 TB is insufficient for all data written over the defined 35-day Retention Period. Consequently, the oldest, most non-accessed or modified data, has to be released to the object store. In this example, this release operation will have to be performed in the middle of interval 6 and will involve the release of data from interval 0.
+Since the resolution in the Weka system is the interval, in the example above the SSD capacity of 100 TB is insufficient for all data written over the defined 35-day Retention Period. Consequently, the oldest, most non-accessed or modified data, has to be released to the object store. In this example, this release operation will have to be performed in the middle of interval 6 and will involve the release of data from interval 0.
 
 This counting of the age of the data in resolutions of 5 days is performed according to 8 different categories. A constantly rolling calculation, the following will occur in the example above:
 
@@ -86,7 +86,7 @@ When much more data is written and there is insufficient SSD capacity for storag
 
 ## Tiering Cue <a id="tiering-cue"></a>
 
-The tiering process \(the tiering of data from the SSDs to the object stores\) is based on when data is created or modified. It is managed similar to the Retention Period, with the data timestamped in intervals. The length of each interval is the size of the user-defined Tiering Cue. The WEKA system maintains 3 such intervals at any given time, and always tiers the data in the third interval.
+The tiering process \(the tiering of data from the SSDs to the object stores\) is based on when data is created or modified. It is managed similar to the Retention Period, with the data timestamped in intervals. The length of each interval is the size of the user-defined Tiering Cue. The Weka system maintains 3 such intervals at any given time, and always tiers the data in the third interval.
 
 {% hint style="info" %}
 **Note:** While the data release process is based on timestamps of access, creation or modification, the tiering process is based only on the timestamps of the creation or modification.

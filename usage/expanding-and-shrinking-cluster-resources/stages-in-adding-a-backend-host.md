@@ -1,21 +1,21 @@
 ---
 description: >-
   The page describes the expansion of a cluster with new hosts, which is similar
-  to the WEKA System Installation Process Using the CLI and consists of the
+  to the Weka System Installation Process Using the CLI and consists of the
   following stages.
 ---
 
 # Stages in Adding a Backend Host
 
-## Stage 1: Obtaining the WEKA Install File
+## Stage 1: Obtaining the Weka Install File
 
-This stage is the same as [Obtaining the WEKA Install File](../../install/bare-metal/obtaining-the-weka-install-file.md). However, it is essential to download the install file used when the existing cluster was formed or last upgraded. Use the `weka-status` command to show the current cluster install file version.
+This stage is the same as [Obtaining the Weka Install File](../../install/bare-metal/obtaining-the-weka-install-file.md). However, it is essential to download the install file used when the existing cluster was formed or last upgraded. Use the `weka-status` command to show the current cluster install file version.
 
-To download the appropriate install file, follow the instructions in [Download the WEKA Software](../../install/bare-metal/obtaining-the-weka-install-file.md#step-2-download-the-weka-software).
+To download the appropriate install file, follow the instructions in [Download the Weka Software](../../install/bare-metal/obtaining-the-weka-install-file.md#step-2-download-the-weka-software).
 
-## Stage 2: Installing the WEKA Software on the New Host
+## Stage 2: Installing the Weka Software on the New Host
 
-Follow the instructions appearing in [Installation of the WEKA Software on Each Host](../../install/bare-metal/using-cli.md#stage-1-installation-of-the-weka-software-on-each-host). At the end of the install process the host is in [stem mode](../../overview/glossary.md#stem-mode).
+Follow the instructions appearing in [Installation of the Weka Software on Each Host](../../install/bare-metal/using-cli.md#stage-1-installation-of-the-weka-software-on-each-host). At the end of the install process the host is in [stem mode](../../overview/glossary.md#stem-mode).
 
 ## Stage 3: Adding a Host to the Cluster
 

@@ -37,7 +37,7 @@ Detaching from a filesystem tiered to one object store will un-tier the filesyst
 On completion of detaching, the object store does not appear under the filesystem when using the `weka fs` _\*\*_command. However, it still appears under the object store and can be removed if it is not being used by any other filesystem. The data in the read-only object store remains in the object store bucket for backup purposes. If this is unnecessary or the reclamation of object store space is required, it is possible to delete the object store bucket.
 
 {% hint style="info" %}
-**Note:** Before deleting an object store bucket, remember to take into account data from another filesystem or data not relevant to the WEKA system on the object store bucket.
+**Note:** Before deleting an object store bucket, remember to take into account data from another filesystem or data not relevant to the Weka system on the object store bucket.
 {% endhint %}
 
 {% hint style="warning" %}

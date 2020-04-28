@@ -1,13 +1,13 @@
 ---
 description: >-
-  This page describes a series of tests for measuring performance after
-  installation of the WEKA system. The same tests can be used to test the
+  This page describes a series of tests for measuring performance after the
+  installation of the Weka system. The same tests can be used to test the
   performance of any other storage solution.
 ---
 
-# Testing WEKA Performance
+# Testing Weka Performance
 
-## About WEKA Performance Testing
+## About Weka Performance Testing
 
 There are 3 main performance metrics when measuring a storage system performance:
 
@@ -17,24 +17,24 @@ There are 3 main performance metrics when measuring a storage system performance
 
 Each of these performance metrics applies to read operations, write operations or a mixture of read and write operations.
 
-‌When measuring the WEKA system performance, different [mount modes](../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration \(using either user-space DPDK networking or kernel UDP\) also have a significant effect on performance.
+‌When measuring the Weka system performance, different [mount modes](../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration \(using either user-space DPDK networking or kernel UDP\) also have a significant effect on performance.
 
 {% hint style="info" %}
-**Note:** All performance tests listed here are generic and not specific to the WEKA system. They can be used to compare the WEKA storage system to other storage systems or to a local storage device.
+**Note:** All performance tests listed here are generic and not specific to the Weka system. They can be used to compare the Weka storage system to other storage systems or to a local storage device.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** There is a difference between single client performance to aggregated performance. When running the tests listed below from one client, the client will limit the performance of the test. In general, several clients will be required to maximize the performance of a WEKA cluster.
+**Note:** There is a difference between single client performance to aggregated performance. When running the tests listed below from one client, the client will limit the performance of the test. In general, several clients will be required to maximize the performance of a Weka cluster.
 {% endhint %}
 
 ## The FIO Utility
 
 The [FIO Utility](https://linux.die.net/man/1/fio) is a generic open source storage performance testing tool which can be defined as described [here](https://github.com/axboe/fio). In this documentation, the usage of FIO version 3.5 is assumed.
 
-## WEKA Client Performance Testing
+## Weka Client Performance Testing
 
 {% hint style="info" %}
-**Note:** All performance tests and numbers listed here have been conducted using an AWS WEKA cluster with six [i3.16xlarge ](https://aws.amazon.com/ec2/instance-types/i3/)instances, a single [c5n.18xlarge](https://aws.amazon.com/ec2/instance-types/c5/) client, and using DPDK networking.
+**Note:** All performance tests and numbers listed here have been conducted using an AWS Weka cluster with six [i3.16xlarge ](https://aws.amazon.com/ec2/instance-types/i3/)instances, a single [c5n.18xlarge](https://aws.amazon.com/ec2/instance-types/c5/) client, and using DPDK networking.
 {% endhint %}
 
 ### Laying Out Files and File Structure for Testing
@@ -70,7 +70,7 @@ fio --name=$BENCHMARK_ID --clocksource=gettimeofday --group_reporting \
 **‌**This test measures the client throughput for large \(1 MB\) reads. The scripts below will try to maximize the read throughput from a single client. The test utilizes multiple threads, each one performing 1 MB reads.
 
 {% hint style="info" %}
-**Note:** If the client uses a 100 Gbps NIC or above, mounting the WEKA filesystem with more than one core is required to maximize client throughput.
+**Note:** If the client uses a 100 Gbps NIC or above, mounting the Weka filesystem with more than one core is required to maximize client throughput.
 {% endhint %}
 
 {% hint style="info" %}
@@ -256,7 +256,7 @@ In this test output example, results show an average latency of 213 microseconds
 This test measures the client throughput for large \(1 MB\) writes. The scripts below will try to maximize the write throughput from a single client. The test utilizes multiple threads, each one performing 1 MB reads.
 
 {% hint style="info" %}
-**Note:** If the client uses a 100 Gbps NIC or above, mounting the WEKA filesystem with more than one core is required to maximize client throughput.
+**Note:** If the client uses a 100 Gbps NIC or above, mounting the Weka filesystem with more than one core is required to maximize client throughput.
 {% endhint %}
 
 {% hint style="info" %}

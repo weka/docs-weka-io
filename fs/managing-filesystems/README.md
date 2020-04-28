@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes how to view and manage filesystems, filesystem groups and
+  This page describes how to view and manage filesystems, filesystem groups, and
   object stores using the GUI and the CLI.
 ---
 

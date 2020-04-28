@@ -1,7 +1,7 @@
 ---
 description: >-
   This page describes the management of a Key Management System (KMS) within the
-  WEKA system.
+  Weka system.
 ---
 
 # KMS Management
@@ -10,26 +10,26 @@ description: >-
 
 When creating an encrypted filesystem, a KMS must be used to properly secure the encryption keys.
 
-The WEKA system uses the KMS to encrypt filesystem keys. When the WEKA system comes up, it uses the KMS to decrypt the filesystem keys and use its in-memory capabilities for data encrypting/decrypting operations.
+The Weka system uses the KMS to encrypt filesystem keys. When the Weka system comes up, it uses the KMS to decrypt the filesystem keys and use its in-memory capabilities for data encrypting/decrypting operations.
 
-When a snapshot is taken using the Snap-To-Object feature, the encrypted filesystem key is saved along with the encrypted data. In the event of rehydrating this snapshot to a different filesystem \(or when recovering from a disaster to the same filesystem in the WEKA cluster\), the KMS is used to decrypt the filesystem key. Consequently, the same KMS data must be present when performing such operations.
+When a snapshot is taken using the Snap-To-Object feature, the encrypted filesystem key is saved along with the encrypted data. In the event of rehydrating this snapshot to a different filesystem \(or when recovering from a disaster to the same filesystem in the Weka cluster\), the KMS is used to decrypt the filesystem key. Consequently, the same KMS data must be present when performing such operations.
 
-For increased security, the WEKA system does not save any information that can reconstruct the KMS encryption keys, which is performed by the KMS configuration alone. Therefore, the following should be considered:
+For increased security, the Weka system does not save any information that can reconstruct the KMS encryption keys, which is performed by the KMS configuration alone. Therefore, the following should be considered:
 
 1. If the KMS configuration is lost, the encrypted data may also be lost. Therefore, a proper DR strategy should be set when deploying the KMS in a production environment.
-2. The KMS should be available when the WEKA system comes up, when a new filesystem is created, and from time to time when key rotations must be performed. Therefore, it is recommended that the KMS be highly available.
+2. The KMS should be available when the Weka system comes up, when a new filesystem is created, and from time to time when key rotations must be performed. Therefore, it is recommended that the KMS be highly available.
 
 For more information, refer to [KMS Best Practices](kms-management.md#kms-best-practices).
 
-At present, the KMS supported by the WEKA system is [HashiCorp Vault](https://www.hashicorp.com/products/vault/) \(version 1.1.5 and up\). For setting up Vault to work with the WEKA system, refer to [Setting Up Vault Configuration](kms-management.md#setting-up-vault-configuration).
+At present, the KMS supported by the Weka system is [HashiCorp Vault](https://www.hashicorp.com/products/vault/) \(version 1.1.5 and up\). For setting up Vault to work with the Weka system, refer to [Setting Up Vault Configuration](kms-management.md#setting-up-vault-configuration).
 
-For additional information on KMS support, contact the WEKA Sales or Support Teams.
+For additional information on KMS support, contact the Weka Sales or Support Teams.
 
 ## Managing KMS Using the GUI
 
 ### Adding a KMS
 
-To add a KMS to the WEKA system, go to KMS Configuration screen on the left sidebar and click Configure KMS.
+To add a KMS to the Weka system, go to KMS Configuration screen on the left sidebar and click Configure KMS.
 
 ![](../../.gitbook/assets/kms-not-set-main-screen-3.5.png)
 
@@ -67,7 +67,7 @@ Click Yes to remove the KMS configuration.
 
 **Command:** `weka fs kms set-vault`
 
-Use the following command line to add or update the Vault KMS configuration in the WEKA system:
+Use the following command line to add or update the Vault KMS configuration in the Weka system:
 
 `weka fs kms set-vault <base-url> <master-key-name> <token>`
 
@@ -144,7 +144,7 @@ Use this command to show the details of the configured KMS.
 
 **Command:** `weka fs kms unset`
 
-Use this command to remove the KMS from the WEKA system. It is only possible to remove a KMS configuration if no encrypted filesystems exist.
+Use this command to remove the KMS from the Weka system. It is only possible to remove a KMS configuration if no encrypted filesystems exist.
 
 {% hint style="warning" %}
 **Note:** To force remove a KMS even if encrypted filesystems exist, use the `--allow-downgrade` attribute. In such cases, the encrypted filesystem keys are re-encrypted with local encryption and may be compromised.
@@ -162,23 +162,23 @@ If the KMS key is compromised or requires rotation, the KMS admin can rotate the
 
 ## KMS Best Practices
 
-The KMS is the only source holding the key to decrypt WEKA system filesystem keys. For non-disruptive operation, it is highly recommended to follow these guidelines:
+The KMS is the only source holding the key to decrypt Weka system filesystem keys. For non-disruptive operation, it is highly recommended to follow these guidelines:
 
 * Set-up DR for the KMS \(backup/replication\) to avoid any chance of data loss.
-* Ensure that the KMS is highly available \(note that the KMS is represented by a single URL in the WEKA system\).
-* Provide access to the KMS from the WEKA system backend hosts.
+* Ensure that the KMS is highly available \(note that the KMS is represented by a single URL in the Weka system\).
+* Provide access to the KMS from the Weka system backend hosts.
 * Verify the methods used by the KMS being implemented \(each KMS has different methods for securing/unsealing keys and for reconstructing lost keys, e.g., [Vault unsealing methods](https://www.vaultproject.io/docs/concepts/seal.html), which enable the configuration of [auto unsealing using a trusted service](https://learn.hashicorp.com/vault/operations/ops-autounseal-aws-kms)\).
 * Refer to [Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) for additional best practices suggested by HashiCorp when using Vault.
 
 {% hint style="info" %}
-**Note:** Taking a Snap-To-Object ensures that the \(encrypted\) filesystems keys are backed up to the object store, which is important if total corruption of the WEKA system configuration occurs.
+**Note:** Taking a Snap-To-Object ensures that the \(encrypted\) filesystems keys are backed up to the object store, which is important if total corruption of the Weka system configuration occurs.
 {% endhint %}
 
 ## Setting-Up Vault Configuration
 
 ### Enabling 'Transit' Secret Engine in Vault
 
-As described above, the WEKA system uses [encryption-as-a-service](https://learn.hashicorp.com/vault/encryption-as-a-service/eaas-transit) capabilities of the KMS to encrypt/decrypt the filesystem keys. This requires the configuration of Vault with the `transit` secret engine.
+As described above, the Weka system uses [encryption-as-a-service](https://learn.hashicorp.com/vault/encryption-as-a-service/eaas-transit) capabilities of the KMS to encrypt/decrypt the filesystem keys. This requires the configuration of Vault with the `transit` secret engine.
 
 ```text
 $ vault secrets enable transit
@@ -187,9 +187,9 @@ Success! Enabled the transit secrets engine at: transit/
 
 For more information, refer to [Vault transit secret-engine documentation](https://www.vaultproject.io/docs/secrets/transit/index.html).
 
-### Setting-Up a Master Key for the WEKA System
+### Setting-Up a Master Key for the Weka System
 
-Once the `transit` \_\_secret engine is set up, a master key for use with the WEKA system must be created.
+Once the `transit` \_\_secret engine is set up, a master key for use with the Weka system must be created.
 
 ```text
 $ vault write -f transit/keys/wekaio-key
@@ -197,7 +197,7 @@ Success! Data written to: transit/keys/wekaio-key
 ```
 
 {% hint style="info" %}
-**Note:** It is possible to either create a different key for each WEKA cluster or to share the key between different WEKA clusters.
+**Note:** It is possible to either create a different key for each Weka cluster or to share the key between different Weka clusters.
 {% endhint %}
 
 For more information, refer to [Vault transit secret-engine documentation](https://www.vaultproject.io/docs/secrets/transit/index.html).
@@ -225,7 +225,7 @@ $ vault policy write wekaio wekaio_policy.hcl
 
 ### Obtaining an API Token from Vault
 
-Authentication from the WEKA system to Vault relies on an API token. Since the WEKA system must always be able to communicate with the KMS, a [periodic service token](https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens) must be used.
+Authentication from the Weka system to Vault relies on an API token. Since the Weka system must always be able to communicate with the KMS, a [periodic service token](https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens) must be used.
 
 * Verify that the`token` authentication method in Vault is enabled. This can be performed using the following command:
 
@@ -251,7 +251,7 @@ $ vault write auth/token/roles/wekaio allowed_policies="wekaio" period="768h"
 ```
 
 {% hint style="info" %}
-**Note:** The `period` is the time set for a renewal request. If no renewal is requested during this time period, the token will be revoked and a new token must be retrieved from Vault and set in the WEKA system.
+**Note:** The `period` is the time set for a renewal request. If no renewal is requested during this time period, the token will be revoked and a new token must be retrieved from Vault and set in the Weka system.
 {% endhint %}
 
 * Generate a token for the logged-in identity using the following command:
@@ -273,6 +273,6 @@ policies             ["default"]
 For more information on obtaining an API token, refer to [Vault Tokens documentation](https://learn.hashicorp.com/vault/security/tokens).
 
 {% hint style="warning" %}
-**Note:** The WEKA system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value \(`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max_lease_ttl).
+**Note:** The Weka system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value \(`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max_lease_ttl).
 {% endhint %}
 

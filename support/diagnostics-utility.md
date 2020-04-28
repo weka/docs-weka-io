@@ -8,7 +8,7 @@ description: >-
 
 ## Overview
 
-The diagnostics CLI command is used for collecting and uploading diagnostic data about clusters and hosts for analysis by the WEKA Support and R&D Teams in order to help with troubleshooting. There are two relevant commands:
+The diagnostics CLI command is used for collecting and uploading diagnostic data about clusters and hosts for analysis by the Weka Support and R&D Teams in order to help with troubleshooting. There are two relevant commands:
 
 * `weka diags,` used for cluster-wide diagnostics from any host in the cluster.
 * `weka local diags,` used for running diagnostics on a specific host, which should be used if the host cannot connect to the cluster.
@@ -19,7 +19,7 @@ The diagnostics CLI command is used for collecting and uploading diagnostic data
 weka [local] diags <--collect|--upload> [--pack-to dir]
 ```
 
-This command creates diagnostics information about the WEKA software and saves it for further analysis by the WEKA Support team.
+This command creates diagnostics information about the Weka software and saves it for further analysis by the Weka Support team.
 
 Information collection can be configured as follows:
 
@@ -29,7 +29,7 @@ If the command is run with the `local` keyword, information is collected only fr
 **Note:** The only reason to run the command with the `local` option is when there are cluster connectivity issues.
 {% endhint %}
 
-When running the command with the `--collect` option, the information is saved to local files, and a list of the output files is provided. These files should be sent to the WEKA Support Team for analysis. When running the command with the `--upload` option, the information is uploaded to a WEKA-owned S3 bucket, and an access identifier is provided as an output. This access identifier should be sent to the WEKA Support Team, which will retrieve the information from the S3 bucket.
+When running the command with the `--collect` option, the information is saved to local files, and a list of the output files is provided. These files should be sent to the Weka Support Team for analysis. When running the command with the `--upload` option, the information is uploaded to a Weka-owned S3 bucket, and an access identifier is provided as an output. This access identifier should be sent to the Weka Support Team, which will retrieve the information from the S3 bucket.
 
 When using the -`-pack-to` option, a single file is generated to the provided directory, as opposed to the default of creating a file per cluster host.
 

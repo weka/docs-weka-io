@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes how to obtain classic WEKA license (payment for a
-  predetermined period of time) and apply it to the WEKA system cluster.
+  This page describes how to obtain a classic Weka license (payment for a
+  predetermined period of time) and apply it to the Weka system cluster.
 ---
 
 # Classic License
@@ -17,12 +17,12 @@ eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZjQ4M2YxZi1jNGJhLTRkZDAtYTExNC0
 Follow the instructions to create a get.weka.io account appearing in the [log-in instructions](../install/bare-metal/obtaining-the-weka-install-file.md#step-1-log-in).
 
 {% hint style="info" %}
-**Note:** This step can be skipped if you already have created a WEKA account.
+**Note:** This step can be skipped if you already have created a Weka account.
 {% endhint %}
 
 ## Obtaining an Entitlement
 
-After creating an account in get.weka.io, an entitlement will be applied to the account by a WEKA sales or support person. Outstanding entitlements can be viewed in the account dashboard.
+After creating an account in get.weka.io, an entitlement will be applied to the account by a Weka sales or support person. Outstanding entitlements can be viewed in the account dashboard.
 
 ![Account Dashboard](../.gitbook/assets/screen-shot-2018-07-01-at-13.15.56.png)
 
@@ -59,7 +59,7 @@ The Create License dialog box will be displayed. Enter the details obtained from
 Fill-in the cluster GUID and capacities. Then click the Create License button to confirm.
 
 {% hint style="info" %}
-**Note:** If cluster expansion is planned for the future, it is possible to fill-in capacities larger than those appearing in the WEKA cluster license.
+**Note:** If cluster expansion is planned for the future, it is possible to fill-in capacities larger than those appearing in the Weka cluster license.
 
 The capacities in the license represent the limits to which it is possible to expand the cluster and do not have to match actual usage.
 {% endhint %}

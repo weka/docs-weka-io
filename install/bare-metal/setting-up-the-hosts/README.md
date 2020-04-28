@@ -8,7 +8,7 @@ description: >-
 
 ## Preparations
 
-After meeting the hardware and software requirements, it is necessary to prepare the backend and client machines for installation of the WEKA system. This preparation of the hosts consists of the following steps:
+After meeting the hardware and software requirements, it is necessary to prepare the backend and client machines for installation of the Weka system. This preparation of the hosts consists of the following steps:
 
 1. NIC driver installation.
 2. SR-IOV enablement \(when needed\).
@@ -94,7 +94,7 @@ SR-IOV enablement is mandatory for hosts equipped with Intel NICs, or when worki
 
 NetworkManager is a dynamic network control and configuration daemon. It is the default network management tool in some operating systems such as RHEL 6 and 7.
 
-The WEKA system requires network management to be handled by Network Initscripts \(also known as "ifcfg configuration files"\). This method is a basic network interface start/stop framework that is part of the `initscripts` package, and is the method that the WEKA system currently supports in Red Hat and it derivatives.
+The Weka system requires network management to be handled by Network Initscripts \(also known as "ifcfg configuration files"\). This method is a basic network interface start/stop framework that is part of the `initscripts` package, and is the method that the Weka system currently supports in Red Hat and it derivatives.
 
 The following commands can be used to permanently disable NetworkManager:
 
@@ -276,7 +276,7 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 
 ## HA Networking Configuration
 
-As described in [WEKA Networking HA](../../../overview/networking-in-wekaio.md#ha) section, bonded interfaces are not supported and each NIC must have its own IP address.
+As described in [Weka Networking HA](../../../overview/networking-in-wekaio.md#ha) section, bonded interfaces are not supported and each NIC must have its own IP address.
 
 To configure Dual Network \(IB or ETH\), you will need to properly configure the routing of the interfaces involved.
 
@@ -347,13 +347,13 @@ Refer to this [link](https://access.redhat.com/solutions/30564) to learn how to 
 
 ## Clock Synchronization
 
-The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the WEKA system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
+The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the Weka system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
-Configure the time synchronization software on the backend and client machines according to the specific vendor instructions \(see your OS documentation\), prior to installing the WEKA software.
+Configure the time synchronization software on the backend and client machines according to the specific vendor instructions \(see your OS documentation\), prior to installing the Weka software.
 
 ## **NUMA Balancing Disablement**
 
-The WEKA system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies on the operations.
+The Weka system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies on the operations.
 
 To disable NUMA balancing, run the following command on the host:
 

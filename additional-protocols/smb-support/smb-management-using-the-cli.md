@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page details SMB management - setting up an SMB cluster over WEKA
+  This page details SMB management - setting up an SMB cluster over Weka
   filesystems and managing the cluster itself - using CLIs.
 ---
 
@@ -8,13 +8,13 @@ description: >-
 
 ## Overview
 
-The WEKA system has a number of CLI commands for setting up an SMB cluster over WEKA filesystems. Used for managing the cluster itself, they are all located under the`weka smb cluster` command. They define what WEKA hosts will participate in the SMB cluster, and what \(if any\) public IPs will be exposed by the SMB cluster.
+The Weka system has a number of CLI commands for setting up an SMB cluster over Weka filesystems. Used for managing the cluster itself, they are all located under the`weka smb cluster` command. They define what Weka hosts will participate in the SMB cluster, and what \(if any\) public IPs will be exposed by the SMB cluster.
 
 ## Showing an SMB Cluster
 
 **Command:** `weka smb cluster`
 
-Use this command to view information about the SMB cluster managed by the WEKA system.
+Use this command to view information about the SMB cluster managed by the Weka system.
 
 ## Showing an SMB Domain Configuration
 
@@ -26,7 +26,7 @@ Use this command to view information about the SMB domain configuration.
 
 **Command:** `weka smb cluster create`
 
-Use the following command line to create a new SMB cluster to be managed by the WEKA system:
+Use the following command line to create a new SMB cluster to be managed by the Weka system:
 
 `weka smb cluster create <name> <domain> [--samba-hosts samba-hosts]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range]...`
 
@@ -72,8 +72,8 @@ Use the following command line to create a new SMB cluster to be managed by the 
       <td style="text-align:left"><code>samba-hosts</code>
       </td>
       <td style="text-align:left">Comma- separated strings</td>
-      <td style="text-align:left">List of 3-8 WEKA system hosts to participate in the SMB cluster, based
-        on the host IDs in WEKA</td>
+      <td style="text-align:left">List of 3-8 Weka system hosts to participate in the SMB cluster, based
+        on the host IDs in Weka</td>
       <td style="text-align:left">Must be valid host IDs</td>
       <td style="text-align:left">Yes</td>
       <td style="text-align:left">&#x200B;</td>
@@ -118,7 +118,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The IPs must be configured but **MUST NOT** be in use by any other application/host in the subnet, including WEKA system management nodes, WEKA system IO nodes, or WEKA system NFS floating IPs. In AWS environments, this is not supported and these IPs should not be provided**.**
+**Note:** The IPs must be configured but **MUST NOT** be in use by any other application/host in the subnet, including Weka system management nodes, Weka system IO nodes, or Weka system NFS floating IPs. In AWS environments, this is not supported and these IPs should not be provided**.**
 {% endhint %}
 
 {% hint style="info" %}
@@ -126,7 +126,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** If it is necessary to set global options to the SMB library, contact the WEKA Support Team.
+**Note:** If it is necessary to set global options to the SMB library, contact the Weka Support Team.
 {% endhint %}
 
 {% hint style="success" %}
@@ -134,7 +134,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 
 `weka smb cluster create wekaSMB mydomain --samba-hosts 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5`
 
-In this example of a full command, an SMB cluster is configured over WEKA system hosts 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`and is directed to use public IPs 1.1.1.1 to 1.1.1.5.
+In this example of a full command, an SMB cluster is configured over Weka system hosts 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`and is directed to use public IPs 1.1.1.1 to 1.1.1.5.
 {% endhint %}
 
 ## Checking Status of SMB Host Readiness
@@ -172,9 +172,9 @@ On completion of this operation, it is possible to join another Active Directory
 
 **Command:** `weka smb cluster destroy`
 
-Use this command to destroy an SMB cluster managed by the WEKA system.
+Use this command to destroy an SMB cluster managed by the Weka system.
 
-Deleting an existing SMB cluster managed by the WEKA system does not delete the backend WEKA filesystems, but removes the SMB share exposures of these filesystems.
+Deleting an existing SMB cluster managed by the Weka system does not delete the backend Weka filesystems, but removes the SMB share exposures of these filesystems.
 
 {% hint style="info" %}
 **Note:** Editing an existing cluster is not supported. Consequently, to change an SMB cluster configuration, the cluster has to be deleted and recreated.
@@ -207,7 +207,7 @@ Use the following command line to add a new share to be exposed to SMB:
 | `acl` | Boolean | Enable Windows ACLs on the share \(which will be translated to POSIX\) | Up to 16 ACEs per file | No | No |
 
 {% hint style="info" %}
-**Note:** If it is necessary to set share specific options to the SMB library, contact the WEKA Support Team.
+**Note:** If it is necessary to set share specific options to the SMB library, contact the Weka Support Team.
 {% endhint %}
 
 {% hint style="success" %}
@@ -216,7 +216,7 @@ Use the following command line to add a new share to be exposed to SMB:
 `weka smb share add rootShare default    
 weka smb share add internalShare default --internal-path some/dir --description "Exposed share"`
 
-In this example, the first SMB share added has the WEKA system share for default. The second SMB share has internal for default.
+In this example, the first SMB share added has the Weka system share for default. The second SMB share has internal for default.
 {% endhint %}
 
 ## Removing SMB Shares

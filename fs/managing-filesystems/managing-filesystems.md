@@ -18,7 +18,7 @@ The main Filesystems screen in the GUI contains information about the filesystem
 
 **Command:** `weka fs`
 
-Use this commands to view information on the filesystems in the WEKA system.
+Use this commands to view information on the filesystems in the Weka system.
 
 ## Adding a Filesystem
 

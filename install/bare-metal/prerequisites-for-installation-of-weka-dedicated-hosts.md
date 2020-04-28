@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the hardware requirements for installation of the WEKA
+  This page describes the hardware requirements for the installation of the Weka
   system on dedicated hosts.
 ---
 
@@ -16,7 +16,7 @@ description: >-
 
 ## Memory
 
-* Enough memory to support WEKA system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
+* Enough memory to support Weka system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
 ## Operating System
@@ -32,8 +32,8 @@ description: >-
 ### Configuration
 
 * SELinux with MLS policy is not supported
-* All WEKA nodes must be synchronized in date/time \(NTP recommended\)
-* A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the WEKA knowledgebase in the [WEKA support portal](http://support.weka.io) for more information and how-to articles 
+* All Weka nodes must be synchronized in date/time \(NTP recommended\)
+* A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the Weka knowledgebase in the [Weka support portal](http://support.weka.io) for more information and how-to articles 
 
 ### Kernel
 
@@ -41,17 +41,17 @@ description: >-
 * 3.10
 * 4.4 - 4.18
 
-## WEKA Install Directory
+## Weka Install Directory
 
 * Directory: /opt/weka
 * Should be on an SSD or SSD-like performance, e.g., M.2. 
   * Cannot be shared remotely, NFS mounted or on RAM drive
-* At least 26 GB available for the WEKA system installation, with additional 10GB for each core used by WEKA
+* At least 26 GB available for the Weka system installation, with additional 10GB for each core used by Weka
 
 ## Networking
 
 {% hint style="info" %}
-**Note:** For both Ethernet and Infiniband configurations, the WEKA system can work with any MTU larger than 1400. For best performance, enable jumbo frames both on the switch and the network ports.
+**Note:** For both Ethernet and Infiniband configurations, the Weka system can work with any MTU larger than 1400. For best performance, enable jumbo frames both on the switch and the network ports.
 {% endhint %}
 
 ### Ethernet <a id="networking-ethernet"></a>
@@ -102,16 +102,16 @@ Supported Intel 40 drivers:
 * Connectivity between hosts: Ports 14000-14100
 * [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
 * Mellanox NICs:
-  * One WEKA system IP address for management and data plane
+  * One Weka system IP address for management and data plane
 * Other vendors NICs
-  * WEKA system management IP address: One IP per server \(configured prior to WEKA installation\) 
-  * WEKA system data plane IP address: One IP address for each [WEKA core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server \(WEKA will apply these IPs during the cluster initialization\)
-  * WEKA system management IP: Ability to communicate with all WEKA system data plane IPs
-  * [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs to the number of cores you wish to dedicate to WEKA; some configuration may be required in the BIOS
+  * Weka system management IP address: One IP per server \(configured prior to Weka installation\) 
+  * Weka system data plane IP address: One IP address for each [Weka core](planning-a-weka-system-installation.md#cpu-resource-planning) in each server \(Weka will apply these IPs during the cluster initialization\)
+  * Weka system management IP: Ability to communicate with all Weka system data plane IPs
+  * [Virtual Functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configuration may be required in the BIOS
   * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
-**Note:** When assigning a network device to the WEKA system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
+**Note:** When assigning a network device to the Weka system, no other application can create [virtual functions \(VFs\)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
 {% endhint %}
 
 ### InfiniBand <a id="networking-infiniband"></a>
@@ -140,26 +140,26 @@ Supported Mellanox OFED versions:
 
 * InfiniBand speeds: FDR / EDR / HDR
 * Subnet manager: Configured to 4092
-* One WEKA system IP address for management and data plane
+* One Weka system IP address for management and data plane
 * PKEYs: Supported
 * Support PLP \(Power Loss Protection\)
-* Dedicated for WEKA system storage \(partition not supported\)
+* Dedicated for Weka system storage \(partition not supported\)
 * Dual InfiniBand can be used for both HA and higher bandwidth
 
 {% hint style="info" %}
-**Note:** If it is necessary to change PKEYs, contact the WEKA Support Team.
+**Note:** If it is necessary to change PKEYs, contact the Weka Support Team.
 {% endhint %}
 
 ### HA
 
-* Network configured as described in [WEKA Networking - HA](../../overview/networking-in-wekaio.md#ha).
+* Network configured as described in [Weka Networking - HA](../../overview/networking-in-wekaio.md#ha).
 
 ## SSDs
 
 * Support PLP \(Power Loss Protection\)
-* Dedicated for WEKA system storage \(partition not supported\)
+* Dedicated for Weka system storage \(partition not supported\)
 * Supported drive capacity: Up to 128 TiB
-* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the WEKA cluster servers \(e.g., due to specific applications when running the WEKA cluster in converged mode\), contact the WEKA support team.
+* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers \(e.g., due to specific applications when running the Weka cluster in converged mode\), contact the Weka support team.
 
 ## Object Store
 

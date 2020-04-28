@@ -18,7 +18,7 @@ The main object store screen in the GUI lists all existing object stores and can
 
 **Command:** `weka fs tier s3`
 
-This command is used to view information on all the object stores configured to the WEKA system.
+This command is used to view information on all the object stores configured to the Weka system.
 
 ## Adding an Object Store
 
@@ -68,7 +68,7 @@ Use the following command line to add an object store:
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Up to 2 different object stores buckets can be configured per filesystem in the WEKA system.
+**Note:** Up to 2 different object stores buckets can be configured per filesystem in the Weka system.
 {% endhint %}
 
 ## Editing an Object Store

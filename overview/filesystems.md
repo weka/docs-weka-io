@@ -1,16 +1,16 @@
 ---
 description: >-
   This page describes the three types of entities relevant to data storage in
-  the WEKA system: filesystems, object stores and filesystem groups.
+  the Weka system: filesystems, object stores and filesystem groups.
 ---
 
 # Filesystems, Object Stores & Filesystem Groups
 
 ## About Filesystems
 
-A WEKA filesystem is similar to a regular on-disk filesystem, with the key difference that it's distributed across all the hosts in the cluster. Consequently, in the WEKA system, filesystems are not associated with any physical object, and are therefore nothing but a root directory with space limitations.
+A Weka filesystem is similar to a regular on-disk filesystem, with the key difference that it's distributed across all the hosts in the cluster. Consequently, in the Weka system, filesystems are not associated with any physical object, and are therefore nothing but a root directory with space limitations.
 
-A total of up to 1024 filesystems are supported, all of which are equally and perfectly balanced on all SSDs and CPU cores assigned to the WEKA system. This means that the allocation of a new filesystem, or the resizing a filesystem, are instant management operations that are performed instantly, and without any constraints.
+A total of up to 1024 filesystems are supported, all of which are equally and perfectly balanced on all SSDs and CPU cores assigned to the Weka system. This means that the allocation of a new filesystem, or the resizing a filesystem, are instant management operations that are performed instantly, and without any constraints.
 
 {% hint style="info" %}
 **Note:** A filesystem group \(see below\) has to be created before creating a filesystem, and every filesystem must belong to one filesystem group.
@@ -22,7 +22,7 @@ A filesystem must have a defined capacity limit. A filesystem that belongs to a 
 
 Both data at rest \(residing on SSD and object store\) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](../fs/managing-filesystems/managing-filesystems.md#adding-a-filesystem).
 
-For proper security, a KMS \(Key Management System\) must be used when creating encrypted filesystems. See [KMS Management](../fs/managing-filesystems/kms-management.md) for more information about KMS support in the WEKA system.
+For proper security, a KMS \(Key Management System\) must be used when creating encrypted filesystems. See [KMS Management](../fs/managing-filesystems/kms-management.md) for more information about KMS support in the Weka system.
 
 {% hint style="info" %}
 **Note:** Setting data encryption \(on/off\) can only be done when creating a filesystem.
@@ -30,7 +30,7 @@ For proper security, a KMS \(Key Management System\) must be used when creating 
 
 ### Metadata Limitations
 
-In addition to the capacity limitation, each filesystem also has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to the WEKA system, as well as the RAM resources allocated to the WEKA system processes. By default, the metadata limit associated with a filesystem is proportional to the filesystem SSD size. It is possible to override this default by defining a filesystem-specific max-files parameter, although the total of the limits of the metadata for all the filesystems cannot exceed the total system metadata limits.
+In addition to the capacity limitation, each filesystem also has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to the Weka system, as well as the RAM resources allocated to the Weka system processes. By default, the metadata limit associated with a filesystem is proportional to the filesystem SSD size. It is possible to override this default by defining a filesystem-specific max-files parameter, although the total of the limits of the metadata for all the filesystems cannot exceed the total system metadata limits.
 
 ### Metadata Calculations
 
@@ -52,19 +52,19 @@ The definitions above apply to files residing on SSDs or object stores.
 
 ## About Object Stores
 
-In the WEKA system, object stores represent an optional external storage media, ideal for the storage of warm data. They can be purchased and configured independently by users \(provided they support the S3 protocol\) or supplied by WEKA as part of the overall data storage solution. Object stores used in tiered WEKA system configurations can be cloud-based, located in the same location, or at a remote location.
+In the Weka system, object stores represent an optional external storage media, ideal for the storage of warm data. They can be purchased and configured independently by users \(provided they support the S3 protocol\) or supplied by Weka as part of the overall data storage solution. Object stores used in tiered Weka system configurations can be cloud-based, located in the same location, or at a remote location.
 
-Object stores are optimally used when a cost-effective data storage tier is required at a price point that cannot be satisfied by server-based SSDs. An object store definition contains the object store DNS name, bucket identifier, and access credentials. The bucket must be dedicated to the WEKA system and must not be accessible by other applications. However, a single object store bucket may serve different filesystems and multiple WEKA systems.
+Object stores are optimally used when a cost-effective data storage tier is required at a price point that cannot be satisfied by server-based SSDs. An object store definition contains the object store DNS name, bucket identifier, and access credentials. The bucket must be dedicated to the Weka system and must not be accessible by other applications. However, a single object store bucket may serve different filesystems and multiple Weka systems.
 
-Filesystem connectivity to object stores can be used in both the [data lifecycle management](data-storage.md) and [Snap to Object](../fs/snap-to-obj.md) features. It is possible to define two object-store buckets for a filesystem, but only one bucket can be writable. In such cases, the WEKA system will search for relevant data in both the SSD and the readable and writable object stores. This allows a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
+Filesystem connectivity to object stores can be used in both the [data lifecycle management](data-storage.md) and [Snap to Object](../fs/snap-to-obj.md) features. It is possible to define two object-store buckets for a filesystem, but only one bucket can be writable. In such cases, the Weka system will search for relevant data in both the SSD and the readable and writable object stores. This allows a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
 
-The WEKA system supports up to 2 different object store buckets per filesystem. While object stores can be shared between filesystems, when possible, it is recommended to create and attach a separate object store bucket per filesystem.
+The Weka system supports up to 2 different object store buckets per filesystem. While object stores can be shared between filesystems, when possible, it is recommended to create and attach a separate object store bucket per filesystem.
 
 ## About Filesystem Groups
 
-In the WEKA system, filesystems are grouped into up to 8 filesystem groups.
+In the Weka system, filesystems are grouped into up to 8 filesystem groups.
 
-Each filesystem group has tiering control parameters \(see [Guidelines for Data Storage in Tiered WEKA System Configurations](data-storage.md#guidelines-for-data-storage-in-tiered-weka-system-configurations)\). While tiered filesystems have their own object store, the tiering policy will be the same for each tiered filesystem under the same filesystem group.
+Each filesystem group has tiering control parameters \(see [Guidelines for Data Storage in Tiered Weka System Configurations](data-storage.md#guidelines-for-data-storage-in-tiered-weka-system-configurations)\). While tiered filesystems have their own object store, the tiering policy will be the same for each tiered filesystem under the same filesystem group.
 
 For information on managing these entities, refer to [Managing Filesystems, Object Stores and Filesystem Groups](../fs/managing-filesystems/).
 

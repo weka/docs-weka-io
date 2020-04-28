@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the statistics available in the WEKA system and how to
+  This page describes the statistics available in the Weka system and how to
   work with them.
 ---
 
@@ -8,17 +8,17 @@ description: >-
 
 ## Overview
 
-As the WEKA system runs, it collects hundreds of statistics on system performance. These statistics help in analyzing the WEKA system performance and determining the source of any problems.
+As the Weka system runs, it collects hundreds of statistics on system performance. These statistics help in analyzing the Weka system performance and determining the source of any problems.
 
 Five different categories of statistics are available for review - Operations \(NFS\), Operations \(Driver\), Object Store, SSD and CPU – and when each category is selected, a list of the possible statistics that can be selected is displayed.
 
-By default, the main statistics page displays the last hour of operation, presenting the WEKA system operation per second on a time axis.
+By default, the main statistics page displays the last hour of operation, presenting the Weka system operation per second on a time axis.
 
 ![Statistics View Screen](../../.gitbook/assets/statistics-main-screen.png)
 
 This Statistics view screen offers a number of options to drill-down into the statistics, according to category. Options include:
 
-* Mousing over the scrollable graph area to view various performance metrics of the WEKA matrix cluster.
+* Mousing over the scrollable graph area to view various performance metrics of the Weka cluster.
 * Troubleshooting or obtaining a correlation between events and performance \(using the top line which provides links to events that occurred\).
 * Adding more statistics to the view \(using the Statistics menu\).
 * Displaying different statistics simultaneously and toggling between them. By default, the graph area shows Ops/sec for the last hour. Using the "Hour, Day, Week" buttons
@@ -111,7 +111,7 @@ Use the following command line to obtain the current performance related _\*\*_s
 
 **Command:** `weka stats`
 
-The collected statistics are helpful to analyze system performance and determine the source of any problems as the WEKA system runs, according to several categories. When each category is selected, a list of the possible statistics that can be selected is displayed.
+The collected statistics are helpful to analyze system performance and determine the source of any problems as the Weka system runs, according to several categories. When each category is selected, a list of the possible statistics that can be selected is displayed.
 
 {% hint style="info" %}
 **Note:** All statistics are averaged over 1 second intervals. Consequently, "total" or other aggregates relate to a specific minute.

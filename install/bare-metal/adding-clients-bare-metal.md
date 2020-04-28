@@ -1,18 +1,18 @@
 ---
-description: This page describes how to add clients to a bare metal cluster.
+description: This page describes how to add clients to a bare-metal cluster.
 ---
 
 # Adding Clients
 
 ## About Client Hosts
 
-Client hosts are used to run applications which need to access the WEKA filesystems. They do not contribute CPUs or drives to the cluster, and only connect to the cluster to use its filesystems.
+Client hosts are used to run applications which need to access the Weka filesystems. They do not contribute CPUs or drives to the cluster, and only connect to the cluster to use its filesystems.
 
 ## Adding \(Stateless\) Clients
 
-To use the WEKA filesystems from a client host, all that is needed is to call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
+To use the Weka filesystems from a client host, all that is needed is to call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
 
-To mount a filesystem in this manner, first install the WEKA agent from one of the backend instances and then mount the filesystem. For example:
+To mount a filesystem in this manner, first install the Weka agent from one of the backend instances and then mount the filesystem. For example:
 
 ```text
 # Agent Installation (one time)
@@ -25,12 +25,12 @@ mkdir -p /mnt/weka
 mount -t wekafs Backend-1/my_fs /mnt/weka
 ```
 
-For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, refer to [Mounting Filesystems Using the Stateless Clients Feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
+For the first mount, this will install the Weka software and automatically configure the client. For more information on mount and configuration options, refer to [Mounting Filesystems Using the Stateless Clients Feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
 
 It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information refer to [Mounting Filesystems Using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mounting Filesystems Using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs).
 
 {% hint style="info" %}
-**Note:** Clients can be deployed on [diskless-servers](https://en.wikipedia.org/wiki/Diskless_node). They can use RAM for WEKA client software and NFS mount for the traces. For more information, contact the WEKA Support Team.
+**Note:** Clients can be deployed on [diskless-servers](https://en.wikipedia.org/wiki/Diskless_node). They can use RAM for Weka client software and NFS mount for the traces. For more information, contact the Weka Support Team.
 {% endhint %}
 
 ## Adding Clients Which Are Always Part of the Cluster
@@ -41,10 +41,10 @@ It is possible to configure the client OS to automatically mount the filesystem 
 
 ### Stage 1: Install the Software
 
-Verify that the WEKA software is installed on the client host according to the installation instructions. For further information, see [Obtaining the WEKA Install File](obtaining-the-weka-install-file.md) and [Stage 1 in WEKA System Installation Process.](using-cli.md#stage-1-installation-of-the-wekaio-software-on-each-host)
+Verify that the Weka software is installed on the client host according to the installation instructions. For further information, see [Obtaining the Weka Install File](obtaining-the-weka-install-file.md) and [Stage 1 in Weka System Installation Process.](using-cli.md#stage-1-installation-of-the-wekaio-software-on-each-host)
 
 {% hint style="info" %}
-**Note:** All hosts, clients and backends in a WEKA system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
+**Note:** All hosts, clients and backends in a Weka system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
 {% endhint %}
 
 ### Stage 2: Joining the Cluster
@@ -89,10 +89,10 @@ weka cluster host cores <host-id> 1 --frontend-dedicated-cores=1
 **Command:** `weka cluster host net add`
 
 {% hint style="info" %}
-**Note:** If the new client is to communicate with the WEKA system cluster over the kernel UDP stack, it is not necessary to run this command.
+**Note:** If the new client is to communicate with the Weka system cluster over the kernel UDP stack, it is not necessary to run this command.
 {% endhint %}
 
-If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the WEKA system cluster hosts:
+If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the Weka system cluster hosts:
 
 `weka cluster host net add <host-id> <device> --ips=<ip-address> --netmask=<netmask> --gateway=<gateway>`
 

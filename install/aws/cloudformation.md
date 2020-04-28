@@ -13,7 +13,7 @@ The APIs described here require an API token which can be obtained at [https://g
 
 ## API Overview
 
-To generate a CloudFormation template, it is first necessary to decide which WEKA system version is to be installed. This is performed using the `https://<token>@get.weka.io/dist/v1/release` API which provides a list of all available versions:
+To generate a CloudFormation template, it is first necessary to decide which Weka system version is to be installed. This is performed using the `https://<token>@get.weka.io/dist/v1/release` API which provides a list of all available versions:
 
 ```bash
 $ curl https://<token>@get.weka.io/dist/v1/release
@@ -93,9 +93,9 @@ It is possible to specify multiple groups of instances by adding more `role`/`in
 
 ### Custom Client AMI
 
-When specifying an `ami_id` in `client` groups, the specified AMI will be used when launching the client instances. The WEKA system will be installed on top of this AMI in a separate EBS volume.
+When specifying an `ami_id` in `client` groups, the specified AMI will be used when launching the client instances. The Weka system will be installed on top of this AMI in a separate EBS volume.
 
-When `ami_id` is not specified, the client instances are launched with the latest Amazon Linux supported by the WEKA system version selected to be installed.
+When `ami_id` is not specified, the client instances are launched with the latest Amazon Linux supported by the Weka system version selected to be installed.
 
 Note the following when using a custom AMI-ID:
 
@@ -106,7 +106,7 @@ Note the following when using a custom AMI-ID:
 
 By default, both client and backend instances are launched in the dedicated networking mode. Although this cannot be changed for backends, it can be controlled for client instances.
 
-Dedicated networking means that an ENI is created for internal cluster traffic in the client instances. This allows the WEKA system to bypass the kernel and provide throughput that is only limited by the instance network.
+Dedicated networking means that an ENI is created for internal cluster traffic in the client instances. This allows the Weka system to bypass the kernel and provide throughput that is only limited by the instance network.
 
 In shared networking, the client shares the instance’s network interface with all traffic passing through the kernel. Although slower, this mode is sometimes desirable when an ENI cannot be allocated or if the operating system does not allow more than one NIC.
 
@@ -151,12 +151,12 @@ The CloudFormation template has the following parameters:
     <tr>
       <td style="text-align:left"><code>VpcId</code>
       </td>
-      <td style="text-align:left">VPC in which the WEKA cluster will be deployed.</td>
+      <td style="text-align:left">VPC in which the Weka cluster will be deployed.</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>SubnetId</code>
       </td>
-      <td style="text-align:left">Subnet in which the WEKA cluster will be deployed.</td>
+      <td style="text-align:left">Subnet in which the Weka cluster will be deployed.</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>LoadBalancerType</code>
@@ -175,7 +175,7 @@ The CloudFormation template has the following parameters:
     <tr>
       <td style="text-align:left"><code>DistToken</code>
       </td>
-      <td style="text-align:left">API token for WEKA&apos;s distribution site. This can be obtained at
+      <td style="text-align:left">API token for Weka&apos;s distribution site. This can be obtained at
         <a
         href="https://get.weka.io/ui/account/api-tokens">https://get.weka.io/ui/account/api-tokens</a>.</td>
     </tr>
@@ -209,12 +209,12 @@ The CloudFormation template has the following parameters:
     </tr>
   </tbody>
 </table>{% hint style="info" %}
-**Note:** It is possible using a NAT \(with `LoadBalancerType` other than `Internet Facing`\) parameter. Otherwise,`SubnetId` must be a public subnet or a subnet that can be routed to the Internet, since deployment is based on downloading the WEKA system and various packages from the Internet.
+**Note:** It is possible using a NAT \(with `LoadBalancerType` other than `Internet Facing`\) parameter. Otherwise,`SubnetId` must be a public subnet or a subnet that can be routed to the Internet, since deployment is based on downloading the Weka system and various packages from the Internet.
 {% endhint %}
 
 ## IAM Role Created in the Template
 
-The CloudFormation template contains an instance role that allows the WEKA system instances to call the following AWS APIs:
+The CloudFormation template contains an instance role that allows the Weka system instances to call the following AWS APIs:
 
 * `ec2:DescribeInstances`
 * `ec2:DescribeNetworkInterfaces`
@@ -235,7 +235,7 @@ In case tiering is configured, additional AWS APIs permissions are given:
 
 Once a CloudFormation template has been generated, it is possible to create a stack from it using the AWS console or the AWS CLI.
 
-When the deployment is complete, the stack status will update to `CREATE_COMPLETE` and it is possible to access the WEKA system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link.
+When the deployment is complete, the stack status will update to `CREATE_COMPLETE` and it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link.
 
 {% hint style="info" %}
 **Notes:**
