@@ -51,7 +51,7 @@ description: >-
 ## Networking
 
 {% hint style="info" %}
-**Note:** For both Ethernet and Infiniband configurations, the Weka system can work with any MTU larger than 1400. For best performance, enable jumbo frames both on the switch and the network ports.
+**Note:** For both Ethernet and Infiniband configurations, the Weka system can work with any MTU larger than 1400. However, for best performance and handling high loads of data, it is highly recommended to enable jumbo frames both on the switch and the network ports.
 {% endhint %}
 
 ### Ethernet <a id="networking-ethernet"></a>
