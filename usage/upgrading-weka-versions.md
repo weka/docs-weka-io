@@ -32,11 +32,11 @@ Download and prepare the new release on one of the backend hosts, using one of t
 2. From the backend host, run the `curl` command as described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new version release page.
 3. Download the new version tar file to the backend host and run `install.sh` \(useful on environments where there is no connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs\).
 
-## Preparing the Client Hosts for Upgrade \(Optional\)
+## Preparing the Hosts for Upgrade \(Optional\)
 
-Once the Weka cluster upgrade is called, it will first prepare all the connected client hosts to the upgrade, which includes downloading the new version and get it ready to be applied. Only then, it will start the upgrade process of the cluster. This reduces to a minimum any downtime that the client host can experience from the Weka cluster.
+Once the Weka cluster upgrade is called, it will first prepare all the connected hosts \(clients and backends\) to the upgrade, which includes downloading the new version and get it ready to be applied. Only then, it will start the upgrade process of the cluster. This reduces to a minimum any downtime that the client host can experience from the Weka cluster.
 
-Although not needed, and distribution of the new version to the client hosts should be fast as part of the upgrade, when working with a large number of clients it is possible to prepare for this in advance, separated from the cluster upgrade \(e.g., to shorten the total upgrade window\).
+Although not needed, and distribution of the new version to the hosts should be fast as part of the upgrade, when working with a large number of hosts it is possible to prepare for this in advance, separated from the cluster upgrade \(e.g., to shorten the total upgrade window\).
 
 First, obtain the new version on one of the backend host, as described above, then, use the following CLI command:
 
