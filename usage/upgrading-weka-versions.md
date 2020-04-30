@@ -38,14 +38,10 @@ Once the Weka cluster upgrade is called, it will first prepare all the connected
 
 Although not needed, and distribution of the new version to the client hosts should be fast as part of the upgrade, when working with a large number of clients it is possible to prepare for this in advance, separated from the cluster upgrade \(e.g., to shorten the total upgrade window\).
 
-First, obtain the new version on one of the backend host, as described above, then, use the following CLI commands for each client host:
+First, obtain the new version on one of the backend host, as described above, then, use the following CLI command:
 
 ```text
-# downloading the new version from one of the backend hosts
-weka version get <new-version> --from <backend-IP>:14000
-
-# preparing the new software version 
-weka version prepare <new-version>
+weka local run --in <new-version> upgrade --mode one-shot --prepare-only
 ```
 
 ## Running the Upgrade Command
