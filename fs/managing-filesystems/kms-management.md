@@ -189,7 +189,7 @@ For more information, refer to [Vault transit secret-engine documentation](https
 
 ### Setting-Up a Master Key for the Weka System
 
-Once the `transit` \_\_secret engine is set up, a master key for use with the Weka system must be created.
+Once the `transit` secret engine is set up, a master key for use with the Weka system must be created.
 
 ```text
 $ vault write -f transit/keys/wekaio-key
