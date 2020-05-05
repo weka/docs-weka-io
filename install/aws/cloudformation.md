@@ -87,7 +87,7 @@ The `https://<token>@get.weka.io/dist/v1/aws/cfn/<version>` API provides a JSON 
 | `instance_type` | One of the supported instance types according to the `role` and supported instances in [Supported EC2 Instance Types](supported-ec2-instance-types.md). |
 | `count` | The number of instances of this type to be included in the template. |
 | `ami_id` | When `role` is `client,` it is possible to specify a custom AMI-ID. See [Custom Client AMI](cloudformation.md#custom-client-ami) below to learn more. |
-| `net` | Either `dedicated` or `shared`, in `client` role only. See [Dedicated vs. Shared Client Networking](cloudformation.md#dedicated-vs-shared-client-networking) \_\_below. |
+| `net` | Either `dedicated` or `shared`, in `client` role only. See [Dedicated vs. Shared Client Networking](cloudformation.md#dedicated-vs-shared-client-networking) below. |
 
 It is possible to specify multiple groups of instances by adding more `role`/`instance_type`/`count` objects to the `cluster`array, as long as there are at least 6 backend instances \(the minimum number of backend instances required to deploy a cluster\).
 

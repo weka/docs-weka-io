@@ -38,7 +38,7 @@ SR-IOV technology should be supported by both the software and hardware to take 
 
 ### UDP Mode
 
-‌On legacy platforms lacking support for virtualization \(SR-IOV\) and kernel offloading technologies \(DPDK\), the Weka system software relies on in-kernel processing and UDP as the transport protocol. This mode of operation is commonly referred to as the 'UDP mode' \_\_and is typically used with older hardware such as the Mellanox CX3 family of NICs.
+‌On legacy platforms lacking support for virtualization \(SR-IOV\) and kernel offloading technologies \(DPDK\), the Weka system software relies on in-kernel processing and UDP as the transport protocol. This mode of operation is commonly referred to as the 'UDP mode' and is typically used with older hardware such as the Mellanox CX3 family of NICs.
 
 ‌In addition to being compatible with older platforms, the UDP mode yields CPU resources to other applications. This can be useful when the extra CPU cores are needed for other purposes. However, it should be noted that the lack of CPU resources dedicated to the Weka system reduces overall performance and should only be used when there is an issue concerning DPDK functionality.
 
