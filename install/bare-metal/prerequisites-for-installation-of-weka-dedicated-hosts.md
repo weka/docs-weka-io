@@ -51,7 +51,11 @@ description: >-
 ## Networking
 
 {% hint style="info" %}
-**Note:** For both Ethernet and Infiniband configurations, the Weka system can work with any MTU larger than 1400. However, for best performance and handling high loads of data, it is highly recommended to enable jumbo frames both on the switch and the network ports.
+**Note:** At least 4k MTU is advised on Weka cluster hosts NIC's, and the switches the hosts are connected to.
+
+For both Ethernet and Infiniband configurations, a Weka system can be configured without jumbo frames. However, it will provide very limited performance and will not be able to handle high loads of data; please consult the Weka Sales or Support teams before running in this mode.
+
+Jumbo Frames are not required for clients. However, performance might be limited.
 {% endhint %}
 
 ### Ethernet <a id="networking-ethernet"></a>
@@ -59,7 +63,7 @@ description: >-
 #### NIC
 
 * Intel 10 Gbit
-* Intel 40 Gbit \(PoC Grade\)
+* Intel 40 Gbit \(Beta\)
 * Amazon ENA
 * Mellanox ConnectX4 \(Ethernet and InfiniBand\)
 * Mellanox ConnectX5 \(Ethernet and InfiniBand\)
