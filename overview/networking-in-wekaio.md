@@ -93,7 +93,7 @@ For client hosts equipped with DPDK-supporting Intel NICs, the following conditi
 ‌For client hosts equipped with DPDK-supporting Mellanox NICs \(CX-4 or newer\), the following conditions must be met:
 
 * Mellanox OFED must be installed and loaded.
-* There is no need to use SR-IOV, so the number of IPs allocated to the client hosts on the internal network should be the total number of client hosts, i.e., 10 IPs for 8 client hosts \(using the example above\).
+* There is no need to use SR-IOV, so the number of IPs allocated to the client hosts on the internal network should be the total number of client hosts, i.e., 10 IPs for 10 client hosts \(using the example above\).
 
 #### Client Hosts in UDP Mode
 
