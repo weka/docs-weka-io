@@ -162,6 +162,10 @@ Use the following command line to create a filesystem from an existing snapshot:
 
 The `locator` is either a locator saved previously for disaster scenarios, or can be obtained using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
+{% hint style="info" %}
+**Note:** For encrypted filesystem, when downloading the same KMS master-key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](managing-filesystems/kms-management.md#overview) section.
+{% endhint %}
+
 ### Deleting Snapshots Residing on an Object Store
 
 Deleting a snapshot, from a filesystem that uploaded it, will remove all of its data from the object store.
