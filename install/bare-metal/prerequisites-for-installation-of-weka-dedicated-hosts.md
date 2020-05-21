@@ -137,8 +137,6 @@ Supported Mellanox OFED versions:
 * Subnet manager: Configured to 4092
 * One WekaIO system IP address for management and data plane
 * PKEYs: Supported
-* Support PLP \(Power Loss Protection\)
-* Dedicated for WekaIO system storage \(partition not supported\)
 * Dual InfiniBand can be used for both HA and higher bandwidth
 
 {% hint style="info" %}
