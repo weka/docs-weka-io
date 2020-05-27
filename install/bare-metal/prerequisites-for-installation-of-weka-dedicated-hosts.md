@@ -183,3 +183,17 @@ Certified Object Stores:
 * SwiftStack \(version 6.30 and up\)
 * IBM Cloud Object Storage System \(version 3.14.7 and up\)
 
+## Virtual Machines
+
+VMs can be used as clients only, assuming they meet the following prerequisite:
+
+#### For UDP clients:
+
+* To avoid irregularities, crashes and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform, and dedicate a core to the Weka client.
+* The root filesystem should handle a 3K IOPS load by the Weka client.
+
+#### **For DPDK clients \(on top of the UDP requirements\):**
+
+* The virtual platform interoperability \(hypervisor, NICs, CPUs, different versions, etc.\) should support DPDK and SR-IOV VFs passthrough to the VM.
+* The hypervisor hosts and the client VMs should run the same OFED version.
+
