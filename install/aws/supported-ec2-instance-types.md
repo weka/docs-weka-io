@@ -33,10 +33,12 @@ The following EC2 instance types can operate as **client** instances.
 | C5 | c5.2xlarge, c5.4xlarge, c5.9xlarge, c5.12xlarge, c5.18xlarge, c5.24xlarge |
 | C5n | c5n.2xlarge, c5n.4xlarge, c5n.9xlarge, c5n.18xlarge |
 | G3 | g3.4xlarge, g3.8xlarge, g3.16xlarge |
+| G4 | g4dn.2xlarge, g4dn.4xlarge, g4dn.8xlarge, g4dn.12xlarge, g4dn.16xlarge |
 | I3 | i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge |
 | I3en | i3en.xlarge, i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge |
 | M4 | m4.xlarge, m4.2xlarge, m4.4xlarge, m4.10xlarge, m4.16xlarge |
 | M5 | m5.xlarge, m5.2xlarge, m5.4xlarge, m5.8xlarge, m5.12xlarge, m5.16xlarge, m5.24xlarge |
+| M5n | m5n.xlarge, m5n.2xlarge, m5n.4xlarge, m5n.8xlarge, m5n.12xlarge, m5n.16xlarge, m5n.24xlarge, m5dn.xlarge, m5dn.2xlarge, m5dn.4xlarge, m5dn.8xlarge, m5dn.12xlarge, m5dn.16xlarge, m5dn.24xlarge |
 | P2 | p2.xlarge, p2.8xlarge, p2.16xlarge |
 | P3 | p3.2xlarge, p3.8xlarge, p3.16xlarge |
 | R3 | r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge |
