@@ -122,14 +122,7 @@ The Weka software on a client host requires 4 GB of additional memory.
 
 ### CPU Allocation strategy
 
-The Weka system implements a Non-Uniform Memory Access \(NUMA\) aware CPU allocation strategy to maximize the overall performance of the system. It takes into account the NUMA region of data plane network interface\(s\).
-
-In non-HA deployments, the strategy tries to allocate as many CPU cores as possible on the same NUMA node where the data plane interface is connected. If the Weka configuration requires more CPU cores than are available in the same NUMA region, cores from another region will be allocated.
-
-In HA deployments, there are two possible scenarios:
-
-* When all data plane network interfaces are in the same NUMA region, the strategy is similar to the non-HA deployment: allocate as many cores from the same NUMA region where the ports are connected, before moving to the next
-* When data plane network interfaces are divided between two or more regions, the strategy allocates as many cores as possible in the lowest numbered NUMA region where a data interface\(s\) is connected \(usually NUMA region 0\), before moving to the next one. 
+The Weka system implements a Non-Uniform Memory Access \(NUMA\) aware CPU allocation strategy to maximize the overall performance of the system. The allocation of cores utilizes all NUMAs equally to balance memory usage from all NUMA nodes.
 
 The following should be noted with regards to the CPU allocation strategy:
 

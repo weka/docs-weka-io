@@ -107,6 +107,14 @@ See 'weka fs <command> --help' for more help on a specific command
 
 Most Weka system commands deliver the same result on all cluster hosts. However, it is sometimes necessary to execute a command on a specific host. This is performed using the `-H`/`--hostname` option and specifying the host name or IP address of the target host.
 
+## CLI Auto-completion
+
+Using `bash` you can use auto-completion for CLI commands and parameters.
+
+To use CLI auto-completion on a host, first, run `weka agent autocomplete install` to install the script and re-enter your shell session.
+
+You can also use `weka agent autocomplete export` to get the bash completions script and write it to any desired location.
+
 ## Cluster Status
 
 The `weka status` command displays the overall status of the Weka system.
