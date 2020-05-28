@@ -238,6 +238,16 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
         <br />Minimum value: 60 seconds.</td>
       <td style="text-align:left">86,400 seconds (24 hours)</td>
     </tr>
+    <tr>
+      <td style="text-align:left"><code>traces_capacity_mb=&lt;size-in-mb&gt;</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">
+        <p>Traces capacity limit in MB.</p>
+        <p>Minimum value: 512 MB.</p>
+      </td>
+      <td style="text-align:left"></td>
+    </tr>
   </tbody>
 </table>{% hint style="info" %}
 **Note:** These parameters are only effective on the first mount command for each client.
