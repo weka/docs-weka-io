@@ -166,7 +166,9 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">No</td>
     </tr>
   </tbody>
-</table>### **Additional Mount Options Available using the Stateless Clients Feature**
+</table>
+
+### **Additional Mount Options Available using the Stateless Clients Feature**
 
 <table>
   <thead>
@@ -249,7 +251,9 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left"></td>
     </tr>
   </tbody>
-</table>{% hint style="info" %}
+</table>
+
+{% hint style="info" %}
 **Note:** These parameters are only effective on the first mount command for each client.
 {% endhint %}
 

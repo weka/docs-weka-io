@@ -174,7 +174,9 @@ Use the following command line to list events in the Weka cluster:
       <td style="text-align:left">Host&apos;s local time</td>
     </tr>
   </tbody>
-</table>**Command:** `weka events list-local`
+</table>
+
+**Command:** `weka events list-local`
 
 Use the following command line to list recent events on the specific host running the command from \(can be useful for cases there is no connectivity to support cloud, no connectivity from a specific host, or for hosts which are not part of the cluster\):
 

@@ -359,7 +359,9 @@ Use the following command lines to add/update/delete NFS permissions:
       <td style="text-align:left">65534</td>
     </tr>
   </tbody>
-</table>### Supported Mount Options for NFS Clients
+</table>
+
+### Supported Mount Options for NFS Clients
 
 #### Non-Coherent Mount Options
 

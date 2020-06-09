@@ -33,6 +33,12 @@ Once all this data is clarified, you can plan the SSD net storage capacity accor
 **Note:** This is an iterative process. Depending on the scenario, some options can be fixed constraints while others are flexible.
 {% endhint %}
 
+{% hint style="info" %}
+**Note:** For a protection of N, the number of failure domains should exceed the stripe width + protection by at least N, so that the system is able to rebuild in a case of concurrent disasters in N failure domains.
+
+E.g., a 6+2 protection scheme should have at least 10 failure domains.
+{% endhint %}
+
 ## SSD Resource Planning
 
 SSD resource planning involves how the defined capacity is going to be implemented for the SSDs. For each host, the following has to be determined:
@@ -62,13 +68,13 @@ The total per host memory requirements is the sum of the following requirements:
   <tbody>
     <tr>
       <td style="text-align:left">Fixed</td>
-      <td style="text-align:left">3.6 GB</td>
+      <td style="text-align:left">4.6 GB</td>
     </tr>
     <tr>
       <td style="text-align:left">Core-based</td>
       <td style="text-align:left">
-        <p>5.3 GB for each compute core</p>
-        <p>2.5 GB for each Drive/SSD core</p>
+        <p>3.3 GB for each compute core</p>
+        <p>2.3 GB for each Drive/SSD core</p>
       </td>
     </tr>
     <tr>
@@ -84,7 +90,9 @@ The total per host memory requirements is the sum of the following requirements:
       <td style="text-align:left">8 GB</td>
     </tr>
   </tbody>
-</table>#### Capacity Requirement Memory
+</table>
+
+#### Capacity Requirement Memory
 
 On a dedicated host, all memory left after the reductions above is used for capacity. Otherwise, by default, `weka host memory` is set to 1.4 GB per compute-core, out of which 0.4 GB is used for the capacity requirement memory. If the capacity requirement memory is not big enough to satisfy the total size of the filesystems, the [memory allocation command](using-cli.md#stage-9-configuration-of-memory-optional) must be performed in the install process. Having sufficient system memory is not enough.
 

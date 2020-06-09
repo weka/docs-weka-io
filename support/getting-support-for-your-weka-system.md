@@ -124,7 +124,9 @@ Weka's technical support policy is based on the type and urgency of the inquiry,
       </td>
     </tr>
   </tbody>
-</table>## Recommended Actions
+</table>
+
+## Recommended Actions
 
 To be ready to get support from Weka, it is recommended to perform the following:
 
