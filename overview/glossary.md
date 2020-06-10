@@ -44,7 +44,7 @@ A collection of hardware components that can fail together due to a single root 
 
 ### Filesystem Group
 
-A collection of filesystems which share a common connectivity to an object store system.
+A collection of filesystems which share a common tiering policy to object store.
 
 ## H
 
