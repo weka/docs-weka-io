@@ -52,3 +52,7 @@ The initial default username/password is _admin/admin,_ as described in [User Ma
 
 For more information about the GUI, refer to [Getting Started with Weka GUI](gui.md).
 
+{% hint style="info" %}
+**Note:** It is possible to set up external monitoring via Grafana. For more information, refer to [External Monitoring](../appendix/external-monitoring.md).
+{% endhint %}
+

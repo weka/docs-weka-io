@@ -96,3 +96,7 @@
 * [The Weka Support Cloud](support/the-wekaio-support-cloud.md)
 * [Diagnostics CLI Command](support/diagnostics-utility.md)
 
+## Appendix
+
+* [External Monitoring](appendix/external-monitoring.md)
+
