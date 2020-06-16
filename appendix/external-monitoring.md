@@ -71,10 +71,10 @@ Run the following commands to install the Weka Prometheus Client:
 
 ```bash
 # download
-curl -LO https://weka-install-scripts.s3.amazonaws.com/weka_prometheus-1.2.0.tgz
+curl -LO https://weka-install-scripts.s3.amazonaws.com/weka_prometheus-1.2.2.tgz
 
 # extract
-tar xvf weka_prometheus-1.2.0.tgz
+tar xvf weka_prometheus-1.2.2.tgz
 
 ```
 
