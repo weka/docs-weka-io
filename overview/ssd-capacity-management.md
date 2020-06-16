@@ -16,7 +16,7 @@ Net capacity is the amount of space available for user data on the SSDs in a con
 
 ## Stripe Width
 
-The stripe width is the number of blocks that share a common protection set, which can range from 3 to 16 \(the smallest possible stripe width is 3+2\). The Weka system has a distributed, any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various hosts protect each other \(rather than a group of 8 hosts forming a protection group\). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
+The stripe width is the number of blocks that share a common protection set, which can range from 3 to 16. The Weka system has a distributed, any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various hosts protect each other \(rather than a group of 8 hosts forming a protection group\). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
 
 {% hint style="info" %}
 **Note:** If not configured, the stripe width is set automatically to \#Failure Domains - Protection Level - \#Hot Spares
@@ -40,12 +40,9 @@ A failure domain is a group of Weka hosts, all of which can fail concurrently du
 
 ## Hot Spare
 
-Hot spare is the number of failure domains that the system can lose, undergo a complete rebuild of data, and still maintain the same net capacity. Consequently, the higher the hot spare count, the more hardware required to obtain the same net capacity. On the other hand, the higher the hot spare count, the more relaxed the IT maintenance schedule for replacements. The hot spare is defined during cluster formation and can be reconfigured at any time.
+Hot spare is the number of failure domains that the system can lose, undergo a complete rebuild of data, and still maintain the same net capacity. All failure domains are always participating in storing the data, and the hot spare capacity is evenly spread within all failure domains.
 
-{% hint style="info" %}
-**Note:** The sum of the stripe width, protection level and hot spare must be less than or equal to the total number of failure domains or the number of hosts \(if no failure domains are defined\). The maximum hot spare configuration should be defined according to the following formula:  
-number of failure domains - stripe width - protection level.
-{% endhint %}
+The higher the hot spare count, the more hardware required to obtain the same net capacity. On the other hand, the higher the hot spare count, the more relaxed the IT maintenance schedule for replacements. The hot spare is defined during cluster formation and can be reconfigured at any time.
 
 {% hint style="info" %}
 **Note:** The default hot spare configuration is 1 hot spare for 6 failure domains and 2 hot spares for every cluster larger than this.
