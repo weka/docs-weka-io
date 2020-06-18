@@ -134,3 +134,9 @@ To be ready to get support from Weka, it is recommended to perform the following
 2. Create an account on the Weka Support Portal [support.weka.io](http://support.weka.io/).  This will allow you to easily submit and check status of tickets as well as to browse our online knowledgebase.
 3. We suggest opening a shared Slack channel with Weka for day to day activities, Slack activity will not substitute opening tickets for issues and Weka can’t grantee any response time SLA while using Slack. To arrange the slack channel, get in touch with your Weka point of contact, open a case in our support portal at [support.weka.io](http://support.weka.io/) or send an email to [support@weka.io](mailto:support@weka.io).
 
+## Escalation
+
+If you feel that our response has been inadequate or there is room for improvments with our response, you can escalate an incident to our management team. Call Weka Support at +1 \(844\) 392-0665, choose the escalation option and leave a voicemail requesting escalation of an issue. This escalation request will get to one of our executive managers depending on the time of day and their time zones. We work in a “follow the sun” approach so one of the executive managers will be available to take your escalation request.
+
+
+
