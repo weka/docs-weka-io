@@ -136,7 +136,7 @@ To be ready to get support from Weka, it is recommended to perform the following
 
 ## Escalation
 
-If you feel that our response has been inadequate or there is room for improvments with our response, you can escalate an incident to our management team. Call Weka Support at +1 \(844\) 392-0665, choose the escalation option and leave a voicemail requesting escalation of an issue. This escalation request will get to one of our executive managers depending on the time of day and their time zones. We work in a “follow the sun” approach so one of the executive managers will be available to take your escalation request.
+If you feel that our response has been inadequate or there is room for improvement with our response, you can escalate an incident to our management team. Call Weka Support at +1 \(844\) 392-0665, choose the escalation option and leave a voicemail requesting escalation of an issue. This escalation request will get to one of our executive managers, depending on the time of day and their time zones. We work in a “follow the sun” approach, so one of the executive managers will be available to take your escalation request.
 
 
 
