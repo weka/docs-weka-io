@@ -96,7 +96,9 @@ Define the parameters for WekaIO cluster configuration:
       </td>
     </tr>
   </tbody>
-</table>Define the following optional parameters if tiering to S3 is desired:
+</table>
+
+Define the following optional parameters if tiering to S3 is desired:
 
 | Parameter | Description |
 | :--- | :--- |

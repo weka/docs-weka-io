@@ -174,7 +174,9 @@ Use the following command line to list events in the WekaIO cluster:
       <td style="text-align:left">Host&apos;s local time</td>
     </tr>
   </tbody>
-</table>### Viewing Local Events
+</table>
+
+### Viewing Local Events
 
 **Command:** `weka events list-local`
 

@@ -113,7 +113,9 @@ Use the following command line to create a new SMB cluster to be managed by the 
       <td style="text-align:left">First part of<code>domain</code> parameter</td>
     </tr>
   </tbody>
-</table>{% hint style="info" %}
+</table>
+
+{% hint style="info" %}
 **Note:** All IPs must reside on the same subnet, in order to enable HA through IP takeover.
 {% endhint %}
 

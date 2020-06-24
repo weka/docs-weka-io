@@ -84,7 +84,9 @@ The total per host memory requirements is the sum of the following requirements:
       <td style="text-align:left">8 GB</td>
     </tr>
   </tbody>
-</table>#### Capacity Requirement Memory
+</table>
+
+#### Capacity Requirement Memory
 
 On a dedicated host, all memory left after the reductions above is used for capacity. Otherwise, by default, `weka host memory` is set to 1.4 GB per compute-core, out of which 0.4 GB is used for the capacity requirement memory. If the capacity requirement memory is not big enough to satisfy the total size of the filesystems, the [memory allocation command](using-cli.md#stage-9-configuration-of-memory-optional) must be performed in the install process. Having sufficient system memory is not enough.
 

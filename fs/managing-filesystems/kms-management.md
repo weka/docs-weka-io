@@ -130,7 +130,9 @@ Use the following command line to add or update the Vault KMS configuration in t
       <td style="text-align:left"></td>
     </tr>
   </tbody>
-</table>{% hint style="info" %}
+</table>
+
+{% hint style="info" %}
 **Note:** For the add/update command to succeed, the KMS should be preconfigured and available with the key and a valid token.
 {% endhint %}
 

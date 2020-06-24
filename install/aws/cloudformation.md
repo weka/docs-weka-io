@@ -208,7 +208,9 @@ The CloudFormation template has the following parameters:
         have been defined.</td>
     </tr>
   </tbody>
-</table>{% hint style="info" %}
+</table>
+
+{% hint style="info" %}
 **Note:** It is possible using a NAT \(with `LoadBalancerType` other than `Internet Facing`\) parameter. Otherwise,`SubnetId` must be a public subnet or a subnet that can be routed to the Internet, since deployment is based on downloading the WekaIO system and various packages from the Internet. 
 {% endhint %}
 

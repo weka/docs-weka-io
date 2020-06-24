@@ -124,7 +124,9 @@ WekaIO's technical support policy is based on the type and urgency of the inquir
       </td>
     </tr>
   </tbody>
-</table>## Recommended Actions
+</table>
+
+## Recommended Actions
 
 To be ready to get support from WekaIO, it is recommended to perform the following:
 
