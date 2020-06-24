@@ -108,7 +108,9 @@ Use the following command line to create a new SMB cluster to be managed by Weka
       <td style="text-align:left"></td>
     </tr>
   </tbody>
-</table>{% hint style="info" %}
+</table>
+
+{% hint style="info" %}
 **Notes:**
 
 All IPs must reside on the same subnet, in order to enable HA through IP takeover.

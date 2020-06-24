@@ -169,7 +169,9 @@ Each mount option can be passed with an individual `-o` flag to `mount`
       <td style="text-align:left">86,720 seconds (24 hours)</td>
     </tr>
   </tbody>
-</table>{% hint style="info" %}
+</table>
+
+{% hint style="info" %}
 **Note:** These parameters are only effective on the first mount command for each client.
 {% endhint %}
 
