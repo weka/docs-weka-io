@@ -39,7 +39,7 @@ description: >-
 
 * 2.6.32
 * 3.10
-* 4.4 - 4.18
+* 4.4.0-1106 to 4.18
 
 ## Weka Install Directory
 
