@@ -144,7 +144,9 @@ If a high-performance client is required and the appropriate network NIC is avai
       <td style="text-align:left"></td>
     </tr>
   </tbody>
-</table>{% hint style="info" %}
+</table>
+
+{% hint style="info" %}
 **Note:** When configuring an InfiniBand client, do not pass the `--ips`, `--netmask` and `--gateway` parameters.
 {% endhint %}
 

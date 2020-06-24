@@ -177,7 +177,9 @@ To perform this operation, the cluster host net add command must be run for each
       <td style="text-align:left"></td>
     </tr>
   </tbody>
-</table>The number of IP addresses should be according to [WekaIO Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
+</table>
+
+The number of IP addresses should be according to [WekaIO Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
 
 {% hint style="info" %}
 Additional IP addresses may be assigned for each host, if IP per core is needed. In this case, unused IP addresses are reserved for future expansion process, and can be automatically assigned if number of cores assigned to WekaIO system on that host is increased.
@@ -256,7 +258,9 @@ Instead of explicit IP address configuration per each network device, dynamic IP
       <td style="text-align:left"></td>
     </tr>
   </tbody>
-</table>To view the current default data networking settings use the command `weka cluster default-net`.
+</table>
+
+To view the current default data networking settings use the command `weka cluster default-net`.
 
 If a default data networking was previously configured on a cluster and is no longer needed, it is possible to remove it using the command `weka cluster default-net reset`.
 
