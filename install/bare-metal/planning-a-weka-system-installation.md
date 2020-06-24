@@ -110,9 +110,9 @@ The per host capacity requirement is calculated with the following formula:
 
 The capacity requirement for the host will be calculated according to the following formula:
 
-![](../../.gitbook/assets/formula-2-21_05_18.png)
+![](../../.gitbook/assets/3.7-memory-capacity-example.png)
 
-Consequently, the overall requirement per host is: 4.6 + 6 \* 3.3 + 4\*2.3 + 7.3 +15 +8 = 63.9 GB
+Consequently, the overall requirement per host is: 4.6 + 6 \* 3.3 + 4\*2.3 + 6.3 +15 +8 = 62.9 GB
 
 {% hint style="info" %}
 **Note:** The capacity requirement is according to the total size of all filesystems, including both SSDs and object stores.
