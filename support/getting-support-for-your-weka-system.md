@@ -119,12 +119,16 @@ Weka's technical support policy is based on the type and urgency of the inquiry,
           <br />
         </p>
         <p>Sending an email also opens a ticket in the Support Portal. Note that
-          it is first necessary to sign-up as a user in the Support Portal. Notification
+          it is first necessary to sign-up as a user in the Support Portal. Notifications
           of problems by email are not considered as critical.</p>
       </td>
     </tr>
   </tbody>
 </table>
+
+Weka provides only remote support as part of its SLA. 
+
+The SLA detailed in the technical support policy is for Weka software issues. Issues that are caused by faulty hardware will depend on the hardware provider and Weka will not be responsible for the hardware provider timelines and/or response time. 
 
 ## Recommended Actions
 
