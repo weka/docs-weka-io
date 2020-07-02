@@ -10,6 +10,10 @@ description: >-
 
 When launching a Weka system cluster, either through the [Self-Service Portal](self-service-portal.md) or via a [CloudFormation template](cloudformation.md), it is also possible to launch client instances. However, sometimes it may be required to add more clients after the cluster has been installed. To add more clients as separate instances, follow the instructions below.
 
+{% hint style="info" %}
+**Note:** It is advisable to turn off auto kernel updates so it will not get upgraded to a yet unsupported version.
+{% endhint %}
+
 ## Adding Clients as Separate Instances
 
 ### Step 1: Launch the New Instances <a id="step-1-launch-new-instances"></a>
