@@ -12,6 +12,14 @@
 * [Weka Client & Mount Modes](overview/weka-client-and-mount-modes.md)
 * [Glossary](overview/glossary.md)
 
+## Getting Started with Weka
+
+* [Quick Install Guide](getting-started-with-weka/quick-install-guide.md)
+* [Managing the Weka System](getting-started-with-weka/managing-wekaio-system.md)
+* [CLI Overview](getting-started-with-weka/cli-overview.md)
+* [GUI Overview](getting-started-with-weka/gui.md)
+* [Serving IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
+
 ## Planning & Installation <a id="install"></a>
 
 * [Bare Metal Installation](install/bare-metal/README.md)
@@ -29,13 +37,6 @@
   * [Supported EC2 Instance Types](install/aws/supported-ec2-instance-types.md)
   * [Adding Clients](install/aws/adding-clients.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
-
-## Getting Started with Weka
-
-* [Managing the Weka System](getting-started-with-weka/managing-wekaio-system.md)
-* [CLI Overview](getting-started-with-weka/cli-overview.md)
-* [GUI Overview](getting-started-with-weka/gui.md)
-* [Serving IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
 
 ## Performance <a id="testing-and-troubleshooting"></a>
 

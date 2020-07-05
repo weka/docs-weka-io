@@ -40,7 +40,7 @@ For more information about the CLI, refer to [Getting Started with Weka CLI](cli
 
 ## GUI
 
-The Weka GUI is accessible at port 14000. It can be accessed from any host or by using the cluster name. For example: [http://weka-host-0:14000](http://weka-host-0:14000) or [http://weka-host:14000](http://weka-host:14000).
+The Weka GUI is accessible at port 14000. It can be accessed from any host or by using the cluster name. For example: `http://weka01:14000` or `http://WekaProd:14000`.
 
 {% hint style="info" %}
 **Note:** If it's not possible to access the GUI, make sure that it has been opened in your firewall, as described in the [Prerequisites](../install/bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md) page.

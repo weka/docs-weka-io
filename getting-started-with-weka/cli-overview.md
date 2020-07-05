@@ -125,14 +125,13 @@ The `weka status` command displays the overall status of the Weka system.
 
 ```text
 $ weka status
-Weka v3.1 (CLI build 17No144)
+WekaIO v3.7.2 (CLI build 3.7.2)
 
-       status: OK (6 hosts healthy)
-   protection: 3+2 (with 2 hot spares)
-  ssd storage: 57 GiB total, 0 bytes free
-
-        reads: 0 bytes/s (0 IO/s)
-       writes: 0 bytes/s (0 IO/s)
+       cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
+        status: OK (8 backends UP, 48 drives UP)
+    protection: 4+2
+     hot spare: 2 failure domains
+ drive storage: 82.94 TiB total, 82.94 TiB unprovisioned
 ```
 
 {% hint style="success" %}
@@ -141,14 +140,13 @@ Weka v3.1 (CLI build 17No144)
 
 ```text
 $ weka status
-Weka v3.1 (CLI build 17No144)
+WekaIO v3.7.2 (CLI build 3.7.2)
 
-       status: DEGRADED (1 host down, 5 hosts healthy)
-               Rebuild in progress (3%)
-   protection: 3+2 (with 2 hot spares)
-  ssd storage: 42.75 GiB total, 0 bytes free
-
-        reads: 0 bytes/s (0 IO/s)
-       writes: 0 bytes/s (0 IO/s)
+       cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
+        status: DEGRADED (7 backends UP, 42 drives UP)
+                Rebuild in progress (3%)
+    protection: 4+2
+     hot spare: 2 failure domains
+ drive storage: 82.94 TiB total, 82.94 TiB unprovisioned
 ```
 
