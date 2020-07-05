@@ -57,13 +57,8 @@ do
     # e.g., weka cluster host net add $i eth1
     weka cluster host net add $i NETDEV
     
-    # add the nvme drives
-    weka cluster drive add $i /dev/nvme0n1
-    weka cluster drive add $i /dev/nvme1n1
-    weka cluster drive add $i /dev/nvme2n1
-    weka cluster drive add $i /dev/nvme3n1
-    weka cluster drive add $i /dev/nvme4n1
-    weka cluster drive add $i /dev/nvme5n1
+    # add the nvme drives; e.g., /dev/nvme0n1, etc.
+    weka cluster drive add $i /dev/nvme0n1 /dev/nvme1n1 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1
     
     # set host cores
     weka cluster host cores $i 19 --frontend-dedicated-cores 1 --drives-dedicated-cores 6

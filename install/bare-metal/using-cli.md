@@ -288,14 +288,14 @@ If a default data networking was previously configured on a cluster and is no lo
 
 This stage in the installation process is used to add a local SSD to be used by a Weka filesystem. The same command can be used for adding multiple drive paths. To perform this operation, use the following command line:
 
-`weka cluster drive add <host-id> <device-path>`
+`weka cluster drive add <host-id> <device-paths>`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to which a local SSD will be added | Must be a valid host identifier | Yes |  |
-| `device` | String | A block device that identifies a local SSD, e.g., `/dev/sdb` | Must be a valid Unix network device name | Yes |  |
+| `device-paths` | String | List of A block device that identifies a local SSD, e.g., `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes |  |
 
 {% hint style="info" %}
 **Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the Weka Support Team.
