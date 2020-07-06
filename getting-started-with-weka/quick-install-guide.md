@@ -72,11 +72,11 @@ weka cluster drive scan
 Check the  configuration:
 
 ```bash
-# show hosts info
-weka cluster host
-
-# show network info
-weka cluster host net
+# show hosts info (net, cores, etc.)
+for i in {0..7}
+do
+    weka cluster host resources $i
+done
 
 # show drives info
 weka cluster drive
@@ -90,7 +90,7 @@ If satisfied, start the cluster:
 
 ```bash
 # initialize the hosts and drives
-weka cluster host activate
+weka cluster host apply --all --force
 weka cluster drive activate
 
 # start the cluster
@@ -109,7 +109,7 @@ weka status
 You would see a similar output to the following example:
 
 ```bash
-WekaIO v3.7.2 (CLI build 3.7.2)
+WekaIO v3.8.0 (CLI build 3.8.0)
 
        cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
         status: OK (8 backends UP, 48 drives UP)

@@ -15,7 +15,7 @@ To download the appropriate install file, follow the instructions in [Download t
 
 ## Stage 2: Installing the Weka Software on the New Host
 
-Follow the instructions appearing in [Installation of the Weka Software on Each Host](../../install/bare-metal/using-cli.md#stage-1-installation-of-the-weka-software-on-each-host). At the end of the install process the host is in [stem mode](../../overview/glossary.md#stem-mode).
+Follow the instructions appearing in [Installation of the Weka Software on Each Host](../../install/bare-metal/using-cli.md#stage-1-installation-of-the-weka-software-on-each-host). At the end of the install process, the host is in [stem mode](../../overview/glossary.md#stem-mode).
 
 ## Stage 3: Adding a Host to the Cluster
 
@@ -31,8 +31,8 @@ weka -H <existing-backend-hostname> cluster host add <backend-hostname>
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `existing-backend-hostname` | String | IP/host name of one of the existing backend instances in the cluster | Valid host name \(DNS or IP\) | No | The host on which the command is executed |
-| `backend-hostname` | String | IP/host name of the backend currently being added | Valid host name \(DNS or IP\) | Yes |  |
+| `existing-backend-hostname` | String | IP/hostname of one of the existing backend instances in the cluster | Valid hostname \(DNS or IP\) | No | The host on which the command is executed |
+| `backend-hostname` | String | IP/hostname of the backend currently being added | Valid hostname \(DNS or IP\) | Yes |  |
 
 {% hint style="info" %}
 **Note:** On completion of this stage, the host-ID of the newly added host will be received. Make a note of it for the next steps.
@@ -67,7 +67,7 @@ Use the following command line to display a listing of the memory defined \(one 
 To configure the memory, follow the instructions appearing in [Configuration of Memory](../../install/bare-metal/using-cli.md#stage-9-configuration-of-memory-optional).
 
 {% hint style="info" %}
-**Note:** If memory has been configured, it is mandatory to use the same memory for the expanded host.
+**Note:** If the memory has been configured, it is mandatory to use the same memory for the expanded host.
 {% endhint %}
 
 ## Stage 9: Configuration of Failure Domains
@@ -78,9 +78,9 @@ Follow the instructions appearing in [Configuration of Failure Domains](../../in
 **Note:** Plan whether each host is being added to an existing failure domain or to a new failure domain.
 {% endhint %}
 
-## Stage 10: Activation of Cluster Hosts
+## Stage 10: Applying Hosts Configuration
 
-If hosts have been added to the cluster, follow the instructions appearing in [Activation of Cluster Hosts](../../install/bare-metal/using-cli.md#stage-13-activation-of-cluster-hosts).
+If hosts have been added to the cluster, follow the instructions appearing in [Applying Hosts Configuration](../../install/bare-metal/using-cli.md#stage-14-applying-hosts-configuration). 
 
 {% hint style="info" %}
 **Note:** The activation of cluster hosts can be performed with a sequence of hosts.

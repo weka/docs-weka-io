@@ -70,7 +70,7 @@ To remove a drive, run the following command:
 
 **Command:** `weka cluster host deactivate`
 
-This command is used as the first step when seeking to shrink a cluster. Running it is mandatory to deactivate the relevant host drives prior to removal of the host, thereby terminating the IO participation of the host in the cluster. All the host drives must first be deactivated.
+This command is used as the first step when seeking to shrink a cluster. Running this command will automatically [deactivate all the host's drives](shrinking-a-cluster.md#deactivating-a-drive).
 
 To deactivate an entire host, run the following command:
 
@@ -81,7 +81,7 @@ To deactivate an entire host, run the following command:
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-ids` | Comma-separated strings | Comma-separated host identifiers |  | Yes |  |
-| `--allow-unavailable-host` | Boolean | Allow deactivation of an unavailable host | If host is returned, it will join the cluster in active state | No | No |
+| `--allow-unavailable-host` | Boolean | Allow deactivation of an unavailable host | If the host returns, it will join the cluster in an active state | No | No |
 
 ## Removing a Host
 

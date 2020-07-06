@@ -57,7 +57,7 @@ To plan the capacity of the Weka system after expansion, refer to [SSD Capacity 
 
 ## The Cluster Expansion Process
 
-Once an expansion of more SSDs or backend hosts has been planned and executed, the Weka system starts a redistribution process. This involves the redistribution of all the existing data to be perfectly balanced between the original hosts or SSDs and newly added resources. This process can take from minutes to hours, depending on the capacity and the networking CPU resources. However, the capacity increase is instant, and therefore it is possible to define more filesystems immediately, without waiting for completion of the redistribution process.
+Once an expansion of more SSDs or backend hosts has been planned and executed, the Weka system starts a redistribution process. This involves the redistribution of all the existing data to be perfectly balanced between the original hosts or SSDs and newly added resources. This process can take from minutes to hours, depending on the capacity and the networking CPU resources. However, the capacity increase is instant, and therefore it is possible to define more filesystems immediately, without waiting for the completion of the redistribution process.
 
 {% hint style="info" %}
 **Note:** If necessary, contact the Weka Support Team for more details on the redistribution process and its expected duration.

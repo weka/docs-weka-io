@@ -295,7 +295,7 @@ This stage in the installation process is used to add a local SSD to be used by 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to which a local SSD will be added | Must be a valid host identifier | Yes |  |
-| `device-paths` | String | List of A block device that identifies a local SSD, e.g., `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes |  |
+| `device-paths` | Space-separated  list of strings | List of block devices that identify local SSDs, e.g., `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes |  |
 
 {% hint style="info" %}
 **Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the Weka Support Team.
@@ -325,7 +325,7 @@ This stage in the installation process is used to configure the amount of CPU re
 | `cores` | Number | Number of physical cores to be allocated to the Weka system | Should be less than the number of physical cores in the host \(leaving 1 core for the OS\) . Maximum 19 cores | Yes |  |
 | `frontend-dedicated-cores` | Number | Number of physical cores to be dedicated to FrontEnd processes | The total of fe\_cores and be\_cores must be less than cores above | No | zero |
 | `drives-dedicated-cores` | Number | Number of physical cores to be dedicated to Drive/SSD processes | The total of fe\_cores and be\_cores must be less than cores above | No | Typically 1 core per drive or 1/2 core per drive/SSD |
-| `cores_ids` | Comma-separated list Numbers | Physical Core numbers | Specification of which cores to use. | No | Select cores automatically |
+| `cores-ids` | Comma-separated list  of numbers | Physical Core numbers | Specification of which cores to use. | No | Select cores automatically |
 
 {% hint style="success" %}
 **Note:** `core_ids` are distributed in the following order: first, all the FrontEnd processes, second all the Compute processes, and last all the Drive processes. By ordering the `core_ids` list, it is possible to determine the exact assignment of cores to processes \(e.g., for taking into account NUMA distribution\).
@@ -358,10 +358,6 @@ If capacity requirements mandate more memory, the following command should be us
 | `capacity-memory` | Number | Memory dedicated to Weka in bytes. It is possible to set the format in other units, e.g.: 1MB, 1GB, 1MiB, 1GiB. | Setting to 0 determines this value automatically | Yes |  |
 
 {% hint style="info" %}
-**Note:** This command is for initialization phase only. To adjust the memory of a running cluster, contact the Weka Support Team.
-{% endhint %}
-
-{% hint style="info" %}
 **Note:** This command is given the memory per-host and will later be distributed by the system per compute core. Out of this value, 1GB per compute core is reserved for other purposes \(as cache\) and not used for capacity.
 {% endhint %}
 
@@ -384,8 +380,8 @@ This operation is performed using the following command line:
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host in which the failure domain should be configured | Must be a valid host identifier | Yes |  |
-| `name` | String | The failure domain that will contain the host from now |  | Yes \(either `--name` OR `--auto` must be specified\) | None |
-| `auto` | n/a | n/a | Will automatically assign fd-name | Yes \(either `--name` OR `--auto` must be specified\) | None |
+| `name` | String | The failure domain that will contain the host from now |  | Yes \(either `--name` OR `--auto` must be specified\) |  |
+| `auto` | Boolean | Will automatically assign fd-name |  | Yes \(either `--name` OR `--auto` must be specified\) |  |
 
 ## Stage 12: Configuration of Weka System Protection Scheme
 
@@ -424,31 +420,33 @@ To configure the Weka system hot spare, use the following command line:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `hot-spare` | Number | Hot spare | The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 1 for clusters with 6 failure domains and 2 for clusters larger than this |
 
-## Stage 14: Activation of Cluster Hosts
+## Stage 14: Applying Hosts Configuration
 
-**Command:** `weka cluster host activate`
+**Command:** `weka cluster host apply`
 
-This command is used to activate the Weka system cluster host. When it is run, a comma-separated list of all host names is received. In the install phase, all hosts need to be added, so the default of no parameter can be used.
+This command is used to apply the Weka system cluster hosts' configuration. In the install phase, all hosts need to be added, so the `--all` parameter can be used.
 
 To activate the cluster hosts, use the following command line:
 
-`weka cluster host activate [<host-ids>...]`
+`weka cluster host apply [--all] [<host-ids>...] [--force]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `host-ids` | Comma-separated strings | Comma-separated host identifiers |  | No | All hosts |
+| `host-ids` | Comma-separated strings | Comma-separated host identifiers |  | Either `host-ids` or `all` must be specified |  |
+| `all` | Boolean | Apply all hosts |  | Either `host-ids` or `all` must be specified |  |
+| `force` | Boolean | Do not prompt for confirmation |  |  |  |
 
 ## Stage 15: Activation of Cluster SSDs
 
 **Command:** `weka cluster drive activate`
 
-This command is used to mark the Weka system SSDs as active, so they are in-use by the cluster. To activate the cluster SSDs, use the following command line:
+This command is used to mark the Weka system SSDs as active, so they are used by the cluster. To activate the cluster SSDs, use the following command line:
 
 `weka cluster drive activate [<uuids>...]`
 
-A comma-separated list of all SSD UUIDs is received. In the install phase all SSDs need to be active, so the default of no parameter can be used.
+A comma-separated list of all SSD UUIDs is received. In the install phase, all SSDs need to be active, so the default of no parameter can be used.
 
 {% hint style="info" %}
 **Note:** To obtain the drive UUIDs, it is possible to use either the output received from a previously run `weka cluster drive add` command, or alternatively use the drive listing command `weka cluster drive`, which will list all drives and their UUIDs.
