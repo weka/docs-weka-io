@@ -295,7 +295,7 @@ This stage in the installation process is used to add a local SSD to be used by 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | String | Identifier of host to which a local SSD will be added | Must be a valid host identifier | Yes |  |
-| `device-paths` | String | List of A block device that identifies a local SSD, e.g., `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes |  |
+| `device-paths` | Space-separated list of strings | List of block devices that identify a local SSD, e.g., `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes |  |
 
 {% hint style="info" %}
 **Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the Weka Support Team.
