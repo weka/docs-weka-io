@@ -201,3 +201,9 @@ VMs can be used as clients only, assuming they meet the following prerequisite:
 * The virtual platform interoperability \(hypervisor, NICs, CPUs, different versions, etc.\) should support DPDK and SR-IOV VFs passthrough to the VM.
 * The hypervisor hosts and the client VMs should run the same OFED version.
 
+## KMS
+
+* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) \(version 1.1.5 and up\)
+* [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) compliant KMS \(protocol version 1.2 and up\)
+  * Should support encryption-as-a-service \(encrypt/decrypt APIs\)
+
