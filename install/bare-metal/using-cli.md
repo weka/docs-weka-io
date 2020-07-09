@@ -26,8 +26,8 @@ This stage involves the formation of a cluster from the allocated hosts. It is p
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | Default |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `hostnames` | Space- separated strings | Host names or IP addresses | Need at least 6 strings, as this is the minimal cluster size | Yes |  |
-| `host-ips` | Comma- separated IP addresses | IP addresses of the management interfaces. Use a list of ip+ip addresses pairs of two cards for HA configuration | Same number of values as in `hostnames`. | Only in IB | Hostnames will be resolved |
+| `hostnames` | Space-separated strings | Hostnames or IP addresses | Need at least 6 strings, as this is the minimal cluster size | Yes |  |
+| `host-ips` | Comma-separated IP addresses | IP addresses of the management interfaces. Use a list of ip+ip addresses pairs of two cards for HA configuration | The same number of values as in `hostnames`. | No | IP of the first network device of the host |
 
 {% hint style="info" %}
 **Note:** It is possible to use either a host name or an IP address; this string serves as the identifier of the host in subsequent commands.
