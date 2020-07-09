@@ -61,8 +61,8 @@ weka -H <backend-hostname> cluster host add <client-hostname>
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `backend-hostname` | String | IP/host name of one of the existing backend instances in the cluster | Valid host name \(FQDN or IP\) | Yes |  |
-| `client-hostname` | String | IP/host name of the client currently being added | Valid host name \(FQDN or IP\) | Yes |  |
+| `backend-hostname` | String | IP/hostname of one of the existing backend instances in the cluster | Valid hostname \(FQDN or IP\) | Yes |  |
+| `client-hostname` | String | IP/hostname of the client currently being added | Valid hostname \(FQDN or IP\) | Yes |  |
 
 {% hint style="info" %}
 **Note:** On completion of this stage, the host-ID of the newly added host will be received. Make a note of it for the next steps.
@@ -82,7 +82,7 @@ weka cluster host cores <host-id> 1 --frontend-dedicated-cores=1
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `host-id` | String | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
+| `host-id` | String | Identifier of the host to be added to the cluster | Must be a valid host identifier | Yes |  |
 
 ### Stage 4: Configuring Client Networking
 
@@ -120,7 +120,7 @@ If a high-performance client is required and the appropriate network NIC is avai
       <td style="text-align:left"><code>host-id</code>
       </td>
       <td style="text-align:left">String</td>
-      <td style="text-align:left">Identifier of host to be added to the cluster</td>
+      <td style="text-align:left">Identifier of the host to be added to the cluster</td>
       <td style="text-align:left">Must be a valid host identifier</td>
       <td style="text-align:left">Yes</td>
       <td style="text-align:left"></td>
@@ -139,7 +139,7 @@ If a high-performance client is required and the appropriate network NIC is avai
       <td style="text-align:left"><code>ips</code>
       </td>
       <td style="text-align:left">IP address</td>
-      <td style="text-align:left">IP address of the new interface</td>
+      <td style="text-align:left">The IP address of the new interface</td>
       <td style="text-align:left">Must be a valid IP address</td>
       <td style="text-align:left">Yes</td>
       <td style="text-align:left"></td>
@@ -148,9 +148,9 @@ If a high-performance client is required and the appropriate network NIC is avai
       <td style="text-align:left"><code>gateway</code>
       </td>
       <td style="text-align:left">IP address</td>
-      <td style="text-align:left">IP address of the default routing gateway</td>
+      <td style="text-align:left">The IP address of the default routing gateway</td>
       <td style="text-align:left">
-        <p>Gateway must reside within the same IP network of <code>ip-address</code> (as
+        <p>The gateway must reside within the same IP network of <code>ip-address</code> (as
           described by <code>netmask</code>).</p>
         <p>Not relevant for IB / L2 non-routable networks.</p>
       </td>
@@ -179,14 +179,14 @@ If a high-performance client is required and the appropriate network NIC is avai
 **Note:** InfiniBand clients can only join a cluster with InfiniBand backends. It is not possible to mix InfiniBand and Ethernet clients/backends.
 {% endhint %}
 
-### Stage 5: Activating the Host
+### Stage 5: Applying the Host Configuration
 
-**Command:** `weka cluster host activate`
+**Command:** `weka cluster host apply`
 
 After successfully configuring the host and its network device, run the following command to finalize the configuration by activating the host:
 
 ```text
-weka cluster host activate <host-id>
+weka cluster host apply <host-id>
 ```
 
 **Parameters in Command Line**
@@ -194,4 +194,5 @@ weka cluster host activate <host-id>
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-id` | Comma-separated string | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
+| `force` | Boolean | Do not prompt for confirmation |  | No | Off |
 

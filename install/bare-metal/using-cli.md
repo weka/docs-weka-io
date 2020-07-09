@@ -436,7 +436,7 @@ To activate the cluster hosts, use the following command line:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-ids` | Comma-separated strings | Comma-separated host identifiers |  | Either `host-ids` or `all` must be specified |  |
 | `all` | Boolean | Apply all hosts |  | Either `host-ids` or `all` must be specified |  |
-| `force` | Boolean | Do not prompt for confirmation |  |  |  |
+| `force` | Boolean | Do not prompt for confirmation |  | No | Off |
 
 ## Stage 15: Activation of Cluster SSDs
 
