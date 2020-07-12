@@ -189,7 +189,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
   </thead>
   <tbody>
     <tr>
-      <td style="text-align:left"><code>memory_mb</code>
+      <td style="text-align:left"><code>memory_mb=&lt;memory_mb&gt;</code>
       </td>
       <td style="text-align:left">Number</td>
       <td style="text-align:left">Amount of memory to be used by the client (for huge pages)</td>
@@ -259,9 +259,10 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left"></td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>reserve_1g_hugepages</code>
+      <td style="text-align:left"><code>reserve_1g_hugepages=&lt;true|false&gt;</code>
       </td>
-      <td style="text-align:left">None</td>
+      <td style="text-align:left"><code>true</code> or <code>false</code>
+      </td>
       <td style="text-align:left">Control the page allocation algorithm if to reserve only 2MB huge pages
         or also 1GB ones</td>
       <td style="text-align:left">Yes</td>
