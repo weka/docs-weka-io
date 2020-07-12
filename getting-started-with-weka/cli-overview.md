@@ -11,30 +11,39 @@ The Weka CLI is installed on each Weka host and is available through the `weka` 
 ```text
 $ weka
 Usage:
-    weka [<args>...] [options]
-    weka --agent
+    weka [--help] [--build] [--version] [--legal]
 
 Description:
-    Base command for all the weka related CLIs
+    The base command for all weka related CLIs
 
-The available subcommands are:
-    status      Weka cluster status
-    alerts      List and manage active alerts
-    events      Commands for reading events and managing events settings
-    stats       Commands for reading system statistics
-    cluster     Commands that manage the cluster
-    fs          Commands that manage filesystems, snapshots and filesystem-groups
-    nfs         Commands that manage client-groups, permissions and interface-groups
-    cloud       Cloud commands
-    user        Manage users and login
-    local       Commands that control weka and its containers on the local machine
-    version     Commands that manager the installed weka versions on the host
-    agent       Commands that control the weka agent (outside the weka containers)
-    smb         Commands for setting up and managing smb shares and users
-    diags       Commands for collecting weka-related diagnostics for support
+Subcommands:
+   agent      Command s that control the weka agent (outside the weka containers)
+   alerts     List alerts in the Weka cluster
+   cloud      Cloud commands. List the cluster's cloud status, if no subcommand supplied.
+   cluster    Commands that manage the cluster
+   debug      Commands used to debug a weka cluster
+   diags      Diagnostics commands to help understand the status of the cluster and its environment
+   events     List all events that conform to the filter criteria
+   fs         List filesystems defined in this Weka cluster
+   local      Commands that control weka and its containers on the local machine
+   mount      Mounts a wekafs filesystem. This is the helper utility installed at /sbin/mount.wekafs.
+   nfs        Commands that manage client-groups, permissions and interface-groups
+   org        List organizations defined in the Weka cluster
+   security   Security commands.
+   smb        Commands that manage Weka's SMB container
+   stats      List all statistics that conform to the filter criteria
+   status     Get an overall status of the Weka cluster
+   umount     Unmounts wekafs filesystems. This is the helper utility installed at /sbin/umount.wekafs.
+   user       List users defined in the Weka cluster
+   version    When run without arguments, lists the versions available on this machine. Subcommands allow for
+              downloading of versions, setting the current version and other actions to manage versions.
 
-Use 'weka --legal' for information about open-source libraries
-Use 'weka <command> --help' for more help on a specific command
+Options:
+   --agent         Start the agent service
+   -h, --help      Show help message
+   --build         Prints the CLI build number and exits
+   -v, --version   Prints the CLI version and exits
+   --legal         Prints software license information and exits
 ```
 
 {% hint style="info" %}
@@ -81,26 +90,58 @@ $ weka fs
 
 ```text
 $ weka fs -h
-Description:
-    Commands that manage filesystems, snapshots and filesystem-groups.
-    weka fs:    List the system's filesystems
-
 Usage:
-    weka fs [--name=<name>]
-    weka fs info [--filesystem=<name>]...
-    weka fs create <name> <group-name> <total-capacity> [--ssd-capacity=<ssd>] [--filesystem-id=<id>]
-    weka fs update <name> [--new-name=<new-name>] [--total-capacity=<total>] [--ssd-capacity=<ssd>]
-    weka fs delete <name>
-    weka fs restore <file-system> <source-name>
-    weka fs <command> [<args>...] [options]
+    weka fs [--name name]
+            [--HOST HOST]
+            [--PORT PORT]
+            [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+            [--TIMEOUT TIMEOUT]
+            [--format format]
+            [--output output]...
+            [--sort sort]...
+            [--filter filter]...
+            [--help]
+            [--raw-units]
+            [--UTC]
+            [--no-header]
+            [--verbose]
+            [--json]
 
-Available subcommands:
-    group                   Commands that manage filesystem-groups
-    snapshot                Commands that manage snapshots
-    tier                    Commands that fs tiering
-    capacity-events         Commands that define & manage events alerts capacity
+Description:
+    List filesystems defined in this Weka cluster
 
-See 'weka fs <command> --help' for more help on a specific command
+Subcommands:
+   create     Create a filesystem
+   download   Download a filesystem from object store
+   update     Update a filesystem
+   delete     Delete a filesystem
+   restore    Restore filesystem content from a snapshot
+   group      List filesystem groups
+   snapshot   List snapshots
+   tier       Show object storage connectivity for each node in the cluster
+
+Options:
+   --name                  Filesystem name
+   -H, --HOST              Specify the host. Alternatively, use the WEKA_HOST env variable
+   -P, --PORT              Specify the port. Alternatively, use the WEKA_PORT env variable
+   -C, --CONNECT-TIMEOUT   Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w)
+   -T, --TIMEOUT           Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w)
+   -f, --format            Specify in what format to output the result. Available options are:
+                           view|csv|markdown|json|oldview (format: 'view', 'csv', 'markdown', 'json' or 'oldview')
+   -o, --output            Specify which columns to output. May include any of the following:
+                           id,name,group,usedSSDD,usedSSDM,usedSSD,freeSSD,availableSSDM,availableSSD,usedTotalD,usedTotal,freeTotal,availableTotal,maxFiles,status,encrypted,stores,auth
+   -s, --sort              Specify which column(s) to take into account when sorting the output. May include a '+' or
+                           '-' before the column name to sort in ascending or descending order respectively. Usage:
+                           [+|-]column1[,[+|-]column2[,..]]
+   -F, --filter            Specify what values to filter by in a specific column. Usage:
+                           column1=val1[,column2=val2[,..]]
+   -h, --help              Show help message
+   -R, --raw-units         Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in
+                           human-readable format, e.g 1KiB 234MiB 2GiB.
+   -U, --UTC               Print times in UTC. When not set, times are converted to the local time of this host.
+   --no-header             Don't show column headers when printing the output
+   -v, --verbose           Show all columns in output
+
 ```
 
 ## Connecting to Another Host

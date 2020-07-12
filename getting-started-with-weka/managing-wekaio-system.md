@@ -11,29 +11,41 @@ The Weka system is now installed. Now let's learn how to view, manage and operat
 The Weka CLI is installed on each Weka host and is available through the `weka` command. It's possible to`ssh` one of the hosts and run the `weka` command. This displays a list of all available top-level commands. You can go ahead and explore them.
 
 ```text
-# weka
+$ weka
 Usage:
-    weka [<args>...] [options]
-    weka --agent
+    weka [--help] [--build] [--version] [--legal]
 
 Description:
-    Base command for all the weka related CLIs
+    The base command for all weka related CLIs
 
-The available subcommands are:
-    status      Weka cluster status
-    alerts      List and manage active alerts
-    events      Commands for reading events and managing events settings
-    stats       Commands for reading system statistics
-    cluster     Commands that manage the cluster
-    fs          Commands that manage filesystems, snapshots and filesystem-groups
-    nfs         Commands that manage client-groups, permissions and interface-groups
-    cloud       Cloud commands
-    user        Manage users and login
-    local       Commands that control weka and its containers on the local machine
-    version     Commands that manager the installed weka versions on the host
-    agent       Commands that control the weka agent (outside the weka containers)
-    smb         Commands for setting up and managing smb shares and users
-    diags       Commands for collecting weka-related diagnostics for support
+Subcommands:
+   agent      Command s that control the weka agent (outside the weka containers)
+   alerts     List alerts in the Weka cluster
+   cloud      Cloud commands. List the cluster's cloud status, if no subcommand supplied.
+   cluster    Commands that manage the cluster
+   debug      Commands used to debug a weka cluster
+   diags      Diagnostics commands to help understand the status of the cluster and its environment
+   events     List all events that conform to the filter criteria
+   fs         List filesystems defined in this Weka cluster
+   local      Commands that control weka and its containers on the local machine
+   mount      Mounts a wekafs filesystem. This is the helper utility installed at /sbin/mount.wekafs.
+   nfs        Commands that manage client-groups, permissions and interface-groups
+   org        List organizations defined in the Weka cluster
+   security   Security commands.
+   smb        Commands that manage Weka's SMB container
+   stats      List all statistics that conform to the filter criteria
+   status     Get an overall status of the Weka cluster
+   umount     Unmounts wekafs filesystems. This is the helper utility installed at /sbin/umount.wekafs.
+   user       List users defined in the Weka cluster
+   version    When run without arguments, lists the versions available on this machine. Subcommands allow for
+              downloading of versions, setting the current version and other actions to manage versions.
+
+Options:
+   --agent         Start the agent service
+   -h, --help      Show help message
+   --build         Prints the CLI build number and exits
+   -v, --version   Prints the CLI version and exits
+   --legal         Prints software license information and exits
 ```
 
 For more information about the CLI, refer to [Getting Started with Weka CLI](cli-overview.md).
