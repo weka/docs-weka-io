@@ -259,13 +259,20 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left"></td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>reserve_1g_hugepages=&lt;true|false&gt;</code>
+      <td style="text-align:left"><code>reserve_1g_hugepages</code>
       </td>
-      <td style="text-align:left"><code>true</code> or <code>false</code>
-      </td>
-      <td style="text-align:left">Control the page allocation algorithm if to reserve only 2MB huge pages
+      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">Controls the page allocation algorithm if to reserve only 2MB huge pages
         or also 1GB ones</td>
       <td style="text-align:left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>readahead_kb=&lt;readahead&gt;</code>
+      </td>
+      <td style="text-align:left">Number in KB</td>
+      <td style="text-align:left">Controls the readahead per mount (higher readahead better for sequential
+        reads of large files)</td>
+      <td style="text-align:left">32768</td>
     </tr>
   </tbody>
 </table>
