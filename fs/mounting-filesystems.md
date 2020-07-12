@@ -200,7 +200,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       </td>
       <td style="text-align:left">Number</td>
       <td style="text-align:left">
-        <p>Number of frontend cores to allocate for the client.</p>
+        <p>The number of frontend cores to allocate for the client.</p>
         <p>Either<code>&lt;num_cores&gt;</code> or<code>&lt;core&gt;</code> can be
           specified, but not both.</p>
         <p>If none are specified, the client will be configured with 1 core.</p>
@@ -243,8 +243,8 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left"><code>remove_after_secs=&lt;secs&gt;</code>
       </td>
       <td style="text-align:left">Number</td>
-      <td style="text-align:left">Number of seconds without connectivity after which the client will be
-        removed from the cluster.
+      <td style="text-align:left">The number of seconds without connectivity after which the client will
+        be removed from the cluster.
         <br />Minimum value: 60 seconds.</td>
       <td style="text-align:left">86,400 seconds (24 hours)</td>
     </tr>
@@ -257,6 +257,14 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
         <p>Minimum value: 512 MB.</p>
       </td>
       <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>reserve_1g_hugepages</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Control the page allocation algorithm if to reserve only 2MB huge pages
+        or also 1GB ones</td>
+      <td style="text-align:left">Yes</td>
     </tr>
   </tbody>
 </table>
