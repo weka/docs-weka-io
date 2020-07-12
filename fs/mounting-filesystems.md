@@ -165,6 +165,14 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       </td>
       <td style="text-align:left">No</td>
     </tr>
+    <tr>
+      <td style="text-align:left"><code>obs_direct</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">See <a href="tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a> section</td>
+      <td
+      style="text-align:left">No</td>
+    </tr>
   </tbody>
 </table>
 

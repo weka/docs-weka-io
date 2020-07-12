@@ -63,7 +63,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
       <td style="text-align:left"><code>domain</code>
       </td>
       <td style="text-align:left">String</td>
-      <td style="text-align:left">Domain which the SMB cluster is to join</td>
+      <td style="text-align:left">The domain which the SMB cluster is to join</td>
       <td style="text-align:left">Must be a valid name (ASCII)</td>
       <td style="text-align:left">Yes</td>
       <td style="text-align:left">&#x200B;</td>
@@ -71,7 +71,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
     <tr>
       <td style="text-align:left"><code>samba-hosts</code>
       </td>
-      <td style="text-align:left">Comma- separated strings</td>
+      <td style="text-align:left">Comma-separated strings</td>
       <td style="text-align:left">List of 3-8 Weka system hosts to participate in the SMB cluster, based
         on the host IDs in Weka</td>
       <td style="text-align:left">Must be valid host IDs</td>
@@ -81,21 +81,21 @@ Use the following command line to create a new SMB cluster to be managed by the 
     <tr>
       <td style="text-align:left"><code>smb-ips-pool</code>
       </td>
-      <td style="text-align:left">Comma- separated IP addresses</td>
-      <td style="text-align:left">Public IPs used as floating IPs for the SMB cluster to server the SMB
-        over, and thereby provide HA; should not be assigned to any host on the
-        network</td>
-      <td style="text-align:left">Must be valid IP addresses</td>
-      <td style="text-align:left">No</td>
-      <td style="text-align:left">&#x200B;</td>
+      <td style="text-align:left">Comma-separated IP addresses</td>
+      <td style="text-align:left">Public IPs used as floating IPs for the SMB cluster to serve the SMB over,
+        and thereby provide HA; should not be assigned to any host on the network</td>
+      <td
+      style="text-align:left">Must be valid IP addresses</td>
+        <td style="text-align:left">No</td>
+        <td style="text-align:left">&#x200B;</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>smb-ips-range</code>
       </td>
       <td style="text-align:left">IP address range</td>
-      <td style="text-align:left">The public IPs used as floating IPs for the SMB cluster to server the
-        SMB over and thereby provide HA; should not be assigned to any host on
-        the network</td>
+      <td style="text-align:left">The public IPs used as floating IPs for the SMB cluster to serve the SMB
+        over and thereby provide HA; should not be assigned to any host on the
+        network</td>
       <td style="text-align:left">
         <p>Format: A.B.C.D-E</p>
         <p>E.g., 10.10.0.1-100</p>
@@ -136,7 +136,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 
 `weka smb cluster create wekaSMB mydomain --samba-hosts 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5`
 
-In this example of a full command, an SMB cluster is configured over Weka system hosts 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`and is directed to use public IPs 1.1.1.1 to 1.1.1.5.
+In this example of a full command, an SMB cluster is configured over the Weka system hosts 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`and is directed to use public IPs 1.1.1.1 to 1.1.1.5.
 {% endhint %}
 
 ## Checking Status of SMB Host Readiness
@@ -158,7 +158,7 @@ Use the following command line to join an SMB domain to an Active Directory:
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `username` | String | Name of a user with permissions to add a machine to the domain | Must be a valid name \(ASCII\) | Yes |  |
-| `password` | String | Password of the user | Must be a valid password \(ASCII\) | Yes |  |
+| `password` | String | The password of the user | Must be a valid password \(ASCII\) | Yes |  |
 
 In order to join another Active Directory to the current SMB cluster configuration, it is necessary to leave the current Active Directory. This is performed using the following command line:
 
@@ -194,7 +194,7 @@ Use this command to list all existing SMB shares.
 
 Use the following command line to add a new share to be exposed to SMB:
 
-`smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [file-create-mask] [directory-create-mask]`
+`smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [file-create-mask] [directory-create-mask] [--obs_direct]`
 
 **Parameters in Command Line**
 
@@ -203,10 +203,11 @@ Use the following command line to add a new share to be exposed to SMB:
 | `share-name` | String | Name of the share being added | Must be a valid name \(ASCII\) | Yes | ​ |
 | `fs-name` | String | Name of the filesystem to share | Must be a valid name | Yes | ​ |
 | `description` | String | Description of what the share will receive when viewed remotely | Must be a valid string | No | ​No description |
-| `internal-path` | String | Internal path within the filesystem \(relative to its root\) which will be exposed | Must be a valid path | No | . |
-| `file-create-mask` | String | POSIX permissions for file created through the SMB share | Numeric \(octal\) notation | No | 0744 |
+| `internal-path` | String | The internal path within the filesystem \(relative to its root\) which will be exposed | Must be a valid path | No | . |
+| `file-create-mask` | String | POSIX permissions for the file created through the SMB share | Numeric \(octal\) notation | No | 0744 |
 | `directory-create-mask` | String | POSIX permissions for directories created through the SMB share | Numeric \(octal\) notation | No | 0755 |
 | `acl` | Boolean | Enable Windows ACLs on the share \(which will be translated to POSIX\) | Up to 16 ACEs per file | No | No |
+| `obs-direct` | Boolean | See [Object-store Direct Mount](../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option) section |  | No | No |
 
 {% hint style="info" %}
 **Note:** If it is necessary to set share specific options to the SMB library, contact the Weka Support Team.
@@ -233,7 +234,7 @@ Use the following command line to remove a share exposed to SMB:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `share-id` | String | ID of the share to be removed | Must be a valid name  of a currently-defined share | Yes | ​ |
+| `share-id` | String | The ID of the share to be removed | Must be a valid name  of a currently-defined share | Yes | ​ |
 
 {% hint style="success" %}
 **For Example:** The following is an example for removing an SMB share defined as ID 1:

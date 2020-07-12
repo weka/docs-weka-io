@@ -32,13 +32,13 @@ In order to implement NFS service from a Weka cluster, the following steps must 
 
 In order to define the NFS service, one or more interface groups must be defined. An interface group consists of the following:
 
-* A collection of Weka hosts with an Ethernet port for each host, where all the ports must belong to the same layer 2 subnet.
+* A collection of Weka hosts with an Ethernet port for each host, where all the ports must belong to the same layer 2 subnets.
 * A collection of floating IPs that serve the NFS protocol on the hosts and ports. All IP addresses must belong to the layer 2 subnet above.
 * A routing configuration for the IPs which must comply with the IP network configuration.
 
 Up to 10 different Interface groups can be defined, where multiple interface groups can be used if the cluster needs to connect to multiple layer 2 subnets. Up to 50 hosts can be defined in each interface group.
 
-The Weka system will automatically distribute the IP addresses evenly on each host and port. On a failure of the host, the Weka system will reasonably redistribute the IP addresses associated with the failed host on other hosts. To minimize the effect of any host failures, it is recommended to define sufficient floating IPs so that the Weka system can assign 4 floating IPs per host.
+The Weka system will automatically distribute the IP addresses evenly on each host and port. On failure of the host, the Weka system will reasonably redistribute the IP addresses associated with the failed host on other hosts. To minimize the effect of any host failures, it is recommended to define sufficient floating IPs so that the Weka system can assign 4 floating IPs per host.
 
 {% hint style="info" %}
 **Note:** The Weka system will configure the host IP networking for the NFS service on the host operating system. It should not be defined by the user.
@@ -65,7 +65,7 @@ The NFS mount should be configured on the client host via the standard NFS stack
 
 ## Load Balancing and Resiliency of the NFS Service
 
-The Weka NFS service is a scalable, fully load-balanced and resilient service which provides continuous service through failures of any kind.
+The Weka NFS service is a scalable, fully load-balanced, and resilient service that provides continuous service through failures of any kind.
 
 Scalability is implemented by defining many hosts that serve the NFS protocol, thereby enabling the scaling of performance by adding more hosts to the interface group.
 
@@ -103,7 +103,7 @@ Use the following command line to add an interface group:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | Unique interface group name | None | Yes |  |
 | `type` | String | Group type | Can only be  NFS | Yes | NFS |
-| `subnet` | String | Subnet mask in the 255.255.0.0 format | Valid netmask | No | 255.255.255.255 |
+| `subnet` | String | The subnet mask in the 255.255.0.0 format | Valid netmask | No | 255.255.255.255 |
 | `gw` | String | Gateway IP | Valid IP | No | 255.255.255.255 |
 
 ### Setting Interface Group Ports
@@ -146,9 +146,9 @@ Access the Group IPs table.
 
 ![Group IPs Table](../.gitbook/assets/image%20%282%29.png)
 
-To set IPs for the selected group, click the '+' button on the top right-hand side of Group IPs table. Then enter the relevant IP range and click Save.
+To set IPs for the selected group, click the '+' button on the top right-hand side of the Group IPs table. Then enter the relevant IP range and click Save.
 
-To remove an IP, click the the trash symbol displayed next to the IP in the table.
+To remove an IP, click the trash symbol displayed next to the IP in the table.
 
 **Setting Interface Group IPs using the CLI**
 
@@ -175,7 +175,7 @@ Access the NFS Client Permissions screen.
 
 ![NFS Client Permissions Screen](../.gitbook/assets/screen-shot-2019-08-12-at-10.12.27.png)
 
-To define a client access group, click the '+' button on the top left-hand side of the screen. Enter the client access group name and click Save.
+To define a client access group, click the '+' button on the top left-hand side of the screen. Enter the client access-group name and click Save.
 
 #### Defining Client Access Groups Using the CLI <a id="uploading-a-snapshot-using-the-ui"></a>
 
@@ -239,7 +239,7 @@ weka nfs rules delete ip <name> <ip>`
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | Group name | Valid name | Yes |  |
-| `ip` | String | IP with net mask rule, in the 1.1.1.1/255.255.0.0 format | Valid IP | Yes |  |
+| `ip` | String | IP with netmask rule, in the 1.1.1.1/255.255.0.0 format | Valid IP | Yes |  |
 
 ### **Managing NFS Client Permissions**
 
@@ -249,15 +249,15 @@ To add client permissions, click the top right-hand '+' icon in the Client Permi
 
 ![NFS Permissions Dialog Box](../.gitbook/assets/screenshot-from-2018-07-04-17-52-32.png)
 
-Define the the following parameters:
+Define the following parameters:
 
 * Client Group: the client group to receive permissions.
 * Filesystem: the filesystem to receive permissions.
 * Path: The path that will be the root of the share.
-* Type: The type of access to be provided - RO \(read only\) or RW \(Read/Write\).
+* Type: The type of access to be provided - RO \(read-only\) or RW \(Read/Write\).
 * Squash Root: Set to ON or OFF.
-* Anom. UID: Anonymous user ID \(relevant only for root squashing\).
-* Anom. GID: Anonymous user group ID \(relevant only for root squashing\)
+* Anon. UID: Anonymous user ID \(relevant only for root squashing\).
+* Anon. GID: Anonymous user group ID \(relevant only for root squashing\)
 
 Then click Save.
 
@@ -266,7 +266,7 @@ Then click Save.
 **Command:** `weka nfs permission`
 
 Use the following command lines to add/update/delete NFS permissions:  
-`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid]`
+`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs_direct]`
 
 `weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid]`
 
@@ -314,7 +314,7 @@ Use the following command lines to add/update/delete NFS permissions:
       <td style="text-align:left"> <code>path</code>
       </td>
       <td style="text-align:left">String</td>
-      <td style="text-align:left">Root of the share</td>
+      <td style="text-align:left">The root of the share</td>
       <td style="text-align:left">Valid path</td>
       <td style="text-align:left">No</td>
       <td style="text-align:left">/</td>
@@ -325,8 +325,8 @@ Use the following command lines to add/update/delete NFS permissions:
       <td style="text-align:left">String</td>
       <td style="text-align:left">Permission type</td>
       <td style="text-align:left">
-        <p>RO: read only</p>
-        <p>RW: read write</p>
+        <p>RO: read-only</p>
+        <p>RW: read-write</p>
       </td>
       <td style="text-align:left">No</td>
       <td style="text-align:left">RW</td>
@@ -357,6 +357,16 @@ Use the following command lines to add/update/delete NFS permissions:
       <td style="text-align:left">Valid GID (between 0 and 65535)</td>
       <td style="text-align:left">Yes (if root squashing is enabled)</td>
       <td style="text-align:left">65534</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>obs-direct</code>
+      </td>
+      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">See <a href="../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a> section</td>
+      <td
+      style="text-align:left"></td>
+        <td style="text-align:left">No</td>
+        <td style="text-align:left">No</td>
     </tr>
   </tbody>
 </table>

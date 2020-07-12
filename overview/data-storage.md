@@ -105,5 +105,9 @@ _When storing genomic data which is frequently accessed during the first 3 month
 **Note:** Using the [Snap-To-Object](../fs/snap-to-obj.md) feature causes data to be tiered regardless of the tiering policies.
 {% endhint %}
 
+### Bypassing the time-base policies
+
+Regardless of the time-based policies, it is possible to use a special mount option `obs_direct` to bypass the time-base policies. Any creation/writing of files from a mount point with this option will mark it to release as soon as possible, before taking into account other files retention policy.
+
 For a more in-depth explanation, refer to [Advanced Data Lifecycle Management](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md).
 

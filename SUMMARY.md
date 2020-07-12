@@ -54,7 +54,7 @@
   * [Advanced Time-based Policies for Data Storage Location](fs/tiering/advanced-time-based-policies-for-data-storage-location.md)
   * [Data Management in Tiered Filesystems](fs/tiering/data-management-in-tiered-filesystems.md)
   * [Transition Between Tiered and SSD-Only Filesystems](fs/tiering/transition-between-tiered-and-ssd-only-filesystems.md)
-  * [Pre-Fetching from Object Store](fs/tiering/pre-fetching-from-object-store.md)
+  * [Manual fetch and release of data](fs/tiering/pre-fetching-from-object-store.md)
 * [Mounting Filesystems](fs/mounting-filesystems.md)
 * [Snapshots](fs/snapshots.md)
 * [Snap-To-Object](fs/snap-to-obj.md)
