@@ -51,7 +51,7 @@ Options:
 
 `-J|--json`flag prints the raw JSON value returned by the cluster.
 
-`-H|--hostname`flag directs the CLI to communicate with the cluster through the given host name.
+`-H|--hostname`flag directs the CLI to communicate with the cluster through the given hostname.
 
 `--raw-units` flag causes units such as capacity and bytes to be printed in their raw format, as returned by the cluster.
 
@@ -146,13 +146,15 @@ Options:
 
 ## Connecting to Another Host
 
-Most Weka system commands deliver the same result on all cluster hosts. However, it is sometimes necessary to execute a command on a specific host. This is performed using the `-H`/`--hostname` option and specifying the host name or IP address of the target host.
+Most Weka system commands deliver the same result on all cluster hosts. However, it is sometimes necessary to execute a command on a specific host. This is performed using the `-H`/`--hostname` option and specifying the hostname or IP address of the target host.
 
 ## CLI Auto-completion
 
-Using `bash` you can use auto-completion for CLI commands and parameters.
+Using `bash` you can use auto-completion for CLI commands and parameters. The auto-completion script is automatically installed.
 
-To use CLI auto-completion on a host, first, run `weka agent autocomplete install` to install the script and re-enter your shell session.
+To disable the auto-completion script, run `weka agent autocomplete uninstall`
+
+To \(re-\)install the script on a host, run `weka agent autocomplete install` and re-enter your shell session.
 
 You can also use `weka agent autocomplete export` to get the bash completions script and write it to any desired location.
 
