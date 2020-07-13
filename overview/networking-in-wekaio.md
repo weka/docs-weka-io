@@ -112,3 +112,47 @@ HA for hosts is achieved through the implementation of two network interfaces on
 
 HA performs failover and failback for reliability and load balancing on both interfaces and is operational for both Ethernet and InfiniBand. It currently requires doubling the number of IPs on both the host and the IO nodes.‌
 
+## RDMA and GPUDirect Storage
+
+GPUDirect Storage enables a direct data path between storage and GPU memory. GPUDirect Storage avoids extra copies through a bounce buffer in the CPU’s memory. It allows a direct memory access \(DMA\) engine near the NIC or storage to move data on a direct path into or out of GPU memory without burdening the CPU or GPU.
+
+The Weka system automatically utilizes the RDMA data path and GPUDircet Storage in supported environments. When the system identifies it can use RDMA, both in UDP and DPDK modes, it utilizes the use for workload it can benefit from RDMA \(with regards to IO size: 32K+ for reads and 256K+ for writes\).
+
+Using RDMA/GPUDircet Storage, it is thus possible to get a performance gain. You can get much higher performance from a UDP client \(which does not require to dedicate a core to the Weka system\), get an extra boost for a DPDK client, or assign fewer cores for the Weka system in the DPDK mode to get the same performance.
+
+### Limitations
+
+For the RDMA/GPUDirect Storage technology to take into effect, the following requirements must be met:
+
+* InfiniBand network
+* Mellanox ConnectX5 or ConnectX6
+* OFED 4.6-1.0.1.1 or higher
+* Encrypted filesystems: The framework will not be utilized for encrypted filesystems and will fall back to work without RDMA/GPUDirect for IOs to encrypted filesystems
+* All the cluster hosts must support RDMA networking
+* For a client host:
+  * GPUDirect Storage - the IB interfaces added to the Nvidia GPUDirect configuration should support RDMA
+  * RDMA - all the NICs used by Weka must support RDMA networking
+
+{% hint style="info" %}
+**Note:** GPUDirect Storage completely bypassing the kernel and does not utilize the page cache. Standard RDMA clients still utilize the page cache.
+{% endhint %}
+
+Running `weka cluster nodes` will indicate if the RDMA is utilized, e.g.:
+
+```text
+# weka cluster nodes
+NODE ID         HOST ID        ROLES          NETWORK
+NodeId: 0       HostId: 0      MANAGEMENT     UDP
+NodeId: 1       HostId: 0      FRONTEND       DPDK / RDMA
+NodeId: 2       HostId: 0      COMPUTE        DPDK / RDMA
+NodeId: 3       HostId: 0      COMPUTE        DPDK / RDMA
+NodeId: 4       HostId: 0      COMPUTE        DPDK / RDMA
+NodeId: 5       HostId: 0      COMPUTE        DPDK / RDMA
+NodeId: 6       HostId: 0      DRIVES         DPDK / RDMA
+NodeId: 7       HostId: 0      DRIVES         DPDK / RDMA
+```
+
+{% hint style="info" %}
+**Note:** To disable RDMA networking altogether on the cluster or a specific client, contact the Weka support team.
+{% endhint %}
+
