@@ -101,7 +101,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
     <tr>
       <td style="text-align:left"><code>dentry_max_age_positive</code>
       </td>
-      <td style="text-align:left">Positive number, time in milliseconds</td>
+      <td style="text-align:left">Number in milliseconds</td>
       <td style="text-align:left">After the defined time period, every metadata cached entry is refreshed
         from the system, allowing the host to take into account metadata changes
         performed by other hosts.</td>
@@ -110,7 +110,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
     <tr>
       <td style="text-align:left"><code>dentry_max_age_negative</code>
       </td>
-      <td style="text-align:left">Positive number, time in milliseconds</td>
+      <td style="text-align:left">Number in milliseconds</td>
       <td style="text-align:left">Each time a file or directory lookup fails, an entry specifying that the
         file or directory does not exist is created in the local dentry cache.
         This entry is refreshed after the defined time, allowing the host to use
@@ -172,6 +172,41 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">See <a href="tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a> section</td>
       <td
       style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>noatime</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Do not update inode access times</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>strictatime</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Always update inode access times</td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>relatime</code>
+      </td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Update inode access times only on modification or change, or if inode
+        has been accessed and <code>relatime_treshold</code> has passed.</td>
+      <td
+      style="text-align:left">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>relatime_threshold</code>
+      </td>
+      <td style="text-align:left">Number in seconds</td>
+      <td style="text-align:left">
+        <p>How much time (in seconds) to wait since an inode has been accessed (not
+          modified) before updating the access time.</p>
+        <p>0 means to never update the access time on access only.</p>
+        <p>This option is relevant only if <code>relatime</code> is on.</p>
+      </td>
+      <td style="text-align:left">0 (infinite)</td>
     </tr>
   </tbody>
 </table>
@@ -261,7 +296,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
     <tr>
       <td style="text-align:left"><code>reserve_1g_hugepages</code>
       </td>
-      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">None</td>
       <td style="text-align:left">Controls the page allocation algorithm if to reserve only 2MB huge pages
         or also 1GB ones</td>
       <td style="text-align:left">Yes</td>
