@@ -13,6 +13,7 @@ description: >-
 ## CPU
 
 * Intel SandyBridge+ processors
+* AMD EPIC processors
 
 ## Memory
 
@@ -23,9 +24,9 @@ description: >-
 
 ### Types
 
-* **RHEL:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 8.0, 8.1
-* **CentOS:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 8.0, 8.1
-* **Ubuntu:** 16.04, 18.04
+* **RHEL:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 8.0, 8.1, 8.2
+* **CentOS:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 8.0, 8.1, 8.2
+* **Ubuntu:** 16.04, 18.04, 20.04
 * **Amazon Linux:** 17.09, 18.03
 * **Amazon Linux 2 LTS** \(formerly Amazon Linux 2 LTS 17.12\)
 
@@ -39,7 +40,8 @@ description: >-
 
 * 2.6.32
 * 3.10
-* 4.4.0-1106 to 4.18
+* 4.4.0-1106 to 4.19
+* 5.4
 
 {% hint style="info" %}
 **Note:** It is advisable to turn off auto kernel updates so it will not get upgraded to a yet unsupported version.
@@ -86,6 +88,7 @@ Supported Mellanox OFED versions:
 * 4.6-1.0.1.1
 * 4.7-1.0.0.1
 * 4.7-3.2.9.0
+* 5.0-2.1.8.0
 
 Supported ENA drivers:
 
@@ -143,6 +146,7 @@ Supported Mellanox OFED versions:
 * 4.6-1.0.1.1
 * 4.7-1.0.0.1
 * 4.7-3.2.9.0
+* 5.0-2.1.8.0
 
 #### Infiniband Configuration
 
