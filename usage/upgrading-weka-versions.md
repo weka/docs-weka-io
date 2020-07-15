@@ -17,10 +17,10 @@ The Weka upgrade process supports upgrading to both higher minor versions and ma
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
+* To upgrade to Weka software version 3.8.x, go through version 3.7.3 or above
 * To upgrade to Weka software version 3.7.x, go through version 3.6.2 or above
 * To upgrade to Weka software version 3.6.x, go through version 3.5.3 or above
 * To upgrade to Weka software version 3.5.x, go through version 3.4.6 or above.
-* To upgrade to Weka software version 3.4.x, go through version 3.3.1 or above.
 
 For further information, contact the Weka Support Team.
 
@@ -71,7 +71,7 @@ The limited upgrade window can be controlled by setting the following parameters
 `weka local run --in <new-version> -e WEKA_USERNAME=<user> -e WEKA_PASSWORD=<passwd> upgrade --mode=one-shot`
 {% endhint %}
 
-Before switching the cluster to the new release, the upgrade command will distribute the new release to all cluster hosts and make any necessary preparations, such as compiling the new `wekafs` driver. If any failure occurs during the preparations, such as disconnection of a host or failure to build a driver, the upgrade process will stop and a summary message will be received indicating the problematic host.
+Before switching the cluster to the new release, the upgrade command will distribute the new release to all cluster hosts and make any necessary preparations, such as compiling the new `wekafs` driver. If any failure occurs during the preparations, such as the disconnection of a host or failure to build a driver, the upgrade process will stop and a summary message will be received indicating the problematic host.
 
 If everything goes to plan, the upgrade will stop the cluster IO service, switch all hosts to the new release and then turn the IO service back on. This takes about 1 minute, depending on the size of the cluster.
 
@@ -95,7 +95,7 @@ In case of a failure, the version is automatically reverted on the hosts, yet, `
 
 ## Performance Improvements with V3.5 and Above
 
-Weka version 3.5 provides performance improvements when working with object stores. To reap the benefits of improved object store performance and ensure the conversion of the internal Weka data structure, the following is recommended for each tiered filesystem when upgrading from version 3.4 to version 3.5:
+Weka version 3.5 provides performance improvements when working with object stores. To reap the benefits of improved object-store performance and ensure the conversion of the internal Weka data structure, the following is recommended for each tiered filesystem when upgrading from version 3.4 to version 3.5:
 
 * Attach a new object store bucket.
 * Delete any unnecessary snapshots \(so unnecessary data is not copied to the new bucket\).
