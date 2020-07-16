@@ -23,8 +23,8 @@ description: >-
 
 ### Types
 
-* **RHEL:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 8.0, 8.1, 8.2
-* **CentOS:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 8.0, 8.1, 8.2
+* **RHEL:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 8.0, 8.1
+* **CentOS:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 8.0, 8.1
 * **Ubuntu:** 16.04, 18.04
 * **Amazon Linux:** 17.09, 18.03
 * **Amazon Linux 2 LTS** \(formerly Amazon Linux 2 LTS 17.12\)
@@ -191,7 +191,8 @@ Certified Object Stores:
 
 VMs can be used as clients only, assuming they meet the following prerequisite:
 
-#### For UDP clients:
+#### 
+For UDP clients:
 
 * To avoid irregularities, crashes and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform, and dedicate a core to the Weka client.
 * The root filesystem should handle a 3K IOPS load by the Weka client.
