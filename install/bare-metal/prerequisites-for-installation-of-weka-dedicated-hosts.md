@@ -13,7 +13,7 @@ description: >-
 ## CPU
 
 * Intel SandyBridge+ processors
-* AMD EPIC processors
+* AMD EPYC processors
 
 ## Memory
 
