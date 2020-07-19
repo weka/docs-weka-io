@@ -46,7 +46,7 @@ The Stateless Clients feature defers the process of joining the cluster until a 
 To use the Stateless Clients feature, a Weka agent must be installed. Once this is complete, mounts can be created and configured using the mount command and can be easily removed from the cluster using the unmount command.
 
 {% hint style="info" %}
-**Note:** To allow only Weka authenticate users to mount a filesystem, set the filesystem `--auth-required` to `yes`. 
+**Note:** To allow only Weka authenticated users to mount a filesystem, set the filesystem `--auth-required` flag to `yes`. 
 {% endhint %}
 
 Assuming the Weka cluster is using the backend IP of `1.2.3.4`, running the following command as `root` on a client will install the agent:
