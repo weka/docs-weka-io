@@ -43,7 +43,11 @@ There are two options for mounting a filesystem on a cluster client: read cache 
 
 The Stateless Clients feature defers the process of joining the cluster until a mount is performed. Simplifying and improving the management of clients in the cluster, it removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave in high frequency. Furthermore, it unifies all security aspects in the mount command, eliminating the search of separate credentials at cluster join and mount.
 
-To use the Stateless Clients feature, a Weka agent must be installed. Once this is complete, mounts can be created and configured using the mount command, and can be easily removed from the cluster using the unmount command.
+To use the Stateless Clients feature, a Weka agent must be installed. Once this is complete, mounts can be created and configured using the mount command and can be easily removed from the cluster using the unmount command.
+
+{% hint style="info" %}
+**Note:** To allow only Weka authenticate users to mount a filesystem, set the filesystem `--auth-required` to `yes`. 
+{% endhint %}
 
 Assuming the Weka cluster is using the backend IP of `1.2.3.4`, running the following command as `root` on a client will install the agent:
 
@@ -64,9 +68,9 @@ Use the following command line to invoke the mount command:
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `options` | ​ | See Additional Mount Options below | ​ | ​ | ​ |
-| `backend` | String | IP/host name of a backend host | Must be a valid name | Yes | ​ |
+| `backend` | String | IP/hostname of a backend host | Must be a valid name | Yes | ​ |
 | `fs` | String | Filesystem name | Must be a valid name | Yes | ​ |
-| `mount-path` | String | Path to mount on the local machine | Must be a valid path name | Yes | ​ |
+| `mount-path` | String | Path to mount on the local machine | Must be a valid path-name | Yes | ​ |
 
 ## Mount Command Options
 

@@ -40,7 +40,7 @@ Enter the relevant parameters and click Create to create the filesystem.
 
 Use the following command line to add a filesystem:
 
-`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd>] [--max-files <max-files>] [--filesystem-id <id>] [--encrypted] [--obs-name <obs-name>]`
+`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd>] [--max-files <max-files>] [--filesystem-id <id>] [--encrypted] [--obs-name <obs-name>] [--auth-required auth]`
 
 **Parameters in Command Line**
 
@@ -53,6 +53,7 @@ Use the following command line to add a filesystem:
 | `max-files` | Number | Metadata allocation for this filesystem | Must be a valid number | No | Automatically calculated by the system based on the SSD capacity |
 | `encrypted` | Boolean | Encryption of filesystem |  | No | No |
 | `obs-name` | String | Object store name for tiering | Must be a valid name | Mandatory for tiered filesystems |  |
+| `auth-required` | String | Determined if mounting the filesystem requires to be authenticated to Weka \([weka user login](../../usage/user-management.md#user-log-in)\)  | `yes` or `no` | No | no |
 
 {% hint style="info" %}
 **Note:** When creating an encrypted filesystem a KMS must be defined.
@@ -99,6 +100,7 @@ Use the following command line to edit an existing filesystem:
 | `total` | Number | Total capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
 | `ssd` | Number | SSD capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
 | `max-files` | Number | Metadata limit for the filesystem | Must be a valid number | Optional | Keep unchanged |
+| `auth-required` | String | Determined if mounting the filesystem requires to be authenticated to Weka \([weka user login](../../usage/user-management.md#user-log-in)\)  | `yes` or `no` | No | no |
 
 ## Deleting a Filesystem
 
