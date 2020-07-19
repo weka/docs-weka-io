@@ -8,7 +8,7 @@
 
 For a complete prerequisite list, refer to [Prerequisites for Installation](../install/bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md) section. 
 
-We'll consider an example of architecture with 8 identical hosts \(named `weka01` to `weka08`\). Each host has more than 20 cores, 6 NVME drives, and a single Mellanox NIC.
+We'll consider an example of architecture with 8 identical hosts \(named `weka01` to `weka08`\). Each host has more than 20 cores, 6 NVME drives, and a single Mellanox NIC. 
 
 Using Mellanox NICs simplifies the installation commands \(e.g., only single IP for data is required, no need to expose VFs, identification of the interface netmask, and default routing gateway\). 
 
@@ -22,13 +22,13 @@ Install Weka software on each host:
 
 ```bash
 # deploy the software on all hosts
-pdsh -w weka0[1-8] "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/3.7.2/3.7.2 | sh"
+pdsh -w weka0[1-8] "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/3.8.0/3.8.0 | sudo sh"
 
 ```
 
 ## Configuration
 
-From one of the servers, form the cluster, set the cluster name, stripe width and protection scheme, and enable cloud monitoring:
+From one of the servers, form the cluster, set the cluster name, stripe width and protection scheme, and enable cloud monitoring \(DNS is assumed to be set up, otherwise explicit IPs should be used in the cluster create command\):
 
 ```bash
 # connect to one of the servers and run the rest of the configuration from there
