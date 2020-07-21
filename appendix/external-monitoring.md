@@ -35,7 +35,7 @@ We will go over the following steps:
 
 ## Step 1: Install the Weka agent
 
-Run the following commands to install the weka agent:
+Run the following commands to install the Weka agent:
 
 ```text
 # download from a backend server and install
@@ -44,7 +44,7 @@ curl http://<backend-wekaserver>:14000/dist/v1/install | sh
 ```
 
 {% hint style="info" %}
-**Note:** This  step is required if you do not plan on running the Weka Prometheus client on a Weka server or client \(a member of the cluster\). If you install the Weka Prometheus Client on a server that only has an agent, you must use the `-H` or `--HOST` option, as described below.
+**Note:** This step is required if you do not plan on running the Weka Prometheus client on a Weka server or client \(a member of the cluster\). If you install the Weka Prometheus Client on a server that only has an agent, you must use the `-H` or `--HOST` option, as described below. In this case, if the Weka cluster is upgraded, you might need to re-install the Weka agent.
 {% endhint %}
 
 ## Step 2: Install the Weka Prometheus Client
