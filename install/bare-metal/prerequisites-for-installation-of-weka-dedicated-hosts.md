@@ -191,7 +191,6 @@ Certified Object Stores:
 
 VMs can be used as clients only, assuming they meet the following prerequisite:
 
-#### 
 For UDP clients:
 
 * To avoid irregularities, crashes and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform, and dedicate a core to the Weka client.
