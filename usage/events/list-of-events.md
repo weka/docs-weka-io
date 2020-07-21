@@ -41,9 +41,10 @@ description: >-
 | HostDeactivated | INFO | Host configuration change |
 | HostDeactivating | INFO | Host configuration change |
 | HostRemoved | INFO | Host configuration change |
-| HostRemoving | INFO | Host configuration change |
 | HostRemovingFailed | INFO | Host configuration change |
+| HostRemoving | INFO | Host configuration change |
 | LeaderChanged | WARNING | Cluster leader has changed |
+| NodeNetworkUnstable | MAJOR | A node with unstable network detected |
 | NodePartiallyConnected | MAJOR | A partially connected node was removed |
 | NodeRejoined | INFO | Node rejoined the cluster |
 | NodeUnreachable | MAJOR | An unreachable node was removed |
@@ -64,13 +65,13 @@ description: >-
 | CorruptedDrive | MAJOR | Drive has a valid header but is corrupt |
 | DriveActivated | INFO | Drive activated |
 | DriveDeactivated | INFO | Drive deactivated |
-| DriveExcessiveErrors | WARNING | Drive has excessive error rate and will be phased out; call Weka Support Team |
+| DriveExcessiveErrors | WARNING | Drive has excessive error rate and will be phased out; call WekaIO Support Team |
 | DriveFormatUpgraded | INFO | Drive format was upgraded |
-| DriveImmediateShutdown | MAJOR | Drive had to be shutdown immediately; call Weka Support Team |
+| DriveImmediateShutdown | MAJOR | Drive had to be shutdown immediately; call WekaIO Support Team |
 | DriveInfoReport | INFO | Drive Information reporting |
 | DriveInitFailed | MAJOR | Drive failed to initialize |
-| DriveIoError | MAJOR | Drive had an IO error |
 | DriveIoErrorBMS | MAJOR | Drive found an IO error in background media scan |
+| DriveIoError | MAJOR | Drive had an IO error |
 | DriveLimitExceeded | WARNING | Attempted to add more drives than supported |
 | DriveMediumError | MAJOR | Drive had a Medium error |
 | DriveNvmeErrorLog | WARNING | NVMe Drive Error Log Entry |
@@ -94,9 +95,9 @@ description: >-
 | DedupEventsDiscarded | WARNING | Deduplicated events discarded |
 | EventsDedupReport | INFO | Event deduplication ended |
 | EventsDiscarded | MAJOR | Too many events were generated in a short period of time, so some of them were discarded and lost |
-| Example | INFO | Example |
 | ExampleAggregated | INFO | Example Aggregated |
 | ExampleDebug | DEBUG | ExampleDebug |
+| Example | INFO | Example |
 
 ## Filesystem
 
@@ -113,6 +114,7 @@ description: >-
 | FilesystemGroupDeleted | INFO | Filesystem group configuration change |
 | FilesystemGroupUpdated | INFO | Filesystem group configuration change |
 | FilesystemUpdated | INFO | Filesystem configuration change |
+| ForcedBucketStepdown | MINOR | Bucket forced to step down |
 | HangingBackendIosDetected | CRITICAL | Some IOs are hanging |
 | HangingBackendIosNoLongerDetected | INFO | IOs are no longer hanging |
 | HangingBucketStepDown | WARNING | Bucket step-down is hanging |
@@ -200,7 +202,6 @@ description: >-
 | NICNotFound | INFO | NIC not found when initializing |
 | NetDeviceLinkDown | MAJOR | Network interface DOWN |
 | NetDeviceLinkUp | MINOR | Network interface UP |
-| NetDeviceWithNumaFittingNodeCoreNotFound | WARNING | Cannot find net device with NUMA to match cores - performance warning |
 | NetworkPortConfigFail | MINOR | Network port configuration failed |
 | NetworkPortDead | MAJOR | Network Port hasn't passed packets for a long period of time, it is likely dead |
 | NoConnectivityToLivingNode | MAJOR | Node is disconnected from living peer\(s\) |
@@ -209,14 +210,14 @@ description: >-
 | NodeCannotJoinCluster | WARNING | Node cannot join cluster for too long |
 | NodeCannotSendJumboFrames | MINOR | Node cannot send jumbo packets |
 | NodeDisconnected | MINOR | Node disconnected from cluster |
-| NodeHasNetDevicesWithDifferentNumas | WARNING | Multiple net devices with different NUMAs - performance warning |
+| RDMAClientDisabled | MINOR | RDMA optimization disabled |
+| RDMAClientEnabled | MINOR | RDMA optimization enabled |
 
 ## Node
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | CrashReport | MAJOR | Node has crashed on the previous run |
-| FailedToLoadDriver | MAJOR | Failed to load the wekafs driver |
 | GCCrashReport | MINOR | Node has crashed in GC on the previous run |
 | NodeAssertionFailed | MAJOR | Node assertion failed |
 | NodeExceptionExit | MAJOR | Node exited with an exception |
@@ -273,6 +274,27 @@ description: >-
 | TooFewActiveFailureDomains | CRITICAL | Too few active failure domains |
 | TooManyFailures | CRITICAL | Too many failures, some data is unavailable |
 
+## Resources
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| BandwidthSelected | INFO | Bandwidth set for host |
+| CoreAllocated | INFO | Allocated core |
+| DisabledNumaBalancing | INFO | Disabled NUMA Balancing |
+| DriverLoaded | INFO | Driver loaded |
+| FailedToLoadDriver | MAJOR | Failed to load the wekafs driver |
+| HugepagesAllocated | INFO | Hugepages allocated |
+| HugepagesAllocationRetries | WARNING | Hugepages allocation retried |
+| HugepagesAllocationStarted | INFO | Hugepages allocation started |
+| InactiveHostCannotJoinCluster | INFO | Inactive host cannot join the cluster |
+| LoadingStableResourcesFailed | INFO | Failed loading stable resources |
+| NetDeviceWithNumaFittingSlotCoreNotFound | WARNING | Performance warning: Cannot find net device with NUMA to match cores |
+| NetworkDeviceAllocated | INFO | Allocated network device |
+| NetworkDeviceNotUsedByAnySlots | MINOR | Network device not used by any slots |
+| RevertToStableResources | INFO | Reverted to stable resources |
+| SlotHasNetDevicesWithDifferentNumas | WARNING | Performance warning: Allocated multiple net devices with different NUMAs |
+| UnlimitedBandwidthSelected | INFO | Bandwidth set to unlimited |
+
 ## SMB
 
 | Type | Severity | Description |
@@ -299,7 +321,6 @@ description: >-
 | BucketsCreated | INFO | System has created buckets |
 | ClusterwideTaskChanged | INFO | Clusterwide task changed |
 | HaveEnoughSSDCapacity | MINOR | Enough SSD capacity now exists for all provisioned file systems |
-| HugepagesAllocationRetries | WARNING | Hugepages allocation issues |
 | IOStarted | INFO | System has started |
 | IOStopped | INFO | System has stopped |
 | NotEnoughSSDCapacity | CRITICAL | Not enough SSD capacity exists for all provisioned file systems |
@@ -328,7 +349,7 @@ description: >-
 | UserDeleted | INFO | User Deleted |
 | UserLoggedIn | INFO | User logged in |
 | UserLoginFailed | INFO | User login failed |
-| UserPasswordChanged | INFO | User changed password |
 | UserPasswordChangedByAnotherUser | INFO | User password changed by an admin |
+| UserPasswordChanged | INFO | User changed password |
 | UserRoleChanged | INFO | User role changed |
 
