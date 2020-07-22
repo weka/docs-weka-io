@@ -215,6 +215,8 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
   </tbody>
 </table>
 
+### \*\*\*\*
+
 ### **Additional Mount Options Available using the Stateless Clients Feature**
 
 <table>
@@ -317,7 +319,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left"><code>auth-token</code>
       </td>
       <td style="text-align:left">String</td>
-      <td style="text-align:left">Path to the mount authentication token</td>
+      <td style="text-align:left">Path to the mount authentication token (per mount)</td>
       <td style="text-align:left"><code>~/.weka/auth-token.json</code>
       </td>
     </tr>
@@ -325,7 +327,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 </table>
 
 {% hint style="info" %}
-**Note:** These parameters are only effective on the first mount command for each client.
+**Note:** These parameters, if not stated otherwise, are only effective on the first mount command for each client.
 {% endhint %}
 
 {% hint style="info" %}

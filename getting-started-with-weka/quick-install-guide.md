@@ -1,6 +1,6 @@
 # Quick Install Guide
 
-## Assumptions
+## Prerequisites
 
 1. [OFED is installed](../install/bare-metal/setting-up-the-hosts/#mellanox-ofed-installation)
 2. [NIC devices are configured properly](../install/bare-metal/setting-up-the-hosts/#network-configuration)
