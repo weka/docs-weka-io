@@ -100,4 +100,5 @@
 ## Appendix
 
 * [External Monitoring](appendix/external-monitoring.md)
+* [Weka CSI Plugin](appendix/weka-csi-plugin.md)
 
