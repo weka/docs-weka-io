@@ -197,7 +197,6 @@ The Kubernetes admin can prepare some persistent volumes in advance to be used b
 
 #### Persistent Volume Example
 
-{% code title="csi-wekafs/examples/pv-wekafs-dir.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -214,16 +213,15 @@ spec:
     driver: csi.weka.io
     volumeHandle: dir/v1/podsFilesystem/ad29bb9dc47fb2cbc34f2719f0bc7eb274d26394-my-dir
 ```
-{% endcode %}
 
 #### Persistent Volume **Parameters**
 
 | **Parameter** | Description | Limitation |
 | :--- | :--- | :--- |
 | `spec.accessModes` | The volume access mode | `ReadWriteMany`, `ReadWriteOnce`, or `ReadOnlyMany` |
-| `spec.storageClassName` | The storage class to use to create the PVC | Must be an existing storage class |
+| `spec.storageClassName` | The storage class to use to create the PV | Must be an existing storage class |
 | `spec.capacity.storage` | A desired capacity for the volume | The capacity quota is not enforced but is stored on the filesystem directory extended attributed for future use |
-| `spec.csi.volumeHandle` | An optional string specifying a previously created volume  | A string containing the volumeType \(`dir/v1`\) filesystem name, lowercase SHA1 of the directory path, and the directory path. E.g. `dir/v1/default/ad29bb9dc47fb2cbc34f2719f0bc7eb274d26394-my-dir` note, this will work for volumes created by the CSI plugin \(with the same naming convention and xattr it saved there\) |
+| `spec.csi.volumeHandle` | A string specifying a previously created volume  | A string containing the volumeType \(`dir/v1`\) filesystem name, lowercase SHA1 of the directory path, and the directory path. E.g. `dir/v1/default/ad29bb9dc47fb2cbc34f2719f0bc7eb274d26394-my-dir` note, this will work for volumes created by the CSI plugin; to use a pre-existing directory refer to [Provisioning of Volumes from a Pre-existing Directory](weka-csi-plugin.md#provisioning-of-volumes-from-a-pre-existing-directory) |
 
 Apply the PersistentVolume and check it has been created successfully:
 
@@ -317,7 +315,7 @@ spec:
     <tr>
       <td style="text-align:left"><code>spec.storageClassName</code>
       </td>
-      <td style="text-align:left">The storage class to use to create the PVC</td>
+      <td style="text-align:left">The storage class to use to create the PV</td>
       <td style="text-align:left">Must be an existing storage class</td>
     </tr>
     <tr>
