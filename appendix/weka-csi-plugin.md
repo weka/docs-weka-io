@@ -110,7 +110,7 @@ It is first required to define a storage class to use the Weka CSI Plugin.
 
 #### Storage Class Example
 
-{% code title="csi-wekafs/examples/storageclass-wekafs-dir.yaml" %}
+{% code title="csi-wekafs/examples/dir/storageclass-wekafs-dir.yaml" %}
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -153,7 +153,7 @@ Using a similar storage class to the above, it is possible to define a persisten
 
 #### Persistent Volume Claim Example
 
-{% code title="csi-wekafs/examples/pvc-wekafs-dir.yaml" %}
+{% code title="csi-wekafs/examples/dir/pvc-wekafs-dir.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -242,7 +242,7 @@ Many times, it is useful to use a pre-existing directory with pre-populated data
 
 #### Storage Class Example
 
-{% code title="csi-wekafs/examples/storageclass-wekafs-path.yaml" %}
+{% code title="csi-wekafs/examples/path/storageclass-wekafs-path.yaml" %}
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -273,7 +273,7 @@ storageclass-wekafs-path       csi.weka.io         Retain          Immediate    
 
 #### Persistent Volume Example
 
-{% code title="csi-wekafs/examples/pv-wekafs-path.yaml" %}
+{% code title="csi-wekafs/examples/path/pv-wekafs-path.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
@@ -356,7 +356,7 @@ Now,  bind a PVC to this specific PV, use the volumeName parameter under the PVC
 
 #### Persistent Volume Claim Example
 
-{% code title="csi-wekafs/examples/pvc-wekafs-path.yaml" %}
+{% code title="csi-wekafs/examples/path/pvc-wekafs-path.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
