@@ -103,7 +103,7 @@ Once the SMB cluster is connected to the Active Directory, it is possible to ass
 For example, creating a snapshot via the CLI:
 
 ```text
-$ weka fs snapshot create fs_name snapshot_name `TZ=GMT date +@GMT-%Y.%m.%d-%H.%M.%S`
+$ weka fs snapshot create fs_name snapshot_name --access-point `TZ=GMT date +@GMT-%Y.%m.%d-%H.%M.%S`
 ```
 
 
