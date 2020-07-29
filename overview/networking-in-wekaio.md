@@ -9,7 +9,7 @@ description: This page reviews the theory of operation for Weka networking.
 The Weka system supports the following types of networking technologies:
 
 1. ‌InfiniBand \(IB\)
-2. Ethernet.
+2. Ethernet
 
 ‌The currently-available networking infrastructure dictates the choice between the two.
 
@@ -116,9 +116,9 @@ HA performs failover and failback for reliability and load balancing on both int
 
 GPUDirect Storage enables a direct data path between storage and GPU memory. GPUDirect Storage avoids extra copies through a bounce buffer in the CPU’s memory. It allows a direct memory access \(DMA\) engine near the NIC or storage to move data on a direct path into or out of GPU memory without burdening the CPU or GPU.
 
-The Weka system automatically utilizes the RDMA data path and GPUDircet Storage in supported environments. When the system identifies it can use RDMA, both in UDP and DPDK modes, it utilizes the use for workload it can benefit from RDMA \(with regards to IO size: 32K+ for reads and 256K+ for writes\).
+The Weka system automatically utilizes the RDMA data path and GPUDirect Storage in supported environments. When the system identifies it can use RDMA, both in UDP and DPDK modes, it utilizes the use for workload it can benefit from RDMA \(with regards to IO size: 32K+ for reads and 256K+ for writes\).
 
-Using RDMA/GPUDircet Storage, it is thus possible to get a performance gain. You can get much higher performance from a UDP client \(which does not require to dedicate a core to the Weka system\), get an extra boost for a DPDK client, or assign fewer cores for the Weka system in the DPDK mode to get the same performance.
+Using RDMA/GPUDirect Storage, it is thus possible to get a performance gain. You can get much higher performance from a UDP client \(which does not require to dedicate a core to the Weka system\), get an extra boost for a DPDK client, or assign fewer cores for the Weka system in the DPDK mode to get the same performance.
 
 ### Limitations
 
@@ -134,7 +134,7 @@ For the RDMA/GPUDirect Storage technology to take into effect, the following req
   * RDMA - all the NICs used by Weka must support RDMA networking
 
 {% hint style="info" %}
-**Note:** GPUDirect Storage completely bypassing the kernel and does not utilize the page cache. Standard RDMA clients still utilize the page cache.
+**Note:** GPUDirect Storage completely bypasses the kernel and does not utilize the page cache. Standard RDMA clients still utilize the page cache.
 {% endhint %}
 
 Running `weka cluster nodes` will indicate if the RDMA is utilized, e.g.:
