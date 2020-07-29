@@ -110,7 +110,7 @@ It is first required to define a storage class to use the Weka CSI Plugin.
 
 #### Storage Class Example
 
-{% code title="csi-wekafs/examples/dir/storageclass-wekafs-dir.yaml" %}
+{% code title="csi-wekafs/examples/dynamic/storageclass-wekafs-dir.yaml" %}
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -153,7 +153,7 @@ Using a similar storage class to the above, it is possible to define a persisten
 
 #### Persistent Volume Claim Example
 
-{% code title="csi-wekafs/examples/dir/pvc-wekafs-dir.yaml" %}
+{% code title="csi-wekafs/examples/dynamic/pvc-wekafs-dir.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -191,96 +191,26 @@ NAME                  STATUS   VOLUME                                     CAPACI
 pvc-wekafs-dir        Bound    pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380   1Gi        RWX            storageclass-wekafs-dir        2m10s
 ```
 
-### Static Provisioning
+{% hint style="info" %}
+**Note:** The directory will be created inside the filesystem under `csi-volumes` directory,  starting with the volume name.
+{% endhint %}
 
-The Kubernetes admin can prepare some persistent volumes in advance to be used by pods.
+### Static Provisioning 
+
+The Kubernetes admin can prepare some persistent volumes in advance to be used by pods, they should be an existing directory, and can contain pre-populated data to be used by the PODs.
+
+It can be a directory previously provisioned by the CSI or a pre-existing directory in WekaFS. To expose an existing directory in WekaFS via CSI, define a persistent volume, and link a persistent volume claim to this persistent volume.
 
 #### Persistent Volume Example
 
+{% code title="csi-wekafs/examples/static/pv-wekafs-dir-static.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-wekafs-dir
+  name: pv-wekafs-dir-static
 spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: storageclass-wekafs-dir
-  volumeMode: Filesystem
-  capacity:
-    storage: 1Gi
-  csi:
-    driver: csi.weka.io
-    volumeHandle: dir/v1/podsFilesystem/ad29bb9dc47fb2cbc34f2719f0bc7eb274d26394-my-dir
-```
-
-#### Persistent Volume **Parameters**
-
-| **Parameter** | Description | Limitation |
-| :--- | :--- | :--- |
-| `spec.accessModes` | The volume access mode | `ReadWriteMany`, `ReadWriteOnce`, or `ReadOnlyMany` |
-| `spec.storageClassName` | The storage class to use to create the PV | Must be an existing storage class |
-| `spec.capacity.storage` | A desired capacity for the volume | The capacity quota is not enforced but is stored on the filesystem directory extended attributed for future use |
-| `spec.csi.volumeHandle` | A string specifying a previously created volume  | A string containing the volumeType \(`dir/v1`\) filesystem name, lowercase SHA1 of the directory path, and the directory path. E.g. `dir/v1/default/ad29bb9dc47fb2cbc34f2719f0bc7eb274d26394-my-dir` note, this will work for volumes created by the CSI plugin or with a similar convention; usually, for a PV, it sufficient to use the easier configuration as described in [Provisioning of Volumes from a Pre-existing Directory](weka-csi-plugin.md#provisioning-of-volumes-from-a-pre-existing-directory) |
-
-Apply the PersistentVolume and check it has been created successfully:
-
-```text
-# apply the pv .yaml file
-$ kubectl apply -f pv-wekafs-dir.yaml
-persistentvolume/pv-wekafs-dir created
-
-# check the pv resource has been created
-$ kubectl get pv
-NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                         STORAGECLASS                   REASON   AGE
-pv-wekafs-dir                              1Gi        RWX            Retain           Available                                 storageclass-wekafs-dir                 3m33s
-```
-
-### **Provisioning of Volumes from a Pre-existing Directory** 
-
-Many times, it is useful to use a pre-existing directory with pre-populated data in the POD. It can be a directory previously provisioned by the CSI or a pre-existing directory in WekaFS. To expose an existing directory in WekaFS via CSI, define a new storage class, a persistent volume, and link a persistent volume claim to this persistent volume.
-
-#### Storage Class Example
-
-{% code title="csi-wekafs/examples/path/storageclass-wekafs-path.yaml" %}
-```yaml
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: storageclass-wekafs-path
-provisioner: csi.weka.io
-reclaimPolicy: Retain
-volumeBindingMode: Immediate
-allowVolumeExpansion: true
-parameters:
-  volumeType: path/v1
-  allowNonExistentPath: "false"
-```
-{% endcode %}
-
-Apply the StorageClass and check it has been created successfully:
-
-```text
-# apply the storageclass .yaml file
-$ kubectl apply -f storageclass-wekafs-path.yaml
-storageclass.storage.k8s.io/storageclass-wekafs-path created
-
-# check the storageclass resource has been created
-$ kubectl get sc
-NAME                           PROVISIONER         RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
-storageclass-wekafs-path       csi.weka.io         Retain          Immediate           true                   93s
-```
-
-#### Persistent Volume Example
-
-{% code title="csi-wekafs/examples/path/pv-wekafs-path.yaml" %}
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-wekafs-path
-spec:
-  storageClassName: storageclass-wekafs-path
+  storageClassName: storageclass-wekafs-dir-static
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
@@ -289,7 +219,11 @@ spec:
     storage: 1Gi
   csi:
     driver: csi.weka.io
-    volumeHandle: path/v1/podsFilesystem/my-dir
+    # volumeHandle must be formatted as following:
+    # dir/v1/<FILE_SYSTEM_NAME>/<INNER_PATH_IN_FILESYSTEM>
+    # The path must exist, otherwise publish request will fail
+    volumeHandle: dir/v1/podsFilesystem/my-dir
+
 ```
 {% endcode %}
 
@@ -330,8 +264,8 @@ spec:
       </td>
       <td style="text-align:left">A string specifying a previously created path</td>
       <td style="text-align:left">
-        <p>A string containing the volumeType (<code>path/v1</code>) filesystem name,
-          and the directory path. E.g. <code>path/v1/podsFilesystem/my-dir</code> 
+        <p>A string containing the volumeType (<code>dir/v1</code>) filesystem name,
+          and the directory path. E.g. <code>dir/v1/podsFilesystem/my-dir</code> 
         </p>
         <p>Must be an existing filesystem and path</p>
       </td>
@@ -343,30 +277,30 @@ Apply the PersistentVolume and check it has been created successfully:
 
 ```text
 # apply the pv .yaml file
-$ kubectl apply -f pv-wekafs-path.yaml
-persistentvolume/pv-wekafs-path created
+$ kubectl apply -f pv-wekafs-dir-static.yaml
+persistentvolume/pv-wekafs-dir-static created
 
 # check the pv resource has been created
 $ kubectl get pv
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                         STORAGECLASS                   REASON   AGE
-pv-wekafs-path                             1Gi        RWX            Retain           Available                                 storageclass-wekafs-path                4m24s
+pv-wekafs-dir-static                       1Gi        RWX            Retain           Available                                 storageclass-wekafs-dir                 3m33s
 ```
 
-Now,  bind a PVC to this specific PV, use the volumeName parameter under the PVC spec and provide it with the specific PV name.
+Now,  bind a PVC to this specific PV, use the `volumeName` parameter under the PVC `spec` and provide it with the specific PV name.
 
-#### Persistent Volume Claim Example
+#### Persistent Volume Claim for Static Provisioning Example
 
-{% code title="csi-wekafs/examples/path/pvc-wekafs-path.yaml" %}
+{% code title="csi-wekafs/examples/static/pvc-wekafs-dir-static.yaml" %}
 ```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-wekafs-path
+  name: pvc-wekafs-dir-static
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: storageclass-wekafs-path
-  volumeName: pv-wekafs-path
+  storageClassName: storageclass-wekafs-dir
+  volumeName: pv-wekafs-dir-static
   volumeMode: Filesystem
   resources:
     requests:
@@ -374,12 +308,12 @@ spec:
 ```
 {% endcode %}
 
-#### Persistent Volume Claim **Parameters**
+#### Persistent Volume Claim for Static Provisioning Example
 
 | **Parameter** | Description | Limitation |
 | :--- | :--- | :--- |
 | `spec.accessModes` | The volume access mode | `ReadWriteMany`, `ReadWriteOnce`, or `ReadOnlyMany` |
-| `spec.storageClassName` | The storage class to use to create the PVC | Must be an existing storage class |
+| `spec.storageClassName` | The storage class to use to create the PVC | Must be the same storage class as the PV requested to bind in `spec.volumeName` |
 | `spec.resources.requests.storage` | A desired capacity for the volume | The capacity quota is not enforced but is stored on the filesystem directory extended attributed for future use |
 | `spec.volumeName` | A name of a pre-configured persistent volume  | Must be an existing PV name |
 
@@ -387,13 +321,13 @@ Apply the PersistentVolumeClaim and check it has been created successfully:
 
 ```text
 # apply the pvc .yaml file
-$ kubectl apply -f pvc-wekafs-path.yaml
-persistentvolumeclaim/pvc-wekafs-path created
+$ kubectl apply -f pvc-wekafs-dir-static.yaml
+persistentvolumeclaim/pvc-wekafs-dir-static created
 
 # check the pvc resource has been created
 $ kubectl get pvc
-NAME                  STATUS   VOLUME             CAPACITY   ACCESS MODES   STORAGECLASS                   AGE
-pvc-wekafs-path       Bound    pv-wekafs-path     1Gi        RWX            storageclass-wekafs-dir        3m41s
+NAME                    STATUS   VOLUME                CAPACITY   ACCESS MODES   STORAGECLASS                   AGE
+pvc-wekafs-dir-static   Bound    pv-wekafs-dir-static  1Gi        RWX            storageclass-wekafs-dir        3m41s
 ```
 
 The PV will change the status to `Bound` and state the relevant claim it is bounded to:
@@ -401,19 +335,19 @@ The PV will change the status to `Bound` and state the relevant claim it is boun
 ```text
 # check the pv resource has been created
 $ kubectl get pv
-NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                         STORAGECLASS                   REASON   AGE
-pv-wekafs-path                             1Gi        RWX            Retain           Bound       default/pvc-wekafs-path       storageclass-wekafs-path                6m30s
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                           STORAGECLASS                   REASON   AGE
+pv-wekafs-dir-static                       1Gi        RWX            Retain           Bound       default/pvc-wekafs-dir-static   storageclass-wekafs-dir                 6m30s
 ```
 
 ### Launching an Application using Weka as the POD's Storage
 
-Now that we have a storage class and a PVC \(or PV\) in place, we can configure the Kubernetes pods to provision volumes via the Weka system.
+Now that we have a storage class and a PVC in place, we can configure the Kubernetes pods to provision volumes via the Weka system.
 
-We'll take an example application echos the current timestamp every 10 seconds, and provide it with the previously created `pvc-wekafs-dir`  PVC. 
+We'll take an example application that echos the current timestamp every 10 seconds, and provide it with the previously created `pvc-wekafs-dir`  PVC. 
 
 Note that multiple pods can share a volume produced by the same PVC as long as the `accessModes` parameter is set to `ReadWriteMany`.
 
-{% code title="csi-app-on-dir.yaml" %}
+{% code title="csi-wekafs/examples/dynamic/csi-app-on-dir.yaml" %}
 ```yaml
 kind: Pod
 apiVersion: v1
@@ -450,12 +384,14 @@ NAME                      READY   STATUS              RESTARTS   AGE
 my-csi-app                1/1     Running             0          85s
 
 # if we go to a wekafs mount of this filesystem we can see a directory has been created
-$ ls -l /mnt/weka/podsFilesystem/
-drwxr-x--- 1 root root 0 Jul 19 12:18 a1659c8a7ded3c3c05d6facffd69cbf79b95604c-pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380
+$ ls -l /mnt/weka/podsFilesystem/csi-volumes
+drwxr-x--- 1 root root 0 Jul 19 12:18 pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380-a1659c8a7ded3c3c05d6facffd69cbf79b95604c
 
 # inside that directory, the temp.txt file from the running pod can be found
- $ cat /mnt/weka/podsFilesystem/a1659c8a7ded3c3c05d6facffd69cbf79b95604c-pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380/temp.txt
+ $ cat /mnt/weka/podsFilesystem/csi-volumes/pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380-a1659c8a7ded3c3c05d6facffd69cbf79b95604c/temp.txt
 Sun Jul 19 12:50:25 IDT 2020
+Sun Jul 19 12:50:35 IDT 2020
+Sun Jul 19 12:50:45 IDT 2020
 ```
 
 ## Troubleshooting
