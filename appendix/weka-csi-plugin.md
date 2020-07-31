@@ -436,7 +436,7 @@ kubectl logs pods/csi-wekafsplugin-<ID> --namespace csi-wekafsplugin -c wekafs
 
 Due to a Kubernetes v1.18 issue with allocating mixed hugepages sizes \([https://github.com/kubernetes/kubernetes/pull/80831](https://github.com/kubernetes/kubernetes/pull/80831)\) is required that the Weka system will not try to allocate mixed sizes of hugepages on the Kubernetes nodes.
 
-To workaround the Kubernetes issue:
+To workaround the Kubernetes issue (required only if the default memory for the client has been increased):
 
 * If the Weka client is installed on the K8s nodes via a manual stateless client mount, set the `reserve_1g_hugepages` mount option to `false` in the mount command.
 * If this is a Weka server or a Weka client, which is part of the Weka cluster, contact the Weka customer support team.
