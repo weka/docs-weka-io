@@ -60,7 +60,7 @@ $ git clone https://github.com/weka/csi-wekafs.git
 
 ### Installation
 
-From the downloaded location in the Kubernetes master node, run the following command to deploy the Weka CSI Plugin as a DeamonsSet:
+From the downloaded location in the Kubernetes master node, run the following command to deploy the Weka CSI Plugin as a DaemonsSet:
 
 ```text
 $ ./deploy/kubernetes-latest/deploy.sh
