@@ -13,6 +13,7 @@ description: >-
 * Stripe Size: 4+2
 * 8 backend servers instances of [i3en.12xlarge](https://aws.amazon.com/ec2/instance-types/i3en/)
 * Amazon Linux AMI 2017.09.0.20170930 x86\_64 HVM
+* Backend servers are placed in the same placement group
 * 7 dedicated cores for Weka 
   * 4 compute
   * 2 drives
