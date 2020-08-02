@@ -10,7 +10,7 @@ description: >-
 
 The [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md) \(CSI\) is a standard for exposing arbitrary block and file storage systems to containerized workloads on Container Orchestration Systems \(COs\) like Kubernetes.
 
-The Weka CSI Plugin provides the creation and configuration of persistent storage external to Kubernetes. CSI replaces plugins developed earlier in the Kubernetes evolution. It replaces the `hostPath` method to expose WekaFS mounts as Kubernetes volumes. 
+The Weka CSI Plugin provides the creation and configuration of persistent storage external to Kubernetes. CSI replaces plugins developed earlier in the Kubernetes evolution. It replaces the `hostPath` method to expose WekaFS mounts as Kubernetes volumes.
 
 ### Interoperability
 
@@ -52,7 +52,7 @@ The Weka CSI Plugin deployment is performed via a daemon set.
 
 ### Download
 
-Download the Weka CSI Plugin from [GitHub](https://github.com/weka/csi-wekafs) to a master node in the Kubernetes cluster. 
+Download the Weka CSI Plugin from [GitHub](https://github.com/weka/csi-wekafs) to a master node in the Kubernetes cluster.
 
 ```text
 $ git clone https://github.com/weka/csi-wekafs.git
@@ -130,7 +130,7 @@ parameters:
 
 | **Parameter** | Description | Limitation |
 | :--- | :--- | :--- |
-| `filesystemName` | The name of the Weka filesystem to create directories in as Kubernetes volumes  | The filesystem should exist in the Weka cluster |
+| `filesystemName` | The name of the Weka filesystem to create directories in as Kubernetes volumes | The filesystem should exist in the Weka cluster |
 
 Apply the StorageClass and check it has been created successfully:
 
@@ -192,10 +192,10 @@ pvc-wekafs-dir        Bound    pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380   1Gi   
 ```
 
 {% hint style="info" %}
-**Note:** The directory will be created inside the filesystem under `csi-volumes` directory,  starting with the volume name.
+**Note:** The directory will be created inside the filesystem under `csi-volumes` directory, starting with the volume name.
 {% endhint %}
 
-### Static Provisioning 
+### Static Provisioning
 
 The Kubernetes admin can prepare some persistent volumes in advance to be used by pods, they should be an existing directory, and can contain pre-populated data to be used by the PODs.
 
@@ -223,7 +223,6 @@ spec:
     # dir/v1/<FILE_SYSTEM_NAME>/<INNER_PATH_IN_FILESYSTEM>
     # The path must exist, otherwise publish request will fail
     volumeHandle: dir/v1/podsFilesystem/my-dir
-
 ```
 {% endcode %}
 
@@ -265,7 +264,7 @@ spec:
       <td style="text-align:left">A string specifying a previously created path</td>
       <td style="text-align:left">
         <p>A string containing the volumeType (<code>dir/v1</code>) filesystem name,
-          and the directory path. E.g. <code>dir/v1/podsFilesystem/my-dir</code> 
+          and the directory path. E.g. <code>dir/v1/podsFilesystem/my-dir</code>
         </p>
         <p>Must be an existing filesystem and path</p>
       </td>
@@ -286,7 +285,7 @@ NAME                                       CAPACITY   ACCESS MODES   RECLAIM POL
 pv-wekafs-dir-static                       1Gi        RWX            Retain           Available                                 storageclass-wekafs-dir                 3m33s
 ```
 
-Now,  bind a PVC to this specific PV, use the `volumeName` parameter under the PVC `spec` and provide it with the specific PV name.
+Now, bind a PVC to this specific PV, use the `volumeName` parameter under the PVC `spec` and provide it with the specific PV name.
 
 #### Persistent Volume Claim for Static Provisioning Example
 
@@ -315,7 +314,7 @@ spec:
 | `spec.accessModes` | The volume access mode | `ReadWriteMany`, `ReadWriteOnce`, or `ReadOnlyMany` |
 | `spec.storageClassName` | The storage class to use to create the PVC | Must be the same storage class as the PV requested to bind in `spec.volumeName` |
 | `spec.resources.requests.storage` | A desired capacity for the volume | The capacity quota is not enforced but is stored on the filesystem directory extended attributed for future use |
-| `spec.volumeName` | A name of a pre-configured persistent volume  | Must be an existing PV name |
+| `spec.volumeName` | A name of a pre-configured persistent volume | Must be an existing PV name |
 
 Apply the PersistentVolumeClaim and check it has been created successfully:
 
@@ -343,7 +342,7 @@ pv-wekafs-dir-static                       1Gi        RWX            Retain     
 
 Now that we have a storage class and a PVC in place, we can configure the Kubernetes pods to provision volumes via the Weka system.
 
-We'll take an example application that echos the current timestamp every 10 seconds, and provide it with the previously created `pvc-wekafs-dir`  PVC. 
+We'll take an example application that echos the current timestamp every 10 seconds, and provide it with the previously created `pvc-wekafs-dir` PVC.
 
 Note that multiple pods can share a volume produced by the same PVC as long as the `accessModes` parameter is set to `ReadWriteMany`.
 
@@ -376,7 +375,7 @@ $ kubectl apply -f csi-app-on-dir.yaml
 pod/my-csi-app created
 ```
 
-Kubernetes will allocate a  persistent volume and attach it to the pod, it will use a directory within the WekaFS filesystem as defined in the storage class mentioned in the persistent volume claim. The pod will be in `Running` status, and the `temp.txt` file will get updated with occasional `date` information.
+Kubernetes will allocate a persistent volume and attach it to the pod, it will use a directory within the WekaFS filesystem as defined in the storage class mentioned in the persistent volume claim. The pod will be in `Running` status, and the `temp.txt` file will get updated with occasional `date` information.
 
 ```text
 $ kubectl get pod my-csi-app
@@ -436,7 +435,7 @@ kubectl logs pods/csi-wekafsplugin-<ID> --namespace csi-wekafsplugin -c wekafs
 
 Due to a Kubernetes v1.18 issue with allocating mixed hugepages sizes \([https://github.com/kubernetes/kubernetes/pull/80831](https://github.com/kubernetes/kubernetes/pull/80831)\) is required that the Weka system will not try to allocate mixed sizes of hugepages on the Kubernetes nodes.
 
-To workaround the Kubernetes issue (required only if the default memory for the client has been increased):
+To workaround the Kubernetes issue \(required only if the default memory for the client has been increased\):
 
 * If the Weka client is installed on the K8s nodes via a manual stateless client mount, set the `reserve_1g_hugepages` mount option to `false` in the mount command.
 * If this is a Weka server or a Weka client, which is part of the Weka cluster, contact the Weka customer support team.
