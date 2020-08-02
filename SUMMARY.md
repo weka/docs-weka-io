@@ -40,7 +40,8 @@
 
 ## Performance <a id="testing-and-troubleshooting"></a>
 
-* [Testing Weka Performance](testing-and-troubleshooting/testing-weka-system-performance.md)
+* [Testing Weka Performance](testing-and-troubleshooting/testing-weka-system-performance/README.md)
+  * [Test Environment Details](testing-and-troubleshooting/testing-weka-system-performance/test-environment-details.md)
 
 ## WekaFS Filesystems <a id="fs"></a>
 
