@@ -585,5 +585,7 @@ fio --client=clients.txt FIOmaster.txt
 mpiexec -f clients.txt -np 1088 mdtest -v -N 136 -i 3 -n 18382 -F -u -d /mnt/weka/mdtest
 ```
 
-{% file src="../../.gitbook/assets/fiomaster \(2\).txt" %}
+{% file src="../../.gitbook/assets/fiomaster \(1\).txt" %}
+
+
 
