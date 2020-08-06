@@ -209,5 +209,8 @@ VMs can be used as clients only, assuming they meet the following prerequisite:
 
 * [HashiCorp Vault](https://www.hashicorp.com/products/vault/) \(version 1.1.5 and up\)
 * [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) compliant KMS \(protocol version 1.2 and up\)
-  * Should support encryption-as-a-service \(encrypt/decrypt APIs\)
+  * The KMS should support encryption-as-a-service \(KMIP encrypt/decrypt APIs\)
+  * KMIP certification has been conducted with [Equinix SmartKey](https://www.equinix.com/services/edge-services/smartkey/) \(powered by [Fortanix KMS](https://fortanix.com/products/sdkms/)\)
+
+
 
