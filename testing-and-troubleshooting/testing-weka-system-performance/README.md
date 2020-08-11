@@ -39,7 +39,7 @@ Start the FIO server on every one of the clients:
 fio --server --daemonize=/tmp/fio.pid
 ```
 
-Run the test command from one of the clients, note, the clients not to be mounted to a Weka filesystem.
+Run the test command from one of the clients, note, the clients need to be mounted to a Weka filesystem.
 
 An example of launching a test \(`sometest`\) on all clients in a file \(`clients.txt`\) using the server/client model:
 
