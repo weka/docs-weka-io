@@ -78,6 +78,10 @@ To configure the new host as a client, run the following command:
 weka cluster host cores <host-id> 1 --frontend-dedicated-cores=1
 ```
 
+{% hint style="info" %}
+**Note:** The Number of total cores and frontend-dedicated-cores must be equal.
+{% endhint %}
+
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
