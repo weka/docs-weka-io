@@ -21,7 +21,7 @@ Each configuration can be immediately deployed as a CloudFormation stack by redi
 Once the cluster is deployed:
 
 1. Refer to [Managing the Weka System ](../../getting-started-with-weka/managing-wekaio-system.md)for getting started with Weka CLI and GUI.
-2. Refer to [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting and writing to a WekaFS filesystem.
+2. Refer to [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting, and writing to a WekaFS filesystem.
 
 ## Planning a Cluster
 
@@ -29,7 +29,7 @@ The Self-Service Portal is available at [https://start.weka.io](https://start.we
 
 ![Self-Service Portal Main Screen](../../.gitbook/assets/01-calculator-overview.png)
 
-As shown in the screen above, configuration options include the total capacity, the desired deployment model and additional performance requirements. For more information about deployment types, refer to [Deployment Types](deployment-types.md).
+As shown in the screen above, configuration options include the total capacity, the desired deployment model, and additional performance requirements. For more information about deployment types, refer to [Deployment Types](deployment-types.md).
 
 ## Deploying a Cluster
 

@@ -38,13 +38,13 @@ $ curl https://<token>@get.weka.io/dist/v1/release
 }
 ```
 
-This list of releases available for installation is sorted backwards from the most recent release. By default, 50 results are provided per page. To receive more results, use the `page=N` query parameter to receive the `N`th page.
+This list of releases available for installation is sorted backward from the most recent release. By default, 50 results are provided per page. To receive more results, use the `page=N` query parameter to receive the `Nth` page.
 
 {% hint style="info" %}
 **Note:** Usually, a request from more results is not necessary, since the first page contains the most recent releases.
 {% endhint %}
 
-Each release contains an ID field which identifies the release. In the examples below, version 3.6.1 has been used.
+Each release contains an ID field that identifies the release. In the examples below, version 3.6.1 has been used.
 
 To generate a CloudFormation template, make a `POST` request to the `https://<token>@get.weka.io/dist/v1/aws/cfn/<version>`API:
 
@@ -79,7 +79,7 @@ In the example above, a template was generated for a cluster with 10 `i3.xlarge`
 
 ## Request Body
 
-The `https://<token>@get.weka.io/dist/v1/aws/cfn/<version>` API provides a JSON object with a `cluster` property. `cluster` is a list of instance types, roles and counts:
+The `https://<token>@get.weka.io/dist/v1/aws/cfn/<version>` API provides a JSON object with a `cluster` property. `cluster` is a list of instance types, roles, and counts:
 
 | Property | Description |
 | :--- | :--- |
@@ -122,7 +122,7 @@ To deploy the CloudFormation template through the AWS console, a `quick_create_s
 **Note:** CloudFormation template URLs are valid for up to 1 week.
 {% endhint %}
 
-It is also possible to receive the template directly from the API call ,without saving it in a bucket. To do this, use a `?type=template`query parameter:
+It is also possible to receive the template directly from the API call, without saving it in a bucket. To do this, use a `?type=template`query parameter:
 
 ```bash
 $ spec='...'  # same as above
@@ -156,7 +156,7 @@ The CloudFormation template has the following parameters:
     <tr>
       <td style="text-align:left"><code>SubnetId</code>
       </td>
-      <td style="text-align:left">Subnet in which the Weka cluster will be deployed.</td>
+      <td style="text-align:left">The subnet in which the Weka cluster will be deployed.</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>LoadBalancerType</code>
@@ -211,7 +211,7 @@ The CloudFormation template has the following parameters:
 </table>
 
 {% hint style="info" %}
-**Note:** It is possible using a NAT \(with `LoadBalancerType` other than `Internet Facing`\) parameter. Otherwise,`SubnetId` must be a public subnet or a subnet that can be routed to the Internet, since deployment is based on downloading the Weka system and various packages from the Internet.
+**Note:** It is possible using a NAT \(with `LoadBalancerType` parameter other than `Internet Facing`\). Otherwise,`SubnetId` must be a public subnet or a subnet that can be routed to the Internet, since deployment is based on downloading the Weka system and various packages from the Internet.
 {% endhint %}
 
 ## IAM Role Created in the Template
