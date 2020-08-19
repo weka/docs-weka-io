@@ -24,13 +24,7 @@ You should be familiar with the following concepts and services that will be use
 
 For security reasons, it is advisable to rotate the SSH keys used for the EC2 instances. 
 
-To rotate the SSH keys, follow these steps \(as described [here](https://aws.amazon.com/blogs/security/how-to-rotate-access-keys-for-iam-users/)\):
-
-1. Create a second access key in addition to the one in use.
-2. Update all your applications to use the new access key and validate that the applications are working.
-3. Change the state of the previous access key to inactive.
-4. Validate that your applications are still working as expected.
-5. Delete the inactive access key.
+To rotate the SSH keys, follow these steps as described in [Adding or replacing a key pair for your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#replacing-key-pair) and [How to use AWS Secrets Manager to securely store and rotate SSH key pairs](https://aws.amazon.com/blogs/security/how-to-use-aws-secrets-manager-securely-store-rotate-ssh-key-pairs/).
 
 
 
