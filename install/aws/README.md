@@ -20,7 +20,33 @@ You should be familiar with the following concepts and services that will be use
 * [S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html) - Object storage \(to be used for tiering data\) 
 * [Cloud Formation](https://aws.amazon.com/documentation/cloudformation/)
 
-## SSH Keys Rotation
+## Best Practices
+
+### Backup and Recovery
+
+#### Resiliency
+
+The Weka system is a distributed cluster protected from 2 or 4 failure domains failures, providing fast rebuild times as described in the [Weka system overview](../../overview/about.md#weka-functionality-features) section.
+
+#### Instance Failure
+
+In case of an instance failure, the Weka system will [rebuild](../../overview/about.md#distributed-network-scheme) the data. To regain the reduced compute and storage due to the instance failure to the cluster, [add a new instance to the cluster](../../usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md).
+
+#### Upload Snapshots to S3
+
+It is advisable to use periodic \(incremental\) snapshots to back-up the data and protect from multiple EC2 instances failures. The recovery point objective \(RPO\) would be determined by the cadence in which the snapshots are taken and uploaded to S3. The RPO changes between the type of data, regulations, and company policies, but it is advisable to upload at least daily snapshots \([Snap-To-Object](../../fs/snap-to-obj.md#about-snap-to-object)\) of the critical filesystems.
+
+In case of a failure and a need to recover from a backup, it is just a matter of spinning up a cluster using the [Self-Service Portal](self-service-portal.md) or [CloudFormation](cloudformation.md) and creating filesystems from those snapshots. There is no need to wait for the data to reach the EC2 volumes. It is instantly accessible via S3. The recovery time objective \(RTO\) for this operation mainly depends on the time it takes to deploy the CloudFormation stack and will typically be below 30 min.
+
+#### Cross AZ Failure
+
+Refer to [Protecting Data Against AWS Availability Zone Failures](../../fs/snap-to-obj.md#protecting-data-against-aws-availability-zone-failures).
+
+#### Region Failure
+
+The use of Weka snapshots uploaded to S3 combined with S3 cross-region replication enables the protection from an AWS region failure.
+
+### SSH Keys Rotation
 
 For security reasons, it is advisable to rotate the SSH keys used for the EC2 instances. 
 
