@@ -7,7 +7,7 @@ description: >-
 
 # CloudFormation Template Generator
 
-Before Starting
+## Before Starting
 
 The APIs described here require an API token which can be obtained at [https://get.weka.io/ui/account/api-tokens](https://get.weka.io/ui/account/api-tokens). Obtaining this token requires registration if you do not have an account.
 
