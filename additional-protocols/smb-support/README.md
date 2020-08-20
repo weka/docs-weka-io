@@ -10,36 +10,47 @@ description: >-
 
 SMB \(Server Message Block\) is a network file sharing protocol that allows remote systems to connect to shared file and print services. Weka's implementation is based on the open-source Samba package and provides support for SMB versions 2 and 3.
 
-The Weka implementation of SMB makes storage services available to Windows and MacOS clients. Weka provides shared access from multiple clients, as well as multi-protocol access to the same files from SMB, NFS, and Weka native filesystem drivers.
+The Weka implementation of SMB makes storage services available to Windows and macOS clients. Weka provides shared access from multiple clients, as well as multi-protocol access to the same files from SMB, NFS, and Weka native filesystem drivers.
 
 ## Key Features of Weka Implementation of SMB
 
-Implementation of the SMB feature in the Weka system is scalable, resilient and distributed.
+Implementation of the SMB feature in the Weka system is scalable, resilient, and distributed.
 
 * **Scalable:** The Weka system currently supports an SMB cluster of between 3 to 8 hosts. These hosts run the SMB gateway service, while the backend filesystem can be any Weka filesystem. Therefore, it is practically unlimited in size and performance.
 * **Resilient:** The Weka system implementation of SMB provides clustered access to files in a Weka file store, enabling multiple servers to work together. Consequently, if a server failure occurs, another server is available to take over operations, thereby ensuring failover support and high availability. Weka standard resiliency against failures also protects the SMB filesystems.
 * **Distributed:** A Weka implementation is distributed over a cluster, where all nodes in the cluster handle all SMB filesystems concurrently. Therefore, performance supported by SMB can scale with more hardware resources, and high availability is ensured.
 
-## SMB User-Mapping Prerequisites
+## SMB User-Mapping
 
-Weka maps Windows users and groups to a UID’s and GID’s for access to the filesystem. Weka pulls users and groups information from Active Directory automatically.
+The Weka system SMB stack supports authentication via a single Active Directory with multiple trusted domains. The POSIX users \(uid\) and groups \(gid\) mapping for the SMB access should be resolved from the Active Directory. 
 
-Weka requires the users and groups accessing the filesystem to have `uidNumber` and `gidNumber` attributes populated in active directory.
+The Weka system pulls users and groups information from Active Directory automatically and supports two types of id-mapping from the Active Directory:
+
+1. `RFC2307` - where `uidNumber` and `gidNumber` must be defined in the AD user attributes
+2. `rid` - which creates local mapping with the AD users and groups
+
+Using `rid` can ease the configuration, where user IDs are tracked automatically, all domain user accounts and groups are automatically available on the domain member and no attributes need to be set for domain users and groups. On the other hand, if the `rid` AD range configuration changes the user mapping might change and result in wrong uids/gids resolution. 
 
 ### Active Directory Attributes
 
-The following are the Active Directory attributes relevant for users according to RFC2307:
+The following are the Active Directory attributes relevant for users according to `RFC2307`:
 
 | AD Attribute | Description |
 | :--- | :--- |
 | `uidNumber` | 0-4290000000 |
-| `gidNumber` | 0-4290000000; must correlate with real group |
+| `gidNumber` | 0-4290000000; must correlate with a real group |
 
-The following are the Active Directory attributes relevant for groups of users according to RFC2307:
+The following are the Active Directory attributes relevant for groups of users according to `RFC2307`:
 
 | AD Attribute | Description |
 | :--- | :--- |
 | `gidNumber` | 0-4290000000 |
+
+The above range is the default configuration for the Weka system for the AD server IDs and can be changed. This is the main AD range \(if additional trusted domains are defined\).
+
+Setting the range \(and ranges, in case of multiple domains\) is required to avoid ID overlapping and collisions.
+
+When joining multiple domains, it is required to set the ID range for each one of them, and the ranges cannot overlap. There is also a \(configurable\) default mapping range for users that are not part of any domain.
 
 Read more about Active Directory properties [here](https://blogs.technet.microsoft.com/activedirectoryua/2016/02/09/identity-management-for-unix-idmu-is-deprecated-in-windows-server/).
 
@@ -49,9 +60,9 @@ Read more about Active Directory properties [here](https://blogs.technet.microso
 
 The Weka SMB support is established either through the Weka system GUI or a series of CLIs. When configuring SMB support, it is necessary to:
 
-1. Define the Weka hosts to participate in the SMB cluster, i.e., configuration of the SMB cluster.
+1. Define the Weka hosts to participate in the SMB cluster, i.e., the configuration of the SMB cluster.
 2. Join the SMB cluster to the Active Directory, i.e., connection and definition of Weka in the Active Directory.
-3. Create shares and their folders, and set permissions. By default, the filesystem permission are root/root/755 and initially can only be set via a WekaFS/NFS mount.
+3. Create shares and their folders, and set permissions. By default, the filesystem permissions are root/root/755 and initially can only be set via a WekaFS/NFS mount.
 
 After completing these steps, it is possible to connect as an administrator and define permissions via Windows.
 
@@ -60,7 +71,7 @@ After completing these steps, it is possible to connect as an administrator and 
 Establishing an SMB cluster is performed as follows:
 
 1. Select the Weka hosts that will participate in the SMB cluster and set the domain name.
-2. In on-premises deployments, it is possible to configure a list of public IP addresses which will be distributed across the SMB cluster. If a node fails, the IP addresses from that node will be reassigned to another node.
+2. In on-premises deployments, it is possible to configure a list of public IP addresses that will be distributed across the SMB cluster. If a node fails, the IP addresses from that node will be reassigned to another node.
 
 {% hint style="info" %}
 **Notes:** Each Weka cluster can only support a single SMB cluster.

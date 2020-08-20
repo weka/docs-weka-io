@@ -112,6 +112,55 @@ Use the following command line to create a new SMB cluster to be managed by the 
       <td style="text-align:left">No</td>
       <td style="text-align:left">First part of<code>domain</code> parameter</td>
     </tr>
+    <tr>
+      <td style="text-align:left"><code>idmap-backend</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">The Id mapping method to use</td>
+      <td style="text-align:left"><code>rfc2307</code> or <code>rid</code>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>rfc2307</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>joined-domain-mapping-from-id</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">The first ID of the range for the main AD ID mapping</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">0</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>joined-domain-mapping-to-id</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">The last ID of the range for the main AD ID mapping</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">4290000000</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>default-domain-mapping-from-id</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">The first ID of the range for the default AD ID mapping (for trusted domains
+        that have no range defined)</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">4290000001</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>default-domain-mapping-to-id</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">The last ID of the range for the default AD ID mapping (for trusted domains
+        that have no range defined)</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">4291000000</td>
+    </tr>
   </tbody>
 </table>
 
@@ -181,6 +230,44 @@ Deleting an existing SMB cluster managed by the Weka system does not delete the 
 {% hint style="info" %}
 **Note:** Editing an existing cluster is not supported. Consequently, to change an SMB cluster configuration, the cluster has to be deleted and recreated.
 {% endhint %}
+
+## Configuring Trusted Domains
+
+### Listing Trusted Domains
+
+**Command:** `weka smb cluster trusted-domains`
+
+Use this command to list all the configured trusted domains and their ID ranges.
+
+### Adding Trusted Domains
+
+**Command:** `weka smb cluster trusted-domains add`
+
+Use the following command line to add an SMB trusted domain:
+
+`weka smb cluster trusted-domains add <domain-name> <from-id> <to-id>`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `domain-name` | String | The name of the domain being added | Must be a valid name \(ASCII\) | Yes |  |
+| `from-id` | Number | The first ID of the range for the domain ID mapping | The range cannot overlap with other domains | Yes |  |
+| `to-id` | Number | The last ID of the range for the domain ID mapping | The range cannot overlap with other domains | Yes |  |
+
+### Removing Trusted Domains
+
+**Command:** `weka smb cluster trusted-domains remove`
+
+Use the following command line to remove an SMB trusted domain:
+
+`weka smb cluster trusted-domains remove <domain-id>`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `domain-id` | Number | The internal ID of the domain to remove |  | Yes |  |
 
 ## Listing SMB Shares
 
