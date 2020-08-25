@@ -20,6 +20,10 @@ You should be familiar with the following concepts and services that will be use
 * [S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html) - Object storage \(to be used for tiering data\) 
 * [Cloud Formation](https://aws.amazon.com/documentation/cloudformation/)
 
+The following diagram illustrates the components of deployment in AWS:
+
+![AWS Architecture Diagram](../../.gitbook/assets/weka-cluster-on-aws-082420.jpg)
+
 ## Best Practices
 
 ### Backup and Recovery
