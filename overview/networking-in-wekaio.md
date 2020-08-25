@@ -13,34 +13,40 @@ The Weka system supports the following types of networking technologies:
 
 ‌The currently-available networking infrastructure dictates the choice between the two.
 
-For networking, the Weka system does not use standard kernel-based TCP/IP services, but a proprietary infrastructure based on the following:
+The Weka system networking can be configured either as [performance-optimized](networking-in-wekaio.md#performance-optimized-networking-dpdk), where the CPU cores are dedicated to Weka and the use of DPDK networking takes place and cores, or, as [CPU-optimized](networking-in-wekaio.md#cpu-optimized-networking-udp-mode) where cores are not dedicated and we use in-kernel networking \(UDP mode\).
+
+### Performance-Optimized Networking \(DPDK\)
+
+For performance-optimized networking, the Weka system does not use standard kernel-based TCP/IP services, but a proprietary infrastructure based on the following:
 
 * Use of [DPDK](networking-in-wekaio.md#dpdk) to map the network device in the user space and make use of the network device without any context switches and with zero-copy access. This bypassing of the kernel stack eliminates the consumption of kernel resources for networking operations and can be scaled to run on multiple hosts. It applies to both backend and client hosts and enables the Weka system to fully saturate 200 GB links.
 * Implementation of a proprietary Weka protocol over UDP, i.e., the underlying network may involve routing between subnets or any other networking infrastructure that supports UDP.
 
 The use of DPDK delivers operations with extremely low-latency and high throughput. Low latency is achieved by bypassing the kernel and sending and receiving packages directly from the NIC. High throughput is achieved because multiple cores in the same host can work in parallel, without a common bottleneck.
 
-Before proceeding, it is important to understand several key terms used in this section, namely DPDK, SR-IOV, and UDP mode.
+Before proceeding, it is important to understand several key terms used in this section, namely DPDK, SR-IOV.
 
-### DPDK
+#### DPDK
 
-‌[Data Plane Development Kit \(DPDK\)](http://dpdk.org/) is a set of libraries and network drivers for highly efficient, low latency packet processing. This is achieved through several techniques, such as kernel TCP/IP bypass, NUMA locality, multi-core processing and device access via polling to eliminate the performance overhead of interrupt processing. In addition, DPDK ensures transmission reliability, handles retransmission and controls congestion.
+‌[Data Plane Development Kit \(DPDK\)](http://dpdk.org/) is a set of libraries and network drivers for highly efficient, low latency packet processing. This is achieved through several techniques, such as kernel TCP/IP bypass, NUMA locality, multi-core processing, and device access via polling to eliminate the performance overhead of interrupt processing. In addition, DPDK ensures transmission reliability, handles retransmission, and controls congestion.
 
 DPDK implementations are available from several sources. OS vendors such as [Redhat](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-pci_devices-pci_passthrough) and [Ubuntu](https://help.ubuntu.com/lts/serverguide/DPDK.html) provide their DPDK implementations through their distribution channels. [Mellanox OpenFabrics Enterprise Distribution for Linux](https://www.mellanox.com/page/products_dyn?product_family=26) \(Mellanox OFED\), which is a suite of libraries, tools, and drivers supporting Mellanox NICs, offers its own DPDK implementation.
 
 The Weka system relies on the DPDK implementation provided by Mellanox OFED on hosts equipped with Mellanox NICs. For hosts equipped with Intel NICs, DPDK support is through the Intel driver for the card.‌
 
-### SR-IOV
+#### SR-IOV
 
 Single Root I/O Virtualization \(SR-IOV\) is an extension to the PCI Express \(PCIe\) specification that enables PCIe virtualization. It works by allowing a PCIe device, such as a network adapter, to appear as multiple PCIe devices, or _functions_. There are two categories of functions - Physical Function \(PF\) and Virtual Function \(VF\). PF is a full-fledged PCIe function that can also be used for configuration. VF is a virtualized instance of the same PCIe device and is created by sending appropriate commands to the device PF. Typically, there are many VFs, but only one PF per physical PCIe device. Once a new VF is created, it can be mapped by an object such as a virtual machine, container, or, in the Weka system, by a 'compute' process.
 
-SR-IOV technology should be supported by both the software and hardware to take advantage of it. Software support is included in the Linux kernel, as well as the Weka system software. Hardware support is provided by the computer BIOS and the network adapter, but is usually disabled out of the factory. Consequently, it should be enabled before installing the Weka system software.‌
+SR-IOV technology should be supported by both the software and hardware to take advantage of it. Software support is included in the Linux kernel, as well as the Weka system software. Hardware support is provided by the computer BIOS and the network adapter but is usually disabled out of the factory. Consequently, it should be enabled before installing the Weka system software.‌
 
-### UDP Mode
+### CPU-Optimized Networking \(UDP Mode\)
 
-‌On legacy platforms lacking support for virtualization \(SR-IOV\) and kernel offloading technologies \(DPDK\), the Weka system software relies on in-kernel processing and UDP as the transport protocol. This mode of operation is commonly referred to as the 'UDP mode' and is typically used with older hardware such as the Mellanox CX3 family of NICs.
+For CPU-optimized network Weka yields CPU resources to other applications and uses in-kernel processing and UDP as the transport protocol. This mode of operation is commonly referred to as the 'UDP mode'.
 
-‌In addition to being compatible with older platforms, the UDP mode yields CPU resources to other applications. This can be useful when the extra CPU cores are needed for other purposes. However, it should be noted that the lack of CPU resources dedicated to the Weka system reduces overall performance and should only be used when there is an issue concerning DPDK functionality.
+This can be useful when the extra CPU cores are needed for other purposes. However, the lack of CPU resources dedicated to the Weka system comes with the expense of reduced overall performance.
+
+In addition, since the UPD-mode uses in-kernel processing, it is compatible with older platforms lacking the support of kernel offloading technologies \(DPDK\) or virtualization \(SR-IOV\), as legacy hardware such as the Mellanox CX3 family of NICs.
 
 ## Typical Weka Configuration
 
