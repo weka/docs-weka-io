@@ -38,7 +38,7 @@ Backend instances can be added to increase the cluster capacity or performance. 
 
 ## Converged Deployment
 
-Converged deployments are more generic deployments in which every instance is configured to contribute resources of some kind — drives, CPUs and/or network interfaces - to the cluster.
+Converged deployments are more generic deployments in which every instance is configured to contribute resources of some kind — drives, CPUs, and/or network interfaces - to the cluster.
 
 The deployment of a converged cluster is typically selected in the following cases:
 

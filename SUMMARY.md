@@ -34,6 +34,7 @@
   * [Self-Service Portal](install/aws/self-service-portal.md)
   * [CloudFormation Template Generator](install/aws/cloudformation.md)
   * [Deployment Types](install/aws/deployment-types.md)
+  * [AWS Outposts Deployment](install/aws/aws-outposts-deployment.md)
   * [Supported EC2 Instance Types](install/aws/supported-ec2-instance-types.md)
   * [Adding Clients](install/aws/adding-clients.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
