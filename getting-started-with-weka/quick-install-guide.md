@@ -93,7 +93,7 @@ If satisfied, start the cluster:
 weka cluster host apply --all --force
 weka cluster drive activate
 
-# wait until all hosts are applied  (all shouold be in status "RUNNING
+# wait until all hosts are applied  (all shouold be in "RUNNING" status)
 pdsh -w weka0[1-8] "weka local status"
 
 # start the cluster
