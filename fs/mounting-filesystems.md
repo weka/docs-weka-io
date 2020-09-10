@@ -316,7 +316,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">32768</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>auth-token</code>
+      <td style="text-align:left"><code>auth_token</code>
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Path to the mount authentication token (per mount)</td>
