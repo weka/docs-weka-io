@@ -74,19 +74,62 @@ weka -H <backend-hostname> cluster host add <client-hostname>
 
 To configure the new host as a client, run the following command:
 
-```text
-weka cluster host cores <host-id> 1 --frontend-dedicated-cores=1
-```
-
-{% hint style="info" %}
-**Note:** The Number of total cores and frontend-dedicated-cores must be equal.
-{% endhint %}
+`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <fe_cores>]`
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `host-id` | String | Identifier of the host to be added to the cluster | Must be a valid host identifier | Yes |  |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>host-id</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Identifier of the host to be added to the cluster</td>
+      <td style="text-align:left">Must be a valid host identifier</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>cores</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Number of physical cores to be allocated to the Weka client</td>
+      <td style="text-align:left">Maximum 19 cores</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>frontend-dedicated-cores</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Number of physical cores to be dedicated to FrontEnd processes</td>
+      <td
+      style="text-align:left">
+        <p></p>
+        <p>For clients, the number of total cores and frontend-dedicated-cores must
+          be equal</p>
+        </td>
+        <td style="text-align:left">Yes, in order to configure a host as a client</td>
+        <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>
 
 ### Stage 4: Configuring Client Networking
 
