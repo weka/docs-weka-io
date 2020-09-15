@@ -74,7 +74,7 @@ weka -H <backend-hostname> cluster host add <client-hostname>
 
 To configure the new host as a client, run the following command:
 
-`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <fe_cores>]`
+`weka cluster host cores <host-id> <cores> --frontend-dedicated-cores=<fe_cores>`
 
 **Parameters in Command Line**
 
