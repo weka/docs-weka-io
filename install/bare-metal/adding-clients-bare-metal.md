@@ -53,9 +53,7 @@ Verify that the Weka software is installed on the client host according to the i
 
 Once the client host is in the stem mode \(this is the mode defined immediately after running the `install.sh`command\), use the following command line on the client host to add it to the cluster:
 
-```text
-weka -H <backend-hostname> cluster host add <client-hostname>
-```
+`weka -H <backend-hostname> cluster host add <client-hostname>`
 
 **Parameters in Command Line**
 
@@ -232,9 +230,7 @@ If a high-performance client is required and the appropriate network NIC is avai
 
 After successfully configuring the host and its network device, run the following command to finalize the configuration by activating the host:
 
-```text
-weka cluster host apply <host-id>
-```
+`weka cluster host apply <host-id> [--force]`
 
 **Parameters in Command Line**
 
