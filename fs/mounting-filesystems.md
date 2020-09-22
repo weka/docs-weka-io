@@ -467,18 +467,21 @@ Edit `/etc/fstab` file to include the filesystem mount entry:
 * Filesystem type - `wekafs`
 * Mount options:
   * Configure `systemd` to wait for the `weka-agent` service to come up, and set the filesystem as a network filesystem, e.g.:
-    * `x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`
+
+    `x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`
+
   * Any additional `wekafs` supported mount option
 
 ```text
 # create a mount point 
 mkdir -p /mnt/weka/my_fs
 
-#edit fstab file
+# edit fstab file
 vi /etc/fstab
 
-#fstab
-backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev   0       0
+# fstab with weka options (example, change with your desired settings)
+backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  num_cores=1,net=eth1,x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev   0       0
+
 ```
 
 Reboot the machine for the `systemd` unit to be created and marked correctly.
