@@ -130,14 +130,18 @@ Using RDMA/GPUDirect Storage, it is thus possible to get a performance gain. You
 
 For the RDMA/GPUDirect Storage technology to take into effect, the following requirements must be met:
 
-* InfiniBand network
-* Mellanox ConnectX5 or ConnectX6
-* OFED 4.6-1.0.1.1 or higher
-* Encrypted filesystems: The framework will not be utilized for encrypted filesystems and will fall back to work without RDMA/GPUDirect for IOs to encrypted filesystems
 * All the cluster hosts must support RDMA networking
 * For a client host:
   * GPUDirect Storage - the IB interfaces added to the Nvidia GPUDirect configuration should support RDMA
   * RDMA - all the NICs used by Weka must support RDMA networking
+* Encrypted filesystems: The framework will not be utilized for encrypted filesystems and will fall back to work without RDMA/GPUDirect for IOs to encrypted filesystems
+
+
+
+* A NIC is considered to support RDMA Networking if the following requirements are met:
+  * InfiniBand network
+  * Mellanox ConnectX5 or ConnectX6
+  * OFED 4.6-1.0.1.1 or higher
 
 {% hint style="info" %}
 **Note:** GPUDirect Storage completely bypasses the kernel and does not utilize the page cache. Standard RDMA clients still utilize the page cache.
