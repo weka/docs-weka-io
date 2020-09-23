@@ -20,7 +20,11 @@ The Weka client is software installed on user application servers that need acce
 
 ### Cluster
 
-A collection of Weka backends, together with Weka clients installed on the application servers, forming one sharable, distributed and scalable file storage system.
+A collection of Weka backends, together with Weka clients installed on the application servers, forming one sharable, distributed, and scalable file storage system.
+
+### Converged Deployment
+
+The configuration of Weka backends running on the same host with other applications.
 
 ## D
 
@@ -44,17 +48,13 @@ A collection of hardware components that can fail together due to a single root 
 
 ### Filesystem Group
 
-A collection of filesystems which share a common tiering policy to object store.
+A collection of filesystems which share a common tiering policy to object-store.
 
 ## H
 
 ### Hot Data
 
 Frequently-used data \(as opposed to warm data\), usually residing on SSDs.
-
-### Converged Deployment
-
-The configuration of Weka backends running on the same host with other applications.
 
 ## N
 
@@ -80,15 +80,15 @@ Total SSD capacity owned by the user.
 
 ### Retention Period
 
-Target time for data to be stored on SSDs before release from the SSDs to an object store.
+The target time for data to be stored on SSDs before releasing from the SSDs to an object-store.
 
 ### Releasing
 
-The deletion of the SSD copy of data which has been tiered to the object store.
+The deletion of the SSD copy of data which has been tiered to the object-store.
 
 ### Rehydrating
 
-The creation of an SSD copy of data stored on object store only.
+The creation of an SSD copy of data stored only on the object-store.
 
 ## S
 
@@ -112,7 +112,7 @@ Copying of data to an object store, while it still remains on the SSD.
 
 ### Tiering Cue
 
-The minimum time to wait before considering data for tiering from an SSD to an object store.
+The minimum time to wait before considering data for tiering from an SSD to an object-store.
 
 ## U
 
@@ -130,5 +130,5 @@ Virtual Function
 
 ### Warm Data
 
-Less frequently-used data \(as opposed to hot data\), usually residing on an object store.
+Less frequently-used data \(as opposed to hot data\), usually residing on an object-store.
 
