@@ -32,7 +32,7 @@ The protection level is the number of additional protection blocks added to each
 
 ## Failure Domains \(Optional\)
 
-A failure domain is a group of Weka hosts, all of which can fail concurrently due to a single root cause, such as a power circuit or network switch failure. A cluster can be configured with explicit or implicit failure domains. For a system with explicit failure domains, each group of blocks that protect each other are spread on different failure domains. For a system with implicit failure domains, the group of blocks is spread on different hosts and each host is a failure domain. A system is defined with explicit or implicit failure domains during the cluster formation, and this definition cannot be changed. For a system with explicit failure domains, additional failure domains can be added, and new hosts can be added to any existing or new failure domain.
+A failure domain is a group of Weka hosts, all of which can fail concurrently due to a single root cause, such as a power circuit or network switch failure. A cluster can be configured with explicit or implicit failure domains. For a system with explicit failure domains, each group of blocks that protect each other are spread on different failure domains. For a system with implicit failure domains, the group of blocks is spread on different hosts and each host is a failure domain. Additional failure domains can be added, and new hosts can be added to any existing or new failure domain.
 
 {% hint style="info" %}
 **Note:** This documentation relates to a homogeneous Weka system deployment, i.e., the same number of hosts per failure domain \(if any\), and the same SSD capacity per host. For information about heterogeneous Weka system configurations, contact the Weka Support Team.

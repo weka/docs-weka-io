@@ -50,15 +50,11 @@ Follow the instructions appearing in [Configuration of Networking](../../install
 
 Follow the instructions appearing in [Configuration of SSDs](../../install/bare-metal/using-cli.md#stage-6-configuration-of-ssds).
 
-## Stage 6: Scanning Drives
-
-Follow the instructions appearing in [Scanning Drives](../../install/bare-metal/using-cli.md#stage-7-scanning-drives).
-
-## Stage 7: Configuration of CPU Resources
+## Stage 6: Configuration of CPU Resources
 
 Follow the instructions appearing in [Configuration of CPU Resources](../../install/bare-metal/using-cli.md#stage-8-configuration-of-cpu-resources).
 
-## Stage 8: Configuration of Memory
+## Stage 7: Configuration of Memory
 
 Use the following command line to display a listing of the memory defined \(one line for each host\):
 
@@ -70,7 +66,7 @@ To configure the memory, follow the instructions appearing in [Configuration of 
 **Note:** If the memory has been configured, it is mandatory to use the same memory for the expanded host.
 {% endhint %}
 
-## Stage 9: Configuration of Failure Domains
+## Stage 8: Configuration of Failure Domains
 
 Follow the instructions appearing in [Configuration of Failure Domains](../../install/bare-metal/using-cli.md#stage-10-configuration-of-failure-domains-optional).
 
@@ -78,15 +74,21 @@ Follow the instructions appearing in [Configuration of Failure Domains](../../in
 **Note:** Plan whether each host is being added to an existing failure domain or to a new failure domain.
 {% endhint %}
 
-## Stage 10: Applying Hosts Configuration
+## Stage 9: Applying Hosts Configuration
 
-If hosts have been added to the cluster, follow the instructions appearing in [Applying Hosts Configuration](../../install/bare-metal/using-cli.md#stage-14-applying-hosts-configuration). 
+If hosts have been added to the cluster, follow the instructions appearing in [Applying Hosts Configuration](../../install/bare-metal/using-cli.md#stage-13-applying-hosts-configuration). 
 
 {% hint style="info" %}
 **Note:** The activation of cluster hosts can be performed with a sequence of hosts.
 {% endhint %}
 
-## Stage 11: Activation of Cluster SSDs
+## Import Host Settings
 
-If SSDs have been added to the cluster, follow the instructions appearing in [Activation of Cluster SSDs](../../install/bare-metal/using-cli.md#stage-14-activation-of-cluster-ssds).
+Instead of carrying steps 4-9 above, it is possible to import the host setting from a previously exported host in the cluster. In most cases the host configurations are similar, and importing can save some extra steps and avoid misconfiguration.
+
+To export settings from a host, ssh to this host, and run the `weka local resources export` command. 
+
+To import the settings to the new host, ssh to it and run the `weka local resources import` command. You can then edit the local configuration as described in [Local resources editing commands](expansion-of-specific-resources.md#local-resources-editing-commands) section and run weka local resources apply to apply the configuration.
+
+
 

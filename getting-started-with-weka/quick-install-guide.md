@@ -64,9 +64,6 @@ do
     weka cluster host cores $i 19 --frontend-dedicated-cores 1 --drives-dedicated-cores 6
 done
 
-# make the selected drives ready for Weka usage
-weka cluster drive scan
-
 ```
 
 Check the  configuration:
@@ -89,12 +86,8 @@ weka status
 If satisfied, start the cluster:
 
 ```bash
-# initialize the hosts and drives
+# initialize the hosts
 weka cluster host apply --all --force
-weka cluster drive activate
-
-# wait until all hosts are applied  (all shouold be in "RUNNING" status)
-pdsh -w weka0[1-8] "weka local status"
 
 # start the cluster
 weka cluster start-io
@@ -112,7 +105,7 @@ weka status
 You would see a similar output to the following example:
 
 ```bash
-WekaIO v3.8.0 (CLI build 3.8.0)
+WekaIO v3.9.0 (CLI build 3.9.0)
 
        cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
         status: OK (8 backends UP, 48 drives UP)

@@ -8,7 +8,7 @@ description: >-
 
 ## Preparations
 
-After meeting the hardware and software requirements, it is necessary to prepare the backend and client machines for installation of the Weka system. This preparation of the hosts consists of the following steps:
+After meeting the hardware and software requirements, it is necessary to prepare the backend and client machines for the installation of the Weka system. This preparation of the hosts consists of the following steps:
 
 1. NIC driver installation.
 2. SR-IOV enablement \(when needed\).
@@ -18,7 +18,7 @@ After meeting the hardware and software requirements, it is necessary to prepare
 6. Numa balancing disablement.
 
 {% hint style="info" %}
-**Note:** Some of the examples in this page contain version-specific information. Since software is updated frequently, the package versions available to you may differ to those presented here.
+**Note:** Some of the examples on this page contain version-specific information. Since the software is updated frequently, the package versions available to you may differ from those presented here.
 {% endhint %}
 
 ## NIC Driver Installation
@@ -88,34 +88,9 @@ SR-IOV enablement is mandatory for hosts equipped with Intel NICs, or when worki
 
 {% page-ref page="sr-iov-enablement.md" %}
 
-## Network Configuration
-
-### NetworkManager Disablement
-
-NetworkManager is a dynamic network control and configuration daemon. It is the default network management tool in some operating systems such as RHEL 6 and 7.
-
-The Weka system requires network management to be handled by Network Initscripts \(also known as "ifcfg configuration files"\). This method is a basic network interface start/stop framework that is part of the `initscripts` package, and is the method that the Weka system currently supports in Red Hat and it derivatives.
-
-The following commands can be used to permanently disable NetworkManager:
-
-To stop NetworkManager:
-
-`systemctl stop NetworkManager`
-
-To disable NetworkManager:
-
-`systemctl disable NetworkManager`
-
-To validate NetworkManager is disabled
-
-```text
-# systemctl is-enabled NetworkManager
-disabled
-```
-
 ### Ethernet Configuration
 
-The following example of ifcfg script is provided a reference for configuring the Ethernet interface.
+The following example of `ifcfg` script is provided a reference for configuring the Ethernet interface.
 
 {% code title="/etc/sysconfig/network-scripts/ifcfg-enp24s0" %}
 ```text
@@ -140,7 +115,7 @@ MTU=9000
 ```
 {% endcode %}
 
-MTU 9000 \(jumbo frame\) is recommended for best performance. Refer to your switch vendor documentation for jumbo frame configuration.
+MTU 9000 \(jumbo frame\) is recommended for the best performance. Refer to your switch vendor documentation for jumbo frame configuration.
 
 Bring the interface up using the following command:
 
@@ -154,7 +129,7 @@ Bring the interface up using the following command:
 {% tab title="Default Partition" %}
 InfiniBand network configuration normally includes Subnet Manager \(SM\), but the procedure involved is beyond the scope of this document. However, it is important to be aware of the specifics of your SM configuration, such as partitioning and MTU, because they can affect the configuration of the endpoint ports in Linux. For best performance, MTU of 4092 is recommended.
 
-Refer to the following ifcfg script when the IB network only has the default partition, i.e., "no pkey":
+Refer to the following `ifcfg` script when the IB network only has the default partition, i.e., "no `pkey`":
 
 {% code title="/etc/sysconfig/network-scripts/ifcfg-ib1" %}
 ```text
@@ -190,7 +165,7 @@ brd 00:ff:ff:ff:ff:12:40:1b:ff:ff:00:00:00:00:00:00:ff:ff:ff:ff
 {% endtab %}
 
 {% tab title="Non-default Partition \(PKEY\)" %}
-On an InfiniBand network with a non-default partition number, _p-key_ must be configured on the interface if the InfiniBand ports on your network are members of an InfiniBand partition other than the default \(`0x7FFF`\). The p-key should associate the port as a full member of the partition \(full members are those where the p-key number with the most-significant bit \(MSB\) of the 16-bits is set to 1\).
+On an InfiniBand network with a non-default partition number, `p-key` must be configured on the interface if the InfiniBand ports on your network are members of an InfiniBand partition other than the default \(`0x7FFF`\). The p-key should associate the port as a full member of the partition \(full members are those where the p-key number with the most-significant bit \(MSB\) of the 16-bits is set to 1\).
 
 {% hint style="success" %}
 **For Example:** If the partition number is `0x2`, the limited member p-key will equal the p-key itself, i.e.,`0x2`. The full member p-key will be calculated as the logical OR of `0x8000` and the p-key \(`0x2`\) and therefore will be equal to `0x8002`.
@@ -200,7 +175,7 @@ On an InfiniBand network with a non-default partition number, _p-key_ must be co
 **Note:** All InfiniBand ports communicating with the Weka cluster must be full members.
 {% endhint %}
 
-Two ifcfg scripts must be created for each pkey-ed IPoIB interface. To determine your own pkey-ed IPoIB interface configuration, refer to the following two examples where a pkey of `0x8002` is used:
+Two `ifcfg` scripts must be created for each pkey-ed IPoIB interface. To determine your own pkey-ed IPoIB interface configuration, refer to the following two examples where a `pkey` of `0x8002` is used:
 
 {% code title="/etc/sysconfig/network-scripts/ifcfg-ib1" %}
 ```text
@@ -270,7 +245,7 @@ PING 192.168.1.2 (192.168.1.2) 8972(9000) bytes of data.
 rtt min/avg/max/mdev = 0.063/0.075/0.087/0.009 ms
 ```
 
-The`-M do` flag prohibits packet fragmentation, which allows verification of correct MTU configuration between the two end points.
+The`-M do` flag prohibits packet fragmentation, which allows verification of correct MTU configuration between the two endpoints.
 
 `-s 8972` is the maximum ICMP packet size that can be transferred with MTU 9000, due to the overhead of ICMP and IP protocols.
 

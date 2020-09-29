@@ -301,15 +301,7 @@ This stage in the installation process is used to add a local SSD to be used by 
 **Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the Weka Support Team.
 {% endhint %}
 
-## Stage 8: **Scanning Drives**
-
-**Command:**`weka cluster drive scan`
-
-After provisioning the SSDs to be used by a Weka filesystem using the previous command, it is also necessary to scan them so that they are recognizable by the system internally. To perform this operation, use the following command line:
-
-`weka cluster drive scan`
-
-## Stage 9: Configuration of CPU Resources
+## Stage 8: Configuration of CPU Resources
 
 **Command:** `cluster host cores`
 
@@ -340,7 +332,7 @@ This stage in the installation process is used to configure the amount of CPU re
 **Note:** Performance can be optimized by assigning different functions to the various Weka cores. If necessary, contact the Weka Support Team for more information.
 {% endhint %}
 
-## Stage 10: Configuration of Memory \(optional\)
+## Stage 9: Configuration of Memory \(optional\)
 
 **Command:** `cluster host memory`
 
@@ -361,7 +353,7 @@ If capacity requirements mandate more memory, the following command should be us
 **Note:** This command is given the memory per-host and will later be distributed by the system per compute core. Out of this value, 1GB per compute core is reserved for other purposes \(as cache\) and not used for capacity.
 {% endhint %}
 
-## Stage 11: Configuration of Failure Domains \(optional\)
+## Stage 10: Configuration of Failure Domains \(optional\)
 
 **Command:** `cluster host failure-domain`
 
@@ -383,7 +375,7 @@ This operation is performed using the following command line:
 | `name` | String | The failure domain that will contain the host from now |  | Yes \(either `--name` OR `--auto` must be specified\) |  |
 | `auto` | Boolean | Will automatically assign fd-name |  | Yes \(either `--name` OR `--auto` must be specified\) |  |
 
-## Stage 12: Configuration of Weka System Protection Scheme
+## Stage 11: Configuration of Weka System Protection Scheme
 
 **Command:** `cluster update`
 
@@ -406,7 +398,7 @@ To configure the Weka system protection scheme, use the following command line:
 **Note:** If not configured, the data protection drives in the cluster stripes are automatically set, taking into account the number of backends with drives. There is also a default value for the cluster hot spare.
 {% endhint %}
 
-## Stage 13: Configuration of Hot Spare
+## Stage 12: Configuration of Hot Spare
 
 **Command:** `cluster hot-spare`
 
@@ -420,7 +412,7 @@ To configure the Weka system hot spare, use the following command line:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `hot-spare` | Number | Hot spare | The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 1 for clusters with 6 failure domains and 2 for clusters larger than this |
 
-## Stage 14: Applying Hosts Configuration
+## Stage 13: Applying Hosts Configuration
 
 **Command:** `weka cluster host apply`
 
@@ -438,27 +430,7 @@ To activate the cluster hosts, use the following command line:
 | `all` | Boolean | Apply all hosts |  | Either `host-ids` or `all` must be specified |  |
 | `force` | Boolean | Do not prompt for confirmation |  | No | Off |
 
-## Stage 15: Activation of Cluster SSDs
-
-**Command:** `weka cluster drive activate`
-
-This command is used to mark the Weka system SSDs as active, so they are used by the cluster. To activate the cluster SSDs, use the following command line:
-
-`weka cluster drive activate [<uuids>...]`
-
-A comma-separated list of all SSD UUIDs is received. In the install phase, all SSDs need to be active, so the default of no parameter can be used.
-
-{% hint style="info" %}
-**Note:** To obtain the drive UUIDs, it is possible to use either the output received from a previously run `weka cluster drive add` command, or alternatively use the drive listing command `weka cluster drive`, which will list all drives and their UUIDs.
-{% endhint %}
-
-**Parameters in Command Line**
-
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `uuids` | Comma-separated strings | Comma-separated host identifiers |  | No | All SSDs |
-
-## Stage 16: Running the Start IO Command
+## Stage 14: Running the Start IO Command
 
 **Command:** `weka cluster start-io`
 

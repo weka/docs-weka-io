@@ -98,7 +98,7 @@ Use the following command line to obtain statistics definition information:
 
 **Command:** `weka stats realtime`
 
-Use the following command line to obtain the current performance related _\*\*_statistics of the hosts, in one second interval:  
+Use the following command line to obtain the current performance-related statistics of the hosts, in a one-second interval:  
 `weka stats realtime [<node-ids>] [--raw-units] [--UTC]`
 
 **Parameters in Command Lines**
@@ -114,7 +114,7 @@ Use the following command line to obtain the current performance related _\*\*_s
 The collected statistics are helpful to analyze system performance and determine the source of any problems as the Weka system runs, according to several categories. When each category is selected, a list of the possible statistics that can be selected is displayed.
 
 {% hint style="info" %}
-**Note:** All statistics are averaged over 1 second intervals. Consequently, "total" or other aggregates relate to a specific minute.
+**Note:** All statistics are averaged over one-second intervals. Consequently, "total" or other aggregates relate to a specific minute.
 {% endhint %}
 
 Use the following command line to manage filters and read statistics:
@@ -141,4 +141,20 @@ Use the following command line to manage filters and read statistics:
 | `UTC` | Boolean | Print times in UTC |  | No | Host's local time |
 
 {% page-ref page="list-of-statistics.md" %}
+
+### Setting statistics Retention
+
+**Command:** `weka stats retention`
+
+Use the following command line to set the statistics retention period  
+`weka stats retention <--days days> [--dry-run]`
+
+**Parameters in Command Lines**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `days` | Number | The Number of days to keep the statistics | Should have enough free disk space per server | Yes |  |
+| `dry-run` | Boolean | Only test the required capacity per the retention period |  | No |  |
+
+Use `weka stats retention status` to view the current retention and `weka stats retention restore-default` to restore the default retention settings.
 

@@ -88,9 +88,7 @@ For more information, contact the WekaIO Support Team.
 
 ## Expansion of Only SSDs
 
-The addition of new SSDs only to existing servers requires the execution of the following stages:
+Follow the instructions appearing in [Configuration of SSDs](../../install/bare-metal/using-cli.md#stage-6-configuration-of-ssds).
 
-1. [Configuration of SSDs](../../install/bare-metal/using-cli.md#stage-7-configuration-of-ssds)
-2. [Scanning Drives](../../install/bare-metal/using-cli.md#stage-8-scanning-drives)
-3. [Activation of Cluster SSDs](../../install/bare-metal/using-cli.md#stage-15-activation-of-cluster-ssds)
+
 

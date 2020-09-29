@@ -111,7 +111,6 @@ Supported Intel 40 drivers:
 * NICs bonding: Not configured
 * VLAN: Not supported
 * Connectivity between hosts: Ports 14000-14100
-* [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager): Disabled
 * Mellanox NICs:
   * One Weka system IP address for management and data plane
 * Other vendors NICs
