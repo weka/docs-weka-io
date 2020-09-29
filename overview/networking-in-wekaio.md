@@ -146,6 +146,7 @@ For the RDMA/GPUDirect Storage technology to take into effect, the following req
   * InfiniBand network
   * Mellanox ConnectX5 or ConnectX6
   * OFED 4.6-1.0.1.1 or higher
+    * For GPUDirect Storage: install with `--upstream-libs` and `--dpdk`
 
 {% hint style="info" %}
 **Note:** GPUDirect Storage completely bypasses the kernel and does not utilize the page cache. Standard RDMA clients still utilize the page cache.
