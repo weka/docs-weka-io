@@ -251,9 +251,9 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 
 ## HA Networking Configuration
 
-As described in [Weka Networking HA](../../../overview/networking-in-wekaio.md#ha) section, bonded interfaces are not supported and each NIC must have its own IP address.
+As described in [Weka Networking HA](../../../overview/networking-in-wekaio.md#ha) section, bonded interfaces are supported for ethernet can be added to Weka after setting the bonded device in the host.
 
-To configure Dual Network \(IB or ETH\), you will need to properly configure the routing of the interfaces involved.
+When there is a need to configure Dual Network \(IB or ETH\) without LACP, each NIC must its own IP address and you will need to properly configure the routing of the interfaces involved.
 
 {% tabs %}
 {% tab title="Infiniband" %}

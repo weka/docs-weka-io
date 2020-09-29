@@ -114,9 +114,13 @@ For client hosts in the UDP mode, the following conditions must be met:
 
 For HA support, the Weka system must be configured with no single component representing a single point of failure. Multiple switches are required, and hosts must have one leg on each switch.
 
-HA for hosts is achieved through the implementation of two network interfaces on the same host. This is not LACP, which configures a single IP interface on a single host, but a redundancy that enables the Weka software to utilize two interfaces for HA and bandwidth, respectively. Consequently, it is necessary to validate the compatibility of other applications running on the same ports.
+HA for hosts is achieved either through the implementation of two network interfaces on the same host or via LACP \(ethernet only, modes 1 and 4\). Using a non-LACP approach sets a redundancy that enables the Weka software to utilize two interfaces for HA and bandwidth, respectively. 
 
-HA performs failover and failback for reliability and load balancing on both interfaces and is operational for both Ethernet and InfiniBand. It currently requires doubling the number of IPs on both the host and the IO nodes.‌
+HA performs failover and failback for reliability and load balancing on both interfaces and is operational for both Ethernet and InfiniBand. If not using LACP, it requires doubling the number of IPs on both the host and the IO nodes.‌
+
+{% hint style="info" %}
+**Note:** LACP is currently supported between ports on a single Mellanox NIC, and is not supported when using VFs.
+{% endhint %}
 
 ## RDMA and GPUDirect Storage
 

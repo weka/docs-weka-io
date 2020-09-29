@@ -380,7 +380,7 @@ When using a stateless client, it is possible to alter and control many differen
 
 Use `-o net=<netdev>` mount option with the various modifiers as described below.
 
-`<netdev>` is either the name, MAC address, or PCI address of the physical network device to allocate for the client.
+`<netdev>` is either the name, MAC address, or PCI address of the physical network device \(can be a bond device\) to allocate for the client.
 
 {% hint style="warning" %}
 **Note:** When using `wekafs` mounts, both clients and backends should use the same type of networking technology \(either IB or Ethernet\).

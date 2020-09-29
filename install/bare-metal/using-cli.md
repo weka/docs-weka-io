@@ -143,7 +143,7 @@ To perform this operation, the cluster host net add command must be run for each
       <td style="text-align:left"><code>device</code>
       </td>
       <td style="text-align:left">String</td>
-      <td style="text-align:left">A device, e.g., <code>eth1</code>
+      <td style="text-align:left">A device, or bond-device e.g., <code>eth1</code> or <code>bond0</code>
       </td>
       <td style="text-align:left">Must be a valid Unix network device name</td>
       <td style="text-align:left">Yes</td>
