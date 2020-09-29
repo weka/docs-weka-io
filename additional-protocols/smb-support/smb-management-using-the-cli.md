@@ -28,7 +28,7 @@ Use this command to view information about the SMB domain configuration.
 
 Use the following command line to create a new SMB cluster to be managed by the Weka system:
 
-`weka smb cluster create <name> <domain> [--samba-hosts samba-hosts]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range]...`
+`weka smb cluster create <name> <domain> [--samba-hosts samba-hosts]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range] [--encryption encryption]`
 
 **Parameters in Command Line**
 
@@ -82,12 +82,12 @@ Use the following command line to create a new SMB cluster to be managed by the 
       <td style="text-align:left"><code>smb-ips-pool</code>
       </td>
       <td style="text-align:left">Comma-separated IP addresses</td>
-      <td style="text-align:left">Public IPs used as floating IPs for the SMB cluster to serve the SMB over,
-        and thereby provide HA; should not be assigned to any host on the network</td>
-      <td
-      style="text-align:left">Must be valid IP addresses</td>
-        <td style="text-align:left">No</td>
-        <td style="text-align:left">&#x200B;</td>
+      <td style="text-align:left">The public IPs used as floating IPs for the SMB cluster to serve the SMB
+        over and thereby provide HA; should not be assigned to any host on the
+        network</td>
+      <td style="text-align:left">Must be valid IP addresses</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">&#x200B;</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>smb-ips-range</code>
@@ -160,6 +160,27 @@ Use the following command line to create a new SMB cluster to be managed by the 
       <td style="text-align:left"></td>
       <td style="text-align:left">No</td>
       <td style="text-align:left">4291000000</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>encryption</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">
+        <p>The global encryption policy to use.</p>
+        <p><code>enabled</code> - enables encryption negotiation but doesn&apos;t
+          turn it on automatically for supported sessions and share connections.</p>
+        <p><code>disabled</code> - doesn&apos;t support encrypted connections.</p>
+        <p><code>desired</code> - enables encryption negotiation and turns on data
+          encryption on supported sessions and share connections.</p>
+        <p><code>required</code> - enforces data encryption on sessions and share
+          connections. Clients that do not support encryption will be denied access
+          to the server.</p>
+      </td>
+      <td style="text-align:left"><code>enabled,</code>  <code>disabled</code>, <code>desired</code> or <code>required</code>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>enabled</code>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -281,20 +302,168 @@ Use this command to list all existing SMB shares.
 
 Use the following command line to add a new share to be exposed to SMB:
 
-`smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [file-create-mask] [directory-create-mask] [--obs_direct]`
+`smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [--file-create-mask mask] [--directory-create-mask mask] [--obs_direct] [--encryption encryption] [--read-only] [--user-list-type list-type] [--users users]...`
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `share-name` | String | Name of the share being added | Must be a valid name \(ASCII\) | Yes | ​ |
-| `fs-name` | String | Name of the filesystem to share | Must be a valid name | Yes | ​ |
-| `description` | String | Description of what the share will receive when viewed remotely | Must be a valid string | No | ​No description |
-| `internal-path` | String | The internal path within the filesystem \(relative to its root\) which will be exposed | Must be a valid path | No | . |
-| `file-create-mask` | String | POSIX permissions for the file created through the SMB share | Numeric \(octal\) notation | No | 0744 |
-| `directory-create-mask` | String | POSIX permissions for directories created through the SMB share | Numeric \(octal\) notation | No | 0755 |
-| `acl` | Boolean | Enable Windows ACLs on the share \(which will be translated to POSIX\) | Up to 16 ACEs per file | No | No |
-| `obs-direct` | Boolean | See [Object-store Direct Mount](../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option) section |  | No | No |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>share-name</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Name of the share being added</td>
+      <td style="text-align:left">Must be a valid name (ASCII)</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left">&#x200B;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>fs-name</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Name of the filesystem to share</td>
+      <td style="text-align:left">Must be a valid name</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left">&#x200B;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>description</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Description of what the share will receive when viewed remotely</td>
+      <td
+      style="text-align:left">Must be a valid string</td>
+        <td style="text-align:left">No</td>
+        <td style="text-align:left">&#x200B;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>internal-path</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">The internal path within the filesystem (relative to its root) which will
+        be exposed</td>
+      <td style="text-align:left">Must be a valid path</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>file-create-mask</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">POSIX permissions for the file created through the SMB share</td>
+      <td style="text-align:left">Numeric (octal) notation</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">0744</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>directory-create-mask</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">POSIX permissions for directories created through the SMB share</td>
+      <td
+      style="text-align:left">Numeric (octal) notation</td>
+        <td style="text-align:left">No</td>
+        <td style="text-align:left">0755</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>acl</code>
+      </td>
+      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">Enable Windows ACLs on the share (which will be translated to POSIX)</td>
+      <td
+      style="text-align:left">Up to 16 ACEs per file</td>
+        <td style="text-align:left">No</td>
+        <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>obs-direct</code>
+      </td>
+      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">See <a href="../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a> section</td>
+      <td
+      style="text-align:left"></td>
+        <td style="text-align:left">No</td>
+        <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>encryption</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">
+        <p></p>
+        <p>The share encryption policy.</p>
+        <p><code>cluster_default</code> - the share encryption policy will follow
+          the global SMB cluster setting</p>
+        <p><code>desired</code> - turns on data encryption for this share for clients
+          that support encryption if negotiation has been enabled globally.</p>
+        <p><code>required</code> - enforces encryption for the shares. Clients that
+          do not support encryption will be denied access to the share. If the global
+          option is set to <code>disabled</code> access will be denied to these shares
+          for all clients.</p>
+      </td>
+      <td style="text-align:left"><code>cluster_default</code>  <code>desired</code> or <code>required</code>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>cluster_default</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>read-only</code>
+      </td>
+      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">Sets the share as read-only. Users cannot create or modify files in this
+        share.</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>user-list-type</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">The type of initial permissions list for <code>users</code> 
+      </td>
+      <td style="text-align:left">
+        <p><code>read_only</code> - list of users that will not be given write access
+          to the share, regardless of the <code>read-only</code> setting.</p>
+        <p><code>read_write</code>- list of users that will be given write access
+          to the share, regardless of the <code>read-only</code> setting.</p>
+        <p><code>valid</code> - list of users that are allowed to log-in to this share
+          SMB service (empty list - all users are allowed)<code>invalid</code> - list
+          of users that are not allowed to log-in to this share SMB service</p>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>users</code>
+      </td>
+      <td style="text-align:left">A space-separated list of Strings</td>
+      <td style="text-align:left">A list of users to use with the <code>user-list-type</code> list. Can use
+        the <code>@</code> notation to allow groups of users, e.g. <code>root Jack @admins</code>
+      </td>
+      <td style="text-align:left">Up to 16 users/groups for all lists combined per share</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">Empty list</td>
+    </tr>
+  </tbody>
+</table>
 
 {% hint style="info" %}
 **Note:** If it is necessary to set share specific options to the SMB library, contact the Weka Support Team.
@@ -309,6 +478,267 @@ weka smb share add internalShare default --internal-path some/dir --description 
 In this example, the first SMB share added has the Weka system share for default. The second SMB share has internal for default.
 {% endhint %}
 
+## Updating SMB Shares
+
+**Command:** `weka smb share update`
+
+Use the following command line to update an existing share:
+
+`smb share update <share-id> [--encryption encryption]`
+
+**Parameters in Command Line**
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>share-id</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">The ID of the share to be updated</td>
+      <td style="text-align:left">Must be a valid share ID</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left">&#x200B;</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>encryption</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">
+        <p>The share encryption policy.</p>
+        <p><code>desired</code> - turns on data encryption for this share for clients
+          that support encryption if negotiation has been enabled globally.</p>
+        <p><code>required</code> - enforces encryption for the shares. Clients that
+          do not support encryption will be denied access to the share. If the global
+          option is set to <code>disabled</code> access will be denied to these shares
+          for all clients.</p>
+      </td>
+      <td style="text-align:left"><code>cluster_default</code>  <code>desired</code> or <code>required</code>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>
+
+## **Controlling SMB Shares Users Lists**
+
+**Command:** `weka smb share lists show`
+
+Use this command to view the various user-list settings:
+
+\*\*\*\*
+
+**Command:** `weka smb share lists add`
+
+Use the following command line to add users to a share user-list:
+
+`smb share lists add <share-id> <user-list-type> <--users users>...`
+
+**Parameters in Command Line**
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>share-id</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">The ID of the share to be updated</td>
+      <td style="text-align:left">Must be a valid share ID</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>user-list-type</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">The type of permissions list for <code>users</code> 
+      </td>
+      <td style="text-align:left">
+        <p><code>read_only</code> - list of users that will not be given write access
+          to the share, regardless of the <code>read-only</code> setting.</p>
+        <p><code>read_write</code>- list of users that will be given write access
+          to the share, regardless of the <code>read-only</code> setting.</p>
+        <p><code>valid</code> - list of users that are allowed to log-in to this share
+          SMB service (empty list - all users are allowed)<code>invalid</code> - list
+          of users that are not allowed to log-in to this share SMB service</p>
+      </td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>users</code>
+      </td>
+      <td style="text-align:left">A space-separated list of Strings</td>
+      <td style="text-align:left">A list of users to add to the <code>user-list-type</code> list. Can use
+        the <code>@</code> notation to allow groups of users, e.g. <code>root Jack @admins</code>
+      </td>
+      <td style="text-align:left">Up to 16 users/groups for all lists combined per share</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>
+
+\*\*\*\*
+
+**Command:** `weka smb share lists remove`
+
+Use the following command line to remove users from a share user-list:
+
+`smb share lists remove <share-id> <user-list-type> <--users users>...`
+
+**Parameters in Command Line**
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>share-id</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">The ID of the share to be updated</td>
+      <td style="text-align:left">Must be a valid share ID</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>user-list-type</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">The type of permissions list for <code>users</code> 
+      </td>
+      <td style="text-align:left">
+        <p><code>read_only</code> - list of users that will not be given write access
+          to the share, regardless of the <code>read-only</code> setting.</p>
+        <p><code>read_write</code>- list of users that will be given write access
+          to the share, regardless of the <code>read-only</code> setting.</p>
+        <p><code>valid</code> - list of users that are allowed to log-in to this share
+          SMB service (empty list - all users are allowed)<code>invalid</code> - list
+          of users that are not allowed to log-in to this share SMB service</p>
+      </td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>users</code>
+      </td>
+      <td style="text-align:left">A space-separated list of Strings</td>
+      <td style="text-align:left">A list of users to remove from the <code>user-list-type</code> list. Can
+        use the <code>@</code> notation to allow groups of users, e.g. <code>root Jack @admins</code>
+      </td>
+      <td style="text-align:left">Up to 16 users/groups for all lists combined per share</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>
+
+\*\*\*\*
+
+**Command:** `weka smb share lists reset`
+
+Use the following command line to remove all users from a share user-list:
+
+`smb share lists reset <share-id> <user-list-type>`
+
+**Parameters in Command Line**
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>share-id</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">The ID of the share to be updated</td>
+      <td style="text-align:left">Must be a valid share ID</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>user-list-type</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">The type of permissions list to reset</td>
+      <td style="text-align:left">
+        <p><code>read_only</code> - list of users that will not be given write access
+          to the share, regardless of the <code>read-only</code> setting.</p>
+        <p><code>read_write</code>- list of users that will be given write access
+          to the share, regardless of the <code>read-only</code> setting.</p>
+        <p><code>valid</code> - list of users that are allowed to log-in to this share
+          SMB service (empty list - all users are allowed)<code>invalid</code> - list
+          of users that are not allowed to log-in to this share SMB service</p>
+      </td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>
+
+## 
+
 ## Removing SMB Shares
 
 **Command:** `weka smb share remove`
@@ -321,7 +751,7 @@ Use the following command line to remove a share exposed to SMB:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `share-id` | String | The ID of the share to be removed | Must be a valid name  of a currently-defined share | Yes | ​ |
+| `share-id` | String | The ID of the share to be removed | Must be a valid share ID | Yes | ​ |
 
 {% hint style="success" %}
 **For Example:** The following is an example for removing an SMB share defined as ID 1:
