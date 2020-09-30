@@ -10,14 +10,17 @@ description: >-
 | :--- | :--- | :--- |
 | AdminDefault Password | The admin password is still set to the factory default. | Change the admin user password to ensure only authorized users can access the cluster. |
 | AgentNotRunning | The Weka local control agent is not running on a host. | Restart the agent with `service weka-agent start.` |
+| ApproachingClientsUnavailability | Approaching the maximum amount of clients that can connect with the current cluster resources. | Make sure all backhand servers are up or expand the cluster with more backend servers. |
 | AutoRemoveTimeoutTooLow | Stateless Client auto-remove timeout too low. | Remount the host with a higher auto-remove timeout value. |
 | BackendNumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance. | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the backend host. |
+| BondInterfaceCompromised | The host is configured to work with a highly available network, but has lost the connectivity redundancy. A single network failure can disconnect the host from the cluster, which will result in the unavailability of data to the host \(in case of a client host\) or data protection reduced redundancy \(in case of a backend host\). | Check the network configuration, cables, NICs to resolve the issue. |
 | BucketHasNoQuorum | Too many compute nodes are down, causing the bucket compute resource to be unavailable. | Check that the compute nodes and their hosts are up and running and fully connected; Contact the Weka Support Team if the issue is not resolved. |
 | BucketUnresponsive | A compute resource has failed, causing system unavailability. | Check that the compute nodes and their hosts are up and running and fully connected; Contact the Weka Support Team if the issue is not resolved. |
 | ChokingDetected | High congestion level detected in the cluster. | For more information, refer to [System Congestion](../system-congestion.md). |
 | ClientNumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance. | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the client host. |
 | ClockSkew | The clock of a host is skewed in relation to the cluster leader, with a time difference more than the permitted maximum of 30 seconds. | Make sure NTP is configured correctly on the hosts and that their dates are synchronized. |
 | CloudHealth | A host cannot upload events to the Weka cloud. | Check the host has Internet connectivity and is connected to the Weka cloud as explained in the [Weka Support Cloud section](../../support/the-wekaio-support-cloud.md). |
+| ClusterInitializationError | The cluster has encountered an error while initializing. | Fix the underlying problem causing the error to successfully start IO operations. |
 | ClusterIsUpgrading | Cluster is upgrading. | If the upgrade doesn't finish normally, contact the Weka support for assistance. |
 | DataProtection | Some of the system's data is not fully redundant. | Check which node/host/drive is down and act accordingly. |
 | DedicatedWatchdog | A dedicated Weka host requires the installation of a  watchdog driver. | Make sure a watchdog is available at /dev/watchdog. For more information, search the Weka knowledgebase in the [Weka support portal](http://support.weka.io). |
@@ -31,7 +34,7 @@ description: >-
 | HighDrivesCapacity | The average capacity of the SSDs is too high. | Free-up space on the SSDs or [add more SSDs](https://docs.weka.io/v/3.4/usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources) to the cluster. |
 | IPConflictDetected | An IP conflict has been detected. | Resolve the conflict of the reported IP. |
 | JumboConnectivity | A host cannot send jumbo frames to any of its cluster peers. | Check the host network settings and the switch to which it is connected, even if Weka seems to be functional since this will improve performance. |
-| KmsConfigurationError | KMS Configuration Error | Review the KMS credentials, permissions, and configuration, as suggested in [KMS management](../../fs/managing-filesystems/kms-management.md). |
+| KmsError | KMS Error | Review the KMS credentials, permissions, and configuration, as suggested in [KMS management](../../fs/managing-filesystems/kms-management.md). |
 | LicenseError | A license conflict exists. | Make sure the cluster is using a correct license, the license has not expired, and the cluster allocated space does not exceed the license. |
 | MismatchedDriveFailureDomain | The drive failure domain does not match the failure domain of its attached host. | Either connect the mismatched drive to a host with a matching failure domain, or re-provision the drive to erase its failure domain. |
 | NegativeUnprovisionedCapacity | Weka capacity usage changes detected due to cluster upgrade. | One or more of the filesystems need to be resized in order to reclaim capacity. Contact the Weka Support Team. |
@@ -44,8 +47,11 @@ description: >-
 | NodeTieringConnectivity | A node cannot connect to an object-store. | Check connectivity with the object store and make sure the node can communicate with it. |
 | NotEnoughActiveDrives | There are not enough active failure domains. | Check connectivity, host status, and/or replace problematic drives. |
 | OfedVersions | A host Mellanox OFED version ID does not match the one used by the Weka container. | Install a supported OFED. If the current version needs to be retained or the alert continues after a supported version is installed, contact the Weka Support Team. |
+| PartialConnectivityTrackingDisabled | The cluster's partial connectivity tracking mechanism is disabled, affecting the cluster's self-healing capabilities. | Contact the Weka Support Team. |
 | PartiallyConnectedNode | A node seems to be only partially connected. | Make sure there is no network connectivity issue. Contact the Weka Support Team if the issue is not resolved. |
 | PerformanceDegradedLowRAM | The host is running low on RAM. Additional Metadata entries are swapped to the SSD. This might impact performance. | Make sure all the compute hosts and processes are up, add more hosts to the Weka cluster, or the configured RAM of the cluster backend hosts. |
 | ResourcesNotApplied | There are changes to host resources that are not applied in the Weka cluster. | To apply changes run `weka cluster host apply <host_id>` |
+| TLSCertificateExpired | TLS Certificate has expired | Replace the current certificate using `weka security server-tls set` |
+| TLSCertificateExpiresSoon | TLS Certificate is about to expire | Replace the current certificate using `weka security server-tls set` |
 | UdpModePerformanceWarning | The backend host is configured in UDP mode. | If this is a misconfiguration use `weka cluster host net add`to add network devices to this host. |
 

@@ -17,10 +17,10 @@ The Weka upgrade process supports upgrading to both higher minor versions and ma
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
+* To upgrade to Weka software version 3.9.x, go through version 3.8.0 or above
 * To upgrade to Weka software version 3.8.x, go through version 3.7.3 or above
 * To upgrade to Weka software version 3.7.x, go through version 3.6.2 or above
 * To upgrade to Weka software version 3.6.x, go through version 3.5.3 or above
-* To upgrade to Weka software version 3.5.x, go through version 3.4.6 or above.
 
 For further information, contact the Weka Support Team.
 

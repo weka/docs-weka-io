@@ -234,6 +234,13 @@ description: >-
 | JOURNAL\_OPS\_IN | Operations added to the journal | Journal Entries/Sec |
 | JOURNAL\_OPS\_OUT | Operations removed from the journal | Journal Entries/Sec |
 
+## MEMORY
+
+| Type | Description | Units |
+| :--- | :--- | :--- |
+| RSS\_CURRENT |  | MB |
+| RSS\_PEAK |  | MB |
+
 ## Network
 
 | Type | Description | Units |
@@ -261,6 +268,9 @@ description: >-
 | PUMPS\_TXQ\_PARTIAL | Number of times we only sent some of our queued packets to the NIC queue | Pumps/Sec |
 | PUMP\_DURATION | Duration of each pump |  |
 | PUMP\_INTERVAL | Interval between pumps |  |
+| RDMA\_BINDING\_FAILOVERS |  | Fail-overs/Sec |
+| RDMA\_CANCELED\_COMPLETIONS |  | Completions/Sec |
+| RDMA\_CLIENT\_BINDING\_INVALIDATIONS |  | Invalidations/Sec |
 | RDMA\_COMPLETIONS |  | Completions/Sec |
 | RDMA\_COMP\_DURATION |  |  |
 | RDMA\_COMP\_FAILURES |  | Failures/Sec |
@@ -269,9 +279,10 @@ description: >-
 | RDMA\_POOL\_LOW\_CAPACITY |  | Failures/Sec |
 | RDMA\_PORT\_WAITING\_FIBERS |  | Waiting fibers |
 | RDMA\_REQUESTS |  | Requests/Sec |
-| RDMA\_RETRIES |  | Retries/Sec |
 | RDMA\_RX\_BYTES |  | Bytes/Sec |
+| RDMA\_SERVER\_BINDING\_RESTARTS |  | Restarts/Sec |
 | RDMA\_SUBMIT\_FAILURES |  | Failures/Sec |
+| RDMA\_SUBMIT\_TIMEOUTS |  | Timeouts/Sec |
 | RDMA\_TX\_BYTES |  | Bytes/Sec |
 | RECEIVED\_CONTROL\_PACKETS | Number of received control packets | Packets/Sec |
 | RECEIVED\_DATA\_PACKETS | Number of received data packets | Packets/Sec |
@@ -469,7 +480,7 @@ description: >-
 | THROUGHPUT | Number of byte read/writes per second | Bytes/Sec |
 | UNLINK\_LATENCY | Average latency of UNLINK operations | Microseconds |
 | UNLINK\_OPS | Number of UNLINK operation per second | Ops/Sec |
-| WRITES\_RDMA\_ENC\_NOTSUP | Number of failed \(unsupported\) read-RDMA operations to encrypted fs per second | Ops/Sec |
+| WRITES\_RDMA\_ENC\_NOTSUP | Number of failed \(unsupported\) write-RDMA operations to encrypted fs per second | Ops/Sec |
 | WRITES\_RDMA | Number of write-RDMA operations per second | Ops/Sec |
 | WRITES | Number of write operations per second | Ops/Sec |
 | WRITE\_BYTES\_RDMA | Number of bytes written via RDMA per second | Bytes/Sec |
@@ -644,9 +655,6 @@ description: >-
 | IDLE\_CYCLES | Number of cycles spent in idle | Cycles/Sec |
 | IDLE\_TIME | Percentage of the CPU time not utilized for handling I/Os | % |
 | NODE\_HANG |  |  |
-| NvmeIoRequest\_CAPACITY | Number of data structures allocated to the NvmeIoRequest pool | Structs |
-| NvmeIoRequest\_STRUCT\_SIZE | Number of bytes in each struct of the NvmeIoRequest pool | Bytes |
-| NvmeIoRequest\_USED | Number of structs in the NvmeIoRequest pool which are currently being used | Structs |
 | OUTRAGEOUS\_HOGGERS | Number of hoggers taking really excessive amount of time to run | Invocations |
 | PENDING\_FIBERS | Number of fibers pending for external events, such as a network packet, or SSD response. Upon such external event they will change state to scheduled fibers | Fibers |
 | QueuedBlock\_CAPACITY | Number of data structures allocated to the QueuedBlock pool | Structs |

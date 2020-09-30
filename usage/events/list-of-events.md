@@ -27,12 +27,16 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| AllBucketsResponsive | INFO | All compute resources are now responding |
 | BucketRedist | INFO | Buckets were redistributed in the cluster |
 | ClientConnected | INFO | Client connected |
 | ClientDisconnected | INFO | Client disconnected |
 | ClientRemoved | INFO | Disconnected client is being removed from the cluster |
+| ClientsUnavailable | CRITICAL | Some clients are unavailable because too many backends are down |
+| ClusterInitializationFailed | MAJOR | Cluster initialization failed |
+| ClusterInitialized | INFO | Cluster successfully initialization |
 | ClusteringFailure | MINOR | Node clustering failed |
-| ConfigChangeSetsSliderFull | MAJOR | Config changeset slider is full while the node is pulling config |
+| ConfigChangeSetsSliderFull | MINOR | Config changeset slider is full while the node is pulling config |
 | ConfigSnapshotPulled | MINOR | Config snapshot pulled |
 | GrimReaperFencingNode | MINOR | Partially connected node selected to be fenced by grim reaper |
 | HostActivated | INFO | Host configuration change |
@@ -45,12 +49,21 @@ description: >-
 | HostRemoving | INFO | Host configuration change |
 | LeaderChanged | WARNING | Cluster leader has changed |
 | NodeNetworkUnstable | MAJOR | A node with unstable network detected |
-| NodePartiallyConnected | MAJOR | A partially connected node was removed |
+| NodePartiallyConnected | MINOR | A partially connected node was removed |
 | NodeRejoined | INFO | Node rejoined the cluster |
-| NodeUnreachable | MAJOR | An unreachable node was removed |
+| NodeUnreachable | MINOR | An unreachable node was removed |
 | PreviousCluster | INFO | This host was part of another cluster before |
 | RejoinFailureReport | MINOR | Node\(s\) failed to rejoin |
-| StartIONodeNotUp | MAJOR | Node has not joined the cluster during Start-IO |
+| UnresponsiveBuckets | CRITICAL | Some compute resources are not responding |
+
+## Config
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| TLSSet | INFO | TLS was set |
+| TLSUnset | INFO | TLS was unset |
+| WebUIDisabled | INFO | Web UI was disabled |
+| WebUIEnabled | INFO | Web UI was enabled |
 
 ## Custom
 
@@ -63,21 +76,20 @@ description: >-
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | CorruptedDrive | MAJOR | Drive has a valid header but is corrupt |
-| DriveActivated | INFO | Drive activated |
+| DriveAdded | INFO | Drive provisioned |
 | DriveDeactivated | INFO | Drive deactivated |
-| DriveExcessiveErrors | WARNING | Drive has excessive error rate and will be phased out; call WekaIO Support Team |
+| DriveExcessiveErrors | WARNING | Drive has excessive error rate and will be phased out; call Contact Support Team |
 | DriveFormatUpgraded | INFO | Drive format was upgraded |
-| DriveImmediateShutdown | MAJOR | Drive had to be shutdown immediately; call WekaIO Support Team |
+| DriveImmediateShutdown | MAJOR | Drive had to be shutdown immediately; call Contact Support Team |
 | DriveInfoReport | INFO | Drive Information reporting |
 | DriveInitFailed | MAJOR | Drive failed to initialize |
 | DriveIoErrorBMS | MAJOR | Drive found an IO error in background media scan |
 | DriveIoError | MAJOR | Drive had an IO error |
 | DriveLimitExceeded | WARNING | Attempted to add more drives than supported |
-| DriveMediumError | MAJOR | Drive had a Medium error |
+| DriveMediumError | MINOR | Drive had a Medium error |
 | DriveNvmeErrorLog | WARNING | NVMe Drive Error Log Entry |
 | DriveNvmeSmartChange | MINOR | NVMe Drive SMART status changed |
 | DriveNvmeSmartInfo | INFO | NVMe Drive SMART status update - drive normal |
-| DriveProvisioned | INFO | Drive provisioned |
 | DriveRemoved | INFO | Drive removed |
 | DriveScanBlockLifted | MINOR | Drive blocked during scan is now responsive |
 | DriveScanBlocked | MINOR | Drive blocked during scan and is unresponsive |
@@ -94,7 +106,7 @@ description: >-
 | :--- | :--- | :--- |
 | DedupEventsDiscarded | WARNING | Deduplicated events discarded |
 | EventsDedupReport | INFO | Event deduplication ended |
-| EventsDiscarded | MAJOR | Too many events were generated in a short period of time, so some of them were discarded and lost |
+| EventsDiscarded | MINOR | Too many events were generated in a short period of time, so some of them were discarded and lost |
 | ExampleAggregated | INFO | Example Aggregated |
 | ExampleDebug | DEBUG | ExampleDebug |
 | Example | INFO | Example |
@@ -143,12 +155,14 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| RaftHogger | MAJOR | Raft hogger |
+| SystemDriveIsTooSlow | MAJOR | System drive is slow to respond |
 
 ## InterfaceGroup
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| FloatingIpAcquired | INFO | Floating IP was acquired by Node |
+| FloatingIpReleased | INFO | Floating IP was released by Node |
 | InterfaceGroupAdded | INFO | Interface group configuration change |
 | InterfaceGroupDeleted | INFO | Interface group configuration change |
 | InterfaceGroupIpsAdded | INFO | Interface group IPs configuration change |
@@ -164,8 +178,6 @@ description: >-
 | KmsConfigurationAdded | INFO | KMS configuration configuration change |
 | KmsConfigurationRemoved | INFO | KMS configuration configuration change |
 | KmsConfigurationUpdated | INFO | KMS configuration configuration change |
-| KmsSanityError | MAJOR | KMS sanity error |
-| KmsSanityRestored | MAJOR | KMS sanity restored |
 
 ## Licensing
 
@@ -195,13 +207,15 @@ description: >-
 | :--- | :--- | :--- |
 | DefaultDataNetworkingChange | INFO | Default data networking configuration changed |
 | HangingRPCs | MAJOR | RPCs are hanging too long |
-| HugepagesAllocationFailure | MAJOR | Hugepages allocation failure |
+| HugepagesAllocationFailure | MINOR | Hugepages allocation failure |
 | IONodeCannotFetchConfig | WARNING | Node cannot join cluster for too long |
 | IPConflictDetected | MAJOR | IP conflict detected |
 | MgmtNodeCannotFetchConfig | WARNING | Node cannot join cluster for too long |
 | NICNotFound | INFO | NIC not found when initializing |
-| NetDeviceLinkDown | MAJOR | Network interface DOWN |
+| NetDeviceLinkDown | MINOR | Network interface DOWN |
 | NetDeviceLinkUp | MINOR | Network interface UP |
+| NetSlaveDeviceLinkDown | MAJOR | Network slave interface DOWN |
+| NetSlaveDeviceLinkUp | MINOR | Network slave interface UP |
 | NetworkPortConfigFail | MINOR | Network port configuration failed |
 | NetworkPortDead | MAJOR | Network Port hasn't passed packets for a long period of time, it is likely dead |
 | NoConnectivityToLivingNode | MAJOR | Node is disconnected from living peer\(s\) |
@@ -217,16 +231,14 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| CrashReport | MAJOR | Node has crashed on the previous run |
 | GCCrashReport | MINOR | Node has crashed in GC on the previous run |
+| NodeAbruptExitReport | MINOR | Node has crashed on the previous run |
 | NodeAssertionFailed | MAJOR | Node assertion failed |
 | NodeExceptionExit | MAJOR | Node exited with an exception |
 | NodeKernelStack | WARNING | Kernel stack of node before reset |
 | NodeStarted | INFO | Node started |
 | NodeStopped | INFO | Node stopped |
 | NodeTraceback | WARNING | Traceback of node before reset |
-| WatchdogResetClientNode | MINOR | Watchdog reset of a client node |
-| WatchdogResetNode | MAJOR | Watchdog reset of node |
 
 ## ObjectStorage
 
@@ -282,7 +294,7 @@ description: >-
 | CoreAllocated | INFO | Allocated core |
 | DisabledNumaBalancing | INFO | Disabled NUMA Balancing |
 | DriverLoaded | INFO | Driver loaded |
-| FailedToLoadDriver | MAJOR | Failed to load the wekafs driver |
+| FailedToLoadDriver | WARNING | Failed to load the wekafs driver |
 | HugepagesAllocated | INFO | Hugepages allocated |
 | HugepagesAllocationRetries | WARNING | Hugepages allocation retried |
 | HugepagesAllocationStarted | INFO | Hugepages allocation started |
@@ -301,10 +313,14 @@ description: >-
 | :--- | :--- | :--- |
 | SmbAdJoined | INFO | Active Directory configuration change |
 | SmbAdLeft | INFO | Active Directory configuration change |
+| SmbClusterConfigured | INFO | SMB cluster configuration change |
 | SmbClusterCreated | INFO | SMB cluster configuration change |
 | SmbClusterDestroyed | INFO | SMB cluster configuration change |
 | SmbShareAdded | INFO | Share configuration change |
+| SmbShareConfigured | INFO | Share configuration change |
 | SmbShareRemoved | INFO | Share configuration change |
+| SmbTrustedDomainAdded | INFO | TrustedDomain configuration change |
+| SmbTrustedDomainRemoved | INFO | TrustedDomain configuration change |
 
 ## Statistics
 
