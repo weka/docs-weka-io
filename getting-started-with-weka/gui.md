@@ -22,5 +22,9 @@ From the menu bar, it is possible to view [statistics](../usage/statistics/) and
 
 {% hint style="info" %}
 **Note:** to allow https access only, use the `weka security tls set` CLI command.
+
+For example, you can create a self-signed certificate using the OpenSSL command:
+
+`openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days -nodes`
 {% endhint %}
 
