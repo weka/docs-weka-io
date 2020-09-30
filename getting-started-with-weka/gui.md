@@ -18,9 +18,9 @@ Clicking the top-left button next to the WEKA.IO logo opens a menu bar containin
 
 ![Weka Dashboard with Menu Bar](../.gitbook/assets/gui-overview-3.5.png)
 
-From the menu bar, it is possible to view [statistics](../usage/statistics/) and [events](../usage/events/), manage [filesystems](../fs/managing-filesystems/), configure [NFS](../additional-protocols/nfs-support.md) and [SMB](../additional-protocols/smb-support/smb-management-using-the-gui.md) services and manage system [security](../usage/user-management.md) aspects.
+From the menu bar, it is possible to view [statistics](../usage/statistics/) and [events](../usage/events/), manage [filesystems](../fs/managing-filesystems/), configure [NFS](../additional-protocols/nfs-support.md) and [SMB](../additional-protocols/smb-support/smb-management-using-the-gui.md) services, and manage system [security](../usage/user-management.md) aspects.
 
 {% hint style="info" %}
-**Note:** to allow https access only use the `weka security tls set` CLI command.
+**Note:** to allow https access only, use the `weka security tls set` CLI command.
 {% endhint %}
 
