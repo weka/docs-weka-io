@@ -14,10 +14,6 @@ All these changes can be performed using the relevant `weka cluster host`command
 
 The last local configuration \(of a host that successfully joined a cluster\) is saved. If a failure/problem occurs with the new configuration, the host will automatically revert to the last known good configuration. To view this configuration, use the`weka cluster host resources <host-id> --stable` command. 
 
-{% hint style="info" %}
-**Note:** `weka local restart` of a host \(such as an inactive host which is activated, reboot etc.\) will implicitly apply the resources that are currently staged. 
-{% endhint %}
-
 ### Memory Modifications
 
 To dynamically change the memory configuration, use the steps described for the [Configuration of Memory](../../install/bare-metal/using-cli.md#stage-10-configuration-of-memory-optional) on an active host, followed by the `weka cluster host apply` command.
