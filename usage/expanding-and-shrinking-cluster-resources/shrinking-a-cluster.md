@@ -54,7 +54,7 @@ To deactivate a drive, run the following command:
 
 **Command:** `weka cluster drive remove`
 
-This command is used to completely remove a drive from the cluster. After removal, the drive will not be recoverable and the drive entries can be reused during `weka drive scan` for new drives.
+This command is used to completely remove a drive from the cluster. After removal, the drive will not be recoverable.
 
 To remove a drive, run the following command:
 
