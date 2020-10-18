@@ -17,14 +17,14 @@ description: >-
 
 ## Memory
 
-* Enough memory to support Weka system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
+* Enough memory to support the Weka system needs as described in [memory requirements ](planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
 ## Operating System
 
 ### Types
 
-* **RHEL:** 6.8, 6.9, 6.10, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 8.0, 8.1, 8.2
+* **RHEL:** 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 8.0, 8.1, 8.2
 * **CentOS:** 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 8.0, 8.1, 8.2
 * **Ubuntu:** 16.04, 18.04, 20.04
 * **Amazon Linux:** 17.09, 18.03
@@ -38,7 +38,6 @@ description: >-
 
 ### Kernel
 
-* 2.6.32
 * 3.10
 * 4.4.0-1106 to 4.19
 * 5.4
@@ -52,7 +51,7 @@ description: >-
 * Directory: /opt/weka
 * Should be on an SSD or SSD-like performance, e.g., M.2. 
   * Cannot be shared remotely, NFS mounted or on RAM drive
-* At least 26 GB available for the Weka system installation, with additional 10GB for each core used by Weka
+* At least 26 GB available for the Weka system installation, with an additional 10GB for each core used by Weka
 
 ## Networking
 
@@ -93,17 +92,17 @@ Supported Mellanox OFED versions:
 Supported ENA drivers:
 
 * 1.0.2 - 2.0.2
-* Current driver from official OS repository is recommended
+* A current driver from an official OS repository is recommended
 
 Supported ixgbevf drivers:
 
 * 3.2.2 - 4.1.2
-* Current driver from official OS repository is recommended
+* A current driver from an official OS repository is recommended
 
 Supported Intel 40 drivers:
 
 * 3.0.1-k - 4.1.0
-* Current driver from official OS repository is recommended
+* A current driver from an official OS repository is recommended
 
 #### Ethernet Configuration
 
@@ -196,7 +195,7 @@ VMs can be used as clients only, assuming they meet the following prerequisite:
 
 #### For UDP clients:
 
-* To avoid irregularities, crashes and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform, and dedicate a core to the Weka client.
+* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform and dedicate a core to the Weka client.
 * The root filesystem should handle a 3K IOPS load by the Weka client.
 
 #### **For DPDK clients \(on top of the UDP requirements\):**
