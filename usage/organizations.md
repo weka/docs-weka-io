@@ -32,7 +32,7 @@ Working with organizations makes it possible to manage different departments. Wh
 
 ### Logical Separation of External Groups of Users
 
-When multiple, independent groups use the same provided infrastructure, the use of multiple organizations provides much better security, obscuration and separation of data.
+When multiple, independent groups use the same provided infrastructure, the use of multiple organizations provides much better security, obscuration, and separation of data.
 
 ## Cluster Level Entities
 
@@ -69,7 +69,7 @@ Cluster Admins can view an organization's usage \(both SSD and total\) and can l
 
 ## Managing Organizations Using the GUI
 
-To create, delete or view organizations in the cluster using the GUI, go to the Organizations screen.
+To create, delete, or view organizations in the cluster using the GUI, go to the Organizations screen.
 
 ![Organizations Screen](../.gitbook/assets/organization-screen-3.5.png)
 
@@ -113,7 +113,7 @@ ID | Name       | Allocated SSD | SSD Quota | Allocated Total | Total Quota
 
 **Command:** `weka org rename`
 
-Use the following command line to rename an organization: _\*\*_
+Use the following command line to rename an organization:
 
 `weka org rename <org> <new-name>`
 
@@ -144,7 +144,7 @@ Use the following command line to update an organization's quota:
 
 **Command:** `weka org delete`
 
-Use the following command line to delete an organization: _\*\*_
+Use the following command line to delete an organization:
 
 `weka org delete <org>`
 
@@ -155,7 +155,7 @@ Use the following command line to delete an organization: _\*\*_
 | `org` | String/Integer | Organization name or ID |  | Yes |  |
 
 {% hint style="danger" %}
-**Warning:** Deleting an organization is irreversible and will also remove all entities related to the organization, such as filesystems, object stores and users.
+**Warning:** Deleting an organization is irreversible and will also remove all entities related to the organization, such as filesystems, object stores, and users.
 {% endhint %}
 
 ## Organization Admin Role Privileges
@@ -177,7 +177,7 @@ Additionally, to avoid situations where an Organization Admin loses access to a 
 
 ## Mount Authentication for Organization Filesystems
 
-Once the Cluster Admin has created an organization and the Organization Admin has created filesystems, users or configured the LDAP for the organization, regular users of the organization can mount filesystems.
+Once the Cluster Admin has created an organization and the Organization Admin has created filesystems, users, or configured the LDAP for the organization, regular users of the organization can mount filesystems.
 
 The purpose of organizations is to provide separation and security for organization data, which requires authentication of the Weka system filesystem mounts. This authentication of mounts prevents users of other organizations and even the Cluster Admin from accessing organization filesystems.
 
