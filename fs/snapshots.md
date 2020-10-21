@@ -135,6 +135,10 @@ Use the following command line to restore a snapshot to another snapshot:
 | `source-name` | String | Unique name for the source of the snapshot | Must be a valid name | Yes |  |
 | `destination-name` | String | Name of the destination to which the snapshot should be copied | Must be an existing  snapshot | Yes |  |
 
+{% hint style="warning" %}
+**Note:** When restoring a filesystem from a snapshot \(or copying over an existing snapshot\), the filesystem data and metadata are changed. Make sure IOs to the filesystem are stopped during this time.
+{% endhint %}
+
 ### Updating a Snapshot
 
 #### Updating a Snapshot Using the GUI
