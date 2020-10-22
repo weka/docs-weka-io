@@ -80,7 +80,7 @@ To deactivate an entire host, run the following command:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `host-ids` | Comma-separated strings | Comma-separated host identifiers |  | Yes |  |
+| `host-ids` | Space-separated integers | Space-separated host identifiers |  | Yes |  |
 | `--allow-unavailable-host` | Boolean | Allow deactivation of an unavailable host | If the host returns, it will join the cluster in an active state | No | No |
 
 ## Removing a Host
