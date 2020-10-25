@@ -194,7 +194,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The `--smb-ips` parameter is supposed to accept the public IPs that the SMB cluster will expose. To mount the SMB cluster in an HA manner, they should be mounted via one of the exposed public IPs, thereby ensuring that they will not lose connection if one of the SMB hosts fails.
+**Note:** The `--smb-ips` parameter is supposed to accept the public IPs that the SMB cluster will expose. To mount the SMB cluster in an HA manner, clients should be mounted via one of the exposed public IPs, thereby ensuring that they will automatically reconnect if one of the SMB hosts fails.
 {% endhint %}
 
 {% hint style="info" %}
