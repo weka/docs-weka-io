@@ -40,7 +40,7 @@ description: >-
 
 * 3.10
 * 4.4.0-1106 to 4.19
-* 5.4
+* 5.3-5.4
 
 {% hint style="info" %}
 **Note:** It is advisable to turn off auto kernel updates so it will not get upgraded to a yet unsupported version.
