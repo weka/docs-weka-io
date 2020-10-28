@@ -456,9 +456,9 @@ Use the following command line to add a new share to be exposed to SMB:
       </td>
       <td style="text-align:left">A comma-separated list of Strings</td>
       <td style="text-align:left">A list of users to use with the <code>user-list-type</code> list. Can use
-        the <code>@</code> notation to allow groups of users, e.g. <code>root, Jack, @admins</code>
+        the <code>@</code> notation to allow groups of users, e.g. <code>root, Jack, @domain\admins</code>
       </td>
-      <td style="text-align:left">Up to 16 users/groups for all lists combined per share</td>
+      <td style="text-align:left">Up to 8 users/groups for all lists combined per share</td>
       <td style="text-align:left">No</td>
       <td style="text-align:left">Empty list</td>
     </tr>
@@ -602,9 +602,9 @@ Use the following command line to add users to a share user-list:
       </td>
       <td style="text-align:left">A comma-separated list of Strings</td>
       <td style="text-align:left">A list of users to add to the <code>user-list-type</code> list. Can use
-        the <code>@</code> notation to allow groups of users, e.g. <code>root, Jack, @admins</code>
+        the <code>@</code> notation to allow groups of users, e.g. <code>root, Jack, @domain\admins</code>
       </td>
-      <td style="text-align:left">Up to 16 users/groups for all lists combined per share</td>
+      <td style="text-align:left">Up to 8 users/groups for all lists combined per share</td>
       <td style="text-align:left">Yes</td>
       <td style="text-align:left"></td>
     </tr>
@@ -671,9 +671,9 @@ Use the following command line to remove users from a share user-list:
       </td>
       <td style="text-align:left">A comma-separated list of Strings</td>
       <td style="text-align:left">A list of users to remove from the <code>user-list-type</code> list. Can
-        use the <code>@</code> notation to allow groups of users, e.g. <code>root, Jack, @admins</code>
+        use the <code>@</code> notation to allow groups of users, e.g. <code>root, Jack, @domain\admins</code>
       </td>
-      <td style="text-align:left">Up to 16 users/groups for all lists combined per share</td>
+      <td style="text-align:left">Up to 8 users/groups for all lists combined per share</td>
       <td style="text-align:left">Yes</td>
       <td style="text-align:left"></td>
     </tr>
