@@ -8,9 +8,9 @@ description: >-
 
 ## Subscribing to AWS Marketplace
 
-To enable PAYG, it is first necessary to subscribe to [Weka Matrix distributed scalable file system ](https://aws.amazon.com/marketplace/pp/B074XFQH6F)in the AWS Marketplace. This is performed using the following steps:
+To enable PAYG, it is first necessary to subscribe to [Weka Matrix distributed scalable file system ](https://aws.amazon.com/marketplace/pp/B07W8V4PN9?ref_=srh_res_product_title)in the AWS Marketplace. This is performed using the following steps:
 
-1. [Click here ](https://aws.amazon.com/marketplace/pp/B074XFQH6F) to go to the AWS Marketplace subscription page.
+1. [Click here ](https://aws.amazon.com/marketplace/pp/B07W8V4PN9?ref_=srh_res_product_title)to go to the AWS Marketplace subscription page.
 2. Review the pricing \(see [How Does Hourly Pricing Work?](pay-as-you-go.md#how-does-hourly-pricing-work) below for more details\).
 3. Click the **Continue** button and then confirm by clicking **Subscribe**. A few seconds later a popup will be displayed.
 4. Click the **Set Up Your Account** button.
