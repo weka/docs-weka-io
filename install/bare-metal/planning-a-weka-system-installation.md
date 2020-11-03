@@ -73,7 +73,7 @@ The total per host memory requirements is the sum of the following requirements:
     <tr>
       <td style="text-align:left">Core-based</td>
       <td style="text-align:left">
-        <p>3.3 GB for each compute core</p>
+        <p>3.3 GB for each Compute core</p>
         <p>2.3 GB for each Drive/SSD core</p>
       </td>
     </tr>
@@ -140,18 +140,16 @@ The following should be noted with regards to the CPU allocation strategy:
 
 ### Backend Hosts
 
-The number of physical cores dedicated to the Weka software should be planned according to the following guidelines:
+The number of physical cores dedicated to the Weka software should be planned according to the following guidelines and limitations:
 
 * At least one physical core should be dedicated to the operating system; the rest can be allocated to the Weka software.
-* Enough cores should be allocated to support performance targets. For help on planning this, contact the Weka Support Team.
+  * In general, it is recommended to allocate as many cores as possible to the Weka system.
+  * No more than 19 physical cores can be assigned to Weka system processes.
+* Enough cores should be allocated to support performance targets.
+  * In general, use 1 drive core per SSD for up to 6 SSDs and 1 drive core per 2 SSDs for more, with a ratio of 2 compute cores per SSD core.
+  * For finer tuning, please contact the Weka Support Team.
 * Enough memory should be allocated to match core allocation, as discussed above.
-
-In general, it is recommended to allocate as many cores as possible to the Weka system, with the following limitations:
-
-* There has to be one core for the operation system.
 * The running of other applications on the same host \(converged Weka system deployment\) is supported. However, this is not covered in this documentation. For further information, contact the Weka Support Team.
-* There has to be sufficient memory, as described above.
-* No more than 20 physical cores can be assigned to Weka system processes.
 
 ### Client Hosts
 
