@@ -6,13 +6,13 @@ description: This page describes how to add clients to a bare-metal cluster.
 
 ## About Client Hosts
 
-Client hosts are used to run applications which need to access the Weka filesystems. They do not contribute CPUs or drives to the cluster, and only connect to the cluster to use its filesystems.
+Client hosts are used to running applications that need to access the Weka filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
 
 ## Adding \(Stateless\) Clients
 
 To use the Weka filesystems from a client host, all that is needed is to call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
 
-To mount a filesystem in this manner, first install the Weka agent from one of the backend instances and then mount the filesystem. For example:
+To mount a filesystem in this manner, first, install the Weka agent from one of the backend instances and then mount the filesystem. For example:
 
 ```text
 # Agent Installation (one time)
@@ -33,6 +33,10 @@ It is possible to configure the client OS to automatically mount the filesystem 
 **Note:** Clients can be deployed on [diskless-servers](https://en.wikipedia.org/wiki/Diskless_node). They can use RAM for Weka client software and NFS mount for the traces. For more information, contact the Weka Support Team.
 {% endhint %}
 
+{% hint style="info" %}
+**Note:** The different clients must have a unique IP and FQDN.
+{% endhint %}
+
 ## Adding Clients Which Are Always Part of the Cluster
 
 {% hint style="info" %}
@@ -44,7 +48,7 @@ It is possible to configure the client OS to automatically mount the filesystem 
 Verify that the Weka software is installed on the client host according to the installation instructions. For further information, see [Obtaining the Weka Install File](obtaining-the-weka-install-file.md) and [Stage 1 in Weka System Installation Process.](using-cli.md#stage-1-installation-of-the-wekaio-software-on-each-host)
 
 {% hint style="info" %}
-**Note:** All hosts, clients and backends in a Weka system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
+**Note:** All hosts \(clients and backends\) in a Weka system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
 {% endhint %}
 
 ### Stage 2: Joining the Cluster
@@ -59,8 +63,8 @@ Once the client host is in the stem mode \(this is the mode defined immediately 
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `backend-hostname` | String | IP/hostname of one of the existing backend instances in the cluster | Valid hostname \(FQDN or IP\) | Yes |  |
-| `client-hostname` | String | IP/hostname of the client currently being added | Valid hostname \(FQDN or IP\) | Yes |  |
+| `backend-hostname` | String | IP/hostname of one of the existing backend instances in the cluster | Existing backend IP/FQDN | Yes |  |
+| `client-hostname` | String | IP/hostname of the client currently being added | Unique IP/FQDN | Yes |  |
 
 {% hint style="info" %}
 **Note:** On completion of this stage, the host-ID of the newly added host will be received. Make a note of it for the next steps.
@@ -206,7 +210,7 @@ If a high-performance client is required and the appropriate network NIC is avai
       <td style="text-align:left"><code>netmask</code>
       </td>
       <td style="text-align:left">Number</td>
-      <td style="text-align:left">Number of bits in the net mask, e.g., the net mask of <code>255.255.0.0</code> has <code>16</code> netmask
+      <td style="text-align:left">Number of bits in the netmask, e.g., the netmask of <code>255.255.0.0</code> has <code>16</code> netmask
         bits</td>
       <td style="text-align:left">Describes the number of bits that identify a network ID (also known as
         CIDR).</td>
@@ -236,6 +240,6 @@ After successfully configuring the host and its network device, run the followin
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `host-id` | Comma-separated string | Identifier of host to be added to the cluster | Must be a valid host identifier | Yes |  |
+| `host-id` | Comma-separated string | Identifier of the host to be added to the cluster | Must be a valid host identifier | Yes |  |
 | `force` | Boolean | Do not prompt for confirmation |  | No | Off |
 
