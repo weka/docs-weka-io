@@ -57,6 +57,10 @@ All system entities at the organization level are managed only by the relevant O
 **Note**: SMB shares cannot be defined for organizations other than the 'Root' organization.
 {% endhint %}
 
+{% hint style="warning" %}
+**Note:** NFS exports cannot be configured with `manage-gids` option for organizations other than the 'Root' organization.
+{% endhint %}
+
 ## Managing Organizations
 
 Only users defined as Cluster Admins can manage organizations. When no organization is created, the root organization is the default organization and all operations are regular, i.e., it is not necessary to authenticate the mounts or supply an organization name when logging in using the GUI/CLI.

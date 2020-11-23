@@ -73,6 +73,64 @@ Load balancing is implemented via floating IPs. By default, the floating IPs are
 
 The same mechanism ensures the resiliency of the service. On a host failure, all IP addresses associated with the failed host will be reassigned to other hosts \(using the GARP network messages\) and the clients will reconnect to the new hosts without any reconfiguration or service interruption.
 
+## User groups resolution
+
+The NFS protocol, using AUTH\_SYS protocol, has a limitation of 16 security groups users can be part of. The protocol truncates the group list to 16 if a user is part of more than 16 groups, and a permissions check can fail for authorized users.
+
+As in many cases, a user can be part of more than 16 security groups. It is possible to configure the Weka system to ignore the groups passed by the NFS protocol and resolve the user's groups external to the protocol. For that, several steps should be taken:
+
+1. Define an interface group that supports external group-IDs resolution \(`allow-manage-gids` option\).
+2. Define the NFS client permissions to use external group-IDs resolution \(`manage-gids` option\).
+3. Set-up the relevant hosts to retrieve user's group-IDs information.
+
+### Setting up the hosts to retrieve user's group-IDs information
+
+The hosts, which are part of the interface group, can be set to retrieve the user's group-IDs information in any method that is used in the environment. Group resolution can be set by joining to an AD domain, joining a Kerberos domain, using LDAP with a read-only user, etc.
+
+`sssd` should be configured on the host to serve as a group IDs provider. It can be configured directly, using LDAP, for example, or as a proxy to a different `nss` group IDs provider.
+
+Below is an example of how to set `sssd` directly for `nss` services using LDAP with a read-only user. For more options and information, refer to this [link](https://tylersguides.com/guides/configure-sssd-for-ldap-on-centos-7/).
+
+```text
+[sssd]
+services = nss
+config_file_version = 2
+domains = LDAP
+
+[domain/LDAP]
+id_provider = ldap
+ldap_uri = ldap://ldap.example.com
+ldap_search_base = dc=example,dc=com
+
+# The DN used to search the ldap directory with. 
+ldap_default_bind_dn = cn=ro_admin,ou=groups,dc=example,dc=com
+
+# The password of the bind DN.
+ldap_default_authtok = password
+
+```
+
+If the method used is not via `sssd`, but a different provider, an `sssd proxy` should be configured on each relevant host. The proxy is used for the Weka container to be able to resolve the groups by whatever method defined on the host. Use the following to configure `sssd proxy` on a host:
+
+```text
+# install sssd
+yum install sssd
+
+# set up a proxy for weka in /etc/sssd/sssd.conf
+[sssd]
+services = nss
+config_file_version = 2
+domains = proxy_for_weka
+
+[nss]
+[domain/proxy_for_weka]
+id_provider = proxy
+auth_provider = none
+ 
+# the name of the nss lib to be proxied, e.g. ldap, nis, winbind, vas4, etc.
+proxy_lib_name = ldap
+```
+
 ## Managing NFS Networking Configuration \(Interface Groups\)
 
 ### Defining Interface Groups
@@ -95,16 +153,91 @@ Enter the Group Name \(this has to be unique\) and the Gateway / Mask Bits. Then
 
 Use the following command line to add an interface group:
 
-`weka nfs interface-group add <name> <type> [--subnet=<subnet>] [--gateway=<gw>]`
+`weka nfs interface-group add <name> <type> [--subnet subnet] [--gateway gateway] [--allow-manage-gids allow-manage-gids]`
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | Unique interface group name | None | Yes |  |
-| `type` | String | Group type | Can only be  NFS | Yes | NFS |
-| `subnet` | String | The subnet mask in the 255.255.0.0 format | Valid netmask | No | 255.255.255.255 |
-| `gw` | String | Gateway IP | Valid IP | No | 255.255.255.255 |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>name</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Unique interface group name</td>
+      <td style="text-align:left">None</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>type</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Group type</td>
+      <td style="text-align:left">Can only be <code>NFS</code>
+      </td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>subnet</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">The subnet mask in the 255.255.0.0 format</td>
+      <td style="text-align:left">Valid netmask</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">255.255.255.255</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>gateway</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Gateway IP</td>
+      <td style="text-align:left">Valid IP</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left">255.255.255.255</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>allow-manage-gids</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">
+        <p>Allows the hosts within this interface group to use <code>manage-gids</code> when
+          set in exports.</p>
+        <p>With <code>manage-gids</code>, the list of group IDs received from the
+          client will be replaced by a list of group IDs determined by an appropriate
+          lookup on the server.</p>
+      </td>
+      <td style="text-align:left">
+        <p><code>on</code> or <code>off</code>.</p>
+        <p>Cannot be set if one of the hosts belongs to an interface group which
+          does not have the <code>allow-manage-gids</code> flag set.</p>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>off</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+{% hint style="warning" %}
+**Note:** Each host can be set to be part on interface groups with the same value of `allow-manage-gids.` In addition, you must not mount the same filesystem via hosts resides in interface groups with different values of `allow-manage-gids.`
+{% endhint %}
 
 ### Setting Interface Group Ports
 
@@ -130,13 +263,8 @@ weka nfs interface-group port delete <name> <host-id> <port>`
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | Interface group name | None | Yes |  |
-| `host-id` | String | Host ID on which the port resides\* | Valid host ID | Yes |  |
+| `host-id` | String | Host ID on which the port resides \(can be obtained by running the `weka cluster host` command\) | Valid host ID | Yes |  |
 | `port` | String | Port's device, e.g., eth1 | Valid device | Yes |  |
-
-{% hint style="info" %}
-\*It is possible to obtain host IDs using the following command:  
-`weka cluster host -H=<hostname>`
-{% endhint %}
 
 ### **Setting Interface Group IPs**
 
@@ -266,9 +394,9 @@ Then click Save.
 **Command:** `weka nfs permission`
 
 Use the following command lines to add/update/delete NFS permissions:  
-`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs_direct]`
+`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs_direct] [--manage-gids manage-gids] [--privileged-port privileged-port]`
 
-`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid]`
+`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--manage-gids manage-gids] [--privileged-port privileged-port]`
 
 `weka nfs permission delete <filesystem> <group> [--path path]`
 
@@ -336,9 +464,11 @@ Use the following command lines to add/update/delete NFS permissions:
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Root squashing</td>
-      <td style="text-align:left">on/off</td>
+      <td style="text-align:left"><code>on</code> or <code>off</code>
+      </td>
       <td style="text-align:left">No</td>
-      <td style="text-align:left">on</td>
+      <td style="text-align:left"><code>on</code>
+      </td>
     </tr>
     <tr>
       <td style="text-align:left"><code>anon-uid</code>
@@ -367,6 +497,37 @@ Use the following command lines to add/update/delete NFS permissions:
       style="text-align:left"></td>
         <td style="text-align:left">No</td>
         <td style="text-align:left">No</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>manage-gids</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">
+        <p>Sets external group IDs resolution.</p>
+        <p>The list of group IDs received from the client will be replaced by a list
+          of group IDs determined by an appropriate lookup on the server.</p>
+      </td>
+      <td style="text-align:left">
+        <p> <code>on</code> or <code>off</code>.</p>
+        <p>Relevant only when using<code>allow-manage-gids</code> interface groups.</p>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>off</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>privileged-port</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Sets the share to only be mounted via privileged ports (1-1024), usually
+        only allowed by the root user.</td>
+      <td style="text-align:left">
+        <p><code>on</code> or <code>off</code>.</p>
+        <p>Relevant only when using<code>allow-manage-gids</code> interface groups.</p>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>off</code>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -404,7 +565,7 @@ Use the following command lines to add/update/delete NFS permissions:
 #### Fixed Mount options
 
 {% hint style="danger" %}
-**Note:** Please make sure to set these values on the mount command, as different values are not supported, and the server cannot enforce it.
+**Note:** Please make sure to set these values on the mount command, as different values are not supported.
 {% endhint %}
 
 * `nolock`
