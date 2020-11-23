@@ -302,7 +302,7 @@ Use this command to list all existing SMB shares.
 
 Use the following command line to add a new share to be exposed to SMB:
 
-`smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [--file-create-mask mask] [--directory-create-mask mask] [--obs_direct] [--encryption encryption] [--read-only] [--user-list-type list-type] [--users users]...`
+`smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [--file-create-mask mask] [--directory-create-mask mask] [--obs_direct] [--encryption encryption] [--read-only] [--user-list-type list-type] [--users users]... [--allow-guest-access] [--hidden]`
 
 **Parameters in Command Line**
 
@@ -384,22 +384,29 @@ Use the following command line to add a new share to be exposed to SMB:
     <tr>
       <td style="text-align:left"><code>acl</code>
       </td>
-      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">String</td>
       <td style="text-align:left">Enable Windows ACLs on the share (which will be translated to POSIX)</td>
       <td
-      style="text-align:left">Up to 16 ACEs per file</td>
+      style="text-align:left">
+        <p><code>on</code> or <code>off;</code>
+        </p>
+        <p>Up to 16 ACEs per file</p>
+        </td>
         <td style="text-align:left">No</td>
-        <td style="text-align:left">No</td>
+        <td style="text-align:left"><code>off</code>
+        </td>
     </tr>
     <tr>
       <td style="text-align:left"><code>obs-direct</code>
       </td>
-      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">String</td>
       <td style="text-align:left">See <a href="../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a> section</td>
       <td
-      style="text-align:left"></td>
+      style="text-align:left"><code>on</code> or <code>off</code>
+        </td>
         <td style="text-align:left">No</td>
-        <td style="text-align:left">No</td>
+        <td style="text-align:left"><code>off</code>
+        </td>
     </tr>
     <tr>
       <td style="text-align:left"><code>encryption</code>
@@ -426,12 +433,14 @@ Use the following command line to add a new share to be exposed to SMB:
     <tr>
       <td style="text-align:left"><code>read-only</code>
       </td>
-      <td style="text-align:left">Boolean</td>
+      <td style="text-align:left">String</td>
       <td style="text-align:left">Sets the share as read-only. Users cannot create or modify files in this
         share.</td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
+      <td style="text-align:left"><code>on</code> or <code>off</code>
+      </td>
       <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>off</code>
+      </td>
     </tr>
     <tr>
       <td style="text-align:left"><code>user-list-type</code>
@@ -461,6 +470,30 @@ Use the following command line to add a new share to be exposed to SMB:
       <td style="text-align:left">Up to 8 users/groups for all lists combined per share</td>
       <td style="text-align:left">No</td>
       <td style="text-align:left">Empty list</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>allow-guest-access</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Allows connecting to the SMB service without a password. Permissions are
+        as the <code>nobody</code> user account permissions.</td>
+      <td style="text-align:left"><code>on</code> or<code>off</code>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>off</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>hidden</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Sets the share as non-browsable. It will be accessible for mounting and
+        IOs but not discoverable by SMB clients.</td>
+      <td style="text-align:left"><code>on</code> or <code>off</code>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>off</code>
+      </td>
     </tr>
   </tbody>
 </table>
