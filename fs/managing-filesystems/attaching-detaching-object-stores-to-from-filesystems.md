@@ -10,7 +10,7 @@ description: >-
 
 ### Attaching an Object Store to a Filesystem
 
-Two object stores can be attached to a filesystem, but only one of the object stores will be writable. When attaching a new object store to an already tiered filesystem, the existing object store bucket becomes read-only, and the new object store bucket is read/write. Multiple object stores allow a range of use cases, including migration to different object stores, scaling of object store capacity and increasing the total tiering capacity of filesystems.
+Two object stores can be attached to a filesystem, but only one of the object stores will be writable. When attaching a new object store to an already tiered filesystem, the existing object store bucket becomes read-only, and the new object store bucket is read/write. Multiple object stores allow a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
 
 When attaching an object store to a non-tiered filesystem, the filesystem becomes tiered.
 
@@ -24,7 +24,7 @@ Detaching an object store from a filesystem migrates the filesystem data residin
 
 #### Migrating to a Different Object Store
 
-When detaching from a filesystem tiered to two object stores, only the read-only object store can be detached. In such cases, the background task will copy the relevant data to the writable object store.
+When detaching from a filesystem tiered to two object stores, only the read-only object store can be detached. In such cases, the background task will copy the relevant data to the writable object-store.
 
 #### Un-tiering a Filesystem
 
@@ -34,14 +34,10 @@ Detaching from a filesystem tiered to one object store will un-tier the filesyst
 **Note:** The SSD must have sufficient capacity, i.e., the allocated SSD capacity should be at least the total capacity used by the filesystem.
 {% endhint %}
 
-On completion of detaching, the object store does not appear under the filesystem when using the `weka fs` _\*\*_command. However, it still appears under the object store and can be removed if it is not being used by any other filesystem. The data in the read-only object store remains in the object store bucket for backup purposes. If this is unnecessary or the reclamation of object store space is required, it is possible to delete the object store bucket.
+On completion of detaching, the object store does not appear under the filesystem when using the `weka fs` _\*\*_command. However, it still appears under the object store and can be removed if it is not being used by any other filesystem. The data in the read-only object-store remains in the object store bucket for backup purposes. If this is unnecessary or the reclamation of object store space is required, it is possible to delete the object store bucket.
 
 {% hint style="info" %}
 **Note:** Before deleting an object store bucket, remember to take into account data from another filesystem or data not relevant to the Weka system on the object store bucket.
-{% endhint %}
-
-{% hint style="warning" %}
-**Note:** When there are two object stores attached and during the execution of migration, it is not possible to upload new snapshots to the object store.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -57,7 +53,7 @@ When migrating data \(using the detach operation\) you would like to copy only t
 3. Detach the old object-store
 
 {% hint style="info" %}
-**Note:** performing these steps in a different order might result in either the snapshots are completely deleted from any of the object-store or are already in the migration process \(and cannot be deleted until migration is done\).
+**Note:** performing these steps in a different order might result in either the snapshots are completely deleted from any of the object-store or are already in the migration process \(and cannot be deleted until the migration is done\).
 {% endhint %}
 
 ## Attaching/Detaching Object Stores
@@ -84,7 +80,7 @@ Click the Detach button next to the relevant object store to be detached. If mor
 
 Click Yes to detach the object store from the filesystem.
 
-If there is only one object store attached, detaching will un-tier the filesystem and the following Detach Object Store and Untier Filesystem dialog box will be displayed:
+If there is only one object store attached, detaching will un-tier the filesystem, and the following Detach Object Store and Untier Filesystem dialog box will be displayed:
 
 ![Detach Object Store and Untier Filesystem Dialog Box](../../.gitbook/assets/detach-untier-3.5.png)
 
@@ -121,5 +117,9 @@ To detach an object store from a filesystem, use the following command:
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `fs-name` | String | Name of the filesystem to be attached to / detached from the object store | Must be a valid name | Yes | ​ |
-| `obs-name` | String | Name of the object store to be  attached / detached | Must be a valid name | Yes |  |
+| `obs-name` | String | Name of the object store to be  attached/detached | Must be a valid name | Yes |  |
+
+{% hint style="info" %}
+**Note:** To recover from a snapshot that has been uploaded when two object stores have been attached, use the `--additional-obs` parameter in `weka fs snapshot download` command. The primary object-store should be the one where the locator has been uploaded to
+{% endhint %}
 
