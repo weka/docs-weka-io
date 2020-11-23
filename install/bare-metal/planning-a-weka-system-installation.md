@@ -33,12 +33,6 @@ Once all this data is clarified, you can plan the SSD net storage capacity accor
 **Note:** This is an iterative process. Depending on the scenario, some options can be fixed constraints while others are flexible.
 {% endhint %}
 
-{% hint style="info" %}
-**Note:** For a protection of N, the number of failure domains should exceed the stripe width + protection by at least N, so that the system is able to rebuild in a case of concurrent disasters in N failure domains.
-
-E.g., a 6+2 protection scheme should have at least 10 failure domains.
-{% endhint %}
-
 ## SSD Resource Planning
 
 SSD resource planning involves how the defined capacity is going to be implemented for the SSDs. For each host, the following has to be determined:

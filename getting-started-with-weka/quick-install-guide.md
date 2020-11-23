@@ -28,7 +28,7 @@ pdsh -w weka0[1-8] "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install
 
 ## Configuration
 
-From one of the servers, form the cluster, set the cluster name, stripe width and protection scheme, and enable cloud monitoring \(DNS is assumed to be set up, otherwise explicit IPs should be used in the cluster create command\):
+From one of the servers, form the cluster, set the cluster name, stripe width, and protection scheme, and enable cloud monitoring \(DNS is assumed to be set up, otherwise explicit IPs should be used in the cluster create command\):
 
 ```bash
 # connect to one of the servers and run the rest of the configuration from there
@@ -38,12 +38,12 @@ ssh weka01
 # using bash, you can provide a compact list of hosts; otherwise, a full list of all hosts should be supplied
 # weka cluster create weka01 weka02 weka03 weka04 weka05 weka06 weka07 weka08
 weka cluster create weka0{1..8}
-weka cluster update --cluster-name=WekaProd --data-drives=4 --parity-drives=2
+weka cluster update --cluster-name=WekaProd
 weka cloud enable
 
 ```
 
-Configure the network, drives and CPUs per host:
+Configure the network, drives, and CPUs per host:
 
 ```bash
 # configure network, drives, and cores per host
@@ -105,12 +105,12 @@ weka status
 You would see a similar output to the following example:
 
 ```bash
-WekaIO v3.9.0 (CLI build 3.9.0)
+WekaIO v3.10.0 (CLI build 3.10.0)
 
        cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
         status: OK (8 backends UP, 48 drives UP)
-    protection: 4+2
-     hot spare: 2 failure domains
+    protection: 6+2
+     hot spare: 1 failure domains
  drive storage: 82.94 TiB total, 82.94 TiB unprovisioned
          cloud: connected
        license: Unlicensed

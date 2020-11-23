@@ -57,7 +57,7 @@ Options:
 
 `--UTC` flag causes timestamps to be printed in the UTC timezone, rather than in the local time of the machine running the CLI command.
 
-`-f|--format` flag specifies the format to output the result \(view, csv, markdown or JSON\)
+`-f|--format` flag specifies the format to output the result \(view, csv, markdown, or JSON\)
 
 `-o|--output` flag specifies the columns of the output to be included.
 
@@ -77,7 +77,7 @@ Options:
 Most Weka system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
 
 {% hint style="success" %}
-**For Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystems, filesystem groups and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
+**For Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystems, filesystem groups, and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
 {% endhint %}
 
 ```text
@@ -168,12 +168,12 @@ The `weka status` command displays the overall status of the Weka system.
 
 ```text
 $ weka status
-WekaIO v3.7.2 (CLI build 3.7.2)
+WekaIO v3.10.0 (CLI build 3.10.0)
 
        cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
         status: OK (8 backends UP, 48 drives UP)
-    protection: 4+2
-     hot spare: 2 failure domains
+    protection: 6+2
+     hot spare: 1 failure domains
  drive storage: 82.94 TiB total, 82.94 TiB unprovisioned
 ```
 
@@ -183,13 +183,13 @@ WekaIO v3.7.2 (CLI build 3.7.2)
 
 ```text
 $ weka status
-WekaIO v3.7.2 (CLI build 3.7.2)
+WekaIO v3.10.0 (CLI build 3.10.0)
 
        cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
         status: DEGRADED (7 backends UP, 42 drives UP)
                 Rebuild in progress (3%)
-    protection: 4+2
-     hot spare: 2 failure domains
+    protection: 6+2
+     hot spare: 1 failure domains
  drive storage: 82.94 TiB total, 82.94 TiB unprovisioned
 ```
 
