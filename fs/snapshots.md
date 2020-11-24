@@ -33,7 +33,7 @@ The Weka system supports the following snapshot operations:
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The `.snapshots` directory is not listed. Running `ls` on the root of the filesystem will not show the `.snapshots` directory, however, it can be explicitly accessed, e.g. using `cd .snapshots` command.  
+**Note:** The `.snapshots` directory is not listed. Running `ls` on the root of the filesystem will not show the `.snapshots` directory, however, it can be explicitly accessed, e.g. using the `cd .snapshots` command.  
 {% endhint %}
 
 ## Managing Snapshots
