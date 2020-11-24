@@ -32,6 +32,10 @@ The Weka system supports the following snapshot operations:
 **Note:** The number of snapshots per system is limited to 4,096 \(the live filesystem consumes one of the total snapshots count\).
 {% endhint %}
 
+{% hint style="info" %}
+**Note:** The `.snapshots` directory is not listed. Running ls on the root of the filesystem will not show the `.snapshots` directory, however, it can be explicitly accessed, e.g. using `cd .snapshots` command.  
+{% endhint %}
+
 ## Managing Snapshots
 
 ### Viewing Snapshots

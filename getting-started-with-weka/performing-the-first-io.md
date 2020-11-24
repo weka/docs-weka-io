@@ -78,6 +78,7 @@ You can mount a filesystem by creating a mount point and calling the mount comma
 ```text
 $ sudo mkdir -p /mnt/weka
 $ sudo mount -t wekafs new_fs /mnt/weka
+
 ```
 
 To check the filesystem is indeed mounted:
@@ -86,10 +87,6 @@ To check the filesystem is indeed mounted:
 # using the mount command
 $ mount | grep new_fs
 new_fs on /mnt/weka type wekafs (rw,relatime,writecache,inode_bits=64,dentry_max_age_positive=1000,dentry_max_age_negative=0)
-
-# using ls to check for the existence of .snapshots directory in the mount point
-$ ls -a /mnt/weka/
-.  ..  .snapshots
 ```
 
 {% hint style="info" %}
@@ -125,14 +122,14 @@ This has completed the sanity check that the Weka cluster is configured and IOs 
 
 ## Validating the Configuration - Achieving the Expected Performance
 
-To make sure that the Weka cluster and the IT environment are well configured, a more complex IO patterns and benchmark tests should be conducted using the FIO utility.
+To make sure that the Weka cluster and the IT environment are well configured, more complex IO patterns and benchmark tests should be conducted using the FIO utility.
 
 Although results can vary using different hosts and networking, it is not expected to be very different than what we and many other customers achieved. Properly configured Weka cluster and IT environment should yield similar results as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/).
 
 {% hint style="info" %}
 **Note:** The numbers achieved in the benchmark tests, as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/) are not just achieved in a closed/controlled environment. Similar numbers should be achieved when using similar configuration, if the Weka cluster and IT environment are properly configured. If the numbers achieved in your environment significantly vary from those, please contact the Weka Sales or Support Team before running any other workload on the Weka cluster.
 
-The example results shown in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/), are tested on AWS. In general, for any of Weka reference architecture you should expect lower than 300 microseconds latency and 5.5 GB/s throughput per host \(for a single 100gbps link\).
+The example results shown in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/), are tested on AWS. In general, for any of Weka reference architecture, you should expect lower than 300 microseconds latency and 5.5 GB/s throughput per host \(for a single 100gbps link\).
 {% endhint %}
 
 {% page-ref page="../testing-and-troubleshooting/testing-weka-system-performance/" %}
