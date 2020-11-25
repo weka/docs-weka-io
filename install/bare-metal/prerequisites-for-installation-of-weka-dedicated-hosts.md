@@ -205,6 +205,8 @@ VMs can be used as clients only, assuming they meet the following prerequisite:
 * The virtual platform interoperability \(hypervisor, NICs, CPUs, different versions, etc.\) should support DPDK and SR-IOV VFs passthrough to the VM.
 * The hypervisor hosts and the client VMs should run the same OFED version.
 
+For additional information and how-to articles, search the Weka knowledgebase in the [Weka support portal](http://support.weka.io) or contact the Weka support team.
+
 ## KMS
 
 * [HashiCorp Vault](https://www.hashicorp.com/products/vault/) \(version 1.1.5 and up\)
