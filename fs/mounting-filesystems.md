@@ -224,14 +224,14 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left"><code>nodev</code>
       </td>
       <td style="text-align:left">None</td>
-      <td style="text-align:left">Do not allow direct execution of any binaries.</td>
+      <td style="text-align:left">Do not interpret character or block special devices.</td>
       <td style="text-align:left">No</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>noexec</code>
       </td>
       <td style="text-align:left">None</td>
-      <td style="text-align:left">Do not interpret character or block special devices.</td>
+      <td style="text-align:left">Do not allow direct execution of any binaries.</td>
       <td style="text-align:left">No</td>
     </tr>
   </tbody>
