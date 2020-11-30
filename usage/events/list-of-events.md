@@ -94,6 +94,7 @@ description: >-
 | DriveScanBlockLifted | MINOR | Drive blocked during scan is now responsive |
 | DriveScanBlocked | MINOR | Drive blocked during scan and is unresponsive |
 | DriveSignatureUnknown | MINOR | Drive has an unknown signature |
+| DriveSmartCriticalWarning | MINOR | Drive SMART reports critical warning, failing it immediately |
 | DriveStateChangesReport | MINOR | Drive state changes |
 | DriveUnderIOMMU | MAJOR | Drive is under IOMMU and cannot be used |
 | DriveUnresponsive | MAJOR | Drive is unresponsive and failed to return IOs for an extended period of time; consider power cycling the host |
@@ -116,8 +117,11 @@ description: >-
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | BlockReadFailure | CRITICAL | Failed to read a block |
-| BrokenExtentChainDetected | CRITICAL | Metadata corruption \(broken extent chain\) |
+| BlockSeekFinished | MAJOR | Block seek finished |
+| BlockSeekStarted | MAJOR | Block seek started for a secondaty metadata block that could not be read |
+| BrokenExtentChainDetected | MAJOR | Metadata corruption \(broken extent chain\) |
 | ChecksumErrorInCommit | MAJOR | Checksum error detected by SSD node in a committed block |
+| DumpSnapHashCompleted | INFO | Finished a snap hash manifest scan |
 | FailedToSplitSliceNoRetry | CRITICAL | Failed to split a directory slice - wont retry |
 | FilesystemAdded | INFO | Filesystem configuration change |
 | FilesystemDeleted | INFO | Filesystem configuration change |
@@ -130,13 +134,14 @@ description: >-
 | HangingBackendIosDetected | CRITICAL | Some IOs are hanging |
 | HangingBackendIosNoLongerDetected | INFO | IOs are no longer hanging |
 | HangingBucketStepDown | WARNING | Bucket step-down is hanging |
-| HangingDirectorySplit | CRITICAL | Directory split hasn't any made progress for a long time |
+| HangingDirectorySplit | MAJOR | Directory split hasn't any made progress for a long time |
 | HangingDriverFrontendIosDetected | CRITICAL | Some IOs are hanging |
 | HangingDriverFrontendIosNoLongerDetected | INFO | IOs are no longer hanging |
 | HangingNFSFrontendIosDetected | CRITICAL | Some IOs are hanging |
 | HangingNFSFrontendIosNoLongerDetected | INFO | IOs are no longer hanging |
 | ManualOverride | WARNING | Service has been manually-overridden |
 | ObjectStorageAttachedToFilesystem | INFO | Object Storage attached to filesystem |
+| ObjectStorageAttachmentModeChanged | INFO | Object Storage attachment mode changed |
 | ObjectStorageFinishedDetachingdFromFilesystem | INFO | Object Storage finished detaching from filesystem |
 | ObjectStorageStartedDetachingdFromFilesystem | INFO | Object Storage started detaching from filesystem |
 | RAIDDataBlockReadFailureInSnaphashDump | WARNING | Failed to read data block from RAID when dumping the snapshot manifest |
@@ -175,9 +180,9 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| KmsConfigurationAdded | INFO | KMS configuration configuration change |
-| KmsConfigurationRemoved | INFO | KMS configuration configuration change |
-| KmsConfigurationUpdated | INFO | KMS configuration configuration change |
+| KmsConfigurationAdded | INFO | KMS configuration change |
+| KmsConfigurationRemoved | INFO | KMS configuration change |
+| KmsConfigurationUpdated | INFO | KMS configuration change |
 
 ## Licensing
 
@@ -187,6 +192,12 @@ description: >-
 | NewLicenseInstalled | INFO | New license installed |
 | PaygLicensingEnabled | INFO | PAYG licensing enabled |
 
+## ManualOverride
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| ManualOverrideChanged | INFO | Manual override changed |
+
 ## NFS
 
 | Type | Severity | Description |
@@ -195,6 +206,7 @@ description: >-
 | NfsClientGroupDeleted | INFO | NFS client group configuration change |
 | NfsClientGroupRuleAdded | INFO | NFS client group rule configuration change |
 | NfsClientGroupRuleDeleted | INFO | NFS client group rule configuration change |
+| NfsCustomOptionsUpdated | INFO | NFS custom options configuration change |
 | NfsExportsPermissionsAdded | INFO | NFS export permissions for configuration change |
 | NfsExportsPermissionsDeleted | INFO | NFS export permissions for configuration change |
 | NfsExportsPermissionsUpdated | INFO | NFS export permissions for configuration change |
@@ -206,6 +218,7 @@ description: >-
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | DefaultDataNetworkingChange | INFO | Default data networking configuration changed |
+| DpdkPoolSummary | DEBUG | Summary of DPDK pool status |
 | HangingRPCs | MAJOR | RPCs are hanging too long |
 | HugepagesAllocationFailure | MINOR | Hugepages allocation failure |
 | IONodeCannotFetchConfig | WARNING | Node cannot join cluster for too long |
@@ -214,7 +227,7 @@ description: >-
 | NICNotFound | INFO | NIC not found when initializing |
 | NetDeviceLinkDown | MINOR | Network interface DOWN |
 | NetDeviceLinkUp | MINOR | Network interface UP |
-| NetSlaveDeviceLinkDown | MAJOR | Network slave interface DOWN |
+| NetSlaveDeviceLinkDown | MINOR | Network slave interface DOWN |
 | NetSlaveDeviceLinkUp | MINOR | Network slave interface UP |
 | NetworkPortConfigFail | MINOR | Network port configuration failed |
 | NetworkPortDead | MAJOR | Network Port hasn't passed packets for a long period of time, it is likely dead |
@@ -244,7 +257,7 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| ChecksumErrorInDownloadedObject | CRITICAL | Checksum error detected by COMPUTE node in a downloaded OBS data block |
+| ChecksumErrorInDownloadedObject | MINOR | Checksum error detected by COMPUTE node in a downloaded OBS data block |
 | DataBlobDownloadFailed | WARNING | Failed downloading data blob header |
 | InvalidDataBlobHeader | MAJOR | Invalid header detected by COMPUTE node in a downloaded OBS data blob |
 | ObjectStorageAdded | INFO | Object storage configuration change |
@@ -252,6 +265,7 @@ description: >-
 | ObjectStorageIsFull | CRITICAL | Object storage is full |
 | ObjectStorageStatusChanged | INFO | Object Storage status changed |
 | ObjectStorageUpdated | INFO | Object storage configuration change |
+| PersistentChecksumErrorInDownloadedObject | MAJOR | Checksum error detected by COMPUTE node in a downloaded OBS data block |
 | TieredFilesystemBreakingPolicy | MINOR | Breaking policy; too much disk pressure |
 
 ## Org
@@ -283,7 +297,7 @@ description: >-
 | RaidStarted | INFO | RAID started on bucket |
 | SwitchPlacementHanging | MINOR | SwitchPlacement has no non-dirty chunks |
 | SwitchPlacementRetrying | MINOR | SwitchPlacement retrying |
-| TooFewActiveFailureDomains | CRITICAL | Too few active failure domains |
+| TooFewActiveFailureDomains | MAJOR | Too few active failure domains |
 | TooManyFailures | CRITICAL | Too many failures, some data is unavailable |
 
 ## Resources
@@ -304,7 +318,6 @@ description: >-
 | NetworkDeviceAllocated | INFO | Allocated network device |
 | NetworkDeviceNotUsedByAnySlots | MINOR | Network device not used by any slots |
 | RevertToStableResources | INFO | Reverted to stable resources |
-| SlotHasNetDevicesWithDifferentNumas | WARNING | Performance warning: Allocated multiple net devices with different NUMAs |
 | UnlimitedBandwidthSelected | INFO | Bandwidth set to unlimited |
 
 ## SMB
@@ -343,6 +356,15 @@ description: >-
 | StartIORequested | INFO | The user has requested that IO be started |
 | StopIORequested | INFO | The user has requested that IO be stopped |
 | SystemInfoReport | INFO | Management node started; reporting OS info |
+
+## Traces
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| TracesConfigurationActivated | INFO | Traces configuration configuration change |
+| TracesConfigurationDeactivated | INFO | Traces configuration configuration change |
+| TracesConfigurationReset | INFO | Traces configuration configuration change |
+| TracesConfigurationUpdated | INFO | Traces configuration configuration change |
 
 ## Upgrade
 

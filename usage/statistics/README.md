@@ -140,8 +140,6 @@ Use the following command line to manage filters and read statistics:
 | `raw-units` | Boolean | Print values in raw units \(bytes, seconds, etc.\) |  | No | Human-readable format, e.g 1KiB 234MiB 2GiB |
 | `UTC` | Boolean | Print times in UTC |  | No | Host's local time |
 
-{% page-ref page="list-of-statistics.md" %}
-
 ### Setting statistics Retention
 
 **Command:** `weka stats retention`

@@ -37,7 +37,8 @@ description: >-
 | Type | Description | Units |
 | :--- | :--- | :--- |
 | BUDGET\_UNDERFLOW\_BLOCKS |  | Blocks/Sec |
-| CHOKING\_LEVEL |  | % |
+| CHOKING\_LEVEL\_ALL | Throttling level applied on all types of IOs | % |
+| CHOKING\_LEVEL\_NON\_MUTATING | Throttling level applied on non-mutating only types of IOs | % |
 | DESTAGED\_BLOCKS\_COUNT |  | Blocks/Sec |
 | DESTAGE\_COUNT |  | Destages/Sec |
 | DIR\_MOVE\_TIME |  | Ops |
@@ -48,6 +49,7 @@ description: >-
 | HASH\_BLOCKS\_COUNT |  | Blocks |
 | INODE\_BLOCKS\_COUNT |  | Blocks |
 | INODE\_REFRESHER\_QUEUE\_LENGTH |  | Items |
+| JOURNAL\_BLOCKS\_COUNT |  | Blocks |
 | JOURNAL\_ITERATIONS | Histogram of number of batches of stripes committed in a single request |  |
 | READS\_RDMA | Number of read-RDMA operations per second | Ops/Sec |
 | READS | Number of read operations per second | Ops/Sec |
@@ -60,11 +62,13 @@ description: >-
 | REGISTRY\_SEARCHES\_COUNT |  | Queries/Sec |
 | RESIDENT\_BLOCKS\_COUNT |  | Blocks/Sec |
 | SNAPSHOT\_CREATION\_TIME |  | Snaps |
+| SPATIAL\_SQUELCH\_BLOCKS\_COUNT |  | Blocks |
 | SUCCEEDED\_1HOP\_RDMA\_READS | Number of succesfull single hop RDMA reads per second | Ops/Sec |
 | SUCCESSFUL\_DATA\_WEDGINGS |  | Attempts/Sec |
 | SUPERBLOCK\_BLOCKS\_COUNT |  | Blocks |
 | TAKEOVERS\_SUCCESSFUL |  | Takeover Attempts/Sec |
 | TAKEOVER\_ATTEMPTS |  | Takeover Attempts/Sec |
+| TEMPORAL\_SQUELCH\_BLOCKS\_COUNT |  | Blocks |
 | UNSUCCESSFUL\_DATA\_WEDGINGS |  | Attempts/Sec |
 | USER\_DATA\_BUFFERS\_IN\_USE |  | Buffers |
 | WRITES\_RDMA | Number of write-RDMA operations per second | Ops/Sec |
@@ -104,8 +108,8 @@ description: >-
 
 | Type | Description | Units |
 | :--- | :--- | :--- |
-| CHOKING\_LEVEL |  |  |
-| INDUCED\_FRONTEND\_LATENCY | Induced latency on the front-end between two reads of the input queue | Microseconds |
+| CHOKING\_LEVEL\_ALL | Throttling level applied on all types of IOs, both mutating and non-mutating |  |
+| CHOKING\_LEVEL\_NON\_MUTATING | Throttling level applied on non-mutating only types of IOs |  |
 
 ## Clients
 
@@ -313,6 +317,7 @@ description: >-
 | :--- | :--- | :--- |
 | FAILED\_OBJECT\_DELETES | Number of failed object deletes per second \(any failure reason\) | Ops/Sec |
 | FAILED\_OBJECT\_DOWNLOADS | Number of failed object download per second \(any failure reason\) | Ops/Sec |
+| FAILED\_OBJECT\_HEAD\_QUERIES | Number of failed object head queries per second \(any failure reason\) | Ops/Sec |
 | FAILED\_OBJECT\_OPERATIONS | Total failed operations per second | Ops/Sec |
 | FAILED\_OBJECT\_UPLOADS | Number of failed object uploads per second \(any failure reason\) | Ops/Sec |
 | OBJECT\_DELETES | Number of object deletes per second | Ops/Sec |
@@ -326,6 +331,9 @@ description: >-
 | OBJECT\_DOWNLOAD\_DURATION |  | Milliseconds |
 | OBJECT\_DOWNLOAD\_LATENCY | Latency of downloading an object | Microseconds |
 | OBJECT\_DOWNLOAD\_SIZE |  | Bytes |
+| OBJECT\_HEAD\_DURATION |  | Milliseconds |
+| OBJECT\_HEAD\_LATENCY | Latency of deleting an object | Microseconds |
+| OBJECT\_HEAD\_QUERIES | Number of object head queries per second | Ops/Sec |
 | OBJECT\_OPERATIONS | Total operations per second | Ops/Sec |
 | OBJECT\_UPLOADS\_BACKPRESSURE | Number of BACKPRESSURE upload attempts per second | Ops/Sec |
 | OBJECT\_UPLOADS\_IMMEDIATE\_RELEASE | Number of IMMEDIATE\_RELEASE upload attempts per second | Ops/Sec |
@@ -351,6 +359,56 @@ description: >-
 | ONGOING\_REMOVES | Number of ongoing removes | Ops |
 | ONGOING\_UPLOADS | Number of ongoing uploads | Ops |
 | READ\_BYTES | Number of bytes read from the object storage | Bytes/Sec |
+| REQUEST\_COUNT\_DELETE | Number of HTTP DELETE requests per second | Requests/Sec |
+| REQUEST\_COUNT\_GET | Number of HTTP GET requests per second | Requests/Sec |
+| REQUEST\_COUNT\_HEAD | Number of HTTP HEAD requests per second | Requests/Sec |
+| REQUEST\_COUNT\_INVALID | Number of HTTP INVALID requests per second | Requests/Sec |
+| REQUEST\_COUNT\_POST | Number of HTTP POST requests per second | Requests/Sec |
+| REQUEST\_COUNT\_PUT | Number of HTTP PUT requests per second | Requests/Sec |
+| RESPONSE\_COUNT\_ACCEPTED | Number of HTTP ACCEPTED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_BAD\_GATEWAY | Number of HTTP BAD\_GATEWAY responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_BAD\_REQUEST | Number of HTTP BAD\_REQUEST responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_CONFLICT | Number of HTTP CONFLICT responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_CONTINUE | Number of HTTP CONTINUE responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_CREATED | Number of HTTP CREATED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_EXPECTATION\_FAILED | Number of HTTP EXPECTATION\_FAILED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_FORBIDDEN | Number of HTTP FORBIDDEN responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_FOUND | Number of HTTP FOUND responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_GATEWAY\_TIMEOUT | Number of HTTP GATEWAY\_TIMEOUT responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_GONE | Number of HTTP GONE responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_HTTP\_VERSION\_NOT\_SUPPORTED | Number of HTTP HTTP\_VERSION\_NOT\_SUPPORTED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_INSUFFICIENT\_STORAGE | Number of HTTP INSUFFICIENT\_STORAGE responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_INVALID | Number of HTTP INVALID responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_LENGTH\_REQUIRED | Number of HTTP LENGTH\_REQUIRED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_MOVED\_PERMANENTLY | Number of HTTP MOVED\_PERMANENTLY responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_NON\_AUTH\_INFO | Number of HTTP NON\_AUTH\_INFO responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_NOT\_ACCEPABLE | Number of HTTP NOT\_ACCEPABLE responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_NOT\_ALLOWD | Number of HTTP NOT\_ALLOWD responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_NOT\_FOUND | Number of HTTP NOT\_FOUND responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_NOT\_IMPLEMENTED | Number of HTTP NOT\_IMPLEMENTED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_NOT\_MODIFIED | Number of HTTP NOT\_MODIFIED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_NO\_CONTENT | Number of HTTP NO\_CONTENT responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_OK | Number of HTTP OK responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_PARTIAL\_CONTENT | Number of HTTP PARTIAL\_CONTENT responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_PAYMENT\_REQUIRED | Number of HTTP PAYMENT\_REQUIRED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_PRECONDITION\_FAILED | Number of HTTP PRECONDITION\_FAILED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_PROXY\_AUTH\_REQUIRED | Number of HTTP PROXY\_AUTH\_REQUIRED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_REDIRECT\_MULTIPLE\_CHOICES | Number of HTTP REDIRECT\_MULTIPLE\_CHOICES responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_REQUESTED\_RANGE\_NOT\_SATISFIABLE | Number of HTTP REQUESTED\_RANGE\_NOT\_SATISFIABLE responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_REQUEST\_HEADER\_FIELDS\_TOO\_LARGE | Number of HTTP REQUEST\_HEADER\_FIELDS\_TOO\_LARGE responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_REQUEST\_TIMEOUT | Number of HTTP REQUEST\_TIMEOUT responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_REQUEST\_TOO\_LARGE | Number of HTTP REQUEST\_TOO\_LARGE responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_RESET\_CONTENT | Number of HTTP RESET\_CONTENT responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_SEE\_OTHER | Number of HTTP SEE\_OTHER responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_SERVER\_ERROR | Number of HTTP SERVER\_ERROR responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_SERVICE\_UNAVAILABLE | Number of HTTP SERVICE\_UNAVAILABLE responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_SWITCHING\_PROTOCOL | Number of HTTP SWITCHING\_PROTOCOL responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_TEMP\_REDIRECT | Number of HTTP TEMP\_REDIRECT responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_UNAUTHORIZED | Number of HTTP UNAUTHORIZED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_UNPROCESSABLE\_ENTITY | Number of HTTP UNPROCESSABLE\_ENTITY responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_UNSUPPORTED\_MEDIA\_TYPE | Number of HTTP UNSUPPORTED\_MEDIA\_TYPE responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_URI\_TOO\_LONG | Number of HTTP URI\_TOO\_LONG responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_USE\_PROXY | Number of HTTP USE\_PROXY responses per second | Responses/Sec |
 | WAITING\_FOR\_DOWNLOAD\_BANDWIDTH |  | Milliseconds |
 | WAITING\_FOR\_DOWNLOAD\_FLOW |  | Milliseconds |
 | WAITING\_FOR\_REMOVE\_FLOW |  | Milliseconds |
@@ -685,30 +743,36 @@ description: >-
 
 | Type | Description | Units |
 | :--- | :--- | :--- |
-| ACTIVE\_SSD\_PUMPS | Number of drive pumps that resulted in data flowin from/to drive | Pump/Sec |
-| AIO\_DELAYED | Number of Drive pumps that got delayed | Operations/Sec |
-| AIO\_FORFEITS | Number of IOs forfeited due to lack of memory buffers | Operations/Sec |
-| AIO\_LATENCY | Measure the latencies up to 5ms \(higher latencies will be grouped together\) |  |
-| AIO\_OVERLAPPED | Number of overlapping IOs | Operations |
-| AIO\_SEVERELY\_DELAYED | Number of Drive pumps that got severely delayed | Operations/Sec |
-| AIO\_TOO\_LONG | Number of IOs that took longer than expected | Operations/Sec |
-| DISKS\_IOS | IOs performed on the SSD | IO/Sec |
-| DISKS\_IO\_ERRORS | IO errors on the SSD | Blocks/Sec |
-| DISKS\_QUEUE\_LENGTH | The number of in flight IO against the SSD at the time of sampling | IOs |
-| DISKS\_QUEUE\_NUM\_PENDING | The number of IOs waiting to start executing at the time of sampling | IOs |
+| DRIVE\_ACTIVE\_IOS | The number of in flight IO against the SSD at the time of sampling | IOs |
+| DRIVE\_FORFEITS | Number of IOs forfeited due to lack of memory buffers | Operations/Sec |
+| DRIVE\_IDLE\_CYCLES | Number of cycles spent in idle | Cycles/Sec |
+| DRIVE\_IDLE\_TIME | Percentage of the CPU time not utilized for handling I/Os | % |
+| DRIVE\_IO\_OVERLAPPED | Number of overlapping IOs | Operations |
+| DRIVE\_IO\_TOO\_LONG | Number of IOs that took longer than expected | Operations/Sec |
+| DRIVE\_LATENCY | Measure the latencies up to 5ms \(higher latencies will be grouped together\) |  |
 | DRIVE\_LOAD | Drive Load at sampling time | Load |
+| DRIVE\_MEDIA\_BLOCKS\_READ | Blocks read from the SSD media | Blocks/Sec |
+| DRIVE\_MEDIA\_BLOCKS\_WRITE | Blocks written to the SSD media | Blocks/Sec |
+| DRIVE\_MEDIA\_ERRORS | SSD Media Errors | IO/Sec |
+| DRIVE\_NON\_MEDIA\_ERRORS | SSD Non-Media Errors | IO/Sec |
+| DRIVE\_PENDING\_IOS | The number of IOs waiting to start executing at the time of sampling | IOs |
+| DRIVE\_PUMPED\_IOS | Number of requests returned in a pump |  |
+| DRIVE\_PUMPS\_DELAYED | Number of Drive pumps that got delayed | Operations/Sec |
+| DRIVE\_PUMPS\_SEVERELY\_DELAYED | Number of Drive pumps that got severely delayed | Operations/Sec |
+| DRIVE\_PUMP\_LATENCY | Latency between SSD pumps | Microseconds |
 | DRIVE\_READ\_LATENCY | Drive Read Execution Latency | Microseconds |
 | DRIVE\_READ\_OPS | Drive Read Operations | IO/Sec |
+| DRIVE\_REMAINING\_IOS | Number of requests still in the drive after a pump |  |
 | DRIVE\_REQUEST\_BLOCKS | Measure drive request size distribution |  |
+| DRIVE\_SSD\_PUMPS | Number of drive pumps that resulted in data flowin from/to drive | Pump/Sec |
+| DRIVE\_UTILIZATION | Percentage of time the drive had an active IO submitted to it | % |
 | DRIVE\_WRITE\_LATENCY | Drive Write Execution Latency | Microseconds |
 | DRIVE\_WRITE\_OPS | Drive Write Operations | IO/Sec |
+| SSDS\_IOS | IOs performed on the SSD service | IO/Sec |
+| SSDS\_IO\_ERRORS | IO errors on the SSD service | Blocks/Sec |
 | SSD\_BLOCKS\_READ | Number of blocks read from the SSD service | Blocks/Sec |
 | SSD\_BLOCKS\_WRITTEN | Number of blocks written to the SSD service | Blocks/Sec |
-| SSD\_MEDIA\_BLOCKS\_READ | Blocks read from the SSD media | Blocks/Sec |
-| SSD\_MEDIA\_BLOCKS\_WRITE | Blocks written to the SSD media | Blocks/Sec |
-| SSD\_MEDIA\_ERRORS | SSD Media Errors | IO/Sec |
-| SSD\_NON\_MEDIA\_ERRORS | SSD Non-Media Errors | IO/Sec |
-| SSD\_PUMP\_LATENCY | Latency between SSD pumps | Microseconds |
+| SSD\_E2E\_BAD\_CSUM | End-to-End checksum failures | IO/Sec |
 | SSD\_READ\_ERRORS | Errors in reading blocks from the SSD service | Blocks/Sec |
 | SSD\_READ\_LATENCY | Avg. latency of read requests from the SSD service | Microseconds |
 | SSD\_READ\_REQS\_LARGE\_NORMAL | Number of large normal read requests from the SSD service | IO/Sec |
@@ -723,18 +787,15 @@ description: >-
 | Type | Description | Units |
 | :--- | :--- | :--- |
 | ACTUALLY\_FALSE\_FREE | Number of blocks that were detected as false-used and freed | Blocks/Sec |
-| ACTUALLY\_FALSE\_USED | Number of blocks that were detected as false-used and freed | Blocks/Sec |
 | CLEANED\_CHUNKS | Number of chunks that were cleaned by the scrubber | Chunks/Sec |
 | DEGRADED\_READS | Number of degraded reads for scrubbing | Requests/Sec |
 | FALSE\_FREE\_CHECKED\_BLOCKS | Number of blocks that were scrubbed-false-used | Blocks/Sec |
 | FALSE\_FREE\_CHECK\_LATENCY | Average latency of checking false free per block | Micros |
-| FALSE\_USED\_CHECKED\_BLOCKS | Number of blocks that were scrubbed-false-used | Blocks/Sec |
 | FALSE\_USED\_CHECK\_LATENCY | Average latency of checking false used per block | Micros |
 | FALSE\_USED\_EXTRA\_NOTIFIED | Number of blocks that were notified as used by the mark-extra-used mechanism | Blocks/Sec |
 | INTERRUPTS | Number of scrubs that were interrupted | Occurences/Sec |
 | NETWORK\_BUDGET\_WAIT\_LATENCY | Average latency of waiting for our network budget | Micros |
 | NOT\_ACTUALLY\_FALSE\_FREE | Number of blocks that were detected as used | Blocks/Sec |
-| NOT\_ACTUALLY\_FALSE\_USED | Number of blocks that were detected as used | Blocks/Sec |
 | NOT\_REALLY\_DIRTY\_BLOCKS | Number of marked dirty blocks that ScrubMissingWrites found were actually clean | Blocks/Sec |
 | NUM\_COPY\_DISCARDED\_BLOCKS | Number of copied blocks that were discarded | Blocks/Sec |
 | NUM\_COPY\_DISCARDS | Number of times we discarded scrubber copy work | Occurences/Sec |
@@ -761,6 +822,10 @@ description: >-
 | SCRUB\_FALSE\_USED\_PLACEMENTS | Number of placements we finished scrub-false-used | Occurences/Sec |
 | SCRUB\_FALSE\_USED\_WAS\_UNPROTECTED | Number of blocks that were false marked used and unprotected | Blocks/Sec |
 | SCRUB\_PREPARATION\_FAILED | Number of times we failed to prepare\(\) a task and aborted scrub of placement | Occurences/Sec |
+| SFU\_CHECKS | Number of blocks that were scrubbed-false-used | Blocks/Sec |
+| SFU\_CHECK\_FREE | Number of blocks that were detected as false-used and freed | Blocks/Sec |
+| SFU\_CHECK\_SECONDARY | Number of blocks that were detected as secondary | Blocks/Sec |
+| SFU\_CHECK\_USED | Number of blocks that were detected as used | Blocks/Sec |
 | SOURCE\_READS | Number of source/committed superset blocks directly read by the scrubber | Blocks/Sec |
 | TARGET\_COPIED\_CHUNKS | Number of chunks that were copied to target by the scrubber | Chunks/Sec |
 | UPDATE\_PLACEMENT\_INFO\_LATENCY | Average latency of updating the placement info quorum | Micros |
@@ -782,12 +847,20 @@ description: >-
 | HASH\_SQUELCH\_BLOCKS\_READ |  | Blocks |
 | INODE\_DESQUELCHES\_NUM |  | Times |
 | INODE\_SQUELCH\_BLOCKS\_READ |  | Blocks |
+| JOURNAL\_DESQUELCHES\_NUM |  | Times |
+| JOURNAL\_SQUELCH\_BLOCKS\_READ |  | Blocks |
+| MAX\_BLOCKS\_WITH\_TEMPORAL\_SQUELCH\_ITEMS\_IN\_BUCKET | Number of block with temporal squelch items in bucket | Blocks |
+| MAX\_TEMPORAL\_SQUELCH\_ITEMS\_IN\_BUCKET | Number temporal squelch items in bucket | Squelch items |
 | REGISTRY\_L1\_DESQUELCHES\_NUM |  | Times |
 | REGISTRY\_L1\_SQUELCH\_BLOCKS\_READ |  | Blocks |
 | REGISTRY\_L2\_DESQUELCHES\_NUM |  | Times |
 | REGISTRY\_L2\_SQUELCH\_BLOCKS\_READ |  | Blocks |
+| SPATIAL\_SQUELCH\_DESQUELCHES\_NUM |  | Times |
+| SPATIAL\_SQUELCH\_SQUELCH\_BLOCKS\_READ |  | Blocks |
 | SUPERBLOCK\_DESQUELCHES\_NUM |  | Times |
 | SUPERBLOCK\_SQUELCH\_BLOCKS\_READ |  | Blocks |
+| TEMPORAL\_SQUELCH\_DESQUELCHES\_NUM |  | Times |
+| TEMPORAL\_SQUELCH\_SQUELCH\_BLOCKS\_READ |  | Blocks |
 
 ## Statistics
 

@@ -36,6 +36,7 @@ description: >-
 | JumboConnectivity | A host cannot send jumbo frames to any of its cluster peers. | Check the host network settings and the switch to which it is connected, even if Weka seems to be functional since this will improve performance. |
 | KmsError | KMS Error | Review the KMS credentials, permissions, and configuration, as suggested in [KMS management](../../fs/managing-filesystems/kms-management.md). |
 | LicenseError | A license conflict exists. | Make sure the cluster is using a correct license, the license has not expired, and the cluster allocated space does not exceed the license. |
+| ManualOverridesActive | Manual overrides are active. | Please contact the Weka Support Team. |
 | MismatchedDriveFailureDomain | The drive failure domain does not match the failure domain of its attached host. | Either connect the mismatched drive to a host with a matching failure domain, or re-provision the drive to erase its failure domain. |
 | NegativeUnprovisionedCapacity | Weka capacity usage changes detected due to cluster upgrade. | One or more of the filesystems need to be resized in order to reclaim capacity. Contact the Weka Support Team. |
 | NetworkInterfaceLinkDown | A Network interface has a link down status. | Check the connectivity to the down interface and see if there is anything blocking it. |
@@ -43,15 +44,16 @@ description: >-
 | NodeBlacklisted | There is a blacklisted node in the cluster. | Use `weka debug blacklist disable` to whitelist nodes so they can rejoin the cluster. |
 | NodeDisconnected | A node is disconnected from the cluster. | Check network connectivity to make sure the node can communicate with the cluster. |
 | NodeNetworkUnstable | A node seems to have an unstable network. As a consequence, it has been fenced by the system and does not contribute resources to the Weka cluster. | Make sure there is no network connectivity issue in the cluster. Contact the Weka Support Team if the issue is not resolved. |
-| NodeRDMANotActive | RDMA is supported on the host but it is inactive. | Make sure Mellanox OFED version 4.6 or higher is properly installed on the host. |
+| NodeRDMANotActive | RDMA is supported on the host but it is inactive. | Make sure Mellanox OFED version 4.6 or higher is properly installed on the host and there is at least one RDMA capable device. |
 | NodeTieringConnectivity | A node cannot connect to an object-store. | Check connectivity with the object store and make sure the node can communicate with it. |
-| NotEnoughActiveDrives | There are not enough active failure domains. | Check connectivity, host status, and/or replace problematic drives. |
+| NotEnoughActiveDrives | Reduced data protection. | Check connectivity, host status, replace problematic drives, and/or expand the cluster with new failure domains. |
 | OfedVersions | A host Mellanox OFED version ID does not match the one used by the Weka container. | Install a supported OFED. If the current version needs to be retained or the alert continues after a supported version is installed, contact the Weka Support Team. |
 | PartialConnectivityTrackingDisabled | The cluster's partial connectivity tracking mechanism is disabled, affecting the cluster's self-healing capabilities. | Contact the Weka Support Team. |
 | PartiallyConnectedNode | A node seems to be only partially connected. | Make sure there is no network connectivity issue. Contact the Weka Support Team if the issue is not resolved. |
 | PerformanceDegradedLowRAM | The host is running low on RAM. Additional Metadata entries are swapped to the SSD. This might impact performance. | Make sure all the compute hosts and processes are up, add more hosts to the Weka cluster, or the configured RAM of the cluster backend hosts. |
 | ResourcesNotApplied | There are changes to host resources that are not applied in the Weka cluster. | To apply changes run `weka cluster host apply <host_id>` |
-| TLSCertificateExpired | TLS Certificate has expired | Replace the current certificate using `weka security server-tls set` |
-| TLSCertificateExpiresSoon | TLS Certificate is about to expire | Replace the current certificate using `weka security server-tls set` |
+| TLSCertificateExpired | TLS Certificate has expired. | Replace the current certificate using `weka security server-tls set` |
+| TLSCertificateExpiresSoon | TLS Certificate is about to expire. | Replace the current certificate using `weka security server-tls set` |
+| TracesDisabled | Traces are disabled. | To turn them back on contact the Weka Support Team. |
 | UdpModePerformanceWarning | The backend host is configured in UDP mode. | If this is a misconfiguration use `weka cluster host net add`to add network devices to this host. |
 
