@@ -73,7 +73,7 @@ Load balancing is implemented via floating IPs. By default, the floating IPs are
 
 The same mechanism ensures the resiliency of the service. On a host failure, all IP addresses associated with the failed host will be reassigned to other hosts \(using the GARP network messages\) and the clients will reconnect to the new hosts without any reconfiguration or service interruption.
 
-## User groups resolution
+## User Groups Resolution
 
 The NFS protocol, using AUTH\_SYS protocol, has a limitation of 16 security groups users can be part of. The protocol truncates the group list to 16 if a user is part of more than 16 groups, and a permissions check can fail for authorized users.
 
@@ -83,7 +83,7 @@ As in many cases, a user can be part of more than 16 security groups. It is poss
 2. Define the NFS client permissions to use external group-IDs resolution \(`manage-gids` option\).
 3. Set-up the relevant hosts to retrieve user's group-IDs information.
 
-### Setting up the hosts to retrieve user's group-IDs information
+### Setting up the Hosts to Retrieve User's Group-IDs Information
 
 The hosts, which are part of the interface group, can be set to retrieve the user's group-IDs information in any method that is used in the environment. Group resolution can be set by joining to an AD domain, joining a Kerberos domain, using LDAP with a read-only user, etc.
 
