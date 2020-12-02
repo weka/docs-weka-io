@@ -59,7 +59,7 @@ docker run -d --net=host --restart unless-stopped --mount type=bind,source=$PWD/
 docker run -d --net=host --restart unless-stopped --mount type=bind,source=$PWD/etc_prometheus/prometheus.yml,target=/etc/prometheus/prometheus.yml --mount type=bind,source=$PWD/prometheus_data,target=/prometheus prom/prometheus
 
 docker run -d --network=host \
-  --mount type=bind,source=/root/.weka/,target=/root/.weka/ \
+  --mount type=bind,source=/root/.weka/,target=/weka/.weka/ \
   --mount type=bind,source=/dev/log,target=/dev/log \
   wekasolutions/metrics-exporter -vv -a <clustersepc>
 ```
