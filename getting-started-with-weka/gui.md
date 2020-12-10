@@ -20,8 +20,10 @@ Clicking the top-left button next to the WEKA.IO logo opens a menu bar containin
 
 From the menu bar, it is possible to view [statistics](../usage/statistics/) and [events](../usage/events/), manage [filesystems](../fs/managing-filesystems/), configure [NFS](../additional-protocols/nfs-support.md) and [SMB](../additional-protocols/smb-support/smb-management-using-the-gui.md) services, and manage system [security](../usage/user-management.md) aspects.
 
-{% hint style="info" %}
-**Note:** To allow https access only, use the `weka security tls set` CLI command. The command receives an unencrypted private key.
+{% hint style="warning" %}
+**Note:** It is highly advised to set HTTPS access only, using TLS 1.2 and 128-bit ciphers.
+
+ Use the `weka security tls set` CLI command. The command receives an unencrypted private key.
 
 For example, you can create a self-signed certificate using the following OpenSSL command:`openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
 {% endhint %}
