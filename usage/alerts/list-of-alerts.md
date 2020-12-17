@@ -29,7 +29,7 @@ description: >-
 | DriveEnduranceSparesRemaining | Drive internal spares running too low. | It is recommended to replace the drive before it fails. |
 | DriveNeedsPhaseout | A drive has too many errors. | Phase-out the drive and probably replace it. |
 | DriveScanError | Drive scan errors | Check if the drive is still present and OK |
-| FilesystemHasToo ManyFiles | The filesystem storage configuration for the size of file and directory entries is exceeding \(or about to exceed\). | Increase the max-files for the filesystem. |
+| FilesystemHasTooManyFiles | The filesystem storage configuration for the size of file and directory entries is exceeding \(or about to exceed\). | Increase the max-files for the filesystem. |
 | HangingIOs | Some IOs are hanging on the node acting as a driver/NFS/backend. | Check that the compute nodes and their hosts are up and running, and fully connected. Also check that if a backend object store is configured, it is connected and responsive. Contact the Weka Support Team if the issue is not resolved. |
 | HighDrivesCapacity | The average capacity of the SSDs is too high. | Free-up space on the SSDs or [add more SSDs](https://docs.weka.io/v/3.4/usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources) to the cluster. |
 | IPConflictDetected | An IP conflict has been detected. | Resolve the conflict of the reported IP. |
