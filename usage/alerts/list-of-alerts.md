@@ -51,7 +51,7 @@ description: >-
 | PartiallyConnectedNode | A node seems to be only partially connected. | Make sure there is no network connectivity issue. Contact the Weka Support Team if the issue is not resolved. |
 | PerformanceDegradedLowRAM | The host is running low on RAM. Additional Metadata entries are swapped to the SSD. This might impact performance. | Make sure all the compute hosts and processes are up, add more hosts to the Weka cluster, or the configured RAM of the cluster backend hosts. |
 | ResourcesNotApplied | There are changes to host resources that are not applied in the Weka cluster. | To apply changes run `weka cluster host apply <host_id>` |
-| TLSCertificateExpired | TLS Certificate has expired | Replace the current certificate using `weka security server-tls set` |
-| TLSCertificateExpiresSoon | TLS Certificate is about to expire | Replace the current certificate using `weka security server-tls set` |
+| TLSCertificateExpired | TLS Certificate has expired | Replace the current certificate using `weka security tls set` |
+| TLSCertificateExpiresSoon | TLS Certificate is about to expire | Replace the current certificate using `weka security tls set` |
 | UdpModePerformanceWarning | The backend host is configured in UDP mode. | If this is a misconfiguration use `weka cluster host net add`to add network devices to this host. |
 
