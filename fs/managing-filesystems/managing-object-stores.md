@@ -71,6 +71,10 @@ Use the following command line to add an object store:
 **Note:** Up to 2 different object stores buckets can be configured per filesystem in the Weka system.
 {% endhint %}
 
+{% hint style="warning" %}
+**Note:** The `max-concurrent` settings are applied per Weka compute process and the minimum setting of all object-stores is applied.
+{% endhint %}
+
 ## Editing an Object Store
 
 ### Editing an Object Store Using the GUI
