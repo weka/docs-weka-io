@@ -8,15 +8,15 @@ description: >-
 
 ## About Filesystems
 
-A Weka filesystem is similar to a regular on-disk filesystem, with the key difference that it's distributed across all the hosts in the cluster. Consequently, in the Weka system, filesystems are not associated with any physical object, and are therefore nothing but a root directory with space limitations.
+A Weka filesystem is similar to a regular on-disk filesystem, with the key difference that it's distributed across all the hosts in the cluster. Consequently, in the Weka system, filesystems are not associated with any physical object and are therefore nothing but a root directory with space limitations.
 
-A total of up to 1024 filesystems are supported, all of which are equally and perfectly balanced on all SSDs and CPU cores assigned to the Weka system. This means that the allocation of a new filesystem, or the resizing a filesystem, are instant management operations that are performed instantly, and without any constraints.
+A total of up to 1024 filesystems are supported, all of which are equally and perfectly balanced on all SSDs and CPU cores assigned to the Weka system. This means that the allocation of a new filesystem, or the resizing of a filesystem, are instant management operations that are performed instantly, and without any constraints.
 
 {% hint style="info" %}
-**Note:** A filesystem group \(see below\) has to be created before creating a filesystem, and every filesystem must belong to one filesystem group.
+**Note:** A [filesystem grou](filesystems.md#about-filesystem-groups)p has to be created before creating a filesystem, and every filesystem must belong to one filesystem group.
 {% endhint %}
 
-A filesystem must have a defined capacity limit. A filesystem that belongs to a tiered filesystem group \(see below\) must have a total capacity limit and an SSD capacity limit. The total SSD capacity of all filesystems cannot exceed the total SSD capacity as defined in the total SSD net capacity.
+A filesystem must have a defined capacity limit. A filesystem that belongs to a tiered [filesystem group](filesystems.md#about-filesystem-groups) must have a total capacity limit and an SSD capacity limit. The total SSD capacity of all filesystems cannot exceed the total SSD capacity as defined in the total SSD net capacity.
 
 ### Encrypted Filesystems
 
@@ -34,7 +34,7 @@ In addition to the capacity limitation, each filesystem also has a limitation on
 
 By default, the metadata limit associated with a filesystem is proportional to the filesystem SSD size. It is possible to override this default by defining a filesystem-specific max-files parameter. The filesystem limit is a logical limit to control the specific filesystem usage, and can always be updated by the administrator when necessary.
 
-The total of the limits of the metadata for all the filesystems can exceed the total system metadata that can fit in RAM. For minimal impact, in such a case, the least recently-used units will be paged to disk, as necessary.
+The total limits of the metadata for all the filesystems can exceed the total system metadata that can fit in RAM. For minimal impact, in such a case, the least-recently-used units will be paged to disk, as necessary.
 
 ### Metadata Calculations
 

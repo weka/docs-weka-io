@@ -1,6 +1,6 @@
 ---
 description: >-
-  Weka is a software solution that enables the implementation of a sharable,
+  Weka is a software solution that enables the implementation of a shareable,
   scalable, distributed file storage system.
 ---
 
@@ -8,7 +8,7 @@ description: >-
 
 ## Basic Weka System Deployment <a id="basic-deployment-model"></a>
 
-The basic Weka deployment model involves the creation of a sharable filesystem to be used by the application servers. This requires the installation of Weka client software which implements a POSIX filesystem driver on each application server intended to access data. This filesystem driver enables each of the application servers to access the Weka system as if it is a local drive, perceiving the Weka system as a local attached filesystem device while it is actually shared among multiple application servers.
+The basic Weka deployment model involves the creation of a shareable filesystem to be used by the application servers. This requires the installation of Weka client software which implements a POSIX filesystem driver on each application server intended to access data. This filesystem driver enables each of the application servers to access the Weka system as if it is a local drive, perceiving the Weka system as a local attached filesystem device while it is actually shared among multiple application servers.
 
 The file services are implemented by a group of [backend hosts](glossary.md#backend-host) running the Weka software and fully dedicated to the Weka system. SSD drives for storing the data are installed on these servers. The resultant storage system is scalable to hundreds of backends and thousands of clients.
 
@@ -68,7 +68,7 @@ The duration of all these completely seamless operations depends on the capacity
 
 ## Converged Weka System Deployment <a id="hyper-cconverged-weka-deployment-model"></a>
 
-The Weka system can be deployed in a converged configuration. An alternative to the basic Weka system deployment, this enables the configuration of hundreds of application servers running user applications and installed with Weka clients in order to access the Weka cluster. Consequently, instead of provisioning servers fully dedicated to Weka backends, it enables the installation of a Weka client on each application server, and the installation of one or more SSDs as well as backend processes on the existing application servers. In such a configuration, the Weka system backend processes operate as one big cluster, takeover the local SSDs and form a sharable, distributed, and scalable filesystem available to the application servers, in the same way as in the basic Weka system deployment. The only difference is that instead of installing SSDs on backends dedicated to the Weka system, in this configuration the Weka backends share the same physical infrastructure with the application servers.
+The Weka system can be deployed in a converged configuration. An alternative to the basic Weka system deployment, this enables the configuration of hundreds of application servers running user applications and installed with Weka clients in order to access the Weka cluster. Consequently, instead of provisioning servers fully dedicated to Weka backends, it enables the installation of a Weka client on each application server, and the installation of one or more SSDs as well as backend processes on the existing application servers. In such a configuration, the Weka system backend processes operate as one big cluster, takeover the local SSDs and form a shareable, distributed, and scalable filesystem available to the application servers, in the same way as in the basic Weka system deployment. The only difference is that instead of installing SSDs on backends dedicated to the Weka system, in this configuration the Weka backends share the same physical infrastructure with the application servers.
 
 This mixture of different storage and computation abilities delivers more effective performance and better utilization of resources. However, unlike the basic Weka system deployment, where an application server failure has no effect on the other backends, here the cluster will be affected if an application server is rebooted or fails. The cluster is still protected by the N+2 scheme and can withstand two such concurrent failures. Consequently, converged Weka deployments require more careful integration, as well as more detailed awareness between computation and storage management practices.
 
