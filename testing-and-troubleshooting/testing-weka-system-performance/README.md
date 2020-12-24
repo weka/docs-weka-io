@@ -107,37 +107,51 @@ While we provide below the output of one iteration, we ran each test several tim
       <th style="text-align:left">Benchmark</th>
       <th style="text-align:left"><a href="test-environment-details.md#aws">AWS</a>
       </th>
+      <th style="text-align:left"><a href="test-environment-details.md#supermicro">SuperMicro</a>
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style="text-align:left">Read Throughput</td>
-      <td style="text-align:left">8.7 GiB/s</td>
+      <td style="text-align:left">8.9 GiB/s</td>
+      <td style="text-align:left">21.4 GiB/s</td>
     </tr>
     <tr>
       <td style="text-align:left">Write Throughput</td>
-      <td style="text-align:left">6.7 GiB/s</td>
+      <td style="text-align:left">9.4 GiB/s</td>
+      <td style="text-align:left">17.2 GiB/s</td>
     </tr>
     <tr>
       <td style="text-align:left">Read IOPS</td>
-      <td style="text-align:left">389,000 ops/s</td>
+      <td style="text-align:left">393,333 ops/s</td>
+      <td style="text-align:left">563,667 ops/s</td>
     </tr>
     <tr>
       <td style="text-align:left">Write IOPS</td>
-      <td style="text-align:left">288,000 ops/s</td>
+      <td style="text-align:left">302,333 ops/s</td>
+      <td style="text-align:left">378,667 ops/s</td>
     </tr>
     <tr>
       <td style="text-align:left">Read Latency</td>
       <td style="text-align:left">
-        <p>235 &#xB5;s avg.</p>
-        <p>99.5% completed under 320 &#xB5;s</p>
+        <p>272 &#xB5;s avg.</p>
+        <p>99.5% completed under 459 &#xB5;s</p>
+      </td>
+      <td style="text-align:left">
+        <p>144.76 &#xB5;s avg.</p>
+        <p>99.5% completed under 260 &#xB5;s</p>
       </td>
     </tr>
     <tr>
       <td style="text-align:left">Write Latency</td>
       <td style="text-align:left">
-        <p>229 &#xB5;s avg.</p>
-        <p>99.5% completed under 295 &#xB5;s</p>
+        <p>298 &#xB5;s avg.</p>
+        <p>99.5% completed under 432 &#xB5;s</p>
+      </td>
+      <td style="text-align:left">
+        <p>107.12 &#xB5;s avg.</p>
+        <p>99.5% completed under 142 &#xB5;s</p>
       </td>
     </tr>
   </tbody>
@@ -145,15 +159,15 @@ While we provide below the output of one iteration, we ran each test several tim
 
 #### Aggregated Cluster Results \(with multiple clients\)
 
-| Benchmark | [AWS](test-environment-details.md#aws) |
-| :--- | :--- |
-| Read Throughput | 27.8 GiB/s |
-| Write Throughput | 11.6 GiB/s |
-| Read IOPS | 2,234,670 ops/s |
-| Write IOPS | 439,000 ops/s |
-| Creates | 40,784 ops/s |
-| Stats | 2,352,902 ops/s |
-| Deletes | 44,101 ops/s |
+| Benchmark | [AWS](test-environment-details.md#aws) | [SuperMicro](test-environment-details.md#supermicro) |
+| :--- | :--- | :--- |
+| Read Throughput | 36.2 GiB/s | 123 GiB/s |
+| Write Throughput | 11.6 GiB/s | 37.6 GiB/s |
+| Read IOPS | 1,978,330 ops/s | 4,346,330 ops/s |
+| Write IOPS | 404,670 ops/s | 1,317,000 ops/s |
+| Creates | 79,599 ops/s | 234,472 ops/s |
+| Stats | 1,930,721 ops/s | 3,257,394 ops/s |
+| Deletes | 117,644 ops/s | 361,755 ops/s |
 
 {% hint style="info" %}
 **Note:** If the client uses a 100 Gbps NIC or above, mounting the Weka filesystem with more than one core is required to maximize client throughput.
