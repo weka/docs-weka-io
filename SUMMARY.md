@@ -60,6 +60,7 @@
 * [Mounting Filesystems](fs/mounting-filesystems.md)
 * [Snapshots](fs/snapshots.md)
 * [Snap-To-Object](fs/snap-to-obj.md)
+* [Quota Management](fs/quota-management.md)
 
 ## Additional Protocols
 
