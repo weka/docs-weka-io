@@ -52,7 +52,7 @@ weka cluster host apply 0`
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The number of management IPs determines whether the host will use Highly Available Networking mode \(HA\), causing each IO process to use both hosts NICs. A host with 2 IPs will use HA mode and a host with only 1 IP will not use HA mode.
+**Note:** The number of management IPs determines whether the host will use Highly Available Networking mode \(HA\), causing each IO process to use both hosts NICs. A host with 2 IPs will use HA mode and a host with only 1 IP will not use HA mode. It is also possible to define up to 4 IPs, in case the cluster is using both Infiniband and Ethernet network technologies.
 {% endhint %}
 
 ### Local resources editing commands

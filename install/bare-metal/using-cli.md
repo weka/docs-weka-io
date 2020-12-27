@@ -20,14 +20,14 @@ On completion of this stage in the installation process, the Weka software is in
 
 This stage involves the formation of a cluster from the allocated hosts. It is performed using the following command line:
 
-`weka cluster create <hostnames> [--host-ips <ips | ip+ip>]`
+`weka cluster create <hostnames> [--host-ips <ips | ip+ip+ip+ip>]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | Default |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `hostnames` | Space-separated strings | Hostnames or IP addresses | Need at least 6 strings, as this is the minimal cluster size | Yes |  |
-| `host-ips` | Comma-separated IP addresses | IP addresses of the management interfaces. Use a list of ip+ip addresses pairs of two cards for HA configuration | The same number of values as in `hostnames`. | No | IP of the first network device of the host |
+| `host-ips` | Comma-separated IP addresses | IP addresses of the management interfaces. Use a list of `ip+ip` addresses pairs of two cards for HA configuration. In case the cluster is connected to both IB and Ethernet, it is possible to set up to 4 management IPs for redundancy of both the IB and Ethernet networks using a list of `ip+ip+ip+ip` addresses. | The same number of values as in `hostnames`. | No | IP of the first network device of the host |
 
 {% hint style="info" %}
 **Note:** It is possible to use either a host-name or an IP address; this string serves as the identifier of the host in subsequent commands.
@@ -103,7 +103,7 @@ When PKEYs are used, the device name for InfiniBand should follow the name.PKEY 
 **Note:** Although in general, devices can be renamed arbitrarily, Weka will only function correctly if the .PKEY naming convention is followed.
 {% endhint %}
 
-The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(IB\). A physical network device must be specified for both types. This can be a device dedicated to the Weka system or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
+The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(IB\), and can be mixed in the same host \(by running multiple `cluster host net add` commands for the same host\). A physical network device must be specified for both types. This can be a device dedicated to the Weka system or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
 
 To perform this operation, the `cluster host net add` command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
@@ -177,7 +177,9 @@ To perform this operation, the `cluster host net add` command must be run for ea
       <td style="text-align:left">Number</td>
       <td style="text-align:left">Number of bits in the netmask</td>
       <td style="text-align:left">Describes the number of bits that identify a network ID (also known as
-        CIDR).</td>
+        CIDR). Not relevant for IB / L2 non-routable networks, and must be supplied
+        for the ethernet NICs if the cluster is set to use both ethernet and IB
+        interfaces.</td>
       <td style="text-align:left">No</td>
       <td style="text-align:left"></td>
     </tr>

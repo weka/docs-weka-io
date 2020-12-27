@@ -155,7 +155,7 @@ If the client networking is defined as based on UDP, there is no allocation of c
 
 ### Backend Hosts
 
-It is mandatory to determine which one of the two networking technologies - InfiniBand or Ethernet - is to be used in order to proceed to the Weka system initialization/installation process.
+Weka backend hosts can be connected to both InfiniBand or Ethernet networks. For each network technology used, all backends must be connected via this technology. If backends are connected both through Infiniband and Ethernet, the Weka system will favor the Infiniband links for traffic, unless there are connectivity issues with the Infiniband network. In that case, the system will use the Ethernet links \(clients connecting to the system can connect either via Infiniband or Ethernet\).
 
 {% hint style="info" %}
 **Note:** A network port can either be dedicated to the Weka system or run the Weka system with other applications.

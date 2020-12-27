@@ -225,7 +225,7 @@ If a high-performance client is required and the appropriate network NIC is avai
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** InfiniBand clients can only join a cluster with InfiniBand backends. It is not possible to mix InfiniBand and Ethernet clients/backends.
+**Note:** InfiniBand/Ethernet clients can only join a cluster with the same network technology connectivity. It is possible to mix InfiniBand and Ethernet clients in the same cluster as long as the cluster backends are connected to both network technologies.
 {% endhint %}
 
 ### Stage 5: Applying the Host Configuration

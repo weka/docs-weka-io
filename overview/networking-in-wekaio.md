@@ -11,7 +11,7 @@ The Weka system supports the following types of networking technologies:
 1. ‌InfiniBand \(IB\)
 2. Ethernet
 
-‌The currently-available networking infrastructure dictates the choice between the two.
+‌The currently-available networking infrastructure dictates the choice between the two. If a Weka cluster is connected to both infrastructures, it is possible to connect Weka clients from both networks to the same cluster. 
 
 The Weka system networking can be configured either as [performance-optimized](networking-in-wekaio.md#performance-optimized-networking-dpdk), where the CPU cores are dedicated to Weka and the use of DPDK networking takes place and cores, or, as [CPU-optimized](networking-in-wekaio.md#cpu-optimized-networking-udp-mode) where cores are not dedicated and we use in-kernel networking \(UDP mode\).
 
