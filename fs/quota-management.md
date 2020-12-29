@@ -39,7 +39,7 @@ When working with quotas, consider the following:
 * Moving files between two directories with quotas is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy&delete but is OS dependant.
 * Quotas and hardlinks:
   * An existing hardlink is not counted as part of the quota.
-  * Once a directory has a quota, it is not allowed to create a hardlink in it.
+  * Once a directory has a quota, it is not allowed to create a hardlink to files residing under directories with different \(or without\) directory quotas.
 * Restoring a filesystem from a snapshot turns the quotas back to the configuration at the time of the snapshot.
 * Creating a new filesystem from a snap-2-obj does not preserve the original quotas.
 
