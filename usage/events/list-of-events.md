@@ -37,6 +37,7 @@ description: >-
 | ClusterInitialized | INFO | Cluster successfully initialization |
 | ClusteringFailure | MINOR | Node clustering failed |
 | ConfigChangeSetsSliderFull | MINOR | Config changeset slider is full while the node is pulling config |
+| ConfigGenerationHasNoFirstChunk | MINOR | Applying a partial config generation is prohibited |
 | ConfigSnapshotPulled | MINOR | Config snapshot pulled |
 | GrimReaperFencingNode | MINOR | Partially connected node selected to be fenced by grim reaper |
 | HostActivated | INFO | Host configuration change |
@@ -60,6 +61,8 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| DirectoryQuotasDisabled | INFO | Directory Quotas were disabled |
+| DirectoryQuotasEnabled | INFO | Directory Quotas were enabled |
 | TLSSet | INFO | TLS was set |
 | TLSUnset | INFO | TLS was unset |
 | WebUIDisabled | INFO | Web UI was disabled |
@@ -121,6 +124,8 @@ description: >-
 | BlockSeekStarted | MAJOR | Block seek started for a secondaty metadata block that could not be read |
 | BrokenExtentChainDetected | MAJOR | Metadata corruption \(broken extent chain\) |
 | ChecksumErrorInCommit | MAJOR | Checksum error detected by SSD node in a committed block |
+| DirectoryQuotaSet | INFO | Directory Quotas was set |
+| DirectoryQuotaUnset | INFO | Directory Quotas was unset |
 | DumpSnapHashCompleted | INFO | Finished a snap hash manifest scan |
 | FailedToSplitSliceNoRetry | CRITICAL | Failed to split a directory slice - wont retry |
 | FilesystemAdded | INFO | Filesystem configuration change |
@@ -265,6 +270,7 @@ description: >-
 | ObjectStorageIsFull | CRITICAL | Object storage is full |
 | ObjectStorageStatusChanged | INFO | Object Storage status changed |
 | ObjectStorageUpdated | INFO | Object storage configuration change |
+| ObsIsMissingObject | MAJOR | Permanently failed to download an object from object storage - The object was not found |
 | PersistentChecksumErrorInDownloadedObject | MAJOR | Checksum error detected by COMPUTE node in a downloaded OBS data block |
 | TieredFilesystemBreakingPolicy | MINOR | Breaking policy; too much disk pressure |
 
@@ -361,10 +367,10 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
-| TracesConfigurationActivated | INFO | Traces configuration configuration change |
-| TracesConfigurationDeactivated | INFO | Traces configuration configuration change |
-| TracesConfigurationReset | INFO | Traces configuration configuration change |
-| TracesConfigurationUpdated | INFO | Traces configuration configuration change |
+| TracesConfigurationActivated | INFO | Traces configuration change |
+| TracesConfigurationDeactivated | INFO | Traces configuration change |
+| TracesConfigurationReset | INFO | Traces configuration change |
+| TracesConfigurationUpdated | INFO | Traces configuration change |
 
 ## Upgrade
 
