@@ -54,7 +54,7 @@ In this mount mode, the Linux operating system is used as write-back, rather tha
 
 This mode can provide significantly more performance, particularly in relation to write latency, all that while keeping data coherency, i.e., if a file is accessed via another host it invalidates the local cache and sync the data to get a coherent view of the file.
 
-To sync the filesystem and commit all changes in the write cache it is possible to use the following system calls: `sync`, `syncfs`, and `fsync`.
+To sync the filesystem and commit all changes in the write cache \(e.g., if there is a need to ensure it has been synced before taking a snapshot\), it is possible to use the following system calls: `sync`, `syncfs`, and `fsync`.
 
 ## Multiple Mounts on a Single Host
 
