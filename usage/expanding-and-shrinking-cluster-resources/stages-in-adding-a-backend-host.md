@@ -42,10 +42,6 @@ weka -H <existing-backend-hostname> cluster host add <backend-hostname>
 
 Follow the instructions appearing in [Configuration of Networking](../../install/bare-metal/using-cli.md#stage-5-configuration-of-networking).
 
-{% hint style="info" %}
-**Note:** The networking technology has to be the same as the existing networking technology in the cluster, i.e., it is not possible to mix Ethernet and IB technologies.
-{% endhint %}
-
 ## Stage 5: Configuration of SSDs
 
 Follow the instructions appearing in [Configuration of SSDs](../../install/bare-metal/using-cli.md#stage-6-configuration-of-ssds).
