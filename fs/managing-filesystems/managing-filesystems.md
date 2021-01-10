@@ -18,13 +18,13 @@ The main Filesystems screen in the GUI contains information about the filesystem
 
 **Command:** `weka fs`
 
-Use this commands to view information on the filesystems in the Weka system.
+Use this command to view information on the filesystems in the Weka system.
 
 ## Adding a Filesystem
 
 ### Adding a Filesystem Using the GUI
 
-From the main filesystem / filesystem group view screen, click the Add Filesystem button at the top right-hand side of the screen. The Add Filesystem screen will be displayed.
+From the main filesystem/filesystem group view screen, click the Add Filesystem button at the top right-hand side of the screen. The Add Filesystem screen will be displayed.
 
 ![Add Filesystem Screen](../../.gitbook/assets/fs-add-screen-3.5.png)
 
@@ -40,7 +40,7 @@ Enter the relevant parameters and click Create to create the filesystem.
 
 Use the following command line to add a filesystem:
 
-`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd>] [--max-files <max-files>] [--filesystem-id <id>] [--encrypted] [--obs-name <obs-name>] [--auth-required auth]`
+`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd-capacity>] [--max-files <max-files>] [--filesystem-id <id>] [--encrypted] [--obs-name <obs-name>] [--auth-required auth]`
 
 **Parameters in Command Line**
 
@@ -69,7 +69,7 @@ If filesystem keys exist when adding a KMS, they are automatically re-encrypted 
 
 ### Editing an Existing Filesystem Using the GUI
 
-Select the filesystem to be modified in the main filesystem / filesystem group view screen and click the Edit button.
+Select the filesystem to be modified in the main filesystem/filesystem group view screen and click the Edit button.
 
 ![Edit Filesystem Screen](../../.gitbook/assets/fs-edit-screen-3.5.png)
 
@@ -89,7 +89,7 @@ Edit the existing filesystem parameters and click Configure to execute the chang
 
 Use the following command line to edit an existing filesystem:
 
-`weka fs update <name> [--new-name=<new-name>] [--total-capacity=<total>] [--ssd-capacity=<ssd>] [--max-files=<max-files>]`
+`weka fs update <name> [--new-name=<new-name>] [--total-capacity=<total-capacity>] [--ssd-capacity=<ssd-capacity>] [--max-files=<max-files>] [--auth-required=<auth-required>]`
 
 **Parameters in Command Line**
 
@@ -97,8 +97,8 @@ Use the following command line to edit an existing filesystem:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `name` | String | Name of the filesystem being edited | Must be a valid name | Yes | ​ |
 | `new-name` | String | New name for the filesystem | Must be a valid name | Optional | Keep unchanged |
-| `total` | Number | Total capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
-| `ssd` | Number | SSD capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
+| `total-capacity` | Number | Total capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
+| `ssd-capacity` | Number | SSD capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
 | `max-files` | Number | Metadata limit for the filesystem | Must be a valid number | Optional | Keep unchanged |
 | `auth-required` | String | Determines if mounting the filesystem requires to be authenticated to Weka \([weka user login](../../usage/user-management.md#user-log-in)\)  | `yes` or `no` | No | no |
 
@@ -106,7 +106,7 @@ Use the following command line to edit an existing filesystem:
 
 ### Deleting a Filesystem Using the GUI
 
-Select the filesystem to be deleted in the main filesystem / filesystem group view screen and click the Delete button.
+Select the filesystem to be deleted in the main filesystem/filesystem group view screen and click the Delete button.
 
 ![Filesystem Delete Screen](../../.gitbook/assets/fs-delete-screen-3.5.png)
 
@@ -132,7 +132,7 @@ Use the following command line to delete a filesystem:
 | `purge-from-obs` | Boolean | For a tiered filesystem, if set, all filesystem data is deleted from the object store bucket. |  | No | False |
 
 {% hint style="danger" %}
-**Note:** Using `purge-from-obs` will remove all data from the object store. This includes any backup data or snapshots created from this filesystem \(if this filesystem has been downloaded from a snapshot of a different filesystem, it will leave the original snapshot data intact\).
+**Note:** Using `purge-from-obs` will remove all data from the object-store. This includes any backup data or snapshots created from this filesystem \(if this filesystem has been downloaded from a snapshot of a different filesystem, it will leave the original snapshot data intact\).
 
 * If any of the removed snapshots have been \(or are\) downloaded and used by a different filesystem, that filesystem will stop functioning correctly, data might be unavailable and errors might occur when accessing the data.
 
