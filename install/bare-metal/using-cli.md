@@ -16,7 +16,7 @@ On completion of this stage in the installation process, the Weka software is in
 
 ## Stage 2: Formation of a Cluster from the Hosts
 
-**Command:** `cluster create`
+**Command:** `weka cluster create`
 
 This stage involves the formation of a cluster from the allocated hosts. It is performed using the following command line:
 
@@ -57,7 +57,7 @@ On successful completion of the formation of the cluster, every host receives a 
 
 This command is used to give the cluster a name. Although this is optional, it is highly recommended, because the name enables cloud event notification and increases the ability of the Weka Support Team to resolve any issues that may occur. To perform this operation, use the following command line:
 
-`weka cluster update --cluster-name=<name>`
+`weka cluster update --cluster-name=<cluster-name>`
 
 **Parameters in Command Line**
 
@@ -89,13 +89,13 @@ For more information, refer to [Private Instance of Weka Home](../../support/the
 
 ## Stage 5: Setting hosts as dedicated to the cluster \(Optional\)
 
-**Command:** `cluster host dedicate`
+**Command:** `weka cluster host dedicate`
 
 It is possible to set the host as dedicated to the Weka cluster. By setting the host to dedicated, no other application is expected to run on it, and the Weka system optimizes it for performance and stability. For example, the host can be rebooted by the system at need, and all the host's memory is allocatable by the Weka processes.
 
 ## Stage 6: Configuration of Networking
 
-**Command:** `cluster host net add`
+**Command:** `weka cluster host net add`
 
 When PKEYs are used, the device name for InfiniBand should follow the name.PKEY convention.
 
@@ -107,7 +107,7 @@ The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(
 
 To perform this operation, the `cluster host net add` command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
-`weka cluster host net add <host-id> <device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gw>] [--netmask=<netmask>]`
+`weka cluster host net add <host-id> <device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gateway>] [--netmask=<netmask>]`
 
 **Parameters in Command Line**
 
@@ -211,7 +211,7 @@ The number of IP addresses should be according to [Weka Networking](../../overvi
 
 ### Optional: Configure default data networking
 
-**Command:** `cluster default-net set`
+**Command:** `weka cluster default-net set`
 
 Instead of explicit IP address configuration per each network device, dynamic IP address allocation is supported. Weka supports adding a range of IP addresses to a dynamic pool, from which the IP addresses can be automatically allocated on demand.
 
@@ -219,7 +219,7 @@ Instead of explicit IP address configuration per each network device, dynamic IP
 **For Ethernet networking only**, a mixed approach is supported: for certain network devices the IP addresses are assigned explicitly by the administrator, while the other devices in the cluster get an automatic allocation from the IP range. Such an approach could be useful in an environment where clients are being spawned automatically.
 {% endhint %}
 
-`weka cluster default-net set --range <range> [--gateway=<gw>] [--netmask-bits=<netmask>]`
+`weka cluster default-net set --range <range> [--gateway=<gateway>] [--netmask-bits=<netmask-bits>]`
 
 **Parameters in Command Line**
 
@@ -286,7 +286,7 @@ If a default data networking was previously configured on a cluster and is no lo
 
 ## Stage 7: Configuration of SSDs
 
-**Command:** `cluster drive add`
+**Command:** `weka cluster drive add`
 
 This stage in the installation process is used to add a local SSD to be used by a Weka filesystem. The same command can be used for adding multiple drive paths. To perform this operation, use the following command line:
 
@@ -305,11 +305,11 @@ This stage in the installation process is used to add a local SSD to be used by 
 
 ## Stage 8: Configuration of CPU Resources
 
-**Command:** `cluster host cores`
+**Command:** `weka cluster host cores`
 
 This stage in the installation process is used to configure the number of CPU resources, which are physical rather than logical cores. To perform this operation, use the following command line:
 
-`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <fe_cores>] [--drives-dedicated-cores <be_cores>] [--cores-ids <cores_ids>]`
+`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <frontend-dedicated-cores>] [--drives-dedicated-cores <drives-dedicated-cores>] [--cores-ids <cores-ids>]`
 
 **Parameters in Command Line**
 
@@ -322,9 +322,9 @@ This stage in the installation process is used to configure the number of CPU re
 | `cores-ids` | A comma-separated list  of numbers | Physical Core numbers | Specification of which cores to use. | No | Select cores automatically |
 
 {% hint style="success" %}
-**Note:** `core_ids` are distributed in the following order: first, all the FrontEnd processes, second, all the Compute processes, and last, all the Drive processes. By ordering the `core_ids` list, it is possible to determine the exact assignment of cores to processes \(e.g., for taking into account NUMA distribution\).
+**Note:** `cores-ids` are distributed in the following order: first, all the FrontEnd processes, second, all the Compute processes, and last, all the Drive processes. By ordering the `cores-ids` list, it is possible to determine the exact assignment of cores to processes \(e.g., for taking into account NUMA distribution\).
 
-**For example:** If we have 1 FrontEnd, 2 Compute, and 3 Drive, setting `core_ids` to `1, 2, 4, 3, 5, 6` will put the FrontEnd on core 1, Compute on cores 2 and 4, and Drive on cores 3, 5 and 6. Assuming cores 1, 2, 3 are at NUMA 0 and cores 4, 5, 6 are at NUMA 1, we will have the following distribution of processes:
+**For example:** If we have 1 FrontEnd, 2 Compute, and 3 Drive, setting `cores-ids` to `1, 2, 4, 3, 5, 6` will put the FrontEnd on core 1, Compute on cores 2 and 4, and Drive on cores 3, 5 and 6. Assuming cores 1, 2, 3 are at NUMA 0 and cores 4, 5, 6 are at NUMA 1, we will have the following distribution of processes:
 
 * NUMA 0: FrontEnd, Compute, Drive
 * NUMA 1: Compute, Drive, Drive
@@ -336,9 +336,9 @@ This stage in the installation process is used to configure the number of CPU re
 
 ## Stage 9: Configuration of Memory \(optional\)
 
-**Command:** `cluster host memory`
+**Command:** `weka cluster host memory`
 
-As defined in the memory requirements, the fixed memory per host, and the per compute/SSD cores memory are automatically calculated by the Weka system. By default, 1.4 GB is allocated per compute-core, out of which 0.4 GB is left for the capacity-oriented memory. If the host is set as [dedicated](using-cli.md#stage-5-setting-hosts-as-dedicated-to-the-cluster-optional), all the memory left after reductions, as described in [Memory Resource Planning](planning-a-weka-system-installation.md#memory-resource-planning), is automatically allocated for the Weka system.
+As defined in the memory requirements, the fixed memory per host and the per compute/SSD cores memory are automatically calculated by the Weka system. By default, 1.4 GB is allocated per compute-core, out of which 0.4 GB is left for the capacity-oriented memory. If the host is set as [dedicated](using-cli.md#stage-5-setting-hosts-as-dedicated-to-the-cluster-optional), all the memory left after reductions, as described in [Memory Resource Planning](planning-a-weka-system-installation.md#memory-resource-planning), is automatically allocated for the Weka system.
 
 If capacity requirements mandate more memory, the following command should be used:
 
@@ -357,7 +357,7 @@ If capacity requirements mandate more memory, the following command should be us
 
 ## Stage 10: Configuration of Failure Domains \(optional\)
 
-**Command:** `cluster host failure-domain`
+**Command:** `weka cluster host failure-domain`
 
 This optional stage in the installation process is used to assign a host to a failure domain. If the specified failure domain does not exist, it will be created by this command. If the host is assigned to another failure domain, it will be reassigned by this command.
 
@@ -367,7 +367,7 @@ This optional stage in the installation process is used to assign a host to a fa
 
 This operation is performed using the following command line:
 
-`weka cluster host failure-domain <host-id> [--name <fd-name>] | [--auto]`
+`weka cluster host failure-domain <host-id> [--name <name>] | [--auto]`
 
 **Parameters in Command Line**
 
@@ -379,11 +379,11 @@ This operation is performed using the following command line:
 
 ## Stage 11: Configuration of Weka System Protection Scheme \(optional\)
 
-**Command:** `cluster update`
+**Command:** `weka cluster update`
 
 To configure the Weka system protection scheme, use the following command line:
 
-`weka cluster update [--data-drives=<num>] [--parity-drives=<num>]`
+`weka cluster update [--data-drives=<data-drives>] [--parity-drives=<parity-drives>]`
 
 **Parameters in Command Line**
 
@@ -398,7 +398,7 @@ To configure the Weka system protection scheme, use the following command line:
 
 ## Stage 12: Configuration of Hot Spare \(optional\)
 
-**Command:** `cluster hot-spare`
+**Command:** `weka cluster hot-spare`
 
 To configure the Weka system hot spare, use the following command line:
 
@@ -408,7 +408,7 @@ To configure the Weka system hot spare, use the following command line:
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `hot-spare` | Number | Hot spare | The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 1 |
+| `count` | Number | Hot spare | The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No | 1 |
 
 ## Stage 13: Applying Hosts Configuration
 

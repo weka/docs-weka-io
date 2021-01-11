@@ -394,9 +394,9 @@ Then click Save.
 **Command:** `weka nfs permission`
 
 Use the following command lines to add/update/delete NFS permissions:  
-`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs_direct] [--manage-gids manage-gids] [--privileged-port privileged-port]`
+`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port]`
 
-`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--manage-gids manage-gids] [--privileged-port privileged-port]`
+`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port]`
 
 `weka nfs permission delete <filesystem> <group> [--path path]`
 
@@ -453,11 +453,12 @@ Use the following command lines to add/update/delete NFS permissions:
       <td style="text-align:left">String</td>
       <td style="text-align:left">Permission type</td>
       <td style="text-align:left">
-        <p>RO: read-only</p>
-        <p>RW: read-write</p>
+        <p><code>ro</code> for read-only or</p>
+        <p><code>rw</code> for read-write</p>
       </td>
       <td style="text-align:left">No</td>
-      <td style="text-align:left">RW</td>
+      <td style="text-align:left"><code>rw</code>
+      </td>
     </tr>
     <tr>
       <td style="text-align:left"><code>root-squashing</code>
@@ -494,7 +495,8 @@ Use the following command lines to add/update/delete NFS permissions:
       <td style="text-align:left">Boolean</td>
       <td style="text-align:left">See <a href="../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a> section</td>
       <td
-      style="text-align:left"></td>
+      style="text-align:left"><code>on</code> or <code>off</code>
+        </td>
         <td style="text-align:left">No</td>
         <td style="text-align:left">No</td>
     </tr>

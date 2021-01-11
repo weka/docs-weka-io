@@ -40,7 +40,7 @@ Enter the relevant parameters and click Create to create the filesystem.
 
 Use the following command line to add a filesystem:
 
-`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd-capacity>] [--max-files <max-files>] [--filesystem-id <id>] [--encrypted] [--obs-name <obs-name>] [--auth-required auth]`
+`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd-capacity>] [--max-files <max-files>] [--encrypted] [--obs-name <obs-name>] [--auth-required <auth-required>]`
 
 **Parameters in Command Line**
 

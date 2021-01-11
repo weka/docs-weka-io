@@ -76,7 +76,7 @@ Use the following command line to list all alerts \(muted and unmuted\) in the W
 
 | Name | Type | Value | Limitations | Mandatory | Default |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `--muted` | Boolean | List muted alerts alongside the unmuted ones |  | No | False |
+| `muted` | Boolean | List muted alerts alongside the unmuted ones |  | No | False |
 
 ### **Muting Alerts**
 

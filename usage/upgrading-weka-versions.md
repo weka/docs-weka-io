@@ -40,17 +40,13 @@ Although not needed, and distribution of the new version to the hosts should be 
 
 First, obtain the new version on one of the backend host, as described above, then, use the following CLI command:
 
-```text
-weka local run --in <new-version> upgrade --mode one-shot --prepare-only
-```
+`weka local run --in <new-version> upgrade --mode one-shot --prepare-only`
 
 ## Running the Upgrade Command
 
 Once a new software version is installed on one of the backend hosts, the cluster has to be upgraded to the new release. This is performed by running the following command on the backend host:
 
-```text
-weka local run --in <new-version> upgrade --mode one-shot
-```
+`weka local run --in <new-version> upgrade --mode one-shot`
 
 where `<new-version>` is the name of the new version \(as in get.weka.io, e.g.,`3.6.1`\).
 

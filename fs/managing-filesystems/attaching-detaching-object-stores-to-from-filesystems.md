@@ -106,11 +106,11 @@ To confirm the operation, click Detach.
 
 To attach an object store to a filesystem, use the following command:
 
-`weka fs tier s3 attach fs-name obs-name`
+`weka fs tier s3 attach <fs-name> <obs-name>`
 
 To detach an object store from a filesystem, use the following command:
 
-`weka fs tier s3 detach fs-name obs-name`
+`weka fs tier s3 detach <fs-name> <obs-name>`
 
 **Parameters in Command Line**
 

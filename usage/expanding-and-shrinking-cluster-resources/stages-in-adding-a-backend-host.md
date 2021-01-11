@@ -19,7 +19,7 @@ Follow the instructions appearing in [Installation of the Weka Software on Each 
 
 ## Stage 3: Adding a Host to the Cluster
 
-**Command:** `cluster host add`
+**Command:** `weka cluster host add`
 
 Once the backend host is in the [stem mode](../../overview/glossary.md#stem-mode), use the following command line on any host to add it to the cluster:
 

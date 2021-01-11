@@ -19,9 +19,9 @@ Every Weka system user has one of the following defined roles:
 
 ## First User \(Cluster Admin\)
 
-By default, when a Weka cluster is created, a first user with a username of admin and a password of admin is created. This user has a Cluster Admin role, which allows the running of all commands.
+By default, when a Weka cluster is created, a first user with an `admin` username and password is created. This user has a Cluster Admin role, which allows the running of all commands.
 
-Cluster Admin users are responsible for managing the cluster as a whole. When using multiple organizations, there is a difference between managing a single organization and managing the cluster because managing the cluster also covers management of the cluster hardware and resources. These are the additional permissions given to a Cluster Admin in comparison to a Organization Admin.
+Cluster Admin users are responsible for managing the cluster as a whole. When using multiple organizations, there is a difference between managing a single organization and managing the cluster because managing the cluster also covers the management of the cluster hardware and resources. These are the additional permissions given to a Cluster Admin in comparison to an Organization Admin.
 
 A Cluster Admin user is created because a Weka system cluster must have at least one defined Admin user. However, it is possible to create a user with a different name and delete the default admin user, if required.
 
@@ -111,9 +111,7 @@ Use the following command line to change a local user password:
 
 To delete a user, use the following command line:
 
-```text
-weka user delete <username>
-```
+`weka user delete <username>`
 
 **Parameters in Command Line**
 
@@ -174,74 +172,213 @@ One of two CLI commands is used to configure an LDAP user directory for user aut
 
 To configure an LDAP server, use the following command line:
 
-```text
-weka user ldap setup <server-uri>
-                     <base-dn>
-                     <user-object-class>
-                     <user-id-attribute>
-                     <group-object-class>
-                     <group-membership-attribute>
-                     <group-id-attribute>
-                     <reader-username>
-                     <reader-password>
-                     <cluster-admin-group>
-                     <org-admin-group>
-                     <regular-group>
-                     <readonly-group>
-                     [--server-timeout-secs server-timeout-secs]
-                     [--protocol-version protocol-version]
-                     [--user-revocation-attribute user-revocation-attribute]
-```
+`weka user ldap setup <server-uri> <base-dn> <user-object-class> <user-id-attribute> <group-object-class> <group-membership-attribute> <group-id-attribute> <reader-username> <reader-password> <cluster-admin-group> <org-admin-group> <regular-group> <readonly-group> [--start-tls start-tls] [--ignore-start-tls-failure ignore-start-tls-failure] [--server-timeout-secs server-timeout-secs] [--protocol-version protocol-version] [--user-revocation-attribute user-revocation-attribute]`
 
 To configure an Active Directory server, use the following command line:
 
-```text
-weka user ldap setup-ad <server-uri>
-                        <domain>
-                        <reader-username>
-                        <reader-password>
-                        <cluster-admin-group>
-                        <org-admin-group>
-                        <regular-group>
-                        <readonly-group>
-                        [--server-timeout-secs server-timeout-secs]
-```
+`weka user ldap setup-ad <server-uri> <domain> <reader-username> <reader-password> <cluster-admin-group> <org-admin-group> <regular-group> <readonly-group> [--start-tls start-tls] [--ignore-start-tls-failure ignore-start-tls-failure] [--server-timeout-secs server-timeout-secs] [--user-revocation-attribute user-revocation-attribute]`
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `server-uri` | String | Either the LDAP server host name/IP or a URI | URI must be in format `ldap://hostname:port` or `ldaps://hostname:port` | Yes |  |
-| `base-dn` | String | Base DN under which users are stored | Must be valid name | Yes |  |
-| `user-id-attribute` | String | Attribute storing user IDs | Must be valid name | Yes |  |
-| `user-object-class` | String | Object class of users | Must be valid name | Yes |  |
-| `group-object-class` | String | Object class of groups | Must be valid name | Yes |  |
-| `group-membership-attribute` | String | Attribute of group containing the DN of a user membership in the group | Must be valid name | Yes |  |
-| `group-id-attribute` | String | Attribute storing the group name | Name has to match names used in the `<admin-group>`, `<regular group>` and `<readonly group>` | Yes |  |
-| `reader-username` and `reader-password` | String | Credentials of a user with read access to the directory | Password is kept in the Weka cluster configuration in plain text, as it is used to authenticate against the directory during user authentication | Yes |  |
-| `cluster-admin-group` | String | Name of group containing users defined with cluster admin role | Must be valid name | Yes |  |
-| `org-admin-group` | String | Name of group containing users defined with organization admin role | Must be valid name | Yes |  |
-| `regular-group` | String | Name of group containing users defined with regular privileges | Must be valid name | Yes |  |
-| `readonly-group` | String | Name of group containing users defined with read only privileges | Must be valid name | Yes |  |
-| `server-timeout-secs` | Number | Server connection timeout | Seconds | No |  |
-| `protocol-version` | String | Selection of LDAP version | LDAP v2 or v3 | No\` | LDAP v3 |
-| `user-revocation-attribute` | String | The LDAP attribute; when its value  changes in the LDAP directory, user access and mount tokens are revoked | User must re-login after a change is detected | No |  |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>server-uri</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Either the LDAP server host name/IP or a URI</td>
+      <td style="text-align:left">URI must be in format <code>ldap://hostname:port</code> or <code>ldaps://hostname:port</code>
+      </td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>base-dn</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Base DN under which users are stored</td>
+      <td style="text-align:left">Must be valid name</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>user-id-attribute</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Attribute storing user IDs</td>
+      <td style="text-align:left">Must be valid name</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>user-object-class</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Object class of users</td>
+      <td style="text-align:left">Must be valid name</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>group-object-class</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Object class of groups</td>
+      <td style="text-align:left">Must be valid name</td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>group-membership-attribute</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Attribute of group containing the DN of a user membership in the group</td>
+      <td
+      style="text-align:left">Must be valid name</td>
+        <td style="text-align:left">Yes</td>
+        <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>group-id-attribute</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Attribute storing the group name</td>
+      <td style="text-align:left">Name has to match names used in the <code>&lt;admin-group&gt;</code>, <code>&lt;regular group&gt;</code> and <code>&lt;readonly group&gt;</code>
+      </td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>reader-username</code> and <code>reader-password</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Credentials of a user with read access to the directory</td>
+      <td style="text-align:left">Password is kept in the Weka cluster configuration in plain text, as it
+        is used to authenticate against the directory during user authentication</td>
+      <td
+      style="text-align:left">Yes</td>
+        <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>cluster-admin-group</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Name of group containing users defined with cluster admin role</td>
+      <td
+      style="text-align:left">Must be valid name</td>
+        <td style="text-align:left">Yes</td>
+        <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>org-admin-group</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Name of group containing users defined with organization admin role</td>
+      <td
+      style="text-align:left">Must be valid name</td>
+        <td style="text-align:left">Yes</td>
+        <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>regular-group</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Name of group containing users defined with regular privileges</td>
+      <td
+      style="text-align:left">Must be valid name</td>
+        <td style="text-align:left">Yes</td>
+        <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>readonly-group</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Name of group containing users defined with read only privileges</td>
+      <td
+      style="text-align:left">Must be valid name</td>
+        <td style="text-align:left">Yes</td>
+        <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>server-timeout-secs</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">Server connection timeout</td>
+      <td style="text-align:left">Seconds</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>protocol-version</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Selection of LDAP version</td>
+      <td style="text-align:left">LDAP v2 or v3</td>
+      <td style="text-align:left">No`</td>
+      <td style="text-align:left">LDAP v3</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>user-revocation-attribute</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">The LDAP attribute; when its value changes in the LDAP directory, user
+        access and mount tokens are revoked</td>
+      <td style="text-align:left">User must re-login after a change is detected</td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>start-tls</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Issue StartTLS after connecting</td>
+      <td style="text-align:left">
+        <p><code>yes</code> or <code>no</code>
+        </p>
+        <p>should not be used with <code>ldaps:// </code>
+        </p>
+        <p></p>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>no</code>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ignore-start-tls-failure</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">Ignore start TLS failure</td>
+      <td style="text-align:left"><code>yes</code> or <code>no</code>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>no</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ### Viewing a Configured LDAP User Directory
 
 **Command:**  
 `weka user ldap`
 
-This command is used for viewing the current LDAP configuration used for authenticating users. The following command line is used:
-
-`weka user ldap [--HOST HOST]{--PORT PORT]`
-
-**Parameters in Command Line**
-
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `HOST` | String | Host name | Only valid host name | Yes |  |
-| `PORT` | String | Port name | Only valid port name | Yes |  |
+This command is used for viewing the current LDAP configuration used for authenticating users. 
 
 ### Disabling/Enabling a Configured LDAP User Directory
 

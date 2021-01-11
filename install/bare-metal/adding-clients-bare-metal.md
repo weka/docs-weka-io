@@ -53,7 +53,7 @@ Verify that the Weka software is installed on the client host according to the i
 
 ### Stage 2: Joining the Cluster
 
-**Command:** `cluster host add`
+**Command:** `weka cluster host add`
 
 Once the client host is in the stem mode \(this is the mode defined immediately after running the `install.sh`command\), use the following command line on the client host to add it to the cluster:
 
@@ -76,7 +76,7 @@ Once the client host is in the stem mode \(this is the mode defined immediately 
 
 To configure the new host as a client, run the following command:
 
-`weka cluster host cores <host-id> <cores> --frontend-dedicated-cores=<fe_cores>`
+`weka cluster host cores <host-id> <cores> --frontend-dedicated-cores=<frontend-dedicated-cores>`
 
 **Parameters in Command Line**
 
@@ -143,7 +143,7 @@ To configure the new host as a client, run the following command:
 
 If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the Weka system cluster hosts:
 
-`weka cluster host net add <host-id> <device> --ips=<ip-address> --netmask=<netmask> --gateway=<gateway>`
+`weka cluster host net add <host-id> <device> --ips=<ips> --netmask=<netmask> --gateway=<gateway>`
 
 **Parameters in Command Line**
 
@@ -199,7 +199,7 @@ If a high-performance client is required and the appropriate network NIC is avai
       <td style="text-align:left">IP address</td>
       <td style="text-align:left">The IP address of the default routing gateway</td>
       <td style="text-align:left">
-        <p>The gateway must reside within the same IP network of <code>ip-address</code> (as
+        <p>The gateway must reside within the same IP network of <code>ips</code> (as
           described by <code>netmask</code>).</p>
         <p>Not relevant for IB / L2 non-routable networks.</p>
       </td>

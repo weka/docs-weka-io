@@ -119,7 +119,7 @@ The collected statistics are helpful to analyze system performance and determine
 
 Use the following command line to manage filters and read statistics:
 
-`weka stats [--start-time <start>] [--end-time <end>] [--interval interval] [--resolution-secs <secs>] [--category category][--stat stat] [--node-ids node-ids] [--param param] [--accumulated] [--per-node] [--no-zeros] [--show-internal] [--json] [--raw-units] [--UTC]`
+`weka stats [--start-time <start-time>] [--end-time <end-time>] [--interval interval] [--resolution-secs resolution-secs] [--category category][--stat stat] [--node-ids node-ids] [--param param] [--accumulated] [--per-node] [--no-zeros] [--show-internal] [--raw-units] [--UTC]`
 
 **Parameters in Command Lines**
 
@@ -142,10 +142,10 @@ Use the following command line to manage filters and read statistics:
 
 ### Setting statistics Retention
 
-**Command:** `weka stats retention`
+**Command:** `weka stats retention set`
 
 Use the following command line to set the statistics retention period  
-`weka stats retention <--days days> [--dry-run]`
+`weka stats retention set <--days days> [--dry-run]`
 
 **Parameters in Command Lines**
 

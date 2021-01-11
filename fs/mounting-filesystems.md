@@ -68,7 +68,7 @@ Use the following command line to invoke the mount command:
 | `options` | ​ | See Additional Mount Options below | ​ | ​ | ​ |
 | `backend` | String | IP/hostname of a backend host | Must be a valid name | Yes | ​ |
 | `fs` | String | Filesystem name | Must be a valid name | Yes | ​ |
-| `mount-path` | String | Path to mount on the local machine | Must be a valid path-name | Yes | ​ |
+| `mount-point` | String | Path to mount on the local machine | Must be a valid path-name | Yes | ​ |
 
 ## Mount Command Options
 
