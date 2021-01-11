@@ -28,7 +28,7 @@ Use this command to view information about the SMB domain configuration.
 
 Use the following command line to create a new SMB cluster to be managed by the Weka system:
 
-`weka smb cluster create <name> <domain> [--samba-hosts samba-hosts]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range] [--encryption encryption]`
+`weka smb cluster create <name> <domain> [--samba-hosts samba-hosts]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range] [--domain-netbios-name domain-netbios-name] [--idmap-backend idmap-backend] [--joined-domain-mapping-from-id joined-domain-mapping-from-id] [--joined-domain-mapping-to-id joined-domain-mapping-to-id] [--default-domain-mapping-from-id default-domain-mapping-from-id] [--default-domain-mapping-to-id default-domain-mapping-to-id] [--encryption encryption]`
 
 **Parameters in Command Line**
 
@@ -213,7 +213,7 @@ In this example of a full command, an SMB cluster is configured over the Weka sy
 
 **Command:** `weka smb cluster status`
 
-Use this command to check the status of the hosts which are part of the SMB cluster. Once all host are prepared and ready, it is possible to join an SMB cluster to an Active Directory.
+Use this command to check the status of the hosts which are part of the SMB cluster. Once all hosts are prepared and ready, it is possible to join an SMB cluster to an Active Directory.
 
 ## Joining an SMB Cluster to an Active Directory
 
@@ -221,7 +221,7 @@ Use this command to check the status of the hosts which are part of the SMB clus
 
 Use the following command line to join an SMB domain to an Active Directory:
 
-`smb domain join <username> <password>`
+`weka smb domain join <username> <password>`
 
 **Parameters in Command Line**
 
@@ -232,7 +232,7 @@ Use the following command line to join an SMB domain to an Active Directory:
 
 In order to join another Active Directory to the current SMB cluster configuration, it is necessary to leave the current Active Directory. This is performed using the following command line:
 
-`smb domain leave <username> <password>`
+`weka smb domain leave <username> <password>`
 
 On completion of this operation, it is possible to join another Active Directory to the SMB cluster.
 
@@ -302,7 +302,7 @@ Use this command to list all existing SMB shares.
 
 Use the following command line to add a new share to be exposed to SMB:
 
-`smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [--file-create-mask mask] [--directory-create-mask mask] [--obs_direct] [--encryption encryption] [--read-only] [--user-list-type list-type] [--users users]...`
+`weka smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [--file-create-mask file-create-mask] [--directory-create-mask directory-create-mask] [--acl acl] [--obs-direct obs-direct] [--encryption encryption] [--read-only read-only] [--user-list-type user-list-type] [--users users]...`
 
 **Parameters in Command Line**
 
@@ -484,7 +484,7 @@ In this example, the first SMB share added has the Weka system share for default
 
 Use the following command line to update an existing share:
 
-`smb share update <share-id> [--encryption encryption]`
+`weka smb share update <share-id> [--encryption encryption]`
 
 **Parameters in Command Line**
 
@@ -548,7 +548,7 @@ Use this command to view the various user-list settings:
 
 Use the following command line to add users to a share user-list:
 
-`smb share lists add <share-id> <user-list-type> <--users users>...`
+`weka smb share lists add <share-id> <user-list-type> <--users users>...`
 
 **Parameters in Command Line**
 
@@ -617,7 +617,7 @@ Use the following command line to add users to a share user-list:
 
 Use the following command line to remove users from a share user-list:
 
-`smb share lists remove <share-id> <user-list-type> <--users users>...`
+`weka smb share lists remove <share-id> <user-list-type> <--users users>...`
 
 **Parameters in Command Line**
 
@@ -686,7 +686,7 @@ Use the following command line to remove users from a share user-list:
 
 Use the following command line to remove all users from a share user-list:
 
-`smb share lists reset <share-id> <user-list-type>`
+`weka smb share lists reset <share-id> <user-list-type>`
 
 **Parameters in Command Line**
 
@@ -745,7 +745,7 @@ Use the following command line to remove all users from a share user-list:
 
 Use the following command line to remove a share exposed to SMB:
 
-`smb share remove <share-id>`
+`weka smb share remove <share-id>`
 
 **Parameters in Command Line**
 

@@ -32,7 +32,7 @@ Events can be filtered by choosing a filter. Filtering can be performed accordin
 
 Use the following command line to list events in the Weka cluster:
 
-`weka events [--num-results num-results] [--start-time <start>] [--end-time <end>] [--severity severity] [--direction direction] [--fetch-order fetch-order] [--type-list type-list] [--exclude-type-list exclude-type-list] [--category-list category-list] [--by-digested-time] [--show-internal] [--raw-units] [--UTC]`
+`weka events [--num-results num-results] [--start-time <start-time>] [--end-time <end-time>] [--severity severity] [--direction direction] [--fetch-order fetch-order] [--type-list type-list] [--exclude-type-list exclude-type-list] [--category-list category-list] [--cloud-time] [--show-internal] [--raw-units] [--UTC]`
 
 **Parameters in Command Line**
 
@@ -138,10 +138,10 @@ Use the following command line to list events in the Weka cluster:
       <td style="text-align:left">All</td>
     </tr>
     <tr>
-      <td style="text-align:left"><code>digested-time</code>
+      <td style="text-align:left"><code>cloud-time</code>
       </td>
       <td style="text-align:left">Boolean</td>
-      <td style="text-align:left">Query and sort results by digested time</td>
+      <td style="text-align:left">Query and sort results by the digested time in the cloud</td>
       <td style="text-align:left"></td>
       <td style="text-align:left">No</td>
       <td style="text-align:left">False</td>
@@ -180,7 +180,7 @@ Use the following command line to list events in the Weka cluster:
 
 Use the following command line to list recent events on the specific host running the command from \(can be useful for cases there is no connectivity to support cloud, no connectivity from a specific host, or for hosts which are not part of the cluster\):
 
-`weka events list-local [--start-time <start>] [--end-time <end>] [--next next] [--stem-mode] [--show-internal] [--raw-units] [--UTC]`
+`weka events list-local [--start-time <start-time>] [--end-time <end-time>] [--next next] [--stem-mode] [--show-internal] [--raw-units] [--UTC]`
 
 **Parameters in Command Line**
 

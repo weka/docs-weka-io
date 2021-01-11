@@ -38,7 +38,7 @@ The Weka system supports the following snapshot operations:
 
 #### Viewing Snapshots Using the GUI
 
-To view the snapshot of filesystem, click the filesystem Manage Snapshots button.
+To view the snapshot of a filesystem, click the filesystem Manage Snapshots button.
 
 ![View Snapshot of a Filesystem Screen](../.gitbook/assets/snap-view-3.5.png)
 
@@ -68,7 +68,7 @@ Enter the name and access point, determine whether it is writable and the source
 
 Use the following command line to add a snapshot:
 
-`weka fs snapshot create <file-system> <name> [<access-point>] [--source-snap=<source>] [--is-writable]`
+`weka fs snapshot create <file-system> <name> [--access-point access_point] [--source-snap=<source-snap>] [--is-writable]`
 
 **Parameters in Command Line**
 
@@ -76,9 +76,9 @@ Use the following command line to add a snapshot:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
 | `name` | String | Unique name for filesystem snapshot | Must be a valid name | Yes |  |
-| `access-point` | String | Name of newly-created directory for filesystem level snapshots, which will serve as the access point for the snapshots | Must be a valid name | Yes |  |
-| `source` | String | Must be an existing snapshot | Must be a valid name | No | Filesystem snapshot the file system |
-| `is_writable` | Boolean | Sets the created snapshot to be writable |  | No | False |
+| `access-point` | String | Name of a newly-created directory for filesystem-level snapshots, which will serve as the access point for the snapshots | Must be a valid name | No | Same as the snapshot `name` |
+| `source-snap` | String | Must be an existing snapshot | Must be a valid name | No | Filesystem snapshot the file system |
+| `is-writable` | Boolean | Sets the created snapshot to be writable |  | No | False |
 
 ### Deleting a Snapshot
 
@@ -153,7 +153,7 @@ Enter the name and access point, determine whether the snapshot is writable and 
 
 **Command:** `weka fs snapshot update`
 
-This commands changes the snapshot attributes. Use the following command line to update an existing snapshot:
+This command changes the snapshot attributes. Use the following command line to update an existing snapshot:
 
 `weka fs snapshot update <file-system> <name> [--new-name=<new-name>] [--is-writable] [--access-point=<access-point>]`
 
@@ -165,7 +165,7 @@ This commands changes the snapshot attributes. Use the following command line to
 | `name` | String | Unique name for the updated snapshot | Must be a valid name | Yes |  |
 | `new-name` | String | New name for the updated snapshot | Must be a valid name | No |  |
 | `is-writable` | Boolean | Sets the snapshot to be writable |  | No |  |
-| `access-point` | String | Name of directory for snapshot, which will serve as the access point for the snapshot | Must be a valid name | No |  |
+| `access-point` | String | Name of a directory for the snapshot, which will serve as the access point for the snapshot | Must be a valid name | No |  |
 
 ## Working with Snapshots
 

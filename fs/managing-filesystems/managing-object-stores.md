@@ -42,7 +42,7 @@ Click Save Anyway in order to save the configured object store.
 
 Use the following command line to add an object store:
 
-`weka fs tier s3 add <name> [--hostname=<host>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>]`
+`weka fs tier s3 add <name> [--hostname=<hostname>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>]`
 
 **Parameters in Command Line**
 
@@ -56,6 +56,7 @@ Use the following command line to add an object store:
 | `region` | String | Region name |  | Yes |  |
 | `access-key-id` | String | Object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
 | `secret-key` | String | Object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
+| `protocol` | String | Protocol type to be used | `HTTP`, `HTTPS` or `HTTPS_UNVERIFIED` | No | `HTTP` |
 | `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
 | `errors-timeout` | Number | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
 | `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No | 0 |
@@ -91,7 +92,7 @@ Make the relevant changes and click Update to update the object store.
 
 Use the following command line to edit an object store:
 
-`weka fs tier s3 update <name> [--new-name=<new-name>] [--hostname=<host>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>]`
+`weka fs tier s3 update <name> [--new-name=<new-name>] [--hostname=<hostname>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>]`
 
 **Parameters in Command Line**
 
@@ -106,6 +107,7 @@ Use the following command line to edit an object store:
 | `region` | String | Region name |  | Yes |  |
 | `access-key-id` | String | Object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
 | `secret-key` | String | Object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
+| `protocol` | String | Protocol type to be used | `HTTP`, `HTTPS` or `HTTPS_UNVERIFIED` | No |  |
 | `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
 | `errors-timeout` | Number | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No |  |
 | `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No |  |

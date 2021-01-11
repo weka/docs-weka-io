@@ -18,13 +18,13 @@ The main Filesystems screen in the GUI contains information about the filesystem
 
 **Command:** `weka fs group`
 
-Use this commands to view information on the filesystem groups in the Weka system.
+Use this command to view information on the filesystem groups in the Weka system.
 
 ## Adding a Filesystem Group
 
 ### Adding a Filesystem Group Using the GUI
 
-From the main filesystem / filesystem group view screen, click the Add Group button at the top left-hand side of the screen. The Add Filesystem group screen will be displayed.
+From the main filesystem/filesystem group view screen, click the Add Group button at the top left-hand side of the screen. The Add Filesystem group screen will be displayed.
 
 ![Add Filesystem Group Screen](../../.gitbook/assets/fs-group-add-screen-3.5.png)
 
@@ -40,7 +40,7 @@ Enter the relevant parameters and click Create to create the filesystem group.
 
 Use the following command to add a filesystem group:
 
-`weka fs group create <name> [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
+`weka fs group create <name> [--target-ssd-retention=<target-ssd-retention>] [--start-demote=<start-demote>]`
 
 **Parameters in Command Line**
 
@@ -68,7 +68,7 @@ Edit the existing filesystem group parameters and click Configure to execute the
 
 Use the following command to edit a filesystem group:
 
-`weka fs group update <name> [--new-name=<new-name>] [--target-ssd-retention=<retention>] [--start-demote=<demote>]`
+`weka fs group update <name> [--new-name=<new-name>] [--target-ssd-retention=<target-ssd-retention>] [--start-demote=<start-demote>]`
 
 **Parameters in Command Line**
 
@@ -87,7 +87,7 @@ Use the following command to edit a filesystem group:
 **Note:** Before deleting a filesystem group, verify that it does not contain any filesystems. If it contains filesystems, first delete the filesystems.
 {% endhint %}
 
-Select the filesystem group to be deleted in the main filesystem / filesystem group view screen and click the Delete button below the group. The Filesystem Group Deletion dialog box is displayed.
+Select the filesystem group to be deleted in the main filesystem/filesystem group view screen and click the Delete button below the group. The Filesystem Group Deletion dialog box is displayed.
 
 ![Filesystem Group Deletion Dialog Box](../../.gitbook/assets/delete-fs-group-3.5.png)
 

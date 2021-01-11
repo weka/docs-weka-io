@@ -74,14 +74,14 @@ This command is used as the first step when seeking to shrink a cluster. Running
 
 To deactivate an entire host, run the following command:
 
-`weka cluster host deactivate <host-ids>`
+`weka cluster host deactivate <host-ids> [--allow-unavailable]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `host-ids` | Space-separated integers | Space-separated host identifiers |  | Yes |  |
-| `--allow-unavailable-host` | Boolean | Allow deactivation of an unavailable host | If the host returns, it will join the cluster in an active state | No | No |
+| `allow-unavailable` | Boolean | Allow deactivation of an unavailable host | If the host returns, it will join the cluster in an active state | No | No |
 
 ## Removing a Host
 

@@ -95,7 +95,7 @@ Enter the Group Name \(this has to be unique\) and the Gateway / Mask Bits. Then
 
 Use the following command line to add an interface group:
 
-`weka nfs interface-group add <name> <type> [--subnet=<subnet>] [--gateway=<gw>]`
+`weka nfs interface-group add <name> <type> [--subnet=<subnet>] [--gateway=<gateway>]`
 
 **Parameters in Command Line**
 
@@ -104,7 +104,7 @@ Use the following command line to add an interface group:
 | `name` | String | Unique interface group name | None | Yes |  |
 | `type` | String | Group type | Can only be  NFS | Yes | NFS |
 | `subnet` | String | The subnet mask in the 255.255.0.0 format | Valid netmask | No | 255.255.255.255 |
-| `gw` | String | Gateway IP | Valid IP | No | 255.255.255.255 |
+| `gateway` | String | Gateway IP | Valid IP | No | 255.255.255.255 |
 
 ### Setting Interface Group Ports
 
@@ -266,9 +266,9 @@ Then click Save.
 **Command:** `weka nfs permission`
 
 Use the following command lines to add/update/delete NFS permissions:  
-`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs_direct]`
+`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct]`
 
-`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid]`
+`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct]`
 
 `weka nfs permission delete <filesystem> <group> [--path path]`
 
@@ -364,7 +364,7 @@ Use the following command lines to add/update/delete NFS permissions:
       <td style="text-align:left">Boolean</td>
       <td style="text-align:left">See <a href="../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a> section</td>
       <td
-      style="text-align:left"></td>
+      style="text-align:left">on/off</td>
         <td style="text-align:left">No</td>
         <td style="text-align:left">No</td>
     </tr>
