@@ -10,7 +10,7 @@ description: >-
 
 ‌The Weka system has some internal/external asynchronous operations and maintenance tasks, such as migrating an object store and downloading/uploading snapshots. These tasks are performed in the background and should not interfere nor starve the Weka system from serving IOs with high performance.‌
 
-The Weka system limit the CPU resources these tasks consume to 5% _\*\*_per host CPU.
+The Weka system limits the CPU resources these tasks consume to 5% per host CPU.
 
 {% hint style="info" %}
 **Note:** When the CPU is idle, background tasks can use more than the configured resources, but they are immediately freed if needed for serving IOs.
@@ -49,7 +49,7 @@ It is possible to limit the resources being used by background tasks.
 
 This command is used to view the currently-defined limits.
 
-**Command:** `weka cluster tasks limits set <cpu-limit limit>`
+**Command:** `weka cluster tasks limits set <cpu-limit cpu-limit>`
 
 This command is used to update the CPU limit.
 
