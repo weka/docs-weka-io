@@ -10,6 +10,8 @@ Before upgrading your cluster, ensure the following:
 
 1. All backend hosts are online.
 2. Any rebuild has been completed.
+3. There no outstanding alerts that haven't been addressed.
+4. There are at least 4GB free in the `/opt/weka` directory.
 
 ## Supported Upgrade Paths
 
@@ -34,7 +36,7 @@ Download and prepare the new release on one of the backend hosts, using one of t
 
 ## Preparing the Hosts for Upgrade \(Optional\)
 
-Once the Weka cluster upgrade is called, it will first prepare all the connected hosts \(clients and backends\) to the upgrade, which includes downloading the new version and get it ready to be applied. Only then, it will start the upgrade process of the cluster. This reduces to a minimum any downtime that the client host can experience from the Weka cluster.
+Once the Weka cluster upgrade is called, it will first prepare all the connected hosts \(clients and backends\) for the upgrade, which includes downloading the new version and get it ready to be applied. Only then, it will start the upgrade process of the cluster. This reduces to a minimum any downtime that the client host can experience from the Weka cluster.
 
 Although not needed, and distribution of the new version to the hosts should be fast as part of the upgrade, when working with a large number of hosts it is possible to prepare for this in advance, separated from the cluster upgrade \(e.g., to shorten the total upgrade window\).
 
@@ -58,7 +60,7 @@ The limited upgrade window can be controlled by setting the following parameters
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `--stop-io-timeout` | Integer | Maximum time in seconds to wait for IO to successfully stop |  | No | 90 |
 | `--host-version-change-timeout` | Integer | Maximum time in seconds to wait for a host version update |  | No | 180 |
-| `--start-io-timeout` | Integer | Maximum time in seconds to wait for IO to successfully start |  | No | 300 |
+| `--disconnect-stateless-clients-timeout` | Integer | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them |  | No | 60 |
 | `--prepare-only` | Boolean | Download and prepare a new software version across all hosts in the cluster, without performing the actual upgrade |  | No | False |
 
 {% hint style="info" %}
@@ -70,6 +72,14 @@ The limited upgrade window can be controlled by setting the following parameters
 Before switching the cluster to the new release, the upgrade command will distribute the new release to all cluster hosts and make any necessary preparations, such as compiling the new `wekafs` driver. If any failure occurs during the preparations, such as the disconnection of a host or failure to build a driver, the upgrade process will stop and a summary message will be received indicating the problematic host.
 
 If everything goes to plan, the upgrade will stop the cluster IO service, switch all hosts to the new release and then turn the IO service back on. This takes about 1 minute, depending on the size of the cluster.
+
+{% hint style="info" %}
+**Note:** In large deployments of Weka with many backend hosts and hundreds/thousands of clients it migth be required to adjust the above timeouts.  
+
+It is recommended then to set `host-version-change-timeout` to `600` and `disconnect-stateless-clients-timeout` to `200 .`
+
+If further assistance and adjustments are required please contact the Weka Support Team.
+{% endhint %}
 
 ## After the Upgrade
 
@@ -83,9 +93,9 @@ Weka v3.6.1 (CLI build 3.6.106)
 ...`
 {% endhint %}
 
-## Upgrading to Version 3.5 and Above
+## Upgrade Revert on Failure
 
-From Weka software version 3.5 onwards, the disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. Weka system guarantees that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window.
+The disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. Weka system ensures that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window.
 
 In case of a failure, the version is automatically reverted on the hosts, yet, `weka cluster start-io` command should be run manually after verifying all hosts have indeed been reverted to the old version by running `weka cluster host` command.
 
