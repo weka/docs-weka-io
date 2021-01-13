@@ -11,7 +11,7 @@ description: >-
 The diagnostics CLI command is used for collecting and uploading diagnostic data about clusters and hosts for analysis by the Weka Support and R&D Teams in order to help with troubleshooting. There are two relevant commands:
 
 * `weka diags,` used for cluster-wide diagnostics from any host in the cluster.
-* `weka local diags,` used for running diagnostics on a specific host, which should be used if the host cannot connect to the cluster.
+* `weka local diags` used for running diagnostics on a specific host, which should be used if the host cannot connect to the cluster.
 
 ## Collecting Diags
 
