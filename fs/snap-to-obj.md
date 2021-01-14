@@ -131,6 +131,10 @@ Use the following command line to upload an existing snapshot:
 | `<file-system>` | String | Name of the filesystem |  | Yes |  |
 | `<snapshot>` | String | Name of snapshot to upload | Must be a snapshot of the `<file-system>` filesystem | Yes |  |
 
+{% hint style="info" %}
+**Note:** A writeable snapshot is a clone of the live filesystem or other snapshots at a specific time, and its data keeps changing. Therefore, its data is tiered according to the tiering policies, but it cannot be uploaded to the object-store as read-only snapshots.
+{% endhint %}
+
 ### Creating a Filesystem from an Uploaded Snapshot
 
 #### Creating a Filesystem from a Snapshot Using the GUI
