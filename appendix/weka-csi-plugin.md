@@ -48,7 +48,7 @@ The Weka CSI Plugin provides the creation and configuration of persistent storag
 
 ## Deployment
 
-The Weka CSI Plugin deployment is performed via a daemon set.
+The Weka CSI Plugin deployment can be performed with a [Helm chart](https://artifacthub.io/packages/helm/csi-wekafs/csi-wekafsplugin) or directly as a DaemonSet \(as described below\).
 
 ### Download
 
