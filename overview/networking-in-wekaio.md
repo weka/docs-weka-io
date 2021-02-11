@@ -116,7 +116,9 @@ For HA support, the Weka system must be configured with no single component repr
 
 HA for hosts is achieved either through the implementation of two network interfaces on the same host or via LACP \(ethernet only, modes 1 and 4\). Using a non-LACP approach sets a redundancy that enables the Weka software to utilize two interfaces for HA and bandwidth, respectively. 
 
-HA performs failover and failback for reliability and load balancing on both interfaces and is operational for both Ethernet and InfiniBand. If not using LACP, it requires doubling the number of IPs on both the host and the IO nodes.‌
+HA performs failover and failback for reliability and load balancing on both interfaces and is operational for both Ethernet and InfiniBand. If not using LACP, it requires doubling the number of IPs on both the host and the IO nodes.
+
+When working with HA networking, it is useful to hint the system \(using the `label` parameter in `weka cluster host net add` command to identify the switch a network port is connected to\) to send data between hosts through the same switch rather than using the ISL. This can reduce the overall traffic in the network.  
 
 {% hint style="info" %}
 **Note:** LACP is currently supported between ports on a single Mellanox NIC, and is not supported when using VFs.

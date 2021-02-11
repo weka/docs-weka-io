@@ -107,7 +107,7 @@ The networking type can be either Ethernet \(direct over DPDK\) or InfiniBand \(
 
 To perform this operation, the `cluster host net add` command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
-`weka cluster host net add <host-id> <device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gateway>] [--netmask=<netmask>]`
+`weka cluster host net add <host-id> <device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gateway>] [--netmask=<netmask>] [--label=<label>]`
 
 **Parameters in Command Line**
 
@@ -193,6 +193,18 @@ To perform this operation, the `cluster host net add` command must be run for ea
           described by <code>netmask</code>).</p>
         <p>Not relevant for IB / L2 non-routable networks.</p>
       </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>label</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">A label to describe the network device connectivity.</td>
+      <td style="text-align:left">The Weka system will prefer to use paths with the same labels to send
+        data. This is useful when the system is configured with HA networking,
+        to hint the system to send between hosts through the same switch rather
+        than using the ISL.</td>
       <td style="text-align:left">No</td>
       <td style="text-align:left"></td>
     </tr>
