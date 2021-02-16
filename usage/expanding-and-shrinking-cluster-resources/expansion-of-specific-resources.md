@@ -36,7 +36,7 @@ To dynamically change the network configuration, use the steps described for the
 {% hint style="success" %}
 **For Example:** To add another network device to `host-id 0`, run the following commands:
 
-`weka cluster host net add 0 --device=eth2  
+`weka cluster host net add 0 eth2  
 weka cluster host apply 0`
 {% endhint %}
 
