@@ -1,0 +1,5450 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "@weka-api",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "/api/v2"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "requestBodies": {},
+    "schemas": {}
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/activeDirectory": {
+      "put": {
+        "tags": [
+          "Active directory"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "server_uri": {
+                    "type": "string"
+                  },
+                  "start_tls": {
+                    "type": "boolean"
+                  },
+                  "ignore_start_tls_failure": {
+                    "type": "boolean"
+                  },
+                  "server_timeout_secs": {
+                    "type": "number"
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "reader_username": {
+                    "type": "string"
+                  },
+                  "reader_password": {
+                    "type": "string"
+                  },
+                  "user_revocation_attribute": {
+                    "type": "string"
+                  },
+                  "role_groups": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update active directory",
+        "operationId": "updateLdapActiveDirectory",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alerts": {
+      "get": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Get all alerts",
+        "operationId": "getAlerts",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alerts/types": {
+      "get": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Get alerts types",
+        "operationId": "getAlertsTypes",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alerts/description": {
+      "get": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Get alerts description",
+        "operationId": "getAlertDescription",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alerts/{alert_type}/mute": {
+      "put": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Mute alerts by type",
+        "operationId": "muteAlertByType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "alert_type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "duration": {
+                    "type": "number",
+                    "default": 604800,
+                    "description": "Mute duration in milliseconds"
+                  }
+                },
+                "required": [
+                  "duration"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/alerts/{alert_type}/unmute": {
+      "put": {
+        "tags": [
+          "Alerts"
+        ],
+        "summary": "Unmute alerts by type",
+        "operationId": "unmuteAlertByType",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "alert_type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wekaHome": {
+      "get": {
+        "tags": [
+          "Weka home"
+        ],
+        "summary": "Get cloud config",
+        "operationId": "getCloud",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/wekaHome/credentials": {
+      "get": {
+        "tags": [
+          "Weka home"
+        ],
+        "summary": "Get cloud credentials",
+        "operationId": "getCloudCredentials",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/wekaHome/proxy": {
+      "get": {
+        "tags": [
+          "Weka home"
+        ],
+        "summary": "Get cloud proxy",
+        "operationId": "getCloudProxy",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Weka home"
+        ],
+        "summary": "Set cloud proxy",
+        "operationId": "setCloudProxy",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "proxy": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "proxy"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/wekaHome/uploadRate": {
+      "get": {
+        "tags": [
+          "Weka home"
+        ],
+        "summary": "Get cloud upload rate",
+        "operationId": "getCloudUploadRate",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Weka home"
+        ],
+        "summary": "Update cloud upload rate",
+        "operationId": "updateCloudUploadRate",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bytes_per_second": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "bytes_per_second"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wekaHome/url": {
+      "get": {
+        "tags": [
+          "Weka home"
+        ],
+        "summary": "Get cloud url",
+        "operationId": "getCloudUrl",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/wekaHome/enable": {
+      "post": {
+        "tags": [
+          "Weka home"
+        ],
+        "summary": "Enable cloud",
+        "operationId": "enableCloud",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cloud_url": {
+                    "type": "number"
+                  },
+                  "enable_cloud_stats": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wekaHome/disable": {
+      "post": {
+        "tags": [
+          "Weka home"
+        ],
+        "summary": "Disable cloud",
+        "operationId": "disableCloud",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/cluster": {
+      "put": {
+        "tags": [
+          "Cluster"
+        ],
+        "summary": "Update cluster",
+        "operationId": "updateCluster",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cluster_name": {
+                    "type": "string"
+                  },
+                  "data_drives": {
+                    "type": "number"
+                  },
+                  "parity_drives": {
+                    "type": "number"
+                  },
+                  "scrubber_bytes_per_sec": {
+                    "type": "number"
+                  },
+                  "hotspare_failure_domains": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Cluster"
+        ],
+        "summary": "Get cluster status",
+        "operationId": "getClusterStatus",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/cluster/buckets": {
+      "get": {
+        "tags": [
+          "Cluster"
+        ],
+        "summary": "Get all cluster buckets",
+        "operationId": "getBuckets",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/defaultNet": {
+      "get": {
+        "tags": [
+          "Default network"
+        ],
+        "summary": "Get default network",
+        "operationId": "getDefaultNetwork",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Default network"
+        ],
+        "summary": "Set default network",
+        "operationId": "setDefaultNetwork",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "range": {
+                    "type": "string"
+                  },
+                  "gateway": {
+                    "type": "string"
+                  },
+                  "netmask": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Default network"
+        ],
+        "summary": "Update default network",
+        "operationId": "updateDefaultNetwork",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "range": {
+                    "type": "string"
+                  },
+                  "gateway": {
+                    "type": "string"
+                  },
+                  "netmask": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Default network"
+        ],
+        "summary": "Reset default network",
+        "operationId": "resetDefaultNetwork",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/drives": {
+      "get": {
+        "tags": [
+          "Drive"
+        ],
+        "summary": "Get drives list",
+        "operationId": "getDrives",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Drive"
+        ],
+        "summary": "Provision drives",
+        "operationId": "provisionDrives",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "host_id": {
+                    "type": "string"
+                  },
+                  "device_path": {
+                    "type": "string"
+                  },
+                  "percentage": {
+                    "type": "number"
+                  },
+                  "force": {
+                    "type": "boolean"
+                  },
+                  "allow_format_non_wekafs_drives": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "host_id",
+                  "device_path"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/drives/{uid}": {
+      "get": {
+        "tags": [
+          "Drive"
+        ],
+        "summary": "Get single drive",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Drive uid"
+          }
+        ],
+        "operationId": "getSingleDrive",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Drive"
+        ],
+        "summary": "Remove drive",
+        "operationId": "deleteDrive",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Drive uid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/drives/activate": {
+      "post": {
+        "tags": [
+          "Drive"
+        ],
+        "summary": "Activate drives",
+        "operationId": "activateDrives",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "drive_uuids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/drives/deactivate": {
+      "post": {
+        "tags": [
+          "Drive"
+        ],
+        "summary": "Deactivate drives",
+        "operationId": "deactivatesDrives",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "drive_uuids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get events",
+        "operationId": "getEvents",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "num_results",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start_time",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "severity",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type_list",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "category_list",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort_order",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort_anchor",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "by_digested_time",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "show_internal",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/events/describe": {
+      "get": {
+        "tags": [
+          "Events"
+        ],
+        "summary": "Get events description",
+        "operationId": "getEventsDescription",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "list of categories"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "list of categories"
+          },
+          {
+            "in": "query",
+            "name": "show_internal",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/failureDomains": {
+      "get": {
+        "tags": [
+          "Failure domains"
+        ],
+        "summary": "Get failure domains",
+        "operationId": "getFailureDomains",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "show_removed",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/failureDomains/{uid}": {
+      "get": {
+        "tags": [
+          "Failure domains"
+        ],
+        "summary": "Get single failure domain",
+        "operationId": "getSingleFailureDomain",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Domain uid"
+          }
+        ]
+      }
+    },
+    "/fileSystems": {
+      "get": {
+        "tags": [
+          "File system"
+        ],
+        "summary": "Get all file systems",
+        "operationId": "getFileSystems",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "File system"
+        ],
+        "summary": "Create file system",
+        "operationId": "createFileSystem",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "group_name": {
+                    "type": "string"
+                  },
+                  "total_capacity": {
+                    "type": "number"
+                  },
+                  "obs_name": {
+                    "type": "string"
+                  },
+                  "max_files": {
+                    "type": "number"
+                  },
+                  "ssd_capacity": {
+                    "type": "string"
+                  },
+                  "encrypted": {
+                    "type": "boolean"
+                  },
+                  "auth_required": {
+                    "type": "boolean"
+                  },
+                  "allow_no_kms": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fileSystems/{uid}": {
+      "get": {
+        "tags": [
+          "File system"
+        ],
+        "summary": "Get file system",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "file system uid"
+          }
+        ],
+        "operationId": "getFileSystem",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "File system"
+        ],
+        "summary": "Update file system",
+        "operationId": "updateFileSystem",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "file system uid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "new_name": {
+                    "type": "string"
+                  },
+                  "max_files": {
+                    "type": "number"
+                  },
+                  "total_capacity": {
+                    "type": "number"
+                  },
+                  "ssd_capacity": {
+                    "type": "boolean"
+                  },
+                  "auth_required": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "File system"
+        ],
+        "summary": "Delete file system",
+        "operationId": "deleteFileSystem",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "file system uid"
+          }
+        ]
+      }
+    },
+    "/fileSystems/{uid}/objectStorages": {
+      "post": {
+        "tags": [
+          "File system"
+        ],
+        "summary": "Attach object storage to file system",
+        "operationId": "attachObsToFs",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "file system uid"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "obs_name": {
+                    "type": "string"
+                  },
+                  "obs-mode": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fileSystems/{uid}/objectStorages/{obs_uid}": {
+      "delete": {
+        "tags": [
+          "File system"
+        ],
+        "summary": "Detach object storage from file system",
+        "operationId": "detachObsFromFS",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "file system uid"
+          },
+          {
+            "in": "path",
+            "name": "obs_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "object storage system uid"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "File system"
+        ],
+        "summary": "Set attached object storage mode",
+        "operationId": "setObsMode",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "file system uid"
+          },
+          {
+            "in": "path",
+            "name": "obs_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "object storage system uid"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "obs_mode": {
+                    "type": "string",
+                    "enum": [
+                      "READ_ONLY",
+                      "WRITABLE"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fileSystems/download": {
+      "post": {
+        "tags": [
+          "File system"
+        ],
+        "summary": "download file system",
+        "operationId": "downloadFS",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "group_name": {
+                    "type": "string"
+                  },
+                  "total_capacity": {
+                    "type": "number"
+                  },
+                  "object_storage": {
+                    "type": "string"
+                  },
+                  "max_files": {
+                    "type": "number"
+                  },
+                  "ssd_capacity": {
+                    "type": "boolean"
+                  },
+                  "auth_required": {
+                    "type": "boolean"
+                  },
+                  "locator": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/fileSystems/objectStorages": {
+      "get": {
+        "tags": [
+          "File system"
+        ],
+        "summary": "Get file system object storage usage",
+        "operationId": "getFileSystemObsUsage",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filesystem",
+            "schema": {
+              "type": "string"
+            },
+            "description": "list of file systems name, get all if empty"
+          }
+        ]
+      }
+    },
+    "/hosts": {
+      "get": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Get all hosts",
+        "operationId": "getHosts",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Add host to cluster",
+        "operationId": "addHost",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "hostname": {
+                    "type": "string"
+                  },
+                  "ip": {
+                    "type": "string"
+                  },
+                  "host_id": {
+                    "type": "string"
+                  },
+                  "no_wait": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hosts/{uid}": {
+      "get": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Get single host",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "operationId": "getSingleHost",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Configure host",
+        "operationId": "updateHost",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "failure-domain-type": {
+                    "type": "string"
+                  },
+                  "failure-domain": {
+                    "type": "string"
+                  },
+                  "cores": {
+                    "type": "number"
+                  },
+                  "frontend_dedicated_cores": {
+                    "type": "number"
+                  },
+                  "drives_dedicated_cores": {
+                    "type": "number"
+                  },
+                  "cores_ids_type": {
+                    "type": "string"
+                  },
+                  "cores_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "memory": {
+                    "type": "number"
+                  },
+                  "dedicated": {
+                    "type": "boolean"
+                  },
+                  "bandwidth": {
+                    "type": "number"
+                  },
+                  "auto_remove_timeout": {
+                    "type": "number"
+                  },
+                  "management_ips": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Remove host from cluster",
+        "operationId": "removeHost",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hosts/apply": {
+      "post": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Apply hosts",
+        "operationId": "applyHosts",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "host_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hosts/failure/{uid}": {
+      "delete": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Clear host failure",
+        "operationId": "clearHostFailure",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "description": "Host uid",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hosts/{uid}/resources": {
+      "get": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Get host resources",
+        "operationId": "getHostResources",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "string"
+            },
+            "description": "resource type can be Staging or Stable (Staging if empty)"
+          }
+        ]
+      }
+    },
+    "/hosts/activate": {
+      "post": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Activate hosts",
+        "operationId": "activateHosts",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "host_uids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hosts/deactivate": {
+      "post": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Deactivate hosts",
+        "operationId": "deactivateHosts",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "host_uids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hosts/netdevs": {
+      "get": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Get host network",
+        "operationId": "getHostNetwork",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "host_id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/hosts/{uid}/netdevs": {
+      "post": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Create host network",
+        "operationId": "createHostNetwork",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "device": {
+                    "type": "string"
+                  },
+                  "bond_devices": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "ips_type": {
+                    "type": "string"
+                  },
+                  "ips": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "gateway": {
+                    "type": "string"
+                  },
+                  "netmask": {
+                    "type": "number"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/hosts/{uid}/netdevs/{netdev_uid}": {
+      "delete": {
+        "tags": [
+          "Hosts"
+        ],
+        "summary": "Remove host network",
+        "operationId": "removeHostNetwork",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "netdev_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "network device uid"
+          }
+        ]
+      }
+    },
+    "/interfaceGroups": {
+      "get": {
+        "tags": [
+          "Interface group"
+        ],
+        "summary": "Get interface groups",
+        "operationId": "getInterfaceGroups",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Interface group"
+        ],
+        "summary": "Create interface group",
+        "operationId": "createInterfaceGroup",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "subnet": {
+                    "type": "string"
+                  },
+                  "gateway": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/interfaceGroups/{uid}": {
+      "get": {
+        "tags": [
+          "Interface group"
+        ],
+        "summary": "Get interface group",
+        "operationId": "getInterfaceGroup",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "interface group uid"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Interface group"
+        ],
+        "summary": "delete interface group",
+        "operationId": "deleteInterfaceGroup",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "interface group uid"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Interface group"
+        ],
+        "summary": "Update interface group",
+        "operationId": "updateInterfaceGroup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "interface group uid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "subnet": {
+                    "type": "string"
+                  },
+                  "gateway": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/interfaceGroups/{uid}/ips": {
+      "post": {
+        "tags": [
+          "Interface group"
+        ],
+        "summary": "Add ip range to interface group",
+        "operationId": "addIpRangeToInterfaceGroup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "interface group uid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ips": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/interfaceGroups/{uid}/ports": {
+      "post": {
+        "tags": [
+          "Interface group"
+        ],
+        "summary": "Add port to interface group",
+        "operationId": "addPortToInterfaceGroup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "interface group uid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "port": {
+                    "type": "string"
+                  },
+                  "host_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/interfaceGroups/{uid}/ports/{host_uid}/{port}": {
+      "delete": {
+        "tags": [
+          "Interface group"
+        ],
+        "summary": "Delete port from interface group",
+        "operationId": "deletePortFromInterfaceGroup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Interface group uid"
+          },
+          {
+            "in": "path",
+            "name": "host_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Host uid"
+          },
+          {
+            "in": "path",
+            "name": "port",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Port to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/interfaceGroups/{uid}/ips/{ips}": {
+      "delete": {
+        "tags": [
+          "Interface group"
+        ],
+        "summary": "Delete ip range from interface group",
+        "operationId": "deleteIpRangeFromInterfaceGroup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "interface group uid"
+          },
+          {
+            "in": "path",
+            "name": "ips",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "IP or IP range to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/kms": {
+      "get": {
+        "tags": [
+          "KMS"
+        ],
+        "summary": "Get kms configuration",
+        "operationId": "getKms",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "KMS"
+        ],
+        "summary": "Set kms vault configuration (base_url,master_key_name,token) or set kms kmip configuration (server_endpoint, key_uid, client_cert_pem, client_key_pem, ca_cert_pem)\n",
+        "operationId": "setKms",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "base_url": {
+                    "type": "string"
+                  },
+                  "master_key_name": {
+                    "type": "string"
+                  },
+                  "token": {
+                    "type": "string"
+                  },
+                  "server_endpoint": {
+                    "type": "string"
+                  },
+                  "key_uid": {
+                    "type": "string"
+                  },
+                  "client_cert_pem": {
+                    "type": "string"
+                  },
+                  "client_key_pem": {
+                    "type": "string"
+                  },
+                  "ca_cert_pem": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "KMS"
+        ],
+        "summary": "Delete kms configuration",
+        "operationId": "deleteKms",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "force_delete",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/kms/type": {
+      "get": {
+        "tags": [
+          "KMS"
+        ],
+        "summary": "Get kms type",
+        "operationId": "getKmsType",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/kms/rewrap": {
+      "post": {
+        "tags": [
+          "KMS"
+        ],
+        "summary": "Rewrap KMS key",
+        "operationId": "rewrapKmsKey",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "new_key_uid": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ldap": {
+      "get": {
+        "tags": [
+          "LDAP"
+        ],
+        "summary": "Get LDAP configuration",
+        "operationId": "getLdap",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "LDAP"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "server_uri": {
+                    "type": "string"
+                  },
+                  "start_tls": {
+                    "type": "boolean"
+                  },
+                  "ignore_start_tls_failure": {
+                    "type": "boolean"
+                  },
+                  "server_timeout_secs": {
+                    "type": "number"
+                  },
+                  "protocol_version": {
+                    "type": "number"
+                  },
+                  "base_dn": {
+                    "type": "string"
+                  },
+                  "user_object_class": {
+                    "type": "string"
+                  },
+                  "user_id_attribute": {
+                    "type": "string"
+                  },
+                  "user_revocation_attribute": {
+                    "type": "string"
+                  },
+                  "group_object_class": {
+                    "type": "string"
+                  },
+                  "group_membership_attribute": {
+                    "type": "string"
+                  },
+                  "group_id_attribute": {
+                    "type": "string"
+                  },
+                  "reader_username": {
+                    "type": "string"
+                  },
+                  "reader_password": {
+                    "type": "string"
+                  },
+                  "role_groups": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Update LDAP configuration",
+        "operationId": "updateLdap",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "LDAP"
+        ],
+        "summary": "Reset LDAP configuration",
+        "operationId": "deleteLdap",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/license": {
+      "post": {
+        "tags": [
+          "License"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "license": {
+                    "type": "string"
+                  },
+                  "plan_id": {
+                    "type": "string"
+                  },
+                  "secret_key": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Set license",
+        "operationId": "setLicense",
+        "description": "Classic license (license) or PAYG license (plan_id,secret_key,[url])",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "License"
+        ],
+        "summary": "Reset license",
+        "operationId": "resetLicense",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "summary": "login to system",
+        "operationId": "login",
+        "tags": [
+          "Login"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "org": {
+                    "type": "string",
+                    "description": "'Root' in case of only one organization"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login/refresh": {
+      "post": {
+        "summary": "get authentication tokens using refresh token",
+        "operationId": "refreshToken",
+        "tags": [
+          "Login"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refresh_token": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nfs/permissions": {
+      "get": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "Get NFS permissions",
+        "operationId": "getNfsPermissions",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "filesystem",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "Add NFS permission",
+        "operationId": "addNfsPermission",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "filesystem": {
+                    "type": "string"
+                  },
+                  "group": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "permission_type": {
+                    "type": "string"
+                  },
+                  "root_squashing": {
+                    "type": "boolean"
+                  },
+                  "anon_uid": {
+                    "type": "number"
+                  },
+                  "anon_gid": {
+                    "type": "number"
+                  },
+                  "obs_direct": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nfs/permissions/{uid}": {
+      "get": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "Get NFS permission",
+        "operationId": "getNfsPermission",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Permission uid"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "Update NFS permission",
+        "operationId": "updateNfsPermission",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Permission uid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  },
+                  "permission_type": {
+                    "type": "string"
+                  },
+                  "root_squashing": {
+                    "type": "boolean"
+                  },
+                  "anon_uid": {
+                    "type": "number"
+                  },
+                  "anon_gid": {
+                    "type": "number"
+                  },
+                  "obs_direct": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "Remove NFS permission",
+        "operationId": "deleteNfsPermission",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Permission uid"
+          },
+          {
+            "in": "query",
+            "name": "path",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Default \"/\""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/nfs/clientGroups": {
+      "get": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "Get all nfs client groups",
+        "operationId": "getClientGroups",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "Create nfs client group",
+        "operationId": "createClientGroup",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/nfs/clientGroups/{uid}": {
+      "get": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "Get nfs client group",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "group uid"
+          }
+        ],
+        "operationId": "getClientGroup",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "Delete nfs client group",
+        "operationId": "deleteClientGroup",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "schema": {
+              "type": "string"
+            },
+            "description": "group uid",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/nfs/clientGroups/{uid}/rules": {
+      "post": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "create rule for nfs client group",
+        "operationId": "addClientGroupRule",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "schema": {
+              "type": "string"
+            },
+            "description": "group uid",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dns": {
+                    "type": "string"
+                  },
+                  "ip": {
+                    "type": "string",
+                    "description": "IP with netmask '0.0.0.0/16'"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/nfs/clientGroups/{uid}/rules/{rule_uid}": {
+      "delete": {
+        "tags": [
+          "NFS"
+        ],
+        "summary": "Delete rule for nfs client group",
+        "operationId": "deleteClientGroupRule",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "schema": {
+              "type": "string"
+            },
+            "description": "group uid",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "rule_uid",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/nodes": {
+      "get": {
+        "tags": [
+          "Nodes"
+        ],
+        "summary": "Get all nodes",
+        "operationId": "getNodes",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/obsBucket": {
+      "get": {
+        "tags": [
+          "OBS bucket"
+        ],
+        "summary": "Get all OBS buckets",
+        "operationId": "getAllObs",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "OBS bucket"
+        ],
+        "summary": "Create OBS bucket",
+        "operationId": "createObs",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "protocol": {
+                    "type": "string"
+                  },
+                  "hostname": {
+                    "type": "string"
+                  },
+                  "port": {
+                    "type": "number"
+                  },
+                  "bucket": {
+                    "type": "string"
+                  },
+                  "auth_method": {
+                    "type": "string"
+                  },
+                  "region": {
+                    "type": "string"
+                  },
+                  "access_key_id": {
+                    "type": "string"
+                  },
+                  "secret_key": {
+                    "type": "string"
+                  },
+                  "dry_run": {
+                    "type": "boolean"
+                  },
+                  "skip_verification": {
+                    "type": "boolean"
+                  },
+                  "bandwidth": {
+                    "type": "number"
+                  },
+                  "verbose_errors": {
+                    "type": "boolean"
+                  },
+                  "errors_timeout": {
+                    "type": "string"
+                  },
+                  "prefetchMib": {
+                    "type": "number"
+                  },
+                  "maxConcurrentDownloads": {
+                    "type": "number"
+                  },
+                  "maxConcurrentUploads": {
+                    "type": "number"
+                  },
+                  "maxConcurrentRemovals": {
+                    "type": "number"
+                  },
+                  "maxExtentsInDataBlob": {
+                    "type": "number"
+                  },
+                  "maxBlocksInDataBlob": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/obsBucket/{uid}": {
+      "get": {
+        "tags": [
+          "OBS bucket"
+        ],
+        "summary": "Get OBS bucket",
+        "operationId": "getObs",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "object storage uid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "OBS bucket"
+        ],
+        "summary": "Delete OBS bucket",
+        "operationId": "deleteObs",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "object storage uid"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "OBS bucket"
+        ],
+        "summary": "Update OBS bucket",
+        "operationId": "updateObs",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "object storage uid"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "protocol": {
+                    "type": "string"
+                  },
+                  "hostname": {
+                    "type": "string"
+                  },
+                  "port": {
+                    "type": "number"
+                  },
+                  "bucket": {
+                    "type": "string"
+                  },
+                  "auth_method": {
+                    "type": "string"
+                  },
+                  "region": {
+                    "type": "string"
+                  },
+                  "access_key_id": {
+                    "type": "string"
+                  },
+                  "secret_key": {
+                    "type": "string"
+                  },
+                  "dry_run": {
+                    "type": "boolean"
+                  },
+                  "skip_verification": {
+                    "type": "boolean"
+                  },
+                  "bandwidth": {
+                    "type": "number"
+                  },
+                  "verbose_errors": {
+                    "type": "boolean"
+                  },
+                  "errors_timeout": {
+                    "type": "string"
+                  },
+                  "prefetchMib": {
+                    "type": "number"
+                  },
+                  "maxConcurrentDownloads": {
+                    "type": "number"
+                  },
+                  "maxConcurrentUploads": {
+                    "type": "number"
+                  },
+                  "maxConcurrentRemovals": {
+                    "type": "number"
+                  },
+                  "maxExtentsInDataBlob": {
+                    "type": "number"
+                  },
+                  "maxBlocksInDataBlob": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/obsBucket/nodeStatus": {
+      "get": {
+        "tags": [
+          "OBS bucket"
+        ],
+        "summary": "Get OBS buckets node status",
+        "operationId": "getObsNodeStatus",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/obsBucket/{uid}/operations": {
+      "get": {
+        "tags": [
+          "OBS bucket"
+        ],
+        "summary": "Get OBS bucket operations",
+        "operationId": "getObsOperations",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "object storage uid"
+          }
+        ]
+      }
+    },
+    "/obsBucket/pathStatus": {
+      "put": {
+        "tags": [
+          "OBS bucket"
+        ],
+        "summary": "Get OBS bucket path status",
+        "operationId": "getObsPathStatus",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "path": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations": {
+      "get": {
+        "tags": [
+          "Organization"
+        ],
+        "summary": "Get all organizations",
+        "operationId": "getOrganizations",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Organization"
+        ],
+        "summary": "Create organization",
+        "operationId": "createOrganization",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "ssd_quota": {
+                    "type": "number"
+                  },
+                  "total_quota": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{uid}": {
+      "get": {
+        "tags": [
+          "Organization"
+        ],
+        "summary": "Get organization",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "organization uid"
+          }
+        ],
+        "operationId": "getOrganization",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Organization"
+        ],
+        "summary": "Delete organization",
+        "operationId": "deleteOrganization",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "organization uid"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Organization"
+        ],
+        "summary": "update organization",
+        "operationId": "updateOrganization",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "organization uid"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "new_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/{uid}/limit": {
+      "put": {
+        "tags": [
+          "Organization"
+        ],
+        "summary": "Set organization capacity limits",
+        "operationId": "setOrganizationLimit",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "organization uid"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "ssd_quota": {
+                    "type": "number"
+                  },
+                  "total_quota": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/organizations/count": {
+      "get": {
+        "tags": [
+          "Organization"
+        ],
+        "summary": "Get organizations count",
+        "operationId": "getOrganizationsCount",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smb": {
+      "get": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Get smb cluster info",
+        "operationId": "getSamba",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Create smb cluster info",
+        "operationId": "setSamba",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "sambaHosts": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "domain": {
+                    "type": "string"
+                  },
+                  "sambaIps": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "domainNetbiosName": {
+                    "type": "string"
+                  },
+                  "idmapBackend": {
+                    "type": "string"
+                  },
+                  "smbConfExtra": {
+                    "type": "string"
+                  },
+                  "defaultDomainMappingFromId": {
+                    "type": "number"
+                  },
+                  "defaultDomainMappingToId": {
+                    "type": "number"
+                  },
+                  "joinedDomainMappingFromId": {
+                    "type": "number"
+                  },
+                  "joinedDomainMappingToId": {
+                    "type": "number"
+                  },
+                  "encryption": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Update smb cluster info",
+        "operationId": "updateSamba",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "encryption": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Clear smb info",
+        "operationId": "clearSamba",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smb/domains": {
+      "get": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Get smb trusted domains",
+        "operationId": "setSambaDomains",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "add trusted domain to smb",
+        "operationId": "addSambaDomain",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "domainName": {
+                    "type": "string"
+                  },
+                  "mappingFromId": {
+                    "type": "number"
+                  },
+                  "mappingToId": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smb/mount": {
+      "get": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Get smb mount options",
+        "operationId": "setSambaMountOptions",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smb/shares": {
+      "get": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Get smb shares",
+        "operationId": "setSambaShares",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "add share to smb",
+        "operationId": "addShareToSamba",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "shareName": {
+                    "type": "string"
+                  },
+                  "fsName": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "subPath": {
+                    "type": "string"
+                  },
+                  "mountOptions": {
+                    "type": "string"
+                  },
+                  "fileCreateMask": {
+                    "type": "string"
+                  },
+                  "directoryCreateMask": {
+                    "type": "string"
+                  },
+                  "acl": {
+                    "type": "boolean"
+                  },
+                  "obsDirect": {
+                    "type": "boolean"
+                  },
+                  "encryption": {
+                    "type": "string"
+                  },
+                  "readOnly": {
+                    "type": "boolean"
+                  },
+                  "userListType": {
+                    "type": "string"
+                  },
+                  "users": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalShareOptions": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smb/activeDirectory": {
+      "post": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Smb active directory join",
+        "operationId": "setSambaActiveDirectory",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "debugMode": {
+                    "type": "boolean"
+                  },
+                  "server": {
+                    "type": "string"
+                  },
+                  "createComputerOU": {
+                    "type": "string"
+                  },
+                  "extraOptions": {
+                    "type": "string"
+                  },
+                  "taskId": {
+                    "type": "string"
+                  },
+                  "async": {
+                    "type": "boolean"
+                  },
+                  "poll": {
+                    "type": "boolean"
+                  },
+                  "timeout": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Delete smb active directory",
+        "operationId": "deleteSambaActiveDirectory",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "debugMode": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smb/debug": {
+      "post": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Set smb debug level",
+        "operationId": "setSambaDebug",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "debugLevel": {
+                    "type": "number"
+                  },
+                  "sambaHosts": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smb/shares/{uid}": {
+      "put": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Update smb share",
+        "operationId": "updateSambaShare",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "share uid"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "encryption": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Delete smb share",
+        "operationId": "deleteSambaShare",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Share uid"
+          }
+        ]
+      }
+    },
+    "/smb/domains/{uid}": {
+      "delete": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Delete smb domain",
+        "operationId": "deleteSambaDomain",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "description": "Domain uid",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/smb/users/{share_uid}/{user_type}": {
+      "post": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Add user to smb",
+        "operationId": "addUserToSamba",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "share_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Share uid"
+          },
+          {
+            "in": "path",
+            "name": "user_type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "read_only, read_write, valid, invalid"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "users": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/smb/users/reset/{share_uid}/{user_type}": {
+      "delete": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Reset smb users",
+        "operationId": "resetSambaUsers",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "share_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Share uid"
+          },
+          {
+            "in": "path",
+            "name": "user_type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "read_only, read_write, valid, invalid"
+          }
+        ]
+      }
+    },
+    "/smb/users/{share_uid}/{user_type}/{user}": {
+      "delete": {
+        "tags": [
+          "SMB"
+        ],
+        "summary": "Delete smb user",
+        "operationId": "deleteSambaUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "share_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Share uid"
+          },
+          {
+            "in": "path",
+            "name": "user_type",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "read_only, read_write, valid, invalid"
+          },
+          {
+            "in": "path",
+            "name": "user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/security/ui": {
+      "get": {
+        "tags": [
+          "Security"
+        ],
+        "summary": "Get ui server status",
+        "operationId": "getUiServerStatus",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Security"
+        ],
+        "summary": "Enable ui server",
+        "operationId": "enableUiServer",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "clients_enabled": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Security"
+        ],
+        "summary": "Disable ui server",
+        "operationId": "disableUiServer",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/security/tokensExpiry": {
+      "get": {
+        "tags": [
+          "Security"
+        ],
+        "summary": "Get tokens default expiry time",
+        "operationId": "getTokensExpiry",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/snapshots": {
+      "get": {
+        "tags": [
+          "Snapshots"
+        ],
+        "summary": "Get snapshots",
+        "operationId": "getSnapshots",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "file_system",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "snapshot name"
+          }
+        ]
+      }
+    },
+    "/snapshots/{fs_uid}": {
+      "post": {
+        "tags": [
+          "Snapshots"
+        ],
+        "summary": "Create snapshot",
+        "operationId": "createSnapshot",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fs_uid",
+            "required": true,
+            "description": "File system uid",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "access_point": {
+                    "type": "string"
+                  },
+                  "source_snap": {
+                    "type": "string"
+                  },
+                  "is_writable": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/snapshots/{fs_uid}/{uid}": {
+      "put": {
+        "tags": [
+          "Snapshots"
+        ],
+        "summary": "Update snapshot",
+        "operationId": "updateSnapshot",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fs_uid",
+            "required": true,
+            "description": "file system uid",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "snapshot uid"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "new_name": {
+                    "type": "string"
+                  },
+                  "access_point": {
+                    "type": "string"
+                  },
+                  "is_writable": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Snapshots"
+        ],
+        "summary": "Delete snapshot",
+        "operationId": "deleteSnapshot",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fs_uid",
+            "required": true,
+            "description": "File system uid",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Snapshot uid"
+          }
+        ]
+      }
+    },
+    "/snapshots/{fs_uid}/{uid}/abortUpload": {
+      "post": {
+        "tags": [
+          "Snapshots"
+        ],
+        "summary": "Abort snapshot upload",
+        "operationId": "abortSnapshotUpload",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fs_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "snapshot uid"
+          }
+        ]
+      }
+    },
+    "/snapshots/{fs_uid}/{uid}/copy": {
+      "post": {
+        "tags": [
+          "Snapshots"
+        ],
+        "summary": "Copy snapshot",
+        "operationId": "copySnapshot",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fs_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "uid",
+            "description": "Snapshot uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "destination_name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/snapshots/{fs_uid}/{uid}/download": {
+      "post": {
+        "tags": [
+          "Snapshots"
+        ],
+        "summary": "Download snapshot",
+        "operationId": "downloadSnapshot",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fs_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "snapshot uid"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "access_point": {
+                    "type": "string"
+                  },
+                  "locator": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/snapshots/{fs_uid}/{uid}/upload": {
+      "post": {
+        "tags": [
+          "Snapshots"
+        ],
+        "summary": "Upload snapshot",
+        "operationId": "uploadSnapshot",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fs_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "snapshot uid"
+          }
+        ]
+      }
+    },
+    "/snapshots/{fs_uid}/{uid}/restore": {
+      "post": {
+        "tags": [
+          "Snapshots"
+        ],
+        "summary": "Restore file system from snapshot",
+        "operationId": "restoreFileSystemFromSnapshot",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fs_uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "snapshot uid"
+          }
+        ]
+      }
+    },
+    "/stats": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get stats",
+        "operationId": "getStats",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "start_time",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end_time",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "interval",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "array of categories"
+          },
+          {
+            "in": "query",
+            "name": "stat",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "resolution_secs",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "accumulated",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "per_node",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "node_ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "param",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "in": "query",
+            "name": "no_zeroes",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "show_internal",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/stats/describe": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get stats describe",
+        "operationId": "getStatsDescription",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "show_internal",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ]
+      }
+    },
+    "/stats/realtime": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get real time stats",
+        "operationId": "getRealTimeStats",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "retention_duration",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/stats/retention": {
+      "get": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Get stats retention and estimated disk usage",
+        "operationId": "getStatsDiskUsage",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "retention_duration",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Stats"
+        ],
+        "summary": "Set stats retention",
+        "operationId": "getStatsRetention",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "retention_duration": {
+                    "type": "string"
+                  },
+                  "dry_run": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/io/start": {
+      "post": {
+        "tags": [
+          "System IO"
+        ],
+        "summary": "Start system IO",
+        "operationId": "startIO",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/io/stop": {
+      "post": {
+        "tags": [
+          "System IO"
+        ],
+        "summary": "Stop system IO",
+        "operationId": "stopIO",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "force": {
+                    "type": "boolean"
+                  },
+                  "brutal_no_flush": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get all cluster tasks",
+        "operationId": "getTasks",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/tasks/{uid}/resume": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Resume tas",
+        "operationId": "resumeTask",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/tasks/{uid}/pause": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Pause task",
+        "operationId": "pauseTasks",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/tasks/limits": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get cluster tasks limit",
+        "operationId": "getTasksLimit",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Set cluster tasks limit",
+        "operationId": "setTasksLimit",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cpu_limit": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tls": {
+      "get": {
+        "tags": [
+          "TLS"
+        ],
+        "summary": "Get TLS status",
+        "operationId": "getTls",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TLS"
+        ],
+        "summary": "Enable TLS",
+        "operationId": "enableTls",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "tls_cert_pem": {
+                    "type": "string"
+                  },
+                  "tls_key_pem": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "TLS"
+        ],
+        "summary": "Disable tls",
+        "operationId": "disableTls",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get all users",
+        "operationId": "getUsers",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "description": ""
+      },
+      "post": {
+        "summary": "Create user",
+        "operationId": "createUser",
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{uid}": {
+      "put": {
+        "summary": "Update user",
+        "operationId": "updateUser",
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user",
+        "operationId": "deleteUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ]
+      }
+    },
+    "/users/whoami": {
+      "get": {
+        "summary": "Get user info",
+        "operationId": "whoAmI",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "description": ""
+      }
+    },
+    "/users/{uid}/revoke": {
+      "delete": {
+        "summary": "Revoke user tokens",
+        "operationId": "revokeUser",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "tags": []
+}
