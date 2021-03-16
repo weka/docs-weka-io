@@ -54,7 +54,7 @@ $ spec='
   "cluster": [
     {
       "role": "backend",
-      "instance_type": "i3.xlarge",
+      "instance_type": "i3en.2xlarge",
       "count": 10
     },
     {
@@ -75,7 +75,7 @@ $ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@ge
 }
 ```
 
-In the example above, a template was generated for a cluster with 10 `i3.xlarge` backend instances and 2 `r3.xlarge` client instances. Refer to the [Deployment Types](deployment-types.md) page to learn more, and see all supported instance types in [Supported EC2 Instance Types](supported-ec2-instance-types.md).
+In the example above, a template was generated for a cluster with 10 `i3en.2xlarge` backend instances and 2 `r3.xlarge` client instances. Refer to the [Deployment Types](deployment-types.md) page to learn more, and see all supported instance types in [Supported EC2 Instance Types](supported-ec2-instance-types.md).
 
 ## Request Body
 

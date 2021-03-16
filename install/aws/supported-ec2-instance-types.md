@@ -10,13 +10,12 @@ description: This page lists all instance types supported by the Weka system ver
 
 ## Storage EC2 Instances
 
-The following EC2 instance types can operate as **backend**, **client** or **converged** instances:
+The following EC2 instance types can operate as **backend**, **client,** or **converged** instances:
 
 | **EC2 Instance Type** | **Supported Models** |
 | :--- | :--- |
-| I3 | i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge |
-| I3en | i3en.xlarge, i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge |
-| R3 | r3.xlarge, r3.2xlarge, r3.4xlarge, r3.8xlarge |
+| I3 | i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge |
+| I3en | i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge |
 
 ## Client EC2 Instances
 
