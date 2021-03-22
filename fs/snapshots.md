@@ -80,7 +80,7 @@ Use the following command line to add a snapshot:
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
 | `name` | String | Unique name for filesystem snapshot | Must be a valid name | Yes |  |
-| `access-point` | String | Name of the newly-created directory for filesystem-level snapshots, which will serve as the access point for the snapshots | Must be a valid name | No | Same as the snapshot `name` |
+| `access-point` | String | Name of the newly-created directory for filesystem-level snapshots, which will serve as the access point for the snapshots | Must be a valid name | No | Controlled by `weka fs snapshot access-point-naming-convention update <date/name>.` By default it is `<date>` format: `@GMT_%Y.%m.%d-%H.%M.%S` which is compatible with [windows previous versions format for SMB](../additional-protocols/smb-support/#integration-with-windows-previous-versions). |
 | `source-snap` | String | Must be an existing snapshot | Must be a valid name | No | Filesystem snapshot the file system |
 | `is-writable` | Boolean | Sets the created snapshot to be writable |  | No | False |
 
