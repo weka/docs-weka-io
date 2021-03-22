@@ -58,5 +58,5 @@ The defaults can be controlled using the `weka security lockout-config show/set/
 ## UI
 
 * The Weka UI is \(only\) accessible from the backend servers via port 14000.
-* The UI session will automatically be terminated, and the user will get logged out after 30 minutes \(by default\) of inactivity.
+* The UI session will automatically be terminated, and the user will get logged out after 30 minutes of inactivity.
 
