@@ -197,3 +197,9 @@ When running the command with the `upload` option, the information is uploaded t
 **Note:** The upload process is asynchronous. Therefore connectivity failures will be reflected in failure events on the event log, while the command will still exit successfully.
 {% endhint %}
 
+## Weka Processes Traces
+
+The Weka processes constantly create traces. These traces are rotating to consume only a defined capacity. When encountering issues, sometimes there is a need for Weka support to observe those traces and, in some situations, to prevent specific traces from rotating until resolution.
+
+It is possible to control the traces retention settings using the various `weka debug traces` CLI commands.
+
