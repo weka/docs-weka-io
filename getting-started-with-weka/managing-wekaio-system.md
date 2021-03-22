@@ -68,3 +68,9 @@ For more information about the GUI, refer to [Getting Started with Weka GUI](gui
 **Note:** It is possible to set up external monitoring via Grafana. For more information, refer to [External Monitoring](../appendix/external-monitoring.md).
 {% endhint %}
 
+## REST API
+
+The Weka system supports a RESTful API. This is useful when automating the interaction with the Weka system and when integrating it into your workflows or monitoring systems.
+
+The API is accessible at port 14000, via the `/api/v2` URL, you can explore it via `/api/v2/docs` when accessing from the cluster \(e.g. `https://weka01:14000/api/v2/docs`\) and it is also hosted in [SwaggerHub](https://app.swaggerhub.com/apis-docs/tomerc/weka-rest-api/3.11.0).
+

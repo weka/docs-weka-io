@@ -107,3 +107,7 @@
 * [Snapshot Management](appendix/snapshot-management.md)
 * [ClusterSpecs](appendix/clusterspecs.md)
 
+---
+
+* [REST API](https://app.swaggerhub.com/apis-docs/tomerc/weka-rest-api/3.11.0)
+

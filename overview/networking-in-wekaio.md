@@ -130,7 +130,7 @@ GPUDirect Storage enables a direct data path between storage and GPU memory. GPU
 
 When enabled, the Weka system automatically utilizes the RDMA data path and GPUDirect Storage in supported environments. When the system identifies it can use RDMA, both in UDP and DPDK modes, it utilizes the use for workload it can benefit from RDMA \(with regards to IO size: 32K+ for reads and 256K+ for writes\).
 
-Using RDMA/GPUDirect Storage, it is thus possible to get a performance gain. You can get much higher performance from a UDP client \(which does not require to dedicate a core to the Weka system\), get an extra boost for a DPDK client, or assign fewer cores for the Weka system in the DPDK mode to get the same performance.
+Using RDMA/GPUDirect Storage, it is thus possible to get a performance gain. You can get much higher performance from a UDP client \(which does not require dedicating a core to the Weka system\), get an extra boost for a DPDK client, or assign fewer cores for the Weka system in the DPDK mode to get the same performance.
 
 ### Limitations
 
@@ -145,7 +145,7 @@ For the RDMA/GPUDirect Storage technology to take into effect, the following req
 
 
 * A NIC is considered to support RDMA Networking if the following requirements are met:
-  * InfiniBand network
+  * For GPUDirect Storage only: InfiniBand network
   * Mellanox ConnectX5 or ConnectX6
   * OFED 4.6-1.0.1.1 or higher
     * For GPUDirect Storage: install with `--upstream-libs` and `--dpdk`
