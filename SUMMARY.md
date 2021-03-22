@@ -22,9 +22,9 @@
 
 ## Planning & Installation <a id="install"></a>
 
+* [Prerequisites for Installation](install/prerequisites-for-installation-of-weka-dedicated-hosts.md)
 * [Bare Metal Installation](install/bare-metal/README.md)
   * [Planning a Weka System Installation](install/bare-metal/planning-a-weka-system-installation.md)
-  * [Prerequisites for Installation](install/bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md)
   * [Setting Up the Hosts](install/bare-metal/setting-up-the-hosts/README.md)
     * [SR-IOV Enablement](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Obtaining the Weka Install File](install/bare-metal/obtaining-the-weka-install-file.md)
@@ -96,6 +96,7 @@
 
 ## Support
 
+* [Prerequisites and Compatability](support/prerequisites-and-compatability.md)
 * [Getting Support for Your Weka System](support/getting-support-for-your-weka-system.md)
 * [The Weka Support Cloud](support/the-wekaio-support-cloud.md)
 * [Diagnostics CLI Command](support/diagnostics-utility.md)

@@ -6,7 +6,7 @@
 2. [NIC devices are configured properly](../install/bare-metal/setting-up-the-hosts/#network-configuration)
 3. [NTP is set up](../install/bare-metal/setting-up-the-hosts/#clock-synchronization)
 
-For a complete prerequisite list, refer to [Prerequisites for Installation](../install/bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md) section. 
+For a complete prerequisite list, refer to [Prerequisites for Installation](../install/prerequisites-for-installation-of-weka-dedicated-hosts.md) section. 
 
 We'll consider an example of architecture with 8 identical hosts \(named `weka01` to `weka08`\). Each host has more than 20 cores, 6 NVME drives, and a single Mellanox NIC. 
 

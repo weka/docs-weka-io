@@ -167,7 +167,7 @@ To perform this operation, the `cluster host net add` command must be run for ea
       <td style="text-align:left">Must be part of the data plane IP pool defined in the planning phase.
         See <a href="../../overview/networking-in-wekaio.md#backend-hosts">Weka Networking</a> and
         <a
-        href="prerequisites-for-installation-of-weka-dedicated-hosts.md#networking">Networking Prerequisites</a>.</td>
+        href="../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking">Networking Prerequisites</a>.</td>
       <td style="text-align:left">No</td>
       <td style="text-align:left">From Pool</td>
     </tr>
@@ -211,7 +211,7 @@ To perform this operation, the `cluster host net add` command must be run for ea
   </tbody>
 </table>
 
-The number of IP addresses should be according to [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
+The number of IP addresses should be according to [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
 
 {% hint style="info" %}
 **Note:** Additional IP addresses may be assigned for each host if IP per core is needed. In this case, unused IP addresses are reserved for future expansions and can be automatically assigned if the number of cores assigned to the Weka system on that host is increased.

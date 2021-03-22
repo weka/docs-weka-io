@@ -48,6 +48,6 @@ The following EC2 instance types can operate as **client** instances.
 | X1e | x1e.16xlarge, x1e.32xlarge |
 
 {% hint style="info" %}
-**Note:** Read more about [each instance type](https://aws.amazon.com/ec2/instance-types/). Read more about [supported operating systems](../bare-metal/prerequisites-for-installation-of-weka-dedicated-hosts.md#operation-system).
+**Note:** Read more about [each instance type](https://aws.amazon.com/ec2/instance-types/). Read more about [supported operating systems](../prerequisites-for-installation-of-weka-dedicated-hosts.md#operation-system).
 {% endhint %}
 
