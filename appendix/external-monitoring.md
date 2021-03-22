@@ -34,7 +34,7 @@ Alternatively, to clone the repository, run the following commands to pull the w
 
 ```text
 # Clone the package from github:
-git clone weka/weka-mon
+git clone https://github.com/weka/weka-mon
 cd weka-mon
 
 ```
