@@ -10,7 +10,7 @@ description: >-
 
 There are several levels on the Weka system where capacity usage can be restricted. 
 
-1. On an organization level - setting a different organization to manage its own filesystems, where quotas for an organization can be set, as described in the [organization's usage and quota management ](../usage/organizations.md#usage-and-quota-management)section.
+1. On an organization level - setting a different organization to manage its own filesystems, where quotas for an organization can be set, as described in the [organization's usage and quota management ](../usage/security/organizations.md#usage-and-quota-management)section.
 2. On a filesystem level - setting a different filesystem per department/project.
 3. On a directory level - setting a different quota per project directory \(useful when users are part of several projects\) or per user home directory.
 

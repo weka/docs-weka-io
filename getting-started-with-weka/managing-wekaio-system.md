@@ -52,15 +52,15 @@ For more information about the CLI, refer to [Getting Started with Weka CLI](cli
 
 ## GUI
 
-The Weka GUI is accessible at port 14000. It can be accessed from any host or by using the cluster name. For example: `http://weka01:14000` or `http://WekaProd:14000`.
+The Weka GUI is accessible at port 14000. It can be accessed from any host or by using the cluster name. For example: `https://weka01:14000` or `https://WekaProd:14000`.
 
 {% hint style="info" %}
-**Note:** If it's not possible to access the GUI, make sure that it has been opened in your firewall, as described in the [Prerequisites](../install/prerequisites-for-installation-of-weka-dedicated-hosts.md) page.
+**Note:** If it's not possible to access the GUI, make sure that it has been opened in your firewall, as described on the [Prerequisites](../support/prerequisites-and-compatability.md) page.
 {% endhint %}
 
 ![Weka Login Page](../.gitbook/assets/wekaio-login-page.png)
 
-The initial default username/password is _admin/admin,_ as described in [User Management.](../usage/user-management.md) It is recommended to change this.
+The initial default username/password is _admin/admin,_ as described in [User Management.](../usage/security/user-management.md) It is enforced to change the admin password upon the first login.
 
 For more information about the GUI, refer to [Getting Started with Weka GUI](gui.md).
 

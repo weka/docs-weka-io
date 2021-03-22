@@ -53,7 +53,7 @@ Use the following command line to add a filesystem:
 | `max-files` | Number | Metadata allocation for this filesystem | Must be a valid number | No | Automatically calculated by the system based on the SSD capacity |
 | `encrypted` | Boolean | Encryption of filesystem |  | No | No |
 | `obs-name` | String | Object store name for tiering | Must be a valid name | Mandatory for tiered filesystems |  |
-| `auth-required` | String | Determines if mounting the filesystem requires to be authenticated to Weka \([weka user login](../../usage/user-management.md#user-log-in)\)  | `yes` or `no` | No | no |
+| `auth-required` | String | Determines if mounting the filesystem requires to be authenticated to Weka \([weka user login](../../usage/security/user-management.md#user-log-in)\)  | `yes` or `no` | No | no |
 
 {% hint style="info" %}
 **Note:** When creating an encrypted filesystem a KMS must be defined.
@@ -100,7 +100,7 @@ Use the following command line to edit an existing filesystem:
 | `total-capacity` | Number | Total capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
 | `ssd-capacity` | Number | SSD capacity of the edited filesystem | Must be a valid number | Optional | Keep unchanged |
 | `max-files` | Number | Metadata limit for the filesystem | Must be a valid number | Optional | Keep unchanged |
-| `auth-required` | String | Determines if mounting the filesystem requires to be authenticated to Weka \([weka user login](../../usage/user-management.md#user-log-in)\)  | `yes` or `no` | No | no |
+| `auth-required` | String | Determines if mounting the filesystem requires to be authenticated to Weka \([weka user login](../../usage/security/user-management.md#user-log-in)\)  | `yes` or `no` | No | no |
 
 ## Deleting a Filesystem
 
