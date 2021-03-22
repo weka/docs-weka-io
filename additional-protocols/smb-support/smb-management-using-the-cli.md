@@ -573,7 +573,7 @@ Use the following command line to update an existing share:
 
 **Command:** `weka smb share lists show`
 
-Use this command to view the various user-list settings:
+Use this command to view the various user-list settings.
 
 \*\*\*\*
 
@@ -770,8 +770,6 @@ Use the following command line to remove all users from a share user-list:
   </tbody>
 </table>
 
-## 
-
 ## Removing SMB Shares
 
 **Command:** `weka smb share remove`
@@ -791,4 +789,59 @@ Use the following command line to remove a share exposed to SMB:
 
 `weka smb share remove 1`
 {% endhint %}
+
+## Controlling SMB Access Based on Hosts IP/Name
+
+It is possible to control which hosts are permitted to access the SMB service or share.
+
+**Command:** `weka smb cluster host-access show` / `weka smb share host-access show`
+
+Use this command to view the various host-access settings.
+
+
+
+**Command:** `weka smb cluster host-access add` / `weka smb share host-access add`
+
+Use the following command line to add hosts to the allow/deny list \(in either cluster-level or share-level\):
+
+`weka smb cluster host-access add <mode> <--ips ips> <--hosts hosts>` ****`weka smb share host-access add <share-id> <mode> <--ips ips> <--hosts hosts>`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `share-id` | Number | The ID of the share to be updated | Must be a valid share ID | Yes \(for the share-level command\) |  |
+| `mode` | String | The access mode of the host | `allow` or `deny` | Yes |  |
+| `ips` | A Comma-separated list of IPs | Host IPs to allow/deny |  | Must provide at least one of: `ips` or `hosts` |  |
+| `hosts` | A Comma-separated list of strings | Host names to allow/deny |  | Must provide at least one of: `ips` or `hosts` |  |
+
+
+
+**Command:** `weka smb cluster host-access remove` / `weka smb share host-access remove`
+
+Use the following command line to remove hosts from the allow/deny list \(in either cluster-level or share-level\):
+
+`weka smb cluster host-access remove <hosts>` ****`weka smb share host-access remove <share-id> <hosts>`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `share-id` | Number | The ID of the share to be updated | Must be a valid share ID | Yes \(for the share-level command\) |  |
+| `hosts` | Space-separated list of hosts | The hosts to remove from the host-access list | Must be the exact name as shown under the `HOSTNAME` column in the equivalent `list` command | Yes |  |
+
+
+
+**Command:** `weka smb cluster host-access reset` / `weka smb share host-access reset`
+
+Use the following command line to remove all hosts from the allow/deny list \(in either cluster-level or share-level\):
+
+`weka smb cluster host-access reset <mode>` ****`weka smb share host-access reset <share-id> <mode>`
+
+**Parameters in Command Line**
+
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `share-id` | Number | The ID of the share to be updated | Must be a valid share ID | Yes \(for the share-level command\) |  |
+| `mode` | String | All hosts with this access-mode will be removed from the list | `allow` or `deny` | Yes |  |
 

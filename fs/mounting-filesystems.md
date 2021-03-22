@@ -359,7 +359,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 
 `mount -t wekafs -o num_cores=1 -o net=ib0 backend-host-0/my_fs /mnt/weka`
 
-Running this command on a host installed with the Weka agent will download the appropriate Weka version from the host`backend-host-0`and create a Weka container which allocates a single core and a named network interface \(`ib0`\). Then it will join the cluster that `backend-host-0` is part of and mount the filesystem `my_fs` on `/mnt/weka.`
+Running this command on a host installed with the Weka agent will download the appropriate Weka version from the host`backend-host-0`and create a Weka container that allocates a single core and a named network interface \(`ib0`\). Then it will join the cluster that `backend-host-0` is part of and mount the filesystem `my_fs` on `/mnt/weka.`
 
 `mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka`
 
@@ -406,7 +406,7 @@ Use `-o net=<netdev>` mount option with the various modifiers as described below
 **Note:** When using `wekafs` mounts, both clients and backends should use the same type of networking technology \(either IB or Ethernet\).
 {% endhint %}
 
-### IP, Subnet, Gateway and Virtual Functions
+### IP, Subnet, Gateway, and Virtual Functions
 
 For higher performance, the usage of multiple Frontends may be required. When using a NIC other than Mellanox, or when mounting a DPDK client on a VM, it is required to use [SR-IOV](../install/bare-metal/setting-up-the-hosts/#sr-iov-enablement) to expose a VF of the physical device to the client. Once exposed, it can be configured via the mount command.
 
@@ -414,7 +414,7 @@ When you want to determine the VFs IP addresses, or when the client resides in a
 
 `ip, bits, gateway` are optional. In case they are not provided, the Weka system tries to deduce them when in AWS or IB environments, or allocate from the default data network otherwise. If both approaches fail, the mount command will fail.
 
-**For example**, the following command will allocate two cores and a single physical network device \(intel0\). It will configure two VFs for the device and assign each one of them to one of the frontend nodes. The first node will receive 192.168.1.100 IP address, and the second will use 192.168.1.101 IP address. Both of the IPs have a 24 network mask bits and default gateway of 192.168.1.254.
+**For example**, the following command will allocate two cores and a single physical network device \(intel0\). It will configure two VFs for the device and assign each one of them to one of the frontend nodes. The first node will receive a 192.168.1.100 IP address, and the second will use a 192.168.1.101 IP address. Both of the IPs have 24 network mask bits and a default gateway of 192.168.1.254.
 
 ```text
 mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.168.1.254 backend1/my_fs /mnt/weka
@@ -426,7 +426,7 @@ For performance or high availability, it is possible to use more than one physic
 
 #### Using multiple physical network devices for better performance
 
-It's easy to saturate the bandwidth of a single network interface when using WekaFS. For higher throughput, it is possible to leverage multiple network interface cards \(NICs\). The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to WekaFS host driver.
+It's easy to saturate the bandwidth of a single network interface when using WekaFS. For higher throughput, it is possible to leverage multiple network interface cards \(NICs\). The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to the WekaFS host driver.
 
 **For example**, the following command will allocate two cores and two physical network devices for increased throughput:
 
@@ -464,14 +464,14 @@ mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -
 
 ### UDP Mode
 
-In cases were DPDK cannot be used, it is possible to use WekaFS in [UDP mode](../overview/networking-in-wekaio.md#udp-mode) through the kernel. Use `net=udp` in the mount command to set the UDP networking mode, for example:
+In cases where DPDK cannot be used, it is possible to use WekaFS in [UDP mode](../overview/networking-in-wekaio.md#udp-mode) through the kernel. Use `net=udp` in the mount command to set the UDP networking mode, for example:
 
 ```text
 mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
 ```
 
 {% hint style="info" %}
-**Note:** A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster.
+**Note:** A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster. Providing multiple IPs in the &lt;mgmt-ip&gt; in UDP mode will utilize their network interfaces for more bandwidth \(can be useful in RDMA environments\), rather than using only one NIC.
 {% endhint %}
 
 ## Mounting Filesystems Using fstab
