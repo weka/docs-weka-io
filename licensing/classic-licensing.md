@@ -40,7 +40,8 @@ or enroll in a subscription.
 When asked, you'll need the following details to create your license:
 
     Cluster GUID          : bbb6639d-3eaa-483b-b532-31a560d5859d
-    Drive Capacity        : 161 GB
+    Raw Drive Capacity    : 5699 GB
+    Usable Capacity       : 0 GB
     Object-store Capacity : 0 GB
 
 If you already have a license, please enter it by running
