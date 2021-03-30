@@ -18,7 +18,7 @@ Every Weka system user has one of the following defined roles:
 * **Regular**: A user that should only be able to mount filesystems
   * can log-in to obtain an access token
   * can change their password
-  * cannot access the UI or run other CLI.API commands
+  * cannot access the UI or run other CLI/API commands
 
 ## First User \(Cluster Admin\)
 
