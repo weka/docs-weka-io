@@ -33,7 +33,7 @@ The organization admin sets quotas to inform/restrict users from using too much 
 When working with quotas, consider the following:
 
 * Currently, to set a quota, the relevant filesystem must be mounted on the host setting where the set quota command is to be run.
-* When setting a quota, you should go through a new mount-point. Meaning, if you are using a host that have mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
+* When setting a quota, you should go through a new mount-point. Meaning, if you are using a host that has mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
 * Quotas can be set within nested directories and over-provisioned under the same directory quota tree. E.g., `/home` can have a quota of 1TiB, and each user directory under it can have a quota of 10GiB, while there are 200 users.
 * Before a directory is being deleted, its quota must be removed. A directory tree cannot be deleted without removing all the inner directories quotas beforehand.
 * Moving files between two directories with quotas is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy&delete but is OS dependant.
@@ -68,7 +68,7 @@ It is also possible to set a default quota on a directory. It does not account f
 | `owner` | String | An opaque string identifying the directory owner \(can be a name, email, slack ID, etc.\) This owner will be shown in the quota report and can be notified upon exceeding the quota. | Up to 48 characters. | No |  |
 
 {% hint style="warning" %}
-**Note:** Currently, there is no quota enforcement \(soft or hard\), and they are all treated as advisory only. In the upcoming releases, these will get enforced.
+**Note:** Currently, there is no grace period enforcement for soft quotas, and they are treated as advisory only. In the upcoming releases, these will get enforced.
 
 To set advisory only quotas, use a `soft` quota limit without setting a `grace` period.
 {% endhint %}
