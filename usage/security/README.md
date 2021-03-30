@@ -45,7 +45,7 @@ To replace the certificate, use the `weka security tls set` CLI command to set a
 * at least 8 characters
 * an uppercase letter
 * a lowercase letter
-* a number or a special character.
+* a number or a special character
 
 The [First User ](user-management.md#first-user-cluster-admin)created by default is admin \(with `admin` password\), and the password is prompt to change on the first login.
 
