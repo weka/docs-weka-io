@@ -808,12 +808,71 @@ Use the following command line to add hosts to the allow/deny list \(in either c
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `share-id` | Number | The ID of the share to be updated | Must be a valid share ID | Yes \(for the share-level command\) |  |
-| `mode` | String | The access mode of the host | `allow` or `deny` | Yes |  |
-| `ips` | A Comma-separated list of IPs | Host IPs to allow/deny |  | Must provide at least one of: `ips` or `hosts` |  |
-| `hosts` | A Comma-separated list of strings | Host names to allow/deny |  | Must provide at least one of: `ips` or `hosts` |  |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left"><b>Name</b>
+      </th>
+      <th style="text-align:left"><b>Type</b>
+      </th>
+      <th style="text-align:left"><b>Value</b>
+      </th>
+      <th style="text-align:left"><b>Limitations</b>
+      </th>
+      <th style="text-align:left"><b>Mandatory</b>
+      </th>
+      <th style="text-align:left"><b>Default</b>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left"><code>share-id</code>
+      </td>
+      <td style="text-align:left">Number</td>
+      <td style="text-align:left">The ID of the share to be updated</td>
+      <td style="text-align:left">Must be a valid share ID</td>
+      <td style="text-align:left">Yes (for the share-level command)</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>mode</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">The access mode of the host</td>
+      <td style="text-align:left"><code>allow</code> or <code>deny</code>
+      </td>
+      <td style="text-align:left">Yes</td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>ips</code>
+      </td>
+      <td style="text-align:left">A Comma-separated list of IPs</td>
+      <td style="text-align:left">Host IPs to allow/deny</td>
+      <td style="text-align:left">
+        <p>Supports the following format to provide multiple IPs:</p>
+        <p><code>192.</code>
+        </p>
+        <p><code>192.168.<br />192.168.1<br />192.168.1.1/24</code>
+        </p>
+      </td>
+      <td style="text-align:left">Must provide at least one of: <code>ips</code> or <code>hosts</code>
+      </td>
+      <td style="text-align:left"></td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>hosts</code>
+      </td>
+      <td style="text-align:left">A Comma-separated list of strings</td>
+      <td style="text-align:left">Host names to allow/deny</td>
+      <td style="text-align:left"></td>
+      <td style="text-align:left">Must provide at least one of: <code>ips</code> or <code>hosts</code>
+      </td>
+      <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>
 
 
 
