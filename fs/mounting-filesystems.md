@@ -232,6 +232,59 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">Do not allow direct execution of any binaries.</td>
       <td style="text-align:left">No</td>
     </tr>
+    <tr>
+      <td style="text-align:left"><code>file_create_mask</code>
+      </td>
+      <td style="text-align:left">Numeric (octal) notation of POSIX permissions</td>
+      <td style="text-align:left">
+        <p>Newly created file permissions are masked with the creation mask. For
+          example, if a user creates a file with permissions=777 but the <code>file_create_mask</code> is
+          770, the file will be created with 770 permissions.</p>
+        <p>First, the <code>umask</code> is taken into account, followed by the <code>file_create_mask</code> and
+          then the <code>force_file_mode</code>.</p>
+      </td>
+      <td style="text-align:left">0777</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>directory_create_mask</code>
+      </td>
+      <td style="text-align:left">Numeric (octal) notation of POSIX permissions</td>
+      <td style="text-align:left">
+        <p>Newly created directory permissions are masked with the creation mask.
+          For example, if a user creates a directory with permissions=777 but the <code>directory_create_mask</code> is
+          770, the directory will be created with 770 permissions.</p>
+        <p>First, the <code>umask</code> is taken into account, followed by the <code>directory_create_mask</code> and
+          then the <code>force_directory_mode</code>.</p>
+      </td>
+      <td style="text-align:left">0777</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>force_file_mode</code>
+      </td>
+      <td style="text-align:left">Numeric (octal) notation of POSIX permissions</td>
+      <td style="text-align:left">
+        <p>Newly created file permissions are logically OR&apos;ed with the mode.
+          For example, if a user creates a file with permissions 770 but the <code>force_file_mode</code> is
+          775, the resulting file will be created with mode 775.</p>
+        <p>First, the <code>umask</code> is taken into account, followed by the <code>file_create_mask</code> and
+          then the <code>force_file_mode</code>.</p>
+      </td>
+      <td style="text-align:left">0</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>force_directory_mode</code>
+      </td>
+      <td style="text-align:left">Numeric (octal) notation of POSIX permissions</td>
+      <td style="text-align:left">
+        <p>Newly created directory permissions are logically OR&apos;ed with the
+          mode. For example, if a user creates a directory with permissions 770 but
+          the <code>force_directory_mode</code> is 775, the resulting directory will
+          be created with mode 775.</p>
+        <p>First, the <code>umask</code> is taken into account, followed by the <code>directory_create_mask</code> and
+          then the <code>force_directory_mode</code>.</p>
+      </td>
+      <td style="text-align:left">0</td>
+    </tr>
   </tbody>
 </table>
 
