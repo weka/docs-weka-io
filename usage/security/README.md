@@ -24,14 +24,14 @@ This provides an access token to be used to authenticate the command, as long as
 
 ## TLS
 
-By default, the Weka system deploys a self-signed certificate to access the UI, CLI, and API via HTTPS only.
+By default, the Weka system deploys a self-signed certificate to access the UI, CLI, and API via HTTPS.
 
 The Weka system allows using only TLS 1.2 and higher with at least 128-bit ciphers.
 
 You can deploy your certificates using the `weka security tls set` CLI command. The command receives an unencrypted private key.
 
 {% hint style="success" %}
-**For example,** this is the Weka uses to generate the self-signed certificate using  OpenSSL:`openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
+**For example,** this is a similar command to what Weka uses to generate the self-signed certificate using  OpenSSL:`openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
 {% endhint %}
 
 ### Certificate Replacement/Rotation
