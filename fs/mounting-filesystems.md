@@ -524,7 +524,11 @@ mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
 ```
 
 {% hint style="info" %}
-**Note:** A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster. Providing multiple IPs in the &lt;mgmt-ip&gt; in UDP mode will utilize their network interfaces for more bandwidth \(can be useful in RDMA environments\), rather than using only one NIC.
+**Note:** A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster. 
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** Providing multiple IPs in the &lt;mgmt-ip&gt; in UDP mode will utilize their network interfaces for more bandwidth \(can be useful in RDMA environments\), rather than using only one NIC.
 {% endhint %}
 
 ## Mounting Filesystems Using fstab
