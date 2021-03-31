@@ -111,5 +111,5 @@
 
 ---
 
-* [REST API](https://app.swaggerhub.com/apis-docs/wekaio/weka-rest-api/3.11.0)
+* [REST API](https://api.docs.weka.io)
 

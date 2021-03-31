@@ -72,5 +72,7 @@ For more information about the GUI, refer to [Getting Started with Weka GUI](gui
 
 The Weka system supports a RESTful API. This is useful when automating the interaction with the Weka system and when integrating it into your workflows or monitoring systems.
 
-The API is accessible at port 14000, via the `/api/v2` URL, you can explore it via `/api/v2/docs` when accessing from the cluster \(e.g. `https://weka01:14000/api/v2/docs`\) and it is also hosted in [SwaggerHub](https://app.swaggerhub.com/apis-docs/wekaio/weka-rest-api/3.11.0).
+The API is accessible at port 14000, via the `/api/v2` URL, you can explore it via `/api/v2/docs` when accessing from the cluster \(e.g. `https://weka01:14000/api/v2/docs`\).
+
+ Our static API documentation can be accessed from [api.docs.weka.io](https://api.docs.weka.io) \(the version of the `.json` file can be changed to reflect the desired version, e.g., _**3.11.**json_\)
 
