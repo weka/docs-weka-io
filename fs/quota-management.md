@@ -43,6 +43,10 @@ When working with quotas, consider the following:
 * Restoring a filesystem from a snapshot turns the quotas back to the configuration at the time of the snapshot.
 * Creating a new filesystem from a snap-2-obj does not preserve the original quotas.
 
+{% hint style="warning" %}
+**Note:** When working with enforcing quotas along with an SMB share in a `writecache` mount mode, getting above the quota might not sync all the cache writes to the backend servers. It is advised to work with  a `readcache` mount mode for these SMB shares.
+{% endhint %}
+
 ## Managing Quotas using the CLI
 
 ### Setting directory quotas/default quotas

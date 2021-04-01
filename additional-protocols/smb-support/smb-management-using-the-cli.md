@@ -302,7 +302,7 @@ Use this command to list all existing SMB shares.
 
 Use the following command line to add a new share to be exposed to SMB:
 
-`weka smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [--file-create-mask file-create-mask] [--directory-create-mask directory-create-mask] [--obs-direct obs-direct] [--encryption encryption] [--read-only read-only] [--user-list-type user-list-type] [--users users]... [--allow-guest-access allow-guest-access] [--hidden hidden]`
+`weka smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [--mount-option mount-option] [--file-create-mask file-create-mask] [--directory-create-mask directory-create-mask] [--obs-direct obs-direct] [--encryption encryption] [--read-only read-only] [--user-list-type user-list-type] [--users users]... [--allow-guest-access allow-guest-access] [--hidden hidden]`
 
 **Parameters in Command Line**
 
@@ -361,6 +361,17 @@ Use the following command line to add a new share to be exposed to SMB:
       <td style="text-align:left">Must be a valid path</td>
       <td style="text-align:left">No</td>
       <td style="text-align:left">.</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>mount-option</code>
+      </td>
+      <td style="text-align:left">String</td>
+      <td style="text-align:left">The mount mode for the share</td>
+      <td style="text-align:left"><code>readcache</code> or <code>writecache</code>
+      </td>
+      <td style="text-align:left">No</td>
+      <td style="text-align:left"><code>writecache</code>
+      </td>
     </tr>
     <tr>
       <td style="text-align:left"><code>file-create-mask</code>
