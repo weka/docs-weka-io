@@ -37,6 +37,7 @@
   * [AWS Outposts Deployment](install/aws/aws-outposts-deployment.md)
   * [Supported EC2 Instance Types](install/aws/supported-ec2-instance-types.md)
   * [Adding Clients](install/aws/adding-clients.md)
+  * [Auto Scaling Group](install/aws/auto-scaling-group.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
 
 ## Performance <a id="testing-and-troubleshooting"></a>
