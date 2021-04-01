@@ -13,7 +13,7 @@ The Weka system supports the following types of networking technologies:
 
 ‌The currently-available networking infrastructure dictates the choice between the two. If a Weka cluster is connected to both infrastructures, it is possible to connect Weka clients from both networks to the same cluster. 
 
-The Weka system networking can be configured either as [performance-optimized](networking-in-wekaio.md#performance-optimized-networking-dpdk), where the CPU cores are dedicated to Weka and the use of DPDK networking takes place and cores, or, as [CPU-optimized](networking-in-wekaio.md#cpu-optimized-networking-udp-mode) where cores are not dedicated and we use in-kernel networking \(UDP mode\).
+The Weka system networking can be configured either as [performance-optimized](networking-in-wekaio.md#performance-optimized-networking-dpdk), where the CPU cores are dedicated to Weka and the use of DPDK networking takes place and cores, or, as [CPU-optimized](networking-in-wekaio.md#cpu-optimized-networking-udp-mode) where cores are not dedicated and we use either DPDK \(when supported by the NIC drivers\) or in-kernel networking \(UDP mode\).
 
 ### Performance-Optimized Networking \(DPDK\)
 
@@ -40,13 +40,25 @@ Single Root I/O Virtualization \(SR-IOV\) is an extension to the PCI Express \(P
 
 SR-IOV technology should be supported by both the software and hardware to take advantage of it. Software support is included in the Linux kernel, as well as the Weka system software. Hardware support is provided by the computer BIOS and the network adapter but is usually disabled out of the factory. Consequently, it should be enabled before installing the Weka system software.‌
 
-### CPU-Optimized Networking \(UDP Mode\)
+### CPU-Optimized Networking
 
-For CPU-optimized network Weka yields CPU resources to other applications and uses in-kernel processing and UDP as the transport protocol. This mode of operation is commonly referred to as the 'UDP mode'.
+For CPU-optimized networking Weka can yield CPU resources to other applications. That is useful when the extra CPU cores are needed for other purposes. However, the lack of CPU resources dedicated to the Weka system comes with the expense of reduced overall performance.
 
-This can be useful when the extra CPU cores are needed for other purposes. However, the lack of CPU resources dedicated to the Weka system comes with the expense of reduced overall performance.
+#### DPDK Without Core Dedication
 
-In addition, since the UPD-mode uses in-kernel processing, it is compatible with older platforms lacking the support of kernel offloading technologies \(DPDK\) or virtualization \(SR-IOV\), as legacy hardware such as the Mellanox CX3 family of NICs.
+For CPU-optimized networking, when [mounting filesystems using stateless clients](../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients), it is possible to use DPDK networking without dedicating cores. This mode is recommended when available and supported by the NIC drivers. In this mode, the DPDK networking uses RX interrupts instead of dedicating the cores. 
+
+{% hint style="info" %}
+**Note:** This mode is supported in most NIC drivers, but not in all, consult [https://doc.dpdk.org/guides/nics/overview.html](https://doc.dpdk.org/guides/nics/overview.html) for compatibility.
+
+AWS \(ENA drivers\) does not support this mode, hence for CPU-optimized networking in AWS use the [UDP Mode](networking-in-wekaio.md#udp-mode).
+{% endhint %}
+
+#### UDP Mode
+
+Weka can also use in-kernel processing and UDP as the transport protocol. This mode of operation is commonly referred to as the 'UDP mode'.
+
+Since the UPD-mode uses in-kernel processing, it is compatible with older platforms lacking the support of kernel offloading technologies \(DPDK\) or virtualization \(SR-IOV\), as legacy hardware such as the Mellanox CX3 family of NICs.
 
 ## Typical Weka Configuration
 

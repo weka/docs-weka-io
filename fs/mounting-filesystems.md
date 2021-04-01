@@ -402,6 +402,19 @@ The above options can be remounted \(using `mount -o remount`\). When am mount o
       <td style="text-align:left"><code>~/.weka/auth-token.json</code>
       </td>
     </tr>
+    <tr>
+      <td style="text-align:left"><code>dedicated_mode</code>
+      </td>
+      <td style="text-align:left"><code>full</code> or <code>none</code>
+      </td>
+      <td style="text-align:left">Determine whether DPKD networking dedicates a core (<code>full</code>)
+        or not (<code>none</code>). none can only be set when the NIC driver supports
+        it, as described in <a href="../overview/networking-in-wekaio.md#dpdk-without-core-dedication">DPDK Without Core Dedication</a> section.
+        This option is relevant when using DPDK networking (<code>net=udp</code> is
+        not set).</td>
+      <td style="text-align:left"><code>full</code>
+      </td>
+    </tr>
   </tbody>
 </table>
 
