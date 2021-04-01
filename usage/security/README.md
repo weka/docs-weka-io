@@ -24,7 +24,7 @@ This provides an access token to be used to authenticate the command, as long as
 
 ## TLS
 
-By default, the Weka system deploys a self-signed certificate to access the UI, CLI, and API via HTTPS.
+By default, the Weka system deploys a self-signed certificate to access the GUI, CLI, and API via HTTPS.
 
 The Weka system allows using only TLS 1.2 and higher with at least 128-bit ciphers.
 
@@ -55,8 +55,8 @@ To prevent brute force attacks, if several login attempts fail, the user account
 
 The defaults can be controlled using the `weka security lockout-config show/set/reset` CLI commands. 
 
-## UI
+## GUI
 
-* The Weka UI is \(only\) accessible from the backend servers via port 14000.
-* The UI session will automatically be terminated, and the user will get logged out after 30 minutes of inactivity.
+* The Weka GUI is \(only\) accessible from the backend servers via port 14000.
+* The GUI session will automatically be terminated, and the user will get logged out after 30 minutes of inactivity.
 
