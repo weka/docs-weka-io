@@ -60,10 +60,6 @@ On successful completion, the join status next to the domain will change to "joi
 
 In order to join another Active Directory to the current SMB cluster configuration, click the Leave button. To confirm this action, it is necessary to enter the username and password used to connect to the Active Directory.
 
-{% hint style="info" %}
-**Note:** To configure a new SMB cluster, the current Samba cluster has to be deleted.
-{% endhint %}
-
 ## Deleting an SMB Cluster
 
 To delete a configured SMB cluster, click the Reset button in the Configure SMB Cluster window. The following window will be displayed:

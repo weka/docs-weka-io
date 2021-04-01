@@ -236,10 +236,6 @@ In order to join another Active Directory to the current SMB cluster configurati
 
 On completion of this operation, it is possible to join another Active Directory to the SMB cluster.
 
-{% hint style="info" %}
-**Note:** To configure a new SMB cluster, the current SMB cluster has to be deleted.
-{% endhint %}
-
 ## Deleting an SMB Cluster
 
 **Command:** `weka smb cluster destroy`
@@ -248,8 +244,14 @@ Use this command to destroy an SMB cluster managed by the Weka system.
 
 Deleting an existing SMB cluster managed by the Weka system does not delete the backend Weka filesystems, but removes the SMB share exposures of these filesystems.
 
+## Add/Remove Hosts from an SMB Cluster
+
+**Command:** `weka smb cluster hosts add/remove`
+
+Use these commands to add or remove hosts from the SMB cluster.
+
 {% hint style="info" %}
-**Note:** Editing an existing cluster is not supported. Consequently, to change an SMB cluster configuration, the cluster has to be deleted and recreated.
+**Note:** This operation might take some time to complete. During that time, SMB IOs will be stalled.
 {% endhint %}
 
 ## Configuring Trusted Domains
