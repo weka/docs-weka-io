@@ -80,7 +80,18 @@ Define the parameters for Weka cluster configuration:
           <li><code>No Load Balancer</code> skips load balancer creation, in which case
             the UI can be accessed through port 14000 of any of the backend instances.</li>
         </ul>
+        <p>Weka uses a Classic Load Balancer (CLB), which is not supported in all
+          zones/regions (e.g., not available in local zones). If CLB is not available
+          in your zone/region, select &quot;No Load Balancer&quot;.</p>
       </td>
+    </tr>
+    <tr>
+      <td style="text-align:left"><code>WekaVolumeType</code>
+      </td>
+      <td style="text-align:left">Volume type for the Weka partition. <code>GP3</code> is not yet available
+        in all zones/regions (e.g., not available in local zones). In such a case,
+        you must select the <code>GP2</code> volume type. When available, using <code>GP3</code> is
+        preferred.</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>API Token</code>
