@@ -10,14 +10,18 @@ description: >-
 | :--- | :--- | :--- |
 | AdminDefault Password | The admin password is still set to the factory default. | Change the admin user password to ensure only authorized users can access the cluster. |
 | AgentNotRunning | The Weka local control agent is not running on a host. | Restart the agent with `service weka-agent start.` |
+| ApproachingClientDifferentVersionsLimit | Client different versions in the cluster approaching limit. | Upgrade the clients to the version of the backends servers. |
 | ApproachingClientsUnavailability | Approaching the maximum amount of clients that can connect with the current cluster resources. | Make sure all backhand servers are up or expand the cluster with more backend servers. |
 | AutoRemoveTimeoutTooLow | Stateless Client auto-remove timeout too low. | Remount the host with a higher auto-remove timeout value. |
 | BackendNumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance. | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the backend host. |
+| BackendVersionsMismatch | There are mismatching versions of backend servers in the cluster. | Upgrade all the backend servers to match the cluster's version. |
 | BondInterfaceCompromised | The host is configured to work with a highly available network, but has lost the connectivity redundancy. A single network failure can disconnect the host from the cluster, which will result in the unavailability of data to the host \(in case of a client host\) or data protection reduced redundancy \(in case of a backend host\). | Check the network configuration, cables, NICs to resolve the issue. |
 | BucketHasNoQuorum | Too many compute nodes are down, causing the bucket compute resource to be unavailable. | Check that the compute nodes and their hosts are up and running and fully connected; Contact the Weka Support Team if the issue is not resolved. |
 | BucketUnresponsive | A compute resource has failed, causing system unavailability. | Check that the compute nodes and their hosts are up and running and fully connected; Contact the Weka Support Team if the issue is not resolved. |
 | ChokingDetected | High congestion level detected in the cluster. | For more information, refer to [System Congestion](../system-congestion.md). |
+| ClientDifferentVersionsLimitReached | Client different versions in the cluster reached the limit. Clients should be upgraded before upgrading the backend servers. | Upgrade the clients to the version of the backends servers. |
 | ClientNumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance. | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the client host. |
+| ClientVersionsMismatch | There are clients with a version that is incompatible to work with the cluster. | Upgrade clients to be in the same version as the cluster by locally running `weka local upgrade`. |
 | ClockSkew | The clock of a host is skewed in relation to the cluster leader, with a time difference more than the permitted maximum of 30 seconds. | Make sure NTP is configured correctly on the hosts and that their dates are synchronized. |
 | CloudHealth | A host cannot upload events to the Weka cloud. | Check the host has Internet connectivity and is connected to the Weka cloud as explained in the [Weka Support Cloud section](../../support/the-wekaio-support-cloud.md). |
 | ClusterInitializationError | The cluster has encountered an error while initializing. | Fix the underlying problem causing the error to successfully start IO operations. |
@@ -51,9 +55,12 @@ description: >-
 | PartialConnectivityTrackingDisabled | The cluster's partial connectivity tracking mechanism is disabled, affecting the cluster's self-healing capabilities. | Contact the Weka Support Team. |
 | PartiallyConnectedNode | A node seems to be only partially connected. | Make sure there is no network connectivity issue. Contact the Weka Support Team if the issue is not resolved. |
 | PerformanceDegradedLowRAM | The host is running low on RAM. Additional Metadata entries are swapped to the SSD. This might impact performance. | Make sure all the compute hosts and processes are up, add more hosts to the Weka cluster, or the configured RAM of the cluster backend hosts. |
+| QuotasHardLimitReached | There are directory quotas that have reached their hard limit. | Run `weka fs quota list` to see which directory quotas have reached their hard limit. |
 | ResourcesNotApplied | There are changes to host resources that are not applied in the Weka cluster. | To apply changes run `weka cluster host apply <host_id>` |
+| SystemDefinedTLS | The Weka cluster uses an auto-generated self-signed certificate. | Run `weka security tls set` to replace the auto-generated certificate with your own certificate for cluster TLS use. |
 | TLSCertificateExpired | TLS Certificate has expired. | Replace the current certificate using `weka security tls set` |
 | TLSCertificateExpiresSoon | TLS Certificate is about to expire. | Replace the current certificate using `weka security tls set` |
 | TracesDisabled | Traces are disabled. | To turn them back on contact the Weka Support Team. |
+| TracesFreezePeriodActive | A trace freeze period is active. | Some traces can be protected from rotating for a period of time to debug the system. This is done by the Weka Support Team when needed. If the issue persists after the case has been resolved please contact the Weka Support Team. |
 | UdpModePerformanceWarning | The backend host is configured in UDP mode. | If this is a misconfiguration use `weka cluster host net add`to add network devices to this host. |
 

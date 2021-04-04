@@ -140,7 +140,7 @@ description: >-
 | CONCURRENT\_DEMOTES | How many demotes are executed concurrently | Demotes |
 | DEMOTE\_EXTENT\_OBS\_FETCH\_BACKPRESSURE | Number of extent BACKPRESSURE fetch operations per second | Ops/Sec |
 | DEMOTE\_EXTENT\_OBS\_FETCH\_IMMEDIATE\_RELEASE | Number of extent IMMEDIATE\_RELEASE fetch operations per second | Ops/Sec |
-| DEMOTE\_EXTENT\_OBS\_FETCH\_MANUAL | Number of extent MANUAL fetch operations per second | Ops/Sec |
+| DEMOTE\_EXTENT\_OBS\_FETCH\_MANHOLE | Number of extent MANHOLE fetch operations per second | Ops/Sec |
 | DEMOTE\_EXTENT\_OBS\_FETCH\_MIGRATE | Number of extent MIGRATE fetch operations per second | Ops/Sec |
 | DEMOTE\_EXTENT\_OBS\_FETCH\_POLICY | Number of extent POLICY fetch operations per second | Ops/Sec |
 | DEMOTE\_EXTENT\_OBS\_FETCH\_RECLAMATION\_REUPLOAD | Number of extent RECLAMATION\_REUPLOAD fetch operations per second | Ops/Sec |
@@ -180,7 +180,6 @@ description: >-
 | OBS\_SHARED\_DOWNLOADS |  | Ops/Sec |
 | OBS\_TRUNCATE | Truncates that needed data from the OBS | Ops/Sec |
 | OBS\_UNEXPECTED\_TAG\_ON\_DOWNLOAD | Unexpected tag when downloading an extent | Occurences |
-| OBS\_WAIT\_FOR\_SHARED\_DOWNLOADS\_SLOT\_DURATION |  | Ops |
 | OBS\_WRITE | Writes that needed data from the OBS | Ops/Sec |
 | TIMEOUT\_DOWNLOADS | Number of timeout'ed promotes operations per second | Ops/Sec |
 | TIMEOUT\_OPERATIONS | Total timeouted operations per second | Ops/Sec |
@@ -306,10 +305,12 @@ description: >-
 | SLOW\_PATH\_CSUM | Number of packets that went through checksum calculation on the CPU | Packets/Sec |
 | TIMELY\_RESENDS | Number of packets resent due to timely resend | Packets/Sec |
 | TIME\_TO\_ACK | Histogram of time to ack a data packet |  |
+| TIME\_TO\_FIRST\_SEND | Time from queueing to first send |  |
 | UDP\_SENDMSG\_FAILED\_EAGAIN | Number of packets that failed to be sent on the socket backend with EAGAIN | Packets/Sec |
 | UDP\_SENDMSG\_FAILED\_OTHER | Number of packets that failed to be sent on the socket backend with an unknown error | Packets/Sec |
 | UDP\_SENDMSG\_PARTIAL\_SEND | Number of packets that we failed to send but in the same pump some packets were sent | Packets/Sec |
 | UNACKED\_RESENDS | Number of packets resent after receiving an ack | Packets/Sec |
+| ZERO\_CSUM | Number of checksum zero received | Packets/Sec |
 
 ## Object Storage
 
@@ -337,7 +338,7 @@ description: >-
 | OBJECT\_OPERATIONS | Total operations per second | Ops/Sec |
 | OBJECT\_UPLOADS\_BACKPRESSURE | Number of BACKPRESSURE upload attempts per second | Ops/Sec |
 | OBJECT\_UPLOADS\_IMMEDIATE\_RELEASE | Number of IMMEDIATE\_RELEASE upload attempts per second | Ops/Sec |
-| OBJECT\_UPLOADS\_MANUAL | Number of MANUAL upload attempts per second | Ops/Sec |
+| OBJECT\_UPLOADS\_MANHOLE | Number of MANHOLE upload attempts per second | Ops/Sec |
 | OBJECT\_UPLOADS\_MIGRATE | Number of MIGRATE upload attempts per second | Ops/Sec |
 | OBJECT\_UPLOADS\_POLICY | Number of POLICY upload attempts per second | Ops/Sec |
 | OBJECT\_UPLOADS\_RECLAMATION\_REUPLOAD | Number of RECLAMATION\_REUPLOAD upload attempts per second | Ops/Sec |
@@ -345,7 +346,7 @@ description: >-
 | OBJECT\_UPLOADS | Number of object uploads per second | Ops/Sec |
 | OBJECT\_UPLOAD\_BYTES\_BACKPRESSURE | Number of BACKPRESSURE bytes sent to the object storage | Bytes/Sec |
 | OBJECT\_UPLOAD\_BYTES\_IMMEDIATE\_RELEASE | Number of IMMEDIATE\_RELEASE bytes sent to the object storage | Bytes/Sec |
-| OBJECT\_UPLOAD\_BYTES\_MANUAL | Number of MANUAL bytes sent to the object storage | Bytes/Sec |
+| OBJECT\_UPLOAD\_BYTES\_MANHOLE | Number of MANHOLE bytes sent to the object storage | Bytes/Sec |
 | OBJECT\_UPLOAD\_BYTES\_MIGRATE | Number of MIGRATE bytes sent to the object storage | Bytes/Sec |
 | OBJECT\_UPLOAD\_BYTES\_POLICY | Number of POLICY bytes sent to the object storage | Bytes/Sec |
 | OBJECT\_UPLOAD\_BYTES\_RECLAMATION\_REUPLOAD | Number of RECLAMATION\_REUPLOAD bytes sent to the object storage | Bytes/Sec |
@@ -474,8 +475,10 @@ description: >-
 
 | Type | Description | Units |
 | :--- | :--- | :--- |
-| DIRECT\_READ\_SIZES |  | Blocks/Sec |
-| DIRECT\_WRITE\_SIZES |  | Blocks/Sec |
+| DIRECT\_READ\_SIZES\_RATE |  | Blocks/Sec |
+| DIRECT\_READ\_SIZES |  | Blocks |
+| DIRECT\_WRITE\_SIZES\_RATE |  | Blocks |
+| DIRECT\_WRITE\_SIZES |  | Blocks |
 | DOORBELL\_RING\_COUNT |  | Ops |
 | FAILED\_READS\_RDMA | Number of failed read-RDMA operations per second | Ops/Sec |
 | FAILED\_WRITES\_RDMA | Number of failed write-RDMA operations per second | Ops/Sec |
@@ -517,8 +520,10 @@ description: >-
 | READ\_DURATION |  | Microseconds |
 | READ\_LATENCY\_RDMA | Average latency of READ RDMA operations | Microseconds |
 | READ\_LATENCY | Average latency of READ operations | Microseconds |
-| READ\_RDMA\_SIZES |  | Blocks/Sec |
-| READ\_SIZES |  | Blocks/Sec |
+| READ\_RDMA\_SIZES\_RATE |  | Blocks/Sec |
+| READ\_RDMA\_SIZES |  | Blocks |
+| READ\_SIZES\_RATE |  | Blocks/Sec |
+| READ\_SIZES |  | Blocks |
 | RENAME\_LATENCY | Average latency of RENAME operations | Microseconds |
 | RENAME\_OPS | Number of RENAME operation per second | Ops/Sec |
 | REQUESTS\_COMPLETED |  | Ops |
@@ -547,8 +552,10 @@ description: >-
 | WRITE\_DURATION |  | Microseconds |
 | WRITE\_LATENCY\_RDMA | Average latency of WRITE RDMA operations | Microseconds |
 | WRITE\_LATENCY | Average latency of WRITE operations | Microseconds |
-| WRITE\_RDMA\_SIZES |  | Blocks/Sec |
-| WRITE\_SIZES |  | Blocks/Sec |
+| WRITE\_RDMA\_SIZES\_RATE |  | Blocks/Sec |
+| WRITE\_RDMA\_SIZES |  | Blocks |
+| WRITE\_SIZES\_RATE |  | Blocks/Sec |
+| WRITE\_SIZES |  | Blocks |
 
 ## Operations
 
@@ -672,12 +679,6 @@ description: >-
 
 | Type | Description | Units |
 | :--- | :--- | :--- |
-| AIOVec\_CAPACITY | Number of data structures allocated to the AIOVec pool | Structs |
-| AIOVec\_STRUCT\_SIZE | Number of bytes in each struct of the AIOVec pool | Bytes |
-| AIOVec\_USED | Number of structs in the AIOVec pool which are currently being used | Structs |
-| AioIoRequest\_CAPACITY | Number of data structures allocated to the AioIoRequest pool | Structs |
-| AioIoRequest\_STRUCT\_SIZE | Number of bytes in each struct of the AioIoRequest pool | Bytes |
-| AioIoRequest\_USED | Number of structs in the AioIoRequest pool which are currently being used | Structs |
 | BACKGROUND\_CYCLES | Number of cycles spent in background fibers | Cycles/Sec |
 | BACKGROUND\_FIBERS | Number of background fibers that are ready to run and eager to get CPU cycles | Fibers |
 | BACKGROUND\_TIME | Percentage of the CPU time utilized for background operations | % |
@@ -772,6 +773,8 @@ description: >-
 | SSDS\_IO\_ERRORS | IO errors on the SSD service | Blocks/Sec |
 | SSD\_BLOCKS\_READ | Number of blocks read from the SSD service | Blocks/Sec |
 | SSD\_BLOCKS\_WRITTEN | Number of blocks written to the SSD service | Blocks/Sec |
+| SSD\_CHUNK\_ALLOCS | Rate of chunk allocations | Chunks/Sec |
+| SSD\_CHUNK\_FREES | Rate of chunk frees | Chunks/Sec |
 | SSD\_E2E\_BAD\_CSUM | End-to-End checksum failures | IO/Sec |
 | SSD\_READ\_ERRORS | Errors in reading blocks from the SSD service | Blocks/Sec |
 | SSD\_READ\_LATENCY | Avg. latency of read requests from the SSD service | Microseconds |
@@ -866,9 +869,9 @@ description: >-
 
 | Type | Description | Units |
 | :--- | :--- | :--- |
-| GATHER\_FROM\_NODE\_LATENCY\_NET | Time spent on responding to a stats gathering request\(not including metadata\) | Seconds/Sec |
-| GATHER\_FROM\_NODE\_LATENCY | Time spent responding to a stats gathering request\(not including metadata\) | Seconds/Sec |
-| GATHER\_FROM\_NODE\_SLEEP | Time spent in-between responding to a stats gathering request\(not including metadata\) | Seconds/Sec |
-| TIMES\_QUERIED\_STATS |  | Times |
-| TIMES\_QUERIED | Number of times the node was queried for stats\(not including metadata\) | Times |
+| GATHER\_FROM\_NODE\_LATENCY\_NET | Time spent on responding to a stats gathering request \(not including metadata\) | Seconds/Sec |
+| GATHER\_FROM\_NODE\_LATENCY | Time spent responding to a stats gathering request \(not including metadata\) | Seconds/Sec |
+| GATHER\_FROM\_NODE\_SLEEP | Time spent in-between responding to a stats gathering request \(not including metadata\) | Seconds/Sec |
+| TIMES\_QUERIED\_STATS | Number of times the node queried other nodes for stats | Times |
+| TIMES\_QUERIED | Number of times the node was queried for stats \(not including metadata\) | Times |
 

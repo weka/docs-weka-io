@@ -56,6 +56,7 @@ description: >-
 | PreviousCluster | INFO | This host was part of another cluster before |
 | RejoinFailureReport | MINOR | Node\(s\) failed to rejoin |
 | UnresponsiveBuckets | CRITICAL | Some compute resources are not responding |
+| WrongSchemaVersionForRaftSnapshot | MINOR | Tried loading RAFT snapshot with unsupported schema version |
 
 ## Config
 
@@ -65,8 +66,6 @@ description: >-
 | DirectoryQuotasEnabled | INFO | Directory Quotas were enabled |
 | TLSSet | INFO | TLS was set |
 | TLSUnset | INFO | TLS was unset |
-| WebUIDisabled | INFO | Web UI was disabled |
-| WebUIEnabled | INFO | Web UI was enabled |
 
 ## Custom
 
@@ -99,7 +98,7 @@ description: >-
 | DriveSignatureUnknown | MINOR | Drive has an unknown signature |
 | DriveSmartCriticalWarning | MINOR | Drive SMART reports critical warning, failing it immediately |
 | DriveStateChangesReport | MINOR | Drive state changes |
-| DriveUnderIOMMU | MAJOR | Drive is under IOMMU and cannot be used |
+| DriveUnderIOMMU | MAJOR | Drive is under IOMMU but IOMMU is currently disabled, please contact support |
 | DriveUnresponsive | MAJOR | Drive is unresponsive and failed to return IOs for an extended period of time; consider power cycling the host |
 | DriveWrongFailureDomain | MINOR | Drive is attached to a host from an incorrect failure domain |
 | NvmeBindTimingOut | MAJOR | NVMe device bind is stuck, server needs power cycle to recover |
@@ -122,8 +121,8 @@ description: >-
 | BlockReadFailure | CRITICAL | Failed to read a block |
 | BlockSeekFinished | MAJOR | Block seek finished |
 | BlockSeekStarted | MAJOR | Block seek started for a secondaty metadata block that could not be read |
-| BrokenExtentChainDetected | MAJOR | Metadata corruption \(broken extent chain\) |
-| ChecksumErrorInCommit | MAJOR | Checksum error detected by SSD node in a committed block |
+| BrokenFile | MAJOR | File metadata corruption |
+| ChecksumErrorInCommit | MAJOR | Checksum error detected by SSD node in a committing block |
 | DirectoryQuotaSet | INFO | Directory Quotas was set |
 | DirectoryQuotaUnset | INFO | Directory Quotas was unset |
 | DumpSnapHashCompleted | INFO | Finished a snap hash manifest scan |
@@ -136,6 +135,7 @@ description: >-
 | FilesystemGroupUpdated | INFO | Filesystem group configuration change |
 | FilesystemUpdated | INFO | Filesystem configuration change |
 | ForcedBucketStepdown | MINOR | Bucket forced to step down |
+| FsCapacityLimitReached | WARNING | Filesystem capacity limit has been reached |
 | HangingBackendIosDetected | CRITICAL | Some IOs are hanging |
 | HangingBackendIosNoLongerDetected | INFO | IOs are no longer hanging |
 | HangingBucketStepDown | WARNING | Bucket step-down is hanging |
@@ -145,10 +145,11 @@ description: >-
 | HangingNFSFrontendIosDetected | CRITICAL | Some IOs are hanging |
 | HangingNFSFrontendIosNoLongerDetected | INFO | IOs are no longer hanging |
 | ManualOverride | WARNING | Service has been manually-overridden |
-| ObjectStorageAttachedToFilesystem | INFO | Object Storage attached to filesystem |
 | ObjectStorageAttachmentModeChanged | INFO | Object Storage attachment mode changed |
-| ObjectStorageFinishedDetachingdFromFilesystem | INFO | Object Storage finished detaching from filesystem |
-| ObjectStorageStartedDetachingdFromFilesystem | INFO | Object Storage started detaching from filesystem |
+| ObjectStoreAttachedToFilesystem | INFO | Object Storage attached to filesystem |
+| ObjectStoreFinishedDetachingdFromFilesystem | INFO | Object Storage finished detaching from filesystem |
+| ObjectStoreStartedDetachingdFromFilesystem | INFO | Object Storage started detaching from filesystem |
+| QuotaHardLimitReached | WARNING | Directory hard capacity quota has been reached |
 | RAIDDataBlockReadFailureInSnaphashDump | WARNING | Failed to read data block from RAID when dumping the snapshot manifest |
 | RAIDMDReadFailureInSnaphashDump | WARNING | Failed to read metadata block from RAID when dumping the snapshot manifest |
 | SnapshotContentCopied | INFO | Snapshot content copied |
@@ -158,6 +159,7 @@ description: >-
 | SnapshotFilesystemRestored | INFO | Filesystem restored from snapshot |
 | SnapshotParamsUpdated | INFO | Snapshot updated |
 | SnapshotUploadAborted | INFO | Snapshot upload aborted |
+| SnapshotUploadFinished | INFO | Snapshot upload finished |
 | SnapshotUploadStarted | INFO | Snapshot upload started |
 | UnflushedOpOnDeletingSnapview | MAJOR | Unflushed IO on a deleting snapshot |
 
@@ -249,9 +251,9 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| AssertionFailed | MAJOR | Assertion failed |
 | GCCrashReport | MINOR | Node has crashed in GC on the previous run |
 | NodeAbruptExitReport | MINOR | Node has crashed on the previous run |
-| NodeAssertionFailed | MAJOR | Node assertion failed |
 | NodeExceptionExit | MAJOR | Node exited with an exception |
 | NodeKernelStack | WARNING | Kernel stack of node before reset |
 | NodeStarted | INFO | Node started |
@@ -263,13 +265,15 @@ description: >-
 | Type | Severity | Description |
 | :--- | :--- | :--- |
 | ChecksumErrorInDownloadedObject | MINOR | Checksum error detected by COMPUTE node in a downloaded OBS data block |
+| ChecksumErrorOnObjectUpload | MAJOR | Checksum error detected by COMPUTE node when uploading an OBS data block \(corrupted after verifying data read from the drive\) |
 | DataBlobDownloadFailed | WARNING | Failed downloading data blob header |
 | InvalidDataBlobHeader | MAJOR | Invalid header detected by COMPUTE node in a downloaded OBS data blob |
-| ObjectStorageAdded | INFO | Object storage configuration change |
-| ObjectStorageDeleted | INFO | Object storage configuration change |
-| ObjectStorageIsFull | CRITICAL | Object storage is full |
-| ObjectStorageStatusChanged | INFO | Object Storage status changed |
-| ObjectStorageUpdated | INFO | Object storage configuration change |
+| LegacyV34DataEncountered | WARNING | Legacy V3.4 data encountered in Object Storage. This data will no longer be supported in a future version. Please migrate the filesystem to a fresh Object Storage bucket |
+| ObjectStoreAdded | INFO | Object storage configuration change |
+| ObjectStoreDeleted | INFO | Object storage configuration change |
+| ObjectStoreIsFull | CRITICAL | Object storage is full |
+| ObjectStoreStatusChanged | INFO | Object Storage status changed |
+| ObjectStoreUpdated | INFO | Object storage configuration change |
 | ObsIsMissingObject | MAJOR | Permanently failed to download an object from object storage - The object was not found |
 | PersistentChecksumErrorInDownloadedObject | MAJOR | Checksum error detected by COMPUTE node in a downloaded OBS data block |
 | TieredFilesystemBreakingPolicy | MINOR | Breaking policy; too much disk pressure |
@@ -335,8 +339,11 @@ description: >-
 | SmbClusterConfigured | INFO | SMB cluster configuration change |
 | SmbClusterCreated | INFO | SMB cluster configuration change |
 | SmbClusterDestroyed | INFO | SMB cluster configuration change |
+| SmbConfigGenerationUpdated | INFO | SMB Config configuration change |
 | SmbShareAdded | INFO | Share configuration change |
 | SmbShareConfigured | INFO | Share configuration change |
+| SmbShareHostnameACERemovedRemoved | INFO | SambaHostnameACE configuration change |
+| SmbShareHostnameACEResetDestroyed | INFO | SambaHostnameACE configuration change |
 | SmbShareRemoved | INFO | Share configuration change |
 | SmbTrustedDomainAdded | INFO | TrustedDomain configuration change |
 | SmbTrustedDomainRemoved | INFO | TrustedDomain configuration change |
@@ -371,11 +378,14 @@ description: >-
 | TracesConfigurationDeactivated | INFO | Traces configuration change |
 | TracesConfigurationReset | INFO | Traces configuration change |
 | TracesConfigurationUpdated | INFO | Traces configuration change |
+| TracesFreezePeriodReset | INFO | Traces freeze period has been reset |
+| TracesFreezePeriodSet | INFO | Traces freeze period has been set |
 
 ## Upgrade
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| ClientUpgradeRequested | INFO | Client upgrade requested |
 | ExternalUpgradeCancelled | INFO | External Upgrade was cancelled |
 | ExternalUpgradeFinished | INFO | External Upgrade complete |
 | ExternalUpgradeStarting | INFO | External Upgrade was started |
@@ -393,6 +403,7 @@ description: >-
 | UserDeleted | INFO | User Deleted |
 | UserLoggedIn | INFO | User logged in |
 | UserLoginFailed | INFO | User login failed |
+| UserLoginLocked | MINOR | User login locked |
 | UserPasswordChangedByAnotherUser | INFO | User password changed by an admin |
 | UserPasswordChanged | INFO | User changed password |
 | UserRoleChanged | INFO | User role changed |
