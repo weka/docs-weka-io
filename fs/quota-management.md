@@ -44,7 +44,7 @@ When working with quotas, consider the following:
 * Creating a new filesystem from a snap-2-obj does not preserve the original quotas.
 
 {% hint style="warning" %}
-**Note:** When working with enforcing quotas along with an SMB share in a `writecache` mount mode, getting above the quota might not sync all the cache writes to the backend servers. It is advised to work with  a `readcache` mount mode for these SMB shares.
+**Note:** When working with enforcing quotas along with a `writecache` mount mode,   similarly to NFS and other POSIX solutions, getting above the quota might not sync all the cache writes to the backend servers. Use `sync`, `syncfs`, or `fsync` to commit the cached changes to the system \(or fail due to exceeding the quota\). ``
 {% endhint %}
 
 ## Managing Quotas using the CLI
