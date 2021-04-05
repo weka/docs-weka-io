@@ -42,10 +42,7 @@ When working with quotas, consider the following:
   * Once a directory has a quota, it is not allowed to create a hardlink to files residing under directories with different \(or without\) directory quotas.
 * Restoring a filesystem from a snapshot turns the quotas back to the configuration at the time of the snapshot.
 * Creating a new filesystem from a snap-2-obj does not preserve the original quotas.
-
-{% hint style="warning" %}
-**Note:** When working with enforcing quotas along with a `writecache` mount mode,   similarly to NFS and other POSIX solutions, getting above the quota might not sync all the cache writes to the backend servers. Use `sync`, `syncfs`, or `fsync` to commit the cached changes to the system \(or fail due to exceeding the quota\). ``
-{% endhint %}
+* When working with enforcing quotas along with a `writecache` mount-mode,  similarly to NFS and other POSIX solutions, getting above the quota might not sync all the cache writes to the backend servers. Use `sync`, `syncfs`, or `fsync` to commit the cached changes to the system \(or fail due to exceeding the quota\).
 
 ## Managing Quotas using the CLI
 
