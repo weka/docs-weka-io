@@ -40,7 +40,7 @@ To replace the certificate, use the `weka security tls set` CLI command to set a
 
 ## Password Management
 
-### Password requirements
+### Password Requirements
 
 * at least 8 characters
 * an uppercase letter
