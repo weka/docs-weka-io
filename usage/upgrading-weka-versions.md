@@ -30,9 +30,16 @@ For further information, contact the Weka Support Team.
 
 Download and prepare the new release on one of the backend hosts, using one of the following methods:
 
-1. From the backend host, run `weka version get <new-version>` where `<new-version>` is the name of the new version \(as in get.weka.io, e.g.,`3.11.0`\), followed by `weka version prepare <new-version>`
-2. From the backend host, run the `curl` command as described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new version release page.
-3. Download the new version tar file to the backend host and run `install.sh` \(useful on environments where there is no connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs\).
+* From the backend host, run `weka version get <new-version>` where `<new-version>` is the name of the new version \(e.g.,`3.11.0`\), followed by `weka version prepare <new-version>`. 
+
+  * If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `3.11.0` version from [get.weka.io](https://get.weka.io/ui/releases/), where a token need to be supplied as, use: 
+
+  ```bash
+  weka version get --from 3.11.0 https://[GET.WEKA.IO-TOKEN]@get.weka.io
+  ```
+
+* From the backend host, run the `curl` command as described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new version release page.
+* Download the new version tar file to the backend host and run `install.sh` \(useful on environments where there is no connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs\).
 
 ## Preparing the Hosts for Upgrade \(Optional\)
 
@@ -50,7 +57,7 @@ Once a new software version is installed on one of the backend hosts, the cluste
 
 `weka local run --in <new-version> upgrade --mode one-shot`
 
-where `<new-version>` is the name of the new version \(as in get.weka.io, e.g.,`3.11.0`\).
+where `<new-version>` is the name of the new version \(e.g.,`3.11.0`\).
 
 The limited upgrade window can be controlled by setting the following parameters in the `upgrade` command:
 
