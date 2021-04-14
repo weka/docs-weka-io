@@ -4,7 +4,7 @@ description: >-
   of the Weka system.
 ---
 
-# Prerequisites and Compatability
+# Prerequisites and Compatibility
 
 ## CPU
 

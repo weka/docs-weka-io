@@ -98,7 +98,7 @@
 
 ## Support
 
-* [Prerequisites and Compatability](support/prerequisites-and-compatability.md)
+* [Prerequisites and Compatibility](support/prerequisites-and-compatability.md)
 * [Getting Support for Your Weka System](support/getting-support-for-your-weka-system.md)
 * [The Weka Support Cloud](support/the-wekaio-support-cloud.md)
 * [Diagnostics CLI Command](support/diagnostics-utility.md)
