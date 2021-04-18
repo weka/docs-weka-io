@@ -186,6 +186,7 @@ Certified Object Stores:
 
 * AWS S3
 * HCP for Cloud Scale V2.x
+* HCP Classic V9.2 and up \(with versioned buclets only\)
 * IBM Cloud Object Storage System \(version 3.14.7 and up\)
 * Quantum ActiveScale \(version 5.5.1 and up\)
 * Scality \(version 7.4.4.8 and up\)
