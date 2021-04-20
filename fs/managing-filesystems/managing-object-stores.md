@@ -42,7 +42,7 @@ Click Save Anyway in order to save the configured object store.
 
 Use the following command line to add an object store:
 
-`weka fs tier s3 add <name> [--hostname=<hostname>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>]`
+`weka fs tier s3 add <name> [--hostname=<hostname>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>] [--enable-upload-tags=<enable-upload-tags>]`
 
 **Parameters in Command Line**
 
@@ -59,10 +59,11 @@ Use the following command line to add an object store:
 | `protocol` | String | Protocol type to be used | `HTTP`, `HTTPS` or `HTTPS_UNVERIFIED` | No | `HTTP` |
 | `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
 | `errors-timeout` | Number | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
-| `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No | 0 |
+| `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on the object store |  | No | 0 |
 | `max-concurrent-downloads` | Number | Maximum number of downloads concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
 | `max-concurrent-uploads` | Number | Maximum number of uploads concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
 | `max-concurrent-removals` | Number | Maximum number of removals concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
+| `enable-upload-tags` | String | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not | `true` or `false` | No | `false` |
 
 {% hint style="info" %}
 **Note:** When using the CLI, by default a misconfigured object store will not be created. To create an object store even when it is misconfigured, use the `--skip-verification`option.
@@ -96,7 +97,7 @@ Make the relevant changes and click Update to update the object store.
 
 Use the following command line to edit an object store:
 
-`weka fs tier s3 update <name> [--new-name=<new-name>] [--hostname=<hostname>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>]`
+`weka fs tier s3 update <name> [--new-name=<new-name>] [--hostname=<hostname>] [--port=<port> [--bucket=<bucket>] [--auth-method=<auth-method>] [--region=<region>] [--access-key-id=<access-key-id>] [--secret-key=<secret-key>] [--protocol=<protocol>] [--bandwidth=<bandwidth>] [--errors-timeout=<errors-timeout>] [--prefetch-mib=<prefetch-mib>] [--max-concurrent-downloads=<max-concurrent-downloads>] [--max-concurrent-uploads=<max-concurrent-uploads>] [--max-concurrent-removals=<max-concurrent-removals>] [--enable-upload-tags=<enable-upload-tags>]`
 
 **Parameters in Command Line**
 
@@ -114,10 +115,11 @@ Use the following command line to edit an object store:
 | `protocol` | String | Protocol type to be used | `HTTP`, `HTTPS` or `HTTPS_UNVERIFIED` | No |  |
 | `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
 | `errors-timeout` | Number | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No |  |
-| `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on object store |  | No |  |
+| `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on the object store |  | No |  |
 | `max-concurrent-downloads` | Number | Maximum number of downloads concurrently performed on this object store in a single IO node | 1-64 | No |  |
 | `max-concurrent-uploads` | Number | Maximum number of uploads concurrently performed on this object store in a single IO node | 1-64 | No |  |
 | `max-concurrent-removals` | Number | Maximum number of removals concurrently performed on this object store in a single IO node | 1-64 | No |  |
+| `enable-upload-tags` | String | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not | `true` or `false` | No | \`\` |
 
 ## Deleting an Object Store
 
