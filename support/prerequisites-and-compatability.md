@@ -32,6 +32,10 @@ description: >-
 * All Weka nodes must be synchronized in date/time \(NTP recommended\)
 * A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the Weka knowledgebase in the [Weka support portal](http://support.weka.io) for more information and how-to articles 
 
+{% hint style="info" %}
+**Note:** To set SELinux security context for files, `-o acl` should be used in the mount command.
+{% endhint %}
+
 ### Kernel
 
 * 3.10
