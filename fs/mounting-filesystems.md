@@ -194,7 +194,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       </td>
       <td style="text-align:left">None</td>
       <td style="text-align:left">Update inode access times only on modification or change, or if inode
-        has been accessed and <code>relatime_treshold</code> has passed.</td>
+        has been accessed and <code>relatime_threshold</code> has passed.</td>
       <td
       style="text-align:left">Yes</td>
     </tr>
