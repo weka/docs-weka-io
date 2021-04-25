@@ -51,7 +51,7 @@ description: >-
 * Directory: `/opt/weka`
 * Should be on an SSD or SSD-like performance, e.g., M.2. 
   * Cannot be shared remotely, NFS mounted or on RAM drive
-* If there are two boot drives available, it is recommended to dedicate one for the OS and one for the Weka  `/opt/weka` directory \(there is not need to set software RAID, and some of its implementations are also known to have issues\)
+* If there are two boot drives available, it is recommended to dedicate one for the OS and one for the Weka  `/opt/weka` directory \(there is no need to set software RAID, and some of its implementations are also known to have issues\)
 * At least 26 GB available for the Weka system installation, with an additional 10GB for each core used by Weka
 
 ## Networking
