@@ -18,6 +18,13 @@ A total of up to 1024 filesystems are supported, all of which are equally and pe
 
 A filesystem must have a defined capacity limit. A filesystem that belongs to a tiered [filesystem group](filesystems.md#about-filesystem-groups) must have a total capacity limit and an SSD capacity limit. The total SSD capacity of all filesystems cannot exceed the total SSD capacity as defined in the total SSD net capacity.
 
+### Filesystem Limits
+
+* Up to 6.4 trillion files/directories
+* Up to 6.4 billion files in a single directory
+* Up to 14 EB \(using and object-store\) with up to 512 PB on SSD
+* UP to 4 PB file size
+
 ### Encrypted Filesystems
 
 Both data at rest \(residing on SSD and object store\) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](../fs/managing-filesystems/managing-filesystems.md#adding-a-filesystem).
