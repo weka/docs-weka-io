@@ -35,7 +35,7 @@ Download and prepare the new release on one of the backend hosts, using one of t
   * If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `3.11.0` version from [get.weka.io](https://get.weka.io/ui/releases/), where a token need to be supplied as, use: 
 
   ```bash
-  weka version get --from 3.11.0 https://[GET.WEKA.IO-TOKEN]@get.weka.io
+  weka version get 3.11.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
   ```
 
 * From the backend host, run the `curl` command as described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new version release page.
