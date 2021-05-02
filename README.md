@@ -33,6 +33,6 @@ This is an online documentation portal that undergoes changes all the time. Many
 Good documentation is based on customer input. We value and appreciate your thoughts on our content. Help us to help you by providing any comments you may have concerning our documentation, such as what else would you like to see in the documentation, what has helped you and what is unclear. We will do our utmost to continually improve and meet your demands.
 
 {% hint style="info" %}
-**Note:** If, for any reason, it is not possible to use the online documentation, offline documentation of this portal can be obtained [here](https://drive.google.com/open?id=1HwWq3BtaRLT2j9y-hmVO9xzzikpzFb5X).
+**Note:** If for any reason it is not possible to use the online documentation, offline documentation of this portal can be obtained [here](https://drive.google.com/open?id=1HwWq3BtaRLT2j9y-hmVO9xzzikpzFb5X).
 {% endhint %}
 
