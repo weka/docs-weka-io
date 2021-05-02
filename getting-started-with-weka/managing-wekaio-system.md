@@ -78,7 +78,11 @@ The API is accessible at port 14000, via the `/api/v2` URL, you can explore it v
 
 ### Obtaining an Access Token
 
-You must provide an access token to use the Weka REST API. To obtain one via the API, you can call the `login` API, providing it a `username` and `password`. If you already obtained a refresh token, you can use the `login/refresh` API to refresh the access token.
+You must provide an access token to use the Weka REST API. 
+
+To obtain an access/refresh tokens via the CLI, refer to [Obtaining an Authentication Token](../usage/security/#obtaining-an-authentication-token) section. To obtain access/refresh tokens via the API, you can call the `login` API, providing it a `username` and `password`. 
+
+If you already obtained a refresh token, you can use the `login/refresh` API to refresh the access token.
 
 {% tabs %}
 {% tab title="Login" %}
@@ -138,6 +142,8 @@ In response, you will get an access token \(valid for 5 minutes\), that can be u
 }
 ```
 {% endcode %}
+
+### Calling the REST API
 
 Now, that you have obtained an access token, you can call Weka REST API commands with it. For example, you can query the cluster status:
 
