@@ -28,7 +28,7 @@ This portal contains all the documentation necessary for understanding and worki
 
 ## Help Us to Help You
 
-This is an online documentation portal which undergoes changes all the time. Many of these changes are the result of internal decisions, while others are the result of comments that we receive from users.
+This is an online documentation portal that undergoes changes all the time. Many of these changes are the result of internal decisions, while others are the result of comments that we receive from users.
 
 Good documentation is based on customer input. We value and appreciate your thoughts on our content. Help us to help you by providing any comments you may have concerning our documentation, such as what else would you like to see in the documentation, what has helped you and what is unclear. We will do our utmost to continually improve and meet your demands.
 
