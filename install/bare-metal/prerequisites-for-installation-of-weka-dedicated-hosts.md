@@ -189,6 +189,7 @@ Supported Mellanox OFED versions:
 Certified Object Stores:
 
 * AWS S3
+* Dell EMC ECS v3.5 and up
 * HCP for Cloud Scale V2.x
 * IBM Cloud Object Storage System \(version 3.14.7 and up\)
 * Quantum ActiveScale \(version 5.5.1 and up\)
