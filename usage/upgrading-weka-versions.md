@@ -8,10 +8,10 @@ description: This page describes how to upgrade to the latest Weka software vers
 
 Before upgrading your cluster, ensure the following:
 
-1. All backend hosts are online.
+1. All the backend hosts are online.
 2. Any rebuild has been completed.
-3. There no outstanding alerts that haven't been addressed.
-4. There are at least 4GB free in the `/opt/weka` directory.
+3. There are no outstanding alerts that haven't been addressed.
+4. There is at least 4GB of free space in the `/opt/weka` directory.
 
 ## Supported Upgrade Paths
 
