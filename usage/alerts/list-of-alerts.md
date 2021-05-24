@@ -8,7 +8,7 @@ description: >-
 
 | Name | Description | Actions |
 | :--- | :--- | :--- |
-| AdminDefault Password | The admin password is still set to the factory default. | Change the admin user password to ensure only authorized users can access the cluster. |
+| AdminDefaultPassword | The admin password is still set to the factory default. | Change the admin user password to ensure only authorized users can access the cluster. |
 | AgentNotRunning | The Weka local control agent is not running on a host. | Restart the agent with `service weka-agent start.` |
 | ApproachingClientDifferentVersionsLimit | Client different versions in the cluster approaching limit. | Upgrade the clients to the version of the backends servers. |
 | ApproachingClientsUnavailability | Approaching the maximum amount of clients that can connect with the current cluster resources. | Make sure all backhand servers are up or expand the cluster with more backend servers. |
