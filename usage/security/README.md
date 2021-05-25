@@ -22,6 +22,12 @@ It is first required to log in to obtain an access token. Log in via the CLI \(u
 
 This provides an access token to be used to authenticate the command, as long as a longer-lived refresh-token, to allow re-obtaining additional access-tokens without providing the username/password again.
 
+#### Access-Token for API usage
+
+When working with REST API, it is sometimes desired to use a longer-lived token \(one that doesn't require a refresh every 5 minutes\). It is possible to generate such a token for internal Weka users using the `weka user generate-token [--access-token-timeout timeout]` CLI command \(default to  30 days\).
+
+Access-tokens are revoked when calling the `weka user revoke-tokens` CLI command. 
+
 ## TLS
 
 By default, the Weka system deploys a self-signed certificate to access the GUI, CLI, and API via HTTPS.

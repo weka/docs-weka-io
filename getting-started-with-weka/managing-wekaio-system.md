@@ -80,7 +80,7 @@ The API is accessible at port 14000, via the `/api/v2` URL, you can explore it v
 
 You must provide an access token to use the Weka REST API. 
 
-To obtain an access/refresh tokens via the CLI, refer to [Obtaining an Authentication Token](../usage/security/#obtaining-an-authentication-token) section. To obtain access/refresh tokens via the API, you can call the `login` API, providing it a `username` and `password`. 
+To obtain access/refresh tokens via the CLI, refer to [Obtaining an Authentication Token](../usage/security/#obtaining-an-authentication-token) section \(there you can also generate an access token with a longer expiry time\). To obtain access/refresh tokens via the API, you can call the `login` API, providing it a `username` and `password`. 
 
 If you already obtained a refresh token, you can use the `login/refresh` API to refresh the access token.
 
