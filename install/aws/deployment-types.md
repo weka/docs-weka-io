@@ -8,6 +8,7 @@ description: >-
 
 ## Prerequisites for Deployment
 
+* Check that your AWS account limits allow for the deployment of your selected configuration \(it is possible to check your limits under the Limits tab in the EC2 console\).
 * Deploying a Weka cluster in AWS requires at least 6 EC2 instances with SSD/NVMe drives \(a.k.a instance store\), and potentially additional instances that may connect as clients.
 * Weka must have access to instance metadata 
   * Only IMDSv1 is supported if using the Instance Metadata service.
@@ -17,6 +18,7 @@ description: >-
 {% endhint %}
 
 * When deploying in AWS not using the CloudFormation template, or when additional capabilities are added after deployment \(e.g., tiering\), it is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](cloudformation.md#iam-role-created-in-the-template).
+* Ensure you have enough available IP addresses in the selected subnet, as each core allocated to Weka required an IP address.
 
 Depending on the instance types being used and how they’re configured, there are two deployment types:
 

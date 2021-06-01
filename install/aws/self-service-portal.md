@@ -37,10 +37,10 @@ Once the configuration to be deployed has been found, click the Deploy to AWS bu
 
 ![Additional Deployment Options Dialog Box](../../.gitbook/assets/start.weka.io-deploy.png)
 
-Once everything is ready to deploy the cluster, click the Deploy to AWS button. This will display the AWS CloudFormation screen with a template containing the configured cluster. _\*\*_
+Once everything is ready to deploy the cluster, click the Deploy to AWS button. This will display the AWS CloudFormation screen with a template containing the configured cluster.
 
 {% hint style="info" %}
-**Note: Before deploying the configuration,** check that your AWS account limits allow for the deployment of your selected configuration \(it is possible to check your limits under the Limits tab in the EC2 console\).
+**Note: Before deploying the configuration,** please refer to the [Prerequisites for Deployment](deployment-types.md#prerequisites-for-deployment) section.
 {% endhint %}
 
 ## CloudFormation Screen
@@ -118,14 +118,14 @@ Define the following optional parameters if tiering to S3 is desired:
 | `Tiering SSD Percent` | Sets how much of the filesystem capacity \(in percent\) should reside on SSD. This parameter is applicable only if `New S3 Bucket` or `Existing S3 Bucket` parameters have been defined. |
 
 {% hint style="info" %}
-**Important Note Concerning Internet Connectivity:** Weka deployment requires _\*\*_internet connectivity. Ensure that there is either a NAT or public subnet, and configure the stack parameters accordingly.
+**Important Note Concerning Internet Connectivity:** Weka deployment requires internet connectivity. Ensure that there is either a NAT or public subnet, and configure the stack parameters accordingly.
 
-If using a NAT, make sure not to set the load balancer type as`Internet Facing`.
+When using a NAT, make sure not to set the load balancer type to`Internet Facing`.
 
 For public subnets, make sure to select a subnet that has the Enable Auto-Assign Public IPv4 Address setting turned on, or select a subnet that has Internet connectivity.
 {% endhint %}
 
-Once all required parameters have been filled-in, make sure to check the "I acknowledge that AWS CloudFormation might create IAM resources” checkbox at the bottom and click the Create Stack button:
+Once all required parameters have been filled, make sure to check the "I acknowledge that AWS CloudFormation might create IAM resources” checkbox at the bottom and click the Create Stack button:
 
 ![AWS Check Box and Creation Dialog Box](../../.gitbook/assets/3.6-cf-iam-ack.png)
 
@@ -137,11 +137,11 @@ The cluster deployment process takes about 10 minutes. During this time, the fol
 2. The Weka system is installed on each of the instances provisioned for the cluster.
 3. A cluster is created using all backend instances.
 4. All client instances are created.
-5. A filesystem is created using all the available capacity and is mounted on all client instances.This shared filesystem is mounted on `/mnt/weka` in each of the cluster instances.
+5. A filesystem is created using all the available capacity and is mounted on all client instances. This shared filesystem is mounted on `/mnt/weka` in each of the cluster instances.
 
-Once the deployment is complete, the stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link \(or by [http://&lt;backend-host&gt;:14000](http://<backend-host>:14000), if `No Load Balancer` has been selected\).
+Once the deployment is complete, the CloudFormation stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link \(or by [http://&lt;backend-host&gt;:14000](http://<backend-host>:14000), if `No Load Balancer` has been selected\).
 
-Visit [Managing the Weka System ](../../getting-started-with-weka/managing-wekaio-system.md)for getting started with Weka CLI and GUI, and [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting and writing to a WekaFS filesystem.
+Visit [Managing the Weka System ](../../getting-started-with-weka/managing-wekaio-system.md)for getting started with Weka CLI and GUI, and [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting, and writing to a WekaFS filesystem.
 
 {% hint style="info" %}
 **Note:** If the deployment is unsuccessful, see [Troubleshooting](troubleshooting.md) for how to resolve common deployment issues.
