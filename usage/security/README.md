@@ -57,7 +57,7 @@ The [First User ](user-management.md#first-user-cluster-admin)created by default
 
 ### Account Lockout
 
-To prevent brute force attacks, if several login attempts fail, the user account will be locked out for several minutes.
+To prevent brute force attacks, if several login attempts fail \(5 by default\), the user account will be locked out for several minutes \(2 by default\).
 
 The defaults can be controlled using the `weka security lockout-config show/set/reset` CLI commands. 
 
