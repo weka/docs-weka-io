@@ -66,3 +66,9 @@ The defaults can be controlled using the `weka security lockout-config show/set/
 * The Weka GUI is \(only\) accessible from the backend servers via port 14000.
 * The GUI session will automatically be terminated, and the user will get logged out after 30 minutes of inactivity.
 
+### Security Login Statement
+
+It is possible to set a security/legal login statement that will add a banner with that statement on the GUI login page.
+
+To set the statement, use the `weka security login-banner set|show|reset` CLI command or the GUI `Login Banner` menu. 
+
