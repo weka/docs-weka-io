@@ -274,7 +274,7 @@ For more information, refer to [Vault transit secret-engine documentation](https
 
 ### Creating a Policy for Master Key Permissions
 
-* Create a `wekaio_policy.hcl` file with the following content:
+* Create a `weka_policy.hcl` file with the following content:
 
 ```text
 path "transit/+/weka-key" {
@@ -327,7 +327,7 @@ $ vault write auth/token/roles/weka allowed_policies="weka" period="768h"
 * Generate a token for the logged-in identity using the following command:
 
 ```text
-$ vault token create -role=wekaio
+$ vault token create -role=weka
 
 Key                  Value
 ---                  -----
