@@ -274,7 +274,7 @@ For more information, refer to [Vault transit secret-engine documentation](https
 
 ### Creating a Policy for Master Key Permissions
 
-* Create a `wekaio_policy.hcl` file with the following content:
+* Create a `weka_policy.hcl` file with the following content:
 
 ```text
 path "transit/+/weka-key" {
