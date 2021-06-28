@@ -119,7 +119,7 @@ The S3 protocol implementation supports the following policy actions:
 
 ## Lifecycle Configuration
 
-Weka supports the [AWS S3 Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) elements and policy definition, with the limitation of only supporting the lifecycle `Expiration` action.
+Weka supports the [AWS S3 Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) elements and definition, with the limitation of only supporting the lifecycle `Expiration` action.
 
 ## Quotas
 
