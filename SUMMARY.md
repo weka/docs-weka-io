@@ -65,10 +65,18 @@
 
 ## Additional Protocols
 
-* [NFS Support](additional-protocols/nfs-support.md)
-* [SMB Support](additional-protocols/smb-support/README.md)
+* [NFS](additional-protocols/nfs-support.md)
+* [SMB](additional-protocols/smb-support/README.md)
   * [SMB Management Using CLIs](additional-protocols/smb-support/smb-management-using-the-cli.md)
   * [SMB Management Using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
+* [S3](additional-protocols/s3/README.md)
+  * [S3 Cluster Management](additional-protocols/s3/s3-cluster-management.md)
+  * [S3 Buckets Management](additional-protocols/s3/s3-buckets-management.md)
+  * [S3 Users and Authentication](additional-protocols/s3/s3-users-and-authentication.md)
+  * [S3 Information Lifecycle Management](additional-protocols/s3/s3-information-lifecycle-management.md)
+  * [Audit S3 APIs](additional-protocols/s3/audit-s3-apis.md)
+  * [S3 Limitations](additional-protocols/s3/s3-limitations.md)
+  * [S3 Examples using boto3](additional-protocols/s3/s3-examples-using-boto3.md)
 
 ## Operation Guide <a id="usage"></a>
 

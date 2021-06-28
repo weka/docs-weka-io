@@ -1,10 +1,10 @@
 ---
 description: >-
   This page describes how the Weka system enables file access through the NFS
-  protocol, instead of the Weka client. The Weka system supports NFS v3.
+  protocol, instead of the Weka client. The Weka system supports NFSv3.
 ---
 
-# NFS Support
+# NFS
 
 ## Overview
 
