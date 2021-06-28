@@ -290,7 +290,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 
 #### Remount
 
-The above options can be remounted \(using `mount -o remount`\). When am mount option is not set in the remount operation, it will return to its default value.
+The above options can be remounted \(using `mount -o remount`\). When a mount option is not set in the remount operation, it will return to its default value.
 
 {% hint style="info" %}
 **Note:** the `inode_bits` and `acl` options cannot be changed by a `remount`
