@@ -83,6 +83,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <th style="text-align:left">Value</th>
       <th style="text-align:left">Description</th>
       <th style="text-align:left">Default</th>
+      <th style="text-align:left">Remount Supported</th>
     </tr>
   </thead>
   <tbody>
@@ -92,12 +93,14 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">None</td>
       <td style="text-align:left">Set mode to read cache</td>
       <td style="text-align:left">No</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>writecache</code>
       </td>
       <td style="text-align:left">None</td>
       <td style="text-align:left">Set mode to write cache</td>
+      <td style="text-align:left">Yes</td>
       <td style="text-align:left">Yes</td>
     </tr>
     <tr>
@@ -108,6 +111,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
         from the system, allowing the host to take into account metadata changes
         performed by other hosts.</td>
       <td style="text-align:left">1000</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>dentry_max_age_negative</code>
@@ -118,6 +122,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
         This entry is refreshed after the defined time, allowing the host to use
         files or directories created by other hosts.</td>
       <td style="text-align:left">0</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>ro</code>
@@ -125,12 +130,14 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">None</td>
       <td style="text-align:left">Mount filesystem as read-only</td>
       <td style="text-align:left">No</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>rw</code>
       </td>
       <td style="text-align:left">None</td>
       <td style="text-align:left">Mount filesystem as read-write</td>
+      <td style="text-align:left">Yes</td>
       <td style="text-align:left">Yes</td>
     </tr>
     <tr>
@@ -140,6 +147,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">Size of the inode in bits, which may be required for 32-bit applications.</td>
       <td
       style="text-align:left">Auto</td>
+        <td style="text-align:left">No</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>verbose</code>
@@ -147,6 +155,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">None</td>
       <td style="text-align:left">Write debug logs to the console</td>
       <td style="text-align:left">No</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>quiet</code>
@@ -154,6 +163,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">None</td>
       <td style="text-align:left">Don&apos;t show any logs to console</td>
       <td style="text-align:left">No</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>acl</code>
@@ -166,6 +176,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
           are granted.)</p>
       </td>
       <td style="text-align:left">No</td>
+      <td style="text-align:left">No</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>obs_direct</code>
@@ -174,6 +185,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">See <a href="tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a> section</td>
       <td
       style="text-align:left">No</td>
+        <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>noatime</code>
@@ -181,6 +193,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">None</td>
       <td style="text-align:left">Do not update inode access times</td>
       <td style="text-align:left">No</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>strictatime</code>
@@ -188,6 +201,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">None</td>
       <td style="text-align:left">Always update inode access times</td>
       <td style="text-align:left">No</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>relatime</code>
@@ -197,6 +211,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
         has been accessed and <code>relatime_threshold</code> has passed.</td>
       <td
       style="text-align:left">Yes</td>
+        <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>relatime_threshold</code>
@@ -209,6 +224,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
         <p>This option is relevant only if <code>relatime</code> is on.</p>
       </td>
       <td style="text-align:left">0 (infinite)</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>nosuid</code>
@@ -217,6 +233,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">Do not take <code>suid</code>/<code>sgid</code> bits into effect.</td>
       <td
       style="text-align:left">No</td>
+        <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>nodev</code>
@@ -224,6 +241,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">None</td>
       <td style="text-align:left">Do not interpret character or block special devices.</td>
       <td style="text-align:left">No</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>noexec</code>
@@ -231,6 +249,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
       <td style="text-align:left">None</td>
       <td style="text-align:left">Do not allow direct execution of any binaries.</td>
       <td style="text-align:left">No</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>file_create_mask</code>
@@ -244,6 +263,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
           then the <code>force_file_mode</code>.</p>
       </td>
       <td style="text-align:left">0777</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>directory_create_mask</code>
@@ -257,6 +277,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
           then the <code>force_directory_mode</code>.</p>
       </td>
       <td style="text-align:left">0777</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>force_file_mode</code>
@@ -270,6 +291,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
           then the <code>force_file_mode</code>.</p>
       </td>
       <td style="text-align:left">0</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>force_directory_mode</code>
@@ -284,17 +306,14 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
           then the <code>force_directory_mode</code>.</p>
       </td>
       <td style="text-align:left">0</td>
+      <td style="text-align:left">Yes</td>
     </tr>
   </tbody>
 </table>
 
-#### Remount
+### Remount of General Options
 
-The above options can be remounted \(using `mount -o remount`\). When a mount option is not set in the remount operation, it will return to its default value.
-
-{% hint style="info" %}
-**Note:** the `inode_bits` and `acl` options cannot be changed by a `remount`
-{% endhint %}
+Mount options marked as `Remount Supported` in the above table can be remounted \(using `mount -o remount`\). When a mount option has been explicitly changed previously, it should be set again in the remount operation to make sure it retains its value. For example, if you mounted with `ro`, a remount without it will default to `rw`, while if you mounted with `rw`, it  is not required to be re-specified since this is the default\). 
 
 ### **Additional Mount Options Available using the Stateless Clients Feature**
 
@@ -305,6 +324,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
       <th style="text-align:left">Value</th>
       <th style="text-align:left">Description</th>
       <th style="text-align:left">Default</th>
+      <th style="text-align:left">Remount Supported</th>
     </tr>
   </thead>
   <tbody>
@@ -314,6 +334,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
       <td style="text-align:left">Number</td>
       <td style="text-align:left">Amount of memory to be used by the client (for huge pages)</td>
       <td style="text-align:left">1400 MiB</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>num_cores=&lt;frontend-cores&gt;</code>
@@ -327,6 +348,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
         <p>If 0 is specified then you must use <code>net=udp</code>.</p>
       </td>
       <td style="text-align:left">1</td>
+      <td style="text-align:left">No</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>core=&lt;core&gt;</code>
@@ -335,6 +357,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
       <td style="text-align:left">Specify explicit cores to be used by the WekaFS client. Multiple cores
         can be specified.</td>
       <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>net=&lt;netdev&gt;[/&lt;ip&gt;/&lt;bits&gt;[/&lt;gateway&gt;]]</code>
@@ -345,6 +368,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
         <p>For more info refer to <a href="mounting-filesystems.md#advanced-network-configuration-via-mount-options">Advanced Network Configuration via Mount Options</a> section.</p>
       </td>
       <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>bandwidth_mbps=&lt;bandwidth_mbps&gt;</code>
@@ -358,6 +382,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
           definition file.</p>
       </td>
       <td style="text-align:left">Auto-select</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>remove_after_secs=&lt;secs&gt;</code>
@@ -367,6 +392,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
         be removed from the cluster.
         <br />Minimum value: 60 seconds.</td>
       <td style="text-align:left">86,400 seconds (24 hours)</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>traces_capacity_mb=&lt;size-in-mb&gt;</code>
@@ -377,6 +403,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
         <p>Minimum value: 512 MB.</p>
       </td>
       <td style="text-align:left"></td>
+      <td style="text-align:left">No</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>reserve_1g_hugepages</code>
@@ -384,6 +411,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
       <td style="text-align:left">None</td>
       <td style="text-align:left">Controls the page allocation algorithm if to reserve only 2MB huge pages
         or also 1GB ones</td>
+      <td style="text-align:left">Yes</td>
       <td style="text-align:left">Yes</td>
     </tr>
     <tr>
@@ -393,6 +421,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
       <td style="text-align:left">Controls the readahead per mount (higher readahead better for sequential
         reads of large files)</td>
       <td style="text-align:left">32768</td>
+      <td style="text-align:left">Yes</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>auth_token</code>
@@ -401,6 +430,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
       <td style="text-align:left">Path to the mount authentication token (per mount)</td>
       <td style="text-align:left"><code>~/.weka/auth-token.json</code>
       </td>
+      <td style="text-align:left">No</td>
     </tr>
     <tr>
       <td style="text-align:left"><code>dedicated_mode</code>
@@ -414,6 +444,7 @@ The above options can be remounted \(using `mount -o remount`\). When a mount op
         not set).</td>
       <td style="text-align:left"><code>full</code>
       </td>
+      <td style="text-align:left">No</td>
     </tr>
   </tbody>
 </table>
@@ -459,6 +490,10 @@ After the execution of an`umount` command which unmounts the last Weka filesyste
 {% hint style="info" %}
 **Note:** Memory allocation for a client is predefined. Contact the Weka Support Team when it is necessary to change the amount of memory allocated to a client.
 {% endhint %}
+
+### Remount of Stateless Clients Options
+
+Mount options marked as `Remount Supported` in the above table can be remounted \(using `mount -o remount`\). When a mount option is not set in the remount operation, it will retain its current value. To set a mount option back to its default value, use the `default` modifier \(e.g., `memory_mb=default)`.
 
 ## Advanced Network Configuration via Mount Options
 
