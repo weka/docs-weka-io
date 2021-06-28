@@ -14,10 +14,6 @@ There are several levels on the Weka system where capacity usage can be restrict
 2. On a filesystem level - setting a different filesystem per department/project.
 3. On a directory level - setting a different quota per project directory \(useful when users are part of several projects\) or per user home directory.
 
-{% hint style="info" %}
-**Note:** To enable setting directory quotas, please contact the Weka Support Team. 
-{% endhint %}
-
 ## Directory Quotas
 
 The organization admin can set a quota on a directory. Setting a quota will start the process of counting the current directory usage. Until this process is done, the quota will not be taken into account \(for empty directories, this process is instantly done\).
