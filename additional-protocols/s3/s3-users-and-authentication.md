@@ -12,7 +12,9 @@ description: >-
 
 To access the Weka cluster through the S3 protocol, a user with an S3 user role must be created \(see [Managing Users](../../usage/security/user-management.md#managing-users) for details on creating users in Weka\).  
 
-The S3 user name and password are serving as the S3 access key and secret key, respectively. 
+{% hint style="info" %}
+**Note:** The S3 user name and password will serve as the S3 access key and secret key, respectively. 
+{% endhint %}
 
 ### IAM Policy
 
@@ -28,9 +30,11 @@ A set of pre-defined policies can be attached to an S3 user, or new custom polic
 
 Once an S3 user is created and an IAM policy is attached, it is possible to gain temporary credentials to access the S3 API. This is done by calling the Assume Role command.
 
-The result of calling the API is an access key, secret key, and session token tuple that can be used to access S3 APIs. The permissions for the temporary credentials will be as the permissions induced by the user's IAM policy. Furthermore, it is possible to supply a different \(with reduced capabilities only\) IAM policy for the temporary credentials request.
+The result of calling the API is an access key, secret key, and session token tuple that can be used to access S3 APIs. The permissions for the temporary credentials will be the permissions induced by the user's IAM policy. Furthermore, it is possible to supply a different \(with reduced capabilities only\) IAM policy for the temporary credentials request.
 
-Note, some S3 clients and SDKs \(e.g., [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)\) support using the AssumeRole API automatically when provided with an access key and secret key pair. They automatically generate and use the temporary credentials tuple when those expire. 
+{% hint style="info" %}
+**Note:** some S3 clients and SDKs \(e.g., [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)\) support using the AssumeRole API automatically when provided with an access key and secret key pair. They will automatically generate and use new temporary credentials tuple when the previous one expires.
+{% endhint %}
 
 ## Manage Users and Authentication
 
@@ -276,7 +280,7 @@ Use the following command line to generate a temporary security token:
   </tbody>
 </table>
 
-An example respone:
+An example response:
 
 ```text
 Access-Key: JR9O0U6V42KLPFQDO2Z3

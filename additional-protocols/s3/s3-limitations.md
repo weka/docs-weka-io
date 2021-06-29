@@ -52,8 +52,7 @@ The following standard S3 APIs are supported:
     </tr>
     <tr>
       <td style="text-align:left">Part size</td>
-      <td style="text-align:left">5 MiB to 5 GiB. There is no size limit on the last part of your multipart
-        upload.</td>
+      <td style="text-align:left">5 MiB to 5 GiB. The last part can be &lt; 5 MiB</td>
     </tr>
     <tr>
       <td style="text-align:left">Maximum number of parts returned for a list parts request</td>
@@ -85,7 +84,11 @@ The following standard S3 APIs are supported:
 
 * Object key names must be up to 1024 characters long.
 * A `/` prefix of an object is interpreted as a directory, and such directory segments are limited to 255 characters.
-* Refer to [AWS S3 object name limitations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html). Note, it is advisable to avoid special characters that might be unsupported using protocols other than S3. 
+* Refer to [AWS S3 object name limitations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html). Match them to limitations in other protocols.
+
+{% hint style="info" %}
+**Note:** It is advisable to avoid special characters that might be unsupported using protocols other than S3. 
+{% endhint %}
 
 ## Policy Limitations
 
@@ -94,7 +97,7 @@ The following standard S3 APIs are supported:
 The S3 protocol implementation supports the following policy actions:
 
 * `s3:*`
-  * Note, this wildcard is supported for IAM policies but not for bucket policies
+  * Note: this wildcard is supported for IAM policies but not for bucket policies
 * `s3:AbortMultipartUpload`
 * `s3:CreateBucket`
 * `s3:DeleteBucket`
@@ -119,7 +122,7 @@ The S3 protocol implementation supports the following policy actions:
 
 ## Lifecycle Configuration
 
-Weka supports the [AWS S3 Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) elements and definition, with the limitation of only supporting the lifecycle `Expiration` action.
+Weka supports the [AWS S3 Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) elements and definitions, with the limitation of only supporting the lifecycle `Expiration` action.
 
 ## Quotas
 

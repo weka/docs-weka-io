@@ -6,7 +6,7 @@ description: This page describes how to manage S3 buckets.
 
 ## Overview
 
-Buckets can be managed either by standard [S3 API](./#supported-s3-apis) calls or by using the Weka API/CLI.
+Buckets can be managed by either standard [S3 API](./#supported-s3-apis) calls or by using the Weka API/CLI.
 
 Buckets permissions are determined by the user's IAM policy for authorized access or by setting bucket policies for anonymous access. 
 
@@ -96,7 +96,7 @@ Use this command to delete an existing bucket.
 
 ## Managing Bucket Policies
 
-It is possible to set bucket policies for anonymous access. You can choose one of the pre-defined policies or add your customized policies.
+It is possible to set bucket policies for anonymous access. You can choose one of the pre-defined policies or add your own customized policies.
 
 ### Setting a Pre-Defined Bucket Policy
 

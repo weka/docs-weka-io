@@ -6,13 +6,13 @@ description: This page describes the Weka implementation of the S3 protocol.
 
 ## Overview
 
-S3 protocol is widely used and spans many cloud-native or cloud-ready applications. 
+The S3 protocol is widely used and spans many cloud-native or cloud-ready applications. 
 
 With Weka, you can:
 
-* Ingest data with S3 and digest it with POSIX, then you can access the results with either protocol.
+* Ingest data with S3 and then you can access the data with either S3 or other protocols.
 * Expose existing data to S3, and migrate your application within the same data platform.
-* Burst to the cloud, use new applications without the need to migrate your data.
+* Burst to the cloud and use new applications without the need to migrate your data.
 
 In general, you can both gradually move applications to S3 and access the same data via multiple protocols \(POSIX, S3, SMB, NFS, GPUDirect Storage\). All this while enjoying Weka's scale, performance, and resiliency. 
 
@@ -20,7 +20,7 @@ In general, you can both gradually move applications to S3 and access the same d
 
 The Weka S3 service is a scalable, resilient service that provides multi-protocol access to data.
 
-Scalability is implemented by [defining many hosts that serve the S3 protocol](s3-cluster-management.md#creating-an-s3-cluster), thereby enabling the scaling of performance by adding more hosts to the S3 cluster.
+Scalability is implemented by [defining many hosts that serve the S3 protocol](s3-cluster-management.md#creating-an-s3-cluster), thereby enabling higher performance by adding more hosts to the S3 cluster.
 
 By integrating a [round-robin DNS or a load balancer](s3-cluster-management.md#round-robin-dns-load-balancer), different S3 clients will access different hosts, allowing the Weka system to scale and service thousands of clients.
 
@@ -51,7 +51,7 @@ Anonymous access to buckets/objects can be obtained by either:
 
 #### Encryption at Rest
 
-Data written via the S3 protocol can be encrypted at-rest \(by setting an [encrypted filesystem](../../overview/filesystems.md#encrypted-filesystems)\).
+Data written via the S3 protocol can be encrypted at-rest by setting an [encrypted filesystem](../../overview/filesystems.md#encrypted-filesystems).
 
 #### TLS
 
@@ -59,7 +59,7 @@ Clients' access to the service via HTTPS is provided using the same certificates
 
 ### Audit
 
-The S3 API calls can be audited using an HTTP webhook service \(such as Splunk\).
+The S3 API calls can be audited using an HTTP webhook service and connecting to an application such as Splunk.
 
 To set an audit target, use the `weka s3 cluster audit-webhook enable` CLI command.
 
