@@ -26,11 +26,11 @@ The easiest way to set up a Grafana environment is with Docker. For that, make s
 
 The package resides on GitHub. There are two ways you can pull it from GitHub - either download a Release or clone the repository.
 
-To download a Release, go to [https://github.com/weka/weka-mon/releases](https://github.com/weka/weka-mon/releases) in your web browser, and select the latest release. Click on the "Source Code" link to download. Copy this to your intended management server or VM and unpack it.
+**To download a Release**, go to [https://github.com/weka/weka-mon/releases](https://github.com/weka/weka-mon/releases) in your web browser, and select the latest release. Click on the "Source Code" link to download. Copy this to your intended management server or VM and unpack it.
 
 ![Weka-mon GitHub Releases Page](../.gitbook/assets/image%20%2822%29.png)
 
-Alternatively, to clone the repository, run the following commands to pull the weka-mon package from GitHub:
+Alternatively, to clone the repository, run the following commands to pull the weka-mon package from GitHub: \(not recommended\)
 
 ```text
 # Clone the package from github:
@@ -49,27 +49,35 @@ The `install.sh` script creates some directories and sets the permissions on the
 
 ```
 
-### Step 3: Set your CLUSTER\_SPEC
-
-With docker-compose, we give the `ClusterSpec` \(see the [ClusterSpecs](clusterspecs.md) section for details\) by setting the environment variable, `CLUSTER_SPEC`.   The `export` tool can monitor multiple clusters, so it can take multiple ClusterSpecs via the `CLUSTER_SPEC` variable.
-
-The general format of the `CLUSTER_SPEC` variable is `<ClusterSpec> <ClusterSpec> [...]`, meaning a space-separated list of ClusterSpecs.
-
-Here is an example:
-
-```
-# example CLUSTER_SPEC
-export CLUSTER_SPEC="weka1,weka2,weka3:~/.weka/prod tweka1,tweka2:~/.weka/test"
-
-```
-
 {% hint style="info" %}
 **Note:** Please see [https://github.com/weka/weka-mon](https://github.com/weka/weka-mon) for more detailed documentation.
 {% endhint %}
 
-### Step 4: Edit the export.yml file \(optional\) 
+### Step 3: Edit the export.yml file
 
-The `export.yml` configuration file is pre-set to provide the information on the provided Grafana panels, so there is no need to edit it unless you're adding panels to the Grafana Dashboards.  The `export.yml` file can be found in the base of the `weka-mon` directory hierarchy.
+The `export.yml` configuration file is used to configure weka-mon and the exporter.  The `export.yml` file can be found in the base of the `weka-mon` directory hierarchy.
+
+Edit the list of hosts under the `cluster:` heading to reflect your hostnames or ip addresses; you need to specify one or more hostnames/ips - there's not need to list all the cluster hostnames; two or three will do.
+
+Also under `cluster:` is `auth_token_file:` which is used to provide the security token required to authenticate with the cluster.   This file can be generated with the `weka user login` command on any cluster host \(including clients\) and copied to the server/VM running weka-mon.   It is highly suggested that you create a ReadOnly User just for this package and use it for cluster communications.  See the Security section in the Operations Guide for details on creating users and using tokens.
+
+```text
+# cluster section - info about the weka cluster we want to export data from:
+cluster:
+  # a list of hostnames or ip addresses.  Minimum of 1 requred.  You do not need to list all hosts in the 
+  #     cluster, but more than one is suggested
+
+  auth_token_file: auth-token.json
+  hosts:
+    - vweka01      # EDIT THESE LINES 
+    - vweka02
+    - vweka03
+
+  force_https: True   # only 3.10+ clusters support https
+  verify_cert: False  # default cert cannot be verified
+```
+
+All other settings are pre-defined defaults and should work with weka-mon without modification.  If you want to add custom panels to Grafana containing other metrics from the cluster, you can uncomment any metrics you would like to gather.
 
 To edit the file, do not add or delete any lines; all the configurable items are already in there but commented out with a \#.  To enable collecting data for these additional metrics, just uncomment them.
 
@@ -84,7 +92,7 @@ For example, below is a snippet of the `export.yml`. To enable collecting the FI
 
 ```
 
-### Step 5: Start the containers
+### Step 4: Start the containers
 
 To start the containers with docker-compose, run the following command:
 
