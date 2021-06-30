@@ -122,14 +122,15 @@ To view the object store locator of the uploaded snapshot, click the snapshot in
 
 Use the following command line to upload an existing snapshot:
 
-`weka fs snapshot upload <file-system> <snapshot>`
+`weka fs snapshot upload <file-system> <snapshot> [--site site]`
 
 **Parameters in Command Line**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `<file-system>` | String | Name of the filesystem |  | Yes |  |
-| `<snapshot>` | String | Name of the snapshot to upload | Must be a snapshot of the `<file-system>` filesystem | Yes |  |
+| `file-system` | String | Name of the filesystem |  | Yes |  |
+| `snapshot` | String | Name of the snapshot to upload | Must be a snapshot of the `<file-system>` filesystem | Yes |  |
+| `site` | String | Location for the snapshot  upload | `local` or `remote` | Only if both `local` and `remote` buckets are attached | Auto selected if only one bucket for upload is attached |
 
 {% hint style="info" %}
 **Note:** A writeable snapshot is a clone of the live filesystem or other snapshots at a specific time, and its data keeps changing. Therefore, its data is tiered according to the tiering policies, but it cannot be uploaded to the object-store as read-only snapshots.
@@ -151,7 +152,7 @@ Define all the fields and enter the location of the snapshot to be used in the O
 
 Use the following command line to create a filesystem from an existing snapshot:
 
-`weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs> <locator> [--additional-obs additional-obs]`
+`weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs-bucket> <locator> [--additional-obs additional-obs]`
 
 **Parameters in Command Line**
 
@@ -161,11 +162,15 @@ Use the following command line to create a filesystem from an existing snapshot:
 | `group-name` | String | Name of the filesystem group in which the new filesystem will be placed |  | Yes |  |
 | `total-capacity` | Capacity | The total capacity of the downloaded filesystem |  | Yes |  |
 | `ssd-capacity` | Capacity | SSD capacity of the downloaded filesystem |  | Yes |  |
-| `obs` | String | Object store name for tiering |  | Yes |  |
+| `obs-bucket` | String | Object store name for tiering |  | Yes |  |
 | `locator` | String | Object store locator obtained from a previously successful snapshot upload |  | Yes |  |
 | `additional-obs` | String | An additional object-store name. In case the data to recover resides in two object stores \(a second object-store attached to the filesystem, and the filesystem has not undergone full migration\). This object-store will be attached in a `read-only` mode. | The snapshot locator must reside in the primary object-store supplied in the `obs` parameter | No |  |
 
 The `locator` is either a locator saved previously for disaster scenarios, or can be obtained using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
+
+{% hint style="info" %}
+**Note:** Due to the bandwidth characteristics and potential costs when interacting with remote object-stores it is not allowed to download a filesystem from a remote object-store bucket. If a snapshot on a local object-store bucket exists it is advisable to use that one, otherwise, please create a `local` object-store for this bucket in order to download from it.
+{% endhint %}
 
 {% hint style="info" %}
 **Note:** For encrypted filesystem, when downloading the same KMS master-key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](managing-filesystems/kms-management.md#overview) section.
@@ -173,7 +178,7 @@ The `locator` is either a locator saved previously for disaster scenarios, or ca
 
 ### Deleting Snapshots Residing on an Object Store
 
-Deleting a snapshot, from a filesystem that uploaded it, will remove all of its data from the object-store.
+Deleting a snapshot, from a filesystem that uploaded it, will remove all of its data from the local object-store bucket. It will not remove any data from a remote object-store bucket.
 
 {% hint style="danger" %}
 If the snapshot has been \(or is\) downloaded and used by a different filesystem, that filesystem will stop functioning correctly, data might be unavailable and errors might occur when accessing the data.

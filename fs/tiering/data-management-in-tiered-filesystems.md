@@ -38,6 +38,10 @@ While the steady-state of a filesystem requires up to 13% more raw capacity in t
 **Note:** If tuning of the system interaction with the object store is required \(such as object size, reclamation threshold numbers, or the object store space reclamation is not fast enough for the workload\), contact the Weka Support Team.
 {% endhint %}
 
+{% hint style="info" %}
+**Note:** Object store space reclamation is only relevant for object-store buckets used for tiering \(defined as `local`\) and not for buckets used for backup-only \(defined as `remote`\).
+{% endhint %}
+
 ## Object Tagging
 
 {% hint style="info" %}

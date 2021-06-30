@@ -63,13 +63,13 @@ The definitions above apply to files residing on SSDs or object stores.
 
 ## About Object Stores
 
-In the Weka system, object stores represent an optional external storage media, ideal for the storage of warm data. Object stores used in tiered Weka system configurations can be cloud-based, located in the same location, or at a remote location.
+In the Weka system, object stores represent an optional external storage media, ideal for the storage of warm data. Object stores used in tiered Weka system configurations can be cloud-based, located in the same location, or at a remote location. Weka supports object stores for tiering \(tiering and local snapshots\) and backup \(snapshots only\), and both can be used for the same filesystem.
 
 Object stores are optimally used when a cost-effective data storage tier is required at a price point that cannot be satisfied by server-based SSDs. An object store definition contains the object store DNS name, bucket identifier, and access credentials. The bucket must be dedicated to the Weka system and must not be accessible by other applications. However, a single object store bucket may serve different filesystems and multiple Weka systems.
 
-Filesystem connectivity to object stores can be used in both the [data lifecycle management](data-storage.md) and [Snap to Object](../fs/snap-to-obj.md) features. It is possible to define two object-store buckets for a filesystem, but only one bucket can be writable. In such cases, the Weka system will search for relevant data in both the SSD and the readable and writable object stores. This allows a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
+Filesystem connectivity to object stores can be used in both the [data lifecycle management](data-storage.md) and [Snap to Object](../fs/snap-to-obj.md) features. It is possible to define three object-store buckets for a filesystem, two of them for tiering \(out of which only one bucket can be writable\) and one for backup only. In such cases, the Weka system will search for relevant data in both the SSD and the readable and writable object stores. This allows a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
 
-The Weka system supports up to 2 different object store buckets per filesystem. While object stores can be shared between filesystems, when possible, it is recommended to create and attach a separate object store bucket per filesystem.
+The Weka system supports up to three different object store buckets per filesystem. While object stores can be shared between filesystems, when possible, it is recommended to create and attach a separate object store bucket per filesystem.
 
 ## About Filesystem Groups
 
