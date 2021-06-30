@@ -53,7 +53,7 @@ Although not needed, and distribution of the new version to the hosts should be 
 
 First, obtain the new version on one of the backend host, as described above, then, use the following CLI command:
 
-`weka local run --in <new-version> upgrade --mode one-shot --prepare-only`
+`weka local run --in <new-version> upgrade --prepare-only`
 
 ## Running the Upgrade Command
 
@@ -89,6 +89,8 @@ If everything goes to plan, the upgrade will stop the cluster IO service, switch
 It is recommended then to set `host-version-change-timeout` to `600` and `disconnect-stateless-clients-timeout` to `200 .`
 
 If further assistance and adjustments are required please contact the Weka Support Team.
+
+Alternatively, to reduce the number of hosts undergoing an upgrade by separating the upgrade of the backend hosts and client hosts, you can use the [Backends-Only Upgrade](upgrading-weka-versions.md#backends-only-upgrade) approach.
 {% endhint %}
 
 ## Backends-Only Upgrade
