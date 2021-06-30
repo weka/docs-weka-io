@@ -67,7 +67,7 @@ The following standard S3 APIs are supported:
 </table>
 
 {% hint style="info" %}
-**Note:** Currently, S3 buckets and objects can only be shared as a single Weka filesystem.
+**Note:** Currently, S3 buckets and objects can only be shared from a single Weka filesystem.
 {% endhint %}
 
 ## Naming Limitations

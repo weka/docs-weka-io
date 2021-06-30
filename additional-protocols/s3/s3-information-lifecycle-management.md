@@ -14,7 +14,7 @@ For S3 buckets, it is possible to set information lifecycle rules to apply to th
 
 ### Rules Evaluation
 
-Weka currently only supports rules for expiring objects and allows you to set different expirations per object prefix and tags. Up to 1000 rules per bucket are supported. The rule with the earliest expiration that applies for an object deletes this object from the bucket.
+Weka currently only supports rules for expiring objects and allows you to set different expirations per object prefix and tags. Up to 1000 rules per bucket are supported. If multiple rules are overlapping, the rule with the earliest expiration that applies for an object deletes this object from the bucket.
 
 ## Managing Rules
 

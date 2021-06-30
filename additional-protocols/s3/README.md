@@ -20,7 +20,7 @@ In general, you can both gradually move applications to S3 and access the same d
 
 The Weka S3 service is a scalable, resilient service that provides multi-protocol access to data.
 
-Scalability is implemented by [defining many hosts that serve the S3 protocol](s3-cluster-management.md#creating-an-s3-cluster), thereby enabling higher performance by adding more hosts to the S3 cluster.
+The S3 service is implemented by specifying a set of storage hosts that you want to run the S3 protocol on and then creating a logical S3 cluster to expose the S3 service. As you [define many hosts that serve the S3 protocol](s3-cluster-management.md#creating-an-s3-cluster) the S3 cluster scales to higher performance.
 
 By integrating a [round-robin DNS or a load balancer](s3-cluster-management.md#round-robin-dns-load-balancer), different S3 clients will access different hosts, allowing the Weka system to scale and service thousands of clients.
 

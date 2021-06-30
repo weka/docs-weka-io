@@ -30,7 +30,7 @@ To configure the S3 cluster, click the Configure button. The following Configure
 
 ![Configure S3 Cluster Window](../../.gitbook/assets/s3-cluster-configure-3.12.png)
 
-Select which filesystem to use for the S3 service, select the Weka hosts to form the S3 cluster, and optionally change the port for exposing the S3 service through. Then click the Configure button.
+Select which filesystem to use for the S3 service, select the Weka backend hosts to form the S3 cluster, and optionally change the port for exposing the S3 service through. Then click the Configure button.
 
 The following S3 Cluster Configuration window will be displayed:
 

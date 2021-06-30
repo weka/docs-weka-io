@@ -60,7 +60,7 @@ Use the following command line to create a user:
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `username` | String | Name of the user to change the password for | Must be a valid local user | Yes |  |
-| `role` | String | Role of the new created user | `regular`, `readonly`, `orgadmin` or `clusteradmin` | Yes |  |
+| `role` | String | Role of the new created user | `regular`,  `s3`,`readonly`, `orgadmin` or `clusteradmin` | Yes |  |
 | `password` | String | New password |  | No | If not supplied, command will prompt to supply the password |
 
 {% hint style="success" %}
