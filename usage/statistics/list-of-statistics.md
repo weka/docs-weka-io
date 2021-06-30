@@ -43,19 +43,14 @@ description: >-
 | DESTAGE\_COUNT |  | Destages/Sec |
 | DIR\_MOVE\_TIME |  | Ops |
 | EXTENT\_BLOCKS\_COUNT |  | Blocks |
-| FAILED\_1HOP\_RDMA\_READS | Number of failed single hop RDMA reads per second | Ops/Sec |
-| FAILED\_1HOP\_READS | Number of failed single hop reads per second | Ops/Sec |
 | FREEABLE\_LRU\_BUFFERS |  | Buffers |
 | HASH\_BLOCKS\_COUNT |  | Blocks |
 | INODE\_BLOCKS\_COUNT |  | Blocks |
 | INODE\_REFRESHER\_QUEUE\_LENGTH |  | Items |
 | JOURNAL\_BLOCKS\_COUNT |  | Blocks |
 | JOURNAL\_ITERATIONS | Histogram of number of batches of stripes committed in a single request |  |
-| READS\_RDMA | Number of read-RDMA operations per second | Ops/Sec |
 | READS | Number of read operations per second | Ops/Sec |
-| READ\_BYTES\_RDMA | Number of bytes RDMA-read per second | Bytes/Sec |
 | READ\_BYTES | Number of bytes read per second | Bytes/Sec |
-| READ\_LATENCY\_RDMA | Average latency of READ-RDMA operations | Microseconds |
 | READ\_LATENCY | Average latency of READ operations | Microseconds |
 | REGISTRY\_L1\_BLOCKS\_COUNT |  | Blocks |
 | REGISTRY\_L2\_BLOCKS\_COUNT |  | Blocks |
@@ -63,7 +58,6 @@ description: >-
 | RESIDENT\_BLOCKS\_COUNT |  | Blocks/Sec |
 | SNAPSHOT\_CREATION\_TIME |  | Snaps |
 | SPATIAL\_SQUELCH\_BLOCKS\_COUNT |  | Blocks |
-| SUCCEEDED\_1HOP\_RDMA\_READS | Number of succesfull single hop RDMA reads per second | Ops/Sec |
 | SUCCESSFUL\_DATA\_WEDGINGS |  | Attempts/Sec |
 | SUPERBLOCK\_BLOCKS\_COUNT |  | Blocks |
 | TAKEOVERS\_SUCCESSFUL |  | Takeover Attempts/Sec |
@@ -71,11 +65,8 @@ description: >-
 | TEMPORAL\_SQUELCH\_BLOCKS\_COUNT |  | Blocks |
 | UNSUCCESSFUL\_DATA\_WEDGINGS |  | Attempts/Sec |
 | USER\_DATA\_BUFFERS\_IN\_USE |  | Buffers |
-| WRITES\_RDMA | Number of write-RDMA operations per second | Ops/Sec |
 | WRITES | Number of write operations per second | Ops/Sec |
-| WRITE\_BYTES\_RDMA | Number of byte RDMA-writes per second | Bytes/Sec |
 | WRITE\_BYTES | Number of byte writes per second | Bytes/Sec |
-| WRITE\_LATENCY\_RDMA | Average latency of WRITE-RDMA operations | Microseconds |
 | WRITE\_LATENCY | Average latency of WRITE operations | Microseconds |
 
 ## Bucket Failovers
@@ -151,7 +142,7 @@ description: >-
 | DOWNLOAD\_LATENCY | Latency of promote operations | Microseconds |
 | FAILED\_DOWNLOADS | Number of failed promotes operations per second | Ops/Sec |
 | FAILED\_UPLOADS | Number of failed demotes operations per second | Ops/Sec |
-| OBS\_4K\_IOPS\_READ | Number of object storage dedicated 4K read operations per second | Ops/Sec |
+| OBS\_4K\_IOPS\_READ | Number of object store dedicated 4K read operations per second | Ops/Sec |
 | OBS\_BACKPRESSURE\_FREED | Number of bytes freed from disk due to backpressure | Bytes/Sec |
 | OBS\_BLOB\_HEADER\_DOWNLOAD\_LATENCY | Average latency of blob header download | Microseconds |
 | OBS\_BLOB\_SCAVENGE\_LATENCY | Average latency of blob scavenges | Microseconds |
@@ -278,6 +269,7 @@ description: >-
 | RDMA\_COMP\_DURATION |  |  |
 | RDMA\_COMP\_FAILURES |  | Failures/Sec |
 | RDMA\_COMP\_LATENCY | Average time of RDMA requests completion | Microseconds |
+| RDMA\_NET\_ERR\_RETRY\_EXCEEDED |  | Occurences/Sec |
 | RDMA\_POOL\_ALLOC\_FAILED |  | Failures/Sec |
 | RDMA\_POOL\_LOW\_CAPACITY |  | Failures/Sec |
 | RDMA\_PORT\_WAITING\_FIBERS |  | Waiting fibers |
@@ -327,8 +319,8 @@ description: >-
 | OBJECT\_DOWNLOADS\_BACKGROUND | Number of BACKGROUND objects downloaded per second | Ops/Sec |
 | OBJECT\_DOWNLOADS\_FOREGROUND | Number of FOREGROUND objects downloaded per second | Ops/Sec |
 | OBJECT\_DOWNLOADS | Number of objects downloaded per second | Ops/Sec |
-| OBJECT\_DOWNLOAD\_BYTES\_BACKGROUND | Number of BACKGROUND bytes sent to the object storage | Bytes/Sec |
-| OBJECT\_DOWNLOAD\_BYTES\_FOREGROUND | Number of FOREGROUND bytes sent to the object storage | Bytes/Sec |
+| OBJECT\_DOWNLOAD\_BYTES\_BACKGROUND | Number of BACKGROUND bytes sent to object storage | Bytes/Sec |
+| OBJECT\_DOWNLOAD\_BYTES\_FOREGROUND | Number of FOREGROUND bytes sent to object storage | Bytes/Sec |
 | OBJECT\_DOWNLOAD\_DURATION |  | Milliseconds |
 | OBJECT\_DOWNLOAD\_LATENCY | Latency of downloading an object | Microseconds |
 | OBJECT\_DOWNLOAD\_SIZE |  | Bytes |
@@ -344,22 +336,22 @@ description: >-
 | OBJECT\_UPLOADS\_RECLAMATION\_REUPLOAD | Number of RECLAMATION\_REUPLOAD upload attempts per second | Ops/Sec |
 | OBJECT\_UPLOADS\_STOW | Number of STOW upload attempts per second | Ops/Sec |
 | OBJECT\_UPLOADS | Number of object uploads per second | Ops/Sec |
-| OBJECT\_UPLOAD\_BYTES\_BACKPRESSURE | Number of BACKPRESSURE bytes sent to the object storage | Bytes/Sec |
-| OBJECT\_UPLOAD\_BYTES\_IMMEDIATE\_RELEASE | Number of IMMEDIATE\_RELEASE bytes sent to the object storage | Bytes/Sec |
-| OBJECT\_UPLOAD\_BYTES\_MANHOLE | Number of MANHOLE bytes sent to the object storage | Bytes/Sec |
-| OBJECT\_UPLOAD\_BYTES\_MIGRATE | Number of MIGRATE bytes sent to the object storage | Bytes/Sec |
-| OBJECT\_UPLOAD\_BYTES\_POLICY | Number of POLICY bytes sent to the object storage | Bytes/Sec |
-| OBJECT\_UPLOAD\_BYTES\_RECLAMATION\_REUPLOAD | Number of RECLAMATION\_REUPLOAD bytes sent to the object storage | Bytes/Sec |
-| OBJECT\_UPLOAD\_BYTES\_STOW | Number of STOW bytes sent to the object storage | Bytes/Sec |
+| OBJECT\_UPLOAD\_BYTES\_BACKPRESSURE | Number of BACKPRESSURE bytes sent to object storage | Bytes/Sec |
+| OBJECT\_UPLOAD\_BYTES\_IMMEDIATE\_RELEASE | Number of IMMEDIATE\_RELEASE bytes sent to object storage | Bytes/Sec |
+| OBJECT\_UPLOAD\_BYTES\_MANHOLE | Number of MANHOLE bytes sent to object storage | Bytes/Sec |
+| OBJECT\_UPLOAD\_BYTES\_MIGRATE | Number of MIGRATE bytes sent to object storage | Bytes/Sec |
+| OBJECT\_UPLOAD\_BYTES\_POLICY | Number of POLICY bytes sent to object storage | Bytes/Sec |
+| OBJECT\_UPLOAD\_BYTES\_RECLAMATION\_REUPLOAD | Number of RECLAMATION\_REUPLOAD bytes sent to object storage | Bytes/Sec |
+| OBJECT\_UPLOAD\_BYTES\_STOW | Number of STOW bytes sent to object storage | Bytes/Sec |
 | OBJECT\_UPLOAD\_DURATION |  | Milliseconds |
 | OBJECT\_UPLOAD\_LATENCY | Latency of uploading an object | Microseconds |
 | OBJECT\_UPLOAD\_SIZE |  | Bytes |
-| OBS\_READ\_BYTES | Number of bytes read from the object storage | Bytes/Sec |
-| OBS\_WRITE\_BYTES | Number of bytes sent to the object storage | Bytes/Sec |
+| OBS\_READ\_BYTES | Number of bytes read from object storage | Bytes/Sec |
+| OBS\_WRITE\_BYTES | Number of bytes sent to object storage | Bytes/Sec |
 | ONGOING\_DOWNLOADS | Number of ongoing downloads | Ops |
 | ONGOING\_REMOVES | Number of ongoing removes | Ops |
 | ONGOING\_UPLOADS | Number of ongoing uploads | Ops |
-| READ\_BYTES | Number of bytes read from the object storage | Bytes/Sec |
+| READ\_BYTES | Number of bytes read from object storage | Bytes/Sec |
 | REQUEST\_COUNT\_DELETE | Number of HTTP DELETE requests per second | Requests/Sec |
 | REQUEST\_COUNT\_GET | Number of HTTP GET requests per second | Requests/Sec |
 | REQUEST\_COUNT\_HEAD | Number of HTTP HEAD requests per second | Requests/Sec |
@@ -381,10 +373,10 @@ description: >-
 | RESPONSE\_COUNT\_INSUFFICIENT\_STORAGE | Number of HTTP INSUFFICIENT\_STORAGE responses per second | Responses/Sec |
 | RESPONSE\_COUNT\_INVALID | Number of HTTP INVALID responses per second | Responses/Sec |
 | RESPONSE\_COUNT\_LENGTH\_REQUIRED | Number of HTTP LENGTH\_REQUIRED responses per second | Responses/Sec |
+| RESPONSE\_COUNT\_METHOD\_NOT\_ALLOWED | Number of HTTP METHOD\_NOT\_ALLOWED responses per second | Responses/Sec |
 | RESPONSE\_COUNT\_MOVED\_PERMANENTLY | Number of HTTP MOVED\_PERMANENTLY responses per second | Responses/Sec |
 | RESPONSE\_COUNT\_NON\_AUTH\_INFO | Number of HTTP NON\_AUTH\_INFO responses per second | Responses/Sec |
 | RESPONSE\_COUNT\_NOT\_ACCEPABLE | Number of HTTP NOT\_ACCEPABLE responses per second | Responses/Sec |
-| RESPONSE\_COUNT\_NOT\_ALLOWD | Number of HTTP NOT\_ALLOWD responses per second | Responses/Sec |
 | RESPONSE\_COUNT\_NOT\_FOUND | Number of HTTP NOT\_FOUND responses per second | Responses/Sec |
 | RESPONSE\_COUNT\_NOT\_IMPLEMENTED | Number of HTTP NOT\_IMPLEMENTED responses per second | Responses/Sec |
 | RESPONSE\_COUNT\_NOT\_MODIFIED | Number of HTTP NOT\_MODIFIED responses per second | Responses/Sec |
@@ -410,15 +402,23 @@ description: >-
 | RESPONSE\_COUNT\_UNSUPPORTED\_MEDIA\_TYPE | Number of HTTP UNSUPPORTED\_MEDIA\_TYPE responses per second | Responses/Sec |
 | RESPONSE\_COUNT\_URI\_TOO\_LONG | Number of HTTP URI\_TOO\_LONG responses per second | Responses/Sec |
 | RESPONSE\_COUNT\_USE\_PROXY | Number of HTTP USE\_PROXY responses per second | Responses/Sec |
-| WAITING\_FOR\_DOWNLOAD\_BANDWIDTH |  | Milliseconds |
-| WAITING\_FOR\_DOWNLOAD\_FLOW |  | Milliseconds |
-| WAITING\_FOR\_REMOVE\_FLOW |  | Milliseconds |
-| WAITING\_FOR\_UPLOAD\_BANDWIDTH |  | Milliseconds |
-| WAITING\_FOR\_UPLOAD\_FLOW |  | Milliseconds |
-| WAITING\_IN\_DOWNLOAD\_QUEUE |  | Milliseconds |
-| WAITING\_IN\_REMOVE\_QUEUE |  | Milliseconds |
-| WAITING\_IN\_UPLOAD\_QUEUE |  | Milliseconds |
-| WRITE\_BYTES | Number of bytes sent to the object storage | Bytes/Sec |
+| WAITING\_FOR\_BUCKET\_DOWNLOAD\_BANDWIDTH |  | Milliseconds |
+| WAITING\_FOR\_BUCKET\_DOWNLOAD\_FLOW |  | Milliseconds |
+| WAITING\_FOR\_BUCKET\_REMOVE\_FLOW |  | Milliseconds |
+| WAITING\_FOR\_BUCKET\_UPLOAD\_BANDWIDTH |  | Milliseconds |
+| WAITING\_FOR\_BUCKET\_UPLOAD\_FLOW |  | Milliseconds |
+| WAITING\_FOR\_GROUP\_DOWNLOAD\_BANDWIDTH |  | Milliseconds |
+| WAITING\_FOR\_GROUP\_DOWNLOAD\_FLOW |  | Milliseconds |
+| WAITING\_FOR\_GROUP\_REMOVE\_FLOW |  | Milliseconds |
+| WAITING\_FOR\_GROUP\_UPLOAD\_BANDWIDTH |  | Milliseconds |
+| WAITING\_FOR\_GROUP\_UPLOAD\_FLOW |  | Milliseconds |
+| WAITING\_IN\_BUCKET\_DOWNLOAD\_QUEUE |  | Milliseconds |
+| WAITING\_IN\_BUCKET\_REMOVE\_QUEUE |  | Milliseconds |
+| WAITING\_IN\_BUCKET\_UPLOAD\_QUEUE |  | Milliseconds |
+| WAITING\_IN\_GROUP\_DOWNLOAD\_QUEUE |  | Milliseconds |
+| WAITING\_IN\_GROUP\_REMOVE\_QUEUE |  | Milliseconds |
+| WAITING\_IN\_GROUP\_UPLOAD\_QUEUE |  | Milliseconds |
+| WRITE\_BYTES | Number of bytes sent to object storage | Bytes/Sec |
 
 ## Operations\(NFS\)
 
@@ -480,8 +480,7 @@ description: >-
 | DIRECT\_WRITE\_SIZES\_RATE |  | Blocks |
 | DIRECT\_WRITE\_SIZES |  | Blocks |
 | DOORBELL\_RING\_COUNT |  | Ops |
-| FAILED\_READS\_RDMA | Number of failed read-RDMA operations per second | Ops/Sec |
-| FAILED\_WRITES\_RDMA | Number of failed write-RDMA operations per second | Ops/Sec |
+| FAILED\_1HOP\_READS | Number of failed single hop reads per second | Ops/Sec |
 | FILEATOMICOPEN\_LATENCY | Average latency of FILEATOMICOPEN operations | Microseconds |
 | FILEATOMICOPEN\_OPS | Number of FILEATOMICOPEN operation per second | Ops/Sec |
 | FILECLOSE\_LATENCY | Average latency of FILECLOSE operations | Microseconds |
@@ -511,14 +510,9 @@ description: >-
 | READDIR\_OPS | Number of READDIR operation per second | Ops/Sec |
 | READLINK\_LATENCY | Average latency of READLINK operations | Microseconds |
 | READLINK\_OPS | Number of READLINK operation per second | Ops/Sec |
-| READS\_RDMA\_ENC\_NOTSUP | Number of failed \(unsupported\) read-RDMA operations to encrypted fs per second | Ops/Sec |
-| READS\_RDMA | Number of read-RDMA operations per second | Ops/Sec |
 | READS | Number of read operations per second | Ops/Sec |
-| READ\_BYTES\_RDMA | Number of bytes read via RDMA per second | Bytes/Sec |
 | READ\_BYTES | Number of bytes read per second | Bytes/Sec |
-| READ\_DURATION\_RDMA |  | Microseconds |
 | READ\_DURATION |  | Microseconds |
-| READ\_LATENCY\_RDMA | Average latency of READ RDMA operations | Microseconds |
 | READ\_LATENCY | Average latency of READ operations | Microseconds |
 | READ\_RDMA\_SIZES\_RATE |  | Blocks/Sec |
 | READ\_RDMA\_SIZES |  | Blocks |
@@ -538,19 +532,15 @@ description: >-
 | SETXATTR\_OPS | Number of SETXATTR operation per second | Ops/Sec |
 | STATFS\_LATENCY | Average latency of STATFS operations | Microseconds |
 | STATFS\_OPS | Number of STATFS operation per second | Ops/Sec |
+| SUCCEEDED\_1HOP\_READS | Number of succesfull single hop reads per second | Ops/Sec |
 | SYMLINK\_LATENCY | Average latency of SYMLINK operations | Microseconds |
 | SYMLINK\_OPS | Number of SYMLINK operation per second | Ops/Sec |
 | THROUGHPUT | Number of byte read/writes per second | Bytes/Sec |
 | UNLINK\_LATENCY | Average latency of UNLINK operations | Microseconds |
 | UNLINK\_OPS | Number of UNLINK operation per second | Ops/Sec |
-| WRITES\_RDMA\_ENC\_NOTSUP | Number of failed \(unsupported\) write-RDMA operations to encrypted fs per second | Ops/Sec |
-| WRITES\_RDMA | Number of write-RDMA operations per second | Ops/Sec |
 | WRITES | Number of write operations per second | Ops/Sec |
-| WRITE\_BYTES\_RDMA | Number of bytes written via RDMA per second | Bytes/Sec |
 | WRITE\_BYTES | Number of byte writes per second | Bytes/Sec |
-| WRITE\_DURATION\_RDMA |  | Microseconds |
 | WRITE\_DURATION |  | Microseconds |
-| WRITE\_LATENCY\_RDMA | Average latency of WRITE RDMA operations | Microseconds |
 | WRITE\_LATENCY | Average latency of WRITE operations | Microseconds |
 | WRITE\_RDMA\_SIZES\_RATE |  | Blocks/Sec |
 | WRITE\_RDMA\_SIZES |  | Blocks |

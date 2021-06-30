@@ -33,6 +33,7 @@ description: >-
 | ClientDisconnected | INFO | Client disconnected |
 | ClientRemoved | INFO | Disconnected client is being removed from the cluster |
 | ClientsUnavailable | CRITICAL | Some clients are unavailable because too many backends are down |
+| ClockSkewedHostJoin | MINOR | Host cannot join because of clock skew |
 | ClusterInitializationFailed | MAJOR | Cluster initialization failed |
 | ClusterInitialized | INFO | Cluster successfully initialization |
 | ClusteringFailure | MINOR | Node clustering failed |
@@ -56,6 +57,7 @@ description: >-
 | PreviousCluster | INFO | This host was part of another cluster before |
 | RejoinFailureReport | MINOR | Node\(s\) failed to rejoin |
 | UnresponsiveBuckets | CRITICAL | Some compute resources are not responding |
+| WrongConfigSignatureForRaftSnapshot | MINOR | Tried loading RAFT snapshot with unsupported config root snapshot signature |
 | WrongSchemaVersionForRaftSnapshot | MINOR | Tried loading RAFT snapshot with unsupported schema version |
 
 ## Config
@@ -64,6 +66,11 @@ description: >-
 | :--- | :--- | :--- |
 | DirectoryQuotasDisabled | INFO | Directory Quotas were disabled |
 | DirectoryQuotasEnabled | INFO | Directory Quotas were enabled |
+| LoginBannerCleared | INFO | Login banner has been cleared |
+| LoginBannerSet | INFO | Login banner has been set |
+| S3ClusterCreated | INFO | S3 Cluster Created |
+| S3ClusterDestroyed | INFO | S3 Cluster Destroyed |
+| S3ClusterUpdated | INFO | Directory Quotas were disabled |
 | TLSSet | INFO | TLS was set |
 | TLSUnset | INFO | TLS was unset |
 
@@ -145,10 +152,9 @@ description: >-
 | HangingNFSFrontendIosDetected | CRITICAL | Some IOs are hanging |
 | HangingNFSFrontendIosNoLongerDetected | INFO | IOs are no longer hanging |
 | ManualOverride | WARNING | Service has been manually-overridden |
-| ObjectStorageAttachmentModeChanged | INFO | Object Storage attachment mode changed |
-| ObjectStoreAttachedToFilesystem | INFO | Object Storage attached to filesystem |
-| ObjectStoreFinishedDetachingdFromFilesystem | INFO | Object Storage finished detaching from filesystem |
-| ObjectStoreStartedDetachingdFromFilesystem | INFO | Object Storage started detaching from filesystem |
+| ObjectStoreAttachedToFilesystem | INFO | Object Store attached to filesystem |
+| ObjectStoreFinishedDetachingdFromFilesystem | INFO | Object Store finished detaching from filesystem |
+| ObjectStoreStartedDetachingdFromFilesystem | INFO | Object Store started detaching from filesystem |
 | QuotaHardLimitReached | WARNING | Directory hard capacity quota has been reached |
 | RAIDDataBlockReadFailureInSnaphashDump | WARNING | Failed to read data block from RAID when dumping the snapshot manifest |
 | RAIDMDReadFailureInSnaphashDump | WARNING | Failed to read metadata block from RAID when dumping the snapshot manifest |
@@ -161,7 +167,10 @@ description: >-
 | SnapshotUploadAborted | INFO | Snapshot upload aborted |
 | SnapshotUploadFinished | INFO | Snapshot upload finished |
 | SnapshotUploadStarted | INFO | Snapshot upload started |
+| SquelchBlockIdSetAbortedFlushed | DEBUG | While setting a squelch block's block id for upgrade was already changed to invalid |
+| SquelchBlockIdSetAbortedRewritten | WARNING | While setting a squelch block's block id for upgrade was already rewritten to something else |
 | UnflushedOpOnDeletingSnapview | MAJOR | Unflushed IO on a deleting snapshot |
+| UsedPreSplitSquelchBlock | MAJOR | Using a spatial squelch block with a pre-split registry key |
 
 ## IO
 
@@ -268,12 +277,15 @@ description: >-
 | ChecksumErrorOnObjectUpload | MAJOR | Checksum error detected by COMPUTE node when uploading an OBS data block \(corrupted after verifying data read from the drive\) |
 | DataBlobDownloadFailed | WARNING | Failed downloading data blob header |
 | InvalidDataBlobHeader | MAJOR | Invalid header detected by COMPUTE node in a downloaded OBS data blob |
-| LegacyV34DataEncountered | WARNING | Legacy V3.4 data encountered in Object Storage. This data will no longer be supported in a future version. Please migrate the filesystem to a fresh Object Storage bucket |
-| ObjectStoreAdded | INFO | Object storage configuration change |
-| ObjectStoreDeleted | INFO | Object storage configuration change |
-| ObjectStoreIsFull | CRITICAL | Object storage is full |
-| ObjectStoreStatusChanged | INFO | Object Storage status changed |
-| ObjectStoreUpdated | INFO | Object storage configuration change |
+| LegacyV34DataEncountered | WARNING | Legacy V3.4 data encountered in Object Storage. This data will no longer be supported in a future version. Please migrate the filesystem to a fresh Object Store bucket |
+| ObjectStoreBucketAdded | INFO | Object store bucket configuration change |
+| ObjectStoreBucketDeleted | INFO | Object store bucket configuration change |
+| ObjectStoreBucketUpdated | INFO | Object store bucket configuration change |
+| ObjectStoreGroupAdded | INFO | Object store configuration change |
+| ObjectStoreGroupDeleted | INFO | Object store configuration change |
+| ObjectStoreGroupUpdated | INFO | Object store configuration change |
+| ObjectStoreIsFull | CRITICAL | Object store is full |
+| ObjectStoreStatusChanged | INFO | Object Store status changed |
 | ObsIsMissingObject | MAJOR | Permanently failed to download an object from object storage - The object was not found |
 | PersistentChecksumErrorInDownloadedObject | MAJOR | Checksum error detected by COMPUTE node in a downloaded OBS data block |
 | TieredFilesystemBreakingPolicy | MINOR | Breaking policy; too much disk pressure |
@@ -314,6 +326,8 @@ description: >-
 
 | Type | Severity | Description |
 | :--- | :--- | :--- |
+| APIServerStartFailed | WARNING | Failed to start the API server |
+| APIServerStarted | INFO | Successfully started the API server |
 | BandwidthSelected | INFO | Bandwidth set for host |
 | CoreAllocated | INFO | Allocated core |
 | DisabledNumaBalancing | INFO | Disabled NUMA Balancing |
@@ -329,6 +343,32 @@ description: >-
 | NetworkDeviceNotUsedByAnySlots | MINOR | Network device not used by any slots |
 | RevertToStableResources | INFO | Reverted to stable resources |
 | UnlimitedBandwidthSelected | INFO | Bandwidth set to unlimited |
+
+## S3
+
+| Type | Severity | Description |
+| :--- | :--- | :--- |
+| S3AddBucketILMRuleEvent | INFO | S3 Add Bucket ILM Rule |
+| S3AsssumeRoleEvent | INFO | S3 Assume Role STS Token Created |
+| S3AttachIAMPolicyEvent | INFO | S3 Attach IAM policy |
+| S3AuditWebhookDisabledEvent | INFO | S3 Audit Webhook Disabled |
+| S3AuditWebhookEnabledEvent | INFO | S3 Audit Webhook Enabled |
+| S3BucketCreated | INFO | S3 Bucket Created |
+| S3BucketDestroyedEvent | INFO | S3 Bucket Destroyed |
+| S3ContainerStateChangesEvent | INFO | S3 Container Status Change |
+| S3CreateBucketEvent | INFO | S3 Bucket Created |
+| S3CreateIAMPolicyEvent | INFO | S3 Create IAM Policy |
+| S3DestroyBucketEvent | INFO | S3 Bucket Destroyed |
+| S3DetachIAMPolicyEvent | INFO | S3 Detach IAM policy |
+| S3ETCDDisabledEvent | INFO | S3 Cluster etcd Disabled |
+| S3ETCDEnabledEvent | INFO | S3 Cluster etcd Enabled |
+| S3KVAddedEvent | INFO | S3 Config Add Key |
+| S3KVRemovedEvent | INFO | S3 Config Remove Key |
+| S3KVResetEvent | INFO | S3 KV Store Config Reset |
+| S3RemoveBucketILMRuleEvent | INFO | S3 Remove Bucket ILM Rule |
+| S3RemoveIAMPolicyEvent | INFO | S3 Remove IAM Policy |
+| S3ResetBucketILMRuleEvent | INFO | S3 Reset Bucket ILM Rules |
+| S3SetBucketPolicyEvent | INFO | S3 Set Bucket Policy |
 
 ## SMB
 
