@@ -62,11 +62,12 @@ The total per host memory requirements is the sum of the following requirements:
   <tbody>
     <tr>
       <td style="text-align:left">Fixed</td>
-      <td style="text-align:left">4.6 GB</td>
+      <td style="text-align:left">2.3 GB</td>
     </tr>
     <tr>
       <td style="text-align:left">Core-based</td>
       <td style="text-align:left">
+        <p>2.3 GB for each Frontend core</p>
         <p>3.3 GB for each Compute core</p>
         <p>2.3 GB for each Drive/SSD core</p>
       </td>
