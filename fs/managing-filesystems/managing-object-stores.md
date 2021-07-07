@@ -18,7 +18,7 @@ This grouping under a physical object-store allows:
 
 * Better QoS when more than one physical object-store is involved
 * Restrictions on downloading from a remote object-store
-  * When `local` and `remote` object-store buckets are attached to a filesystem, if an object cannot be retrieved from the local bucket, Weka will try to retrieve it from the remote bucket. Yet, by default, very low bandwidth is configured for downloading from a remote bucket since this may incur extra charges for on-premises systems where the remote bucket is in the cloud.
+  * By default, very low bandwidth is configured for downloading from a remote bucket since this may incur extra charges for on-premises systems where the remote bucket is in the cloud.
 * Ease-of adding new buckets
   * It is possible to configure the connection parameters on the object-store level and, if not specified differently, automatically use them for added buckets.
 
