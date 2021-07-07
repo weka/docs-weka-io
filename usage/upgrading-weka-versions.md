@@ -95,7 +95,7 @@ Alternatively, to reduce the number of hosts undergoing an upgrade by separating
 
 ## Backends-Only Upgrade
 
-Using  the `--dont-upgrade-clients` flag in the upgrade command will only  upgrade the backend servers, leaving the clients in the old version. Since version 3.12.0, the Weka system supports connecting clients from a previous version and serving IOs in a mixed-version cluster \(backends in version `N` and clients in version `N/N-1`\). 
+Using  the `--dont-upgrade-clients` flag in the upgrade command will only upgrade the backend servers, leaving the clients in the old version. Since version 3.12.0, the Weka system supports connecting clients from the one version prior and serving IOs in a mixed-version cluster \(backends in version `N` and clients in version `N/N-1`\). 
 
 Performing a backends-only upgrade may ease the upgrade in large clusters, as there is no need to coordinate and wait for the upgrade of all the clients \(which can be thousands of hosts\). Once the backend servers have been successfully upgraded to the new version, the clients can be upgraded one by one, coordinated separately for each client.
 
