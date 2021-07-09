@@ -66,7 +66,7 @@ Use the following command line to create a user:
 {% hint style="success" %}
 **For Example:**
 
-`$ weka user add my_new_user S3cret regular`
+`$ weka user add my_new_user regular S3cret`
 
 This command line creates a user with a username of `my_new_user`, a password of `S3cret` and a role of Regular user. It is then possible to display a list of users and verify that the user was created:
 
