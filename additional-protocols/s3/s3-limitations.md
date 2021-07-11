@@ -11,6 +11,7 @@ description: >-
 The following standard S3 APIs are supported:
 
 * Bucket \(HEAD/GET/PUT/DEL\)
+  * Including ListObjects and ListObjectsV2
 * Bucket Lifecycle \(GET/PUT/DEL\)
 * Bucket Policy \(GET/PUT/DEL\)
 * Bucket Tagging \(GET/PUT/DEL\)
