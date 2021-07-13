@@ -58,7 +58,11 @@ When migrating data \(using the detach operation\) you would like to copy only t
 
 ### Attaching a Remote Object-Store Bucket
 
-One remote object-store bucket can be attached to a filesystem. A `remote` object-store bucket is used for backup only, and only snapshots are uploaded to it using [Snap-2-Object](../snap-to-obj.md). The  snapshot uploads are incremental to the previous one. 
+One remote object-store bucket can be attached to a filesystem. A `remote` object-store bucket is used for backup only, and only snapshots are uploaded to it using [Snap-2-Object](../snap-to-obj.md). The snapshot uploads are incremental to the previous one. 
+
+{% hint style="info" %}
+**Note:** Please contact the Weka Customer Support Team before you attach a remote object-store bucket.
+{% endhint %}
 
 ### Detaching a Remote Object-Store Bucket
 
