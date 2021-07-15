@@ -28,6 +28,10 @@ This Statistics view screen offers a number of options to drill-down into the st
 * Displaying, hiding. deleting, and zooming-in on statistics from defined timelines and dates.
 * Bookmarking specific statistics for future reference and sharing with others \(using the URL\).
 
+{% hint style="info" %}
+**Note:** The statistics are only shown for backend/clients that are part of the cluster. Once a host is removed \(or a client is not connected to the cluster for more than the `remove_after_secs` period\) its statistics will not be shown. The Weka cluster does not hold historical statistics data. Use `weka-mon` for that, as suggested in the [External Monitoring](../../appendix/external-monitoring.md) section.
+{% endhint %}
+
 ## Working with Statistics Using the GUI
 
 ### Viewing Statistics
