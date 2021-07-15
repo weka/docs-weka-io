@@ -26,6 +26,10 @@ description: >-
 * **Amazon Linux:** 17.09, 18.03
 * **Amazon Linux 2 LTS** \(formerly Amazon Linux 2 LTS 17.12\)
 
+#### Clients Only:
+
+* **SuSe:** 12 SP5, 15 SP2
+
 ### Configuration
 
 * SELinux with MLS policy is not supported
