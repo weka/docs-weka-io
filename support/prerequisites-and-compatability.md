@@ -30,7 +30,7 @@ description: >-
 
 #### Clients Only:
 
-* **SuSe:** 12 SP5
+* **SuSe:** 12 SP5, 15 SP2
 
 ### Configuration
 
