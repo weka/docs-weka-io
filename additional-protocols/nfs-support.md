@@ -180,7 +180,7 @@ Use the following command line to add an interface group:
       </td>
       <td style="text-align:left">String</td>
       <td style="text-align:left">Unique interface group name</td>
-      <td style="text-align:left">None</td>
+      <td style="text-align:left">Up to 11 characters length</td>
       <td style="text-align:left">Yes</td>
       <td style="text-align:left"></td>
     </tr>
