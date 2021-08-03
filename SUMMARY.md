@@ -116,7 +116,6 @@
 * [Weka CSI Plugin](appendix/weka-csi-plugin.md)
 * [External Monitoring](appendix/external-monitoring.md)
 * [Snapshot Management](appendix/snapshot-management.md)
-* [ClusterSpecs](appendix/clusterspecs.md)
 
 ---
 

@@ -10,222 +10,218 @@ Weka's SnapTool will create and optionally upload snapshots for your cluster aut
 
 ## Features
 
-* Schedule snapshots to be taken hourly, daily, weekly, monthly for each filesystem
-* Set a specific number of each type of snapshot to keep
-* Expired snapshots are automatically deleted
-* Optionally upload snapshots to Object Store automatically.
+* Schedule snapshots monthly, daily, or at multiple \(minute granularity\) intervals during a daily schedule.
+* Retention specification - each schedule controls the number of snapshot copies to retain.
+* Expired snapshots are automatically deleted.
+* Optionally upload snapshots to an Object Store automatically.
+* Background uploads and deletes
 
-A default snapshot schedule is automatically defined with the following parameters:
+## Where to run
 
-```text
-Monthly, 1st of the month at midnight, retain 6 snaps
+`snaptool` can be run on any Linux system or VM, and does not need to be on a host running the Weka protocol. All communication with the Weka Cluster is via the Weka API and needs only IP connectivity to a Weka host.
 
-Weekly, Sunday at 00:00 (midnight Sat), retain 8 snaps
+## Installation
 
-Daily, Monday-Saturday at 00:00 (midnight), retain 14 snaps
-
-Hourly, Monday-Friday, 9am-5pm taken at top of the hour, retain 10 snaps
-```
-
-## Caveats
-
-`snaptool` is an external tool that asks that snapshots be taken, deleted, and/or uploaded via the Weka API. Errors are logged but otherwise ignored. The tool will not attempt to re-try if an error occurs when it attempts to take a snapshot beyond the typical API retry.
-
-Please monitor the cluster and/or syslog to ensure snapshots are being created.
+`snaptool` is typically installed as a Systemd service or in a Docker container, however, you will need to customize the configuration file prior to starting the `snaptool`.
 
 ## Configuration
 
-The user may define a custom Schedule in the YAML configuration file, `snaptool.yml`
-
-Filesystems are listed in the YAML file and define which Schedule they will use there.
-
-If you want to define several custom schedules, be sure to copy the entire stanza. To indicate that a particular sub-schedule \(ie: monthly, weekly\) should not run, set the `retain` to 0.
-
-Using the example configuration file \(YAML file\), define your filesystems and which schedule they should use. Also define custom schedules in the YAML file.
-
-It is suggested to run the utility via `systemd` with an auto-restart set, or use a Docker container.
-
-This example `snaptool.yml` shows 2 filesystems \(`default` and `wekatester-fs`\), both using the `custom1` snapshot schedule, which is defined under `schedules`. The `custom2` schedule is provided here to show how more than one custom schedule may be defined. To use the above `default` snapshot schedule, use the `default` keyword for the `schedule:` instead of the `custom1` schedule in the example.
-
-See the [Configuration File Reference](snapshot-management.md#configuration-file-reference) section for more details.
+A YAML file provides configuration information. The default configuration file name is `snaptool.yml`, and a sample `snaptool.yml` is included. There are three top-level sections, all of which are required:
 
 ```text
----
-filesystems:
-  default:
-    schedule: custom1
-  wekatester-fs:
-    schedule: custom1
+cluster:  
+filesystems: 
 schedules:
-  custom1:
-    monthly:
-      date: 2
-      retain: 12
-      time: 1100
-      upload: false
-    weekly:
-      retain: 4
-      time: 0
-      weekday: 6
-      upload: false
-    daily:
-      retain: 7
-      start_day: 0
-      stop_day: 5
-      time: 1900
-      upload: false
-    hourly:
-      retain: 10
-      start_day: 0
-      start_time: 800
-      stop_day: 6
-      stop_time: 2100
-      snap_minute: 0
-      upload: true
-  custom2:
-    monthly:
-      retain: 3
+```
+
+Cluster information is in the `cluster:` section. A host list is required. Other entries in this section are optional but are recommended for clarity. See the example `snaptool.yml` below for valid syntax. 
+
+{% hint style="warning" %}
+**Note:** It is not necessary to list all weka hosts/servers in the cluster, but more than one is recommended.
+{% endhint %}
+
+Entries allowed are:
+
+```text
+cluster:
+    auth_token_file: 
+    hosts: 
+    force_https: 
+    verify_cert: 
+```
+
+Filesystems are in the `filesystems` section and these entries define which snapshot schedule\(s\) will run for the listed filesystems. Each filesystem line looks like this:
+
+```text
+<fsname>:  <schedule1>,<schedule2>...
+```
+
+Schedules Syntax is below. Schedules that are within a schedule group cannot be assigned separately from the group. The `groupname` must be used.
+
+Using the example configuration file \(YAML file\), define your filesystems and which schedule\(s\) they should use. Also define custom schedules in the YAML file. Schedule keywords and syntax are shown below.
+
+To indicate that a particular schedule \(i.e.: monthly, weekly\) should not run on a filesystem, set the `retain:` to `0`, or remove it from the filesystem's schedule list.
+
+`snaptool` reloads the YAML configuration file before calculating the next set of snapshot runs if at least 5 minutes have passed since the last reload.
+
+### Schedule Syntax
+
+Each schedule has the following syntax:
+
+```yaml
+<optional schedulegroupname>:  
+
+    <schedulename>:
+
+        every: (required) 'month' | 'day' | list of months | list of days
+            'day' or list of days 
+                - takes a snap at time specified by at: on the specified day(s)
+                - 'day' is equivalent to specifying all 7 days of the week
+                - list of days can be 3 character day abbreviation, or full day names.  For example:
+                    Mon,Tue
+                    Monday,Tuesday,Wednesday,Thursday,Friday
+                - see also 'interval:' <number of minutes> and 'until:'
+            'month' or list of months 
+                - takes a snap on <day:> (integer 1..31) of the month, at time specified by <at:>  
+                - 'month' is equivalent to specifying all 12 months
+                - day: defaults to 1, first day of the month
+                - if day > last day of a month (example: day is 31 and the month is April), 
+                    then the snap is taken on the last day of the month
+                - list of months can be 3 character mon abbreviations, or full month names.  For eample:
+                    "Jan,Jul"
+                    "January,April,Aug,Oct"
+
+        at: time - defaults to '0000' (midnight)
+            - format accepts times like "9am", "9:15am" "2300" etc.  Some valid examples:
+                at: 9am
+                at: 0900
+                at: 9:05pm
+
+        interval: <number of minutes>
+            - number of minutes between snapshots
+            - only applicable for schedules by day, not month ('day' or list of days)
+            - if 'interval:' is not provided, a single snapshot per day is taken at "at:"
+            - if 'interval:' is provided - 'at:' and 'until:' provide the start and end times for the snaps taken
+            - first snap is taken at 'at:' time, then every <interval:> minutes thereafter until 'until:' is reached
+                    Interval will only attempt snaps within a day, between times specified by 'at:' and 'until:'.  
+                    So this value, added to 'at:' time, should always yield a time less than 'until:', otherwise it is ignored.
+
+        until: defaults to '2359'
+            - the latest time that an interval-based snapshot can be created
+
+        retain: defaults to 4.  This is the number of snapshots kept. 0 disables the schedule. 
+
+        upload: defaults to no/False - yes/True uploads the snapshot to the object store associated with the filesystem
+```
+
+Example `snaptool.yml`:
+
+```yaml
+cluster:
+    auth_token_file: auth-token.json
+    hosts: vweka1,vweka2,vweka3
+    force_https: True   # only 3.10+ clusters support https
+    verify_cert: False  # default cert cannot be verified
+
+filesystems:
+    fs01: default
+    fs02: Weekdays-6pm, Weekends-noon
+
+schedules:
+    default:
+        monthly:
+            every: month
+            retain: 6
+            # day: 1   (this is default)
+            # at: 0000 (this is default)
+        weekly:
+            every: Sunday
+            retain: 8
+            # at: 0000 (this is default)
+        daily:
+            every: Mon,Tue,Wed,Thu,Fri,Sat
+            retain: 14
+            # at: 0000 (this is default)
+        hourly:
+            every: Mon,Tue,Wed,Thu,Fri
+            retain: 10
+            interval: 60
+            at: 9:00am
+            until: 5pm
+    Weekdays-6pm:
+        every: Mon,Tue,Wed,Thu,Fri
+        at: 6pm
+        retain: 4
+    Weekends-noon:
+        every: Sat,Sun
+        at: 1200
+        retain: 4
 ```
 
 ## Snapshot Naming
 
-The format of the snapshot names is `Schedule.YYYY-MM-DD_HHMM`, with the access point `@GMT-YYYY.MM.DD-HH.MM.SS`. For example, a snapshot might be named `hourly.2021-03-10_1700` and have the access point `@GMT-2021.03.10-17.00.00`. The snapshot name will be in the local timezone and the access point in GMT \(in this example, the server timezone is set to GMT time\).
+The format of the snapshot names is `schedulename.YYMMDDHHMM`, with the access point `@GMT-YYYY.MM.DD-HH.MM.SS`. For example, a snapshot might be named `Weekends-noon.2103101200` and have the access point `@GMT-2021.03.10-12.00.00`. The snapshot name will be in the local timezone and the access point in GMT. \(In this example, the server timezone is set to GMT time\)
 
-The reason for naming them as such is that the snapshot name is more human-readable, and the access point is more machine-readable, and in particular, is compatible with Windows "previous versions" functionality, for those with Windows clients using Weka's SMB service.
+For grouped snapshots, the name will be schedulegroupname\_schedulename. The full name can't be longer than 18 characters. For example, `default` schedule group with an `hourly` schedule in it might be named `default_hourly.YYMMDDHHMM`.
 
-For deletion, the snapshots are sorted according to the creation date, and the oldest snapshots are deleted until there are `retain` snapshots left for the particular Schedule.
+When deleting snapshots automatically, based on the `retain:` keyword, snapshots for a schedule and filesystem are sorted by creation time, and the oldest snapshots will be deleted until there are `retain:` snapshots left for the applicable Schedule and filesystem.
 
 {% hint style="warning" %}
 **Note:** we are unable to distinguish between user-created and snapshot manager-created snapshots, other than by the name, so when creating user-created snapshots, you should use a different naming format; if the same naming format is used, the user-created snapshots may be selected for deletion automatically.
 {% endhint %}
 
-## Deploying the Snapshot Management Tool 
+## Deploying the Snapshot Management Tool with Systemd
 
-### Step 1: Installing the SnapTool package
+In a web browser, please visit [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) to view the latest release.  The `snaptool-<release>.tar` file in the release is a binary version and is recommended.
 
-You can choose between various packaging options - Docker container, pre-compiled binary, and Python sources.
+* download and extract the tarball
+* edit the `snaptool.yml` configuration file
+* run the install script
 
-Use either step 1a, 1b, or 1c to install the package.
+An easy way if getting the tarball onto your system is via `wget` or `curl` of the tarball directly from GitHub. Right-click on the filename on the releases webpage and select Copy Link Address, then paste into a command line, like this:
 
-#### Step 1a: Getting the container
-
-Get and run the container:
-
-```
-docker pull wekasolutions/snaptool
-
-```
-
-#### Step 1b: Getting the binary version
-
-Go to [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) and download the tarball from the latest release. As of time of this last doc update, the current version is 0.9.1, so download the `snaptool-0.9.1.tar` file from the Version-0.9.1 release. Copy this file to your management server or VM, and unpack it:
-
-```
-tar xvf snaptool-0.9.1.tar
+```text
+wget https://github.com/weka/snaptool/releases/download/1.0.0/snaptool-1.0.0.tar
+tar xvf snaptool-1.0.0.tar
 cd snaptool
 
 ```
 
-### Step 1c: Getting the sources
+You can also download the tarball with any browser, and copy it to the destination system.
 
-You can either `git clone https://github.com/weka/snaptool` or go to [https://github.com/weka/snaptool/releases](https://github.com/weka/export/releases) and download the source tarball.
+If this is the first time `snaptool` is installed on a system, edit the `snaptool.yml` configuration file \(see above\). Then run the included `install.sh` to install the unit file into `systemd` and start the service: 
 
-After cloning or unpacking the tarball, you will need to `pip3 install -r requirements.txt` to install all the required python modules.
-
-## Step 2: Running SnapTool
-
-The first thing you need to do, regardless of the manner you wish to run the SnapTool, is to edit the configuration file, `snaptool.yml` and configure it for what filesystems you wish to manage. See the above [Configuration](snapshot-management.md#configuration) section for details.
-
-Secondly, you'll need your `CLUSTER_SPEC` as described in the [ClusterSpecs](clusterspecs.md) section.
-
-### Step 2a: Running with Docker
-
-The `snaptool` is run in much the same way as other Weka Docker containers:
+```text
+./install.sh
 
 ```
-docker run -d --network=host \
+
+{% hint style="warning" %}
+**Note**: the installer will check for a valid cluster connection, using the hosts in the snaptool.yml file. The installer will not proceed if a cluster can't be found. If this is the first time `snaptool` is installed, you must edit the `snaptool.yml` file to point to a valid weka cluster.
+{% endhint %}
+
+If the service is already running locally, the installer will stop it, and restore the existing `snaptool.yml` file before restarting the service.
+
+## Deploying the Snapshot Management Tool in Docker
+
+The `snaptool` container is run in much the same way as other Weka Docker containers. First, edit/create the `snaptool.yml` configuration file in the current directory, and then run the container:
+
+```
+docker pull wekasolutions/snaptool:latest
+docker run -d --network=host --restart=always \
     --mount type=bind,source=/root/.weka/,target=/weka/.weka/ \
     --mount type=bind,source=/dev/log,target=/dev/log \
     --mount type=bind,source=/etc/hosts,target=/etc/hosts \
-    --mount type=bind,source=$PWD/snaptool.yml,target=/weka/snaptool.yml \
-    wekasolutions/snaptool weka01,weka02,weka09:~/.weka/myauthfile 
+    --mount type=bind,source=$PWD/,target=/weka \
+    wekasolutions/snaptool 
     
 ```
 
-### Step 2b: Running the binary version or Python script
+{% hint style="warning" %}
+**Note:** You may either use the above example as a template for the `snaptool.yml` file, or take a copy from the GitHub repo \([https://github.com/weka/snaptool](https://github.com/weka/snaptool)\).
+{% endhint %}
 
-We suggest that you run the `snaptool` via a `systemd` startup script or similar, but from the command-line you can run it as such:
-
-```
-./snaptool -vvv weka01,weka02,weka09:~/.weka/myauthfile
-
-```
-
-The syntax for running either the python script or binary version is the same.
-
-## Configuration File Reference
-
-The configuration file is in 2 sections - filesystems and schedules, providing significant flexibility in defining when your snapshots should be taken. The configuration file is in a standard YAML format.
-
-### Filesystems
-
-The filesystems specification is simply noting which filesystems are to follow which schedule. Each filesystem can have only one schedule.
-
-```text
-filesystems:           # start of the filesystems section
-  default:             # filesystem named 'default'
-    schedule: custom1  # default follows the 'custom1' schedule 
-  prod_data:           # filesystem named 'prod_data'
-    schedule: custom1  # prod_data also follows 'custom1' schedule 
-```
-
-### Snapshot Schedules
-
-There is one pre-defined schedule, called `default`. You can define as many custom schedules as you like.
-
-Snapshot schedules have common attributes.
-
-* `retain:` the number of snapshots of this type to retain. If there are ever more than this number of snapshots of this type, the oldest snapshots are deleted.
-* `date:` Day of the month \(1-31\)
-* `time:` 24-hour clock time \(0-2359\) without leading zeros. For example, 0900 hours, or 9am is noted as `900`.  Midnight \(00:00, 12:00am\) is `0` 
-* `weekday:` The day of the week -  Monday=0, Tuesday=1, Wednesday=2. Thursday=3, Friday=4, Saturday=5, Sunday=6
-* `start_day:` The day number that the schedule starts on \(see `weekday`, above\)
-* `stop_day:` The day number that the schedule stops on \(see `weekday`, above\)
-* `start_time`: The time that snapshots will begin to be taken \(see `time`, above\)
-* `end_time:` The time that snapshots will stop being taken \(see time above\)
-* `snap_minute:`  The number of minutes within the hour when a snap should be taken. 0 = top of the hour, 30 = 30 mins after the hour, 15 = quarter after the hour, 45 = quarter of the next hour
-* `upload:` Should the snapshot be uploaded to the object store \(if any\).  Boolean \(true/false\)
-
-Here is an example annotated Schedule:
-
-```text
-schedules:  
-  custom1:
-    monthly:           # monthly schedule
-      date: 1            # first day of the month
-      retain: 12         # keep 12 snaps (12 months)
-      time: 1100         # take snap at 11am
-      upload: false      # do not upload to obj store
-    weekly:            # weekly schedule
-      retain: 4          # retain 4 snaps (1 month's worth)
-      time: 0            # take snap at midnight
-      weekday: 6         # ...on Saturday
-      upload: false      # do not upload to obj store
-    daily:             # daily schedule
-      retain: 7          # keep a week of them
-      start_day: 0       # start taking snaps on Monday 
-      stop_day: 5        # stop taking snaps on Saturday
-      time: 1900         # snap at 7pm
-      upload: false      # do not upload to obj store
-    hourly:            # hourly schedule
-      retain: 10         # keep 10 snaps
-      start_day: 0       # start on Monday 
-      start_time: 800    # start snapping at 8am   
-      stop_day: 6        # end on Sunday
-      stop_time: 2100    # stop snapping at 9pm 
-      snap_minute: 0     # snap at top of hour   
-      upload: true       # upload the snap to the obj store 
-```
+## 
 
 
 
