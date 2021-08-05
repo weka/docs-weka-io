@@ -47,9 +47,9 @@ It is possible to limit the resources being used by background tasks.
 
 **Command:** `weka cluster tasks limits`
 
-This command is used to view the currently-defined limits.
+This command is used to view the defined limits.
 
-**Command:** `weka cluster tasks limits set <cpu-limit cpu-limit>`
+**Command:** `weka cluster tasks limits set [--cpu-limit cpu-limit]`
 
 This command is used to update the CPU limit.
 
