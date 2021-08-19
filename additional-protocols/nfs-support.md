@@ -131,6 +131,10 @@ auth_provider = none
 proxy_lib_name = ldap
 ```
 
+{% hint style="info" %}
+**Note:** All users must be present and resolved in the method used in `sssd` for groups resolution. For example, in the above example, using LDAP only provider, local users \(e.g., a local root\) that are not present in LDAP will not get their groups resolved and will be denied. An LDAP user will need to be added for such users/applications.
+{% endhint %}
+
 ## Managing NFS Networking Configuration \(Interface Groups\)
 
 ### Defining Interface Groups
