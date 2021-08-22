@@ -81,6 +81,7 @@ Jumbo Frames are not required for clients. However, performance might be limited
 * Mellanox ConnectX4 \(Ethernet and InfiniBand\)
 * Mellanox ConnectX5 \(Ethernet and InfiniBand\)
 * Mellanox ConnectX6 \(Ethernet and InfiniBand\)
+  * **Note:** ConnectX6-Lx and ConnectX6-Dx are not supported yet
 
 #### NIC Drivers
 
@@ -140,6 +141,7 @@ Supported Intel 40 drivers:
 * Mellanox ConnectX4 \(Ethernet and InfiniBand\)
 * Mellanox ConnectX5 \(Ethernet and InfiniBand\)
 * Mellanox ConnectX6 \(Ethernet and InfiniBand\)
+  * **Note:** ConnectX6-Lx and ConnectX6-Dx are not supported yet
 
 #### NIC Drivers
 
