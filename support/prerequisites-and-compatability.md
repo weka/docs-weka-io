@@ -40,7 +40,7 @@ description: >-
 * If using `mlocate` or alike, its advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
 
 {% hint style="info" %}
-**Note:** To set SELinux security context for files, `-o acl` should be used in the mount command.
+**Note:** To set SELinux security context for files, `-o acl` should be used in the mount command, and `wekafs` should be defined to use extended-attributes in the SELinux policy configuration \(`fs_use_xattr`\).
 {% endhint %}
 
 ### Kernel
