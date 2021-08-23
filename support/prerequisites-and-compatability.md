@@ -34,6 +34,12 @@ description: >-
 
 ### Configuration
 
+#### General
+
+* All Weka nodes must be synchronized in date/time \(NTP recommended\)
+* A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
+* If using `mlocate` or alike, its advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
+
 #### SELinux 
 
 * SELinux is supported in both `permissive` and `enforcing` mode
@@ -43,12 +49,6 @@ description: >-
 {% hint style="info" %}
 **Note:** To set SELinux security context for files, `-o acl` should be used in the mount command, and `wekafs` should be defined to use extended-attributes in the SELinux policy configuration \(`fs_use_xattr`\).
 {% endhint %}
-
-#### General
-
-* All Weka nodes must be synchronized in date/time \(NTP recommended\)
-* A watchdog driver should be installed in /dev/watchdog \(hardware watchdog recommended\); search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
-* If using `mlocate` or alike, its advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
 
 ### Kernel
 
