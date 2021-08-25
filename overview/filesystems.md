@@ -37,13 +37,15 @@ For proper security, a KMS \(Key Management System\) must be used when creating 
 
 ### Metadata Limitations
 
-In addition to the capacity limitation, each filesystem also has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to the Weka system, as well as the RAM resources allocated to the Weka system processes. The Weka system will keep the metadata units in RAM, and if it reaches the RAM limit, it will page metadata units to the SSD \(and alert\). This leaves enough time for the administrator to increase system resources, as the system keeps serving IOs with a minimal performance impact.
+In addition to the capacity limitation, each filesystem also has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to the Weka system, as well as the [RAM resources](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning) allocated to the Weka system processes. The Weka system will keep tracking of metadata units in RAM, and if it reaches the RAM limit, it will page these metadata tracking units to the SSD \(and alert\). This leaves enough time for the administrator to increase system resources, as the system keeps serving IOs with a minimal performance impact.
 
 By default, the metadata limit associated with a filesystem is proportional to the filesystem SSD size. It is possible to override this default by defining a filesystem-specific max-files parameter. The filesystem limit is a logical limit to control the specific filesystem usage, and can always be updated by the administrator when necessary.
 
-The total limits of the metadata for all the filesystems can exceed the total system metadata that can fit in RAM. For minimal impact, in such a case, the least-recently-used units will be paged to disk, as necessary.
+The total limits of the metadata for all the filesystems can exceed the total system metadata information that can fit in RAM. For minimal impact, in such a case, the least-recently-used units will be paged to disk, as necessary.
 
 ### Metadata Calculations
+
+Each metadata unit consumes 4KB of space.
 
 Throughout this documentation, the metadata limitation per filesystem is referred to as a parameter named `max-files` , which describes the number of metadata units, and not the number of files. This parameter encapsulates both the file count and the file sizes, as follows:
 
