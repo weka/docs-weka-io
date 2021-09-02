@@ -480,7 +480,7 @@ Use the following command lines to add/update/delete NFS permissions:
       </td>
       <td style="text-align:left">Number</td>
       <td style="text-align:left">Anonymous user ID (relevant only for root squashing)</td>
-      <td style="text-align:left">Valid UID (between 0 and 65535)</td>
+      <td style="text-align:left">Valid UID (between 1 and 65535)</td>
       <td style="text-align:left">Yes (if root squashing is enabled)</td>
       <td style="text-align:left">65534</td>
     </tr>
@@ -489,7 +489,7 @@ Use the following command lines to add/update/delete NFS permissions:
       </td>
       <td style="text-align:left">Number</td>
       <td style="text-align:left">Anonymous user group ID (relevant only for root squashing)</td>
-      <td style="text-align:left">Valid GID (between 0 and 65535)</td>
+      <td style="text-align:left">Valid GID (between 1 and 65535)</td>
       <td style="text-align:left">Yes (if root squashing is enabled)</td>
       <td style="text-align:left">65534</td>
     </tr>
