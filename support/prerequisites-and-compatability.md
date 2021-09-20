@@ -11,6 +11,10 @@ description: >-
 * Intel SandyBridge+ processors
 * AMD 2nd and 3rd Gen EPYC processors
 
+{% hint style="info" %}
+**Note:** AES must be enabled in the BIOS
+{% endhint %}
+
 ## Memory
 
 * Enough memory to support the Weka system needs as described in [memory requirements ](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning)
