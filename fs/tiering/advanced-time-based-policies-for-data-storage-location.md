@@ -45,7 +45,7 @@ Users only specify the data Retention Period and based on this, each interval is
 {% endhint %}
 
 {% hint style="success" %}
-**For Example:** In a Weka system that is configured with a Data Retention Period of 20 days, data is split into 7 interval groups, with each group spanning a total of 5 days \(5 is 25% of 20, the data Retention Period\). If the system starts operating on January 1, then data written, accessed, or modified between January 1-5 is classified as belonging to interval 1, data written, accessed, or modified between January 6-10 belongs to interval 2, and so on. In such a case, the 7 intervals will be timestamped and divided as follows:
+**For Example:** In a Weka system that is configured with a Data Retention Period of 20 days, data is split into 7 interval groups, with each group spanning a total of 5 days \(5 is 25% of 20, the data Retention Period\). If the system starts operating on January 1, then data written, accessed, or modified between January 1-5 is classified as belonging to interval 0, data written, accessed, or modified between January 6-10 belongs to interval 1, and so on. In such a case, the 7 intervals will be timestamped and divided as follows:
 {% endhint %}
 
 ![](../../.gitbook/assets/table-1b.jpg)
