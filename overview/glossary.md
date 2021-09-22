@@ -10,13 +10,13 @@ The Weka agent is software installed on user application servers that need acces
 
 ### Backend Host
 
-A host that runs the Weka software and can also be installed with SSD drives dedicated to the Weka system, providing services to client hosts. A group of backend hosts forms a storage cluster.
+A host that runs the Weka software and is installed with SSD drives dedicated to the Weka system, providing services to client hosts. A group of backend hosts forms a storage cluster.
 
 ## C
 
 ### Client
 
-The Weka client is software installed on user application servers that need access to Weka file services. The Weka client implements a kernel-based filesystem driver and the logic and networking stack to connect to the Weka backend hosts and be part of a cluster. In general industry terms, "client" may also refer to an NFS, SMB, or S3 client that uses those protocols to access the Weka filesystem. For NFS, SMB and S3 the Weka client is not required to be installed in conjunction with those protocols.
+The Weka client is software installed on user application servers that need access to Weka file services. The Weka client implements a kernel-based filesystem driver and the logic and networking stack to connect to the Weka backend hosts and be part of a cluster. In general industry terms, "client" may also refer to an NFS, SMB, or S3 client that uses those protocols to access the Weka filesystem. For NFS, SMB, and S3 the Weka client is not required to be installed in conjunction with those protocols.
 
 ### Cluster
 
@@ -42,7 +42,7 @@ The number of data blocks in each logical data protection group.
 
 ### Dedicated Deployment
 
-A Weka configuration which dedicates complete servers and all of their allocated resources to Weka backends, as opposed to a converged deployment.
+A Weka configuration that dedicates complete servers and all of their allocated resources to Weka backends, as opposed to a converged deployment.
 
 ## F
 
@@ -52,17 +52,21 @@ A collection of hardware components that can fail together due to a single root 
 
 ### Filesystem Group
 
-A collection of filesystems which share a common tiering policy to object-store.
+A collection of filesystems that share a common tiering policy to object-store.
+
+### Frontend
+
+Is the collection of Weka software that runs on a client and accesses storage services and IO from the Weka storage cluster. The frontend consists of a frontend node that delivers IO to the Weka driver, a DPDK library, and the Weka POSIX driver.
 
 ## H
 
 ### Hot Data
 
-Frequently-used data \(as opposed to warm data\), usually residing on SSDs.
+Frequently used data \(as opposed to warm data\), usually residing on SSDs.
 
 ### Host
 
-A physical or virtual server that has hardware resources allocated to it and software running on it that provides compute or storage services. Weka uses backend hosts in conjunction with clients to deliver storage services. In general industry terms, in a cluster of hosts, sometimes "node" is used instead.
+A physical or virtual server that has hardware resources allocated to it and software running on it that provides compute or storage services. Weka uses [backend hosts](https://app.gitbook.com/@wekaio/s/docs/~/drafts/-Mgr6Tp1ghQJ-ubcwTuD/overview/glossary#backend-host/@drafts) in conjunction with [clients](https://app.gitbook.com/@wekaio/s/docs/~/drafts/-Mgr6Tp1ghQJ-ubcwTuD/overview/glossary#client/@drafts) to deliver storage services. In general industry terms, in a cluster of hosts, sometimes "[node](https://app.gitbook.com/@wekaio/s/docs/~/drafts/-Mgr6Tp1ghQJ-ubcwTuD/overview/glossary#node/@drafts)" is used instead.
 
 ## N
 
@@ -72,13 +76,17 @@ Amount of space available for user data on SSDs in a configured Weka system.
 
 ### Node
 
-A software instance that Weka uses to run and manage Weka FS. Nodes are dedicated to managing different functions such as \(1\) NVMe Drives and IO to the drives, \(2\) backend nodes for filesystems and cluster-level functions and IO from clients, \(3\) frontend nodes for POSIX client access and sending IO to the backend nodes, and \(4\) management nodes for managing the overall cluster. In general industry terms, node also may be referenced as a discrete component in a hardware or software cluster. Sometimes when referring to hardware, the term host may be used instead.
+A software instance that Weka uses to run and manage WekaFS. Nodes are dedicated to managing different functions such as \(1\) NVMe Drives and IO to the drives, \(2\) compute nodes for filesystems and cluster-level functions and IO from clients, \(3\) frontend nodes for POSIX client access and sending IO to the backend nodes, and \(4\) management nodes for managing the overall cluster. In general industry terms, a node also may be referenced as a discrete component in a hardware or software cluster. Sometimes when referring to hardware, the term host may be used instead.
 
 ## P
 
+### **POSIX**
+
+The Portable Operating System Interface \(POSIX\) is a family of ****standards specified by the [I](https://en.wikipedia.org/wiki/IEEE_Computer_Society)EEE Computer Society for maintaining compatibility between operating systems. The WekaFS client is POSIX compliant, which means that it presents data to the OS on which it is installed in a manner that conforms to the POSIX standard. The WekaFS client is sometimes informally referred to as the POSIX client or POSIX driver when describing the overall storage system architecture.
+
 ### Provisioned Capacity
 
-The total capacity assigned to filesystems. This includes both SSD and object store capacity.
+The total capacity that is assigned to filesystems. This includes both SSD and object store capacity.
 
 ### Prefetch
 
@@ -96,7 +104,7 @@ The target time for data to be stored on SSDs before releasing from the SSDs to 
 
 ### Releasing
 
-The deletion of the SSD copy of data which has been tiered to the object-store.
+The deletion of the SSD copy of data that has been tiered to the object-store.
 
 ### Rehydrating
 
@@ -106,11 +114,11 @@ The creation of an SSD copy of data stored only on the object-store.
 
 ### Server
 
-In Weka terms, a physical or virtual instantiation of hardware on which software runs and provides compute or storage services. In general industry terms, server may also refer to a software process that provides a service to another process, whether on the same host or to a client \(e.g. NFS server, SMB server, etc.\).
+In Weka terms, a physical or virtual instantiation of hardware on which software runs and provides compute or storage services. In general industry terms, a server may also refer to a software process that provides a service to another process, whether on the same host or to a client \(e.g. NFS server, SMB server, etc.\).
 
 ### Stem Mode
 
-A mode of the Weka software which has been installed and is running, but has not been attached to a cluster.
+A mode of the Weka software that has been installed and is running, but has not been attached to a cluster.
 
 ### Snap-To-Object
 
@@ -134,7 +142,7 @@ The minimum time to wait before considering data for tiering from an SSD to an o
 
 ### Unprovisioned Capacity
 
-The storage capacity available for new filesystems.
+The storage capacity that is available for new filesystems.
 
 ## V
 
