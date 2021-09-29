@@ -32,7 +32,7 @@ When working with quotas, consider the following:
 * When setting a quota, you should go through a new mount-point. Meaning, if you are using a host that has mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
 * Quotas can be set within nested directories and over-provisioned under the same directory quota tree. E.g., `/home` can have a quota of 1TiB, and each user directory under it can have a quota of 10GiB, while there are 200 users.
 * Before a directory is being deleted, its quota must be removed. A directory tree cannot be deleted without removing all the inner directories quotas beforehand. Note, default \(parent\) quotas are set as quotas at the directory creation and the actual quota needs to be removed before the directory is deleted \(not the default quota of the parent directory\) 
-* Moving files \(or directories\) between two directories with quotas is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy&delete but is OS dependent.
+* Moving files \(or directories\) between two directories with quotas, into a directory with a quota, or outside of a directory with a quota is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy&delete but is OS-dependent.
 * Quotas and hardlinks:
   * An existing hardlink is not counted as part of the quota.
   * Once a directory has a quota, it is not allowed to create a hardlink to files residing under directories with different \(or without\) directory quotas.
