@@ -31,17 +31,14 @@ When working with quotas, consider the following:
 * Currently, to set a quota, the relevant filesystem must be mounted on the host setting where the set quota command is to be run.
 * When setting a quota, you should go through a new mount-point. Meaning, if you are using a host that has mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
 * Quotas can be set within nested directories and over-provisioned under the same directory quota tree. E.g., `/home` can have a quota of 1TiB, and each user directory under it can have a quota of 10GiB, while there are 200 users.
-* Before a directory is being deleted, its quota must be removed. A directory tree cannot be deleted without removing all the inner directories quotas beforehand.
-* Moving files between two directories with quotas is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy&delete but is OS dependant.
+* Before a directory is being deleted, its quota must be removed. A directory tree cannot be deleted without removing all the inner directories quotas beforehand. Note, default \(parent\) quotas are set as quotas at the directory creation and the actual quota needs to be removed before the directory is deleted \(not the default quota of the parent directory\) 
+* Moving files \(or directories\) between two directories with quotas is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy&delete but is OS dependent.
 * Quotas and hardlinks:
   * An existing hardlink is not counted as part of the quota.
   * Once a directory has a quota, it is not allowed to create a hardlink to files residing under directories with different \(or without\) directory quotas.
 * Restoring a filesystem from a snapshot turns the quotas back to the configuration at the time of the snapshot.
 * Creating a new filesystem from a snap-2-obj does not preserve the original quotas.
 * When working with enforcing quotas along with a `writecache` mount-mode, similarly to other POSIX solutions, getting above the quota might not sync all the cache writes to the backend servers. Use `sync`, `syncfs`, or `fsync` to commit the cached changes to the system \(or fail due to exceeding the quota\).
-* Default quotas are statically propagated at folder creation time and turned into regular quotas that can be independently manipulated.
-
-  Deletion of such a folder requires removing its propagated quota first.
 
 ## Managing Quotas using the CLI
 
