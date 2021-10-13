@@ -8,7 +8,7 @@ description: >-
 
 ## AWS
 
-### **AWS Cluster** 
+### **AWS Cluster **
 
 * Stripe Size: 4+2
 * 8 backend servers instances of [i3en.12xlarge](https://aws.amazon.com/ec2/instance-types/i3en/)
@@ -30,15 +30,15 @@ description: >-
 
 ## SuperMicro
 
-### **SuperMicro Cluster** 
+### **SuperMicro Cluster **
 
 * Stripe Size: 4+2
-* 8 backend servers \(SYS-2029BT-HNR / X11DPT-B\), each:
-  * **OS**: CentOS Linux release 7.8.2003 \(3.10.0-1127.el7.x86\_64\)
+* 8 backend servers (SYS-2029BT-HNR / X11DPT-B), each:
+  * **OS**: CentOS Linux release 7.8.2003 (3.10.0-1127.el7.x86\_64)
   * **Memory**: 384 GB Memory
-  * **Drives**: 6 Micron 9300 drives \(MTFDHAL3T8TDP\)
+  * **Drives**: 6 Micron 9300 drives (MTFDHAL3T8TDP)
   * **Network**: Dual 100 Gbps Ethernet
-  * **Cpu/Threads**: 24/48 \(Intel\(R\) Xeon\(R\) Gold 6126 CPU @ 2.60GHz\)
+  * **Cpu/Threads**: 24/48 (Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz)
   * 19 dedicated cores for Weka 
     * 12 compute
     * 6 drives
@@ -48,11 +48,10 @@ description: >-
 
 * SYS-2029BT-HNR / X11DPT-B servers
 * For the aggregated results 8 clients have been used
-* **OS**: CentOS Linux release 7.8.2003 \(3.10.0-1127.el7.x86\_64\)
+* **OS**: CentOS Linux release 7.8.2003 (3.10.0-1127.el7.x86\_64)
 * **Memory**: 192 GB Memory
 * **Network**: Dual 100 Gbps Ethernet
-* **Cpu/Threads**: 24/48 \(Intel\(R\) Xeon\(R\) Gold 6126 CPU @ 2.60GHz\)
+* **Cpu/Threads**: 24/48 (Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz)
 * 6 frontend cores
 * DPDK networking
 * Mount options: using system defaults
-

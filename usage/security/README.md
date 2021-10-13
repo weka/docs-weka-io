@@ -18,13 +18,13 @@ General security considerations are described below.
 
 An authentication token is used to access the Weka cluster API, and allow mounting secure filesystems.
 
-It is first required to log in to obtain an access token. Log in via the CLI \(using the `weka user login` CLI command, a token file is created in `~/.weka/auth-token.json`\) or via the API \(using the `POST /login` API\).
+It is first required to log in to obtain an access token. Log in via the CLI (using the `weka user login` CLI command, a token file is created in` ~/.weka/auth-token.json`) or via the API (using the `POST /login `API).
 
 This provides an access token to be used to authenticate the command, as long as a longer-lived refresh-token, to allow re-obtaining additional access-tokens without providing the username/password again.
 
 #### Access-Token for API usage
 
-When working with REST API, it is sometimes desired to use a longer-lived token \(one that doesn't require a refresh every 5 minutes\). It is possible to generate such a token for internal Weka users using the `weka user generate-token [--access-token-timeout timeout]` CLI command \(default to  30 days\).
+When working with REST API, it is sometimes desired to use a longer-lived token (one that doesn't require a refresh every 5 minutes). It is possible to generate such a token for internal Weka users using the `weka user generate-token [--access-token-timeout timeout]` CLI command (default to  30 days).
 
 Access-tokens are revoked when calling the `weka user revoke-tokens` CLI command. 
 
@@ -42,7 +42,7 @@ You can deploy your certificates using the `weka security tls set` CLI command. 
 
 ### Certificate Replacement/Rotation
 
-To replace the certificate, use the `weka security tls set` CLI command to set a new one. Once a certificate has been issued, it is used for connecting to the cluster \(for the time it has been issued\), while the revocation is handled by the CA and propagating its revocation lists into the various clients.
+To replace the certificate, use the `weka security tls set` CLI command to set a new one. Once a certificate has been issued, it is used for connecting to the cluster (for the time it has been issued), while the revocation is handled by the CA and propagating its revocation lists into the various clients.
 
 ## Password Management
 
@@ -53,16 +53,15 @@ To replace the certificate, use the `weka security tls set` CLI command to set a
 * a lowercase letter
 * a number or a special character
 
-The [First User ](user-management.md#first-user-cluster-admin)created by default is admin \(with `admin` password\), and the password is prompt to change on the first login.
+The [First User ](user-management.md#first-user-cluster-admin)created by default is admin (with `admin` password), and the password is prompt to change on the first login.
 
 ### Account Lockout
 
-To prevent brute force attacks, if several login attempts fail \(5 by default\), the user account will be locked out for several minutes \(2 by default\).
+To prevent brute force attacks, if several login attempts fail (5 by default), the user account will be locked out for several minutes (2 by default).
 
 The defaults can be controlled using the `weka security lockout-config show/set/reset` CLI commands. 
 
 ## GUI
 
-* The Weka GUI is \(only\) accessible from the backend servers via port 14000.
+* The Weka GUI is (only) accessible from the backend servers via port 14000.
 * The GUI session will automatically be terminated, and the user will get logged out after 30 minutes of inactivity.
-

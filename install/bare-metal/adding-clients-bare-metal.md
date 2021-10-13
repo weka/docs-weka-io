@@ -8,13 +8,13 @@ description: This page describes how to add clients to a bare-metal cluster.
 
 Client hosts are used to running applications that need to access the Weka filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
 
-## Adding \(Stateless\) Clients
+## Adding (Stateless) Clients
 
 To use the Weka filesystems from a client host, all that is needed is to call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
 
 To mount a filesystem in this manner, first, install the Weka agent from one of the backend instances and then mount the filesystem. For example:
 
-```text
+```
 # Agent Installation (one time)
 curl http://Backend-1:14000/dist/v1/install | sh
 
@@ -34,7 +34,7 @@ It is possible to configure the client OS to automatically mount the filesystem 
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The different clients must have a unique IP and FQDN.
+**Note: **The different clients must have a unique IP and FQDN.
 {% endhint %}
 
 ## Adding Clients Which Are Always Part of the Cluster
@@ -48,23 +48,23 @@ It is possible to configure the client OS to automatically mount the filesystem 
 Verify that the Weka software is installed on the client host according to the installation instructions. For further information, see [Obtaining the Weka Install File](obtaining-the-weka-install-file.md) and [Stage 1 in Weka System Installation Process.](using-cli.md#stage-1-installation-of-the-wekaio-software-on-each-host)
 
 {% hint style="info" %}
-**Note:** All hosts \(clients and backends\) in a Weka system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
+**Note:** All hosts (clients and backends) in a Weka system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
 {% endhint %}
 
 ### Stage 2: Joining the Cluster
 
 **Command:** `weka cluster host add`
 
-Once the client host is in the stem mode \(this is the mode defined immediately after running the `install.sh`command\), use the following command line on the client host to add it to the cluster:
+Once the client host is in the stem mode (this is the mode defined immediately after running the `install.sh`command), use the following command line on the client host to add it to the cluster:
 
 `weka -H <backend-hostname> cluster host add <client-hostname>`
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `backend-hostname` | String | IP/hostname of one of the existing backend instances in the cluster | Existing backend IP/FQDN | Yes |  |
-| `client-hostname` | String | IP/hostname of the client currently being added | Unique IP/FQDN | Yes |  |
+| **Name**           | **Type** | **Value**                                                           | **Limitations**          | **Mandatory** | **Default** |
+| ------------------ | -------- | ------------------------------------------------------------------- | ------------------------ | ------------- | ----------- |
+| `backend-hostname` | String   | IP/hostname of one of the existing backend instances in the cluster | Existing backend IP/FQDN | Yes           |             |
+| `client-hostname`  | String   | IP/hostname of the client currently being added                     | Unique IP/FQDN           | Yes           |             |
 
 {% hint style="info" %}
 **Note:** On completion of this stage, the host-ID of the newly added host will be received. Make a note of it for the next steps.
@@ -80,58 +80,11 @@ To configure the new host as a client, run the following command:
 
 **Parameters in Command Line**
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>Name</b>
-      </th>
-      <th style="text-align:left"><b>Type</b>
-      </th>
-      <th style="text-align:left"><b>Value</b>
-      </th>
-      <th style="text-align:left"><b>Limitations</b>
-      </th>
-      <th style="text-align:left"><b>Mandatory</b>
-      </th>
-      <th style="text-align:left"><b>Default</b>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>host-id</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Identifier of the host to be added to the cluster</td>
-      <td style="text-align:left">Must be a valid host identifier</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>cores</code>
-      </td>
-      <td style="text-align:left">Number</td>
-      <td style="text-align:left">Number of physical cores to be allocated to the Weka client</td>
-      <td style="text-align:left">Maximum 19 cores</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>frontend-dedicated-cores</code>
-      </td>
-      <td style="text-align:left">Number</td>
-      <td style="text-align:left">Number of physical cores to be dedicated to FrontEnd processes</td>
-      <td
-      style="text-align:left">
-        <p></p>
-        <p>For clients, the number of total cores and frontend-dedicated-cores must
-          be equal</p>
-        </td>
-        <td style="text-align:left">Yes, in order to configure a host as a client</td>
-        <td style="text-align:left"></td>
-    </tr>
-  </tbody>
-</table>
+| **Name**                   | **Type** | **Value**                                                      | **Limitations**                                                                                 | **Mandatory**                                 | **Default** |
+| -------------------------- | -------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------- | ----------- |
+| `host-id`                  | String   | Identifier of the host to be added to the cluster              | Must be a valid host identifier                                                                 | Yes                                           |             |
+| `cores`                    | Number   | Number of physical cores to be allocated to the Weka client    | Maximum 19 cores                                                                                | Yes                                           |             |
+| `frontend-dedicated-cores` | Number   | Number of physical cores to be dedicated to FrontEnd processes | <p></p><p>For clients, the number of total cores and frontend-dedicated-cores must be equal</p> | Yes, in order to configure a host as a client |             |
 
 ### Stage 4: Configuring Client Networking
 
@@ -147,78 +100,13 @@ If a high-performance client is required and the appropriate network NIC is avai
 
 **Parameters in Command Line**
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>Name</b>
-      </th>
-      <th style="text-align:left"><b>Type</b>
-      </th>
-      <th style="text-align:left"><b>Value</b>
-      </th>
-      <th style="text-align:left"><b>Limitations</b>
-      </th>
-      <th style="text-align:left"><b>Mandatory</b>
-      </th>
-      <th style="text-align:left"><b>Default</b>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>host-id</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Identifier of the host to be added to the cluster</td>
-      <td style="text-align:left">Must be a valid host identifier</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>device</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Network interface device name e.g., <code>eth1</code>
-      </td>
-      <td style="text-align:left">Must be a valid network device name</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>ips</code>
-      </td>
-      <td style="text-align:left">IP address</td>
-      <td style="text-align:left">The IP address of the new interface</td>
-      <td style="text-align:left">Must be a valid IP address</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>gateway</code>
-      </td>
-      <td style="text-align:left">IP address</td>
-      <td style="text-align:left">The IP address of the default routing gateway</td>
-      <td style="text-align:left">
-        <p>The gateway must reside within the same IP network of <code>ips</code> (as
-          described by <code>netmask</code>).</p>
-        <p>Not relevant for IB / L2 non-routable networks.</p>
-      </td>
-      <td style="text-align:left">No</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>netmask</code>
-      </td>
-      <td style="text-align:left">Number</td>
-      <td style="text-align:left">Number of bits in the netmask, e.g., the netmask of <code>255.255.0.0</code> has <code>16</code> netmask
-        bits</td>
-      <td style="text-align:left">Describes the number of bits that identify a network ID (also known as
-        CIDR).</td>
-      <td style="text-align:left">No</td>
-      <td style="text-align:left"></td>
-    </tr>
-  </tbody>
-</table>
+| **Name**  | **Type**   | **Value**                                                                               | **Limitations**                                                                                                                                                              | **Mandatory** | **Default** |
+| --------- | ---------- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| `host-id` | String     | Identifier of the host to be added to the cluster                                       | Must be a valid host identifier                                                                                                                                              | Yes           |             |
+| `device`  | String     | Network interface device name e.g., `eth1`                                              | Must be a valid network device name                                                                                                                                          | Yes           |             |
+| `ips`     | IP address | The IP address of the new interface                                                     | Must be a valid IP address                                                                                                                                                   | Yes           |             |
+| `gateway` | IP address | The IP address of the default routing gateway                                           | <p>The gateway must reside within the same IP network of <code>ips</code> (as described by <code>netmask</code>). </p><p>Not relevant for IB / L2 non-routable networks.</p> | No            |             |
+| `netmask` | Number     | Number of bits in the netmask, e.g., the netmask of `255.255.0.0` has `16` netmask bits | Describes the number of bits that identify a network ID (also known as CIDR).                                                                                                | No            |             |
 
 {% hint style="info" %}
 **Note:** When configuring an InfiniBand client, do not pass the `--ips`, `--netmask` and `--gateway` parameters.
@@ -238,8 +126,7 @@ After successfully configuring the host and its network device, run the followin
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `host-id` | Comma-separated string | Identifier of the host to be added to the cluster | Must be a valid host identifier | Yes |  |
-| `force` | Boolean | Do not prompt for confirmation |  | No | Off |
-
+| **Name**  | **Type**               | **Value**                                         | **Limitations**                 | **Mandatory** | **Default** |
+| --------- | ---------------------- | ------------------------------------------------- | ------------------------------- | ------------- | ----------- |
+| `host-id` | Comma-separated string | Identifier of the host to be added to the cluster | Must be a valid host identifier | Yes           |             |
+| `force`   | Boolean                | Do not prompt for confirmation                    |                                 | No            | Off         |

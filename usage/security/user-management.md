@@ -13,14 +13,14 @@ Access to a Weka system cluster is controlled by creating, modifying and deletin
 Every Weka system user has one of the following defined roles:
 
 * **Cluster Admin**: A user with additional privileges, as described in [Cluster Admin Role Privileges](user-management.md#admin-role-privileges) below.
-* **Organization Admin**: A user with additional privileges within an organization \(when working with different organizations, as described in [Organization Admin Role Privileges](organizations.md#organization-admin-role-privileges)\).
+* **Organization Admin**: A user with additional privileges within an organization (when working with different organizations, as described in [Organization Admin Role Privileges](organizations.md#organization-admin-role-privileges)).
 * **Read-only:** A user with read-only privileges.
 * **Regular**: A user that should only be able to mount filesystems
   * can log-in to obtain an access token
   * can change their password
   * cannot access the UI or run other CLI/API commands
 
-## First User \(Cluster Admin\)
+## First User (Cluster Admin)
 
 By default, when a Weka cluster is created, a first user with an `admin` username and password is created. This user has a Cluster Admin role, which allows the running of all commands.
 
@@ -56,11 +56,11 @@ Use the following command line to create a user:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `username` | String | Name of the user to change the password for | Must be a valid local user | Yes |  |
-| `role` | String | Role of the new created user | `regular`, `readonly`, `orgadmin` or `clusteradmin` | Yes |  |
-| `password` | String | New password |  | No | If not supplied, command will prompt to supply the password |
+| **Name**   | **Type** | **Value**                                   | **Limitations**                                     | **Mandatory** | **Default**                                                 |
+| ---------- | -------- | ------------------------------------------- | --------------------------------------------------- | ------------- | ----------------------------------------------------------- |
+| `username` | String   | Name of the user to change the password for | Must be a valid local user                          | Yes           |                                                             |
+| `role`     | String   | Role of the new created user                | `regular`, `readonly`, `orgadmin` or `clusteradmin` | Yes           |                                                             |
+| `password` | String   | New password                                |                                                     | No            | If not supplied, command will prompt to supply the password |
 
 {% hint style="success" %}
 **For Example:**
@@ -69,7 +69,7 @@ Use the following command line to create a user:
 
 This command line creates a user with a username of `my_new_user`, a password of `S3cret` and a role of Regular user. It is then possible to display a list of users and verify that the user was created:
 
-```text
+```
 $ weka user
 Username    | Source   | Role
 ------------+----------+--------
@@ -82,7 +82,7 @@ Using the `weka user whoami` command, it is possible to receive information abou
 
 To use the new user credentials, use the`WEKA_USERNAME` and `WEKA_PASSWORD`environment variables:
 
-```text
+```
 $ WEKA_USERNAME=my_new_user WEKA_PASSWORD=S3cret weka user whoami
 Username    | Source   | Role
 ------------+----------+--------
@@ -99,10 +99,10 @@ Use the following command line to change a local user password:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `password` | String | New password |  | Yes |  |
-| `username` | String | Name of the user to change the password for | Must be a valid local user | No | Current logged-in user |
+| **Name**   | **Type** | **Value**                                   | **Limitations**            | **Mandatory** | **Default**            |
+| ---------- | -------- | ------------------------------------------- | -------------------------- | ------------- | ---------------------- |
+| `password` | String   | New password                                |                            | Yes           |                        |
+| `username` | String   | Name of the user to change the password for | Must be a valid local user | No            | Current logged-in user |
 
 {% hint style="info" %}
 **Note:** If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
@@ -118,9 +118,9 @@ To delete a user, use the following command line:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `username` | String | Name of the user to delete | Must be a valid local user | Yes |  |
+| **Name**   | **Type** | **Value**                  | **Limitations**            | **Mandatory** | **Default** |
+| ---------- | -------- | -------------------------- | -------------------------- | ------------- | ----------- |
+| `username` | String   | Name of the user to delete | Must be a valid local user | Yes           |             |
 
 {% hint style="success" %}
 **For Example:**
@@ -129,7 +129,7 @@ To delete a user, use the following command line:
 
 Then run the`weka user` command to verify that the user was deleted:
 
-```text
+```
 $ weka user
 Username | Source   | Role
 ---------+----------+------
@@ -149,7 +149,7 @@ When a login fails, an "Invalid username or password" message is displayed and a
 
 When users open the GUI, they are prompted to provide their username and password. To pass username and password to the CLI, use the `WEKA_USERNAME` and `WEKA_PASSWORD` environment variables.
 
-Alternatively, it is possible to log into the CLI as a specific user using the`weka user login <username> <password>`command. This will run each CLI command from that user. When a user logs in, a token file is created to be used for authentication \(default to `~/.weka/auth-token.json`, which can be changed using the `--path` attribute\). To see the logged-in CLI user, run the`weka user whoami` command.
+Alternatively, it is possible to log into the CLI as a specific user using the`weka user login <username> <password>`command. This will run each CLI command from that user. When a user logs in, a token file is created to be used for authentication (default to `~/.weka/auth-token.json`, which can be changed using the `--path` attribute). To see the logged-in CLI user, run the`weka user whoami` command.
 
 {% hint style="info" %}
 **Note:** The`weka user login` command is persistent, but only applies to the host on which it was set.
@@ -167,9 +167,9 @@ To authenticate users from an LDAP user directory, the LDAP directory must first
 
 ### Configuring an LDAP User Directory
 
-**Command:**  
-`weka user ldap setup    
-weka user ldap setup-ad`
+**Command:**\
+`weka user ldap setup  `\
+`weka user ldap setup-ad`
 
 One of two CLI commands is used to configure an LDAP user directory for user authentication. The first is for configuring a general LDAP server and the second is for configuring an Active Directory server.
 
@@ -183,215 +183,41 @@ To configure an Active Directory server, use the following command line:
 
 **Parameters in Command Line**
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>Name</b>
-      </th>
-      <th style="text-align:left"><b>Type</b>
-      </th>
-      <th style="text-align:left"><b>Value</b>
-      </th>
-      <th style="text-align:left"><b>Limitations</b>
-      </th>
-      <th style="text-align:left"><b>Mandatory</b>
-      </th>
-      <th style="text-align:left"><b>Default</b>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>server-uri</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Either the LDAP server host name/IP or a URI</td>
-      <td style="text-align:left">URI must be in format <code>ldap://hostname:port</code> or <code>ldaps://hostname:port</code>
-      </td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>base-dn</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Base DN under which users are stored</td>
-      <td style="text-align:left">Must be valid name</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>user-id-attribute</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Attribute storing user IDs</td>
-      <td style="text-align:left">Must be valid name</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>user-object-class</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Object class of users</td>
-      <td style="text-align:left">Must be valid name</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>group-object-class</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Object class of groups</td>
-      <td style="text-align:left">Must be valid name</td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>group-membership-attribute</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Attribute of group containing the DN of a user membership in the group</td>
-      <td
-      style="text-align:left">Must be valid name</td>
-        <td style="text-align:left">Yes</td>
-        <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>group-id-attribute</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Attribute storing the group name</td>
-      <td style="text-align:left">Name has to match names used in the <code>&lt;admin-group&gt;</code>, <code>&lt;regular group&gt;</code> and <code>&lt;readonly group&gt;</code>
-      </td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>reader-username</code> and <code>reader-password</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Credentials of a user with read access to the directory</td>
-      <td style="text-align:left">Password is kept in the Weka cluster configuration in plain text, as it
-        is used to authenticate against the directory during user authentication</td>
-      <td
-      style="text-align:left">Yes</td>
-        <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>cluster-admin-group</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Name of group containing users defined with cluster admin role</td>
-      <td
-      style="text-align:left">Must be valid name</td>
-        <td style="text-align:left">Yes</td>
-        <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>org-admin-group</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Name of group containing users defined with organization admin role</td>
-      <td
-      style="text-align:left">Must be valid name</td>
-        <td style="text-align:left">Yes</td>
-        <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>regular-group</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Name of group containing users defined with regular privileges</td>
-      <td
-      style="text-align:left">Must be valid name</td>
-        <td style="text-align:left">Yes</td>
-        <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>readonly-group</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Name of group containing users defined with read only privileges</td>
-      <td
-      style="text-align:left">Must be valid name</td>
-        <td style="text-align:left">Yes</td>
-        <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>server-timeout-secs</code>
-      </td>
-      <td style="text-align:left">Number</td>
-      <td style="text-align:left">Server connection timeout</td>
-      <td style="text-align:left">Seconds</td>
-      <td style="text-align:left">No</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>protocol-version</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Selection of LDAP version</td>
-      <td style="text-align:left">LDAP v2 or v3</td>
-      <td style="text-align:left">No`</td>
-      <td style="text-align:left">LDAP v3</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>user-revocation-attribute</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">The LDAP attribute; when its value changes in the LDAP directory, user
-        access and mount tokens are revoked</td>
-      <td style="text-align:left">User must re-login after a change is detected</td>
-      <td style="text-align:left">No</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>start-tls</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Issue StartTLS after connecting</td>
-      <td style="text-align:left">
-        <p><code>yes</code> or <code>no</code>
-        </p>
-        <p>should not be used with <code>ldaps:// </code>
-        </p>
-        <p></p>
-      </td>
-      <td style="text-align:left">No</td>
-      <td style="text-align:left"><code>no</code>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>ignore-start-tls-failure</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">Ignore start TLS failure</td>
-      <td style="text-align:left"><code>yes</code> or <code>no</code>
-      </td>
-      <td style="text-align:left">No</td>
-      <td style="text-align:left"><code>no</code>
-      </td>
-    </tr>
-  </tbody>
-</table>
+| **Name**                                | **Type** | **Value**                                                                                                   | **Limitations**                                                                                                                                  | **Mandatory** | **Default** |
+| --------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ----------- |
+| `server-uri`                            | String   | Either the LDAP server host name/IP or a URI                                                                | URI must be in format `ldap://hostname:port` or `ldaps://hostname:port`                                                                          | Yes           |             |
+| `base-dn`                               | String   | Base DN under which users are stored                                                                        | Must be valid name                                                                                                                               | Yes           |             |
+| `user-id-attribute`                     | String   | Attribute storing user IDs                                                                                  | Must be valid name                                                                                                                               | Yes           |             |
+| `user-object-class`                     | String   | Object class of users                                                                                       | Must be valid name                                                                                                                               | Yes           |             |
+| `group-object-class`                    | String   | Object class of groups                                                                                      | Must be valid name                                                                                                                               | Yes           |             |
+| `group-membership-attribute`            | String   | Attribute of group containing the DN of a user membership in the group                                      | Must be valid name                                                                                                                               | Yes           |             |
+| `group-id-attribute`                    | String   | Attribute storing the group name                                                                            | Name has to match names used in the `<admin-group>`, `<regular group>` and `<readonly group>`                                                    | Yes           |             |
+| `reader-username` and `reader-password` | String   | Credentials of a user with read access to the directory                                                     | Password is kept in the Weka cluster configuration in plain text, as it is used to authenticate against the directory during user authentication | Yes           |             |
+| `cluster-admin-group`                   | String   | Name of group containing users defined with cluster admin role                                              | Must be valid name                                                                                                                               | Yes           |             |
+| `org-admin-group`                       | String   | Name of group containing users defined with organization admin role                                         | Must be valid name                                                                                                                               | Yes           |             |
+| `regular-group`                         | String   | Name of group containing users defined with regular privileges                                              | Must be valid name                                                                                                                               | Yes           |             |
+| `readonly-group`                        | String   | Name of group containing users defined with read only privileges                                            | Must be valid name                                                                                                                               | Yes           |             |
+| `server-timeout-secs`                   | Number   | Server connection timeout                                                                                   | Seconds                                                                                                                                          | No            |             |
+| `protocol-version`                      | String   | Selection of LDAP version                                                                                   | LDAP v2 or v3                                                                                                                                    | No\`          | LDAP v3     |
+| `user-revocation-attribute`             | String   | The LDAP attribute; when its value  changes in the LDAP directory, user access and mount tokens are revoked | User must re-login after a change is detected                                                                                                    | No            |             |
+| `start-tls`                             | String   | Issue StartTLS after connecting                                                                             | <p><code>yes</code> or <code>no</code></p><p>should not be used with <code>ldaps:// </code></p><p></p>                                           | No            | `no`        |
+| `ignore-start-tls-failure`              | String   | Ignore start TLS failure                                                                                    | `yes` or `no`                                                                                                                                    | No            | `no`        |
 
 ### Viewing a Configured LDAP User Directory
 
-**Command:**  
+**Command:**\
 `weka user ldap`
 
 This command is used for viewing the current LDAP configuration used for authenticating users. 
 
 ### Disabling/Enabling a Configured LDAP User Directory
 
-**Command:**  
-`weka user ldap disable    
-weka user ldap enable`
+**Command:**\
+`weka user ldap disable  `\
+`weka user ldap enable`
 
 These commands are used for disabling or enabling user authentication through a configured LDAP user directory.
 
 {% hint style="info" %}
 **Note:** It is not possible to delete an LDAP configuration; only disable it.
 {% endhint %}
-

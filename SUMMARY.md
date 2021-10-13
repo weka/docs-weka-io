@@ -2,7 +2,7 @@
 
 * [Weka Documentation](README.md)
 
-## Weka System Overview <a id="overview"></a>
+## Weka System Overview <a href="overview" id="overview"></a>
 
 * [About the Weka System](overview/about.md)
 * [SSD Capacity Management](overview/ssd-capacity-management.md)
@@ -20,7 +20,7 @@
 * [GUI Overview](getting-started-with-weka/gui.md)
 * [Serving IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
 
-## Planning & Installation <a id="install"></a>
+## Planning & Installation <a href="install" id="install"></a>
 
 * [Prerequisites for Installation](install/prerequisites-for-installation-of-weka-dedicated-hosts.md)
 * [Bare Metal Installation](install/bare-metal/README.md)
@@ -40,12 +40,12 @@
   * [Auto Scaling Group](install/aws/auto-scaling-group.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
 
-## Performance <a id="testing-and-troubleshooting"></a>
+## Performance <a href="testing-and-troubleshooting" id="testing-and-troubleshooting"></a>
 
 * [Testing Weka Performance](testing-and-troubleshooting/testing-weka-system-performance/README.md)
   * [Test Environment Details](testing-and-troubleshooting/testing-weka-system-performance/test-environment-details.md)
 
-## WekaFS Filesystems <a id="fs"></a>
+## WekaFS Filesystems <a href="fs" id="fs"></a>
 
 * [Managing Filesystems, Object Stores & Filesystem Groups](fs/managing-filesystems/README.md)
   * [Managing Object Stores](fs/managing-filesystems/managing-object-stores.md)
@@ -70,7 +70,7 @@
   * [SMB Management Using CLIs](additional-protocols/smb-support/smb-management-using-the-cli.md)
   * [SMB Management Using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
 
-## Operation Guide <a id="usage"></a>
+## Operation Guide <a href="usage" id="usage"></a>
 
 * [Alerts](usage/alerts/README.md)
   * [List of Alerts](usage/alerts/list-of-alerts.md)
@@ -90,7 +90,7 @@
 * [Background Tasks](usage/background-tasks.md)
 * [Upgrading Weka Versions](usage/upgrading-weka-versions.md)
 
-## Billing & Licensing <a id="licensing"></a>
+## Billing & Licensing <a href="licensing" id="licensing"></a>
 
 * [Overview](licensing/overview.md)
 * [Classic License](licensing/classic-licensing.md)
@@ -98,7 +98,7 @@
 
 ## Support
 
-* [Prerequisites and Compatibility](support/prerequisites-and-compatability.md)
+* [Prerequisites and Compatibility](support/prerequisites-and-compatibility.md)
 * [Getting Support for Your Weka System](support/getting-support-for-your-weka-system.md)
 * [The Weka Support Cloud](support/the-wekaio-support-cloud.md)
 * [Diagnostics CLI Command](support/diagnostics-utility.md)
@@ -110,7 +110,6 @@
 * [Snapshot Management](appendix/snapshot-management.md)
 * [ClusterSpecs](appendix/clusterspecs.md)
 
----
+***
 
 * [REST API](https://api.docs.weka.io)
-

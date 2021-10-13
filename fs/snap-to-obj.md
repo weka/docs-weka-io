@@ -12,7 +12,7 @@ The Snap-To-Object feature enables the committing of all the data of a specific 
 
 The result of using the Snap-To-Object feature is that the object store contains a full copy of the snapshot of the data, which can be used to restore the data on the Weka cluster or on another cluster. Consequently, the Snap-To-Object feature is useful for a range of use cases, as follows:
 
-#### Generic Use Cases \(on-premises and cloud\)
+#### Generic Use Cases (on-premises and cloud)
 
 * [External backup of data](snap-to-obj.md#external-backup-of-data)
 * [Archiving of data](snap-to-obj.md#archiving-of-data)
@@ -126,10 +126,10 @@ Use the following command line to upload an existing snapshot:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `<file-system>` | String | Name of the filesystem |  | Yes |  |
-| `<snapshot>` | String | Name of the snapshot to upload | Must be a snapshot of the `<file-system>` filesystem | Yes |  |
+| **Name**        | **Type** | **Value**                      | **Limitations**                                      | **Mandatory** | **Default** |
+| --------------- | -------- | ------------------------------ | ---------------------------------------------------- | ------------- | ----------- |
+| `<file-system>` | String   | Name of the filesystem         |                                                      | Yes           |             |
+| `<snapshot>`    | String   | Name of the snapshot to upload | Must be a snapshot of the `<file-system>` filesystem | Yes           |             |
 
 {% hint style="info" %}
 **Note:** A writeable snapshot is a clone of the live filesystem or other snapshots at a specific time, and its data keeps changing. Therefore, its data is tiered according to the tiering policies, but it cannot be uploaded to the object-store as read-only snapshots.
@@ -155,20 +155,20 @@ Use the following command line to create a filesystem from an existing snapshot:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | Name of the filesystem to be created |  | Yes |  |
-| `group-name` | String | Name of the filesystem group in which the new filesystem will be placed |  | Yes |  |
-| `total-capacity` | Capacity | The total capacity of the downloaded filesystem |  | Yes |  |
-| `ssd-capacity` | Capacity | SSD capacity of the downloaded filesystem |  | Yes |  |
-| `obs` | String | Object store name for tiering |  | Yes |  |
-| `locator` | String | Object store locator obtained from a previously successful snapshot upload |  | Yes |  |
-| `additional-obs` | String | An additional object-store name. In case the data to recover resides in two object stores \(a second object-store attached to the filesystem, and the filesystem has not undergone full migration\). This object-store will be attached in a `read-only` mode. | The snapshot locator must reside in the primary object-store supplied in the `obs` parameter | No |  |
+| **Name**         | **Type** | **Value**                                                                                                                                                                                                                                                    | **Limitations**                                                                              | **Mandatory** | **Default** |
+| ---------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| `name`           | String   | Name of the filesystem to be created                                                                                                                                                                                                                         |                                                                                              | Yes           |             |
+| `group-name`     | String   | Name of the filesystem group in which the new filesystem will be placed                                                                                                                                                                                      |                                                                                              | Yes           |             |
+| `total-capacity` | Capacity | The total capacity of the downloaded filesystem                                                                                                                                                                                                              |                                                                                              | Yes           |             |
+| `ssd-capacity`   | Capacity | SSD capacity of the downloaded filesystem                                                                                                                                                                                                                    |                                                                                              | Yes           |             |
+| `obs`            | String   | Object store name for tiering                                                                                                                                                                                                                                |                                                                                              | Yes           |             |
+| `locator`        | String   | Object store locator obtained from a previously successful snapshot upload                                                                                                                                                                                   |                                                                                              | Yes           |             |
+| `additional-obs` | String   | An additional object-store name. In case the data to recover resides in two object stores (a second object-store attached to the filesystem, and the filesystem has not undergone full migration). This object-store will be attached in a `read-only` mode. | The snapshot locator must reside in the primary object-store supplied in the `obs` parameter | No            |             |
 
 The `locator` is either a locator saved previously for disaster scenarios, or can be obtained using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
 {% hint style="info" %}
-**Note:** For encrypted filesystem, when downloading the same KMS master-key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](managing-filesystems/kms-management.md#overview) section.
+**Note: **For encrypted filesystem, when downloading the same KMS master-key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](managing-filesystems/kms-management.md#overview) section.
 {% endhint %}
 
 ### Deleting Snapshots Residing on an Object Store
@@ -176,8 +176,7 @@ The `locator` is either a locator saved previously for disaster scenarios, or ca
 Deleting a snapshot, from a filesystem that uploaded it, will remove all of its data from the object-store.
 
 {% hint style="danger" %}
-If the snapshot has been \(or is\) downloaded and used by a different filesystem, that filesystem will stop functioning correctly, data might be unavailable and errors might occur when accessing the data.
+If the snapshot has been (or is) downloaded and used by a different filesystem, that filesystem will stop functioning correctly, data might be unavailable and errors might occur when accessing the data.
 
 It is possible to either un-tier or to migrate the filesystem to a different object store bucket before deleting the snapshot it has downloaded.
 {% endhint %}
-

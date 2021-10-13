@@ -46,24 +46,24 @@ Use the following command line to add an object store:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | Name of the object store being created | Must be a valid name | Yes | ​ |
-| `hostname` | String | Object store host identifier | Must be a valid name/IP | Yes |  |
-| `port` | String | Object store port | Must be a valid name | No | 80 |
-| `bucket` | String | Object store bucket name | Must be a valid name | Yes |  |
-| `auth-method` | String | Authentication method | `None`, `AWSSignature2` or `AWSSignature4` | Yes |  |
-| `region` | String | Region name |  | Yes |  |
-| `access-key-id` | String | Object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
-| `secret-key` | String | Object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
-| `protocol` | String | Protocol type to be used | `HTTP`, `HTTPS` or `HTTPS_UNVERIFIED` | No | `HTTP` |
-| `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
-| `errors-timeout` | Number | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No | 300 |
-| `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on the object store |  | No | 0 |
-| `max-concurrent-downloads` | Number | Maximum number of downloads concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
-| `max-concurrent-uploads` | Number | Maximum number of uploads concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
-| `max-concurrent-removals` | Number | Maximum number of removals concurrently performed on this object store in a single IO node | 1-64 | No | 64 |
-| `enable-upload-tags` | String | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not | `true` or `false` | No | `false` |
+| **Name**                   | **Type** | **Value**                                                                                                     | **Limitations**                            | **Mandatory**                                      | **Default** |
+| -------------------------- | -------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------- | ----------- |
+| `name`                     | String   | Name of the object store being created                                                                        | Must be a valid name                       | Yes                                                | ​           |
+| `hostname`                 | String   | Object store host identifier                                                                                  | Must be a valid name/IP                    | Yes                                                |             |
+| `port`                     | String   | Object store port                                                                                             | Must be a valid name                       | No                                                 | 80          |
+| `bucket`                   | String   | Object store bucket name                                                                                      | Must be a valid name                       | Yes                                                |             |
+| `auth-method`              | String   | Authentication method                                                                                         | `None`, `AWSSignature2` or `AWSSignature4` | Yes                                                |             |
+| `region`                   | String   | Region name                                                                                                   |                                            | Yes                                                |             |
+| `access-key-id`            | String   | Object store access key ID                                                                                    |                                            | Yes (can be left empty when using IAM role in AWS) |             |
+| `secret-key`               | String   | Object store secret key                                                                                       |                                            | Yes (can be left empty when using IAM role in AWS) |             |
+| `protocol`                 | String   | Protocol type to be used                                                                                      | `HTTP`, `HTTPS` or `HTTPS_UNVERIFIED`      | No                                                 | `HTTP`      |
+| `bandwidth`                | Number   | Bandwidth limitation per core (Mbps)                                                                          |                                            | No                                                 |             |
+| `errors-timeout`           | Number   | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error      | 1-15 minutes, e.g: 5m or 300s              | No                                                 | 300         |
+| `prefetch-mib`             | Number   | How many MiB of data to prefetch when reading a whole MiB on the object store                                 |                                            | No                                                 | 0           |
+| `max-concurrent-downloads` | Number   | Maximum number of downloads concurrently performed on this object store in a single IO node                   | 1-64                                       | No                                                 | 64          |
+| `max-concurrent-uploads`   | Number   | Maximum number of uploads concurrently performed on this object store in a single IO node                     | 1-64                                       | No                                                 | 64          |
+| `max-concurrent-removals`  | Number   | Maximum number of removals concurrently performed on this object store in a single IO node                    | 1-64                                       | No                                                 | 64          |
+| `enable-upload-tags`       | String   | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not | `true` or `false`                          | No                                                 | `false`     |
 
 {% hint style="info" %}
 **Note:** When using the CLI, by default a misconfigured object store will not be created. To create an object store even when it is misconfigured, use the `--skip-verification`option.
@@ -74,7 +74,7 @@ Use the following command line to add an object store:
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** The `max-concurrent` settings are applied per Weka compute process and the minimum setting of all object-stores is applied.
+**Note: **The `max-concurrent` settings are applied per Weka compute process and the minimum setting of all object-stores is applied.
 {% endhint %}
 
 ## Editing an Object Store
@@ -85,7 +85,7 @@ From the main object store view screen, click the Edit button of the object stor
 
 ![Edit Object Store Screen](../../.gitbook/assets/obs-edit-screen-3.5.png)
 
-The Update Object Store dialog box \(which is similar to the Configure Object Store dialog box\) will be displayed with the current specifications for the object store.
+The Update Object Store dialog box (which is similar to the Configure Object Store dialog box) will be displayed with the current specifications for the object store.
 
 ![Update Object Store Dialog Box](../../.gitbook/assets/obs-edit-dialog-3.5.png)
 
@@ -101,25 +101,25 @@ Use the following command line to edit an object store:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | Name of the object store being edited | Must be a valid name | Yes | ​ |
-| `new-name` | String | New name for the object store | Must be a valid name | No |  |
-| `hostname` | String | Object store host identifier | Must be a valid name/IP | Yes |  |
-| `port` | String | Object store port | Must be a valid name | Yes |  |
-| `bucket` | String | Object store bucket name | Must be a valid name | Yes |  |
-| `auth-method` | String | Authentication method | `None`, `AWSSignature2` or `AWSSignature4` | Yes |  |
-| `region` | String | Region name |  | Yes |  |
-| `access-key-id` | String | Object store access key ID |  | Yes \(can be left empty when using IAM role in AWS\) |  |
-| `secret-key` | String | Object store secret key |  | Yes \(can be left empty when using IAM role in AWS\) |  |
-| `protocol` | String | Protocol type to be used | `HTTP`, `HTTPS` or `HTTPS_UNVERIFIED` | No |  |
-| `bandwidth` | Number | Bandwidth limitation per core \(Mbps\) |  | No |  |
-| `errors-timeout` | Number | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s | No |  |
-| `prefetch-mib` | Number | How many MiB of data to prefetch when reading a whole MiB on the object store |  | No |  |
-| `max-concurrent-downloads` | Number | Maximum number of downloads concurrently performed on this object store in a single IO node | 1-64 | No |  |
-| `max-concurrent-uploads` | Number | Maximum number of uploads concurrently performed on this object store in a single IO node | 1-64 | No |  |
-| `max-concurrent-removals` | Number | Maximum number of removals concurrently performed on this object store in a single IO node | 1-64 | No |  |
-| `enable-upload-tags` | String | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not | `true` or `false` | No | \`\` |
+| **Name**                   | **Type** | **Value**                                                                                                     | **Limitations**                            | **Mandatory**                                      | **Default** |
+| -------------------------- | -------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------- | ----------- |
+| `name`                     | String   | Name of the object store being edited                                                                         | Must be a valid name                       | Yes                                                | ​           |
+| `new-name`                 | String   | New name for the object store                                                                                 | Must be a valid name                       | No                                                 |             |
+| `hostname`                 | String   | Object store host identifier                                                                                  | Must be a valid name/IP                    | Yes                                                |             |
+| `port`                     | String   | Object store port                                                                                             | Must be a valid name                       | Yes                                                |             |
+| `bucket`                   | String   | Object store bucket name                                                                                      | Must be a valid name                       | Yes                                                |             |
+| `auth-method`              | String   | Authentication method                                                                                         | `None`, `AWSSignature2` or `AWSSignature4` | Yes                                                |             |
+| `region`                   | String   | Region name                                                                                                   |                                            | Yes                                                |             |
+| `access-key-id`            | String   | Object store access key ID                                                                                    |                                            | Yes (can be left empty when using IAM role in AWS) |             |
+| `secret-key`               | String   | Object store secret key                                                                                       |                                            | Yes (can be left empty when using IAM role in AWS) |             |
+| `protocol`                 | String   | Protocol type to be used                                                                                      | `HTTP`, `HTTPS` or `HTTPS_UNVERIFIED`      | No                                                 |             |
+| `bandwidth`                | Number   | Bandwidth limitation per core (Mbps)                                                                          |                                            | No                                                 |             |
+| `errors-timeout`           | Number   | If the OBS link is down for longer than this timeout period, all IOs that need data return with an error      | 1-15 minutes, e.g: 5m or 300s              | No                                                 |             |
+| `prefetch-mib`             | Number   | How many MiB of data to prefetch when reading a whole MiB on the object store                                 |                                            | No                                                 |             |
+| `max-concurrent-downloads` | Number   | Maximum number of downloads concurrently performed on this object store in a single IO node                   | 1-64                                       | No                                                 |             |
+| `max-concurrent-uploads`   | Number   | Maximum number of uploads concurrently performed on this object store in a single IO node                     | 1-64                                       | No                                                 |             |
+| `max-concurrent-removals`  | Number   | Maximum number of removals concurrently performed on this object store in a single IO node                    | 1-64                                       | No                                                 |             |
+| `enable-upload-tags`       | String   | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not | `true` or `false`                          | No                                                 | ``          |
 
 ## Deleting an Object Store
 
@@ -145,7 +145,6 @@ Use the following command line to delete an object store:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | Name of the object store being deleted | Must be a valid name | Yes | ​ |
-
+| **Name** | **Type** | **Value**                              | **Limitations**      | **Mandatory** | **Default** |
+| -------- | -------- | -------------------------------------- | -------------------- | ------------- | ----------- |
+| `name`   | String   | Name of the object store being deleted | Must be a valid name | Yes           | ​           |

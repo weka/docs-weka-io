@@ -8,7 +8,7 @@ description: >-
 
 ## The Weka System Client
 
-The Weka system client is a standard, POSIX-compliant filesystem driver installed on application servers, that enables file access to Weka filesystems. Similar to any other filesystem driver, the Weka system client intercepts and executes all filesystem operations. This enables the Weka system to provide applications with local filesystem semantics and performance \(as opposed to NFS mounts\) while providing a centrally managed, sharable, and resilient storage.
+The Weka system client is a standard, POSIX-compliant filesystem driver installed on application servers, that enables file access to Weka filesystems. Similar to any other filesystem driver, the Weka system client intercepts and executes all filesystem operations. This enables the Weka system to provide applications with local filesystem semantics and performance (as opposed to NFS mounts) while providing a centrally managed, sharable, and resilient storage.
 
 The Weka system client is tightly integrated with the Linux operating system page cache, which is a transparent caching mechanism that stores parts of the filesystem content in the client host RAM. The operating system maintains a page cache in unused RAM capacity of the application server, delivering quick access to the contents of the cached pages and overall performance improvements.
 
@@ -19,14 +19,14 @@ The Weka client can control the information stored in the page cache and also in
 Each filesystem can be mounted in one of two modes of operation in relation to the page cache:
 
 * [**Read Cache**](weka-client-and-mount-modes.md#read-cache-mount-mode)**,** where only read operations are using the page cache, file data is coherent across hosts and resilient to client failures
-* \*\*\*\*[**Write Cache \(default\)**](weka-client-and-mount-modes.md#write-cache-mount-mode-default)**,** where both read and write operations are using the page cache while keeping data coherency across hosts and which provides the highest data performance
+* ****[**Write Cache (default)**](weka-client-and-mount-modes.md#write-cache-mount-mode-default)**,** where both read and write operations are using the page cache while keeping data coherency across hosts and which provides the highest data performance
 
 {% hint style="info" %}
 **Note:** Symbolic links are always cached in all cached modes.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Unlike actual file data, the file metadata is managed in the Linux operating system by the Dentry \(directory entry\) cache, which maximizes efficiency in the handling of directory entries, and is not strongly consistent across Weka client hosts. At the cost of some performance compromises, metadata ****can be configured to be strongly consistent by mounting without Dentry cache \(using`dentry_max_age_positive=0, dentry_max_age_negative=0` mount options\) if metadata consistency is critical for the application, as described in [Mount Command Options](../fs/mounting-filesystems.md#mount-command-options). 
+**Note: **Unlike actual file data, the file metadata is managed in the Linux operating system by the Dentry (directory entry) cache, which maximizes efficiency in the handling of directory entries, and is not strongly consistent across Weka client hosts. At the cost of some performance compromises, metadata** **can be configured to be strongly consistent by mounting without Dentry cache (using`dentry_max_age_positive=0, dentry_max_age_negative=0` mount options) if metadata consistency is critical for the application, as described in [Mount Command Options](../fs/mounting-filesystems.md#mount-command-options). 
 {% endhint %}
 
 ## **R**ead Cache Mount Mode
@@ -48,13 +48,13 @@ This mechanism ensures coherence, providing the Weka system with full page cache
 **Note:** In some scenarios, particularly random reads of small blocks of data from large files, a read cache enablement can create an amplification of reads, due to the Linux operating system's prefetch mechanism. If necessary, this mechanism can be tuned as explained [here](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-bdi).
 {% endhint %}
 
-## Write Cache Mount Mode \(Default\)
+## Write Cache Mount Mode (Default)
 
 In this mount mode, the Linux operating system is used as write-back, rather than write-through, i.e., the write operation is acknowledged immediately by the Weka client and is stored in resilient storage as a background operation.
 
 This mode can provide significantly more performance, particularly in relation to write latency, all that while keeping data coherency, i.e., if a file is accessed via another host it invalidates the local cache and sync the data to get a coherent view of the file.
 
-To sync the filesystem and commit all changes in the write cache \(e.g., if there is a need to ensure it has been synced before taking a snapshot\), it is possible to use the following system calls: `sync`, `syncfs`, and `fsync`.
+To sync the filesystem and commit all changes in the write cache (e.g., if there is a need to ensure it has been synced before taking a snapshot), it is possible to use the following system calls: `sync`, `syncfs`, and `fsync`.
 
 ## Multiple Mounts on a Single Host
 
@@ -63,4 +63,3 @@ The Weka client supports multiple mount points of the same file system on the sa
 {% hint style="info" %}
 Note that two mounts on the same hosts are treated as two different hosts with respect to the consistency of the cache as described above. For example, two mounts on the same host, mounted with write cache mode might have different data at the same point in time.
 {% endhint %}
-

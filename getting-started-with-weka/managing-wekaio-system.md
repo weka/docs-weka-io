@@ -10,7 +10,7 @@ The Weka system is now installed. Now let's learn how to view, manage and operat
 
 The Weka CLI is installed on each Weka host and is available through the `weka` command. It's possible to`ssh` one of the hosts and run the `weka` command. This displays a list of all available top-level commands. You can go ahead and explore them.
 
-```text
+```
 $ weka
 Usage:
     weka [--help] [--build] [--version] [--legal]
@@ -55,7 +55,7 @@ For more information about the CLI, refer to [Getting Started with Weka CLI](cli
 The Weka GUI is accessible at port 14000. It can be accessed from any host or by using the cluster name. For example: `https://weka01:14000` or `https://WekaProd:14000`.
 
 {% hint style="info" %}
-**Note:** If it's not possible to access the GUI, make sure that it has been opened in your firewall, as described on the [Prerequisites](../support/prerequisites-and-compatability.md) page.
+**Note:** If it's not possible to access the GUI, make sure that it has been opened in your firewall, as described on the [Prerequisites](../support/prerequisites-and-compatibility.md) page.
 {% endhint %}
 
 ![Weka Login Page](../.gitbook/assets/wekaio-login-page.png)
@@ -72,15 +72,15 @@ For more information about the GUI, refer to [Getting Started with Weka GUI](gui
 
 The Weka system supports a RESTful API. This is useful when automating the interaction with the Weka system and when integrating it into your workflows or monitoring systems.
 
-The API is accessible at port 14000, via the `/api/v2` URL, you can explore it via `/api/v2/docs` when accessing from the cluster \(e.g. `https://weka01:14000/api/v2/docs`\).
+The API is accessible at port 14000, via the `/api/v2` URL, you can explore it via `/api/v2/docs` when accessing from the cluster (e.g. `https://weka01:14000/api/v2/docs`).
 
- Our static API documentation can be accessed from [api.docs.weka.io](https://api.docs.weka.io) \(the version of the `.json` file can be changed to reflect the desired version, e.g., _**3.11.**json_\). This file can also be used to create your client code, using an OpenAPI client generator.
+ Our static API documentation can be accessed from [api.docs.weka.io](https://api.docs.weka.io) (the version of the `.json` file can be changed to reflect the desired version, e.g., _**3.11.**json_). This file can also be used to create your client code, using an OpenAPI client generator.
 
 ### Obtaining an Access Token
 
 You must provide an access token to use the Weka REST API. 
 
-To obtain access/refresh tokens via the CLI, refer to [Obtaining an Authentication Token](../usage/security/#obtaining-an-authentication-token) section \(there you can also generate an access token with a longer expiry time\). To obtain access/refresh tokens via the API, you can call the `login` API, providing it a `username` and `password`. 
+To obtain access/refresh tokens via the CLI, refer to [Obtaining an Authentication Token](../usage/security/#obtaining-an-authentication-token) section (there you can also generate an access token with a longer expiry time). To obtain access/refresh tokens via the API, you can call the `login` API, providing it a `username` and `password`. 
 
 If you already obtained a refresh token, you can use the `login/refresh` API to refresh the access token.
 
@@ -126,7 +126,7 @@ print(response.text)
 {% endtab %}
 {% endtabs %}
 
-In response, you will get an access token \(valid for 5 minutes\), that can be used in the other APIs that require token authentication, along with the refresh token \(valid for 1 year\), for getting additional access tokens without using the username/password.
+In response, you will get an access token (valid for 5 minutes), that can be used in the other APIs that require token authentication, along with the refresh token (valid for 1 year), for getting additional access tokens without using the username/password.
 
 {% code title="Login/Refresh Response" %}
 ```python
@@ -164,6 +164,4 @@ print(response.text)
 
 ```
 {% endcode %}
-
-
 
