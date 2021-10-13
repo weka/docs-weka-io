@@ -25,21 +25,21 @@ The Weka system supports the following snapshot operations:
 * Accessing a snapshot under a dedicated directory name
 * Restoring a filesystem from a snapshot
 * Making snapshots writable
-* Creating a snapshot of a snapshot \(relevant for writable snapshots, or for read-only snapshots before being made writable\)
+* Creating a snapshot of a snapshot (relevant for writable snapshots, or for read-only snapshots before being made writable)
 * Listing of snapshots and obtaining their metadata
 
 {% hint style="info" %}
-**Note:** The number of snapshots per system is limited to 4,096 \(the live filesystem consumes one of the total snapshots count\).
+**Note:** The number of snapshots per system is limited to 4,096 (the live filesystem consumes one of the total snapshots count).
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The `.snapshots` directory is not listed. Running `ls` on the root of the filesystem will not show the `.snapshots` directory, however, it can be explicitly accessed, e.g. using the `cd .snapshots` command.  
+**Note: **The `.snapshots` directory is not listed. Running `ls` on the root of the filesystem will not show the `.snapshots` directory, however, it can be explicitly accessed, e.g. using the `cd .snapshots` command.  
 {% endhint %}
 
 ## Managing Snapshots
 
 {% hint style="info" %}
-**Note:** To schedule snapshots automatically, refer to the [Snapshot Management](../appendix/snapshot-management.md) ****section of the Appendix.
+**Note:** To schedule snapshots automatically, refer to the [Snapshot Management](../appendix/snapshot-management.md)** **section of the Appendix.
 {% endhint %}
 
 ### Viewing Snapshots
@@ -50,7 +50,7 @@ To view the snapshot of a filesystem, click the filesystem Manage Snapshots butt
 
 ![View Snapshot of a Filesystem Screen](../.gitbook/assets/snap-view-3.5.png)
 
-If the filesystem is tiered, this screen is slightly different and includes an additional button \(Upload to Object\) and a corresponding Object Status value, as shown below:
+If the filesystem is tiered, this screen is slightly different and includes an additional button (Upload to Object) and a corresponding Object Status value, as shown below:
 
 ![View Snapshot of a Tiered Filesystem Screen](../.gitbook/assets/snap-view-tiered-3.5.png)
 
@@ -68,7 +68,7 @@ From the main snapshot view screen, click Create Snapshot at the top right-hand 
 
 ![Create Snapshot Dialog Box](../.gitbook/assets/snap-create-diallog-3.5.png)
 
-Enter the name and access point, determine whether it is writable and the source \(the current filesystem or another snapshot\). Then click Create to create the snapshot.
+Enter the name and access point, determine whether it is writable and the source (the current filesystem or another snapshot). Then click Create to create the snapshot.
 
 #### Creating a Snapshot Using the CLI
 
@@ -80,13 +80,13 @@ Use the following command line to add a snapshot:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
-| `name` | String | Unique name for filesystem snapshot | Must be a valid name | Yes |  |
-| `access-point` | String | Name of the newly-created directory for filesystem-level snapshots, which will serve as the access point for the snapshots | Must be a valid name | No | Controlled by `weka fs snapshot access-point-naming-convention update <date/name>.` By default it is `<date>` format: `@GMT_%Y.%m.%d-%H.%M.%S` which is compatible with [windows previous versions format for SMB](../additional-protocols/smb-support/#integration-with-windows-previous-versions). |
-| `source-snap` | String | Must be an existing snapshot | Must be a valid name | No | Filesystem snapshot the file system |
-| `is-writable` | Boolean | Sets the created snapshot to be writable |  | No | False |
+| **Name**       | **Type** | **Value**                                                                                                                  | **Limitations**      | **Mandatory** | **Default**                                                                                                                                                                                                                                                                                          |
+| -------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `file-system`  | String   | A valid filesystem identifier                                                                                              | Must be a valid name | Yes           | ​                                                                                                                                                                                                                                                                                                    |
+| `name`         | String   | Unique name for filesystem snapshot                                                                                        | Must be a valid name | Yes           |                                                                                                                                                                                                                                                                                                      |
+| `access-point` | String   | Name of the newly-created directory for filesystem-level snapshots, which will serve as the access point for the snapshots | Must be a valid name | No            | Controlled by `weka fs snapshot access-point-naming-convention update <date/name>. `By default it is `<date>` format: `@GMT_%Y.%m.%d-%H.%M.%S` which is compatible with [windows previous versions format for SMB](../additional-protocols/smb-support/#integration-with-windows-previous-versions). |
+| `source-snap`  | String   | Must be an existing snapshot                                                                                               | Must be a valid name | No            | Filesystem snapshot the file system                                                                                                                                                                                                                                                                  |
+| `is-writable`  | Boolean  | Sets the created snapshot to be writable                                                                                   |                      | No            | False                                                                                                                                                                                                                                                                                                |
 
 ### Deleting a Snapshot
 
@@ -108,10 +108,10 @@ Use the following command line to delete a snapshot:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
-| `name` | String | Unique name for filesystem snapshot | Must be a valid name | Yes |  |
+| **Name**      | **Type** | **Value**                           | **Limitations**      | **Mandatory** | **Default** |
+| ------------- | -------- | ----------------------------------- | -------------------- | ------------- | ----------- |
+| `file-system` | String   | A valid filesystem identifier       | Must be a valid name | Yes           | ​           |
+| `name`        | String   | Unique name for filesystem snapshot | Must be a valid name | Yes           |             |
 
 ### Restoring a Filesystem from a Snapshot
 
@@ -137,14 +137,14 @@ Use the following command line to restore a snapshot to another snapshot:
 
 **Parameters in Command Lines**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
-| `source-name` | String | Unique name for the source of the snapshot | Must be a valid name | Yes |  |
-| `destination-name` | String | Name of the destination to which the snapshot should be copied | Must be an existing  snapshot | Yes |  |
+| **Name**           | **Type** | **Value**                                                      | **Limitations**               | **Mandatory** | **Default** |
+| ------------------ | -------- | -------------------------------------------------------------- | ----------------------------- | ------------- | ----------- |
+| `file-system`      | String   | A valid filesystem identifier                                  | Must be a valid name          | Yes           | ​           |
+| `source-name`      | String   | Unique name for the source of the snapshot                     | Must be a valid name          | Yes           |             |
+| `destination-name` | String   | Name of the destination to which the snapshot should be copied | Must be an existing  snapshot | Yes           |             |
 
 {% hint style="warning" %}
-**Note:** When restoring a filesystem from a snapshot \(or copying over an existing snapshot\), the filesystem data and metadata are changed. Make sure IOs to the filesystem are stopped during this time.
+**Note:** When restoring a filesystem from a snapshot (or copying over an existing snapshot), the filesystem data and metadata are changed. Make sure IOs to the filesystem are stopped during this time.
 {% endhint %}
 
 ### Updating a Snapshot
@@ -167,13 +167,13 @@ This command changes the snapshot attributes. Use the following command line to 
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `file-system` | String | A valid filesystem identifier | Must be a valid name | Yes | ​ |
-| `name` | String | Unique name for the updated snapshot | Must be a valid name | Yes |  |
-| `new-name` | String | New name for the updated snapshot | Must be a valid name | No |  |
-| `is-writable` | Boolean | Sets the snapshot to be writable |  | No |  |
-| `access-point` | String | Name of a directory for the snapshot, which will serve as the access point for the snapshot | Must be a valid name | No |  |
+| **Name**       | **Type** | **Value**                                                                                   | **Limitations**      | **Mandatory** | **Default** |
+| -------------- | -------- | ------------------------------------------------------------------------------------------- | -------------------- | ------------- | ----------- |
+| `file-system`  | String   | A valid filesystem identifier                                                               | Must be a valid name | Yes           | ​           |
+| `name`         | String   | Unique name for the updated snapshot                                                        | Must be a valid name | Yes           |             |
+| `new-name`     | String   | New name for the updated snapshot                                                           | Must be a valid name | No            |             |
+| `is-writable`  | Boolean  | Sets the snapshot to be writable                                                            |                      | No            |             |
+| `access-point` | String   | Name of a directory for the snapshot, which will serve as the access point for the snapshot | Must be a valid name | No            |             |
 
 ## Working with Snapshots
 
@@ -181,4 +181,3 @@ Note the following concerning working with snapshots:
 
 1. When moving a file in or out of a snapshot directory, or between snapshots, the kernel will implement the move operation as a copy operation, similar to moving a file between two different filesystems. Such operations for directories will fail.
 2. If symbolic links are accessed via the `.snapshots` directory, the symlinks with absolute paths can lead to the current filesystem. Consequently, depending on the usage, it may be preferable not to follow symlinks or to use relative paths.
-

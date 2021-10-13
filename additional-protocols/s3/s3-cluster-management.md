@@ -1,5 +1,5 @@
 ---
-description: 'This page describes how to set up, update, monitor, and delete an S3 cluster.'
+description: This page describes how to set up, update, monitor, and delete an S3 cluster.
 ---
 
 # S3 Cluster Management
@@ -9,7 +9,7 @@ description: 'This page describes how to set up, update, monitor, and delete an 
 The S3 service can be exposed from the cluster hosts, ranging from one host to the entire cluster. The service performance scales linearly as the S3 cluster scales.
 
 {% hint style="info" %}
-**Note:** Depending on the workload, you may need to use several FE cores to gain maximum performance.
+**Note: **Depending on the workload, you may need to use several FE cores to gain maximum performance.
 {% endhint %}
 
 ## Round Robin DNS / Load Balancer
@@ -64,16 +64,16 @@ Confirm the deletion by clicking the Reset button.
 
 Use the following command line to create an S3 cluster:
 
-`weka s3 cluster create <filesystem> [--all-hosts] [--host hosts] [--port port]` 
+`weka s3 cluster create <filesystem> [--all-hosts] [--host hosts] [--port port] `
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `filesystem` | String | The filesystem name to be used for the S3 service | None | Yes |  |
-| `all-hosts` | Boolean | Use all backend hosts to serve S3 commands | None | Either `host` list or `all-hosts` must be provided | Off |
-| `host` | Comma-separated list of Numbers | Host IDs to serve the S3 service | None | Either `host` list or `all-hosts` must be provided |  |
-| `port` | Number | The port where the S3 service is exposed | None | No | 9000 |
+| **Name**     | **Type**                        | **Value**                                         | **Limitations** | **Mandatory**                                      | **Default** |
+| ------------ | ------------------------------- | ------------------------------------------------- | --------------- | -------------------------------------------------- | ----------- |
+| `filesystem` | String                          | The filesystem name to be used for the S3 service | None            | Yes                                                |             |
+| `all-hosts`  | Boolean                         | Use all backend hosts to serve S3 commands        | None            | Either `host` list or `all-hosts` must be provided | Off         |
+| `host`       | Comma-separated list of Numbers | Host IDs to serve the S3 service                  | None            | Either `host` list or `all-hosts` must be provided |             |
+| `port`       | Number                          | The port where the S3 service is exposed          | None            | No                                                 | 9000        |
 
 ### Checking the Status of the S3 Cluster and Hosts Readiness
 
@@ -87,15 +87,15 @@ Use these commands to check the status and configuration of the S3 cluster. Once
 
 Use the following command line to update an S3 cluster configuration:
 
-`weka s3 cluster update [--all-hosts] [--host hosts] [--port port]` 
+`weka s3 cluster update [--all-hosts] [--host hosts] [--port port] `
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `all-hosts` | Boolean | Use all backend hosts to serve S3 commands | None | No |  |
-| `host` | Comma-separated list of Numbers | Host IDs to serve the S3 service | None | No |  |
-| `port` | Number | The port where the S3 service is exposed | None | No |  |
+| **Name**    | **Type**                        | **Value**                                  | **Limitations** | **Mandatory** | **Default** |
+| ----------- | ------------------------------- | ------------------------------------------ | --------------- | ------------- | ----------- |
+| `all-hosts` | Boolean                         | Use all backend hosts to serve S3 commands | None            | No            |             |
+| `host`      | Comma-separated list of Numbers | Host IDs to serve the S3 service           | None            | No            |             |
+| `port`      | Number                          | The port where the S3 service is exposed   | None            | No            |             |
 
 ## Deleting an S3 Cluster
 
@@ -104,4 +104,3 @@ Use the following command line to update an S3 cluster configuration:
 Use this command to destroy an S3 cluster managed by the Weka system.
 
 Deleting an existing S3 cluster managed by the Weka system does not delete the backend Weka filesystem but removes the S3 bucket exposures of these filesystems.
-

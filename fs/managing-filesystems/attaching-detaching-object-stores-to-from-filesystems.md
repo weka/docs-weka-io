@@ -16,7 +16,7 @@ When attaching an object store to a non-tiered filesystem, the filesystem become
 
 ### Detaching a Local Object-Store Bucket from a Filesystem
 
-Detaching a local object-store bucket from a filesystem migrates the filesystem data residing in the object-store bucket either to the writable object-store bucket \(if one exists\) or to the SSD, as described below. When detaching, the background task of detaching the object-store bucket begins. Detaching can be a long process, depending on the amount of data and the load on the object stores. For more information, refer to [Background Tasks](../../usage/background-tasks.md).
+Detaching a local object-store bucket from a filesystem migrates the filesystem data residing in the object-store bucket either to the writable object-store bucket (if one exists) or to the SSD, as described below. When detaching, the background task of detaching the object-store bucket begins. Detaching can be a long process, depending on the amount of data and the load on the object stores. For more information, refer to [Background Tasks](../../usage/background-tasks.md).
 
 {% hint style="warning" %}
 **Note:** Detaching an object-store bucket is irreversible. Re-attaching the bucket is considered as re-attaching a new bucket regardless of the data that may still be there.
@@ -41,19 +41,19 @@ On completion of detaching, the object-store bucket does not appear under the fi
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** After the migration process is done, while relevant data is migrated, old snapshots \(and old locators\) reside on the old object-store bucket. To recreate snapshots locators on the new object-store bucket, snapshots should be re-uploaded to the \(new\) object-store bucket.
+**Note:** After the migration process is done, while relevant data is migrated, old snapshots (and old locators) reside on the old object-store bucket. To recreate snapshots locators on the new object-store bucket, snapshots should be re-uploaded to the (new) object-store bucket.
 {% endhint %}
 
 ### Migration Considerations
 
-When migrating data \(using the detach operation\) you would like to copy only the necessary data \(to reduce migration time and capacity\), however, you may want to keep snapshots in the old object-store bucket. For that follow these steps:
+When migrating data (using the detach operation) you would like to copy only the necessary data (to reduce migration time and capacity), however, you may want to keep snapshots in the old object-store bucket. For that follow these steps:
 
-1. Attach a new object-store bucket \(old object-store bucket becomes read-only\).
+1. Attach a new object-store bucket (old object-store bucket becomes read-only).
 2. Delete any snapshot which doesn't need to be migrated - this will keep the snapshot on the old bucket, but will not migrate its data to the new bucket.
 3. Detach the old object-store bucket
 
 {% hint style="info" %}
-**Note:** performing these steps in a different order might result in either the snapshots are completely deleted from any of the object-store buckets or are already in the migration process \(and cannot be deleted until the migration is done\).
+**Note:** performing these steps in a different order might result in either the snapshots are completely deleted from any of the object-store buckets or are already in the migration process (and cannot be deleted until the migration is done).
 {% endhint %}
 
 ### Attaching a Remote Object-Store Bucket
@@ -61,7 +61,7 @@ When migrating data \(using the detach operation\) you would like to copy only t
 One remote object-store bucket can be attached to a filesystem. A `remote` object-store bucket is used for backup only, and only snapshots are uploaded to it using [Snap-2-Object](../snap-to-obj.md). The snapshot uploads are incremental to the previous one. 
 
 {% hint style="info" %}
-**Note:** Please contact the Weka Customer Support Team before you attach a remote object-store bucket.
+**Note: **Please contact the Weka Customer Support Team before you attach a remote object-store bucket.
 {% endhint %}
 
 ### Detaching a Remote Object-Store Bucket
@@ -96,7 +96,7 @@ If there is only one object store attached, detaching will un-tier the filesyste
 
 ![Detach Object Store and Untier Filesystem Dialog Box](../../.gitbook/assets/detach-untier-3.5.png)
 
-Since object stores usually expand the filesystem capacity, the un-tiering of a filesystem requires adjustment of its total capacity. It is possible to increase the SSD capacity to match the current total capacity; reduce the total filesystem capacity to match the SSD capacity or used capacity \(the decrease option depends on the used capacity\); or configure a different value.
+Since object stores usually expand the filesystem capacity, the un-tiering of a filesystem requires adjustment of its total capacity. It is possible to increase the SSD capacity to match the current total capacity; reduce the total filesystem capacity to match the SSD capacity or used capacity (the decrease option depends on the used capacity); or configure a different value.
 
 {% hint style="info" %}
 **Note:** Used capacity should be taken into account. Since un-tiering takes time to propagate the data from the object store to the SSD, when un-tiering an active filesystem it is recommended to adjust to a higher value than the used capacity, in order to accommodate the additional writes during the detaching process.
@@ -124,11 +124,11 @@ To attach an object store to a filesystem, use the following command:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `fs-name` | String | Name of the filesystem to be attached to the object store | Must be a valid name | Yes | ​ |
-| `obs-name` | String | Name of the object store to be  attached | Must be a valid name | Yes |  |
-| `mode` | String | `local` or `remote` | A `local` bucket can only be attached as `local` and a `remote` bucket can only be attached as `remote` | No | `local` |
+| **Name**   | **Type** | **Value**                                                 | **Limitations**                                                                                         | **Mandatory** | **Default** |
+| ---------- | -------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| `fs-name`  | String   | Name of the filesystem to be attached to the object store | Must be a valid name                                                                                    | Yes           | ​           |
+| `obs-name` | String   | Name of the object store to be  attached                  | Must be a valid name                                                                                    | Yes           |             |
+| `mode`     | String   | `local` or `remote`                                       | A `local` bucket can only be attached as `local` and a `remote` bucket can only be attached as `remote` | No            | `local`     |
 
 #### **Detaching an Object-Store Bucket Using the CLI**
 
@@ -140,12 +140,11 @@ To detach an object store from a filesystem, use the following command:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `fs-name` | String | Name of the filesystem to be detached from the object store | Must be a valid name | Yes | ​ |
-| `obs-name` | String | Name of the object store to be  detached | Must be a valid name | Yes |  |
+| **Name**   | **Type** | **Value**                                                   | **Limitations**      | **Mandatory** | **Default** |
+| ---------- | -------- | ----------------------------------------------------------- | -------------------- | ------------- | ----------- |
+| `fs-name`  | String   | Name of the filesystem to be detached from the object store | Must be a valid name | Yes           | ​           |
+| `obs-name` | String   | Name of the object store to be  detached                    | Must be a valid name | Yes           |             |
 
 {% hint style="info" %}
 **Note:** To [recover from a snapshot](../snap-to-obj.md#creating-a-filesystem-from-a-snapshot-using-the-cli) that has been uploaded when two `local` object stores have been attached, use the `--additional-obs` parameter in `weka fs download` command. The primary object-store should be the one where the locator has been uploaded to
 {% endhint %}
-

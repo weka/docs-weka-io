@@ -10,7 +10,7 @@ Buckets can be managed by either standard [S3 API](./#supported-s3-apis) calls o
 
 Buckets permissions are determined by the user's IAM policy for authorized access or by setting bucket policies for anonymous access. 
 
-Currently, buckets and objects created through the S3 protocol will have root POSIX permissions. In addition, all buckets are created within the filesystem specified in the S3 cluster creation. Directories \(adhering to the [naming limitations](s3-limitations.md#buckets)\) within this filesystem are exposed as buckets without anonymous permissions.
+Currently, buckets and objects created through the S3 protocol will have root POSIX permissions. In addition, all buckets are created within the filesystem specified in the S3 cluster creation. Directories (adhering to the [naming limitations](s3-limitations.md#buckets)) within this filesystem are exposed as buckets without anonymous permissions.
 
 ## Managing Buckets using the CLI
 
@@ -20,63 +20,15 @@ Currently, buckets and objects created through the S3 protocol will have root PO
 
 Use the following command line to create an S3 bucket:
 
-`weka s3 bucket create <name> [--policy policy] [--policy-json policy-json]` 
+`weka s3 bucket create <name> [--policy policy] [--policy-json policy-json] `
 
 **Parameters in Command Line**
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>Name</b>
-      </th>
-      <th style="text-align:left"><b>Type</b>
-      </th>
-      <th style="text-align:left"><b>Value</b>
-      </th>
-      <th style="text-align:left"><b>Limitations</b>
-      </th>
-      <th style="text-align:left"><b>Mandatory</b>
-      </th>
-      <th style="text-align:left"><b>Default</b>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>name</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">The name for the new S3 bucket</td>
-      <td style="text-align:left">
-        <p></p>
-        <p>Refer to the <a href="s3-limitations.md#buckets">Bucket Naming Limitations</a> section.</p>
-      </td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>policy</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">The name of a pre-defined bucket policy for anonymous access.</td>
-      <td
-      style="text-align:left">One of: <code>none</code>, <code>download</code>, <code>upload</code>, <code>public</code>
-        </td>
-        <td style="text-align:left">No</td>
-        <td style="text-align:left"><code>none</code>
-        </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>policy-json</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">A path to a custom policy JSON file for anonymous access.</td>
-      <td style="text-align:left">A JSON file representing an S3 bucket policy.</td>
-      <td style="text-align:left">No</td>
-      <td style="text-align:left"></td>
-    </tr>
-  </tbody>
-</table>
+| **Name**      | **Type** | **Value**                                                      | **Limitations**                                                                                        | **Mandatory** | **Default** |
+| ------------- | -------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------- | ----------- |
+| `name`        | String   | The name for the new S3 bucket                                 | <p></p><p>Refer to the <a href="s3-limitations.md#buckets">Bucket Naming Limitations</a> section. </p> | Yes           |             |
+| `policy`      | String   | The name of a pre-defined bucket policy for anonymous access.  | One of: `none`, `download`, `upload`, `public`                                                         | No            | `none`      |
+| `policy-json` | String   | A path to a custom policy JSON file for anonymous access.      | A JSON file representing an S3 bucket policy.                                                          | No            |             |
 
 ### Listing Buckets
 
@@ -91,7 +43,7 @@ Use this command to list existing buckets.
 Use this command to delete an existing bucket.
 
 {% hint style="info" %}
-**Note:** A bucket can only be deleted if it is empty \(all its objects have been deleted\).
+**Note: **A bucket can only be deleted if it is empty (all its objects have been deleted).
 {% endhint %}
 
 ## Managing Bucket Policies
@@ -106,7 +58,7 @@ For example, for a bucket named `mybucket`, these will be the pre-defined polici
 
 {% tabs %}
 {% tab title="download" %}
-```text
+```
 {
   "Statement": [
     {
@@ -145,7 +97,7 @@ For example, for a bucket named `mybucket`, these will be the pre-defined polici
 {% endtab %}
 
 {% tab title="upload" %}
-```text
+```
 {
   "Statement": [
     {
@@ -187,7 +139,7 @@ For example, for a bucket named `mybucket`, these will be the pre-defined polici
 {% endtab %}
 
 {% tab title="public" %}
-```text
+```
 {
   "Statement": [
     {
@@ -239,10 +191,10 @@ Use the following command line to set a pre-defined bucket policy:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `bucket-policy` | String | The name of a pre-defined bucket policy for anonymous access.  | One of: `none`, `download`, `upload`, `public` | Yes |  |
-| `bucket-name` | String | The name of an existing S3 bucket |  | Yes |  |
+| **Name**        | **Type** | **Value**                                                      | **Limitations**                                | **Mandatory** | **Default** |
+| --------------- | -------- | -------------------------------------------------------------- | ---------------------------------------------- | ------------- | ----------- |
+| `bucket-policy` | String   | The name of a pre-defined bucket policy for anonymous access.  | One of: `none`, `download`, `upload`, `public` | Yes           |             |
+| `bucket-name`   | String   | The name of an existing S3 bucket                              |                                                | Yes           |             |
 
 ### Setting a Custom Bucket Policy
 
@@ -250,7 +202,7 @@ To create a custom policy, you can use [AWS Policy Generator](https://awspolicyg
 
 For example, to set a custom policy for `mybucket` to allow read-only access for objects with a `public/` prefix, the custom policy, as generated with the calculator, is:
 
-```text
+```
 {
   "Id": "Policy1624778813411",
   "Version": "2012-10-17",
@@ -290,48 +242,10 @@ Use the following command line to set a custom bucket policy:
 
 **Parameters in Command Line**
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>Name</b>
-      </th>
-      <th style="text-align:left"><b>Type</b>
-      </th>
-      <th style="text-align:left"><b>Value</b>
-      </th>
-      <th style="text-align:left"><b>Limitations</b>
-      </th>
-      <th style="text-align:left"><b>Mandatory</b>
-      </th>
-      <th style="text-align:left"><b>Default</b>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><code>policy-file</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">A path to a custom policy JSON file for anonymous access.</td>
-      <td style="text-align:left">
-        <p>A JSON file representing an S3 bucket policy.</p>
-        <p>Wildcards (e.g., <code>s3:*</code>) are not allowed as an <code>Action</code> in
-          the custom policy file. For supported actions, refer to the <a href="s3-limitations.md#supported-policy-actions">Supported Policy Actions</a> section.</p>
-      </td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><code>bucket-name</code>
-      </td>
-      <td style="text-align:left">String</td>
-      <td style="text-align:left">The name of an existing S3 bucket.</td>
-      <td style="text-align:left"></td>
-      <td style="text-align:left">Yes</td>
-      <td style="text-align:left"></td>
-    </tr>
-  </tbody>
-</table>
+| **Name**      | **Type** | **Value**                                                  | **Limitations**                                                                                                                                                                                                                                                                                      | **Mandatory** | **Default** |
+| ------------- | -------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| `policy-file` | String   | A path to a custom policy JSON file for anonymous access.  | <p>A JSON file representing an S3 bucket policy. </p><p>Wildcards  (e.g., <code>s3:*</code>) are not allowed as an <code>Action</code> in the custom policy file. For supported actions, refer to the <a href="s3-limitations.md#supported-policy-actions">Supported Policy Actions</a> section.</p> | Yes           |             |
+| `bucket-name` | String   | The name of an existing S3 bucket.                         |                                                                                                                                                                                                                                                                                                      | Yes           |             |
 
 ### Viewing a Bucket Policy
 
@@ -343,7 +257,6 @@ Use the following command line to view an S3 bucket policy name/JSON:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `bucket-name` | String | The name of an existing S3 bucket. |  | Yes |  |
-
+| **Name**      | **Type** | **Value**                          | **Limitations** | **Mandatory** | **Default** |
+| ------------- | -------- | ---------------------------------- | --------------- | ------------- | ----------- |
+| `bucket-name` | String   | The name of an existing S3 bucket. |                 | Yes           |             |

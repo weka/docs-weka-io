@@ -12,12 +12,12 @@ description: >-
 There are three main performance metrics when measuring a storage system performance:
 
 1. Latency, which is the time from operation initiation to completion
-2. The number of different IO operations \(read/write/metadata\) that the system can process concurrently
+2. The number of different IO operations (read/write/metadata) that the system can process concurrently
 3. The bandwidth of data that the system can process concurrently
 
 Each of these performance metrics applies to read operations, write operations, or a mixture of read and write operations.
 
-‌When measuring the Weka system performance, different [mount modes](../../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration \(using either user-space DPDK networking or kernel UDP\) also significantly affects performance.
+‌When measuring the Weka system performance, different [mount modes](../../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration (using either user-space DPDK networking or kernel UDP) also significantly affects performance.
 
 {% hint style="info" %}
 **Note:** All performance tests listed here are generic and not specific to the Weka system. They can be used to compare the Weka storage system to other storage systems or a local storage device.
@@ -35,22 +35,22 @@ All FIO testing is done using the client/server capabilities of FIO. This makes 
 
 Start the FIO server on every one of the clients:
 
-```text
+```
 fio --server --daemonize=/tmp/fio.pid
 ```
 
 Run the test command from one of the clients, note, the clients need to be mounted to a Weka filesystem.
 
-An example of launching a test \(`sometest`\) on all clients in a file \(`clients.txt`\) using the server/client model:
+An example of launching a test (`sometest`) on all clients in a file (`clients.txt`) using the server/client model:
 
-```text
+```
 fio --client=clients.txt sometest.txt
 ```
 
 An example for the clients' file, when running multiple clients:
 
 {% code title="clients.txt" %}
-```text
+```
 weka-client-01
 weka-client-02
 weka-client-03
@@ -64,7 +64,7 @@ weka-client-08
 
 An example of aggregated test results:
 
-```text
+```
 All clients: (groupid=0, jobs=16): err= 0: pid=0: Wed Jun  3 22:10:46 2020
   read: IOPS=30.1k, BW=29.4Gi (31.6G)(8822GiB/300044msec)
     slat (nsec): min=0, max=228000, avg=6308.42, stdev=4988.75
@@ -87,7 +87,7 @@ The single-client or aggregated tests deffer in the clients participating in the
 
 MDTest is a generic open-source metadata performance testing tool. In this documentation, the usage of version 1.9.3 is assumed.
 
-MDTest uses an MPI framework to coordinate the job across multiple nodes. The results presented here were generated using the [MPICH](https://www.mpich.org/downloads/) version 3.3.2 and can be defined as described [here](	%20https://www.mpich.org/documentation/guides/). While it's possible to have variations with different MPI versions, most are based on the same ROMIO and will perform similarly.
+MDTest uses an MPI framework to coordinate the job across multiple nodes. The results presented here were generated using the [MPICH](https://www.mpich.org/downloads/) version 3.3.2 and can be defined as described [here](https://www.mpich.org/documentation/guides/). While it's possible to have variations with different MPI versions, most are based on the same ROMIO and will perform similarly.
 
 ## Weka Client Performance Testing
 
@@ -101,73 +101,26 @@ While we provide below the output of one iteration, we ran each test several tim
 
 #### Single Client Results
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Benchmark</th>
-      <th style="text-align:left"><a href="test-environment-details.md#aws">AWS</a>
-      </th>
-      <th style="text-align:left"><a href="test-environment-details.md#supermicro">SuperMicro</a>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">Read Throughput</td>
-      <td style="text-align:left">8.9 GiB/s</td>
-      <td style="text-align:left">21.4 GiB/s</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Write Throughput</td>
-      <td style="text-align:left">9.4 GiB/s</td>
-      <td style="text-align:left">17.2 GiB/s</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Read IOPS</td>
-      <td style="text-align:left">393,333 ops/s</td>
-      <td style="text-align:left">563,667 ops/s</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Write IOPS</td>
-      <td style="text-align:left">302,333 ops/s</td>
-      <td style="text-align:left">378,667 ops/s</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Read Latency</td>
-      <td style="text-align:left">
-        <p>272 &#xB5;s avg.</p>
-        <p>99.5% completed under 459 &#xB5;s</p>
-      </td>
-      <td style="text-align:left">
-        <p>144.76 &#xB5;s avg.</p>
-        <p>99.5% completed under 260 &#xB5;s</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Write Latency</td>
-      <td style="text-align:left">
-        <p>298 &#xB5;s avg.</p>
-        <p>99.5% completed under 432 &#xB5;s</p>
-      </td>
-      <td style="text-align:left">
-        <p>107.12 &#xB5;s avg.</p>
-        <p>99.5% completed under 142 &#xB5;s</p>
-      </td>
-    </tr>
-  </tbody>
-</table>
+| Benchmark        | [AWS](test-environment-details.md#aws)                 | [SuperMicro](test-environment-details.md#supermicro)      |
+| ---------------- | ------------------------------------------------------ | --------------------------------------------------------- |
+| Read Throughput  | 8.9 GiB/s                                              | 21.4 GiB/s                                                |
+| Write Throughput | 9.4 GiB/s                                              | 17.2 GiB/s                                                |
+| Read IOPS        | 393,333 ops/s                                          | 563,667 ops/s                                             |
+| Write IOPS       | 302,333 ops/s                                          | 378,667 ops/s                                             |
+| Read Latency     | <p>272 µs avg. </p><p>99.5% completed under 459 µs</p> | <p>144.76 µs avg. </p><p>99.5% completed under 260 µs</p> |
+| Write Latency    | <p>298 µs avg. </p><p>99.5% completed under 432 µs</p> | <p>107.12 µs avg. </p><p>99.5% completed under 142 µs</p> |
 
-#### Aggregated Cluster Results \(with multiple clients\)
+#### Aggregated Cluster Results (with multiple clients)
 
-| Benchmark | [AWS](test-environment-details.md#aws) | [SuperMicro](test-environment-details.md#supermicro) |
-| :--- | :--- | :--- |
-| Read Throughput | 36.2 GiB/s | 123 GiB/s |
-| Write Throughput | 11.6 GiB/s | 37.6 GiB/s |
-| Read IOPS | 1,978,330 ops/s | 4,346,330 ops/s |
-| Write IOPS | 404,670 ops/s | 1,317,000 ops/s |
-| Creates | 79,599 ops/s | 234,472 ops/s |
-| Stats | 1,930,721 ops/s | 3,257,394 ops/s |
-| Deletes | 117,644 ops/s | 361,755 ops/s |
+| Benchmark        | [AWS](test-environment-details.md#aws) | [SuperMicro](test-environment-details.md#supermicro) |
+| ---------------- | -------------------------------------- | ---------------------------------------------------- |
+| Read Throughput  | 36.2 GiB/s                             | 123 GiB/s                                            |
+| Write Throughput | 11.6 GiB/s                             | 37.6 GiB/s                                           |
+| Read IOPS        | 1,978,330 ops/s                        | 4,346,330 ops/s                                      |
+| Write IOPS       | 404,670 ops/s                          | 1,317,000 ops/s                                      |
+| Creates          | 79,599 ops/s                           | 234,472 ops/s                                        |
+| Stats            | 1,930,721 ops/s                        | 3,257,394 ops/s                                      |
+| Deletes          | 117,644 ops/s                          | 361,755 ops/s                                        |
 
 {% hint style="info" %}
 **Note:** If the client uses a 100 Gbps NIC or above, mounting the Weka filesystem with more than one core is required to maximize client throughput.
@@ -177,12 +130,12 @@ While we provide below the output of one iteration, we ran each test several tim
 
 #### Description
 
-This test measures the client throughput for large \(1MB\) reads. The job below tries to maximize the read throughput from a single client. The test utilizes multiple threads, each one performing 1 MB reads.
+This test measures the client throughput for large (1MB) reads. The job below tries to maximize the read throughput from a single client. The test utilizes multiple threads, each one performing 1 MB reads.
 
 #### Job Definition
 
-{% code title="read\_throughput.txt" %}
-```text
+{% code title="read_throughput.txt" %}
+```
 [global]
 filesize=128G
 time_based=1
@@ -209,7 +162,7 @@ new_group
 
 #### Example of Test Output
 
-```text
+```
 read_throughput: (groupid=0, jobs=32): err= 0: pid=70956: Wed Jul  8 13:27:48 2020
   read: IOPS=9167, BW=9167MiB/s (9613MB/s)(2686GiB/300004msec)
     slat (nsec): min=0, max=409000, avg=3882.55, stdev=3631.79
@@ -239,12 +192,12 @@ In this test output example, results show a bandwidth of 8.95 GiB/s from a singl
 
 #### Description
 
-This test measures the client throughput for large \(1MB\) writes. The job below tries to maximize the write throughput from a single client. The test utilizes multiple threads, each one performing 1MB writes.
+This test measures the client throughput for large (1MB) writes. The job below tries to maximize the write throughput from a single client. The test utilizes multiple threads, each one performing 1MB writes.
 
 #### Job Definition
 
-{% code title="write\_throughput.txt" %}
-```text
+{% code title="write_throughput.txt" %}
+```
 [global]
 filesize=128G
 time_based=1
@@ -271,7 +224,7 @@ new_group
 
 #### Example of Test Output
 
-```text
+```
 write_throughput: (groupid=0, jobs=32): err= 0: pid=71903: Wed Jul  8 13:43:15 2020
   write: IOPS=7034, BW=7035MiB/s (7377MB/s)(2061GiB/300005msec); 0 zone resets
     slat (usec): min=12, max=261, avg=39.22, stdev=12.92
@@ -304,8 +257,8 @@ This test measures the ability of the client to deliver concurrent 4KB reads. Th
 
 #### Job Definition
 
-{% code title="read\_iops.txt" %}
-```text
+{% code title="read_iops.txt" %}
+```
 [global]
 filesize=4G
 time_based=1
@@ -332,7 +285,7 @@ new_group
 
 #### Example of Test Output
 
-```text
+```
 read_iops: (groupid=0, jobs=192): err= 0: pid=66528: Wed Jul  8 12:30:38 2020
   read: IOPS=390k, BW=1525MiB/s (1599MB/s)(447GiB/300002msec)
     slat (nsec): min=0, max=392000, avg=3512.56, stdev=2950.62
@@ -366,8 +319,8 @@ This test measures the ability of the client to deliver concurrent 4KB writes. T
 
 #### Job Definition
 
-{% code title="write\_iops.txt" %}
-```text
+{% code title="write_iops.txt" %}
+```
 [global]
 filesize=4G
 time_based=1
@@ -394,7 +347,7 @@ new_group
 
 #### Example of Test Output
 
-```text
+```
 write_iops: (groupid=0, jobs=192): err= 0: pid=72163: Wed Jul  8 13:48:24 2020
   write: IOPS=288k, BW=1125MiB/s (1180MB/s)(330GiB/300003msec); 0 zone resets
     slat (nsec): min=0, max=2591.0k, avg=5030.10, stdev=4141.48
@@ -426,8 +379,8 @@ This test measures the minimal achievable read latency under a light load. The t
 
 #### Job Definition
 
-{% code title="read\_latency.txt" %}
-```text
+{% code title="read_latency.txt" %}
+```
 [global]
 filesize=4G
 time_based=1
@@ -454,7 +407,7 @@ new_group
 
 #### Example of Test Output
 
-```text
+```
 read_latency: (groupid=0, jobs=1): err= 0: pid=71741: Wed Jul  8 13:38:06 2020
   read: IOPS=4318, BW=16.9MiB/s (17.7MB/s)(5061MiB/300001msec)
     slat (nsec): min=0, max=53000, avg=1923.23, stdev=539.64
@@ -488,8 +441,8 @@ This test measures the minimal achievable write latency under a light load. The 
 
 #### Job Definition
 
-{% code title="write\_latency.txt" %}
-```text
+{% code title="write_latency.txt" %}
+```
 [global]
 filesize=4G
 time_based=1
@@ -516,7 +469,7 @@ new_group
 
 #### Example of Test Output
 
-```text
+```
 write_latency: (groupid=0, jobs=1): err= 0: pid=72709: Wed Jul  8 13:53:33 2020
   write: IOPS=4383, BW=17.1MiB/s (17.0MB/s)(5136MiB/300001msec); 0 zone resets
     slat (nsec): min=0, max=56000, avg=1382.96, stdev=653.78
@@ -546,17 +499,17 @@ In this test output example, results show an average latency of 226 microseconds
 
 #### Description
 
-The test measures the rate of metadata operations \(such as create, stat, delete\) across the cluster. The test uses 20 million files: it uses 8 client hosts, and multiple threads per client are utilized \(136\), where each thread handles 18382 files. It is invoked 3 times and provides a summary of the iterations.
+The test measures the rate of metadata operations (such as create, stat, delete) across the cluster. The test uses 20 million files: it uses 8 client hosts, and multiple threads per client are utilized (136), where each thread handles 18382 files. It is invoked 3 times and provides a summary of the iterations.
 
 #### Job Definition
 
-```text
+```
 mpiexec -f <hostfile> -np 1088 mdtest -v -N 136 -i 3 -n 18382 -F -u -d /mnt/weka/mdtest
 ```
 
 #### Example of Test Output
 
-```text
+```
 SUMMARY rate: (of 3 iterations)
    Operation                      Max            Min           Mean        Std Dev
    ---------                      ---            ---           ----        -------
@@ -576,7 +529,7 @@ If it is preferred to run all the tests sequentially and review the results afte
 
 From each client, create a mount point in `/mnt/weka` to a Weka filesystem and create there the following directories:
 
-```text
+```
 # create directories in the weka filesystem
 mkdir /mnt/weka/fio
 mkdir /mnt/weka/mdtest
@@ -588,7 +541,7 @@ Copy the `FIOmaster.txt` file to your host and create the `clients.txt` file wit
 
 Run the benchmarks using the following commands:
 
-```text
+```
 # single client
 fio FIOmaster.txt
 
@@ -599,7 +552,5 @@ fio --client=clients.txt FIOmaster.txt
 mpiexec -f clients.txt -np 1088 mdtest -v -N 136 -i 3 -n 18382 -F -u -d /mnt/weka/mdtest
 ```
 
-{% file src="../../.gitbook/assets/fiomaster \(1\).txt" %}
-
-
+{% file src="../../.gitbook/assets/fiomaster (1).txt" %}
 

@@ -28,18 +28,18 @@ Use the following command line to create an ILM rule:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `bucket` | String | The name of the S3 bucket |  | Yes |  |
-| `expiry-days` | Number | The number of days to wait before expiring an object | Minimum of 1 day | Yes |  |
-| `prefix` | String | The prefix of objects to apply the rule to |  | No |  |
-| `tags` | String | Key value pair of object tags to apply the rule to | Pairs of key values: `'<k1>=<v1>&<k2=<v2>'` | No |  |
+| **Name**      | **Type** | **Value**                                            | **Limitations**                             | **Mandatory** | **Default** |
+| ------------- | -------- | ---------------------------------------------------- | ------------------------------------------- | ------------- | ----------- |
+| `bucket`      | String   | The name of the S3 bucket                            |                                             | Yes           |             |
+| `expiry-days` | Number   | The number of days to wait before expiring an object | Minimum of 1 day                            | Yes           |             |
+| `prefix`      | String   | The prefix of objects to apply the rule to           |                                             | No            |             |
+| `tags`        | String   | Key value pair of object tags to apply the rule to   | Pairs of key values:` '<k1>=<v1>&<k2=<v2>'` | No            |             |
 
 {% hint style="info" %}
 **Note:** The `expiry-days` is the minimum time to wait before expiring an object. In extreme load and scale cases, it might take longer than the `expiry-days` to delete an object.
 {% endhint %}
 
-### Viewing ILM Rules <a id="viewing-ilm-rules"></a>
+### Viewing ILM Rules <a href="viewing-ilm-rules" id="viewing-ilm-rules"></a>
 
 **Command:** `weka s3 bucket lifecycle-rule list`‌
 
@@ -49,9 +49,9 @@ Use the following command line to view a bucket's existing ILM rules:‌
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `bucket` | String | The name of the S3 bucket | ​Content | Yes | ​Content |
+| **Name** | **Type** | **Value**                 | **Limitations** | **Mandatory** | **Default** |
+| -------- | -------- | ------------------------- | --------------- | ------------- | ----------- |
+| `bucket` | String   | The name of the S3 bucket | ​Content        | Yes           | ​Content    |
 
 ### Deleting an ILM Rule
 
@@ -63,10 +63,10 @@ Use the following command line to delete an ILM rule:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `bucket` | String | The name of the S3 bucket |  | Yes |  |
-| `rule` | String | The ID of the rule to delete |  | Yes |  |
+| **Name** | **Type** | **Value**                    | **Limitations** | **Mandatory** | **Default** |
+| -------- | -------- | ---------------------------- | --------------- | ------------- | ----------- |
+| `bucket` | String   | The name of the S3 bucket    |                 | Yes           |             |
+| `rule`   | String   | The ID of the rule to delete |                 | Yes           |             |
 
 ### Resetting a Bucket's ILM Rules
 
@@ -78,7 +78,6 @@ Use the following command line to delete all the ILM rules of a specified bucket
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `bucket` | String | The name of the S3 bucket |  | Yes |  |
-
+| **Name** | **Type** | **Value**                 | **Limitations** | **Mandatory** | **Default** |
+| -------- | -------- | ------------------------- | --------------- | ------------- | ----------- |
+| `bucket` | String   | The name of the S3 bucket |                 | Yes           |             |

@@ -4,7 +4,7 @@
 
 ### Agent
 
-The Weka agent is software installed on user application servers that need access to the Weka file services. When using the Stateless Client feature, the agent is responsible for ensuring that the correct client software version is installed \(depending on the cluster version\) and that the client connects to the correct cluster.
+The Weka agent is software installed on user application servers that need access to the Weka file services. When using the Stateless Client feature, the agent is responsible for ensuring that the correct client software version is installed (depending on the cluster version) and that the client connects to the correct cluster.
 
 ## B
 
@@ -24,7 +24,7 @@ A collection of Weka backend hosts, together with Weka clients installed on the 
 
 ### Container
 
-Weka uses Linux containers \(LXC\) as the mechanism for holding one node or keeping multiple nodes together. Containers can have different nodes within them. They can have frontend nodes and associated DPDK libraries within the container, or backend nodes, drive nodes, management node, and DPDK libraries, or can have NFS, SMB, or S3 services nodes running within them. A host can have multiple containers running on it at any time. 
+Weka uses Linux containers (LXC) as the mechanism for holding one node or keeping multiple nodes together. Containers can have different nodes within them. They can have frontend nodes and associated DPDK libraries within the container, or backend nodes, drive nodes, management node, and DPDK libraries, or can have NFS, SMB, or S3 services nodes running within them. A host can have multiple containers running on it at any time. 
 
 ### Converged Deployment
 
@@ -62,11 +62,11 @@ Is the collection of Weka software that runs on a client and accesses storage se
 
 ### Hot Data
 
-Frequently used data \(as opposed to warm data\), usually residing on SSDs.
+Frequently used data (as opposed to warm data), usually residing on SSDs.
 
 ### Host
 
-A physical or virtual server that has hardware resources allocated to it and software running on it that provides compute or storage services. Weka uses [backend hosts](https://app.gitbook.com/@wekaio/s/docs/~/drafts/-Mgr6Tp1ghQJ-ubcwTuD/overview/glossary#backend-host/@drafts) in conjunction with [clients](https://app.gitbook.com/@wekaio/s/docs/~/drafts/-Mgr6Tp1ghQJ-ubcwTuD/overview/glossary#client/@drafts) to deliver storage services. In general industry terms, in a cluster of hosts, sometimes "[node](https://app.gitbook.com/@wekaio/s/docs/~/drafts/-Mgr6Tp1ghQJ-ubcwTuD/overview/glossary#node/@drafts)" is used instead.
+A physical or virtual server that has hardware resources allocated to it and software running on it that provides compute or storage services. Weka uses [backend hosts](https://app.gitbook.com/@wekaio/s/docs/\~/drafts/-Mgr6Tp1ghQJ-ubcwTuD/overview/glossary#backend-host/@drafts) in conjunction with [clients](https://app.gitbook.com/@wekaio/s/docs/\~/drafts/-Mgr6Tp1ghQJ-ubcwTuD/overview/glossary#client/@drafts) to deliver storage services. In general industry terms, in a cluster of hosts, sometimes "[node](https://app.gitbook.com/@wekaio/s/docs/\~/drafts/-Mgr6Tp1ghQJ-ubcwTuD/overview/glossary#node/@drafts)" is used instead.
 
 ## N
 
@@ -76,13 +76,13 @@ Amount of space available for user data on SSDs in a configured Weka system.
 
 ### Node
 
-A software instance that Weka uses to run and manage WekaFS. Nodes are dedicated to managing different functions such as \(1\) NVMe Drives and IO to the drives, \(2\) compute nodes for filesystems and cluster-level functions and IO from clients, \(3\) frontend nodes for POSIX client access and sending IO to the backend nodes, and \(4\) management nodes for managing the overall cluster. In general industry terms, a node also may be referenced as a discrete component in a hardware or software cluster. Sometimes when referring to hardware, the term host may be used instead.
+A software instance that Weka uses to run and manage WekaFS. Nodes are dedicated to managing different functions such as (1) NVMe Drives and IO to the drives, (2) compute nodes for filesystems and cluster-level functions and IO from clients, (3) frontend nodes for POSIX client access and sending IO to the backend nodes, and (4) management nodes for managing the overall cluster. In general industry terms, a node also may be referenced as a discrete component in a hardware or software cluster. Sometimes when referring to hardware, the term host may be used instead.
 
 ## P
 
 ### **POSIX**
 
-The Portable Operating System Interface \(POSIX\) is a family of ****standards specified by the [I](https://en.wikipedia.org/wiki/IEEE_Computer_Society)EEE Computer Society for maintaining compatibility between operating systems. The WekaFS client is POSIX compliant, which means that it presents data to the OS on which it is installed in a manner that conforms to the POSIX standard. The WekaFS client is sometimes informally referred to as the POSIX client or POSIX driver when describing the overall storage system architecture.
+The Portable Operating System Interface (POSIX) is a family of** **standards specified by the [I](https://en.wikipedia.org/wiki/IEEE_Computer_Society)EEE Computer Society for maintaining compatibility between operating systems. The WekaFS client is POSIX compliant, which means that it presents data to the OS on which it is installed in a manner that conforms to the POSIX standard. The WekaFS client is sometimes informally referred to as the POSIX client or POSIX driver when describing the overall storage system architecture.
 
 ### Provisioned Capacity
 
@@ -114,7 +114,7 @@ The creation of an SSD copy of data stored only on the object-store.
 
 ### Server
 
-In Weka terms, a physical or virtual instantiation of hardware on which software runs and provides compute or storage services. In general industry terms, a server may also refer to a software process that provides a service to another process, whether on the same host or to a client \(e.g. NFS server, SMB server, etc.\).
+In Weka terms, a physical or virtual instantiation of hardware on which software runs and provides compute or storage services. In general industry terms, a server may also refer to a software process that provides a service to another process, whether on the same host or to a client (e.g. NFS server, SMB server, etc.).
 
 ### Stem Mode
 
@@ -154,5 +154,4 @@ Virtual Function
 
 ### Warm Data
 
-Less frequently-used data \(as opposed to hot data\), usually residing on an object-store.
-
+Less frequently-used data (as opposed to hot data), usually residing on an object-store.
