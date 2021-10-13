@@ -55,7 +55,7 @@ For more information about the CLI, refer to [Getting Started with Weka CLI](cli
 The Weka GUI is accessible at port 14000. It can be accessed from any host or by using the cluster name. For example: `https://weka01:14000` or `https://WekaProd:14000`.
 
 {% hint style="info" %}
-**Note:** If it's not possible to access the GUI, make sure that it has been opened in your firewall, as described on the [Prerequisites](../support/prerequisites-and-compatability.md) page.
+**Note:** If it's not possible to access the GUI, make sure that it has been opened in your firewall, as described on the [Prerequisites](../support/prerequisites-and-compatibility.md) page.
 {% endhint %}
 
 ![Weka Login Page](../.gitbook/assets/wekaio-login-page.png)
