@@ -176,6 +176,20 @@ The `locator` is either a locator saved previously for disaster scenarios, or ca
 **Note: **For encrypted filesystem, when downloading the same KMS master-key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](managing-filesystems/kms-management.md#overview) section.
 {% endhint %}
 
+### Recovering from a Remote Snapshot
+
+When there is a need to recover from a snapshot residing on a remote object-store, there is a need to define the object-store bucket containing the snapshot as a `local` bucket. This is since normally, a remote object-store has restrictions over the download, as explained in the [Managing Object Stores](managing-filesystems/managing-object-stores.md#overview) section, and we would want to use a different local object-store, due to the QoS reasons explained there. 
+
+To recover from a snapshot residing on a remote object-store, you will need to create a new filesystem from this snapshot by following the below procedure:
+
+1. Add a new local object-store, using `weka fs tier obs add` CLI command
+2. Add a local object-store bucket, referring to the bucket with the snapshot to recover, using `weka fs tier s3 add`
+3. Download the filesystem, using `weka fs download`
+4. If the filesystem should also be tiered, add a local object-store for tiering
+5. Detach the initial object-store from the filesystem
+6. Assuming you want a remote backup to this filesystem, attach a remote bucket to the filesystem
+7. Remove the local object-store bucket and local object-store created for this procedure
+
 ### Deleting Snapshots Residing on an Object Store
 
 Deleting a snapshot, from a filesystem that uploaded it, will remove all of its data from the local object-store bucket. It will not remove any data from a remote object-store bucket.
