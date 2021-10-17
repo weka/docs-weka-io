@@ -113,6 +113,12 @@ Use the following command line to delete a snapshot:
 | `file-system` | String   | A valid filesystem identifier       | Must be a valid name | Yes           | ​           |
 | `name`        | String   | Unique name for filesystem snapshot | Must be a valid name | Yes           |             |
 
+{% hint style="warning" %}
+**Note: **A snapshot deletion cannot happen in parallel to a snapshot upload to the same filesystem. Since uploading a snapshot to a remote object-store might take a while, it is advisable to delete the desired snapshots before uploading to the remote object-store. 
+
+Also note, this becomes more important when uploading snapshots to both local and remote object stores. While local and remote uploads can progress in parallel, consider the case of a remote upload in progress, then a snapshot is deleted, and later a snapshot is uploaded to the local object-store. In this scenario, the local snapshot upload will wait for the pending deletion of the snapshot (which will happen only once the remote snapshot upload is done).
+{% endhint %}
+
 ### Restoring a Filesystem from a Snapshot
 
 #### Restoring a Filesystem or Snapshot from Another Snapshot Using the GUI

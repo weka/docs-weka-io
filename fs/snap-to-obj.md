@@ -136,6 +136,12 @@ Use the following command line to upload an existing snapshot:
 **Note:** A writeable snapshot is a clone of the live filesystem or other snapshots at a specific time, and its data keeps changing. Therefore, its data is tiered according to the tiering policies, but it cannot be uploaded to the object-store as read-only snapshots.
 {% endhint %}
 
+{% hint style="warning" %}
+**Note: **A snapshot deletion cannot happen in parallel to a snapshot upload to the same filesystem. Since uploading a snapshot to a remote object-store might take a while, it is advisable to delete the desired snapshots before uploading to the remote object-store. 
+
+Also note, this becomes more important when uploading snapshots to both local and remote object stores. While local and remote uploads can progress in parallel, consider the case of a remote upload in progress, then a snapshot is deleted, and later a snapshot is uploaded to the local object-store. In this scenario, the local snapshot upload will wait for the pending deletion of the snapshot (which will happen only once the remote snapshot upload is done).
+{% endhint %}
+
 ### Creating a Filesystem from an Uploaded Snapshot
 
 #### Creating a Filesystem from a Snapshot Using the GUI
