@@ -74,4 +74,4 @@ The defaults can be controlled using the `weka security lockout-config show/set/
 
 It is possible to set a security/legal login statement that will add a banner with that statement on the GUI login page.
 
-To set the statement, use the `weka security login-banner set|show|reset` CLI command or the GUI `Login Banner` menu. 
+To set the statement, use the `weka security login-banner set|show|reset|enable|disable` CLI command or the GUI `Login Banner` menu. 
