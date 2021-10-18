@@ -28,10 +28,10 @@ description: >-
 
 * **RHEL:** 
   * 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9
-  * 8.0, 8.1, 8.2
+  * 8.0, 8.1, 8.2, 8.3
 * **CentOS:** 
   * 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9
-  * 8.0, 8.1, 8.2
+  * 8.0, 8.1, 8.2, 8.3
 * **Ubuntu:** 
   * 18.04.0, 18.04.1, 18.04.2, 18.04.3, 18.04.4, 18.04.5
   * 20.04.0, 20.04.1
@@ -229,15 +229,20 @@ Certified Object Stores:
 
 VMs can be used as clients only, assuming they meet the following prerequisite:
 
-#### &#xD;For UDP clients:
+### &#xD;For UDP clients:
 
 * To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform and dedicate a core to the Weka client.
 * The root filesystem should handle a 3K IOPS load by the Weka client.
 
-#### **For DPDK clients (on top of the UDP requirements):**
+### **For DPDK clients (on top of the UDP requirements):**
 
 * The virtual platform interoperability (hypervisor, NICs, CPUs, different versions, etc.) should support DPDK and SR-IOV VFs passthrough to the VM.
 * The hypervisor hosts and the client VMs should run the same OFED version.
+
+#### For VMWare platform:
+
+* Instead of using SR-IOV (which prevents vMotion), it is possible to use `vmxnet3` devices. Each FrontEnd process will require a `vmxnet3` device and IP, with an additional device and IP per client VM (for management process).
+* Using `vmxnet3` is only supported with core dedication.
 
 For additional information and how-to articles, search the Weka knowledgebase in the [Weka support portal](http://support.weka.io) or contact the Weka support team.
 

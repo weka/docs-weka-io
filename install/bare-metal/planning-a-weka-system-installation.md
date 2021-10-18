@@ -55,8 +55,9 @@ The total per host memory requirements is the sum of the following requirements:
 | Fixed                         | 2.3 GB                                                                                                       |
 | Core-based                    | <p>2.3 GB for each Frontend core</p><p>3.3 GB for each Compute core</p><p>2.3 GB for each Drive/SSD core</p> |
 | Capacity requirement          | See below                                                                                                    |
-| Reserved for Operating System | 8 GB                                                                                                         |
+| Reserved for Operating System | The maximum between 8 GB and 2% from the total RAM                                                           |
 | Reserved for SMB/NFS services | 8 GB                                                                                                         |
+| Reserved for RDMA             | 2 GB                                                                                                         |
 
 #### Capacity Requirement Memory
 
