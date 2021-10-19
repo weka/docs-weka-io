@@ -26,7 +26,7 @@ The result of using the Snap-To-Object feature is that the object store contains
 
 #### Hybrid Cloud Use Case
 
-* [Cloud bursting](snap-to-obj.md#cloud-bursting)       
+* [Cloud bursting](snap-to-obj.md#cloud-bursting)      &#x20;
 
 ## Use Cases for the Snap-To-Object Feature
 
@@ -137,7 +137,11 @@ Use the following command line to upload an existing snapshot:
 {% endhint %}
 
 {% hint style="warning" %}
-**Note: **A snapshot deletion cannot happen in parallel to a snapshot upload to the same filesystem. Since uploading a snapshot to a remote object-store might take a while, it is advisable to delete the desired snapshots before uploading to the remote object-store. 
+**Note:** For space and bandwidth efficiency, uploading snapshots to a **remote** object-store should be done in chronological order. There is no need to upload tall snapshots or the same snapshots uploaded to a local object-store. Still, once a snapshot has been uploaded to the **remote** object-store (e.g., the monthly snapshot), it will be inefficient to upload a previous snapshot (e.g., the daily snapshot before it or the previous monthly snapshot) to the **remote** object-store.
+{% endhint %}
+
+{% hint style="warning" %}
+**Note: **A snapshot deletion cannot happen in parallel to a snapshot upload to the same filesystem. Since uploading a snapshot to a remote object-store might take a while, it is advisable to delete the desired snapshots before uploading to the remote object-store.&#x20;
 
 Also note, this becomes more important when uploading snapshots to both local and remote object stores. While local and remote uploads can progress in parallel, consider the case of a remote upload in progress, then a snapshot is deleted, and later a snapshot is uploaded to the local object-store. In this scenario, the local snapshot upload will wait for the pending deletion of the snapshot (which will happen only once the remote snapshot upload is done).
 {% endhint %}
@@ -175,7 +179,7 @@ Use the following command line to create a filesystem from an existing snapshot:
 The `locator` is either a locator saved previously for disaster scenarios, or can be obtained using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
 {% hint style="info" %}
-**Note:** Due to the bandwidth characteristics and potential costs when interacting with remote object-stores it is not allowed to download a filesystem from a remote object-store bucket. If a snapshot on a local object-store bucket exists it is advisable to use that one, otherwise, please create a `local` object-store for this bucket in order to download from it.
+**Note:** Due to the bandwidth characteristics and potential costs when interacting with remote object-stores it is not allowed to download a filesystem from a remote object-store bucket. If a snapshot on a local object-store bucket exists it is advisable to use that one, otherwise, follow the procedure described under [Recovering from a Remote Snapshot](snap-to-obj.md#recovering-from-a-remote-snapshot) section.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
@@ -184,7 +188,7 @@ The `locator` is either a locator saved previously for disaster scenarios, or ca
 
 ### Recovering from a Remote Snapshot
 
-When there is a need to recover from a snapshot residing on a remote object-store, there is a need to define the object-store bucket containing the snapshot as a `local` bucket. This is since normally, a remote object-store has restrictions over the download, as explained in the [Managing Object Stores](managing-filesystems/managing-object-stores.md#overview) section, and we would want to use a different local object-store, due to the QoS reasons explained there. 
+When there is a need to recover from a snapshot residing on a remote object-store, there is a need to define the object-store bucket containing the snapshot as a `local` bucket. This is since normally, a remote object-store has restrictions over the download, as explained in the [Managing Object Stores](managing-filesystems/managing-object-stores.md#overview) section, and we would want to use a different local object-store, due to the QoS reasons explained there.&#x20;
 
 To recover from a snapshot residing on a remote object-store, you will need to create a new filesystem from this snapshot by following the below procedure:
 
