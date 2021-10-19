@@ -42,7 +42,7 @@ When working with quotas, consider the following:
 
 ### Integration with the `df` utility
 
-When a hard quota is set on a directory, running the `df` utility will consider the hard quota as the total capacity of the directory and provide the use% from the quota. This can help users understand their usage and how close they are to the hard quota.
+When a hard quota is set on a directory, running the `df` utility will consider the hard quota as the total capacity of the directory and provide the `use%` relative to the quota. This can help users understand their usage and how close they are to the hard quota.
 
 {% hint style="info" %}
 **Note: **The `df` utility behavior with quotas is currently global to the Weka system.&#x20;
