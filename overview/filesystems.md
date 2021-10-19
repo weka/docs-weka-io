@@ -13,10 +13,20 @@ A Weka filesystem is similar to a regular on-disk filesystem, with the key diffe
 A total of up to 1024 filesystems are supported, all of which are equally and perfectly balanced on all SSDs and CPU cores assigned to the Weka system. This means that the allocation of a new filesystem, or the resizing of a filesystem, are instant management operations that are performed instantly, and without any constraints.
 
 {% hint style="info" %}
-**Note:** A [filesystem grou](filesystems.md#about-filesystem-groups)p has to be created before creating a filesystem, and every filesystem must belong to one filesystem group.
+**Note:** A [filesystem group](filesystems.md#about-filesystem-groups) has to be created before creating a filesystem, and every filesystem must belong to one filesystem group.
 {% endhint %}
 
-A filesystem must have a defined capacity limit. A filesystem that belongs to a tiered [filesystem group](filesystems.md#about-filesystem-groups) must have a total capacity limit and an SSD capacity limit. The total SSD capacity of all filesystems cannot exceed the total SSD capacity as defined in the total SSD net capacity.
+A filesystem must have a defined capacity limit. A filesystem that belongs to a tiered [filesystem group](filesystems.md#about-filesystem-groups) must have a total capacity limit and an SSD capacity limit. The total (base) SSD capacity of all filesystems cannot exceed the total SSD capacity as defined in the total SSD net capacity.&#x20;
+
+### Thin Provisioning
+
+While a filesystem must have a minimum allocated SSD size, on top of that, filesystems can have an additional SSD capacity cap. The total can exceed the total SSD net capacity and be dynamically allocated between the different thin-provisioned filesystems.&#x20;
+
+Thin provisioning  can help in various use cases:
+
+* On tiered filesystems, available SSD space will be leveraged for extra performance and released to the object-store once needed by other filesystems.
+* When using auto-scaling groups, using thin provisioning can help to automatically expand and shrink the filesystem's SSD capacity for extra performance.&#x20;
+* Thin provisioning can be used for the logical separation of projects to filesystems when the administrator doesn't expect all to be fully utilized at the same time. Thin provisioned filesystems can replace the using the same filesystem with different directories with quotas and provide better data separation, management, and access control.
 
 ### Filesystem Limits
 
