@@ -61,7 +61,7 @@ Use one of the following command lines to invoke the mount command (note, the de
 
 `mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-point>`
 
-`mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]`:`<fs> <mount-point>`
+`mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]:<fs> <mount-point>`
 
 **Parameters in Command Line**
 
