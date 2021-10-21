@@ -67,6 +67,12 @@ Use the following command line to add a filesystem:
 If filesystem keys exist when adding a KMS, they are automatically re-encrypted by the KMS for any future use.
 {% endhint %}
 
+### Adding a Filesystem when Thin-Provisioning in use&#x20;
+
+To create a new filesystem, the SSD space for the filesystem must be free and unprovisioned. When using thin-provisioned filesystems, that might not be the case. SSD space can be occupied for the thin-provisioned portion of other filesystems. Even if those are tiered, and data can be released (to object-store) or deleted, the SSD space can still get filled when data keeps being written or rehydrated from the object-store.
+
+To create a new filesystem in this case, use the `weka fs reserve` CLI command. Once enough space is cleared from the SSD (either by releasing to object-store or explicit deletion of data), it is possible to create the new filesystem using the reserved space.tse
+
 ## Editing a Filesystem
 
 ### Editing an Existing Filesystem Using the GUI
