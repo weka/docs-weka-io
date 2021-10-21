@@ -57,7 +57,7 @@ On completion, the agent is installed on the client machine.
 
 **Command:** `mount -t wekafs`
 
-Use the following command line to invoke the mount command:
+Use onthe following command line to invoke the mount command:
 
 `mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-point>`
 
@@ -103,7 +103,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 
 ### Remount of General Options
 
-Mount options marked as `Remount Supported` in the above table can be remounted (using `mount -o remount`). When a mount option has been explicitly changed previously, it should be set again in the remount operation to make sure it retains its value. For example, if you mounted with `ro`, a remount without it will default to `rw`, while if you mounted with `rw`, it  is not required to be re-specified since this is the default). 
+Mount options marked as `Remount Supported` in the above table can be remounted (using `mount -o remount`). When a mount option has been explicitly changed previously, it should be set again in the remount operation to make sure it retains its value. For example, if you mounted with `ro`, a remount without it will default to `rw`, while if you mounted with `rw`, it  is not required to be re-specified since this is the default).&#x20;
 
 ### **Additional Mount Options Available using the Stateless Clients Feature**
 
@@ -172,7 +172,7 @@ Mount options marked as `Remount Supported` in the above table can be remounted 
 When using a stateless client, it is possible to alter and control many different networking options, such as:
 
 * Virtual functions
-* IPs 
+* IPs&#x20;
 * Gateway (in case the client is on a different subnet)
 * Physical network devices (for performance and HA)
 * UDP mode
@@ -250,7 +250,7 @@ mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
 ```
 
 {% hint style="info" %}
-**Note:** A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster. 
+**Note:** A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
