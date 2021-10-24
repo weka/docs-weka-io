@@ -47,12 +47,15 @@ Once everything is ready to deploy the cluster, click the Deploy to AWS button. 
 
 After clicking the Deploy to AWS button, the AWS CloudFormation screen is displayed, requiring the creation of stacks.
 
-![AWS Create Stack Screen](<../../.gitbook/assets/CF Stack 3.6.png>)
+![AWS Create Stack Screen](../../.gitbook/assets/CF\_3\_13.png)
 
-In the Create Stack screen, define the parameters which are specific to your AWS account:
+In the Create Stack screen, define the parameters which are specific to your AWS account.
+
+### Cluster CloudFormation Stack
 
 | Parameter    | Description                                                                                            |
 | ------------ | ------------------------------------------------------------------------------------------------------ |
+| Parameter    | Description                                                                                            |
 | `Stack name` | The name that will be given to the stack in CloudFormation. This name has to be unique in the account. |
 | `SSH Key`    | The SSH-key for the `ec2-user` that will be used to connect to the instances.                          |
 | `VPC`        | The VPC in which the Weka cluster will be deployed.                                                    |
@@ -60,32 +63,52 @@ In the Create Stack screen, define the parameters which are specific to your AWS
 
 Define the parameters for Weka cluster configuration:
 
-| Parameter            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Load-Balancer Type` | <p>Load balancer type for serving the cluster UI:</p><ul><li><code>Internet Facing</code> sets up the load balancer with a public IP.</li><li><code>Internal</code> sets up the load balancer with a private IP address in the selected subnet.</li><li><code>No Load Balancer</code> skips load balancer creation, in which case the UI can be accessed through port 14000 of any of the backend instances.</li></ul><p>Weka uses a Classic Load Balancer (CLB), which is not supported in all zones/regions (e.g., not available in local zones). If CLB is not available in your zone/region, select "No Load Balancer".</p> |
-| `WekaVolumeType`     | Volume type for the Weka partition. `GP3` is not yet available in all zones/regions (e.g., not available in local zones). In such a case, you must select the `GP2` volume type. When available, using `GP3` is preferred.                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `API Token`          | The API token for Weka's distribution site. This can be obtained at [https://get.weka.io/ui/account/api-tokens](https://get.weka.io/ui/account/api-tokens).                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `Admin Password`     | Sets the admin password after the cluster has been created. If no value is provided, the password is set to `admin.`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `Network Topology` | <p>Network topology of the environment:</p><ul><li><code>Public Subnet</code></li><li><code>Private subnet with NAT internet routing</code> </li><li><code>Private subnet using Weka VPC endpoint</code> - requires to create a <a href="self-service-portal.md#prerequisites-cloudformation-stack">prerequisites stack</a> (once per VPC) that creates the required resources.</li><li><code>Private subnet using custom proxy</code> - requires to create a <a href="self-service-portal.md#prerequisites-cloudformation-stack">prerequisites stack</a> (once per VPC) that creates the required resources.</li></ul> |
+| `Custome Proxy`    | A custom proxy for private network internet access. Only relevant when `Private network using custom proxy` is selected as the `Network Topology` parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `WekaVolumeType`   | Volume type for the Weka partition. `GP3` is not yet available in all zones/regions (e.g., not available in local zones). In such a case, you must select the `GP2` volume type. When available, using `GP3` is preferred.                                                                                                                                                                                                                                                                                                                                                                                              |
+| `API Token`        | The API token for Weka's distribution site. This can be obtained at [https://get.weka.io/ui/account/api-tokens](https://get.weka.io/ui/account/api-tokens).                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `Admin Password`   | Sets the admin password after the cluster has been created. If no value is provided, the password is set to `admin.`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 
 Define the following optional parameters if tiering to S3 is desired:
 
 | Parameter             | Description                                                                                                                                                                                                                      |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter             | Description                                                                                                                                                                                                                      |
 | `New S3 Bucket`       | The new S3 bucket name to create and attach to the filesystem created by the template. The bucket will not be deleted when the stack is destroyed.                                                                               |
 | `Existing S3 Bucket`  | The existing S3 bucket name to attach to the filesystem created by the template. The bucket has to be in the same region where the cluster is deployed. If this parameter is provided, the `New S3 Bucket` parameter is ignored. |
 | `Tiering SSD Percent` | Sets how much of the filesystem capacity (in percent) should reside on SSD. This parameter is applicable only if` New S3 Bucket` or `Existing S3 Bucket` parameters have been defined.                                           |
 
 {% hint style="info" %}
-**Important Note Concerning Internet Connectivity:** Weka deployment requires internet connectivity. Ensure that there is either a NAT or public subnet, and configure the stack parameters accordingly.
-
-When using a NAT, make sure not to set the load balancer type to`Internet Facing`.
-
-For public subnets, make sure to select a subnet that has the Enable Auto-Assign Public IPv4 Address setting turned on, or select a subnet that has Internet connectivity.
+**Note: **For public subnets, make sure to select a subnet that has the Enable Auto-Assign Public IPv4 Address setting turned on, or select a subnet that has Internet connectivity.
 {% endhint %}
 
 Once all required parameters have been filled, make sure to check the "I acknowledge that AWS CloudFormation might create IAM resources” checkbox at the bottom and click the Create Stack button:
 
 ![AWS Check Box and Creation Dialog Box](<../../.gitbook/assets/3.6 CF IAM Ack.png>)
+
+## Deploying in a Private VPC
+
+When deploying in a private network, without a NAT (using a Weka proxy or a custom proxy), some resources should be created (once) per VPC (like Weka VPC endpoint or S3  gateway).&#x20;
+
+Copy the link under the Network Topology parameter, and run it in a new browser tab. The AWS CloudFormation screen is displayed, requiring the creation of the prerequisites stack.
+
+![AWS Create Prerequisites Stack Screen](../../.gitbook/assets/CF\_prerequisite\_3\_13.png)
+
+In the Create Stack screen, define the parameters which are specific to your AWS account.
+
+### Prerequisites CloudFormation Stack
+
+|                    |                                                                                                                                                                                |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Parameter          | Description                                                                                                                                                                    |
+| `Stack name`       | The name that will be given to the stack in CloudFormation. This name has to be unique in the account.                                                                         |
+| `VPC`              | The VPC in which the prerequisites resources (and Weka cluster) will be deployed.                                                                                              |
+| `Subnet`           | The subnet in which the prerequisites resources (and Weka cluster) will be deployed.                                                                                           |
+| `RouteTable`       | S3 Gateway route table id                                                                                                                                                      |
+| `Network Topology` | <p></p><p>Network topology of the environment:</p><ul><li><code>Private subnet using Weka VPC endpoint</code></li><li><code>Private subnet using custom proxy</code></li></ul> |
 
 ## Cluster Deployment Process
 
@@ -97,7 +120,7 @@ The cluster deployment process takes about 10 minutes. During this time, the fol
 4. All client instances are created.
 5. A filesystem is created using all the available capacity and is mounted on all client instances. This shared filesystem is mounted on `/mnt/weka` in each of the cluster instances.
 
-Once the deployment is complete, the CloudFormation stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link (or by [http://\<backend-host>:14000](http://\<backend-host>:14000), if `No Load Balancer` has been selected).
+Once the deployment is complete, the CloudFormation stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link (or by [http://\<backend-host>:14000](http://\<backend-host>:14000)).
 
 Visit [Managing the Weka System ](../../getting-started-with-weka/managing-wekaio-system.md)for getting started with Weka CLI and GUI, and [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting, and writing to a WekaFS filesystem.
 
