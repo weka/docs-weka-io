@@ -23,10 +23,10 @@ The Weka upgrade process supports upgrading to both higher minor versions and ma
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
+* To upgrade to Weka software version 3.13.x, go through version 3.12.1 or above
 * To upgrade to Weka software version 3.12.x, go through version 3.11.0 or above
 * To upgrade to Weka software version 3.11.x, go through version 3.10.0 or above
 * To upgrade to Weka software version 3.10.x, go through version 3.9.0 or above
-* To upgrade to Weka software version 3.9.x, go through version 3.8.0 or above
 
 For further information, contact the Weka Support Team.
 
@@ -34,12 +34,12 @@ For further information, contact the Weka Support Team.
 
 Download and prepare the new release on one of the backend hosts, using one of the following methods:
 
-*   From the backend host, run `weka version get <new-version>` where `<new-version>` is the name of the new version (e.g.,`3.12.0`), followed by `weka version prepare <new-version>`. 
+*   From the backend host, run `weka version get <new-version>` where `<new-version>` is the name of the new version (e.g.,`3.13.0`), followed by `weka version prepare <new-version>`.&#x20;
 
-    * If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `3.12.0` version from [get.weka.io](https://get.weka.io/ui/releases/), where a token need to be supplied as, use: 
+    * If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `3.13.0` version from [get.weka.io](https://get.weka.io/ui/releases/), where a token need to be supplied as, use:&#x20;
 
     ```bash
-    weka version get 3.12.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
+    weka version get 3.13.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
     ```
 * From the backend host, run the `curl` command as described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new version release page.
 * Download the new version tar file to the backend host and run `install.sh` (useful on environments where there is no connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs).
@@ -60,7 +60,7 @@ Once a new software version is installed on one of the backend hosts, the cluste
 
 `weka local run --in <new-version> upgrade`
 
-where `<new-version>` is the name of the new version (e.g.,`3.12.0`).
+where `<new-version>` is the name of the new version (e.g.,`3.13.0`).
 
 The limited upgrade window can be controlled by setting the following parameters in the `upgrade` command:
 
@@ -83,7 +83,7 @@ Before switching the cluster to the new release, the upgrade command will distri
 If everything goes to plan, the upgrade will stop the cluster IO service, switch all hosts to the new release and then turn the IO service back on. This takes about 1 minute, depending on the size of the cluster.
 
 {% hint style="info" %}
-**Note: **In large deployments of Weka with many backend hosts and hundreds/thousands of clients it might be required to adjust the above timeouts.  
+**Note: **In large deployments of Weka with many backend hosts and hundreds/thousands of clients it might be required to adjust the above timeouts. &#x20;
 
 It is recommended then to set`  host-version-change-timeout  `to`  600  `and`  disconnect-stateless-clients-timeout  `to` 200 .`
 
@@ -94,23 +94,23 @@ Alternatively, to reduce the number of hosts undergoing an upgrade by separating
 
 ## Backends-Only Upgrade
 
-Using  the `--dont-upgrade-clients` flag in the upgrade command will only upgrade the backend servers, leaving the clients in the old version. Since version 3.12.0, the Weka system supports connecting clients from the one version prior and serving IOs in a mixed-version cluster (backends in version `N` and clients in version `N/N-1`). 
+Using  the `--dont-upgrade-clients` flag in the upgrade command will only upgrade the backend servers, leaving the clients in the old version. Since version 3.12.0, the Weka system supports connecting clients from the one version prior and serving IOs in a mixed-version cluster (backends in version `N` and clients in version `N/N-1`).&#x20;
 
 Performing a backends-only upgrade may ease the upgrade in large clusters, as there is no need to coordinate and wait for the upgrade of all the clients (which can be thousands of hosts). Once the backend servers have been successfully upgraded to the new version, the clients can be upgraded one by one, coordinated separately for each client.
 
 To upgrade a client host, run the `weka local upgrade` CLI command from the client host.
 
-An alert is raised once there is a mismatching of versions in the cluster, and Weka requires upgrading all clients before the next software version upgrade (clients with two or more versions behind the version of the backends are not supported). In addition, if a client is rebooted or a umount/mount performed, the client will be automatically upgraded to the version of the backends.  
+An alert is raised once there is a mismatching of versions in the cluster, and Weka requires upgrading all clients before the next software version upgrade (clients with two or more versions behind the version of the backends are not supported). In addition, if a client is rebooted or a umount/mount performed, the client will be automatically upgraded to the version of the backends. &#x20;
 
 ## After the Upgrade
 
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
 {% hint style="success" %}
-**For Example:** The following will be received when the system has been upgraded to version 3.12.0:
+**For Example:** The following will be received when the system has been upgraded to version 3.13.0:
 
 `# weka status  `\
-`Weka v3.12.0   `\
+`Weka v3.13.0   `\
 `...`
 {% endhint %}
 
