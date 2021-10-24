@@ -6,13 +6,13 @@ description: >-
 
 # List of Events
 
-##Alerts
+## Alerts
 
 Type | Severity | Description
 -|-|-
 AlertMuted|INFO|Alert muted
 AlertUnmuted|INFO|Alert unmuted
-##Cloud
+## Cloud
 
 Type | Severity | Description
 -|-|-
@@ -21,7 +21,7 @@ CloudEnabled|INFO|Cloud enabled
 CloudProxyUpdated|INFO|Cloud proxy updated
 CloudSetUploadRate|INFO|Cloud upload rate changed
 DiagsUploaded|INFO|Diags uploaded
-##Clustering
+## Clustering
 
 Type | Severity | Description
 -|-|-
@@ -57,7 +57,7 @@ RejoinFailureReport|MINOR|Node(s) failed to rejoin
 UnresponsiveBuckets|CRITICAL|Some compute resources are not responding
 WrongConfigSignatureForRaftSnapshot|MINOR|Tried loading RAFT snapshot with unsupported config root snapshot signature
 WrongSchemaVersionForRaftSnapshot|MINOR|Tried loading RAFT snapshot with unsupported schema version
-##Config
+## Config
 
 Type | Severity | Description
 -|-|-
@@ -70,12 +70,12 @@ LoginBannerSet|INFO|Login banner has been set
 S3ClusterCreated|INFO|S3 Cluster Created
 S3ClusterDestroyed|INFO|S3 Cluster Destroyed
 S3ClusterUpdated|INFO|Directory Quotas were disabled
-##Custom
+## Custom
 
 Type | Severity | Description
 -|-|-
 Custom|INFO|Custom event
-##Drive
+## Drive
 
 Type | Severity | Description
 -|-|-
@@ -104,7 +104,7 @@ DriveUnderIOMMU|MAJOR|Drive is under IOMMU but IOMMU is currently disabled, plea
 DriveUnresponsive|MAJOR|Drive is unresponsive and failed to return IOs for an extended period of time; consider power cycling the host
 DriveWrongFailureDomain|MINOR|Drive is attached to a host from an incorrect failure domain
 NvmeBindTimingOut|MAJOR|NVMe device bind is stuck, server needs power cycle to recover
-##Events
+## Events
 
 Type | Severity | Description
 -|-|-
@@ -114,7 +114,7 @@ EventsDiscarded|MINOR|Too many events were generated in a short period of time, 
 ExampleAggregated|INFO|Example Aggregated
 ExampleDebug|DEBUG|ExampleDebug
 Example|INFO|Example
-##Filesystem
+## Filesystem
 
 Type | Severity | Description
 -|-|-
@@ -165,12 +165,12 @@ SquelchBlockIdSetAbortedFlushed|DEBUG|While setting a squelch block's block id f
 SquelchBlockIdSetAbortedRewritten|WARNING|While setting a squelch block's block id for upgrade was already rewritten to something else
 SuperblockUnreadable|CRITICAL|Superblock of a bucket could not be loaded
 UnflushedOpOnDeletingSnapview|MAJOR|Unflushed IO on a deleting snapshot
-##IO
+## IO
 
 Type | Severity | Description
 -|-|-
 SystemDriveIsTooSlow|MAJOR|System drive is slow to respond
-##InterfaceGroup
+## InterfaceGroup
 
 Type | Severity | Description
 -|-|-
@@ -183,26 +183,26 @@ InterfaceGroupIpsDeleted|INFO|Interface group IPs configuration change
 InterfaceGroupPortAdded|INFO|Interface group port configuration change
 InterfaceGroupPortDeleted|INFO|Interface group port configuration change
 InterfaceGroupUpdated|INFO|Interface group configuration change
-##Kms
+## KMS
 
 Type | Severity | Description
 -|-|-
 KmsConfigurationAdded|INFO|KMS configuration change
 KmsConfigurationRemoved|INFO|KMS configuration change
 KmsConfigurationUpdated|INFO|KMS configuration change
-##Licensing
+## Licensing
 
 Type | Severity | Description
 -|-|-
 LicensingReset|INFO|Licensing state has been reset
 NewLicenseInstalled|INFO|New license installed
 PaygLicensingEnabled|INFO|PAYG licensing enabled
-##ManualOverride
+## ManualOverride
 
 Type | Severity | Description
 -|-|-
 ManualOverrideChanged|INFO|Manual override changed
-##NFS
+## NFS
 
 Type | Severity | Description
 -|-|-
@@ -216,7 +216,7 @@ NfsExportsPermissionsDeleted|INFO|NFS export permissions for configuration chang
 NfsExportsPermissionsUpdated|INFO|NFS export permissions for configuration change
 NfsMountFail|WARNING|NFS mount request failed
 NfsPortmapFail|MAJOR|NFS server failed to register in portmap
-##Network
+## Network
 
 Type | Severity | Description
 -|-|-
@@ -242,7 +242,7 @@ NodeCannotSendJumboFrames|MINOR|Node cannot send jumbo packets
 NodeDisconnected|MINOR|Node disconnected from cluster
 RDMAClientDisabled|MINOR|RDMA optimization disabled
 RDMAClientEnabled|MINOR|RDMA optimization enabled
-##Node
+## Node
 
 Type | Severity | Description
 -|-|-
@@ -254,7 +254,7 @@ NodeKernelStack|WARNING|Kernel stack of node before reset
 NodeStarted|INFO|Node started
 NodeStopped|INFO|Node stopped
 NodeTraceback|WARNING|Traceback of node before reset
-##ObjectStorage
+## ObjectStorage
 
 Type | Severity | Description
 -|-|-
@@ -275,7 +275,7 @@ ObjectStoreStatusUp|INFO|Object Store status is now up
 ObsIsMissingObject|MAJOR|Permanently failed to download an object from object storage - The object was not found
 PersistentChecksumErrorInDownloadedObject|MAJOR|Checksum error detected by COMPUTE node in a downloaded OBS data block
 TieredFilesystemBreakingPolicy|MINOR|Breaking policy; too much disk pressure
-##Org
+## Org
 
 Type | Severity | Description
 -|-|-
@@ -284,7 +284,7 @@ OrgDeleted|INFO|Org Deleted
 OrgRenamed|INFO|Org Renamed
 OrgSsdQuotaChanged|INFO|Org SSD Quota Changed
 OrgTotalQuotaChanged|INFO|Org Total Quota Changed
-##Raid
+## RAID
 
 Type | Severity | Description
 -|-|-
@@ -305,7 +305,7 @@ SwitchPlacementHanging|MINOR|SwitchPlacement has no non-dirty chunks
 SwitchPlacementRetrying|MINOR|SwitchPlacement retrying
 TooFewActiveFailureDomains|MAJOR|Too few active failure domains
 TooManyFailures|CRITICAL|Too many failures, some data is unavailable
-##Resources
+## Resources
 
 Type | Severity | Description
 -|-|-
@@ -327,7 +327,7 @@ NetworkDeviceNotUsedByAnySlots|MINOR|Network device not used by any slots
 NoIPsConfiguredForHostJoinWithNoDefaultNet|WARNING|No IP configured for node {nid} with no default-net
 RevertToStableResources|INFO|Reverted to stable resources
 UnlimitedBandwidthSelected|INFO|Bandwidth set to unlimited
-##S3
+## S3
 
 Type | Severity | Description
 -|-|-
@@ -353,7 +353,7 @@ S3RemoveBucketILMRuleEvent|INFO|S3 Remove Bucket ILM Rule
 S3RemoveIAMPolicyEvent|INFO|S3 Remove IAM Policy
 S3ResetBucketILMRuleEvent|INFO|S3 Reset Bucket ILM Rules
 S3SetBucketPolicyEvent|INFO|S3 Set Bucket Policy
-##Security
+## Security
 
 Type | Severity | Description
 -|-|-
@@ -361,7 +361,7 @@ CaCertSet|INFO|CA cert was added to the cluster
 CaCertUnset|INFO|CA cert was unset
 TLSSet|INFO|TLS was set
 TLSUnset|INFO|TLS was unset
-##Smb
+## SMB
 
 Type | Severity | Description
 -|-|-
@@ -378,12 +378,12 @@ SmbShareHostnameACEResetDestroyed|INFO|SambaHostnameACE configuration change
 SmbShareRemoved|INFO|Share configuration change
 SmbTrustedDomainAdded|INFO|TrustedDomain configuration change
 SmbTrustedDomainRemoved|INFO|TrustedDomain configuration change
-##Statistics
+## Statistics
 
 Type | Severity | Description
 -|-|-
 StatLimitExceeded|WARNING|A set limit on a stat was exceeded
-##System
+## System
 
 Type | Severity | Description
 -|-|-
@@ -398,7 +398,7 @@ NotEnoughSSDCapacity|CRITICAL|Not enough SSD capacity exists for all provisioned
 StartIORequested|INFO|The user has requested that IO be started
 StopIORequested|INFO|The user has requested that IO be stopped
 SystemInfoReport|INFO|Management node started; reporting OS info
-##Traces
+## Traces
 
 Type | Severity | Description
 -|-|-
@@ -408,7 +408,7 @@ TracesConfigurationReset|INFO|Traces configuration change
 TracesConfigurationUpdated|INFO|Traces configuration change
 TracesFreezePeriodReset|INFO|Traces freeze period has been reset
 TracesFreezePeriodSet|INFO|Traces freeze period has been set
-##Upgrade
+## Upgrade
 
 Type | Severity | Description
 -|-|-
@@ -418,7 +418,7 @@ ExternalUpgradeFinished|INFO|External Upgrade complete
 ExternalUpgradeStarting|INFO|External Upgrade was started
 FinishedExternalHostUpgrade|INFO|External host upgrade complete
 StartingExternalHostUpgrade|INFO|External host upgrade started
-##User
+## User
 
 Type | Severity | Description
 -|-|-
