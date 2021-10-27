@@ -33,7 +33,7 @@ The Weka system supports the following snapshot operations:
 {% endhint %}
 
 {% hint style="info" %}
-**Note: **The `.snapshots` directory is not listed. Running `ls` on the root of the filesystem will not show the `.snapshots` directory, however, it can be explicitly accessed, e.g. using the `cd .snapshots` command.  
+**Note: **The `.snapshots` directory is not listed. Running `ls` on the root of the filesystem will not show the `.snapshots` directory, however, it can be explicitly accessed, e.g. using the `cd .snapshots` command. &#x20;
 {% endhint %}
 
 ## Managing Snapshots
@@ -114,7 +114,7 @@ Use the following command line to delete a snapshot:
 | `name`        | String   | Unique name for filesystem snapshot | Must be a valid name | Yes           |             |
 
 {% hint style="warning" %}
-**Note: **A snapshot deletion cannot happen in parallel to a snapshot upload to the same filesystem. Since uploading a snapshot to a remote object-store might take a while, it is advisable to delete the desired snapshots before uploading to the remote object-store. 
+**Note: **A snapshot deletion cannot happen in parallel to a snapshot upload to the same filesystem. Since uploading a snapshot to a remote object-store might take a while, it is advisable to delete the desired snapshots before uploading to the remote object-store.&#x20;
 
 Also note, this becomes more important when uploading snapshots to both local and remote object stores. While local and remote uploads can progress in parallel, consider the case of a remote upload in progress, then a snapshot is deleted, and later a snapshot is uploaded to the local object-store. In this scenario, the local snapshot upload will wait for the pending deletion of the snapshot (which will happen only once the remote snapshot upload is done).
 {% endhint %}
@@ -178,7 +178,6 @@ This command changes the snapshot attributes. Use the following command line to 
 | `file-system`  | String   | A valid filesystem identifier                                                               | Must be a valid name | Yes           | ​           |
 | `name`         | String   | Unique name for the updated snapshot                                                        | Must be a valid name | Yes           |             |
 | `new-name`     | String   | New name for the updated snapshot                                                           | Must be a valid name | No            |             |
-| `is-writable`  | Boolean  | Sets the snapshot to be writable                                                            |                      | No            |             |
 | `access-point` | String   | Name of a directory for the snapshot, which will serve as the access point for the snapshot | Must be a valid name | No            |             |
 
 ## Working with Snapshots
