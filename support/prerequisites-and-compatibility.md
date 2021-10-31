@@ -26,13 +26,13 @@ description: >-
 
 #### Backends and Clients:
 
-* **RHEL:** 
+* **RHEL:**&#x20;
   * 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9
   * 8.0, 8.1, 8.2
-* **CentOS:** 
+* **CentOS:**&#x20;
   * 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9
   * 8.0, 8.1, 8.2
-* **Ubuntu:** 
+* **Ubuntu:**&#x20;
   * 18.04.0, 18.04.1, 18.04.2, 18.04.3, 18.04.4, 18.04.5
   * 20.04.0, 20.04.1
 * **Amazon Linux:** 17.09, 18.03
@@ -40,7 +40,7 @@ description: >-
 
 #### Clients Only:
 
-* **SuSe:** 
+* **SuSe:**&#x20;
   * 12 SP5
   * 15 SP2
 
@@ -52,7 +52,7 @@ description: >-
 * A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
 * If using `mlocate` or alike, its advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
 
-#### SELinux 
+#### SELinux&#x20;
 
 * SELinux is supported in both `permissive` and `enforcing` mode
   * `targeted` policy is supported
@@ -75,7 +75,7 @@ description: >-
 ## Weka Install Directory
 
 * Directory: `/opt/weka`
-* Should be on an SSD or SSD-like performance, e.g., M.2. 
+* Should be on an SSD or SSD-like performance, e.g., M.2.&#x20;
   * Cannot be shared remotely, NFS mounted or on RAM drive
 * If there are two boot drives available, it is recommended to dedicate one for the OS and one for the Weka  `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues)
 * At least 26 GB available for the Weka system installation, with an additional 10GB for each core used by Weka
@@ -143,14 +143,14 @@ Supported Intel 40 drivers:
 * Mellanox NICs:
   * One Weka system IP address for management and data plane
 * Other vendors NICs
-  * Weka system management IP address: One IP per server (configured prior to Weka installation) 
+  * Weka system management IP address: One IP per server (configured prior to Weka installation)&#x20;
   * Weka system data plane IP address: One IP address for each [Weka core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
   * Weka system management IP: Ability to communicate with all Weka system data plane IPs
-  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configuration may be required in the BIOS
+  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configuration may be required in the BIOS
   * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
-**Note:** When assigning a network device to the Weka system, no other application can create [virtual functions (VFs)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
+**Note:** When assigning a network device to the Weka system, no other application can create [virtual functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization) on that device.
 {% endhint %}
 
 ### InfiniBand <a href="networking-infiniband" id="networking-infiniband"></a>
@@ -204,7 +204,7 @@ Supported Mellanox OFED versions:
 
 ## Object Store
 
-* API should be S3 compatible: 
+* API should be S3 compatible:&#x20;
   * GET
     * Including byte-range support with expected performance gain when fetching partial objects
   * PUT
@@ -218,6 +218,7 @@ Certified Object Stores:
 
 * AWS S3
 * Dell EMC ECS v3.5 and up
+* Cloudian HyperStore (version 7.3 and up)
 * HCP for Cloud Scale V2.x
 * HCP Classic V9.2 and up (with versioned buckets only)
 * IBM Cloud Object Storage System (version 3.14.7 and up)
