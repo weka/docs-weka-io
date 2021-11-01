@@ -4,18 +4,17 @@ description: >-
   category.
 ---
 
-# List of Statistics
 
 ## Attribute Cache
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 GP_GETATTR_CACHE_MISS|Number of general purpose getAttr cache misses per second|Ops/Sec
 GP_GETATTR|Number of general purpose getAttr calls per second|Ops/Sec
 
 ## Block Cache
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 BUCKET_CACHED_METADATA_BLOCKS|Bucket number of cached metadata blocks|Blocks
 BUCKET_CACHED_REGISTRY_L2_BLOCKS|Bucket number of cached registry L2 blocks|Blocks
@@ -27,14 +26,14 @@ BUCKET_REGISTRY_L2_BLOCKS_NUM|Bucket number of registry L2 blocks|Blocks
 
 ## Block Writes
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 BLOCK_FULL_WRITES|Full block writes|Writes
 BLOCK_PARTIAL_WRITES|Partial block writes|Writes
 
 ## Bucket
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 BUDGET_UNDERFLOW_BLOCKS||Blocks/Sec
 CHOKING_LEVEL_ALL|Throttling level applied on all types of IOs|%
@@ -71,7 +70,7 @@ WRITE_LATENCY|Average latency of WRITE operations|Microseconds
 
 ## Bucket Failovers
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 BUCKET_FAILOVERS|Amount of times swapping from a remote primary node to a secondary|Failovers
 INVALID_BUCKET_TERM|Number of times a remote bucket rejected a request becaue the term was invalid|Exceptions
@@ -79,7 +78,7 @@ REMOTE_BUCKET_IS_SECONDARY|Number of times a remote bucket reported it is second
 
 ## Bucket Rebalances
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 BACKEND_NODES_BUCKETS||Buckets
 BUCKET_INITS|Number of bucket initializations|Times
@@ -91,20 +90,20 @@ SAME_NODE_TYPE_BUCKET_REBALANCES|Same type (FE/BE) nodes rebalances|Times
 
 ## CPU
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 CPU_UTILIZATION|Percentage of the CPU time utilized for handling I/Os|%
 
 ## Chocking
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 CHOKING_LEVEL_ALL|Throttling level applied on all types of IOs, both mutating and non-mutating|
 CHOKING_LEVEL_NON_MUTATING|Throttling level applied on non-mutating only types of IOs|
 
 ## Clients
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 CLIENTS_CONNECTED|Clients connected|Clients/Sec
 CLIENTS_DISCONNECTED|Clients left or were removed|Clients/Sec
@@ -114,7 +113,7 @@ CLIENTS_REMOVED|Clients removed|Clients/Sec
 
 ## Config
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 AVERAGE_CHANGES_IN_CHANGESET|Average changes in changeset|Changes/Sec
 AVERAGE_CHANGES_IN_GENERATION|Average changes in generation|Changes/Sec
@@ -126,7 +125,7 @@ TOTAL_GENERATIONS_COMMITTED|Number of generations committed per second|Generatio
 
 ## Filesystem OBS
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 CONCURRENT_DEMOTES|How many demotes are executed concurrently|Demotes
 DEMOTE_EXTENT_OBS_FETCH_BACKPRESSURE|Number of extent BACKPRESSURE fetch operations per second|Ops/Sec
@@ -183,14 +182,14 @@ UPLOAD_LATENCY|Latency of demote|Microseconds
 
 ## Frontend
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 FE_IDLE_CYCLES||Cycles/Sec
 FE_IDLE_TIME|Percentage of the CPU time not utilized for handling I/Os on frontend|%
 
 ## Frontend Encryption
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 FE_BLOCKS_DECRYPTED|Number of blocks decrypted in the frontend|Blocks
 FE_BLOCKS_ENCRYPTED|Number of blocks encrypted in the frontend|Blocks
@@ -205,7 +204,7 @@ FE_FILENAME_ENCRYPT_DURATION|Duration of encryption of filenames in the frontend
 
 ## Garbage Collection
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 GC_FREE_SIZE_AFTER_SCAN|GC pool size after the scan ends|Bytes
 GC_FREE_SIZE_BEFORE_SCAN|GC pool size before the scan starts|Bytes
@@ -215,14 +214,14 @@ GC_USED_SIZE_BEFORE_SCAN|GC used size before the scan starts|Bytes
 
 ## JRPC
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 JRPC_SERVER_PROCESSING_AVG||Microseconds
 JRPC_SERVER_PROCESSING_TIME||
 
 ## Journal
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 JOURNAL_CURRENT_OPS|Operations currently in journal|Journal Entries
 JOURNAL_OPS_IN|Operations added to the journal|Journal Entries/Sec
@@ -230,14 +229,14 @@ JOURNAL_OPS_OUT|Operations removed from the journal|Journal Entries/Sec
 
 ## MEMORY
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 RSS_CURRENT||MB
 RSS_PEAK||MB
 
 ## Network
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 BAD_RECV_CSUM|Number of packets received with a bad checksum|Packets/Sec
 CORRUPT_PACKETS|Number of packets received and deemed corrupted|Packets/Sec
@@ -309,7 +308,7 @@ ZERO_CSUM|Number of checksum zero received|Packets/Sec
 
 ## Object Storage
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 FAILED_OBJECT_DELETES|Number of failed object deletes per second (any failure reason)|Ops/Sec
 FAILED_OBJECT_DOWNLOADS|Number of failed object download per second (any failure reason)|Ops/Sec
@@ -425,7 +424,7 @@ WRITE_BYTES|Number of bytes sent to object storage|Bytes/Sec
 
 ## Operations(NFS)
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 ACCESS_LATENCY|Average latency of ACCESS operations|Microseconds
 ACCESS_OPS|Number of ACCESS operation per second|Ops/Sec
@@ -476,7 +475,7 @@ WRITE_SIZES|NFS write sizes histogram|
 
 ## Operations(driver)
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 DIRECT_READ_SIZES_RATE||Blocks/Sec
 DIRECT_READ_SIZES||Blocks
@@ -552,7 +551,7 @@ WRITE_SIZES||Blocks
 
 ## Operations
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 ACCESS_LATENCY|Average latency of ACCESS operations|Microseconds
 ACCESS_OPS|Number of ACCESS operation per second|Ops/Sec
@@ -613,7 +612,7 @@ WRITE_LATENCY|Average latency of WRITE operations|Microseconds
 
 ## RAFT
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 Bucket_LEADER_CHANGES|Changes of leader|Changes
 Bucket_REQUESTS_COMPLETED|Requests to leader completed successfully|Requests
@@ -627,7 +626,7 @@ Test_REQUESTS_COMPLETED|Requests to leader completed successfully|Requests
 
 ## RAID
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 LONG_RPC_TIMEOUTS|Long RPC timeouts encountered|Occurences
 RAID_BLOCKS_IN_PREPARED_STRIPE|Free blocks in prepared stripe|
@@ -644,7 +643,7 @@ RAID_STALE_WRITES_DETECTED|Stale write detected in read|Occurences
 
 ## RPC
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 CLIENT_CANCELED_REQUESTS||Calls/Sec
 CLIENT_DROPPED_RESPONSES||Calls/Sec
@@ -670,7 +669,7 @@ TIME_TO_FIRST_RESULT|Average latency to the first result of a MultiCall|Microsec
 
 ## Reactor
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 BACKGROUND_CYCLES|Number of cycles spent in background fibers|Cycles/Sec
 BACKGROUND_FIBERS|Number of background fibers that are ready to run and eager to get CPU cycles|Fibers
@@ -734,7 +733,7 @@ rdmaNetworkBuffers_USED|Number of structs in the rdmaNetworkBuffers pool which a
 
 ## SSD
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 DRIVE_ACTIVE_IOS|The number of in flight IO against the SSD at the time of sampling|IOs
 DRIVE_FORFEITS|Number of IOs forfeited due to lack of memory buffers|Operations/Sec
@@ -779,7 +778,7 @@ SSD_WRITE_LATENCY|Latency of writes to the SSD service|Microseconds
 
 ## Scrubber
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 ACTUALLY_FALSE_FREE|Number of blocks that were detected as false-used and freed|Blocks/Sec
 CLEANED_CHUNKS|Number of chunks that were cleaned by the scrubber|Chunks/Sec
@@ -833,7 +832,7 @@ WRITE_BLOCKS_LATENCY|Average latency of writing blocks|Micros
 
 ## Squelch
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 BLOCKS_PER_DESQUELCH||Blocks
 EXTENT_DESQUELCHES_NUM||Times
@@ -859,10 +858,11 @@ TEMPORAL_SQUELCH_SQUELCH_BLOCKS_READ||Blocks
 
 ## Statistics
 
-Type | Description | Units
+**Type** | **Description** | **Units**
 -|-|-
 GATHER_FROM_NODE_LATENCY_NET|Time spent on responding to a stats gathering request (not including metadata)|Seconds/Sec
 GATHER_FROM_NODE_LATENCY|Time spent responding to a stats gathering request (not including metadata)|Seconds/Sec
 GATHER_FROM_NODE_SLEEP|Time spent in-between responding to a stats gathering request (not including metadata)|Seconds/Sec
 TIMES_QUERIED_STATS|Number of times the node queried other nodes for stats|Times
 TIMES_QUERIED|Number of times the node was queried for stats (not including metadata)|Times
+
