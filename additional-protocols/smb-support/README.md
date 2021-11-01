@@ -22,29 +22,29 @@ Implementation of the SMB feature in the Weka system is scalable, resilient, and
 
 ## SMB User-Mapping
 
-The Weka system SMB stack supports authentication via a single Active Directory with multiple trusted domains. The POSIX users (uid) and groups (gid) mapping for the SMB access should be resolved from the Active Directory. 
+The Weka system SMB stack supports authentication via a single Active Directory with multiple trusted domains. The POSIX users (uid) and groups (gid) mapping for the SMB access should be resolved from the Active Directory.&#x20;
 
 The Weka system pulls users and groups information from Active Directory automatically and supports two types of id-mapping from the Active Directory:
 
 1. `RFC2307` - where `uidNumber` and `gidNumber` must be defined in the AD user attributes
 2. `rid` - which creates local mapping with the AD users and groups
 
-Using `rid` can ease the configuration, where user IDs are tracked automatically, all domain user accounts and groups are automatically available on the domain member and no attributes need to be set for domain users and groups. On the other hand, if the `rid` AD range configuration changes the user mapping might change and result in wrong uids/gids resolution. 
+Using `rid` can ease the configuration, where user IDs are tracked automatically, all domain user accounts and groups are automatically available on the domain member and no attributes need to be set for domain users and groups. On the other hand, if the `rid` AD range configuration changes the user mapping might change and result in wrong uids/gids resolution.&#x20;
 
 ### Active Directory Attributes
 
 The following are the Active Directory attributes relevant for users according to `RFC2307`:
 
-| AD Attribute | Description                                    |
-| ------------ | ---------------------------------------------- |
-| `uidNumber`  | 0-4290000000                                   |
-| `gidNumber`  | 0-4290000000; must correlate with a real group |
+| **AD Attribute** | **Description**                                |
+| ---------------- | ---------------------------------------------- |
+| `uidNumber`      | 0-4290000000                                   |
+| `gidNumber`      | 0-4290000000; must correlate with a real group |
 
 The following are the Active Directory attributes relevant for groups of users according to `RFC2307`:
 
-| AD Attribute | Description  |
-| ------------ | ------------ |
-| `gidNumber`  | 0-4290000000 |
+| **AD Attribute** | **Description** |
+| ---------------- | --------------- |
+| `gidNumber`      | 0-4290000000    |
 
 The above range is the default configuration for the Weka system for the AD server IDs and can be changed. This is the main AD range (if additional trusted domains are defined).
 
@@ -83,7 +83,7 @@ Establishing an SMB cluster is performed as follows:
 
 ### Configuring the Round-Robin DNS Server
 
-To ensure that the various SMB clients will balance the load on the various Weka hosts serving SMB, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS) entry which will resolve to the list of floating IPs, ensuring that client loads will be equally distributed across all hosts.
+To ensure that the various SMB clients will balance the load on the various Weka hosts serving SMB, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS) entry which will resolve to the list of floating IPs, ensuring that client loads will be equally distributed across all hosts.
 
 {% hint style="info" %}
 **Note:** Make sure to set the TTL (Time to Live) for all A records assigned to the SMB servers to 0 (Zero), this ensures that the IP won't be cached by the client or the DNS server.

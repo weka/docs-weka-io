@@ -128,7 +128,7 @@ parameters:
 
 #### **Storage Class Parameters**
 
-| **Parameter**    | Description                                                                    | Limitation                                      |
+| **Parameter**    | **Description**                                                                | **Limitations**                                 |
 | ---------------- | ------------------------------------------------------------------------------ | ----------------------------------------------- |
 | `filesystemName` | The name of the Weka filesystem to create directories in as Kubernetes volumes | The filesystem should exist in the Weka cluster |
 
@@ -172,7 +172,7 @@ spec:
 
 #### Persistent Volume Claim **Parameters**
 
-| **Parameter**                     | Description                                | Limitation                                                                                                      |
+| **Parameter**                     | **Description**                            | **Limitations**                                                                                                 |
 | --------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
 | `spec.accessModes`                | The volume access mode                     | `ReadWriteMany`, `ReadWriteOnce`, or `ReadOnlyMany`                                                             |
 | `spec.storageClassName`           | The storage class to use to create the PVC | Must be an existing storage class                                                                               |
@@ -228,7 +228,7 @@ spec:
 
 #### Persistent Volume **Parameters**
 
-| **Parameter**           | Description                                   | Limitation                                                                                                                                                                                            |
+| **Parameter**           | **Description**                               | **Limitations**                                                                                                                                                                                       |
 | ----------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `spec.accessModes`      | The volume access mode                        | `ReadWriteMany`, `ReadWriteOnce`, or `ReadOnlyMany`                                                                                                                                                   |
 | `spec.storageClassName` | The storage class to use to create the PV     | Must be an existing storage class                                                                                                                                                                     |
@@ -272,7 +272,7 @@ spec:
 
 #### Persistent Volume Claim for Static Provisioning Example
 
-| **Parameter**                     | Description                                  | Limitation                                                                                                      |
+| **Parameter**                     | **Description**                              | **Limitations**                                                                                                 |
 | --------------------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `spec.accessModes`                | The volume access mode                       | `ReadWriteMany`, `ReadWriteOnce`, or `ReadOnlyMany`                                                             |
 | `spec.storageClassName`           | The storage class to use to create the PVC   | Must be the same storage class as the PV requested to bind in `spec.volumeName`                                 |

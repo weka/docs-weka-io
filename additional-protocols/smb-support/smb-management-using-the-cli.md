@@ -303,7 +303,9 @@ Use this command to view the various host-access settings.
 
 Use the following command line to add hosts to the allow/deny list (in either cluster-level or share-level):
 
-`weka smb cluster host-access add <mode> <--ips ips> <--hosts hosts>`** **`weka smb share host-access add <share-id> <mode> <--ips ips> <--hosts hosts>`
+`weka smb cluster host-access add <mode> <--ips ips> <--hosts hosts>`** **
+
+`weka smb share host-access add <share-id> <mode> <--ips ips> <--hosts hosts>`
 
 **Parameters in Command Line**
 
@@ -320,7 +322,9 @@ Use the following command line to add hosts to the allow/deny list (in either cl
 
 Use the following command line to remove hosts from the allow/deny list (in either cluster-level or share-level):
 
-`weka smb cluster host-access remove <hosts>`** **`weka smb share host-access remove <share-id> <hosts>`
+`weka smb cluster host-access remove <hosts>`** **
+
+`weka smb share host-access remove <share-id> <hosts>`
 
 **Parameters in Command Line**
 

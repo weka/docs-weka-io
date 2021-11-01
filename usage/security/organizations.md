@@ -89,13 +89,13 @@ Use the following command line to create an organization:
 
 **Parameters in Command Line**
 
-| Name          | Type   | Value                                                               | Limitations            | Mandatory | Default         |
-| ------------- | ------ | ------------------------------------------------------------------- | ---------------------- | --------- | --------------- |
-| `name`        | String | Organization name                                                   | Must be a valid name   | Yes       |                 |
-| `username`    | String | Username of the created Organization Admin                          | Must be a valid name   | Yes       |                 |
-| `password`    | String | Password of the created Organization Admin                          |                        | Yes       |                 |
-| `ssd-quota`   | Number | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number | No        | 0 (not limited) |
-| `total-quota` | Number | Total allowed quota for the organization (SSD and object store)     | Must be a valid number | No        | 0 (not limited) |
+| **Name**      | T**ype** | **Value**                                                           | **Limitations**        | **Mandatory** | **Default**     |
+| ------------- | -------- | ------------------------------------------------------------------- | ---------------------- | ------------- | --------------- |
+| `name`        | String   | Organization name                                                   | Must be a valid name   | Yes           |                 |
+| `username`    | String   | Username of the created Organization Admin                          | Must be a valid name   | Yes           |                 |
+| `password`    | String   | Password of the created Organization Admin                          |                        | Yes           |                 |
+| `ssd-quota`   | Number   | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number | No            | 0 (not limited) |
+| `total-quota` | Number   | Total allowed quota for the organization (SSD and object store)     | Must be a valid number | No            | 0 (not limited) |
 
 ### Viewing Organizations
 
@@ -123,10 +123,10 @@ Use the following command line to rename an organization:
 
 **Parameters in Command Line**
 
-| Name       | Type           | Value                           | Limitations | Mandatory | Default |
-| ---------- | -------------- | ------------------------------- | ----------- | --------- | ------- |
-| `org`      | String/Integer | Current organization name or ID |             | Yes       |         |
-| `new-name` | String         | New organization name           |             | Yes       |         |
+| **Name**   | **Type**       | **Value**                       | **Limitations** | **Mandatory** | **Default** |
+| ---------- | -------------- | ------------------------------- | --------------- | ------------- | ----------- |
+| `org`      | String/Integer | Current organization name or ID |                 | Yes           |             |
+| `new-name` | String         | New organization name           |                 | Yes           |             |
 
 #### Updating an Organization's Quotas
 
@@ -138,11 +138,11 @@ Use the following command line to update an organization's quota:
 
 **Parameters in Command Line**
 
-| Name          | Type           | Value                                                               | Limitations                                          | Mandatory | Default |
-| ------------- | -------------- | ------------------------------------------------------------------- | ---------------------------------------------------- | --------- | ------- |
-| `org`         | String/Integer | Organization name or ID                                             | The root organization (org ID = 0 cannot be limited) | Yes       |         |
-| `ssd-quota`   | Number         | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number                               | No        |         |
-| `total-quota` | Number         | Total allowed quota for the organization (SSD and object store)     | Must be a valid number                               | No        |         |
+| **Name**      | **Type**       | **Value**                                                           | **Limitations**                                      | **Mandatory** | **Default** |
+| ------------- | -------------- | ------------------------------------------------------------------- | ---------------------------------------------------- | ------------- | ----------- |
+| `org`         | String/Integer | Organization name or ID                                             | The root organization (org ID = 0 cannot be limited) | Yes           |             |
+| `ssd-quota`   | Number         | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number                               | No            |             |
+| `total-quota` | Number         | Total allowed quota for the organization (SSD and object store)     | Must be a valid number                               | No            |             |
 
 ### Deleting an Organization
 
@@ -154,9 +154,9 @@ Use the following command line to delete an organization:
 
 **Parameters in Command Line**
 
-| Name  | Type           | Value                   | Limitations | Mandatory | Default |
-| ----- | -------------- | ----------------------- | ----------- | --------- | ------- |
-| `org` | String/Integer | Organization name or ID |             | Yes       |         |
+| **Name** | **Type**       | **Value**               | **Limitations** | **Mandatory** | **Default** |
+| -------- | -------------- | ----------------------- | --------------- | ------------- | ----------- |
+| `org`    | String/Integer | Organization name or ID |                 | Yes           |             |
 
 {% hint style="danger" %}
 **Warning:** Deleting an organization is irreversible and will also remove all entities related to the organization, such as filesystems, object stores, and users.
@@ -225,9 +225,9 @@ For LDAP users, access can be revoked by changing the `user-revocation-attribute
 
 **Parameters in Command Line**
 
-| Name       | Type           | Value                                                                        | Limitations | Mandatory | Default |
-| ---------- | -------------- | ---------------------------------------------------------------------------- | ----------- | --------- | ------- |
-| `username` | String/Integer | Valid user in the organization of the Organization Admin running the command |             | Yes       |         |
+| **Name**   | **Type**       | **Value**                                                                    | **Limitations** | **Mandatory** | **Default** |
+| ---------- | -------------- | ---------------------------------------------------------------------------- | --------------- | ------------- | ----------- |
+| `username` | String/Integer | Valid user in the organization of the Organization Admin running the command |                 | Yes           |             |
 
 {% hint style="warning" %}
 **Note:** NFS and SMB are different protocols from WekaFS which require additional security considerations when used, e.g., NFS permissions are granted per host, so permissions for accessing these hosts for NFS export should be handled carefully.

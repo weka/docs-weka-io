@@ -50,7 +50,7 @@ While the steady-state of a filesystem requires up to 13% more raw capacity in t
 
 Whenever Weka uploads objects to the object-store, it classifies them using tags. It is useful to carry further lifecycle management rules via the object-store based on these tags (e.g., transfer objects of a specific filesystem to/from Glacier).
 
-| Tag            |                                                                                                                                                                                                 |
+| **Tag**        | **Description**                                                                                                                                                                                 |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `wekaBlobType` | <p>The Weka-internal type representation of the object. One of:  </p><p><code>DATA</code>, <code>METADATA</code>, <code>METAMETADATA</code>, <code>LOCATOR</code>, <code>RELOCATIONS</code></p> |
 | `wekaFsId`     | The filesystem ID (a combination of the filesystem ID and the cluster GUID uniquely identifies a filesystem).                                                                                   |
@@ -61,7 +61,7 @@ The object-store must support S3 object-tagging and might require additional per
 
 The following extra permissions are required when using AWS S3:
 
-* `s3:PutObjectTagging` 
+* `s3:PutObjectTagging`&#x20;
 * `s3:DeleteObjectTagging`
 
 {% hint style="info" %}
