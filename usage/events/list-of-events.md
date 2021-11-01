@@ -4,18 +4,17 @@ description: >-
   category.
 ---
 
-# List of Events
 
 ## Alerts
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 AlertMuted|INFO|Alert muted
 AlertUnmuted|INFO|Alert unmuted
 
 ## Cloud
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 CloudDisabled|INFO|Cloud disabled
 CloudEnabled|INFO|Cloud enabled
@@ -25,7 +24,7 @@ DiagsUploaded|INFO|Diags uploaded
 
 ## Clustering
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 AllBucketsResponsive|INFO|All compute resources are now responding
 BucketRedist|INFO|Buckets were redistributed in the cluster
@@ -62,7 +61,7 @@ WrongSchemaVersionForRaftSnapshot|MINOR|Tried loading RAFT snapshot with unsuppo
 
 ## Config
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 DirectoryQuotasDisabled|INFO|Directory Quotas were disabled
 DirectoryQuotasEnabled|INFO|Directory Quotas were enabled
@@ -76,13 +75,13 @@ S3ClusterUpdated|INFO|Directory Quotas were disabled
 
 ## Custom
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 Custom|INFO|Custom event
 
 ## Drive
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 CorruptedDrive|MAJOR|Drive has a valid header but is corrupt
 DriveAdded|INFO|Drive provisioned
@@ -112,7 +111,7 @@ NvmeBindTimingOut|MAJOR|NVMe device bind is stuck, server needs power cycle to r
 
 ## Events
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 DedupEventsDiscarded|WARNING|Deduplicated events discarded
 EventsDedupReport|INFO|Event deduplication ended
@@ -123,7 +122,7 @@ Example|INFO|Example
 
 ## Filesystem
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 BlockReadFailure|CRITICAL|Failed to read a block
 BlockSeekFinished|MAJOR|Block seek finished
@@ -175,13 +174,13 @@ UnflushedOpOnDeletingSnapview|MAJOR|Unflushed IO on a deleting snapshot
 
 ## IO
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 SystemDriveIsTooSlow|MAJOR|System drive is slow to respond
 
 ## InterfaceGroup
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 FloatingIpAcquired|INFO|Floating IP was acquired by Node
 FloatingIpReleased|INFO|Floating IP was released by Node
@@ -195,7 +194,7 @@ InterfaceGroupUpdated|INFO|Interface group configuration change
 
 ## KMS
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 KmsConfigurationAdded|INFO|KMS configuration change
 KmsConfigurationRemoved|INFO|KMS configuration change
@@ -203,7 +202,7 @@ KmsConfigurationUpdated|INFO|KMS configuration change
 
 ## Licensing
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 LicensingReset|INFO|Licensing state has been reset
 NewLicenseInstalled|INFO|New license installed
@@ -211,13 +210,13 @@ PaygLicensingEnabled|INFO|PAYG licensing enabled
 
 ## ManualOverride
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 ManualOverrideChanged|INFO|Manual override changed
 
 ## NFS
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 NfsClientGroupAdded|INFO|NFS client group configuration change
 NfsClientGroupDeleted|INFO|NFS client group configuration change
@@ -232,7 +231,7 @@ NfsPortmapFail|MAJOR|NFS server failed to register in portmap
 
 ## Network
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 DefaultDataNetworkingChange|INFO|Default data networking configuration changed
 DpdkPoolSummary|DEBUG|Summary of DPDK pool status
@@ -259,7 +258,7 @@ RDMAClientEnabled|MINOR|RDMA optimization enabled
 
 ## Node
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 AssertionFailed|MAJOR|Assertion failed
 GCCrashReport|MINOR|Node has crashed in GC on the previous run
@@ -272,7 +271,7 @@ NodeTraceback|WARNING|Traceback of node before reset
 
 ## ObjectStorage
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 ChecksumErrorInDownloadedObject|MINOR|Checksum error detected by COMPUTE node in a downloaded OBS data block
 ChecksumErrorOnObjectUpload|MAJOR|Checksum error detected by COMPUTE node when uploading an OBS data block (corrupted after verifying data read from the drive)
@@ -294,7 +293,7 @@ TieredFilesystemBreakingPolicy|MINOR|Breaking policy; too much disk pressure
 
 ## Org
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 OrgCreated|INFO|Org Created
 OrgDeleted|INFO|Org Deleted
@@ -304,7 +303,7 @@ OrgTotalQuotaChanged|INFO|Org Total Quota Changed
 
 ## RAID
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 BitmapChecksumMismatch|MINOR|Bitmap checksum mismatch detected
 DataGenerationNumberBug|WARNING|Bug in the advancement of the applied data generation number report from a bucket
@@ -326,7 +325,7 @@ TooManyFailures|CRITICAL|Too many failures, some data is unavailable
 
 ## Resources
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 APIServerStartFailed|WARNING|Failed to start the API server
 APIServerStarted|INFO|Successfully started the API server
@@ -349,7 +348,7 @@ UnlimitedBandwidthSelected|INFO|Bandwidth set to unlimited
 
 ## S3
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 S3AddBucketILMRuleEvent|INFO|S3 Add Bucket ILM Rule
 S3AsssumeRoleEvent|INFO|S3 Assume Role STS Token Created
@@ -376,7 +375,7 @@ S3SetBucketPolicyEvent|INFO|S3 Set Bucket Policy
 
 ## Security
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 CaCertSet|INFO|CA cert was added to the cluster
 CaCertUnset|INFO|CA cert was unset
@@ -385,7 +384,7 @@ TLSUnset|INFO|TLS was unset
 
 ## SMB
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 SmbAdJoined|INFO|Active Directory configuration change
 SmbAdLeft|INFO|Active Directory configuration change
@@ -403,13 +402,13 @@ SmbTrustedDomainRemoved|INFO|TrustedDomain configuration change
 
 ## Statistics
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 StatLimitExceeded|WARNING|A set limit on a stat was exceeded
 
 ## System
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 BlockTaskAborted|INFO|A bucket task aborted successfully
 BlockTaskComplete|INFO|A bucket task completed successfully
@@ -425,7 +424,7 @@ SystemInfoReport|INFO|Management node started; reporting OS info
 
 ## Traces
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 TracesConfigurationActivated|INFO|Traces configuration change
 TracesConfigurationDeactivated|INFO|Traces configuration change
@@ -436,7 +435,7 @@ TracesFreezePeriodSet|INFO|Traces freeze period has been set
 
 ## Upgrade
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 ClientUpgradeRequested|INFO|Client upgrade requested
 ExternalUpgradeCancelled|INFO|External Upgrade was cancelled
@@ -447,7 +446,7 @@ StartingExternalHostUpgrade|INFO|External host upgrade started
 
 ## User
 
-Type | Severity | Description
+**Type** | **Severity** | **Description**
 -|-|-
 LDAPAuthDisabled|INFO|LDAP authentication disabled
 LDAPAuthEnabled|INFO|LDAP authentication enabled
@@ -460,3 +459,4 @@ UserLoginLocked|MINOR|User login locked
 UserPasswordChangedByAnotherUser|INFO|User password changed by an admin
 UserPasswordChanged|INFO|User changed password
 UserRoleChanged|INFO|User role changed
+
