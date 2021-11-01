@@ -57,11 +57,11 @@ On completion, the agent is installed on the client machine.
 
 **Command:** `mount -t wekafs`
 
-Use one of the following command lines to invoke the mount command (note, the delimiter between the server and filesystem can be either `:` or `/`):
+Use one of the following command lines to invoke the mount command (note, the delimiter between the server and filesystem can be either `:/` or `/`):
 
 `mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-point>`
 
-`mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]:<fs> <mount-point>`
+`mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]:/<fs> <mount-point>`
 
 **Parameters in Command Line**
 
