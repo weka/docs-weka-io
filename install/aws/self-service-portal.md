@@ -107,7 +107,7 @@ In the Create Stack screen, define the parameters which are specific to your AWS
 | `Stack name`       | The name that will be given to the stack in CloudFormation. This name has to be unique in the account.                                                                         |
 | `VPC`              | The VPC in which the prerequisites resources (and Weka cluster) will be deployed.                                                                                              |
 | `Subnet`           | The subnet in which the prerequisites resources (and Weka cluster) will be deployed.                                                                                           |
-| `RouteTable`       | S3 Gateway route table id                                                                                                                                                      |
+| `RouteTable`       | Route table ID of the chosen subnet for S3 gateway creation.                                                                                                                   |
 | `Network Topology` | <p></p><p>Network topology of the environment:</p><ul><li><code>Private subnet using Weka VPC endpoint</code></li><li><code>Private subnet using custom proxy</code></li></ul> |
 
 ## Cluster Deployment Process
