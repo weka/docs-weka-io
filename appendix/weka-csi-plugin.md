@@ -121,7 +121,7 @@ $REPO_ROOT/deploy/kubernetes-latest/cleanup.sh
 #### Upgrade an Existing Helm Release
 
 {% hint style="danger" %}
-**NOTE:** If you plan to upgrade existing Weka CSI plugin deployment and enable directory quota enforcement for already existing volumes, please refer to section [Binding Legacy Volumes to API](weka-csi-plugin.md#binding-legacy-volumes-to-api)
+**Note:** If you plan to upgrade existing Weka CSI plugin deployment and enable directory quota enforcement for already existing volumes, please refer to the [Binding Legacy Volumes to API](weka-csi-plugin.md#binding-legacy-volumes-to-api) section.
 {% endhint %}
 
 If not yet configured, add the Helm repository as defined in the [Installation](weka-csi-plugin.md#installation) section.
