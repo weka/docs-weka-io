@@ -195,8 +195,8 @@ To recover from a snapshot residing on a remote object-store, you will need to c
 1. Add a new local object-store, using `weka fs tier obs add` CLI command
 2. Add a local object-store bucket, referring to the bucket with the snapshot to recover, using `weka fs tier s3 add`
 3. Download the filesystem, using `weka fs download`
-4. If the filesystem should also be tiered, add a local object-store for tiering
-5. Detach the initial object-store from the filesystem
+4. If the filesystem should also be tiered, add a local object-store bucket for tiering
+5. Detach the initial object-store bucket from the filesystem
 6. Assuming you want a remote backup to this filesystem, attach a remote bucket to the filesystem
 7. Remove the local object-store bucket and local object-store created for this procedure
 
