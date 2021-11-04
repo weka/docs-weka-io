@@ -593,6 +593,10 @@ helm upgrade csi-wekafs --namespace csi-wekafs csi-wekafs/csi-wekafsplugin \
 
 ```
 
+{% hint style="warning" %}
+**Note:** The Kubernetes secret must be created before executing the helm upgrade. Otherwise, the CSI Plugin components will remain in a `Pending` state after the upgrade.
+{% endhint %}
+
 ### Upgrading Legacy Volumes
 
 Once the volume to API binding configuration described in the previous section is performed, the volumes may be migrated by binding a new WekaFS directory quota object to an existing persistent volume.&#x20;
