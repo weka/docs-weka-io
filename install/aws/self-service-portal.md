@@ -40,7 +40,7 @@ Once the configuration to be deployed has been found, click the Deploy to AWS bu
 Once everything is ready to deploy the cluster, click the Deploy to AWS button. This will display the AWS CloudFormation screen with a template containing the configured cluster.
 
 {% hint style="info" %}
-**Note: Before deploying the configuration,** please refer to the [Prerequisites for Deployment](deployment-types.md#prerequisites-for-deployment) section.
+**Note: **Before deploying the configuration**,** please refer to the [Prerequisites for Deployment](deployment-types.md#prerequisites-for-deployment) section.
 {% endhint %}
 
 ## CloudFormation Screen
@@ -89,7 +89,7 @@ Once all required parameters have been filled, make sure to check the "I acknowl
 
 ![AWS Check Box and Creation Dialog Box](<../../.gitbook/assets/3.6 CF IAM Ack.png>)
 
-## Deploying in a Private VPC
+## Deploying in a Private Network
 
 When deploying in a private network, without a NAT (using a Weka proxy or a custom proxy), some resources should be created (once) per VPC (like Weka VPC endpoint or S3  gateway).&#x20;
 
@@ -100,6 +100,10 @@ Copy the link under the Network Topology parameter, and run it in a new browser 
 In the Create Stack screen, define the parameters which are specific to your AWS account.
 
 ### Prerequisites CloudFormation Stack
+
+{% hint style="info" %}
+**Note: **To run this stack, `enableDnsHostnames`  and `enableDnsSupport` [DNS attributes](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support) should be enabled for the VPC.
+{% endhint %}
 
 |                    |                                                                                                                                                                                |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
