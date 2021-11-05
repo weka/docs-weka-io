@@ -81,7 +81,7 @@ In the example above, a template was generated for a cluster with 10 `i3en.2xlar
 
 The `https://<token>@get.weka.io/dist/v1/aws/cfn/<version>` API provides a JSON object with a `cluster` property. `cluster` is a list of instance types, roles, and counts:
 
-| Property        | Description                                                                                                                                                         |
+| **Property**    | **Description**                                                                                                                                                     |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `role`          | Either `backend` or `client;`see [Deployment Types](deployment-types.md) for more information.                                                                      |
 | `instance_type` | One of the supported instance types according to the `role` and supported instances in [Supported EC2 Instance Types](supported-ec2-instance-types.md).             |

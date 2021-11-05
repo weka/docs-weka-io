@@ -53,19 +53,17 @@ In the Create Stack screen, define the parameters which are specific to your AWS
 
 ### Cluster CloudFormation Stack
 
-| Parameter    | Description                                                                                            |
-| ------------ | ------------------------------------------------------------------------------------------------------ |
-| Parameter    | Description                                                                                            |
-| `Stack name` | The name that will be given to the stack in CloudFormation. This name has to be unique in the account. |
-| `SSH Key`    | The SSH-key for the `ec2-user` that will be used to connect to the instances.                          |
-| `VPC`        | The VPC in which the Weka cluster will be deployed.                                                    |
-| `Subnet`     | The subnet in which the Weka cluster will be deployed.                                                 |
+| **Parameter** | **Description**                                                                                        |
+| ------------- | ------------------------------------------------------------------------------------------------------ |
+| `Stack name`  | The name that will be given to the stack in CloudFormation. This name has to be unique in the account. |
+| `SSH Key`     | The SSH-key for the `ec2-user` that will be used to connect to the instances.                          |
+| `VPC`         | The VPC in which the Weka cluster will be deployed.                                                    |
+| `Subnet`      | The subnet in which the Weka cluster will be deployed.                                                 |
 
 Define the parameters for Weka cluster configuration:
 
-| Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Parameter**      | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `Network Topology` | <p>Network topology of the environment:</p><ul><li><code>Public Subnet</code></li><li><code>Private subnet with NAT internet routing</code> </li><li><code>Private subnet using Weka VPC endpoint</code> - requires to create a <a href="self-service-portal.md#prerequisites-cloudformation-stack">prerequisites stack</a> (once per VPC) that creates the required resources.</li><li><code>Private subnet using custom proxy</code> - requires to create a <a href="self-service-portal.md#prerequisites-cloudformation-stack">prerequisites stack</a> (once per VPC) that creates the required resources.</li></ul> |
 | `Custome Proxy`    | A custom proxy for private network internet access. Only relevant when `Private network using custom proxy` is selected as the `Network Topology` parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `WekaVolumeType`   | Volume type for the Weka partition. `GP3` is not yet available in all zones/regions (e.g., not available in local zones). In such a case, you must select the `GP2` volume type. When available, using `GP3` is preferred.                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -74,9 +72,8 @@ Define the parameters for Weka cluster configuration:
 
 Define the following optional parameters if tiering to S3 is desired:
 
-| Parameter             | Description                                                                                                                                                                                                                      |
+| **Parameter**         | **Description**                                                                                                                                                                                                                  |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Parameter             | Description                                                                                                                                                                                                                      |
 | `New S3 Bucket`       | The new S3 bucket name to create and attach to the filesystem created by the template. The bucket will not be deleted when the stack is destroyed.                                                                               |
 | `Existing S3 Bucket`  | The existing S3 bucket name to attach to the filesystem created by the template. The bucket has to be in the same region where the cluster is deployed. If this parameter is provided, the `New S3 Bucket` parameter is ignored. |
 | `Tiering SSD Percent` | Sets how much of the filesystem capacity (in percent) should reside on SSD. This parameter is applicable only if` New S3 Bucket` or `Existing S3 Bucket` parameters have been defined.                                           |
@@ -95,8 +92,6 @@ When deploying in a private network, without a NAT (using a Weka proxy or a cust
 
 Copy the link under the Network Topology parameter, and run it in a new browser tab. The AWS CloudFormation screen is displayed, requiring the creation of the prerequisites stack.
 
-![AWS Create Prerequisites Stack Screen](../../.gitbook/assets/CF\_prerequisite\_3\_13.png)
-
 In the Create Stack screen, define the parameters which are specific to your AWS account.
 
 ### Prerequisites CloudFormation Stack
@@ -105,14 +100,17 @@ In the Create Stack screen, define the parameters which are specific to your AWS
 **Note: **To run this stack, `enableDnsHostnames`  and `enableDnsSupport` [DNS attributes](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support) should be enabled for the VPC.
 {% endhint %}
 
-|                    |                                                                                                                                                                                |
+![AWS Create Prerequisites Stack Screen](../../.gitbook/assets/CF\_pre\_3\_13.png)
+
+| **Parameter**      | **Description**                                                                                                                                                                |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Parameter          | Description                                                                                                                                                                    |
 | `Stack name`       | The name that will be given to the stack in CloudFormation. This name has to be unique in the account.                                                                         |
 | `VPC`              | The VPC in which the prerequisites resources (and Weka cluster) will be deployed.                                                                                              |
 | `Subnet`           | The subnet in which the prerequisites resources (and Weka cluster) will be deployed.                                                                                           |
 | `RouteTable`       | Route table ID of the chosen subnet for S3 gateway creation.                                                                                                                   |
 | `Network Topology` | <p></p><p>Network topology of the environment:</p><ul><li><code>Private subnet using Weka VPC endpoint</code></li><li><code>Private subnet using custom proxy</code></li></ul> |
+| `S3 Gateway`       | Only choose to create an S3 Gateway if non already exist for the VPC                                                                                                           |
+| `Ec2 Endpoint`     | Only choose to create an EC2 Endpoint if non already exist for the VPC                                                                                                         |
 
 ## Cluster Deployment Process
 
