@@ -88,7 +88,7 @@ Once all required parameters have been filled, make sure to check the "I acknowl
 
 ## Deploying in a Private Network
 
-When deploying in a private network, without a NAT (using a Weka proxy or a custom proxy), some resources should be created (once) per VPC (like Weka VPC endpoint or S3  gateway).&#x20;
+When deploying in a private network, without a NAT (using a Weka proxy or a custom proxy), some resources should be created (once) per VPC (such as Weka VPC endpoint, S3 gateway, or EC2 endpoint).&#x20;
 
 Copy the link under the Network Topology parameter, and run it in a new browser tab. The AWS CloudFormation screen is displayed, requiring the creation of the prerequisites stack.
 
