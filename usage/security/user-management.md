@@ -8,7 +8,7 @@ description: >-
 
 ## Types of Users
 
-Access to a Weka system cluster is controlled by creating, modifying and deleting users. Up to 128 local users can be defined to work with a Weka system cluster. Each user is identified by a username and must provide a password for authentication to work with the Weka system GUI or CLI.
+Access to a Weka system cluster is controlled by creating, modifying, and deleting users. Up to 512 local users can be defined to work with a Weka system cluster. Each user is identified by a username and must provide a password for authentication to work with the Weka system GUI or CLI.
 
 Every Weka system user has one of the following defined roles:
 
@@ -209,7 +209,7 @@ To configure an Active Directory server, use the following command line:
 **Command:**\
 `weka user ldap`
 
-This command is used for viewing the current LDAP configuration used for authenticating users. 
+This command is used for viewing the current LDAP configuration used for authenticating users.&#x20;
 
 ### Disabling/Enabling a Configured LDAP User Directory
 
