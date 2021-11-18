@@ -34,7 +34,7 @@ description: >-
 
 * SELinux with MLS policy is not supported
 * All Weka nodes must be synchronized in date/time (NTP recommended)
-* A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the Weka knowledgebase in the [Weka support portal](http://support.weka.io) for more information and how-to articles 
+* A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the Weka knowledgebase in the [Weka support portal](http://support.weka.io) for more information and how-to articles&#x20;
 
 {% hint style="info" %}
 **Note:** To set SELinux security context for files, `-o acl` should be used in the mount command.
@@ -53,7 +53,7 @@ description: >-
 ## Weka Install Directory
 
 * Directory: `/opt/weka`
-* Should be on an SSD or SSD-like performance, e.g., M.2. 
+* Should be on an SSD or SSD-like performance, e.g., M.2.&#x20;
   * Cannot be shared remotely, NFS mounted or on RAM drive
 * If there are two boot drives available, it is recommended to dedicate one for the OS and one for the Weka  `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues)
 * At least 26 GB available for the Weka system installation, with an additional 10GB for each core used by Weka
@@ -95,6 +95,7 @@ Supported Mellanox OFED versions:
 * 4.9-2.2.4.0
 * 5.0-2.1.8.0
 * 5.1-2.5.8.0
+* 5.1-2.6.2.0
 
 Supported ENA drivers:
 
@@ -120,14 +121,14 @@ Supported Intel 40 drivers:
 * Mellanox NICs:
   * One Weka system IP address for management and data plane
 * Other vendors NICs
-  * Weka system management IP address: One IP per server (configured prior to Weka installation) 
+  * Weka system management IP address: One IP per server (configured prior to Weka installation)&#x20;
   * Weka system data plane IP address: One IP address for each [Weka core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
   * Weka system management IP: Ability to communicate with all Weka system data plane IPs
-  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configuration may be required in the BIOS
+  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configuration may be required in the BIOS
   * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
-**Note:** When assigning a network device to the Weka system, no other application can create [virtual functions (VFs)](https://en.wikipedia.org/wiki/Network_function_virtualization) on that device.
+**Note:** When assigning a network device to the Weka system, no other application can create [virtual functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization) on that device.
 {% endhint %}
 
 ### InfiniBand <a href="networking-infiniband" id="networking-infiniband"></a>
@@ -154,6 +155,7 @@ Supported Mellanox OFED versions:
 * 4.9-2.2.4.0
 * 5.0-2.1.8.0
 * 5.1-2.5.8.0
+* 5.1-2.6.2.0
 
 #### Infiniband Configuration
 
@@ -180,7 +182,7 @@ Supported Mellanox OFED versions:
 
 ## Object Store
 
-* API should be S3 compatible: 
+* API should be S3 compatible:&#x20;
   * GET
     * Including byte-range support with expected performance gain when fetching partial objects
   * PUT
