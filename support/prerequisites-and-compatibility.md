@@ -118,6 +118,7 @@ Supported Mellanox OFED versions:
 * 4.9-2.2.4.0
 * 5.0-2.1.8.0
 * 5.1-2.5.8.0
+* 5.1-2.6.2.0
 
 Supported ENA drivers:
 
@@ -177,6 +178,7 @@ Supported Mellanox OFED versions:
 * 4.9-2.2.4.0
 * 5.0-2.1.8.0
 * 5.1-2.5.8.0
+* 5.1-2.6.2.0
 
 #### Infiniband Configuration
 
