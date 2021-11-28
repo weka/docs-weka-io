@@ -155,6 +155,19 @@ To learn more about the release, try:
 Official Weka CSI Plugin documentation can be found here: https://docs.weka.io/appendix/weka-csi-plugin
 ```
 
+### CSI Plugin and WekaFS Cluster Software Upgrade
+
+The CSI Plugin fetches the WekaFS cluster capabilities during the first login to the API endpoint and caches it throughout the login refresh token validity period, to improve the efficiency and performance of the plugin.
+
+However, the WekaFS cluster upgrade might come unnoticed if performed during this time window, continuing to provision new volumes in legacy mode.
+
+In order to expedite the update of the Weka cluster capabilities, it is recommended to delete all the CSI Plugin pods, to invalidate the cache. The pods will then be restarted.
+
+```
+kubectl delete pod -n csi-wekafs -lapp=csi-wekafs-controller
+kubectl delete pod -n csi-wekafs -lapp=csi-wekafs-node
+```
+
 ## Storage Class Configuration
 
 The Weka CSI Plugin supports both dynamic (persistent volume claim) and static (persistent volume) volume provisioning. For provisioning either type of a persistent volume, a Storage Class must exist in Kubernetes deployment that matches the Weka cluster configuration.
@@ -233,7 +246,9 @@ The information is stored securely in [Kubernetes secret](https://kubernetes.io/
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** However, It is recommended to deploy the CSI plugin in API-Based communication model even if WekaFS software is below version **v3.13.0**
+**Note:** It is recommended to deploy the CSI plugin in API-Based communication model even if the Weka cluster is below version **v3.13.0**
+
+Volumes provisioned using the API-Based model on older Weka clusters, do not support capacity enforcement, and are still considered "Legacy". However, they can be easily upgraded to capacity enforcement capabilities after the Weka cluster upgrade.
 {% endhint %}
 
 #### Secret Data Example
@@ -578,6 +593,12 @@ Kubernetes does not allow modification of StorageClass parameters, hence every v
 
 Weka CSI Plugin **0.7.0** provides a special configuration mode in which legacy volumes can be bound to a single secret, in turn referring to a single WekaFS cluster API connection parameters. In this configuration mode, every request to serve (create, delete, expand...) a legacy Persistent Volume (or Persistent Volume Claim) that originates from a Legacy Storage Class (without reference to an API secret) will be communicated to that cluster.
 
+{% hint style="info" %}
+**Note:** Volumes provisioned by the CSI Plugin of version **0.7.0** in the API-Based communication model, but on older versions of the Weka cluster (below version **3.13.0**), are still provisioned in legacy mode.
+
+However, since the storage class already contains the secret reference, specifying the `legacyVolumeSecretName` parameter is unnecessary, and you can safely skip to the next chapter.
+{% endhint %}
+
 This configuration can be applied following these two steps:
 
 1. Create a Kubernetes secret that describes the API communication parameters for legacy volumes.&#x20;
@@ -614,14 +635,18 @@ Weka provides a migration script that automates the process.
 Check out the `csi-wekafs` repository from any host that is connected to WekaFS cluster:
 
 ```
-git checkout https://github.com/weka/csi-wekafs.git
+git clone https://github.com/weka/csi-wekafs.git
 ```
 
 Execute the migration script by issuing the following command, where `<filesystem_name>` states the filesystem name which the  CSI volumes are located on, and optional `<csi_volumes_dir>` parameter states the directory inside the filesystem where CSI volumes are stored (only if the directory differs from default values)
 
 ```
-$ migration/migrate-legacy-csi-volumes.sh <filesystem_name> [--csi-volumes-dir <csi_volumes_dir>]
+$ migration/migrate-legacy-csi-volumes.sh <filesystem_name> [--csi-volumes-dir <csi_volumes_dir>] [--endpoint-address BACKEND_IP_ADDRESS:BACKEND_PORT]
 ```
+
+{% hint style="info" %}
+**Note:** On a stateless client, the `--endpoint-address` must be specified in order to successfully mount a filesystem, while on a host which is part of the Weka cluster (either client or backend) this is not necessary.
+{% endhint %}
 
 {% hint style="info" %}
 **Note:** If multiple filesystems are used, the script must be executed for each filesystem
@@ -642,6 +667,12 @@ Weka CSI Volume migration utility. Copyright 2021 Weka
 [2021-11-04 14:33:05] NOTICE     1 directories migrated successfully
 [2021-11-04 14:33:05] NOTICE     0 directories skipped
 ```
+
+{% hint style="info" %}
+**Note:** The migration script requires several dependencies, which must be installed in advance: `jq`, `xattr`, `getfattr`, `setfattr`
+
+Refer to the specific OS package management documentation to install the necessary packages.
+{% endhint %}
 
 ## Troubleshooting
 
