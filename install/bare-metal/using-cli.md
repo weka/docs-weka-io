@@ -27,7 +27,7 @@ This stage involves the formation of a cluster from the allocated hosts. It is p
 | **Name**    | **Type**                     | **Value**                                                                                                                                                                                                                                                                                                               | **Limitations**                                              | **Mandatory** | **Default**                                |
 | ----------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------- | ------------------------------------------ |
 | `hostnames` | Space-separated strings      | Hostnames or IP addresses                                                                                                                                                                                                                                                                                               | Need at least 6 strings, as this is the minimal cluster size | Yes           |                                            |
-| `host-ips`  | Comma-separated IP addresses | IP addresses of the management interfaces. Use a list of `ip+ip` addresses pairs of two cards for HA configuration. In case the cluster is connected to both IB and Ethernet, it is possible to set up to 4 management IPs for redundancy of both the IB and Ethernet networks using a list of `ip+ip+ip+ip `addresses. | The same number of values as in `hostnames`.                 | No            | IP of the first network device of the host |
+| `host-ips`  | Comma-separated IP addresses | IP addresses of the management interfaces. Use a list of `ip+ip` addresses pairs of two cards for HA configuration. In case the cluster is connected to both IB and Ethernet, it is possible to set up to 4 management IPs for redundancy of both the IB and Ethernet networks using a list of `ip+ip+ip+ip` addresses. | The same number of values as in `hostnames`.                 | No            | IP of the first network device of the host |
 
 {% hint style="info" %}
 **Note:** It is possible to use either a host-name or an IP address; this string serves as the identifier of the host in subsequent commands.
@@ -105,7 +105,7 @@ When PKEYs are used, the device name for InfiniBand should follow the name.PKEY 
 
 The networking type can be either Ethernet (direct over DPDK) or InfiniBand (IB), and can be mixed in the same host (by running multiple `cluster host net add` commands for the same host). A physical network device must be specified for both types. This can be a device dedicated to the Weka system or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
 
-To perform this operation, the `cluster host net add `command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
+To perform this operation, the `cluster host net add` command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
 `weka cluster host net add <host-id> <device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gateway>] [--netmask=<netmask>] [--label=<label>]`
 
@@ -124,7 +124,7 @@ To perform this operation, the `cluster host net add `command must be run for ea
 The number of IP addresses should be according to [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
 
 {% hint style="info" %}
-**Note: **Additional IP addresses may be assigned for each host if IP per core is needed. In this case, unused IP addresses are reserved for future expansions and can be automatically assigned if the number of cores assigned to the Weka system on that host is increased.
+**Note:** Additional IP addresses may be assigned for each host if IP per core is needed. In this case, unused IP addresses are reserved for future expansions and can be automatically assigned if the number of cores assigned to the Weka system on that host is increased.
 {% endhint %}
 
 {% hint style="info" %}
@@ -277,9 +277,9 @@ To configure the Weka system hot spare, use the following command line:
 
 **Parameters in Command Line**
 
-| **Name** | **Type** | **Value** | **Limitations**                                                                                          | **Mandatory** | **Default** |
-| -------- | -------- | --------- | -------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `count`  | Number   | Hot spare | The number of failure domains cannot be smaller than the stripe width + the protection level + hot spare | No            | 1           |
+| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
+| -------- | -------- | --------- | --------------- | ------------- | ----------- |
+| `count`  | Number   | Hot spare |                 | No            | 1           |
 
 ## Stage 13: Applying Hosts Configuration
 
