@@ -8,10 +8,10 @@ description: This page describes how to set up an HTTP webhook for S3  audit pur
 
 S3 API calls can generate JSON events that many webhook target applications can receive as a stream of events and use them for auditing and analysis purposes. Such applications (see Splunk example below) should be configured to accept the events stream and provide it with an authentication token.&#x20;
 
-If the application cannot receive the events, the events are kept in the S3 cluster until the connection to the application is back, and events are synced.&#x20;
+Enabling an audit webhook comes instead of the `BucketLogging` S3 APIs and follows a similar best-effort nature. The purpose of these audit logs is to give an idea of the nature of traffic.
 
 {% hint style="info" %}
-**Note:** In the event of a disconnection from the webhook application, or if the S3 clusters' internal events buffer fills up, events will get thrown away. For this reason, the external webhook target application's availability should be monitored.
+**Note:** In the event of a disconnection from the webhook application, or if the S3 clusters' internal events buffer fills up, events will get thrown away. It is advised to monitor the external webhook target application's availability.
 {% endhint %}
 
 ## Managing S3 Audit in Weka
