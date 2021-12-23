@@ -73,5 +73,5 @@ Now you can search the index you've created in Splunk and see this event.
 As a cluster admin, run the following CLI command to enable the audit webhook:
 
 ```
-weka s3 cluster audit-webhook enable --endpoint=https://splunk-server:8088/services/collector/raw --auth_token='\"Splunk B5A79AAD-D822-46CC-80D1-819F80D7BFB0\"'
+weka s3 cluster audit-webhook enable --endpoint=https://splunk-server:8088/services/collector/raw --auth-token='\"Splunk B5A79AAD-D822-46CC-80D1-819F80D7BFB0\"'
 ```
