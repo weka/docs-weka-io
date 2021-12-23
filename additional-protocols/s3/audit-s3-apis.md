@@ -11,7 +11,7 @@ S3 API calls can generate JSON events that many webhook target applications can 
 If the application cannot receive the events, the events are kept in the S3 cluster until the connection to the application is back, and events are synced.&#x20;
 
 {% hint style="info" %}
-**Note:** In the event of a long-term disconnect from the webhook application, the S3 clusters' internal events buffer may fill up. Events will get thrown away if the internal buffer is filled. For this reason, the external webhook target application's availability should be monitored.
+**Note:** In the event of a disconnection from the webhook application, or if the S3 clusters' internal events buffer fills up, events will get thrown away. For this reason, the external webhook target application's availability should be monitored.
 {% endhint %}
 
 ## Managing S3 Audit in Weka
