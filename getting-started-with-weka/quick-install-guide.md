@@ -1,16 +1,26 @@
 # Quick Install Guide
 
+For a complete installation guide, as well as the self-service portal on AWS refer to the following pages:
+
+{% content-ref url="../install/aws/" %}
+[aws](../install/aws/)
+{% endcontent-ref %}
+
+{% content-ref url="../install/bare-metal/" %}
+[bare-metal](../install/bare-metal/)
+{% endcontent-ref %}
+
 ## Prerequisites
 
 1. [OFED is installed](../install/bare-metal/setting-up-the-hosts/#mellanox-ofed-installation)
 2. [NIC devices are configured properly](../install/bare-metal/setting-up-the-hosts/#network-configuration)
 3. [NTP is set up](../install/bare-metal/setting-up-the-hosts/#clock-synchronization)
 
-For a complete prerequisite list, refer to [Prerequisites for Installation](../install/prerequisites-for-installation-of-weka-dedicated-hosts.md) section. 
+For a complete prerequisite list, refer to [Prerequisites for Installation](../install/prerequisites-for-installation-of-weka-dedicated-hosts.md) section.&#x20;
 
-We'll consider an example of architecture with 8 identical hosts (named `weka01` to `weka08`). Each host has more than 20 cores, 6 NVME drives, and a single Mellanox NIC. 
+We'll consider an example of architecture with 8 identical hosts (named `weka01` to `weka08`). Each host has more than 20 cores, 6 NVME drives, and a single Mellanox NIC.&#x20;
 
-Using Mellanox NICs simplifies the installation commands (e.g., only single IP for data is required, no need to expose VFs, identification of the interface netmask, and default routing gateway). 
+Using Mellanox NICs simplifies the installation commands (e.g., only single IP for data is required, no need to expose VFs, identification of the interface netmask, and default routing gateway).&#x20;
 
 If the architecture is different, the installation commands should be slightly changed accordingly.
 
