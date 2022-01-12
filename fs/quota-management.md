@@ -30,7 +30,7 @@ When working with quotas, consider the following:
 
 * Currently, to set a quota, the relevant filesystem must be mounted on the host setting where the set quota command is to be run.
 * When setting a quota, you should go through a new mount-point. Meaning, if you are using a host that has mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
-* Quotas can be set within nested directories and over-provisioned under the same directory quota tree. E.g., `/home` can have a quota of 1TiB, and each user directory under it can have a quota of 10GiB, while there are 200 users.
+* Quotas can be set within nested directories (up to 4 levels of nested quotas are supported) and over-provisioned under the same directory quota tree. E.g., `/home` can have a quota of 1TiB, and each user directory under it can have a quota of 10GiB, while there are 200 users.
 * Before a directory is being deleted, its quota must be removed. A directory tree cannot be deleted without removing all the inner directories quotas beforehand. Note, default (parent) quotas are set as quotas at the directory creation and the actual quota needs to be removed before the directory is deleted (not the default quota of the parent directory)&#x20;
 * Moving files (or directories) between two directories with quotas, into a directory with a quota, or outside of a directory with a quota is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy\&delete but is OS-dependent.
 * Quotas and hardlinks:
@@ -45,7 +45,7 @@ When working with quotas, consider the following:
 When a hard quota is set on a directory, running the `df` utility will consider the hard quota as the total capacity of the directory and provide the `use%` relative to the quota. This can help users understand their usage and how close they are to the hard quota.
 
 {% hint style="info" %}
-**Note: **The `df` utility behavior with quotas is currently global to the Weka system.&#x20;
+**Note:** The `df` utility behavior with quotas is currently global to the Weka system.&#x20;
 
 To change the global behavior, contact the Weka Support Team.
 {% endhint %}
@@ -69,8 +69,8 @@ It is also possible to set a default quota on a directory. It does not account f
 | **Name** | **Type** | **Value**                                                                                                                                                                          | **Limitations**                                                                      | **Mandatory** | **Default** |
 | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------- | ----------- |
 | `path`   | String   | Path to the directory to set the quota on.                                                                                                                                         | The relevant filesystem must be mounted when setting the quota.                      | Yes           | ​           |
-| `soft`   | Number   | Soft quota limit; Exceeding this number will be shown as exceeded quota but will not be enforced until the `grace` period is over.                                                 | Capacity in decimal or binary units, e.g.: `1GB`, `1TB`, `1GiB`, `1TiB`,` unlimited` | No            | `unlimited` |
-| `hard`   | Number   | Hard quota limit; Exceeding this number will not allow any more writes before clearing some space in the directory.                                                                | Capacity in decimal or binary units, e.g.: `1GB`, `1TB`, `1GiB`, `1TiB`,` unlimited` | No            | `unlimited` |
+| `soft`   | Number   | Soft quota limit; Exceeding this number will be shown as exceeded quota but will not be enforced until the `grace` period is over.                                                 | Capacity in decimal or binary units, e.g.: `1GB`, `1TB`, `1GiB`, `1TiB`, `unlimited` | No            | `unlimited` |
+| `hard`   | Number   | Hard quota limit; Exceeding this number will not allow any more writes before clearing some space in the directory.                                                                | Capacity in decimal or binary units, e.g.: `1GB`, `1TB`, `1GiB`, `1TiB`, `unlimited` | No            | `unlimited` |
 | `grace`  | Number   | Specify the grace period before the soft limit is treated as a hard limit.                                                                                                         | Format: `1d`, `1w`, `unlimited`                                                      | No            | `unlimited` |
 | `owner`  | String   | An opaque string identifying the directory owner (can be a name, email, slack ID, etc.) This owner will be shown in the quota report and can be notified upon exceeding the quota. | Up to 48 characters.                                                                 | No            |             |
 
