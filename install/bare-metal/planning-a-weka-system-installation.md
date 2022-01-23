@@ -54,6 +54,7 @@ The total per host memory requirements is the sum of the following requirements:
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | Fixed                         | 2.3 GB                                                                                                       |
 | Core-based                    | <p>2.3 GB for each Frontend core</p><p>3.3 GB for each Compute core</p><p>2.3 GB for each Drive/SSD core</p> |
+| SSD-based                     | _HosSSDSize/10KB_                                                                                            |
 | Capacity requirement          | See below                                                                                                    |
 | Reserved for Operating System | The maximum between 8 GB and 2% from the total RAM                                                           |
 | Reserved for SMB/NFS services | 8 GB                                                                                                         |
@@ -79,7 +80,7 @@ The capacity requirement for the host will be calculated according to the follow
 
 ![](<../../.gitbook/assets/3.7 Memory capacity example.png>)
 
-Consequently, the overall requirement per host is: 4.6 + 6 \* 3.3 + 4\*2.3 + 6.3 +8 +8 = 55.9 GB
+Consequently, the overall requirement per host is: 4.6 + 6 \* 3.3 + 4\*2.3 + (100TB/10KB)/12 + 6.3 +8 +8 = 56.73 GB
 
 {% hint style="info" %}
 **Note:** The capacity requirement is according to the total size of all filesystems, including both SSDs and object stores.
