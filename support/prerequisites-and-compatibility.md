@@ -90,7 +90,7 @@ For both Ethernet and Infiniband configurations, a Weka system can be configured
 Jumbo Frames are not required for clients. However, performance might be limited.
 {% endhint %}
 
-### Ethernet <a href="networking-ethernet" id="networking-ethernet"></a>
+### Ethernet <a href="#networking-ethernet" id="networking-ethernet"></a>
 
 #### NIC
 
@@ -100,7 +100,7 @@ Jumbo Frames are not required for clients. However, performance might be limited
 * Mellanox ConnectX4 (Ethernet and InfiniBand)
 * Mellanox ConnectX5 (Ethernet and InfiniBand)
 * Mellanox ConnectX6 (Ethernet and InfiniBand)
-  * **Note: **ConnectX6-Lx and ConnectX6-Dx are not supported yet
+  * **Note:** ConnectX6-Lx and ConnectX6-Dx are not supported yet
 
 #### NIC Drivers
 
@@ -154,7 +154,7 @@ Supported Intel 40 drivers:
 **Note:** When assigning a network device to the Weka system, no other application can create [virtual functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization) on that device.
 {% endhint %}
 
-### InfiniBand <a href="networking-infiniband" id="networking-infiniband"></a>
+### InfiniBand <a href="#networking-infiniband" id="networking-infiniband"></a>
 
 #### NIC
 
@@ -218,12 +218,13 @@ Supported Mellanox OFED versions:
 Certified Object Stores:
 
 * AWS S3
-* Dell EMC ECS v3.5 and up
 * Cloudian HyperStore (version 7.3 and up)
+* Dell EMC ECS v3.5 and up
 * HCP for Cloud Scale V2.x
 * HCP Classic V9.2 and up (with versioned buckets only)
 * IBM Cloud Object Storage System (version 3.14.7 and up)
 * Quantum ActiveScale (version 5.5.1 and up)
+* Red Hat Ceph Storage (version 5.0 and up)
 * Scality (version 7.4.4.8 and up)
 * SwiftStack (version 6.30 and up)
 
