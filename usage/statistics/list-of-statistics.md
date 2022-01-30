@@ -881,10 +881,3 @@ GATHER_FROM_NODE_SLEEP|Time spent in-between responding to a stats gathering req
 TIMES_QUERIED_STATS|Number of times the node queried other nodes for stats|Times
 TIMES_QUERIED|Number of times the node was queried for stats (not including metadata)|Times
 
-## _
-
-**Type** | **Description** | **Units**
--|-|-
-TEST_STAT_ABSOLUTE|Absolute stat used in the tests|Undefined
-TEST_STAT_MOMENTARY|Momentary stat used in the tests|Undefined
-
