@@ -28,7 +28,7 @@ The organization admin sets quotas to inform/restrict users from using too much 
 
 When working with quotas, consider the following:
 
-* Currently, to set a quota, the relevant filesystem must be mounted on the host setting where the set quota command is to be run.
+* Currently, to set a quota, the relevant filesystem must be mounted on the host where the set quota command is to be run.
 * When setting a quota, you should go through a new mount-point. Meaning, if you are using a host that has mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
 * Quotas can be set within nested directories (up to 4 levels of nested quotas are supported) and over-provisioned under the same directory quota tree. E.g., `/home` can have a quota of 1TiB, and each user directory under it can have a quota of 10GiB, while there are 200 users.
 * Before a directory is being deleted, its quota must be removed. A directory tree cannot be deleted without removing all the inner directories quotas beforehand. Note, default (parent) quotas are set as quotas at the directory creation and the actual quota needs to be removed before the directory is deleted (not the default quota of the parent directory)&#x20;
@@ -60,7 +60,7 @@ Use the following commands to set a directory quota:
 
 `weka fs quota set <path> [--soft soft] [--hard hard] [--grace grace] [--owner owner]`
 
-It is also possible to set a default quota on a directory. It does not account for this directory but will automatically set the quota on directories created directly under it. Use the following command to set a default quota of a directory:
+It is also possible to set a default quota on a directory. It does not account for this directory (or existing child directories) but will automatically set the quota on **new** directories created directly under it. Use the following command to set a default quota of a directory:
 
 `weka fs quota set-default <path>  [--soft soft] [--hard hard] [--grace grace] [--owner owner]`
 
