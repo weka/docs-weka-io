@@ -35,7 +35,7 @@ As shown in the screen above, configuration options include the total capacity, 
 
 Once the configuration to be deployed has been found, click the Deploy to AWS button next to the desired configuration. At this point, it is possible to specify additional options for the deployment, such as adding client instances or selecting the Weka system version to be deployed.
 
-![Additional Deployment Options Dialog Box](../../.gitbook/assets/start.weka.io-deploy.png)
+![Additional Deployment Options Dialog Box](<../../.gitbook/assets/start.weka.io Deploy.png>)
 
 Once everything is ready to deploy the cluster, click the Deploy to AWS button. This will display the AWS CloudFormation screen with a template containing the configured cluster.
 
@@ -47,7 +47,7 @@ Once everything is ready to deploy the cluster, click the Deploy to AWS button. 
 
 After clicking the Deploy to AWS button, the AWS CloudFormation screen is displayed, requiring the creation of stacks.
 
-![AWS Create Stack Screen](../../.gitbook/assets/cf-stack-3.6.png)
+![AWS Create Stack Screen](<../../.gitbook/assets/CF Stack 3.6.png>)
 
 In the Create Stack screen, define the parameters which are specific to your AWS account:
 
@@ -73,7 +73,7 @@ Define the following optional parameters if tiering to S3 is desired:
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `New S3 Bucket`       | The new S3 bucket name to create and attach to the filesystem created by the template. The bucket will not be deleted when the stack is destroyed.                                                                               |
 | `Existing S3 Bucket`  | The existing S3 bucket name to attach to the filesystem created by the template. The bucket has to be in the same region where the cluster is deployed. If this parameter is provided, the `New S3 Bucket` parameter is ignored. |
-| `Tiering SSD Percent` | Sets how much of the filesystem capacity (in percent) should reside on SSD. This parameter is applicable only if` New S3 Bucket` or `Existing S3 Bucket` parameters have been defined.                                           |
+| `Tiering SSD Percent` | Sets how much of the filesystem capacity (in percent) should reside on SSD. This parameter is applicable only if `New S3 Bucket` or `Existing S3 Bucket` parameters have been defined.                                           |
 
 {% hint style="info" %}
 **Important Note Concerning Internet Connectivity:** Weka deployment requires internet connectivity. Ensure that there is either a NAT or public subnet, and configure the stack parameters accordingly.
@@ -85,7 +85,7 @@ For public subnets, make sure to select a subnet that has the Enable Auto-Assign
 
 Once all required parameters have been filled, make sure to check the "I acknowledge that AWS CloudFormation might create IAM resources” checkbox at the bottom and click the Create Stack button:
 
-![AWS Check Box and Creation Dialog Box](../../.gitbook/assets/3.6-cf-iam-ack.png)
+![AWS Check Box and Creation Dialog Box](<../../.gitbook/assets/3.6 CF IAM Ack.png>)
 
 ## Cluster Deployment Process
 

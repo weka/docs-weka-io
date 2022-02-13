@@ -15,13 +15,13 @@ The diagnostics CLI command is used for collecting and uploading diagnostic data
 
 ## Collecting Diags
 
-**Command: **`weka diags collect`
+**Command:** `weka diags collect`
 
 Use the following command to create diagnostics information about the Weka software and save it for further analysis by the Weka Support team:
 
 `weka diags collect [--id id] [--timeout timeout] [--output-dir output-dir] [--core-limit core-limit] [--clients] [--tar]`
 
-If the command is run with the `local` keyword, information is collected only from the host on which the command is executed. Otherwise, information is collected from the whole cluster. 
+If the command is run with the `local` keyword, information is collected only from the host on which the command is executed. Otherwise, information is collected from the whole cluster.&#x20;
 
 **Parameters in Command Line**
 
@@ -40,7 +40,7 @@ If the command is run with the `local` keyword, information is collected only fr
 
 ## Uploading Diags to Weka Home
 
-**Command: **`weka diags upload`
+**Command:** `weka diags upload`
 
 Use the following command to create diagnostics information about the Weka software and save it for further analysis by the Weka Support team:
 

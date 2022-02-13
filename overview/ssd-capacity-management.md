@@ -16,10 +16,10 @@ Net capacity is the amount of space available for user data on the SSDs in a con
 
 ## Stripe Width
 
-The stripe width is the number of blocks that share a common protection set, which can range from 3 to 16. The Weka system has distributed any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various hosts protect each other \(rather than a group of 8 hosts forming a protection group\). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
+The stripe width is the number of blocks that share a common protection set, which can range from 3 to 16. The Weka system has distributed any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various hosts protect each other (rather than a group of 8 hosts forming a protection group). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
 
 {% hint style="info" %}
-**Note:** If not configured, the stripe width is set automatically to \#Failure Domains - Protection Level
+**Note:** If not configured, the stripe width is set automatically to #Failure Domains - Protection Level
 {% endhint %}
 
 ## Protection Level
@@ -30,12 +30,12 @@ The protection level is the number of additional protection blocks added to each
 **Note:** If not configured, the data protection drives in the cluster stripes are automatically set to 2.
 {% endhint %}
 
-## Failure Domains \(Optional\)
+## Failure Domains (Optional)
 
 A failure domain is a group of Weka hosts, all of which can fail concurrently due to a single root cause, such as a power circuit or network switch failure. A cluster can be configured with explicit or implicit failure domains. For a system with explicit failure domains, each group of blocks that protect each other is spread on different failure domains. For a system with implicit failure domains, the group of blocks is spread on different hosts and each host is a failure domain. Additional failure domains can be added, and new hosts can be added to any existing or new failure domain.
 
 {% hint style="info" %}
-**Note:** This documentation relates to a homogeneous Weka system deployment, i.e., the same number of hosts per failure domain \(if any\), and the same SSD capacity per host. For information about heterogeneous Weka system configurations, contact the Weka Support Team.
+**Note:** This documentation relates to a homogeneous Weka system deployment, i.e., the same number of hosts per failure domain (if any), and the same SSD capacity per host. For information about heterogeneous Weka system configurations, contact the Weka Support Team.
 {% endhint %}
 
 ## Hot Spare
@@ -65,12 +65,12 @@ The available capacity is the total capacity that can be used for the allocation
 The net capacity of the Weka system is obtained after the following three deductions performed during configuration:
 
 1. Level of protection required, i.e., the amount of storage capacity to be dedicated to system protection.
-2. Hot spare\(s\), i.e., the amount of storage capacity to be set aside for redundancy and to allow for rebuilding following a component failure.
-3. Weka filesystem overhead, in order to improve overall performance.      
+2. Hot spare(s), i.e., the amount of storage capacity to be set aside for redundancy and to allow for rebuilding following a component failure.
+3. Weka filesystem overhead, in order to improve overall performance.     &#x20;
 
 ## The Formula for Calculating SSD Net Storage Capacity
 
-![](../.gitbook/assets/formula-with-failure-domains.jpg)
+![](<../.gitbook/assets/Formula with Failure Domains.jpg>)
 
 **For Example:**
 
@@ -89,4 +89,3 @@ $$
 $$
 SSD Net Capacity = 20 TB * (20-2) / 20 * 16/(16+2) * 0.9 = 14.4 TB
 $$
-

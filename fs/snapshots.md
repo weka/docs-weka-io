@@ -33,13 +33,13 @@ The Weka system supports the following snapshot operations:
 {% endhint %}
 
 {% hint style="info" %}
-**Note: **The `.snapshots` directory is not listed. Running `ls` on the root of the filesystem will not show the `.snapshots` directory, however, it can be explicitly accessed, e.g. using the `cd .snapshots` command.  
+**Note:** The `.snapshots` directory is not listed. Running `ls` on the root of the filesystem will not show the `.snapshots` directory, however, it can be explicitly accessed, e.g. using the `cd .snapshots` command. &#x20;
 {% endhint %}
 
 ## Managing Snapshots
 
 {% hint style="info" %}
-**Note:** To schedule snapshots automatically, refer to the [Snapshot Management](../appendix/snapshot-management.md)** **section of the Appendix.
+**Note:** To schedule snapshots automatically, refer to the [Snapshot Management](../appendix/snapshot-management.md) **** section of the Appendix.
 {% endhint %}
 
 ### Viewing Snapshots
@@ -48,11 +48,11 @@ The Weka system supports the following snapshot operations:
 
 To view the snapshot of a filesystem, click the filesystem Manage Snapshots button.
 
-![View Snapshot of a Filesystem Screen](../.gitbook/assets/snap-view-3.5.png)
+![View Snapshot of a Filesystem Screen](<../.gitbook/assets/Snap view 3.5.png>)
 
 If the filesystem is tiered, this screen is slightly different and includes an additional button (Upload to Object) and a corresponding Object Status value, as shown below:
 
-![View Snapshot of a Tiered Filesystem Screen](../.gitbook/assets/snap-view-tiered-3.5.png)
+![View Snapshot of a Tiered Filesystem Screen](<../.gitbook/assets/Snap view tiered 3.5.png>)
 
 #### Viewing Snapshots Using the CLI
 
@@ -66,7 +66,7 @@ This command is used to display all snapshots of all filesystems in a single tab
 
 From the main snapshot view screen, click Create Snapshot at the top right-hand side of the required filesystem snapshot screen. The Create Snapshot dialog box will be displayed.
 
-![Create Snapshot Dialog Box](../.gitbook/assets/snap-create-diallog-3.5.png)
+![Create Snapshot Dialog Box](<../.gitbook/assets/Snap create diallog 3.5.png>)
 
 Enter the name and access point, determine whether it is writable and the source (the current filesystem or another snapshot). Then click Create to create the snapshot.
 
@@ -84,7 +84,7 @@ Use the following command line to add a snapshot:
 | -------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `file-system`  | String   | A valid filesystem identifier                                                                                              | Must be a valid name | Yes           | ​                                                                                                                                                                                                                                                                                                    |
 | `name`         | String   | Unique name for filesystem snapshot                                                                                        | Must be a valid name | Yes           |                                                                                                                                                                                                                                                                                                      |
-| `access-point` | String   | Name of the newly-created directory for filesystem-level snapshots, which will serve as the access point for the snapshots | Must be a valid name | No            | Controlled by `weka fs snapshot access-point-naming-convention update <date/name>. `By default it is `<date>` format: `@GMT_%Y.%m.%d-%H.%M.%S` which is compatible with [windows previous versions format for SMB](../additional-protocols/smb-support/#integration-with-windows-previous-versions). |
+| `access-point` | String   | Name of the newly-created directory for filesystem-level snapshots, which will serve as the access point for the snapshots | Must be a valid name | No            | Controlled by `weka fs snapshot access-point-naming-convention update <date/name>.` By default it is `<date>` format: `@GMT_%Y.%m.%d-%H.%M.%S` which is compatible with [windows previous versions format for SMB](../additional-protocols/smb-support/#integration-with-windows-previous-versions). |
 | `source-snap`  | String   | Must be an existing snapshot                                                                                               | Must be a valid name | No            | Filesystem snapshot the file system                                                                                                                                                                                                                                                                  |
 | `is-writable`  | Boolean  | Sets the created snapshot to be writable                                                                                   |                      | No            | False                                                                                                                                                                                                                                                                                                |
 
@@ -94,7 +94,7 @@ Use the following command line to add a snapshot:
 
 In the main snapshot view screen, select the filesystem to be deleted and click Delete. The Snapshot Deletion window will be displayed.
 
-![Snapshot Deletion Window](../.gitbook/assets/snap-delete-dialog-3.5.png)
+![Snapshot Deletion Window](<../.gitbook/assets/Snap delete dialog 3.5.png>)
 
 Click Delete to delete the selected snapshot.
 
@@ -119,7 +119,7 @@ Use the following command line to delete a snapshot:
 
 In the main snapshot view screen, select the filesystem snapshot to be restored and click Restore To. The Select Where to Restore window will be displayed.
 
-![Select Where to Restore Window](../.gitbook/assets/snap-restore-dialog-3.5.png)
+![Select Where to Restore Window](<../.gitbook/assets/Snap restore dialog 3.5.png>)
 
 Select the filesystem snapshot restore destination and click Restore.
 
@@ -153,7 +153,7 @@ Use the following command line to restore a snapshot to another snapshot:
 
 In the main snapshot view screen, select the filesystem snapshot to be updated and click Edit. The Update Snapshot window will be displayed.
 
-![Update Snapshot Window](../.gitbook/assets/snap-update-dialog-3.5.png)
+![Update Snapshot Window](<../.gitbook/assets/Snap update dialog 3.5.png>)
 
 Enter the name and access point, determine whether the snapshot is writable, and then click Update to update the snapshot.
 

@@ -18,15 +18,15 @@ A Weka system cluster runs on a group of hosts with local SSDs. To plan these ho
 
 1. **Capacity:** Plan your net SSD capacity. Note that data management to object stores can be added after the installation. In the context of the planning stage, only the SSD capacity is required.
 2. **Redundancy Scheme:** Define the optimal redundancy scheme required for the Weka system, as explained in [Selecting a Redundancy Scheme](../../overview/about.md#selecting-a-redundancy-scheme).
-3. **Failure Domains:** Determine whether failure domains are going to be used \(this is optional\) and if yes determine the number of failure domains and the potential number of hosts in each failure domain, as described in [Failure Domains](../../overview/ssd-capacity-management.md#failure-domains-optional), and plan accordingly.
+3. **Failure Domains:** Determine whether failure domains are going to be used (this is optional) and if yes determine the number of failure domains and the potential number of hosts in each failure domain, as described in [Failure Domains](../../overview/ssd-capacity-management.md#failure-domains-optional), and plan accordingly.
 4. **Hot Spare**: Define the required hot spare count, as described in [Hot Spare](../../overview/ssd-capacity-management.md#hot-spare).
 
 Once all this data is clarified, you can plan the SSD net storage capacity accordingly, as defined in the [SSD Capacity Management formula](../../overview/ssd-capacity-management.md#formula-for-calculating-ssd-net-storage-capacity). You should also have the following information which will be used during the installation process:
 
-1. Cluster size \(number of hosts\).
+1. Cluster size (number of hosts).
 2. SSD capacity for each host, e.g., 12 hosts with a capacity of 6 TB each.
 3. Planned protection scheme, e.g., 6+2.
-4. Planned failure domains \(optional\).
+4. Planned failure domains (optional).
 5. Planned hot spare.
 
 {% hint style="info" %}
@@ -37,8 +37,8 @@ Once all this data is clarified, you can plan the SSD net storage capacity accor
 
 SSD resource planning involves how the defined capacity is going to be implemented for the SSDs. For each host, the following has to be determined:
 
-* The number of SSDs and capacity for each SSD \(where the multiplication of the two should satisfy the required capacity per host\).
-* The technology to be used \(NVME, SAS, or SATA\) and the specific SSD models, which have implications on SSD endurance and performance.
+* The number of SSDs and capacity for each SSD (where the multiplication of the two should satisfy the required capacity per host).
+* The technology to be used (NVME, SAS, or SATA) and the specific SSD models, which have implications on SSD endurance and performance.
 
 {% hint style="info" %}
 **Note:** For on-premises planning, it is possible to consult with the Weka Support Team in order to map between performance requirements and the recommended Weka system configuration.
@@ -50,42 +50,13 @@ SSD resource planning involves how the defined capacity is going to be implement
 
 The total per host memory requirements is the sum of the following requirements:
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"><b>Type</b>
-      </th>
-      <th style="text-align:left"><b>Per Host Memory</b>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left">Fixed</td>
-      <td style="text-align:left">2.3 GB</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Core-based</td>
-      <td style="text-align:left">
-        <p>2.3 GB for each Frontend core</p>
-        <p>3.3 GB for each Compute core</p>
-        <p>2.3 GB for each Drive/SSD core</p>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Capacity requirement</td>
-      <td style="text-align:left">See below</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Reserved for Operating System</td>
-      <td style="text-align:left">8 GB</td>
-    </tr>
-    <tr>
-      <td style="text-align:left">Reserved for SMB/NFS services</td>
-      <td style="text-align:left">8 GB</td>
-    </tr>
-  </tbody>
-</table>
+| **Type**                      | **Per Host Memory**                                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Fixed                         | 2.3 GB                                                                                                       |
+| Core-based                    | <p>2.3 GB for each Frontend core</p><p>3.3 GB for each Compute core</p><p>2.3 GB for each Drive/SSD core</p> |
+| Capacity requirement          | See below                                                                                                    |
+| Reserved for Operating System | 8 GB                                                                                                         |
+| Reserved for SMB/NFS services | 8 GB                                                                                                         |
 
 #### Capacity Requirement Memory
 
@@ -93,19 +64,19 @@ On a dedicated host, all memory left after the reductions above is used for capa
 
 The per-host capacity requirement is calculated with the following formula:
 
-![](../../.gitbook/assets/formula-1-21_5_18.jpg)
+![](<../../.gitbook/assets/Formula 1 21\_5\_18.jpg>)
 
 {% hint style="info" %}
 **Note:** System capacity/average file size is the number of files that can be used accordingly.
 {% endhint %}
 
 {% hint style="success" %}
-**For Example:** 12 hosts, 10 Weka system cores per host \(6 for compute, 4 for SSDs\), 100 TB SSD system with 512 TB total system capacity \(with object store\), average file size 64 KB.
+**For Example:** 12 hosts, 10 Weka system cores per host (6 for compute, 4 for SSDs), 100 TB SSD system with 512 TB total system capacity (with object store), average file size 64 KB.
 {% endhint %}
 
 The capacity requirement for the host will be calculated according to the following formula:
 
-![](../../.gitbook/assets/3.7-memory-capacity-example.png)
+![](<../../.gitbook/assets/3.7 Memory capacity example.png>)
 
 Consequently, the overall requirement per host is: 4.6 + 6 \* 3.3 + 4\*2.3 + 6.3 +8 +8 = 55.9 GB
 
@@ -125,7 +96,7 @@ The Weka software on a client host requires 4 GB of additional memory.
 
 ### CPU Allocation strategy
 
-The Weka system implements a Non-Uniform Memory Access \(NUMA\) aware CPU allocation strategy to maximize the overall performance of the system. The allocation of cores utilizes all NUMAs equally to balance memory usage from all NUMA nodes.
+The Weka system implements a Non-Uniform Memory Access (NUMA) aware CPU allocation strategy to maximize the overall performance of the system. The allocation of cores utilizes all NUMAs equally to balance memory usage from all NUMA nodes.
 
 The following should be noted with regards to the CPU allocation strategy:
 
@@ -144,7 +115,7 @@ The number of physical cores dedicated to the Weka software should be planned ac
   * In general, use 1 drive core per SSD for up to 6 SSDs and 1 drive core per 2 SSDs for more, with a ratio of 2 compute cores per SSD core.
   * For finer tuning, please contact the Weka Support Team.
 * Enough memory should be allocated to match core allocation, as discussed above.
-* The running of other applications on the same host \(converged Weka system deployment\) is supported. However, this is not covered in this documentation. For further information, contact the Weka Support Team.
+* The running of other applications on the same host (converged Weka system deployment) is supported. However, this is not covered in this documentation. For further information, contact the Weka Support Team.
 
 ### Client Hosts
 
@@ -156,7 +127,7 @@ If the client networking is defined as based on UDP, there is no allocation of c
 
 ### Backend Hosts
 
-Weka backend hosts can be connected to both InfiniBand or Ethernet networks. For each network technology used, all backends must be connected via this technology. If backends are connected both through Infiniband and Ethernet, the Weka system will favor the Infiniband links for traffic, unless there are connectivity issues with the Infiniband network. In that case, the system will use the Ethernet links \(clients connecting to the system can connect either via Infiniband or Ethernet\).
+Weka backend hosts can be connected to both InfiniBand or Ethernet networks. For each network technology used, all backends must be connected via this technology. If backends are connected both through Infiniband and Ethernet, the Weka system will favor the Infiniband links for traffic, unless there are connectivity issues with the Infiniband network. In that case, the system will use the Ethernet links (clients connecting to the system can connect either via Infiniband or Ethernet).
 
 {% hint style="info" %}
 **Note:** A network port can either be dedicated to the Weka system or run the Weka system with other applications.
@@ -165,4 +136,3 @@ Weka backend hosts can be connected to both InfiniBand or Ethernet networks. For
 ### Client Hosts
 
 Client hosts can be configured with networking as above, which provides the highest performance and lowest latency, but requires compatible hardware and dedicated core resources. If compatible hardware is not available, or if allocating a physical core to the Weka system is problematic, the client networking can be configured to use the kernel UDP service. In such cases, performance is reduced, and latency increases.
-

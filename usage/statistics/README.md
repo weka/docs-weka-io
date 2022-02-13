@@ -14,7 +14,7 @@ Five different categories of statistics are available for review - Operations (N
 
 By default, the main statistics page displays the last hour of operation, presenting the Weka system operation per second on a time axis.
 
-![Statistics View Screen](../../.gitbook/assets/statistics-main-screen.png)
+![Statistics View Screen](<../../.gitbook/assets/Statistics Main Screen.png>)
 
 This Statistics view screen offers a number of options to drill-down into the statistics, according to category. Options include:
 
@@ -28,7 +28,7 @@ This Statistics view screen offers a number of options to drill-down into the st
 * Bookmarking specific statistics for future reference and sharing with others (using the URL).
 
 {% hint style="info" %}
-**Note: **The statistics are only shown for backend/clients that are part of the cluster. Once a host is removed (or a client is not connected to the cluster for more than the `remove_after_secs` period) its statistics will not be shown. The Weka cluster does not hold historical statistics data. Use `weka-mon` for that, as suggested in the [External Monitoring](../../appendix/external-monitoring.md) section.
+**Note:** The statistics are only shown for backend/clients that are part of the cluster. Once a host is removed (or a client is not connected to the cluster for more than the `remove_after_secs` period) its statistics will not be shown. The Weka cluster does not hold historical statistics data. Use `weka-mon` for that, as suggested in the [External Monitoring](../../appendix/external-monitoring.md) section.
 {% endhint %}
 
 ##
@@ -39,15 +39,15 @@ This Statistics view screen offers a number of options to drill-down into the st
 
 To view the statistics screen using the GUI, click the statistics button on the left bar:
 
-![Statistics View Screen](../../.gitbook/assets/screenshot-from-2018-07-29-11-47-29.png)
+![Statistics View Screen](<../../.gitbook/assets/Screenshot from 2018-07-29 11-47-29.png>)
 
 ### Adding Statistics
 
 To select the addition of specific statistics, click the + Add Statistics tab on the right-hand side of the Statistics view screen. The statistics menu will be displayed.
 
-![Add Statistics Tab](../../.gitbook/assets/screenshot-from-2018-07-29-11-55-54.png)
+![Add Statistics Tab](<../../.gitbook/assets/Screenshot from 2018-07-29 11-55-54.png>)
 
-![Statistics Menu](../../.gitbook/assets/screenshot-from-2018-07-29-12-03-48.png)
+![Statistics Menu](<../../.gitbook/assets/Screenshot from 2018-07-29 12-03-48.png>)
 
 Then select the component for which statistics required from the six possible categories. As each component is selected, the list of possible Statistics Names that can be selected changes. It is also possible to searching for a specific statistic by typing the name of the statistic in the Filter field at the top of the menu.
 
@@ -59,15 +59,15 @@ Switching the active unit scale is performed by clicking on one of the inactive 
 
 To hide or delete statistics from a graph, mouse-over the selector and click either the Hide or Delete button appearing under the selector.
 
-![Example of Hide/Delete Buttons ](../../.gitbook/assets/screenshot-from-2018-07-29-13-13-57.png)
+![Example of Hide/Delete Buttons ](<../../.gitbook/assets/Screenshot from 2018-07-29 13-13-57.png>)
 
 ### Specifying a Time Frame
 
 To define a specific period of time (start and end) for the statistics to be displayed, click the From and To selectors appearing in the left corner of the graph display box. Then select the date of the statistics required from the calendar popup and the hours from the right scroller, or by using the up and down arrows that appear when hovering on the time selectors.
 
-![From/To Time Selectors](../../.gitbook/assets/screenshot-from-2018-07-29-14-44-31.png)
+![From/To Time Selectors](<../../.gitbook/assets/Screenshot from 2018-07-29 14-44-31.png>)
 
-![Calendar Popup](../../.gitbook/assets/screenshot-from-2018-07-29-15-01-39.png)
+![Calendar Popup](<../../.gitbook/assets/Screenshot from 2018-07-29 15-01-39.png>)
 
 {% hint style="info" %}
 **Note:** It is also possible to change the time period by dragging the graph left or right.
@@ -75,13 +75,13 @@ To define a specific period of time (start and end) for the statistics to be dis
 
 The Auto Refresh setting offers another option for defining a specific period of time. Activation of Auto Refresh is performed by clicking on one of the buttons displayed in the right bottom corner of the graph display box, according to the desired period (hour, day or week). The selected period of time for the statistics will be automatically updated every minute, until Auto Refresh is deactivated by clicking the 'x' button located at the top right of the Auto Refresh tool tip, or by defining a period of time using the time selector.
 
-![Auto Refresh Buttons](../../.gitbook/assets/screenshot-from-2018-07-29-14-42-22.png)
+![Auto Refresh Buttons](<../../.gitbook/assets/Screenshot from 2018-07-29 14-42-22.png>)
 
 ### Obtaining a Summary of Events
 
 To obtain a summary of events that occurred in a specific time period, click the events bubble displayed above the graph. The Events popup will be displayed. Expand the popup in order to obtain a detailed list of events. Click on the icon next to each event to link to the selected event in the Events view screen.
 
-![Events Popup](../../.gitbook/assets/screenshot-from-2018-07-29-14-57-57.png)
+![Events Popup](<../../.gitbook/assets/Screenshot from 2018-07-29 14-57-57.png>)
 
 ## Working with Statistics Using the CLI
 

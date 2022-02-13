@@ -49,7 +49,7 @@ For CPU-optimized networking Weka can yield CPU resources to other applications.
 For CPU-optimized networking, when [mounting filesystems using stateless clients](../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients), it is possible to use DPDK networking without dedicating cores. This mode is recommended when available and supported by the NIC drivers. In this mode, the DPDK networking uses RX interrupts instead of dedicating the cores.&#x20;
 
 {% hint style="info" %}
-**Note: **This mode is supported in most NIC drivers, but not in all, consult [https://doc.dpdk.org/guides/nics/overview.html](https://doc.dpdk.org/guides/nics/overview.html) for compatibility.
+**Note:** This mode is supported in most NIC drivers, but not in all, consult [https://doc.dpdk.org/guides/nics/overview.html](https://doc.dpdk.org/guides/nics/overview.html) for compatibility.
 
 AWS (ENA drivers) does not support this mode, hence for CPU-optimized networking in AWS use the [UDP Mode](networking-in-wekaio.md#udp-mode).
 {% endhint %}

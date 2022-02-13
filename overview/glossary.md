@@ -24,7 +24,7 @@ A collection of Weka backend hosts, together with Weka clients installed on the 
 
 ### Container
 
-Weka uses Linux containers (LXC) as the mechanism for holding one node or keeping multiple nodes together. Containers can have different nodes within them. They can have frontend nodes and associated DPDK libraries within the container, or backend nodes, drive nodes, management node, and DPDK libraries, or can have NFS, SMB, or S3 services nodes running within them. A host can have multiple containers running on it at any time. 
+Weka uses Linux containers (LXC) as the mechanism for holding one node or keeping multiple nodes together. Containers can have different nodes within them. They can have frontend nodes and associated DPDK libraries within the container, or backend nodes, drive nodes, management node, and DPDK libraries, or can have NFS, SMB, or S3 services nodes running within them. A host can have multiple containers running on it at any time.&#x20;
 
 ### Converged Deployment
 
@@ -82,7 +82,7 @@ A software instance that Weka uses to run and manage WekaFS. Nodes are dedicated
 
 ### **POSIX**
 
-The Portable Operating System Interface (POSIX) is a family of** **standards specified by the [I](https://en.wikipedia.org/wiki/IEEE_Computer_Society)EEE Computer Society for maintaining compatibility between operating systems. The WekaFS client is POSIX compliant, which means that it presents data to the OS on which it is installed in a manner that conforms to the POSIX standard. The WekaFS client is sometimes informally referred to as the POSIX client or POSIX driver when describing the overall storage system architecture.
+The Portable Operating System Interface (POSIX) is a family of **** standards specified by the [I](https://en.wikipedia.org/wiki/IEEE\_Computer\_Society)EEE Computer Society for maintaining compatibility between operating systems. The WekaFS client is POSIX compliant, which means that it presents data to the OS on which it is installed in a manner that conforms to the POSIX standard. The WekaFS client is sometimes informally referred to as the POSIX client or POSIX driver when describing the overall storage system architecture.
 
 ### Provisioned Capacity
 

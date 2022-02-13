@@ -37,7 +37,7 @@ There are two options for mounting a filesystem on a cluster client: read cache 
 * [Read cache mount mode](../overview/weka-client-and-mount-modes.md#read-cache-mount-mode-default)
 * [Write cache mount mode](../overview/weka-client-and-mount-modes.md#write-cache-mount-mode)
 
-## Mounting Filesystems Using the Stateless Clients Feature <a href="mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
+## Mounting Filesystems Using the Stateless Clients Feature <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
 
 The Stateless Clients feature defers the process of joining the cluster until a mount is performed. Simplifying and improving the management of clients in the cluster, it removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave in high frequency. Furthermore, it unifies all security aspects in the mount command, eliminating the search of separate credentials at cluster join and mount.
 
@@ -103,7 +103,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 
 ### Remount of General Options
 
-Mount options marked as `Remount Supported` in the above table can be remounted (using `mount -o remount`). When a mount option has been explicitly changed previously, it should be set again in the remount operation to make sure it retains its value. For example, if you mounted with `ro`, a remount without it will default to `rw`, while if you mounted with `rw`, it  is not required to be re-specified since this is the default). 
+Mount options marked as `Remount Supported` in the above table can be remounted (using `mount -o remount`). When a mount option has been explicitly changed previously, it should be set again in the remount operation to make sure it retains its value. For example, if you mounted with `ro`, a remount without it will default to `rw`, while if you mounted with `rw`, it  is not required to be re-specified since this is the default).&#x20;
 
 ### **Additional Mount Options Available using the Stateless Clients Feature**
 
@@ -172,7 +172,7 @@ Mount options marked as `Remount Supported` in the above table can be remounted 
 When using a stateless client, it is possible to alter and control many different networking options, such as:
 
 * Virtual functions
-* IPs 
+* IPs&#x20;
 * Gateway (in case the client is on a different subnet)
 * Physical network devices (for performance and HA)
 * UDP mode
@@ -250,11 +250,11 @@ mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
 ```
 
 {% hint style="info" %}
-**Note:** A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster. 
+**Note:** A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
-**Note: **Providing multiple IPs in the \<mgmt-ip> in UDP mode will utilize their network interfaces for more bandwidth (can be useful in RDMA environments), rather than using only one NIC.
+**Note:** Providing multiple IPs in the \<mgmt-ip> in UDP mode will utilize their network interfaces for more bandwidth (can be useful in RDMA environments), rather than using only one NIC.
 {% endhint %}
 
 ## Mounting Filesystems Using fstab

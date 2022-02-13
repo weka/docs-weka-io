@@ -10,13 +10,12 @@ On AWS installations via the self-service portal, the Weka system GUI can be acc
 
 After logging in, the Weka dashboard is displayed.
 
-![Weka Dashboard](../.gitbook/assets/gui-dashboard-3.5.png)
+![Weka Dashboard](<../.gitbook/assets/GUI dashboard 3.5.png>)
 
 The dashboard enables the viewing of information on the backend host configuration and topology, system alerts, and some important statistics.
 
 Clicking the top-left button next to the WEKA.IO logo opens a menu bar containing all possible system operations.
 
-![Weka Dashboard with Menu Bar](../.gitbook/assets/gui-overview-3.5.png)
+![Weka Dashboard with Menu Bar](<../.gitbook/assets/GUI overview 3.5.png>)
 
 From the menu bar, it is possible to view [statistics](../usage/statistics/) and [events](../usage/events/), manage [filesystems](../fs/managing-filesystems/), configure [NFS](../additional-protocols/nfs-support.md) and [SMB](../additional-protocols/smb-support/smb-management-using-the-gui.md) services, and manage system [security](../usage/security/user-management.md) aspects.
-

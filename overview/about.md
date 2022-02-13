@@ -6,13 +6,13 @@ description: >-
 
 # About the Weka System
 
-## Basic Weka System Deployment <a id="basic-deployment-model"></a>
+## Basic Weka System Deployment <a href="#basic-deployment-model" id="basic-deployment-model"></a>
 
 The basic Weka deployment model involves the creation of a shareable filesystem to be used by the application servers. This requires the installation of Weka client software which implements a POSIX filesystem driver on each application server intended to access data. This filesystem driver enables each of the application servers to access the Weka system as if it is a local drive, perceiving the Weka system as a local attached filesystem device while it is actually shared among multiple application servers.
 
 The file services are implemented by a group of [backend hosts](glossary.md#backend-host) running the Weka software and fully dedicated to the Weka system. SSD drives for storing the data are installed on these servers. The resultant storage system is scalable to hundreds of backends and thousands of clients.
 
-![](../.gitbook/assets/diagram-1a.jpg)
+![](<../.gitbook/assets/DIAGRAM 1a.jpg>)
 
 The Weka backends are configured as a cluster which, together with the Weka clients installed on the application servers, forms one large shareable, distributed, and scalable file storage system:
 
@@ -22,7 +22,7 @@ The Weka backends are configured as a cluster which, together with the Weka clie
 
 **Scalable:** The Weka system linear performance depends on the size of the cluster. Consequently, a certain amount of performance will be received for a cluster of size x, while doubling the size of the cluster to 2x will deliver double the performance. This applies to both data and metadata.
 
-## Weka System Functionality Features <a id="weka-functionality-features"></a>
+## Weka System Functionality Features <a href="#weka-functionality-features" id="weka-functionality-features"></a>
 
 ### Protection
 
@@ -34,13 +34,13 @@ The Weka system implements an any-to-any protection scheme, ensuring that if a b
 
 ### Failed Component Replacement as a Background Process
 
-The hot spare is configured in the Weka system cluster by providing the extra capacity required to return to full redundancy after a rebuild across the entire cluster, unlike traditional approaches which dedicate specific physical components as the hot spare. Consequently, a cluster of 100 backends will be configured with sufficient capacity to rebuild the data and return to full redundancy even following two failures, after which \(depending on the protection policy and cluster size\), it is still possible to withstand another two failures.
+The hot spare is configured in the Weka system cluster by providing the extra capacity required to return to full redundancy after a rebuild across the entire cluster, unlike traditional approaches which dedicate specific physical components as the hot spare. Consequently, a cluster of 100 backends will be configured with sufficient capacity to rebuild the data and return to full redundancy even following two failures, after which (depending on the protection policy and cluster size), it is still possible to withstand another two failures.
 
 This strategy for the replacement of a failed component does not affect the vulnerability of the system. Following a system failure, it is not necessary to replace a failed component with a valid component in order to recreate the data. In the Weka system, data is immediately recreated, leaving the replacement of the failed component with a functioning component as a background process.
 
 ### Failure Domains
 
-Failure domains are groups of backends that may fail because of a single, root cause. For example, all servers in a rack can be considered a failure domain if all are powered through a single power circuit, or all are connected through a single TOR switch. Consider a setup of 10 such racks with a cluster of 50 Weka backends \(5 backends in each rack\). During the formation of the Weka cluster, it is possible to configure with 6+2 protection and make the Weka system aware of these possible failure domains by forming a protection stripe across racks. In this way, the 6+2 stripe will be spread on different racks, ensuring that the system remains operational in a full rack failure and that data is not lost.
+Failure domains are groups of backends that may fail because of a single, root cause. For example, all servers in a rack can be considered a failure domain if all are powered through a single power circuit, or all are connected through a single TOR switch. Consider a setup of 10 such racks with a cluster of 50 Weka backends (5 backends in each rack). During the formation of the Weka cluster, it is possible to configure with 6+2 protection and make the Weka system aware of these possible failure domains by forming a protection stripe across racks. In this way, the 6+2 stripe will be spread on different racks, ensuring that the system remains operational in a full rack failure and that data is not lost.
 
 For failure domains, the stripe width must be less or equal to the failure domain count - if there are 10 racks and one of them represents a single point of failure, 16+4 cluster protection is not possible. Consequently, protection and support of failure domains are dependent on the stripe width and the protection level.
 
@@ -66,7 +66,7 @@ Furthermore, if a cluster is just grown modestly e.g., from 100 to 110 backends,
 
 The duration of all these completely seamless operations depends on the capacity of the root backends and the network bandwidth. Ongoing operations are not affected, and performance is improved as the redistribution of data is executed. The completion of the redistribution process delivers optimal capacity and performance.
 
-## Converged Weka System Deployment <a id="hyper-cconverged-weka-deployment-model"></a>
+## Converged Weka System Deployment <a href="#hyper-cconverged-weka-deployment-model" id="hyper-cconverged-weka-deployment-model"></a>
 
 The Weka system can be deployed in a converged configuration. An alternative to the basic Weka system deployment, this enables the configuration of hundreds of application servers running user applications and installed with Weka clients in order to access the Weka cluster. Consequently, instead of provisioning servers fully dedicated to Weka backends, it enables the installation of a Weka client on each application server, and the installation of one or more SSDs as well as backend processes on the existing application servers. In such a configuration, the Weka system backend processes operate as one big cluster, takeover the local SSDs and form a shareable, distributed, and scalable filesystem available to the application servers, in the same way as in the basic Weka system deployment. The only difference is that instead of installing SSDs on backends dedicated to the Weka system, in this configuration the Weka backends share the same physical infrastructure with the application servers.
 
@@ -74,7 +74,7 @@ This mixture of different storage and computation abilities delivers more effect
 
 Otherwise, this is technically the same solution as the basic Weka system deployment, with all the same Weka system functionality features for protection, redundancy, failed component replacement, failure domains, prioritized data rebuilds, and seamless distribution, scale, and performance. Some of the servers may be installed with a Weka backend process and a local SSD, while others may have clients only. This means that there can be a cluster of application servers with Weka software installed on some and Weka clients installed on others.
 
-## Selecting a Redundancy Scheme <a id="selecting-a-redundancy-scheme"></a>
+## Selecting a Redundancy Scheme <a href="#selecting-a-redundancy-scheme" id="selecting-a-redundancy-scheme"></a>
 
 Redundancy schemes in the Weka system deployments can range from 3+2 to 16+4. There are a number of considerations for selecting the most suitable, optimal configuration. It all depends on redundancy, the data stripe width, the hot spare capacity, and the performance required during a rebuild from a failure.
 
@@ -87,4 +87,3 @@ Redundancy schemes in the Weka system deployments can range from 3+2 to 16+4. Th
 **Performance Required During a Rebuild from a Failure** is impacted only by read rebuild operations. Unlike other storage systems, writing performance is unaffected by failures and rebuilds, since Weka systems continue writing to functioning backends in the cluster. However, read performance can be affected, because the reading of data from a failed component has to be performed from the whole stripe. This requires a simultaneous operation and an instant priority rebuild for data read operations. If, for example, one failure occurs in a cluster of 100 backends, performance will be affected by 1%; however, in a cluster of 100 backends with a stripe width of 16, performance will be reduced by up to 16% at the beginning of the rebuild. Naturally, the cluster size can exceed the stripe width or the number of failure domains. Consequently, for large clusters, it is recommended that the stripe width does not exceed 25% of the cluster size, e.g., for a cluster of 40 backends, 8+2 protection is recommended so that if a failure occurs, the impact on performance will not exceed 25%.
 
 **Write Performance** is generally better the larger the stripe width since the system has to compute a smaller proportion of protected data to real data. This is particularly applicable to large writes in a system accumulating data for the first time.
-

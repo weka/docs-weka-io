@@ -14,11 +14,11 @@ The Weka system supports up to 64 organizations. Within an organization, logical
 
 The Cluster Admin can perform the following activities:
 
-* Create new organizations \(with a defined Organization Admin\).
+* Create new organizations (with a defined Organization Admin).
 * Delete existing organizations.
 * Monitor per organization the total capacity used by all the organization filesystems.
 
-‌While Cluster Admins are people trusted by the different organizations \(e.g., have root access to the backend hosts\), they are obscured from the organization data in the Weka system. The Cluster Admin separation is partial, e.g., they can still see the events of all organizations. The Weka system ensures the separation of any sensitive information between the different organizations.
+‌While Cluster Admins are people trusted by the different organizations (e.g., have root access to the backend hosts), they are obscured from the organization data in the Weka system. The Cluster Admin separation is partial, e.g., they can still see the events of all organizations. The Weka system ensures the separation of any sensitive information between the different organizations.
 
 {% hint style="info" %}
 **Note:** It is not possible to separate data at the hardware level. While the Weka system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations and system limits are per organization. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
@@ -39,7 +39,7 @@ When multiple, independent groups use the same provided infrastructure, the use 
 The following entities are managed at the cluster level by the Cluster Admin:
 
 * Hardware
-* NFS service \(NFS groups and IP/interfaces\)
+* NFS service (NFS groups and IP/interfaces)
 * SMB service
 * Filesystem groups - definition of tiering policies for the different groups, while the Organization Admin selects the filesystem group from the predefined list of groups for each filesystem created
 * KMS
@@ -48,10 +48,10 @@ The following entities are managed at the cluster level by the Cluster Admin:
 
 All system entities at the organization level are managed only by the relevant Organization Admin and are only viewable by users within the organization. Cluster Admins do not have permissions to view or manage these entities, which include the following:
 
-* Filesystems, along with the ability to mount the filesystems \(cannot be mounted even by the Cluster Admin\)
+* Filesystems, along with the ability to mount the filesystems (cannot be mounted even by the Cluster Admin)
 * Object store buckets
 * LDAP server
-* NFS exports \(NFS client permissions\)
+* NFS exports (NFS client permissions)
 
 {% hint style="warning" %}
 **Note**: SMB shares cannot be defined for organizations other than the 'Root' organization.
@@ -69,13 +69,13 @@ Once a new organization is created, the organization name must be provided in ev
 
 ## Usage and Quota Management
 
-Cluster Admins can view an organization's usage \(both SSD and total\) and can limit usage with quotas per organization. This can be leveraged for charge-backs on either used or allocated capacity of SSD or object store data.
+Cluster Admins can view an organization's usage (both SSD and total) and can limit usage with quotas per organization. This can be leveraged for charge-backs on either used or allocated capacity of SSD or object store data.
 
 ## Managing Organizations Using the GUI
 
 To create, delete, or view organizations in the cluster using the GUI, go to the Organizations screen.
 
-![Organizations Screen](../../.gitbook/assets/organization-screen-3.5.png)
+![Organizations Screen](<../../.gitbook/assets/Organization screen 3.5.png>)
 
 ## Managing Organizations Using the CLI
 
@@ -89,19 +89,19 @@ Use the following command line to create an organization:
 
 **Parameters in Command Line**
 
-| Name | Type | Value | Limitations | Mandatory | Default |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `name` | String | Organization name | Must be a valid name | Yes |  |
-| `username` | String | Username of the created Organization Admin | Must be a valid name | Yes |  |
-| `password` | String | Password of the created Organization Admin |  | Yes |  |
-| `ssd-quota` | Number | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number | No | 0 \(not limited\) |
-| `total-quota` | Number | Total allowed quota for the organization \(SSD and object store\) | Must be a valid number | No | 0 \(not limited\) |
+| Name          | Type   | Value                                                               | Limitations            | Mandatory | Default         |
+| ------------- | ------ | ------------------------------------------------------------------- | ---------------------- | --------- | --------------- |
+| `name`        | String | Organization name                                                   | Must be a valid name   | Yes       |                 |
+| `username`    | String | Username of the created Organization Admin                          | Must be a valid name   | Yes       |                 |
+| `password`    | String | Password of the created Organization Admin                          |                        | Yes       |                 |
+| `ssd-quota`   | Number | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number | No        | 0 (not limited) |
+| `total-quota` | Number | Total allowed quota for the organization (SSD and object store)     | Must be a valid number | No        | 0 (not limited) |
 
 ### Viewing Organizations
 
 **Command:** `weka org`
 
-```text
+```
 # weka org
 
 ID | Name       | Allocated SSD | SSD Quota | Allocated Total | Total Quota
@@ -123,10 +123,10 @@ Use the following command line to rename an organization:
 
 **Parameters in Command Line**
 
-| Name | Type | Value | Limitations | Mandatory | Default |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `org` | String/Integer | Current organization name or ID |  | Yes |  |
-| `new-name` | String | New organization name |  | Yes |  |
+| Name       | Type           | Value                           | Limitations | Mandatory | Default |
+| ---------- | -------------- | ------------------------------- | ----------- | --------- | ------- |
+| `org`      | String/Integer | Current organization name or ID |             | Yes       |         |
+| `new-name` | String         | New organization name           |             | Yes       |         |
 
 #### Updating an Organization's Quotas
 
@@ -138,11 +138,11 @@ Use the following command line to update an organization's quota:
 
 **Parameters in Command Line**
 
-| Name | Type | Value | Limitations | Mandatory | Default |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `org` | String/Integer | Organization name or ID | The root organization \(org ID = 0 cannot be limited\) | Yes |  |
-| `ssd-quota` | Number | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number | No |  |
-| `total-quota` | Number | Total allowed quota for the organization \(SSD and object store\) | Must be a valid number | No |  |
+| Name          | Type           | Value                                                               | Limitations                                          | Mandatory | Default |
+| ------------- | -------------- | ------------------------------------------------------------------- | ---------------------------------------------------- | --------- | ------- |
+| `org`         | String/Integer | Organization name or ID                                             | The root organization (org ID = 0 cannot be limited) | Yes       |         |
+| `ssd-quota`   | Number         | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number                               | No        |         |
+| `total-quota` | Number         | Total allowed quota for the organization (SSD and object store)     | Must be a valid number                               | No        |         |
 
 ### Deleting an Organization
 
@@ -154,9 +154,9 @@ Use the following command line to delete an organization:
 
 **Parameters in Command Line**
 
-| Name | Type | Value | Limitations | Mandatory | Default |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `org` | String/Integer | Organization name or ID |  | Yes |  |
+| Name  | Type           | Value                   | Limitations | Mandatory | Default |
+| ----- | -------------- | ----------------------- | ----------- | --------- | ------- |
+| `org` | String/Integer | Organization name or ID |             | Yes       |         |
 
 {% hint style="danger" %}
 **Warning:** Deleting an organization is irreversible and will also remove all entities related to the organization, such as filesystems, object stores, and users.
@@ -185,27 +185,27 @@ Once the Cluster Admin has created an organization and the Organization Admin ha
 
 The purpose of organizations is to provide separation and security for organization data, which requires authentication of the Weka system filesystem mounts. This authentication of mounts prevents users of other organizations and even the Cluster Admin from accessing organization filesystems.
 
-Mounting filesystems in an organization \(other than the Root organization\) is only supported using a stateless client. If the user is not logged into the Weka system, a login prompt will appear as part of the mount command.
+Mounting filesystems in an organization (other than the Root organization) is only supported using a stateless client. If the user is not logged into the Weka system, a login prompt will appear as part of the mount command.
 
 To securely mount a filesystem in the client, first log into the Weka system:
 
-```text
+```
 weka user login my_user my_password --org my_org -H backend-host-0
 ```
 
 Then mount the filesystem:
 
-```text
+```
 mount -t wekafs backend-host-0/my_fs /mnt/weka/my_fs
 ```
 
 Refer to [Mount Command Options](../../fs/mounting-filesystems.md#mount-command-options) for all mount options.
 
-‌Authentication is achieved by obtaining a mount token and including it in the mount command. Logging into the Weka system using the CLI \(the `weka user login` command\) creates an authentication token and saves it in the client \(default to `~/.weka/auth-token.json,` which can be changed using the`--path`attribute\). The Weka system assigns the token that relates to a specific organization. Only mounts that pass the path to a correct token can successfully access the filesystems of the organization.
+‌Authentication is achieved by obtaining a mount token and including it in the mount command. Logging into the Weka system using the CLI (the `weka user login` command) creates an authentication token and saves it in the client (default to `~/.weka/auth-token.json,` which can be changed using the`--path`attribute). The Weka system assigns the token that relates to a specific organization. Only mounts that pass the path to a correct token can successfully access the filesystems of the organization.
 
 Once a user is authenticated, the mount command uses the default location of the authentication token. It is possible to change the token location/name and pass it as a parameter in the mount command using the `auth_token` mount option, or the`WEKA_TOKEN` environment variable.
 
-```text
+```
 mount -t wekafs backend-host-0/my_fs /mnt/weka/my_fs -o auth_token=<path>
 ```
 
@@ -225,11 +225,10 @@ For LDAP users, access can be revoked by changing the `user-revocation-attribute
 
 **Parameters in Command Line**
 
-| Name | Type | Value | Limitations | Mandatory | Default |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| `username` | String/Integer | Valid user in the organization of the Organization Admin running the command |  | Yes |  |
+| Name       | Type           | Value                                                                        | Limitations | Mandatory | Default |
+| ---------- | -------------- | ---------------------------------------------------------------------------- | ----------- | --------- | ------- |
+| `username` | String/Integer | Valid user in the organization of the Organization Admin running the command |             | Yes       |         |
 
 {% hint style="warning" %}
 **Note:** NFS and SMB are different protocols from WekaFS which require additional security considerations when used, e.g., NFS permissions are granted per host, so permissions for accessing these hosts for NFS export should be handled carefully.
 {% endhint %}
-

@@ -58,10 +58,10 @@ When migrating data (using the detach operation) you would like to copy only the
 
 ### Attaching a Remote Object-Store Bucket
 
-One remote object-store bucket can be attached to a filesystem. A `remote` object-store bucket is used for backup only, and only snapshots are uploaded to it using [Snap-2-Object](../snap-to-obj.md). The snapshot uploads are incremental to the previous one. 
+One remote object-store bucket can be attached to a filesystem. A `remote` object-store bucket is used for backup only, and only snapshots are uploaded to it using [Snap-2-Object](../snap-to-obj.md). The snapshot uploads are incremental to the previous one.&#x20;
 
 {% hint style="info" %}
-**Note: **Please contact the Weka Customer Support Team before you attach a remote object-store bucket.
+**Note:** Please contact the Weka Customer Support Team before you attach a remote object-store bucket.
 {% endhint %}
 
 ### Detaching a Remote Object-Store Bucket
@@ -74,27 +74,27 @@ Detaching a remote object-store bucket from a filesystem keeps the backup data w
 
 To attach a new object store to a filesystem, select the filesystem in the main filesystem/filesystem group view screen and click the Attach Object Store button.
 
-![Attach Object Store to Filesystem Screen](../../.gitbook/assets/attach-obs-select-3.5.png)
+![Attach Object Store to Filesystem Screen](<../../.gitbook/assets/Attach obs select 3.5.png>)
 
 The Attach Object Store to Filesystem dialog box will be displayed.
 
-![Attach Object Store to Filesystem Dialog Box](../../.gitbook/assets/attach-obs-dialog-3.5.png)
+![Attach Object Store to Filesystem Dialog Box](<../../.gitbook/assets/Attach obs dialog 3.5.png>)
 
 Select the object store to attach and click Attach.
 
 To detach an object store from a filesystem, select the filesystem in the main filesystem/filesystem group view screen. A list of all attached object stores will be displayed in the Attached Object Stores dialog box.
 
-![Attached Object Stores Dialog Box](../../.gitbook/assets/fs-obs-view-3.5.png)
+![Attached Object Stores Dialog Box](<../../.gitbook/assets/FS obs view 3.5.png>)
 
 Click the Detach button next to the relevant object store to be detached. If more than one object store is attached, the Detach Object Store dialog box will be displayed as follows:
 
-![Detach Object Store Dialog Box](../../.gitbook/assets/detach-obs-dialog-3.5.png)
+![Detach Object Store Dialog Box](<../../.gitbook/assets/Detach obs dialog 3.5.png>)
 
 Click Yes to detach the object store from the filesystem.
 
 If there is only one object store attached, detaching will un-tier the filesystem, and the following Detach Object Store and Untier Filesystem dialog box will be displayed:
 
-![Detach Object Store and Untier Filesystem Dialog Box](../../.gitbook/assets/detach-untier-3.5.png)
+![Detach Object Store and Untier Filesystem Dialog Box](<../../.gitbook/assets/Detach Untier 3.5.png>)
 
 Since object stores usually expand the filesystem capacity, the un-tiering of a filesystem requires adjustment of its total capacity. It is possible to increase the SSD capacity to match the current total capacity; reduce the total filesystem capacity to match the SSD capacity or used capacity (the decrease option depends on the used capacity); or configure a different value.
 
@@ -104,11 +104,11 @@ Since object stores usually expand the filesystem capacity, the un-tiering of a 
 
 The following options are available in the Solution drop-down list:
 
-![Un-tier Adjusting Capacity Options](../../.gitbook/assets/detach-untier-used-options-3.5.png)
+![Un-tier Adjusting Capacity Options](<../../.gitbook/assets/Detach Untier Used options 3.5.png>)
 
 Select the desired option and click Continue in the Detach Object Store and Untier Filesystem dialog box. A summary dialog box of the system operations will be displayed.
 
-![Detach Object Store and Un-tier Summary Dialog Box](../../.gitbook/assets/detach-untier-progress-3.5.png)
+![Detach Object Store and Un-tier Summary Dialog Box](<../../.gitbook/assets/Detach Untier progress 3.5.png>)
 
 To confirm the operation, click Detach.
 

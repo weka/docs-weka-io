@@ -30,11 +30,11 @@ For the first mount, this will install the Weka software and automatically confi
 It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information refer to [Mounting Filesystems Using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mounting Filesystems Using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs).
 
 {% hint style="info" %}
-**Note:** Clients can be deployed on [diskless-servers](https://en.wikipedia.org/wiki/Diskless_node). They can use RAM for Weka client software and NFS mount for the traces. For more information, contact the Weka Support Team.
+**Note:** Clients can be deployed on [diskless-servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for Weka client software and NFS mount for the traces. For more information, contact the Weka Support Team.
 {% endhint %}
 
 {% hint style="info" %}
-**Note: **The different clients must have a unique IP and FQDN.
+**Note:** The different clients must have a unique IP and FQDN.
 {% endhint %}
 
 ## Adding Clients Which Are Always Part of the Cluster

@@ -26,7 +26,7 @@ The result of using the Snap-To-Object feature is that the object store contains
 
 #### Hybrid Cloud Use Case
 
-* [Cloud bursting](snap-to-obj.md#cloud-bursting)       
+* [Cloud bursting](snap-to-obj.md#cloud-bursting)      &#x20;
 
 ## Use Cases for the Snap-To-Object Feature
 
@@ -106,7 +106,7 @@ For information on snapshot viewing, creation, updating, deletion, and restoring
 
 To upload a snapshot to the object store configured to its filesystem, in the main snapshot view screen select the filesystem snapshot to be uploaded and click Upload To Object. The Snapshot Upload confirmation window will be displayed.
 
-![Snapshot Upload Confirmation Window](../.gitbook/assets/snap-upload-dialog-3.5.png)
+![Snapshot Upload Confirmation Window](<../.gitbook/assets/Snap upload dialog 3.5.png>)
 
 Click Upload to upload the snapshot to the object-store.
 
@@ -114,7 +114,7 @@ Each snapshot has a unique locator within the object-store. This locator can be 
 
 To view the object store locator of the uploaded snapshot, click the snapshot in the Snapshots View screen.
 
-![View Object Store Locator of Uploaded Snapshot](../.gitbook/assets/snap-upload-view-locator-3.5.png)
+![View Object Store Locator of Uploaded Snapshot](<../.gitbook/assets/Snap upload view locator 3.5.png>)
 
 #### Uploading a Snapshot Using the CLI
 
@@ -142,7 +142,7 @@ Use the following command line to upload an existing snapshot:
 
 To create a filesystem from an uploaded snapshot, switch the From Uploaded Snapshot field in the Filesystem Creation dialog box to On. The Create Filesystem dialog box is displayed.
 
-![Create Filesystem from an Uploaded Snapshot Dialog Box](../.gitbook/assets/snap-create-fs-from-snap-3.5.png)
+![Create Filesystem from an Uploaded Snapshot Dialog Box](<../.gitbook/assets/Snap create FS from snap 3.5.png>)
 
 Define all the fields and enter the location of the snapshot to be used in the Object Store Locator field.
 
@@ -173,12 +173,12 @@ The `locator` is either a locator saved previously for disaster scenarios, or ca
 {% endhint %}
 
 {% hint style="info" %}
-**Note: **For encrypted filesystem, when downloading the same KMS master-key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](managing-filesystems/kms-management.md#overview) section.
+**Note:** For encrypted filesystem, when downloading the same KMS master-key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](managing-filesystems/kms-management.md#overview) section.
 {% endhint %}
 
 ### Recovering from a Remote Snapshot
 
-When there is a need to recover from a snapshot residing on a remote object-store, there is a need to define the object-store bucket containing the snapshot as a `local` bucket. This is since normally, a remote object-store has restrictions over the download, as explained in the [Managing Object Stores](managing-filesystems/managing-object-stores.md#overview) section, and we would want to use a different local object-store, due to the QoS reasons explained there. 
+When there is a need to recover from a snapshot residing on a remote object-store, there is a need to define the object-store bucket containing the snapshot as a `local` bucket. This is since normally, a remote object-store has restrictions over the download, as explained in the [Managing Object Stores](managing-filesystems/managing-object-stores.md#overview) section, and we would want to use a different local object-store, due to the QoS reasons explained there.&#x20;
 
 To recover from a snapshot residing on a remote object-store, you will need to create a new filesystem from this snapshot by following the below procedure:
 

@@ -15,7 +15,7 @@ Every Weka system user has one of the following defined roles:
 * **Cluster Admin**: A user with additional privileges, as described in [Cluster Admin Role Privileges](user-management.md#admin-role-privileges) below.
 * **Organization Admin**: A user with additional privileges within an organization (when working with different organizations, as described in [Organization Admin Role Privileges](organizations.md#organization-admin-role-privileges)).
 * **Read-only:** A user with read-only privileges.
-* **S3: **A user to run S3 commands and APIs. This user can operate within the limits of the S3 IAM policy attached to it.
+* **S3:** A user to run S3 commands and APIs. This user can operate within the limits of the S3 IAM policy attached to it.
 * **Regular**: A user that should only be able to mount filesystems
   * can log-in to obtain an access token
   * can change their password
@@ -169,7 +169,7 @@ To authenticate users from an LDAP user directory, the LDAP directory must first
 ### Configuring an LDAP User Directory
 
 **Command:**\
-`weka user ldap setup  `\
+`weka user ldap setup`  \
 `weka user ldap setup-ad`
 
 One of two CLI commands is used to configure an LDAP user directory for user authentication. The first is for configuring a general LDAP server and the second is for configuring an Active Directory server.
@@ -201,7 +201,7 @@ To configure an Active Directory server, use the following command line:
 | `server-timeout-secs`                   | Number   | Server connection timeout                                                                                   | Seconds                                                                                                                                          | No            |             |
 | `protocol-version`                      | String   | Selection of LDAP version                                                                                   | LDAP v2 or v3                                                                                                                                    | No\`          | LDAP v3     |
 | `user-revocation-attribute`             | String   | The LDAP attribute; when its value  changes in the LDAP directory, user access and mount tokens are revoked | User must re-login after a change is detected                                                                                                    | No            |             |
-| `start-tls`                             | String   | Issue StartTLS after connecting                                                                             | <p><code>yes</code> or <code>no</code></p><p>should not be used with <code>ldaps:// </code></p><p></p>                                           | No            | `no`        |
+| `start-tls`                             | String   | Issue StartTLS after connecting                                                                             | <p><code>yes</code> or <code>no</code></p><p>should not be used with <code>ldaps://</code> </p><p></p>                                           | No            | `no`        |
 | `ignore-start-tls-failure`              | String   | Ignore start TLS failure                                                                                    | `yes` or `no`                                                                                                                                    | No            | `no`        |
 
 ### Viewing a Configured LDAP User Directory
@@ -209,12 +209,12 @@ To configure an Active Directory server, use the following command line:
 **Command:**\
 `weka user ldap`
 
-This command is used for viewing the current LDAP configuration used for authenticating users. 
+This command is used for viewing the current LDAP configuration used for authenticating users.&#x20;
 
 ### Disabling/Enabling a Configured LDAP User Directory
 
 **Command:**\
-`weka user ldap disable  `\
+`weka user ldap disable`  \
 `weka user ldap enable`
 
 These commands are used for disabling or enabling user authentication through a configured LDAP user directory.

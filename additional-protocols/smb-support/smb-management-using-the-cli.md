@@ -108,7 +108,7 @@ Deleting an existing SMB cluster managed by the Weka system does not delete the 
 
 ## Add/Remove Hosts from an SMB Cluster
 
-**Command: **`weka smb cluster hosts add/remove`
+**Command:** `weka smb cluster hosts add/remove`
 
 Use these commands to add or remove hosts from the SMB cluster.
 
@@ -195,7 +195,7 @@ Use the following command line to add a new share to be exposed to SMB:
 {% hint style="success" %}
 **For Example:** The following is an example for adding users to a share mounted on a filesystem named "default":
 
-`weka smb share add rootShare default  `\
+`weka smb share add rootShare default`  \
 `weka smb share add internalShare default --internal-path some/dir --description "Exposed share"`
 
 In this example, the first SMB share added has the Weka system share for default. The second SMB share has internal for default.
@@ -303,7 +303,7 @@ Use this command to view the various host-access settings.
 
 Use the following command line to add hosts to the allow/deny list (in either cluster-level or share-level):
 
-`weka smb cluster host-access add <mode> <--ips ips> <--hosts hosts>`** **`weka smb share host-access add <share-id> <mode> <--ips ips> <--hosts hosts>`
+`weka smb cluster host-access add <mode> <--ips ips> <--hosts hosts>` **** `weka smb share host-access add <share-id> <mode> <--ips ips> <--hosts hosts>`
 
 **Parameters in Command Line**
 
@@ -320,7 +320,7 @@ Use the following command line to add hosts to the allow/deny list (in either cl
 
 Use the following command line to remove hosts from the allow/deny list (in either cluster-level or share-level):
 
-`weka smb cluster host-access remove <hosts>`** **`weka smb share host-access remove <share-id> <hosts>`
+`weka smb cluster host-access remove <hosts>` **** `weka smb share host-access remove <share-id> <hosts>`
 
 **Parameters in Command Line**
 
@@ -335,7 +335,7 @@ Use the following command line to remove hosts from the allow/deny list (in eith
 
 Use the following command line to remove all hosts from the allow/deny list (in either cluster-level or share-level):
 
-`weka smb cluster host-access reset <mode>`** **`weka smb share host-access reset <share-id> <mode>`
+`weka smb cluster host-access reset <mode>` **** `weka smb share host-access reset <share-id> <mode>`
 
 **Parameters in Command Line**
 

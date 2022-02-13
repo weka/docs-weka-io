@@ -10,20 +10,20 @@ description: >-
 
 ### S3 User Role
 
-To access the Weka cluster through the S3 protocol, a user with an S3 user role must be created (see [Managing Users](../../usage/security/user-management.md#managing-users) for details on creating users in Weka).  
+To access the Weka cluster through the S3 protocol, a user with an S3 user role must be created (see [Managing Users](../../usage/security/user-management.md#managing-users) for details on creating users in Weka). &#x20;
 
 {% hint style="info" %}
-**Note: **The S3 user name and password will serve as the S3 access key and secret key, respectively. 
+**Note:** The S3 user name and password will serve as the S3 access key and secret key, respectively.&#x20;
 {% endhint %}
 
 ### IAM Policy
 
 Once an S3 user has been created, it cannot run any S3 command or API. The Cluster Admin must attach an IAM policy to allow this user to operate (within the policy limits).
 
-A set of pre-defined policies can be attached to an S3 user, or new custom policies can be created and attached to an S3 user. To create a custom policy you can use [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html), and select `IAM Policy` as the policy type and `Amazon S3` as the AWS service. 
+A set of pre-defined policies can be attached to an S3 user, or new custom policies can be created and attached to an S3 user. To create a custom policy you can use [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html), and select `IAM Policy` as the policy type and `Amazon S3` as the AWS service.&#x20;
 
 {% hint style="info" %}
-**Note: **The IAM policy size is limited to 2KB. In case a larger policy is required, please contact the Weka Support Team.
+**Note:** The IAM policy size is limited to 2KB. In case a larger policy is required, please contact the Weka Support Team.
 {% endhint %}
 
 ### IAM Temporary Credentials (STS) - Assume Role
@@ -127,7 +127,7 @@ Use the following command line to create an S3 IAM policy:
 | `policy-name` | String   | The name of the new IAM policy                             |                                                                                                                                                                                      | Yes           |             |
 | `policy-file` | String   | A path to a custom policy JSON file for anonymous access.  | <p>A JSON file representing an IAM policy. </p><p>For supported actions, refer to the <a href="s3-limitations.md#supported-policy-actions">Supported Policy Actions</a> section.</p> | Yes           |             |
 
-### Deleting an IAM Policy <a href="creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
+### Deleting an IAM Policy <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
 **Command:** `weka s3 policy remove`
 
@@ -141,7 +141,7 @@ Use the following command line to delete an S3 IAM policy:‌
 | ------------- | -------- | ------------------------------------- | --------------- | ------------- | ----------- |
 | `policy-name` | String   | The name of the IAM policy to  remove | ​               | Yes           | ​           |
 
-### Attaching a Policy to an S3 User <a href="creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
+### Attaching a Policy to an S3 User <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
 **Command:** `weka s3 policy attach`
 
@@ -156,7 +156,7 @@ Use the following command line to attach an IAM policy to an S3 user:‌
 | `policy` | String   | The name of an existing IAM policy | ​               | Yes           | ​           |
 | `user`   | String   | The name of an existing S3 user    |                 | Yes           | ​           |
 
-### Detaching a Policy to an S3 User <a href="creating-a-new-iam-policies-1" id="creating-a-new-iam-policies-1"></a>
+### Detaching a Policy to an S3 User <a href="#creating-a-new-iam-policies-1" id="creating-a-new-iam-policies-1"></a>
 
 **Command:** `weka s3 policy detach`
 
