@@ -23,10 +23,10 @@ The Weka upgrade process supports upgrading to both higher minor versions and ma
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
+* To upgrade to Weka software version 3.14.x, go through version 3.13.1 or above
 * To upgrade to Weka software version 3.13.x, go through version 3.12.1 or above
 * To upgrade to Weka software version 3.12.x, go through version 3.11.0 or above
 * To upgrade to Weka software version 3.11.x, go through version 3.10.0 or above
-* To upgrade to Weka software version 3.10.x, go through version 3.9.0 or above
 
 For further information, contact the Weka Support Team.
 
@@ -34,12 +34,12 @@ For further information, contact the Weka Support Team.
 
 Download and prepare the new release on one of the backend hosts, using one of the following methods:
 
-*   From the backend host, run `weka version get <new-version>` where `<new-version>` is the name of the new version (e.g.,`3.13.0`), followed by `weka version prepare <new-version>`.&#x20;
+*   From the backend host, run `weka version get <new-version>` where `<new-version>` is the name of the new version (e.g.,`3.14.0`), followed by `weka version prepare <new-version>`.&#x20;
 
-    * If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `3.13.0` version from [get.weka.io](https://get.weka.io/ui/releases/), where a token need to be supplied as, use:&#x20;
+    * If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `3.14.0` version from [get.weka.io](https://get.weka.io/ui/releases/), where a token need to be supplied as, use:&#x20;
 
     ```bash
-    weka version get 3.13.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
+    weka version get 3.14.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
     ```
 * From the backend host, run the `curl` command as described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new version release page.
 * Download the new version tar file to the backend host and run `install.sh` (useful on environments where there is no connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs).
@@ -60,7 +60,7 @@ Once a new software version is installed on one of the backend hosts, the cluste
 
 `weka local run --in <new-version> upgrade`
 
-where `<new-version>` is the name of the new version (e.g.,`3.13.0`).
+where `<new-version>` is the name of the new version (e.g.,`3.14.0`).
 
 The limited upgrade window can be controlled by setting the following parameters in the `upgrade` command:
 
@@ -107,10 +107,10 @@ An alert is raised once there is a mismatching of versions in the cluster, and W
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
 {% hint style="success" %}
-**For Example:** The following will be received when the system has been upgraded to version 3.13.0:
+**For Example:** The following will be received when the system has been upgraded to version 3.14.0:
 
 `# weka status`  \
-`Weka v3.13.0`   \
+`Weka v3.14.0`   \
 `...`
 {% endhint %}
 
