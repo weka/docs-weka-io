@@ -98,20 +98,15 @@ Jumbo Frames are not required for clients. However, performance might be limited
 * Intel 40 Gbit (Beta)
 * Intel E810
 * Amazon ENA
-* Mellanox ConnectX4 (Ethernet and InfiniBand)
-* Mellanox ConnectX5 (Ethernet and InfiniBand)
-* Mellanox ConnectX6 (Ethernet and InfiniBand)
+* Mellanox ConnectX4
+* Mellanox ConnectX5
+* Mellanox ConnectX6
 * Mellanox **** ConnectX6-Dx
 
 #### NIC Drivers
 
 Supported Mellanox OFED versions:
 
-* 4.6-1.0.1.1
-* 4.7-1.0.0.1
-* 4.7-3.2.9.0
-* 4.9-2.2.4.0
-* 5.0-2.1.8.0
 * 5.1-2.5.8.0
 * 5.1-2.6.2.0
 
@@ -153,19 +148,14 @@ Supported Intel 40 drivers:
 
 #### NIC
 
-* Mellanox ConnectX4 (Ethernet and InfiniBand)
-* Mellanox ConnectX5 (Ethernet and InfiniBand)
-* Mellanox ConnectX6 (Ethernet and InfiniBand)
+* Mellanox ConnectX4
+* Mellanox ConnectX5
+* Mellanox ConnectX6
 
 #### NIC Drivers
 
 Supported Mellanox OFED versions:
 
-* 4.6-1.0.1.1
-* 4.7-1.0.0.1
-* 4.7-3.2.9.0
-* 4.9-2.2.4.0
-* 5.0-2.1.8.0
 * 5.1-2.5.8.0
 * 5.1-2.6.2.0
 
