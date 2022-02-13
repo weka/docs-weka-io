@@ -94,10 +94,11 @@ Jumbo Frames are not required for clients. However, performance might be limited
 
 #### NIC
 
+* Amazon ENA
+* Broadcom 57810s 10GbE
 * Intel 10 Gbit
 * Intel 40 Gbit (Beta)
 * Intel E810
-* Amazon ENA
 * Mellanox ConnectX4
 * Mellanox ConnectX5
 * Mellanox ConnectX6
