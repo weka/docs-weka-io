@@ -245,6 +245,10 @@ The information is stored securely in [Kubernetes secret](https://kubernetes.io/
 **Note:** Directory quota integration requires WekaFS software version **v3.13.0** and up.
 {% endhint %}
 
+{% hint style="info" %}
+**Note:** Authenticated mounts for filesystems set with `auth-required=true`, and filesystems in the non-root organization, require WekaFS software version **v3.14.0** and up.
+{% endhint %}
+
 {% hint style="warning" %}
 **Note:** It is recommended to deploy the CSI plugin in API-Based communication model even if the Weka cluster is below version **v3.13.0**
 
@@ -290,14 +294,14 @@ Apply the Secret and check it has been created successfully:
 # apply the secret .yaml file
 $ kubectl apply -f csi-wekafs-api-secret.yaml
 
-# Check the the secret was successfully created
+# Check the secret was successfully created
 $ kubectl get secret csi-wekafs-api-secret -n csi-wekafs
 NAME                    TYPE     DATA   AGE
 csi-wekafs-api-secret   Opaque   5      7m
 ```
 
-{% hint style="warning" %}
-**Note:** Organizations other than the `Root` organization are not supported yet.
+{% hint style="info" %}
+**Note:** To provision CSI volumes on filesystem residing in non-root organizations, or filesystems set with `auth-required=true,` CSI plugin of version **0.7.4** or higher is required, as well as Weka software of version **3.14** or higher
 {% endhint %}
 
 #### Storage Class Example
@@ -316,6 +320,13 @@ parameters:
   volumeType: dir/v1
   filesystemName: default
   capacityEnforcement: HARD
+  # optional parameters setting UID, GID and permissions on volume
+  # UID of the volume owner, default 0 (root)
+  #ownerUid: "1000"
+  # GID of the volume owner, default 0 (root)
+  #ownerGid: "1000"
+  # permissions in Unix octal format, default "0750"
+  #permissions: "0775"
   # name of the secret that stores API credentials for a cluster
   # change the name of secret to match secret of a particular cluster (if you have several Weka clusters)
   csi.storage.k8s.io/provisioner-secret-name: &secretName csi-wekafs-api-secret
@@ -338,8 +349,11 @@ parameters:
 
 | **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                              |
 | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `filesystemName`                                  | <p>The name of the Weka filesystem to create directories in as Kubernetes volumes. </p><ul><li>The filesystem must exist on Weka cluster</li><li>The filesystem may not be defined as "authenticated"</li></ul>                                                                                                                                                                              |
+| `filesystemName`                                  | <p>The name of the Weka filesystem to create directories in as Kubernetes volumes. </p><ul><li>The filesystem must exist on the Weka cluster</li><li>The filesystem may not be defined as "authenticated"</li></ul>                                                                                                                                                                          |
 | `capacityEnforcement`                             | <p>Can be <code>HARD</code> or <code>SOFT</code></p><ul><li><code>HARD</code>: strictly enforce quota and deny any write operation to the persistent volume consumer until space is freed up</li><li><code>SOFT</code>: do not strictly enforce the quota, but create an alert on the Weka cluster</li></ul>                                                                                 |
+| `ownerUid`                                        | Effective User ID of the owner user for the provisioned CSI volume. Might be required for application deployments running under non-root accounts. Defaults to `0`                                                                                                                                                                                                                           |
+| `ownerGid`                                        | Effective Group ID of the owner user for the provisioned CSI volume. Might be required for application deployments running under non-root accounts. Defaults to `0`                                                                                                                                                                                                                          |
+| `permissions`                                     | Unix permissions for the provisioned volume root directory, in octal format. Must be set in quotes. Defaults to `"0775"`                                                                                                                                                                                                                                                                     |
 | `csi.storage.k8s.io/provisioner-secret-name`      | <p>Name of the K8s secret, e.g. <code>csi-wekafs-api-secret</code></p><p>It is recommended to use an anchor definition in order to avoid mistakes since the same value has to be entered in additional fields below, according to the CSI spec definitions. Refer to the example above for exact formatting.</p>                                                                             |
 | `csi.storage.k8s.io/provisioner-secret-namespace` | <p>The namespace the secret is located in. </p><p>The secret does not have to be located in the same namespace as the CSI plugin is installed.</p><p>It is recommended using an anchor definition in order to avoid mistakes since the same value has to be entered in additional fields below, accordings to the CSI spec definitions. Refer to the example above for exact formatting.</p> |
 
@@ -350,7 +364,7 @@ Apply the StorageClass and check it has been created successfully:
 $ kubectl apply -f storageclass-wekafs-dir.yaml
 storageclass.storage.k8s.io/storageclass-wekafs-dir created
 
-# check the storageclass resource has been created
+# check the storageclass resource has been created successfully 
 $ kubectl get sc
 NAME                           PROVISIONER         RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
 storageclass-wekafs-dir        csi.weka.io         Delete          Immediate           true                   75s
@@ -641,7 +655,7 @@ git clone https://github.com/weka/csi-wekafs.git
 Execute the migration script by issuing the following command, where `<filesystem_name>` states the filesystem name which the  CSI volumes are located on, and optional `<csi_volumes_dir>` parameter states the directory inside the filesystem where CSI volumes are stored (only if the directory differs from default values)
 
 ```
-$ migration/migrate-legacy-csi-volumes.sh <filesystem_name> [--csi-volumes-dir <csi_volumes_dir>] [--endpoint-address BACKEND_IP_ADDRESS:BACKEND_PORT]
+$ sudo migration/migrate-legacy-csi-volumes.sh <filesystem_name> [--csi-volumes-dir <csi_volumes_dir>] [--endpoint-address BACKEND_IP_ADDRESS:BACKEND_PORT]
 ```
 
 {% hint style="info" %}
