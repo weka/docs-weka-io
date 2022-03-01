@@ -137,7 +137,7 @@ Supported Intel 40 drivers:
 
 #### Ethernet Configuration
 
-* Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GbE / 100 GbE
+* Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GbE / 100 GbE / 200 GbE
 * NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
 * VLAN: Not supported
 * Connectivity between hosts: Ports 14000-14100
