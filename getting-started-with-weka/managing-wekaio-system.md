@@ -74,7 +74,7 @@ The Weka system supports a RESTful API. This is useful when automating the inter
 
 The API is accessible at port 14000, via the `/api/v2` URL, you can explore it via `/api/v2/docs` when accessing from the cluster (e.g. `https://weka01:14000/api/v2/docs`).
 
-&#x20;Our static API documentation can be accessed from [api.docs.weka.io](https://api.docs.weka.io) (the version of the `.json` file can be changed to reflect the desired version, e.g., _**3.11.**json_). This file can also be used to create your client code, using an OpenAPI client generator.
+Our static API documentation can be accessed from [api.docs.weka.io](https://api.docs.weka.io) (the version can be selected from the drop-down list). The `.json` file can also be used to create your client code, using an OpenAPI client generator.
 
 ### Obtaining an Access Token
 
