@@ -15,16 +15,12 @@ The Weka CSI Plugin provides the creation and configuration of persistent storag
 ### Interoperability
 
 * CSI protocol: 1.0-1.2
-* Kubernetes: 1.18 - 1.21
-* OS (of Kubernetes worker nodes): ubuntu 16.04, 18.04
+* Kubernetes: 1.18 - 1.2
 * WekaFS: 3.8 and up
+* AppArmor and SELinux are not supported yet
 
 {% hint style="info" %}
 **Note:** Quota enforcement on persistent volumes requires WekaFS version 3.13 and up
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** For additional Kubernetes/OS versions support contact the Weka support team
 {% endhint %}
 
 ### Prerequisites
