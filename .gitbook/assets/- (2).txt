@@ -1,0 +1,35 @@
+# Weka Version 3.1.7 Release Notes
+
+##Document Details
+Version 3.1.7 release notes
+
+Date: 19 Jul 2018
+
+##Scope
+This document specifies the release notes for version 3.1.7. As issues might be discovered after the release of the version, it is strongly advised to check the latest version of this document, available at <https://get.weka.io>
+##Version Content
+This version contains the following features:
+
+* TBD
+
+Full description of the features can be found at https://docs.weka.io
+##Fixed Issues
+TBD
+##Known Issues
+
+|  Ticket Id | Description | Details | Work around | Solved in version |
+|-------------- | -------------- | -------------- | -------------- | -------------- |
+| WEKAPP-60921 |  | TBD | TBD | TBD |
+| WEKAPP-60903 |  | TBD | TBD | TBD |
+| WEKAPP-59489 |  | TBD | TBD | TBD |
+| WEKAPP-58651 |  | TBD | TBD | TBD |
+| WEKAPP-56865 |  | TBD | TBD | TBD |
+| WEKAPP-55041 |  | TBD | TBD | TBD |
+| WEKAPP-52906 |  | TBD | TBD | TBD |
+| WEKAPP-44527 |  | TBD | TBD | TBD |
+| WEKAPP-33960 |  | TBD | TBD | TBD |
+| WEKAPP-33292 |  | TBD | TBD | TBD |
+| WEKAPP-33163 |  | TBD | TBD | TBD |
+| WEKAPP-29044 | Alerts: SSD info popup doesn't close on mouse out | TBD | TBD | TBD |
+| WEKAPP-28226 |  | TBD | TBD | TBD |
+| WEKAPP-28198 |  | TBD | TBD | TBD |
