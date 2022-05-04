@@ -89,7 +89,7 @@ The hosts, which are part of the interface group, can be set to retrieve the use
 
 `sssd` should be configured on the host to serve as a group IDs provider. It can be configured directly, using LDAP, for example, or as a proxy to a different `nss` group IDs provider.
 
-Below is an example of how to set `sssd` directly for `nss` services using LDAP with a read-only user. For more options and information, refer to this [link](https://tylersguides.com/guides/configure-sssd-for-ldap-on-centos-7/).
+Below is an example of how to set `sssd` directly for `nss` services using LDAP with a read-only user.
 
 ```
 [sssd]
