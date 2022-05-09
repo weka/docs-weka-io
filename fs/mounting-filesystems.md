@@ -37,7 +37,7 @@ There are two options for mounting a filesystem on a cluster client: read cache 
 * [Read cache mount mode](../overview/weka-client-and-mount-modes.md#read-cache-mount-mode-default)
 * [Write cache mount mode](../overview/weka-client-and-mount-modes.md#write-cache-mount-mode)
 
-## Mounting Filesystems Using the Stateless Clients Feature <a href="mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
+## Mounting Filesystems Using the Stateless Clients Feature <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
 
 The Stateless Clients feature defers the process of joining the cluster until a mount is performed. Simplifying and improving the management of clients in the cluster, it removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave in high frequency. Furthermore, it unifies all security aspects in the mount command, eliminating the search of separate credentials at cluster join and mount.
 
@@ -212,7 +212,7 @@ It's easy to saturate the bandwidth of a single network interface when using Wek
 **For example**, the following command will allocate two cores and two physical network devices for increased throughput:
 
 ```
-mount -t wekafs -o num_cores=2 -o net=mlnx0,net=mlnx1 backend1/my_fs /mnt/weka
+mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/weka
 ```
 
 #### Using multiple physical network devices for HA configuration
@@ -256,7 +256,7 @@ mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
 {% endhint %}
 
 {% hint style="info" %}
-**Note: **Providing multiple IPs in the \<mgmt-ip> in UDP mode will utilize their network interfaces for more bandwidth (can be useful in RDMA environments), rather than using only one NIC.
+**Note:** Providing multiple IPs in the \<mgmt-ip> in UDP mode will utilize their network interfaces for more bandwidth (can be useful in RDMA environments), rather than using only one NIC.
 {% endhint %}
 
 ## Mounting Filesystems Using fstab
