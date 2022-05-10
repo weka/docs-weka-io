@@ -214,7 +214,7 @@ It's easy to saturate the bandwidth of a single network interface when using Wek
 **For example**, the following command will allocate two cores and two physical network devices for increased throughput:
 
 ```
-mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/weka
+mount -t wekafs -o num_cores=2 -o net=mlnx0,net=mlnx1 backend1/my_fs /mnt/weka
 ```
 
 #### Using multiple physical network devices for HA configuration
