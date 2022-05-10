@@ -81,9 +81,6 @@ The S3 protocol implementation supports the following policy actions:
 * `s3:PutObject`
 * `s3:GetBucketTagging`
 * `s3:PutBucketTagging`
-* `s3:Get`
-* `s3:Put`
-* `s3:Delete`
 
 ## Lifecycle Configuration
 
