@@ -66,21 +66,18 @@ The S3 protocol implementation supports the following policy actions:
 * `s3:DeleteBucketPolicy`
 * `s3:DeleteObject`
 * `s3:GetBucketLocation`
+* `s3:GetLifecycleConfiguration`
+* `s3:PutLifecycleConfiguration`
+* `s3:ListBucketMultipartUploads`
+* `s3:ListMultipartUploadParts`
 * `s3:GetBucketPolicy`
 * `s3:GetObject`
 * `s3:ListAllMyBuckets`
 * `s3:ListBucket`
-* `s3:ListMultipartUploads`
-* `s3:ListParts`
-* `s3:PutBucketLifecycle`
-* `s3:GetBucketLifecycle`
 * `s3:PutBucketPolicy`
 * `s3:PutObject`
 * `s3:GetBucketTagging`
 * `s3:PutBucketTagging`
-* `s3:Get`
-* `s3:Put`
-* `s3:Delete`
 
 ## Lifecycle Configuration
 
