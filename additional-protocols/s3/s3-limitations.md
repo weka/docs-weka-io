@@ -74,6 +74,10 @@ The S3 protocol implementation supports the following policy actions:
 * `s3:ListParts`
 * `s3:PutBucketLifecycle`
 * `s3:GetBucketLifecycle`
+* `s3:GetLifecycleConfiguration`
+* `s3:PutLifecycleConfiguration`
+* `s3:ListBucketMultipartUploads`
+* `s3:ListMultipartUploadParts`
 * `s3:PutBucketPolicy`
 * `s3:PutObject`
 * `s3:GetBucketTagging`
