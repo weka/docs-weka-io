@@ -1,49 +1,52 @@
 ---
 description: >-
-  This page describes the process for obtaining the Weka software tar install
-  file.
+  This page describes registering to get.weka.io and obtaining the Weka software
+  installation file.
 ---
 
-# Obtaining the Weka Install File
+# Obtain the Weka software installation file
 
-{% hint style="info" %}
-**Note:** The Weka software tar installation file can be obtained either by a direct online download or from offline media containing the file. The following description is of the online download. It is possible to either download the installation file directly to each host, or distribute manually from a single download or offline media to all hosts.
-{% endhint %}
+## **Register to get.weka.io**
 
-{% hint style="info" %}
-**Note:** The online download process is automatic and requires connection to the Internet.
-{% endhint %}
+To sign in to [get.weka.io](http://get.weka.io), first, you need to create an account and fill in your details. If you already have a registered account for get.weka.io, skip this procedure.
 
-## Step 1: Log In
+**Procedure**
 
-Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site. Log in by entering your email address and password. Then click Continue.
+1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and select **Create an account.**
 
-![Weka System Login Screen](<../../.gitbook/assets/get weka io start.png>)
+![Create an account](../../.gitbook/assets/Sign-in\_create\_an\_account.png)
 
-If you do not have an account, click Create an account. The following screen is displayed:
+The Send Registration Email page opens.
 
-![Registration Screen to Create an Account](<../../.gitbook/assets/get weka io register.png>)
+2\. Fill in your organization's email address (private mail is not allowed).\
+&#x20;   Select **I’m not a robot**, and then select **Send Registration Email.**
 
-Enter your email address, check the I’m not a robot box (assuming you're not a robot!), complete the questions and click Send Registration Email.
+3\. Check your inbox for a registration email from Weka.io. \
+&#x20;   To confirm your registration, select the link.\
+&#x20;   The Create Your Account page opens.
 
-You will now receive a registration confirmation email. Click the link in the email. The following screen will be displayed:
+4\. Fill in your email address, full name, and password. Then, select **Create Account**.
 
-![Weka Registration: Create Account Screen](<../../.gitbook/assets/get weka io create.png>)
+![Create account](../../.gitbook/assets/Create\_an\_account.png)
 
-Create your account by entering your full name and password. Then click Create Account. The Weka dashboard screen will be displayed.
+Your request for access to [get.weka.io](http://get.weka.io) is sent to Weka for review. Wait for a validation email. Once your registration is approved, you can sign in to [get.weka.io](http://get.weka.io).
 
-![Weka Dashboard Screen](<../../.gitbook/assets/get weka io new.png>)
+## **Download the Weka software installation file**
 
-## Step 2: Download the Weka Software
+Download the Weka software installation package (tar) from the [get.weka.io](https://get.weka.io/ui/dashboard) site. You can only sign in and download the tar file if you are a registered user.
 
-To download the latest release, click the Latest Release button.
+**Procedure**
 
-{% hint style="info" %}
-**Note:** If a previously-released version is required, click the Releases tab and select the release required from the list of releases.
-{% endhint %}
+1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and sign in with your registered account.
 
-Follow the instructions for downloading the release appearing on the screen.
+![Sign in to download and get your Weka license](../../.gitbook/assets/sign-in-for-download.png)
 
-![Weka Download Screen](<../../.gitbook/assets/get weka io dl.png>)
+[get.weka.io](http://get.weka.io) page opens.
 
-The details for the download and installation instructions are displayed. Download the file using either the command provided or the direct link.
+![get.weka.io: Dashboard tab](../../.gitbook/assets/Get\_Weka\_dashboard.png)
+
+2\. Select the **Releases** tab.
+
+![get.weka.io: Releases tab](../../.gitbook/assets/Get\_Weka\_download\_tab.png)
+
+3\. Select the required release and follow the download instructions.
