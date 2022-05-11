@@ -1,15 +1,20 @@
 ---
-description: This page provides an overview of the Weka system CLI.
+description: >-
+  This page provides an overview for Weka CLI, including the top-level commands,
+  command hierarchy, how to connect to another host, auto-completion, and how to
+  check the status of the cluster.
 ---
 
-# CLI Overview
+# Manage the system using Weka CLI
 
-## Available Top-Level Commands
+The Weka CLI is installed on each Weka host and is available through the `weka` command. It's possible to`ssh` one of the hosts and run the `weka` command. This displays a list of all available top-level commands.
+
+## Top-level commands
 
 The Weka CLI is installed on each Weka host and is available through the `weka` command. Running this command will display a list of all available top-level commands:
 
 ```
-$ weka
+$ weka -h
 Usage:
     weka [--help] [--build] [--version] [--legal]
 
@@ -17,11 +22,10 @@ Description:
     The base command for all weka related CLIs
 
 Subcommands:
-   agent      Command s that control the weka agent (outside the weka containers)
+   agent      Commands that control the weka agent (outside the weka containers)
    alerts     List alerts in the Weka cluster
    cloud      Cloud commands. List the cluster's cloud status, if no subcommand supplied.
    cluster    Commands that manage the cluster
-   debug      Commands used to debug a weka cluster
    diags      Diagnostics commands to help understand the status of the cluster and its environment
    events     List all events that conform to the filter criteria
    fs         List filesystems defined in this Weka cluster
@@ -37,6 +41,7 @@ Subcommands:
    user       List users defined in the Weka cluster
    version    When run without arguments, lists the versions available on this machine. Subcommands allow for
               downloading of versions, setting the current version and other actions to manage versions.
+   s3         Commands that manage Weka's S3 container
 
 Options:
    --agent         Start the agent service
@@ -44,6 +49,7 @@ Options:
    --build         Prints the CLI build number and exits
    -v, --version   Prints the CLI version and exits
    --legal         Prints software license information and exits
+
 ```
 
 {% hint style="info" %}
@@ -72,7 +78,7 @@ Options:
 `-T|--TIMEOUT` flag can be used to change the default timeout for which the commands waits for a response before giving up.
 {% endhint %}
 
-## Command Hierarchy
+## Command hierarchy
 
 Most Weka system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
 
@@ -144,11 +150,11 @@ Options:
 
 ```
 
-## Connecting to Another Host
+## Connect to another host
 
 Most Weka system commands deliver the same result on all cluster hosts. However, it is sometimes necessary to execute a command on a specific host. This is performed using the `-H`/`--hostname` option and specifying the hostname or IP address of the target host.
 
-## CLI Auto-completion
+## CLI auto-completion
 
 Using `bash` you can use auto-completion for CLI commands and parameters. The auto-completion script is automatically installed.
 
@@ -158,7 +164,7 @@ To (re-)install the script on a host, run `weka agent autocomplete install` and 
 
 You can also use `weka agent autocomplete export` to get the bash completions script and write it to any desired location.
 
-## Cluster Status
+## Cluster status
 
 The `weka status` command displays the overall status of the Weka system.
 

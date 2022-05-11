@@ -4,13 +4,13 @@ description: >-
   filesystems and managing the cluster itself - using the GUI.
 ---
 
-# SMB Management Using the GUI
+# Manage SMB using the GUI
 
 {% hint style="info" %}
 **Note:** Use ASCII format when configuring name fields (e.g., domain, shares, etc.)
 {% endhint %}
 
-## **Configuring an SMB Cluster**
+## **Configure an SMB cluster**
 
 To configure an SMB cluster, first access the SMB Service view.
 
@@ -38,7 +38,7 @@ The following SMB Cluster Configuration window will be displayed:
 **Note:** The status of the hosts will change from not ready to ready.
 {% endhint %}
 
-## Joining the SMB Cluster to an Active Directory
+## Join the SMB cluster in an Active Directory
 
 To join the SMB cluster to an Active Directory, click the Join button when all hosts have been prepared and are ready. The following window will be displayed:
 
@@ -60,7 +60,7 @@ On successful completion, the join status next to the domain will change to "joi
 
 In order to join another Active Directory to the current SMB cluster configuration, click the Leave button. To confirm this action, it is necessary to enter the username and password used to connect to the Active Directory.
 
-## Deleting an SMB Cluster
+## Delete an SMB cluster
 
 To delete a configured SMB cluster, click the Reset button in the Configure SMB Cluster window. The following window will be displayed:
 
@@ -68,7 +68,7 @@ To delete a configured SMB cluster, click the Reset button in the Configure SMB 
 
 Confirm the deletion by clicking the Reset button.
 
-## **Listing SMB Shares**
+## **List SMB shares**
 
 To access SMB shares**,** click the SMB Shares tab in the SMB Service Overview screen. A list of all SMB shares will be displayed**:**
 
@@ -78,7 +78,7 @@ To access SMB shares**,** click the SMB Shares tab in the SMB Service Overview s
 **Note:** It is possible to filter this list using any column in the table.
 {% endhint %}
 
-## Adding an SMB Share
+## Add an SMB share
 
 To add a new SMB share, click Create Share at the top right-hand corner of the table. The following Create Share window will be displayed:
 
@@ -86,7 +86,7 @@ To add a new SMB share, click Create Share at the top right-hand corner of the t
 
 Enter the new share name and description, select a filesystem, and enter the path (valid and relative internal path within the filesystem which will be exposed). Also, determine the new default file/directory permissions created through the share. Then click the Create button. The new share will receive the `writecache` mount mode.
 
-## Removing an SMB Share
+## Remove an SMB share
 
 To remove an SMB share, click anywhere on the row to be removed and then click the Delete button.
 

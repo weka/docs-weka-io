@@ -4,9 +4,9 @@ description: >-
   system.
 ---
 
-# User Management
+# User management
 
-## Types of Users
+## User types
 
 Access to a Weka system cluster is controlled by creating, modifying, and deleting users. Up to 512 local users can be defined to work with a Weka system cluster. Each user is identified by a username and must provide a password for authentication to work with the Weka system GUI or CLI.
 
@@ -21,7 +21,7 @@ Every Weka system user has one of the following defined roles:
   * can change their password
   * cannot access the UI or run other CLI/API commands
 
-## First User (Cluster Admin)
+## Cluster admin-the first user
 
 By default, when a Weka cluster is created, a first user with an `admin` username and password is created. This user has a Cluster Admin role, which allows the running of all commands.
 
@@ -29,7 +29,7 @@ Cluster Admin users are responsible for managing the cluster as a whole. When us
 
 A Cluster Admin user is created because a Weka system cluster must have at least one defined Admin user. However, it is possible to create a user with a different name and delete the default admin user, if required.
 
-## Cluster Admin Role Privileges
+## Cluster admin role privileges
 
 Cluster Admin users have additional privileges over regular users. These include the ability to:
 
@@ -45,9 +45,9 @@ Additionally, the following restrictions are implemented for Cluster Admin users
 * Cluster Admins cannot delete themselves.
 * Cluster Admins cannot change their role to a regular user role.
 
-## Managing Users
+## Manage users
 
-### Creating Users
+### Create users
 
 **Command:** `weka user add`
 
@@ -92,7 +92,7 @@ Username    | Source   | Role
 my_new_user | Internal | Regular
 ```
 
-### Changing Users Passwords
+### Change users passwords
 
 **Command:** `weka user passwd`
 
@@ -111,7 +111,7 @@ Use the following command line to change a local user password:
 **Note:** If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
 {% endhint %}
 
-### Updating Users
+### Update users
 
 **Command:** `weka user update`
 
@@ -119,7 +119,7 @@ Use the following command line to update a local user:
 
 `weka user update <username> [--role role] [--posix-uid uid] [--posix-gid gid]`
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name**    | **Type** | **Value**                                                                                          | **Limitations**                                           | **Mandatory** | **Default** |
 | ----------- | -------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------- | ----------- |
@@ -128,7 +128,7 @@ Use the following command line to update a local user:
 | `posix-uid` | Number   | POSIX UID of underlying files representing objects created by this S3 user access/keys credentials | For S3 user roles only                                    | No            |             |
 | `posix-gid` | Number   | POSIX GID of underlying files representing objects created by this S3 user access/keys credentials | For S3 user roles only                                    | No            |             |
 
-### Deleting Users
+### Delete users
 
 **Command:** `weka user delete`
 
@@ -157,7 +157,7 @@ admin    | Internal | Admin
 ```
 {% endhint %}
 
-## User Log In
+## User sign in
 
 When a login is attempted, the user is first searched in the list of internal users, i.e., users created using the`weka user add` command.
 
@@ -181,11 +181,11 @@ Alternatively, it is possible to log into the CLI as a specific user using the`w
 To use a non-default path for the token file, use the `WEKA_TOKEN` environment variable.
 {% endhint %}
 
-## Authenticating Users from an LDAP User Directory
+## Authenticate users from an LDAP user directory
 
 To authenticate users from an LDAP user directory, the LDAP directory must first be configured to the Weka system. This is performed as follows.
 
-### Configuring an LDAP User Directory
+### Configuring an LDAP user directory
 
 **Command:**\
 `weka user ldap setup`  \
@@ -223,14 +223,14 @@ To configure an Active Directory server, use the following command line:
 | `start-tls`                             | String   | Issue StartTLS after connecting                                                                             | <p><code>yes</code> or <code>no</code></p><p>should not be used with <code>ldaps://</code> </p><p></p>                                           | No            | `no`        |
 | `ignore-start-tls-failure`              | String   | Ignore start TLS failure                                                                                    | `yes` or `no`                                                                                                                                    | No            | `no`        |
 
-### Viewing a Configured LDAP User Directory
+### View a configured LDAP User Directory
 
 **Command:**\
 `weka user ldap`
 
 This command is used for viewing the current LDAP configuration used for authenticating users.&#x20;
 
-### Disabling/Enabling a Configured LDAP User Directory
+### Disable or enable a configured LDAP user directory
 
 **Command:**\
 `weka user ldap disable`  \

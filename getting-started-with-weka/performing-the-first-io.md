@@ -4,13 +4,11 @@ description: >-
   IO in a WekaFS filesystem.
 ---
 
-# Serving IOs with WekaFS
+# Run first IOs with WekaFS
 
-## Overview
+Once the system is installed and you are familiar with the CLI and GUI, you can connect to one of the hosts and try it out.
 
-Now that the system is installed and you've become familiar with the CLI/GUI, you can connect to one of the hosts and try it out.
-
-This page will guide you through:
+This page guides you through:
 
 1. The steps needed for performing IOs using a WekaFS filesystem (this is a sanity test for the configuration):
    * [Creating a filesystem](performing-the-first-io.md#creating-the-first-filesystem)
@@ -18,9 +16,9 @@ This page will guide you through:
    * [Writing to a filesystem](performing-the-first-io.md#writing-to-the-filesystem)
 2. [Conducting performance testing](performing-the-first-io.md#validating-the-configuration-achieving-the-expected-performance) to make sure both the Weka cluster and the IT environment are best configured to reap the benefits of WekaFS.
 
-## Creating the First Filesystem
+## Create the first filesystem
 
-A filesystem should reside in a filesystem group, so first, you will need to create a filesystem group:
+A filesystem must reside in a filesystem group, so first, create a filesystem group:
 
 ```
 # to create a new filesystem group
@@ -71,7 +69,7 @@ Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | 
 
 For more information about filesystems and filesystem groups, refer to [Managing Filesystems, Object Stores & Filesystem Groups](../fs/managing-filesystems/).
 
-## Mounting the First Filesystem
+## Mount the first filesystem
 
 You can mount a filesystem by creating a mount point and calling the mount command:
 
@@ -95,7 +93,7 @@ new_fs on /mnt/weka type wekafs (rw,relatime,writecache,inode_bits=64,dentry_max
 
 For more information about mounting filesystems and mount options, refer to [Mounting Filesystems](../fs/mounting-filesystems.md#overview).
 
-## Writing to the Filesystem
+## Write to the filesystem
 
 Now everything is set up, and you can write some data to the filesystem:
 
@@ -120,16 +118,16 @@ Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | 
 
 This has completed the sanity check that the Weka cluster is configured and IOs can be performed to it.
 
-## Validating the Configuration - Achieving the Expected Performance
+## Validate the configuration-achieve the expected performance
 
 To make sure that the Weka cluster and the IT environment are well configured, more complex IO patterns and benchmark tests should be conducted using the FIO utility.
 
-Although results can vary using different hosts and networking, it is not expected to be very different than what we and many other customers achieved. Properly configured Weka cluster and IT environment should yield similar results as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/).
+Although results can vary using different hosts and networking, it is not expected to be very different than what we and many other customers achieved. A properly configured Weka cluster and IT environment should yield similar results as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/).
 
 {% hint style="info" %}
-**Note:** The numbers achieved in the benchmark tests, as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/) are not just achieved in a closed/controlled environment. Similar numbers should be achieved when using similar configuration, if the Weka cluster and IT environment are properly configured. If the numbers achieved in your environment significantly vary from those, please contact the Weka Sales or Support Team before running any other workload on the Weka cluster.
+**Note:** The numbers achieved in the benchmark tests, as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/) are not just achieved in a closed/controlled environment. Similar numbers should be achieved when using a similar configuration if the Weka cluster and IT environment are properly configured. If the numbers achieved in your environment significantly vary from those, please contact the Weka Sales or Support Team before running any other workload on the Weka cluster.
 
-The example results shown in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/), are tested on AWS. In general, for any of Weka reference architecture, you should expect lower than 300 microseconds latency and 5.5 GB/s throughput per host (for a single 100gbps link).
+The example results shown in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/), are tested on AWS. In general, for any Weka reference architecture, you should expect lower than 300 microseconds latency and 5.5 GB/s throughput per host (for a single 100gbps link).
 {% endhint %}
 
 {% content-ref url="../testing-and-troubleshooting/testing-weka-system-performance/" %}

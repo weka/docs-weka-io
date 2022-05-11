@@ -1,10 +1,10 @@
 ---
 description: >-
-  This page describes how to set up external monitoring using Prometheus and
-  Grafana
+  This page describes how to set up the external monitoring tools, Prometheus
+  and Grafana.
 ---
 
-# External Monitoring
+# Monitor using external tools
 
 ## Overview
 

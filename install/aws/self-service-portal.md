@@ -20,7 +20,7 @@ Each configuration can be immediately deployed as a CloudFormation stack by redi
 
 Once the cluster is deployed:
 
-1. Refer to [Managing the Weka System ](../../getting-started-with-weka/managing-wekaio-system.md)for getting started with Weka CLI and GUI.
+1. Refer to [Managing the Weka System ](broken-reference)for getting started with Weka CLI and GUI.
 2. Refer to [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting, and writing to a WekaFS filesystem.
 
 ## Planning a Cluster
@@ -124,7 +124,7 @@ The cluster deployment process takes about 10 minutes. During this time, the fol
 
 Once the deployment is complete, the CloudFormation stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link (or by http://\<backend-host>:14000).
 
-Visit [Managing the Weka System ](../../getting-started-with-weka/managing-wekaio-system.md)for getting started with Weka CLI and GUI, and [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting, and writing to a WekaFS filesystem.
+Visit [Managing the Weka System ](broken-reference)for getting started with Weka CLI and GUI, and [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting, and writing to a WekaFS filesystem.
 
 {% hint style="info" %}
 **Note:** If the deployment is unsuccessful, see [Troubleshooting](troubleshooting.md) for how to resolve common deployment issues.

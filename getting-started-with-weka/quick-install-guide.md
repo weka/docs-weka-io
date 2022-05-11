@@ -145,4 +145,16 @@ WekaIO v3.10.0 (CLI build 3.10.0)
 
 Lastly, change the default admin password, and make sure there are no other alerts in the system.
 
-The Weka system is now installed. Now let's learn how to view, manage, and operate it using either the [CLI](managing-wekaio-system.md#cli) or the [GUI](managing-wekaio-system.md#gui) and [perform the first IO](performing-the-first-io.md) to a WekaFS filesystem.
+Once the Weka system is installed, learn how to view, manage and operate it using either the CLI or the GUI, and perform the first IO to a WekaFS filesystem.
+
+The Weka system supports a RESTful API. This is useful when automating the interaction with the Weka system and when integrating it into your workflows or monitoring systems.
+
+<mark style="color:purple;">**Related topics**</mark>
+
+[manage-the-system-using-weka-cli.md](manage-the-system-using-weka-cli.md "mention")
+
+[manage-the-system-using-weka-gui.md](manage-the-system-using-weka-gui.md "mention")
+
+[performing-the-first-io.md](performing-the-first-io.md "mention")
+
+[getting-started-with-weka-rest-api.md](getting-started-with-weka-rest-api.md "mention")

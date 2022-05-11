@@ -4,7 +4,7 @@ description: >-
   management.
 ---
 
-# Security
+# Manage security
 
 ## Overview
 
@@ -40,11 +40,11 @@ You can deploy your certificates using the `weka security tls set` CLI command. 
 **For example,** this is a similar command to what Weka uses to generate the self-signed certificate using  OpenSSL:`openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
 {% endhint %}
 
-### Certificate Replacement/Rotation
+### Certificate replacement and rotation
 
 To replace the certificate, use the `weka security tls set` CLI command to set a new one. Once a certificate has been issued, it is used for connecting to the cluster (for the time it has been issued), while the revocation is handled by the CA and propagating its revocation lists into the various clients.
 
-## Custom CA Certificates
+## Custom CA certificates
 
 Weka uses well-known CAs to establish trust with external services, e.g., when using a KMS. If a different CA is required for Weka servers to establish trust, use `weka security ca-cert set` CLI command to install this custom CA certificate on the Weka servers.
 

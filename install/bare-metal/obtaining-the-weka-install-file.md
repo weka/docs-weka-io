@@ -1,14 +1,14 @@
 ---
 description: >-
-  This page describes the process for obtaining the Weka software tar install
-  file.
+  This page describes registering to get.weka.io and obtaining the Weka software
+  installation file.
 ---
 
 # Obtain the Weka Software Installation Package
 
 ## **Register to get.weka.io**
 
-To sign in to [get.weka.io](http://get.weka.io), first, you need to create an account and fill in your details. If you already have a registered account for get.weka.io, skip this procedure.
+To sign in to [get.weka.io](http://get.weka.io), you first need to create an account and fill in your details. If you already have a registered account for get.weka.io, skip this procedure.
 
 **Procedure**
 

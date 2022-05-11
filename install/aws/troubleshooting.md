@@ -60,5 +60,5 @@ When the message _Clients failed to join for uniqueId: ClientN_ is received whil
 
 You can monitor the cluster instances by checking the cluster EC2 instances in the AWS EC2 service. You can set up [Cloud Watch](https://aws.amazon.com/documentation/cloudwatch/) as external monitoring to the cluster.
 
-Connecting to the Weka system cluster GUI will provide the[ Weka cluster health](../../getting-started-with-weka/gui.md), where you can see if any component is not functioning well, view system [alerts](../../usage/alerts/), [events](../../usage/events/), and [statistics](../../usage/statistics/).&#x20;
+Connecting to the Weka system cluster GUI will provide the[ Weka cluster health](broken-reference), where you can see if any component is not functioning well, view system [alerts](../../usage/alerts/), [events](../../usage/events/), and [statistics](../../usage/statistics/).&#x20;
 

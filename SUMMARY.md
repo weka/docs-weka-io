@@ -6,7 +6,7 @@
 
 * [About the Weka System](overview/about.md)
 * [SSD Capacity Management](overview/ssd-capacity-management.md)
-* [Filesystems, Object Stores & Filesystem Groups](overview/filesystems.md)
+* [Filesystems, object stores, and filesystem groups](overview/filesystems.md)
 * [Weka Networking](overview/networking-in-wekaio.md)
 * [Data Lifecycle Management](overview/data-storage.md)
 * [Weka Client & Mount Modes](overview/weka-client-and-mount-modes.md)
@@ -15,10 +15,10 @@
 ## Getting Started with Weka
 
 * [Quick Install Guide](getting-started-with-weka/quick-install-guide.md)
-* [Manage the Weka system](getting-started-with-weka/managing-wekaio-system.md)
-* [CLI Overview](getting-started-with-weka/cli-overview.md)
-* [Weka application overview](getting-started-with-weka/gui.md)
-* [Serving IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
+* [Manage the system using Weka CLI](getting-started-with-weka/manage-the-system-using-weka-cli.md)
+* [Manage the system using Weka GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
+* [Run first IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
+* [Getting started with Weka REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
 
 ## Planning & Installation <a href="#install" id="install"></a>
 
@@ -47,7 +47,7 @@
 
 ## WekaFS Filesystems <a href="#fs" id="fs"></a>
 
-* [Managing Filesystems, Object Stores & Filesystem Groups](fs/managing-filesystems/README.md)
+* [Manage filesystems, object stores, and filesystem groups](fs/managing-filesystems/README.md)
   * [Managing Object Stores](fs/managing-filesystems/managing-object-stores.md)
   * [Managing Filesystem Groups](fs/managing-filesystems/managing-filesystem-groups.md)
   * [Managing Filesystems](fs/managing-filesystems/managing-filesystems.md)
@@ -65,10 +65,10 @@
 
 ## Additional Protocols
 
-* [NFS](additional-protocols/nfs-support.md)
+* [Configure NFS](additional-protocols/nfs-support.md)
 * [SMB](additional-protocols/smb-support/README.md)
   * [SMB Management Using CLIs](additional-protocols/smb-support/smb-management-using-the-cli.md)
-  * [SMB Management Using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
+  * [Manage SMB using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
 * [S3](additional-protocols/s3/README.md)
   * [S3 Cluster Management](additional-protocols/s3/s3-cluster-management.md)
   * [S3 Buckets Management](additional-protocols/s3/s3-buckets-management.md)
@@ -87,8 +87,8 @@
 * [Statistics](usage/statistics/README.md)
   * [List of Statistics](usage/statistics/list-of-statistics.md)
 * [System Congestion](usage/system-congestion.md)
-* [Security](usage/security/README.md)
-  * [User Management](usage/security/user-management.md)
+* [Manage security](usage/security/README.md)
+  * [User management](usage/security/user-management.md)
   * [Organizations](usage/security/organizations.md)
 * [Expanding & Shrinking Cluster Resources](usage/expanding-and-shrinking-cluster-resources/README.md)
   * [Expand & Shrink Overview](usage/expanding-and-shrinking-cluster-resources/expand-and-shrink-overview.md)
@@ -114,9 +114,9 @@
 ## Appendix
 
 * [Weka CSI Plugin](appendix/weka-csi-plugin.md)
-* [External Monitoring](appendix/external-monitoring.md)
+* [Monitor using external tools](appendix/external-monitoring.md)
 * [Snapshot Management](appendix/snapshot-management.md)
 
 ***
 
-* [REST API](https://api.docs.weka.io)
+* [REST API Reference Guide](https://api.docs.weka.io)
