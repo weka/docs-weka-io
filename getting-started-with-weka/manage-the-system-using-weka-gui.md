@@ -17,7 +17,7 @@ You can access the Weka GUI with any standard browser using the address: \
 For example: `https://WekaProd:14000` or `https://weka01:14000`.
 
 {% hint style="info" %}
-On AWS installations, you can access the Weka GUI from the self-service portal, in the **Outputs** tab of the **CloudFormation** stack, click the **GUI** link.
+On AWS installations, you can access the Weka GUI from the self-service portal. In the **Outputs** tab of the **CloudFormation** stack, click the **GUI** link.
 {% endhint %}
 
 **Before you begin**
