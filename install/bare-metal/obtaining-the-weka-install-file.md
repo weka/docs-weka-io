@@ -1,10 +1,10 @@
 ---
 description: >-
-  This page describes registering to get.weka.io and obtaining the Weka software
-  installation file.
+  This page describes the process for obtaining the Weka software tar install
+  file.
 ---
 
-# Obtain the Weka software installation file
+# Obtain the Weka Software Installation Package
 
 ## **Register to get.weka.io**
 
