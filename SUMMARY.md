@@ -17,7 +17,7 @@
 * [Quick Install Guide](getting-started-with-weka/quick-install-guide.md)
 * [Manage the Weka system](getting-started-with-weka/managing-wekaio-system.md)
 * [CLI Overview](getting-started-with-weka/cli-overview.md)
-* [GUI Overview](getting-started-with-weka/gui.md)
+* [Weka application overview](getting-started-with-weka/gui.md)
 * [Serving IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
 
 ## Planning & Installation <a href="#install" id="install"></a>

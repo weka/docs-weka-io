@@ -1,8 +1,14 @@
 ---
-description: This page provides an overview of the Weka system GUI.
+description: >-
+  The Weka application is the primary administrative tool you use to configure,
+  administer, and monitor the Weka cluster.
 ---
 
-# GUI Overview
+# Weka application overview
+
+
+
+
 
 The Weka system GUI is accessible through one of the servers on port 14000.
 
@@ -10,7 +16,7 @@ On AWS installations via the self-service portal, the Weka system GUI can be acc
 
 After logging in, the Weka dashboard is displayed.
 
-![Weka Dashboard](<../.gitbook/assets/GUI dashboard 3.5.png>)
+![](../.gitbook/assets/wmng\_dashboard.png)
 
 The dashboard enables the viewing of information on the backend host configuration and topology, system alerts, and some important statistics.
 
