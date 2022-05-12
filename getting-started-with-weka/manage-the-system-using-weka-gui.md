@@ -1,11 +1,41 @@
 ---
 description: >-
   The Weka GUI application enables you to configure, administer, and monitor the
-  Weka system. This page provides basic operations and an overview of the system
-  dashboard and the main menu.
+  Weka system. This page provides an overview of the main operations. how to acc
+  and a description of the system dashboard.
 ---
 
 # Manage the system using Weka GUI
+
+## Weka GUI overview
+
+The Weka GUI application is the administration tool for your Weka system. Use this tool for system configuration, filesystems management, user management, monitoring, view alarms, and investigation events and statistics.
+
+The Weka GUI application supports the following functions:
+
+* **Configuration**:
+  * Configure the cluster, such as data availability, license, security, and central monitoring.
+  * Configure the machine backends, clients, and filesystem hosts.
+  * Manage local users and set up the user directory.
+  * Manage the organization's SSD quota and total quota.
+* **Management**:
+  * Manage the filesystems, including tiering, thin provisioning, and encryption.
+  * Manage snapshots.
+  * Manage the object store buckets.
+  * Manage the filesystem protocols: SMB, S3, and NFS.
+* **Investigation**:
+  * Investigate events
+  * Investigate overtime statistics, such as total operations, R/W throughput, CPU usage, and read latency.
+* **Monitoring**:
+  * View the cluster protection and availability.
+  * View the R/W throughput&#x20;
+  * View the backend and client top consumers.
+  * View alarms.
+  * View the used, provisioned, and total capacity.
+  * View the frontend, compute, and drive cores usage.
+  * View the hardware components (active/total).
+
+![Weka GUI overview](../.gitbook/assets/Weka\_GUI4\_overview\_animated.gif)
 
 ## Access the Weka GUI
 
@@ -29,7 +59,7 @@ Make sure that port 14000 is open in the firewall of your organization.
 1. In your browser, go to `https://<weka system or host name>:14000`.\
    ``The sign-in page opens.
 
-![Sign in to Weka GUI application](../.gitbook/assets/wmng\_sign\_in.png)
+![Sign in to Weka GUI](../.gitbook/assets/wmng\_sign\_in.png)
 
 2\. Sign in with the username and password of an account with cluster administration or\
 &#x20;   organization administration privileges. For details about the account types, see  \
@@ -49,13 +79,13 @@ The initial default username and password are _admin and admin_[.](../usage/secu
 
 The system dashboard contains widgets that provide an overview of the Weka system, including an overall status, R/W throughput, top consumers, alerts, capacity, core usage, and hardware.
 
-The system dashboard opens by default when you sign in. If you select another menu and you want to display again the dashboard, select **Monitor > System Dashboard**.
+The system dashboard opens by default when you sign in. If you select another menu and you want to display the dashboard again, select **Monitor > System Dashboard**.
 
 ![Weka system dashboard](../.gitbook/assets/wmng\_dashboard.png)
 
-### Overall status widget
+### Cluster Protection and Availability widget
 
-This widget shows the overall status of the system health and protection.
+This widget shows the overall status of the system's health and protection.
 
 The overall status widget includes the following indications:
 
@@ -73,7 +103,7 @@ The R/W Throughput widget includes the following indications:
 
 * **Throughput**: The total throughput.
 * **Total Ops**: The number of cluster operations.
-* **Latency**: The cluster average latency of read and write operations.
+* **Latency**: The average latency of R/W operations.
 * **Clients**: The number of clients connected to the cluster.
 
 ![R/W Throughput widget](../.gitbook/assets/wmng\_dashboard\_Throughput\_widget.png)
@@ -113,19 +143,11 @@ This widget shows an overview of the hardware components (active/total).
 The hardware components include:
 
 * **Backends**: The number of the servers.
-* **Cores**: The number of the cores that are configured for running processes in the backends.
+* **Cores**: The number of cores that are configured for running processes in the backends.
 * **Drives**: The number of drives.
 * **OBS Buckets**: The number of the object-store buckets.
 
 ![Hardware widget](../.gitbook/assets/wmng\_dashboard\_Hardware\_widget.png)
-
-## Main menu
-
-From the menu, it is possible to view [statistics](../usage/statistics/) and [events](../usage/events/), manage [filesystems](../fs/managing-filesystems/), configure [NFS](../additional-protocols/nfs-support.md) and [SMB](../additional-protocols/smb-support/smb-management-using-the-gui.md) services, and manage system [security](../usage/security/user-management.md) aspects.
-
-
-
-
 
 <mark style="color:purple;">**Related topics**</mark>
 

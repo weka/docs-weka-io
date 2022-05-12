@@ -7,7 +7,7 @@ description: >-
 
 # Manage the system using Weka CLI
 
-The Weka CLI is installed on each Weka host and is available through the `weka` command. It's possible to`ssh` one of the hosts and run the `weka` command. This displays a list of all available top-level commands.
+The Weka CLI is installed on each Weka host and is available through the `weka` command. It's possible to connect to any of the hosts using `ssh` and running the `weka` command. The `weka` command displays a list of all top-level commands.
 
 ## Top-level commands
 
@@ -53,7 +53,7 @@ Options:
 ```
 
 {% hint style="info" %}
-**Note:** There are a number of options which are common to many commands:
+**Note:** There are a number of options that are common to many commands:
 
 `-J|--json`flag prints the raw JSON value returned by the cluster.
 
@@ -83,7 +83,7 @@ Options:
 Most Weka system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
 
 {% hint style="success" %}
-**For Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystems, filesystem groups, and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
+**Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystems, filesystem groups, and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
 {% endhint %}
 
 ```
