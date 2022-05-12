@@ -1,8 +1,8 @@
 ---
 description: >-
   The Weka GUI application enables you to configure, administer, and monitor the
-  Weka system. This page provides an overview of the main operations. how to acc
-  and a description of the system dashboard.
+  Weka system. This page provides an overview of the primary operations, access
+  to the GUI, and system dashboard.
 ---
 
 # Manage the system using Weka GUI
