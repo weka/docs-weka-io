@@ -1,6 +1,6 @@
 ---
 description: >-
-  The Weka GUI application enables you to configure, administer, and monitor the
+  Weka GUI application enables you to configure, administer, and monitor the
   Weka system. This page provides an overview of the primary operations, access
   to the GUI, and system dashboard.
 ---
@@ -9,15 +9,15 @@ description: >-
 
 ## Weka GUI overview
 
-The Weka GUI application is the administration tool for your Weka system. Use this tool for system configuration, filesystems management, user management, monitoring, view alarms, and investigation events and statistics.
+Weka GUI application is the administration tool for your Weka system. Use this tool for system configuration, filesystems management, user management, and investigation of alarms, events, and statistics.
 
-The Weka GUI application supports the following functions:
+Weka GUI application supports the following functions:
 
 * **Configuration**:
   * Configure the cluster, such as data availability, license, security, and central monitoring.
-  * Configure the machine backends, clients, and filesystem hosts.
+  * Configure the backend servers and expose the data in different protocols.
   * Manage local users and set up the user directory.
-  * Manage the organization's SSD quota and total quota.
+  * Create and manage organizations and their quotas.
 * **Management**:
   * Manage the filesystems, including tiering, thin provisioning, and encryption.
   * Manage snapshots.
@@ -25,7 +25,7 @@ The Weka GUI application supports the following functions:
   * Manage the filesystem protocols: SMB, S3, and NFS.
 * **Investigation**:
   * Investigate events
-  * Investigate overtime statistics, such as total operations, R/W throughput, CPU usage, and read latency.
+  * Investigate overtime statistics, such as total operations, R/W throughput, CPU usage, and read or write latency.
 * **Monitoring**:
   * View the cluster protection and availability.
   * View the R/W throughput&#x20;
@@ -35,11 +35,11 @@ The Weka GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](../.gitbook/assets/Weka\_GUI4\_overview\_animated.gif)
+![Weka GUI overview](../.gitbook/assets/wwmg\_GUI4\_overview\_animated.gif)
 
 ## Access the Weka GUI
 
-The Weka GUI is a web application that you can access using an account that is already configured in the system and has the appropriate rights to configure, administer, or view.
+Weka GUI is a web application that you can access using an already configured account and has the appropriate rights to configure, administer, or view.
 
 You can access the Weka GUI with any standard browser using the address: \
 `https://<weka system or host name>:14000`
@@ -59,7 +59,7 @@ Make sure that port 14000 is open in the firewall of your organization.
 1. In your browser, go to `https://<weka system or host name>:14000`.\
    ``The sign-in page opens.
 
-![Sign in to Weka GUI](../.gitbook/assets/wmng\_sign\_in.png)
+![Sign in to Weka GUI](<../.gitbook/assets/wmng\_sign\_in (1).png>)
 
 2\. Sign in with the username and password of an account with cluster administration or\
 &#x20;   organization administration privileges. For details about the account types, see  \
@@ -68,7 +68,7 @@ Make sure that port 14000 is open in the firewall of your organization.
 The system dashboard opens.
 
 {% hint style="info" %}
-The initial default username and password are _admin and admin_[.](../usage/security/user-management.md) In the first sign-in, Weka GUI enforces changing the admin password.
+The initial default username and password are _admin_ and _admin_[.](../usage/security/user-management.md) In the first sign-in, Weka GUI enforces changing the admin password.
 {% endhint %}
 
 <mark style="color:purple;">**Related topics**</mark>
@@ -79,9 +79,9 @@ The initial default username and password are _admin and admin_[.](../usage/secu
 
 The system dashboard contains widgets that provide an overview of the Weka system, including an overall status, R/W throughput, top consumers, alerts, capacity, core usage, and hardware.
 
-The system dashboard opens by default when you sign in. If you select another menu and you want to display the dashboard again, select **Monitor > System Dashboard**.
+The system dashboard opens by default when you sign in. If you select another menu and you want to display the dashboard again, select **Monitor > System Dashboard**, or click the **WEKA** logo.
 
-![Weka system dashboard](../.gitbook/assets/wmng\_dashboard.png)
+![System Dashboard](<../.gitbook/assets/wmng\_dashboard (1).png>)
 
 ### Cluster Protection and Availability widget
 

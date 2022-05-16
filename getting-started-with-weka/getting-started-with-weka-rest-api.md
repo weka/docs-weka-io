@@ -99,4 +99,4 @@ print(response.text)
 
 <mark style="color:purple;">**Related information**</mark>
 
-[REST API Reference Guide](https://api.docs.weka.io)
+[REST API Reference Guide](https://api.docs.weka.io/)

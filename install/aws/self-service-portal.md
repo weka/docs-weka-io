@@ -25,7 +25,7 @@ Once the cluster is deployed:
 
 ## Planning a Cluster
 
-The Self-Service Portal is available at [https://start.weka.io](https://start.weka.io). Its main screen is divided into two panes: the left pane, which is used for inputting requirements, and the right pane which displays possible configurations for the defined requirements.
+The Self-Service Portal is available at [https://start.weka.io](https://start.weka.io/). Its main screen is divided into two panes: the left pane, which is used for inputting requirements, and the right pane which displays possible configurations for the defined requirements.
 
 ![Self-Service Portal Main Screen](../../.gitbook/assets/01-calculator-overview.png)
 

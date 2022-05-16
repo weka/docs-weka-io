@@ -52,39 +52,27 @@ Options:
 
 ```
 
-{% hint style="info" %}
-**Note:** There are a number of options that are common to many commands:
+The options that are common to many commands include:
 
-`-J|--json`flag prints the raw JSON value returned by the cluster.
-
-`-H|--hostname`flag directs the CLI to communicate with the cluster through the given hostname.
-
-`--raw-units` flag causes units such as capacity and bytes to be printed in their raw format, as returned by the cluster.
-
-`--UTC` flag causes timestamps to be printed in the UTC timezone, rather than in the local time of the machine running the CLI command.
-
-`-f|--format` flag specifies the format to output the result (view, csv, markdown, or JSON)
-
-`-o|--output` flag specifies the columns of the output to be included.
-
-`-s|--sort` flag specifies the order to sort the output. May include a '+' or '-' before the column name to sort by ascending or descending order.
-
-`-F| --filter` flag specifies the filter values for a member (without forcing it to be in the output).
-
-`--no-header` flag indicates that the column header should not be shown when printing the output.
-
-`-C|--CONNECT-TIMEOUT` flag can be used to change the default timeout used for connecting to the system via the JRPC protocol.
-
-`-T|--TIMEOUT` flag can be used to change the default timeout for which the commands waits for a response before giving up.
-{% endhint %}
+| Option                  | Flag description                                                                                                                  |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `-J\|--json`            | Prints the raw JSON value returned by the cluster.                                                                                |
+| `-H\|--hostname`        | Directs the CLI to communicate with the cluster through the given hostname.                                                       |
+| `--raw-units`           | Sets the units such as capacity and bytes to be printed in their raw format, as returned by the cluster.                          |
+| `--UTC`                 | Sets the timestamps to be printed in UTC timezone, instead of the local time of the machine running the CLI command.              |
+| `-f\|--format`          | Specifies the format to output the result (view, csv, markdown, or JSON).                                                         |
+| `-o\|--output`          | Specifies the columns to include in the output.                                                                                   |
+| `-s\|--sort`            | Specifies the order to sort the output. May include a '+' or '-' before the column name to sort by ascending or descending order. |
+| `-F\| --filter`         | Specifies the filter values for a member (without forcing it to be in the output).                                                |
+| `--no-header`           | Indicates that the column header should not be shown when printing the output.                                                    |
+| `-C\|--CONNECT-TIMEOUT` | Modifies the default timeout used for connecting to the system via the JRPC protocol.                                             |
+| `-T\|--TIMEOUT`         | Modifies the default timeout for which the commands wait for a response before giving up.                                         |
 
 ## Command hierarchy
 
 Most Weka system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
 
-{% hint style="success" %}
 **Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystems, filesystem groups, and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
-{% endhint %}
 
 ```
 $ weka fs
@@ -162,39 +150,57 @@ To disable the auto-completion script, run `weka agent autocomplete uninstall`
 
 To (re-)install the script on a host, run `weka agent autocomplete install` and re-enter your shell session.
 
-You can also use `weka agent autocomplete export` to get the bash completions script and write it to any desired location.
+You can also use `weka agent autocomplete export`to get the bash completions script and write it to any desired location.
 
 ## Cluster status
 
 The `weka status` command displays the overall status of the Weka system.
 
-{% hint style="success" %}
-**For Example:** If the cluster is healthy, a result similar to the following should be displayed:
-{% endhint %}
+**Example: status of a healthy system**
 
 ```
 $ weka status
-WekaIO v3.10.0 (CLI build 3.10.0)
+WekaIO v4.0.1.1436-c9838b634494aeb70e7a5d5471ad4aae (CLI build 4.0.1-1955cd2e4b78dbf9ef265c434c670cb6)
 
-       cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
-        status: OK (8 backends UP, 48 drives UP)
-    protection: 6+2
-     hot spare: 1 failure domains
- drive storage: 82.94 TiB total, 82.94 TiB unprovisioned
+       cluster: ariattias (b231e060-c5c1-421d-a68d-1dfa94ff149b)
+        status: OK (5 backends UP, 5 drives UP)
+    protection: 3+2
+     hot spare: 1 failure domains (238.61 GiB)
+ drive storage: 954.11 GiB total
+         cloud: connected
+       license: OK, valid thru 2022-06-15T11:10:39Z
+
+     io status: STARTED 2 minutes ago (5 io-nodes UP, 80 Buckets UP)
+    link layer: Ethernet
+       clients: 0 connected
+         reads: 0 B/s (0 IO/s)
+        writes: 0 B/s (0 IO/s)
+    operations: 0 ops/s
+        alerts: none
 ```
 
-{% hint style="success" %}
-**For Example:** If the cluster has one failed host, a result similar to the following should be displayed:
-{% endhint %}
+
+
+**Example: status of a system with one host failure (io status DEGRADED)**
 
 ```
-$ weka status
-WekaIO v3.10.0 (CLI build 3.10.0)
+   $ weka status
+WekaIO v4.0.1.1436-c9838b634494aeb70e7a5d5471ad4aae (CLI build 4.0.1-1955cd2e4b78dbf9ef265c434c670cb6)
 
-       cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
-        status: DEGRADED (7 backends UP, 42 drives UP)
+       cluster: ariattias (b231e060-c5c1-421d-a68d-1dfa94ff149b)
+        status: DEGRADED (4 backends UP, 4 drives UP)
+    protection: 3+2
+     hot spare: 1 failure domains (238.61 GiB)
+ drive storage: 954.11 GiB total
+         cloud: connected
+       license: OK, valid thru 2022-06-15T11:10:39Z
+
+     io status: STARTED 2 minutes ago (5 io-nodes UP, 80 Buckets UP)
                 Rebuild in progress (3%)
-    protection: 6+2
-     hot spare: 1 failure domains
- drive storage: 82.94 TiB total, 82.94 TiB unprovisioned
+    link layer: Ethernet
+       clients: 0 connected
+         reads: 0 B/s (0 IO/s)
+        writes: 0 B/s (0 IO/s)
+    operations: 0 ops/s
+        alerts: none
 ```

@@ -47,7 +47,7 @@ Filesystem ID | Filesystem Name | Group       | Used SSD (Data) | Used SSD (Meta
 ```
 
 {% hint style="info" %}
-**Note:** In AWS installation via the [self-service portal](https://start.weka.io), default filesystem group and filesystem are created. The `default` filesystem is created with the entire SSD capacity.
+**Note:** In AWS installation via the [self-service portal](https://start.weka.io/), default filesystem group and filesystem are created. The `default` filesystem is created with the entire SSD capacity.
 
 For creating an additional filesystem, it is first needed to decrease the `default` filesystem SSD size:
 
@@ -88,7 +88,7 @@ new_fs on /mnt/weka type wekafs (rw,relatime,writecache,inode_bits=64,dentry_max
 ```
 
 {% hint style="info" %}
-**Note:** In AWS installation via the [self-service portal](https://start.weka.io), the `default` filesystem is already mounted under `/mnt/weka`
+**Note:** In AWS installation via the [self-service portal](https://start.weka.io/), the `default` filesystem is already mounted under `/mnt/weka`
 {% endhint %}
 
 For more information about mounting filesystems and mount options, refer to [Mounting Filesystems](../fs/mounting-filesystems.md#overview).
