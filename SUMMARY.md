@@ -15,8 +15,8 @@
 ## Getting Started with Weka
 
 * [Quick Install Guide](getting-started-with-weka/quick-install-guide.md)
-* [Manage the system using Weka CLI](getting-started-with-weka/manage-the-system-using-weka-cli.md)
-* [Manage the system using Weka GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
+* [Manage the system using the Weka CLI](getting-started-with-weka/manage-the-system-using-the-weka-cli.md)
+* [Manage the system using the Weka GUI](getting-started-with-weka/manage-the-system-using-the-weka-gui.md)
 * [Run first IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
 * [Getting started with Weka REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
 
@@ -27,7 +27,7 @@
   * [Planning a Weka System Installation](install/bare-metal/planning-a-weka-system-installation.md)
   * [Setting Up the Hosts](install/bare-metal/setting-up-the-hosts/README.md)
     * [SR-IOV Enablement](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
-  * [Obtain the Weka Software Installation Package](install/bare-metal/obtaining-the-weka-install-file.md)
+  * [Obtain the Weka software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
   * [Weka System Installation Process Using the CLI](install/bare-metal/using-cli.md)
   * [Adding Clients](install/bare-metal/adding-clients-bare-metal.md)
 * [AWS Installation](install/aws/README.md)

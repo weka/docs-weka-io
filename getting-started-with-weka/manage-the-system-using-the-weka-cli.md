@@ -5,7 +5,7 @@ description: >-
   check the status of the cluster.
 ---
 
-# Manage the system using Weka CLI
+# Manage the system using the Weka CLI
 
 The Weka CLI is installed on each Weka host and is available through the `weka` command. It's possible to connect to any of the hosts using `ssh` and running the `weka` command. The `weka` command displays a list of all top-level commands.
 
@@ -68,7 +68,7 @@ The options that are common to many commands include:
 | `-C\|--CONNECT-TIMEOUT` | Modifies the default timeout used for connecting to the system via the JRPC protocol.                                             |
 | `-T\|--TIMEOUT`         | Modifies the default timeout for which the commands wait for a response before giving up.                                         |
 
-## Command hierarchy
+## Commands hierarchy
 
 Most Weka system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
 
@@ -160,17 +160,17 @@ The `weka status` command displays the overall status of the Weka system.
 
 ```
 $ weka status
-WekaIO v4.0.1.1436-c9838b634494aeb70e7a5d5471ad4aae (CLI build 4.0.1-1955cd2e4b78dbf9ef265c434c670cb6)
+WekaIO v4.0.0 (CLI build 4.0.0)
 
-       cluster: ariattias (b231e060-c5c1-421d-a68d-1dfa94ff149b)
-        status: OK (5 backends UP, 5 drives UP)
-    protection: 3+2
-     hot spare: 1 failure domains (238.61 GiB)
- drive storage: 954.11 GiB total
+       cluster: WekaProd (b231e060-c5c1-421d-a68d-1dfa94ff149b)
+        status: OK (8 backends UP, 48 drives UP)
+    protection: 6+2
+     hot spare: 1 failure domains (1.23 TiB)
+ drive storage: 82.94 TiB total
          cloud: connected
        license: OK, valid thru 2022-06-15T11:10:39Z
 
-     io status: STARTED 2 minutes ago (5 io-nodes UP, 80 Buckets UP)
+     io status: STARTED 2 minutes ago (8 io-nodes UP, 80 Buckets UP)
     link layer: Ethernet
        clients: 0 connected
          reads: 0 B/s (0 IO/s)
@@ -179,23 +179,21 @@ WekaIO v4.0.1.1436-c9838b634494aeb70e7a5d5471ad4aae (CLI build 4.0.1-1955cd2e4b7
         alerts: none
 ```
 
-
-
-**Example: status of a system with one host failure (io status DEGRADED)**
+**Example: status of a system with one host failure (DEGRADED)**
 
 ```
    $ weka status
-WekaIO v4.0.1.1436-c9838b634494aeb70e7a5d5471ad4aae (CLI build 4.0.1-1955cd2e4b78dbf9ef265c434c670cb6)
+WekaIO v4.0.0 (CLI build 4.0.0)
 
-       cluster: ariattias (b231e060-c5c1-421d-a68d-1dfa94ff149b)
-        status: DEGRADED (4 backends UP, 4 drives UP)
-    protection: 3+2
-     hot spare: 1 failure domains (238.61 GiB)
- drive storage: 954.11 GiB total
+       cluster: WekaProd (b231e060-c5c1-421d-a68d-1dfa94ff149b)
+        status: DEGRADED (7 backends UP, 42 drives UP)
+    protection: 6+2
+     hot spare: 1 failure domains (1.23 TiB)
+ drive storage: 82.94 TiB total
          cloud: connected
        license: OK, valid thru 2022-06-15T11:10:39Z
 
-     io status: STARTED 2 minutes ago (5 io-nodes UP, 80 Buckets UP)
+     io status: STARTED 54 minutes ago (8 io-nodes UP, 80 Buckets UP)
                 Rebuild in progress (3%)
     link layer: Ethernet
        clients: 0 connected

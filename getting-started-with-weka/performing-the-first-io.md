@@ -88,7 +88,7 @@ new_fs on /mnt/weka type wekafs (rw,relatime,writecache,inode_bits=64,dentry_max
 ```
 
 {% hint style="info" %}
-**Note:** In AWS installation via the [self-service portal](https://start.weka.io/), the `default` filesystem is already mounted under `/mnt/weka`
+**Note:** In AWS installation via the [self-service portal](https://start.weka.io/), the `default` filesystem is already mounted under `/mnt/weka.`
 {% endhint %}
 
 For more information about mounting filesystems and mount options, refer to [Mounting Filesystems](../fs/mounting-filesystems.md#overview).
@@ -118,7 +118,7 @@ Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | 
 
 This has completed the sanity check that the Weka cluster is configured and IOs can be performed to it.
 
-## Validate the configuration-achieve the expected performance
+## Validate the configuration
 
 To make sure that the Weka cluster and the IT environment are well configured, more complex IO patterns and benchmark tests should be conducted using the FIO utility.
 

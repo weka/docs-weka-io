@@ -5,7 +5,7 @@ description: >-
   to the GUI, and system dashboard.
 ---
 
-# Manage the system using Weka GUI
+# Manage the system using the Weka GUI
 
 ## Weka GUI overview
 
@@ -71,7 +71,7 @@ The system dashboard opens.
 The initial default username and password are _admin_ and _admin_[.](../usage/security/user-management.md) In the first sign-in, Weka GUI enforces changing the admin password.
 {% endhint %}
 
-<mark style="color:purple;">**Related topics**</mark>
+**Related topics**
 
 [user-management.md](../usage/security/user-management.md "mention")
 
@@ -134,7 +134,7 @@ The bottom bar indicates the total SSD capacity available in the system, the pro
 
 This widget shows the average usage and the maximum load level of the Frontend, Compute, and Drive cores.
 
-![Core Usage widget](../.gitbook/assets/wmng\_dashboard\_Core\_Usage\_widget.png)
+![Core Usage widget](<../.gitbook/assets/wmng\_dashboard\_Core\_Usage\_widget (1).png>)
 
 ### Hardware widget
 
@@ -149,7 +149,7 @@ The hardware components include:
 
 ![Hardware widget](../.gitbook/assets/wmng\_dashboard\_Hardware\_widget.png)
 
-<mark style="color:purple;">**Related topics**</mark>
+**Related topics**
 
 <mark style="color:purple;">****</mark>[statistics](../usage/statistics/ "mention")<mark style="color:purple;">****</mark>
 

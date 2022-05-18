@@ -149,11 +149,11 @@ Once the Weka system is installed, learn how to view, manage and operate it usin
 
 The Weka system supports a RESTful API. This is useful when automating the interaction with the Weka system and when integrating it into your workflows or monitoring systems.
 
-<mark style="color:purple;">**Related topics**</mark>
+**Related topics**
 
-[manage-the-system-using-weka-cli.md](manage-the-system-using-weka-cli.md "mention")
+[manage-the-system-using-the-weka-cli.md](manage-the-system-using-the-weka-cli.md "mention")
 
-[manage-the-system-using-weka-gui.md](manage-the-system-using-weka-gui.md "mention")
+[manage-the-system-using-the-weka-gui.md](manage-the-system-using-the-weka-gui.md "mention")
 
 [performing-the-first-io.md](performing-the-first-io.md "mention")
 
