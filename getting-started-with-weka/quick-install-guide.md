@@ -151,9 +151,9 @@ The Weka system supports a RESTful API. This is useful when automating the inter
 
 **Related topics**
 
-[manage-the-system-using-the-weka-cli.md](manage-the-system-using-the-weka-cli.md "mention")
+[manage-the-system-using-weka-cli.md](manage-the-system-using-weka-cli.md "mention")
 
-[manage-the-system-using-the-weka-gui.md](manage-the-system-using-the-weka-gui.md "mention")
+[manage-the-system-using-weka-gui.md](manage-the-system-using-weka-gui.md "mention")
 
 [performing-the-first-io.md](performing-the-first-io.md "mention")
 

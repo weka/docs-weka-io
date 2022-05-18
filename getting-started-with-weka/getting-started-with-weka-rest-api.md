@@ -97,6 +97,6 @@ print(response.text)
 ```
 {% endcode %}
 
-<mark style="color:purple;">**Related information**</mark>
+**Related topics**
 
 [REST API Reference Guide](https://api.docs.weka.io/)

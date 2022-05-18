@@ -15,8 +15,8 @@
 ## Getting Started with Weka
 
 * [Quick Install Guide](getting-started-with-weka/quick-install-guide.md)
-* [Manage the system using the Weka CLI](getting-started-with-weka/manage-the-system-using-the-weka-cli.md)
-* [Manage the system using the Weka GUI](getting-started-with-weka/manage-the-system-using-the-weka-gui.md)
+* [Manage the system using the Weka CLI](getting-started-with-weka/manage-the-system-using-weka-cli.md)
+* [Manage the system using the Weka GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
 * [Run first IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
 * [Getting started with Weka REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
 
