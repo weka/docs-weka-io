@@ -67,7 +67,7 @@ Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | 
 ```
 {% endhint %}
 
-For more information about filesystems and filesystem groups, refer to [Managing Filesystems, Object Stores & Filesystem Groups](../fs/managing-filesystems/).
+For more information about filesystems and filesystem groups, refer to [Managing Filesystems, Object Stores & Filesystem Groups](broken-reference).
 
 ## Mount the first filesystem
 

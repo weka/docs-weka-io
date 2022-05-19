@@ -133,7 +133,7 @@ Use the following command line to upload an existing snapshot:
 | `site`        | String   | Location for the snapshot  upload | `local` or `remote`                                  | Only if both `local` and `remote` buckets are attached | Auto selected if only one bucket for upload is attached |
 
 {% hint style="info" %}
-**Note:** Only one snapshot can be uploaded to each [object-store](managing-filesystems/managing-object-stores.md#overview) at a time. This is so we will upload a snapshot as fast as possible, and it will not compete with other snapshots bandwidth to the same (physical) object-store. There can be one snapshot upload to the local object-store and one snapshot upload to the remote object-store in parallel.&#x20;
+**Note:** Only one snapshot can be uploaded to each [object-store](managing-object-stores.md#overview) at a time. This is so we will upload a snapshot as fast as possible, and it will not compete with other snapshots bandwidth to the same (physical) object-store. There can be one snapshot upload to the local object-store and one snapshot upload to the remote object-store in parallel.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
@@ -191,12 +191,12 @@ The `locator` is either a locator saved previously for disaster scenarios, or ca
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** For encrypted filesystem, when downloading the same KMS master-key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](managing-filesystems/kms-management.md#overview) section.
+**Note:** For encrypted filesystem, when downloading the same KMS master-key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](kms-management.md#overview) section.
 {% endhint %}
 
 ### Recovering from a Remote Snapshot
 
-When there is a need to recover from a snapshot residing on a remote object-store, there is a need to define the object-store bucket containing the snapshot as a `local` bucket. This is since normally, a remote object-store has restrictions over the download, as explained in the [Managing Object Stores](managing-filesystems/managing-object-stores.md#overview) section, and we would want to use a different local object-store, due to the QoS reasons explained there.&#x20;
+When there is a need to recover from a snapshot residing on a remote object-store, there is a need to define the object-store bucket containing the snapshot as a `local` bucket. This is since normally, a remote object-store has restrictions over the download, as explained in the [Managing Object Stores](managing-object-stores.md#overview) section, and we would want to use a different local object-store, due to the QoS reasons explained there.&#x20;
 
 To recover from a snapshot residing on a remote object-store, you will need to create a new filesystem from this snapshot by following the below procedure:
 

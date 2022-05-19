@@ -45,14 +45,15 @@
 * [Testing Weka Performance](testing-and-troubleshooting/testing-weka-system-performance/README.md)
   * [Test Environment Details](testing-and-troubleshooting/testing-weka-system-performance/test-environment-details.md)
 
-## WekaFS Filesystems <a href="#fs" id="fs"></a>
+## WekaFS Filesystems & Object Stores <a href="#fs" id="fs"></a>
 
-* [Manage filesystems, object stores, and filesystem groups](fs/managing-filesystems/README.md)
-  * [Managing Object Stores](fs/managing-filesystems/managing-object-stores.md)
-  * [Managing Filesystem Groups](fs/managing-filesystems/managing-filesystem-groups.md)
-  * [Managing Filesystems](fs/managing-filesystems/managing-filesystems.md)
-  * [Attaching/Detaching Object Stores to/from Filesystems](fs/managing-filesystems/attaching-detaching-object-stores-to-from-filesystems.md)
-  * [KMS Management](fs/managing-filesystems/kms-management.md)
+* [Manage filesystem groups](fs/managing-filesystem-groups/README.md)
+  * [Manage filesystem groups using the CLI](fs/managing-filesystem-groups/manage-filesystem-groups-using-the-cli.md)
+* [Manage filesystems](fs/managing-filesystems/README.md)
+  * [Manage filesystems using the CLI](fs/managing-filesystems/managing-filesystems.md)
+* [Managing Object Stores](fs/managing-object-stores.md)
+* [Attaching/Detaching Object Stores to/from Filesystems](fs/attaching-detaching-object-stores-to-from-filesystems.md)
+* [KMS Management](fs/kms-management.md)
 * [Advanced Data Lifecycle Management](fs/tiering/README.md)
   * [Advanced Time-based Policies for Data Storage Location](fs/tiering/advanced-time-based-policies-for-data-storage-location.md)
   * [Data Management in Tiered Filesystems](fs/tiering/data-management-in-tiered-filesystems.md)

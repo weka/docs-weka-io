@@ -4,7 +4,7 @@ description: >-
   the Weka system: filesystems, object stores and filesystem groups.
 ---
 
-# Filesystems, Object Stores & Filesystem Groups
+# Filesystems, object stores, and filesystem groups
 
 ## About Filesystems
 
@@ -37,9 +37,9 @@ Thin provisioning  can help in various use cases:
 
 ### Encrypted Filesystems
 
-Both data at rest (residing on SSD and object store) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](../fs/managing-filesystems/managing-filesystems.md#adding-a-filesystem).
+Both data at rest (residing on SSD and object store) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](../fs/managing-filesystems/#adding-a-filesystem).
 
-For proper security, a KMS (Key Management System) must be used when creating encrypted filesystems. See [KMS Management](../fs/managing-filesystems/kms-management.md) for more information about KMS support in the Weka system.
+For proper security, a KMS (Key Management System) must be used when creating encrypted filesystems. See [KMS Management](../fs/kms-management.md) for more information about KMS support in the Weka system.
 
 {% hint style="info" %}
 **Note:** Setting data encryption (on/off) can only be done when creating a filesystem.
@@ -89,4 +89,4 @@ In the Weka system, filesystems are grouped into up to 8 filesystem groups.
 
 Each filesystem group has tiering control parameters (see [Guidelines for Data Storage in Tiered Weka System Configurations](data-storage.md#guidelines-for-data-storage-in-tiered-weka-system-configurations)). While tiered filesystems have their own object store, the tiering policy will be the same for each tiered filesystem under the same filesystem group.
 
-For information on managing these entities, refer to [Managing Filesystems, Object Stores and Filesystem Groups](../fs/managing-filesystems/).
+For information on managing these entities, refer to [Managing Filesystems, Object Stores and Filesystem Groups](broken-reference).

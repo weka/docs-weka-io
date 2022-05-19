@@ -8,7 +8,7 @@ description: >-
 
 ## Overview
 
-As described in the [Object Stores Overview](../../overview/filesystems.md#about-object-stores) page, Weka utilizes object stores for either tiering or backup when attaching object-store buckets to a filesystem.
+As described in the [Object Stores Overview](../overview/filesystems.md#about-object-stores) page, Weka utilizes object stores for either tiering or backup when attaching object-store buckets to a filesystem.
 
 Since object-store buckets may reside in different physical object stores, for better QoS between them, Weka requires the mapping between the bucket to the physical object-store.
 
@@ -27,7 +27,7 @@ This grouping under a physical object-store allows:
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Currently, only one local and one remote object-store are supported in general operation. It is only transiently supported to have more than one local object-store when there is a need to recover from a remote snapshot (this recovery might inccur significant charges when working with a cloud backup). If there is no other way (snapshot is not present locally) it is possible to use this procedure to [recover from a remote snapshot](../snap-to-obj.md#recovering-from-a-remote-snapshot).
+**Note:** Currently, only one local and one remote object-store are supported in general operation. It is only transiently supported to have more than one local object-store when there is a need to recover from a remote snapshot (this recovery might inccur significant charges when working with a cloud backup). If there is no other way (snapshot is not present locally) it is possible to use this procedure to [recover from a remote snapshot](snap-to-obj.md#recovering-from-a-remote-snapshot).
 
 Support for more than one local/remote object-stores will be rolled out in a future version.
 {% endhint %}
@@ -56,25 +56,25 @@ Use the following command line to edit an object store:
 
 **Parameters in Command Line**
 
-| **Name**                   | **Type** | **Value**                                                                                                                                                | **Limitations**                            | **Mandatory** | **Default** |
-| -------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ------------- | ----------- |
-| `name`                     | String   | Name of the object store being created                                                                                                                   | Must be a valid name                       | Yes           | ​           |
-| `new-name`                 | String   | New name for the object store                                                                                                                            | Must be a valid name                       | No            |             |
-| `site`                     | String   | `local` - for tiering+snapshots, `remote` - for snapshots only                                                                                           | `local` or `remote`                        | No            | ``          |
-| `hostname`                 | String   | Object store host identifier, to be used as a default for added buckets                                                                                  | Must be a valid name/IP                    | No            |             |
-| `port`                     | String   | Object store port, to be used as a default for added buckets                                                                                             | Must be a valid name                       | No            |             |
-| `auth-method`              | String   | Authentication method, to be used as a default for added buckets                                                                                         | `None`, `AWSSignature2` or `AWSSignature4` | No            |             |
-| `region`                   | String   | Region name, to be used as a default for added buckets                                                                                                   |                                            | No            |             |
-| `access-key-id`            | String   | Object store  access key ID, to be used as a default for added buckets                                                                                   |                                            | No            |             |
-| `secret-key`               | String   | Object store  secret key, to be used as a default for added buckets                                                                                      |                                            | No            |             |
-| `protocol`                 | String   | Protocol type, to be used as a default for added buckets                                                                                                 | `HTTP`, `HTTPS` or `HTTPS_UNVERIFIED`      | No            |             |
-| `bandwidth`                | Number   | Bandwidth limitation per core (Mbps)                                                                                                                     |                                            | No            |             |
-| `download-bandwidth`       | Number   | Object-store download bandwidth limitation per core (Mbps)                                                                                               |                                            | No            |             |
-| `upload-bandwidth`         | Number   | Object-store upload bandwidth limitation per core (Mbps)                                                                                                 |                                            | No            |             |
-| `max-concurrent-downloads` | Number   | Maximum number of downloads concurrently performed on this object store in a single IO node                                                              | 1-64                                       | No            |             |
-| `max-concurrent-uploads`   | Number   | Maximum number of uploads concurrently performed on this object store in a single IO node                                                                | 1-64                                       | No            |             |
-| `max-concurrent-removals`  | Number   | Maximum number of removals concurrently performed on this object store in a single IO node                                                               | 1-64                                       | No            |             |
-| `enable-upload-tags`       | String   | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not, to be used as a default for added buckets | `true` or `false`                          | No            |             |
+| **Name**                   | **Type** | **Value**                                                                                                                                             | **Limitations**                            | **Mandatory** | **Default** |
+| -------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ------------- | ----------- |
+| `name`                     | String   | Name of the object store being created                                                                                                                | Must be a valid name                       | Yes           | ​           |
+| `new-name`                 | String   | New name for the object store                                                                                                                         | Must be a valid name                       | No            |             |
+| `site`                     | String   | `local` - for tiering+snapshots, `remote` - for snapshots only                                                                                        | `local` or `remote`                        | No            | ``          |
+| `hostname`                 | String   | Object store host identifier, to be used as a default for added buckets                                                                               | Must be a valid name/IP                    | No            |             |
+| `port`                     | String   | Object store port, to be used as a default for added buckets                                                                                          | Must be a valid name                       | No            |             |
+| `auth-method`              | String   | Authentication method, to be used as a default for added buckets                                                                                      | `None`, `AWSSignature2` or `AWSSignature4` | No            |             |
+| `region`                   | String   | Region name, to be used as a default for added buckets                                                                                                |                                            | No            |             |
+| `access-key-id`            | String   | Object store  access key ID, to be used as a default for added buckets                                                                                |                                            | No            |             |
+| `secret-key`               | String   | Object store  secret key, to be used as a default for added buckets                                                                                   |                                            | No            |             |
+| `protocol`                 | String   | Protocol type, to be used as a default for added buckets                                                                                              | `HTTP`, `HTTPS` or `HTTPS_UNVERIFIED`      | No            |             |
+| `bandwidth`                | Number   | Bandwidth limitation per core (Mbps)                                                                                                                  |                                            | No            |             |
+| `download-bandwidth`       | Number   | Object-store download bandwidth limitation per core (Mbps)                                                                                            |                                            | No            |             |
+| `upload-bandwidth`         | Number   | Object-store upload bandwidth limitation per core (Mbps)                                                                                              |                                            | No            |             |
+| `max-concurrent-downloads` | Number   | Maximum number of downloads concurrently performed on this object store in a single IO node                                                           | 1-64                                       | No            |             |
+| `max-concurrent-uploads`   | Number   | Maximum number of uploads concurrently performed on this object store in a single IO node                                                             | 1-64                                       | No            |             |
+| `max-concurrent-removals`  | Number   | Maximum number of removals concurrently performed on this object store in a single IO node                                                            | 1-64                                       | No            |             |
+| `enable-upload-tags`       | String   | Whether to enable [object-tagging](tiering/data-management-in-tiered-filesystems.md#object-tagging) or not, to be used as a default for added buckets | `true` or `false`                          | No            |             |
 
 ## Viewing Object-Store Buckets
 
@@ -82,7 +82,7 @@ Use the following command line to edit an object store:
 
 The main object store screen in the GUI lists all existing object-store buckets and can also display information about a specific object-store bucket, including the bucket name, status and region.
 
-![Main Object Store View Screen](<../../.gitbook/assets/OBS main screen 3.5.png>)
+![Main Object Store View Screen](<../.gitbook/assets/OBS main screen 3.5.png>)
 
 ### Viewing Object-Store Buckets Using the CLI
 
@@ -96,13 +96,13 @@ This command is used to view information on all the object-store buckets configu
 
 From the main object store view screen, click the "+" button at the top left-hand side of the screen. The Configure Object Store dialog box will be displayed.
 
-![Configure Object Store Dialog Box](<../../.gitbook/assets/OBS add dialog 3.5.png>)
+![Configure Object Store Dialog Box](<../.gitbook/assets/OBS add dialog 3.5.png>)
 
 Enter the relevant parameters and click Configure to add the object store bucket.
 
 If the object store is misconfigured, the Error in Object Store Configuration window will be displayed.
 
-![Object Store Configuration Error Window](<../../.gitbook/assets/OBS add error 3.5.png>)
+![Object Store Configuration Error Window](<../.gitbook/assets/OBS add error 3.5.png>)
 
 Click Save Anyway in order to save the configured object store.
 
@@ -134,7 +134,7 @@ Use the following command line to add an object store:
 | `upload-bandwidth`   | Number   | Bucket upload bandwidth limitation per core (Mbps)                                                                |                                                                        | No                                                                                             |                                                                                          |
 | `errors-timeout`     | Number   | If the object-store link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s                                          | No                                                                                             | 300                                                                                      |
 | `prefetch-mib`       | Number   | How many MiB of data to prefetch when reading a whole MiB on the object store                                     |                                                                        | No                                                                                             | 0                                                                                        |
-| `enable-upload-tags` | String   | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not     | `true` or `false`                                                      | No                                                                                             | `false`                                                                                  |
+| `enable-upload-tags` | String   | Whether to enable [object-tagging](tiering/data-management-in-tiered-filesystems.md#object-tagging) or not        | `true` or `false`                                                      | No                                                                                             | `false`                                                                                  |
 
 {% hint style="info" %}
 **Note:** When using the CLI, by default a misconfigured object store will not be created. To create an object store even when it is misconfigured, use the `--skip-verification`option.
@@ -150,11 +150,11 @@ Use the following command line to add an object store:
 
 From the main object store view screen, click the Edit button of the object store bucket to be edited.
 
-![Edit Object Store Screen](<../../.gitbook/assets/OBS edit Screen 3.5.png>)
+![Edit Object Store Screen](<../.gitbook/assets/OBS edit Screen 3.5.png>)
 
 The Update Object Store dialog box (which is similar to the Configure Object Store dialog box) will be displayed with the current specifications for the object store bucket.
 
-![Update Object Store Dialog Box](<../../.gitbook/assets/OBS edit dialog 3.5.png>)
+![Update Object Store Dialog Box](<../.gitbook/assets/OBS edit dialog 3.5.png>)
 
 Make the relevant changes and click Update to update the object store bucket.
 
@@ -186,7 +186,7 @@ Use the following command line to edit an object-store bucket:
 | `upload-bandwidth`   | Number   | Bucket upload bandwidth limitation per core (Mbps)                                                                |                                                               | No            |             |
 | `errors-timeout`     | Number   | If the object-store link is down for longer than this timeout period, all IOs that need data return with an error | 1-15 minutes, e.g: 5m or 300s                                 | No            |             |
 | `prefetch-mib`       | Number   | How many MiB of data to prefetch when reading a whole MiB on the object store                                     |                                                               | No            |             |
-| `enable-upload-tags` | String   | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not     | `true` or `false`                                             | No            |             |
+| `enable-upload-tags` | String   | Whether to enable [object-tagging](tiering/data-management-in-tiered-filesystems.md#object-tagging) or not        | `true` or `false`                                             | No            |             |
 
 ## Deleting an Object-Store Bucket
 
@@ -194,11 +194,11 @@ Use the following command line to edit an object-store bucket:
 
 From the main object store view screen, click the Delete button of the object-store bucket to be deleted.
 
-![Delete Object Store Screen](<../../.gitbook/assets/OBS delete screen 3.5.png>)
+![Delete Object Store Screen](<../.gitbook/assets/OBS delete screen 3.5.png>)
 
 The Deletion of Object Store window will be displayed.
 
-![Deletion of Object Store Window](<../../.gitbook/assets/OBS delete dialog 3.5.png>)
+![Deletion of Object Store Window](<../.gitbook/assets/OBS delete dialog 3.5.png>)
 
 Click Yes to delete the object-store bucket.
 
