@@ -15,7 +15,7 @@ To download the appropriate install file, follow the instructions in [Download t
 
 ## Stage 2: Install the Weka software on the new host
 
-Follow the instructions appearing in [Installation of the Weka Software on Each Host](../../install/bare-metal/using-cli.md#stage-1-installation-of-the-weka-software-on-each-host). At the end of the install process, the host is in [stem mode](../../overview/glossary.md#stem-mode).
+Follow the instructions appearing in [Installation of the Weka Software on Each Host](../../install/bare-metal/using-cli.md#stage-1-installation-of-the-weka-software-on-each-host). At the end of the installation process, the host is in [stem mode](../../overview/glossary.md#stem-mode).
 
 ## Stage 3: Add the host to the cluster
 
@@ -40,47 +40,47 @@ weka -H <existing-backend-hostname> cluster host add <backend-hostname>
 
 ## Stage 4: Configure the networking
 
-Follow the instructions in Stage 6: Configure the networking.
+See _Configure the networking_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
 
-## Stage 5: Configuration of SSDs
+## Stage 5: Configure the SSDs
 
-Follow the instructions in [Configuration of SSDs](../../install/bare-metal/using-cli.md#stage-6-configuration-of-ssds).
+See _Configure the SSDs_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
 
-## Stage 6: Configuration of CPU Resources
+## Stage 6: Configure the CPU resources
 
-Follow the instructions appearing in [Configuration of CPU Resources](../../install/bare-metal/using-cli.md#stage-8-configuration-of-cpu-resources).
+See _Configure the CPU resources_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
 
-## Stage 7: Configuration of Memory
+## Stage 7: Configure the memory
 
-Use the following command line to display a listing of the memory defined (one line for each host):
+To display a list of the memory defined (one line per host), run the following command:
 
 `weka cluster host`
 
-To configure the memory, follow the instructions appearing in [Configuration of Memory](../../install/bare-metal/using-cli.md#stage-9-configuration-of-memory-optional).
+To configure the memory, see _Configure the memory_ in[using-cli.md](../../install/bare-metal/using-cli.md "mention").
 
 {% hint style="info" %}
-**Note:** If the memory has been configured, it is mandatory to use the same memory for the expanded host.
+**Note:** If the memory is configured, you must use the same memory for the expanded host.
 {% endhint %}
 
-## Stage 8: Configuration of Failure Domains
+## Stage 8: Configure failure domains
 
-Follow the instructions appearing in [Configuration of Failure Domains](../../install/bare-metal/using-cli.md#stage-10-configuration-of-failure-domains-optional).
+See _Configure failure domains_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
 
 {% hint style="info" %}
-**Note:** Plan whether each host is being added to an existing failure domain or to a new failure domain.
+**Note:** Plan whether each host is added to an existing failure domain or to a new failure domain.
 {% endhint %}
 
-## Stage 9: Applying Hosts Configuration
+## Stage 9: Apply hosts configuration
 
-If hosts have been added to the cluster, follow the instructions appearing in [Applying Hosts Configuration](../../install/bare-metal/using-cli.md#stage-13-applying-hosts-configuration).&#x20;
+If hosts are already added to the cluster, see _Apply hosts configuration_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
 
 {% hint style="info" %}
 **Note:** The activation of cluster hosts can be performed with a sequence of hosts.
 {% endhint %}
 
-## Import Host Settings
+## Import host settings
 
-Instead of carrying steps 4-9 above, it is possible to import the host setting from a previously exported host in the cluster. In most cases the host configurations are similar, and importing can save some extra steps and avoid misconfiguration.
+Instead of carrying stages 4-9 above, it is possible to import the host setting from a previously exported host in the cluster. In most cases the host configurations are similar, and importing can save some extra steps and avoid misconfiguration.
 
 To export settings from a host, ssh to this host, and run the `weka local resources export` command.&#x20;
 

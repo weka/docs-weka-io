@@ -4,7 +4,7 @@ description: >-
   of the Weka system.
 ---
 
-# Prerequisites and Compatibility
+# Prerequisites and compatibility
 
 ## CPU
 
@@ -20,7 +20,7 @@ description: >-
 * Enough memory to support the Weka system needs as described in [memory requirements ](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
-## Operating System
+## Operating scystem
 
 ### Types
 
@@ -38,7 +38,7 @@ description: >-
 * **Amazon Linux:** 17.09, 18.03
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
 
-#### Clients Only:
+#### Clients only:
 
 * **SuSe:**&#x20;
   * 12 SP5
@@ -72,7 +72,7 @@ description: >-
 **Note:** It is advisable to turn off auto kernel updates so it will not get upgraded to a yet unsupported version.
 {% endhint %}
 
-## Weka Install Directory
+## Weka installation directory
 
 * Directory: `/opt/weka`
 * Should be on an SSD or SSD-like performance, e.g., M.2.&#x20;
@@ -104,7 +104,7 @@ Jumbo Frames are not required for clients. However, performance might be limited
 * Mellanox ConnectX6
 * Mellanox **** ConnectX6-Dx
 
-#### NIC Drivers
+#### NIC drivers
 
 Supported Mellanox OFED versions:
 
@@ -126,7 +126,7 @@ Supported Intel 40 drivers:
 * 3.0.1-k - 4.1.0
 * A current driver from an official OS repository is recommended
 
-#### Ethernet Configuration
+#### Ethernet configuration
 
 * Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GbE / 100 GbE / 200 GbE
 * NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
@@ -187,9 +187,9 @@ Supported Mellanox OFED versions:
 **Note:** To get the best performance, make sure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
 {% endhint %}
 
-## Object Store
+## Object store
 
-* API should be S3 compatible:&#x20;
+* API must be S3 compatible:&#x20;
   * GET
     * Including byte-range support with expected performance gain when fetching partial objects
   * PUT
@@ -199,20 +199,20 @@ Supported Mellanox OFED versions:
   * GET after single PUT should be fully consistent
   * Multiple PUTs should be eventually consistent
 
-Certified Object Stores:
+Certified object stores:
 
 * AWS S3
 * Cloudian HyperStore (version 7.3 and up)
 * Dell EMC ECS v3.5 and up
 * HCP Classic V9.2 and up (with versioned buckets only)
-* HCP for Cloud Scale V2.x
+* HCP for Cloud-Scale V2.x
 * IBM Cloud Object Storage System (version 3.14.7 and up)
 * Quantum ActiveScale (version 5.5.1 and up)
 * Red Hat Ceph Storage (version 5.0 and up)
 * Scality (version 7.4.4.8 and up)
 * SwiftStack (version 6.30 and up)
 
-## Virtual Machines
+## Virtual machines
 
 VMs can be used as clients only, assuming they meet the following prerequisite:
 

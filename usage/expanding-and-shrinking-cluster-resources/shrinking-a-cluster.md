@@ -4,25 +4,25 @@ description: >-
   which may be required when it is necessary to reallocate cluster hardware.
 ---
 
-# Shrinking a Cluster
+# Shrink a Cluster
 
-## Options for Shrinking a Cluster
+## Shrink cluster options
 
 Cluster shrinking can involve either the removal of some of the assigned SSDs or the removal of hosts from the system. The following operations are available:
 
-1. Listing all the drives and their states, in order to receive a view of currently-allocated resources and their status.
-2. Deactivating drives as the first step before removing a host.
-3. Removing (a subset of) SSD drives allocated for the cluster.
-4. Deactivating hosts, which can be used after deactivating drives in preparation for the removal of the host.
-5. Removing hosts in order to complete the cluster shrinking.
+1. List all the drives and their states, to receive a view of currently-allocated resources and their status.
+2. Deactivate drives as the first step before removing a host.
+3. Remove a subset of SSD drives allocated for the cluster.
+4. Deactivate hosts, which can be used after deactivating drives in preparation for the removal of the host.
+5. Remove hosts to complete the cluster shrinking.
 
-## Listing Drives and Their States
+## List drives and their sees
 
 **Command:** `weka cluster drive`
 
 Use this command to display a list of all the drives in the cluster and their status.
 
-## Deactivating a Drive
+## Deactivate a drive
 
 **Command:** `weka cluster drive deactivate`
 
@@ -31,7 +31,7 @@ Running this deactivation command will redistribute the stored data on the remai
 {% hint style="info" %}
 **Note:** After running this command, the deactivated drives will still appear in the list.
 
-**Note:** It is not possible to deactivate a drive if it will lead to an unstable state, i.e., if the [system capacity](../../overview/ssd-capacity-management.md) after drive deactivation is insufficient for the SSD capacity of currently-provisioned filesystems.
+It is not possible to deactivate a drive if it will lead to an unstable state, i.e., if the [system capacity](../../overview/ssd-capacity-management.md) after drive deactivation is insufficient for the SSD capacity of currently-provisioned filesystems.
 {% endhint %}
 
 Drive deactivation starts an asynchronous process known as phasing out, which is a gradual redistribution of the data between the remaining drives in the system. On completion, the phased-out drive is in an inactive state, i.e., not in use by the Weka system, but still appearing in the list of drives.
@@ -44,13 +44,13 @@ To deactivate a drive, run the following command:
 
 `weka cluster drive deactivate <uuids>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name** | **Type**                | **Value**                         | **Limitations** | **Mandatory** | **Default** |
 | -------- | ----------------------- | --------------------------------- | --------------- | ------------- | ----------- |
 | `uuids`  | Comma-separated strings | Comma-separated drive identifiers |                 | Yes           |             |
 
-## Removing a Drive
+## Remove a drive
 
 **Command:** `weka cluster drive remove`
 
@@ -60,13 +60,13 @@ To remove a drive, run the following command:
 
 `weka cluster drive remove <uuids>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name** | **Type**                | **Value**                         | **Limitations** | **Mandatory** | **Default** |
 | -------- | ----------------------- | --------------------------------- | --------------- | ------------- | ----------- |
 | `uuids`  | Comma-separated strings | Comma-separated drive identifiers |                 | Yes           |             |
 
-## Deactivating an Entire Host
+## Deactivate an entire host
 
 **Command:** `weka cluster host deactivate`
 
@@ -76,14 +76,14 @@ To deactivate an entire host, run the following command:
 
 `weka cluster host deactivate <host-ids> [--allow-unavailable]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**            | **Type**                 | **Value**                                 | **Limitations**                                                  | **Mandatory** | **Default** |
 | ------------------- | ------------------------ | ----------------------------------------- | ---------------------------------------------------------------- | ------------- | ----------- |
 | `host-ids`          | Space-separated integers | Space-separated host identifiers          |                                                                  | Yes           |             |
 | `allow-unavailable` | Boolean                  | Allow deactivation of an unavailable host | If the host returns, it will join the cluster in an active state | No            | No          |
 
-## Removing a Host
+## Remove a host
 
 **Command:** `weka cluster host remove`
 
@@ -93,7 +93,7 @@ To remove the host from the cluster, run the following command:
 
 `weka cluster host remove <host-id>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**  | **Type**                | **Value**                        | **Limitations** | **Mandatory** | **Default** |
 | --------- | ----------------------- | -------------------------------- | --------------- | ------------- | ----------- |

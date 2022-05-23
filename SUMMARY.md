@@ -96,28 +96,28 @@
   * [Expand and shrink overview](usage/expanding-and-shrinking-cluster-resources/expand-and-shrink-overview.md)
   * [Workflow: Add a backend host](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
   * [Expansion of specific resources](usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
-  * [Shrinking a Cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
-* [Background Tasks](usage/background-tasks.md)
-* [Upgrading Weka Versions](usage/upgrading-weka-versions.md)
+  * [Shrink a Cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
+* [Background tasks](usage/background-tasks.md)
+* [Upgrade Weka versions](usage/upgrading-weka-versions.md)
 
 ## Billing & Licensing <a href="#licensing" id="licensing"></a>
 
-* [License Overview](licensing/overview.md)
-* [Classic License](licensing/classic-licensing.md)
-* [Pay-As-You-Go License](licensing/pay-as-you-go.md)
+* [License overview](licensing/overview.md)
+* [Classic license](licensing/classic-licensing.md)
+* [Pay-As-You-Go license](licensing/pay-as-you-go.md)
 
 ## Support
 
-* [Prerequisites and Compatibility](support/prerequisites-and-compatibility.md)
-* [Getting Support for Your Weka System](support/getting-support-for-your-weka-system.md)
-* [The Weka Support Cloud](support/the-wekaio-support-cloud.md)
-* [Diagnostics CLI Command](support/diagnostics-utility.md)
+* [Prerequisites and compatibility](support/prerequisites-and-compatibility.md)
+* [Get support for your Weka system](support/getting-support-for-your-weka-system.md)
+* [The Weka support cloud](support/the-wekaio-support-cloud.md)
+* [Diagnostics CLI command](support/diagnostics-utility.md)
 
 ## Appendix
 
-* [Weka CSI Plugin](appendix/weka-csi-plugin.md)
+* [Weka CSI plugin](appendix/weka-csi-plugin.md)
 * [Monitor using external tools](appendix/external-monitoring.md)
-* [Snapshot Management](appendix/snapshot-management.md)
+* [Snapshot management](appendix/snapshot-management.md)
 
 ***
 

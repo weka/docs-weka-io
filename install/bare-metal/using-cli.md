@@ -155,7 +155,7 @@ To view the current default data networking settings use the command `weka clust
 
 If a default data networking was previously configured on a cluster and is no longer needed, it is possible to remove it using the command `weka cluster default-net reset`.
 
-## Stage 7: Configuration of SSDs
+## Stage 7: Configure the SSDs
 
 **Command:** `weka cluster drive add`
 
@@ -174,7 +174,7 @@ This stage in the installation process is used to add a local SSD to be used by 
 **Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the Weka Support Team.
 {% endhint %}
 
-## Stage 8: Configuration of CPU Resources
+## Stage 8: Configure the CPU resources
 
 **Command:** `weka cluster host cores`
 
@@ -281,7 +281,7 @@ To configure the Weka system hot spare, use the following command line:
 | -------- | -------- | --------- | --------------- | ------------- | ----------- |
 | `count`  | Number   | Hot spare |                 | No            | 1           |
 
-## Stage 13: Applying Hosts Configuration
+## Stage 13: Apply hosts configuration
 
 **Command:** `weka cluster host apply`
 

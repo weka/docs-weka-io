@@ -4,7 +4,7 @@ description: >-
   predetermined period of time) and apply it to the Weka system cluster.
 ---
 
-# Classic License
+# Classic license
 
 A classic license is a text element entered in the cluster using the GUI or the CLI. The following is an example:
 
@@ -12,7 +12,7 @@ A classic license is a text element entered in the cluster using the GUI or the 
 eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0ZjQ4M2YxZi1jNGJhLTRkZDAtYTExNC04MTBmMzk0NGQ1MTUiLCJpc3MiOiJodHRwczovL2dldC53ZWthLmlvIiwibmJmIjoxNTMwNDM4NjI2LCJleHAiOjE1MzMwMzA2MjYsInctZ3VpZCI6IjZjZDI2ZTdlLWZmNDYtNGZmMC1iOGU2LTUzNmE0MzIwZTkyYyIsInctdHlwZSI6IkNsYXNzaWMiLCJ3LWNyZWRpdHMiOnsiZHJpdmVfY2FwYWNpdHlfZ2IiOjE2MSwib2JzX2NhcGFjaXR5X2diIjowfSwiaWF0IjoxNTMwNDM4NjQyfQ.oi1Vfp7nkJBN1jENfWTAxFyKkcKNKqmWR23ZlnPdvWHa78KnDvA2tgC8VXjVHPh6NM5s0nSfZLUv5HESjdnTG98hGxMSfTDhGLmK-jn6Kuk382p0sT5YSrWr7zyJu3AtGxSPCf0CMbXBsfvv3ivycTLx5ACpw9CSGl2CWvEhA5kDHi45EjM_Teo43z7AHvzog1HOEJDl6jZiEAMw0NLf6ZJ2Y6XCFgqxCIrmD0irGUI04GtHKsMPRSABUeakHshIFoy-TnaW1vMGS1GYNetYjyeQKyy74Baaos_SCzMHuLHMEjGXWJZjAN780KKSQN9DYEBC6HxZGpx4sEEqtyx_kg
 ```
 
-## Creating a get.weka.io Account
+## Create a get.weka.io account
 
 Follow the instructions to create a get.weka.io account appearing in the [log-in instructions](../install/bare-metal/obtaining-the-weka-install-file.md#step-1-log-in).
 
@@ -20,13 +20,13 @@ Follow the instructions to create a get.weka.io account appearing in the [log-in
 **Note:** This step can be skipped if you already have created a Weka account.
 {% endhint %}
 
-## Obtaining an Entitlement
+## Obtain an entitlement
 
-After creating an account in get.weka.io, an entitlement will be applied to the account by a Weka sales or support person. Outstanding entitlements can be viewed in the account dashboard.
+After creating an account in get.weka.io, Weka sales or support team appliesan entitlement to the account. You can view the outstanding entitlements on the account dashboard.
 
 ![Account Dashboard](<../.gitbook/assets/Screen Shot 2018-07-01 at 13.15.56.png>)
 
-## Creating a License
+## Create a license
 
 Start by running the `weka cluster license` command, which will output all the information required for creating your license. The following is an example output:
 
@@ -65,7 +65,7 @@ Fill-in the cluster GUID and capacities. Then click the Create License button to
 The capacities in the license represent the limits to which it is possible to expand the cluster and do not have to match actual usage.
 {% endhint %}
 
-## Applying the License to the Cluster
+## Apply the license to the cluster
 
 After creating the license, the page showing licenses is displayed. it is always possible to return to this page to get previously-created licenses.
 
@@ -89,7 +89,7 @@ where \<license-key> is the license copied to the clipboard.
 
 The cluster now has a license assigned to it.
 
-## Getting the License Usage
+## Get the license usage
 
 To see the details of the current license and the current cluster usage, run the `weka cluster license` command again. The following is an example of the output obtained:
 
@@ -106,7 +106,7 @@ Installed license: Valid from 2018-07-01T10:39:42Z
                    2048 GB object-store capacity
 ```
 
-## Reinstalling a Cluster
+## Reinstall a cluster
 
 Every newly-installed cluster is assigned a new GUID. It is possible to use an existing license for a cluster that has been reinstalled by selecting the Change Cluster GUID in the Applying a License to a Cluster pane.
 

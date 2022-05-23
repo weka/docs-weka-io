@@ -4,7 +4,7 @@ description: >-
   Weka support process.
 ---
 
-# The Weka Support Cloud
+# The Weka support cloud
 
 ## Weka Home
 
@@ -20,13 +20,13 @@ To enable the uploading of data to Weka Home, perform the following:
 Optimally, both client and backend hosts should be able to upload information to the Weka support cloud. If client connectivity cannot be configured, it is still advantageous to allow the backend hosts to upload information.
 {% endhint %}
 
-## Private Instance of Weka Home
+## Weka Home private instance&#x20;
 
-For proactive support, it is highly recommended to enable access to the public instance of Weka Home. However, in some situations - such as when working in dark sites or private VPCs - there is no connectivity to the public instance of Weka Home. In such cases, receipt of proper support requires at least connection to a private instance of Weka Home, which can be installed in the private environment.
+For proactive support, it is highly recommended to enable access to the public instance of Weka Home. However, in some situations - such as when working in dark sites or private VPCs - there is no connectivity to the public instance of Weka Home. In such cases, receipt of proper support requires at least a connection to a private instance of Weka Home, which can be installed in the private environment.
 
 For installation and maintenance of a private instance of Weka Home, contact the Weka Support Team.
 
-### Requirements for Installation
+### Installation requirements
 
 * CentOS 7.x, Amazon Linux 2 LTS
 * 4 GB of RAM

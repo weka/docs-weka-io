@@ -6,8 +6,6 @@ description: >-
 
 # Monitor using external tools
 
-## Overview
-
 The Weka GUI allows monitoring basic information of the CPUs, Network, Drives, IOPS/Throughput, and more advanced information via the statistics as well as Weka Alerts and the Weka Events log.
 
 ![Screenshot of Weka Grafana Dashboard](<../.gitbook/assets/image (22).png>)
@@ -20,7 +18,7 @@ It is advisable to set-up a machine (or a VM) to run the external services used 
 
 The easiest way to set up a Grafana environment is with Docker. For that, make sure `docker-ce` and `docker-compose` are installed on that machine. Installation instructions for installing Docker are on the [Docker website](https://www.docker.com/get-started).
 
-## Setting up the Weka-mon package
+## Set up the Weka-mon package
 
 ### Step 1: Install the Weka-mon package
 
@@ -99,7 +97,7 @@ The `timeout:` parameter is the max time in seconds to wait for an API call to r
 The `max_procs:` and  `max_threads_per_proc:` parameters define the scaling behavior. If the total number of hosts (servers and clients) exceeds `max_threads_per_proc`, the exporter will spawn more processes accordingly.&#x20;
 
 {% hint style="success" %}
-**For example,** a cluster with 80 weka servers and 200 compute nodes (aka clients) has 280 total hosts. With the default `max_threads_per_proc` of 100, it would spawn 3 processes (280 / 100 = 2.8, round up to 3).
+**Example,** a cluster with 80 weka servers and 200 compute nodes (aka clients) has 280 total hosts. With the default `max_threads_per_proc` of 100, it would spawn 3 processes (280 / 100 = 2.8, round up to 3).
 {% endhint %}
 
 It's recommended to have 1 available core per process. With the above example, you should deploy on a VM or server with at least 4 available cores.
@@ -107,7 +105,7 @@ It's recommended to have 1 available core per process. With the above example, y
 The exporter will always try to allocate one host per thread, but will not exceed `max_procs` processes. If you have 1000's of hosts, it will double/triple up hosts on the threads.
 
 {% hint style="success" %}
-**For example,** with 3000 hosts and defaults of `max_procs` of 8 and `max_threads_per_proc`of 100, only 8 proccesses will be spawned, each with 100 threads, but there will be close to 4 hosts serviced per thread instead of the default 1 host per thread.
+**Example,** with 3000 hosts and defaults of `max_procs` of 8 and `max_threads_per_proc`of 100, only 8 processes are spawned, each with 100 threads, but there will be close to 4 hosts serviced per thread instead of the default 1 host per thread.
 {% endhint %}
 
 All other settings have pre-defined defaults that should work with weka-mon without modification.&#x20;
@@ -197,7 +195,7 @@ cd export
 
 ```
 
-#### Step 4c: Getting the sources
+#### Step 4c: Get the sources
 
 You can either `git clone https://github.com/weka/export` or go to [https://github.com/weka/export/releases](https://github.com/weka/export/releases) and download the source tarball.
 

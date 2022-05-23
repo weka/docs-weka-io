@@ -40,7 +40,7 @@ To dynamically change the network configuration, use the steps described for the
 **Note:** It is possible to accumulate several changes on a host and apply only once on completion.
 {% endhint %}
 
-### Host IPs Modifications
+### Host IPs modifications
 
 To dynamically change the host's management IPs, you can use the `management-ips` resource editing command.&#x20;
 
@@ -76,13 +76,13 @@ The following commands cannot be performed on an Active host and require deactiv
 `weka local resources failure-domain`\
 `weka local resources cores`
 
-## Addition of CPU Cores
+## Addition of CPU cores
 
 The addition of CPU cores to the cluster is not performed dynamically but on an inactive host. It requires the execution of the steps described in [Configuration of CPU Resources](../../install/bare-metal/using-cli.md#stage-9-configuration-of-cpu-resources).&#x20;
 
 For more information, contact the WekaIO Support Team.
 
-## Expansion of Only SSDs
+## Expansion of only SSDs
 
 Follow the instructions appearing in [Configuration of SSDs](../../install/bare-metal/using-cli.md#stage-6-configuration-of-ssds).
 

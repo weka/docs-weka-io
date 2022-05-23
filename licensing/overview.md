@@ -2,9 +2,9 @@
 description: This page describes how licensing works in a Weka system cluster.
 ---
 
-# License Overview
+# License overview
 
-## License Metrics
+## License metrics
 
 A Weka system license measures usage at the cluster level and contains the following properties:
 
@@ -17,7 +17,7 @@ When applied, the cluster verifies that the license is valid by comparing these 
 
 To be able to start-io in a newly configured cluster, a valid license must be set (either a classic or a PAYG license).
 
-## Cluster Licensing Status
+## Cluster licensing status
 
 To view the cluster licensing status, run the `weka status` command:
 
@@ -48,7 +48,7 @@ No License Assigned
 This cluster does not have a license assigned, please go to https://get.weka.io to obtain your license
 ```
 
-## Obtaining a License
+## Obtain a license
 
 There are two ways to obtain a license for your cluster:
 

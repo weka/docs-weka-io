@@ -4,11 +4,9 @@ description: >-
   deployment, and usage.
 ---
 
-# Weka CSI Plugin
+# Weka CSI plugin
 
-## Overview
-
-The [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md) (CSI) is a standard for exposing arbitrary block and file storage systems to containerized workloads on Container Orchestration Systems (COs) like Kubernetes.
+uThe [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md) (CSI) is a standard for exposing arbitrary block and file storage systems to containerized workloads on Container Orchestration Systems (COs) like Kubernetes.
 
 The Weka CSI Plugin provides the creation and configuration of persistent storage external to Kubernetes. CSI replaces plugins developed earlier in the Kubernetes evolution. It replaces the `hostPath` method to expose WekaFS mounts as Kubernetes volumes.
 
@@ -94,7 +92,7 @@ Official Weka CSI Plugin documentation can be found here: https://docs.weka.io/a
 
 ### Upgrade
 
-#### Clean Up a Direct Deployment of CSI Driver
+#### Clean up a direct deployment of CSI driver
 
 {% hint style="warning" %}
 **Note:** Upgrading a plugin deployed directly (via `deploy.sh` script) is not supported. This section describes the procedure to clean up the existing CSI plugin components. After cleanup, proceed to the [Installation](weka-csi-plugin.md#installation) section.
@@ -114,7 +112,7 @@ Assuming connectivity to Kubernetes cluster is valid, run the following script t
 $REPO_ROOT/deploy/kubernetes-latest/cleanup.sh
 ```
 
-#### Upgrade an Existing Helm Release
+#### Upgrade an existing helm release
 
 {% hint style="danger" %}
 **Note:** If you plan to upgrade existing Weka CSI plugin deployment and enable directory quota enforcement for already existing volumes, please refer to the [Binding Legacy Volumes to API](weka-csi-plugin.md#binding-legacy-volumes-to-api) section.
@@ -151,7 +149,7 @@ To learn more about the release, try:
 Official Weka CSI Plugin documentation can be found here: https://docs.weka.io/appendix/weka-csi-plugin
 ```
 
-### CSI Plugin and WekaFS Cluster Software Upgrade
+### CSI plugin and WekaFS cluster software upgrade
 
 The CSI Plugin fetches the WekaFS cluster capabilities during the first login to the API endpoint and caches it throughout the login refresh token validity period, to improve the efficiency and performance of the plugin.
 
@@ -164,7 +162,7 @@ kubectl delete pod -n csi-wekafs -lapp=csi-wekafs-controller
 kubectl delete pod -n csi-wekafs -lapp=csi-wekafs-node
 ```
 
-## Storage Class Configuration
+## Storage class configuration
 
 The Weka CSI Plugin supports both dynamic (persistent volume claim) and static (persistent volume) volume provisioning. For provisioning either type of a persistent volume, a Storage Class must exist in Kubernetes deployment that matches the Weka cluster configuration.
 
@@ -176,7 +174,7 @@ In the [API-Based communication model](weka-csi-plugin.md#api-based-deployment-m
 **Note:** Only the API-Based communication model will be maintained and enhanced with new capabilities. If you are running the legacy CSI plugin, it is advisable to replace it with the API-Based one.
 {% endhint %}
 
-### Legacy Communication Model
+### Legacy communication model
 
 This model assumes no API connectivity to the Weka cluster. As a result, the functionality provided by the Weka CSI plugin is limited.
 
@@ -188,7 +186,7 @@ Although this configuration is supported in version 0.7.0 and up, the user is en
 
 It is first required to define a storage class to use the Weka CSI Plugin.
 
-#### Storage Class Example
+#### Storage class example
 
 {% code title="csi-wekafs/examples/dynamic/storageclass-wekafs-dir.yaml" %}
 ```yaml
@@ -206,7 +204,7 @@ parameters:
 ```
 {% endcode %}
 
-#### **Storage Class Parameters**
+#### **Storage class parameters**
 
 | **Parameter**    | **Description**                                                                | **Limitations**                                 |
 | ---------------- | ------------------------------------------------------------------------------ | ----------------------------------------------- |
@@ -227,7 +225,7 @@ storageclass-wekafs-dir        csi.weka.io         Delete          Immediate    
 
 It is possible to define multiple storage classes with different filesystems.
 
-### API-Based Communication Model
+### API-based communication model
 
 In the API-based model, the API endpoint addresses and authentication credentials must be provided to the Weka CSI plugin in order to establish a REST API connection with the Weka cluster and perform configuration tasks on it.
 
@@ -251,7 +249,7 @@ The information is stored securely in [Kubernetes secret](https://kubernetes.io/
 Volumes provisioned using the API-Based model on older Weka clusters, do not support capacity enforcement, and are still considered "Legacy". However, they can be easily upgraded to capacity enforcement capabilities after the Weka cluster upgrade.
 {% endhint %}
 
-#### Secret Data Example
+#### Secret data example
 
 {% code title="csi-wekafs/examples/dynamic_api/csi-wekafs-api-secret.yaml" %}
 ```
@@ -270,7 +268,7 @@ data:
 ```
 {% endcode %}
 
-#### Secret Data Parameters
+#### Secret data parameters
 
 {% hint style="info" %}
 **Note:** Make sure that all data is base64-encoded when creating a secret.
@@ -300,7 +298,7 @@ csi-wekafs-api-secret   Opaque   5      7m
 **Note:** To provision CSI volumes on filesystem residing in non-root organizations, or filesystems set with `auth-required=true,` CSI plugin of version **0.7.4** or higher is required, as well as Weka software of version **3.14** or higher
 {% endhint %}
 
-#### Storage Class Example
+#### Storage class example
 
 {% code title="csi-wekafs/examples/dynamic_api/storageclass-wekafs-dir-api.yaml" %}
 ```yaml
@@ -341,7 +339,7 @@ parameters:
 ```
 {% endcode %}
 
-#### **Storage Class Parameters**
+#### **Storage class parameters**
 
 | **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                              |
 | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -376,13 +374,13 @@ storageclass-wekafs-dir        csi.weka.io         Delete          Immediate    
 However, different Kubernetes nodes within the same cluster (e.g., in different regions or availability zones) can be connected to different Weka clusters. In such a case, provided that the Weka CSI plugin can access the Weka cluster REST API, a single CSI plugin instance can orchestrate persistent volume provisioning on multiple clusters.
 {% endhint %}
 
-## Provision Usage
+## Provision usage
 
-### Dynamic Provisioning
+### Dynamic provisioning
 
 Using a similar storage class to the above, it is possible to define a persistent volume claim (PVC) for the pods.
 
-#### Persistent Volume Claim Example
+#### Persistent volume claim example
 
 {% code title="csi-wekafs/examples/dynamic/pvc-wekafs-dir.yaml" %}
 ```yaml
@@ -401,7 +399,7 @@ spec:
 ```
 {% endcode %}
 
-#### Persistent Volume Claim **Parameters**
+#### Persistent volume claim **parameters**
 
 | **Parameter**                     | **Description**                            | **Limitations**                                                                                                 |
 | --------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
@@ -426,13 +424,13 @@ pvc-wekafs-dir        Bound    pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380   1Gi   
 **Note:** The directory will be created inside the filesystem under `csi-volumes` directory, starting with the volume name.
 {% endhint %}
 
-### Static Provisioning
+### Static provisioning
 
 The Kubernetes admin can prepare some persistent volumes in advance to be used by pods, they should be an existing directory, and can contain pre-populated data to be used by the PODs.
 
 It can be a directory previously provisioned by the CSI or a pre-existing directory in WekaFS. To expose an existing directory in WekaFS via CSI, define a persistent volume, and link a persistent volume claim to this persistent volume.
 
-#### Persistent Volume Example
+#### Persistent volume example
 
 {% code title="csi-wekafs/examples/static/pv-wekafs-dir-static.yaml" %}
 ```yaml
@@ -457,7 +455,7 @@ spec:
 ```
 {% endcode %}
 
-#### Persistent Volume **Parameters**
+#### Persistent volume **parameters**
 
 | **Parameter**           | **Description**                               | **Limitations**                                                                                                                                                                                       |
 | ----------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -481,7 +479,7 @@ pv-wekafs-dir-static                       1Gi        RWX            Retain     
 
 Now, bind a PVC to this specific PV, use the `volumeName` parameter under the PVC `spec` and provide it with the specific PV name.
 
-#### Persistent Volume Claim for Static Provisioning Example
+#### Persistent volume claim for static provisioning example
 
 {% code title="csi-wekafs/examples/static/pvc-wekafs-dir-static.yaml" %}
 ```yaml
@@ -501,7 +499,7 @@ spec:
 ```
 {% endcode %}
 
-#### Persistent Volume Claim for Static Provisioning Example
+#### Persistent volume claim for static provisioning example
 
 | **Parameter**                     | **Description**                              | **Limitations**                                                                                                 |
 | --------------------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -532,7 +530,7 @@ NAME                                       CAPACITY   ACCESS MODES   RECLAIM POL
 pv-wekafs-dir-static                       1Gi        RWX            Retain           Bound       default/pvc-wekafs-dir-static   storageclass-wekafs-dir                 6m30s
 ```
 
-### Launching an Application using Weka as the POD's Storage
+### Launch an application using Weka as the POD's storage
 
 Now that we have a storage class and a PVC in place, we can configure the Kubernetes pods to provision volumes via the Weka system.
 
@@ -562,7 +560,7 @@ spec:
 ```
 {% endcode %}
 
-Now we will apply that pod:
+Apply that pod:
 
 ```yaml
 $ kubectl apply -f csi-app-on-dir.yaml
@@ -587,9 +585,9 @@ Sun Jul 19 12:50:35 IDT 2020
 Sun Jul 19 12:50:45 IDT 2020
 ```
 
-## Upgrading Legacy Persistent Volumes for Capacity Enforcement
+## Upgrade legacy persistent volumes for capacity enforcement
 
-### Binding Legacy Volumes to API
+### Bind legacy volumes to API
 
 Capacity enforcement and integration with WekaFS directory quotas require several prerequisites:
 
@@ -628,7 +626,7 @@ helm upgrade csi-wekafs --namespace csi-wekafs csi-wekafs/csi-wekafsplugin \
 **Note:** The Kubernetes secret must be created before executing the helm upgrade. Otherwise, the CSI Plugin components will remain in a `Pending` state after the upgrade.
 {% endhint %}
 
-### Upgrading Legacy Volumes
+### Upgrade legacy volumes
 
 Once the volume to API binding configuration described in the previous section is performed, the volumes may be migrated by binding a new WekaFS directory quota object to an existing persistent volume.&#x20;
 
@@ -648,7 +646,7 @@ Check out the `csi-wekafs` repository from any host that is connected to WekaFS 
 git clone https://github.com/weka/csi-wekafs.git
 ```
 
-Execute the migration script by issuing the following command, where `<filesystem_name>` states the filesystem name which the  CSI volumes are located on, and optional `<csi_volumes_dir>` parameter states the directory inside the filesystem where CSI volumes are stored (only if the directory differs from default values)
+Execute the migration script by issuing the following command, where `<filesystem_name>` states the filesystem name on which the  CSI volumes are located, and optional `<csi_volumes_dir>` parameter states the directory inside the filesystem where CSI volumes are stored (only if the directory differs from default values)
 
 ```
 $ sudo migration/migrate-legacy-csi-volumes.sh <filesystem_name> [--csi-volumes-dir <csi_volumes_dir>] [--endpoint-address BACKEND_IP_ADDRESS:BACKEND_PORT]
@@ -686,7 +684,7 @@ Refer to the specific OS package management documentation to install the necessa
 
 ## Troubleshooting
 
-### Useful Commands
+### Useful commands
 
 Here are some useful basic commands to check the status and debug the service:
 
@@ -720,9 +718,9 @@ kubectl logs <pod name> <container name>
 kubectl logs pods/csi-wekafsplugin-<ID> --namespace csi-wekafsplugin -c wekafs
 ```
 
-### Known Issues
+### Known issues
 
-#### Mixed Hugepages Size Issue
+#### Mixed hugepages size issue
 
 Due to a Kubernetes v1.18 issue with allocating mixed hugepages sizes ([https://github.com/kubernetes/kubernetes/pull/80831](https://github.com/kubernetes/kubernetes/pull/80831)) is required that the Weka system will not try to allocate mixed sizes of hugepages on the Kubernetes nodes.
 

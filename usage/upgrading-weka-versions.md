@@ -2,9 +2,9 @@
 description: This page describes how to upgrade to the latest Weka software version.
 ---
 
-# Upgrading Weka Versions
+# Upgrade Weka versions
 
-## Prerequisites for Upgrade
+## Upgrade prerequisites&#x20;
 
 Before upgrading your cluster, ensure the following:
 
@@ -14,23 +14,24 @@ Before upgrading your cluster, ensure the following:
 4. There is at least 4GB of free space in the `/opt/weka` directory.
 
 {% hint style="info" %}
-**Note:** If you are planning a multi-hop version upgrade, once an upgrade is done, a background process of converting metadata to a new format may occur (in some versions). This will take several minutes to complete and must finish before another upgrade can start (the progress can be monitored via `weka status` CLI command if there is  a `data upgrade` task in a`RUNNING` state.
+**Note:** If you plan a multi-hop version upgrade, once an upgrade is done, a background process of converting metadata to a new format may occur (in some versions). This type of upgrade takes several minutes to complete and must finish before another upgrade can start (the progress can be monitored via `weka status` CLI command if there is  a `data upgrade` task in a`RUNNING` state.
 {% endhint %}
 
-## Supported Upgrade Paths
+## Supported upgrade paths
 
 The Weka upgrade process supports upgrading to both higher minor versions and major versions of the Weka software.
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
+* To upgrade to Weka software version 4.0.x, go through version 3.14.1 or above
 * To upgrade to Weka software version 3.14.x, go through version 3.13.1 or above
 * To upgrade to Weka software version 3.13.x, go through version 3.12.1 or above
 * To upgrade to Weka software version 3.12.x, go through version 3.11.0 or above
 * To upgrade to Weka software version 3.11.x, go through version 3.10.0 or above
 
-For further information, contact the Weka Support Team.
+For further information, contact Weka support.
 
-## Preparing the Cluster for Upgrade
+## Prepare the cluster for upgrade
 
 Download and prepare the new release on one of the backend hosts, using one of the following methods:
 
@@ -44,7 +45,7 @@ Download and prepare the new release on one of the backend hosts, using one of t
 * From the backend host, run the `curl` command as described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new version release page.
 * Download the new version tar file to the backend host and run `install.sh` (useful on environments where there is no connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs).
 
-## Preparing the Hosts for Upgrade (Optional)
+## Prepare the hosts for upgrade (optional)
 
 Once the Weka cluster upgrade is called, it will first prepare all the connected hosts (clients and backends) for the upgrade, which includes downloading the new version and get it ready to be applied. Only then, it will start the upgrade process of the cluster. This reduces to a minimum any downtime that the client host can experience from the Weka cluster.
 
@@ -54,7 +55,7 @@ First, obtain the new version on one of the backend host, as described above, th
 
 `weka local run --in <new-version> upgrade --prepare-only`
 
-## Running the Upgrade Command
+## Run the upgrade command
 
 Once a new software version is installed on one of the backend hosts, the cluster has to be upgraded to the new release. This is performed by running the following command on the backend host:
 
@@ -64,7 +65,7 @@ where `<new-version>` is the name of the new version (e.g.,`3.14.0`).
 
 The limited upgrade window can be controlled by setting the following parameters in the `upgrade` command:
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**                                 | **Type** | **Value**                                                                                                          | **Limitations** | **Mandatory** | **Default** |
 | ---------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------ | --------------- | ------------- | ----------- |
@@ -102,19 +103,19 @@ To upgrade a client host, run the `weka local upgrade` CLI command from the clie
 
 An alert is raised once there is a mismatching of versions in the cluster, and Weka requires upgrading all clients before the next software version upgrade (clients with two or more versions behind the version of the backends are not supported). In addition, if a client is rebooted or a umount/mount performed, the client will be automatically upgraded to the version of the backends. &#x20;
 
-## After the Upgrade
+## After the upgrade
 
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
 {% hint style="success" %}
-**For Example:** The following will be received when the system has been upgraded to version 3.14.0:
+**Example:** The following is returned when the system is upgraded to version 4.0.1:
 
 `# weka status`  \
-`Weka v3.14.0`   \
+`Weka v4.0.1`   \
 `...`
 {% endhint %}
 
-## Upgrade Revert on Failure
+## Upgrade revert on failure
 
 The disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. Weka system ensures that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window.
 

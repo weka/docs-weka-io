@@ -4,9 +4,7 @@ description: >-
   clusters.‌
 ---
 
-# Background Tasks
-
-## Overview
+# Background tasks
 
 ‌The Weka system has some internal/external asynchronous operations and maintenance tasks, such as migrating an object store and downloading/uploading snapshots. These tasks are performed in the background and should not interfere nor starve the Weka system from serving IOs with high performance.‌
 
@@ -20,13 +18,13 @@ The Weka system limits the CPU resources these tasks consume to 5% per host CPU.
 **Note:** The configured limit affects both external tasks (that are visible using the GUI/CLI) and internal low priority asynchronous operations.‌
 {% endhint %}
 
-## Managing Background Tasks <a href="#managing-background-tasks" id="managing-background-tasks"></a>
+## Manage background tasks <a href="#managing-background-tasks" id="managing-background-tasks"></a>
 
-### Viewing Running Background Tasks <a href="#viewing-running-background-tasks" id="viewing-running-background-tasks"></a>
+### View running background tasks <a href="#viewing-running-background-tasks" id="viewing-running-background-tasks"></a>
 
 It is possible to view currently-running background tasks, including their status and progress.‌
 
-#### Viewing Background Tasks Using the CLI <a href="#viewing-background-tasks-using-the-cli" id="viewing-background-tasks-using-the-cli"></a>
+#### Viewing background tasks using the CLI <a href="#viewing-background-tasks-using-the-cli" id="viewing-background-tasks-using-the-cli"></a>
 
 ‌**Command:** `weka cluster tasks`‌
 
@@ -39,11 +37,11 @@ Type       | State   | Progress | Description
 OBS_DETACH | RUNNING | 94       | Detaching Object Storage `obs_1` from filesystem `default`
 ```
 
-### ‌Limiting Background Task Resources
+### ‌Limit background task resources
 
 It is possible to limit the resources being used by background tasks.
 
-#### **Limiting Background Tasks Using the CLI**
+#### **Limit background tasks using the CLI**
 
 **Command:** `weka cluster tasks limits`
 
@@ -53,11 +51,11 @@ This command is used to view the defined limits.
 
 This command is used to update the CPU limit.
 
-### Pausing/Resuming/Aborting a Background Task
+### Pause/Resume/Abort a background task
 
 It is possible to pause and later resume a background task, as well as completely abort it. This is useful in case there are other tasks/activities that are of higher priority.
 
-#### **Pausing/Resuming/Aborting Background Tasks Using the CLI**
+#### **Pause/Resume/Abort a background task using the CLI**
 
 **Command:** `weka cluster tasks pause / resume / abort <task-id>`
 

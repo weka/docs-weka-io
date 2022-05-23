@@ -4,9 +4,9 @@ description: >-
   on an hourly basis, as part of your AWS bill.
 ---
 
-# Pay-As-You-Go License
+# Pay-As-You-Go license
 
-## Subscribing to AWS Marketplace
+## Subscribe to AWS marketplace
 
 To enable PAYG, it is first necessary to subscribe to [WekaFS distributed scalable file system ](https://aws.amazon.com/marketplace/pp/B07W8V4PN9?ref\_=srh\_res\_product\_title)in the AWS Marketplace. This is performed using the following steps:
 
@@ -22,7 +22,7 @@ After clicking the **Set Up Your Account** button, you will be redirected to the
 
 Your Weka account is now connected to the AWS Marketplace.
 
-## Enabling PAYG In Your Weka System Cluster
+## Enable PAYG In your Weka system
 
 After subscribing to the AWS Marketplace, a PAYG plan must be created in your Weka account. To do this, go to the **PAYG Plans** page and click the **Create PAYG Plan** button. Select the **AWS Marketplace** as the payment method and click the **Create PAYG Plan** to complete creation of the plan.
 
@@ -35,7 +35,7 @@ Once a PAYG plan has been created, the final step is to enable the PAYG plan in 
 1. Open a terminal and connect to one of your cluster hosts.
 2. Copy and paste the `<plan-id>` and `<secret-key>` from the PAYG plan you created above to the following CLI command: `$ weka cluster license payg <plan-id> <secret-key>`
 
-## What Happens When PAYG Is Enabled?
+## What happens when PAYG is enabled?
 
 After enabling PAYG, it is possible to verify that it is active by running the `weka status` command:
 
@@ -57,7 +57,7 @@ Weka v3.1.0 (CLI build 7f993d3)
 ...
 ```
 
-At any time, it is possible to reset the licensing status to return to an unlicensed mode, using the follwoing command:
+At any time, it is possible to reset the licensing status to return to an unlicensed mode, using the following command:
 
 ```
 $ weka cluster license reset
@@ -66,28 +66,28 @@ $ weka cluster license reset
 Resetting a license enables the entry of new PAYG plan details or switching to other licensing methods that might be available in the future.
 
 {% hint style="info" %}
-**Note:** Momentary disabling and re-enabling of licensing does not affect operation of the Weka system cluster and is completely safe.
+**Note:** Momentary disabling and re-enabling of licensing does not affect the operation of the Weka system cluster and is completely safe.
 {% endhint %}
 
-## How Does Hourly Pricing Work?
+## How does hourly pricing work?
 
 Weka charges your AWS account on an hourly basis, according to the pricing details published in the AWS Marketplace subscription. However, some cases are worth explaining in more detail.
 
-### Client Instances Are Free
+### Client instances are free
 
 Pricing in the AWS Marketplace only includes r3 and i3 instances, while it is possible to install the Weka system on many other types of instances (see [Supported EC2 Instance Types](../install/aws/supported-ec2-instance-types.md) for a complete list). This is because Weka only charges for **backend instances**, which are the instances storing the data in the cluster. Client instances, which also includes r3 instances when installing as clients, are free of charge.
 
-### Duplicate Charge Protection
+### Duplicate charge protection
 
 When enabling PAYG, the Weka system cluster sends a usage report to the Weka Portal. This usage report contains the information necessary for correctly charging your AWS account. If PAYG is enabled and disabled multiple times in the same hour, multiple usage reports will be sent, which may cause duplicate charges.
 
 The Weka Portal protects against such duplicate charges by ensuring that a cluster is never billed more than once in each given hour. It is possible to view a detailed list of usage reports in your Weka Portal account, with duplicate usage reports marked separately from the other reports.
 
-### Billing Multiple Clusters
+### Billing multiple clusters
 
 It is possible to use the same PAYG plan, or multiple PAYG plans assigned to the same AWS Marketplace subscription, with more than one Weka system cluster. In such situations, the accumulated charges will appear in your AWS bill, as the AWS Marketplace receives aggregated charges for each hour. it is possible to see the usage for each cluster separately under the usage reports screen in your Weka account.
 
-## Unsubscribing
+## Unsubscribe a license
 
 When unsubscribing, make sure to cancel your subscription from your AWS account. Subscriptions take up to 1 hour to be canceled, after which it is possible to re-subscribe and update your PAYG plans to charge the new subscription.
 

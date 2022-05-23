@@ -4,16 +4,14 @@ description: >-
   cluster diagnostics.
 ---
 
-# Diagnostics CLI Command
-
-## Overview
+# Diagnostics CLI command
 
 The diagnostics CLI command is used for collecting and uploading diagnostic data about clusters and hosts for analysis by the Weka Support and R\&D Teams in order to help with troubleshooting. There are two relevant commands:
 
 * `weka diags` used for cluster-wide diagnostics from any host in the cluster.
 * `weka local diags` used for running diagnostics on a specific host, which should be used if the host cannot connect to the cluster.
 
-## Collecting Diags
+## Collect diagnostics
 
 **Command:** `weka diags collect`
 
@@ -23,7 +21,7 @@ Use the following command to create diagnostics information about the Weka softw
 
 If the command is run with the `local` keyword, information is collected only from the host on which the command is executed. Otherwise, information is collected from the whole cluster.&#x20;
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**     | **Type** | **Value**                                               | **Limitations**                                              | **Mandatory** | **Default**       |
 | ------------ | -------- | ------------------------------------------------------- | ------------------------------------------------------------ | ------------- | ----------------- |
@@ -38,7 +36,7 @@ If the command is run with the `local` keyword, information is collected only fr
 **Note:** In the following situations the `local` option should be used: no functioning management process in the originating host or the hosts being addressed, no connectivity between the management process and the cluster leader, the cluster has no leader, the local container is down, the host cannot reach the leader or a remote host fails to respond to the `weka diags` remote command.
 {% endhint %}
 
-## Uploading Diags to Weka Home
+## Upload diagnostics to Weka Home
 
 **Command:** `weka diags upload`
 
@@ -46,7 +44,7 @@ Use the following command to create diagnostics information about the Weka softw
 
 `weka diags upload [--timeout timeout] [--core-limit core-limit] [--dump-id dump-id] [--host-id host-id]... [--clients]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**     | **Type**                        | **Value**                                               | **Limitations**                                              | **Mandatory** | **Default**                                      |
 | ------------ | ------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ | ------------- | ------------------------------------------------ |
@@ -66,7 +64,7 @@ When running the command with the `upload` option, the information is uploaded t
 **Note:** The upload process is asynchronous. Therefore connectivity failures will be reflected in failure events on the event log, while the command will still exit successfully.
 {% endhint %}
 
-## Weka Processes Traces
+## Weka process traces
 
 The Weka processes constantly create traces. These traces are rotating to consume only a defined capacity. When encountering issues, sometimes there is a need for Weka support to observe those traces and, in some situations, to prevent specific traces from rotating until resolution.
 
