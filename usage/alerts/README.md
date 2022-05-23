@@ -16,9 +16,9 @@ Alerts are indicated by a yellow triangle. Click the triangle to display a list 
 **Note:** If for any reason it is not possible to solve the root cause of an alert at any given time, the alert can be muted in order to hide it. This action is only possible from the CLI.
 {% endhint %}
 
-## Working with Alerts Using the GUI
+## &#x20;Manage alerts using the GUI
 
-### Viewing Alerts
+### View alerts
 
 The following Alerts Overview popup window is displayed in the System Overview, in the top left side of the screen. It presents the status of alerts:
 
@@ -34,7 +34,7 @@ To view details of currently active alerts, click the "X ACTIVE ALERTS" text. Th
 
 When hovering on the bell with the mouse, the bell will change color and display the opposite condition of the alert i.e., change active to mute, and vice versa.
 
-### Muting Alerts
+### Mute alerts
 
 To mute an alert, click the bell of an active alert in the Current Active Alerts window. A dialog box will be displayed, requesting the time period during which the alert is to be muted:
 
@@ -43,7 +43,7 @@ To mute an alert, click the bell of an active alert in the Current Active Alerts
 Enter the time period required and click Mute.
 
 {% hint style="info" %}
-**Note:** Alerts cannot be suppressed indefinitely. After expiry of the muted period, the alert is automatically unmuted.
+**Note:** Alerts cannot be suppressed indefinitely. After the expiry of the muted period, the alert is automatically unmuted.
 {% endhint %}
 
 {% hint style="info" %}
@@ -52,19 +52,19 @@ Enter the time period required and click Mute.
 
 ![](<../../.gitbook/assets/Alerts 2 (1).png>)
 
-## Working with Alerts Using the CLI
+## Manage alerts using the CLI
 
-### **Listing Alerts Types**
+### **List alert types**
 
 **Command:** `weka alerts types`
 
-Use this command to lists all possible types of alerts that can be returned from the Weka cluster.
+Use this command to list all possible types of alerts that can be returned from the Weka cluster.
 
 **Command:**`weka alerts describe`
 
 Use this command to describe all the alert types that might be returned from the weka cluster along with possible action items for each alert.
 
-### **Viewing Alerts**
+### **View alerts**
 
 **Command:** `weka alerts`
 
@@ -72,13 +72,13 @@ Use the following command line to list all alerts (muted and unmuted) in the Wek
 
 `weka alerts [--muted]`
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name** | **Type** | **Value**                                    | **Limitations** | **Mandatory** | **Default** |
 | -------- | -------- | -------------------------------------------- | --------------- | ------------- | ----------- |
 | `muted`  | Boolean  | List muted alerts alongside the unmuted ones |                 | No            | False       |
 
-### **Muting Alerts**
+### **Mute alerts**
 
 **Command:** `weka alerts mute`
 
@@ -86,9 +86,9 @@ Use the following command line to mute an alert-type:
 
 `weka alerts mute <alert-type> <duration>`
 
-Muted alerts will not be prompted when listing active alerts. Alerts cannot be suppressed indefinitely, so a duration for the muted period must be provided. After expiry of the muted period, the alert-type is automatically unmuted.
+Muted alerts will not be prompted when listing active alerts. Alerts cannot be suppressed indefinitely, so a duration for the muted period must be provided. After the expiry of the muted period, the alert-type is automatically unmuted.
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name**     | **Type** | **Value**                                                    | **Limitations**                  | **Mandatory** | **Default** |
 | ------------ | -------- | ------------------------------------------------------------ | -------------------------------- | ------------- | ----------- |
@@ -101,12 +101,12 @@ Use the following command line to unmute a previously-muted alert-type:
 
 `weka alerts unmute <alert-type>`
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name**     | **Type** | **Value**                                                      | **Limitations** | **Mandatory** | **Default** |
 | ------------ | -------- | -------------------------------------------------------------- | --------------- | ------------- | ----------- |
 | `alert-type` | String   | An alert-type to unmute, use `weka alerts types` to list types |                 | Yes           |             |
 
-{% content-ref url="list-of-alerts.md" %}
-[list-of-alerts.md](list-of-alerts.md)
-{% endcontent-ref %}
+**Related topics**
+
+[list-of-alerts.md](list-of-alerts.md "mention")

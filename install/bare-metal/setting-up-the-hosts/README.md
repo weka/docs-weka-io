@@ -4,7 +4,7 @@ description: >-
   machines for the first time.
 ---
 
-# Setting Up the Hosts
+# Set up the hosts
 
 ## Preparations
 
@@ -21,17 +21,17 @@ After meeting the hardware and software requirements, it is necessary to prepare
 **Note:** Some of the examples on this page contain version-specific information. Since the software is updated frequently, the package versions available to you may differ from those presented here.
 {% endhint %}
 
-## NIC Driver Installation
+## NIC driver installation
 
 {% hint style="info" %}
 **Note:** The steps describing the installation of NIC drivers are provided as a courtesy. Refer to your NIC vendor documentation for the latest information and updates.
 {% endhint %}
 
-### Mellanox OFED Installation
+### Mellanox OFED installation
 
 This section describes an OFED installation procedure that has proven to be successful. However, Mellanox supports a number of other installation methods, any of which can be used to install OFED. For more information about other installation procedures, refer to the Mellanox documentation.
 
-#### Meeting Mellanox OFED Prerequisites
+#### Meeting Mellanox OFED prerequisites
 
 The Mellanox OFED installation has a number of dependencies. The following example shows the installation of OFED dependencies in RHEL/CentOS 7.x using yum's \[base] and \[update] repositories, which are supported and preconfigured in RHEL and CentOS.
 
@@ -49,7 +49,7 @@ yum --disablerepo=* --enablerepo=base install perl libnl lsof tcl libxml2-python
 
 Once the dependencies have been satisfied, it is possible to perform the OFED installation procedure.
 
-#### Mellanox OFED Installation
+#### Mellanox OFED installation
 
 The Mellanox OFED installation involves decompressing the distribution archive (which should be obtained from the Mellanox website) and running the installation script. Refer to the following to begin the installation:
 
@@ -80,7 +80,7 @@ On completion of the OFED installation, the NIC firmware may be updated to match
 
 This concludes the Mellanox OFED installation procedure.
 
-## SR-IOV Enablement
+## SR-IOV enablement
 
 SR-IOV enablement is not required for hosts with Mellanox NICs (CX-4 or newer).
 
@@ -90,7 +90,7 @@ SR-IOV enablement is mandatory for hosts equipped with Intel NICs, or when worki
 [sr-iov-enablement.md](sr-iov-enablement.md)
 {% endcontent-ref %}
 
-### Ethernet Configuration
+### Ethernet configuration
 
 The following example of `ifcfg` script is provided a reference for configuring the Ethernet interface.
 
@@ -125,10 +125,10 @@ Bring the interface up using the following command:
 # ifup enp24s0
 ```
 
-### InfiniBand Configuration
+### InfiniBand configuration
 
 {% tabs %}
-{% tab title="Default Partition" %}
+{% tab title="Default partition" %}
 InfiniBand network configuration normally includes Subnet Manager (SM), but the procedure involved is beyond the scope of this document. However, it is important to be aware of the specifics of your SM configuration, such as partitioning and MTU, because they can affect the configuration of the endpoint ports in Linux. For best performance, MTU of 4092 is recommended.
 
 Refer to the following `ifcfg` script when the IB network only has the default partition, i.e., "no `pkey`":
@@ -166,11 +166,11 @@ brd 00:ff:ff:ff:ff:12:40:1b:ff:ff:00:00:00:00:00:00:ff:ff:ff:ff
 ```
 {% endtab %}
 
-{% tab title="Non-default Partition (PKEY)" %}
+{% tab title="Non-default partition (PKEY)" %}
 On an InfiniBand network with a non-default partition number, `p-key` must be configured on the interface if the InfiniBand ports on your network are members of an InfiniBand partition other than the default (`0x7FFF`). The p-key should associate the port as a full member of the partition (full members are those where the p-key number with the most-significant bit (MSB) of the 16-bits is set to 1).
 
 {% hint style="success" %}
-**For Example:** If the partition number is `0x2`, the limited member p-key will equal the p-key itself, i.e.,`0x2`. The full member p-key will be calculated as the logical OR of `0x8000` and the p-key (`0x2`) and therefore will be equal to `0x8002`.
+**Example:** If the partition number is `0x2`, the limited member p-key will equal the p-key itself, i.e.,`0x2`. The full member p-key will be calculated as the logical OR of `0x8000` and the p-key (`0x2`) and therefore will be equal to `0x8002`.
 {% endhint %}
 
 {% hint style="info" %}
@@ -231,7 +231,7 @@ Verify the connection is up with all the non-default partition attributes set:
 {% endtab %}
 {% endtabs %}
 
-## Network Configuration Verification
+## Network configuration verification
 
 Use a large size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the hosts:
 
@@ -251,7 +251,7 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 
 `-s 8972` is the maximum ICMP packet size that can be transferred with MTU 9000, due to the overhead of ICMP and IP protocols.
 
-## HA Networking Configuration
+## HA networking configuration
 
 As described in [Weka Networking HA](../../../overview/networking-in-wekaio.md#ha) section, bonded interfaces are supported for ethernet can be added to Weka after setting the bonded device in the host.
 
@@ -279,7 +279,7 @@ net.ipv4.conf.all.arp_announce = 2
 net.ipv4.conf.default.arp_announce = 2
 ```
 
-**Routing Tables**
+**Routing tables**
 
 Append the following to `/etc/iproute2/rt_tables`:
 
@@ -322,13 +322,13 @@ Refer to this [link](https://access.redhat.com/solutions/30564) to learn how to 
 {% endtab %}
 {% endtabs %}
 
-## Clock Synchronization
+## Clock synchronization
 
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the Weka system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
 Configure the time synchronization software on the backend and client machines according to the specific vendor instructions (see your OS documentation), prior to installing the Weka software.
 
-## **NUMA Balancing Disablement**
+## **NUMA balancing disablement**
 
 The Weka system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies on the operations.
 

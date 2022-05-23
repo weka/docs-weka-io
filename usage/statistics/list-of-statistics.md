@@ -4,16 +4,16 @@ description: >-
   category.
 ---
 
-# List of Statistics
+# List of statistics
 
-## Attribute Cache
+## Attribute cache
 
 | **Type**                 | **Description**                                           | **Units** |
 | ------------------------ | --------------------------------------------------------- | --------- |
 | GP\_GETATTR\_CACHE\_MISS | Number of general purpose getAttr cache misses per second | Ops/Sec   |
 | GP\_GETATTR              | Number of general purpose getAttr calls per second        | Ops/Sec   |
 
-## Block Cache
+## Block cache
 
 | **Type**                             | **Description**                            | **Units** |
 | ------------------------------------ | ------------------------------------------ | --------- |
@@ -25,7 +25,7 @@ description: >-
 | BUCKET\_CACHE\_REGISTRY\_L2\_MISSES  | Bucket block cache registry L2 misses      | Queries   |
 | BUCKET\_REGISTRY\_L2\_BLOCKS\_NUM    | Bucket number of registry L2 blocks        | Blocks    |
 
-## Block Writes
+## Block writes
 
 | **Type**               | **Description**      | **Units** |
 | ---------------------- | -------------------- | --------- |
@@ -69,7 +69,7 @@ description: >-
 | WRITE\_BYTES                     | Number of byte writes per second                                        | Bytes/Sec    |
 | WRITE\_LATENCY                   | Average latency of WRITE operations                                     | Microseconds |
 
-## Bucket Failovers
+## Bucket failovers
 
 | **Type**                      | **Description**                                                                | **Units**  |
 | ----------------------------- | ------------------------------------------------------------------------------ | ---------- |
@@ -77,7 +77,7 @@ description: >-
 | INVALID\_BUCKET\_TERM         | Number of times a remote bucket rejected a request becaue the term was invalid | Exceptions |
 | REMOTE\_BUCKET\_IS\_SECONDARY | Number of times a remote bucket reported it is secondary and cannot serve us   | Exceptions |
 
-## Bucket Rebalances
+## Bucket rebalances
 
 | **Type**                    | **Description**                          | **Units** |
 | --------------------------- | ---------------------------------------- | --------- |
@@ -189,7 +189,7 @@ description: >-
 | FE\_IDLE\_CYCLES | Cycles/Sec                                                            |           |
 | FE\_IDLE\_TIME   | Percentage of the CPU time not utilized for handling I/Os on frontend | %         |
 
-## Frontend Encryption
+## Frontend encryption
 
 | **Type**                        | **Description**                                     | **Units**    |
 | ------------------------------- | --------------------------------------------------- | ------------ |
@@ -204,7 +204,7 @@ description: >-
 | FE\_FILENAME\_DECRYPT\_DURATION | Duration of decryption of filenames in the frontend | Microseconds |
 | FE\_FILENAME\_ENCRYPT\_DURATION | Duration of encryption of filenames in the frontend | Microseconds |
 
-## Garbage Collection
+## Garbage collection
 
 | **Type**                     | **Description**                     | **Units** |
 | ---------------------------- | ----------------------------------- | --------- |
@@ -229,7 +229,7 @@ description: >-
 | JOURNAL\_OPS\_IN      | Operations added to the journal     | Journal Entries/Sec |
 | JOURNAL\_OPS\_OUT     | Operations removed from the journal | Journal Entries/Sec |
 
-## MEMORY
+## Memory
 
 | **Type**     | **Description** | **Units** |
 | ------------ | --------------- | --------- |
@@ -308,7 +308,7 @@ description: >-
 | UNACKED\_RESENDS                     | Number of packets resent after receiving an ack                                                                     | Packets/Sec    |
 | ZERO\_CSUM                           | Number of checksum zero received                                                                                    | Packets/Sec    |
 
-## Object Storage
+## Object storage
 
 | **Type**                                             | **Description**                                                         | **Units**     |
 | ---------------------------------------------------- | ----------------------------------------------------------------------- | ------------- |
@@ -475,7 +475,7 @@ description: >-
 | WRITE\_LATENCY    | Average latency of WRITE operations     | Microseconds |
 | WRITE\_SIZES      | NFS write sizes histogram               |              |
 
-## Operations(driver)
+## Operations (driver)
 
 | **Type**                      | **Description**                                     | **Units**    |
 | ----------------------------- | --------------------------------------------------- | ------------ |

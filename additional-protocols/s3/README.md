@@ -26,13 +26,13 @@ By integrating a [round-robin DNS or a load balancer](s3-cluster-management.md#r
 
 The Weka S3 service works on top of the WekaFS file service. Buckets are mapped to (top-level) directories, and objects are mapped to files. Then, the same data can be exposed with either of the Weka-supported protocols.
 
-## S3 Access, Security and Auditing
+## S3 access, security, and auditing
 
-### S3 Access
+### S3 access
 
 Access to S3 APIs can be either authenticated or anonymous.
 
-#### User Authentication
+#### User authentication
 
 The process of gaining authenticated S3 access requires to:
 
@@ -40,7 +40,7 @@ The process of gaining authenticated S3 access requires to:
 2. [Create and attach an IAM policy for that S3 user](s3-users-and-authentication.md#manage-users-and-authentication), to set the permissions of the user to S3 operations and resources
 3. [Create temporary security tokens](s3-users-and-authentication.md#generating-a-temporary-security-token)  (STS AssumeRole)&#x20;
 
-#### Anonymous Access
+#### Anonymous access
 
 Anonymous access to buckets/objects can be obtained by either:&#x20;
 
@@ -49,7 +49,7 @@ Anonymous access to buckets/objects can be obtained by either:&#x20;
 
 ### Security
 
-#### Encryption at Rest
+#### Encryption at rest
 
 Data written via the S3 protocol can be encrypted at-rest by setting an [encrypted filesystem](../../overview/filesystems.md#encrypted-filesystems).
 

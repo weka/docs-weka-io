@@ -4,9 +4,9 @@ description: >-
   and vice versa.
 ---
 
-# Transition Between Tiered and SSD-Only Filesystems
+# Transition between tiered and SSD-only filesystems
 
-### Transition from SSD-Only Filesystem to Tiered Filesystem
+### The transition from SSD-only filesystem to tiered filesystem
 
 An SSD-only filesystem can be reconfigured as a tiered filesystem by attaching an object store. In such a situation, the default is to maintain the filesystem size. In order to increase the filesystem size, the total capacity field can be modified, while the existing SSD capacity remains the same.
 
@@ -14,7 +14,7 @@ An SSD-only filesystem can be reconfigured as a tiered filesystem by attaching a
 **Note:** Once an SSD-only filesystem has been reconfigured as a tiered filesystem, all existing data will be considered to belong to interval 0 and will be managed according to the 7-interval process. This means that the release process of the data created before the reconfiguration of the filesystem is performed in an arbitrary order and does not depend on the timestamps.
 {% endhint %}
 
-### Transition from Tiered Filesystem to SSD-Only Filesystem
+### The transition from tiered filesystem to SSD-only filesystem
 
 A tiered filesystem can be un-tiered (and only use SSDs) by detaching its object stores. This will copy the data back to the SSD.
 

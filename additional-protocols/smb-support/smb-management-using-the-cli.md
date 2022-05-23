@@ -4,25 +4,25 @@ description: >-
   filesystems and managing the cluster itself - using CLIs.
 ---
 
-# SMB Management Using CLIs
+# SMB management using the CLI
 
 ## Overview
 
 The Weka system has a number of CLI commands for setting up an SMB cluster over Weka filesystems. Used for managing the cluster itself, they are all located under the`weka smb cluster` command. They define what Weka hosts will participate in the SMB cluster, and what (if any) public IPs will be exposed by the SMB cluster.
 
-## Showing an SMB Cluster
+## Show an SMB cluster
 
 **Command:** `weka smb cluster`
 
 Use this command to view information about the SMB cluster managed by the Weka system.
 
-## Showing an SMB Domain Configuration
+## Show an SMB domain configuration
 
 **Command:** `weka smb domain`
 
 Use this command to view information about the SMB domain configuration.
 
-## Creating an SMB Cluster
+## Create an SMB cluster
 
 **Command:** `weka smb cluster create`
 
@@ -30,7 +30,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 
 `weka smb cluster create <name> <domain> [--samba-hosts samba-hosts]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range] [--domain-netbios-name domain-netbios-name] [--idmap-backend idmap-backend] [--joined-domain-mapping-from-id joined-domain-mapping-from-id] [--joined-domain-mapping-to-id joined-domain-mapping-to-id] [--default-domain-mapping-from-id default-domain-mapping-from-id] [--default-domain-mapping-to-id default-domain-mapping-to-id] [--encryption encryption]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**                         | **Type**                     | **Value**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | **Limitations**                                     | **Mandatory** | **Default**                     |
 | -------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------- | ------------------------------- |
@@ -77,7 +77,7 @@ In this example of a full command, an SMB cluster is configured over the Weka sy
 
 Use this command to check the status of the hosts which are part of the SMB cluster. Once all hosts are prepared and ready, it is possible to join an SMB cluster to an Active Directory.
 
-## Joining an SMB Cluster to an Active Directory
+## Join an SMB cluster to an Active Directory
 
 **Command:** `weka smb domain join`
 
@@ -85,7 +85,7 @@ Use the following command line to join an SMB domain to an Active Directory:
 
 `weka smb domain join <username> <password>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type** | **Value**                                                      | **Limitations**                  | **Mandatory** | **Default** |
 | ---------- | -------- | -------------------------------------------------------------- | -------------------------------- | ------------- | ----------- |
@@ -98,7 +98,7 @@ In order to join another Active Directory to the current SMB cluster configurati
 
 On completion of this operation, it is possible to join another Active Directory to the SMB cluster.
 
-## Deleting an SMB Cluster
+## Delete an SMB cluster
 
 **Command:** `weka smb cluster destroy`
 
@@ -106,7 +106,7 @@ Use this command to destroy an SMB cluster managed by the Weka system.
 
 Deleting an existing SMB cluster managed by the Weka system does not delete the backend Weka filesystems, but removes the SMB share exposures of these filesystems.
 
-## Add/Remove Hosts from an SMB Cluster
+## Add/Remove hosts from an SMB cluster
 
 **Command:** `weka smb cluster hosts add/remove`
 
@@ -116,15 +116,15 @@ Use these commands to add or remove hosts from the SMB cluster.
 **Note:** This operation might take some time to complete. During that time, SMB IOs will be stalled.
 {% endhint %}
 
-## Configuring Trusted Domains
+## Configure trusted domains
 
-### Listing Trusted Domains
+### List trusted domains
 
 **Command:** `weka smb cluster trusted-domains`
 
 Use this command to list all the configured trusted domains and their ID ranges.
 
-### Adding Trusted Domains
+### Add trusted domains
 
 **Command:** `weka smb cluster trusted-domains add`
 
@@ -132,7 +132,7 @@ Use the following command line to add an SMB trusted domain:
 
 `weka smb cluster trusted-domains add <domain-name> <from-id> <to-id>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**      | **Type** | **Value**                                           | **Limitations**                             | **Mandatory** | **Default** |
 | ------------- | -------- | --------------------------------------------------- | ------------------------------------------- | ------------- | ----------- |
@@ -140,7 +140,7 @@ Use the following command line to add an SMB trusted domain:
 | `from-id`     | Number   | The first ID of the range for the domain ID mapping | The range cannot overlap with other domains | Yes           |             |
 | `to-id`       | Number   | The last ID of the range for the domain ID mapping  | The range cannot overlap with other domains | Yes           |             |
 
-### Removing Trusted Domains
+### Remove trusted domains
 
 **Command:** `weka smb cluster trusted-domains remove`
 
@@ -148,19 +148,19 @@ Use the following command line to remove an SMB trusted domain:
 
 `weka smb cluster trusted-domains remove <domain-id>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**    | **Type** | **Value**                               | **Limitations** | **Mandatory** | **Default** |
 | ----------- | -------- | --------------------------------------- | --------------- | ------------- | ----------- |
 | `domain-id` | Number   | The internal ID of the domain to remove |                 | Yes           |             |
 
-## Listing SMB Shares
+## List SMB shares
 
 **Command:** `weka smb share`
 
 Use this command to list all existing SMB shares.
 
-## Adding SMB Shares
+## Add an SMB share
 
 **Command:** `weka smb share add`
 
@@ -168,7 +168,7 @@ Use the following command line to add a new share to be exposed to SMB:
 
 `weka smb share add <share-name> <fs-name> [--description description] [--internal-path internal-path] [--mount-option mount-option] [--file-create-mask file-create-mask] [--directory-create-mask directory-create-mask] [--obs-direct obs-direct] [--encryption encryption] [--read-only read-only] [--user-list-type user-list-type] [--users users]... [--allow-guest-access allow-guest-access] [--hidden hidden]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**                | **Type**                          | **Value**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | **Limitations**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | **Mandatory** | **Default**       |
 | ----------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------------- |
@@ -189,11 +189,11 @@ Use the following command line to add a new share to be exposed to SMB:
 | `hidden`                | String                            | Sets the share as non-browsable. It will be accessible for mounting and IOs but not discoverable by SMB clients.                                                                                                                                                                                                                                                                                                                                                                                                                                                    | `on` or `off`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | No            | `off`             |
 
 {% hint style="info" %}
-**Note:** If it is necessary to set share specific options to the SMB library, contact the Weka Support Team.
+**Note:** If it is necessary to set a share with specific options to the SMB library, contact Weka support.
 {% endhint %}
 
 {% hint style="success" %}
-**For Example:** The following is an example for adding users to a share mounted on a filesystem named "default":
+**Example:** The following is an example for adding users to a share mounted on a filesystem named "default":
 
 `weka smb share add rootShare default`  \
 `weka smb share add internalShare default --internal-path some/dir --description "Exposed share"`
@@ -201,7 +201,7 @@ Use the following command line to add a new share to be exposed to SMB:
 In this example, the first SMB share added has the Weka system share for default. The second SMB share has internal for default.
 {% endhint %}
 
-## Updating SMB Shares
+## Update SMB shares
 
 **Command:** `weka smb share update`
 
@@ -209,14 +209,14 @@ Use the following command line to update an existing share:
 
 `weka smb share update <share-id> [--encryption encryption]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**     | **Type** | **Value**                                                                                                                                                                                                                                                                                                                                                                                                                                       | **Limitations**                           | **Mandatory** | **Default** |
 | ------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ------------- | ----------- |
 | `share-id`   | Number   | The ID of the share to be updated                                                                                                                                                                                                                                                                                                                                                                                                               | Must be a valid share ID                  | Yes           | ​           |
 | `encryption` | String   | <p>The share encryption policy.</p><p><code>desired</code> - turns on data encryption for this share for clients that support encryption if negotiation has been enabled globally.</p><p><code>required</code> - enforces encryption for the shares. Clients that do not support encryption will be denied access to the share. If the global option is set to <code>disabled</code> access will be denied to these shares for all clients.</p> | `cluster_default` `desired` or `required` | No            |             |
 
-## **Controlling SMB Shares Users Lists**
+## **Control SMB share user-lists**
 
 **Command:** `weka smb share lists show`
 
@@ -230,7 +230,7 @@ Use the following command line to add users to a share user-list:
 
 `weka smb share lists add <share-id> <user-list-type> <--users users>...`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**         | **Type**                          | **Value**                                                                                                                                 | **Limitations**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | **Mandatory** | **Default** |
 | ---------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
@@ -246,7 +246,7 @@ Use the following command line to remove users from a share user-list:
 
 `weka smb share lists remove <share-id> <user-list-type> <--users users>...`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**         | **Type**                          | **Value**                                                                                                                                      | **Limitations**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | **Mandatory** | **Default** |
 | ---------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
@@ -262,14 +262,14 @@ Use the following command line to remove all users from a share user-list:
 
 `weka smb share lists reset <share-id> <user-list-type>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**         | **Type** | **Value**                              | **Limitations**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | **Mandatory** | **Default** |
 | ---------------- | -------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
 | `share-id`       | Number   | The ID of the share to be updated      | Must be a valid share ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Yes           |             |
 | `user-list-type` | String   | The type of permissions list to reset  | <p><code>read_only</code> - list of users that will not be given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>read_write</code>- list of users that will be given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>valid</code> - list of users that are  allowed to log-in to this share SMB service (empty list - all users are allowed)<code>invalid</code> - list of users that are not allowed to log-in to this share SMB service</p> | Yes           |             |
 
-## Removing SMB Shares
+## Remove SMB shares
 
 **Command:** `weka smb share remove`
 
@@ -277,19 +277,19 @@ Use the following command line to remove a share exposed to SMB:
 
 `weka smb share remove <share-id>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type** | **Value**                         | **Limitations**          | **Mandatory** | **Default** |
 | ---------- | -------- | --------------------------------- | ------------------------ | ------------- | ----------- |
 | `share-id` | String   | The ID of the share to be removed | Must be a valid share ID | Yes           | ​           |
 
 {% hint style="success" %}
-**For Example:** The following is an example for removing an SMB share defined as ID 1:
+**Example:** The following is an example for removing an SMB share defined as ID 1:
 
 `weka smb share remove 1`
 {% endhint %}
 
-## Controlling SMB Access Based on Hosts IP/Name
+## Control SMB access based on hosts IP/name
 
 It is possible to control which hosts are permitted to access the SMB service or share.
 
@@ -307,7 +307,7 @@ Use the following command line to add hosts to the allow/deny list (in either cl
 
 `weka smb share host-access add <share-id> <mode> <--ips ips> <--hosts hosts>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type**                          | **Value**                         | **Limitations**                                                                                                                                                             | **Mandatory**                                  | **Default** |
 | ---------- | --------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ----------- |
@@ -326,7 +326,7 @@ Use the following command line to remove hosts from the allow/deny list (in eith
 
 `weka smb share host-access remove <share-id> <hosts>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type**                      | **Value**                                     | **Limitations**                                                                              | **Mandatory**                     | **Default** |
 | ---------- | ----------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------- | --------------------------------- | ----------- |
@@ -341,7 +341,7 @@ Use the following command line to remove all hosts from the allow/deny list (in 
 
 `weka smb cluster host-access reset <mode>` **** `weka smb share host-access reset <share-id> <mode>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type** | **Value**                                                     | **Limitations**          | **Mandatory**                     | **Default** |
 | ---------- | -------- | ------------------------------------------------------------- | ------------------------ | --------------------------------- | ----------- |

@@ -4,9 +4,7 @@ description: >-
   SSD-only and tiered Weka system configurations.
 ---
 
-# Advanced Data Lifecycle Management
-
-## Overview
+# Advanced data lifecycle management
 
 This section explains how data lifecycle is maintained when working with a tiered Weka system configuration, together with the options for control. The following subjects are covered:
 

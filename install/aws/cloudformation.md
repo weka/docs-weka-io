@@ -5,13 +5,13 @@ description: >-
   CloudFormation template before redirecting to AWS.
 ---
 
-# CloudFormation Template Generator
+# CloudFormation template generator
 
-## Before Starting
+## Before you begin
 
 The APIs described here require an API token which can be obtained at [https://get.weka.io/ui/account/api-tokens](https://get.weka.io/ui/account/api-tokens). Obtaining this token requires registration if you do not have an account.
 
-## API Overview
+## API overview
 
 To generate a CloudFormation template, it is first necessary to decide which Weka system version is to be installed. This is performed using the `https://<token>@get.weka.io/dist/v1/release` API which provides a list of all available versions:
 
@@ -41,7 +41,7 @@ $ curl https://<token>@get.weka.io/dist/v1/release
 This list of releases available for installation is sorted backward from the most recent release. By default, 50 results are provided per page. To receive more results, use the `page=N` query parameter to receive the `Nth` page.
 
 {% hint style="info" %}
-**Note:** Usually, a request from more results is not necessary, since the first page contains the most recent releases.
+**Note:** Usually, a request for more results is not necessary, since the first page contains the most recent releases.
 {% endhint %}
 
 Each release contains an ID field that identifies the release. In the examples below, version 3.6.1 has been used.
@@ -77,7 +77,7 @@ $ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@ge
 
 In the example above, a template was generated for a cluster with 10 `i3en.2xlarge` backend instances and 2 `r3.xlarge` client instances. Refer to the [Deployment Types](deployment-types.md) page to learn more, and see all supported instance types in [Supported EC2 Instance Types](supported-ec2-instance-types.md).
 
-## Request Body
+## Request body
 
 The `https://<token>@get.weka.io/dist/v1/aws/cfn/<version>` API provides a JSON object with a `cluster` property. `cluster` is a list of instance types, roles, and counts:
 
@@ -91,7 +91,7 @@ The `https://<token>@get.weka.io/dist/v1/aws/cfn/<version>` API provides a JSON 
 
 It is possible to specify multiple groups of instances by adding more `role`/`instance_type`/`count` objects to the `cluster`array, as long as there are at least 6 backend instances (the minimum number of backend instances required to deploy a cluster).
 
-### Custom Client AMI
+### Custom client AMI
 
 When specifying an `ami_id` in `client` groups, the specified AMI will be used when launching the client instances. The Weka system will be installed on top of this AMI in a separate EBS volume.
 
@@ -102,7 +102,7 @@ Note the following when using a custom AMI-ID:
 * AMIs are stored per region. Make sure to specify an AMI-ID that matches the region in which the CloudFormation template is being deployed.
 * The AMI operating system must be one of the supported operating systems listed in the [prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#operating-system) page of the version being installed. If the AMI defined is not supported or has an unsupported operating system, the installation may fail and the CloudFormation stack will not be created successfully.
 
-### Dedicated vs. Shared Client Networking
+### Dedicated vs. shared client networking
 
 By default, both client and backend instances are launched in the dedicated networking mode. Although this cannot be changed for backends, it can be controlled for client instances.
 
@@ -110,7 +110,7 @@ Dedicated networking means that an ENI is created for internal cluster traffic i
 
 In shared networking, the client shares the instance’s network interface with all traffic passing through the kernel. Although slower, this mode is sometimes desirable when an ENI cannot be allocated or if the operating system does not allow more than one NIC.
 
-## Returned Result
+## Returned result
 
 The returned result is a JSON object with two properties: `url` and `quick_create_stack`.
 
@@ -130,11 +130,11 @@ $ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@ge
 {"AWSTemplateFormatVersion": "2010-09-09", ...
 ```
 
-## CloudFormation Template Parameters
+## CloudFormation template parameters
 
 The  CloudFormation stacks parameters are described in the [Cluster CloudFormation Stack](self-service-portal.md#cluster-cloudformation-stack) section.
 
-## IAM Role Created in the Template
+## IAM role created in the template
 
 The CloudFormation template contains an instance role that allows the Weka system instances to call the following AWS APIs:
 
@@ -152,7 +152,7 @@ In case tiering is configured, additional AWS APIs permissions are given:
 * `s3:PutObject`
 * `s3:ListBucket`
 
-## Additional Operations
+## Additional operations
 
 Once a CloudFormation template has been generated, it is possible to create a stack from it using the AWS console or the AWS CLI.
 

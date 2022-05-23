@@ -31,17 +31,15 @@ This Statistics view screen offers a number of options to drill-down into the st
 **Note:** The statistics are only shown for backend/clients that are part of the cluster. Once a host is removed (or a client is not connected to the cluster for more than the `remove_after_secs` period) its statistics will not be shown. The Weka cluster does not hold historical statistics data. Use `weka-mon` for that, as suggested in the [External Monitoring](../../appendix/external-monitoring.md) section.
 {% endhint %}
 
-##
+## Manage statistics using the GUI
 
-## Working with Statistics Using the GUI
-
-### Viewing Statistics
+### View statistics
 
 To view the statistics screen using the GUI, click the statistics button on the left bar:
 
 ![Statistics View Screen](<../../.gitbook/assets/Screenshot from 2018-07-29 11-47-29.png>)
 
-### Adding Statistics
+### Add statistics
 
 To select the addition of specific statistics, click the + Add Statistics tab on the right-hand side of the Statistics view screen. The statistics menu will be displayed.
 
@@ -55,13 +53,13 @@ Up to 5 different statistics can be displayed simultaneously. Selecting a metric
 
 Switching the active unit scale is performed by clicking on one of the inactive units displayed in the left bottom corner of the graph display box.
 
-### Hiding/Deleting Statistics
+### Hide/Delete statistics
 
-To hide or delete statistics from a graph, mouse-over the selector and click either the Hide or Delete button appearing under the selector.
+To hide or delete statistics from a graph, mouse over the selector and click either the Hide or Delete button appearing under the selector.
 
 ![Example of Hide/Delete Buttons ](<../../.gitbook/assets/Screenshot from 2018-07-29 13-13-57.png>)
 
-### Specifying a Time Frame
+### Specify a time frame
 
 To define a specific period of time (start and end) for the statistics to be displayed, click the From and To selectors appearing in the left corner of the graph display box. Then select the date of the statistics required from the calendar popup and the hours from the right scroller, or by using the up and down arrows that appear when hovering on the time selectors.
 
@@ -77,36 +75,36 @@ The Auto Refresh setting offers another option for defining a specific period of
 
 ![Auto Refresh Buttons](<../../.gitbook/assets/Screenshot from 2018-07-29 14-42-22.png>)
 
-### Obtaining a Summary of Events
+### Obtain a summary of events
 
 To obtain a summary of events that occurred in a specific time period, click the events bubble displayed above the graph. The Events popup will be displayed. Expand the popup in order to obtain a detailed list of events. Click on the icon next to each event to link to the selected event in the Events view screen.
 
 ![Events Popup](<../../.gitbook/assets/Screenshot from 2018-07-29 14-57-57.png>)
 
-## Working with Statistics Using the CLI
+## Manage statistics using the CLI
 
-### **Listing Statistics Types**
+### **List statistics types**
 
 **Command:** `weka stats list-types`
 
 Use the following command line to obtain statistics definition information:\
 `weka stats list-types [<name-or-category>] [--show-internal]`
 
-**Parameters in Command Lines**
+**Parameters in command lines**
 
 | **Name**           | **Type** | **Value**                         | **Limitations**        | **Mandatory** | **Default** |
 | ------------------ | -------- | --------------------------------- | ---------------------- | ------------- | ----------- |
 | `name-or-category` | String   | Name or category fo filter by     | Valid name or category | No            |             |
 | `show-internal`    | Boolean  | Also displays internal statistics |                        | No            | False       |
 
-### **Viewing Statistics**
+### **View statistics**
 
 **Command:** `weka stats realtime`
 
 Use the following command line to obtain the current performance-related statistics of the hosts, in a one-second interval:\
 `weka stats realtime [<node-ids>] [--raw-units] [--UTC]`
 
-**Parameters in Command Lines**
+**Parameters in command lines**
 
 | **Name**    | **Type**                | **Value**                                        | **Limitations** | **Mandatory** | **Default**                                 |
 | ----------- | ----------------------- | ------------------------------------------------ | --------------- | ------------- | ------------------------------------------- |
@@ -126,7 +124,7 @@ Use the following command line to manage filters and read statistics:
 
 `weka stats [--start-time <start-time>] [--end-time <end-time>] [--interval interval] [--resolution-secs resolution-secs] [--category category][--stat stat] [--node-ids node-ids] [--param param] [--accumulated] [--per-node] [--no-zeros] [--show-internal] [--raw-units] [--UTC]`
 
-**Parameters in Command Lines**
+**Parameters in command lines**
 
 | **Name**          | **Type** | **Value**                                                                                                                                                                                                                          | **Limitations**                                                                                                                  | **Mandatory** | **Default**                                 |
 | ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------- |
@@ -149,14 +147,14 @@ Use the following command line to manage filters and read statistics:
 [Broken link](broken-reference)
 {% endcontent-ref %}
 
-### Setting statistics Retention
+### Set statistics retention
 
 **Command:** `weka stats retention set`
 
 Use the following command line to set the statistics retention period\
 `weka stats retention set <--days days> [--dry-run]`
 
-**Parameters in Command Lines**
+**Parameters in command lines**
 
 | **Name**  | **Type** | **Value**                                                | **Limitations**                               | **Mandatory** | **Default** |
 | --------- | -------- | -------------------------------------------------------- | --------------------------------------------- | ------------- | ----------- |

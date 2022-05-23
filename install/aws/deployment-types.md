@@ -4,9 +4,9 @@ description: >-
   the instance types being used and their configuration.
 ---
 
-# Deployment Types
+# Deployment types
 
-## Prerequisites for Deployment
+## Deployment prerequisites&#x20;
 
 * Check that your AWS account limits allow for the deployment of your selected configuration (it is possible to check your limits under the Limits tab in the EC2 console).
 * Deploying a Weka cluster in AWS requires at least 6 EC2 instances with SSD/NVMe drives (a.k.a instance store), and potentially additional instances that may connect as clients.
@@ -25,7 +25,7 @@ Depending on the instance types being used and how they’re configured, there a
 * [Client backend deployment](deployment-types.md#client-backend-deployment)
 * [Converged deployment](deployment-types.md#converged-deployment)
 
-## Client Backend Deployment
+## Client backend deployment
 
 In a client backend deployment, two different types of instances are launched:
 
@@ -40,7 +40,7 @@ Backend instances can be added to increase the cluster capacity or performance. 
 **Note:** Stopping or terminating backend instances causes a loss of all data of the instance store. Refer to [Amazon EC2 Instance Store](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html) for more information.
 {% endhint %}
 
-## Converged Deployment
+## Converged deployment
 
 Converged deployments are more generic deployments in which every instance is configured to contribute resources of some kind — drives, CPUs, and/or network interfaces - to the cluster.
 

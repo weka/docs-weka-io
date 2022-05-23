@@ -10,23 +10,23 @@ description: >-
 
 Weka events indicate relevant information concerning the Weka cluster and customer environment. Triggered by a customer operation or an environment change, events can be informational, indicate a problem in the system or indicate a (previous) problem that has been resolved.
 
-## Working with Events Using the GUI
+## Manage events using the GUI
 
-### Viewing Events
+### View events
 
 To view the events screen using the GUI, click the Events Log button on the left bar:
 
 ![Events View Screen](<../../.gitbook/assets/Events log.png>)
 
-### Filtering Events
+### Filter events
 
 Events can be filtered by choosing a filter. Filtering can be performed according to event severity, category, IDs and timestamps. Selection of multiple filters is also possible (for event categories and event IDs).
 
 ![Event Filtering](<../../.gitbook/assets/Events filtering.png>)
 
-## Working with Events Using the CLI
+## Manage events using the CLI
 
-### Viewing Events
+### View events
 
 **Command:** `weka events`
 
@@ -34,7 +34,7 @@ Use the following command line to list events in the Weka cluster:
 
 `weka events [--num-results num-results] [--start-time <start-time>] [--end-time <end-time>] [--severity severity] [--direction direction] [--fetch-order fetch-order] [--type-list type-list] [--exclude-type-list exclude-type-list] [--category-list category-list] [--cloud-time] [--show-internal] [--raw-units] [--UTC]`
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name**            | **Type** | **Value**                                                  | **Limitations**                                                                                                                                                                   | **Mandatory** | **Default**                                 |
 | ------------------- | -------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------- |
@@ -58,7 +58,7 @@ Use the following command line to list recent events on the specific host runnin
 
 `weka events list-local [--start-time <start-time>] [--end-time <end-time>] [--next next] [--stem-mode] [--show-internal] [--raw-units] [--UTC]`
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name**        | **Type** | **Value**                                                          | **Limitations**                                                                                                                  | **Mandatory** | D**efault**                                 |
 | --------------- | -------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------- |
@@ -70,16 +70,14 @@ Use the following command line to list recent events on the specific host runnin
 | `raw-units`     | Boolean  | Print values in raw units (bytes, seconds, etc.)                   |                                                                                                                                  | No            | Human-readable format, e.g 1KiB 234MiB 2GiB |
 | `UTC`           | Boolean  | Print times in UTC                                                 |                                                                                                                                  | No            | Host's local time                           |
 
-### Triggering a Custom Event
+### Trigger a custom event
 
 **Command:** `weka events trigger-event`&#x20;
 
 It can be useful to mark specific activities, maintenance work, or important changes/new usage of the system, and see that as part of the system events timeline.&#x20;
 
-To trigger a custom event use `weka events trigger-event <text>`
+To trigger a custom event, use `weka events trigger-event <text>`
 
-### List of Events
+**Related topics**
 
-{% content-ref url="list-of-events.md" %}
-[list-of-events.md](list-of-events.md)
-{% endcontent-ref %}
+****[list-of-events.md](list-of-events.md "mention")****

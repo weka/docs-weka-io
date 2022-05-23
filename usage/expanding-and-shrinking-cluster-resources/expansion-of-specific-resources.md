@@ -4,9 +4,9 @@ description: >-
   the addition of specific resources.
 ---
 
-# Expansion of Specific Resources
+# Expansion of specific resources
 
-## Dynamic Modifications
+## Dynamic modifications
 
 Most modifications to host configurations can be performed dynamically, without deactivating the host. Such configurations include the addition/removal of memory and network resources, changing IPs, extending network subnets and limiting the Weka system bandwidth on the host.&#x20;
 
@@ -14,18 +14,18 @@ All these changes can be performed using the relevant `weka cluster host`command
 
 The last local configuration (of a host that successfully joined a cluster) is saved. If a failure/problem occurs with the new configuration, the host will automatically revert to the last known good configuration. To view this configuration, use the`weka cluster host resources <host-id> --stable` command.&#x20;
 
-### Memory Modifications
+### Memory modifications
 
 To dynamically change the memory configuration, use the steps described for the [Configuration of Memory](../../install/bare-metal/using-cli.md#stage-10-configuration-of-memory-optional) on an active host, followed by the `weka cluster host apply` command.
 
 {% hint style="success" %}
-**For Example:** To change `host-id 0` memory to 1.5 GB, run the following commands:
+**Example:** To change `host-id 0` memory to 1.5 GB, run the following commands:
 
 `weka cluster host memory 0 1.5GB`\
 `weka cluster host apply 0`
 {% endhint %}
 
-### Network Modifications
+### Network modifications
 
 To dynamically change the network configuration, use the steps described for the [Configuration of Networking](../../install/bare-metal/using-cli.md#stage-6-configuration-of-networking) on an active host, followed by the`weka cluster host apply` command.
 

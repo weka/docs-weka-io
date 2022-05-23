@@ -6,7 +6,7 @@ description: >-
 
 # Filesystems, object stores, and filesystem groups
 
-## About Filesystems
+## About filesystems
 
 A Weka filesystem is similar to a regular on-disk filesystem, with the key difference that it's distributed across all the hosts in the cluster. Consequently, in the Weka system, filesystems are not associated with any physical object and are therefore nothing but a root directory with space limitations.
 
@@ -18,7 +18,7 @@ A total of up to 1024 filesystems are supported, all of which are equally and pe
 
 A filesystem must have a defined capacity limit. A filesystem that belongs to a tiered [filesystem group](filesystems.md#about-filesystem-groups) must have a total capacity limit and an SSD capacity limit. The total (base) SSD capacity of all filesystems cannot exceed the total SSD capacity as defined in the total SSD net capacity.&#x20;
 
-### Thin Provisioning
+### Thin provisioning
 
 While a filesystem must have a minimum allocated SSD size, on top of that, filesystems can have an additional SSD capacity cap. The total can exceed the total SSD net capacity and be dynamically allocated between the different thin-provisioned filesystems.&#x20;
 
@@ -28,14 +28,14 @@ Thin provisioning  can help in various use cases:
 * When using auto-scaling groups, using thin provisioning can help to automatically expand and shrink the filesystem's SSD capacity for extra performance.&#x20;
 * Thin provisioning can be used for the logical separation of projects to filesystems when the administrator doesn't expect all to be fully utilized at the same time. Thin provisioned filesystems can replace the using the same filesystem with different directories with quotas and provide better data separation, management, and access control.
 
-### Filesystem Limits
+### Filesystem limits
 
 * Up to 6.4 trillion files/directories
 * Up to 6.4 billion files in a single directory
 * Up to 14 EB (using and object-store) with up to 512 PB on SSD
 * UP to 4 PB file size
 
-### Encrypted Filesystems
+### Encrypted filesystems
 
 Both data at rest (residing on SSD and object store) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](../fs/managing-filesystems/#adding-a-filesystem).
 
@@ -45,7 +45,7 @@ For proper security, a KMS (Key Management System) must be used when creating en
 **Note:** Setting data encryption (on/off) can only be done when creating a filesystem.
 {% endhint %}
 
-### Metadata Limitations
+### Metadata limitations
 
 In addition to the capacity limitation, each filesystem also has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to the Weka system, as well as the [RAM resources](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning) allocated to the Weka system processes. The Weka system will keep tracking of metadata units in RAM, and if it reaches the RAM limit, it will page these metadata tracking units to the SSD (and alert). This leaves enough time for the administrator to increase system resources, as the system keeps serving IOs with a minimal performance impact.
 
@@ -53,7 +53,7 @@ By default, the metadata limit associated with a filesystem is proportional to t
 
 The total limits of the metadata for all the filesystems can exceed the total system metadata information that can fit in RAM. For minimal impact, in such a case, the least-recently-used units will be paged to disk, as necessary.
 
-### Metadata Calculations
+### Metadata calculations
 
 Each metadata unit consumes 4KB of space.
 
@@ -66,14 +66,14 @@ Throughout this documentation, the metadata limitation per filesystem is referre
 The definitions above apply to files residing on SSDs or object stores.
 
 {% hint style="success" %}
-**For Example:**
+**Examples:**
 
 * For a filesystem with potentially 1,000,000,000 files of 64 KB in size,  2,000,000,000 metadata units are required.
 * For a filesystem with potentially 1,000,000 files of 128 MB in size, 130,000,000 metadata units are required.
 * For a filesystem with 1,000,000 files of 750 KB in size, 3,000,000 metadata units are required.
 {% endhint %}
 
-## About Object Stores
+## About object stores
 
 In the Weka system, object stores represent an optional external storage media, ideal for the storage of warm data. Object stores used in tiered Weka system configurations can be cloud-based, located in the same location, or at a remote location. Weka supports object stores for tiering (tiering and local snapshots) and backup (snapshots only), and both can be used for the same filesystem.
 
@@ -83,7 +83,7 @@ Filesystem connectivity to object stores can be used in both the [data lifecycle
 
 The Weka system supports up to three different object store buckets per filesystem. While object stores can be shared between filesystems, when possible, it is recommended to create and attach a separate object store bucket per filesystem.
 
-## About Filesystem Groups
+## About filesystem groups
 
 In the Weka system, filesystems are grouped into up to 8 filesystem groups.
 

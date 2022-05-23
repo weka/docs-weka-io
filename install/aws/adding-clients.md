@@ -4,7 +4,7 @@ description: >-
   Weka system cluster.
 ---
 
-# Adding Clients
+# Add clients
 
 ## Introduction
 
@@ -14,9 +14,9 @@ When launching a Weka system cluster, either through the [Self-Service Portal](s
 **Note:** It is advisable to turn off auto kernel updates so it will not get upgraded to a yet unsupported version.
 {% endhint %}
 
-## Adding Clients as Separate Instances
+## Add clients as separate instances
 
-### Step 1: Launch the New Instances <a href="#step-1-launch-new-instances" id="step-1-launch-new-instances"></a>
+### Step 1: Launch the new instances <a href="#step-1-launch-new-instances" id="step-1-launch-new-instances"></a>
 
 {% hint style="info" %}
 **Note:** Any new client instances must be of one of the types appearing in [Supported EC2 Instance Types](supported-ec2-instance-types.md).
@@ -27,27 +27,27 @@ When launching new clients, ensure the following concerning networking and root 
 #### **Networking**
 
 * For best performance, it is recommended that the new clients will be in the **same subnet** as the backend instances, alternatively, they can be in a routable subnet to the backend instances in the same AZ (note that cross-AZ traffic also incurs expensive network charges).&#x20;
-* They must use the same **security group** as the backends they will connect to, or alternatively use a **security group** which allows them to connect to the backend instances.
+* They must use the same **security group** as the backends they will connect to, or alternatively use a **security group** that allows them to connect to the backend instances.
 * **Enhanced networking** is enabled as described in [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html).
 * The OS **network manager** must be disabled.
 
-#### IAM Instance Profile
+#### IAM instance profile
 
 When adding a client, it is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](cloudformation.md#iam-role-created-in-the-template).
 
 These permissions are automatically created in an instance profile as part of the CloudFormation stack. It is possible to use the same instance profile as one of the backend instances to ensure that the same credentials are given to the new client.
 
-The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the Weka system client to preallocate the network resource for fastest performance.
+The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the Weka system client to preallocate the network resource for the fastest performance.
 
 If the client is not to be provided with these permissions, it is possible to only provide `ec2:*` and create an additional NIC in the same security group and subnet as described above.
 
-#### Root Volume
+#### Root volume
 
 The clients **root volume** must be at least 48 GiB in size and either `GP2` or `IO1` type.
 
 The Weka software is installed under `/opt/weka`. If it is not possible to change the size of the root volume, an additional EBS volume can be created, formatted and mounted under `/opt/weka`. Make sure that the new volume is either `GP2` or `IO1` type.
 
-### Step 2: Mounting Filesystems
+### Step 2: Mount the filesystems
 
 {% hint style="info" %}
 **Note:** The clients created using the Self-Service Portal are stateless. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
@@ -70,17 +70,17 @@ For the first mount, this will install the Weka software and automatically confi
 
 It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information refer to [Mounting Filesystems Using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mounting Filesystems Using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs).
 
-## Adding Clients Which Are Always Part of the Cluster
+## Add clients that are always part of the cluster
 
 {% hint style="info" %}
-**Note:** It is possible to add instances which do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
+**Note:** It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
 {% endhint %}
 
-### Step 1: [Launch the New Instances](adding-clients.md#step-1-launch-new-instances)
+### Step 1: [Launch the new instances](adding-clients.md#step-1-launch-new-instances)
 
 This is the same step as in the previous method of adding a client.
 
-### Step 2: Install the Weka Software <a href="#step-2-install-wekaio-software" id="step-2-install-wekaio-software"></a>
+### Step 2: Install the Weka software <a href="#step-2-install-wekaio-software" id="step-2-install-wekaio-software"></a>
 
 To download the Weka software, go to [https://get.weka.io ](https://get.weka.io/) and select the software version to be downloaded. After selecting the version, select the operating system it is to be installed on and run the download command line as `root`on all the new client instances.
 
@@ -93,10 +93,10 @@ When the download is complete, untar the downloaded package and run the `install
 {% hint style="info" %}
 **Note: ENA Driver Notice**
 
-When installing on an AWS instance with Elastic Network Adapter (ENA) and a non-up-to-date kernel, it may be necessary to install the ENA drivers or upgrade to a more recent operating system version. The ENA driver is automatically available on recent operating systems, such as RedHat/Centos 7.4, Ubuntu 16 and Amazon Linux 2017.09.
+When installing on an AWS instance with Elastic Network Adapter (ENA) and a non-up-to-date kernel, it may be necessary to install the ENA drivers or upgrade to a more recent operating system version. The ENA driver is automatically available on recent operating systems, such as RedHat/Centos 7.4, Ubuntu 16, and Amazon Linux 2017.09.
 {% endhint %}
 
-### Step 3: Add Clients to the Cluster <a href="#step-3-add-clients-to-cluster" id="step-3-add-clients-to-cluster"></a>
+### Step 3: Add clients to the cluster <a href="#step-3-add-clients-to-cluster" id="step-3-add-clients-to-cluster"></a>
 
 Once the Weka software is installed, the clients are ready to join the cluster. To add the clients, run the following command line on each of the client instances:
 
@@ -119,17 +119,17 @@ Client has joined the cluster
 ```
 
 {% hint style="info" %}
-**Note: Dedicated Client Resources**
+**Note: Dedicated client resources**
 
 Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the Weka system on the client instance. This is performed as part of the Weka system preallocation of resources, ensuring that variance in client activity does not result in the allocation of resources that may affect the programs running on the client host. For more information, see [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
 {% endhint %}
 
-### Step 4: Mount Filesystems on the Clients <a href="#step-4-mount-filesystem-on-clients" id="step-4-mount-filesystem-on-clients"></a>
+### Step 4: Mount filesystems on the clients <a href="#step-4-mount-filesystem-on-clients" id="step-4-mount-filesystem-on-clients"></a>
 
 It is now possible to mount the filesystems on the client instances.
 
 {% hint style="success" %}
-**For Example:** Using the`mkdir -p /mnt/weka && mount -t wekafs default /mnt/weka` command will mount the `default`filesystem under `/mnt/weka.`
+**Example:** Using the`mkdir -p /mnt/weka && mount -t wekafs default /mnt/weka` command will mount the `default`filesystem under `/mnt/weka.`
 {% endhint %}
 
 {% hint style="info" %}

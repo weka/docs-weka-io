@@ -24,17 +24,17 @@ The Cluster Admin can perform the following activities:
 **Note:** It is not possible to separate data at the hardware level. While the Weka system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations and system limits are per organization. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
 {% endhint %}
 
-## Use Cases for Working with Organizations
+## Use cases for organizations management
 
-### Private Cloud Multi-Tenancy
+### Private cloud multi-tenancy
 
 Working with organizations makes it possible to manage different departments. While this requires more configuration, e.g., different LDAP configurations are usually unnecessary between different departments in the same organization, the Cluster Admin is fully trusted. It is possible to separate and obscure specific departments - such as IT, Finance, Life Sciences, and Genomics - and even specific projects in departments.
 
-### Logical Separation of External Groups of Users
+### Logical separation of external user groups
 
 When multiple, independent groups use the same provided infrastructure, the use of multiple organizations provides much better security, obscuration, and separation of data.
 
-## Cluster Level Entities
+## Cluster level entities
 
 The following entities are managed at the cluster level by the Cluster Admin:
 
@@ -44,7 +44,7 @@ The following entities are managed at the cluster level by the Cluster Admin:
 * Filesystem groups - definition of tiering policies for the different groups, while the Organization Admin selects the filesystem group from the predefined list of groups for each filesystem created
 * KMS
 
-## Organization Level Entities
+## Organization level entities
 
 All system entities at the organization level are managed only by the relevant Organization Admin and are only viewable by users within the organization. Cluster Admins do not have permissions to view or manage these entities, which include the following:
 
@@ -61,25 +61,25 @@ All system entities at the organization level are managed only by the relevant O
 **Note:** NFS exports cannot be configured with `manage-gids` option for organizations other than the 'Root' organization.
 {% endhint %}
 
-## Managing Organizations
+## Manage organizations
 
 Only users defined as Cluster Admins can manage organizations. When no organization is created, the root organization is the default organization and all operations are regular, i.e., it is not necessary to authenticate the mounts or supply an organization name when logging in using the GUI/CLI.
 
 Once a new organization is created, the organization name must be provided in every login command, using the `--org` attribute in the `weka user login` command.
 
-## Usage and Quota Management
+## Usage and quota management
 
 Cluster Admins can view an organization's usage (both SSD and total) and can limit usage with quotas per organization. This can be leveraged for charge-backs on either used or allocated capacity of SSD or object store data.
 
-## Managing Organizations Using the GUI
+## Manage organizations using the GUI
 
 To create, delete, or view organizations in the cluster using the GUI, go to the Organizations screen.
 
 ![Organizations Screen](<../../.gitbook/assets/Organization screen 3.5.png>)
 
-## Managing Organizations Using the CLI
+## Manage organizations using the CLI
 
-### Creating an Organization
+### Create an organization
 
 **Command:** `weka org create`
 
@@ -87,7 +87,7 @@ Use the following command line to create an organization:
 
 `weka org create <name> <username> <password> [--ssd-quota ssd-quota] [--total-quota total-quota]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**      | T**ype** | **Value**                                                           | **Limitations**        | **Mandatory** | **Default**     |
 | ------------- | -------- | ------------------------------------------------------------------- | ---------------------- | ------------- | --------------- |
@@ -97,7 +97,7 @@ Use the following command line to create an organization:
 | `ssd-quota`   | Number   | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number | No            | 0 (not limited) |
 | `total-quota` | Number   | Total allowed quota for the organization (SSD and object store)     | Must be a valid number | No            | 0 (not limited) |
 
-### Viewing Organizations
+### View organizations
 
 **Command:** `weka org`
 
@@ -111,9 +111,9 @@ ID | Name       | Allocated SSD | SSD Quota | Allocated Total | Total Quota
 2  | CUSTOMER_1 | 100.00 GB     | 300.00 GB | 200.00 GB       | 900.00 GB
 ```
 
-### Editing an Organization
+### Edit an organization
 
-#### **Renaming an Organization**
+#### **Rename an organization**
 
 **Command:** `weka org rename`
 
@@ -121,14 +121,14 @@ Use the following command line to rename an organization:
 
 `weka org rename <org> <new-name>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type**       | **Value**                       | **Limitations** | **Mandatory** | **Default** |
 | ---------- | -------------- | ------------------------------- | --------------- | ------------- | ----------- |
 | `org`      | String/Integer | Current organization name or ID |                 | Yes           |             |
 | `new-name` | String         | New organization name           |                 | Yes           |             |
 
-#### Updating an Organization's Quotas
+#### Update the quota of an organization
 
 **Command:** `weka org set-quota`
 
@@ -136,7 +136,7 @@ Use the following command line to update an organization's quota:
 
 `weka org set-quota <org> [--ssd-quota ssd-quota] [--total-quota total-quota]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**      | **Type**       | **Value**                                                           | **Limitations**                                      | **Mandatory** | **Default** |
 | ------------- | -------------- | ------------------------------------------------------------------- | ---------------------------------------------------- | ------------- | ----------- |
@@ -144,7 +144,7 @@ Use the following command line to update an organization's quota:
 | `ssd-quota`   | Number         | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number                               | No            |             |
 | `total-quota` | Number         | Total allowed quota for the organization (SSD and object store)     | Must be a valid number                               | No            |             |
 
-### Deleting an Organization
+### Delete an organization
 
 **Command:** `weka org delete`
 
@@ -152,7 +152,7 @@ Use the following command line to delete an organization:
 
 `weka org delete <org>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name** | **Type**       | **Value**               | **Limitations** | **Mandatory** | **Default** |
 | -------- | -------------- | ----------------------- | --------------- | ------------- | ----------- |
@@ -162,7 +162,7 @@ Use the following command line to delete an organization:
 **Warning:** Deleting an organization is irreversible and will also remove all entities related to the organization, such as filesystems, object stores, and users.
 {% endhint %}
 
-## Organization Admin Role Privileges
+## Organization admin role privileges
 
 When a new organization is created, the Cluster Admin creates an Organization Admin user for the organization, who is the administrator within the organization responsible for managing each [organization level entity.](organizations.md#organization-level-entities)
 
@@ -179,7 +179,7 @@ Additionally, to avoid situations where an Organization Admin loses access to a 
 * Cannot delete themselves
 * Cannot change their role to a regular user role.
 
-## Mount Authentication for Organization Filesystems
+## Mount authentication for organization filesystems
 
 Once the Cluster Admin has created an organization and the Organization Admin has created filesystems, users, or configured the LDAP for the organization, regular users of the organization can mount filesystems.
 
@@ -213,7 +213,7 @@ This is useful when mounting several filesystems for several users/organizations
 
 When a token is compromised or no longer required, such as when a user leaves the organization, the Organization Admin can prevent using that token for new mounts by revoking the user access.
 
-#### Revoking User Access Using the CLI
+#### Revoking user access using the CLI
 
 **Command:** `weka user revoke-tokens`
 
@@ -223,7 +223,7 @@ Use the following command to revoke internal user access to the system and mount
 
 For LDAP users, access can be revoked by changing the `user-revocation-attribute` defined in the LDAP server configuration.
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type**       | **Value**                                                                    | **Limitations** | **Mandatory** | **Default** |
 | ---------- | -------------- | ---------------------------------------------------------------------------- | --------------- | ------------- | ----------- |

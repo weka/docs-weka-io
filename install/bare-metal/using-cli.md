@@ -2,9 +2,9 @@
 description: This page describes the stages in the installation process when using the CLI.
 ---
 
-# Weka System Installation Process Using the CLI
+# Weka system installation process using the CLI
 
-## Stage 1: Installation of the Weka Software on Each Host
+## Stage 1: Installation of the Weka software on each host
 
 Run the untar command and `install.sh` command, according to the instructions, on each host.
 
@@ -14,7 +14,7 @@ On completion of this stage in the installation process, the Weka software is in
 **Note:** If a failure occurs during this installation stage, an error message detailing the source of the failure will be received. If possible, try to recover this error or alternatively, contact the Weka Support Team.
 {% endhint %}
 
-## Stage 2: Formation of a Cluster from the Hosts
+## Stage 2: Formation of a cluster from the hosts
 
 **Command:** `weka cluster create`
 
@@ -22,7 +22,7 @@ This stage involves the formation of a cluster from the allocated hosts. It is p
 
 `weka cluster create <hostnames> [--host-ips <ips | ip+ip+ip+ip>]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**    | **Type**                     | **Value**                                                                                                                                                                                                                                                                                                               | **Limitations**                                              | **Mandatory** | **Default**                                |
 | ----------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------- | ------------------------------------------ |
@@ -51,7 +51,7 @@ On successful completion of the formation of the cluster, every host receives a 
 **Note:** In IB installations the `--hosts-ips` parameter must specify the IP addresses of the IPoIB interfaces.
 {% endhint %}
 
-## Stage 3: Naming the Cluster (optional)
+## Stage 3: Name the cluster (optional)
 
 **Command:** `weka cluster update`
 
@@ -59,15 +59,15 @@ This command is used to give the cluster a name. Although this is optional, it i
 
 `weka cluster update --cluster-name=<cluster-name>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**       | **Type** | **Value**                      | **Limitations**            | **Mandatory** | **Default** |
 | -------------- | -------- | ------------------------------ | -------------------------- | ------------- | ----------- |
 | `cluster-name` | String   | Identifier of the cluster name | Must be a valid identifier | No            |             |
 
-## Stage 4: Enabling Cloud Event Notifications (optional)
+## Stage 4: Enable cloud event notifications (optional)
 
-### **Enabling Support via Weka Home**
+### **Enable support via Weka Home**
 
 **Command:** `weka cloud enable`
 
@@ -75,7 +75,7 @@ This command enables cloud event notification (via Weka Home), which increases t
 
 To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../support/the-wekaio-support-cloud.md).
 
-### For Private Instance of Weka Home
+### For private instance of Weka Home
 
 In closed environments, such as dark sites and private VPCs, it is possible to install a private instance of Weka Home.
 
@@ -87,13 +87,13 @@ This command enables the use of a private instance of Weka Home.
 For more information, refer to [Private Instance of Weka Home](../../support/the-wekaio-support-cloud.md#private-instance-of-weka-home) and contact the Weka Support Team.
 {% endhint %}
 
-## Stage 5: Setting hosts as dedicated to the cluster (Optional)
+## Stage 5: Set hosts dedicated to the cluster (optional)
 
 **Command:** `weka cluster host dedicate`
 
 It is possible to set the host as dedicated to the Weka cluster. By setting the host to dedicated, no other application is expected to run on it, and the Weka system optimizes it for performance and stability. For example, the host can be rebooted by the system at need, and all the host's memory is allocatable by the Weka processes.
 
-## Stage 6: Configuration of Networking
+## Stage 6: Configure the networking
 
 **Command:** `weka cluster host net add`
 
@@ -105,11 +105,11 @@ When PKEYs are used, the device name for InfiniBand should follow the name.PKEY 
 
 The networking type can be either Ethernet (direct over DPDK) or InfiniBand (IB), and can be mixed in the same host (by running multiple `cluster host net add` commands for the same host). A physical network device must be specified for both types. This can be a device dedicated to the Weka system or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
 
-To perform this operation, the `cluster host net add` command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
+To perform this operation, the `cluster host net add`command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
 `weka cluster host net add <host-id> <device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gateway>] [--netmask=<netmask>] [--label=<label>]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type**                   | **Value**                                                                                  | **Limitations**                                                                                                                                                                                                                                            | **Mandatory** | **Default** |
 | ---------- | -------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
@@ -143,7 +143,7 @@ Instead of explicit IP address configuration per each network device, dynamic IP
 
 `weka cluster default-net set --range <range> [--gateway=<gateway>] [--netmask-bits=<netmask-bits>]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**       | **Type**         | **Value**                                                                                | **Limitations**                                                                                                                                                                             | **Mandatory** | **Default** |
 | -------------- | ---------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
@@ -163,7 +163,7 @@ This stage in the installation process is used to add a local SSD to be used by 
 
 `weka cluster drive add <host-id> <device-paths>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**       | **Type**                         | **Value**                                                                         | **Limitations**                          | **Mandatory** | **Default** |
 | -------------- | -------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------- | ------------- | ----------- |
@@ -182,7 +182,7 @@ This stage in the installation process is used to configure the number of CPU re
 
 `weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <frontend-dedicated-cores>] [--drives-dedicated-cores <drives-dedicated-cores>] [--cores-ids <cores-ids>]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**                   | **Type**                           | **Value**                                                         | **Limitations**                                                                                            | **Mandatory** | **Default**                                          |
 | -------------------------- | ---------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------- | ---------------------------------------------------- |
@@ -205,7 +205,7 @@ This stage in the installation process is used to configure the number of CPU re
 **Note:** Performance can be optimized by assigning different functions to the various Weka cores. If necessary, contact the Weka Support Team for more information.
 {% endhint %}
 
-## Stage 9: Configuration of Memory (optional)
+## Stage 9: Configure the memory (optional)
 
 **Command:** `weka cluster host memory`
 
@@ -215,7 +215,7 @@ If capacity requirements mandate more memory, the following command should be us
 
 `weka cluster host memory <host-id> <capacity-memory>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**          | **Type** | **Value**                                                                                                           | **Limitations**                                  | **Mandatory** | **Default** |
 | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------- | ----------- |
@@ -226,7 +226,7 @@ If capacity requirements mandate more memory, the following command should be us
 **Note:** This command is given the memory per-host and will later be distributed by the system per compute core. Out of this value, 1GB per compute core is reserved for other purposes (as cache) and not used for capacity.
 {% endhint %}
 
-## Stage 10: Configuration of Failure Domains (optional)
+## Stage 10: Configure failure domains (optional)
 
 **Command:** `weka cluster host failure-domain`
 
@@ -240,7 +240,7 @@ This operation is performed using the following command line:
 
 `weka cluster host failure-domain <host-id> [--name <name>] | [--auto]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**  | **Type** | **Value**                                                                | **Limitations**                 | **Mandatory**                                       | **Default** |
 | --------- | -------- | ------------------------------------------------------------------------ | ------------------------------- | --------------------------------------------------- | ----------- |
@@ -248,7 +248,7 @@ This operation is performed using the following command line:
 | `name`    | String   | The failure domain that will contain the host from now.                  |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
 | `auto`    | Boolean  | Will automatically assign a failure domain name.                         |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
 
-## Stage 11: Configuration of Weka System Protection Scheme (optional)
+## Stage 11: Configure Weka system protection scheme (optional)
 
 **Command:** `weka cluster update`
 
@@ -256,7 +256,7 @@ To configure the Weka system protection scheme, use the following command line:
 
 `weka cluster update [--data-drives=<data-drives>] [--parity-drives=<parity-drives>]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**        | **Type** | **Value**               | **Limitations**                                                                                     | **Mandatory** | **Default**                                          |
 | --------------- | -------- | ----------------------- | --------------------------------------------------------------------------------------------------- | ------------- | ---------------------------------------------------- |
@@ -267,7 +267,7 @@ To configure the Weka system protection scheme, use the following command line:
 **Note:** This command can only be used in the initialization phase.
 {% endhint %}
 
-## Stage 12: Configuration of Hot Spare (optional)
+## Stage 12: Configure hot spare (optional)
 
 **Command:** `weka cluster hot-spare`
 
@@ -275,7 +275,7 @@ To configure the Weka system hot spare, use the following command line:
 
 `weka cluster hot-spare <count>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
 | -------- | -------- | --------- | --------------- | ------------- | ----------- |
@@ -291,7 +291,7 @@ To activate the cluster hosts, use the following command line:
 
 `weka cluster host apply [--all] [<host-ids>...] [--force]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type**                | **Value**                        | **Limitations** | **Mandatory**                                | **Default** |
 | ---------- | ----------------------- | -------------------------------- | --------------- | -------------------------------------------- | ----------- |
@@ -299,7 +299,7 @@ To activate the cluster hosts, use the following command line:
 | `all`      | Boolean                 | Apply all hosts                  |                 | Either `host-ids` or `all` must be specified |             |
 | `force`    | Boolean                 | Do not prompt for confirmation   |                 | No                                           | Off         |
 
-## Stage 14: Deploy a License
+## Stage 14: Deploy a license
 
 **Command:** `weka cluster license set / payg`
 

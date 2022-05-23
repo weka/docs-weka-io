@@ -4,7 +4,7 @@ description: >-
   one of the cluster hosts. This page describes how this is performed.
 ---
 
-# Mounting Filesystems
+# Mount filesystems
 
 ## Overview
 
@@ -13,7 +13,7 @@ There are two methods available for mounting a filesystem in one of the cluster 
 1. Using the traditional method: See below and also refer to [Adding Clients](../install/bare-metal/adding-clients-bare-metal.md) (Bare Metal Installation) or [Adding Clients](../install/aws/adding-clients.md) (AWS Installation), where first a client is configured and joins a cluster, after which a mount command is executed.
 2. Using the Stateless Clients feature: See [Mounting Filesystems Using the Stateless Clients Feature](mounting-filesystems.md#mounting-filesystems-using-stateless-clients) below, which simplifies and improves the management of clients in the cluster and eliminates the Adding Clients process.
 
-## Traditional Method for Mounting a Filesystem
+## Mount a filesystem using the traditional method&#x20;
 
 {% hint style="info" %}
 **Note:** Using the mount command as explained below first requires the installation of the Weka client, configuring the client, and joining it to a Weka cluster.
@@ -37,9 +37,9 @@ There are two options for mounting a filesystem on a cluster client: read cache 
 * [Read cache mount mode](../overview/weka-client-and-mount-modes.md#read-cache-mount-mode-default)
 * [Write cache mount mode](../overview/weka-client-and-mount-modes.md#write-cache-mount-mode)
 
-## Mounting Filesystems Using the Stateless Clients Feature <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
+## Mount a filesystem using the stateless clients feature <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
 
-The Stateless Clients feature defers the process of joining the cluster until a mount is performed. Simplifying and improving the management of clients in the cluster, it removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave in high frequency. Furthermore, it unifies all security aspects in the mount command, eliminating the search of separate credentials at cluster join and mount.
+The Stateless Clients feature defers the process of joining the cluster until the mount is performed. Simplifying and improving the management of clients in the cluster, it removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave at high frequency. Furthermore, it unifies all security aspects in the mount command, eliminating the search for separate credentials at cluster join and mount.
 
 To use the Stateless Clients feature, a Weka agent must be installed. Once this is complete, mounts can be created and configured using the mount command and can be easily removed from the cluster using the unmount command.
 
@@ -53,7 +53,7 @@ Assuming the Weka cluster is using the backend IP of `1.2.3.4`, running the foll
 
 On completion, the agent is installed on the client machine.
 
-#### Invoking the Mount Command
+#### Run the mount command
 
 **Command:** `mount -t wekafs`
 
@@ -63,7 +63,7 @@ Use one of the following command lines to invoke the mount command (note, the de
 
 `mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]:/<fs> <mount-point>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**      | **Type** | **Value**                          | **Limitations**           | **Mandatory** | **Default** |
 | ------------- | -------- | ---------------------------------- | ------------------------- | ------------- | ----------- |
@@ -72,11 +72,11 @@ Use one of the following command lines to invoke the mount command (note, the de
 | `fs`          | String   | Filesystem name                    | Must be a valid name      | Yes           | ​           |
 | `mount-point` | String   | Path to mount on the local machine | Must be a valid path-name | Yes           | ​           |
 
-## Mount Command Options
+## Mount command options
 
-Each mount option can be passed with an individual `-o` flag to `mount.`
+Each mount option can be passed by an individual `-o` flag to `mount.`
 
-### For All Clients Types
+### For all clients types
 
 | **Option**                | **Value**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                                                       | **Default**  | **Remount Supported** |
 | ------------------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
@@ -103,11 +103,11 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 | `force_file_mode`         | Numeric (octal) notation of POSIX permissions | <p>Newly created file permissions are logically OR'ed with the mode. For example, if a user creates a file with permissions 770 but the <code>force_file_mode</code> is 775, the resulting file will be created with mode 775. </p><p>First, the <code>umask</code> is taken into account, followed by the <code>file_create_mask</code> and then the <code>force_file_mode</code>.</p>                               | 0            | Yes                   |
 | `force_directory_mode`    | Numeric (octal) notation of POSIX permissions | <p>Newly created directory permissions are logically OR'ed with the mode. For example, if a user creates a directory with permissions 770 but the <code>force_directory_mode</code> is 775, the resulting directory will be created with mode 775. </p><p>First, the <code>umask</code> is taken into account, followed by the <code>directory_create_mask</code> and then the <code>force_directory_mode</code>.</p> | 0            | Yes                   |
 
-### Remount of General Options
+### Remount of general options
 
 Mount options marked as `Remount Supported` in the above table can be remounted (using `mount -o remount`). When a mount option has been explicitly changed previously, it should be set again in the remount operation to make sure it retains its value. For example, if you mounted with `ro`, a remount without it will default to `rw`, while if you mounted with `rw`, it  is not required to be re-specified since this is the default).&#x20;
 
-### **Additional Mount Options Available using the Stateless Clients Feature**
+### **Additional mount options using the stateless clients feature**
 
 | **Option**                               | **Value**        | **Description**                                                                                                                                                                                                                                                                                                                         | **Default**               | **Remount Supported** |
 | ---------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | --------------------- |
@@ -134,7 +134,7 @@ Mount options marked as `Remount Supported` in the above table can be remounted 
 {% endhint %}
 
 {% hint style="success" %}
-**For Example: On-Premise Installations**
+**Example: On-Premise Installations**
 
 `mount -t wekafs -o num_cores=1 -o net=ib0 backend-host-0/my_fs /mnt/weka`
 
@@ -167,11 +167,11 @@ After the execution of an`umount` command which unmounts the last Weka filesyste
 **Note:** Memory allocation for a client is predefined. Contact the Weka Support Team when it is necessary to change the amount of memory allocated to a client.
 {% endhint %}
 
-### Remount of Stateless Clients Options
+### Remount of stateless clients options
 
 Mount options marked as `Remount Supported` in the above table can be remounted (using `mount -o remount`). When a mount option is not set in the remount operation, it will retain its current value. To set a mount option back to its default value, use the `default` modifier (e.g., `memory_mb=default)`.
 
-## Advanced Network Configuration via Mount Options
+## Advanced network configuration by mount options
 
 When using a stateless client, it is possible to alter and control many different networking options, such as:
 
@@ -189,7 +189,7 @@ Use `-o net=<netdev>` mount option with the various modifiers as described below
 **Note:** When using `wekafs` mounts, both clients and backends should use the same type of networking technology (either IB or Ethernet).
 {% endhint %}
 
-### IP, Subnet, Gateway, and Virtual Functions
+### IP, subnet, gateway, and virtual functions
 
 For higher performance, the usage of multiple Frontends may be required. When using a NIC other than Mellanox, or when mounting a DPDK client on a VM, it is required to use [SR-IOV](../install/bare-metal/setting-up-the-hosts/#sr-iov-enablement) to expose a VF of the physical device to the client. Once exposed, it can be configured via the mount command.
 
@@ -197,13 +197,13 @@ When you want to determine the VFs IP addresses, or when the client resides in a
 
 `ip, bits, gateway` are optional. In case they are not provided, the Weka system tries to deduce them when in AWS or IB environments, or allocate from the default data network otherwise. If both approaches fail, the mount command will fail.
 
-**For example**, the following command will allocate two cores and a single physical network device (intel0). It will configure two VFs for the device and assign each one of them to one of the frontend nodes. The first node will receive a 192.168.1.100 IP address, and the second will use a 192.168.1.101 IP address. Both of the IPs have 24 network mask bits and a default gateway of 192.168.1.254.
+For example, the following command allocates two cores and a single physical network device (intel0). It will configure two VFs for the device and assign each one of them to one of the frontend nodes. The first node will receive a 192.168.1.100 IP address, and the second will use a 192.168.1.101 IP address. Both of the IPs have 24 network mask bits and a default gateway of 192.168.1.254.
 
 ```
 mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.168.1.254 backend1/my_fs /mnt/weka
 ```
 
-### Multiple Physical Network Devices for Performance and HA
+### Multiple physical network devices for performance and HA
 
 For performance or high availability, it is possible to use more than one physical network device.
 
@@ -211,7 +211,7 @@ For performance or high availability, it is possible to use more than one physic
 
 It's easy to saturate the bandwidth of a single network interface when using WekaFS. For higher throughput, it is possible to leverage multiple network interface cards (NICs). The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to the WekaFS host driver.
 
-**For example**, the following command will allocate two cores and two physical network devices for increased throughput:
+For example, the following command will allocate two cores and two physical network devices for increased throughput:
 
 ```
 mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/weka
@@ -221,7 +221,7 @@ mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/wek
 
 Multiple NICs can also be configured to achieve redundancy (refer to [Weka Networking HA](../overview/networking-in-wekaio.md#ha) section for more information) in addition to higher throughput, for a complete, highly available solution. For that, use more than one physical device as previously described and, also, specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
 
-**For example**, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. Note the modifier `ha` is used here, which stands for using the device on all processes.
+For example, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. Note the modifier `ha` is used here, which stands for using the device on all processes.
 
 ```
 mount -t wekafs -o num_cores=4 -o net:ha=mlnx0,net:ha=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
@@ -233,19 +233,19 @@ With multiple Frontend processes (as expressed by `-o num_cores`), it is possibl
 
 Examples of slot notation include `s1`, `s2`, `s2+1`, `s1-2`, `slots1+3`, `slot1`, `slots1-4` , where `-` specifies a range of devices, while `+` specifies a list. For example, `s1-4` implies slots 1, 2, 3 and 4, while `s1+4` specifies slots 1 and 4 only.
 
-**For example**, in the following command, `mlnx0` is bound to the second Frontend process while`mlnx1` to the first one for improved performance.
+For example, in the following command, `mlnx0` is bound to the second Frontend process while`mlnx1` to the first one for improved performance.
 
 ```
 mount -t wekafs -o num_cores=2 -o net:s2=mlnx0,net:s1=mlnx1 backend1/my_fs /mnt/weka
 ```
 
-**For example,** in the following HA mounting command, two cores (two Frontend processes) and two physical network devices (`mlnx0`, `mlnx1`) are allocated. By explicitly specifying `s2+1`, `s1-2` modifiers for network devices, both devices will be used by both Frontend processes. Notation `s2+1` stands for the first and second processes, while `s1-2` stands for the range of 1 to 2, and are effectively the same.
+For example**,** in the following HA mounting command, two cores (two Frontend processes) and two physical network devices (`mlnx0`, `mlnx1`) are allocated. By explicitly specifying `s2+1`, `s1-2` modifiers for network devices, both devices will be used by both Frontend processes. Notation `s2+1` stands for the first and second processes, while `s1-2` stands for the range of 1 to 2, and are effectively the same.
 
 ```
 mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
 ```
 
-### UDP Mode
+### UDP mode
 
 In cases where DPDK cannot be used, it is possible to use WekaFS in [UDP mode](../overview/networking-in-wekaio.md#udp-mode) through the kernel. Use `net=udp` in the mount command to set the UDP networking mode, for example:
 
@@ -261,7 +261,7 @@ mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
 **Note:** Providing multiple IPs in the \<mgmt-ip> in UDP mode will utilize their network interfaces for more bandwidth (can be useful in RDMA environments), rather than using only one NIC.
 {% endhint %}
 
-## Mounting Filesystems Using fstab
+## Mounting filesystems using fstab
 
 {% hint style="info" %}
 **Note:** This option works when using **stateless clients** and with OS that supports `systemd` (e.g.: RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, Amazon Linux 2 LTS).
@@ -298,7 +298,7 @@ The filesystem should now be mounted at boot time.
 **Note:** Do not configure this entry for a mounted filesystem before un-mounting it (`umount`), as the `systemd` needs to mark the filesystem as a network filesystem (occurs as part of the `reboot`). Trying to reboot a host when there is a mounted WekaFS filesystem when setting its `fstab` configuration might yield a failure to unmount the filesystem and leave the system hanged.
 {% endhint %}
 
-## Mounting Filesystems Using autofs
+## Mounting filesystems using autofs
 
 It is possible to mount a Weka filesystem using the `autofs` command.
 

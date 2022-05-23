@@ -4,11 +4,11 @@ description: >-
   environments.
 ---
 
-# Test Environment Details
+# Test environment details
 
 ## AWS
 
-### **AWS Cluster**&#x20;
+### **AWS cluster**&#x20;
 
 * Stripe Size: 4+2
 * 8 backend servers instances of [i3en.12xlarge](https://aws.amazon.com/ec2/instance-types/i3en/)
@@ -19,7 +19,7 @@ description: >-
   * 2 drives
   * 1 frontend
 
-### AWS Clients
+### AWS clients
 
 * [c5n.18xlarge](https://aws.amazon.com/ec2/instance-types/c5/) instances&#x20;
 * For the aggregated results 8 clients have been used
@@ -30,7 +30,7 @@ description: >-
 
 ## SuperMicro
 
-### **SuperMicro Cluster**&#x20;
+### **SuperMicro cluster**&#x20;
 
 * Stripe Size: 4+2
 * 8 backend servers (SYS-2029BT-HNR / X11DPT-B), each:
@@ -44,7 +44,7 @@ description: >-
     * 6 drives
     * 1 frontend
 
-### SuperMicro Clients
+### SuperMicro clients
 
 * SYS-2029BT-HNR / X11DPT-B servers
 * For the aggregated results 8 clients have been used

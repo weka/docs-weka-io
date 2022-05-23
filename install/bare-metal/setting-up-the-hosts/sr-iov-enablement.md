@@ -2,15 +2,15 @@
 description: This page describes the procedure required in order to set up SR-IOV.
 ---
 
-# SR-IOV Enablement
+# SR-IOV enablement
 
 ## Overview
 
-Many hardware vendors ship their products with the SR-IOV feature disabled. On such platforms, the feature must be enabled prior to installing the Weka system. This enablement applies to both the server BIOS and the NIC. If already enabled, it is recommend to verify the current state before proceeding with the installation of the Weka system.
+Many hardware vendors ship their products with the SR-IOV feature disabled. On such platforms, the feature must be enabled prior to installing the Weka system. This enablement applies to both the server BIOS and the NIC. If already enabled, it is recommended to verify the current state before proceeding with the installation of the Weka system.
 
 This section assumes that NIC drivers have been installed and loaded successfully. If this is not the case, complete the procedure described in NIC Driver Installation and then continue as described below.
 
-## SR-IOV Enablement in the Server BIOS
+## SR-IOV enablement in the server BIOS
 
 Refer to the screenshots below to enable the SR-IOV support in the server BIOS.
 
@@ -28,7 +28,7 @@ Refer to the screenshots below to enable the SR-IOV support in the server BIOS.
 
 ![Save and Exit](<../../../.gitbook/assets/image (21).png>)
 
-## SR-IOV Enablement in the **Mellanox** NICs
+## SR-IOV enablement in the **Mellanox** NICs
 
 While it is possible to change the SR-IOV configuration through the NIC BIOS, Mellanox OFED offers command line tools that allow for the convenient modification and validation of SR-IOV settings, as described below:
 

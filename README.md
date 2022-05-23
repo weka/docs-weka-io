@@ -4,30 +4,30 @@ description: Welcome to the Weka documentation portal.
 
 # Weka Documentation
 
-## About this Documentation
+## About Weka documentation
 
-This portal contains all the documentation necessary for understanding and working with the Weka system. It covers the following subjects:
+This portal contains all the documentation necessary for understanding and working with the Weka system. It covers the following topics:
 
-**Weka System Overview:** A review of the primary components, principles, and entities that form every Weka system.
+**Weka system overview:** A review of the primary components, principles, and entities that form every Weka system.
 
-**Weka System Planning, Installation, and Resource Management:** A detailed description of bare metal and AWS installation of the Weka system, up to a point it is ready for operation.
+**Getting started with Weka:** A short guide of how to use the Weka system, configure a WekaFS filesystem, and conduct tests to validate that the system is configured correctly.
 
-**Getting Started with Weka:** A short guide of how to use the Weka system, configure a WekaFS filesystem and conducting tests to understand the system is configured correctly.
+**Planning and installation:** A detailed description of bare metal and AWS installation of the Weka system, up to a point it is ready for operation.
 
 **Performance:** A description and results of the FIO performance tests on WekaFS.
 
-**WekaFS Filesystems in the Weka System:** A review of the role and management of filesystems, object stores**,** filesystem groups, and key-management systems in Weka system configurations.
+**WekaFS filesystems & object stores:** A review of the role and management of filesystems, object stores**,** filesystem groups, and key-management systems in Weka system configurations.
 
-**Additional Protocols:** A review of additional protocols support as NFS and SMB for accessing data stored in a WekaFS filesystem.
+**Additional protocols:** A review of additional protocols support such as NFS and SMB for accessing data stored in a WekaFS filesystem.
 
-**Weka System Operation Guide:** Description of various operations in the Weka system, including events, the use of statistics, user management, upgrading, etc.
+**Operation guide:** Description of various operations in the Weka system, including events, the use of statistics, user management, upgrading, and so on.
 
-**Weka System Billing and Licensing:** Presentation of the alternatives for Weka system licensing and billing.
+**Billing & licensing:** Presentation of the alternatives for Weka system licensing and billing.
 
-**Weka Support:** Provides information on getting support for the Weka System.
+**Weka support:** Provides information on getting support for the Weka System.
 
-## Help Us to Help You
+## Documentation feedback
 
-This is an online documentation portal that undergoes changes all the time. Many of these changes are the result of internal decisions, while others are the result of comments that we receive from users.
+We strive to produce the highest-quality documentation products and welcome your feedback. We value and appreciate your thoughts on our content. If you have comments or suggestions about Weka documentation, please add your comments directly to the relevant paragraph on the page.
 
-Good documentation is based on customer input. We value and appreciate your thoughts on our content. Help us to help you by providing any comments you may have concerning our documentation, such as what else would you like to see in the documentation, what has helped you and what is unclear. We will do our utmost to continually improve and meet your demands.
+![How to send feedback on Weka documentation](.gitbook/assets/Weka\_doc\_feedback.gif)

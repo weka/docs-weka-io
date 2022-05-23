@@ -4,42 +4,42 @@ description: >-
   storage is managed in SSD-only and tiered Weka system configurations.
 ---
 
-# Data Lifecycle Management
+# Data lifecycle management
 
-## Media Options for Data Storage in the Weka System
+## Media options for data storage in the Weka system
 
 In the Weka system, data can be stored on two forms of media:
 
 1. On locally-attached SSDs, which are an integral part of the Weka system configuration.
 2. On object-store systems external to the Weka system, which are either third-party solutions, cloud services, or part of the Weka system.
 
-The Weka system can be configured either as an SSD-only system or as a data management system consisting of both SSDs and object stores. By nature, SSDs provide high performance and low latency storage, while object stores compromise performance and latency but are the most cost-effective solution available for storage. Consequently, users focused on high performance only should consider using an SSD-only Weka system configuration, while users seeking to balance between performance and cost should consider a tiered data management system, with the assurance that the Weka system features will control the allocation of hot data on SSDs and warm data on object stores, thereby optimizing the overall user experience and budget.
+The Weka system can be configured either as an SSD-only system or as a data management system consisting of both SSDs and object stores. By nature, SSDs provide high performance and low latency storage, while object stores compromise performance and latency but are the most cost-effective solution available for storage. Consequently, users focused on high performance only should consider using an SSD-only Weka system configuration, while users are seeking to balance performance and cost should consider a tiered data management system, with the assurance that the Weka system features will control the allocation of hot data on SSDs and warm data on object stores, thereby optimizing the overall user experience and budget.
 
 {% hint style="info" %}
 **Note:** In SSD-only configurations, the Weka system will sometimes use an external object store for backup, as explained in [Snap-To-Object Data Lifecycle Management](../fs/snap-to-obj.md#snap-to-object-in-data-lifecycle-management).
 {% endhint %}
 
-## Guidelines for Data Storage in Tiered Weka System Configurations
+## Guidelines for data storage in tiered Weka system configurations
 
 In tiered Weka system configurations, there are various locations for data storage as follows:
 
-1. Metadata is stored only on the SSDs.
+1. Metadata is stored only on SSDs.
 2. Writing of new files, adding data to existing files, or modifying the content of files is always terminated on the SSD, irrespective of whether the file is currently stored on the SSD or tiered to an object-store.
 3. When reading the content of a file, data can be accessed from either the SSD (if it is available on the SSD) or rehydrated from the object store (if it is not available on the SSD). &#x20;
 
-This data management approach to data storage on one of two possible media requires system planning to ensure that most commonly-used data (hot data) resides on the SSD to ensure high performance, while less-used data (warm data) is stored on the object-store. In the Weka system, this determination of the data storage media is a completely seamless, automatic, and transparent process, with users and applications unaware of the transfer of data from SSDs to object stores, or from object stores to SSDs. The data is accessible at all times through the same strongly-consistent POSIX filesystem API, irrespective of where it is stored. Only latency, throughput, and IOPS are affected by the actual storage media.
+This data management approach to data storage on one of two possible media requires system planning to ensure that most commonly-used data (hot data) resides on the SSD to ensure high performance, while less-used data (warm data) is stored on the object store. In the Weka system, this determination of the data storage media is a completely seamless, automatic, and transparent process, with users and applications unaware of the transfer of data from SSDs to object stores, or from object stores to SSDs. The data is accessible at all times through the same strongly-consistent POSIX filesystem API, irrespective of where it is stored. Only latency, throughput, and IOPS are affected by the actual storage media.
 
-Furthermore, the Weka system tiers data in chunks, rather than complete files. This enables the smart tiering of subsets of a file (and not only complete files) between SSDs and object-stores.
+Furthermore, the Weka system tiers data in chunks, rather than complete files. This enables the smart tiering of subsets of a file (and not only complete files) between SSDs and object stores.
 
-The network resources allocated to the object store connections can be [controlled](../fs/managing-object-stores.md#editing-an-object-store-using-the-cli). This enables cost control when using cloud-based object storage services since the cost of data stored in the cloud depends on the quantity stored and the number of requests for access made.
+The network resources allocated to the object store connections can be [controlled](../fs/managing-object-stores/#editing-an-object-store-using-the-cli). This enables cost control when using cloud-based object storage services since the cost of data stored in the cloud depends on the quantity stored and the number of requests for access made.
 
-## States in the Weka System Data Management Storage Process
+## States in the Weka system data management storage process
 
 Data management represents the media being used for the storage of data. In tiered Weka system configurations, data can exist in one of three possible states:
 
 1. **SSD-only:** When data is created, it exists only on the SSDs.
-2. **SSD-cached:** A tiered copy of the data exists on both the SSD and the object-store.
-3. **Object Store only:** Data resides only on the object-store.
+2. **SSD-cached:** A tiered copy of the data exists on both the SSD and the object store.
+3. **Object store only:** Data resides only on the object store.
 
 {% hint style="info" %}
 **Note:** These states represent the lifecycle of data and not the lifecycle of a file. When a file is modified, each modification creates a separate data lifecycle for the modified data.
@@ -49,27 +49,27 @@ Data management represents the media being used for the storage of data. In tier
 
 The Data Lifecycle Diagram represents the transitions of data between the above states. #1 represents the **Tiering** operation, #2 represents the **Releasing** operation and #3 represents the **Rehydrating** operation:
 
-1. **Tiering** of data from the SSD to create a replicate in the object-store. A guideline for the tiering of data is based on a user-defined, time-based policy ([Tiering Cue](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy)).
+1. **Tiering** of data from the SSD to create a replicate in the object store. A guideline for the tiering of data is based on a user-defined, time-based policy ([Tiering Cue](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy)).
 2. **Releasing** data from the SSD, leaving only the object-store copy (based on the demand for more space for data on the SSD). A guideline for the release of data is based on a user-defined, time-based policy ([Retention Period](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#data-retention-period-policy)).
-3. **Rehydrating** data from the object-store to the SSD, for the purpose of data access.
+3. **Rehydrating** data from the object store to the SSD, for the purpose of data access.
 
 In order to read data residing only on an object store, the data must first be rehydrated back to the SSD.
 
 In the Weka system, file modification is never implemented as in-place write, but rather as a write to a new area located on the SSD, and the relevant modification of the meta-data. Consequently, write operations are never associated with object store operations.
 
-## The Role of SSDs in Tiered Weka Configurations
+## The role of SSDs in tiered Weka configurations
 
-All writing in the Weka system is performed to SSDs. The data residing on SSDs is hot data, i.e., data that is currently in use. In tiered Weka configurations, SSDs have three primary roles in accelerating performance: metadata processing, a staging area for writing, and as a cache for read performance.
+All writing in the Weka system is performed to SSDs. The data residing on SSDs is hot data, i.e., data that is currently in use. In tiered Weka configurations, SSDs have three primary roles in accelerating performance: metadata processing, a staging area for writing, and as a cache for reading performance.
 
-### Metadata Processing
+### Metadata processing
 
 Since filesystem metadata is by nature a large number of update operations each with a small number of bytes, the embedding of metadata on SSDs serves to accelerate file operations in the Weka system.
 
-### SSD as a Staging Area
+### SSD as a staging area
 
 Since writing directly to an object store demands high latency levels while waiting for approval that the data has been written, with the Weka system there is no writing directly to object stores. Much faster writing is performed directly to the SSDs, with very low latency and therefore much better performance. Consequently, in the Weka system, the SSDs serve as a staging area, providing a buffer that is big enough for writing until later tiering of data to the object-store. On completion of writing, the Weka system is responsible for tiering the data to the object store and for releasing it from the SSD.
 
-### SSD as a Cache
+### SSD as a cache
 
 Recently accessed or modified data is stored on SSDs, and most read operations will be of such data and served from SSDs. This is based on a single, large LRU clearing policy for the cache that ensures optimal read performance.
 
@@ -79,9 +79,9 @@ Recently accessed or modified data is stored on SSDs, and most read operations w
 E.g., consider a 100 TB filesystem (total capacity) with a 10TB SSD capacity for this filesystem. It could be that all the data will reside on the object-store, and no new writes will be allowed, although the SSD space is not completely used (until deleting files or increasing filesystem total size), leaving the SSD for metadata and cache only.
 {% endhint %}
 
-## Time-based Policies for the Control of Data Storage Location
+## Time-based policies for the control of data storage location
 
-The Weka system includes user-defined policies that serve as guidelines to control the data storage management. They are derived from a number of factors:
+The Weka system includes user-defined policies that serve as guidelines to control data storage management. They are derived from a number of factors:
 
 1. The rate at which data is written to the system and the quantity of data.
 2. The capacity of the SSDs configured to the Weka system.
@@ -97,7 +97,7 @@ For tiered filesystems, the following parameters should be defined per filesyste
 The following parameters should be defined per filesystem group:
 
 1. The [Drive Retention Period Policy](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#drive-retention-period-policy), a time-based policy which is the target time for data to be stored on an SSD after creation, modification, or access, and before release from the SSD, even if it is already tiered to the object store, for metadata processing and SSD caching purposes (this is only a target; the actual release schedule depends on the amount of available space).&#x20;
-2. The [Tiering Cue Policy](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy), a time-based policy that determines the minimum amount of time that data will remain on an SSD before it is considered for release to the object-store. As a rule of thumb, this should be configured to a third of the Retention Period, and in most cases, this will work well. The Tiering Cue is important because it is pointless to tier a file that is about to be modified or deleted from the object-store.&#x20;
+2. The [Tiering Cue Policy](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy), a time-based policy that determines the minimum amount of time that data will remain on an SSD before it is considered for release to the object store. As a rule of thumb, this should be configured to a third of the Retention Period, and in most cases, this will work well. The Tiering Cue is important because it is pointless to tier a file that is about to be modified or deleted from the object store.&#x20;
 
 {% hint style="success" %}
 **For Example:**

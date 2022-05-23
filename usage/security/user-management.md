@@ -55,7 +55,7 @@ Use the following command line to create a local user:
 
 `weka user add <username> <role> [password] [--posix-uid uid] [--posix-gid gid]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**    | **Type** | **Value**                                                                                          | **Limitations**                                           | **Mandatory** | **Default**                                                 |
 | ----------- | -------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------- | ----------------------------------------------------------- |
@@ -66,11 +66,11 @@ Use the following command line to create a local user:
 | `posix-gid` | Number   | POSIX GID of underlying files representing objects created by this S3 user access/keys credentials | For S3 user roles only                                    | No            | 0                                                           |
 
 {% hint style="success" %}
-**For Example:**
+**Example:**
 
 `$ weka user add my_new_user regular S3cret`
 
-This command line creates a user with a username of `my_new_user`, a password of `S3cret` and a role of Regular user. It is then possible to display a list of users and verify that the user was created:
+This command line creates a user with a username of `my_new_user`, a password of `S3cret` and a role of a Regular user. It is then possible to display a list of users and verify that the user was created:
 
 ```
 $ weka user
@@ -100,7 +100,7 @@ Use the following command line to change a local user password:
 
 `weka user passwd <password> [--username username]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type** | **Value**                                   | **Limitations**            | **Mandatory** | **Default**            |
 | ---------- | -------- | ------------------------------------------- | -------------------------- | ------------- | ---------------------- |
@@ -119,7 +119,7 @@ Use the following command line to update a local user:
 
 `weka user update <username> [--role role] [--posix-uid uid] [--posix-gid gid]`
 
-**Parameters in command line**
+**Parameters**
 
 | **Name**    | **Type** | **Value**                                                                                          | **Limitations**                                           | **Mandatory** | **Default** |
 | ----------- | -------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------- | ----------- |
@@ -136,14 +136,14 @@ To delete a user, use the following command line:
 
 `weka user delete <username>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**   | **Type** | **Value**                  | **Limitations**            | **Mandatory** | **Default** |
 | ---------- | -------- | -------------------------- | -------------------------- | ------------- | ----------- |
 | `username` | String   | Name of the user to delete | Must be a valid local user | Yes           |             |
 
 {% hint style="success" %}
-**For Example:**
+**Example:**
 
 `$ weka user add my_new_user`
 
@@ -201,7 +201,7 @@ To configure an Active Directory server, use the following command line:
 
 `weka user ldap setup-ad <server-uri> <domain> <reader-username> <reader-password> <cluster-admin-group> <org-admin-group> <regular-group> <readonly-group> [--start-tls start-tls] [--ignore-start-tls-failure ignore-start-tls-failure] [--server-timeout-secs server-timeout-secs] [--user-revocation-attribute user-revocation-attribute]`
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name**                                | **Type** | **Value**                                                                                                   | **Limitations**                                                                                                                                  | **Mandatory** | **Default** |
 | --------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ----------- |

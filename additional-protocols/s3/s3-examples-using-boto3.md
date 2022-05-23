@@ -2,7 +2,7 @@
 description: This page provides some examples of using the S3 API.
 ---
 
-# S3 Examples using boto3
+# S3 examples using boto3
 
 ## Boto3
 
@@ -42,7 +42,7 @@ s3_client = boto3.client('sts',
                          region_name='us-east-1'))
 ```
 
-## Assume Role Example
+## Assume role example
 
 Example code of using an access/secret key to obtain a temporary security token for the S3 service:&#x20;
 
@@ -80,7 +80,7 @@ print 'SecretAccessKey:' + response['Credentials']['SecretAccessKey']
 print 'SessionToken:' + response['Credentials']['SessionToken']
 ```
 
-## Pre-Signed URL Example
+## Pre-signed URL example
 
 Example of signing on a GET request for `myobject`  within `mybucket` for anonymous access:
 
@@ -121,7 +121,7 @@ $ curl "http://weka:9000/mybucket/myobject?AWSAccessKeyId=s3_key&Expires=1624801
 myobject content
 ```
 
-## Pre-Signed URL with Assume Role Example
+## Pre-signed URL with assume role example
 
 Now, let's combine the above two examples by providing a pre-signed URL from a temporary security token:
 
@@ -156,7 +156,7 @@ print response
 
 ```
 
-## Upload/Download Example
+## Upload/Download example
 
 An example of using boto3 resource to upload and download an object:
 
@@ -191,7 +191,7 @@ print "Downloaded 'my_downloaded_object' as 'my_uploaded_object'. "
 
 ```
 
-## Create Bucket Example
+## Create bucket example
 
 An example for creating a bucket `newbucket` with a boto3 client:
 

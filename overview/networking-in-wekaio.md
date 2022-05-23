@@ -2,7 +2,7 @@
 description: This page reviews the theory of operation for Weka networking.
 ---
 
-# Weka Networking
+# Weka networking
 
 ## Overview
 
@@ -15,7 +15,7 @@ The Weka system supports the following types of networking technologies:
 
 The Weka system networking can be configured either as [performance-optimized](networking-in-wekaio.md#performance-optimized-networking-dpdk), where the CPU cores are dedicated to Weka and the use of DPDK networking takes place and cores, or, as [CPU-optimized](networking-in-wekaio.md#cpu-optimized-networking-udp-mode) where cores are not dedicated and we use either DPDK (when supported by the NIC drivers) or in-kernel networking (UDP mode).
 
-### Performance-Optimized Networking (DPDK)
+### Performance-optimized networking (DPDK)
 
 For performance-optimized networking, the Weka system does not use standard kernel-based TCP/IP services, but a proprietary infrastructure based on the following:
 
@@ -40,11 +40,11 @@ Single Root I/O Virtualization (SR-IOV) is an extension to the PCI Express (PCIe
 
 SR-IOV technology should be supported by both the software and hardware to take advantage of it. Software support is included in the Linux kernel, as well as the Weka system software. Hardware support is provided by the computer BIOS and the network adapter but is usually disabled out of the factory. Consequently, it should be enabled before installing the Weka system software.‌
 
-### CPU-Optimized Networking
+### CPU-optimized networking
 
 For CPU-optimized networking Weka can yield CPU resources to other applications. That is useful when the extra CPU cores are needed for other purposes. However, the lack of CPU resources dedicated to the Weka system comes with the expense of reduced overall performance.
 
-#### DPDK Without Core Dedication
+#### DPDK without core dedication
 
 For CPU-optimized networking, when [mounting filesystems using stateless clients](../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients), it is possible to use DPDK networking without dedicating cores. This mode is recommended when available and supported by the NIC drivers. In this mode, the DPDK networking uses RX interrupts instead of dedicating the cores.&#x20;
 
@@ -54,15 +54,15 @@ For CPU-optimized networking, when [mounting filesystems using stateless clients
 AWS (ENA drivers) does not support this mode, hence for CPU-optimized networking in AWS use the [UDP Mode](networking-in-wekaio.md#udp-mode).
 {% endhint %}
 
-#### UDP Mode
+#### UDP mode
 
 Weka can also use in-kernel processing and UDP as the transport protocol. This mode of operation is commonly referred to as the 'UDP mode'.
 
 Since the UPD-mode uses in-kernel processing, it is compatible with older platforms lacking the support of kernel offloading technologies (DPDK) or virtualization (SR-IOV), as legacy hardware such as the Mellanox CX3 family of NICs.
 
-## Typical Weka Configuration
+## Typical Weka configuration
 
-### Backend Hosts
+### Backend hosts
 
 In a typical Weka system configuration, the Weka backend hosts access the network function in two different methods:
 
@@ -75,7 +75,7 @@ In a typical Weka system configuration, the Weka backend hosts access the networ
 
 The high-performance network used to connect all the backend hosts must be DPDK-based. This internal Weka network also requires a separate IP address space (see [Network Planning](../install/bare-metal/planning-a-weka-system-installation.md#network-planning) and [Configuration of Networking](../install/bare-metal/using-cli.md#stage-5-configuration-of-networking)). For this, the Weka system maintains a separate ARP database for its IP addresses and virtual functions and does not use the kernel or operating system ARP services.
 
-#### Backend Hosts with DPDK-Supporting Intel NICs
+#### Backend hosts with DPDK-supporting Intel NICs
 
 For backend hosts equipped with DPDK-supporting Intel NICs, the following conditions must be met:
 
@@ -83,7 +83,7 @@ For backend hosts equipped with DPDK-supporting Intel NICs, the following condit
 * SR-IOV must be enabled in the hardware (BIOS + NIC).
 * The number of IPs allocated to the backend hosts on the internal network should be the total number of Weka software processes plus the total number of backend hosts. For example, a cluster consisting of 8 machines running 10 Weka processes each requires 88 (80 + 8) IPs on the internal network. The IP requirements for the Weka clients are outlined below in the Client Hosts section.‌
 
-#### Backend Hosts with DPDK-Supporting Mellanox NICs
+#### Backend hosts with DPDK-supporting Mellanox NICs
 
 ‌For backend hosts equipped with DPDK-supporting Mellanox NICs (CX-4 or newer), the following conditions must be met:
 
@@ -94,11 +94,11 @@ For backend hosts equipped with DPDK-supporting Intel NICs, the following condit
 **Note:** SR-IOV enablement in the hardware is optional. If enabled, DPDK generates its own MAC addresses for the VFs (Virtual Functions) of the NIC and the same NIC can support multiple MAC addresses, some handled by the operating system and others by the Weka system.
 {% endhint %}
 
-### Client Hosts
+### Client hosts
 
 Unlike Weka backend nodes that must be DPDK/SR-IOV based, the Weka client hosts (application servers) can use either DPDK-based or UDP modes. The DPDK mode is the natural choice for the newer, high-performing platforms that support it.
 
-#### Client Hosts with DPDK-Supporting Intel NICs
+#### Client hosts with DPDK-supporting Intel NICs
 
 For client hosts equipped with DPDK-supporting Intel NICs, the following conditions must be met to use the DPDK mode:
 
@@ -106,14 +106,14 @@ For client hosts equipped with DPDK-supporting Intel NICs, the following conditi
 * SR-IOV must be enabled in the hardware (BIOS + NIC).
 * The number of IPs allocated to the Intel client hosts on the internal network should be the total number of Weka system FrontEnd (FE) processes (typically no more than 2 per host) plus the total number of client hosts. For example, 10 client hosts with 1 FE process per client require 20 IPs (10 FE IPs + 10 IPs). ‌
 
-#### Client Hosts with DPDK-Supporting Mellanox NICs
+#### Client hosts with DPDK-supporting Mellanox NICs
 
 ‌For client hosts equipped with DPDK-supporting Mellanox NICs (CX-4 or newer), the following conditions must be met:
 
 * Mellanox OFED must be installed and loaded.
 * There is no need to use SR-IOV, so the number of IPs allocated to the client hosts on the internal network should be the total number of client hosts, i.e., 10 IPs for 10 client hosts (using the example above).
 
-#### Client Hosts in UDP Mode
+#### Client hosts in UDP mode
 
 The UDP mode is available for legacy clients lacking SR-IOV or DPDK support, or where there is no requirement for low latency, high throughput IO.
 
@@ -122,7 +122,7 @@ For client hosts in the UDP mode, the following conditions must be met:
 * The native driver must be installed and loaded.
 * The number of IPs allocated to the client hosts on the internal network should be equal to the total number of client hosts. For example, 10 client hosts in the UDP mode require 10 IPs on the internal network.
 
-## HA
+## High availability (HA)
 
 For HA support, the Weka system must be configured with no single component representing a single point of failure. Multiple switches are required, and hosts must have one leg on each switch.
 
@@ -136,7 +136,7 @@ When working with HA networking, it is useful to hint the system (using the `lab
 **Note:** LACP is currently supported between ports on a single Mellanox NIC, and is not supported when using VFs.
 {% endhint %}
 
-## RDMA and GPUDirect Storage
+## RDMA and GPUDirect storage
 
 GPUDirect Storage enables a direct data path between storage and GPU memory. GPUDirect Storage avoids extra copies through a bounce buffer in the CPU’s memory. It allows a direct memory access (DMA) engine near the NIC or storage to move data on a direct path into or out of GPU memory without burdening the CPU or GPU.
 

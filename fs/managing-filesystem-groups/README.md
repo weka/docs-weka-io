@@ -19,7 +19,7 @@ Using the GUI, you can perform the following actions:
 
 ### View filesystem groups
 
-The filesystem groups are displayed on the **Filesystems** page. Each filesystem group shows the filesystems that are applied with it.
+The filesystem groups are displayed on the **Filesystems** page. Each filesystem group indicates the number of filesystems that use it.
 
 **Procedure**
 
@@ -41,7 +41,7 @@ If no filesystem group is added, the file system uses the default filesystem gro
 2. Select the + sign right to the Filesystem Groups title.
 3. In the **Create Filesystem Group** dialog, do the following:
    * In the **Name** field, enter a meaningful name for the filesystem group.
-   * In the **Drive Retention Period**, set the number of days to keep the copy of the data on the SSD. After this period the copy of the data is deleted from the SSD.
+   * In the **Drive Retention Period**, set the number of days to keep the data on the SSD before it is copied to the object store. After this period, the copy of the data is deleted from the SSD.
    * In the **Tiering Cue**, set the time to wait after the last update, before the data is copied from the SSD and sent to the object store.
 
 ![Add a filesystem group](../../.gitbook/assets/wmng\_add\_fsg.gif)
@@ -52,9 +52,7 @@ If no filesystem group is added, the file system uses the default filesystem gro
 
 To learn more about the drive retention period and tiering cue, see**:**
 
-{% content-ref url="../tiering/advanced-time-based-policies-for-data-storage-location.md" %}
-[advanced-time-based-policies-for-data-storage-location.md](../tiering/advanced-time-based-policies-for-data-storage-location.md)
-{% endcontent-ref %}
+[advanced-time-based-policies-for-data-storage-location.md](../tiering/advanced-time-based-policies-for-data-storage-location.md "mention")****
 
 ## Edit a filesystem group
 

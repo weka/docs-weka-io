@@ -5,19 +5,19 @@ description: >-
   following stages.
 ---
 
-# Stages in Adding a Backend Host
+# Workflow: Add a backend host
 
-## Stage 1: Obtaining the Weka Install File
+## Stage 1: Obtain the Weka software installation file
 
 This stage is the same as [Obtaining the Weka Install File](../../install/bare-metal/obtaining-the-weka-install-file.md). However, it is essential to download the install file used when the existing cluster was formed or last upgraded. Use the `weka-status` command to show the current cluster install file version.
 
 To download the appropriate install file, follow the instructions in [Download the Weka Software](../../install/bare-metal/obtaining-the-weka-install-file.md#step-2-download-the-weka-software).
 
-## Stage 2: Installing the Weka Software on the New Host
+## Stage 2: Install the Weka software on the new host
 
 Follow the instructions appearing in [Installation of the Weka Software on Each Host](../../install/bare-metal/using-cli.md#stage-1-installation-of-the-weka-software-on-each-host). At the end of the install process, the host is in [stem mode](../../overview/glossary.md#stem-mode).
 
-## Stage 3: Adding a Host to the Cluster
+## Stage 3: Add the host to the cluster
 
 **Command:** `weka cluster host add`
 
@@ -27,7 +27,7 @@ Once the backend host is in the [stem mode](../../overview/glossary.md#stem-mode
 weka -H <existing-backend-hostname> cluster host add <backend-hostname>
 ```
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**                    | **Type** | **Value**                                                           | **Limitations**            | **Mandatory** | **Default**                               |
 | --------------------------- | -------- | ------------------------------------------------------------------- | -------------------------- | ------------- | ----------------------------------------- |
@@ -38,13 +38,13 @@ weka -H <existing-backend-hostname> cluster host add <backend-hostname>
 **Note:** On completion of this stage, the host-ID of the newly added host will be received. Make a note of it for the next steps.
 {% endhint %}
 
-## Stage 4: Configuration of Networking
+## Stage 4: Configure the networking
 
-Follow the instructions appearing in [Configuration of Networking](../../install/bare-metal/using-cli.md#stage-5-configuration-of-networking).
+Follow the instructions in Stage 6: Configure the networking.
 
 ## Stage 5: Configuration of SSDs
 
-Follow the instructions appearing in [Configuration of SSDs](../../install/bare-metal/using-cli.md#stage-6-configuration-of-ssds).
+Follow the instructions in [Configuration of SSDs](../../install/bare-metal/using-cli.md#stage-6-configuration-of-ssds).
 
 ## Stage 6: Configuration of CPU Resources
 

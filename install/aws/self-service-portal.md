@@ -4,7 +4,7 @@ description: >-
   the Weka system in AWS.
 ---
 
-# Self-Service Portal
+# Self-service portal
 
 ## Overview
 
@@ -23,15 +23,15 @@ Once the cluster is deployed:
 1. Refer to [Managing the Weka System ](broken-reference)for getting started with Weka CLI and GUI.
 2. Refer to [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting, and writing to a WekaFS filesystem.
 
-## Planning a Cluster
+## Plan a cluster
 
-The Self-Service Portal is available at [https://start.weka.io](https://start.weka.io/). Its main screen is divided into two panes: the left pane, which is used for inputting requirements, and the right pane which displays possible configurations for the defined requirements.
+The Self-Service Portal is available at [https://start.weka.io](https://start.weka.io/). Its main screen is divided into two panes: the left pane, which is used for input requirements, and the right pane which displays possible configurations for the defined requirements.
 
 ![Self-Service Portal Main Screen](../../.gitbook/assets/01-calculator-overview.png)
 
 As shown in the screen above, configuration options include the total capacity, the desired deployment model, and additional performance requirements. For more information about deployment types, refer to [Deployment Types](deployment-types.md).
 
-## Deploying a Cluster
+## Deploy a cluster
 
 Once the configuration to be deployed has been found, click the Deploy to AWS button next to the desired configuration. At this point, it is possible to specify additional options for the deployment, such as adding client instances or selecting the Weka system version to be deployed.
 
@@ -43,7 +43,7 @@ Once everything is ready to deploy the cluster, click the Deploy to AWS button. 
 **Note:** Before deploying the configuration**,** please refer to the [Prerequisites for Deployment](deployment-types.md#prerequisites-for-deployment) section.
 {% endhint %}
 
-## CloudFormation Screen
+## CloudFormation screen
 
 After clicking the Deploy to AWS button, the AWS CloudFormation screen is displayed, requiring the creation of stacks.
 
@@ -51,7 +51,7 @@ After clicking the Deploy to AWS button, the AWS CloudFormation screen is displa
 
 In the Create Stack screen, define the parameters which are specific to your AWS account.
 
-### Cluster CloudFormation Stack
+### Cluster CloudFormation stack
 
 | **Parameter** | **Description**                                                                                        |
 | ------------- | ------------------------------------------------------------------------------------------------------ |
@@ -94,7 +94,7 @@ Copy the link under the Network Topology parameter, and run it in a new browser 
 
 In the Create Stack screen, define the parameters which are specific to your AWS account.
 
-### Prerequisites CloudFormation Stack
+### Prerequisites CloudFormation stack
 
 {% hint style="info" %}
 **Note:** To run this stack, `enableDnsHostnames`  and `enableDnsSupport` [DNS attributes](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support) should be enabled for the VPC.
@@ -112,7 +112,7 @@ In the Create Stack screen, define the parameters which are specific to your AWS
 | `S3 Gateway`       | Only choose to create an S3 Gateway if non already exist for the VPC                                                                                                           |
 | `Ec2 Endpoint`     | Only choose to create an EC2 Endpoint if non already exist for the VPC                                                                                                         |
 
-## Cluster Deployment Process
+## Cluster deployment process
 
 The cluster deployment process takes about 10 minutes. During this time, the following occurs:
 
@@ -122,7 +122,7 @@ The cluster deployment process takes about 10 minutes. During this time, the fol
 4. All client instances are created.
 5. A filesystem is created using all the available capacity and is mounted on all client instances. This shared filesystem is mounted on `/mnt/weka` in each of the cluster instances.
 
-Once the deployment is complete, the CloudFormation stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link (or by http://\<backend-host>:14000).
+Once the deployment is complete, the CloudFormation stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link (or by [http://\<backend-host>:14000](http://\<backend-host>:14000)).
 
 Visit [Managing the Weka System ](broken-reference)for getting started with Weka CLI and GUI, and [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting, and writing to a WekaFS filesystem.
 

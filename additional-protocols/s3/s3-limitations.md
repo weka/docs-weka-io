@@ -4,7 +4,7 @@ description: >-
   implementation.
 ---
 
-# S3 Limitations
+# S3 limitations
 
 ## Supported S3 APIs
 
@@ -19,7 +19,7 @@ The following standard S3 APIs are supported:
 * Object Tagging (GET/PUT/DEL)
 * Object Multiparts (POST Create/Complete, GET/DEL/PUT, GET Parts)
 
-## General Limits
+## General limits
 
 | **Item**                                                                         | **Limits**                                   |
 | -------------------------------------------------------------------------------- | -------------------------------------------- |
@@ -32,7 +32,7 @@ The following standard S3 APIs are supported:
 | Maximum number of multipart uploads returned in a list multipart uploads request | 1000                                         |
 | User-defined metadata per object                                                 | 2KB                                          |
 
-## Naming Limitations
+## Naming limitations
 
 ### Buckets
 
@@ -52,9 +52,9 @@ The following standard S3 APIs are supported:
 **Note:** It is advisable to avoid special characters that might be unsupported using protocols other than S3.&#x20;
 {% endhint %}
 
-## Policy Limitations
+## Policy limitations
 
-### Supported S3 Policy Actions
+### Supported S3 policy actions
 
 The S3 protocol implementation supports the following policy actions:
 
@@ -79,7 +79,7 @@ The S3 protocol implementation supports the following policy actions:
 * `s3:GetBucketTagging`
 * `s3:PutBucketTagging`
 
-## Lifecycle Configuration
+## Lifecycle configuration
 
 Weka supports the [AWS S3 Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) elements and definitions, with the limitation of only supporting the lifecycle `Expiration` action.
 

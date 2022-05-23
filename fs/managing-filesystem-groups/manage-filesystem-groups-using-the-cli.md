@@ -25,7 +25,7 @@ Use the following command to add a filesystem group:
 
 `weka fs group create <name> [--target-ssd-retention=<target-ssd-retention>] [--start-demote=<start-demote>]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**               | **Type** | **Value**                                                               | **Limitations**        | **Mandatory** | **Default**      |
 | ---------------------- | -------- | ----------------------------------------------------------------------- | ---------------------- | ------------- | ---------------- |
@@ -41,7 +41,7 @@ Use the following command to edit a filesystem group:
 
 `weka fs group update <name> [--new-name=<new-name>] [--target-ssd-retention=<target-ssd-retention>] [--start-demote=<start-demote>]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**               | **Type** | **Value**                                                                   | **Limitations**        | **Mandatory** | **Default** |
 | ---------------------- | -------- | --------------------------------------------------------------------------- | ---------------------- | ------------- | ----------- |
@@ -58,7 +58,7 @@ Use the following command line to delete a filesystem group:
 
 `weka fs group delete <name>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name** | **Type** | **Value**                              | **Limitations**      | **Mandatory** | **Default** |
 | -------- | -------- | -------------------------------------- | -------------------- | ------------- | ----------- |
@@ -66,4 +66,6 @@ Use the following command line to delete a filesystem group:
 
 **Related topics**
 
-To learn about the tiring policy, see [Advanced Data Lifecycle Management](https://docs.weka.io/v/3.14/fs/tiering).
+To learn about the tiring policy, see:
+
+[tiering](../tiering/ "mention")

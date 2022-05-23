@@ -2,7 +2,7 @@
 description: This page describes possible congestion issues in the Weka system.
 ---
 
-# System Congestion
+# System congestion
 
 ## Overview
 
@@ -10,7 +10,7 @@ The Weka system is built to be very efficient, provide maximum performance and s
 
 In some situations, the system itself may slow down IOs when reaching some limits (or even block new IOs at higher limits) until the congested resource is relieved. Such situations may be transient and the issue will be resolved on its own after a short time. However, there are also cases that suggest an issue that needs to be addressed, such as a workload maxing out the resources of the cluster. In such cases, the cluster resources must be expanded, as described in [Expanding & Shrinking Cluster Resources](expanding-and-shrinking-cluster-resources/). Contact the Weka Support Team for more information on this.
 
-## System Congestion Events/Alerts
+## System congestion events/alerts
 
 The Weka system can issue several types of congestion events/alerts:
 

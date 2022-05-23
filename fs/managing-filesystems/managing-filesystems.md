@@ -6,11 +6,11 @@ description: This page describes how to view and manage filesystems using the CL
 
 Using the CLI, you can perform the following actions:
 
-* View filesystems
-* Add a filesystem
-* Add a filesystem when thin-provisioning is used
-* Edit a filesystem
-* Delete a filesystem
+* [View filesystems](managing-filesystems.md#view-filesystems)
+* [Add a filesystem](managing-filesystems.md#add-a-filesystem)
+* [Add a filesystem when thin-provisioning is used](managing-filesystems.md#add-a-filesystem-when-thin-provisioning-is-used)
+* [Edit a filesystem](managing-filesystems.md#edit-a-filesystem)
+* [Delete a filesystem](managing-filesystems.md#delete-a-filesystem)
 
 ### View filesystems
 
@@ -28,7 +28,7 @@ Use the following command line to add a filesystem:
 
 `weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd-capacity>] [--thin-provision-min-ssd <thin-provision-min-ssd>] [--thin-provision-max-ssd <thin-provision-max-ssd>] [--max-files <max-files>] [--encrypted] [--obs-name <obs-name>] [--auth-required <auth-required>]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**                 | **Type** | **Value**                                                                                                                                                                       | **Limitations**                    | **Mandatory**                                                                                                                  | **Default**                                                      |
 | ------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
@@ -67,7 +67,7 @@ Use the following command line to edit an existing filesystem:
 
 `weka fs update <name> [--new-name=<new-name>] [--total-capacity=<total-capacity>] [--ssd-capacity=<ssd-capacity>] [--thin-provision-min-ssd <thin-provision-min-ssd>] [--thin-provision-max-ssd <thin-provision-max-ssd>] [--max-files=<max-files>] [--auth-required=<auth-required>]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**                 | **Type** | **Value**                                                                                                                                                                       | **Limitations**                    | **Mandatory** | **Default**    |
 | ------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ------------- | -------------- |
@@ -88,7 +88,7 @@ Use the following command line to delete a filesystem:
 
 `weka fs delete <name> [--purge-from-obs]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**         | **Type** | **Value**                                                                                     | **Limitations**      | **Mandatory** | **Default** |
 | ---------------- | -------- | --------------------------------------------------------------------------------------------- | -------------------- | ------------- | ----------- |

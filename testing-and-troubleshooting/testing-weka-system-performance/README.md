@@ -5,9 +5,9 @@ description: >-
   performance of any other storage solution.
 ---
 
-# Testing Weka Performance
+# Weka performance tests
 
-## About Weka Performance Testing
+## About Weka performance tests
 
 There are three main performance metrics when measuring a storage system performance:
 
@@ -27,9 +27,9 @@ Each of these performance metrics applies to read operations, write operations, 
 **Note:** There is a difference between single client performance to aggregated performance. When running the tests listed below from one client, the client will limit the test's performance. In general, several clients will be required to maximize the performance of a Weka cluster.
 {% endhint %}
 
-## The FIO Utility
+## The FIO tool
 
-The [FIO Utility](https://linux.die.net/man/1/fio) is a generic open-source storage performance testing tool which can be defined as described [here](https://fio.readthedocs.io/en/latest/fio\_doc.html). In this documentation, the usage of FIO version 3.20 is assumed.
+The [FIO tool](https://linux.die.net/man/1/fio) is a generic open-source storage performance testing tool that can be defined as described [here](https://fio.readthedocs.io/en/latest/fio\_doc.html). In this documentation, the usage of FIO version 3.20 is assumed.
 
 All FIO testing is done using the client/server capabilities of FIO. This makes multiple client testing easier since FIO reports aggregated results for all clients under the test. Single client tests are run the same way to keep the results consistent.
 
@@ -89,7 +89,7 @@ MDTest is a generic open-source metadata performance testing tool. In this docum
 
 MDTest uses an MPI framework to coordinate the job across multiple nodes. The results presented here were generated using the [MPICH](https://www.mpich.org/downloads/) version 3.3.2 and can be defined as described [here](https://www.mpich.org/documentation/guides/). While it's possible to have variations with different MPI versions, most are based on the same ROMIO and will perform similarly.
 
-## Weka Client Performance Testing
+## Weka client performance tests
 
 Overall, the tests contained on this page are designed to show off the sustainable peak performance of the filesystem. Care has been taken to make sure they are realistic and reproducible.
 
@@ -97,9 +97,9 @@ Where possible, the benchmarks try to negate the effects of caching. For file te
 
 While we provide below the output of one iteration, we ran each test several times and provided the average results in the [Result Summary](./#results-summary).
 
-### Results Summary
+### Results summary
 
-#### Single Client Results
+#### Single client results
 
 | Benchmark        | [AWS](test-environment-details.md#aws)                 | [SuperMicro](test-environment-details.md#supermicro)      |
 | ---------------- | ------------------------------------------------------ | --------------------------------------------------------- |
@@ -110,7 +110,7 @@ While we provide below the output of one iteration, we ran each test several tim
 | Read Latency     | <p>272 µs avg. </p><p>99.5% completed under 459 µs</p> | <p>144.76 µs avg. </p><p>99.5% completed under 260 µs</p> |
 | Write Latency    | <p>298 µs avg. </p><p>99.5% completed under 432 µs</p> | <p>107.12 µs avg. </p><p>99.5% completed under 142 µs</p> |
 
-#### Aggregated Cluster Results (with multiple clients)
+#### Aggregated cluster results (with multiple clients)
 
 | Benchmark        | [AWS](test-environment-details.md#aws) | [SuperMicro](test-environment-details.md#supermicro) |
 | ---------------- | -------------------------------------- | ---------------------------------------------------- |
@@ -126,13 +126,11 @@ While we provide below the output of one iteration, we ran each test several tim
 **Note:** If the client uses a 100 Gbps NIC or above, mounting the Weka filesystem with more than one core is required to maximize client throughput.
 {% endhint %}
 
-### Testing Read Throughput
-
-#### Description
+### Test read throughput
 
 This test measures the client throughput for large (1MB) reads. The job below tries to maximize the read throughput from a single client. The test utilizes multiple threads, each one performing 1 MB reads.
 
-#### Job Definition
+#### Job definition
 
 {% code title="read_throughput.txt" %}
 ```
@@ -160,7 +158,7 @@ new_group
 ```
 {% endcode %}
 
-#### Example of Test Output
+#### Test output example
 
 ```
 read_throughput: (groupid=0, jobs=32): err= 0: pid=70956: Wed Jul  8 13:27:48 2020
@@ -188,13 +186,11 @@ read_throughput: (groupid=0, jobs=32): err= 0: pid=70956: Wed Jul  8 13:27:48 20
 
 In this test output example, results show a bandwidth of 8.95 GiB/s from a single client.
 
-### Testing Write Throughput
-
-#### Description
+### Test write throughput
 
 This test measures the client throughput for large (1MB) writes. The job below tries to maximize the write throughput from a single client. The test utilizes multiple threads, each one performing 1MB writes.
 
-#### Job Definition
+#### Job definition
 
 {% code title="write_throughput.txt" %}
 ```
@@ -222,7 +218,7 @@ new_group
 ```
 {% endcode %}
 
-#### Example of Test Output
+#### Test output example
 
 ```
 write_throughput: (groupid=0, jobs=32): err= 0: pid=71903: Wed Jul  8 13:43:15 2020
@@ -249,13 +245,11 @@ write_throughput: (groupid=0, jobs=32): err= 0: pid=71903: Wed Jul  8 13:43:15 2
 
 In this test output example, results show a bandwidth of 6.87 GiB/s.
 
-### Testing Read IOPS
-
-#### Description
+### Test read IOPS
 
 This test measures the ability of the client to deliver concurrent 4KB reads. The job below tries to maximize the system read IOPS from a single client. The test utilizes multiple threads, each one performing 4KB reads.
 
-#### Job Definition
+#### Job definition
 
 {% code title="read_iops.txt" %}
 ```
@@ -283,7 +277,7 @@ new_group
 ```
 {% endcode %}
 
-#### Example of Test Output
+#### Test output example
 
 ```
 read_iops: (groupid=0, jobs=192): err= 0: pid=66528: Wed Jul  8 12:30:38 2020
@@ -311,13 +305,11 @@ read_iops: (groupid=0, jobs=192): err= 0: pid=66528: Wed Jul  8 12:30:38 2020
 
 In this test output example, results show 390,494 IOPS from a single client.
 
-### Testing Write IOPS
-
-#### Description
+### Test write IOPS
 
 This test measures the ability of the client to deliver concurrent 4KB writes. The job below tries to maximize the system write IOPS from a single client. The test utilizes multiple threads, each one performing 4KB writes.
 
-#### Job Definition
+#### Job definition
 
 {% code title="write_iops.txt" %}
 ```
@@ -345,7 +337,7 @@ new_group
 ```
 {% endcode %}
 
-#### Example of Test Output
+#### Test output example
 
 ```
 write_iops: (groupid=0, jobs=192): err= 0: pid=72163: Wed Jul  8 13:48:24 2020
@@ -373,11 +365,11 @@ write_iops: (groupid=0, jobs=192): err= 0: pid=72163: Wed Jul  8 13:48:24 2020
 
 In this test output example, results show 288,215 IOPS from a single client.
 
-### Testing Read Latency
+### Test read latency
 
 This test measures the minimal achievable read latency under a light load. The test measures the latency over a single-threaded sequence of 4KB reads across multiple files. Each read is executed only after the previous read has been served.
 
-#### Job Definition
+#### Job definition
 
 {% code title="read_latency.txt" %}
 ```
@@ -433,13 +425,11 @@ read_latency: (groupid=0, jobs=1): err= 0: pid=71741: Wed Jul  8 13:38:06 2020
 
 In this test output example, results show an average latency of 229 microseconds, where 99.5% of the writes terminated in 334 microseconds or less.
 
-### Testing Write Latency
-
-#### Description
+### Test write latency
 
 This test measures the minimal achievable write latency under a light load. The test measures the latency over a single-threaded sequence of 4KB writes across multiple files. Each write is executed only after the previous write has been served.
 
-#### Job Definition
+#### Job definition
 
 {% code title="write_latency.txt" %}
 ```
@@ -467,7 +457,7 @@ new_group
 ```
 {% endcode %}
 
-#### Example of Test Output
+#### Test output example
 
 ```
 write_latency: (groupid=0, jobs=1): err= 0: pid=72709: Wed Jul  8 13:53:33 2020
@@ -495,19 +485,17 @@ write_latency: (groupid=0, jobs=1): err= 0: pid=72709: Wed Jul  8 13:53:33 2020
 
 In this test output example, results show an average latency of 226 microseconds, where 99.5% of the writes terminated in 293 microseconds or less.
 
-### Testing Metadata Performance
-
-#### Description
+### Test metadata performance
 
 The test measures the rate of metadata operations (such as create, stat, delete) across the cluster. The test uses 20 million files: it uses 8 client hosts, and multiple threads per client are utilized (136), where each thread handles 18382 files. It is invoked 3 times and provides a summary of the iterations.
 
-#### Job Definition
+#### Job definition
 
 ```
 mpiexec -f <hostfile> -np 1088 mdtest -v -N 136 -i 3 -n 18382 -F -u -d /mnt/weka/mdtest
 ```
 
-#### Example of Test Output
+#### Test output example
 
 ```
 SUMMARY rate: (of 3 iterations)
@@ -521,7 +509,7 @@ SUMMARY rate: (of 3 iterations)
    Tree removal      :          1.192          1.142          1.172          0.022
 ```
 
-## **Running All Benchmark Tests Together**
+## **Run all benchmark tests**
 
 If it is preferred to run all the tests sequentially and review the results afterward, follow the instructions below.
 
@@ -537,7 +525,7 @@ mkdir /mnt/weka/mdtest
 
 Copy the `FIOmaster.txt` file to your host and create the `clients.txt` file with your clients' hostnames.
 
-### **Running the Benchmark**
+### **Run the benchmark**
 
 Run the benchmarks using the following commands:
 

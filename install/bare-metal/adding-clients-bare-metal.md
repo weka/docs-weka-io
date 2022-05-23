@@ -2,13 +2,13 @@
 description: This page describes how to add clients to a bare-metal cluster.
 ---
 
-# Adding Clients
+# Add clients
 
-## About Client Hosts
+## About client hosts
 
 Client hosts are used to running applications that need to access the Weka filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
 
-## Adding (Stateless) Clients
+## Add stateless clients
 
 To use the Weka filesystems from a client host, all that is needed is to call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
 
@@ -37,13 +37,13 @@ It is possible to configure the client OS to automatically mount the filesystem 
 **Note:** The different clients must have a unique IP and FQDN.
 {% endhint %}
 
-## Adding Clients Which Are Always Part of the Cluster
+## Add clients that are always part of the cluster
 
 {% hint style="info" %}
-**Note:** It is possible to add instances which do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
+**Note:** It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
 {% endhint %}
 
-### Stage 1: Install the Software
+### Stage 1: Install the Weka software
 
 Verify that the Weka software is installed on the client host according to the installation instructions. For further information, see [Obtaining the Weka Install File](obtaining-the-weka-install-file.md) and [Stage 1 in Weka System Installation Process.](using-cli.md#stage-1-installation-of-the-wekaio-software-on-each-host)
 
@@ -51,7 +51,7 @@ Verify that the Weka software is installed on the client host according to the i
 **Note:** All hosts (clients and backends) in a Weka system cluster must use the same software version. If attempts are made to mix multiple versions, the new hosts will fail to join the cluster.
 {% endhint %}
 
-### Stage 2: Joining the Cluster
+### Stage 2: Join the cluster
 
 **Command:** `weka cluster host add`
 
@@ -59,7 +59,7 @@ Once the client host is in the stem mode (this is the mode defined immediately a
 
 `weka -H <backend-hostname> cluster host add <client-hostname>`
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name**           | **Type** | **Value**                                                           | **Limitations**          | **Mandatory** | **Default** |
 | ------------------ | -------- | ------------------------------------------------------------------- | ------------------------ | ------------- | ----------- |
@@ -70,7 +70,7 @@ Once the client host is in the stem mode (this is the mode defined immediately a
 **Note:** On completion of this stage, the host-ID of the newly added host will be received. Make a note of it for the next steps.
 {% endhint %}
 
-### Stage 3: Configuring the Host as Client
+### Stage 3: Configure the host as a client
 
 **Command:** `weka cluster host cores`
 
@@ -78,7 +78,7 @@ To configure the new host as a client, run the following command:
 
 `weka cluster host cores <host-id> <cores> --frontend-dedicated-cores=<frontend-dedicated-cores>`
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name**                   | **Type** | **Value**                                                      | **Limitations**                                                                                 | **Mandatory**                                 | **Default** |
 | -------------------------- | -------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------- | ----------- |
@@ -86,7 +86,7 @@ To configure the new host as a client, run the following command:
 | `cores`                    | Number   | Number of physical cores to be allocated to the Weka client    | Maximum 19 cores                                                                                | Yes                                           |             |
 | `frontend-dedicated-cores` | Number   | Number of physical cores to be dedicated to FrontEnd processes | <p></p><p>For clients, the number of total cores and frontend-dedicated-cores must be equal</p> | Yes, in order to configure a host as a client |             |
 
-### Stage 4: Configuring Client Networking
+### Stage 4: Configure client networking
 
 **Command:** `weka cluster host net add`
 
@@ -98,7 +98,7 @@ If a high-performance client is required and the appropriate network NIC is avai
 
 `weka cluster host net add <host-id> <device> --ips=<ips> --netmask=<netmask> --gateway=<gateway>`
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name**  | **Type**   | **Value**                                                                               | **Limitations**                                                                                                                                                              | **Mandatory** | **Default** |
 | --------- | ---------- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
@@ -116,7 +116,7 @@ If a high-performance client is required and the appropriate network NIC is avai
 **Note:** InfiniBand/Ethernet clients can only join a cluster with the same network technology connectivity. It is possible to mix InfiniBand and Ethernet clients in the same cluster as long as the cluster backends are connected to both network technologies.
 {% endhint %}
 
-### Stage 5: Applying the Host Configuration
+### Stage 5: Apply the host configuration
 
 **Command:** `weka cluster host apply`
 
@@ -124,7 +124,7 @@ After successfully configuring the host and its network device, run the followin
 
 `weka cluster host apply <host-id> [--force]`
 
-**Parameters in Command Line**
+**Parameters in command line**
 
 | **Name**  | **Type**               | **Value**                                         | **Limitations**                 | **Mandatory** | **Default** |
 | --------- | ---------------------- | ------------------------------------------------- | ------------------------------- | ------------- | ----------- |

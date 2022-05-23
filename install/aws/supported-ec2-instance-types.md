@@ -2,13 +2,13 @@
 description: This page lists all instance types supported by the Weka system version.
 ---
 
-# Supported EC2 Instance Types
+# Supported EC2 instance types
 
 {% hint style="info" %}
 **Note:** To learn more about deployment types, see [Deployment Types](deployment-types.md).
 {% endhint %}
 
-## Storage EC2 Instances
+## Storage EC2 instances
 
 The following EC2 instance types can operate as **backend**, **client,** or **converged** instances:
 
@@ -17,7 +17,7 @@ The following EC2 instance types can operate as **backend**, **client,** or **co
 | I3                    | i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge                        |
 | I3en                  | i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge |
 
-## Client EC2 Instances
+## Client EC2 instances
 
 The following EC2 instance types can operate as **client** instances.
 
@@ -25,7 +25,7 @@ The following EC2 instance types can operate as **client** instances.
 **Note:** Any backend instance can also be a client instance.
 {% endhint %}
 
-| **EC2 Instance Type** | **Supported Models**                                                                                                                                                                            |
+| **EC2 instance type** | **Supported models**                                                                                                                                                                            |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | C3                    | c3.2xlarge, c3.4xlarge, c3.8xlarge                                                                                                                                                              |
 | C4                    | c4.2xlarge, c4.4xlarge, c4.8xlarge                                                                                                                                                              |

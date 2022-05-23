@@ -2,13 +2,13 @@
 description: This page describes how to install Weka on AWS Outposts
 ---
 
-# AWS Outposts Deployment
+# AWS outposts deployment
 
 ## Overview
 
 [AWS Outposts](https://aws.amazon.com/outposts/) is a fully managed service that extends AWS infrastructure, AWS services, APIs, and tools to virtually any data center, co-location space, or on-premises facility for a truly consistent hybrid experience. AWS Outposts is ideal for workloads that require low latency access to on-premises systems, local data processing, or local data storage.
 
-## Deploying a Weka Cluster in AWS Outposts
+## Deployment of a Weka cluster in AWS outposts
 
 A Weka cluster deployment in AWS Outposts follows the same guidelines as described in the [Deployment Types](deployment-types.md) section.
 

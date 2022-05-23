@@ -4,7 +4,7 @@ description: >-
   protocol, instead of the Weka client. The Weka system supports NFSv3.
 ---
 
-# NFS
+# Configure NFS
 
 ## Overview
 
@@ -12,7 +12,7 @@ The NFS protocol allows client hosts to access the Weka filesystem without insta
 
 In order to implement NFS service from a Weka cluster, the following steps must be implemented:
 
-| **Step**                                                                                                            | **Method of Implementation**                                              |
+| **Step**                                                                                                            | **Implementation method**                                                 |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | Define a set of hosts that will provide the NFS service, which can be the whole cluster or a subset of the cluster. | By defining an interface group.                                           |
 | Define Ethernet ports on each of the defined hosts that will be used to provide the NFS service.                    | By defining an interface group.                                           |
@@ -22,13 +22,13 @@ In order to implement NFS service from a Weka cluster, the following steps must 
 | Configure which client hosts can access which file system.                                                          | By creating a client permission group.                                    |
 | Mount the file systems on the client hosts using the NFS mount operating system support.                            | On the client operating system; does not involve Weka management.         |
 
-### Defining the NFS Networking Configuration (Interface Groups)
+### Define the NFS networking configuration (interface groups)
 
 {% hint style="info" %}
 **Note:** Since only a single port can be added to an interface group, for HA support in NFS, two interface groups must be created, with each of the host ports assigned to a different interface group. Additionally, the network topology (switches) must be considered when assigning the other host ports to these interface groups, to ensure that a single point of failure is not created in the switch.
 {% endhint %}
 
-## Implementing NFS Service from a Weka Cluster
+## Implement NFS service from a Weka cluster
 
 In order to define the NFS service, one or more interface groups must be defined. An interface group consists of the following:
 
@@ -44,26 +44,26 @@ The Weka system will automatically distribute the IP addresses evenly on each ho
 **Note:** The Weka system will configure the host IP networking for the NFS service on the host operating system. It should not be defined by the user.
 {% endhint %}
 
-### Configuring the Round-Robin DNS Server
+### Configure the round-robin DNS server
 
-To ensure that the various NFS clients will balance the load on the various Weka hosts serving NFS, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS) entry which will resolve to the list of floating IPs, ensuring that client loads will be equally distributed across all hosts.
+To ensure that the various NFS clients will balance the load on the various Weka hosts serving NFS, it is recommended to define a [round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS) entry that resolves to the list of floating IPs, ensuring that client loads will be equally distributed across all hosts.
 
 {% hint style="info" %}
 **Note:** Make sure to set the TTL (Time to Live) for all A records assigned to the NFS servers to 0 (Zero), this ensures that the IP won't be cached by the client or the DNS server.
 {% endhint %}
 
-### Defining NFS Access Control (Client Access Groups)
+### Define NFS access control (client access groups)
 
 In order to control which host can access which file system, NFS client permission groups must be defined. Each NFS client permission group contains:
 
 * A list of filters for IP addresses or DNS names of clients that can be connected to the Weka system via NFS.
 * A collection of rules that control access to specific filesystems.
 
-### Configuring NFS on the Client
+### Configure NFS on the client
 
 The NFS mount should be configured on the client host via the standard NFS stack operating system. The NFS server IP address should point to the Round-robin DNS name defined above.
 
-## Load Balancing and Resiliency of the NFS Service
+## NFS service load balancing and resiliency&#x20;
 
 The Weka NFS service is a scalable, fully load-balanced, and resilient service that provides continuous service through failures of any kind.
 
@@ -73,7 +73,7 @@ Load balancing is implemented via floating IPs. By default, the floating IPs are
 
 The same mechanism ensures the resiliency of the service. On a host failure, all IP addresses associated with the failed host will be reassigned to other hosts (using the GARP network messages) and the clients will reconnect to the new hosts without any reconfiguration or service interruption.
 
-## User Groups Resolution
+## User groups resolution
 
 The NFS protocol, using AUTH\_SYS protocol, has a limitation of 16 security groups users can be part of. The protocol truncates the group list to 16 if a user is part of more than 16 groups, and a permissions check can fail for authorized users.
 
@@ -81,9 +81,9 @@ As in many cases, a user can be part of more than 16 security groups. It is poss
 
 1. Define an interface group that supports external group-IDs resolution (`allow-manage-gids` option).
 2. Define the NFS client permissions to use external group-IDs resolution (`manage-gids` option).
-3. Set-up the relevant hosts to retrieve user's group-IDs information.
+3. Set up the relevant hosts to retrieve the user's group-IDs information.
 
-### Setting up the Hosts to Retrieve User's Group-IDs Information
+### Set up the hosts to retrieve user's group-IDs information
 
 The hosts, which are part of the interface group, can be set to retrieve the user's group-IDs information in any method that is used in the environment. Group resolution can be set by joining to an AD domain, joining a Kerberos domain, using LDAP with a read-only user, etc.
 
@@ -135,11 +135,11 @@ proxy_lib_name = ldap
 **Note:** All users must be present and resolved in the method used in `sssd` for groups resolution. For example, in the above example, using LDAP only provider, local users (e.g., a local root) that are not present in LDAP will not get their groups resolved and will be denied. An LDAP user will need to be added for such users/applications.
 {% endhint %}
 
-## Managing NFS Networking Configuration (Interface Groups)
+## Manage NFS networking configuration (interface groups)
 
-### Defining Interface Groups
+### Define interface groups
 
-#### Defining Interface Groups Using the GUI <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
+#### Define interface groups using the GUI <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
 
 Access the NFS IP Interfaces screen.
 
@@ -151,7 +151,7 @@ To define an interface group, click the '+' button at the top left-hand side of 
 
 Enter the Group Name (this has to be unique) and the Gateway / Mask Bits. Then click Save.
 
-#### Defining Interface Groups Using the CLI <a href="#uploading-a-snapshot-using-the-cli" id="uploading-a-snapshot-using-the-cli"></a>
+#### Defining interface groups using the CLI <a href="#uploading-a-snapshot-using-the-cli" id="uploading-a-snapshot-using-the-cli"></a>
 
 **Command:** `weka nfs interface-group add`
 
@@ -159,7 +159,11 @@ Use the following command line to add an interface group:
 
 `weka nfs interface-group add <name> <type> [--subnet subnet] [--gateway gateway] [--allow-manage-gids allow-manage-gids]`
 
-**Parameters in Command Line**
+**Parameters**
+
+&#x20;****&#x20;
+
+&#x20;**line**
 
 | **Name**            | **Type** | **Value**                                                                                                                                                                                                                                                                                | **Limitations**                                                                                                                                                                    | **Mandatory** | **Default**     |
 | ------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------- |
@@ -173,9 +177,9 @@ Use the following command line to add an interface group:
 **Note:** Each host can be set to be part of interface groups with the same value of `allow-manage-gids.` In addition, you must not mount the same filesystem via hosts residing in interface groups with different values of `allow-manage-gids.`
 {% endhint %}
 
-### Setting Interface Group Ports
+### Set interface group ports
 
-**Setting Interface Group Ports using the GUI**
+**Setting interface group ports using the GUI**
 
 Access the Group Ports table.
 
@@ -185,14 +189,14 @@ To set interface group ports, click the '+' button on the top right-hand side of
 
 To remove an interface group port, click the trash symbol displayed next to the host's status.
 
-**Setting Interface Group Ports using the CLI**
+**Set interface group gorts using the CLI**
 
 **Commands:** `weka nfs interface-group port add`and `weka nfs interface-group port delete`
 
 Use the following command lines to add/delete an interface group port:`weka nfs interface-group port add <name> <host-id> <port>`  \
 `weka nfs interface-group port delete <name> <host-id> <port>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**  | **Type** | **Value**                                                                                      | **Limitations** | **Mandatory** | **Default** |
 | --------- | -------- | ---------------------------------------------------------------------------------------------- | --------------- | ------------- | ----------- |
@@ -200,9 +204,9 @@ Use the following command lines to add/delete an interface group port:`weka nfs 
 | `host-id` | String   | Host ID on which the port resides (can be obtained by running the `weka cluster host` command) | Valid host ID   | Yes           |             |
 | `port`    | String   | Port's device, e.g., eth1                                                                      | Valid device    | Yes           |             |
 
-### **Setting Interface Group IPs**
+### **Set interface group IPs**
 
-**Setting Interface Group IPs using the GUI**
+**Set interface group IPs using the GUI**
 
 Access the Group IPs table.
 
@@ -212,7 +216,7 @@ To set IPs for the selected group, click the '+' button on the top right-hand si
 
 To remove an IP, click the trash symbol displayed next to the IP in the table.
 
-**Setting Interface Group IPs using the CLI**
+**Set interface group IPs using the CLI**
 
 **Commands:** `weka nfs interface-group ip-range add`and `weka nfs interface-group ip-range delete`
 
@@ -220,24 +224,24 @@ Use the following command lines to add/delete an interface group IP:\
 `weka nfs interface-group ip-range add <name> <ips>`\
 `weka nfs interface-group ip-range delete <name> <ips>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name** | **Type** | **Value**            | **Limitations** | **Mandatory** | **Default** |
 | -------- | -------- | -------------------- | --------------- | ------------- | ----------- |
 | `name`   | String   | Interface group name | None            | Yes           |             |
 | `ips`    | String   | IP range             | Valid IP range  | Yes           |             |
 
-### **Configuring the Service mountd Port**
+### **Configure the service mountd port**
 
 The mountd service is responsible to get clients' mount requests to the NFS server. When working with interface groups (with `allow-manage-gids=on`), it is possible to set it explicitly, rather than have it randomly selected on each server startup. This allows an easier setup of the firewalls to allow that port.
 
 Use the following command to set and view the mountd configuration: `weka nfs global-config set --mountd-port <mountd-port>` and `weka nfs global-config show`
 
-## **Managing NFS Access Control (Client Access Groups)**
+## **Manage NFS access control (client access groups)**
 
-### Defining Client Access Groups
+### Define client access groups
 
-#### Defining Client Access Groups Using the GUI <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
+#### Defining client access groups using the GUI <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
 
 Access the NFS Client Permissions screen.
 
@@ -245,7 +249,7 @@ Access the NFS Client Permissions screen.
 
 To define a client access group, click the '+' button on the top left-hand side of the screen. Enter the client access-group name and click Save.
 
-#### Defining Client Access Groups Using the CLI <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
+#### Defining client access groups using the CLI <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
 
 **Command:** `weka nfs client-group`
 
@@ -253,15 +257,15 @@ Use the following command lines to add/delete a client access group:\
 `weka nfs client-group add <name>`\
 `weka nfs client-group delete <name>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name** | **Type** | **Value**  | **Limitations** | **Mandatory** | **Default** |
 | -------- | -------- | ---------- | --------------- | ------------- | ----------- |
 | `name`   | String   | Group name | Valid name      | Yes           |             |
 
-### Managing Client Access Groups
+### Managing client access groups
 
-#### **Managing Client Access Groups Using the GUI**
+#### **Managing client access groups using the GUI**
 
 To add IPs or DNS rules to a group, access the relevant Client Groups dialog box.
 
@@ -287,14 +291,14 @@ Use the following command lines to add/delete a client group DNS:\
 `weka nfs rules add dns <name> <dns>`\
 `weka nfs rules delete dns <name> <dns>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name** | **Type** | **Value**                           | **Limitations** | **Mandatory** | **Default** |
 | -------- | -------- | ----------------------------------- | --------------- | ------------- | ----------- |
 | `name`   | String   | Group name                          | Valid name      | Yes           |             |
 | `dns`    | String   | DNS rule with \*?\[] wildcard rules |                 | Yes           |             |
 
-**Adding/Deleting an IP**
+**Add/Delete an IP**
 
 **Command:** `weka nfs rules`
 
@@ -302,16 +306,16 @@ Use the following command lines to add/delete a client group IP:\
 `weka nfs rules add ip <name> <ip>`\
 `weka nfs rules delete ip <name> <ip>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name** | **Type** | **Value**                                               | **Limitations** | **Mandatory** | **Default** |
 | -------- | -------- | ------------------------------------------------------- | --------------- | ------------- | ----------- |
 | `name`   | String   | Group name                                              | Valid name      | Yes           |             |
 | `ip`     | String   | IP with netmask rule, in the 1.1.1.1/255.255.0.0 format | Valid IP        | Yes           |             |
 
-### **Managing NFS Client Permissions**
+### **Manage NFS client permissions**
 
-#### **Managing NFS Client Permissions Using the GUI**
+#### **Manage NFS client permissions using the GUI**
 
 To add client permissions, click the top right-hand '+' icon in the Client Permissions table. The Permissions dialog box will be displayed.
 
@@ -329,7 +333,7 @@ Define the following parameters:
 
 Then click Save.
 
-**Managing NFS Client Permissions Using the CLI**
+**Managing NFS client permissions using the CLI**
 
 **Command:** `weka nfs permission`
 
@@ -340,7 +344,7 @@ Use the following command lines to add/update/delete NFS permissions:\
 
 `weka nfs permission delete <filesystem> <group> [--path path]`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**          | **Type** | **Value**                                                                                                                                                                                  | **Limitations**                                                                                                                                                | **Mandatory**                      | **Default** |
 | ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------- |
@@ -355,23 +359,23 @@ Use the following command lines to add/update/delete NFS permissions:\
 | `manage-gids`     | String   | <p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client will be replaced by a list of group IDs determined by an appropriate lookup on the server.</p> | <p> <code>on</code> or <code>off</code>.</p><p>Relevant only when using<code>allow-manage-gids</code> interface groups.</p>                                    | No                                 | `off`       |
 | `privileged-port` | String   | Sets the share to only be mounted via privileged ports (1-1024), usually only allowed by the root user.                                                                                    | <p><code>on</code> or <code>off</code>.</p><p>Relevant only when using<code>allow-manage-gids</code> interface groups.</p>                                     | No                                 | `off`       |
 
-### Supported Mount Options for NFS Clients
+### Supported NFS client mount options&#x20;
 
-#### Non-Coherent Mount Options
+#### Non-coherent mount options
 
 * `ac`
 * `async`
 * `noatime`
 * `lookupcache=all`
 
-#### Coherent Mount Options
+#### Coherent mount options
 
 * `noac`
 * `sync`
 * `atime`
 * `lookupcache=none`
 
-#### Common Mount Options
+#### Common mount options
 
 {% hint style="info" %}
 **Note:** The following options can be changed. These values are commonly used with the Weka system:
@@ -385,7 +389,7 @@ Use the following command lines to add/update/delete NFS permissions:\
 * `timeo=600`
 * `retrans=2`
 
-#### Fixed Mount options
+#### Fixed mount options
 
 {% hint style="danger" %}
 **Note:** Please make sure to set these values on the mount command, as different values are not supported.

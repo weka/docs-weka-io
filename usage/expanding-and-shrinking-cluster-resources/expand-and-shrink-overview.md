@@ -4,15 +4,7 @@ description: >-
   homogeneous Weka system configuration.
 ---
 
-# Expand & Shrink Overview
-
-{% hint style="info" %}
-**Note:** The cluster expansion process described here is only applicable to a homogeneous Weka system configuration, which is highly recommended. For non-homogeneous Weka system configurations, contact the Weka Support Team.
-
-**Note:** For AWS deployments, _\*\*_CloudFormation should only be used for initial deployment, and not for expanding & shrinking cluster resources.
-{% endhint %}
-
-## About Expanding & Shrinking Cluster
+# Expand and shrink overview
 
 In the Weka system, it is possible to expand and shrink a cluster as follows:
 
@@ -26,7 +18,13 @@ In the Weka system, it is possible to expand and shrink a cluster as follows:
 **Note:** The expansion or shrinking of networking resources is performed infrequently.
 {% endhint %}
 
-## Planning an Expansion or Shrink
+{% hint style="info" %}
+**Note:** The cluster expansion process described here is only applicable to a homogeneous Weka system configuration, which is highly recommended. For non-homogeneous Weka system configurations, contact the Weka Support Team.
+
+For AWS deployments, _\*\*_CloudFormation should only be used for initial deployment, and not for expanding & shrinking cluster resources.
+{% endhint %}
+
+## Expand or shrink plan
 
 {% hint style="info" %}
 **Note:** The expansion of a Weka system offers the opportunity to increase performance, while the shrinking of a Weka system may reduce performance. Contact the Weka Support Team for more details and to receive estimates.
@@ -36,7 +34,7 @@ In the Weka system, it is possible to expand and shrink a cluster as follows:
 
 Expansion procedures are similar to the [Bare Metal Weka system Installation Procedure](../../install/bare-metal/). Similar to planning a new cluster, the objectives of the expansion, in terms of space and performance, need to be translated to the actual cluster resources. This process is practically a repeat of the planning process for new clusters, with the following options and limitations:
 
-### Possible Expansion Options
+### Expansion options
 
 * Addition of new backend hosts.
 * Addition of new failure domains, as long the system was installed with failure domains.
@@ -46,7 +44,7 @@ Expansion procedures are similar to the [Bare Metal Weka system Installation Pro
 * Assignment of additional network resources to Weka in existing backend hosts.
 * Reconfiguration of hot spares.
 
-### Expansion Limitations
+### Expansion limitations
 
 * It is not possible to change the defined Weka system protection scheme.
 * It is not possible to define failure domains on a system that was installed without failure domains.
@@ -55,7 +53,7 @@ Expansion procedures are similar to the [Bare Metal Weka system Installation Pro
 
 To plan the capacity of the Weka system after expansion, refer to [SSD Capacity Management](../../overview/ssd-capacity-management.md).
 
-## The Cluster Expansion Process
+## The cluster expansion process
 
 Once an expansion of more SSDs or backend hosts has been planned and executed, the Weka system starts a redistribution process. This involves the redistribution of all the existing data to be perfectly balanced between the original hosts or SSDs and newly added resources. This process can take from minutes to hours, depending on the capacity and the networking CPU resources. However, the capacity increase is instant, and therefore it is possible to define more filesystems immediately, without waiting for the completion of the redistribution process.
 

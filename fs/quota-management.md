@@ -4,17 +4,17 @@ description: >-
   WekaFS filesystem.
 ---
 
-# Quota Management
+# Quota management
 
 ## Overview
 
 There are several levels on the Weka system where capacity usage can be restricted.&#x20;
 
-1. On an organization level - setting a different organization to manage its own filesystems, where quotas for an organization can be set, as described in the [organization's usage and quota management ](../usage/security/organizations.md#usage-and-quota-management)section.
-2. On a filesystem level - setting a different filesystem per department/project.
-3. On a directory level - setting a different quota per project directory (useful when users are part of several projects) or per user home directory.
+1. On an organization level: Set a different organization to manage its own filesystems, where quotas for an organization can be set, as described in the [organization's usage and quota management ](../usage/security/organizations.md#usage-and-quota-management)section.
+2. On a filesystem level: Set a different filesystem per department/project.
+3. On a directory level: Set a different quota per project directory (useful when users are part of several projects) or per user home directory.
 
-## Directory Quotas
+## Directory quotas
 
 The organization admin can set a quota on a directory. Setting a quota will start the process of counting the current directory usage. Until this process is done, the quota will not be taken into account (for empty directories, this process is instantly done).
 
@@ -24,7 +24,7 @@ The organization admin can set a quota on a directory. Setting a quota will star
 
 The organization admin sets quotas to inform/restrict users from using too much of the filesystem capacity. For that, only data in the user's control is taken into account. Hence, the quota doesn't count the overhead of the protection bits and snapshots. It does take into account data\&metadata of files in the directory, regardless if tiered or not.&#x20;
 
-### Working With Quotas
+### Working with quotas
 
 When working with quotas, consider the following:
 
@@ -50,9 +50,9 @@ When a hard quota is set on a directory, running the `df` utility will consider 
 To change the global behavior, contact the Weka Support Team.
 {% endhint %}
 
-## Managing Quotas using the CLI
+## Manage quotas using the CLI
 
-### Setting directory quotas/default quotas
+### Set directory quotas/default quotas
 
 **Command**: `weka fs quota set` / `weka fs quota set-default`
 
@@ -64,7 +64,7 @@ It is also possible to set a default quota on a directory. It does not account f
 
 `weka fs quota set-default <path>  [--soft soft] [--hard hard] [--grace grace] [--owner owner]`
 
-### &#x20;**Parameters in Command Line**
+#### &#x20;**Parameters**
 
 | **Name** | **Type** | **Value**                                                                                                                                                                          | **Limitations**                                                                      | **Mandatory** | **Default** |
 | -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------- | ----------- |
@@ -82,7 +82,7 @@ It is also possible to set a default quota on a directory. It does not account f
 **Note:** When both `hard` and `soft` quotas exist, setting the value of one of them to `0` will clear this quota.
 {% endhint %}
 
-### Listing directory quotas/default quotas
+### List directory quotas/default quotas
 
 **Command**: `weka fs quota list` / `weka fs quota list-default`
 
@@ -90,7 +90,7 @@ Use the following command to list the directory quotas (by default, only exceedi
 
 `weka fs quota list [fs-name] [--snap-name snap-name] [--path path] [--under under] [--over over] [--quick] [--all]`
 
-### **Parameters in Command Line**
+#### **Parameters**
 
 | **Name**    | **Type** | **Value**                                                                                     | **Limitations**                                                                    | **Mandatory** | **Default**     |
 | ----------- | -------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------- | --------------- |
@@ -106,7 +106,7 @@ Use the following command to list the directory default quotas:
 
 `weka fs quota list-default [fs-name] [--snap-name snap-name] [--path path]`
 
-### **Parameters in Command Line**
+#### **Parameters**
 
 | **Name**    | **Type** | **Value**                                                                             | **Limitations**                                                                    | **Mandatory** | **Default**     |
 | ----------- | -------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------- | --------------- |
@@ -126,7 +126,7 @@ Use the following command to unset a default quota of a directory:
 
 `weka fs quota unset-default <path>`
 
-### **Parameters in Command Line**
+#### **Parameters**
 
 | **Name** | **Type** | **Value**                                 | **Limitations**                                                | **Mandatory** | **Default** |
 | -------- | -------- | ----------------------------------------- | -------------------------------------------------------------- | ------------- | ----------- |

@@ -6,17 +6,17 @@ description: This page describes how to set up an HTTP webhook for S3  audit pur
 
 ## Overview
 
-S3 API calls can generate JSON events that many webhook target applications can receive as a stream of events and use them for auditing and analysis purposes. Such applications (see Splunk example below) should be configured to accept the events stream and provide it with an authentication token.&#x20;
+S3 API calls can generate JSON events that many webhook target applications can receive as a stream of events and use for auditing and analysis purposes. Such applications (see Splunk example below) should be configured to accept the events stream and provide it with an authentication token.&#x20;
 
-Enabling an audit webhook comes instead of the `BucketLogging` S3 APIs and follows a similar best-effort nature. The purpose of these audit logs is to give an idea of the nature of traffic.
+Enabling an audit webhook comes instead of the `BucketLogging` S3 APIs, and follows a similar best-effort nature. The purpose of these audit logs is to give an idea of the nature of traffic.
 
 {% hint style="info" %}
 **Note:** In the event of a disconnection from the webhook application, or if the S3 clusters' internal events buffer fills up, events will get thrown away. It is advised to monitor the external webhook target application's availability.
 {% endhint %}
 
-## Managing S3 Audit in Weka
+## Manage S3 audit in Weka
 
-### Enabling an Audit Webhook for S3 APIs
+### Enable an audit webhook for S3 APIs
 
 **Command:** `weka s3 cluster audit-webhook enable`
 
@@ -24,20 +24,20 @@ Use the following command line to enable an audit webhook for the S3 cluster:
 
 `weka s3 cluster audit-webhook enable <--endpoint endpoint>  <--auth-token auth-token>`
 
-**Parameters in Command Line**
+**Parameters**
 
 | **Name**     | **Type** | **Value**                                                  | **Limitations** | **Mandatory** | **Default** |
 | ------------ | -------- | ---------------------------------------------------------- | --------------- | ------------- | ----------- |
 | `endpoint`   | String   | The webhook endpoint                                       | None            | Yes           |             |
 | `auth-token` | Boolean  | The authentication token obtained from the webhook service | None            | Yes           |             |
 
-### Disabling an Audit Webhook for S3 APIs
+### Disable an audit webhook for S3 APIs
 
 **Command:** `weka s3 cluster audit-webhook disable`
 
 Use this command to disable the audit webhook.
 
-### View the Audit Webhook Configuration
+### View the audit webhook configuration
 
 **Command:** `weka s3 cluster audit-webhook show`
 
@@ -47,17 +47,17 @@ Use this command to view the audit webhook configuration.
 
 Setting up an HTTP Event Collector (HEC)
 
-### Step 1: Configuring the HEC
+### Step 1: Configure the HEC
 
 Follow the steps in [Enable HTTP Event Collector on Splunk](https://docs.splunk.com/Documentation/Splunk/8.0.3/Data/UsetheHTTPEventCollector#Enable\_HTTP\_Event\_Collector\_on\_Splunk\_Enterprise). Since the S3 event stream is provided in JSON  format, choose `_json` as the data source type.
 
-### Step 2: Creating a Token
+### Step 2: Create a token
 
 Follow the steps in [Create an Event Collector token on Splunk](https://docs.splunk.com/Documentation/Splunk/8.0.3/Data/UsetheHTTPEventCollector#Create\_an\_Event\_Collector\_token\_on\_Splunk\_Enterprise) to create a token that Weka will use to access the Splunk as HTTP webhook. You can create a new index or use an existing one for easy discovery/monitor/query.&#x20;
 
 Make sure to copy the created token for later use.
 
-### Step 3: Testing the Configuration
+### Step 3: Test the configuration
 
 To make sure the configuration works, send a test event as suggested [here](https://docs.splunk.com/Documentation/Splunk/8.0.3/Data/UsetheHTTPEventCollector#JSON\_request\_and\_response).
 
@@ -68,7 +68,7 @@ curl -k  https://hec.example.com:8088/services/collector/raw -H "Authorization: 
 
 Now you can search the index you've created in Splunk and see this event.
 
-### Step 4: Configuring the audit-webhook in Weka
+### Step 4: Configure the audit webhook in Weka
 
 As a cluster admin, run the following CLI command to enable the audit webhook:
 
