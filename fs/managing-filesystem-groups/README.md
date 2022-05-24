@@ -12,10 +12,10 @@ A filesystem group defines the policy of the drive retention period and the tier
 
 Using the GUI, you can perform the following actions:
 
-* View filesystem groups
-* Add filesystem groups
-* Edit filesystem groups
-* Delete filesystem groups
+* [View filesystem groups](./#view-filesystem-groups)
+* [Add filesystem groups](./#add-a-filesystem-group)
+* [Edit filesystem groups](./#edit-a-filesystem-group)
+* [Delete a filesystem group](./#delete-a-filesystem-group)
 
 ### View filesystem groups
 
@@ -29,7 +29,7 @@ The following example shows two filesystem groups defined in the system.
 
 ![Filesystem groups](../../.gitbook/assets/wmng\_view\_filesystem\_groups.png)
 
-## Add a filesystem group
+### Add a filesystem group
 
 Adding a filesystem group is a good practice when you want to apply a different group policy on specific filesystems.
 
@@ -39,10 +39,10 @@ If no filesystem group is added, the file system uses the default filesystem gro
 
 1. From the menu, select **Manage > Filesystems**.
 2. Select the + sign right to the Filesystem Groups title.
-3. In the **Create Filesystem Group** dialog, do the following:
-   * In the **Name** field, enter a meaningful name for the filesystem group.
-   * In the **Drive Retention Period**, set the number of days to keep the data on the SSD before it is copied to the object store. After this period, the copy of the data is deleted from the SSD.
-   * In the **Tiering Cue**, set the time to wait after the last update, before the data is copied from the SSD and sent to the object store.
+3. In the **Create Filesystem Group** dialog, set the following:
+   * **Name:** Enter a meaningful name for the filesystem group.
+   * **Drive Retention Period**: Set the number of days to keep the data on the SSD before it is copied to the object store. After this period, the copy of the data is deleted from the SSD.
+   * **Tiering Cue**: Set the time to wait after the last update, before the data is copied from the SSD and sent to the object store.
 
 ![Add a filesystem group](../../.gitbook/assets/wmng\_add\_fsg.gif)
 
@@ -54,7 +54,7 @@ To learn more about the drive retention period and tiering cue, see**:**
 
 [advanced-time-based-policies-for-data-storage-location.md](../tiering/advanced-time-based-policies-for-data-storage-location.md "mention")****
 
-## Edit a filesystem group
+### Edit a filesystem group
 
 You can edit the filesystem group policy according to your system requirements.
 
@@ -63,15 +63,13 @@ You can edit the filesystem group policy according to your system requirements.
 1. From the menu, select **Manage > Filesystems**.
 2. Select the filesystem group you want to edit.
 3. Select the pencil sign right to the filesystem group name.
-4. In the **Edit Filesystem Group** dialog, update the settings as you need.
-
-
+4. In the **Edit Filesystem Group** dialog, update the settings as you need. (See the parameter descriptions in the _Add a filesystem group_ topic.)
 
 ![Edit a filesystem group](../../.gitbook/assets/wmng\_edit\_fsg\_animated.gif)
 
 4\. Select **Update**.
 
-## Delete a filesystem group
+### Delete a filesystem group
 
 You can delete a filesystem group that is no longer used by any filesystem.
 

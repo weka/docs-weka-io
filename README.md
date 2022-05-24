@@ -2,7 +2,7 @@
 description: Welcome to the Weka documentation portal.
 ---
 
-# Weka Documentation
+# Weka documentation
 
 ## About Weka documentation
 
@@ -24,7 +24,7 @@ This portal contains all the documentation necessary for understanding and worki
 
 **Billing & licensing:** Presentation of the alternatives for Weka system licensing and billing.
 
-**Weka support:** Provides information on getting support for the Weka System.
+**Weka support:** Provides information on getting support for the Weka system.
 
 ## Documentation feedback
 

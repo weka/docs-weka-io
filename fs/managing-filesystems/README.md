@@ -33,23 +33,57 @@ The following example shows the predefined default filesystem.
 
 ### Add a filesystem
 
-A newly created Weka system contains a default filesystem, which is provisioned with the maximum capacity. If your deployment requires more filesystems with different settings, such as tiering, thin provisioning, and encryption, you can first reduce the provisioned capacity of the default filesystem, and then add a filesystem with the parameters that meet your specific needs.
+A newly created Weka system contains a default filesystem, which is provisioned with the maximum capacity. If your deployment requires more filesystems with different settings, such as tiering, thin provisioning, and encryption, first reduce the provisioned capacity of the default filesystem, and then add a filesystem with the parameters that meet your specific needs.
 
 **Before you begin**
 
-Verify that the system has free capacity.
+* Verify that the system has free capacity.
+* If tiering is required, verify that an object store bucket is set.
+* If encryption is required, verify that a KMS is configured.
 
 **Procedure**
 
 1. From the menu, select **Manage > Filesystems**.
 2. Select the **+Create** button.
-3. In the **Create Filesystem** dialog, set the parameters relevant to your deployment.
 
-![Create a filesystem](../../.gitbook/assets/wmng\_add\_fs\_animated.gif)
+![Create filesystem](../../.gitbook/assets/wmng\_create\_fs\_button.png)
 
-4\. Select **Save**.
+3\. In the **Create Filesystem** dialog, set the following:
 
-The filesystem is created. You can modify its parameters later, if necessary.
+* **Name**: Enter a meaningful name for the filesystem.
+* **Group**: Select the filesystem group that fits your filesystem.
+* **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.&#x20;
+
+![](../../.gitbook/assets/wmng\_create\_fs\_animated.gif)
+
+4\. Optional. If **Tiering** is required and an object store bucket is already defined, \
+&#x20;   select the toggle button, and set the details of the object store bucket:
+
+* **Object Store Bucket:** Select a predefined object store bucket from the list.
+* **Drive Capacity**: Enter the capacity to provision on the SSD, or select **Use All** to use all free capacity.
+* **Total Capacity**: Enter the total capacity of the object store bucket, including the drive capacity.
+
+![Tiering](../../.gitbook/assets/wmng\_fs\_tiering.png)
+
+5\. Optional. If **Thin Provision** is required, select the toggle button, and set the minimum \
+&#x20;   and the maximum capacity of the SSD.
+
+![Thin provisioning](../../.gitbook/assets/wmng\_fs\_thin\_provisioning.png)
+
+6\. Optional. If **Encryption** is required and your Weka system is deployed with a KMS, \
+&#x20;   select the toggle button.
+
+7\. Select **Save**.
+
+The filesystem is created.
+
+**Related topics**
+
+****[managing-filesystem-groups](../managing-filesystem-groups/ "mention")****
+
+****[managing-object-stores](../managing-object-stores/ "mention")****
+
+[kms-management.md](../kms-management.md "mention")
 
 ## Edit a filesystem
 
@@ -62,7 +96,7 @@ You can modify the filesystem parameters according to your demand changes over t
 
 ![Filesystem menu](../../.gitbook/assets/wmng\_edit\_fs\_menu.png)
 
-3\. In the **Edit Filesystem** dialog, modify the parameters according to your requirements.
+3\. In the **Edit Filesystem** dialog, modify the parameters according to your requirements. (See the parameter descriptions in the _Add a filesystem_ topic.)
 
 ![Edit a filesystem](../../.gitbook/assets/wmng\_edit\_fs.png)
 
@@ -75,7 +109,7 @@ You can delete a filesystem if it is no longer required.&#x20;
 **Procedure**
 
 1. From the menu, select **Manage > Filesystems**.
-2. Select the three dots on the right of the filesystem you want to modify, and select **Remove**.
+2. Select the three dots on the right of the filesystem you want to delete, and select **Remove**.
 3. To confirm the filesystem deletion, enter the filesystem name and select **Confirm**.
 
 ![Delete a filesystem](../../.gitbook/assets/wmng\_delete\_fs\_animated.gif)

@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Weka Documentation](README.md)
+* [Weka documentation](README.md)
 
 ## Weka System Overview <a href="#overview" id="overview"></a>
 
@@ -47,12 +47,12 @@
 
 ## WekaFS Filesystems & Object Stores <a href="#fs" id="fs"></a>
 
+* [Manage object stores](fs/managing-object-stores/README.md)
+  * [Manage object stores using the CLI](fs/managing-object-stores/managing-object-stores.md)
 * [Manage filesystem groups](fs/managing-filesystem-groups/README.md)
   * [Manage filesystem groups using the CLI](fs/managing-filesystem-groups/manage-filesystem-groups-using-the-cli.md)
 * [Manage filesystems](fs/managing-filesystems/README.md)
   * [Manage filesystems using the CLI](fs/managing-filesystems/managing-filesystems.md)
-* [Manage object stores](fs/managing-object-stores/README.md)
-  * [Manage object stores using the CLI](fs/managing-object-stores/managing-object-stores.md)
 * [Attach/Detach object stores to/from filesystems](fs/attaching-detaching-object-stores-to-from-filesystems.md)
 * [KMS management](fs/kms-management.md)
 * [Advanced data lifecycle management](fs/tiering/README.md)
