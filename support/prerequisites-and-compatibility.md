@@ -28,10 +28,10 @@ description: >-
 
 * **RHEL:**&#x20;
   * 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9
-  * 8.0, 8.1, 8.2, 8.3
+  * 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
 * **CentOS:**&#x20;
   * 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9
-  * 8.0, 8.1, 8.2, 8.3
+  * 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
 * **Ubuntu:**&#x20;
   * 18.04.0, 18.04.1, 18.04.2, 18.04.3, 18.04.4, 18.04.5
   * 20.04.0, 20.04.1
@@ -119,6 +119,7 @@ Supported Mellanox OFED versions:
 * 5.0-2.1.8.0
 * 5.1-2.5.8.0
 * 5.1-2.6.2.0
+* 5.6-1.0.3.3
 
 Supported ENA drivers:
 
@@ -179,6 +180,7 @@ Supported Mellanox OFED versions:
 * 5.0-2.1.8.0
 * 5.1-2.5.8.0
 * 5.1-2.6.2.0
+* 5.6-1.0.3.3
 
 #### Infiniband Configuration
 
@@ -234,7 +236,7 @@ VMs can be used as clients only, assuming they meet the following prerequisite:
 
 ### &#xD;For UDP clients:
 
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform and dedicate a core to the Weka client.
+* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform and dedicating a core to the Weka client.
 * The root filesystem should handle a 3K IOPS load by the Weka client.
 
 ### **For DPDK clients (on top of the UDP requirements):**
