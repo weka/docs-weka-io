@@ -39,7 +39,7 @@ Thin provisioning  can help in various use cases:
 
 Both data at rest (residing on SSD and object store) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](../fs/managing-filesystems/#adding-a-filesystem).
 
-For proper security, a KMS (Key Management System) must be used when creating encrypted filesystems. See [KMS Management](../fs/kms-management.md) for more information about KMS support in the Weka system.
+For proper security, a KMS (Key Management System) must be used when creating encrypted filesystems. See [KMS Management](../fs/kms-management/) for more information about KMS support in the Weka system.
 
 {% hint style="info" %}
 **Note:** Setting data encryption (on/off) can only be done when creating a filesystem.

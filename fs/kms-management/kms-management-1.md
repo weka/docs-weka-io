@@ -1,72 +1,20 @@
 ---
 description: >-
-  This page describes the management of a Key Management System (KMS) within the
-  Weka system.
+  This page describes how to manage the Key Management System (KMS) using the
+  CLI.
 ---
 
-# KMS management
+# Manage KMS using the CLI
 
-## Overview
+Using the CLI, you can:
 
-When creating an encrypted filesystem, a KMS must be used to properly secure the encryption keys.
+* [Add or update the KMS](kms-management-1.md#add-or-update-the-kms)
+* [View the KMS](kms-management-1.md#view-the-kms)
+* [Remove the KMS](kms-management-1.md#remove-the-kms)
+* [Set up vault configuration](kms-management-1.md#set-up-vault-configuration)
+* [Obtain a certificate for a KMIP-based KMS](kms-management-1.md#obtain-a-certificate-for-a-kmip-based-kms)
 
-The Weka system uses the KMS to encrypt filesystem keys. When the Weka system comes up, it uses the KMS to decrypt the filesystem keys and use its in-memory capabilities for data encrypting/decrypting operations.
-
-When a snapshot is taken using the Snap-To-Object feature, the encrypted filesystem key is saved along with the encrypted data. In the event of rehydrating this snapshot to a different filesystem (or when recovering from a disaster to the same filesystem in the Weka cluster), the KMS is used to decrypt the filesystem key. Consequently, the same KMS data must be present when performing such operations.
-
-For increased security, the Weka system does not save any information that can reconstruct the KMS encryption keys, which is performed by the KMS configuration alone. Therefore, the following should be considered:
-
-1. If the KMS configuration is lost, the encrypted data may also be lost. Therefore, a proper DR strategy should be set when deploying the KMS in a production environment.
-2. The KMS should be available when the Weka system comes up when a new filesystem is created, and from time to time when key rotations must be performed. Therefore, it is recommended that the KMS be highly available.
-
-For more information, refer to [KMS Best Practices](kms-management.md#kms-best-practices).
-
-The Weka system supports the following KMS types:
-
-1. [HashiCorp Vault](https://www.hashicorp.com/products/vault/) (version 1.1.5 and up). For setting up Vault to work with the Weka system, refer to [Setting Up Vault Configuration](kms-management.md#setting-up-vault-configuration).
-2. [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) compliant KMS (protocol version 1.2 and up)
-
-For additional information on KMS support, contact the Weka Sales or Support Teams.
-
-## Manage KMS using the GUI
-
-### Add a KMS
-
-To add a KMS to the Weka system, go to the KMS Configuration screen on the left sidebar and click Configure KMS.
-
-![](<../.gitbook/assets/KMS not set main screen 3.5.png>)
-
-The Configure KMS dialog box will be displayed.
-
-![Configure KMS Dialog Box](<../.gitbook/assets/KMS configure empty 3.5.png>)
-
-Enter the URL, key name, and API token, and click Update to configure the KMS.
-
-### View the KMS
-
-To view the configured KMS, go to the main KMS configuration screen.
-
-![KMS Configuration Screen](<../.gitbook/assets/KMS View 3.5.png>)
-
-### Update the KMS configuration
-
-To update the KMS configuration, click Update KMS. The Configure KMS dialog box will be displayed.
-
-![Configure KMS Dialog Box](<../.gitbook/assets/KMS configure 3.5.png>)
-
-Update the URL, master key or API token, and click Update.
-
-### Remove the KMS
-
-To remove a KMS configuration (an operation that is only possible if no encrypted filesystems exist), click the Reset KMS button on the main KMS Configuration screen. The KMS Reset dialog box will be displayed.
-
-![KMS Reset Dialog Box](<../.gitbook/assets/KMS remove 3.5.png>)
-
-Click Yes to remove the KMS configuration.
-
-## Manage the KMS using the CLI
-
-### Add/Update the KMS
+## Add or update the KMS
 
 **Command:** `weka security kms set`
 
@@ -91,7 +39,7 @@ Use the following command line to add or update the Vault KMS configuration in t
 {% endhint %}
 
 {% hint style="success" %}
-**For Example:**
+**Example:**
 
 Setting the Weka system with a Vault KMS:
 
@@ -102,13 +50,13 @@ Setting the Weka system with a KMIP complaint KMS (e.g., SmartKey):
 `weka security kms set kmip amer.smartkey.io:5696 b2f81234-c0f6-4d63-b5b3-84a82e231234 --client-cert smartkey_cert.pem --client-key smartkey_key.pem`
 {% endhint %}
 
-### Viewing the KMS
+## View the KMS
 
 **Command:** `weka security kms`
 
 Use this command to show the details of the configured KMS.
 
-### Removing the KMS
+## Remove the KMS
 
 **Command:** `weka security kms unset`
 
@@ -118,7 +66,7 @@ Use this command to remove the KMS from the Weka system. It is only possible to 
 **Note:** To force remove a KMS even if encrypted filesystems exist, use the `--allow-downgrade` attribute. In such cases, the encrypted filesystem keys are re-encrypted with local encryption and may be compromised.
 {% endhint %}
 
-### **Re-wrapping filesystem keys**
+### **Re-wrap filesystem keys**
 
 **Command:** `weka security kms rewrap`
 
@@ -137,28 +85,14 @@ If the KMS key is compromised or requires rotation, the KMS admin can rotate the
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** Unlike in Vault KMS, re-wrapping a KMIP based KMS requires generating a new key in the KMS, rather than rotating the same key. Hence, the old key should be preserved in the KMS in order to be able to decrypt old Snap2Obj snapshots.
-{% endhint %}
-
-## KMS best practices
-
-The KMS is the only source holding the key to decrypt Weka system filesystem keys. For non-disruptive operation, it is highly recommended to follow these guidelines:
-
-* Set up DR for the KMS (backup/replication) to avoid any chance of data loss.
-* Ensure that the KMS is highly available (note that the KMS is represented by a single URL in the Weka system).
-* Provide access to the KMS from the Weka system backend hosts.
-* Verify the methods used by the KMS being implemented (each KMS has different methods for securing/unsealing keys and for reconstructing lost keys, e.g., [Vault unsealing methods](https://www.vaultproject.io/docs/concepts/seal.html), which enable the configuration of [auto unsealing using a trusted service](https://learn.hashicorp.com/vault/operations/ops-autounseal-aws-kms)).
-* Refer to [Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) for additional best practices suggested by HashiCorp when using Vault.
-
-{% hint style="info" %}
-**Note:** Taking a Snap-To-Object ensures that the (encrypted) filesystems keys are backed up to the object store, which is important if a total corruption of the Weka system configuration occurs.
+**Note:** Unlike in Vault KMS, re-wrapping a KMIP-based KMS requires generating a new key in the KMS, rather than rotating the same key. Hence, the old key should be preserved in the KMS in order to be able to decrypt old Snap2Obj snapshots.
 {% endhint %}
 
 ## Set up vault configuration
 
 ### Enable 'Transit' secret engine in vault
 
-As described above, the Weka system uses [encryption-as-a-service](https://learn.hashicorp.com/vault/encryption-as-a-service/eaas-transit) capabilities of the KMS to encrypt/decrypt the filesystem keys. This requires the configuration of Vault with the `transit` secret engine.
+The Weka system uses [encryption-as-a-service](https://learn.hashicorp.com/vault/encryption-as-a-service/eaas-transit) capabilities of the KMS to encrypt/decrypt the filesystem keys. This requires the configuration of Vault with the `transit` secret engine.
 
 ```
 $ vault secrets enable transit
@@ -256,14 +190,16 @@ For more information on obtaining an API token, refer to [Vault Tokens documenta
 **Note:** The Weka system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max\_lease\_ttl).
 {% endhint %}
 
-## Obtain a certificate for a KMIP based KMS
+## Obtain a certificate for a KMIP-based KMS
 
-The method for obtaining a client certificate and key and set it via the KMS is different for each KMS. The certificate itself will be generated using OpenSSL, with some UID obtained from the KMS, e.g.:
+The method for obtaining a client certificate and key and set it via the KMS is different for each KMS. The certificate itself is generated using OpenSSL, with a UID obtained from the KMS.
+
+**Example**:
 
 ```
 openssl req -x509 -newkey rsa:4096 -keyout client-key.pem -out client-cert.pem -days 365 -nodes -subj '/CN=f283c99b-f173-4371-babc-572961161234'
 ```
 
-Please consult the specific KMS documentation to create a certificate and link it to the Weka cluster in the  KMS with sufficient privileges (encrypt/decrypt).
+See the specific KMS documentation to create a certificate and link it to the Weka cluster in the  KMS with sufficient privileges (encrypt/decrypt).
 
-For example, for SmartKey KMS, follow similar instruction as suggested [here](https://docs.equinix.com/en-us/Content/Edge-Services/SmartKey/kb/SK-mongodb.htm) to create a client certificate and key, and to assign a certificate for Weka within SmartKey.
+For example, for SmartKey KMS, follow similar instructions as suggested [here](https://docs.equinix.com/en-us/Content/Edge-Services/SmartKey/kb/SK-mongodb.htm) to create a client certificate and key, and assign a certificate for Weka within SmartKey.

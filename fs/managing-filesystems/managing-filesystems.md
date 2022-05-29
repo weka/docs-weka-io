@@ -1,104 +1,114 @@
 ---
-description: This page describes how to view and manage filesystems using the CLI.
+description: This page describes how to view and manage filesystems using the GUI.
 ---
 
-# Manage filesystems using the CLI
+# Manage filesystems using the GUI
 
-Using the CLI, you can perform the following actions:
+Using the GUI, you can perform the following actions:
 
 * [View filesystems](managing-filesystems.md#view-filesystems)
 * [Add a filesystem](managing-filesystems.md#add-a-filesystem)
-* [Add a filesystem when thin-provisioning is used](managing-filesystems.md#add-a-filesystem-when-thin-provisioning-is-used)
 * [Edit a filesystem](managing-filesystems.md#edit-a-filesystem)
 * [Delete a filesystem](managing-filesystems.md#delete-a-filesystem)
 
-### View filesystems
+## View filesystems
 
-**Command:** `weka fs`
+The filesystems are displayed on the **Filesystems** page. Each filesystem indicates the status, tiering status, backup status, encryption status, SDD capacity, total capacity, and the filesystem group used.
 
-Use this command to view information on the filesystems in the Weka system.
+**Procedure**
 
-Enter the relevant parameters and click Create to create the filesystem.
+1. From the menu, select **Manage > Filesystems**.
 
-### Add a filesystem
+The following example shows one filesystem.
 
-**Command:** `weka fs create`
+![View filesystems](../../.gitbook/assets/wmng\_view\_filesystems.png)
 
-Use the following command line to add a filesystem:
+## Add a filesystem
 
-`weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd-capacity>] [--thin-provision-min-ssd <thin-provision-min-ssd>] [--thin-provision-max-ssd <thin-provision-max-ssd>] [--max-files <max-files>] [--encrypted] [--obs-name <obs-name>] [--auth-required <auth-required>]`
+When creating a Weka system on-premises, it does not contain any filesystem. You need to add it and set its properties, such as capacity, group, tiering, thin provisioning, and encryption.
 
-**Parameters**
+When creating a Weka system in AWS using the cloud formation, the Weka system contains a default filesystem, which is provisioned with the maximum capacity. If your deployment requires more filesystems with different settings, first reduce the provisioned capacity of the default filesystem, and then add a filesystem with the properties that meet your specific needs.
 
-| **Name**                 | **Type** | **Value**                                                                                                                                                                       | **Limitations**                    | **Mandatory**                                                                                                                  | **Default**                                                      |
-| ------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
-| `name`                   | String   | Name of the filesystem being created                                                                                                                                            | Must be a valid name               | Yes                                                                                                                            | ​                                                                |
-| `group-name`             | String   | Name of the filesystem group to which the new filesystem is to be connected                                                                                                     | Must be a valid name               | Yes                                                                                                                            |                                                                  |
-| `total-capacity`         | Number   | Total capacity of the new filesystem                                                                                                                                            | Minimum of 1GiB                    | Yes                                                                                                                            |                                                                  |
-| `ssd-capacity`           | Number   | For tiered filesystems, this is the SSD capacity. If not specified, the filesystem is pinned to SSD                                                                             | Minimum of 1GiB                    | <p>No. </p><p>To set a thin provisioned filesystem the <code>thin-provision-min-ssd</code> attribute must be used instead.</p> | SSD capacity will be set to total capacity                       |
-| `thin-provision-min-ssd` | Number   | For [thin-provisioned](../../overview/filesystems.md#thin-provisioning) filesystems, this is the minimum SSD capacity that is ensured to be always available to this filesystem | Minimum of 1GiB                    | <p>No. </p><p>Must be set when defining a thin-provisioned filesystem.</p>                                                     |                                                                  |
-| `thin-provision-max-ssd` | Number   | For [thin-proviosined](../../overview/filesystems.md#thin-provisioning) filesystem, this is the maximum SSD capacity the filesystem can consume                                 | Cannot exceed the `total-capacity` |                                                                                                                                |                                                                  |
-| `max-files`              | Number   | Metadata allocation for this filesystem                                                                                                                                         | Must be a valid number             | No                                                                                                                             | Automatically calculated by the system based on the SSD capacity |
-| `encrypted`              | Boolean  | Encryption of filesystem                                                                                                                                                        |                                    | No                                                                                                                             | No                                                               |
-| `obs-name`               | String   | Object store name for tiering                                                                                                                                                   | Must be a valid name               | Mandatory for tiered filesystems                                                                                               |                                                                  |
-| `auth-required`          | String   | Determines if mounting the filesystem requires to be authenticated to Weka ([weka user login](../../usage/security/user-management.md#user-log-in))                             | `yes` or `no`                      | No                                                                                                                             | no                                                               |
+**Before you begin**
+
+* Verify that the system has free capacity.
+* Verify that a filesystem group is already set.
+* If tiering is required, verify that an object store bucket is set.
+* If encryption is required, verify that a KMS is configured.
+
+**Procedure**
+
+1. From the menu, select **Manage > Filesystems**.
+2. Select the **+Create** button.
+
+![Create filesystem](../../.gitbook/assets/wmng\_create\_fs\_button.png)
+
+3\. In the **Create Filesystem** dialog, set the following:
+
+* **Name**: Enter a meaningful name for the filesystem.
+* **Group**: Select the filesystem group that fits your filesystem.
+* **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.&#x20;
+
+![Add a filesystem](../../.gitbook/assets/wmng\_create\_fs\_animated.gif)
+
+4\. Optional: If [Tiering](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy) **** is required and an object store bucket is already defined, \
+&#x20;   select the toggle button, and set the details of the object store bucket:
+
+* **Object Store Bucket:** Select a predefined object store bucket from the list.
+* **Drive Capacity**: Enter the capacity to provision on the SSD, or select **Use All** to use all free capacity.
+* **Total Capacity**: Enter the total capacity of the object store bucket, including the drive capacity.
+
+![Tiering](../../.gitbook/assets/wmng\_fs\_tiering.png)
+
+5\. Optional: If [Thin Provision](managing-filesystems-1.md#add-a-filesystem-when-thin-provisioning-is-used) is required, select the toggle button, and set the minimum \
+&#x20;   and the maximum capacity of the SSD to use for thin provisioning.
+
+![Thin provisioning](../../.gitbook/assets/wmng\_fs\_thin\_provisioning.png)
+
+6\. Optional: If Encryption is required and your Weka system is deployed with a KMS, \
+&#x20;   select the toggle button.
+
+7\. Select **Save**.
+
+****
+
+**Related topics**
+
+****[managing-filesystem-groups](../managing-filesystem-groups/ "mention")****
+
+****[managing-object-stores](../managing-object-stores/ "mention")****
+
+[kms-management](../kms-management/ "mention")
+
+## Edit a filesystem
+
+You can modify the filesystem parameters according to your demand changes over time. The parameters that you can modify include, filesystem name, capacity, tiering, and thin provisioning (but not encryption).
+
+**Procedure**
+
+1. From the menu, select **Manage > Filesystems**.
+2. Select the three dots on the right of the filesystem you want to modify, and select **Edit**.
+
+![Filesystem menu](../../.gitbook/assets/wmng\_edit\_fs\_menu.png)
+
+3\. In the **Edit Filesystem** dialog, modify the parameters according to your requirements. (See the parameter descriptions in the [Add a filesystem](managing-filesystems.md#add-a-filesystem) topic.)
+
+![Edit a filesystem](../../.gitbook/assets/wmng\_edit\_fs.png)
+
+4\. Select **Save**.
+
+## Delete a filesystem
+
+You can delete a filesystem if its data is no longer required. Deleting a filesystem does not delete the data in the tiered object store bucket.
 
 {% hint style="info" %}
-**Note:** When creating an encrypted filesystem a KMS must be defined.
+If you need to delete also the data in the tiered object store bucket, see [delete a filesystem](managing-filesystems-1.md#delete-a-filesystem) in the CLI section.
 {% endhint %}
 
-{% hint style="warning" %}
-**Note:** To define an encrypted filesystem without a KMS, it is possible to use the`--allow-no-kms` parameter in the command. This can be useful when running POCs but should not be used in production, since the security chain is compromised when a KMS is not used.
+**Procedure**
 
-If filesystem keys exist when adding a KMS, they are automatically re-encrypted by the KMS for any future use.
-{% endhint %}
+1. From the menu, select **Manage > Filesystems**.
+2. Select the three dots on the right of the filesystem you want to delete, and select **Remove**.
+3. To confirm the filesystem deletion, enter the filesystem name and select **Confirm**.
 
-### Add a filesystem when thin-provisioning is used&#x20;
-
-To create a new filesystem, the SSD space for the filesystem must be free and unprovisioned. When using thin-provisioned filesystems, that might not be the case. SSD space can be occupied for the thin-provisioned portion of other filesystems. Even if those are tiered, and data can be released (to object-store) or deleted, the SSD space can still get filled when data keeps being written or rehydrated from the object-store.
-
-To create a new filesystem in this case, use the `weka fs reserve` CLI command. Once enough space is cleared from the SSD (either by releasing to object-store or explicit deletion of data), it is possible to create the new filesystem using the reserved space.tse
-
-### Edit a filesystem
-
-**Command:** `weka fs update`
-
-Use the following command line to edit an existing filesystem:
-
-`weka fs update <name> [--new-name=<new-name>] [--total-capacity=<total-capacity>] [--ssd-capacity=<ssd-capacity>] [--thin-provision-min-ssd <thin-provision-min-ssd>] [--thin-provision-max-ssd <thin-provision-max-ssd>] [--max-files=<max-files>] [--auth-required=<auth-required>]`
-
-**Parameters**
-
-| **Name**                 | **Type** | **Value**                                                                                                                                                                       | **Limitations**                    | **Mandatory** | **Default**    |
-| ------------------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ------------- | -------------- |
-| `name`                   | String   | Name of the filesystem being edited                                                                                                                                             | Must be a valid name               | Yes           | ​              |
-| `new-name`               | String   | New name for the filesystem                                                                                                                                                     | Must be a valid name               | Optional      | Keep unchanged |
-| `total-capacity`         | Number   | Total capacity of the edited filesystem                                                                                                                                         | Must be a valid number             | Optional      | Keep unchanged |
-| `ssd-capacity`           | Number   | SSD capacity of the edited filesystem                                                                                                                                           | Minimum of 1GiB                    | Optional      | Keep unchanged |
-| `thin-provision-min-ssd` | Number   | For [thin-provisioned](../../overview/filesystems.md#thin-provisioning) filesystems, this is the minimum SSD capacity that is ensured to be always available to this filesystem | Minimum of 1GiB                    | Optional      |                |
-| `thin-provision-max-ssd` | Number   | For [thin-proviosined](../../overview/filesystems.md#thin-provisioning) filesystem, this is the maximum SSD capacity the filesystem can consume                                 | Cannot exceed the `total-capacity` | Optional      |                |
-| `max-files`              | Number   | Metadata limit for the filesystem                                                                                                                                               | Must be a valid number             | Optional      | Keep unchanged |
-| `auth-required`          | String   | Determines if mounting the filesystem requires to be authenticated to Weka ([weka user login](../../usage/security/user-management.md#user-log-in))                             | `yes` or `no`                      | No            | no             |
-
-### Delete a filesystem
-
-**Command:** `weka fs delete`
-
-Use the following command line to delete a filesystem:
-
-`weka fs delete <name> [--purge-from-obs]`
-
-**Parameters**
-
-| **Name**         | **Type** | **Value**                                                                                     | **Limitations**      | **Mandatory** | **Default** |
-| ---------------- | -------- | --------------------------------------------------------------------------------------------- | -------------------- | ------------- | ----------- |
-| `name`           | String   | Name of the filesystem to be deleted                                                          | Must be a valid name | Yes           |             |
-| `purge-from-obs` | Boolean  | For a tiered filesystem, if set, all filesystem data is deleted from the object store bucket. |                      | No            | False       |
-
-{% hint style="danger" %}
-**Note:** Using `purge-from-obs` will remove all data from the object-store. This includes any backup data or snapshots created from this filesystem (if this filesystem has been downloaded from a snapshot of a different filesystem, it will leave the original snapshot data intact).
-
-* If any of the removed snapshots have been (or are) downloaded and used by a different filesystem, that filesystem will stop functioning correctly, data might be unavailable and errors might occur when accessing the data.
-
-It is possible to either un-tier or migrate such a filesystem to a different object store bucket before deleting the snapshots it has downloaded.
-{% endhint %}
+![Delete a filesystem](../../.gitbook/assets/wmng\_delete\_fs\_animated.gif)

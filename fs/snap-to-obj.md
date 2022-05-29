@@ -191,7 +191,7 @@ The `locator` is either a locator saved previously for disaster scenarios, or ca
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** For encrypted filesystem, when downloading the same KMS master key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](kms-management.md#overview) section.
+**Note:** For encrypted filesystem, when downloading the same KMS master key should be used to decrypt the snapshot data. For more information, refer to the [KMS Management Overview](kms-management/#overview) section.
 {% endhint %}
 
 ### Recover from a remote snapshot

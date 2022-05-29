@@ -22,4 +22,4 @@ A tiered filesystem can be un-tiered (and only use SSDs) by detaching its object
 **Note:** The SSD must have sufficient capacity, i.e., the allocated SSD capacity should be at least the total capacity used by the filesystem.
 {% endhint %}
 
-For more information, refer to [Attaching/Detaching Object Stores Overview](../attaching-detaching-object-stores-to-from-filesystems.md#overview).
+For more information, refer to [Attaching/Detaching Object Stores Overview](../attaching-detaching-object-stores-to-from-filesystems/#overview).

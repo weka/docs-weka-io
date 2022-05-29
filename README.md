@@ -28,6 +28,25 @@ This portal contains all the documentation necessary for understanding and worki
 
 ## Documentation feedback
 
-We strive to produce the highest-quality documentation products and welcome your feedback. We value and appreciate your thoughts on our content. If you have comments or suggestions about Weka documentation, please add your comments directly to the relevant paragraph on the page.
+We strive to produce the highest-quality documentation products and welcome your feedback. If you have comments or suggestions about our documentation, you can email us. With your feedback, include the following information:
 
-![How to send feedback on Weka documentation](.gitbook/assets/Weka\_doc\_feedback.gif)
+* Document version and title of the topic
+* Your suggestion for correcting or improving the documentation
+
+Send your messages to [documentation@weka.io](mailto:documentation@weka.io).
+
+The email address is only for documentation feedback. If you have a technical question, contact [Technical Support](support/getting-support-for-your-weka-system.md).
+
+## WEKA U
+
+In addition to documentation and support services, Weka also offers online learning alternatives to suit your specific needs.
+
+To learn more about available training options from Weka, visit us at [https://learnweka.weka.io/learn](https://learnweka.weka.io/learn)
+
+
+
+
+
+
+
+.
