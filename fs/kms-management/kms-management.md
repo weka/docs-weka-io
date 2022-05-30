@@ -56,7 +56,8 @@ For the **Kmip** type, enter the following:
 1. From the menu, select **Configure > Cluster Settings**.
 2. From the left pane, select **Security**.
 3. The **Security** page displays the configured KMS.
-4. To view the KMS details, select it.
+
+![View the configured KMS](../../.gitbook/assets/wmng\_view\_kms.png)
 
 ## Update the KMS configuration
 
@@ -65,8 +66,11 @@ For the **Kmip** type, enter the following:
 1. From the menu, select **Configure > Cluster Settings**.
 2. From the left pane, select **Security**.
 3. The **Security** page displays the configured KMS.
-4. To update the KMS configuration, select it and modify the connection properties to the new KMS.
-5. Select **Save**.
+4. Select **Update KMS**, and update its settings.
+
+![Update the KMS](../../.gitbook/assets/wmng\_update\_kms.png)
+
+5\. Select **Save**.
 
 ## Remove the KMS
 
@@ -77,5 +81,5 @@ Removing a KMS configuration is possible only if no encrypted filesystems exist.
 1. From the menu, select **Configure > Cluster Settings**.
 2. From the left pane, select **Security**.
 3. The **Security** page displays the configured KMS.
-4. Select **Reset.**
+4. Select **Reset KMS.**
 5. In the message that appears, select **Yes** to confirm the KMS configuration reset.

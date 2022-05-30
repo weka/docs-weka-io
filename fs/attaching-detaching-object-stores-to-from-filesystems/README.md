@@ -10,7 +10,7 @@ description: >-
 
 Two local object store buckets can be attached to a filesystem, but only one of the buckets is writable. A local object store bucket is used for both tiering and snapshots. When attaching a new object store bucket to an already tiered filesystem, the existing object-store bucket becomes read-only, and the new object store bucket is read/write. Multiple object stores allow a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
 
-When attaching an object store bucket to a non-tiered filesystem, make the filesystem tiered.
+When attaching an object store bucket to a non-tiered filesystem, the filesystem becomes tiered.
 
 ### Detachment of a local object store bucket from a filesystem
 
@@ -63,10 +63,6 @@ The order of the following steps is important.&#x20;
 ### Attach a remote object store bucket
 
 One remote object-store bucket can be attached to a filesystem.  A remote object store bucket is used for backup only, and only snapshots are uploaded to it using **Snap-To-Object**. The snapshot uploads are incremental to the previous one.&#x20;
-
-{% hint style="info" %}
-**Note:** Before you attach a remote object store bucket, contact Weka Customer Support.&#x20;
-{% endhint %}
 
 ### Detach a remote object store bucket
 

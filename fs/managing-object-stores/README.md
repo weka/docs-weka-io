@@ -4,19 +4,11 @@ description: This page provides an overview about managing object stores.
 
 # Manage object stores
 
-Object stores provide optional external storage media in addition to the SSD storage. Object stores are less expensive than SSD storage, therefore object store can be used for storing warm data (data infrequently accessed), while the SSD stores the hot data (data frequently accessed).
+Object stores provide optional external storage media in addition to the SSD storage. Object stores are less expensive than SSD storage. Therefore, you can use object stores for storing warm data (data infrequently accessed) while the SSD stores the hot data (data frequently accessed).
 
-You can set object stores in one of the following locations:
+Object store buckets can reside in different physical object stores. However, for better QoS between them, Weka requires the mapping between the bucket to the physical object store.
 
-* Cloud-based.
-* The same location as the Weka system. That is a local object store, which is used for tiering and snapshots (backup).
-* A remote location. That is a remote object store, which is used for snapshots only.
-
-The object store configuration includes:
-
-* Object store DNS name.
-* Object store bucket identifier.
-* Access credentials.
+Object store in Weka generally represents a physical entity (on-premises or in the cloud) that groups several object store buckets. An object store or object store bucket can be either `local` (used for tiering+snapshots) or `remote` (used for snapshots only). An object-store bucket must be added to an object-store with the same type.&#x20;
 
 The object store bucket must be dedicated to the Weka system and must not be accessible by other applications. A single object store bucket can serve different filesystems and multiple Weka systems. However, it is recommended to set one object store per filesystem.
 
