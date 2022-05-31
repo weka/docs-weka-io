@@ -35,7 +35,7 @@ Weka GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](../.gitbook/assets/wwmg\_GUI4\_overview\_animated.gif)
+![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview.gif)
 
 ## Access the Weka GUI
 
@@ -81,7 +81,7 @@ The system dashboard contains widgets that provide an overview of the Weka syste
 
 The system dashboard opens by default when you sign in. If you select another menu and you want to display the dashboard again, select **Monitor > System Dashboard**, or click the **WEKA** logo.
 
-![System Dashboard](<../.gitbook/assets/wmng\_dashboard (1).png>)
+![System Dashboard](../.gitbook/assets/wmng\_system\_dashboard.png)
 
 ### Cluster Protection and Availability widget
 

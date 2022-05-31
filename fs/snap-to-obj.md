@@ -98,7 +98,7 @@ Snap-To-Object and data lifecycle management both use SSDs and object stores for
 
 ### **Snapshot management**
 
-For information on snapshot viewing, creation, updating, deletion, and restoring a filesystem from a snapshot, refer to [Managing Snapshots](snapshots.md#managing-snapshots).
+For information on snapshot viewing, creation, updating, deletion, and restoring a filesystem from a snapshot, refer to [Managing Snapshots](snapshots/#managing-snapshots).
 
 ### Upload a snapshot
 

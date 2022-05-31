@@ -34,7 +34,7 @@ Editing the default object store provides you with the following additional adva
 * **Type**: Select the type of object store.
 * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
-![Edit a default object store](../../.gitbook/assets/wmng\_edit\_default\_obs.gif)
+![Edit the default-local object store ](<../../.gitbook/assets/wmng\_edit\_default\_obs (1).gif>)
 
 ## View object store buckets
 
