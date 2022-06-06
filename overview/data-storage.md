@@ -16,7 +16,7 @@ In the Weka system, data can be stored on two forms of media:
 The Weka system can be configured either as an SSD-only system or as a data management system consisting of both SSDs and object stores. By nature, SSDs provide high performance and low latency storage, while object stores compromise performance and latency but are the most cost-effective solution available for storage. Consequently, users focused on high performance only should consider using an SSD-only Weka system configuration, while users are seeking to balance performance and cost should consider a tiered data management system, with the assurance that the Weka system features will control the allocation of hot data on SSDs and warm data on object stores, thereby optimizing the overall user experience and budget.
 
 {% hint style="info" %}
-**Note:** In SSD-only configurations, the Weka system will sometimes use an external object store for backup, as explained in [Snap-To-Object Data Lifecycle Management](../fs/snap-to-obj.md#snap-to-object-in-data-lifecycle-management).
+**Note:** In SSD-only configurations, the Weka system will sometimes use an external object store for backup, as explained in [Snap-To-Object Data Lifecycle Management](../fs/snap-to-obj/#snap-to-object-in-data-lifecycle-management).
 {% endhint %}
 
 ## Guidelines for data storage in tiered Weka system configurations
@@ -108,7 +108,7 @@ _When storing genomic data which is frequently accessed during the first 3 month
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Using the [Snap-To-Object](../fs/snap-to-obj.md) feature causes data to be tiered regardless of the tiering policies.
+**Note:** Using the [Snap-To-Object](../fs/snap-to-obj/) feature causes data to be tiered regardless of the tiering policies.
 {% endhint %}
 
 ### Bypassing the time-based policies

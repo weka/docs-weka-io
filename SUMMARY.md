@@ -68,10 +68,12 @@
   * [Transition between tiered and SSD-only filesystems](fs/tiering/transition-between-tiered-and-ssd-only-filesystems.md)
   * [Manual fetch and release of data](fs/tiering/pre-fetching-from-object-store.md)
 * [Mount filesystems](fs/mounting-filesystems.md)
-* [Snapshots](fs/snapshots/README.md)
+* [Snapshots](fs/snapshots.md)
   * [Manage snapshots using the GUI](fs/snapshots/snapshots.md)
   * [Manage snapshots using the CLI](fs/snapshots/snapshots-1.md)
-* [Snap-To-Object](fs/snap-to-obj.md)
+* [Snap-To-Object](fs/snap-to-obj/README.md)
+  * [Manage Snap-To-Object using the GUI](fs/snap-to-obj/snap-to-obj.md)
+  * [Manage Snap-To-Object using the CLI](fs/snap-to-obj/snap-to-obj-1.md)
 * [Quota management](fs/quota-management.md)
 
 ## Additional Protocols

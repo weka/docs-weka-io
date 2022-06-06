@@ -74,7 +74,7 @@ Detaching a remote object-store bucket from a filesystem keeps the backup data w
 
 ****[background-tasks.md](../../usage/background-tasks.md "mention")****
 
-[snap-to-obj.md](../snap-to-obj.md "mention")
+[snap-to-obj](../snap-to-obj/ "mention")
 
 [attaching-detaching-object-stores-to-from-filesystems.md](attaching-detaching-object-stores-to-from-filesystems.md "mention")
 

@@ -43,5 +43,5 @@ To detach an object store from a filesystem, use the following command:
 | `obs-name` | String   | Name of the object store to be  detached                    | Must be a valid name | Yes           |             |
 
 {% hint style="info" %}
-**Note:** To [recover from a snapshot](../snap-to-obj.md#creating-a-filesystem-from-a-snapshot-using-the-cli) that has been uploaded when two `local` object stores have been attached, use the `--additional-obs` parameter in `weka fs download` command. The primary object-store should be the one where the locator has been uploaded to
+**Note:** To [recover from a snapshot](../snap-to-obj/#creating-a-filesystem-from-a-snapshot-using-the-cli) that has been uploaded when two `local` object stores have been attached, use the `--additional-obs` parameter in `weka fs download` command. The primary object-store should be the one where the locator has been uploaded to
 {% endhint %}

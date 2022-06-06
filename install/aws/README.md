@@ -38,13 +38,13 @@ In case of an instance failure, the Weka system will [rebuild](../../overview/ab
 
 #### Upload snapshots to S3
 
-It is advisable to use periodic (incremental) snapshots to back up the data and protect it from multiple EC2 instances failures. The recovery point objective (RPO) would be determined by the cadence in which the snapshots are taken and uploaded to S3. The RPO changes between the type of data, regulations, and company policies, but it is advisable to upload at least daily snapshots ([Snap-To-Object](../../fs/snap-to-obj.md#about-snap-to-object)) of the critical filesystems.
+It is advisable to use periodic (incremental) snapshots to back up the data and protect it from multiple EC2 instances failures. The recovery point objective (RPO) would be determined by the cadence in which the snapshots are taken and uploaded to S3. The RPO changes between the type of data, regulations, and company policies, but it is advisable to upload at least daily snapshots ([Snap-To-Object](../../fs/snap-to-obj/#about-snap-to-object)) of the critical filesystems.
 
 In case of a failure and a need to recover from a backup, it is just a matter of spinning up a cluster using the [Self-Service Portal](self-service-portal.md) or [CloudFormation](cloudformation.md) and creating filesystems from those snapshots. There is no need to wait for the data to reach the EC2 volumes. It is instantly accessible via S3. The recovery time objective (RTO) for this operation mainly depends on the time it takes to deploy the CloudFormation stack and will typically be below 30 min.
 
 #### Cross AZ failure
 
-Refer to [Protecting Data Against AWS Availability Zone Failures](../../fs/snap-to-obj.md#protecting-data-against-aws-availability-zone-failures).
+Refer to [Protecting Data Against AWS Availability Zone Failures](../../fs/snap-to-obj/#protecting-data-against-aws-availability-zone-failures).
 
 #### Region failure
 
