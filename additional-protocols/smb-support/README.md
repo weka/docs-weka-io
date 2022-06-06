@@ -107,7 +107,7 @@ Once the SMB cluster is connected to the Active Directory, it is possible to ass
 
 ### Integration with previous versions of Windows&#x20;
 
-[Creating snapshots](../../fs/snapshots.md#creating-a-snapshot) of the Weka filesystem and naming the access point in the `@GMT_%Y.%m.%d-%H.%M.%S` format will expose those to the windows previous versions mechanism. Right-click a file or a folder in the Weka SMB share in the windows client, select `Properties->Previous Versions` , and see a list of available previous versions that correspond to the filesystem snapshots.
+[Creating snapshots](../../fs/snapshots/#creating-a-snapshot) of the Weka filesystem and naming the access point in the `@GMT_%Y.%m.%d-%H.%M.%S` format will expose those to the windows previous versions mechanism. Right-click a file or a folder in the Weka SMB share in the windows client, select `Properties->Previous Versions` , and see a list of available previous versions that correspond to the filesystem snapshots.
 
 For example, creating a snapshot via the CLI:
 

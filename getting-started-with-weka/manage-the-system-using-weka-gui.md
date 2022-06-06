@@ -157,7 +157,7 @@ The hardware components include:
 
 [Broken link](broken-reference "mention")
 
-[nfs-support.md](../additional-protocols/nfs-support.md "mention")
+[nfs-support](../additional-protocols/nfs-support/ "mention")
 
 [smb-management-using-the-gui.md](../additional-protocols/smb-support/smb-management-using-the-gui.md "mention")
 

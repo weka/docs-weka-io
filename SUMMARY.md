@@ -68,7 +68,7 @@
   * [Transition between tiered and SSD-only filesystems](fs/tiering/transition-between-tiered-and-ssd-only-filesystems.md)
   * [Manual fetch and release of data](fs/tiering/pre-fetching-from-object-store.md)
 * [Mount filesystems](fs/mounting-filesystems.md)
-* [Snapshots](fs/snapshots.md)
+* [Snapshots](fs/snapshots/README.md)
   * [Manage snapshots using the GUI](fs/snapshots/snapshots.md)
   * [Manage snapshots using the CLI](fs/snapshots/snapshots-1.md)
 * [Snap-To-Object](fs/snap-to-obj/README.md)
@@ -78,7 +78,9 @@
 
 ## Additional Protocols
 
-* [Configure NFS](additional-protocols/nfs-support.md)
+* [NFS](additional-protocols/nfs-support/README.md)
+  * [Manage NFS networking using the GUI](additional-protocols/nfs-support/nfs-support.md)
+  * [Manage NFS networking using the CLI](additional-protocols/nfs-support/nfs-support-1.md)
 * [SMB](additional-protocols/smb-support/README.md)
   * [SMB management using the CLI](additional-protocols/smb-support/smb-management-using-the-cli.md)
   * [Manage SMB using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
