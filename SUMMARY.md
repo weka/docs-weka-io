@@ -100,6 +100,8 @@
   * [Manage alerts using the CLI](usage/alerts/alerts-1.md)
   * [List of alerts and corrective actions](usage/alerts/list-of-alerts.md)
 * [Events](usage/events/README.md)
+  * [Manage events using the GUI](usage/events/events.md)
+  * [Manage events using the CLI](usage/events/events-1.md)
   * [List of events](usage/events/list-of-events.md)
 * [Statistics](usage/statistics/README.md)
   * [List of statistics](usage/statistics/list-of-statistics.md)

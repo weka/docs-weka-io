@@ -6,78 +6,18 @@ description: >-
 
 # Events
 
-## Overview
+Weka events indicate relevant information concerning the Weka cluster and customer environment. Triggered by a customer operation or an environment change, events can be informational, indicate an issue in the system, or indicate a previously resolved issue.
 
-Weka events indicate relevant information concerning the Weka cluster and customer environment. Triggered by a customer operation or an environment change, events can be informational, indicate a problem in the system or indicate a (previous) problem that has been resolved.
+The Weka system sends all events to a predefined central monitoring system.
 
-## Manage events using the GUI
-
-### View events
-
-To view the events screen using the GUI, click the Events Log button on the left bar:
-
-![Events View Screen](<../../.gitbook/assets/Events log.png>)
-
-### Filter events
-
-Events can be filtered by choosing a filter. Filtering can be performed according to event severity, category, IDs and timestamps. Selection of multiple filters is also possible (for event categories and event IDs).
-
-![Event Filtering](<../../.gitbook/assets/Events filtering.png>)
-
-## Manage events using the CLI
-
-### View events
-
-**Command:** `weka events`
-
-Use the following command line to list events in the Weka cluster:
-
-`weka events [--num-results num-results] [--start-time <start-time>] [--end-time <end-time>] [--severity severity] [--direction direction] [--fetch-order fetch-order] [--type-list type-list] [--exclude-type-list exclude-type-list] [--category-list category-list] [--cloud-time] [--show-internal] [--raw-units] [--UTC]`
-
-**Parameters in command line**
-
-| **Name**            | **Type** | **Value**                                                  | **Limitations**                                                                                                                                                                   | **Mandatory** | **Default**                                 |
-| ------------------- | -------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------- |
-| `num-results`       | Integer  | Maximum number of events to display                        | <p>Positive integer. </p><p>0 shows all events.</p>                                                                                                                               | No            | 50                                          |
-| `start-time`        | String   | Include events that occurred at this start time and later  | Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 9:15Z, 10:00+2:00                                                  | No            | -365 days                                   |
-| `end-time`          | String   | Include events that occurred up to this time               | Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 9:15Z, 10:00+2:00                                                  | No            | Set to a time represents  'now'             |
-| `severity`          | String   | Include events with this level of severity and higher      |  'info', 'warning', 'minor', 'major' or 'critical'                                                                                                                                | No            | INFO                                        |
-| `direction`         | String   | Sort events by ascending or descending time                | 'asc' or 'dsc'                                                                                                                                                                    | No            | asc                                         |
-| `fetch-order`       | String   | Fetch from end-time backwards or from start-time forwards  | 'fw' or 'bw'                                                                                                                                                                      | No            | bw                                          |
-| `type-list`         | String   | Filter events by type (can be used multiple times)         | Use `weka events list-types` to see available types                                                                                                                               | No            | None                                        |
-| `exclude-type-list` | String   | Filter-out events by type (can be used multiple times)     | Use `weka events list-types` to see available types                                                                                                                               |               |                                             |
-| `category-list`     | String   | Include only events matching the defined  category         | Categories can be Alerts, Cloud, Clustering, Drive, Events, Filesystem, IO, InterfaceGroup, Licensing, NFS, Network, Node, ObjectStorage, Raid, Statistics, System, Upgrade, User | No            | All                                         |
-| `cloud-time`        | Boolean  | Query and sort results by the digested time in the cloud   |                                                                                                                                                                                   | No            | False                                       |
-| `show-internal`     | Boolean  | Also displays internal events                              |                                                                                                                                                                                   | No            | False                                       |
-| `raw-units`         | Boolean  | Print values in raw units (bytes, seconds, etc.)           |                                                                                                                                                                                   | No            | Human-readable format, e.g 1KiB 234MiB 2GiB |
-| `UTC`               | Boolean  | Print times in UTC                                         |                                                                                                                                                                                   | No            | Host's local time                           |
-
-**Command:** `weka events list-local`
-
-Use the following command line to list recent events on the specific host running the command from (can be useful for cases there is no connectivity to support cloud, no connectivity from a specific host, or for hosts which are not part of the cluster):
-
-`weka events list-local [--start-time <start-time>] [--end-time <end-time>] [--next next] [--stem-mode] [--show-internal] [--raw-units] [--UTC]`
-
-**Parameters in command line**
-
-| **Name**        | **Type** | **Value**                                                          | **Limitations**                                                                                                                  | **Mandatory** | D**efault**                                 |
-| --------------- | -------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------- |
-| `start-time`    | String   | Include events that occurred at this start time and later          | Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 9:15Z, 10:00+2:00 | No            | -365 days                                   |
-| `end-time`      | String   | Include events that occurred up to this time                       | Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 9:15Z, 10:00+2:00 | No            | Set to a time represents  'now'             |
-| `next`          | String   | Identifier to the next page of events                              | As returned in the previous call to `weka events list-local`                                                                     | No            |                                             |
-| `stem-mode`     | Boolean  | Displays events when the host has not been attached to the cluster |                                                                                                                                  | No            | False                                       |
-| `show-internal` | Boolean  | Also displays internal events                                      |                                                                                                                                  | No            | False                                       |
-| `raw-units`     | Boolean  | Print values in raw units (bytes, seconds, etc.)                   |                                                                                                                                  | No            | Human-readable format, e.g 1KiB 234MiB 2GiB |
-| `UTC`           | Boolean  | Print times in UTC                                                 |                                                                                                                                  | No            | Host's local time                           |
-
-### Trigger a custom event
-
-**Command:** `weka events trigger-event`&#x20;
-
-It can be useful to mark specific activities, maintenance work, or important changes/new usage of the system, and see that as part of the system events timeline.&#x20;
-
-To trigger a custom event, use `weka events trigger-event <text>`
+![](../../.gitbook/assets/wmng\_events\_overview.png)
 
 **Related topics**
 
+****[events.md](events.md "mention")****
+
+****[events-1.md](events-1.md "mention")****
+
 ****[list-of-events.md](list-of-events.md "mention")****
+
+**Manage Central Monitoring**
