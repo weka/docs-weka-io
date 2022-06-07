@@ -1,99 +1,138 @@
 ---
 description: >-
-  This page details SMB management - setting up an SMB cluster over Weka
-  filesystems and managing the cluster itself - using the GUI.
+  This page provides procedures for setting up an SMB cluster over Weka
+  filesystems and managing the cluster itself, using the GUI.
 ---
 
 # Manage SMB using the GUI
 
-{% hint style="info" %}
-**Note:** Use ASCII format when configuring name fields (e.g., domain, shares, etc.)
-{% endhint %}
+Using the GUI, you can:
 
-## **Configure an SMB cluster**
-
-To configure an SMB cluster, first access the SMB Service view.
-
-![SMB Service View](<../../.gitbook/assets/SMB Clean 3.6.png>)
-
-To configure the SMB cluster, click the Configure button. The following Configure Cluster window will be displayed:
-
-![Configure SMB Cluster Window](<../../.gitbook/assets/SMB Configure 3.6.png>)
-
-Enter the name and domain, choose between 3 to 8 hosts, and enter the IPs (make sure to provide IPs equal to or 3 times greater than the number of hosts selected). Then click the Configure button.
+* [Configure the SMB cluster](smb-management-using-the-gui.md#configure-an-smb-cluster)
+* [Join the SMB cluster in the Active Directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-an-active-directory)
+* [Delete the SMB cluster](smb-management-using-the-gui.md#delete-an-smb-cluster)
+* [Display the SMB shares list](smb-management-using-the-gui.md#list-smb-shares)
+* [Add an SMB share](smb-management-using-the-gui.md#add-an-smb-share)
+* [Remove an SMB share](smb-management-using-the-gui.md#remove-an-smb-share)
 
 {% hint style="info" %}
-**Note:** in order to add an IP range, it is possible to use`a.b.c.x-y` notation.
+**Note:** Use ASCII format when configuring name fields, such as domain and shares.
 {% endhint %}
+
+## **Configure the SMB cluster**
+
+Define the Weka system hosts that participate in the SMB cluster**.**
+
+**Procedure**
+
+1. From the menu, select **Manage > Protocols**.
+2. From the Protocols pane, select **SMB**.
+3. On the Configuration tab, select **Configure**.
+
+![SMB cluster configuration tab](../../.gitbook/assets/wmng\_smb\_configure\_button.png)
+
+4\. In the SMB Cluster Configuration dialog, set the following properties:
+
+* **Name**: A NetBIOS name for the SMB cluster.
+* **Domain**: The domain which the SMB cluster is to join.
+* **Domain NetBIOS Name**: (Optional) The domain NetBIOS name.
+* **Hosts**: List of 3-8 Weka system hosts to participate in the SMB cluster, based on the host IDs in Weka.
+* **IPs**: (Optional) List of public IPs (comma-separated) used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA (do not assign these IPs to any host on the network). For IP range, use the following format: **a.b.c.x-y**.
 
 {% hint style="info" %}
-**Note:** In AWS installations, it is not possible to enter a list of SMB service addresses. The SMB service must be accessed using the primary addresses of the cluster nodes.
+In AWS installations, it is not possible to set a list of SMB service addresses. The SMB service must be accessed using the primary addresses of the cluster nodes.
 {% endhint %}
 
-The following SMB Cluster Configuration window will be displayed:
+5\. Select **Save**.
 
-![SMB Cluster Configuration Window](<../../.gitbook/assets/SMB cluster not joined 3.6.png>)
+![SMB Cluster Configuration dialog](../../.gitbook/assets/wmng\_smb\_configure\_dialog.gif)
+
+Once the system completes the configuration process, the host statuses change from not ready (red X icon) to ready (green V icon), as shown in the following example:
+
+![SMB cluster configuration example](../../.gitbook/assets/wmng\_smb\_configure\_result.png)
+
+## Join the SMB cluster in the Active Directory
+
+To enable the organizational Active Directory to resolve the access of users and user groups to the SMB cluster, join the SMB cluster in the Active Directory (AD).
+
+**Before you begin**
+
+To enable the Weka storage nodes to join the AD domain, verify that the AD server is the DNS server.&#x20;
+
+**Procedure**
+
+1. In the SMB Cluster Configuration, select **Join**.
+
+![Join the SMB cluster in the Active Directory](../../.gitbook/assets/wmng\_smb\_join\_ad\_button.png)
+
+
+
+2\. In the Join to Active Directory dialog, set the following properties:
+
+* **Username** and **Password**: A username and password of an account that has access privileges to the Active Directory. Weka does not save the user password. A computer account is created on behalf of the user for the SMB cluster.
+* **Server**: (Optional) Weka identifies the AD server automatically based on the AD name. You do not need to set the server name. In some cases, if required, specify the AD server.
+* **Computers Org. Unit**: The default organization unit is the Computers directory. You can define any other directory to connect to in Active Directory, such as SMB servers or Corporate computers.
+
+![Join To Active Directory dialog](../../.gitbook/assets/wmng\_smb\_join\_ad\_dialog.png)
+
+Once the SMB cluster joins in the Active Directory, the join status next to the domain changes to **Joined**.
 
 {% hint style="info" %}
-**Note:** The status of the hosts will change from not ready to ready.
+To join a different Active Directory to the existing SMB cluster configuration, select **Leave**. To confirm the action, enter the username and password used to connect to the Active Directory.
 {% endhint %}
 
-## Join the SMB cluster in an Active Directory
+## Delete the SMB cluster
 
-To join the SMB cluster to an Active Directory, click the Join button when all hosts have been prepared and are ready. The following window will be displayed:
+Deleting the SMB cluster resets its configuration data.
 
-![Join SMB Cluster to Active Directory Window](../../.gitbook/assets/Selection\_758.png)
+**Procedure**
 
-Enter the provided username and password in order to access the Active Directory. The Server input field is optional. The default for the Computers Org.Unit field is the Computers directory, but it is possible to define any other directory in Active Directory to be connected, such as SMB servers or Corporate computers.
+1. In the SMB Cluster Configuration, select the **trash** icon.
+2. In the SMB Configuration Reset message, to confirm, select **Reset**.
 
-{% hint style="info" %}
-**Note:** Weka does not save the user password. A computer account is created on behalf of the user for the SMB cluster.
-{% endhint %}
+![Delete the SMB cluster configuration](../../.gitbook/assets/wmng\_smb\_cluster\_remove.png)
 
-{% hint style="info" %}
-**Note:** The AD server must be the DNS server for the Weka storage nodes in order for them to join the AD domain
-{% endhint %}
+## **Display the SMB shares list**
 
-On successful completion, the join status next to the domain will change to "joined" as shown below:
+The Shares tab displays the list of the SMB shares that are already created in the system.&#x20;
 
-![SMB Cluster Configuration Window](<../../.gitbook/assets/SMB cluster joined 3.6.png>)
+**Procedure**
 
-In order to join another Active Directory to the current SMB cluster configuration, click the Leave button. To confirm this action, it is necessary to enter the username and password used to connect to the Active Directory.
+1. From the menu, select **Manage > Protocols**.
+2. From the Protocols pane, select **SMB**.
+3. Select the **Shares** tab.\
+   You can filter the list using any column in the table.
 
-## Delete an SMB cluster
-
-To delete a configured SMB cluster, click the Reset button in the Configure SMB Cluster window. The following window will be displayed:
-
-![SMB Cluster Reset Confirmation](<../../.gitbook/assets/SMB cluster reset 3.6.png>)
-
-Confirm the deletion by clicking the Reset button.
-
-## **List SMB shares**
-
-To access SMB shares**,** click the SMB Shares tab in the SMB Service Overview screen. A list of all SMB shares will be displayed**:**
-
-![SMB Shares List](<../../.gitbook/assets/SMB shares biew 3.6.png>)
-
-{% hint style="info" %}
-**Note:** It is possible to filter this list using any column in the table.
-{% endhint %}
+![SMB shares list](../../.gitbook/assets/wmng\_smb\_list\_shares.png)
 
 ## Add an SMB share
 
-To add a new SMB share, click Create Share at the top right-hand corner of the table. The following Create Share window will be displayed:
+**Procedure**
 
-![](<../../.gitbook/assets/Screen Shot 2019-07-28 at 9.49.20.png>)
+1. In the Shares tab, select **+Create**.
 
-Enter the new share name and description, select a filesystem, and enter the path (valid and relative internal path within the filesystem which will be exposed). Also, determine the new default file/directory permissions created through the share. Then click the Create button. The new share will receive the `writecache` mount mode.
+![Create an SMB share](../../.gitbook/assets/wmng\_smb\_share\_create\_button.png)
+
+2\. In the Add SMB Share dialog, set the following properties:
+
+* **Name**: A meaningful name for the SMB share.&#x20;
+* **Description**: A description of the SMB share.&#x20;
+* **Filesystem**: The filesystem to use for the SMB share. Select one from the list.
+* **Path**: A valid internal path, relative to the root, within the filesystem to expose for the SMB share.
+* **Files/Directories POSIX Mode Mask**: Set the new default file and directory permissions in a numeric (octal) format created through the share.
+* **ACLs Enabled**: Determines whether to enable the Windows Access-Control Lists (ACLs) on the share. Weka translates the ACLs to POSIX.
+
+3\. Select **Save**.
+
+![Add SMB Share dialog](../../.gitbook/assets/wmng\_smb\_share\_add\_dialog.png)
 
 ## Remove an SMB share
 
-To remove an SMB share, click anywhere on the row to be removed and then click the Delete button.
+**Procedure**
 
-![Removing an SMB Share](<../../.gitbook/assets/SMB shares biew 3.6.png>)
+1. In the Shares tab, select the three dots of the share and select **Remove**.
 
-The SMB Share Deletion window will be displayed**:**
+![Remove an SMB . share](../../.gitbook/assets/wmng\_smb\_share\_remove.png)
 
-![SMB Share Deletion Window](<../../.gitbook/assets/SMB share deletion 3.6.png>)
-
-Click the Yes button to confirm the deletion of the share. The deleted share will no longer appear in the SMB Shares list.
+2\. In the confirmation message that appears, select **Confirm**.\
+&#x20;   The removed share no longer appears in the SMB Shares list.

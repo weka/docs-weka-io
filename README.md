@@ -20,7 +20,7 @@ This portal contains all the documentation necessary for understanding and worki
 
 **Additional protocols:** A review of other supported protocols, including NFS, SMB, and S3, for accessing data stored in a WekaFS filesystem.
 
-**Operation guide:** Description of various operations in the Weka system, such as events, statistics, user management, upgrading, and so on.
+**Operation guide:** Description of various operations in the Weka system, such as events, statistics, user management, upgrading, and more.
 
 **Billing & licensing:** Presentation of Weka system licensing and billing alternatives.
 
@@ -38,9 +38,3 @@ With your feedback, include the following information:
 Send your messages to [documentation@weka.io](mailto:documentation@weka.io).
 
 The email address is only for documentation feedback. If you have a technical question, contact [Technical Support](support/getting-support-for-your-weka-system.md).
-
-## WEKA U
-
-In addition to documentation and support services, Weka also offers online learning alternatives to suit your specific needs for registered users (sign-in is required).
-
-To learn more about available training options from Weka, visit us at [https://learnweka.weka.io/learn](https://learnweka.weka.io/learn)
