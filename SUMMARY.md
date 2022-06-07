@@ -68,7 +68,7 @@
   * [Transition between tiered and SSD-only filesystems](fs/tiering/transition-between-tiered-and-ssd-only-filesystems.md)
   * [Manual fetch and release of data](fs/tiering/pre-fetching-from-object-store.md)
 * [Mount filesystems](fs/mounting-filesystems.md)
-* [Snapshots](fs/snapshots.md)
+* [Snapshots](fs/snapshots/README.md)
   * [Manage snapshots using the GUI](fs/snapshots/snapshots.md)
   * [Manage snapshots using the CLI](fs/snapshots/snapshots-1.md)
 * [Snap-To-Object](fs/snap-to-obj/README.md)
@@ -96,6 +96,8 @@
 ## Operation Guide <a href="#usage" id="usage"></a>
 
 * [Alerts](usage/alerts/README.md)
+  * [Manage alerts using the GUI](usage/alerts/alerts.md)
+  * [Manage alerts using the CLI](usage/alerts/alerts-1.md)
   * [List of alerts and corrective actions](usage/alerts/list-of-alerts.md)
 * [Events](usage/events/README.md)
   * [List of events](usage/events/list-of-events.md)

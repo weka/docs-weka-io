@@ -119,4 +119,4 @@ $ weka fs snapshot create fs_name snapshot_name --access-point `TZ=GMT date +@GM
 
 **Related topics**
 
-****[snapshots.md](../../fs/snapshots.md "mention")
+****[snapshots](../../fs/snapshots/ "mention")
