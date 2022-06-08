@@ -36,7 +36,7 @@ You can select the Advanced switch to display internal events. This option is he
 
 You can filter the events according to the event severity, timestamp, category, or event name. You can also filter events by multiple categories and multiple event names.
 
-![Example: view all minor events (and higher severity evants) related to clustering](../../.gitbook/assets/wmng\_events\_filter\_example.gif)
+![Example: view all minor events (and higher severity events) related to clustering](../../.gitbook/assets/wmng\_events\_filter\_example.gif)
 
 **Procedure**
 

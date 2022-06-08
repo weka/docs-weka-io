@@ -6,9 +6,7 @@ description: >-
 
 # S3 users and authentication
 
-## Overview
-
-### S3 user role
+## S3 user role
 
 To access the Weka cluster through the S3 protocol, a user with an S3 user role must be created (see [Managing Users](../../usage/security/user-management.md#managing-users) for details on creating users in Weka). &#x20;
 
@@ -18,7 +16,7 @@ To access the Weka cluster through the S3 protocol, a user with an S3 user role 
 
 When accessing data with S3 and other protocols (e.g., POSIX), it is possible to control the POSIX UID/GID of the underlying file representation of objects created with a specific S3 user access/secret keys. Use `--posix-uid` and `--posix-gid` flags for a local user with an S3 user role.
 
-### IAM policy
+## IAM policy
 
 Once an S3 user has been created, it cannot run any S3 command or API. The Cluster Admin must attach an IAM policy to allow this user to operate (within the policy limits).
 
@@ -28,7 +26,7 @@ A set of pre-defined policies can be attached to an S3 user, or new custom polic
 **Note:** The IAM policy size is limited to 2KB. In case a larger policy is required, please contact the Weka Support Team.
 {% endhint %}
 
-### IAM temporary credentials (STS) - assume role
+## IAM temporary credentials (STS) - assume role
 
 Once an S3 user is created and an IAM policy is attached, it is possible to gain temporary credentials to access the S3 API. This is done by calling the Assume Role command.
 
@@ -38,7 +36,7 @@ The result of calling the API is an access key, secret key, and session token tu
 **Note:** some S3 clients and SDKs (e.g., [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)) support using the AssumeRole API automatically when provided with an access key and secret key pair. They will automatically generate and use new temporary credentials tuple when the previous one expires.
 {% endhint %}
 
-## Manage users and authentication
+## Manage S3 users and authentication
 
 ### View existing IAM policies
 
