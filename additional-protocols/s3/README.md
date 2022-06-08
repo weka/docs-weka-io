@@ -24,7 +24,7 @@ The Weka S3 service works on top of the WekaFS file service. Buckets are mapped 
 
 **Related topics**
 
-****[s3-cluster-management.md](s3-cluster-management.md "mention")****
+****[s3-cluster-management](s3-cluster-management/ "mention")****
 
 ## S3 access
 
@@ -43,7 +43,7 @@ As an S3 user, you can also create temporary security tokens (STS AssumeRole) wi
 
 ****[user-management.md](../../usage/security/user-management.md "mention")****
 
-****[s3-users-and-authentication.md](s3-users-and-authentication.md "mention")****
+****[s3-users-and-authentication](s3-users-and-authentication/ "mention")****
 
 ### Anonymous access
 
@@ -54,7 +54,7 @@ Anonymous access to buckets/objects can be obtained by one of the following:&#x2
 
 **Related topics**
 
-[#manage-bucket-policies](s3-buckets-management.md#manage-bucket-policies "mention")
+[#manage-bucket-policies](s3-buckets-management/#manage-bucket-policies "mention")
 
 [#pre-signed-url-example](s3-examples-using-boto3.md#pre-signed-url-example "mention")
 
@@ -82,4 +82,4 @@ To set an audit target, use the `weka s3 cluster audit-webhook enable` CLI comma
 
 **Related topics**
 
-[audit-s3-apis.md](audit-s3-apis.md "mention")
+[audit-s3-apis](audit-s3-apis/ "mention")

@@ -37,4 +37,4 @@ With your feedback, include the following information:
 
 Send your messages to [documentation@weka.io](mailto:documentation@weka.io).
 
-The email address is only for documentation feedback. If you have a technical question, contact [Technical Support](support/getting-support-for-your-weka-system.md).
+The email address is only for documentation feedback. If you have a technical question, contact the [Customer Success Team](support/getting-support-for-your-weka-system.md).

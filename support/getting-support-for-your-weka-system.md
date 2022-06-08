@@ -7,7 +7,7 @@ description: >-
 
 # Get support for your Weka system
 
-## Contact Weka technical support
+## Contact Customer Support Team
 
 Weka's technical support policy is based on the type and urgency of the inquiry, as described in the following table:
 

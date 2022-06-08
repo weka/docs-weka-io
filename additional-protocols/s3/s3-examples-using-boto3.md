@@ -8,7 +8,7 @@ description: This page provides some examples of using the S3 API.
 
 [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) is the official AWS SDK for Python, used to create, configure, and manage AWS services.
 
-We will provide examples of defining a resource/client in boto3 for the Weka S3 service, managing credentials, pre-signed URLs, generating secure temporary tokens, and using those to run S3 API calls.
+The following are examples of defining a resource/client in boto3 for the Weka S3 service, managing credentials, and pre-signed URLs, generating secure temporary tokens, and using those to run S3 API calls.
 
 ### Installation
 
@@ -16,11 +16,11 @@ We will provide examples of defining a resource/client in boto3 for the Weka S3 
 
 ## Credentials
 
-There are many ways to set credentials in boto3, as described on the [boto3 credentials](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html) page. It's worth emphasizing the [Assume Role Provider](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html#assume-role-provider) method, which uses the access/secret keys to automatically generate and use the temporary security token.
+There are many ways to set credentials in boto3, as described on the [boto3 credentials](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html) page. Specifically, look into the [Assume Role Provider](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html#assume-role-provider) method, which uses the access/secret keys to automatically generate and use the temporary security token.
 
 ## Resource
 
-Resources represent an object-oriented interface to Amazon Web Services (AWS). They provide a higher-level abstraction than the raw, low-level calls made by service clients. To use resources, you invoke the [resource()](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.resource) method of a [Session](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session) and pass in a service name:
+Resources represent an object-oriented interface to Amazon Web Services (AWS). They provide a higher-level abstraction than the raw, low-level calls made by service clients. To use resources, invoke the [resource()](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.resource) method of a [Session](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session) and pass in a service name.
 
 ```python
 s3 = boto3.resource('s3',
@@ -32,7 +32,7 @@ s3 = boto3.resource('s3',
 
 ## Client
 
-[Clients](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/clients.html) provide a low-level interface to AWS whose methods map close to 1:1 with service APIs. All service operations are supported by clients (in our case, `s3` and `sts`)
+[Clients](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/clients.html) provide a low-level interface to AWS whose methods map close to 1:1 with service APIs. All service operations are supported by clients (in our case, `s3` and `sts`).
 
 ```python
 s3_client = boto3.client('sts',
@@ -44,7 +44,7 @@ s3_client = boto3.client('sts',
 
 ## Assume role example
 
-Example code of using an access/secret key to obtain a temporary security token for the S3 service:&#x20;
+Example code of using an access/secret key to obtain a temporary security token for the S3 service:
 
 ```python
 #!/usr/bin/env/python
@@ -123,7 +123,7 @@ myobject content
 
 ## Pre-signed URL with assume role example
 
-Now, let's combine the above two examples by providing a pre-signed URL from a temporary security token:
+Combine the above two examples by providing a pre-signed URL from a temporary security token:
 
 ```python
 #!/usr/bin/env/python
@@ -158,7 +158,7 @@ print response
 
 ## Upload/Download example
 
-An example of using boto3 resource to upload and download an object:
+An example of using the boto3 resource to upload and download an object:
 
 ```python
 #!/usr/bin/env/python
@@ -193,7 +193,7 @@ print "Downloaded 'my_downloaded_object' as 'my_uploaded_object'. "
 
 ## Create bucket example
 
-An example for creating a bucket `newbucket` with a boto3 client:
+An example of creating a bucket `newbucket` with a boto3 client:
 
 ```python
 #!/usr/bin/env/python

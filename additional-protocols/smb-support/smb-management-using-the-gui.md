@@ -88,7 +88,7 @@ Deleting the SMB cluster resets its configuration data.
 **Procedure**
 
 1. In the SMB Cluster Configuration, select the **trash** icon.
-2. In the SMB Configuration Reset message, to confirm, select **Reset**.
+2. In the SMB Configuration Reset message, select **Reset**.
 
 ![Delete the SMB cluster configuration](../../.gitbook/assets/wmng\_smb\_cluster\_remove.png)
 

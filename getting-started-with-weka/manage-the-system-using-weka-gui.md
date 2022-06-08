@@ -155,7 +155,7 @@ The hardware components include:
 
 [events](../usage/events/ "mention")
 
-[Broken link](broken-reference "mention")
+[alerts](../usage/alerts/ "mention")
 
 [nfs-support](../additional-protocols/nfs-support/ "mention")
 

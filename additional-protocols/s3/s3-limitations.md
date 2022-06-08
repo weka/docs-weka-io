@@ -10,8 +10,8 @@ description: >-
 
 The following standard S3 APIs are supported:
 
-* Bucket (HEAD/GET/PUT/DEL)
-  * Including ListObjects and ListObjectsV2
+* Bucket (HEAD/GET/PUT/DEL)\
+  Including ListObjects and ListObjectsV2
 * Bucket Lifecycle (GET/PUT/DEL)
 * Bucket Policy (GET/PUT/DEL)
 * Bucket Tagging (GET/PUT/DEL)
@@ -45,11 +45,11 @@ The following standard S3 APIs are supported:
 ### Objects
 
 * Object key names must be up to 1024 characters long.
-* A `/` prefix of an object is interpreted as a directory, and such directory segments are limited to 255 characters.
-* Refer to [AWS S3 object name limitations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html). Match them to limitations in other protocols.
+* The prefix `/` of an object is interpreted as a directory, and such directory segments are limited to 255 characters.
+* See [AWS S3 object name limitations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html). Match them to limitations in other protocols.
 
 {% hint style="info" %}
-**Note:** It is advisable to avoid special characters that might be unsupported using protocols other than S3.&#x20;
+**Note:** It is recommended to avoid special characters that might be unsupported using protocols other than S3.&#x20;
 {% endhint %}
 
 ## Policy limitations
@@ -58,8 +58,8 @@ The following standard S3 APIs are supported:
 
 The S3 protocol implementation supports the following policy actions:
 
-* `s3:*`
-  * Note: this wildcard is supported for IAM policies but not for bucket policies
+* `s3:*`\
+  ``**Note**: this wildcard is supported for IAM policies but not for bucket policies
 * `s3:AbortMultipartUpload`
 * `s3:CreateBucket`
 * `s3:DeleteBucket`
@@ -82,7 +82,3 @@ The S3 protocol implementation supports the following policy actions:
 ## Lifecycle configuration
 
 Weka supports the [AWS S3 Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) elements and definitions, with the limitation of only supporting the lifecycle `Expiration` action.
-
-## Quotas
-
-Currently, data ingested by the S3 protocol is not counted against a defined directory quota.

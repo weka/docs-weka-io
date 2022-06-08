@@ -84,7 +84,7 @@ In closed environments, such as dark sites and private VPCs, it is possible to i
 This command enables the use of a private instance of Weka Home.
 
 {% hint style="info" %}
-For more information, refer to [Private Instance of Weka Home](../../support/the-wekaio-support-cloud.md#private-instance-of-weka-home) and contact the Weka Support Team.
+For more information, refer to [Private Instance of Weka Home](../../support/the-wekaio-support-cloud.md#private-instance-of-weka-home) and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 ## Stage 5: Set hosts dedicated to the cluster (optional)
@@ -171,7 +171,7 @@ This stage in the installation process is used to add a local SSD to be used by 
 | `device-paths` | Space-separated  list of strings | List of block devices that identify local SSDs, e.g., `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes           |             |
 
 {% hint style="info" %}
-**Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the Weka Support Team.
+**Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 ## Stage 8: Configure the CPU resources
