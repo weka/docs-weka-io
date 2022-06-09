@@ -28,7 +28,7 @@ This Statistics view screen offers a number of options to drill-down into the st
 * Bookmarking specific statistics for future reference and sharing with others (using the URL).
 
 {% hint style="info" %}
-**Note: **The statistics are only shown for backend/clients that are part of the cluster. Once a host is removed (or a client is not connected to the cluster for more than the `remove_after_secs` period) its statistics will not be shown. The Weka cluster does not hold historical statistics data. Use `weka-mon` for that, as suggested in the [External Monitoring](../../appendix/external-monitoring.md) section.
+**Note:** The statistics are only shown for backend/clients that are part of the cluster. Once a host is removed (or a client is not connected to the cluster for more than the `remove_after_secs` period) its statistics will not be shown. The Weka cluster does not hold historical statistics data. Use `weka-mon` for that, as suggested in the [External Monitoring](../../appendix/external-monitoring.md) section.
 {% endhint %}
 
 ##
@@ -144,10 +144,6 @@ Use the following command line to manage filters and read statistics:
 | `show-internal`   | Boolean  | Also displays internal statistics                                                                                                                                                                                                  |                                                                                                                                  | No            | False                                       |
 | `raw-units`       | Boolean  | Print values in raw units (bytes, seconds, etc.)                                                                                                                                                                                   |                                                                                                                                  | No            | Human-readable format, e.g 1KiB 234MiB 2GiB |
 | `UTC`             | Boolean  | Print times in UTC                                                                                                                                                                                                                 |                                                                                                                                  | No            | Host's local time                           |
-
-{% content-ref url="broken-reference" %}
-[Broken link](broken-reference)
-{% endcontent-ref %}
 
 ### Setting statistics Retention
 
