@@ -143,11 +143,26 @@ This widget shows an overview of the hardware components (active/total).
 The hardware components include:
 
 * **Backends**: The number of the servers.
-* **Cores**: The number of cores that are configured for running processes in the backends.
+* **Cores**: The number of cores configured for running processes in the backends.
 * **Drives**: The number of drives.
 * **OBS Buckets**: The number of the object-store buckets.
 
 ![Hardware widget](../.gitbook/assets/wmng\_dashboard\_Hardware\_widget.png)
+
+## Switch the display time
+
+Timestamps in events and statistics are logged internally in UTC. Weka GUI displays the timestamps in local or system time. You can switch between the local and system time.
+
+Switching the display time may be required when the customer, Weka support, and the Weka system are in different time zones. In this situation, the customer and Weka support can switch the display to system time instead of local time, so both view the identical timestamps.
+
+**Procedure**
+
+1. On the top bar, point to the timestamp.
+2. Depending on the displayed time, select **Switch to System Time** or **Switch to Local Time**.
+
+![](../.gitbook/assets/wmng\_sw\_display\_time.gif)
+
+****
 
 **Related topics**
 

@@ -79,4 +79,4 @@ You can filter the events according to the event severity, timestamp, category, 
 
 ****[list-of-events.md](list-of-events.md "mention")****
 
-**Switch the display time**
+****[#switch-the-display-time](../../getting-started-with-weka/manage-the-system-using-weka-gui.md#switch-the-display-time "mention")****
