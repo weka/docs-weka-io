@@ -112,6 +112,8 @@
   * [Manage events using the CLI](usage/events/events-1.md)
   * [List of events](usage/events/list-of-events.md)
 * [Statistics](usage/statistics/README.md)
+  * [Manage statistics using the GUI](usage/statistics/statistics.md)
+  * [Manage statistics using the CLI](usage/statistics/statistics-1.md)
   * [List of statistics](usage/statistics/list-of-statistics.md)
 * [System congestion](usage/system-congestion.md)
 * [Manage security](usage/security/README.md)
