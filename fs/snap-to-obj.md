@@ -141,7 +141,7 @@ Use the following command line to upload an existing snapshot:
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** For space and bandwidth efficiency, uploading snapshots to a **remote** object-store should be done in chronological order. There is no need to upload tall snapshots or the same snapshots uploaded to a local object-store. Still, once a snapshot has been uploaded to the **remote** object-store (e.g., the monthly snapshot), it will be inefficient to upload a previous snapshot (e.g., the daily snapshot before it or the previous monthly snapshot) to the **remote** object-store.
+**Note:** For space and bandwidth efficiency, uploading snapshots to a **remote** object-store should be done in chronological order. There is no need to upload all snapshots or the same snapshots uploaded to a local object-store. Still, once a snapshot has been uploaded to the **remote** object-store (e.g., the monthly snapshot), it will be inefficient to upload a previous snapshot (e.g., the daily snapshot before it or the previous monthly snapshot) to the **remote** object-store.
 {% endhint %}
 
 {% hint style="warning" %}
