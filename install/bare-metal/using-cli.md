@@ -195,7 +195,7 @@ This stage in the installation process is used to configure the number of CPU re
 {% hint style="success" %}
 **Note:** `cores-ids` are distributed in the following order: first, all the FrontEnd processes, second, all the Compute processes, and last, all the Drive processes. By ordering the `cores-ids` list, it is possible to determine the exact assignment of cores to processes (e.g., for taking into account NUMA distribution).
 
-**For example:** If we have 1 FrontEnd, 2 Compute, and 3 Drive, setting `cores-ids` to `1, 2, 4, 3, 5, 6` will put the FrontEnd on core 1, Compute on cores 2 and 4, and Drive on cores 3, 5 and 6. Assuming cores 1, 2, 3 are at NUMA 0 and cores 4, 5, 6 are at NUMA 1, we will have the following distribution of processes:
+**Example:** If we have 1 FrontEnd, 2 Compute, and 3 Drive, setting `cores-ids` to `1, 2, 4, 3, 5, 6` will put the FrontEnd on core 1, Compute on cores 2 and 4, and Drive on cores 3, 5 and 6. Assuming cores 1, 2, 3 are at NUMA 0 and cores 4, 5, 6 are at NUMA 1, we will have the following distribution of processes:
 
 * NUMA 0: FrontEnd, Compute, Drive
 * NUMA 1: Compute, Drive, Drive
@@ -203,6 +203,10 @@ This stage in the installation process is used to configure the number of CPU re
 
 {% hint style="info" %}
 **Note:** Performance can be optimized by assigning different functions to the various Weka cores. If necessary, contact the Weka Support Team for more information.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** Weka supports more than 19 cores per machine. This option enables taking advantage of all machine core resources. To set the system with more than 19 cores, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 ## Stage 9: Configure the memory (optional)
