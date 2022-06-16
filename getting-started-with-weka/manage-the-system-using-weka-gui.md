@@ -35,7 +35,7 @@ Weka GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview.gif)
+![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview\_mb.gif)
 
 ## Access the Weka GUI
 
@@ -104,9 +104,15 @@ The R/W Throughput widget includes the following indications:
 * **Throughput**: The total throughput.
 * **Total Ops**: The number of cluster operations.
 * **Latency**: The average latency of R/W operations.
-* **Clients**: The number of clients connected to the cluster.
+* **Active clients**: The number of clients connected to the cluster.
 
 ![R/W Throughput widget](../.gitbook/assets/wmng\_dashboard\_Throughput\_widget.png)
+
+{% hint style="info" %}
+Selecting the titles R/W Throughput, Latency, and Total Ops displays the statistics page.
+
+Selecting the title Active clients displays the client machines page.
+{% endhint %}
 
 ### Top Consumers widget
 
@@ -130,6 +136,10 @@ The bottom bar indicates the total SSD capacity available in the system, the pro
 
 ![Capacity widget](../.gitbook/assets/wmng\_dashboard\_Capacity\_widget.png)
 
+{% hint style="info" %}
+Selecting the title Capacity displays the filesystems page.
+{% endhint %}
+
 ### Core Usage widget
 
 This widget shows the average usage and the maximum load level of the Frontend, Compute, and Drive cores.
@@ -149,6 +159,12 @@ The hardware components include:
 
 ![Hardware widget](../.gitbook/assets/wmng\_dashboard\_Hardware\_widget.png)
 
+{% hint style="info" %}
+Selecting the titles Backends, Cores and Drives displays the backend machines page.
+
+Selecting the title OBS buckets displays the object store buckets page.
+{% endhint %}
+
 ## Switch the display time
 
 Timestamps in events and statistics are logged internally in UTC. Weka GUI displays the timestamps in local or system time. You can switch between the local and system time.
@@ -160,9 +176,7 @@ Switching the display time may be required when the customer, Weka support, and 
 1. On the top bar, point to the timestamp.
 2. Depending on the displayed time, select **Switch to System Time** or **Switch to Local Time**.
 
-![](../.gitbook/assets/wmng\_sw\_display\_time.gif)
-
-****
+![Switch display time](../.gitbook/assets/wmng\_sw\_display\_time.gif)
 
 **Related topics**
 
