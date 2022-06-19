@@ -11,7 +11,7 @@ description: >-
 General security considerations are described below.
 
 * For data security features, such as encryption via KMS, refer to the [KMS Management](../../fs/kms-management/) section.
-* For security around mounting and separation of organizations, refer to the [Organizations](organizations.md) section.
+* For security around mounting and separation of organizations, refer to the [Organizations](organizations/) section.
 * Different user roles and AD/LDAP authentication is described in the [User Management](user-management.md) section.
 
 ## Obtaining an authentication token
