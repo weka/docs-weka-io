@@ -35,7 +35,7 @@ User access to S3 APIs can be either authenticated or anonymous.
 The process of gaining authenticated S3 access requires to:
 
 1. Create an internal Weka user with an S3 user role.
-2. Create and attach an IAM policy for the S3 user. The IAM policy determines the S3 user's permissions to S3 operations and resources.
+2. Add and attach an IAM policy for the S3 user. The IAM policy determines the S3 user's permissions to S3 operations and resources.
 
 As an S3 user, you can also create temporary security tokens (STS AssumeRole) with restricted permissions.
 

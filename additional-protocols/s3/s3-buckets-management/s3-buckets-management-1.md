@@ -6,7 +6,7 @@ description: This page describes how to manage S3 buckets using the CLI.
 
 Using the CLI, you can:
 
-* [Create a bucket](s3-buckets-management-1.md#create-a-bucket)
+* [Create a bucket](s3-buckets-management-1.md#add-a-bucket)
 * [List buckets](s3-buckets-management-1.md#list-buckets)
 * [Set a bucket quota](s3-buckets-management-1.md#set-a-bucket-quota)
 * [Unset a bucket quota](s3-buckets-management-1.md#unset-a-bucket-quota)
@@ -25,12 +25,12 @@ Use the following command line to create an S3 bucket:
 
 | **Name**        | **Type** | **Value**                                                                         | **Limitations**                                                                                                                     | **Mandatory**                                      | **Default**                                                   |
 | --------------- | -------- | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------- |
-| `name`          | String   | The name for the new S3 bucket                                                    | <p></p><p>Refer to the <a href="../s3-limitations.md#buckets">Bucket Naming Limitations</a> section. </p>                           | Yes                                                |                                                               |
+| `name`          | String   | The name for the  S3 bucket to add                                                | <p></p><p>Refer to the <a href="../s3-limitations.md#buckets">Bucket Naming Limitations</a> section. </p>                           | Yes                                                |                                                               |
 | `policy`        | String   | The name of a pre-defined bucket policy for anonymous access.                     | One of: `none`, `download`, `upload`, `public`                                                                                      | No                                                 | `none`                                                        |
 | `policy-json`   | String   | A path to a custom policy JSON file for anonymous access.                         | A JSON file representing an S3 bucket policy.                                                                                       | No                                                 |                                                               |
 | `hard-quota`    | Number   | Hard quota for the S3 bucket                                                      | Can only be set on a new bucket without existing data (cannot be set when using `existing-path` to an existing directory with data) | No                                                 |                                                               |
-| `fs-name`       | String   | Filesystem name to create the new bucket within                                   | An existing filesystem name                                                                                                         | No. When specified, use only `fs-name` or `fs-id`. | The default filesystem specified when creating the S3 cluster |
-| `fs-id`         | Number   | Filesystem ID to create the new bucket within                                     | An existing filesystem ID                                                                                                           | No. When specified, use only `fs-name` or `fs-id`. | The default filesystem specified when creating the S3 cluster |
+| `fs-name`       | String   | Filesystem name to create the bucket within                                       | An existis3ng filesystem name                                                                                                       | No. When specified, use only `fs-name` or `fs-id`. | The default filesystem specified when creating the S3 cluster |
+| `fs-id`         | Number   | Filesystem ID to create the bucket within                                         | An existing filesystem ID                                                                                                           | No. When specified, use only `fs-name` or `fs-id`. | The default filesystem specified when creating the S3 cluster |
 | `existing-path` | String   | Existing directory path (relative to the filesystem root) to expose a bucket from | An existing path within the filesystem                                                                                              | No                                                 |                                                               |
 
 ## List buckets
@@ -43,7 +43,7 @@ Use this command to list existing buckets.
 
 **Command:** `weka s3 bucket quota set`
 
-Use the following command line to create an S3 bucket:
+Use the following command line to set an S3 bucket quota:
 
 `weka s3 bucket quota set <bucket-name> <hard-quota>`
 

@@ -6,7 +6,7 @@ description: This page describes how to manage S3 buckets using the GUI.
 
 Using the GUI, you can:
 
-* [Create a bucket](s3-buckets-management.md#create-a-bucket)
+* [Create a bucket](s3-buckets-management.md#add-a-bucket)
 * [Delete a bucket](s3-buckets-management.md#create-a-bucket-1)
 
 ## Create a bucket

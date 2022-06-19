@@ -9,7 +9,7 @@ description: >-
 With the CLI, you can:
 
 * [View existing IAM policies](s3-users-and-authentication.md#view-existing-iam-policies)
-* [Create an IAM policy](s3-users-and-authentication.md#create-an-iam-policy)
+* [Add an IAM policy](s3-users-and-authentication.md#create-an-iam-policy)
 * [Delete an IAM policy](s3-users-and-authentication.md#creating-a-new-iam-policies)
 * [Attach a policy to an S3 user](s3-users-and-authentication.md#creating-a-new-iam-policies-1)
 * [Detach a policy from an S3 user](s3-users-and-authentication.md#creating-a-new-iam-policies-1-1)
@@ -89,20 +89,20 @@ The pre-defined policies value are:
 {% endtab %}
 {% endtabs %}
 
-## Create an IAM policy
+## Add an IAM policy
 
-**Command:** `weka s3 policy create`
+**Command:** `weka s3 policy add`
 
-Use the following command line to create an S3 IAM policy:
+Use the following command line to add an S3 IAM policy:
 
-`weka s3 policy create <policy-name> <policy-file>`
+`weka s3 policy add <policy-name> <policy-file>`
 
 **Parameters**
 
-| **Name**      | **Type** | **Value**                                                  | **Limitations**                                                                                                                                                                         | **Mandatory** | **Default** |
-| ------------- | -------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `policy-name` | String   | The name of the new IAM policy                             |                                                                                                                                                                                         | Yes           |             |
-| `policy-file` | String   | A path to a custom policy JSON file for anonymous access.  | <p>A JSON file representing an IAM policy. </p><p>For supported actions, refer to the <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a> section.</p> | Yes           |             |
+| **Name**      | **Type** | **Value**                                                    | **Limitations**                                                                                                                                                                         | **Mandatory** | **Default** |
+| ------------- | -------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| `policy-name` | String   | The name of the IAM policy to add                            |                                                                                                                                                                                         | Yes           |             |
+| `policy-file` | String   | A path to the custom policy JSON file for anonymous access.  | <p>A JSON file representing an IAM policy. </p><p>For supported actions, refer to the <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a> section.</p> | Yes           |             |
 
 ## Delete an IAM policy <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
