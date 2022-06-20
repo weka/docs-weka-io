@@ -4,6 +4,8 @@ description: >-
   category.
 ---
 
+# List of events
+
 ## Alerts
 
 **Type** | **Severity** | **Description**
