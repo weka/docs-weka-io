@@ -38,7 +38,7 @@ During deployment of the WEKA cluster the EC2 instances will need access to the 
 
 The following diagram illustrates the components of the two deployment types in AWS:
 
-![AWS Architecture Diagram](../../.gitbook/assets/awx_vpc_layout.png)
+![AWS Architecture Diagram](../../.gitbook/assets/aws_vpc_layout.png)
 
 After deployment if you do not plan to use auto scaling for the WEKA cluster you can remove the NAT gateway if used.  However, if you plan to use autoscalling a public subnet or continued use of a NAT gatweay is required.
 
