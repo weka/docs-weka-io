@@ -14,7 +14,7 @@ To deploy a Weka cluster in AWS, you will need to [create an AWS account](https:
 
 By default, AWS accounts are not given enough vCPUs to deploy a WEKA cluster.  You can use the Limits calculator for your Region from the EC2 dashboard.  Select the Limits option from the left hand side menu.
 
-
+![EC2 Limits location](../../.gitbook/assets/ec2_limit.png)
 
 You should be familiar with the following concepts and services that will be used as part of the Weka cluster deployment:
 
