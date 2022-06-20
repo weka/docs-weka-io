@@ -18,6 +18,9 @@ By default, AWS accounts are not given enough vCPUs to deploy a WEKA cluster.  Y
 
 You can use the calculator to determine how many vCPUs you currently have for a region as well as how many you will need for a specific deployment.  The following example shows the needed vCPUs for a six node cluster with two clients of type i3en.2xlarge.  This is the smallest type of instance that can be used to deploy a WEKA cluster.
 
+![vCPUs limits calculator](../../.gitbook/assets/limit_calc.png)
+
+Use the 'Request on-demand limit increase' link to get more vCPUs.
 
 You should be familiar with the following concepts and services that will be used as part of the Weka cluster deployment:
 
