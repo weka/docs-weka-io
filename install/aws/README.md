@@ -10,7 +10,8 @@ description: >-
 
 If you already have an AWS account and are familiar with AWS's basic concept and services you can skip this section.
 
-To deploy a Weka cluster in AWS, you will need to [create an AWS account](https://aws.amazon.com/account/).  By default, AWS accounts are not given enough vCPUs to deploy a WEKA cluster.  You can use the Limits calculator for your Region from the EC2 dashboard.  Select the Limits option from the left hand side menu.
+To deploy a Weka cluster in AWS, you will need to [create an AWS account](https://aws.amazon.com/account/).
+By default, AWS accounts are not given enough vCPUs to deploy a WEKA cluster.  You can use the Limits calculator for your Region from the EC2 dashboard.  Select the Limits option from the left hand side menu.
 
 
 
