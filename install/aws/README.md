@@ -34,9 +34,11 @@ You should be familiar with the following concepts and services that will be use
 * [S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html) - Object storage (to be used for tiering data)&#x20;
 * [Cloud Formation](https://aws.amazon.com/documentation/cloudformation/)
 
-The following diagram illustrates the components of deployment in AWS:
+During deployment of the WEKA cluster the EC2 instances will need access to the internet in order to download the WEKA software.  For this reason you will need to either deploy to a public subnet within your VPC that has an internet gateway and allow public IP addresses for your instances, or create a private subnet with a route to a NAT gateway with an elastic IP in the public subnet.
 
-![AWS Architecture Diagram](../../.gitbook/assets/Weka-cluster-on-AWS-082420.jpg)
+The following diagram illustrates the components of the two deployment types in AWS:
+
+![AWS Architecture Diagram](../../.gitbook/assets/awx_vpc_layout.png)
 
 ## Best practices
 
