@@ -6,7 +6,7 @@ description: >-
 
 # List of events
 
-## Alerts  AAAAA
+## Alerts
 
 **Type** | **Severity** | **Description**
 -|-|-
