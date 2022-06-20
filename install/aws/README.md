@@ -22,6 +22,10 @@ You can use the calculator to determine how many vCPUs you currently have for a 
 
 Use the 'Request on-demand limit increase' link to get more vCPUs.
 
+{% hint style="info" %}
+**Note:** vCPU increase is not an instant action and can take anywhere from minutes to days for AWS to evaluate and approve your request
+{% endhint %}
+
 You should be familiar with the following concepts and services that will be used as part of the Weka cluster deployment:
 
 * [IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) - Identity and access management
