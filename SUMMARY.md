@@ -93,6 +93,7 @@
     * [Manage S3 buckets using the CLI](additional-protocols/s3/s3-buckets-management/s3-buckets-management-1.md)
   * [S3 users and authentication](additional-protocols/s3/s3-users-and-authentication/README.md)
     * [Manage S3 users and authentication using the CLI](additional-protocols/s3/s3-users-and-authentication/s3-users-and-authentication.md)
+    * [Manage S3 service accounts using the CLI](additional-protocols/s3/s3-users-and-authentication/s3-users-and-authentication-1.md)
   * [S3 rules information lifecycle management (ILM)](additional-protocols/s3/s3-information-lifecycle-management/README.md)
     * [Manage S3 rules using the CLI](additional-protocols/s3/s3-information-lifecycle-management/s3-information-lifecycle-management.md)
   * [Audit S3 APIs](additional-protocols/s3/audit-s3-apis/README.md)
