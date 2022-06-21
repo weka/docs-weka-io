@@ -51,7 +51,7 @@ Create a directory for filesystem-level snapshots that serves as the access poin
 
 3\. On the Create Snapshot dialog set the following properties:
 
-* **Name**: A unique name for filesystem snapshot.
+* **Name**: A unique name for the filesystem snapshot.
 * **Access Point**: A name of the newly-created directory for filesystem-level snapshots that serves as the snapshot's access point.
 * **Writable**: Determines whether to set the snapshot to be writable.
 * **Source Filesystem**: The source filesystem from which to create the snapshot.

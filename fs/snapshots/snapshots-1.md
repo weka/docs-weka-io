@@ -10,7 +10,7 @@ Using the CLI, you can:
 
 * [Create a snapshot](snapshots-1.md#create-a-snapshot)
 * [Delete a snapshot](snapshots-1.md#delete-a-snapshot)
-* [Restore a snapshot to a filesystem or another snapshot](snapshots-1.md#restore-a-filesystem-or-snapshot-from-another-snapshot-using-the-cli)
+* [Restore a snapshot to a filesystem or another snapshot](snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot)
 * [Update a snapshot](snapshots-1.md#update-a-snapshot)
 
 Consider the following when working with snapshots:
