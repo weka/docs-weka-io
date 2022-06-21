@@ -307,7 +307,7 @@ To activate the cluster hosts, use the following command line:
 
 **Command:** `weka cluster license set / payg`
 
-At this point, you've finished configuring and deploying the cluster. In order to be able to run IOs against the cluster, you would need to deploy a license. Follow the steps in [obtaining a license](../../licensing/overview.md#obtaining-a-license) section to obtain a valid license and deploy it to the Weka cluster.
+At this point, you've finished configuring and deploying the cluster. To run IOs against the cluster, you need to deploy a license. Follow the steps in [obtaining a license](../../licensing/overview.md#obtaining-a-license) section to obtain a valid license and deploy it to the Weka cluster.
 
 ## Stage 15: Running the Start IO Command
 

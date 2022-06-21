@@ -1,45 +1,90 @@
 ---
-description: This page describes how licensing works in a Weka system cluster.
+description: This page describes how licensing works in a Weka cluster.
 ---
 
 # License overview
 
-## License metrics
+A license is a legal instrument governing the usage terms of the Weka cluster.
 
-A Weka system license measures usage at the cluster level and contains the following properties:
+The license terms include the following properties:
 
-1. Cluster GUID (created at the time of installation)
-2. Expiry date
-3. Raw or usable hot-tier (SSD) capacity
-4. Object store capacity
+* Cluster GUID that is created during the installation
+* Expiry date (usage period)
+* Raw or usable hot-tier (SSD) capacity
+* Object store capacity
 
-When applied, the cluster verifies that the license is valid by comparing these properties and actual cluster usage.
+When a license is applied to a Weka cluster, the cluster verifies the license validity by comparing the license properties and the actual cluster usage.&#x20;
 
-To be able to start-io in a newly configured cluster, a valid license must be set (either a classic or a PAYG license).
+To start in a newly configured cluster, you must set a valid license. Weka supports two license types:
 
-## Cluster licensing status
+* **Classic license:** With this license type, the cost consists of a predetermined period (For example, one year) and the cluster capacity.
+* **Pay-As-You-Go (PAYG) license:** With this license type, the cost consists of the hourly usage and the cluster capacity.
 
-To view the cluster licensing status, run the `weka status` command:
+
+
+**Related topics**
+
+[classic-licensing.md](classic-licensing.md "mention")
+
+[pay-as-you-go.md](pay-as-you-go.md "mention")
+
+## Display the license status using the GUI
+
+The Weka cluster license page displays the license properties: license mode, expiry date, raw or usable drives capacity, and object store capacity.
+
+**Procedure**
+
+1. From the menu, select **Configure > Cluster Settings**.
+2. From the Cluster Settings pane, select **License**.
+
+![Weka cluster license status](../.gitbook/assets/wmng\_license.png)
+
+## Display the license status using the CLI
+
+You can display the license status using one of the following commands:
+
+* `weka cluster license`: Displays the license properties.
+* `weka status`: Displays the weka status including the license status and expiry date.
+* `weka alerts`: If no license is assigned to the cluster, the command displays a relevant alert.&#x20;
+
+**Example: License status using the `weka cluster license` command**
+
+```
+# weka cluster license
+Licensing status: Classic
+Current usage:
+    2374 GB raw drive capacity
+    1024 GB usable capacity
+    0 GB object-store capacity
+Installed license:
+    Valid from 2022-06-21T09:22:34Z
+    Expires at 2022-07-21T09:22:34Z
+    2374 GB raw drive capacity
+    0 GB usable capacity
+    1000000000000000 GB object-store capacity
+```
+
+**Example: Display the license status using the `weka status` command**
+
+```
+WekaIO v4.0.1 (CLI build 4.0.1)
+
+...
+       license: OK, valid thru 2023-07-19T09:22:34Z
+...
+```
+
+**Example: License status when the cluster does not have a valid license**
 
 ```
 # weka status
-Weka v3.1.7.2 (CLI build 2.5.3)
-...
-       license: OK, valid thru 2018-07-31T07:14:05Z
-...
-```
-
-In the example status above, it is possible to see that the cluster has a valid license which is due to expire on July 31st 2018. If the cluster does not have a valid license, the licensing status will appear as follows:
-
-```
-# weka status
-Weka v3.1.7.2 (CLI build 2.5.3)
+Weka v4.0.0.1 (CLI build 4.0.1)
 ...
        license: Unlicensed
 ...
 ```
 
-The system includes cluster alerts which also indicate if the cluster does not have an assigned license. Cluster alerts can be viewed by running the `weka alerts` command:
+**Example: License status using the `weka alerts` command for a cluster without an assigned license**
 
 ```
 # weka alerts
@@ -47,10 +92,3 @@ The system includes cluster alerts which also indicate if the cluster does not h
 No License Assigned
 This cluster does not have a license assigned, please go to https://get.weka.io to obtain your license
 ```
-
-## Obtain a license
-
-There are two ways to obtain a license for your cluster:
-
-1. **Classic Licensing:** In this method, payment is for a predetermined period of time, e.g., 1 year. See [Classic Licensing ](classic-licensing.md)for information more about this method.
-2. **Pay-As-You-Go (PAYG) Licensing:** In this method, payment is according to hourly usage.  See [Pay As You Go](pay-as-you-go.md) for more information about this method.
