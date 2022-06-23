@@ -75,17 +75,9 @@ In a typical Weka system configuration, the Weka backend hosts access the networ
 
 The high-performance network used to connect all the backend hosts must be DPDK-based. This internal Weka network also requires a separate IP address space (see [Network Planning](../install/bare-metal/planning-a-weka-system-installation.md#network-planning) and [Configuration of Networking](../install/bare-metal/using-cli.md#stage-5-configuration-of-networking)). For this, the Weka system maintains a separate ARP database for its IP addresses and virtual functions and does not use the kernel or operating system ARP services.
 
-#### Backend hosts with DPDK-supporting Intel NICs
+#### Backend hosts with DPDK-supporting Mellanox and Intel E810 NICs
 
-For backend hosts equipped with DPDK-supporting Intel NICs, the following conditions must be met:
-
-* Intel driver with DPDK support must be installed and loaded.
-* SR-IOV must be enabled in the hardware (BIOS + NIC).
-* The number of IPs allocated to the backend hosts on the internal network should be the total number of Weka software processes plus the total number of backend hosts. For example, a cluster consisting of 8 machines running 10 Weka processes each requires 88 (80 + 8) IPs on the internal network. The IP requirements for the Weka clients are outlined below in the Client Hosts section.‌
-
-#### Backend hosts with DPDK-supporting Mellanox NICs
-
-‌For backend hosts equipped with DPDK-supporting Mellanox NICs (CX-4 or newer), the following conditions must be met:
+‌For backend hosts equipped with DPDK-supporting Mellanox (CX-4 or newer) and Intel E810 NICs, the following conditions must be met:
 
 * Mellanox OFED must be installed and loaded.
 * There is no need to use SR-IOV, so the number of IPs allocated to the backend hosts on the internal network should be the total number of backend hosts, i.e., 8 IPs for 8 backend hosts (using the example above).
@@ -94,24 +86,32 @@ For backend hosts equipped with DPDK-supporting Intel NICs, the following condit
 **Note:** SR-IOV enablement in the hardware is optional. If enabled, DPDK generates its own MAC addresses for the VFs (Virtual Functions) of the NIC and the same NIC can support multiple MAC addresses, some handled by the operating system and others by the Weka system.
 {% endhint %}
 
+#### Backend hosts with DPDK-supporting the other NICs
+
+For backend hosts equipped with DPDK-supporting the other NICs, the following conditions must be met:
+
+* A driver with DPDK support must be installed and loaded.
+* SR-IOV must be enabled in the hardware (BIOS + NIC).
+* The number of IPs allocated to the backend hosts on the internal network should be the total number of Weka software processes plus the total number of backend hosts. For example, a cluster consisting of 8 machines running 10 Weka processes each requires 88 (80 + 8) IPs on the internal network. The IP requirements for the Weka clients are outlined below in the Client Hosts section.
+
 ### Client hosts
 
 Unlike Weka backend nodes that must be DPDK/SR-IOV based, the Weka client hosts (application servers) can use either DPDK-based or UDP modes. The DPDK mode is the natural choice for the newer, high-performing platforms that support it.
 
-#### Client hosts with DPDK-supporting Intel NICs
+#### Client hosts with DPDK-supporting Mellanox and Intel E810 NICs
 
-For client hosts equipped with DPDK-supporting Intel NICs, the following conditions must be met to use the DPDK mode:
-
-* Intel driver with DPDK support must be installed and loaded.
-* SR-IOV must be enabled in the hardware (BIOS + NIC).
-* The number of IPs allocated to the Intel client hosts on the internal network should be the total number of Weka system FrontEnd (FE) processes (typically no more than 2 per host) plus the total number of client hosts. For example, 10 client hosts with 1 FE process per client require 20 IPs (10 FE IPs + 10 IPs). ‌
-
-#### Client hosts with DPDK-supporting Mellanox NICs
-
-‌For client hosts equipped with DPDK-supporting Mellanox NICs (CX-4 or newer), the following conditions must be met:
+‌For client hosts equipped with DPDK-supporting Mellanox (CX-4 or newer) and Intel E810 NICs, the following conditions must be met:
 
 * Mellanox OFED must be installed and loaded.
 * There is no need to use SR-IOV, so the number of IPs allocated to the client hosts on the internal network should be the total number of client hosts, i.e., 10 IPs for 10 client hosts (using the example above).
+
+#### Client hosts with DPDK-supporting the other NICs
+
+For client hosts equipped with DPDK-supporting the other NICs, the following conditions must be met to use the DPDK mode:
+
+* A driver with DPDK support must be installed and loaded.
+* SR-IOV must be enabled in the hardware (BIOS + NIC).
+* The number of IPs allocated to the Intel client hosts on the internal network should be the total number of Weka system FrontEnd (FE) processes (typically no more than 2 per host) plus the total number of client hosts. For example, 10 client hosts with 1 FE process per client require 20 IPs (10 FE IPs + 10 IPs). ‌
 
 #### Client hosts in UDP mode
 

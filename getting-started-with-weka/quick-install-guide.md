@@ -1,4 +1,4 @@
-# Quick Install Guide
+# Quick installation guide
 
 For a complete installation guide, as well as the self-service portal on AWS refer to the following pages:
 
@@ -16,11 +16,11 @@ For a complete installation guide, as well as the self-service portal on AWS ref
 2. [NIC devices are configured properly](../install/bare-metal/setting-up-the-hosts/#network-configuration)
 3. [NTP is set up](../install/bare-metal/setting-up-the-hosts/#clock-synchronization)
 
-For a complete prerequisite list, refer to [Prerequisites for Installation](../install/prerequisites-for-installation-of-weka-dedicated-hosts.md) section.&#x20;
+For a complete prerequisite list, refer to the [Prerequisites for Installation](../install/prerequisites-for-installation-of-weka-dedicated-hosts.md) section.&#x20;
 
 We'll consider an example of architecture with 8 identical hosts (named `weka01` to `weka08`). Each host has more than 20 cores, 6 NVME drives, and a single Mellanox NIC.&#x20;
 
-Using Mellanox NICs simplifies the installation commands (e.g., only single IP for data is required, no need to expose VFs, identification of the interface netmask, and default routing gateway).&#x20;
+Using Mellanox or Intel E810 NICs simplifies the installation commands. For example, only a single IP for data is required, no need to expose VFs, identification of the interface netmask, and default routing gateway.&#x20;
 
 If the architecture is different, the installation commands should be slightly changed accordingly.
 
@@ -32,7 +32,7 @@ Install Weka software on each host:
 
 ```bash
 # deploy the software on all hosts
-pdsh -w weka0[1-8] "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/3.8.0/3.8.0 | sudo sh"
+pdsh -w weka0[1-8] "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.0.0/4.0.0 | sudo sh"
 
 ```
 
@@ -123,7 +123,7 @@ weka status
 You would see a similar output to the following example:
 
 ```bash
-WekaIO v3.10.0 (CLI build 3.10.0)
+WekaIO v4.0.0 (CLI build 4.0.0)
 
        cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
         status: OK (8 backends UP, 48 drives UP)
@@ -143,11 +143,13 @@ WekaIO v3.10.0 (CLI build 3.10.0)
 
 ```
 
-Lastly, change the default admin password, and make sure there are no other alerts in the system.
+Lastly, change the default admin password and ensure no other alerts exist in the system.
 
 Once the Weka system is installed, learn how to view, manage and operate it using either the CLI or the GUI, and perform the first IO to a WekaFS filesystem.
 
-The Weka system supports a RESTful API. This is useful when automating the interaction with the Weka system and when integrating it into your workflows or monitoring systems.
+The Weka system supports a RESTful API for automating the interaction with the Weka system,  integrating it into your workflows, and monitoring systems.
+
+
 
 **Related topics**
 

@@ -48,4 +48,4 @@ When a token is compromised or no longer required, such as when a user leaves th
 
 **Related topics**
 
-[user-management](../user-management/ "mention")
+[user-management.md](../user-management.md "mention")

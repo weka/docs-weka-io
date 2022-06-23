@@ -149,7 +149,7 @@ admin    | Internal | Admin
 
 When a login is attempted, the user is first searched in the list of internal users, i.e., users created using the`weka user add` command.
 
-However, if a user does not exist in the Weka system but does exist in an LDAP directory, it is possible to [configure the LDAP user directory](./#configuring-an-ldap-user-directory) to the Weka system. This will enable a search for the user in the directory, followed by password verification.
+However, if a user does not exist in the Weka system but does exist in an LDAP directory, it is possible to [configure the LDAP user directory](../user-management.md#configuring-an-ldap-user-directory) to the Weka system. This will enable a search for the user in the directory, followed by password verification.
 
 On each successful login, a `UserLoggedIn` event is issued, containing the username, role and whether the user is an internal or LDAP user.
 

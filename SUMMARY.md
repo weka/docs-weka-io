@@ -118,7 +118,7 @@
   * [List of statistics](usage/statistics/list-of-statistics.md)
 * [System congestion](usage/system-congestion.md)
 * [Manage security](usage/security/README.md)
-  * [User management](usage/security/user-management/README.md)
+  * [User management](usage/security/user-management.md)
     * [Manage users using the GUI](usage/security/user-management/user-management.md)
     * [Manage users using the CLI](usage/security/user-management/user-management-1.md)
   * [Organizations](usage/security/organizations/README.md)

@@ -79,7 +79,7 @@ In the Weka system, object stores represent an optional external storage media, 
 
 Object stores are optimally used when a cost-effective data storage tier is required at a price point that cannot be satisfied by server-based SSDs. An object store definition contains the object store DNS name, bucket identifier, and access credentials. The bucket must be dedicated to the Weka system and must not be accessible by other applications. However, a single object store bucket may serve different filesystems and multiple Weka systems.
 
-Filesystem connectivity to object stores can be used in both the [data lifecycle management](data-storage.md) and [Snap to Object](../fs/snap-to-obj/) features. It is possible to define three object-store buckets for a filesystem, two of them for tiering (out of which only one bucket can be writable) and one for backup only. In such cases, the Weka system will search for relevant data in both the SSD and the readable and writable object stores. This allows a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
+Filesystem connectivity to object stores can be used in both the data lifecycle management and Snap to Object features. It is possible to define three object-store buckets for a filesystem, two of them for tiering (out of which only one bucket can be writable) and one for backup only. In such cases, the Weka system will search for relevant data in both the SSD and the readable and writable object stores. This allows a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
 
 The Weka system supports up to three different object store buckets per filesystem. While object stores can be shared between filesystems, when possible, it is recommended to create and attach a separate object store bucket per filesystem.
 
@@ -87,6 +87,15 @@ The Weka system supports up to three different object store buckets per filesyst
 
 In the Weka system, filesystems are grouped into up to 8 filesystem groups.
 
-Each filesystem group has tiering control parameters (see [Guidelines for Data Storage in Tiered Weka System Configurations](data-storage.md#guidelines-for-data-storage-in-tiered-weka-system-configurations)). While tiered filesystems have their own object store, the tiering policy will be the same for each tiered filesystem under the same filesystem group.
+Each filesystem group has tiering control parameters. While tiered filesystems have their own object store, the tiering policy will be the same for each tiered filesystem under the same filesystem group.
 
-For information on managing these entities, refer to [Managing Filesystems, Object Stores and Filesystem Groups](broken-reference).
+
+
+**Related topics**
+
+****[data-storage.md](data-storage.md "mention")****
+
+[managing-filesystem-groups](../fs/managing-filesystem-groups/ "mention")
+
+[snap-to-obj](../fs/snap-to-obj/ "mention")
+

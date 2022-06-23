@@ -12,7 +12,7 @@ General security considerations are described below.
 
 * For data security features, such as encryption by KMS, see [KMS Management](../../fs/kms-management/).
 * For security topics related to mounting and separation of organizations, see [Organizations](organizations/).
-* For the different user roles and AD/LDAP authentication, see [User Management](user-management/).
+* For the different user roles and AD/LDAP authentication, see [User Management](user-management.md).
 
 ## Obtain authentication tokens
 
@@ -84,7 +84,7 @@ If a different CA is required for Weka servers to establish trust, install this 
 * a lowercase letter
 * a number or a special character
 
-The [First User ](user-management/#first-user-cluster-admin)created by default is admin (with `admin` password), and the password is prompt to change on the first login.
+The [First User ](user-management.md#first-user-cluster-admin)created by default is admin (with `admin` password), and the password is prompt to change on the first login.
 
 ### Account lockout
 
