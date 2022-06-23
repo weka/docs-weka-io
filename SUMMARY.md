@@ -99,7 +99,7 @@
   * [Audit S3 APIs](additional-protocols/s3/audit-s3-apis/README.md)
     * [Manage S3 audit in Weka using the CLI](additional-protocols/s3/audit-s3-apis/audit-s3-apis.md)
     * [Example: How to use Splunk to audit S3](additional-protocols/s3/audit-s3-apis/audit-s3-apis-1.md)
-  * [S3 limitations](additional-protocols/s3/s3-limitations.md)
+  * [S3 supported APIs and limitations](additional-protocols/s3/s3-limitations.md)
   * [S3 examples using boto3](additional-protocols/s3/s3-examples-using-boto3.md)
 
 ## Operation Guide <a href="#usage" id="usage"></a>
@@ -118,7 +118,9 @@
   * [List of statistics](usage/statistics/list-of-statistics.md)
 * [System congestion](usage/system-congestion.md)
 * [Manage security](usage/security/README.md)
-  * [User management](usage/security/user-management.md)
+  * [User management](usage/security/user-management/README.md)
+    * [Manage users using the GUI](usage/security/user-management/user-management.md)
+    * [Manage users using the CLI](usage/security/user-management/user-management-1.md)
   * [Organizations](usage/security/organizations/README.md)
     * [Manage organizations using the GUI](usage/security/organizations/organizations.md)
     * [Manage organizations using the CLI](usage/security/organizations/organizations-1.md)

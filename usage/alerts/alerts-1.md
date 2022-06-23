@@ -29,7 +29,7 @@ Use the following command line to list all alerts (muted and unmuted) in the Wek
 
 `weka alerts [--muted]`
 
-**Parameters in command line**
+**Parameters**
 
 | **Name** | **Type** | **Value**                                    | **Limitations** | **Mandatory** | **Default** |
 | -------- | -------- | -------------------------------------------- | --------------- | ------------- | ----------- |
@@ -45,7 +45,7 @@ Use the following command line to mute an alert-type:
 
 The system does not prompt muted alerts when listing the active alerts. You must specify the duration in which the alret-type is muted. After the expiry of the specified duration, the system unmutes the alert-type automatically.
 
-**Parameters in command line**
+**Parameters**
 
 | **Name**     | **Type** | **Value**                                                    | **Limitations**                  | **Mandatory** | **Default** |
 | ------------ | -------- | ------------------------------------------------------------ | -------------------------------- | ------------- | ----------- |
@@ -60,7 +60,7 @@ Use the following command line to unmute a muted alert-type:
 
 `weka alerts unmute <alert-type>`
 
-**Parameters in command line**
+**Parameters**
 
 | **Name**     | **Type** | **Value**                                                      | **Limitations** | **Mandatory** | **Default** |
 | ------------ | -------- | -------------------------------------------------------------- | --------------- | ------------- | ----------- |

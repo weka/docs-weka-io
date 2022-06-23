@@ -22,7 +22,7 @@ Use `--posix-uid` and `--posix-gid` flags for a local user with an S3 user role.
 
 **Related topics**
 
-[#create-users](../../../usage/security/user-management.md#create-users "mention")
+[#create-users](../../../usage/security/user-management/#create-users "mention")
 
 ## IAM policy
 

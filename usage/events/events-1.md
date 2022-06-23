@@ -18,7 +18,7 @@ Use the following command line to list events in the Weka cluster:
 
 `weka events [--num-results num-results] [--start-time <start-time>] [--end-time <end-time>] [--severity severity] [--direction direction] [--fetch-order fetch-order] [--type-list type-list] [--exclude-type-list exclude-type-list] [--category-list category-list] [--cloud-time] [--show-internal] [--raw-units] [--UTC]`
 
-**Parameters in command line**
+**Parameters**
 
 | **Name**            | **Type** | **Value**                                                  | **Limitations**                                                                                                                                                                   | **Mandatory** | **Default**                                 |
 | ------------------- | -------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------- |
@@ -50,7 +50,7 @@ This command is helpful for the following cases:
 
 `weka events list-local [--start-time <start-time>] [--end-time <end-time>] [--next next] [--stem-mode] [--show-internal] [--raw-units] [--UTC]`
 
-**Parameters in command line**
+**Parameters**
 
 | **Name**        | **Type** | **Value**                                                          | **Limitations**                                                                                                                  | **Mandatory** | D**efault**                                 |
 | --------------- | -------- | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------- |

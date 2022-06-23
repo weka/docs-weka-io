@@ -18,7 +18,7 @@ Using the GUI, you can:
 Use the following command line to obtain statistics definition information:\
 `weka stats list-types [<name-or-category>] [--show-internal]`
 
-**Parameters in command lines**
+**Parameters**
 
 | **Name**           | **Type** | **Value**                         | **Limitations**        | **Mandatory** | **Default** |
 | ------------------ | -------- | --------------------------------- | ---------------------- | ------------- | ----------- |
@@ -32,7 +32,7 @@ Use the following command line to obtain statistics definition information:\
 Use the following command line to obtain the current performance-related statistics of the hosts in a one-second interval:\
 `weka stats realtime [<node-ids>] [--raw-units] [--UTC]`
 
-**Parameters in command lines**
+**Parameters**
 
 | **Name**    | **Type**                | **Value**                                        | **Limitations** | **Mandatory** | **Default**                                 |
 | ----------- | ----------------------- | ------------------------------------------------ | --------------- | ------------- | ------------------------------------------- |
@@ -54,7 +54,7 @@ Use the following command line to manage filters and read statistics:
 
 `weka stats [--start-time <start-time>] [--end-time <end-time>] [--interval interval] [--resolution-secs resolution-secs] [--category category][--stat stat] [--node-ids node-ids] [--param param] [--accumulated] [--per-node] [--no-zeros] [--show-internal] [--raw-units] [--UTC]`
 
-**Parameters in command lines**
+**Parameters**
 
 | **Name**          | **Type** | **Value**                                                                                                                                                                                                                          | **Limitations**                                                                                                                  | **Mandatory** | **Default**                                 |
 | ----------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------------------------------------- |
@@ -80,7 +80,7 @@ Use the following command line to manage filters and read statistics:
 Use the following command line to set the statistics retention period.\
 `weka stats retention set <--days days> [--dry-run]`
 
-**Parameters in command lines**
+**Parameters**
 
 | **Name**  | **Type** | **Value**                                                | **Limitations**                               | **Mandatory** | **Default** |
 | --------- | -------- | -------------------------------------------------------- | --------------------------------------------- | ------------- | ----------- |

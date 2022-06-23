@@ -4,50 +4,18 @@ description: >-
   system.
 ---
 
-# User management
+# Manage users using the CLI
 
-## User types
+Using the CLI, you can:
 
-Access to a Weka system cluster is controlled by creating, modifying, and deleting users. Up to 512 local users can be defined to work with a Weka system cluster. Each user is identified by a username and must provide a password for authentication to work with the Weka system GUI or CLI.
+* [Create a local user](user-management-1.md#create-a-local-user)
+* [Change a local user password](user-management-1.md#change-a-local-user-password)
+* [Revoke user access](user-management-1.md#revoke-user-access)
+* [Update a local user](user-management-1.md#update-a-local-user)
+* [Delete a local user](user-management-1.md#delete-a-local-user)
+* [Authenticate users from an LDAP user directory](user-management-1.md#authenticate-users-from-an-ldap-user-directory)
 
-Every Weka system user has one of the following defined roles:
-
-* **Cluster Admin**: A user with additional privileges, as described in [Cluster Admin Role Privileges](user-management.md#admin-role-privileges) below.
-* **Organization Admin**: A user with additional privileges within an organization (when working with different organizations, as described in [Organization Admin Role Privileges](organizations/#organization-admin-role-privileges)).
-* **Read-only:** A user with read-only privileges.
-* **S3:** A user to run S3 commands and APIs. This user can operate within the limits of the S3 IAM policy attached to it.
-* **Regular**: A user that should only be able to mount filesystems
-  * can log-in to obtain an access token
-  * can change their password
-  * cannot access the UI or run other CLI/API commands
-
-## Cluster admin-the first user
-
-By default, when a Weka cluster is created, a first user with an `admin` username and password is created. This user has a Cluster Admin role, which allows the running of all commands.
-
-Cluster Admin users are responsible for managing the cluster as a whole. When using multiple organizations, there is a difference between managing a single organization and managing the cluster because managing the cluster also covers the management of the cluster hardware and resources. These are the additional permissions given to a Cluster Admin in comparison to an Organization Admin.
-
-A Cluster Admin user is created because a Weka system cluster must have at least one defined Admin user. However, it is possible to create a user with a different name and delete the default admin user, if required.
-
-## Cluster admin role privileges
-
-Cluster Admin users have additional privileges over regular users. These include the ability to:
-
-* Create new users
-* Delete existing users
-* Change user passwords
-* Set user roles
-* Manage LDAP configurations
-* Manage organizations
-
-Additionally, the following restrictions are implemented for Cluster Admin users, to avoid situations where a Cluster Admin loses access to a Weka system cluster:
-
-* Cluster Admins cannot delete themselves.
-* Cluster Admins cannot change their role to a regular user role.
-
-## Manage users
-
-### Create users
+## Create a local user
 
 **Command:** `weka user add`
 
@@ -92,7 +60,7 @@ Username    | Source   | Role
 my_new_user | Internal | Regular
 ```
 
-### Change users passwords
+## Change a local user password
 
 **Command:** `weka user passwd`
 
@@ -111,7 +79,27 @@ Use the following command line to change a local user password:
 **Note:** If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
 {% endhint %}
 
-### Update users
+## Revoke user access
+
+**Command:** `weka user revoke-tokens`
+
+Use the following command to revoke internal user access to the system and mounting filesystems:
+
+`weka user revoke-tokens <username>`
+
+You can revoke the access for LDAP users by changing the `user-revocation-attribute` defined in the LDAP server configuration.
+
+**Parameters**
+
+| **Name**   | **Type**       | **Value**                                                                      | **Limitations** | **Mandatory** | **Default** |
+| ---------- | -------------- | ------------------------------------------------------------------------------ | --------------- | ------------- | ----------- |
+| `username` | String/Integer | A valid user in the organization of the Organization Admin running the command |                 | Yes           |             |
+
+{% hint style="warning" %}
+**Note:** NFS and SMB are different protocols from WekaFS, which require additional security considerations when used. For example, The system grants NFS permissions per host. Therefore, manage the permissions for accessing these hosts for NFS export carefully.
+{% endhint %}
+
+## Update a local user
 
 **Command:** `weka user update`
 
@@ -128,7 +116,7 @@ Use the following command line to update a local user:
 | `posix-uid` | Number   | POSIX UID of underlying files representing objects created by this S3 user access/keys credentials | For S3 user roles only                                    | No            |             |
 | `posix-gid` | Number   | POSIX GID of underlying files representing objects created by this S3 user access/keys credentials | For S3 user roles only                                    | No            |             |
 
-### Delete users
+## Delete a local user
 
 **Command:** `weka user delete`
 
@@ -161,7 +149,7 @@ admin    | Internal | Admin
 
 When a login is attempted, the user is first searched in the list of internal users, i.e., users created using the`weka user add` command.
 
-However, if a user does not exist in the Weka system but does exist in an LDAP directory, it is possible to [configure the LDAP user directory](user-management.md#configuring-an-ldap-user-directory) to the Weka system. This will enable a search for the user in the directory, followed by password verification.
+However, if a user does not exist in the Weka system but does exist in an LDAP directory, it is possible to [configure the LDAP user directory](./#configuring-an-ldap-user-directory) to the Weka system. This will enable a search for the user in the directory, followed by password verification.
 
 On each successful login, a `UserLoggedIn` event is issued, containing the username, role and whether the user is an internal or LDAP user.
 
@@ -185,7 +173,7 @@ To use a non-default path for the token file, use the `WEKA_TOKEN` environment v
 
 To authenticate users from an LDAP user directory, the LDAP directory must first be configured to the Weka system. This is performed as follows.
 
-### Configuring an LDAP user directory
+### Configure an LDAP user directory
 
 **Command:**\
 `weka user ldap setup`  \
@@ -201,7 +189,7 @@ To configure an Active Directory server, use the following command line:
 
 `weka user ldap setup-ad <server-uri> <domain> <reader-username> <reader-password> <cluster-admin-group> <org-admin-group> <regular-group> <readonly-group> [--start-tls start-tls] [--ignore-start-tls-failure ignore-start-tls-failure] [--server-timeout-secs server-timeout-secs] [--user-revocation-attribute user-revocation-attribute]`
 
-**Parameters in command line**
+**Parameters**
 
 | **Name**                                | **Type** | **Value**                                                                                                   | **Limitations**                                                                                                                                  | **Mandatory** | **Default** |
 | --------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ----------- |
@@ -239,5 +227,5 @@ This command is used for viewing the current LDAP configuration used for authent
 These commands are used for disabling or enabling user authentication through a configured LDAP user directory.
 
 {% hint style="info" %}
-**Note:** It is not possible to delete an LDAP configuration; only disable it.
+**Note:** You can only disable an LDAP configuration, but not delete it.
 {% endhint %}
