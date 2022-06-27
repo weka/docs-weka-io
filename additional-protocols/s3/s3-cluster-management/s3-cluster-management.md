@@ -22,7 +22,7 @@ An S3 cluster configuration includes a filesystem, port, and list of hosts.
 2. From the Protocols pane, select **S3**.
 3. On the Configuration tab, select **Configure**.
 4. In the S3 Cluster Configuration dialog, set the following properties:
-   * **Filesystem**: The filesystem to use for the S3 service.
+   * **Filesystem**: The filesystem to use for the S3 service. By default, when adding a bucket, it will be created in this filesystem.
    * **Port**: Default 9000. If required, modify the port through which the cluster exposes the S3 service.
    * **Hosts**: To use all available hosts for the S3 configuration, switch on **All Hosts**. If new hosts are deployed later, they do not participate in the S3 cluster automatically.\
      To use specific hosts, switch off **All Hosts**, and select the available hosts from the list to participate in the S3 cluster, based on the host IDs in Weka.&#x20;

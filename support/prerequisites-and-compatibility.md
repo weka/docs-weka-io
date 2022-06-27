@@ -27,22 +27,24 @@ description: >-
 #### Backends and Clients:
 
 * **RHEL:**&#x20;
-  * 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9
-  * 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
+  * 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0&#x20;
 * **CentOS:**&#x20;
-  * 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9
-  * 8.0, 8.1, 8.2, 8.3, 8.4, 8.5
+  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2&#x20;
+  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+* **Rocky Linux**
+  * 8.6
 * **Ubuntu:**&#x20;
-  * 18.04.0, 18.04.1, 18.04.2, 18.04.3, 18.04.4, 18.04.5
-  * 20.04.0, 20.04.1
-* **Amazon Linux:** 17.09, 18.03
+  * 18.04.5, 18.04.4, 18.04.3, 18.04.2, 18.04.1, 18.04.0
+  * 20.04.1, 20.04.0
+* **Amazon Linux:** 18.03, 17.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
 
 #### Clients only:
 
 * **SuSe:**&#x20;
-  * 12 SP5
   * 15 SP2
+  * 12 SP5
 
 ### Configuration
 
@@ -50,7 +52,7 @@ description: >-
 
 * All Weka nodes must be synchronized in date/time (NTP recommended)
 * A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
-* If using `mlocate` or alike, its advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
+* If using `mlocate` or alike, it's advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
 
 #### SELinux&#x20;
 
@@ -64,9 +66,9 @@ description: >-
 
 ### Kernel
 
-* 3.10
+* 5.3-5.13
 * 4.4.0-1106 to 4.19
-* 5.3-5.4
+* 3.10
 
 {% hint style="info" %}
 **Note:** It is advisable to turn off auto kernel updates so it will not get upgraded to a yet unsupported version.
@@ -75,15 +77,15 @@ description: >-
 ## Weka installation directory
 
 * Directory: `/opt/weka`
-* Should be on an SSD or SSD-like performance, e.g., M.2.&#x20;
-  * Cannot be shared remotely, NFS mounted or on RAM drive
+* Must be on an SSD or SSD-like performance, for example, M.2.&#x20;
+  * Cannot be shared remotely, NFS mounted, or on a RAM drive
 * If there are two boot drives available, it is recommended to dedicate one for the OS and one for the Weka  `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues)
-* At least 26 GB available for the Weka system installation, with an additional 10GB for each core used by Weka
+* At least 26 GB available for the Weka system installation, with an additional 10 GB for each core used by Weka
 
 ## Networking
 
 {% hint style="info" %}
-**Note:** At least 4k MTU is advised on Weka cluster hosts NIC's, and the switches the hosts are connected to.
+**Note:** At least 4k MTU is advised on Weka cluster hosts NICs, and the switches the hosts are connected to.
 
 For both Ethernet and Infiniband configurations, a Weka system can be configured without jumbo frames. However, it will provide very limited performance and will not be able to handle high loads of data; please consult the Weka Sales or Support teams before running in this mode.
 
@@ -96,21 +98,22 @@ Jumbo Frames are not required for clients. However, performance might be limited
 
 * Amazon ENA
 * Broadcom 57810s 10GbE
-* Intel 10 Gbit
-* Intel 40 Gbit (Beta)
 * Intel E810
-* Mellanox ConnectX4
-* Mellanox ConnectX5
-* Mellanox ConnectX6
+* Intel 40 Gbit (Beta)
+* Intel 10 Gbit
 * Mellanox **** ConnectX6-Dx
+* Mellanox ConnectX6
+* Mellanox ConnectX5
+* Mellanox ConnectX4
 
 #### NIC drivers
 
 Supported Mellanox OFED versions:
 
-* 5.1-2.5.8.0
-* 5.1-2.6.2.0
+* 5.6-2.0.9.0
 * 5.6-1.0.3.3
+* 5.1-2.6.2.0
+* 5.1-2.5.8.0
 
 Supported ENA drivers:
 
@@ -129,7 +132,7 @@ Supported Intel 40 drivers:
 
 #### Ethernet configuration
 
-* Ethernet speeds: 10 GbE / 25 GbE / 40 GbE / 50GbE / 100 GbE / 200 GbE
+* Ethernet speeds: 200 GbE / 100 GbE /  50GbE / 40 GbE / 25 GbE / 10 GbE&#x20;
 * NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
 * VLAN: Not supported
 * Connectivity between hosts: Ports 14000-14100
@@ -150,17 +153,18 @@ Supported Intel 40 drivers:
 
 #### NIC
 
-* Mellanox ConnectX4
-* Mellanox ConnectX5
 * Mellanox ConnectX6
+* Mellanox ConnectX5
+* Mellanox ConnectX4
 
 #### NIC Drivers
 
 Supported Mellanox OFED versions:
 
-* 5.1-2.5.8.0
-* 5.1-2.6.2.0
+* 5.6-2.0.9.0
 * 5.6-1.0.3.3
+* 5.1-2.6.2.0
+* 5.1-2.5.8.0
 
 #### Infiniband Configuration
 
@@ -204,6 +208,12 @@ Supported Mellanox OFED versions:
 Certified object stores:
 
 * AWS S3
+  * S3 Standard
+  * S3 Intelligent-Tiering
+  * S3 Standard-IA
+  * S3 One Zone-IA
+  * S3 Glacier Instant Retrieval
+* Google Cloud Storage (GCS)
 * Cloudian HyperStore (version 7.3 and up)
 * Dell EMC ECS v3.5 and up
 * HCP Classic V9.2 and up (with versioned buckets only)
@@ -220,17 +230,17 @@ VMs can be used as clients only, assuming they meet the following prerequisite:
 
 ### &#xD;For UDP clients:
 
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform and dedicate a core to the Weka client.
+* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform and dedicating a core to the Weka client.
 * The root filesystem should handle a 3K IOPS load by the Weka client.
 
 ### **For DPDK clients (on top of the UDP requirements):**
 
-* The virtual platform interoperability (hypervisor, NICs, CPUs, different versions, etc.) should support DPDK and SR-IOV VFs passthrough to the VM.
-* The hypervisor hosts and the client VMs should run the same OFED version.
+* The virtual platform interoperability (hypervisor, NICs, CPUs, different versions, etc.) must support DPDK and SR-IOV VFs passthrough to the VM.
+* The hypervisor hosts and the client VMs must run the same OFED version.
 
-#### For VMWare platform:
+#### For the VMWare platform:
 
-* Instead of using SR-IOV (which prevents vMotion), it is possible to use `vmxnet3` devices. Each FrontEnd process will require a `vmxnet3` device and IP, with an additional device and IP per client VM (for management process).
+* If using `vmxnet3` devices, do not enable the SR-IOV feature (which prevents vMotion). Each FrontEnd process requires a `vmxnet3` device and IP, with an additional device and IP per client VM (for the management process).
 * Using `vmxnet3` is only supported with core dedication.
 
 For additional information and how-to articles, search the Weka knowledgebase in the [Weka support portal](http://support.weka.io) or contact the Weka support team.

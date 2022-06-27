@@ -1,15 +1,12 @@
 ---
 description: >-
   This page describes how the Weka system enables file access through the NFS
-  protocol, instead of the Weka client. The Weka system supports NFSv3.
+  protocol instead of the Weka client.
 ---
 
 # NFS
 
-The NFS protocol enables client hosts to access the Weka filesystem. You can deploy the NFS service in one of the following options:
-
-* **With a Weka client software**: Deploy the NFS service from the Weka cluster by installing a Weka client software. This option provides high performance. The steps for this option are provided on this page.
-* **Without a Weka client software**: Deploy by following the standard NFS implementation of the client host operating system. This option provides standard performance.
+The Weka system supports the NFSv3, NFSv4.0, and NFSv4.1 protocols. The NFS protocol allows client hosts to access the Weka filesystem without installing Weka’s client software using the standard NFS implementation of the client host operating system. While this implementation is easier to deploy, it does not compare in performance to the Weka client.
 
 ## Workflow: Deploy NFS service with a Weka client software
 
@@ -183,8 +180,6 @@ You can change the following mount options. These values are commonly used with 
 {% endhint %}
 
 * `sec=sys`
-* `vers=3`
-* `mountvers=3`
 * `proto=tcp`
 * `mountproto=tcp`
 

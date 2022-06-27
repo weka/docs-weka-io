@@ -15,7 +15,7 @@ The Weka system limits the CPU resources these tasks consume to 5% per host CPU.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The configured limit affects both external tasks (that are visible using the GUI/CLI) and internal low priority asynchronous operations.‌
+**Note:** The configured limit affects both external tasks (that are visible using the GUI/CLI) and internal low-priority asynchronous operations.‌
 {% endhint %}
 
 ## Manage background tasks <a href="#managing-background-tasks" id="managing-background-tasks"></a>
@@ -26,12 +26,12 @@ It is possible to view currently-running background tasks, including their statu
 
 #### Viewing background tasks using the CLI <a href="#viewing-background-tasks-using-the-cli" id="viewing-background-tasks-using-the-cli"></a>
 
-‌**Command:** `weka cluster tasks`‌
+‌**Command:** `weka cluster task`‌
 
 This command is used for viewing all background tasks. For each task, a range of data can be displayed, as shown in the following example:
 
 ```
-# weka cluster tasks
+# weka cluster task
 Type       | State   | Progress | Description
 -----------+---------+----------+-----------------------------------------------------------
 OBS_DETACH | RUNNING | 94       | Detaching Object Storage `obs_1` from filesystem `default`
@@ -43,11 +43,11 @@ It is possible to limit the resources being used by background tasks.
 
 #### **Limit background tasks using the CLI**
 
-**Command:** `weka cluster tasks limits`
+**Command:** `weka cluster task limits`
 
 This command is used to view the defined limits.
 
-**Command:** `weka cluster tasks limits set [--cpu-limit cpu-limit]`
+**Command:** `weka cluster task limits set [--cpu-limit cpu-limit]`
 
 This command is used to update the CPU limit.
 
@@ -57,7 +57,7 @@ It is possible to pause and later resume a background task, as well as completel
 
 #### **Pause/Resume/Abort a background task using the CLI**
 
-**Command:** `weka cluster tasks pause / resume / abort <task-id>`
+**Command:** `weka cluster task pause / resume / abort <task-id>`
 
 This command is used to pause/resume/abort the running of a specific task.
 

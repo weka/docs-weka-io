@@ -11,7 +11,7 @@ Before upgrading your cluster, ensure the following:
 1. All the backend hosts are online.
 2. Any rebuild has been completed.
 3. There are no outstanding alerts that haven't been addressed.
-4. There is at least 4GB of free space in the `/opt/weka` directory.
+4. There is at least 4 GB of free space in the `/opt/weka` directory.
 
 {% hint style="info" %}
 **Note:** If you plan a multi-hop version upgrade, once an upgrade is done, a background process of converting metadata to a new format may occur (in some versions). This type of upgrade takes several minutes to complete and must finish before another upgrade can start (the progress can be monitored via `weka status` CLI command if there is  a `data upgrade` task in a`RUNNING` state.
