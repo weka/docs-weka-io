@@ -23,14 +23,14 @@
 ## Planning & Installation <a href="#install" id="install"></a>
 
 * [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts.md)
-* [Bare metal installation](install/bare-metal/README.md)
+* [Weka installation on bare metal](install/bare-metal/README.md)
   * [Planning a Weka System Installation](install/bare-metal/planning-a-weka-system-installation.md)
   * [Set up the hosts](install/bare-metal/setting-up-the-hosts/README.md)
     * [SR-IOV enablement](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Obtain the Weka software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
   * [Weka system installation process using the CLI](install/bare-metal/using-cli.md)
   * [Add clients](install/bare-metal/adding-clients-bare-metal.md)
-* [AWS installation](install/aws/README.md)
+* [Weka installation on AWS](install/aws/README.md)
   * [Self-service portal](install/aws/self-service-portal.md)
   * [CloudFormation template generator](install/aws/cloudformation.md)
   * [Deployment types](install/aws/deployment-types.md)
