@@ -20,7 +20,7 @@ description: >-
 * Enough memory to support the Weka system needs as described in [memory requirements ](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
-## Operating scystem
+## Operating system
 
 ### Types
 
