@@ -30,8 +30,8 @@ Thin provisioning  can help in various use cases:
 
 ### Filesystem limits
 
-* Up to 6.4 trillion files/directories
-* Up to 6.4 billion files in a single directory
+* Up to 6.4 trillion (6.4 \* 10^12) files/directories
+* Up to 6.4 billion (6.4 \* 10^9) files in a single directory
 * Up to 14 EB (using and object-store) with up to 512 PB on SSD
 * UP to 4 PB file size
 
