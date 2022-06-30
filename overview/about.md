@@ -66,6 +66,12 @@ Furthermore, if a cluster is just grown modestly e.g., from 100 to 110 backends,
 
 The duration of all these completely seamless operations depends on the capacity of the root backends and the network bandwidth. Ongoing operations are not affected, and performance is improved as the redistribution of data is executed. The completion of the redistribution process delivers optimal capacity and performance.
 
+### Data Reduction
+
+Our enhanced data reduction maintains exceptional performance while delivering significant reductions on a range of workloads. The Weka system looks for blocks of data that are similar to each other (they don’t need to be 100% identical like traditional data reduction techniques) and reduce them, storing any differences separately.
+
+Data reduction can be enabled per filesystem. Obviously, compression ratios will be workload-dependent and are excellent with text-based data, large-scale unstructured datasets, log analysis, databases, code repositories, and sensor data. We are providing a Data Reduction Estimation Tool (DRET) that can be run on existing file systems to calculate the reduction rate of your datasets. For more information, contact the Customer Success Team.
+
 ## Converged Weka system deployment <a href="#hyper-cconverged-weka-deployment-model" id="hyper-cconverged-weka-deployment-model"></a>
 
 The Weka system can be deployed in a converged configuration. An alternative to the basic Weka system deployment, this enables the configuration of hundreds of application servers running user applications and installed with Weka clients in order to access the Weka cluster. Consequently, instead of provisioning servers fully dedicated to Weka backends, it enables the installation of a Weka client on each application server, and the installation of one or more SSDs as well as backend processes on the existing application servers. In such a configuration, the Weka system backend processes operate as one big cluster, takeover the local SSDs and form a shareable, distributed, and scalable filesystem available to the application servers, in the same way as in the basic Weka system deployment. The only difference is that instead of installing SSDs on backends dedicated to the Weka system, in this configuration the Weka backends share the same physical infrastructure with the application servers.
