@@ -11,6 +11,7 @@ Using the CLI, you can:
 * [Upload a  snapshot](snap-to-obj-1.md#upload-a-snapshot)
 * [Create a filesystem from an uploaded snapshot](snap-to-obj-1.md#create-a-filesystem-from-an-uploaded-snapshot)
 * [Manage incremental snapshots](snap-to-obj-1.md#manage-incremental-snapshots)
+* [Recover from a remote snapshot](snap-to-obj-1.md#recover-from-a-remote-snapshot)
 
 ## Upload a  snapshot
 
@@ -94,3 +95,19 @@ If you need to download a snapshot that is earlier than the latest downloaded on
 **Related topics**
 
 [#incremental-snapshots](./#incremental-snapshots "mention")
+
+## Recover from a remote snapshot
+
+When recovering a snapshot residing on a remote object store, it is required to define the object store bucket containing the snapshot as a local bucket.
+
+A remote object store has restrictions over the download, and we want to use a different local object store due to the QoS reasons explained in [Manage object stores](../managing-object-stores/#overview).
+
+To recover a snapshot residing on a remote object store, create a new filesystem from this snapshot as follows:
+
+1. Add a new local object-store, using `weka fs tier obs add` CLI command.
+2. Add a local object-store bucket, referring to the bucket containing the snapshot to recover, using `weka fs tier s3 add.`
+3. Download the filesystem, using `weka fs download.`
+4. If the recovered filesystem should also be tiered, add a local object store bucket for tiering using `weka fs tier s3 add.`
+5. Detach the initial object store bucket from the filesystem.
+6. Assuming you want a remote backup to this filesystem, attach a remote bucket to the filesystem.
+7. Remove the local object store bucket and local object store created for this procedure.

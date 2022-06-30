@@ -1,143 +1,164 @@
 ---
 description: >-
-  This page describes the Snap-To-Object feature, which enables the committing
-  of all the data of a specific snapshot to an object store.
+  This page describes the Snap-To-Object feature, which enables the movement of
+  all the data of a specific snapshot to an object store.
 ---
 
 # Snap-To-Object
 
-The Snap-To-Object feature enables the committing of all the data of a specific snapshot, including metadata, to an object store. Unlike data lifecycle management processes, this feature involves the full snapshot data (data, metadata, and every file).
+The Snap-To-Object feature enables the committing of all the data of a specific snapshot, including file system metadata, every file, and all associated data to an object store. You can use the full snapshot data to restore the data on the Weka cluster or another cluster.
 
-Using the Snap-To-Object feature results in the object store containing a copy of the full snapshot data. You can use the full snapshot data to restore the data on the Weka cluster or another cluster.
+## Snap-To-Object feature use cases
 
-The Snap-To-Object feature is useful for a range of use cases, as follows:
+The Snap-To-Object feature is helpful for a range of use cases, as follows:
 
-* **Generic use cases (on-premises and cloud)**
+* **On-premises and cloud use cases**
   * [External backup of data](./#external-backup-of-data)
-  * [Archiving of data](./#archiving-of-data)
-  * [Asynchronous mirroring of data](./#asynchronous-mirroring-of-data)
+  * [Archiving data](./#archiving-data)
+  * [Asynchronous data replication](./#asynchronous-data-mirroring)
 * **Cloud-only use cases**
-  * [AWS pause/restart](./#aws-pause-restart)
-  * [AWS protection against single availability zone failure](./#protecting-data-against-aws-availability-zone-failures)
-  * [AWS migration of filesystems to another region](./#aws-migration-of-filesystems-to-another-region)
+  * [Cloud pause/restart](./#cloud-pause-restart)
+  * [Data protection against cloud availability zone failures](./#aws-migration-of-filesystems-to-another-region)
+  * [Migration of filesystems to another region](./#aws-migration-of-filesystems-to-another-region)
 * **Hybrid cloud use case**
   * [Cloud bursting](./#cloud-bursting)      &#x20;
 
-## Use cases for the Snap-To-Object feature
+### External backup of data
 
-#### External backup of data
+Suppose it is required to recover data stored on a Weka filesystem due to a complete or partial loss of the data within it. You can use a data snapshot saved to an object store to recreate the same data in the snapshot on the same or another Weka cluster.
 
-If a Weka cluster fails beyond recovery due to multiple failures or a structural failure such as a fire or flood, snapshot data saved to an object store can be used to recreate the same data on another Weka cluster. This use case supports backup in any of the following Weka system deployment modes:
+This use case supports backup in any of the following Weka system deployment modes:
 
-**Local object store:** Weka SSD tier, hosts, and object store tiers are located in one data center, but separated in different rooms or buildings. In such a deployment, a total failure obliterating all Weka system hosts will still have another live object store and it is possible to start new filesystems from the last snapshot.
-
-**Remote object store:** Weka hosts and object stores are located in different datacenters. In such a deployment, data is perfectly protected even if a complete data center failure occurs.
-
-{% hint style="info" %}
-**Note:** This type of deployment requires the ability to support the latency of hundreds of milliseconds. For performance issues on Snap-To-Object tiering cross-interactions/resonance, contact the Weka Support Team.
-{% endhint %}
-
-**Local object store replicating to a remote object store:** A local object store in one datacenter replicates data to another object store using the object store system features, such as [AWS S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html). This deployment provides both integrated tiering and Snap-To-Object local high performance between the Weka object store and the additional object store, and remote copying of data enables the survival of data in any data center failure.
+* **Local object store:** The Weka cluster and object store are close to each other and will be highly performant during data recovery operations. The Weka cluster can recover a filesystem from any snapshot on the object store for which it has a reference locator.
+* **Remote object store:** The Weka cluster and object store are located in different geographic locations, typically with longer latencies between them. In such a deployment, you can send snapshots to both local and remote object stores.
 
 {% hint style="info" %}
-**Note:** This deployment requires ensuring that the object store system perfectly replicates all objects.
+**Note:** This deployment type requires supporting the latency of hundreds of milliseconds. For performance issues on Snap-To-Object tiering cross-interactions/resonance, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
-#### Archiving data
+* **Local object store replicating to a remote object store:** A local object store in one datacenter replicates data to another object store using the object store system features, such as [AWS S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html).\
+  This deployment provides both integrated tiering and Snap-To-Object local high performance between the Weka object store and the additional object store. The object store manages the data replication, enabling data survival in multiple regions.
 
-The periodic creation of data snapshots and uploading the snapshots to an object store generates an archive, allowing the accessing of past copies of data. When any compliance or applicative requirement occurs, it is possible to make the relevant snapshot available on a Weka cluster and view the content of past versions of data.
+{% hint style="info" %}
+**Note:** This deployment requires ensuring that the object store system perfectly replicates all objects on time to ensure consistency across regions.
+{% endhint %}
 
-#### Asynchronous data mirroring
+### Archiving data
 
-Combining a local cluster with a replicated object store in another data center can create a scheme whereby a disaster in the primary site will activate the secondary data center with the content of the last available snapshot.
+The periodic creation of snapshots and uploading of the snapshots to an object store generates an archive, allowing the accessing of past copies of data.
 
-#### AWS pause/restart
+When any compliance or application requirement occurs, it is possible to make the relevant snapshot available on a Weka cluster and view the content of past versions of data.
 
-Some AWS installations of the Weka system may have a cluster working with local SSDs. Sometimes, the data needs to be retained, even though ongoing access is unnecessary. In such cases, the use of Snap-To-Object can save costs of AWS instances running the Weka system and the Weka license.
+### Asynchronous data replication
 
-To pause a cluster, you need to take a snapshot of the data and then use Snap-To-Object to upload the snapshot to S3. When the upload process is complete, the Weka cluster instances are stopped, and the data is safe on S3.
+Combining a local cluster with a replicated object store in another data center allows for the following use cases:
 
-To re-enable access to the data, you need to form a new cluster or use an existing one and download the snapshot from S3.
+* **Disaster recovery:** where you can take the replicated data and make it available to applications in the destination location.
+* **Backup:** where you can take multiple snapshots and create point-in-time images of the data that can be mounted and specific files may be restored.
 
-#### Protecting data against AWS availability zone failures
+### Cloud pause/restart
 
-This use case ensures the protection of data against AWS availability zone failures. The Weka cluster can be run on a single availability zone, providing the best performance and no cross-AZ bandwidth costs.
+In a public cloud, with a Weka cluster running on compute instances with local SSDs, sometimes the data needs to be retained, even though ongoing access to the Weka cluster is unnecessary. In such cases, using Snap-To-Object can save the costs of compute instances running the Weka system.
 
-Using Snap-To-Object, you can take and upload snapshots of the cluster to S3 (which is a cross-AZ service). In this way, if an AZ failure occurs, a new Weka cluster can be created on another AZ, and the last snapshot uploaded to S3 can be downloaded to this new cluster.
+To pause a cluster, you need to take a snapshot of the data and then use Snap-To-Object to upload the snapshot to an S3 compliant object store. When the upload process is complete, the Weka cluster instances can be stopped, and the data is safe on the object store.
 
-#### AWS migration of filesystems to another region
+To re-enable access to the data, you need to form a new cluster or use an existing one and download the snapshot from the object store.
 
-Use of Weka snapshots uploaded to S3 combined with S3 cross-region replication enables the migration of a filesystem from one region to another.
+### Data protection against cloud availability zone failures
 
-#### Cloud Bursting
+This use case ensures data protection against cloud availability zone failures in the various clouds: AWS Availability Zones, Google Cloud Platform (GCP) Zones, and Oracle Cloud Infrastructure (OCI) Availability Domains.
 
-On-premises Weka system deployments can often benefit from cloud elasticity to consume large quantities of computation power for short periods.
+In AWS, for example, the Weka cluster can run on a single availability zone, providing the best performance and no cross-AZ bandwidth charges. Using Snap-To-Object, you can take and upload snapshots of the cluster to S3 (which is a cross-AZ service). In this way, if an AZ failure occurs, a new Weka cluster can be created on another AZ, and the last snapshot uploaded to S3 can be downloaded to this new cluster.
+
+### Migration of filesystems to another region
+
+Using Weka snapshots uploaded to S3 combined with S3 cross-region replication enables the migration of a filesystem from one region to another.&#x20;
+
+### Cloud bursting
+
+On-premises Weka deployments can often benefit from cloud elasticity to consume large quantities of computation power for short periods.
 
 Cloud bursting requires the following steps:
 
-1. Take a snapshot of the on-premises Weka system data using Snap-To-Object.
-2. Upload the data snapshot to S3 at AWS.
-3. Create a Weka cluster at AWS and make the data uploaded to S3 available to the newly-formed cluster at AWS.
-4. Switch control to the cloud and process the data.
-5. Take a snapshot of the cloud cluster on completion of cloud processing.
-6. Upload the cloud snapshot to the local Weka system cluster.
+1. Take a snapshot of an on-premises Weka filesystem.
+2. Upload the data snapshot to S3 at AWS using Snap-To-Object.
+3. Create a Weka cluster in AWS and make the data uploaded to S3 available to the newly-formed cluster at AWS.
+4. Process the data in-cloud using cloud compute resources.
 
-## Snapshots upload guidelines
+Optionally, you may also rehydrate data back to on-premises by doing the following:
 
-When uploading a snapshot, follow these guidelines:
+1. Take a snapshot of the Weka filesystem in the cloud on completion of cloud processing.
+2. Upload the cloud snapshot to the on-premises Weka cluster.
 
-* **Upload one snapshot at a time**: To achieve fast upload and prevent bandwidth competition with other snapshot uploads to the same physical object store, you can upload only one snapshot to each object store. However, you can upload one snapshot to the local object store and one snapshot to the remote object store in parallel.
-* **A writeable snapshot cannot be uploaded as a read-only snapshot:** A writeable snapshot is a clone of the live filesystem or other snapshots at a specific time, and its data keeps changing. Therefore, its data is tiered according to the tiering policies, but it cannot be uploaded to the object store as a read-only snapshot.
-* **Upload in chronological order:** For space and bandwidth efficiency, it is highly recommended to upload snapshots in chronological order to the remote object store. Uploading all snapshots or the same snapshots to a local object store is not required. However, once a snapshot is uploaded to the remote object store (for example, a monthly snapshot), it is inefficient to upload a previous snapshot (for example, the daily snapshot before it) to the remote object store.
-* **No deletion in parallel to snapshot upload**: You cannot delete a snapshot in parallel to a snapshot upload to the same filesystem. Because uploading a snapshot to a remote object store can take a while, it is recommended to delete the required snapshots before uploading to the remote object store.\
-  It is more important in a scenario when uploading snapshots to both local and remote object stores. While local and remote uploads can progress in parallel, consider the case of a remote upload is in progress. A snapshot is deleted, and later a snapshot is uploaded to the local object store. In this scenario, the local snapshot upload waits for the pending deletion of the snapshot (which occurs only once the remote snapshot upload is done).
-* **Pause or abort a snapshot upload:** If required, you can pause or abort a snapshot upload using commands described in the [background tasks](../../usage/background-tasks.md#pause-resume-abort-a-background-task) section.
+## Uploading a snapshot to an object store requirements
 
-## Recover from a remote snapshot
+When uploading a snapshot to an object store, adhere to the following requirements:
 
-When recovering from a snapshot residing on a remote object store, it is required to define the object store bucket containing the snapshot as a local bucket. Because a remote object store has restrictions over the download, and we want to use a different local object store due to the QoS reasons explained in [Manage object stores](../managing-object-stores/#overview).
+* [Upload one snapshot at a time](./#upload-one-snapshot-at-a-time)
+* [A writeable snapshot cannot be uploaded as a read-only snapshot](./#a-writeable-snapshot-cannot-be-uploaded-as-a-read-only-snapshot)
+* [Upload in chronological order](./#upload-in-chronological-order)
+* [No deletion in parallel to snapshot upload](./#no-deletion-in-parallel-to-snapshot-upload)
+* [Pause or abort a snapshot upload](./#pause-or-abort-a-snapshot-upload)
 
-To recover from a snapshot residing on a remote object store, create a new filesystem from this snapshot as follows:
+### Upload one snapshot at a time
 
-1. Add a new local object-store, using `weka fs tier obs add` CLI command.
-2. Add a local object-store bucket, referring to the bucket with the snapshot to recover, using `weka fs tier s3 add.`
-3. Download the filesystem, using `weka fs download.`
-4. If the filesystem should also be tiered, add a local object store bucket for tiering.
-5. Detach the initial object store bucket from the filesystem.
-6. Assuming you want a remote backup to this filesystem, attach a remote bucket to the filesystem.
-7. Remove the local object store bucket and local object store created for this procedure.
+To achieve fast upload and prevent bandwidth competition with other snapshot uploads to the same object store, you can upload only one snapshot at a time to the object store. However, you can upload one snapshot to a local object store and one snapshot to a remote object store in parallel.
+
+### A writeable snapshot cannot be uploaded
+
+A writeable snapshot is a clone of the live filesystem or other snapshots at a specific time, and its data keeps changing. Therefore, its data is tiered according to the tiering policies, but it cannot be uploaded to the object store as a read-only snapshot.
+
+### Upload in chronological order  to the remote object store
+
+For space and bandwidth efficiency, it is highly recommended to upload snapshots in chronological order to the remote object store.
+
+Uploading all snapshots or the same snapshots to a local object store is not required. However, once a snapshot is uploaded to the remote object store (for example, a monthly snapshot), it is inefficient to upload a previous snapshot (for example, the daily snapshot before it) to the remote object store.
+
+### No deletion in parallel to snapshot upload
+
+You cannot delete a snapshot in parallel to a snapshot upload to the same filesystem. Because uploading a snapshot to a remote object store can take a while, it is recommended to delete the required snapshots before uploading to the remote object store.
+
+This requirement is more important in a scenario when uploading snapshots to both the local and remote object stores in parallel. Consider the following:
+
+1. A remote upload is in progress.
+2. A snapshot is deleted.
+3. Later a snapshot is uploaded to the local object store.
+
+In this scenario, the local snapshot upload waits for the pending deletion of the snapshot, which occurs only once the remote snapshot upload is done.
+
+### Pause or abort a snapshot upload
+
+If required, you can pause or abort a snapshot upload using commands described in the [background tasks](../../usage/background-tasks.md#pause-resume-abort-a-background-task) section.
 
 ## Incremental snapshots
 
-Incremental snapshots are point-in-time backups for filesystems. When taken, consist only of the changes since the last snapshot. When you download and restore an incremental snapshot to a live filesystem, the system reconstructs the filesystem with the changes since the previous snapshot.
+Incremental snapshots are point-in-time backups for filesystems. When taken, they consist only of the changes since the last snapshot. When you download and restore an incremental snapshot to a live filesystem, the system reconstructs the filesystem on-the-fly with the changes since the previous snapshot.
 
-This capability for filesystem snapshots potentially makes them more cost-effective because you do not have to download the entire filesystem with each snapshot, you download only the changes since the last snapshot. For example, incremental snapshots are essential when deploying a secondary Weka system for disaster recovery (DR).
-
-Among the components of a DR plan are two key parameters that define how long your business can afford to be offline and how much data loss it can tolerate. These are the Recovery Time Objective (RTO) and Recovery Point Objective (RPO).
-
-* RTO is the organization's goal for the maximum time it should take to restore normal operations following an outage or data loss.
-* RPO is the goal for the maximum amount of data the organization can tolerate losing. This parameter is measured in time: from the moment a failure occurs to your last valid incremental snapshot. For example, if you experience a failure now and your last incremental snapshot was one hour ago, the RPO is one hour.&#x20;
-
-Incremental snapshots enable lowering these two key parameters. It prepares you for getting back online fast, so you can minimize damage to your business.
+This capability for filesystem snapshots potentially makes them more cost-effective because you do not have to update the entire filesystem with each snapshot, you update only the changes since the last snapshot.
 
 Incremental snapshots download and restore are only available through the CLI. It is recommended to download the Incremental snapshots in chronological order. Only snapshots uploaded from a 4.0 version or above can be downloaded as increments.
 
 ## Delete snapshots residing on an object store
 
-Deleting a snapshot, from a filesystem that uploaded it, removes all of its data from the local object-store bucket. It does not remove any data from a remote object store bucket.
+Deleting a snapshot from a filesystem that uploaded it, removes all of its data from the local object store bucket. It does not remove any data from a remote object store bucket.
 
 {% hint style="danger" %}
 If the snapshot has been (or is) downloaded and used by a different filesystem, that filesystem stops functioning correctly, data can be unavailable and errors can occur when accessing the data.
 
-It is possible to either un-tier or migrate the filesystem to a different object store bucket before deleting the snapshot that has been downloaded.
+Before deleting the downloaded snapshot, it is recommended to either un-tier or migrate the filesystem to a different object store bucket.
 {% endhint %}
 
-## Snap-To-Object in data lifecycle management
+## Snap-To-Object and tiering
 
-Snap-To-Object and data lifecycle management both use SSDs and object stores for the storage of data. In order to save both storage and performance resources, the Weka system uses the same paradigm for holding SSD and object store data for both lifecycle management and Snap-To-Object. This can be implemented for each filesystem using one of the following schemes:
+Snap-To-Object and tiering use SSDs and object stores for the storage of data. To save both storage and performance resources, the Weka system uses the same paradigm for holding SSD and object store data for both Snap-To-Object and tiering.
 
-1. Data resides on the SSDs only and the object store is used only for the various Snap-To-Object use cases, such as backup, archiving, and bursting. In this case, for each filesystem, the allocated SSD capacity should be identical to the filesystem size, and the data Retention Period should be defined as the longest time possible, i.e., 5 years. The Tiering Cue should be defined using the same considerations as in data lifecycle management, based on IO patterns. In this scheme, the applications work all the time with a high-performance SSD storage system and use the object store only as a backup device.
-2. Use of Snap-To-Object on filesystems with active data lifecycle management between the object store and the SSDs. In this case, objects in the object store will be used for both tiering of all data and for backing up the data using Snap-To-Object, i.e., whenever possible, the Weka system will use the same object for both purposes, thereby eliminating the need to acquire additional storage and to unnecessarily copying data.
+You can implement this paradigm for each filesystem using one of the following use cases:
+
+* **Data resides on the SSDs only, and the object store is used only for the various Snap-To-Object use cases, such as backup, archiving, and bursting:**\
+  ****The allocated SSD capacity must be identical to the filesystem size for each filesystem. The data retention period must be defined as the longest time possible (for example, five years).\
+  The Tiering Cue must be defined using the same considerations based on IO patterns. In this case, the applications always work with a high-performance SSD storage system and use the object store only as a backup device.
+* **Snap-To-Object on filesystems is used with active tiering between the SSDs and the object store:**\
+  ****Objects in the object store are used for tiering all data and for data backup using Snap-To-Object. If possible, the Weka system uses the same object for both purposes, eliminating the unnecessary need to acquire additional storage and copy data.
 
 {% hint style="info" %}
 **Note:** When using Snap-To-Object to rehydrate data from an object store, some of the metadata may still be in the object store until it is accessed for the first time.

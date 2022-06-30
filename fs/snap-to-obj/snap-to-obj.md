@@ -69,7 +69,9 @@ Verify that the locator of the required snapshot is available. If not, see the l
    * Select **Create From Uploaded Snapshot** (it only appears when you select **Tiering**). Paste the copied snapshot locator.
 3. Select **Save**.&#x20;
 
-![Create a filesystem from an uploaded snapshot](../../.gitbook/assets/Create\_fs\_from\_snapshot\_animated.gif)
+![Create a filesystem from an uploaded snapshot](../../.gitbook/assets/wmng\_Create\_fs\_from\_snapshot\_animated.gif)
+
+****
 
 **Related topics**
 
