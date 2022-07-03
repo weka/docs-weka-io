@@ -15,11 +15,11 @@ The Snap-To-Object feature is helpful for a range of use cases, as follows:
 * **On-premises and cloud use cases**
   * [External backup of data](./#external-backup-of-data)
   * [Archiving data](./#archiving-data)
-  * [Asynchronous data replication](./#asynchronous-data-mirroring)
+  * [Asynchronous data replication](./#asynchronous-data-replication)
 * **Cloud-only use cases**
   * [Cloud pause/restart](./#cloud-pause-restart)
-  * [Data protection against cloud availability zone failures](./#aws-migration-of-filesystems-to-another-region)
-  * [Migration of filesystems to another region](./#aws-migration-of-filesystems-to-another-region)
+  * [Data protection against cloud availability zone failures](./#data-protection-against-cloud-availability-zone-failures)
+  * [Migration of filesystems to another region](./#migration-of-filesystems-to-another-region)
 * **Hybrid cloud use case**
   * [Cloud bursting](./#cloud-bursting)      &#x20;
 
@@ -95,8 +95,8 @@ Optionally, you may also rehydrate data back to on-premises by doing the followi
 When uploading a snapshot to an object store, adhere to the following requirements:
 
 * [Upload one snapshot at a time](./#upload-one-snapshot-at-a-time)
-* [A writeable snapshot cannot be uploaded as a read-only snapshot](./#a-writeable-snapshot-cannot-be-uploaded-as-a-read-only-snapshot)
-* [Upload in chronological order](./#upload-in-chronological-order)
+* [A writeable snapshot cannot be uploaded](./#a-writeable-snapshot-cannot-be-uploaded)
+* [Upload in chronological order to the remote object store](./#upload-in-chronological-order-to-the-remote-object-store)
 * [No deletion in parallel to snapshot upload](./#no-deletion-in-parallel-to-snapshot-upload)
 * [Pause or abort a snapshot upload](./#pause-or-abort-a-snapshot-upload)
 
@@ -108,7 +108,7 @@ To achieve fast upload and prevent bandwidth competition with other snapshot upl
 
 A writeable snapshot is a clone of the live filesystem or other snapshots at a specific time, and its data keeps changing. Therefore, its data is tiered according to the tiering policies, but it cannot be uploaded to the object store as a read-only snapshot.
 
-### Upload in chronological order  to the remote object store
+### Upload in chronological order to the remote object store
 
 For space and bandwidth efficiency, it is highly recommended to upload snapshots in chronological order to the remote object store.
 
