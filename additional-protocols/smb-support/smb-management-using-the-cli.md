@@ -9,17 +9,17 @@ description: >-
 Using the CLI, you can:
 
 * [Show the SMB cluster](smb-management-using-the-cli.md#show-the-smb-cluster)
-* Show the SMB domain configuration
-* [Create the SMB cluster](smb-management-using-the-cli.md#create-an-smb-cluster)
-* [Check the status of SMB host readiness](smb-management-using-the-cli.md#checking-status-of-smb-host-readiness)
-* [Join an SMB cluster in Active Directory](smb-management-using-the-cli.md#join-an-smb-cluster-to-an-active-directory)
+* [Show the SMB domain configuration](smb-management-using-the-cli.md#show-smb-domain-cfg)
+* [Create the SMB cluster](smb-management-using-the-cli.md#create-smb-cluster)
+* [Check the status of SMB host readiness](smb-management-using-the-cli.md#check-status-smb-host-readiness)
+* [Join an SMB cluster in Active Directory](smb-management-using-the-cli.md#join-smb-cluster-in-ad)
 * [Delete an SMB cluster](smb-management-using-the-cli.md#delete-an-smb-cluster)
-* [Add or remove hosts from an SMB cluster](smb-management-using-the-cli.md#add-remove-hosts-from-an-smb-cluster)
+* [Add or remove hosts from an SMB cluster](smb-management-using-the-cli.md#add-remove-hosts-from-smb)
 * [Configure trusted domains](smb-management-using-the-cli.md#configure-trusted-domains)
 * [List SMB shares](smb-management-using-the-cli.md#list-smb-shares)
 * [Add an SMB share](smb-management-using-the-cli.md#add-an-smb-share)
 * [Update SMB shares](smb-management-using-the-cli.md#update-smb-shares)
-* [Control SMB share user-lists](smb-management-using-the-cli.md#control-smb-access-based-on-hosts-ip-name)
+* [Control SMB share user-lists](smb-management-using-the-cli.md#control-smb-share-user-lists)
 
 ## Show the SMB cluster <a href="#show-the-smb-cluster" id="show-the-smb-cluster"></a>
 
@@ -27,13 +27,13 @@ Using the CLI, you can:
 
 Use this command to view information about the SMB cluster managed by the Weka system.
 
-## Show the SMB domain configuration <a href="#show-the-smb-domain-config" id="show-the-smb-domain-config"></a>
+## Show the SMB domain configuration <a href="#show-smb-domain-cfg" id="show-smb-domain-cfg"></a>
 
 **Command:** `weka smb domain`
 
 Use this command to view information about the SMB domain configuration.
 
-## Create the SMB cluster <a href="#create-the-smb-cluster" id="create-the-smb-cluster"></a>
+## Create the SMB cluster <a href="#create-smb-cluster" id="create-smb-cluster"></a>
 
 **Command:** `weka smb cluster create`
 
@@ -82,13 +82,13 @@ Use the following command line to create a new SMB cluster to be managed by the 
 In this example of a full command, an SMB cluster is configured over the Weka system hosts 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`and is directed to use public IPs 1.1.1.1 to 1.1.1.5.
 {% endhint %}
 
-## Check the status of SMB host readiness
+## Check the status of SMB host readiness <a href="#check-status-smb-host-readiness" id="check-status-smb-host-readiness"></a>
 
 **Command:** `weka smb cluster status`
 
 Use this command to check the status of the hosts that are part of the SMB cluster. Once all hosts are prepared and ready, it is possible to join an SMB cluster to an Active Directory.
 
-## Join an SMB cluster in Active Directory
+## Join an SMB cluster in Active Directory <a href="#join-smb-cluster-in-ad" id="join-smb-cluster-in-ad"></a>
 
 **Command:** `weka smb domain join`
 
@@ -109,7 +109,7 @@ To join another Active Directory to the current SMB cluster configuration, leavi
 
 On completion of this operation, it is possible to join another Active Directory to the SMB cluster.
 
-## Delete an SMB cluster
+## Delete an SMB cluster <a href="#delete-an-smb-cluster" id="delete-an-smb-cluster"></a>
 
 **Command:** `weka smb cluster destroy`
 
@@ -117,7 +117,7 @@ Use this command to destroy an SMB cluster managed by the Weka system.
 
 Deleting an existing SMB cluster managed by the Weka system does not delete the backend Weka filesystems but removes the SMB share exposures of these filesystems.
 
-## Add or remove hosts from an SMB cluster
+## Add or remove hosts from an SMB cluster <a href="#add-remove-hosts-from-smb" id="add-remove-hosts-from-smb"></a>
 
 **Command:** `weka smb cluster hosts add`
 
@@ -129,7 +129,7 @@ Use these commands to add or remove hosts from the SMB cluster.
 **Note:** This operation might take some time to complete. During that time, SMB IOs are stalled.
 {% endhint %}
 
-## Configure trusted domains
+## Configure trusted domains <a href="#configure-trusted-domains" id="configure-trusted-domains"></a>
 
 ### List trusted domains
 
@@ -167,13 +167,13 @@ Use the following command line to remove an SMB trusted domain:
 | ----------- | -------- | --------------------------------------- | --------------- | ------------- | ----------- |
 | `domain-id` | Number   | The internal ID of the domain to remove |                 | Yes           |             |
 
-## List SMB shares
+## List SMB shares <a href="#list-smb-shares" id="list-smb-shares"></a>
 
 **Command:** `weka smb share`
 
 Use this command to list all existing SMB shares.
 
-## Add an SMB share
+## Add an SMB share <a href="#add-an-smb-share" id="add-an-smb-share"></a>
 
 **Command:** `weka smb share add`
 
@@ -214,7 +214,7 @@ Use the following command line to add a new share to be exposed to SMB:
 In this example, the first SMB share added has the Weka system share for default. The second SMB share has internal for default.
 {% endhint %}
 
-## Update SMB shares
+## Update SMB shares <a href="#update-smb-shares" id="update-smb-shares"></a>
 
 **Command:** `weka smb share update`
 
@@ -229,7 +229,7 @@ Use the following command line to update an existing share:
 | `share-id`   | Number   | The ID of the share to be updated                                                                                                                                                                                                                                                                                                                                                                                                               | Must be a valid share ID                  | Yes           | ​           |
 | `encryption` | String   | <p>The share encryption policy.</p><p><code>desired</code> - turns on data encryption for this share for clients that support encryption if negotiation has been enabled globally.</p><p><code>required</code> - enforces encryption for the shares. Clients that do not support encryption will be denied access to the share. If the global option is set to <code>disabled</code> access will be denied to these shares for all clients.</p> | `cluster_default` `desired` or `required` | No            |             |
 
-## **Control SMB share user-lists**
+## **Control SMB share user-lists** <a href="#control-smb-share-user-lists" id="control-smb-share-user-lists"></a>
 
 **Command:** `weka smb share lists show`
 
@@ -282,7 +282,7 @@ Use the following command line to remove all users from a share user-list:
 | `share-id`       | Number   | The ID of the share to be updated      | Must be a valid share ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Yes           |             |
 | `user-list-type` | String   | The type of permissions list to reset  | <p><code>read_only</code> - list of users that will not be given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>read_write</code>- list of users that will be given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>valid</code> - list of users that are  allowed to log-in to this share SMB service (empty list - all users are allowed)<code>invalid</code> - list of users that are not allowed to log-in to this share SMB service</p> | Yes           |             |
 
-## Remove SMB shares
+## Remove SMB shares <a href="#remove-smb-shares" id="remove-smb-shares"></a>
 
 **Command:** `weka smb share remove`
 
@@ -302,7 +302,7 @@ Use the following command line to remove a share exposed to SMB:
 `weka smb share remove 1`
 {% endhint %}
 
-## Control SMB access based on hosts IP/name
+## Control SMB access based on hosts IP/name <a href="#control-smb-access-based-on-ip" id="control-smb-access-based-on-ip"></a>
 
 It is possible to control which hosts are permitted to access the SMB service or share.
 
