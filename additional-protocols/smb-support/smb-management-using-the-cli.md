@@ -8,8 +8,8 @@ description: >-
 
 Using the CLI, you can:
 
-* [Show the SMB cluster](smb-management-using-the-cli.md#show-an-smb-cluster)
-* [Show the SMB domain configuration](smb-management-using-the-cli.md#show-an-smb-domain-configuration)
+* [Show the SMB cluster](smb-management-using-the-cli.md#show-the-smb-cluster)
+* Show the SMB domain configuration
 * [Create the SMB cluster](smb-management-using-the-cli.md#create-an-smb-cluster)
 * [Check the status of SMB host readiness](smb-management-using-the-cli.md#checking-status-of-smb-host-readiness)
 * [Join an SMB cluster in Active Directory](smb-management-using-the-cli.md#join-an-smb-cluster-to-an-active-directory)
@@ -21,19 +21,19 @@ Using the CLI, you can:
 * [Update SMB shares](smb-management-using-the-cli.md#update-smb-shares)
 * [Control SMB share user-lists](smb-management-using-the-cli.md#control-smb-access-based-on-hosts-ip-name)
 
-## Show the SMB cluster
+## Show the SMB cluster <a href="#show-the-smb-cluster" id="show-the-smb-cluster"></a>
 
 **Command:** `weka smb cluster`
 
 Use this command to view information about the SMB cluster managed by the Weka system.
 
-## Show the SMB domain configuration
+## Show the SMB domain configuration <a href="#show-the-smb-domain-config" id="show-the-smb-domain-config"></a>
 
 **Command:** `weka smb domain`
 
 Use this command to view information about the SMB domain configuration.
 
-## Create the SMB cluster
+## Create the SMB cluster <a href="#create-the-smb-cluster" id="create-the-smb-cluster"></a>
 
 **Command:** `weka smb cluster create`
 

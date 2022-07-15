@@ -4,9 +4,9 @@ description: >-
   deployment, and usage.
 ---
 
-# Weka CSI plugin
+# Weka CSI Plugin
 
-uThe [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md) (CSI) is a standard for exposing arbitrary block and file storage systems to containerized workloads on Container Orchestration Systems (COs) like Kubernetes.
+The [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md) (CSI) is a standard for exposing arbitrary block and file storage systems to containerized workloads on Container Orchestration Systems (COs) like Kubernetes.
 
 The Weka CSI Plugin provides the creation and configuration of persistent storage external to Kubernetes. CSI replaces plugins developed earlier in the Kubernetes evolution. It replaces the `hostPath` method to expose WekaFS mounts as Kubernetes volumes.
 
@@ -15,7 +15,7 @@ The Weka CSI Plugin provides the creation and configuration of persistent storag
 * CSI protocol: 1.0-1.2
 * Kubernetes: 1.18 - 1.2
 * WekaFS: 3.8 and up
-* AppArmor and SELinux are not supported yet
+* AppArmor is not supported yet
 
 {% hint style="info" %}
 **Note:** Quota enforcement on persistent volumes requires WekaFS version 3.13 and up
@@ -23,7 +23,7 @@ The Weka CSI Plugin provides the creation and configuration of persistent storag
 
 ### Prerequisites
 
-* Privileged mode must be allowed on the Kubernetes cluster
+* The privileged mode must be allowed on the Kubernetes cluster
 * The following Kubernetes feature gates must be enabled: DevicePlugins, CSINodeInfo, CSIDriverRegistry, ExpandCSIVolumes (if not changed, they should be enabled by default)
 * A Weka cluster is installed and accessible from the Kubernetes worker nodes
 * The Weka client is installed on the Kubernetes worker nodes
@@ -42,7 +42,7 @@ The Weka CSI Plugin provides the creation and configuration of persistent storag
 * Quota enforcement on persistent volumes
 
 {% hint style="info" %}
-**Note:** Quota enforcement on persistent volumes requires WekaFS version 3.13 and up. For additional information about enforcing quota on existing persistent volumes, refer to the  [Upgrading Legacy Persistent Volumes for Capacity Enforcement](weka-csi-plugin.md#upgrading-legacy-persistent-volumes-for-capacity-enforcement) section
+**Note:** Quota enforcement on persistent volumes requires WekaFS version 3.13 and up. For additional information about enforcing quotas on existing persistent volumes, see the  [Upgrading Legacy Persistent Volumes for Capacity Enforcement](weka-csi-plugin.md#upgrading-legacy-persistent-volumes-for-capacity-enforcement) section.
 {% endhint %}
 
 #### Unsupported capabilities
@@ -67,7 +67,7 @@ Install the plugin by issuing the following command:
 helm install csi-wekafs csi-wekafs/csi-wekafsplugin --namespace csi-wekafs --create-namespace
 ```
 
-On successful installation the following output will be shown:
+On successful installation the following output is provided:
 
 ```
 Release "csi-wekafs" has been installed. Happy Helming!
@@ -106,7 +106,7 @@ Download the `csi-wekafs` git repository
 git clone https://github.com/weka/csi-wekafs.git --branch v0.6.6 --single-branch
 ```
 
-Assuming connectivity to Kubernetes cluster is valid, run the following script to remove the CSI driver components:
+Assuming connectivity to the Kubernetes cluster is valid, run the following script to remove the CSI driver components:
 
 ```
 $REPO_ROOT/deploy/kubernetes-latest/cleanup.sh
@@ -115,7 +115,7 @@ $REPO_ROOT/deploy/kubernetes-latest/cleanup.sh
 #### Upgrade an existing helm release
 
 {% hint style="danger" %}
-**Note:** If you plan to upgrade existing Weka CSI plugin deployment and enable directory quota enforcement for already existing volumes, please refer to the [Binding Legacy Volumes to API](weka-csi-plugin.md#binding-legacy-volumes-to-api) section.
+**Note:** If you plan to upgrade existing Weka CSI Plugin deployment and enable directory quota enforcement for already existing volumes, please refer to the [Binding Legacy Volumes to API](weka-csi-plugin.md#binding-legacy-volumes-to-api) section.
 {% endhint %}
 
 If not yet configured, add the Helm repository as defined in the [Installation](weka-csi-plugin.md#installation) section.
@@ -126,7 +126,7 @@ Execute the following command:
 helm upgrade --install csi-wekafs --namespace csi-wekafs csi-wekafs/csi-wekafsplugin
 ```
 
-A successful upgrade will produce the following output:
+A successful upgrade provides the following output:
 
 ```
 Release "csi-wekafs" has been upgraded. Happy Helming!
@@ -155,7 +155,7 @@ The CSI Plugin fetches the WekaFS cluster capabilities during the first login to
 
 However, the WekaFS cluster upgrade might come unnoticed if performed during this time window, continuing to provision new volumes in legacy mode.
 
-In order to expedite the update of the Weka cluster capabilities, it is recommended to delete all the CSI Plugin pods, to invalidate the cache. The pods will then be restarted.
+To expedite the update of the Weka cluster capabilities, it is recommended to delete all the CSI Plugin pods, to invalidate the cache. The pods will then be restarted.
 
 ```
 kubectl delete pod -n csi-wekafs -lapp=csi-wekafs-controller
@@ -171,17 +171,17 @@ In the [Legacy communication model](weka-csi-plugin.md#legacy-deployment-model),
 In the [API-Based communication model](weka-csi-plugin.md#api-based-deployment-model), the Weka CSI Plugin communicates with the Weka cluster using REST API, leveraging this integration to provide extended abilities, such as strict enforcement of volume capacity usage via integration with WekaFS [directory quota](../fs/quota-management.md#directory-quotas) functionality.&#x20;
 
 {% hint style="info" %}
-**Note:** Only the API-Based communication model will be maintained and enhanced with new capabilities. If you are running the legacy CSI plugin, it is advisable to replace it with the API-Based one.
+**Note:** Only the API-Based communication model is maintained and enhanced with new capabilities. If you are running the legacy CSI plugin, it is advisable to replace it with the API-Based one.
 {% endhint %}
 
 ### Legacy communication model
 
-This model assumes no API connectivity to the Weka cluster. As a result, the functionality provided by the Weka CSI plugin is limited.
+This model assumes no API connectivity to the Weka cluster. As a result, the functionality provided by the Weka CSI Plugin is limited.
 
 {% hint style="info" %}
 **Note:** This section refers to the configuration of the CSI plugin prior to version v0.7.0
 
-Although this configuration is supported in version 0.7.0 and up, the user is encouraged to upgrade any existing deployment of the Weka CSI plugin to the API-based model
+Although this configuration is supported in version 0.7.0 and up, the user is encouraged to upgrade any existing deployment of the Weka CSI Plugin to the API-based model
 {% endhint %}
 
 It is first required to define a storage class to use the Weka CSI Plugin.
@@ -227,7 +227,7 @@ It is possible to define multiple storage classes with different filesystems.
 
 ### API-based communication model
 
-In the API-based model, the API endpoint addresses and authentication credentials must be provided to the Weka CSI plugin in order to establish a REST API connection with the Weka cluster and perform configuration tasks on it.
+In the API-based model, the API endpoint addresses and authentication credentials must be provided to the Weka CSI Plugin in order to establish a REST API connection with the Weka cluster and perform configuration tasks on it.
 
 The information is stored securely in [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/), which is, in turn, referred to by the  Storage Class.
 
@@ -584,6 +584,171 @@ Sun Jul 19 12:50:25 IDT 2020
 Sun Jul 19 12:50:35 IDT 2020
 Sun Jul 19 12:50:45 IDT 2020
 ```
+
+## SELinux support
+
+When installing the Weka CSI Plugin on the SELinux-enabled Kubernetes cluster, pods might be denied access to the persistent volumes provisioned on top of the Weka filesystem. The reason is a lack of permissions for containers to access objects stored on the Weka cluster.
+
+A custom SELinux policy is provided with all the necessary security configurations to enable pod access to WekaFS-based persistent volumes. Apply the customized SELinux policy on each Kubernetes worker node that is intended to serve the WekaFS-based persistent volumes.
+
+The provided policy allows processes with `container_t` seclabel to access objects having a `wekafs_t` label, which is set for all files and directories of mounted CSI volumes.
+
+The policy is provided both as a **Type Enforcement** file (`csi-wekafs.te`) and a **Precompiled Policy** package (`csi-wekafs.pp`), found in [https://github.com/weka/csi-wekafs/tree/master/selinux](https://github.com/weka/csi-wekafs/tree/master/selinux).
+
+To use the Weka CSI Plugin with SELinux enforcement, perform the following:
+
+1. [Install a custom SELinux policy](weka-csi-plugin.md#install-a-custom-selinux-policy)
+2. [Install and configure the Weka CSI Plugin](weka-csi-plugin.md#install-and-configure-the-weka-csi-plugin)
+3. [Test the Weka CSI Plugin operation](weka-csi-plugin.md#test-the-weka-csi-plugin-operation)
+
+### Install a custom SELinux policy <a href="#install-a-custom-selink-p" id="install-a-custom-selink-p"></a>
+
+1. Distribute the SELinux policy package to all Kubernetes nodes using one of the following options:
+   *   Clone Weka CSI Plugin Github repository:
+
+       ```
+       git clone https://github.com/weka/csi-wekafs.git
+       ```
+   * Copy the content of `selinux` directory directly to Kubernetes nodes
+2.  Apply the policy package directly:
+
+    ```
+    $ semodule -i csi-wekafs.pp
+    ```
+
+    Verify that the policy is applied correctly:
+
+    ```
+    $ getsebool -a | grep wekafs
+    container_use_wekafs --> off
+    ```
+
+    If the output matches mentioned above, skip to step 4. Otherwise, proceed to step 3 to build the policy from the sources.
+3.  In certain circumstances, the pre-compiled policy installation could fail. For example, in a different Kernel version or Linux distribution. In this case, build the policy and install it from the source using the following steps:
+
+    ```
+    $ checkmodule -M -m -o csi-wekafs.mod csi-wekafs.te
+    $ semodule_package -o csi-wekafs.pp -m csi-wekafs.mod
+    $ make -f /usr/share/selinux/devel/Makefile csi-wekafs.pp
+    $ semodule -i csi-wekafs.pp
+    ```
+
+    > **NOTE**: For this purpose, the `policycoreutils-devel` package (or its alternative in case of Linux distribution different from the RedHat family) is required.
+
+    Verify that the policy is applied correctly:
+
+    ```
+    $ getsebool -a | grep wekafs
+    container_use_wekafs --> off
+    ```
+4.  The policy provides a boolean setting that allows on-demand enablement of relevant permissions. To enable WekaFS CSI volumes access from pods, run the command:
+
+    ```
+    $ setsebool container_use_wekafs=on
+    ```
+
+    To disable access, perform the command:
+
+    ```
+    $ setsebool container_use_wekafs=off
+    ```
+
+    The configuration changes are applied immediately.
+
+### Install and configure the Weka CSI Plugin <a href="#install-config-csi-plugin" id="install-config-csi-plugin"></a>
+
+1. To label volumes correctly, install the Weka CSI Plugin in an SELinux-compatible mode. To do that, set the `selinuxSupport` value to `"enforced"` or `"mixed”` by editing the file `values.yaml` or passing the parameter directly in the `helm` installation command.
+
+Example:
+
+```
+$ helm install --upgrade csi-wekafsplugin csi-wekafs/csi-wekafsplugin --namespace csi-wekafsplugin --create-namespace --set selinuxSupport=enforced
+```
+
+Follow these considerations:
+
+* Weka CSI pluging supports both the `enforced` and `mixed` modes of `selinuxSupport`. The installation depends on the following mode settings:
+  * When `selinuxSupport` is set to `enforced`, only SELinux-enabled CSI plugin node components are installed.
+  * When `selinuxSupport` is set to `mixed`, both non-SELinux and SELinux-enabled components are installed.
+  * When `selinuxSupport` is set to `off`, only non-SELinux CSI plugin node components are installed.
+*   The SELinux status cannot be known from within the CSI plugin pod. Therefore, a way of distinguishing between SELinux-enabled and non-SELinux nodes is required. Weka CSI plugin relies on the node affinity mechanism by matching the value of a certain node label, in a mutually exclusive way. That is, only when the label exists and is set to `"true"`, an SELinux-enabled node component will start on that node, otherwise non-SELinux node component will start.
+
+    To ensure that the plugin starts in compatibility mode, set the following label on each SELinux-enabled Kubernetes node:&#x20;
+
+```
+csi.weka.io/selinux_enabled="true"
+```
+
+*   If another label stating SELinux support is already maintained on nodes, you can modify the expected label name in the `selinuxNodeLabel` parameter by editing the file `values.yaml` or by setting it directly during the Weka CSI Plugin installation.
+
+    Example:
+
+```
+$ helm install --upgrade csi-wekafsplugin csi-wekafs/csi-wekafsplugin --namespace csi-wekafsplugin --create-namespace --set selinuxSupport=mixed --set selinuxNodeLabel="selinux_enabled"
+```
+
+* If a node label is modified after installing the Weka CSI Plugin node component on that node, terminate the csi-wekafs-node-XXXX component on the affected node. As a result, a replacement pod is automatically scheduled on the node but with the correct SELinux configuration.
+
+### Test the Wa CSI plugin operation <a href="#test-csi-plugin" id="test-csi-plugin"></a>
+
+1. Make sure you have configured a valid CSI API [`secret`](https://github.com/weka/csi-wekafs/blob/master/examples/dynamic\_api/csi-wekafs-api-secret.yaml). Create a valid Weka CSI Plugin [`storageClass`](https://github.com/weka/csi-wekafs/blob/master/examples/dynamic\_api).
+2. Provision a [`PersistentVolumeClaim`](https://github.com/weka/csi-wekafs/blob/master/examples/dynamic\_api/pvc-wekafs-dir-api.yaml).
+3. Provision a [`DaemonSet`](https://github.com/weka/csi-wekafs/blob/master/examples/dynamic\_api/csi-daemonset.app-on-dir-api.yaml), to enable access of all pods on all nodes.
+4.  Monitor the pod logs using the following command (expect no printing in the log files):
+
+    ```
+    $ kubectl logs -f -lapp=csi-daemonset-app-on-dir-api
+    ```
+
+    If the command returns a repeating message like the following one, it is most likely that the node on which the relevant pod is running is misconfigured:
+
+    ```
+    /bin/sh: can't create /data/csi-wekafs-test-api-gldmk.txt: Permission denied
+    ```
+5.  Obtain the node name from the pod:
+
+    ```
+    $ kubectl get pod csi-wekafs-test-api-gldmk -o wide
+    NAME                        READY   STATUS    RESTARTS   AGE   IP            NODE         NOMINATED NODE   READINESS GATES
+    csi-wekafs-test-api-gldmk   1/1     Running   0          98m   10.244.15.2   don-kube-8   <none>           <none>
+    ```
+6.  Connect to the relevant node and check if the Weka CSI SELinux policy is installed and enabled:
+
+    ```
+    $ getsebool -a | grep wekafs
+    container_use_wekafs --> on
+    ```
+
+    * If the result matches the example, proceed to the next step.
+    * If no result, the policy is not installed. Perform the [Install a custom SELinux policy](weka-csi-plugin.md#install-a-custom-selinux-policy) procedure.
+    *   If the policy is off, enable it and check the pod output again by running:
+
+        ```
+        $ setsebool container_use_wekafs=on
+        ```
+7.  Check if the node is labeled with plugin is operating in SELinux-compatible mode by running the following command:
+
+    ```
+    $ kubectl describe node don-kube-8 | grep csi.weka.io/selinux_enabled
+                 csi.weka.io/selinux_enabled=true
+    ```
+
+    *   If the output is empty, proceed to [Install and configure the Weka CSI Plugin](weka-csi-plugin.md#install-and-configure-the-weka-csi-plugin).
+
+        > **NOTE:** If the label was missing and added by you during troubleshooting, the CSI node server component must be restarted on the node.\
+        > Perform the following command to terminate the relevant pod and another instance will start automatically:
+        >
+        > ```
+        > $ POD=$(kubectl get pod -n csi-wekafs -lcomponent=csi-wekafs-node -o wide | grep -w don-kube-8 | cut -d" " -f1)
+        > $ kubectl delete pod -n csi-wekafs $POD
+        > ```
+    * If the output matches example, proceed to next step
+8.  Collect CSI node server logs from the matching Kubernetes nodes and contact Weka Customer Success Team:
+
+    ```
+    $ POD=$(kubectl get pod -n csi-wekafs -lcomponent=csi-wekafs-node -o wide | grep -w don-kube-8 | cut -d" " -f1)
+    $ kubectl logs -n csi-wekafs -c wekafs $POD > log.txt  
+    ```
 
 ## Upgrade legacy persistent volumes for capacity enforcement
 
