@@ -10,7 +10,7 @@ Using the GUI, you can:
 * [Create a snapshot](snapshots.md#create-a-snapshot)
 * [Duplicate a snapshot](snapshots.md#duplicate-a-snapshot)
 * [Delete a snapshot](snapshots.md#delete-a-snapshot)
-* [Restore a snapshot to a filesystem or another snapshot](snapshots.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot)
+* [Restore a snapshot to a filesystem or another snapshot](snapshots.md#restore-a-snapshot)
 * [Update a snapshot](snapshots.md#update-a-snapshot)
 
 ## View snapshots
@@ -93,7 +93,7 @@ When deleting a snapshot, consider the following guidelines:
 
 ![Remove a snapshot](../../.gitbook/assets/wmng\_remove\_snapshot.png)
 
-## Restore a snapshot to a filesystem or another snapshot  <a href="#restore-a-snapshot" id="restore-a-snapshot"></a>
+## Restore a snapshot to a filesystem or another snapshot <a href="#restore-a-snapshot" id="restore-a-snapshot"></a>
 
 Restoring a snapshot to a filesystem or another snapshot (target) modifies the data and metadata of the target.
 
