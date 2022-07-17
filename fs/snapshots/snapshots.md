@@ -8,7 +8,7 @@ Using the GUI, you can:
 
 * [View snapshots](snapshots.md#view-snapshots)
 * [Create a snapshot](snapshots.md#create-a-snapshot)
-* [Duplicate a snapshot](snapshots.md#undefined)
+* [Duplicate a snapshot](snapshots.md#duplicate-a-snapshot)
 * [Delete a snapshot](snapshots.md#delete-a-snapshot)
 * [Restore a snapshot to a filesystem or another snapshot](snapshots.md#restore-a-filesystem-from-a-snapshot)
 * [Update a snapshot](snapshots.md#update-a-snapshot)
