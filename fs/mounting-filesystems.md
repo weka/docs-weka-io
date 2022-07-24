@@ -327,47 +327,58 @@ The filesystem should now be mounted at boot time.
 
 ## Mounting filesystems using autofs
 
-It is possible to mount a Weka filesystem using the `autofs` command.
+**Procedure:**
 
-To get started, install `autofs` on the host:
+1. Install `autofs` on the host using one of the following commands according to your deployment:
+
+* On RedHat or Centos:&#x20;
 
 ```
-# On RedHat/Centos
 yum install -y autofs
 ```
 
+* On Debian or Ubuntu:
+
 ```
-# On Debian/Ubuntu
 apt-get install -y autofs
 ```
 
-Then run the following commands to create the `autofs` configuration files for Weka filesystems:
+2\. To create the `autofs` configuration files for Weka filesystems, do one of the following\
+&#x20;   depending on the client type:
 
-```
-echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
-echo "*   &" > /etc/auto.wekafs
-```
-
-Or run the following commands for stateless clients (which require the backend names as parameters):
+* For a stateless client, run the following commands (specify the backend names as parameters):
 
 ```
 echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
 echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
 ```
 
-Finally, restart the `autofs` service:
+* For a stateful client (traditional), run the following commands:
+
+```
+echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
+echo "*   &" > /etc/auto.wekafs
+```
+
+3\. Restart the `autofs` service:
 
 ```
 service autofs restart
 ```
 
-The configuration is distribution-dependent, and it is necessary to ensure that the service is configured to start automatically after the host is rebooted. To verify that the `autofs` service automatically starts after restarting the server, run the following command: `systemctl is-enabled autofs.` If the output is `enabled` the service is configured to start automatically.
+4\. The configuration is distribution-dependent. Verify that the service is configured to start\
+&#x20;    automatically after restarting the host. Run the following command:\
+&#x20;    `systemctl is-enabled autofs.` \
+&#x20;   If the output is `enabled` the service is configured to start automatically.
 
-In Amazon Linux, for example, `autofs` service can be verified with `chkconfig` command. If the output is `on` for the current _runlevel_ (can be checked with `runlevel` command), `autofs` will be enabled upon reboot.
+{% hint style="info" %}
+**Example:** In Amazon Linux, you can verify that the `autofs` service is configured to start automatically by running the command `chkconfig`. \
+If the output is `on` for the current _runlevel_ (you can check with the`runlevel` command), `autofs` is enabled upon restart.
 
 ```
 # chkconfig | grep autofs
 autofs         0:off 1:off 2:off 3:on 4:on 5:on 6:off
 ```
+{% endhint %}
 
-It is now possible to access Weka filesystems using the`cd /mnt/weka/<fs-name>` command.
+&#x20;Once you complete this procedure, it is possible to access Weka filesystems using the command `cd /mnt/weka/<fs-name>`.
