@@ -32,7 +32,7 @@ The Weka system supports the following snapshot operations:
 * Schedule automatic **** snapshots (see [Snapshot management](../../appendix/snapshot-management.md) **** in the Appendix).
 
 {% hint style="info" %}
-**Note:** The number of snapshots per system is limited to 4,096. The live filesystem consumes one of the total snapshots count.
+**Note:** The number of snapshots per system is limited to 4,096. Each live filesystem consumes one of the total snapshots count.
 {% endhint %}
 
 ****
