@@ -186,5 +186,5 @@ NodeId: 7       HostId: 0      DRIVES         DPDK / RDMA
 ```
 
 {% hint style="info" %}
-**Note:** GPUDirect Storage is auto enabled and dedected by the system. To enable/disable RDMA networking altogether on the cluster or a specific client, contact the Weka support team.
+**Note:** GPUDirect Storage is auto-enabled and detected by the system. To enable/disable RDMA networking altogether on the cluster or a specific client, contact the Weka support team.
 {% endhint %}
