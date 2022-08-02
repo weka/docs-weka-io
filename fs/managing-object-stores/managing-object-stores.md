@@ -35,7 +35,7 @@ Editing the default object store provides you with the following additional adva
 * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
 {% hint style="info" %}
-If using the AWS object store type and the object store role in the EC2 is already set with the access key and secret key, it is not mandatory to set these keys in the Edit Object Store dialog.
+If using the AWS object store type and access from the Weka EC2 instances to the object store is granted by the IAM roles, it is not mandatory to set the access and secret keys in the Edit Object Store dialog.
 {% endhint %}
 
 ![Edit the default-local object store ](<../../.gitbook/assets/wmng\_edit\_default\_obs (1).gif>)
