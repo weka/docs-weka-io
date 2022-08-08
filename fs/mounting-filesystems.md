@@ -109,21 +109,21 @@ Mount options marked as `Remount Supported` in the above table can be remounted 
 
 ### **Additional mount options using the stateless clients feature**
 
-| **Option**                               | **Value**        | **Description**                                                                                                                                                                                                                                                                                                             | **Default**                                                                                                                                                | **Remount Supported** |
-| ---------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| `memory_mb=<memory_mb>`                  | Number           | Amount of memory to be used by the client (for huge pages)                                                                                                                                                                                                                                                                  | 1400 MiB                                                                                                                                                   | Yes                   |
-| `num_cores=<frontend-cores>`             | Number           | <p>The number of frontend cores to allocate for the client.</p><p>Either<code>&#x3C;num_cores></code> or<code>&#x3C;core></code> can be specified, but not both.</p><p>If none are specified, the client will be configured with 1 core. </p><p>If 0 is specified then you must use <code>net=udp</code>.</p>               | 1                                                                                                                                                          | No                    |
-| `core=<core>`                            | Number           | Specify explicit cores to be used by the WekaFS client. Multiple cores can be specified.                                                                                                                                                                                                                                    |                                                                                                                                                            | No                    |
-| `net=<netdev>[/<ip>/<bits>[/<gateway>]]` | String           | <p>This option must be specified for on-premises installation, and <strong>must not be specified for AWS</strong> installations.</p><p>For more info refer to <a href="mounting-filesystems.md#advanced-network-configuration-via-mount-options">Advanced Network Configuration via Mount Options</a> section.</p>          |                                                                                                                                                            | No                    |
-| `bandwidth_mbps=<bandwidth_mbps>`        | Number           | <p>Maximum network bandwidth in Mb/s, which limits the traffic that the container can send.</p><p>The bandwidth setting is helpful in deployments like AWS, where the bandwidth is limited but allowed to burst.</p>                                                                                                        | Auto-select                                                                                                                                                | Yes                   |
-| `remove_after_secs=<secs>`               | Number           | <p>The number of seconds without connectivity after which the client will be removed from the cluster. <br>Minimum value: 60 seconds. </p>                                                                                                                                                                                  | 86,400 seconds (24 hours)                                                                                                                                  | Yes                   |
-| `traces_capacity_mb=<size-in-mb>`        | Number           | <p>Traces capacity limit in MB.</p><p>Minimum value: 512 MB.</p>                                                                                                                                                                                                                                                            |                                                                                                                                                            | No                    |
-| `reserve_1g_hugepages`                   | None             | Controls the page allocation algorithm if to reserve only 2 MB huge pages or also 1 GB ones.                                                                                                                                                                                                                                | Yes                                                                                                                                                        | Yes                   |
-| `readahead_kb=<readahead>`               | Number in KB     | Controls the readahead per mount (higher readahead better for sequential reads of large files).                                                                                                                                                                                                                             | 32768                                                                                                                                                      | Yes                   |
-| `auth_token_path`                        | String           | Path to the mount authentication token (per mount).                                                                                                                                                                                                                                                                         | `~/.weka/auth-token.json`                                                                                                                                  | No                    |
-| `dedicated_mode`                         | `full` or `none` | Determine whether DPKD networking dedicates a core (`full`) or not (`none`). none can only be set when the NIC driver supports it. See [DPDK Without Core Dedication](../overview/networking-in-wekaio.md#dpdk-without-core-dedication) section. This option is relevant when using DPDK networking (`net=udp` is not set). | `full`                                                                                                                                                     | No                    |
-| `qos_preferred_throughput_mbps`          | Number           | Preferred requests rate for QoS in megabytes per second.                                                                                                                                                                                                                                                                    | <p>No limit.<br>The cluster admin can set this default. See <a href="mounting-filesystems.md#set-mount-option-defaults">Set mount option defaults</a>.</p> | Yes                   |
-| `qos_max_throughput_mbps`                | Number           | <p>Maximum requests rate for QoS in megabytes per second.<br>This option allows bursting above the specified limit but aims to keep this limit on average.</p>                                                                                                                                                              | <p>No limit.<br>The cluster admin can set this default. See <a href="mounting-filesystems.md#set-mount-option-defaults">Set mount option defaults</a>.</p> | Yes                   |
+| **Option**                               | **Value**        | **Description**                                                                                                                                                                                                                                                                                                                         | **Default**               | **Remount Supported** |
+| ---------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | --------------------- |
+| `memory_mb=<memory_mb>`                  | Number           | Amount of memory to be used by the client (for huge pages)                                                                                                                                                                                                                                                                              | 1400 MiB                  | Yes                   |
+| `num_cores=<frontend-cores>`             | Number           | <p>The number of frontend cores to allocate for the client.</p><p>Either<code>&#x3C;num_cores></code> or<code>&#x3C;core></code> can be specified, but not both.</p><p>If none are specified, the client will be configured with 1 core. </p><p>If 0 is specified then you must use <code>net=udp</code>.</p>                           | 1                         | No                    |
+| `core=<core>`                            | Number           | Specify explicit cores to be used by the WekaFS client. Multiple cores can be specified.                                                                                                                                                                                                                                                |                           | No                    |
+| `net=<netdev>[/<ip>/<bits>[/<gateway>]]` | String           | <p>This option must be specified for on-premises installation, and <strong>must not be specified for AWS</strong> installations.</p><p>For more info refer to <a href="mounting-filesystems.md#advanced-network-configuration-via-mount-options">Advanced Network Configuration via Mount Options</a> section.</p>                      |                           | No                    |
+| `bandwidth_mbps=<bandwidth_mbps>`        | Number           | <p>Network bandwidth limitation for the entire container, in Mb/s.</p><p>This limitation is for all nodes running within the container, and an attempt is made to detect it automatically based on the environment e.g., when in AWS. Setting a per-node limitation can be performed in the container definition file.</p>              | Auto-select               | Yes                   |
+| `remove_after_secs=<secs>`               | Number           | <p>The number of seconds without connectivity after which the client will be removed from the cluster. <br>Minimum value: 60 seconds. </p>                                                                                                                                                                                              | 86,400 seconds (24 hours) | Yes                   |
+| `traces_capacity_mb=<size-in-mb>`        | Number           | <p>Traces capacity limit in MB.</p><p>Minimum value: 512 MB.</p>                                                                                                                                                                                                                                                                        |                           | No                    |
+| `reserve_1g_hugepages`                   | None             | Controls the page allocation algorithm if to reserve only 2MB huge pages or also 1GB ones                                                                                                                                                                                                                                               | Yes                       | Yes                   |
+| `readahead_kb=<readahead>`               | Number in KB     | Controls the readahead per mount (higher readahead better for sequential reads of large files)                                                                                                                                                                                                                                          | 32768                     | Yes                   |
+| `auth_token_path`                        | String           | Path to the mount authentication token (per mount)                                                                                                                                                                                                                                                                                      | `~/.weka/auth-token.json` | No                    |
+| `dedicated_mode`                         | `full` or `none` | Determine whether DPKD networking dedicates a core (`full`) or not (`none`). none can only be set when the NIC driver supports it, as described in [DPDK Without Core Dedication](../overview/networking-in-wekaio.md#dpdk-without-core-dedication) section. This option is relevant when using DPDK networking (`net=udp` is not set). | `full`                    | No                    |
+| `qos_preferred_throughput_mbps`          | Number           | Preferred requests rate for QoS in megabytes per second.                                                                                                                                                                                                                                                                                | No limit                  | Yes                   |
+| `qos_max_throughput_mbps`                | Number           | Maximum requests rate for QoS in megabytes per second. Note, the allows bursting above that limit, but will aim to keep this limit in average.                                                                                                                                                                                          | No limit                  | Yes                   |
 
 {% hint style="info" %}
 **Note:** These parameters, if not stated otherwise, are only effective on the first mount command for each client.
@@ -146,7 +146,7 @@ Running this command will use [UDP mode ](../overview/networking-in-wekaio.md#ud
 {% endhint %}
 
 {% hint style="success" %}
-**Example: AWS Installations**
+**For Example: AWS Installations**
 
 `mount -t wekafs -o num_cores=2 backend1,backend2,backend3/my_fs /mnt/weka`
 
@@ -157,7 +157,7 @@ For stateless clients, the first `mount` command installs the weka client softwa
 
 It is now possible to access Weka filesystems via the mount-point, e.g., by `cd /mnt/weka/` command.
 
-After the execution of an`umount` command, which unmounts the last Weka filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores, and networking parameters again.
+After the execution of an`umount` command which unmounts the last Weka filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores, and networking parameters again.
 
 {% hint style="info" %}
 **Note:** When running in AWS, the instance IAM role is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](../install/aws/cloudformation.md#iam-role-created-in-the-template).
@@ -170,33 +170,6 @@ After the execution of an`umount` command, which unmounts the last Weka filesyst
 ### Remount of stateless clients options
 
 Mount options marked as `Remount Supported` in the above table can be remounted (using `mount -o remount`). When a mount option is not set in the remount operation, it will retain its current value. To set a mount option back to its default value, use the `default` modifier (e.g., `memory_mb=default)`.
-
-### Set mount option default values
-
-The defaults of the mount options `qos_max_throughput_mbps` and `qos_preferred_throughput_mbps` have no limit.
-
-The cluster admin can set these default values to meet the organization's requirements, reset to the initial default values (no limit), or show the existing values.
-
-The mount option defaults are only relevant for new mounts performed and do not influence the existing ones.
-
-**Commands:**
-
-`weka cluster mount-defaults set`
-
-`weka cluster mount-defaults reset`
-
-`weka cluster mount-defaults show`
-
-To set the mount option default values, run the following command:
-
-`weka cluster mount-defaults set [--qos-max-throughput qos-max-throughput] [--qos-preferred-throughput qos-preferred-throughput]`
-
-**Parameters**
-
-| **Option**                 | **Value** | **Description**                                                                                                                              |
-| -------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `qos_max_throughput`       | Number    | Sets the default value for the `qos_max_throughput_mbps` option, which is the max requests rate for QoS in megabytes per second.             |
-| `qos_preferred_throughput` | Number    | Sets the default value for the `qos_preferred_throughput_mbps` option, which is the preferred requests rate for QoS in megabytes per second. |
 
 ## Advanced network configuration by mount options
 
@@ -327,58 +300,47 @@ The filesystem should now be mounted at boot time.
 
 ## Mounting filesystems using autofs
 
-**Procedure:**
+It is possible to mount a Weka filesystem using the `autofs` command.
 
-1. Install `autofs` on the host using one of the following commands according to your deployment:
-
-* On RedHat or Centos:&#x20;
+To get started, install `autofs` on the host:
 
 ```
+# On RedHat/Centos
 yum install -y autofs
 ```
 
-* On Debian or Ubuntu:
-
 ```
+# On Debian/Ubuntu
 apt-get install -y autofs
 ```
 
-2\. To create the `autofs` configuration files for Weka filesystems, do one of the following\
-&#x20;   depending on the client type:
-
-* For a stateless client, run the following commands (specify the backend names as parameters):
-
-```
-echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
-echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
-```
-
-* For a stateful client (traditional), run the following commands:
+Then run the following commands to create the `autofs` configuration files for Weka filesystems:
 
 ```
 echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
 echo "*   &" > /etc/auto.wekafs
 ```
 
-3\. Restart the `autofs` service:
+Or run the following commands for stateless clients (which require the backend names as parameters):
+
+```
+echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
+echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
+```
+
+Finally, restart the `autofs` service:
 
 ```
 service autofs restart
 ```
 
-4\. The configuration is distribution-dependent. Verify that the service is configured to start\
-&#x20;    automatically after restarting the host. Run the following command:\
-&#x20;    `systemctl is-enabled autofs.` \
-&#x20;   If the output is `enabled` the service is configured to start automatically.
+The configuration is distribution-dependent, and it is necessary to ensure that the service is configured to start automatically after the host is rebooted. To verify that the `autofs` service automatically starts after restarting the server, run the following command: `systemctl is-enabled autofs.` If the output is `enabled` the service is configured to start automatically.
 
-{% hint style="info" %}
-**Example:** In Amazon Linux, you can verify that the `autofs` service is configured to start automatically by running the command `chkconfig`. \
-If the output is `on` for the current _runlevel_ (you can check with the`runlevel` command), `autofs` is enabled upon restart.
+In Amazon Linux, for example, `autofs` service can be verified with `chkconfig` command. If the output is `on` for the current _runlevel_ (can be checked with `runlevel` command), `autofs` will be enabled upon reboot.
 
 ```
 # chkconfig | grep autofs
 autofs         0:off 1:off 2:off 3:on 4:on 5:on 6:off
 ```
-{% endhint %}
 
-&#x20;Once you complete this procedure, it is possible to access Weka filesystems using the command `cd /mnt/weka/<fs-name>`.
+It is now possible to access Weka filesystems using the`cd /mnt/weka/<fs-name>` command.

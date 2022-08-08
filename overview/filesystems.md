@@ -8,94 +8,111 @@ description: >-
 
 ## About filesystems
 
-A Weka filesystem is similar to a regular on-disk filesystem, with the key difference that it's distributed across all the hosts in the cluster. Consequently, in the Weka system, filesystems are not associated with any physical object and are therefore nothing but a root directory with space limitations.
+A Weka filesystem is similar to a regular on-disk filesystem while distributed across all the hosts in the cluster. Consequently, filesystems are not associated with any physical object in the Weka system and act as root directories with space limitations.
 
-A total of up to 1024 filesystems are supported, all of which are equally and perfectly balanced on all SSDs and CPU cores assigned to the Weka system. This means that the allocation of a new filesystem, or the resizing of a filesystem, are instant management operations that are performed instantly, and without any constraints.
+The system supports a total of up to 1024 filesystems. All of which are equally balanced on all SSDs and CPU cores assigned to the system. This means that the allocation of a new filesystem or resizing a filesystem are instant management operations performed without any constraints.
 
-{% hint style="info" %}
-**Note:** A [filesystem group](filesystems.md#about-filesystem-groups) has to be created before creating a filesystem, and every filesystem must belong to one filesystem group.
-{% endhint %}
-
-A filesystem must have a defined capacity limit. A filesystem that belongs to a tiered [filesystem group](filesystems.md#about-filesystem-groups) must have a total capacity limit and an SSD capacity limit. The total (base) SSD capacity of all filesystems cannot exceed the total SSD capacity as defined in the total SSD net capacity.&#x20;
+A filesystem has a defined capacity limit and is associated with a predefined filesystem group. A filesystem that belongs to a tiered filesystem group must have a total capacity limit and an SSD capacity cap. All filesystems' available SSD capacity cannot exceed the total SSD net capacity.
 
 ### Thin provisioning
 
-While a filesystem must have a minimum allocated SSD size, on top of that, filesystems can have an additional SSD capacity cap. The total can exceed the total SSD net capacity and be dynamically allocated between the different thin-provisioned filesystems.&#x20;
+Thin provisioning is a method of on-demand SSD capacity allocation based on user requirements. In thin provisioning, the filesystem capacity is defined by a minimum guaranteed capacity and a maximum capacity (virtually can be more than the vailable SSD capacity).
 
-Thin provisioning  can help in various use cases:
+The system allocates more capacity (up to the total available SSD capacity) for users who consume their allocated minimum capacity. Alternatively, when they free up space by deleting files or transferring data, the idle space is reclaimed, repurposed, and used for other workloads that need the SSD capacity.
 
-* On tiered filesystems, available SSD space will be leveraged for extra performance and released to the object-store once needed by other filesystems.
-* When using auto-scaling groups, using thin provisioning can help to automatically expand and shrink the filesystem's SSD capacity for extra performance.&#x20;
-* Thin provisioning can be used for the logical separation of projects to filesystems when the administrator doesn't expect all to be fully utilized at the same time. Thin provisioned filesystems can replace the using the same filesystem with different directories with quotas and provide better data separation, management, and access control.
+Thin provisioning is beneficial in various use cases:
+
+* **Tiered filesystems:** On tiered filesystems, available SSD capacity is leveraged for extra performance and released to the object store once needed by other filesystems.
+* **Auto-scaling groups:** When using auto-scaling groups, thin provisioning can help to automatically expand and shrink the filesystem's SSD capacity for extra performance.
+* **Separation of projects to filesystems:** If it is required to create a separate filesystem for each project, and the administrator doesn't expect all filesystems to be fully utilized simultaneously, creating a thin provisioned filesystem for each project is a good solution. Each filesystem is allocated with a minimum capacity but can consume more when needed based on the actual available SSD capacity.
 
 ### Filesystem limits
 
-* Up to 6.4 trillion (6.4 \* 10^12) files/directories
-* Up to 6.4 billion (6.4 \* 10^9) files in a single directory
-* Up to 14 EB (using and object-store) with up to 512 PB on SSD
-* UP to 4 PB file size
+* **Number of files or directories:** Up to 6.4 trillion (6.4 \* 10^12)
+* **Number of files in a single directory:** Up to 6.4 billion (6.4 \* 10^9)
+* **Total capacity with object store:** Up to 14 EB&#x20;
+* **Total SSD capacity:** Up to 512 PB&#x20;
+* **File size:** UP to 4 PB
 
 ### Encrypted filesystems
 
-Both data at rest (residing on SSD and object store) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when [creating the filesystem](../fs/managing-filesystems/#adding-a-filesystem).
+Both data at rest (residing on SSD and object store) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when creating the filesystem.
 
-For proper security, a KMS (Key Management System) must be used when creating encrypted filesystems. See [KMS Management](../fs/kms-management/) for more information about KMS support in the Weka system.
+To create encrypted filesystems, deploy a Key Management System (KMS).
 
 {% hint style="info" %}
-**Note:** Setting data encryption (on/off) can only be done when creating a filesystem.
+**Note:** You can only set the data encryption when creating a filesystem.
 {% endhint %}
+
+**Related topics**
+
+[kms-management](../fs/kms-management/ "mention")
 
 ### Metadata limitations
 
-In addition to the capacity limitation, each filesystem also has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to the Weka system, as well as the [RAM resources](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning) allocated to the Weka system processes. The Weka system will keep tracking of metadata units in RAM, and if it reaches the RAM limit, it will page these metadata tracking units to the SSD (and alert). This leaves enough time for the administrator to increase system resources, as the system keeps serving IOs with a minimal performance impact.
+In addition to the capacity limitation, each filesystem has a limitation on the amount of metadata. The system-wide metadata limit is determined by the SSD capacity allocated to the Weka system and the RAM resources allocated to the Weka system processes.
 
-By default, the metadata limit associated with a filesystem is proportional to the filesystem SSD size. It is possible to override this default by defining a filesystem-specific max-files parameter. The filesystem limit is a logical limit to control the specific filesystem usage, and can always be updated by the administrator when necessary.
+The Weka system keeps tracking metadata units in the RAM. If it reaches the RAM limit, it pages these metadata tracking units to the SSD and alerts. This leaves enough time for the administrator to increase system resources, as the system keeps serving IOs with a minimal performance impact.
 
-The total limits of the metadata for all the filesystems can exceed the total system metadata information that can fit in RAM. For minimal impact, in such a case, the least-recently-used units will be paged to disk, as necessary.
+By default, the metadata limit associated with a filesystem is proportional to the filesystem SSD size. It is possible to override this default by defining a filesystem-specific max-files parameter. The filesystem limit is a logical limit to control the specific filesystem usage and can be updated by the administrator when necessary.
 
-### Metadata calculations
+The total metadata limits for all the filesystems can exceed the entire system metadata information that can fit in the RAM. For minimal impact, in such a case, the least-recently-used units are paged to disk, as necessary.
 
-Each metadata unit consumes 4KB of space.
+#### Metadata units calculation <a href="#metadata-calculations" id="metadata-calculations"></a>
 
-Throughout this documentation, the metadata limitation per filesystem is referred to as a parameter named `max-files` , which describes the number of metadata units, and not the number of files. This parameter encapsulates both the file count and the file sizes, as follows:
+Each metadata unit consumes 4 KB of SSD space (not tiered) and 20 bytes of RAM.
 
-* Each file requires two metadata units.
-* If a file exceeds 0.5 MB, an additional metadata unit is required.
-* For each additional 1 MB over the first MB, an additional metadata unit is required.
+Throughout this documentation, the metadata limitation per filesystem is referred to as the `max-files`parameter, which specifies the number of metadata units (not the number of files). This parameter encapsulates both the file count and the file sizes.
 
-The definitions above apply to files residing on SSDs or object stores.
+The following table specifies the required number of metadata units according to the file size. These specifications apply to files residing on SSDs or tiered to object stores.
 
-{% hint style="success" %}
-**Examples:**
+| File size     | Number of metadata units                                      | Example                                                                                                                                                                                                                                                                                                                                      |
+| ------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| < 0.5 MB      | 1                                                             | A filesystem with 1 billion files of 64 KB each requires 1 billion metadata units.                                                                                                                                                                                                                                                           |
+| 0.5 MB - 1 MB | 2                                                             | A filesystem with 1 million files of 750 KB each, requires 2 million metadata units.                                                                                                                                                                                                                                                         |
+| > 1 MB        | <p>2 for the first 1 MB plus<br>1 per MB for the rest MBs</p> | <ul><li>A filesystem with 1 million files of 129 MB each requires 130 million metadata units.<br>2 units for the first 1 MB plus 1 unit per MB for 128 MB.</li><li>A filesystem with 10 million files of 1.5 MB each requires 30 million units.</li><li>A filesystem with 10 million files of 3 MB each requires 40 million units.</li></ul> |
 
-* For a filesystem with potentially 1,000,000,000 files of 64 KB in size,  2,000,000,000 metadata units are required.
-* For a filesystem with potentially 1,000,000 files of 128 MB in size, 130,000,000 metadata units are required.
-* For a filesystem with 1,000,000 files of 750 KB in size, 3,000,000 metadata units are required.
+{% hint style="info" %}
+Each directory requires two metadata units instead of one for a small file.
 {% endhint %}
+
+****
+
+**Related topics**
+
+[#memory-resource-planning](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning "mention")
 
 ## About object stores
 
-In the Weka system, object stores represent an optional external storage media, ideal for the storage of warm data. Object stores used in tiered Weka system configurations can be cloud-based, located in the same location, or at a remote location. Weka supports object stores for tiering (tiering and local snapshots) and backup (snapshots only), and both can be used for the same filesystem.
+In the Weka system, object stores represent an optional external storage media, ideal for storing warm data. Object stores used in tiered Weka system configurations can be cloud-based, located in the same location (local), or at a remote location.
 
-Object stores are optimally used when a cost-effective data storage tier is required at a price point that cannot be satisfied by server-based SSDs. An object store definition contains the object store DNS name, bucket identifier, and access credentials. The bucket must be dedicated to the Weka system and must not be accessible by other applications. However, a single object store bucket may serve different filesystems and multiple Weka systems.
+Weka supports object stores for tiering (tiering and local snapshots) and backup (snapshots only). Both tiering and backup can be used for the same filesystem.
 
-Filesystem connectivity to object stores can be used in both the data lifecycle management and Snap to Object features. It is possible to define three object-store buckets for a filesystem, two of them for tiering (out of which only one bucket can be writable) and one for backup only. In such cases, the Weka system will search for relevant data in both the SSD and the readable and writable object stores. This allows a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
+Using object store buckets optimally is achieved when a cost-effective data storage tier is required at a price point that cannot be satisfied by server-based SSDs.
 
-The Weka system supports up to three different object store buckets per filesystem. While object stores can be shared between filesystems, when possible, it is recommended to create and attach a separate object store bucket per filesystem.
+An object store bucket definition contains the object store DNS name, bucket identifier, and access credentials. The bucket must be dedicated to the Weka system and not be accessible by other applications.
 
-## About filesystem groups
-
-In the Weka system, filesystems are grouped into up to 8 filesystem groups.
-
-Each filesystem group has tiering control parameters. While tiered filesystems have their own object store, the tiering policy will be the same for each tiered filesystem under the same filesystem group.
+Filesystem connectivity to object store buckets can be used in the data lifecycle management and Snap-to-Object features.
 
 
 
 **Related topics**
 
+****[managing-object-stores](../fs/managing-object-stores/ "mention")****
+
 ****[data-storage.md](data-storage.md "mention")****
 
-[managing-filesystem-groups](../fs/managing-filesystem-groups/ "mention")
-
 [snap-to-obj](../fs/snap-to-obj/ "mention")
+
+## **About f**ilesystem groups
+
+In the Weka system, filesystems are grouped into a maximum of eight filesystem groups.
+
+Each filesystem group has tiering control parameters. While tiered filesystems have their object store, the tiering policy is the same for each tiered filesystem under the same filesystem group.
+
+
+
+**Related topics**
+
+[managing-filesystem-groups](../fs/managing-filesystem-groups/ "mention")
 

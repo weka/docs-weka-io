@@ -60,8 +60,11 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 
 ![Tiering](../../.gitbook/assets/wmng\_fs\_tiering.png)
 
-5\. Optional: If [Thin Provision](managing-filesystems-1.md#add-a-filesystem-when-thin-provisioning-is-used) is required, select the toggle button, and set the minimum \
-&#x20;   and the maximum capacity of the SSD to use for thin provisioning.
+5\. Optional: If Thin Provision is required, select the toggle button, and set the minimum \
+&#x20;   capacity (guaranteed) and the maximum capacity for the thin provisioned filesystem.\
+&#x20;   The minimum capacity must be less or equal to the available SSD capacity.\
+&#x20;   You can set any maximum capacity, but the available capacity depends on the actual free space\
+&#x20;   of the SSD capacity.&#x20;
 
 ![Thin provisioning](../../.gitbook/assets/wmng\_fs\_thin\_provisioning.png)
 

@@ -22,7 +22,7 @@ Editing the default object store provides you with the following additional adva
 
 * Set restrictions on downloads from a remote object store.\
   For on-premises systems where the remote bucket is in the cloud, to reduce the cost, you set a very low bandwidth for downloading from a remote bucket.
-* Ease of adding new buckets.r\
+* Ease of adding new buckets.\
   You can set the connection parameters on the object store level and, if not specified differently, automatically use the default settings for the buckets you add.
 
 **Procedure**

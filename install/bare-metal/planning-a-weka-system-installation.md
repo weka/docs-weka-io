@@ -44,53 +44,62 @@ SSD resource planning involves how the defined capacity is going to be implement
 **Note:** For on-premises planning, it is possible to consult with the Weka Support Team in order to map between performance requirements and the recommended Weka system configuration.
 {% endhint %}
 
-## Memory resource planning
+## Memory resource planning <a href="#memory-resource-planning" id="memory-resource-planning"></a>
 
-### Backend hosts
+### Backend hosts memory requirements
 
 The total per host memory requirements is the sum of the following requirements:
 
-| **Type**                      | **Per host memory**                                                                                          |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Fixed                         | 2.3 GB                                                                                                       |
-| Core-based                    | <p>2.3 GB for each Frontend core</p><p>3.3 GB for each Compute core</p><p>2.3 GB for each Drive/SSD core</p> |
-| SSD-based                     | _HostSSDSize/10KB_                                                                                           |
-| Capacity requirement          | See below                                                                                                    |
-| Reserved for Operating System | The maximum between 8 GB and 2% from the total RAM                                                           |
-| Reserved for SMB/NFS services | 8 GB                                                                                                         |
-| Reserved for RDMA             | 2 GB                                                                                                         |
+| **Purpose**                       | **Per host memory**                                                                                                                              |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Fixed                             | 2.3 GB                                                                                                                                           |
+| Frontend cores                    | 2.3 GB x # of Frontend cores                                                                                                                     |
+| Compute cores                     | 3.3 GB x # of Compute cores                                                                                                                      |
+| Drive cores                       | 2.3 GB x # of Drive cores                                                                                                                        |
+| SSD capacity management           | <p><em>HostSSDSize/10,000</em><br><em>(HostSSDSize = Total SSD raw capacity / # of hosts)</em></p>                                               |
+| Operating System                  | The maximum between 8 GB and 2% from the total RAM                                                                                               |
+| Additional protocols (NFS/SMB/S3) | 8 GB                                                                                                                                             |
+| RDMA                              | 2 GB                                                                                                                                             |
+| Metadata (pointers)               | <p>20 Bytes x # Metadata units per host<br>See <a href="../../overview/filesystems.md#metadata-calculations">Metadata units calculation</a>.</p> |
 
-#### Capacity requirement memory
+#### Example 1: A system with large files
 
-On a dedicated host, all memory left after the reductions above is used for capacity. Otherwise, by default, `weka host memory` is set to 1.4 GB per compute-core, out of which 0.4 GB is used for the capacity requirement memory. If the default capacity requirement memory is not big enough to satisfy the total size of the filesystems, the least used metadata units will be paged to disk, as described in [metadata limitations](../../overview/filesystems.md#metadata-limitations). If more RAM is desired for metadata, the [memory allocation command](using-cli.md#stage-9-configuration-of-memory-optional) must be performed in the install process. Having sufficient system memory is not enough.
+A system with 16 hosts with the following details:
 
-The per-host capacity requirement is calculated with the following formula:
+* Number of Frontend cores: 1&#x20;
+* Number of Compute cores: 13
+* Number of Drive cores: 6
+* Total raw capacity: 983 TB
+* Total net capacity: 725 TB
+* NFS/SMB services
+* RDMA
+* Average file size: 1 MB (potentially up to 755 million files for all hosts; \~47 million files per host)
 
-![](<../../.gitbook/assets/Formula 1 21\_5\_18.jpg>)
+Calculations:
+
+* Frontend cores:   1    x 2.3 = 2.3 GB
+* Compute cores:   13 x 3.3 = 33.9 GB
+* Drive cores:         6   x 2.3 = 13.8 GB
+* SSD capacity management:    983 TB / 16 / 10K = \~6.3 GB
+* Metadata:                                 20 Bytes x 47 million files x 2 units = \~1.9 GB
+
+Total memory requirement per host = 2.3 + 2.3 + 33.9 + 13.8 + 6.3 + 8 + 2 + 1.9 = \~71 GB
+
+#### Example 2: A system with small files
+
+For the same system as in example 1, but with smaller files, the required memory for metadata would be larger.
+
+For an average file size of 64 KB, the number of files is potentially up to \~12 billion files for all hosts; \~980 million files per host.
+
+Required memory for metadata: 20 Bytes x 980 million files x 1 unit = \~19.6 GB
+
+Total memory requirement per host = 2.3 + 2.3 + 33.9 + 13.8 + 6.3 + 8 + 2 + 19.6 = \~88 GB
 
 {% hint style="info" %}
-**Note:** System capacity/average file size is the number of files that can be used accordingly.
+**Note:** The memory requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to receive an estimate for your specific configuration.
 {% endhint %}
 
-{% hint style="success" %}
-**Example:** 12 hosts, 10 Weka system cores per host (6 for compute, 4 for SSDs), 100 TB SSD system with 512 TB total system capacity (with object store), average file size 64 KB.
-{% endhint %}
-
-The capacity requirement for the host will be calculated according to the following formula:
-
-![](<../../.gitbook/assets/3.7 Memory capacity example.png>)
-
-Consequently, the overall requirement per host is: 4.6 + 6 \* 3.3 + 4\*2.3 + (100TB/10KB)/12 + 6.3 +8 +8 = 56.73 GB
-
-{% hint style="info" %}
-**Note:** The capacity requirement is according to the total size of all filesystems, including both SSDs and object stores.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** These capacity requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the Weka Support Team to receive an estimate for your specific configuration.
-{% endhint %}
-
-### Client hosts
+### Client hosts memory requirements
 
 The Weka software on a client host requires 4 GB of additional memory.
 
