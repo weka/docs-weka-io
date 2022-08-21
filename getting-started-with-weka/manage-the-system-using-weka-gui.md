@@ -68,12 +68,12 @@ Make sure that port 14000 is open in the firewall of your organization.
 The system dashboard opens.
 
 {% hint style="info" %}
-The initial default username and password are _admin_ and _admin_[.](../usage/security/user-management.md) In the first sign-in, Weka GUI enforces changing the admin password.
+The initial default username and password are _admin_ and _admin_[.](../usage/user-management/) In the first sign-in, Weka GUI enforces changing the admin password.
 {% endhint %}
 
 **Related topics**
 
-[user-management.md](../usage/security/user-management.md "mention")
+[user-management](../usage/user-management/ "mention")
 
 ## System Dashboard&#x20;
 

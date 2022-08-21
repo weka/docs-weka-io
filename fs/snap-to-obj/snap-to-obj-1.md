@@ -58,7 +58,7 @@ The `locator` can be a locator saved previously for disaster scenarios, or you c
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** For encrypted filesystem, when downloading, you must use the same KMS master key to decrypt the snapshot data. For more information, see the [KMS Management](../kms-management/#overview) section.
+**Note:** For encrypted filesystem, when downloading, you must use the same KMS master key to decrypt the snapshot data. For more information, see the [KMS Management](../../usage/security/kms-management/#overview) section.
 {% endhint %}
 
 ## Manage incremental snapshots

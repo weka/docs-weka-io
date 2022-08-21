@@ -4,15 +4,15 @@ description: >-
   management.
 ---
 
-# Manage security
+# Security management
 
 General security considerations are described below.
 
 **Related topics**
 
-* For data security features, such as encryption by KMS, see [KMS Management](../../fs/kms-management/).
-* For security topics related to mounting and separation of organizations, see [Organizations](organizations/).
-* For the different user roles and AD/LDAP authentication, see [User Management](user-management.md).
+* For data security features, such as encryption by KMS, see [KMS Management](kms-management/).
+* For security topics related to mounting and separation of organizations, see [Organizations](../organizations/).
+* For the different user roles and AD/LDAP authentication, see [User Management](../user-management/).
 
 ## Obtain authentication tokens
 
@@ -84,7 +84,7 @@ If a different CA is required for Weka servers to establish trust, install this 
 * a lowercase letter
 * a number or a special character
 
-The [First User ](user-management.md#first-user-cluster-admin)created by default is admin (with `admin` password), and the password is prompt to change on the first login.
+The [First User ](../user-management/#first-user-cluster-admin)created by default is admin (with `admin` password), and the password is prompt to change on the first login.
 
 ### Account lockout
 
@@ -98,46 +98,5 @@ You can control the default values by using the CLI commands:
 
 You can access the Weka GUI only from the backend servers through port 14000. The GUI session is automatically terminated, and the user is signed out after 30 minutes of inactivity.
 
-### Manage the login banner using the GUI
 
-You can set a login banner containing a security statement or a legal message displayed on the sign-in page. You can also disable, edit, or reset the login banner.
-
-![Sign in page with a banner example](../../.gitbook/assets/wmng\_login\_banner\_sign-in-page.png)
-
-**Procedure**
-
-1. From the menu, select **Configure > Cluster Settings**.
-2. From the Cluster Settings pane, select **Login banner**.
-
-![Login Banner](../../.gitbook/assets/wmng\_login\_banner\_set.png)
-
-3\. Select **Edit Banner**.
-
-![Write the login banner statement](../../.gitbook/assets/wmng\_login\_banner\_edit.png)
-
-4\. In the Edit Login Banner, write your organization statement in the banner text box.
-
-5\. Select **Save**.
-
-6\. To prevent displaying the login banner, select **Disable Login Banner**.
-
-7\. To clear the banner text, select **Reset Banner.**
-
-### Manage the login banner using the CLI
-
-To manage the login banner, use the following CLI command:
-
-`weka security login-banner set|show|reset|enable|disable`
-
-**Command options:**
-
-`set:` Sets the login banner text.
-
-`show`: Displays the login banner text.
-
-`reset`: Clears the login banner text.
-
-`enable`: Displays the login banner when accessing the cluster.
-
-`disable:` Prevents displaying the login banner when accessing the cluster.
 

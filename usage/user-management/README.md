@@ -12,8 +12,8 @@ Access to a Weka system cluster is controlled by creating, modifying, and deleti
 
 Every Weka system user has one of the following defined roles:
 
-* **Cluster Admin**: A user with additional privileges. See [Cluster Admin Role Privileges](user-management.md#cluster-admin-role-privileges).
-* **Organization Admin**: A user with additional privileges within an organization. This role is relevant when working with different organizations. See [Organization Admin Role Privileges](organizations/#organization-admin-role-privileges).
+* **Cluster Admin**: A user with additional privileges. See [Cluster Admin Role Privileges](./#cluster-admin-role-privileges).
+* **Organization Admin**: A user with additional privileges within an organization. This role is relevant when working with different organizations. See [Organization Admin Role Privileges](../organizations/#organization-admin-role-privileges).
 * **Read-only:** A user with read-only privileges.
 * **S3:** A user to run S3 commands and APIs. This user can operate within the limits of the S3 IAM policy attached to it. An S3 user can create S3 service accounts with a specific policy.
 * **Regular**: A user that is only used for mounting filesystems. This user can sign in to obtain an access token and change the password but cannot access the GUI or run other CLI/API commands.
@@ -46,6 +46,6 @@ Additionally, the following restrictions apply to Cluster Admin users to avoid s
 
 **Related topics**
 
-****[user-management.md](user-management/user-management.md "mention")****
+****[user-management.md](user-management.md "mention")****
 
-****[user-management-1.md](user-management/user-management-1.md "mention")****
+****[user-management-1.md](user-management-1.md "mention")****

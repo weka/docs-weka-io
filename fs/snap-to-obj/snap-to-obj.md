@@ -55,7 +55,7 @@ You can create a filesystem from an uploaded snapshot, for example, when you nee
 When creating a filesystem from a snapshot, adhere to the following guidelines:
 
 * **Pay attention to upload and download costs**: Due to the bandwidth characteristics and potential costs when interacting with remote object stores it is not allowed to download a filesystem from a remote object store bucket. If a snapshot on a local object store bucket exists, it is advisable to use that one, otherwise, follow the procedure in the [Recover from a remote snapshot](snap-to-obj.md#recover-from-a-remote-snapshot) topic.
-* **Use the same KMS master key**: For an encrypted filesystem, to decrypt the snapshot data, use the same KMS master key as used in the encrypted filesystem. See the [KMS Management Overview](../kms-management/#overview) topic.
+* **Use the same KMS master key**: For an encrypted filesystem, to decrypt the snapshot data, use the same KMS master key as used in the encrypted filesystem. See the [KMS Management Overview](../../usage/security/kms-management/#overview) topic.
 
 **Before you begin**
 

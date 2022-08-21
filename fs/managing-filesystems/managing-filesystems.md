@@ -81,7 +81,7 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 
 ****[managing-object-stores](../managing-object-stores/ "mention")****
 
-[kms-management](../kms-management/ "mention")
+[kms-management](../../usage/security/kms-management/ "mention")
 
 ## Edit a filesystem
 
