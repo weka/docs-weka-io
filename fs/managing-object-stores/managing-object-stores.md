@@ -6,13 +6,13 @@ description: This page describes how to view and manage object stores using the 
 
 Using the GUI, you can perform the following actions:
 
-* [Edit the default object stores](managing-object-stores.md#undefined)
-* [View object store buckets](managing-object-stores.md#view-object-store-buckets-using-the-gui)
-* [Add an object store bucket](managing-object-stores.md#add-an-object-store-bucket-using-the-gui)
-* [Edit an object store bucket](managing-object-stores.md#edit-an-object-store-bucket-using-the-gui)
+* [Edit the default object stores](managing-object-stores.md#edit-the-default-object-stores)
+* [View object store buckets](managing-object-stores.md#view-object-store-buckets)
+* [Add an object store bucket](managing-object-stores.md#add-an-object-store-bucket)
+* [Edit an object store bucket](managing-object-stores.md#edit-an-object-store-bucket)
 * [Delete an object store bucket](managing-object-stores.md#delete-an-object-store-bucket)
 
-## Edit the default object stores
+## Edit the default object stores <a href="#edit-the-default-object-stores" id="edit-the-default-object-stores"></a>
 
 Object store buckets can reside in different physical object stores. To achieve good QoS between the buckets, Weka requires to map the buckets to the physical object store.
 
@@ -40,7 +40,7 @@ If using the AWS object store type and access from the Weka EC2 instances to the
 
 ![Edit the default-local object store ](<../../.gitbook/assets/wmng\_edit\_default\_obs (1).gif>)
 
-## View object store buckets
+## View object store buckets <a href="#view-object-store-buckets" id="view-object-store-buckets"></a>
 
 The object store buckets are displayed on the **Object Stores** page. Each object store indicates the status, bucket name, protocol (HTTP/HTTPS), port, region, object store location (local or remote), authentication method, and error information (if exists).
 
@@ -52,7 +52,7 @@ The following example shows two object store buckets.
 
 ![View object store buckets](../../.gitbook/assets/wmng\_view\_obs\_buckets.png)
 
-## Add an object store bucket
+## Add an object store bucket <a href="#add-an-object-store-bucket" id="add-an-object-store-bucket"></a>
 
 Add object store buckets to be used for tiering or snapshots.
 
@@ -91,7 +91,7 @@ Add object store buckets to be used for tiering or snapshots.
 If an error message about the object store bucket configuration appears, to save the configuration, select **Create Anyway**.
 {% endhint %}
 
-## Edit an object store bucket
+## Edit an object store bucket <a href="#edit-an-object-store-bucket" id="edit-an-object-store-bucket"></a>
 
 You can modify the object store bucket parameters according to your demand changes over time.
 
