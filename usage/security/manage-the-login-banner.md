@@ -4,6 +4,10 @@ description: This page describes how to set a login banner displayed on the sign
 
 # Manage the login banner
 
+The login banner provides a security statement or a legal message displayed on the sign-in page displayed on the GUI. The statement can be a definitive warning to any possible intruders that may want to access your system that certain types of activity are illegal, but at the same time, it also advises the authorized and legitimate users of their obligations relating to acceptable use of the system.
+
+You can manage the login banner using the GUI or the CLI.
+
 ## Manage the login banner using the GUI
 
 You can set a login banner containing a security statement or a legal message displayed on the sign-in page. You can also disable, edit, or reset the login banner.
