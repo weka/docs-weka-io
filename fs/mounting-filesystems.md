@@ -105,7 +105,7 @@ Each mount option can be passed with an individual `-o` flag to `mount.`
 
 ### Remount of General Options
 
-Mount options marked as `Remount Supported` in the above table can be remounted (using `mount -o remount`). When a mount option has been explicitly changed previously, it should be set again in the remount operation to make sure it retains its value. For example, if you mounted with `ro`, a remount without it will default to `rw`, while if you mounted with `rw`, it  is not required to be re-specified since this is the default).&#x20;
+Mount options marked as `Remount Supported` in the above table can be remounted (using `mount -o remount`). When a mount option has been explicitly changed previously, it should be set again in the remount operation to make sure it retains its value. For example, if you mounted with `ro`, a remount without it will default to `rw`, while if you mounted with `rw`, it is not required to be re-specified since this is the default).&#x20;
 
 ### **Additional Mount Options Available using the Stateless Clients Feature**
 
@@ -122,6 +122,8 @@ Mount options marked as `Remount Supported` in the above table can be remounted 
 | `readahead_kb=<readahead>`               | Number in KB     | Controls the readahead per mount (higher readahead better for sequential reads of large files)                                                                                                                                                                                                                                          | 32768                     | Yes                   |
 | `auth_token`                             | String           | Path to the mount authentication token (per mount)                                                                                                                                                                                                                                                                                      | `~/.weka/auth-token.json` | No                    |
 | `dedicated_mode`                         | `full` or `none` | Determine whether DPKD networking dedicates a core (`full`) or not (`none`). none can only be set when the NIC driver supports it, as described in [DPDK Without Core Dedication](../overview/networking-in-wekaio.md#dpdk-without-core-dedication) section. This option is relevant when using DPDK networking (`net=udp` is not set). | `full`                    | No                    |
+| `connect_timeout_secs`                   | Number           | The timeout in seconds for establishing a connection to a single host.                                                                                                                                                                                                                                                                  | 10                        | Yes                   |
+| `response_timeout_sec`s                  | Number           | The timeout in seconds for waiting for the response from a single host.                                                                                                                                                                                                                                                                 | 60                        | Yes                   |
 
 {% hint style="info" %}
 **Note:** These parameters, if not stated otherwise, are only effective on the first mount command for each client.
