@@ -15,7 +15,7 @@ Using the CLI, you can:
 * [Check the status of SMB host readiness](smb-management-using-the-cli.md#check-status-smb-host-readiness)
 * [Join an SMB cluster in Active Directory](smb-management-using-the-cli.md#join-smb-cluster-in-ad)
 * [Delete an SMB cluster](smb-management-using-the-cli.md#delete-an-smb-cluster)
-* [Add or remove hosts from an SMB cluster](smb-management-using-the-cli.md#add-remove-hosts-from-smb)
+* [Add or remove SMB cluster hosts](smb-management-using-the-cli.md#add-or-remove-smb-cluster-hosts)
 * [Configure trusted domains](smb-management-using-the-cli.md#configure-trusted-domains)
 * [List SMB shares](smb-management-using-the-cli.md#list-smb-shares)
 * [Add an SMB share](smb-management-using-the-cli.md#add-an-smb-share)
@@ -136,7 +136,7 @@ Use this command to destroy an SMB cluster managed by the Weka system.
 
 Deleting an existing SMB cluster managed by the Weka system does not delete the backend Weka filesystems but removes the SMB share exposures of these filesystems.
 
-## Add or remove hosts from an SMB cluster <a href="#add-remove-hosts-from-smb" id="add-remove-hosts-from-smb"></a>
+## Add or remove SMB cluster **** hosts <a href="#add-or-remove-smb-cluster-hosts" id="add-or-remove-smb-cluster-hosts"></a>
 
 **Command:** `weka smb cluster hosts add`
 
@@ -144,9 +144,19 @@ Deleting an existing SMB cluster managed by the Weka system does not delete the 
 
 Use these commands to add or remove hosts from the SMB cluster.
 
+`weka smb cluster hosts add [--samba-hosts samba-hosts]...`
+
+`weka smb cluster hosts remove [--samba-hosts samba-hosts]...`
+
 {% hint style="info" %}
 **Note:** This operation might take some time to complete. During that time, SMB IOs are stalled.
 {% endhint %}
+
+**Parameters**
+
+| **Name**      | **Type**                | **Value**                                                                                      | **Limitations**        | **Mandatory** | **Default** |
+| ------------- | ----------------------- | ---------------------------------------------------------------------------------------------- | ---------------------- | ------------- | ----------- |
+| `samba-hosts` | Comma-separated strings | List of 3-8 Weka system hosts to participate in the SMB cluster, based on the host IDs in Weka | Must be valid host IDs | Yes           |             |
 
 ## Configure trusted domains <a href="#configure-trusted-domains" id="configure-trusted-domains"></a>
 
