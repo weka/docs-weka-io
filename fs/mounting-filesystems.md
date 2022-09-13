@@ -124,6 +124,8 @@ Mount options marked as `Remount Supported` in the above table can be remounted 
 | `dedicated_mode`                         | `full` or `none` | Determine whether DPKD networking dedicates a core (`full`) or not (`none`). none can only be set when the NIC driver supports it, as described in [DPDK Without Core Dedication](../overview/networking-in-wekaio.md#dpdk-without-core-dedication) section. This option is relevant when using DPDK networking (`net=udp` is not set). | `full`                    | No                    |
 | `qos_preferred_throughput_mbps`          | Number           | Preferred requests rate for QoS in megabytes per second.                                                                                                                                                                                                                                                                                | No limit                  | Yes                   |
 | `qos_max_throughput_mbps`                | Number           | Maximum requests rate for QoS in megabytes per second. Note, the allows bursting above that limit, but will aim to keep this limit in average.                                                                                                                                                                                          | No limit                  | Yes                   |
+| `connect_timeout_secs`                   | Number           | The timeout in seconds for establishing a connection to a single host.                                                                                                                                                                                                                                                                  | 10                        | Yes                   |
+| `response_timeout_sec`s                  | Number           | The timeout in seconds for waiting for the response from a single host.                                                                                                                                                                                                                                                                 | 60                        | Yes                   |
 
 {% hint style="info" %}
 **Note:** These parameters, if not stated otherwise, are only effective on the first mount command for each client.
@@ -214,7 +216,7 @@ It's easy to saturate the bandwidth of a single network interface when using Wek
 **For example**, the following command will allocate two cores and two physical network devices for increased throughput:
 
 ```
-mount -t wekafs -o num_cores=2 -o net=mlnx0,net=mlnx1 backend1/my_fs /mnt/weka
+mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/weka
 ```
 
 #### Using multiple physical network devices for HA configuration
