@@ -28,7 +28,7 @@ Using the GUI, you can:
 
 ![Add S3 bucket dialog](../../../.gitbook/assets/wmng\_s3\_create\_bucket\_dialog.png)
 
-## Delete a bucket
+## Delete a bucket <a href="#delete-a-bucket" id="delete-a-bucket"></a>
 
 You can only delete a bucket if it is empty (all its objects are deleted).
 

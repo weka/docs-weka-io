@@ -52,7 +52,7 @@ Create a directory for filesystem-level snapshots that serves as the access poin
 3\. On the Create Snapshot dialog set the following properties:
 
 * **Name**: A unique name for the filesystem snapshot.
-* **Access Point**: A name of the newly-created directory for filesystem-level snapshots that serves as the snapshot's access point.
+* **Access Point**: A name of the newly-created directory for filesystem-level snapshots that serves as the snapshot's access point. If you do not specify the access point, the system sets it automatically (in GMT format).
 * **Writable**: Determines whether to set the snapshot to be writable.
 * **Source Filesystem**: The source filesystem from which to create the snapshot.
 * **Upload to local object store**: Determines whether to upload the snapshot to a local object store. You can also upload the snapshot later (see [Snap-To-Object](../snap-to-obj/)).

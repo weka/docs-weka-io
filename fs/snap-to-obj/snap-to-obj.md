@@ -10,6 +10,7 @@ Using the GUI, you can:
 
 * [Upload a snapshot](snap-to-obj.md#upload-a-snapshot)
 * [Create a filesystem from an uploaded snapshot](snap-to-obj.md#create-a-filesystem-from-an-uploaded-snapshot)
+* [Sync a filesystem from a snapshot](snap-to-obj.md#sync-a-filesystem-from-a-snapshot)
 
 
 
@@ -28,17 +29,21 @@ You can upload a snapshot to a local, remote, or both object store buckets.
 
 ![Upload a snapshot to obejct store](../../.gitbook/assets/wmng\_upload\_snapshot\_menu.png)
 
-3\. In the Upload Snapshot dialog, select the target object store bucket: Local, Remote, or Both.
+3\. If a local or remote object store bucket is not attached to the filesystem, a relevant message\
+&#x20;   appears. It enables opening a dialog to select an object store bucket and attach it to the\
+&#x20;   filesystem. To add an object store, select **Yes**.
+
+4\. In the Attach Object Store to Filesystem dialog, select the object store bucket to attach the\
+&#x20;   snapshot.
 
 ![Upload a snapshot](../../.gitbook/assets/wmng\_upload\_snapshot.png)
 
-4\. Select **Upload**.
-
-5\. In the confirmation message, select **Yes**.\
+4\. Select **Save**.\
 &#x20;   The snapshot is uploaded to the target object store bucket.
 
 6\. To copy the snapshot locator, select the three dots on the right of the required snapshot.\
-&#x20;    From the menu, select **Copy Locator to Clipboard**. Then, save the locator in a dedicated file.
+&#x20;    From the menu, select **Copy Locator to Clipboard**. Then, save the locator in a dedicated file for\
+&#x20;    a creating a filesystem from the uploaded snapshot.
 
 ![Copy snapshot locator](../../.gitbook/assets/wmng\_copy\_snapshot\_locator.gif)
 
@@ -66,12 +71,41 @@ Verify that the locator of the required snapshot is available. If not, see the l
 1. From the menu, select **Manage > Filesystems**, and select **+Create**.
 2. In the Create Filesystem, do the following:
    * Set the filesystem name, group, and tiering properties.
-   * Select **Create From Uploaded Snapshot** (it only appears when you select **Tiering**). Paste the copied snapshot locator.
+   * Select **Create From Uploaded Snapshot** (it only appears when you select **Tiering**).\
+     In the Object Store Bucket Locator, paste the copied snapshot locator.\
+     In the Snapshot Name, set a meaningful snapshot name to override the default (uploaded snapshot name).\
+     In the Access Point, set a meaningful access point name to override the default (uploaded access point name) for the directory that serves as the snapshot's access point.
 3. Select **Save**.&#x20;
 
 ![Create a filesystem from an uploaded snapshot](../../.gitbook/assets/wmng\_Create\_fs\_from\_snapshot\_animated.gif)
 
-****
+## Sync a filesystem from a snapshot <a href="#sync-a-filesystem-from-a-snapshot" id="sync-a-filesystem-from-a-snapshot"></a>
+
+You can synchronize a filesystem from a snapshot using the Synchronous Snap feature.  Synchronous Snap downloads only the changes since the last snapshot from the object store bucket.
+
+{% hint style="info" %}
+Only snapshots uploaded from version 4.0 or above can be downloaded using Synchronous Snap.
+{% endhint %}
+
+**Before you begin**
+
+Copy the locator of the snapshot you want to sync with the filesystem.
+
+**Procedure**
+
+1. From the menu, select **Manage > Filesystems**.
+2. From the Filesystems page, select the three dots of the filesystem you want to sync, and from the menu, select **Synchronous Snap**.
+
+<figure><img src="../../.gitbook/assets/wmng_run_synchronous_snap_menu.png" alt=""><figcaption><p>Filesystem menu: Synchronous Snap</p></figcaption></figure>
+
+3\. In the Run Synchronous Snap to Existing Filesystem dialog, paste the snapshot object locator.
+
+4\. Select **Start**.\
+&#x20;   The filesystem starts syncing with the snapshot.
+
+<figure><img src="../../.gitbook/assets/wmng_run_synchronous_snap.png" alt=""><figcaption><p>Run synchronous snap to existing filesystem</p></figcaption></figure>
+
+5\. Once the sync is completed, restore the snapshot to update the production filesystem.
 
 **Related topics**
 

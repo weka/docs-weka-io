@@ -20,7 +20,7 @@ Every Weka system user has one of the following defined roles:
 
 ## Cluster Admin **(**the first user)
 
-By default, when a Weka cluster is created, a first user with an `admin` username and password is created. This user has a Cluster Admin role, which allows running all commands.
+By default, when a Weka cluster is created, a first user with an `admin` username and password is created. A prompt to change the password on the first login is displayed. This user has a Cluster Admin role, which allows running all commands.&#x20;
 
 Cluster Admin users are responsible for managing the cluster as a whole. When using multiple organizations, there is a difference between managing a single organization and managing the cluster because managing the cluster also covers the management of the cluster hardware and resources. These are the additional permissions given to a Cluster Admin compared to an Organization Admin.
 
@@ -41,6 +41,13 @@ Additionally, the following restrictions apply to Cluster Admin users to avoid s
 
 * Cluster Admins cannot delete themselves.
 * Cluster Admins cannot change their role to a regular user role.
+
+### Password requirements
+
+* at least 8 characters
+* an uppercase letter
+* a lowercase letter
+* a number or a special character
 
 
 

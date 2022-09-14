@@ -6,97 +6,35 @@ description: >-
 
 # Security management
 
-General security considerations are described below.
+The Weka system is a secured environment. It deploys a combination of security controls to ensure secured communication and secured user data.
+
+The security controls include the following:
+
+* **HTTPS access:** To access the Weka GUI, you connect only to one of the system servers using HTTPS through port 14000.
+* **Authentication tokens:** The **** authentication tokens are used **** for accessing the Weka system API and to allow the mounting of secure filesystems.
+* **KMS:** When creating an encrypted filesystem, a KMS must be used to properly secure the encryption keys. The KMS encrypts and decrypts filesystem keys.
+* **TLS certificates:** By default, the system deploys a self-signed certificate to access the GUI, CLI, and API through HTTPS.  You can deploy your certificate by providing an unencrypted private key and certificate PEM files.
+* **CA certificates:** The system uses well-known CA certificates to establish trust with external services. For example, when using a KMS.
+* **Account lockout:** To prevent brute force attacks, if several login attempts fail (default: 5), the user account is locked for several minutes (default: 2 minutes).
+* **Login banner:** The login banner provides a security statement or a legal message displayed on the sign-in page.
+* **GUI session automatic termination:** The user is signed out after 30 minutes of inactivity.
+
+****
 
 **Related topics**
 
-* For data security features, such as encryption by KMS, see [KMS Management](kms-management/).
-* For security topics related to mounting and separation of organizations, see [Organizations](../organizations/).
-* For the different user roles and AD/LDAP authentication, see [User Management](../user-management/).
+[obtain-authentication-tokens.md](obtain-authentication-tokens.md "mention")
 
-## Obtain authentication tokens
+[kms-management](kms-management/ "mention")****
 
-The authentication tokens include two types: an access token and a refresh token.
+[tls-certificate-management](tls-certificate-management/ "mention")****
 
-* **Access token:** The access token is a short-live token (five minutes) used for accessing the Weka cluster API and to allow the mounting of secure filesystems.
-* **Refresh token:** The refresh token is a long-live token (one year) used for obtaining an additional access token.
+[ca-certificate-management](ca-certificate-management/ "mention")****
 
-**Procedure**
+[account-lockout-threshold-policy-management](account-lockout-threshold-policy-management/ "mention")
 
-Do one of the following:
+[organizations](../organizations/ "mention")\
+&#x20;   (security topics related to mounting and separation of organizations)
 
-*   To obtain the refresh token and access token, **through the CLI**, log in to the cluster using the command: `weka user login`.
-
-    The system creates an authentication token file and saves it in: `~/.weka/auth-token.json`. The token file contains both the access token and refresh token.
-
-![Auth-token file content example](../../.gitbook/assets/wmng\_auth\_token\_example.png)
-
-* To obtain the refresh token and access token, **through the REST API,** use the `POST /login`. The API returns the token in the response body.
-
-![REST API login response example](../../.gitbook/assets/wmng\_auth\_token\_api\_example.png)
-
-### Generate an access token for API usage (for internal users only)
-
-When working with the REST API, internal Weka users may require using a longer-lived access token (a token that doesn't require a refresh every 5 minutes).
-
-You can generate a longer-lived access token using the CLI command:
-
-`weka user generate-token [--access-token-timeout timeout]`
-
-The default timeout is 30 days.
-
-To revoke the access and refresh tokens, use the CLI command: `weka user revoke-tokens`.&#x20;
-
-## TLS
-
-By default, the Weka system deploys a self-signed certificate to access the GUI, CLI, and API through HTTPS.
-
-The Weka system supports TLS 1.2 and higher with at least 128-bit ciphers.
-
-You can deploy your certificates using the CLI command: `weka security tls set`.
-
-The command receives an unencrypted private key.
-
-{% hint style="success" %}
-**Example:** This command is similar to the OpenSSL command that Weka uses to generate the self-signed certificate: `openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
-{% endhint %}
-
-### Certificate replacement and rotation
-
-To replace the certificate with a new one, use the CLI command: `weka security tls set`.
-
-Once you issue a certificate, it is used for connecting to the cluster (for the time it is issued), while the revocation is handled by the CA and propagating its revocation lists into the various clients.
-
-## Custom CA certificates
-
-Weka uses well-known CAs to establish trust with external services. For example, when using a KMS.
-
-If a different CA is required for Weka servers to establish trust, install this custom CA certificate on the Weka servers using the CLI command:
-
-`weka security ca-cert set`
-
-## Password management
-
-### Password requirements
-
-* at least 8 characters
-* an uppercase letter
-* a lowercase letter
-* a number or a special character
-
-The [First User ](../user-management/#first-user-cluster-admin)created by default is admin (with `admin` password), and the password is prompt to change on the first login.
-
-### Account lockout
-
-To prevent brute force attacks, if several login attempts fail (default: 5), the user account is locked for several minutes (default: 2 minutes).
-
-You can control the default values by using the CLI commands:
-
-`weka security lockout-config show/set/reset`
-
-## GUI access
-
-You can access the Weka GUI only from the backend servers through port 14000. The GUI session is automatically terminated, and the user is signed out after 30 minutes of inactivity.
-
-
-
+[user-management](../user-management/ "mention")\
+&#x20;   (authentication of different user roles and AD/LDAP)
