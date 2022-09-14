@@ -178,6 +178,17 @@ Switching the display time may be required when the customer, Weka support, and 
 
 ![Switch display time](../.gitbook/assets/wmng\_sw\_display\_time.gif)
 
+## Display tables
+
+When managing filesystems, snapshots, and object stores the displayed tables listing the rows have two behaviors in common.
+
+* The table title specifies also the number of rows in the table and the maximum number of rows that the table can display.
+* You can customize the columns displayed on the table using the column selector.
+
+<figure><img src="../.gitbook/assets/wmng_display_tables.png" alt=""><figcaption><p>Example: Display the filesystems table</p></figcaption></figure>
+
+
+
 
 
 **Related topics**
