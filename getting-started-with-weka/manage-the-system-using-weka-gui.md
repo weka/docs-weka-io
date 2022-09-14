@@ -152,7 +152,7 @@ This widget shows an overview of the hardware components (active/total).
 
 The hardware components include:
 
-* **Backends**: The number of the servers.
+* **Backends**: The number of servers.
 * **Cores**: The number of cores configured for running processes in the backends.
 * **Drives**: The number of drives.
 * **OBS Buckets**: The number of the object-store buckets.
@@ -177,6 +177,8 @@ Switching the display time may be required when the customer, Weka support, and 
 2. Depending on the displayed time, select **Switch to System Time** or **Switch to Local Time**.
 
 ![Switch display time](../.gitbook/assets/wmng\_sw\_display\_time.gif)
+
+
 
 **Related topics**
 

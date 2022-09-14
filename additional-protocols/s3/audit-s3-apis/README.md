@@ -16,6 +16,8 @@ Enabling an audit webhook comes instead of the `BucketLogging` S3 APIs. The purp
 
 **Related topics**
 
+[configure-audit-webhook-using-the-gui.md](configure-audit-webhook-using-the-gui.md "mention")****
+
 [audit-s3-apis.md](audit-s3-apis.md "mention")
 
 [audit-s3-apis-1.md](audit-s3-apis-1.md "mention")
