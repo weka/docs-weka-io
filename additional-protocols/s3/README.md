@@ -41,7 +41,7 @@ As an S3 user, you can also create temporary security tokens (STS AssumeRole) or
 
 **Related topics**
 
-****[user-management](../../usage/user-management/ "mention")****
+****[user-management.md](../../usage/security/user-management.md "mention")****
 
 ****[s3-users-and-authentication](s3-users-and-authentication/ "mention")****
 
