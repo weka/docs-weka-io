@@ -24,13 +24,15 @@ An S3 cluster configuration includes a filesystem, port, and list of hosts.
 4. In the S3 Cluster Configuration dialog, set the following properties:
    * **Filesystem**: The filesystem to use for the S3 service. By default, when adding a bucket, it will be created in this filesystem.
    * **Port**: Default 9000. If required, modify the port through which the cluster exposes the S3 service.
+   * **Anonymous Posix UID:** If required, modify the Posix UID assigned to anonymous users.
+   * **Anonymous Posix GID:** If required, modify the Posix GID assigned to anonymous users.
    * **Hosts**: To use all available hosts for the S3 configuration, switch on **All Hosts**. If new hosts are deployed later, they do not participate in the S3 cluster automatically.\
      To use specific hosts, switch off **All Hosts**, and select the available hosts from the list to participate in the S3 cluster, based on the host IDs in Weka.&#x20;
 5. Select **Save**.
 
 Once the system completes the configuration process, the host statuses change from not ready (red X icon) to ready (green V icon).
 
-![S3 cluster configuration](../../../.gitbook/assets/wmng\_s3\_create\_cluster.gif)
+<figure><img src="../../../.gitbook/assets/wmng_S3_cluster_configuration.gif" alt=""><figcaption><p>S3 Cluster Configuration</p></figcaption></figure>
 
 ## Update an S3 cluster configuration
 
@@ -42,13 +44,13 @@ You can update the port and the hosts to participate in the S3 cluster.
 2. From the Protocols pane, select **S3**.
 3. On the Configuration tab, select the pencil icon next to the S3 cluster configuration.
 
-![Edit an S3 cluster configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_button.png)
+![Edit an S3 cluster configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_button.jpg)
 
-4\. Update the list of Weka hosts or the S3 service port as required.
+4\. Update the properties as required.
 
 5\. Select **Save**.
 
-![Edit an S3 cluster configuration dialog](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_dialog.png)
+![Edit S3 Cluster Configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_dialog.jpg)
 
 ## Delete an S3 cluster configuration
 
