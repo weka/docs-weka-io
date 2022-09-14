@@ -78,10 +78,10 @@ description: >-
 
 * Directory: `/opt/weka`
 * Must be on an SSD or SSD-like performance, for example, M.2.&#x20;
-  * Cannot be shared remotely, NFS mounted, or on a RAM drive
-* If there are two boot drives available, it is recommended to dedicate one for the OS and one for the Weka  `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues)
-* At least 26 GB available for the Weka system installation, with an additional 10 GB for each core used by Weka
-* Use a separate filesystem on a separate partition for /opt/weka
+  * Cannot be shared remotely, NFS mounted, or on a RAM drive.
+* If there are two boot drives available, it is recommended to dedicate one for the OS and one for the Weka  `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues).
+* At least 26 GB is available for the Weka system installation, with an additional 10 GB for each core used by Weka.
+* Use a separate filesystem on a separate partition for /opt/weka.
 
 ## Networking
 
@@ -107,12 +107,17 @@ Jumbo Frames are not required for clients. However, performance might be limited
 * Mellanox ConnectX5
 * Mellanox ConnectX4
 
+{% hint style="info" %}
+Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+{% endhint %}
+
 #### NIC drivers
 
 Supported Mellanox OFED versions:
 
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
+* 5.4-3.4.0.0
 * 5.1-2.6.2.0
 * 5.1-2.5.8.0
 
@@ -130,6 +135,10 @@ Supported Intel 40 drivers:
 
 * 3.0.1-k - 4.1.0
 * A current driver from an official OS repository is recommended
+
+Supported ice drivers:
+
+* 1.9.11
 
 #### Ethernet configuration
 
@@ -164,6 +173,7 @@ Supported Mellanox OFED versions:
 
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
+* 5.4-3.4.0.0
 * 5.1-2.6.2.0
 * 5.1-2.5.8.0
 
@@ -176,7 +186,7 @@ Supported Mellanox OFED versions:
 * Dual InfiniBand can be used for both HA and higher bandwidth
 
 {% hint style="info" %}
-**Note:** If it is necessary to change PKEYs, contact the Weka Support Team.
+**Note:** If it is necessary to change PKEYs, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 {% endhint %}
 
 ### HA
