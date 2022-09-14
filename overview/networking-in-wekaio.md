@@ -122,7 +122,7 @@ For client hosts in the UDP mode, the following conditions must be met:
 * The native driver must be installed and loaded.
 * The number of IPs allocated to the client hosts on the internal network should be equal to the total number of client hosts. For example, 10 client hosts in the UDP mode require 10 IPs on the internal network.
 
-## High availability (HA)
+## High Availability (HA)
 
 For HA support, the Weka system must be configured with no single component representing a single point of failure. Multiple switches are required, and hosts must have one leg on each switch.
 
@@ -153,9 +153,6 @@ For the RDMA/GPUDirect Storage technology to take into effect, the following req
   * GPUDirect Storage - the IB interfaces added to the Nvidia GPUDirect configuration should support RDMA
   * RDMA - all the NICs used by Weka must support RDMA networking
 * Encrypted filesystems: The framework will not be utilized for encrypted filesystems and will fall back to work without RDMA/GPUDirect for IOs to encrypted filesystems
-
-
-
 * A NIC is considered to support RDMA Networking if the following requirements are met:
   * For GPUDirect Storage only: InfiniBand network
   * Mellanox ConnectX5 or ConnectX6
@@ -170,7 +167,7 @@ For the RDMA/GPUDirect Storage technology to take into effect, the following req
 **Note:** RDMA/GPUDirect Storage technology is not supported when working with a cluster with mixed IB and Ethernet networking.
 {% endhint %}
 
-Running `weka cluster nodes` will indicate if the RDMA is utilized, e.g.:
+Running `weka cluster nodes` indicates if the RDMA is utilized, e.g.:
 
 ```
 # weka cluster nodes

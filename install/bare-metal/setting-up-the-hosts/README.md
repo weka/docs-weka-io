@@ -1,27 +1,32 @@
 ---
 description: >-
-  This page describes the procedures required to set up backend and client
-  machines for the first time.
+  This page describes the procedures required to system for the Weka software
+  installation.
 ---
 
-# Set up the hosts
+# Prepare the system for Weka installation
 
-## Preparations
+Once the hardware and software prerequisites are met, prepare the backend hosts and client machines for the installation of the Weka system.
 
-After meeting the hardware and software requirements, it is necessary to prepare the backend and client machines for the installation of the Weka system. This preparation of the hosts consists of the following steps:
+This preparation consists of the following steps:
 
-1. NIC driver installation.
-2. SR-IOV enablement (when needed).
-3. Network configuration.
-4. Network configuration verification.
-5. Clock synchronization.
-6. Numa balancing disablement.
+1. [Install NIC drivers](./#install-nic-drivers).
+2. [Enable SR-IOV](./#enable-sr-iov) (when required).
+3. [Configure the networking](./#undefined).
+4. [Verify the network configuration](./#verify-the-network-configuration).
+5. [Configure the clock synchronization](./#configure-the-clock-synchronization).
+6. [Disable the Numa balancing](./#disable-the-numa-balancing).
+7. [Validate the system preparation](./#validate-the-system-preparation).
 
 {% hint style="info" %}
-**Note:** Some of the examples on this page contain version-specific information. Since the software is updated frequently, the package versions available to you may differ from those presented here.
+**Note:** Some of the examples on this page contain version-specific information. The software is updated frequently, and therefore the package versions available to you may differ from those presented here.
 {% endhint %}
 
-## NIC driver installation
+**Related topics**
+
+[prerequisites-and-compatibility.md](../../../support/prerequisites-and-compatibility.md "mention")
+
+## Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
 {% hint style="info" %}
 **Note:** The steps describing the installation of NIC drivers are provided as a courtesy. Refer to your NIC vendor documentation for the latest information and updates.
@@ -80,19 +85,23 @@ On completion of the OFED installation, the NIC firmware may be updated to match
 
 This concludes the Mellanox OFED installation procedure.
 
-## SR-IOV enablement
+## Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
-SR-IOV enablement is not required for hosts with Mellanox NICs (CX-4 or newer).
+SR-IOV enablement is mandatory for hosts equipped with Intel NICs except for E810, or when working with client VMs where there is a need to expose VFs of a physical NIC to the virtual NICs.
 
-SR-IOV enablement is mandatory for hosts equipped with Intel NICs, or when working with client VMs where there is a need to expose VFs of a physical NIC to the virtual NICs.
+{% hint style="info" %}
+SR-IOV enablement is **not** required for hosts with Mellanox NICs (CX-4 or newer) and Intel E810 NIC.
+{% endhint %}
 
-{% content-ref url="sr-iov-enablement.md" %}
-[sr-iov-enablement.md](sr-iov-enablement.md)
-{% endcontent-ref %}
+**Related topic**
+
+[sr-iov-enablement.md](sr-iov-enablement.md "mention")
+
+## Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
 
 ### Ethernet configuration
 
-The following example of `ifcfg` script is provided a reference for configuring the Ethernet interface.
+The following example of `ifcfg` script is provided as a reference for configuring the Ethernet interface.
 
 {% code title="/etc/sysconfig/network-scripts/ifcfg-enp24s0" %}
 ```
@@ -231,9 +240,9 @@ Verify the connection is up with all the non-default partition attributes set:
 {% endtab %}
 {% endtabs %}
 
-## Network configuration verification
+## Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
 
-Use a large size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the hosts:
+Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the hosts:
 
 ```
 # ping -M do -s 8972 -c 3 192.168.1.2
@@ -251,7 +260,7 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 
 `-s 8972` is the maximum ICMP packet size that can be transferred with MTU 9000, due to the overhead of ICMP and IP protocols.
 
-## HA networking configuration
+## Configure the HA networking <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
 
 As described in [Weka Networking HA](../../../overview/networking-in-wekaio.md#ha) section, bonded interfaces are supported for ethernet can be added to Weka after setting the bonded device in the host.
 
@@ -322,18 +331,103 @@ Refer to this [link](https://access.redhat.com/solutions/30564) to learn how to 
 {% endtab %}
 {% endtabs %}
 
-## Clock synchronization
+## Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
 
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the Weka system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
-Configure the time synchronization software on the backend and client machines according to the specific vendor instructions (see your OS documentation), prior to installing the Weka software.
+Configure the clock synchronization software on the backend and client machines according to the specific vendor instructions (see your OS documentation), prior to installing the Weka software.
 
-## **NUMA balancing disablement**
+## **Disable the NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
 
-The Weka system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies on the operations.
+The Weka system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies in the operations.
 
 To disable NUMA balancing, run the following command on the host:
 
 ```
 echo 0 > /proc/sys/kernel/numa_balancing
+```
+
+## Validate the system preparation <a href="#validate-the-system-preparation" id="validate-the-system-preparation"></a>
+
+The `wekachecker` is a tool that validates the readiness of the hosts in the cluster before installing the Weka software.
+
+The `wekachecker` performs the following validations:
+
+* Dataplane IP, jumbo frames, and routing
+* ssh connection to all hosts
+* Timesync
+* OS release
+* Sufficient capacity in /opt/weka
+* Available RAM
+* Internet connection availability
+* NTP
+* DNS configuration
+* Firewall rules
+* Weka required packages
+* OFED required packages
+* Recommended packages
+* HT/AMT is disabled
+* The kernel is supported
+* CPU has a supported AES, and it is enabled
+* Numa balancing is enabled
+* RAM state
+* XFS FS type installed
+* Mellanox OFED is installed
+* IOMMU mode for SSD drives is disabled
+* rpcbind utility is enabled
+* SquashFS **** is enabled
+* noexec mount option on /tmp
+
+{% hint style="info" %}
+**Note:** The `wekachecker`tool applies to all Weka versions. From V4.0, the following validations are not relevant, although the tool displays them:
+
+* OS has SELinux disabled or in permissive mode.
+* Network Manager is disabled.
+{% endhint %}
+
+**Procedure**
+
+1. Download the tool repository to one of the hosts in the group intended for the cluster, using git clone from [https://github.com/weka/tools](https://github.com/weka/tools).\
+   Alternatively, download the tarball from [https://github.com/weka/tools/releases](https://github.com/weka/tools/releases) and extract it.
+2. From the install directory, run `./wekachecker <hostnames/IPs>`\
+   Where:\
+   The `hostnames/IPs` is a space-separated list of all the cluster hostnames or IP addresses connected to the **high-speed networking**.\
+   Example:\
+   `./wekachecker 10.1.1.11 10.1.1.12 10.1.1.4 10.1.1.5 10.1.1.6 10.1.1.7 10.1.1.8`
+3. Review the output. If failures or warnings are reported, investigate them and correct them as necessary. Repeat the validation until no important issues are reported.\
+   The `wekachecker` writes any failures or warnings to the file: **`test_results.txt`**.
+
+Once the report has no failures or warnings that must be fixed, you can install the Weka software.
+
+**wekachecker report example**
+
+```
+Dataplane IP Jumbo Frames/Routing test                       [PASS]
+Check ssh to all hosts                                       [PASS]
+Verify timesync                                              [PASS]
+Check if OS has SELinux disabled or in permissive mode       [PASS]
+Check OS Release...                                          [PASS]
+Check /opt/weka for sufficient capacity...                   [WARN]
+Check available RAM...                                       [PASS]
+Check if internet connection available...                    [PASS]
+Check for NTP...                                             [PASS]
+Check DNS configuration...                                   [PASS]
+Check Firewall rules...                                      [PASS]
+Check for Weka Required Packages...                          [PASS]
+Check for OFED Required Packages...                          [PASS]
+Check for Recommended Packages...                            [WARN]
+Check if HT/AMT is disabled                                  [WARN]
+Check if kernel is supported...                              [PASS]
+Check if CPU has AES enabled and supported                   [PASS]
+Check if Network Manager is disabled                         [WARN]
+Checking if Numa balancing is enabled                        [WARN]
+Checking RAM state for errors                                [PASS]
+Check for XFS FS type installed                              [PASS]
+Check if Mellanox OFED is installed                          [PASS]
+Check for IOMMU disabled                                     [PASS]
+Check for rpcbind enabled                                    [PASS]
+Check for squashfs enabled                                   [PASS]
+Check for /tmp noexec mount                                  [PASS]
+
+RESULTS: 21 Tests Passed, 0 Failed, 5 Warnings
 ```
