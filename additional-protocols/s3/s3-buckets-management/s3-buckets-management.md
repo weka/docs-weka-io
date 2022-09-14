@@ -33,7 +33,7 @@ Using the GUI, you can:
 
 6\. Select **Save**.
 
-![Add S3 Bucket](../../../.gitbook/assets/wmng\_add\_s3\_bucket.png)
+![Add S3 Bucket](../../../.gitbook/assets/wmng\_s3\_create\_bucket\_dialog.png)
 
 ## View a bucket details <a href="#view-a-bucket-details" id="view-a-bucket-details"></a>
 

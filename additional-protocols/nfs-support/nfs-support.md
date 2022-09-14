@@ -7,15 +7,16 @@ description: This page describes how to configure the NFS networking using the G
 Using the GUI, you can:
 
 * **Configure the NFS cluster level**
-  * [Create interface groups](nfs-support.md#define-interface-groups)
+  * [Create interface groups](nfs-support.md#create-interface-groups)
   * [Set interface group ports](nfs-support.md#set-interface-group-ports)
   * [Set interface group IPs](nfs-support.md#set-interface-group-ips)
 * **Configure the NFS export level (permissions)**
   * [Define client access groups](nfs-support.md#define-client-access-groups)
   * [Manage client access groups](nfs-support.md#manage-client-access-groups)
-  * [Manage NFS client permissions](nfs-support.md#manage-nfs-client-permissions)
+  * [Create NFS client permission](nfs-support.md#create-nfs-client-permission)
+  * [Edit NFS client permission](nfs-support.md#edit-nfs-client-permission)
 
-## Create interface groups
+## Create interface groups <a href="#create-interface-groups" id="create-interface-groups"></a>
 
 Interface Groups define the hosts and ports that provide the NFS service.
 
@@ -92,7 +93,7 @@ Once you create an interface group, set its ports.
 
 ![Remove a group IP](<../../.gitbook/assets/wmng\_add\_nfs\_group\_ip\_remove (1).png>)
 
-## Define client access groups
+## Define client access groups <a href="#define-client-access-groups" id="define-client-access-groups"></a>
 
 **Procedure**
 
@@ -110,7 +111,7 @@ Once you create an interface group, set its ports.
 
 [#configure-the-round-robin-dns-server](./#configure-the-round-robin-dns-server "mention")
 
-## Manage client access groups
+## Manage client access groups <a href="#manage-client-access-groups" id="manage-client-access-groups"></a>
 
 **Procedure**
 
@@ -136,27 +137,51 @@ Once you create an interface group, set its ports.
 
 ![Remove DNS or IP of a client group](../../.gitbook/assets/wmng\_add\_nfs\_group\_ip\_remove.png)
 
-## Manage NFS client permissions
+## Create NFS client permission <a href="#create-nfs-client-permission" id="create-nfs-client-permission"></a>
+
+You can create NFS permission for a client group.
 
 **Procedure**
 
 1. In the Permissions table, select **+Create**.
 
-![Permissions table](../../.gitbook/assets/wmng\_add\_NFS\_client\_permissions.png)
+![Permissions table](../../.gitbook/assets/wmng\_create\_nfs\_permission\_button.png)
 
-2\. In the Filesystem Permission Creation dialog, set the following properties:
+2\. In the Create NFS Permission Creation dialog, set the following properties:
 
 * **Client Group**: The client group to which the permissions are applied.
 * **Filesystem**: The filesystem to which the permissions are applied.
 * **Path**: The exported directory path (root share).
-* **Type**: The access type: RO (read-only) or RW (read/write)..
+* **Type**: The access type: RO (read-only) or RW (read/write).
+* **Priority:** The priority of the client permission. When access is evaluated, the system processes first the permissions set with the lower priority number. Setting a number in tens (10, 20, 100, and so on) is recommended (it allows adding priorities in between).
+* **Supported Versions:** The supported NFS versions (V3, V4, or both).
 * **Squash Root**: The squash mode that the system enforces with the client permission.
 * **Anon. UID**: Anonymous user ID. Only relevant for Root and All user squashing.
 * **Anon. GID:** Anonymous group ID. Only relevant for Root and All user squashing.
 
 3\. Select **Save**.
 
-![Create filesystem permissions](../../.gitbook/assets/wmng\_add\_fs\_permission.png)
+![Create filesystem permissions](../../.gitbook/assets/wmng\_create\_nfs\_permission.png)
+
+## Edit NFS client permission <a href="#edit-nfs-client-permission" id="edit-nfs-client-permission"></a>
+
+You can edit the existing NFS permission settings for a client group.  You can also move the priority to the top or bottom priority (in relation to other client group priorities). If the client group permission setting is no longer required, you can remove it.
+
+**Procedure**
+
+1. In the Permissions table, select the three dots of the client group to edit, and select **Edit**.
+
+<figure><img src="../../.gitbook/assets/wmng_edit_nfs_permission.png" alt=""><figcaption><p>Edit a client group permissions</p></figcaption></figure>
+
+2\. Set the relevant properties: Type, Priority, Supported Versions, Squash Root, Anon. UID, and\
+&#x20;    Anon. GID. Then, select **Save**.
+
+3\. To move the priority of a client group setting to the top or bottom priority, select **Move to top**\
+&#x20;     **priority** or **Move to bottom priority**.
+
+4\. To remove the client group permission setting, select **Remove**.
+
+****
 
 **Related topics**
 
