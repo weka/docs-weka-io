@@ -35,7 +35,7 @@ Weka GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview\_mb.gif)
+![Weka GUI overview](<../.gitbook/assets/wmng\_gui\_overview\_mb (1).gif>)
 
 ## Access the Weka GUI
 
@@ -177,6 +177,17 @@ Switching the display time may be required when the customer, Weka support, and 
 2. Depending on the displayed time, select **Switch to System Time** or **Switch to Local Time**.
 
 ![Switch display time](../.gitbook/assets/wmng\_sw\_display\_time.gif)
+
+## Switch the GUI between light and dark modes
+
+You can switch the GUI between light and dark modes according to your preferences. The dark mode is a user interface for content that displays light text on a dark background. The dark mode is beneficial for viewing screens at night. The reduced brightness can reduce eye strain in low light conditions.
+
+**Procedure**
+
+1. On the top bar, depending on the current display mode, point to the **sun** or **moon** symbol.
+2. Select **Switch to light mode** or **Switch to dark mode**.
+
+![Switch the GUI between light and dark modes](../.gitbook/assets/wmng\_sw\_dark\_mode.gif)
 
 ## Display tables
 

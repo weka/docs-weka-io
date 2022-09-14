@@ -46,7 +46,7 @@ To create encrypted filesystems, deploy a Key Management System (KMS).
 
 **Related topics**
 
-[kms-management](../fs/kms-management/ "mention")
+[kms-management](../usage/security/kms-management/ "mention")
 
 ### Metadata limitations
 
