@@ -8,18 +8,20 @@ description: >-
 
 Using the GUI, you can:
 
-* [Configure the SMB cluster](smb-management-using-the-gui.md#configure-an-smb-cluster)
-* [Join the SMB cluster in the Active Directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-an-active-directory)
-* [Delete the SMB cluster](smb-management-using-the-gui.md#delete-an-smb-cluster)
-* [Display the SMB shares list](smb-management-using-the-gui.md#list-smb-shares)
+* [Configure the SMB cluster](smb-management-using-the-gui.md#configure-the-smb-cluster)
+* [Edit the SMB cluster](smb-management-using-the-gui.md#edit-the-smb-cluster)
+* [Join the SMB cluster in the Active Directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory)
+* [Delete the SMB cluster](smb-management-using-the-gui.md#delete-the-smb-cluster)
+* [Display the SMB shares list](smb-management-using-the-gui.md#display-the-smb-shares-list)
 * [Add an SMB share](smb-management-using-the-gui.md#add-an-smb-share)
+* [Edit an SMB share](smb-management-using-the-gui.md#undefined)
 * [Remove an SMB share](smb-management-using-the-gui.md#remove-an-smb-share)
 
 {% hint style="info" %}
 **Note:** Use ASCII format when configuring name fields, such as domain and shares.
 {% endhint %}
 
-## **Configure the SMB cluster**
+## **Configure the SMB cluster** <a href="#configure-the-smb-cluster" id="configure-the-smb-cluster"></a>
 
 Define the Weka system hosts that participate in the SMB cluster**.**
 
@@ -34,9 +36,17 @@ Define the Weka system hosts that participate in the SMB cluster**.**
 4\. In the SMB Cluster Configuration dialog, set the following properties:
 
 * **Name**: A NetBIOS name for the SMB cluster.
-* **Domain**: The domain which the SMB cluster is to join.
+* **Domain**: The domain the SMB cluster joins.
 * **Domain NetBIOS Name**: (Optional) The domain NetBIOS name.
 * **Hosts**: List of 3-8 Weka system hosts to participate in the SMB cluster, based on the host IDs in Weka.
+* **Encryption:** Select the in-transit encryption to use in the SMB cluster:\
+  \- enabled: enables encryption negotiation but doesn't turn it on automatically for supported\
+  &#x20;  sessions and share connections.\
+  \- disabled: doesn't support encrypted connections.\
+  \- desired: enables encryption negotiation and turns on data encryption on supported sessions\
+  &#x20;  and share connections.\
+  \- required: enforces data encryption on sessions and share connections. Clients that do not\
+  &#x20;  support encryption will be denied access to the server.
 * **IPs**: (Optional) List of public IPs (comma-separated) used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA (do not assign these IPs to any host on the network). For IP range, use the following format: **a.b.c.x-y**.
 
 {% hint style="info" %}
@@ -51,7 +61,23 @@ Once the system completes the configuration process, the host statuses change fr
 
 ![SMB cluster configuration example](../../.gitbook/assets/wmng\_smb\_configure\_result.png)
 
-## Join the SMB cluster in the Active Directory
+## Edit the SMB cluster <a href="#edit-the-smb-cluster" id="edit-the-smb-cluster"></a>
+
+You can modify the encryption and IPs settings according to your needs.
+
+**Procedure**
+
+1. In the SMB Cluster Configuration, select the **pencil** icon.
+
+<figure><img src="../../.gitbook/assets/wmng_smb_cluster_edit.png" alt=""><figcaption><p>Edit the SMB cluster</p></figcaption></figure>
+
+2\. In the Edit SMB Configuration dialog, update the encryption and IPs settings.
+
+<figure><img src="../../.gitbook/assets/wmng_edit_smb_configuration.png" alt=""><figcaption><p>Edit SMB configuration</p></figcaption></figure>
+
+3\. Select **Save**.
+
+## Join the SMB cluster in the Active Directory <a href="#join-the-smb-cluster-in-the-active-directory" id="join-the-smb-cluster-in-the-active-directory"></a>
 
 To enable the organizational Active Directory to resolve the access of users and user groups to the SMB cluster, join the SMB cluster in the Active Directory (AD).
 
@@ -73,7 +99,7 @@ To enable the Weka storage nodes to join the AD domain, verify that the AD serve
 * **Server**: (Optional) Weka identifies the AD server automatically based on the AD name. You do not need to set the server name. In some cases, if required, specify the AD server.
 * **Computers Org. Unit**: The default organization unit is the Computers directory. You can define any other directory to connect to in Active Directory, such as SMB servers or Corporate computers.
 
-![Join To Active Directory dialog](../../.gitbook/assets/wmng\_smb\_join\_ad\_dialog.png)
+![Join Active Directory dialog](../../.gitbook/assets/wmng\_smb\_join\_ad\_dialog.png)
 
 Once the SMB cluster joins in the Active Directory, the join status next to the domain changes to **Joined**.
 
@@ -81,20 +107,21 @@ Once the SMB cluster joins in the Active Directory, the join status next to the 
 To join a different Active Directory to the existing SMB cluster configuration, select **Leave**. To confirm the action, enter the username and password used to connect to the Active Directory.
 {% endhint %}
 
-## Delete the SMB cluster
+## Delete the SMB cluster <a href="#delete-the-smb-cluster" id="delete-the-smb-cluster"></a>
 
 Deleting the SMB cluster resets its configuration data.
 
 **Procedure**
 
 1. In the SMB Cluster Configuration, select the **trash** icon.
-2. In the SMB Configuration Reset message, select **Reset**.
 
 ![Delete the SMB cluster configuration](../../.gitbook/assets/wmng\_smb\_cluster\_remove.png)
 
-## **Display the SMB shares list**
+2\. In the SMB Configuration Reset message, select **Reset**.
 
-The Shares tab displays the list of the SMB shares that are already created in the system.&#x20;
+## **Display the SMB shares list** <a href="#display-the-smb-shares-list" id="display-the-smb-shares-list"></a>
+
+The Shares tab displays the list of SMB shares that are already created in the system. You can also customize the table columns of the SMB shares list.
 
 **Procedure**
 
@@ -105,7 +132,7 @@ The Shares tab displays the list of the SMB shares that are already created in t
 
 ![SMB shares list](../../.gitbook/assets/wmng\_smb\_list\_shares.png)
 
-## Add an SMB share
+## Add an SMB share <a href="#add-an-smb-share" id="add-an-smb-share"></a>
 
 **Procedure**
 
@@ -116,9 +143,14 @@ The Shares tab displays the list of the SMB shares that are already created in t
 2\. In the Add SMB Share dialog, set the following properties:
 
 * **Name**: A meaningful name for the SMB share.&#x20;
-* **Description**: A description of the SMB share.&#x20;
-* **Filesystem**: The filesystem to use for the SMB share. Select one from the list.
+* **Filesystem**: The filesystem name that includes the directory to share. Select one from the list.
+* **Description**: A description or purpose of the SMB share.&#x20;
 * **Path**: A valid internal path, relative to the root, within the filesystem to expose for the SMB share.
+* **Encryption:** Select in-transit encryption enforcement of the share. The cluster global encryption settings can affect the actual encryption.
+* **Read Only:** Select if you want to set the share as read only.
+* **Hidden:** Select if you want to hide the share, so it is not visible when viewing the list of system shares.
+* **Allow Guest Access:** Select if you want to allow guests to access without authentication.
+* **Access Permissions:** Define the share access permissions. If you select ON, select the access type, and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix).
 * **Files/Directories POSIX Mode Mask**: Set the new default file and directory permissions in a numeric (octal) format created through the share.
 * **ACLs Enabled**: Determines whether to enable the Windows Access-Control Lists (ACLs) on the share. Weka translates the ACLs to POSIX.
 
@@ -126,7 +158,21 @@ The Shares tab displays the list of the SMB shares that are already created in t
 
 ![Add SMB Share dialog](../../.gitbook/assets/wmng\_smb\_share\_add\_dialog.png)
 
-## Remove an SMB share
+## Edit an SMB share <a href="#edit-an-smb-share" id="edit-an-smb-share"></a>
+
+You can update some of the SMB share settings. These include encryption, hiding the share, allowing guest access, and setting the share as read only or not.
+
+**Procedure**
+
+1. In the Shares tab, select the three dots of the share and select **Edit**.
+
+<figure><img src="../../.gitbook/assets/wmng_edit_smb_share_button.png" alt=""><figcaption></figcaption></figure>
+
+2\. In the Update Share Settings dialog, update the relevant properties and select **Save**.
+
+<figure><img src="../../.gitbook/assets/wmng_update_share_settings.png" alt=""><figcaption><p>Update the SMB share settings</p></figcaption></figure>
+
+## Remove an SMB share <a href="#remove-an-smb-share" id="remove-an-smb-share"></a>
 
 **Procedure**
 

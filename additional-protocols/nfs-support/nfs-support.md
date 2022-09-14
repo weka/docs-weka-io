@@ -145,7 +145,7 @@ You can create NFS permission for a client group.
 
 1. In the Permissions table, select **+Create**.
 
-![Permissions table](../../.gitbook/assets/wmng\_create\_nfs\_permission\_button.png)
+![Permissions table](../../.gitbook/assets/wmng\_add\_NFS\_client\_permissions.png)
 
 2\. In the Create NFS Permission Creation dialog, set the following properties:
 
@@ -161,7 +161,7 @@ You can create NFS permission for a client group.
 
 3\. Select **Save**.
 
-![Create filesystem permissions](../../.gitbook/assets/wmng\_create\_nfs\_permission.png)
+![Create filesystem permissions](../../.gitbook/assets/wmng\_add\_fs\_permission.png)
 
 ## Edit NFS client permission <a href="#edit-nfs-client-permission" id="edit-nfs-client-permission"></a>
 
