@@ -44,13 +44,13 @@ You can update the port and the hosts to participate in the S3 cluster.
 2. From the Protocols pane, select **S3**.
 3. On the Configuration tab, select the pencil icon next to the S3 cluster configuration.
 
-![Edit an S3 cluster configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_button.jpg)
+![Edit an S3 cluster configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_button.png)
 
 4\. Update the properties as required.
 
 5\. Select **Save**.
 
-![Edit S3 Cluster Configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_dialog.jpg)
+![Edit S3 Cluster Configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_dialog.png)
 
 ## Delete an S3 cluster configuration
 
