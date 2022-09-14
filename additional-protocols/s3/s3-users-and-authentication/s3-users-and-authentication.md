@@ -31,14 +31,20 @@ The pre-defined policies value are:
 
 {% tabs %}
 {% tab title="readonly" %}
-```
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
     {
       "Effect": "Allow",
       "Action": [
+        "s3:ListAllMyBuckets",
+        "s3:ListBucket",
+        "s3:ListBucketMultipartUploads",
+        "s3:ListMultipartUploadParts",
         "s3:GetBucketLocation",
+        "s3:GetBucketPolicy",
+        "s3:GetBucketTagging",
         "s3:GetObject"
       ],
       "Resource": [
@@ -51,7 +57,7 @@ The pre-defined policies value are:
 {% endtab %}
 
 {% tab title="writeonly" %}
-```
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -70,7 +76,7 @@ The pre-defined policies value are:
 {% endtab %}
 
 {% tab title="readwrite" %}
-```
+```json
 {
   "Version": "2012-10-17",
   "Statement": [

@@ -86,7 +86,7 @@ Example: For a bucket named `mybucket`, the following are the pre-defined policy
 
 {% tabs %}
 {% tab title="download" %}
-```
+```json
 {
   "Statement": [
     {
@@ -125,7 +125,7 @@ Example: For a bucket named `mybucket`, the following are the pre-defined policy
 {% endtab %}
 
 {% tab title="upload" %}
-```
+```json
 {
   "Statement": [
     {
@@ -167,7 +167,7 @@ Example: For a bucket named `mybucket`, the following are the pre-defined policy
 {% endtab %}
 
 {% tab title="public" %}
-```
+```json
 {
   "Statement": [
     {

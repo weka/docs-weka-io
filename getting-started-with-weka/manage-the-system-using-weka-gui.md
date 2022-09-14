@@ -35,7 +35,7 @@ Weka GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](<../.gitbook/assets/wmng\_gui\_overview\_mb (1).gif>)
+![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview\_mb.gif)
 
 ## Access the Weka GUI
 
