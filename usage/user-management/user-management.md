@@ -52,13 +52,12 @@ As a Cluster Admin or Organization Admin, you can change the password of a local
 
 1. In the Local Users tab, select the three dots of the local user you want to change the password for, then select **Change Password**.
 2. In the Change Password for a user dialog, set the following properties:
-   * **Old password:**  Set the old password.
    * **Password:**  Set a new password according to the requirements.
    * **Confirm Password:** Type the same new password again.
    * **Revoke Tokens:** If the user's existing tokens are compromised, you can revoke all the user's tokens along with changing the user's password. To re-access the system, the user re-authenticates with the new password, or the user needs to obtain new tokens using the API.
 3. Select **Save**.
 
-![Change password for a local user](../../.gitbook/assets/wmng\_local\_users\_change\_psw.png)
+![Change the password for a local user](../../.gitbook/assets/wmng\_change\_password.png)
 
 ### Change your own password
 
