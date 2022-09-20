@@ -55,7 +55,7 @@ Once the new version is downloaded to one of the backend servers (as described a
 
 `weka local run --in <new-version> upgrade --prepare-only`
 
-## Upgrade the backends
+## Upgrade the backend servers
 
 Once a new software version is installed on one of the backend servers, upgrade the cluster to the new version by running the following command on the backend server:
 
@@ -75,6 +75,8 @@ You can control the upgrade window time by setting the following parameters in t
 | `--host-version-change-timeout`          | Integer  | Maximum time in seconds to wait for a host version update                                                           |                 | No            | 180         |
 | `--disconnect-stateless-clients-timeout` | Integer  | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them    |                 | No            | 60          |
 | `--prepare-only`                         | Boolean  | Download and prepare a new software version across all servers in the cluster without performing the actual upgrade |                 | No            | False       |
+
+
 
 {% hint style="info" %}
 **Note:** To run the upgrade command, ensure you are logged in as a Cluster Admin (using a `weka user login`).
