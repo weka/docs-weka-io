@@ -10,9 +10,10 @@ Using the CLI, you can:
 
 * [Create an S3 cluster](s3-cluster-management-1.md#create-an-s3-cluster)
 * [Check the status of the S3 cluster and hosts readiness](s3-cluster-management-1.md#check-the-status-of-the-s3-cluster-and-hosts-readiness)
+* [List the S3 cluster hosts](s3-cluster-management-1.md#list-the-the-s3-cluster-hosts)
 * [Update an S3 cluster configuration](s3-cluster-management-1.md#update-an-s3-cluster-configuration)
 * [Add hosts to the S3 cluster](s3-cluster-management-1.md#add-hosts-to-the-s3-cluster)
-* [Remove hosts from the S3 cluster](s3-cluster-management-1.md#add-hosts-to-the-s3-cluster-1)
+* [Remove hosts from the S3 cluster](s3-cluster-management-1.md#remove-hosts-from-the-s3-cluster)
 * [Delete an S3 cluster](s3-cluster-management-1.md#delete-an-s3-cluster)
 
 ## Create an S3 cluster&#x20;
@@ -41,6 +42,12 @@ Use the following command line to create an S3 cluster:
 
 Use these commands to check the status and configuration of the S3 cluster. Once all hosts are prepared and ready, it is possible to use the S3 service.
 
+## List the S3 cluster hosts
+
+**Command:** `weka s3 cluster hosts list`
+
+Use this command to list the hosts that serve the S3 cluster.
+
 ## Update an S3 cluster configuration
 
 **Command:** `weka s3 cluster update`
@@ -64,7 +71,7 @@ Use the following command line to update an S3 cluster configuration:
 | `anonymous-posix-gid` | Number                          | POSIX GID for objects  (when accessed via POSIX) created with anonymous access (for buckets with an IAM policy allowing that). | None                                                                       | No            |             |
 | `config-fs-name`      | String                          | S3 config filesystem name.                                                                                                     | S3 supports config filesystem for persisting S3 cluster-wide configuration |               |             |
 
-## Add hosts to the S3 cluster
+## Add hosts to the S3 cluster <a href="#add-hosts-to-the-s3-cluster" id="add-hosts-to-the-s3-cluster"></a>
 
 **Command:** `weka s3 cluster hosts add`
 
@@ -82,7 +89,7 @@ The following command example adds two hosts with the IDs 8 and 9:
 | -------- | ------------------------------- | ---------------------------------- | --------------- | ------------- | ----------- |
 | `hosts`  | Space-separated list of numbers | Host IDs to add to the S3 cluster. | <p></p><p></p>  | Yes           |             |
 
-## Remove hosts from the S3 cluster
+## Remove hosts from the S3 cluster <a href="#remove-hosts-from-the-s3-cluster" id="remove-hosts-from-the-s3-cluster"></a>
 
 **Command:** `weka s3 cluster hosts remove`
 
