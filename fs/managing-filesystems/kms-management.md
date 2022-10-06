@@ -23,7 +23,7 @@ For more information, refer to [KMS Best Practices](kms-management.md#kms-best-p
 
 The Weka system supports the following KMS types:
 
-1. [HashiCorp Vault](https://www.hashicorp.com/products/vault/) (version 1.1.5 and up). For setting up Vault to work with the Weka system, refer to [Setting Up Vault Configuration](kms-management.md#setting-up-vault-configuration).
+1. [HashiCorp Vault](https://www.hashicorp.com/products/vault/) version 1.1.5 up to 1.9.x (not limited to the KMIP compliant version). For setting up Vault to work with the Weka system, refer to [Setting Up Vault Configuration](kms-management.md#setting-up-vault-configuration).
 2. [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) compliant KMS (protocol version 1.2 and up)
 
 For additional information on KMS support, contact the Weka Sales or Support Teams.
@@ -81,7 +81,7 @@ Use the following command line to add or update the Vault KMS configuration in t
 | `type`           | String   | Type of the KMS                                        | Either `vault` or `kmip`                                                                                                                                                                                                                                                                                                               | Yes                                                               |             |
 | `address`        | String   | KMS server address                                     | `URL` for Vault, `hostname:port` for KMIP                                                                                                                                                                                                                                                                                              | Yes                                                               |             |
 | `key-identifier` | String   | Key  to be used for encryption-as-a-service in the KMS | Key name (for Vault) or a key UID (for KMIP)                                                                                                                                                                                                                                                                                           | Yes                                                               |             |
-| `token`          | String   | API token to access Vault KMS                          | <p>Must have:</p><ul><li>read permissions to <code>transit/keys/&#x3C;master-key-name></code></li><li>write permissions to <code>transit/encrypt/&#x3C;master-key-name></code> and <code>transit/decrypt/&#x3C;masterkeyname></code> </li><li>permissions to <code>/transit/rewrap </code>and <code>auth/token/lookup</code></li></ul> | Must be supplied for `vault` and must not be supplied for `kmip`  |             |
+| `token`          | String   | API token to access Vault KMS                          | <p>Must have:</p><ul><li>read permissions to <code>transit/keys/&#x3C;master-key-name></code></li><li>write permissions to <code>transit/encrypt/&#x3C;master-key-name></code> and <code>transit/decrypt/&#x3C;masterkeyname></code> </li><li>permissions to <code>/transit/rewrap</code> and <code>auth/token/lookup</code></li></ul> | Must be supplied for `vault` and must not be supplied for `kmip`  |             |
 | `client-cert`    | String   | Path to the client certificate PEM file                | Must permit `encrypt` and `decrypt` permissions                                                                                                                                                                                                                                                                                        | Must be supplied for `kmip` and must not be supplied for `vault`  |             |
 | `client-key`     | String   | Path to the client key PEM file                        |                                                                                                                                                                                                                                                                                                                                        | Must be supplied for `kmip` and must not be supplied for `vault`  |             |
 | `ca-cert`        | String   | Path to the CA certificate PEM file                    |                                                                                                                                                                                                                                                                                                                                        | Optional for `kmip` and must not be supplied for `vault`          |             |
@@ -223,7 +223,7 @@ token/       token       token based credentials
 $ vault auth enable token
 ```
 
-* Log into the KMS system using any of the identity methods supported by Vault. The identity should have permission to use the previously-set master key. 
+* Log into the KMS system using any of the identity methods supported by Vault. The identity should have permission to use the previously-set master key.&#x20;
 * Create a token role for the identity using the following command:
 
 ```
@@ -253,7 +253,7 @@ policies             ["default"]
 For more information on obtaining an API token, refer to [Vault Tokens documentation](https://learn.hashicorp.com/vault/security/tokens).
 
 {% hint style="warning" %}
-**Note:** The Weka system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max_lease_ttl).
+**Note:** The Weka system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max\_lease\_ttl).
 {% endhint %}
 
 ## Obtaining a Certificate for a KMIP based KMS
