@@ -20,7 +20,7 @@ For increased security, the Weka system does not save any information that can r
 The Weka system supports the following KMS types:
 
 * [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) compliant KMS (protocol version 1.2 and up).
-* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) version 1.1.5 and up (not limited to the KMIP compliant version). For setting up Vault to work with the Weka system, refer to [Setting Up Vault Configuration](kms-management-1.md#set-up-vault-configuration)&#x20;
+* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) version 1.1.5 up to 1.9.x (not limited to the KMIP-compliant version). For setting up Vault to work with the Weka system, refer to [Setting Up Vault Configuration](kms-management-1.md#set-up-vault-configuration)&#x20;
 
 Deploy one of the supported KMS types that best suit your requirements. For additional information on KMS support, contact the Weka Sales or Support Teams.
 
