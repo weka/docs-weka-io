@@ -55,7 +55,7 @@ Once you create an interface group, set its ports.
 
 3\. In the Add Port dialog, set the following properties:
 
-* **Hostname**: Select the host ID on which the port resides.
+* **Hostname**: Select the host on which the port resides.
 * **Port:** Select the port from the list.
 
 ![Add port dialog](../../.gitbook/assets/wmng\_add\_nfs\_group\_ports\_dialog.png)
