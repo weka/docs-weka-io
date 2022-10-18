@@ -116,7 +116,7 @@ Selecting the title Active clients displays the client machines page.
 
 ### Top Consumers widget
 
-This widget shows the backend and client hosts in the system. You can sort the list of hosts by total IO operations per second or by total throughput.
+This widget shows the top 5 backend and client hosts in the system. You can sort the list of hosts by total IO operations per second or by total throughput.
 
 ![Top Consumers widget](../.gitbook/assets/wmng\_dashboard\_Top\_Consumers\_widget.png)
 
