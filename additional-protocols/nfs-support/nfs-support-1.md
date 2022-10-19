@@ -26,39 +26,44 @@ Use the following command line to add an interface group:
 
 **Parameters**
 
-| **Name**            | **Type** | **Value**                                                                                                                                                                                                                                                                                | **Limitations**                                                                                                                                                                    | **Mandatory** | **Default**     |
-| ------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | --------------- |
-| `name`              | String   | Unique interface group name                                                                                                                                                                                                                                                              | Up to 11 characters in length                                                                                                                                                      | Yes           |                 |
-| `type`              | String   | Group type                                                                                                                                                                                                                                                                               | Can only be  `NFS`                                                                                                                                                                 | Yes           |                 |
-| `subnet`            | String   | The subnet mask in the 255.255.0.0 format                                                                                                                                                                                                                                                | Valid netmask                                                                                                                                                                      | No            | 255.255.255.255 |
-| `gateway`           | String   | Gateway IP                                                                                                                                                                                                                                                                               | Valid IP                                                                                                                                                                           | No            | 255.255.255.255 |
-| `allow-manage-gids` | String   | <p>Allows the hosts within this interface group to use <code>manage-gids</code> when set in exports. </p><p>With <code>manage-gids</code>, the list of group IDs received from the client will be replaced by a list of group IDs determined by an appropriate lookup on the server.</p> | <p><code>on</code> or <code>off</code>.</p><p>Cannot be set if one of the hosts belongs to an interface group which does not have the <code>allow-manage-gids</code> flag set.</p> | No            | `on`            |
+| **Name**            | **Type** | **Value**                                                                                                                                                                                                                                                                                 | **Limitations**                                                                                                                                                                      | **Mandatory** | **Default**     |
+| ------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | --------------- |
+| `name`              | String   | Unique interface group name                                                                                                                                                                                                                                                               | Up to 11 characters in length                                                                                                                                                        | Yes           |                 |
+| `type`              | String   | Group type                                                                                                                                                                                                                                                                                | Can only be  `NFS`                                                                                                                                                                   | Yes           |                 |
+| `subnet`            | String   | The subnet mask in the 255.255.0.0 format                                                                                                                                                                                                                                                 | Valid netmask                                                                                                                                                                        | No            | 255.255.255.255 |
+| `gateway`           | String   | Gateway IP                                                                                                                                                                                                                                                                                | Valid IP                                                                                                                                                                             | No            | 255.255.255.255 |
+| `allow-manage-gids` | String   | <p>Allows the server within this interface group to use <code>manage-gids</code> when set in exports. </p><p>With <code>manage-gids</code>, the list of group IDs received from the client will be replaced by a list of group IDs determined by an appropriate lookup on the server.</p> | <p><code>on</code> or <code>off</code>.</p><p>Cannot be set if one of the servers belongs to an interface group which does not have the <code>allow-manage-gids</code> flag set.</p> | No            | `on`            |
 
 {% hint style="warning" %}
-**Note:** Each host can be set to be part of interface groups with the same value of `allow-manage-gids. In` addition, you must not mount the same filesystem by the  hosts residing in interface groups with different values of `allow-manage-gids.`
+**Note:** Each server can be set to be part of interface groups with the same value of `allow-manage-gids. In` addition, you must not mount the same filesystem by the  servers residing in interface groups with different values of `allow-manage-gids.`
 {% endhint %}
 
 ## Set interface group ports
 
 **Commands:** `weka nfs interface-group port add`and `weka nfs interface-group port delete`
 
-Use the following command lines to add/delete an interface group port:`weka nfs interface-group port add <name> <host-id> <port>`  \
-`weka nfs interface-group port delete <name> <host-id> <port>`
+Use the following command lines to add or delete an interface group port:
+
+`weka nfs interface-group port add <name> <container-id> <port>`
+
+`weka nfs interface-group port delete <name> <container-id> <port>`
 
 **Parameters**
 
-| **Name**  | **Type** | **Value**                                                                                      | **Limitations** | **Mandatory** | **Default** |
-| --------- | -------- | ---------------------------------------------------------------------------------------------- | --------------- | ------------- | ----------- |
-| `name`    | String   | Interface group name                                                                           | None            | Yes           |             |
-| `host-id` | String   | Host ID on which the port resides (can be obtained by running the `weka cluster host` command) | Valid host ID   | Yes           |             |
-| `port`    | String   | Port's device, e.g., eth1                                                                      | Valid device    | Yes           |             |
+| **Name**       | **Type** | **Value**                                                                                                | **Limitations**    | **Mandatory** | **Default** |
+| -------------- | -------- | -------------------------------------------------------------------------------------------------------- | ------------------ | ------------- | ----------- |
+| `name`         | String   | Interface group name                                                                                     | None               | Yes           |             |
+| `container-id` | String   | Container ID on which the port resides (can be obtained by running the `weka cluster container` command) | Valid container ID | Yes           |             |
+| `port`         | String   | Port's device, e.g., eth1                                                                                | Valid device       | Yes           |             |
 
 ## Set interface group IPs
 
 **Commands:** `weka nfs interface-group ip-range add`and `weka nfs interface-group ip-range delete`
 
-Use the following command lines to add/delete an interface group IP:\
-`weka nfs interface-group ip-range add <name> <ips>`\
+Use the following command lines to add/delete an interface group IP:
+
+`weka nfs interface-group ip-range add <name> <ips>`
+
 `weka nfs interface-group ip-range delete <name> <ips>`
 
 **Parameters**
@@ -76,14 +81,20 @@ The AWS environment does not support interface group IPs.
 
 The mountd service receives requests from clients to mount to the NFS server. When working with interface groups (with `allow-manage-gids=on`), it is possible to set it explicitly, rather than have it randomly selected on each server startup. This allows an easier setup of the firewalls to allow that port.
 
-Use the following command to set and view the mountd configuration: `weka nfs global-config set --mountd-port <mountd-port>` and `weka nfs global-config show`
+Use the following command lines to set and view the mountd configuration:
+
+`weka nfs global-config set --mountd-port <mountd-port>`&#x20;
+
+`weka nfs global-config show`
 
 ## Define client access groups <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
 
 **Command:** `weka nfs client-group`
 
-Use the following command lines to add/delete a client access group:\
-`weka nfs client-group add <name>`\
+Use the following command lines to add/delete a client access group:
+
+`weka nfs client-group add <name>`
+
 `weka nfs client-group delete <name>`
 
 **Parameters**
@@ -98,8 +109,10 @@ Use the following command lines to add/delete a client access group:\
 
 **Command:** `weka nfs rules`
 
-Use the following command lines to add/delete a client group DNS:\
-`weka nfs rules add dns <name> <dns>`\
+Use the following command lines to add/delete a client group DNS:
+
+`weka nfs rules add dns <name> <dns>`
+
 `weka nfs rules delete dns <name> <dns>`
 
 **Parameters**
@@ -113,8 +126,10 @@ Use the following command lines to add/delete a client group DNS:\
 
 **Command:** `weka nfs rules`
 
-Use the following command lines to add/delete a client group IP:\
-`weka nfs rules add ip <name> <ip>`\
+Use the following command lines to add/delete a client group IP:
+
+`weka nfs rules add ip <name> <ip>`
+
 `weka nfs rules delete ip <name> <ip>`
 
 **Parameters**
@@ -137,16 +152,16 @@ Use the following command lines to add/update/delete NFS permissions:\
 
 **Parameters**
 
-| **Name**             | **Type** | **Value**                                                                                                                                                                                  | **Limitations**                                                                                                                                                | **Mandatory**                      | **Default** |
-| -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------- |
-| `filesystem`         | String   | Filesystem name                                                                                                                                                                            | Existing filesystem                                                                                                                                            | Yes                                |             |
-|  `group`             | String   | Client group name                                                                                                                                                                          | Existing client group                                                                                                                                          | Yes                                |             |
-|  `path`              | String   | The root of the share                                                                                                                                                                      | Valid path                                                                                                                                                     | No                                 | /           |
-| `permission-type`    | String   | Permission type                                                                                                                                                                            | <p><code>ro</code> for read-only or</p><p><code>rw</code> for read-write</p>                                                                                   | No                                 | `rw`        |
-| `squash`             | String   | Squashing type                                                                                                                                                                             | `none` , `root` or `all` (`all` is supported only when working on hosts with intrface-groups set with  `allow-manage-gids,` otherwise it is treated as `root`) | No                                 | `on`        |
-| `anon-uid`           | Number   | Anonymous user ID (relevant only for root squashing)                                                                                                                                       | Valid UID (between 1 and 65535)                                                                                                                                | Yes (if root squashing is enabled) | 65534       |
-| `anon-gid`           | Number   | Anonymous user group ID (relevant only for root squashing)                                                                                                                                 | Valid GID (between 1 and 65535)                                                                                                                                | Yes (if root squashing is enabled) | 65534       |
-| `obs-direct`         | Boolean  | See [Object-store Direct Mount](../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option) section                                       | `on` or `off`                                                                                                                                                  | No                                 | No          |
-| `manage-gids`        | String   | <p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client will be replaced by a list of group IDs determined by an appropriate lookup on the server.</p> | <p> <code>on</code> or <code>off</code>.</p><p>Relevant only when using<code>allow-manage-gids</code> interface groups.</p>                                    | No                                 | `off`       |
-| `privileged-port`    | String   | Sets the share to only be mounted via privileged ports (1-1024), usually only allowed by the root user.                                                                                    | <p><code>on</code> or <code>off</code>.</p><p>Relevant only when using<code>allow-manage-gids</code> interface groups.</p>                                     | No                                 | `off`       |
-| `supported-versions` | String   | A comma-separated list of supported NFS versions.                                                                                                                                          | `v3,v4`                                                                                                                                                        | No                                 | `v3`        |
+| **Name**             | **Type** | **Value**                                                                                                                                                                                  | **Limitations**                                                                                                                                                  | **Mandatory**                      | **Default** |
+| -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------- |
+| `filesystem`         | String   | Filesystem name                                                                                                                                                                            | Existing filesystem                                                                                                                                              | Yes                                |             |
+|  `group`             | String   | Client group name                                                                                                                                                                          | Existing client group                                                                                                                                            | Yes                                |             |
+|  `path`              | String   | The root of the share                                                                                                                                                                      | Valid path                                                                                                                                                       | No                                 | /           |
+| `permission-type`    | String   | Permission type                                                                                                                                                                            | <p><code>ro</code> for read-only or</p><p><code>rw</code> for read-write</p>                                                                                     | No                                 | `rw`        |
+| `squash`             | String   | Squashing type                                                                                                                                                                             | `none` , `root` or `all` (`all` is supported only when working on servers with intrface-groups set with  `allow-manage-gids,` otherwise it is treated as `root`) | No                                 | `on`        |
+| `anon-uid`           | Number   | Anonymous user ID (relevant only for root squashing)                                                                                                                                       | Valid UID (between 1 and 65535)                                                                                                                                  | Yes (if root squashing is enabled) | 65534       |
+| `anon-gid`           | Number   | Anonymous user group ID (relevant only for root squashing)                                                                                                                                 | Valid GID (between 1 and 65535)                                                                                                                                  | Yes (if root squashing is enabled) | 65534       |
+| `obs-direct`         | Boolean  | See [Object-store Direct Mount](../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option) section                                       | `on` or `off`                                                                                                                                                    | No                                 | No          |
+| `manage-gids`        | String   | <p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client will be replaced by a list of group IDs determined by an appropriate lookup on the server.</p> | <p> <code>on</code> or <code>off</code>.</p><p>Relevant only when using<code>allow-manage-gids</code> interface groups.</p>                                      | No                                 | `off`       |
+| `privileged-port`    | String   | Sets the share to only be mounted via privileged ports (1-1024), usually only allowed by the root user.                                                                                    | <p><code>on</code> or <code>off</code>.</p><p>Relevant only when using<code>allow-manage-gids</code> interface groups.</p>                                       | No                                 | `off`       |
+| `supported-versions` | String   | A comma-separated list of supported NFS versions.                                                                                                                                          | `v3,v4`                                                                                                                                                          | No                                 | `v3`        |

@@ -8,9 +8,5 @@ description: >-
 # Weka installation on bare metal
 
 {% hint style="info" %}
-**Note:** The following description relates to the installation of a homogeneous Weka system configuration, which is highly recommended. For installation of a non-homogeneous configuration, contact the Weka Support Team.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** To obtain an offline version of the documentation of this portal, click [here](https://drive.google.com/open?id=1HwWq3BtaRLT2j9y-hmVO9xzzikpzFb5X).
+**Note:** The following description relates to the installation of a homogeneous Weka system configuration, which is highly recommended. For installation of a non-homogeneous configuration, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}

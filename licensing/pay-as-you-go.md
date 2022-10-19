@@ -35,7 +35,7 @@ This method also allows the connection of multiple Weka system clusters to the s
 2. Select the **AWS Marketplace** as the payment method.
 3. Select the **Create PAYG Plan** to complete the creation of the plan.
 4. Enable the PAYG plan in the Weka system cluster:
-   * Open a terminal and connect to one of your cluster hosts.
+   * Open a terminal and connect to one of your cluster servers.
    * Copy and paste the `<plan-id>` and `<secret-key>` from the PAYG plan you created above to the following CLI command: \
      `$ weka cluster license payg <plan-id> <secret-key>`
 

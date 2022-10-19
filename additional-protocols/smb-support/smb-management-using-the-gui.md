@@ -6,9 +6,11 @@ description: >-
 
 # Manage SMB using the GUI
 
-Using the GUI, you can:
 
-* [Configure the SMB cluster](smb-management-using-the-gui.md#configure-the-smb-cluster)
+
+Using the GUI, you can:&#x20;
+
+* [Configure the SMB cluster](smb-management-using-the-gui.md#configure-the-smb-cluster) (not applicable for SMB-W)
 * [Edit the SMB cluster](smb-management-using-the-gui.md#edit-the-smb-cluster)
 * [Join the SMB cluster in the Active Directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory)
 * [Delete the SMB cluster](smb-management-using-the-gui.md#delete-the-smb-cluster)
@@ -18,12 +20,17 @@ Using the GUI, you can:
 * [Remove an SMB share](smb-management-using-the-gui.md#remove-an-smb-share)
 
 {% hint style="info" %}
+Using the GUI, you can manage the SMB-W cluster, but not configure and delete it. See [Manage SMB using the CLI](smb-management-using-the-cli.md).\
+When managing an SMB-W cluster using the GUI, the limitations related to SMB-W in the CLI commands also apply.
+{% endhint %}
+
+{% hint style="info" %}
 **Note:** Use ASCII format when configuring name fields, such as domain and shares.
 {% endhint %}
 
 ## **Configure the SMB cluster** <a href="#configure-the-smb-cluster" id="configure-the-smb-cluster"></a>
 
-Define the Weka system hosts that participate in the SMB cluster**.**
+Define the Weka system servers that participate in the SMB cluster (with legacy SMB only)**.**
 
 **Procedure**
 
@@ -38,7 +45,7 @@ Define the Weka system hosts that participate in the SMB cluster**.**
 * **Name**: A NetBIOS name for the SMB cluster.
 * **Domain**: The domain the SMB cluster joins.
 * **Domain NetBIOS Name**: (Optional) The domain NetBIOS name.
-* **Hosts**: List of 3-8 Weka system hosts to participate in the SMB cluster, based on the host IDs in Weka.
+* **Servers**: List of 3-8 Weka system servers to participate in the SMB cluster, based on the server IDs in Weka.
 * **Encryption:** Select the in-transit encryption to use in the SMB cluster:\
   \- enabled: enables encryption negotiation but doesn't turn it on automatically for supported\
   &#x20;  sessions and share connections.\
@@ -47,7 +54,7 @@ Define the Weka system hosts that participate in the SMB cluster**.**
   &#x20;  and share connections.\
   \- required: enforces data encryption on sessions and share connections. Clients that do not\
   &#x20;  support encryption will be denied access to the server.
-* **IPs**: (Optional) List of public IPs (comma-separated) used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA (do not assign these IPs to any host on the network). For IP range, use the following format: **a.b.c.x-y**.
+* **IPs**: (Optional) List of public IPs (comma-separated) used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA (do not assign these IPs to any server on the network). For IP range, use the following format: **a.b.c.x-y**.
 
 {% hint style="info" %}
 In AWS installations, it is not possible to set a list of SMB service addresses. The SMB service must be accessed using the primary addresses of the cluster nodes.
@@ -55,9 +62,9 @@ In AWS installations, it is not possible to set a list of SMB service addresses.
 
 5\. Select **Save**.
 
-![SMB Cluster Configuration dialog](../../.gitbook/assets/wmng\_smb\_configure\_dialog.gif)
+<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog (1).gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
 
-Once the system completes the configuration process, the host statuses change from not ready (red X icon) to ready (green V icon), as shown in the following example:
+Once the system completes the configuration process, the server statuses change from not ready (red X icon) to ready (green V icon).
 
 ![SMB cluster configuration example](../../.gitbook/assets/wmng\_smb\_configure\_result.png)
 
@@ -89,7 +96,7 @@ To enable the Weka storage nodes to join the AD domain, verify that the AD serve
 
 1. In the SMB Cluster Configuration, select **Join**.
 
-![Join the SMB cluster in the Active Directory](<../../.gitbook/assets/wmng\_smb\_join\_ad\_button (1).png>)
+![Join the SMB cluster in the Active Directory](../../.gitbook/assets/wmng\_smb\_join\_ad\_button.png)
 
 
 

@@ -6,7 +6,7 @@ description: >-
 
 # Protocols debug level management
 
-The cluster enables changing the log debug level (verbosity level) for each protocol and member host in the cluster. While investigating issues, you can increase the verbosity level.
+The cluster enables changing the log debug level (verbosity level) for each protocol container in the cluster. While investigating issues, you can increase the verbosity level.
 
 {% hint style="warning" %}
 Do not change protocols debug level without specific instructions from the [Customer Success Team](../../getting-support-for-your-weka-system.md#contact-customer-success-team). Changing the protocols debug level reduces the amount of troubleshooting information about the system and may affect the SLA if an issue occurs.

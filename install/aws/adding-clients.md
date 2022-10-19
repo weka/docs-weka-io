@@ -121,7 +121,7 @@ Client has joined the cluster
 {% hint style="info" %}
 **Note: Dedicated client resources**
 
-Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the Weka system on the client instance. This is performed as part of the Weka system preallocation of resources, ensuring that variance in client activity does not result in the allocation of resources that may affect the programs running on the client host. For more information, see [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
+Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the Weka system on the client instance. This is performed as part of the Weka system preallocation of resources, ensuring that variance in client activity does not result in the allocation of resources that may affect the programs running on the client. For more information, see [Memory Resource Planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
 {% endhint %}
 
 ### Step 4: Mount filesystems on the clients <a href="#step-4-mount-filesystem-on-clients" id="step-4-mount-filesystem-on-clients"></a>

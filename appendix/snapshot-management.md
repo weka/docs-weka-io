@@ -20,7 +20,7 @@ Weka's SnapTool allows for the creation of scheduled snapshots for your cluster 
 
 ## Where to run?
 
-`snaptool` can be run on any Linux system or VM and does not need to be on a host running the Weka protocol. All communication with the Weka Cluster is via the Weka API and needs only IP connectivity to a Weka host.  If `snaptool` is not running on a host with Weka installed, a valid `auth-token.json` file for the weka cluster will need to be copied to the running host, typically into `~/.weka`.
+`snaptool` can be run on any Linux system or VM and does not need to be on a server running the Weka protocol. All communication with the Weka Cluster is via the Weka API and needs only IP connectivity to a Weka host.  If `snaptool` is not running on a server with Weka installed, a valid `auth-token.json` file for the weka cluster will need to be copied to the running host, typically into `~/.weka`.
 
 ## Installation
 
@@ -38,7 +38,7 @@ schedules:
 
 #### Cluster syntax
 
-Cluster information is in the `cluster:` section. A host list is required. Other entries in this section are optional but are recommended for clarity. See the example `snaptool.yml` below for valid syntax.&#x20;
+Cluster information is in the `cluster:` section. A server list is required. Other entries in this section are optional but are recommended for clarity. See the example `snaptool.yml` below for valid syntax.&#x20;
 
 {% hint style="warning" %}
 **Note:** It is not necessary to list all weka hosts/servers in the cluster, but more than one is recommended.

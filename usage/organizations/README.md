@@ -16,7 +16,7 @@ The Cluster Admin can perform the following activities:
 * Delete existing organizations.
 * Monitor per organization the total capacity used by all the organization filesystems.
 
-‌While Cluster Admins are people trusted by the different organizations (for example, have root access to the backend hosts), they are obscured from the organization data in the Weka system. The Cluster Admin separation is partial, for example, they can still see the events of all organizations. The Weka system ensures the separation of any sensitive information between the different organizations.
+‌While Cluster Admins are people trusted by the different organizations (for example, have root access to the backend servers), they are obscured from the organization data in the Weka system. The Cluster Admin separation is partial, for example, they can still see the events of all organizations. The Weka system ensures the separation of any sensitive information between the different organizations.
 
 {% hint style="info" %}
 **Note:** The data at the hardware level is not separated. While the Weka system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations. The system limits are according to the entire system. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.

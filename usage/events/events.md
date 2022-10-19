@@ -18,7 +18,7 @@ The System Events page provides the following details:
 * **Severity**: The severity of the event. The options are Info (lowest), Warning, Minor, Major, and Critical (highest).
 * **Timestamp**: The date and time the event occurred. You can switch the display time between local and system time through the top bar.
 * **Origin**: The originator of the event. For example, when a user creates a filesystem, the username appears as the event's originator.
-* **Category**: The category options include Alerts, Cloud, Clustering, Drive, Events, Filesystem, IO, InterfaceGroup, Licensing, NFS, Network, Node, ObjectStorage, Raid, Statistics, System, Upgrade, and User.
+* **Category**: The category options include Alerts, Cloud, Clustering, Config, Custom, Drive, Events, Filesystem, InterfaceGroup, Kms, Licensing, NFS, Network, Node, ObjectStorage, Org, Raid, Resources, S3, Security, Smb, System, Traces, Upgrade, and User.
 * **Name**: The name of the event.
 * **Description**: The description of the event.
 

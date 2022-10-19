@@ -6,7 +6,7 @@ description: >-
 
 # Prepare the system for Weka installation
 
-Once the hardware and software prerequisites are met, prepare the backend hosts and client machines for the installation of the Weka system.
+Once the hardware and software prerequisites are met, prepare the backend servers and clients for the installation of the Weka system.
 
 This preparation consists of the following steps:
 
@@ -56,7 +56,7 @@ Once the dependencies have been satisfied, it is possible to perform the OFED in
 
 #### Mellanox OFED installation
 
-The Mellanox OFED installation involves decompressing the distribution archive (which should be obtained from the Mellanox website) and running the installation script. Refer to the following to begin the installation:
+The Mellanox OFED installation involves decompressing the distribution archive, which you obtain from the Mellanox website, and running the installation script. Refer to the following to begin the installation:
 
 ```
 # tar xf MLNX_OFED_LINUX-4.5-1.0.1.0-rhel7.6-x86_64.tgz
@@ -87,10 +87,10 @@ This concludes the Mellanox OFED installation procedure.
 
 ## Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
-SR-IOV enablement is mandatory for hosts equipped with Intel NICs except for E810, or when working with client VMs where there is a need to expose VFs of a physical NIC to the virtual NICs.
+SR-IOV enablement is mandatory for servers equipped with Intel NICs except for E810, or when working with client VMs where there is a need to expose VFs of a physical NIC to the virtual NICs.
 
 {% hint style="info" %}
-SR-IOV enablement is **not** required for hosts with Mellanox NICs (CX-4 or newer) and Intel E810 NIC.
+SR-IOV enablement is **not** required for servers with Mellanox NICs (CX-4 or newer) and Intel E810 NIC.
 {% endhint %}
 
 **Related topic**
@@ -242,7 +242,7 @@ Verify the connection is up with all the non-default partition attributes set:
 
 ## Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
 
-Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the hosts:
+Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the servers:
 
 ```
 # ping -M do -s 8972 -c 3 192.168.1.2
@@ -262,7 +262,7 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 
 ## Configure the HA networking <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
 
-As described in [Weka Networking HA](../../../overview/networking-in-wekaio.md#ha) section, bonded interfaces are supported for ethernet can be added to Weka after setting the bonded device in the host.
+As described in [Weka Networking HA](../../../overview/networking-in-wekaio.md#ha) section, bonded interfaces are supported for ethernet can be added to Weka after setting the bonded device in the server.
 
 When there is a need to configure Dual Network (IB or ETH) without LACP, each NIC must have its own IP address and you will need to properly configure the routing of the interfaces involved.
 
@@ -335,13 +335,13 @@ Refer to this [link](https://access.redhat.com/solutions/30564) to learn how to 
 
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the Weka system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
-Configure the clock synchronization software on the backend and client machines according to the specific vendor instructions (see your OS documentation), prior to installing the Weka software.
+Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the Weka software.
 
 ## **Disable the NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
 
 The Weka system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies in the operations.
 
-To disable NUMA balancing, run the following command on the host:
+To disable NUMA balancing, run the following command on the server:
 
 ```
 echo 0 > /proc/sys/kernel/numa_balancing
@@ -349,12 +349,12 @@ echo 0 > /proc/sys/kernel/numa_balancing
 
 ## Validate the system preparation <a href="#validate-the-system-preparation" id="validate-the-system-preparation"></a>
 
-The `wekachecker` is a tool that validates the readiness of the hosts in the cluster before installing the Weka software.
+The `wekachecker` is a tool that validates the readiness of the servers in the cluster before installing the Weka software.
 
 The `wekachecker` performs the following validations:
 
 * Dataplane IP, jumbo frames, and routing
-* ssh connection to all hosts
+* ssh connection to all servers
 * Timesync
 * OS release
 * Sufficient capacity in /opt/weka
@@ -387,7 +387,7 @@ The `wekachecker` performs the following validations:
 
 **Procedure**
 
-1. Download the tool repository to one of the hosts in the group intended for the cluster, using git clone from [https://github.com/weka/tools](https://github.com/weka/tools).\
+1. Download the tool repository to one of the servers in the group intended for the cluster, using git clone from [https://github.com/weka/tools](https://github.com/weka/tools).\
    Alternatively, download the tarball from [https://github.com/weka/tools/releases](https://github.com/weka/tools/releases) and extract it.
 2. From the install directory, run `./wekachecker <hostnames/IPs>`\
    Where:\

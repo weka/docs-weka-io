@@ -96,7 +96,7 @@ You can revoke the access for LDAP users by changing the `user-revocation-attrib
 | `username` | String/Integer | A valid user in the organization of the Organization Admin running the command |                 | Yes           |             |
 
 {% hint style="warning" %}
-**Note:** NFS and SMB are different protocols from WekaFS, which require additional security considerations when used. For example, The system grants NFS permissions per host. Therefore, manage the permissions for accessing these hosts for NFS export carefully.
+**Note:** NFS and SMB are different protocols from WekaFS, which require additional security considerations when used. For example, The system grants NFS permissions per server. Therefore, manage the permissions for accessing these servers for NFS export carefully.
 {% endhint %}
 
 ## Update a local user
@@ -160,7 +160,7 @@ When users open the GUI, they are prompted to provide their username and passwor
 Alternatively, it is possible to log into the CLI as a specific user using the`weka user login <username> <password>`command. This will run each CLI command from that user. When a user logs in, a token file is created to be used for authentication (default to `~/.weka/auth-token.json`, which can be changed using the `--path` attribute). To see the logged-in CLI user, run the`weka user whoami` command.
 
 {% hint style="info" %}
-**Note:** The`weka user login` command is persistent, but only applies to the host on which it was set.
+**Note:** The`weka user login` command is persistent, but only applies to the server on which it was set.
 {% endhint %}
 
 {% hint style="info" %}
@@ -193,7 +193,7 @@ To configure an Active Directory server, use the following command line:
 
 | **Name**                                | **Type** | **Value**                                                                                                   | **Limitations**                                                                                                                                  | **Mandatory** | **Default** |
 | --------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ----------- |
-| `server-uri`                            | String   | Either the LDAP server host name/IP or a URI                                                                | URI must be in format `ldap://hostname:port` or `ldaps://hostname:port`                                                                          | Yes           |             |
+| `server-uri`                            | String   | Either the LDAP server hostname/IP or a URI                                                                 | URI must be in format `ldap://hostname:port` or `ldaps://hostname:port`                                                                          | Yes           |             |
 | `base-dn`                               | String   | Base DN under which users are stored                                                                        | Must be valid name                                                                                                                               | Yes           |             |
 | `user-id-attribute`                     | String   | Attribute storing user IDs                                                                                  | Must be valid name                                                                                                                               | Yes           |             |
 | `user-object-class`                     | String   | Object class of users                                                                                       | Must be valid name                                                                                                                               | Yes           |             |

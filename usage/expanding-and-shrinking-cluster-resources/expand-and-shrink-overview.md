@@ -8,11 +8,11 @@ description: >-
 
 In the Weka system, it is possible to expand and shrink a cluster as follows:
 
-1. Add or delete backend hosts
-2. Add or delete SSDs from an existing backend host
-3. Change the number of cores assigned to the Weka system in existing backend hosts
-4. Change the amount of memory allocated to the Weka system in existing backend hosts
-5. Change the network resources assigned to the Weka system in existing backend hosts
+1. Add or delete backend containers.
+2. Add or delete SSDs from an existing backend container.
+3. Change the number of cores assigned to the Weka system in existing backend containers.
+4. Change the amount of memory allocated to the Weka system in existing backend containers.
+5. Change the network resources assigned to the Weka system in existing backend containers.
 
 {% hint style="info" %}
 **Note:** The expansion or shrinking of networking resources is performed infrequently.
@@ -36,12 +36,12 @@ Expansion procedures are similar to the [Bare Metal Weka system Installation Pro
 
 ### Expansion options
 
-* Addition of new backend hosts.
+* Addition of new backend containers.
 * Addition of new failure domains, as long the system was installed with failure domains.
-* Addition of new SSDs to existing backend hosts.
-* Assignment of additional cores to Weka in existing backend hosts.
-* Assignment of more memory to Weka in existing backend hosts.
-* Assignment of additional network resources to Weka in existing backend hosts.
+* Addition of new SSDs to existing backend containers.
+* Assignment of additional cores to Weka in existing backend containers.
+* Assignment of more memory to Weka in existing backend containers.
+* Assignment of additional network resources to Weka in existing backend containers.
 * Reconfiguration of hot spares.
 
 ### Expansion limitations
@@ -55,14 +55,14 @@ To plan the capacity of the Weka system after expansion, refer to [SSD Capacity 
 
 ## The cluster expansion process
 
-Once an expansion of more SSDs or backend hosts has been planned and executed, the Weka system starts a redistribution process. This involves the redistribution of all the existing data to be perfectly balanced between the original hosts or SSDs and newly added resources. This process can take from minutes to hours, depending on the capacity and the networking CPU resources. However, the capacity increase is instant, and therefore it is possible to define more filesystems immediately, without waiting for the completion of the redistribution process.
+Once an expansion of more SSDs or backend containers has been planned and executed, the Weka system starts a redistribution process. This involves the redistribution of all the existing data to be perfectly balanced between the original containers or SSDs and newly added resources. This process can take from minutes to hours, depending on the capacity and the networking CPU resources. However, the capacity increase is instant, and therefore it is possible to define more filesystems immediately, without waiting for the completion of the redistribution process.
 
 {% hint style="info" %}
 **Note:** If necessary, contact the Weka Support Team for more details on the redistribution process and its expected duration.
 {% endhint %}
 
-Once the expansion of more cores or backend hosts has been implemented, the added CPU resources are operational in less than a minute. Write performance improves almost immediately, while read performance only improves on completion of the redistribution of the data.
+Once the expansion of more cores or backend containers has been implemented, the added CPU resources are operational in less than a minute. Write performance improves almost immediately, while read performance only improves on the completion of the redistribution of the data.
 
 {% hint style="info" %}
-**Note:** As part of the requirements for a homogeneous Weka system configuration, when expanding memory resources, the new hosts must have the same memory as the existing hosts.
+**Note:** As part of the requirements for a homogeneous Weka system configuration, when expanding memory resources, the new containers must have the same memory as the existing containers.
 {% endhint %}

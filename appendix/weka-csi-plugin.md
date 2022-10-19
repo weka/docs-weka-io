@@ -280,7 +280,7 @@ data:
 | `password`     | The user password for API access to the Weka cluster, in base64 encoding.                                                                   |                                                                                                                                                     |
 | `organization` | The Weka organization name for the user, in base64 encoding (use `Root` if you only have one organization).                                 | Multiple secrets may be used to provide access to multiple organizations, which in turn will be specified in different storage classes              |
 | `scheme`       | The URL scheme used to commnicate with the Weka cluster API.                                                                                | `http` or `https` can be used. The user must ensure that the Weka cluster was configured to use the same connection scheme.                         |
-| `endpoints`    | <p>Comma-separated list of endpoints consisting of IP address and port, e.g. </p><p><code>172.31.15.113:14000,172.31.12.91:14000</code></p> | The management IP addresses of at least 2 backend hosts should be provided for redundancy.                                                          |
+| `endpoints`    | <p>Comma-separated list of endpoints consisting of IP address and port, e.g. </p><p><code>172.31.15.113:14000,172.31.12.91:14000</code></p> | The management IP addresses of at least 2 backend servers should be provided for redundancy.                                                        |
 
 Apply the Secret and check it has been created successfully:
 
@@ -798,14 +798,14 @@ Once the volume to API binding configuration described in the previous section i
 Weka provides a migration script that automates the process.
 
 {% hint style="info" %}
-**Note:** This procedure must be performed only once, and can be performed from any Linux host that is connected to the same WekaFS cluster. **** Additional runs of the script will migrate only those volumes that were created in legacy mode after the migration process. It is safe to execute the migration script multiple times, although usually this should not be required.
+**Note:** This procedure must be performed only once, and can be performed from any Linux server that is connected to the same WekaFS cluster. **** Additional runs of the script will migrate only those volumes that were created in legacy mode after the migration process. It is safe to execute the migration script multiple times, although usually this should not be required.
 {% endhint %}
 
 {% hint style="info" %}
 **Note**: The migration process might take significant time to complete and depends on a number of persistent volumes and their actual capacity. The migration process is performed transparently and does not require downtime.
 {% endhint %}
 
-Check out the `csi-wekafs` repository from any host that is connected to WekaFS cluster:
+Check out the `csi-wekafs` repository from any server that is connected to WekaFS cluster:
 
 ```
 git clone https://github.com/weka/csi-wekafs.git
@@ -818,7 +818,7 @@ $ sudo migration/migrate-legacy-csi-volumes.sh <filesystem_name> [--csi-volumes-
 ```
 
 {% hint style="info" %}
-**Note:** On a stateless client, the `--endpoint-address` must be specified in order to successfully mount a filesystem, while on a host which is part of the Weka cluster (either client or backend) this is not necessary.
+**Note:** On a stateless client, the `--endpoint-address` must be specified in order to successfully mount a filesystem, while on a container that is part of the Weka cluster (either client or backend) this is not necessary.
 {% endhint %}
 
 {% hint style="info" %}

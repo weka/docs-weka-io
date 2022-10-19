@@ -487,7 +487,7 @@ In this test output example, results show an average latency of 226 microseconds
 
 ### Test metadata performance
 
-The test measures the rate of metadata operations (such as create, stat, delete) across the cluster. The test uses 20 million files: it uses 8 client hosts, and multiple threads per client are utilized (136), where each thread handles 18382 files. It is invoked 3 times and provides a summary of the iterations.
+The test measures the rate of metadata operations (such as create, stat, delete) across the cluster. The test uses 20 million files: it uses 8 clients, and multiple threads per client are utilized (136), where each thread handles 18382 files. It is invoked 3 times and provides a summary of the iterations.
 
 #### Job definition
 
@@ -523,7 +523,7 @@ mkdir /mnt/weka/fio
 mkdir /mnt/weka/mdtest
 ```
 
-Copy the `FIOmaster.txt` file to your host and create the `clients.txt` file with your clients' hostnames.
+Copy the `FIOmaster.txt` file to your server and create the `clients.txt` file with your clients' hostnames.
 
 ### **Run the benchmark**
 

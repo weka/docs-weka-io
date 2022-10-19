@@ -6,7 +6,7 @@ description: >-
 
 # Run first IOs with WekaFS
 
-Once the system is installed and you are familiar with the CLI and GUI, you can connect to one of the hosts and try it out.
+Once the system is installed and you are familiar with the CLI and GUI, you can connect to one of the servers and try it out.
 
 This page guides you through:
 
@@ -122,12 +122,12 @@ This has completed the sanity check that the Weka cluster is configured and IOs 
 
 To make sure that the Weka cluster and the IT environment are well configured, more complex IO patterns and benchmark tests should be conducted using the FIO utility.
 
-Although results can vary using different hosts and networking, it is not expected to be very different than what we and many other customers achieved. A properly configured Weka cluster and IT environment should yield similar results as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/).
+Although results can vary using different servers and networking, it is not expected to be very different than what we and many other customers achieved. A properly configured Weka cluster and IT environment should yield similar results as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/).
 
 {% hint style="info" %}
 **Note:** The numbers achieved in the benchmark tests, as described in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/) are not just achieved in a closed/controlled environment. Similar numbers should be achieved when using a similar configuration if the Weka cluster and IT environment are properly configured. If the numbers achieved in your environment significantly vary from those, please contact the Weka Sales or Support Team before running any other workload on the Weka cluster.
 
-The example results shown in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/), are tested on AWS. In general, for any Weka reference architecture, you should expect lower than 300 microseconds latency and 5.5 GB/s throughput per host (for a single 100gbps link).
+The example results shown in [Testing Weka Performance](../testing-and-troubleshooting/testing-weka-system-performance/), are tested on AWS. In general, for any Weka reference architecture, you should expect lower than 300 microseconds latency and 5.5 GB/s throughput per server (for a single 100gbps link).
 {% endhint %}
 
 {% content-ref url="../testing-and-troubleshooting/testing-weka-system-performance/" %}

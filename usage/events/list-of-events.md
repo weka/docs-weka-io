@@ -41,26 +41,26 @@ description: >-
 | ClockSkewedHostJoin                 | MINOR        | Host cannot join because of clock skew                                      |
 | ClusterInitializationFailed         | MAJOR        | Cluster initialization failed                                               |
 | ClusterInitialized                  | INFO         | Cluster successfully initialization                                         |
-| ClusteringFailure                   | MINOR        | Node clustering failed                                                      |
-| ConfigChangeSetsSliderFull          | MINOR        | Config changeset slider is full while the node is pulling config            |
+| ClusteringFailure                   | MINOR        | Server clustering failed                                                    |
+| ConfigChangeSetsSliderFull          | MINOR        | Config changeset slider is full while the server is pulling config          |
 | ConfigGenerationHasNoFirstChunk     | MINOR        | Applying a partial config generation is prohibited                          |
 | ConfigSnapshotPulled                | MINOR        | Config snapshot pulled                                                      |
-| GrimReaperFencingNode               | MINOR        | Partially connected node selected to be fenced by grim reaper               |
-| HostActivated                       | INFO         | Host configuration change                                                   |
-| HostAdded                           | INFO         | Host configuration change                                                   |
-| HostAdding                          | INFO         | Host configuration change                                                   |
-| HostDeactivated                     | INFO         | Host configuration change                                                   |
-| HostDeactivating                    | INFO         | Host configuration change                                                   |
-| HostRemoved                         | INFO         | Host configuration change                                                   |
-| HostRemovingFailed                  | INFO         | Host configuration change                                                   |
-| HostRemoving                        | INFO         | Host configuration change                                                   |
+| GrimReaperFencingNode               | MINOR        | Partially connected server selected to be fenced by grim reaper             |
+| HostActivated                       | INFO         | Server configuration change                                                 |
+| HostAdded                           | INFO         | Server configuration change                                                 |
+| HostAdding                          | INFO         | Server configuration change                                                 |
+| HostDeactivated                     | INFO         | Server configuration change                                                 |
+| HostDeactivating                    | INFO         | Server configuration change                                                 |
+| HostRemoved                         | INFO         | Server configuration change                                                 |
+| HostRemovingFailed                  | INFO         | Server configuration change                                                 |
+| HostRemoving                        | INFO         | Server configuration change                                                 |
 | LeaderChanged                       | WARNING      | Cluster leader has changed                                                  |
-| NodeNetworkUnstable                 | MAJOR        | A node with unstable network detected                                       |
-| NodePartiallyConnected              | MINOR        | A partially connected node was removed                                      |
-| NodeRejoined                        | INFO         | Node rejoined the cluster                                                   |
-| NodeUnreachable                     | MINOR        | An unreachable node was removed                                             |
+| NodeNetworkUnstable                 | MAJOR        | A server with unstable network detected                                     |
+| NodePartiallyConnected              | MINOR        | A partially connected server  was removed                                   |
+| NodeRejoined                        | INFO         | Server  rejoined the cluster                                                |
+| NodeUnreachable                     | MINOR        | An unreachable server  was removed                                          |
 | PreviousCluster                     | INFO         | This host was part of another cluster before                                |
-| RejoinFailureReport                 | MINOR        | Node(s) failed to rejoin                                                    |
+| RejoinFailureReport                 | MINOR        | server(s) failed to rejoin                                                  |
 | UnresponsiveBuckets                 | CRITICAL     | Some compute resources are not responding                                   |
 | WrongConfigSignatureForRaftSnapshot | MINOR        | Tried loading RAFT snapshot with unsupported config root snapshot signature |
 | WrongSchemaVersionForRaftSnapshot   | MINOR        | Tried loading RAFT snapshot with unsupported schema version                 |
@@ -136,8 +136,8 @@ description: >-
 | BrokenFile                                  | MAJOR        | File metadata corruption                                                                           |
 | CWTaskTemplateFinished                      | INFO         | CWTask template finished                                                                           |
 | CacheFlushHanging                           | MAJOR        | Host is hanging while trying to sync a file's write cache to the cluster                           |
-| ChecksumErrorInCommit                       | MAJOR        | Checksum error detected by SSD node in a committing block                                          |
-| ChecksumErrorInWrite                        | CRITICAL     | Checksum error detected by COMPUTE node in a write                                                 |
+| ChecksumErrorInCommit                       | MAJOR        | Checksum error detected by SSD in a committing block                                               |
+| ChecksumErrorInWrite                        | CRITICAL     | Checksum error detected by COMPUTE process in a write                                              |
 | DefaultDirectoryQuotaSet                    | INFO         | Default directory quota was set                                                                    |
 | DefaultDirectoryQuotaUnset                  | INFO         | Default directory quota was unset                                                                  |
 | DirectoryQuotaSet                           | INFO         | Directory quota was set                                                                            |
@@ -255,8 +255,8 @@ description: >-
 | DpdkPoolSummary             | DEBUG        | Summary of DPDK pool status                                                     |
 | HangingRPCs                 | MAJOR        | RPCs are hanging too long                                                       |
 | HugepagesAllocationFailure  | MINOR        | Hugepages allocation failure                                                    |
-| IONodeCannotFetchConfig     | WARNING      | Node cannot join cluster for too long                                           |
-| MgmtNodeCannotFetchConfig   | WARNING      | Node cannot join cluster for too long                                           |
+| IONodeCannotFetchConfig     | WARNING      | A server  cannot join cluster for too long                                      |
+| MgmtNodeCannotFetchConfig   | WARNING      | A server cannot join cluster for too long                                       |
 | NICNotFound                 | INFO         | NIC not found when initializing                                                 |
 | NetDeviceLinkDown           | MINOR        | Network interface DOWN                                                          |
 | NetDeviceLinkUp             | MINOR        | Network interface UP                                                            |
@@ -264,12 +264,12 @@ description: >-
 | NetSlaveDeviceLinkUp        | MINOR        | Network slave interface UP                                                      |
 | NetworkPortConfigFail       | MINOR        | Network port configuration failed                                               |
 | NetworkPortDead             | MAJOR        | Network Port hasn't passed packets for a long period of time, it is likely dead |
-| NoConnectivityToLivingNode  | MAJOR        | Node is disconnected from living peer(s)                                        |
+| NoConnectivityToLivingNode  | MAJOR        | A server is disconnected from living peer(s)                                    |
 | NoHardwareWatchdog          | MAJOR        | No hardware watchdog found                                                      |
 | NoJumboFrames               | MINOR        | Network does not allow large-enough messages through                            |
-| NodeCannotJoinCluster       | WARNING      | Node cannot join cluster for too long                                           |
-| NodeCannotSendJumboFrames   | MINOR        | Node cannot send jumbo packets                                                  |
-| NodeDisconnected            | MINOR        | Node disconnected from cluster                                                  |
+| NodeCannotJoinCluster       | WARNING      | A server cannot join cluster for too long                                       |
+| NodeCannotSendJumboFrames   | MINOR        | A server cannot send jumbo packets                                              |
+| NodeDisconnected            | MINOR        | A server disconnected from cluster                                              |
 | RDMAClientDisabled          | MINOR        | RDMA optimization disabled                                                      |
 | RDMAClientEnabled           | MINOR        | RDMA optimization enabled                                                       |
 

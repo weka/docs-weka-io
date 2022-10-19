@@ -28,8 +28,8 @@ The organization admin sets quotas to inform/restrict users from using too much 
 
 When working with quotas, consider the following:
 
-* Currently, to set a quota, the relevant filesystem must be mounted on the host where the set quota command is to be run.
-* When setting a quota, you should go through a new mount-point. Meaning, if you are using a host that has mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
+* Currently, to set a quota, the relevant filesystem must be mounted on the server where the set quota command is to be run.
+* When setting a quota, you should go through a new mount-point. Meaning, if you are using a server that has mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
 * Quotas can be set within nested directories (up to 4 levels of nested quotas are supported) and over-provisioned under the same directory quota tree. E.g., `/home` can have a quota of 1TiB, and each user directory under it can have a quota of 10GiB, while there are 200 users.
 * Before a directory is being deleted, its quota must be removed. A directory tree cannot be deleted without removing all the inner directories quotas beforehand. Note, default (parent) quotas are set as quotas at the directory creation and the actual quota needs to be removed before the directory is deleted (not the default quota of the parent directory)&#x20;
 * Moving files (or directories) between two directories with quotas, into a directory with a quota, or outside of a directory with a quota is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy\&delete but is OS-dependent.
@@ -96,8 +96,8 @@ Use the following command to list the directory quotas (by default, only exceedi
 | ----------- | -------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------- | --------------- |
 | `fs-name`   | String   | Shows quota report only on the specified filesystem.                                          | A valid wekafs filesystem name.                                                    | No            | All filesystems |
 | `snap-name` | String   | Shows the quota report from the time of the snapshot.                                         | Must be a valid snapshot name and be given along with the corresponding `fs-name.` | No            |                 |
-| `path`      | String   | Path to a directory. Shows quota report only on the specified directory.                      | The relevant filesystem must be mounted in the host running the query.             | No            |                 |
-| `under`     | String   | A path to a directory under a wekafs mount.                                                   | The relevant filesystem must be mounted in the host running the query.             | No            |                 |
+| `path`      | String   | Path to a directory. Shows quota report only on the specified directory.                      | The relevant filesystem must be mounted in the server running the query.           | No            |                 |
+| `under`     | String   | A path to a directory under a wekafs mount.                                                   | The relevant filesystem must be mounted in the server running the query.           | No            |                 |
 | `over`      | Number   | Shows only quotas over this percentage of usage                                               | 0-100                                                                              | No            |                 |
 | `quick`     | Boolean  | Do not resolve inode to a path (provides quicker result if the report contains many entries). |                                                                                    | No            | False           |
 | `all`       | Boolean  | Shows all the quotas, not just the exceeding ones.                                            |                                                                                    | No            | False           |
@@ -112,7 +112,7 @@ Use the following command to list the directory default quotas:
 | ----------- | -------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------- | --------------- |
 | `fs-name`   | String   | Shows the default quotas of the specified filesystem only.                            | A valid wekafs filesystem name.                                                    | No            | All filesystems |
 | `snap-name` | String   | Shows the default quotas from the time of the snapshot.                               | Must be a valid snapshot name and be given along with the corresponding `fs-name.` | No            |                 |
-| `path`      | String   | Path to a directory. Shows the default quotas report only on the specified directory. | The relevant filesystem must be mounted in the host running the query.             | No            |                 |
+| `path`      | String   | Path to a directory. Shows the default quotas report only on the specified directory. | The relevant filesystem must be mounted in the server running the query.           | No            |                 |
 
 ### Unsetting directory quotas/default quotas
 

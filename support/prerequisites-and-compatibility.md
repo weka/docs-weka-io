@@ -50,7 +50,7 @@ description: >-
 
 #### General
 
-* All Weka nodes must be synchronized in date/time (NTP recommended)
+* All Weka servers must be synchronized in date/time (NTP recommended)
 * A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
 * If using `mlocate` or alike, it's advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
 
@@ -86,7 +86,7 @@ description: >-
 ## Networking
 
 {% hint style="info" %}
-**Note:** At least 4k MTU is advised on Weka cluster hosts NICs, and the switches the hosts are connected to.
+**Note:** At least 4k MTU is advised on Weka cluster servers NICs, and the switches the servers are connected to.
 
 For both Ethernet and Infiniband configurations, a Weka system can be configured without jumbo frames. However, it will provide very limited performance and will not be able to handle high loads of data; please consult the Weka Sales or Support teams before running in this mode.
 
@@ -117,7 +117,7 @@ Supported Mellanox OFED versions:
 
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
-* 5.4-3.4.0.0
+* 5.4-3.4.0.0 (LTS)
 * 5.1-2.6.2.0
 * 5.1-2.5.8.0
 
@@ -145,14 +145,14 @@ Supported ice drivers:
 * Ethernet speeds: 200 GbE / 100 GbE /  50GbE / 40 GbE / 25 GbE / 10 GbE&#x20;
 * NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
 * VLAN: Not supported
-* Connectivity between hosts: Ports 14000-14100
+* Connectivity between servers: Ports 14000-14100
 * Mellanox NICs:
   * One Weka system IP address for management and data plane
 * Other vendors NICs
   * Weka system management IP address: One IP per server (configured prior to Weka installation)&#x20;
   * Weka system data plane IP address: One IP address for each [Weka core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
   * Weka system management IP: Ability to communicate with all Weka system data plane IPs
-  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the host; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configuration may be required in the BIOS
+  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the server; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configuration may be required in the BIOS
   * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
@@ -173,7 +173,7 @@ Supported Mellanox OFED versions:
 
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
-* 5.4-3.4.0.0
+* 5.4-3.4.0.0 (LTS)
 * 5.1-2.6.2.0
 * 5.1-2.5.8.0
 
@@ -247,7 +247,7 @@ VMs can be used as clients only, assuming they meet the following prerequisite:
 ### **For DPDK clients (on top of the UDP requirements):**
 
 * The virtual platform interoperability (hypervisor, NICs, CPUs, different versions, etc.) must support DPDK and SR-IOV VFs passthrough to the VM.
-* The hypervisor hosts and the client VMs must run the same OFED version.
+* The Hypervisor servers and the client VMs must run the same OFED version.
 
 #### For the VMWare platform:
 
@@ -258,7 +258,7 @@ For additional information and how-to articles, search the Weka knowledgebase in
 
 ## KMS
 
-* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) (version 1.1.5 and up)
+* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) (version 1.1.5 up to 1.9.x)
 * [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) compliant KMS (protocol version 1.2 and up)
   * The KMS should support encryption-as-a-service (KMIP encrypt/decrypt APIs)
   * KMIP certification has been conducted with [Equinix SmartKey](https://www.equinix.com/services/edge-services/smartkey/) (powered by [Fortanix KMS](https://fortanix.com/products/sdkms/))

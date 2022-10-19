@@ -20,15 +20,17 @@
 * [Run first IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
 * [Getting started with Weka REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
 
-## Planning & Installation <a href="#install" id="install"></a>
+## Planning and Installation <a href="#install" id="install"></a>
 
-* [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts.md)
+* [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts/README.md)
+  * [Weka containers architecture overview](install/prerequisites-for-installation-of-weka-dedicated-hosts/weka-containers-architecture-overview.md)
 * [Weka installation on bare metal](install/bare-metal/README.md)
   * [Planning a Weka System Installation](install/bare-metal/planning-a-weka-system-installation.md)
   * [Prepare the system for Weka installation](install/bare-metal/setting-up-the-hosts/README.md)
     * [SR-IOV enablement](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Obtain the Weka software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
-  * [Weka system installation process using the CLI](install/bare-metal/using-cli.md)
+  * [Weka system installation process with a single container using the CLI](install/bare-metal/using-cli.md)
+  * [Weka system installation with multiple containers using the CLI](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
   * [Add clients](install/bare-metal/adding-clients-bare-metal.md)
 * [Weka installation on AWS](install/aws/README.md)
   * [Self-service portal](install/aws/self-service-portal.md)
@@ -141,7 +143,7 @@
   * [Mount authentication for organization filesystems](usage/organizations/organizations-2.md)
 * [Expand and shrink cluster resources](usage/expanding-and-shrinking-cluster-resources/README.md)
   * [Expand and shrink overview](usage/expanding-and-shrinking-cluster-resources/expand-and-shrink-overview.md)
-  * [Workflow: Add a backend host](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
+  * [Workflow: Add a backend container](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
   * [Expansion of specific resources](usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrink a Cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
 * [Background tasks](usage/background-tasks.md)

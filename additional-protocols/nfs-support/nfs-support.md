@@ -18,7 +18,7 @@ Using the GUI, you can:
 
 ## Create interface groups <a href="#create-interface-groups" id="create-interface-groups"></a>
 
-Interface Groups define the hosts and ports that provide the NFS service.
+Interface Groups define the servers and ports that provide the NFS service.
 
 **Procedure**
 
@@ -55,7 +55,7 @@ Once you create an interface group, set its ports.
 
 3\. In the Add Port dialog, set the following properties:
 
-* **Hostname**: Select the host ID on which the port resides.
+* **Hostname**: Select the server on which the port resides.
 * **Port:** Select the port from the list.
 
 ![Add port dialog](../../.gitbook/assets/wmng\_add\_nfs\_group\_ports\_dialog.png)
@@ -153,9 +153,9 @@ You can create NFS permission for a client group.
 * **Filesystem**: The filesystem to which the permissions are applied.
 * **Path**: The exported directory path (root share).
 * **Type**: The access type: RO (read-only) or RW (read/write).
-* **Priority:** The priority of the client permission. When access is evaluated, the system processes first the permissions set with the lower priority number. Setting a number in tens (10, 20, 100, and so on) is recommended (it allows adding priorities in between).
+* **Priority:** The priority of the client's permission. When access is evaluated, the system first processes the permissions set with the lower priority number. Setting a number in tens (10, 20, 100, and so on) is recommended (it allows adding priorities in between).
 * **Supported Versions:** The supported NFS versions (V3, V4, or both).
-* **Squash Root**: The squash mode that the system enforces with the client permission.
+* **Squash Root**: The squash mode that the system enforces with the client's permission.
 * **Anon. UID**: Anonymous user ID. Only relevant for Root and All user squashing.
 * **Anon. GID:** Anonymous group ID. Only relevant for Root and All user squashing.
 

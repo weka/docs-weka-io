@@ -11,12 +11,12 @@ Using the GUI, you can:
 * [Update SMB debug level](manage-protocols-debug-level-using-the-gui.md#update-smb-debug-level)
 
 {% hint style="info" %}
-Once the container is restarted, the log verbosity level reverts to its default.
+Once the server is restarted, the log verbosity level reverts to its default.
 {% endhint %}
 
 ## Update S3 debug level <a href="#update-s3-debug-level" id="update-s3-debug-level"></a>
 
-If the S3 protocol is configured, you can change the debug level for all hosts or specified hosts.
+If the S3 protocol is configured, you can change the debug level for all servers or specified servers.
 
 The available debug levels are:
 
@@ -34,13 +34,13 @@ The available debug levels are:
 3. On the Protocols Debug Level section, select **Change S3 debug level**.
 4. On the Update S3 Debug Level dialog, set the following properties:
    * **Level:** Select the debug level.
-   * **All members:** If you want to apply the update on all the hosts, switch to **On**. If you want to apply the update on specific hosts, switch to **Off** and select the required hosts.
+   * **All servers:** If you want to apply the update on all the servers, switch to **On**. If you want to apply the update on specific servers, switch to **Off** and select the required servers.
 
 ![Update S3 Debug Level](../../../.gitbook/assets/wmng\_update\_S3\_debug\_level.png)
 
 ## Update NFS debug level <a href="#update-nfs-debug-level" id="update-nfs-debug-level"></a>
 
-If the NFS protocol is configured, you can change the debug level for all hosts or specified hosts.
+If the NFS protocol is configured, you can change the debug level for all servers or specified servers.
 
 The available debug levels are:
 
@@ -57,13 +57,13 @@ The available debug levels are:
 3. On the Protocols Debug Level section, select **Change NFS debug level**.
 4. On the Update NFS Debug Level dialog, set the following properties:
    * **Level:** Select the debug level.
-   * **All members:** If you want to apply the update on all the hosts, switch to **On**. If you want to apply the update on specific hosts, switch to **Off** and select the required hosts.
+   * **All servers:** If you want to apply the update on all the servers, switch to **On**. If you want to apply the update on specific servers, switch to **Off** and select the required servers.
 
 ![Update NFS Debug Level](../../../.gitbook/assets/wmng\_update\_NFS\_debug\_level.png)
 
 ## Update SMB debug level <a href="#update-smb-debug-level" id="update-smb-debug-level"></a>
 
-If the SMB protocol is configured, you can change the debug level for all hosts or specified hosts.
+If the SMB protocol is configured, you can change the debug level for all servers or specified servers.
 
 The available debug levels are:
 
@@ -78,6 +78,6 @@ The available debug levels are:
 3. On the Protocols Debug Level section, select **Change SMB debug level**.
 4. On the Update SMB Debug Level dialog, set the following properties:
    * **Level:** Select the debug level.
-   * **All members:** If you want to apply the update on all the hosts, switch to **On**. If you want to apply the update on specific hosts, switch to **Off** and select the required hosts.
+   * **All servers:** If you want to apply the update on all the servers, switch to **On**. If you want to apply the update on specific servers, switch to **Off** and select the required servers.
 
 ![Update SMB Debug Level](../../../.gitbook/assets/wmng\_update\_smb\_debug\_level.png)

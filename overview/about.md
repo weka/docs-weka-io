@@ -10,11 +10,11 @@ description: >-
 
 The basic Weka deployment model involves the creation of a shareable filesystem to be used by the application servers. This requires the installation of Weka client software which implements a POSIX filesystem driver on each application server intended to access data. This filesystem driver enables each of the application servers to access the Weka system as if it is a local drive, perceiving the Weka system as a local attached filesystem device while it is actually shared among multiple application servers.
 
-The file services are implemented by a group of [backend hosts](glossary.md#backend-host) running the Weka software and fully dedicated to the Weka system. SSD drives for storing the data are installed on these servers. The resultant storage system is scalable to hundreds of backends and thousands of clients.
+The file services are implemented by a group of [backend servers](glossary.md#backend-server) running the Weka software and fully dedicated to the Weka system. SSD drives for storing the data are installed on these servers. The resultant storage system is scalable to hundreds of backends and thousands of clients.
 
-![Basic Weka system deployment](../.gitbook/assets/v4\_weka\_architecture.png)
+<figure><img src="../.gitbook/assets/v4_weka_architecture.png" alt=""><figcaption><p>Basic Weka system deployment</p></figcaption></figure>
 
-The Weka backend hosts are configured as a cluster, which together with the Weka clients installed on the application servers, forms one large shareable, distributed, and scalable file storage system:
+The Weka backend servers are configured as a cluster, which together with the Weka clients installed on the application servers, forms one large shareable, distributed, and scalable file storage system:
 
 **Shareable:** All clients can share the same filesystems, so any file written by any of the clients is immediately available to any client reading the data. In technical terms, this means that Weka is a strongly-consistent, POSIX-compliant system.
 
@@ -26,7 +26,7 @@ The Weka backend hosts are configured as a cluster, which together with the Weka
 
 ### Protection
 
-The Weka system is N+2 or N+4 fully protected, i.e., any 2 concurrent failures in drives or backends do not cause any loss of data and maintains the Weka system up and running to provide continuous services. This is achieved through a complex distributed protection scheme, which is determined when forming a cluster. The data part can range from 3 to 16, and the protection scheme can be either 2 or 4, i.e., clusters can be 3+2, 10+2, and even 16+4 for a large cluster of backend hosts.
+The Weka system is N+2 or N+4 fully protected, i.e., any 2 concurrent failures in drives or backends do not cause any loss of data and maintains the Weka system up and running to provide continuous services. This is achieved through a complex distributed protection scheme, which is determined when forming a cluster. The data part can range from 3 to 16, and the protection scheme can be either 2 or 4, i.e., clusters can be 3+2, 10+2, and even 16+4 for a large cluster of backend servers.
 
 ### Distributed network scheme
 
@@ -58,7 +58,7 @@ To reduce this risk, the Weka system prioritizes the rebuild process, starting f
 
 ### Seamless distribution, scale and performance
 
-Each Weka client installed on an application server directly accesses the relevant Weka backend host storing the data, i.e., each client does not access one backend, which then forwards the access request. Weka clients include a completely synchronized map of which backend stores which type of data, representing a joint configuration that all clients and backends are aware of.
+Each Weka client installed on an application server directly accesses the relevant Weka backend server storing the data, i.e., each client does not access one backend, which then forwards the access request. Weka clients include a completely synchronized map of which backend stores which type of data, representing a joint configuration that all clients and backends are aware of.
 
 When a Weka client tries to access a certain file or an offset in a file, a cryptographic hash function indicates which backend contains the required file or offset. When a cluster expansion is performed or a component failure occurs, the backend responsibilities and capabilities are instantly redistributed between the various components. This is the basic mechanism that allows the Weka system to linearly grow performance and is the key to linearly synchronizing scaling size to scaling performance. If, for example, backends are added to double the size of a cluster, different parts of the filesystems are redistributed to the new backends, thereby instantly delivering twice the performance.
 

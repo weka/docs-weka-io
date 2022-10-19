@@ -8,13 +8,13 @@ description: >-
 
 ## Shrink cluster options
 
-Cluster shrinking can involve either the removal of some of the assigned SSDs or the removal of hosts from the system. The following operations are available:
+Cluster shrinking can involve either the removal of some of the assigned SSDs or the removal of containers from the system. The following operations are available:
 
 1. List all the drives and their states, to receive a view of currently-allocated resources and their status.
-2. Deactivate drives as the first step before removing a host.
+2. Deactivate drives as the first step before removing a container.
 3. Remove a subset of SSD drives allocated for the cluster.
-4. Deactivate hosts, which can be used after deactivating drives in preparation for the removal of the host.
-5. Remove hosts to complete the cluster shrinking.
+4. Deactivate containers, which can be used after deactivating drives in preparation for the removal of the container.
+5. Remove containers to complete the cluster shrinking.
 
 ## List drives and their sees
 
@@ -66,35 +66,35 @@ To remove a drive, run the following command:
 | -------- | ----------------------- | --------------------------------- | --------------- | ------------- | ----------- |
 | `uuids`  | Comma-separated strings | Comma-separated drive identifiers |                 | Yes           |             |
 
-## Deactivate an entire host
+## Deactivate an entire container
 
-**Command:** `weka cluster host deactivate`
+**Command:** `weka cluster container deactivate`
 
-This command is used as the first step when seeking to shrink a cluster. Running this command will automatically [deactivate all the host's drives](shrinking-a-cluster.md#deactivating-a-drive).
+This command is used as the first step when shrinking a cluster. Running this command automatically deactivates all the drives in the container.
 
-To deactivate an entire host, run the following command:
+To deactivate an entire container, run the following command:
 
-`weka cluster host deactivate <host-ids> [--allow-unavailable]`
-
-**Parameters**
-
-| **Name**            | **Type**                 | **Value**                                 | **Limitations**                                                  | **Mandatory** | **Default** |
-| ------------------- | ------------------------ | ----------------------------------------- | ---------------------------------------------------------------- | ------------- | ----------- |
-| `host-ids`          | Space-separated integers | Space-separated host identifiers          |                                                                  | Yes           |             |
-| `allow-unavailable` | Boolean                  | Allow deactivation of an unavailable host | If the host returns, it will join the cluster in an active state | No            | No          |
-
-## Remove a host
-
-**Command:** `weka cluster host remove`
-
-Running this command will eliminate the host from the cluster, i.e., the host will switch to the [stem mode](../../overview/glossary.md#stem-mode) after the removal, at which point it can be reallocated either to another cluster or purpose.
-
-To remove the host from the cluster, run the following command:
-
-`weka cluster host remove <host-id>`
+`weka cluster container deactivate <container-ids> [--allow-unavailable]`
 
 **Parameters**
 
-| **Name**  | **Type**                | **Value**                        | **Limitations** | **Mandatory** | **Default** |
-| --------- | ----------------------- | -------------------------------- | --------------- | ------------- | ----------- |
-| `host-id` | Comma-separated strings | Comma-separated host identifiers |                 | Yes           |             |
+| **Name**            | **Type**                 | **Value**                                      | **Limitations**                                                       | **Mandatory** | **Default** |
+| ------------------- | ------------------------ | ---------------------------------------------- | --------------------------------------------------------------------- | ------------- | ----------- |
+| `container-ids`     | Space-separated integers | Space-separated container identifiers          |                                                                       | Yes           |             |
+| `allow-unavailable` | Boolean                  | Allow deactivation of an unavailable container | If the container returns, it will join the cluster in an active state | No            | No          |
+
+## Remove a container
+
+**Command:** `weka cluster` c`ontainer remove`
+
+Running this command removes the container from the cluster. The container switches to the [stem mode](../../overview/glossary.md#stem-mode) so that it can be reallocated to another cluster or purpose.
+
+To remove the container from the cluster, run the following command:
+
+`weka cluster container remove <container-id>`
+
+**Parameters**
+
+| **Name**       | **Type**                | **Value**                             | **Limitations** | **Mandatory** | **Default** |
+| -------------- | ----------------------- | ------------------------------------- | --------------- | ------------- | ----------- |
+| `container-id` | Comma-separated strings | Comma-separated container identifiers |                 | Yes           |             |

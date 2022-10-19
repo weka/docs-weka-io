@@ -50,7 +50,7 @@ Select the **Request on-demand limit increase** link to get more vCPUs.
 **Note:** vCPU increase is not an instant action and can take minutes to days for AWS to evaluate and approve your request.
 {% endhint %}
 
-The following example shows the required vCPUs for a six-node cluster with two clients of type i3en.2xlarge. This example is the smallest type of instance for a WEKA system deployment.
+The following example shows the required vCPUs for a six servers cluster with two clients of type i3en.2xlarge. This example is the smallest type of instance for a WEKA system deployment.
 
 ![Limits Calculator](../../.gitbook/assets/wmng\_limit\_calc.png)
 

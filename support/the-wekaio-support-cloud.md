@@ -13,11 +13,11 @@ The Weka support cloud (Weka Home) collects events and statistics information fr
 To enable the uploading of data to Weka Home, perform the following:
 
 1. To enable [c](../install/bare-metal/using-cli.md#stage-4-enabling-cloud-event-notifications-optional)loud events and diagnostics information use `weka cloud enable` CLI command.
-2. Make sure that your network allows the system to report events to Weka by allowing `https` connections from the Weka hosts management IP interfaces to `api.home.weka.io` and `get.weka.io` . Alternatively, if connecting to the cloud using a proxy, it is possible to set the proxy using the following command:`weka cloud proxy --set <proxy_url>`.
+2. Make sure that your network allows the system to report events to Weka by allowing `https` connections from the Weka servers management IP interfaces to `api.home.weka.io` and `get.weka.io` . Alternatively, if connecting to the cloud using a proxy, it is possible to set the proxy using the following command:`weka cloud proxy --set <proxy_url>`.
 3. [Install a valid commercial or evaluation license](../licensing/overview.md).  It is possible to receive a 30-day evaluation license from get.weka.io. To extend an evaluation license, contact the Weka Sales or Support Team.
 
 {% hint style="info" %}
-Optimally, both client and backend hosts should be able to upload information to the Weka support cloud. If client connectivity cannot be configured, it is still advantageous to allow the backend hosts to upload information.
+Optimally, both client and backend servers should be able to upload information to the Weka support cloud. If client connectivity cannot be configured, it is still advantageous to allow the backend servers to upload information.
 {% endhint %}
 
 ## Weka Home private instance&#x20;

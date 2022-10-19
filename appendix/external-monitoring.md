@@ -8,15 +8,15 @@ description: >-
 
 The Weka GUI allows monitoring basic information of the CPUs, Network, Drives, IOPS/Throughput, and more advanced information via the statistics as well as Weka Alerts and the Weka Events log.
 
-![Screenshot of Weka Grafana Dashboard](<../.gitbook/assets/image (7).png>)
+![Screenshot of Weka Grafana Dashboard](<../.gitbook/assets/image (22).png>)
 
 It is sometimes useful to use external tools like Prometheus and Grafana for monitoring. It could be that you already have them in the environment and would like to correlate with other products and see all information on the same dashboard.
 
 In this guide, we will learn how to easily set-up a nice Grafana dashboard to monitor Weka. We will use a custom Prometheus client that presents weka statistics.&#x20;
 
-It is advisable to set-up a machine (or a VM) to run the external services used if you do not already have those running in the environment.&#x20;
+It is advisable to set-up a server (or a VM) to run the external services used if you do not already have those running in the environment.&#x20;
 
-The easiest way to set up a Grafana environment is with Docker. For that, make sure `docker-ce` and `docker-compose` are installed on that machine. Installation instructions for installing Docker are on the [Docker website](https://www.docker.com/get-started).
+The easiest way to set up a Grafana environment is with Docker. For that, make sure `docker-ce` and `docker-compose` are installed on that server. Installation instructions for installing Docker are on the [Docker website](https://www.docker.com/get-started).
 
 ## Set up the Weka-mon package
 
@@ -26,7 +26,7 @@ The package resides on GitHub. There are two ways you can pull it from GitHub - 
 
 To download a Release, go to [https://github.com/weka/weka-mon/releases](https://github.com/weka/weka-mon/releases) in your web browser, and select the **latest** release. Click on the "Source Code" link to download. Copy this to your intended management server or VM and unpack it.
 
-![Weka-mon GitHub Releases Page](<../.gitbook/assets/image (10).png>)
+![Weka-mon GitHub Releases Page](<../.gitbook/assets/image (23).png>)
 
 Alternatively, to clone the repository, run the following commands to pull the weka-mon package from GitHub:
 
@@ -51,11 +51,11 @@ The `install.sh` script creates some directories and sets the permissions on the
 
 The `export.yml` configuration file is used to configure weka-mon and the exporter.  The `export.yml` file can be found in the base of the `weka-mon` directory hierarchy.
 
-#### Host Configuration
+#### Server Configuration
 
-Edit the list of hosts under the `cluster:` heading to reflect your hostnames or ip addresses; you need to specify one or more hostnames/ips - there's not need to list all the cluster hostnames; two or three will do.
+Edit the list of servers under the `cluster:` heading to reflect your hostnames or ip addresses; you need to specify one or more hostnames/ips - there's not need to list all the cluster hostnames; two or three will do.
 
-Also under `cluster:` is `auth_token_file:` which is used to provide the security token required to authenticate with the cluster.   This file can be generated with the `weka user login` command on any cluster host (including clients) and copied to the server/VM running weka-mon.   It is highly suggested that you create a ReadOnly User just for this package and use it for cluster communications.  See the Security section in the Operations Guide for details on creating users and using tokens.
+Also under `cluster:` is `auth_token_file:` which is used to provide the security token required to authenticate with the cluster.   This file can be generated with the `weka user login` command on any cluster server (including clients) and copied to the server/VM running weka-mon.   It is highly suggested that you create a ReadOnly User just for this package and use it for cluster communications.  See the Security section in the Operations Guide for details on creating users and using tokens.
 
 ```
 # cluster section - info about the weka cluster we want to export data from:
@@ -102,10 +102,10 @@ The `max_procs:` and  `max_threads_per_proc:` parameters define the scaling beha
 
 It's recommended to have 1 available core per process. With the above example, you should deploy on a VM or server with at least 4 available cores.
 
-The exporter will always try to allocate one host per thread, but will not exceed `max_procs` processes. If you have 1000's of hosts, it will double/triple up hosts on the threads.
+The exporter will always try to allocate one server per thread, but will not exceed `max_procs` processes. If you have 1000's of hosts, it will double/triple up hosts on the threads.
 
 {% hint style="success" %}
-**Example,** with 3000 hosts and defaults of `max_procs` of 8 and `max_threads_per_proc`of 100, only 8 processes are spawned, each with 100 threads, but there will be close to 4 hosts serviced per thread instead of the default 1 host per thread.
+**Example,** with 3000 hosts and defaults of `max_procs` of 8 and `max_threads_per_proc`of 100, only 8 processes are spawned, each with 100 threads, but there will be close to 4 hosts serviced per thread instead of the default 1 server per thread.
 {% endhint %}
 
 All other settings have pre-defined defaults that should work with weka-mon without modification.&#x20;

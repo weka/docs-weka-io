@@ -7,7 +7,7 @@ description: This page describes how to manage the statistics using the GUI.
 Using the GUI, you can:
 
 * [List statistics types](statistics-1.md#list-statistics-types)
-* [View statistics in real-time](statistics-1.md#view-realtime-statistics)
+* [View statistics in real-time](statistics-1.md#view-statistics-in-real-time)
 * [View statistics over time](statistics-1.md#view-statistics-over-time)
 * [Set statistics retention](statistics-1.md#set-statistics-retention)
 
@@ -29,16 +29,16 @@ Use the following command line to obtain statistics definition information:\
 
 **Command:** `weka stats realtime`
 
-Use the following command line to obtain the current performance-related statistics of the hosts in a one-second interval:\
-`weka stats realtime [<node-ids>] [--raw-units] [--UTC]`
+Use the following command line to obtain the current performance-related statistics of the containers in a one-second interval:\
+`weka stats realtime [<process-ids>] [--raw-units] [--UTC]`
 
 **Parameters**
 
-| **Name**    | **Type**                | **Value**                                        | **Limitations** | **Mandatory** | **Default**                                 |
-| ----------- | ----------------------- | ------------------------------------------------ | --------------- | ------------- | ------------------------------------------- |
-| `node-ids`  | Comma-separated strings | Only show realtime stats of these nodes          |                 | No            |                                             |
-| `raw-units` | Boolean                 | Print values in raw units (bytes, seconds, etc.) |                 | No            | Human-readable format, e.g 1KiB 234MiB 2GiB |
-| `UTC`       | Boolean                 | Print times in UTC                               |                 | No            | Host's local time                           |
+| **Name**      | **Type**                | **Value**                                        | **Limitations** | **Mandatory** | **Default**                                 |
+| ------------- | ----------------------- | ------------------------------------------------ | --------------- | ------------- | ------------------------------------------- |
+| `process-ids` | Comma-separated strings | Only show real-time stats of these processes     |                 | No            |                                             |
+| `raw-units`   | Boolean                 | Print values in raw units (bytes, seconds, etc.) |                 | No            | Human-readable format, e.g 1KiB 234MiB 2GiB |
+| `UTC`         | Boolean                 | Print times in UTC                               |                 | No            | Server's local time                         |
 
 ## **View statistics over time**
 
@@ -52,7 +52,7 @@ The collected statistics can help analyze system performance and determine the s
 
 Use the following command line to manage filters and read statistics:
 
-`weka stats [--start-time <start-time>] [--end-time <end-time>] [--interval interval] [--resolution-secs resolution-secs] [--category category][--stat stat] [--node-ids node-ids] [--param param] [--accumulated] [--per-node] [--no-zeros] [--show-internal] [--raw-units] [--UTC]`
+`weka stats [--start-time <start-time>] [--end-time <end-time>] [--interval interval] [--resolution-secs resolution-secs] [--category category][--stat stat] [--process-ids process-ids] [--param param] [--accumulated] [--per-process] [--no-zeros] [--show-internal] [--raw-units] [--UTC]`
 
 **Parameters**
 
@@ -64,14 +64,14 @@ Use the following command line to manage filters and read statistics:
 | `resolution-secs` | String   | Length of each interval in the reported period                                                                                                                                                                                     | Must be multiples of 60 seconds                                                                                                  | No            | 60                                          |
 | `category`        | String   | Specific categories for retrieval of appropriate statistics                                                                                                                                                                        | Valid existing categories: CPU, Object Store, Operations, Operations (NFS), Operations (Driver), SSD                             | No            | All                                         |
 | `stat`            | String   | Statistics names                                                                                                                                                                                                                   | Valid statistics names                                                                                                           | No            | All                                         |
-| `node-ids`        | String   | Node id                                                                                                                                                                                                                            | Valid node-id                                                                                                                    | No            | All                                         |
+| `process-ids`     | String   | Process id                                                                                                                                                                                                                         | Valid process-id                                                                                                                 | No            | All                                         |
 | `param`           | String   | For parameterized statistics, retrieve only the instantiations where the specified parameter is of the specified value. Multiple values can be supplied for the same key, e.g. '--param method:putBlocks --param method:initBlock' | Format: `key:val`                                                                                                                | No            |                                             |
 | `accumulated`     | Boolean  | Display accumulated statistics, not rate statistics                                                                                                                                                                                |                                                                                                                                  | No            | False                                       |
-| `per-node`        | Boolean  | Does not aggregate statistics across nodes                                                                                                                                                                                         |                                                                                                                                  | No            | False                                       |
+| `per-process`     | Boolean  | Does not aggregate statistics across processes                                                                                                                                                                                     |                                                                                                                                  | No            | False                                       |
 | `no-zeros`        | Boolean  | Filters results where the value is 0                                                                                                                                                                                               |                                                                                                                                  | No            | False                                       |
 | `show-internal`   | Boolean  | Also displays internal statistics                                                                                                                                                                                                  |                                                                                                                                  | No            | False                                       |
 | `raw-units`       | Boolean  | Print values in raw units (bytes, seconds, etc.)                                                                                                                                                                                   |                                                                                                                                  | No            | Human-readable format, e.g 1KiB 234MiB 2GiB |
-| `UTC`             | Boolean  | Print times in UTC                                                                                                                                                                                                                 |                                                                                                                                  | No            | Host's local time                           |
+| `UTC`             | Boolean  | Print times in UTC                                                                                                                                                                                                                 |                                                                                                                                  | No            | Server's local time                         |
 
 ## Set statistics retention
 

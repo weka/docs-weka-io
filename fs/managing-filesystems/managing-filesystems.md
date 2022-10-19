@@ -7,7 +7,7 @@ description: This page describes how to view and manage filesystems using the GU
 Using the GUI, you can perform the following actions:
 
 * [View filesystems](managing-filesystems.md#view-filesystems)
-* [Add a filesystem](managing-filesystems.md#add-a-filesystem)
+* [Create a filesystem](managing-filesystems.md#add-a-filesystem)
 * [Edit a filesystem](managing-filesystems.md#edit-a-filesystem)
 * [Delete a filesystem](managing-filesystems.md#delete-a-filesystem)
 
@@ -23,9 +23,9 @@ The following example shows one filesystem.
 
 ![View filesystems](../../.gitbook/assets/wmng\_view\_filesystems.png)
 
-## Add a filesystem
+## Create a filesystem
 
-When creating a Weka system on-premises, it does not contain any filesystem. You need to add it and set its properties, such as capacity, group, tiering, thin provisioning, and encryption.
+When creating a Weka system on-premises, it does not contain any filesystem. You need to create it and set its properties, such as capacity, group, tiering, thin provisioning, encryption, and required authentication during mount.
 
 When creating a Weka system in AWS using the cloud formation, the Weka system contains a default filesystem, which is provisioned with the maximum capacity. If your deployment requires more filesystems with different settings, first reduce the provisioned capacity of the default filesystem, and then add a filesystem with the properties that meet your specific needs.
 
@@ -49,9 +49,10 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 * **Group**: Select the filesystem group that fits your filesystem.
 * **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.&#x20;
 
-![Add a filesystem](../../.gitbook/assets/wmng\_create\_fs\_animated.gif)
+![Create a filesystem](../../.gitbook/assets/wmng\_create\_fs\_animated.gif)
 
-4\. Optional: If [Tiering](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy) **** is required and an object store bucket is already defined, \
+4\. Optional: [**Tiering**](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).\
+&#x20;   If tiering **** is required and an object store bucket is already defined, \
 &#x20;   select the toggle button, and set the details of the object store bucket:
 
 * **Object Store Bucket:** Select a predefined object store bucket from the list.
@@ -60,7 +61,8 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 
 ![Tiering](../../.gitbook/assets/wmng\_fs\_tiering.png)
 
-5\. Optional: If Thin Provision is required, select the toggle button, and set the minimum \
+5\. Optional: **Thin Provision**.\
+&#x20;   If Thin Provision is required, select the toggle button, and set the minimum \
 &#x20;   capacity (guaranteed) and the maximum capacity for the thin provisioned filesystem.\
 &#x20;   The minimum capacity must be less or equal to the available SSD capacity.\
 &#x20;   You can set any maximum capacity, but the available capacity depends on the actual free space\
@@ -70,6 +72,12 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 
 6\. Optional: If Encryption is required and your Weka system is deployed with a KMS, \
 &#x20;   select the toggle button.
+
+7\. Optional: **Required Authentication**.\
+&#x20;   When ON, user authentication is required when mounting to the filesystem. This option is \
+&#x20;   only relevant to a filesystem created in the root organization.\
+&#x20;   To authenticate during mount, the user is required to run the `weka user login` command, or \
+&#x20;    use `auth_token_path`.
 
 7\. Select **Save**.
 

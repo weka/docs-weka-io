@@ -19,8 +19,8 @@ For increased security, the Weka system does not save any information that can r
 
 The Weka system supports the following KMS types:
 
-* [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) compliant KMS (protocol version 1.2 and up).
-* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) version 1.1.5 and up (not limited to the KMIP compliant version). For setting up Vault to work with the Weka system, refer to [Setting Up Vault Configuration](kms-management-1.md#set-up-vault-configuration)&#x20;
+* [KMIP-compliant](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) KMS (protocol version 1.2 and up).
+* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) version 1.1.5 up to 1.9.x (not limited to the KMIP-compliant version). For setting up Vault to work with the Weka system, refer to [Setting Up Vault Configuration](kms-management-1.md#set-up-vault-configuration)&#x20;
 
 Deploy one of the supported KMS types that best suit your requirements. For additional information on KMS support, contact the Weka Sales or Support Teams.
 
@@ -30,7 +30,7 @@ The KMS is the only source holding the key to decrypt Weka system filesystem key
 
 * Set up DR for the KMS (backup/replication) to avoid any chance of data loss.
 * Ensure that the KMS is highly available (note that the KMS is represented by a single URL in the Weka system).
-* Provide access to the KMS from the Weka system backend hosts.
+* Provide access to the KMS from the Weka system backend servers.
 * Verify the methods used by the KMS being implemented (each KMS has different methods for securing/unsealing keys and for reconstructing lost keys, e.g., [Vault unsealing methods](https://www.vaultproject.io/docs/concepts/seal.html), which enable the configuration of [auto unsealing using a trusted service](https://learn.hashicorp.com/vault/operations/ops-autounseal-aws-kms)).
 * Refer to [Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) for additional best practices suggested by HashiCorp when using Vault.
 

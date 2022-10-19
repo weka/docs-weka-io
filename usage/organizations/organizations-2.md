@@ -40,7 +40,7 @@ Once the system authenticates a user, the mount command uses the default locatio
 mount -t wekafs backend-host-0/my_fs /mnt/weka/my_fs -o auth_token_path=<path>
 ```
 
-This option is useful when mounting several filesystems for several users/organizations on the same host or when using Autofs.
+This option is useful when mounting several filesystems for several users/organizations on the same server or when using Autofs.
 
 When a token is compromised or no longer required, such as when a user leaves the organization, the Organization Admin can prevent using that token for new mounts by revoking the user access.
 

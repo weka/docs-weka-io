@@ -100,7 +100,7 @@ When `ami_id` is not specified, the client instances are launched with the lates
 Note the following when using a custom AMI-ID:
 
 * AMIs are stored per region. Make sure to specify an AMI-ID that matches the region in which the CloudFormation template is being deployed.
-* The AMI operating system must be one of the supported operating systems listed in the [prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#operating-system) page of the version being installed. If the AMI defined is not supported or has an unsupported operating system, the installation may fail and the CloudFormation stack will not be created successfully.
+* The AMI operating system must be one of the supported operating systems listed in the [prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts/#operating-system) page of the version being installed. If the AMI defined is not supported or has an unsupported operating system, the installation may fail and the CloudFormation stack will not be created successfully.
 
 ### Dedicated vs. shared client networking
 

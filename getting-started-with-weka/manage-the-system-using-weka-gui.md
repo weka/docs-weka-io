@@ -15,7 +15,7 @@ Weka GUI application supports the following functions:
 
 * **Configuration**:
   * Configure the cluster, such as data availability, license, security, and central monitoring.
-  * Configure the backend servers and expose the data in different protocols.
+  * Configure the backend containers and expose the data in different protocols.
   * Manage local users and set up the user directory.
   * Create and manage organizations and their quotas.
 * **Management**:
@@ -35,14 +35,14 @@ Weka GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](<../.gitbook/assets/wmng\_gui\_overview\_mb (1).gif>)
+![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview\_mb.gif)
 
 ## Access the Weka GUI
 
 Weka GUI is a web application that you can access using an already configured account and has the appropriate rights to configure, administer, or view.
 
 You can access the Weka GUI with any standard browser using the address: \
-`https://<weka system or host name>:14000`
+`https://<weka system or server name>:14000`
 
 For example: `https://WekaProd:14000` or `https://weka01:14000`.
 
@@ -56,10 +56,10 @@ Make sure that port 14000 is open in the firewall of your organization.
 
 **Procedure**
 
-1. In your browser, go to `https://<weka system or host name>:14000`.\
+1. In your browser, go to `https://<weka system or server name>:14000`.\
    ``The sign-in page opens.
 
-![Sign in to Weka GUI](../.gitbook/assets/wmng\_sign\_in.png)
+![Sign in to Weka GUI](<../.gitbook/assets/wmng\_sign\_in (1).png>)
 
 2\. Sign in with the username and password of an account with cluster administration or\
 &#x20;   organization administration privileges. For details about the account types, see  \
@@ -111,12 +111,12 @@ The R/W Throughput widget includes the following indications:
 {% hint style="info" %}
 Selecting the titles R/W Throughput, Latency, and Total Ops displays the statistics page.
 
-Selecting the title Active clients displays the client machines page.
+Selecting the title Active clients displays the clients tab.
 {% endhint %}
 
 ### Top Consumers widget
 
-This widget shows the backend and client hosts in the system. You can sort the list of hosts by total IO operations per second or by total throughput.
+This widget shows the top 5 backend servers and clients in the system. You can sort the list of servers by total IO operations per second or total throughput.
 
 ![Top Consumers widget](../.gitbook/assets/wmng\_dashboard\_Top\_Consumers\_widget.png)
 
@@ -144,7 +144,7 @@ Selecting the title Capacity displays the filesystems page.
 
 This widget shows the average usage and the maximum load level of the Frontend, Compute, and Drive cores.
 
-![Core Usage widget](../.gitbook/assets/wmng\_dashboard\_Core\_Usage\_widget.png)
+![Core Usage widget](<../.gitbook/assets/wmng\_dashboard\_Core\_Usage\_widget (1).png>)
 
 ### Hardware widget
 
@@ -152,17 +152,17 @@ This widget shows an overview of the hardware components (active/total).
 
 The hardware components include:
 
-* **Backends**: The number of servers.
-* **Cores**: The number of cores configured for running processes in the backends.
+* **Backends**: The number of backend servers.
+* **Cores**: The number of cores configured for running processes in the backend servers.
 * **Drives**: The number of drives.
-* **OBS Buckets**: The number of the object-store buckets.
+* **OBS Buckets**: The number of the object store buckets.
 
 ![Hardware widget](../.gitbook/assets/wmng\_dashboard\_Hardware\_widget.png)
 
 {% hint style="info" %}
-Selecting the titles Backends, Cores and Drives displays the backend machines page.
+Selecting any of the titles Backends, Cores or Drives displays the **backend servers** page.
 
-Selecting the title OBS buckets displays the object store buckets page.
+Selecting the title OBS Buckets displays the **object store buckets** page.
 {% endhint %}
 
 ## Switch the display time

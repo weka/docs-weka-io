@@ -1,14 +1,14 @@
 ---
 description: >-
   To use a filesystem via the Weka filesystem driver, it has to be mounted on
-  one of the cluster hosts. This page describes how this is performed.
+  one of the cluster servers. This page describes how this is performed.
 ---
 
 # Mount filesystems
 
 ## Overview
 
-There are two methods available for mounting a filesystem in one of the cluster hosts:
+There are two methods available for mounting a filesystem in one of the cluster servers:
 
 1. Using the traditional method: See below and also refer to [Adding Clients](../install/bare-metal/adding-clients-bare-metal.md) (Bare Metal Installation) or [Adding Clients](../install/aws/adding-clients.md) (AWS Installation), where first a client is configured and joins a cluster, after which a mount command is executed.
 2. Using the Stateless Clients feature: See [Mounting Filesystems Using the Stateless Clients Feature](mounting-filesystems.md#mounting-filesystems-using-stateless-clients) below, which simplifies and improves the management of clients in the cluster and eliminates the Adding Clients process.
@@ -19,7 +19,7 @@ There are two methods available for mounting a filesystem in one of the cluster 
 **Note:** Using the mount command as explained below first requires the installation of the Weka client, configuring the client, and joining it to a Weka cluster.
 {% endhint %}
 
-To mount a filesystem on one of the cluster hosts, let’s assume the cluster has a filesystem called `demo`. To add this filesystem to a host, SSH into one of the hosts and run the `mount`command as the `root` user, as follows:
+To mount a filesystem on one of the cluster servers, let’s assume the cluster has a filesystem called `demo`. To add this filesystem to a server, SSH into one of the servers and run the `mount`command as the `root` user, as follows:
 
 ```
 mkdir -p /mnt/weka/demo
@@ -53,7 +53,7 @@ Assuming the Weka cluster is using the backend IP of `1.2.3.4`, running the foll
 
 `curl http://1.2.3.4:14000/dist/v1/install | sh`
 
-On completion, the agent is installed on the client machine.
+On completion, the agent is installed on the client.
 
 #### Run the mount command
 
@@ -70,9 +70,9 @@ Use one of the following command lines to invoke the mount command (note, the de
 | **Name**      | **Type** | **Value**                          | **Limitations**           | **Mandatory** | **Default** |
 | ------------- | -------- | ---------------------------------- | ------------------------- | ------------- | ----------- |
 | `options`     | ​        | See Additional Mount Options below | ​                         | ​             | ​           |
-| `backend`     | String   | IP/hostname of a backend host      | Must be a valid name      | Yes           | ​           |
+| `backend`     | String   | IP/hostname of a backend container | Must be a valid name      | Yes           | ​           |
 | `fs`          | String   | Filesystem name                    | Must be a valid name      | Yes           | ​           |
-| `mount-point` | String   | Path to mount on the local machine | Must be a valid path-name | Yes           | ​           |
+| `mount-point` | String   | Path to mount on the local server  | Must be a valid path-name | Yes           | ​           |
 
 ## Mount command options
 
@@ -84,8 +84,8 @@ Each mount option can be passed by an individual `-o` flag to `mount.`
 | ------------------------- | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------- |
 | `readcache`               | None                                          | Set mode to read cache                                                                                                                                                                                                                                                                                                                                                                                                | No           | Yes                   |
 | `writecache`              | None                                          | Set mode to write cache                                                                                                                                                                                                                                                                                                                                                                                               | Yes          | Yes                   |
-| `dentry_max_age_positive` | Number in milliseconds                        | After the defined time period, every metadata cached entry is refreshed from the system, allowing the host to take into account metadata changes performed by other hosts.                                                                                                                                                                                                                                            | 1000         | Yes                   |
-| `dentry_max_age_negative` | Number in milliseconds                        | Each time a file or directory lookup fails, an entry specifying that the file or directory does not exist is created in the local dentry cache. This entry is refreshed after the defined time, allowing the host to use files or directories created by other hosts.                                                                                                                                                 | 0            | Yes                   |
+| `dentry_max_age_positive` | Number in milliseconds                        | After the defined time period, every metadata cached entry is refreshed from the system, allowing the server to take into account metadata changes performed by other servers.                                                                                                                                                                                                                                        | 1000         | Yes                   |
+| `dentry_max_age_negative` | Number in milliseconds                        | Each time a file or directory lookup fails, an entry specifying that the file or directory does not exist is created in the local dentry cache. This entry is refreshed after the defined time, allowing the server to use files or directories created by other servers.                                                                                                                                             | 0            | Yes                   |
 | `ro`                      | None                                          | Mount filesystem as read-only                                                                                                                                                                                                                                                                                                                                                                                         | No           | Yes                   |
 | `rw`                      | None                                          | Mount filesystem as read-write                                                                                                                                                                                                                                                                                                                                                                                        | Yes          | Yes                   |
 | `inode_bits`              | 32, 64 or auto                                | Size of the inode in bits, which may be required for 32-bit applications.                                                                                                                                                                                                                                                                                                                                             | Auto         | No                    |
@@ -128,25 +128,25 @@ When a mount option has been explicitly changed, you must set it again in the re
 | `dedicated_mode`                         | `full` or `none`     | Determine whether DPKD networking dedicates a core (`full`) or not (`none`). none can only be set when the NIC driver supports it. See [DPDK Without Core Dedication](../overview/networking-in-wekaio.md#dpdk-without-core-dedication) section. This option is relevant when using DPDK networking (`net=udp` is not set). | `full`                                                                                                                                                                 | No                    |
 | `qos_preferred_throughput_mbps`          | Number               | Preferred requests rate for QoS in megabytes per second.                                                                                                                                                                                                                                                                    | <p>No limit.<br>The cluster admin can set this default. See <a href="mounting-filesystems.md#set-mount-option-default-values">Set mount option default values</a>.</p> | Yes                   |
 | `qos_max_throughput_mbps`                | <p></p><p>Number</p> | <p>Maximum requests rate for QoS in megabytes per second.<br>This option allows bursting above the specified limit but aims to keep this limit on average.</p>                                                                                                                                                              | <p>No limit.<br>The cluster admin can set this default. See <a href="mounting-filesystems.md#set-mount-option-default-values">Set mount option default values</a>.</p> | Yes                   |
-| `connect_timeout_secs`                   | Number               | The timeout in seconds for establishing a connection to a single host.                                                                                                                                                                                                                                                      | 10                                                                                                                                                                     | Yes                   |
-| `response_timeout_secs`                  | Number               | The timeout in seconds for waiting for the response from a single host.                                                                                                                                                                                                                                                     | 60                                                                                                                                                                     | Yes                   |
+| `connect_timeout_secs`                   | Number               | The timeout in seconds for establishing a connection to a single server.                                                                                                                                                                                                                                                    | 10                                                                                                                                                                     | Yes                   |
+| `response_timeout_secs`                  | Number               | The timeout in seconds for waiting for the response from a single server.                                                                                                                                                                                                                                                   | 60                                                                                                                                                                     | Yes                   |
 
 {% hint style="info" %}
 **Note:** These parameters, if not stated otherwise, are only effective on the first mount command for each client.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** By default, the command selects the optimal core allocation for Weka. If necessary, multiple `core` parameters can be used to allocate specific cores to the WekaFS client. E.g., `mount -t wekafs -o core=2 -o core=4 -o net=ib0 backend-host-0/my_fs /mnt/weka`
+**Note:** By default, the command selects the optimal core allocation for Weka. If necessary, multiple `core` parameters can be used to allocate specific cores to the WekaFS client. E.g., `mount -t wekafs -o core=2 -o core=4 -o net=ib0 backend-server-0/my_fs /mnt/weka`
 {% endhint %}
 
 {% hint style="success" %}
 **Example: On-Premise Installations**
 
-`mount -t wekafs -o num_cores=1 -o net=ib0 backend-host-0/my_fs /mnt/weka`
+`mount -t wekafs -o num_cores=1 -o net=ib0 backend-server-0/my_fs /mnt/weka`
 
-Running this command on a host installed with the Weka agent will download the appropriate Weka version from the host`backend-host-0`and create a Weka container that allocates a single core and a named network interface (`ib0`). Then it will join the cluster that `backend-host-0` is part of and mount the filesystem `my_fs` on `/mnt/weka.`
+Running this command on a server installed with the Weka agent will download the appropriate Weka version from the `ackend-server-0`and create a Weka container that allocates a single core and a named network interface (`ib0`). Then it will join the cluster that `backend-server-0` is part of and mount the filesystem `my_fs` on `/mnt/weka.`
 
-`mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka`
+`mount -t wekafs -o num_cores=0 -o net=udp backend-server-0/my_fs /mnt/weka`
 
 Running this command will use [UDP mode ](../overview/networking-in-wekaio.md#udp-mode)(usually selected when the use of DPDK is not available).
 {% endhint %}
@@ -156,7 +156,7 @@ Running this command will use [UDP mode ](../overview/networking-in-wekaio.md#ud
 
 `mount -t wekafs -o num_cores=2 backend1,backend2,backend3/my_fs /mnt/weka`
 
-Running this command on an AWS host will allocate two cores (multiple-frontends) and attach and configure two ENIs on the new client. The client will attempt to rejoin the cluster via all three backends used in the command line.
+Running this command on an AWS EC2 instance allocates two cores (multiple-frontends) and attach and configure two ENIs on the new client. The client will attempt to rejoin the cluster via all three backends used in the command line.
 {% endhint %}
 
 For stateless clients, the first `mount` command installs the weka client software and joins the cluster). Any subsequent `mount` command, can either use the same syntax or just the traditional/per-mount parameters as defined in [Mounting Filesystems](mounting-filesystems.md#mount-mode-command-options) since it is not necessary to join a cluster.
@@ -230,7 +230,7 @@ When you want to determine the VFs IP addresses, or when the client resides in a
 
 `ip, bits, gateway` are optional. In case they are not provided, the Weka system tries to deduce them when in AWS or IB environments, or allocate them from the default data network otherwise. If both approaches fail, the mount command will fail.
 
-For example, the following command allocates two cores and a single physical network device (intel0). It will configure two VFs for the device and assign each one of them to one of the frontend nodes. The first node will receive a 192.168.1.100 IP address, and the second will use a 192.168.1.101 IP address. Both of the IPs have 24 network mask bits and a default gateway of 192.168.1.254.
+For example, the following command allocates two cores and a single physical network device (intel0). It will configure two VFs for the device and assign each one of them to one of the frontend processes. The first container will receive a 192.168.1.100 IP address, and the second will use a 192.168.1.101 IP address. Both of the IPs have 24 network mask bits and a default gateway of 192.168.1.254.
 
 ```
 mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.168.1.254 backend1/my_fs /mnt/weka
@@ -242,7 +242,7 @@ For performance or high availability, it is possible to use more than one physic
 
 #### Using multiple physical network devices for better performance
 
-It's easy to saturate the bandwidth of a single network interface when using WekaFS. For higher throughput, it is possible to leverage multiple network interface cards (NICs). The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to the WekaFS host driver.
+It's easy to saturate the bandwidth of a single network interface when using WekaFS. For higher throughput, it is possible to leverage multiple network interface cards (NICs). The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to the WekaFS server driver.
 
 For example, the following command will allocate two cores and two physical network devices for increased throughput:
 
@@ -283,7 +283,7 @@ mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -
 In cases where DPDK cannot be used, it is possible to use WekaFS in [UDP mode](../overview/networking-in-wekaio.md#udp-mode) through the kernel. Use `net=udp` in the mount command to set the UDP networking mode, for example:
 
 ```
-mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
+mount -t wekafs -o num_cores=0 -o net=udp backend-server-0/my_fs /mnt/weka
 ```
 
 {% hint style="info" %}
@@ -302,7 +302,7 @@ mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
 
 Edit `/etc/fstab` file to include the filesystem mount entry:
 
-* A comma-separated list of backend hosts, with the filesystem name
+* A comma-separated list of backend servers, with the filesystem name
 * The mount point
 * Filesystem type - `wekafs`
 * Mount options:
@@ -323,19 +323,19 @@ backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  num_cores=1,net=eth
 
 ```
 
-Reboot the machine for the `systemd` unit to be created and marked correctly.
+Reboot the server for the `systemd` unit to be created and marked correctly.
 
 The filesystem should now be mounted at boot time.
 
 {% hint style="danger" %}
-**Note:** Do not configure this entry for a mounted filesystem before un-mounting it (`umount`), as the `systemd` needs to mark the filesystem as a network filesystem (occurs as part of the `reboot`). Trying to reboot a host when there is a mounted WekaFS filesystem when setting its `fstab` configuration might yield a failure to unmount the filesystem and leave the system hanged.
+**Note:** Do not configure this entry for a mounted filesystem before un-mounting it (`umount`), as the `systemd` needs to mark the filesystem as a network filesystem (occurs as part of the `reboot`). Trying to reboot a server when there is a mounted WekaFS filesystem when setting its `fstab` configuration might yield a failure to unmount the filesystem and leave the system hanged.
 {% endhint %}
 
 ## Mounting filesystems using autofs
 
 **Procedure:**
 
-1. Install `autofs` on the host using one of the following commands according to your deployment:
+1. Install `autofs` on the server using one of the following commands according to your deployment:
 
 * On RedHat or Centos:&#x20;
 
@@ -373,7 +373,7 @@ service autofs restart
 ```
 
 4\. The configuration is distribution-dependent. Verify that the service is configured to start\
-&#x20;    automatically after restarting the host. Run the following command:\
+&#x20;    automatically after restarting the server. Run the following command:\
 &#x20;    `systemctl is-enabled autofs.` \
 &#x20;   If the output is `enabled` the service is configured to start automatically.
 

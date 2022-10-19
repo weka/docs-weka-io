@@ -27,19 +27,19 @@ Local users are created in the local system as opposed to domain users that are 
    * **Username:**  Set the user name for the local user.
    * **Password:**  Set a password according to the requirements. The password must contain at least 8 characters, an uppercase letter, a lowercase letter, and a number or a special character.
    * **Confirm Password:** Type the same password again.
-   * **Role:** Select the role for the local user.
+   * **Role:** Select the role for the local user. If you select an S3 user role, you can select the relevant S3 policy, POSIX UID, and POSIX GID.
 4. Select **Save**.
 
 ![Create new user dialog](../../.gitbook/assets/wmng\_local\_users\_add.png)
 
 ### Edit a local user
 
-You can modify the role of a local user, but not the role of an S3 user or your own role (the signed-in user).
+You can modify the role of a local user, but not your own role (the signed-in user). For an S3 user, you can only modify the S3 policy, POSIX UID, and POSIX GID.&#x20;
 
 **Procedure**
 
 1. In the Local Users tab, select the three dots of the local user you want to edit, then select **Edit User**.
-2. From the Role property, select the required role.
+2. From the Role property, select the required role. If you modify the role to S3, you can set the S3 policy, POSIX UID, and POSIX GID.&#x20;
 3. Select **Save**.
 
 ![Edit a local user](../../.gitbook/assets/wmng\_local\_users\_edit.png)

@@ -7,7 +7,7 @@ description: This page describes how to view and manage filesystems using the CL
 Using the CLI, you can perform the following actions:
 
 * [View filesystems](managing-filesystems-1.md#view-filesystems)
-* [Add a filesystem](managing-filesystems-1.md#add-a-filesystem)
+* [Create a filesystem](managing-filesystems-1.md#add-a-filesystem)
 * [Add a filesystem when thin-provisioning is used](managing-filesystems-1.md#add-a-filesystem-when-thin-provisioning-is-used)
 * [Edit a filesystem](managing-filesystems-1.md#edit-a-filesystem)
 * [Delete a filesystem](managing-filesystems-1.md#delete-a-filesystem)
@@ -20,11 +20,11 @@ Use this command to view information on the filesystems in the Weka system.
 
 Enter the relevant parameters and click Create to create the filesystem.
 
-## Add a filesystem
+## Create a filesystem
 
 **Command:** `weka fs create`
 
-Use the following command line to add a filesystem:
+Use the following command line to create a filesystem:
 
 `weka fs create <name> <group-name> <total-capacity> [--ssd-capacity <ssd-capacity>] [--thin-provision-min-ssd <thin-provision-min-ssd>] [--thin-provision-max-ssd <thin-provision-max-ssd>] [--max-files <max-files>] [--encrypted] [--obs-name <obs-name>] [--auth-required <auth-required>]`
 

@@ -14,7 +14,7 @@ Using the GUI, you can:
 
 ## Create an S3 cluster
 
-An S3 cluster configuration includes a filesystem, port, and list of hosts.
+An S3 cluster configuration includes a filesystem, port, and list of servers.
 
 **Procedure**
 
@@ -26,17 +26,18 @@ An S3 cluster configuration includes a filesystem, port, and list of hosts.
    * **Port**: Default 9000. If required, modify the port through which the cluster exposes the S3 service.
    * **Anonymous Posix UID:** If required, modify the Posix UID assigned to anonymous users.
    * **Anonymous Posix GID:** If required, modify the Posix GID assigned to anonymous users.
-   * **Hosts**: To use all available hosts for the S3 configuration, switch on **All Hosts**. If new hosts are deployed later, they do not participate in the S3 cluster automatically.\
-     To use specific hosts, switch off **All Hosts**, and select the available hosts from the list to participate in the S3 cluster, based on the host IDs in Weka.&#x20;
-5. Select **Save**.
+   * **All servers**: To use all available servers for the S3 configuration, switch on **All servers**. If new servers are deployed later, they do not participate in the S3 cluster automatically.\
+     To use specific servers, switch off **All servers**, and select the available servers from the list to participate in the S3 cluster.&#x20;
+5. In the **Config Filesystem**, select the filesystem used for persisting S3 cluster-wide configuration.
+6. Select **Save**.
 
-Once the system completes the configuration process, the host statuses change from not ready (red X icon) to ready (green V icon).
+Once the system completes the configuration process, the server statuses change from not ready (red X icon) to ready (green V icon).
 
 <figure><img src="../../../.gitbook/assets/wmng_S3_cluster_configuration.gif" alt=""><figcaption><p>S3 Cluster Configuration</p></figcaption></figure>
 
 ## Update an S3 cluster configuration
 
-You can update the port and the hosts to participate in the S3 cluster.
+You can update the port and the servers to participate in the S3 cluster.
 
 **Procedure**
 

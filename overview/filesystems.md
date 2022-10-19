@@ -8,7 +8,7 @@ description: >-
 
 ## About filesystems
 
-A Weka filesystem is similar to a regular on-disk filesystem while distributed across all the hosts in the cluster. Consequently, filesystems are not associated with any physical object in the Weka system and act as root directories with space limitations.
+A Weka filesystem is similar to a regular on-disk filesystem while distributed across all the servers in the cluster. Consequently, filesystems are not associated with any physical object in the Weka system and act as root directories with space limitations.
 
 The system supports a total of up to 1024 filesystems. All of which are equally balanced on all SSDs and CPU cores assigned to the system. This means that the allocation of a new filesystem or resizing a filesystem are instant management operations performed without any constraints.
 

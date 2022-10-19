@@ -42,7 +42,7 @@ The options include:
 {% hint style="info" %}
 **Note:** The page shows only the statistics of the backend and clients that are part of the cluster. The page does not show statistics in the following cases:
 
-* A host is removed.
+* A container is removed.
 * A client is not connected to the cluster for more than the [retention period](statistics-1.md#set-statistics-retention).
 
 The Weka cluster does not hold historical statistics data. For historical statistics data, use `weka-mon` (see [Monitor using external tools](../../appendix/external-monitoring.md)).
