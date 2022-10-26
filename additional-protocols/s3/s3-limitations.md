@@ -21,16 +21,21 @@ The following standard S3 APIs are supported:
 
 ## General limits
 
-| **Item**                                                                         | **Limits**                                   |
-| -------------------------------------------------------------------------------- | -------------------------------------------- |
-| <p></p><p>Maximum number of buckets</p>                                          | <p></p><p>10000</p>                          |
-| Maximum object size                                                              | 5 TiB                                        |
-| Maximum number of parts per upload                                               | 10000                                        |
-| Part numbers                                                                     | 1 to 10000 (inclusive)                       |
-| Part size                                                                        | 5 MiB to 5 GiB. The last part can be < 5 MiB |
-| Maximum number of parts returned for a list parts request                        | 1000                                         |
-| Maximum number of multipart uploads returned in a list multipart uploads request | 1000                                         |
-| User-defined metadata per object                                                 | 2 KB                                         |
+| **Item**                                                                         | **Limits**                                                   |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Maximum number of buckets                                                        | 10000                                                        |
+| Maximum object size                                                              | 5 TiB                                                        |
+| Maximum number of parts per upload                                               | 10000                                                        |
+| Part numbers                                                                     | 1 to 10000 (inclusive)                                       |
+| Part size                                                                        | <p>5 MiB to 5 GiB. <br>The last part can be &#x3C; 5 MiB</p> |
+| Maximum number of parts returned for a list parts request                        | 1000                                                         |
+| Maximum number of multipart uploads returned in a list multipart uploads request | 1000                                                         |
+| User-defined metadata per object                                                 | 2 KB                                                         |
+| Maximum length of an S3 IAM user policy                                          | 2048                                                         |
+| Maximum number of S3 IAM user policies                                           | 1024                                                         |
+| Maximum number of S3 regular users                                               | 1024                                                         |
+| Maximum **** number of S3 service accounts                                       | 5000                                                         |
+| Maximum number of S3 STS credentials                                             | 5000                                                         |
 
 ## Naming limitations
 
