@@ -71,9 +71,9 @@ You can control the upgrade window time by setting the following parameters in t
 
 | **Name**                                 | **Type** | **Value**                                                                                                           | **Limitations** | **Mandatory** | **Default** |
 | ---------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------- | --------------- | ------------- | ----------- |
-| `--stop-io-timeout`                      | Integer  | Maximum time in seconds to wait for IO to stop successfully                                                         |                 | No            | 90          |
-| `--host-version-change-timeout`          | Integer  | Maximum time in seconds to wait for a host version update                                                           |                 | No            | 180         |
-| `--disconnect-stateless-clients-timeout` | Integer  | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them    |                 | No            | 60          |
+| `--stop-io-timeout`                      | Duration | Maximum time in seconds to wait for IO to stop successfully                                                         |                 | No            | 90s         |
+| `--host-version-change-timeout`          | Duration | Maximum time in seconds to wait for a host version update                                                           |                 | No            | 180s        |
+| `--disconnect-stateless-clients-timeout` | Duration | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them    |                 | No            | 60s         |
 | `--prepare-only`                         | Boolean  | Download and prepare a new software version across all servers in the cluster without performing the actual upgrade |                 | No            | False       |
 
 
@@ -91,8 +91,8 @@ In a successful process, the upgrade stops the cluster IO service, switches all 
 {% hint style="info" %}
 **Note:** In large deployments of Weka with many backend servers and hundreds or thousands of clients, it is recommended to adjust the following timeout parameters: &#x20;
 
-* Set `host-version-change-timeout` to `600`
-* Set `disconnect-stateless-clients-timeout` to `200`
+* Set `host-version-change-timeout` to `600s`
+* Set `disconnect-stateless-clients-timeout` to `200s`
 
 If further assistance and adjustments are required, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
