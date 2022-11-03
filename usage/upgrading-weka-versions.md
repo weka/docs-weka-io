@@ -8,10 +8,11 @@ description: This page describes how to upgrade to the latest Weka software vers
 
 Before upgrading your cluster, ensure the following:
 
-1. All the backend servers are online.
-2. Any rebuild has been completed.
-3. There are no outstanding alerts that haven't been addressed.
-4. There is at least 4 GB of free space in the `/opt/weka` directory.
+1. The backend servers meet the [prerequisites and compatibility](../support/prerequisites-and-compatibility.md) of the target version.
+2. All the backend servers are online.
+3. Any rebuild has been completed.
+4. There are no outstanding alerts that haven't been addressed.
+5. There is at least 4 GB of free space in the `/opt/weka` directory.
 
 {% hint style="info" %}
 **Note:** If you plan a multi-hop version upgrade, once an upgrade is done, a background process of converting metadata to a new format may occur (in some versions). This upgrade takes several minutes to complete and must finish before another upgrade can start. You can monitor the progress using the `weka status` CLI command and check if there is a `data upgrade` task in a`RUNNING` state.
