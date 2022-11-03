@@ -109,7 +109,7 @@ The Weka software on a client requires 4 GB of additional memory.
 
 The Weka system implements a Non-Uniform Memory Access (NUMA) aware CPU allocation strategy to maximize the overall performance of the system. The allocation of cores utilizes all NUMAs equally to balance memory usage from all NUMAs.
 
-The following should be noted with regard to the CPU allocation strategy:
+Consider the following regarding to the CPU allocation strategy:
 
 * The code allocates CPU resources by assigning individual cores to tasks in a cgroup
 * Cores in a Weka cgroup won't be available to run any other user processes
@@ -121,8 +121,8 @@ Plan the number of physical cores dedicated to the Weka software according to th
 
 * Dedicate at least one physical core to the operating system; the rest can be allocated to the Weka software.
   * In general, it is recommended to allocate as many cores as possible to the Weka system.
-  * A backend server can have as many as possible cores. However, a backend container can have a maximum of 19 physical cores.
-  * Take into account leaving enough cores for the protocol container if it runs on the same server.
+  * A backend server can have as many as possible cores. However, a container within a backend server can have a maximum of 19 physical cores.
+  * Leave enough cores for the container serving the protocol if it runs on the same server.
 * Allocate enough cores to support performance targets.
   * In general, use 1 drive process per SSD for up to 6 SSDs and 1 drive process per 2 SSDs for more, with a ratio of 2 compute processes per SSD process.
   * For finer tuning, please contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).

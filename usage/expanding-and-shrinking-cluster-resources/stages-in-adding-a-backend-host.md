@@ -5,7 +5,7 @@ description: >-
   the following stages.
 ---
 
-# Workflow: Add a backend container
+# Workflow: Add a backend server
 
 ## Stage 1: Obtain the Weka software installation file
 
@@ -29,10 +29,10 @@ weka -H <existing-backend-hostname> cluster container add <backend-hostname>
 
 **Parameters**
 
-| **Name**                    | **Type** | **Value**                                                              | **Limitations**            | **Mandatory** | **Default**                                            |
-| --------------------------- | -------- | ---------------------------------------------------------------------- | -------------------------- | ------------- | ------------------------------------------------------ |
-| `existing-backend-hostname` | String   | IP or hostname of one of the existing backend instances in the cluster | Valid hostname (DNS or IP) | No            | The backend container on which the command is executed |
-| `backend-hostname`          | String   | IP or hostname  of the backend currently being added                   | Valid hostname (DNS or IP) | Yes           |                                                        |
+| **Name**                    | **Type** | **Value**                                                            | **Limitations**            | **Mandatory** | **Default**                                         |
+| --------------------------- | -------- | -------------------------------------------------------------------- | -------------------------- | ------------- | --------------------------------------------------- |
+| `existing-backend-hostname` | String   | IP or hostname of one of the existing backend servers in the cluster | Valid hostname (DNS or IP) | No            | The backend server on which the command is executed |
+| `backend-hostname`          | String   | IP or hostname of the backend server to add                          | Valid hostname (DNS or IP) | Yes           |                                                     |
 
 {% hint style="info" %}
 **Note:** On completion of this stage, the container-id of the newly added backend container is received. Make a note of it for the next steps.

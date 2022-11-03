@@ -8,7 +8,7 @@ description: >-
 
 The Weka GUI allows monitoring basic information of the CPUs, Network, Drives, IOPS/Throughput, and more advanced information via the statistics as well as Weka Alerts and the Weka Events log.
 
-![Screenshot of Weka Grafana Dashboard](<../.gitbook/assets/image (22).png>)
+![Screenshot of Weka Grafana Dashboard](<../.gitbook/assets/image (6).png>)
 
 It is sometimes useful to use external tools like Prometheus and Grafana for monitoring. It could be that you already have them in the environment and would like to correlate with other products and see all information on the same dashboard.
 
@@ -26,7 +26,7 @@ The package resides on GitHub. There are two ways you can pull it from GitHub - 
 
 To download a Release, go to [https://github.com/weka/weka-mon/releases](https://github.com/weka/weka-mon/releases) in your web browser, and select the **latest** release. Click on the "Source Code" link to download. Copy this to your intended management server or VM and unpack it.
 
-![Weka-mon GitHub Releases Page](<../.gitbook/assets/image (23).png>)
+![Weka-mon GitHub Releases Page](<../.gitbook/assets/image (19).png>)
 
 Alternatively, to clone the repository, run the following commands to pull the weka-mon package from GitHub:
 

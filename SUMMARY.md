@@ -143,7 +143,7 @@
   * [Mount authentication for organization filesystems](usage/organizations/organizations-2.md)
 * [Expand and shrink cluster resources](usage/expanding-and-shrinking-cluster-resources/README.md)
   * [Expand and shrink overview](usage/expanding-and-shrinking-cluster-resources/expand-and-shrink-overview.md)
-  * [Workflow: Add a backend container](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
+  * [Workflow: Add a backend server](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
   * [Expansion of specific resources](usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrink a Cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
 * [Background tasks](usage/background-tasks.md)

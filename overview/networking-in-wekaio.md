@@ -92,7 +92,7 @@ For backend servers equipped with DPDK-supporting the other NICs, the following 
 
 * A driver with DPDK support must be installed and loaded.
 * SR-IOV must be enabled in the hardware (BIOS + NIC).
-* The number of IPs allocated to the backend server on the internal network should be the total number of Weka software processes plus the total number of backend servers. For example, a cluster consisting of 8 servers running 10 Weka processes each requires 88 (80 + 8) IPs on the internal network. The IP requirements for the Weka clients are outlined below in the Clients section.
+* The number of IPs allocated to the backend containers on the internal network should be the total number of Weka software processes plus the total number of backend servers. For example, a cluster consisting of 8 backend containers running 10 Weka processes each requires 88 (80 + 8) IPs on the internal network. The IP requirements for the Weka clients are outlined below in the Clients section.
 
 ### Clients
 
@@ -105,7 +105,7 @@ Unlike Weka backend servers that must be DPDK/SR-IOV based, the Weka clients (ap
 * Mellanox OFED must be installed and loaded.
 * There is no need to use SR-IOV, so the number of IPs allocated to the clients on the internal network should be the total number of clients, i.e., 10 IPs for 10 clients (using the example above).
 
-#### Clients with DPDK-supporting the other NICs
+#### Clients with DPDK supporting the other NICs
 
 For clients equipped with DPDK-supporting the other NICs, the following conditions must be met to use the DPDK mode:
 
@@ -126,9 +126,9 @@ For clients in the UDP mode, the following conditions must be met:
 
 For HA support, the Weka system must be configured with no single component representing a single point of failure. Multiple switches are required, and servers must have one leg on each switch.
 
-HA for servers is achieved either through the implementation of two network interfaces on the same server or via LACP (ethernet only, modes 1 and 4). Using a non-LACP approach sets a redundancy that enables the Weka software to utilize two interfaces for HA and bandwidth, respectively.&#x20;
+HA for servers is achieved either through the implementation of two network interfaces on the same server or by LACP (ethernet only, modes 1 and 4). Using a non-LACP approach sets a redundancy that enables the Weka software to use two interfaces for HA and bandwidth, respectively.&#x20;
 
-HA performs failover and failback for reliability and load balancing on both interfaces and is operational for both Ethernet and InfiniBand. If not using LACP, it requires doubling the number of IPs on both the servers and the IO processes.
+HA performs failover and failback for reliability and load balancing on both interfaces and is operational for both Ethernet and InfiniBand. If not using LACP, it requires doubling the number of IPs on both the backend containers and the IO processes.
 
 When working with HA networking, it is useful to label the system to send data between servers through the same switch rather than using the ISL or other paths in the fabric. This can reduce the overall traffic in the network. To label the system for identifying the switch and network port, use the `label` parameter in `weka cluster container net add` command.&#x20;
 
@@ -160,27 +160,43 @@ For the RDMA/GPUDirect Storage technology to take into effect, the following req
     * For GPUDirect Storage: install with `--upstream-libs` and `--dpdk`
 
 {% hint style="info" %}
-**Note:** GPUDirect Storage completely bypasses the kernel and does not utilize the page cache. Standard RDMA clients still utilize the page cache.
+**Note:** GPUDirect Storage completely bypasses the kernel and does not use the page cache. Standard RDMA clients still use the page cache.
 {% endhint %}
 
 {% hint style="warning" %}
 **Note:** RDMA/GPUDirect Storage technology is not supported when working with a cluster with mixed IB and Ethernet networking.
 {% endhint %}
 
-Running `weka cluster nodes` indicates if the RDMA is used. For example:
+Running `weka cluster processes` indicates if the RDMA is used. For example:
 
 ```
-# weka cluster nodes
-NDOE ID         HOST ID        ROLES          NETWORK
-0               HostId: 0      MANAGEMENT     UDP
-NodeId: 1       HostId: 0      FRONTEND       DPDK / RDMA
-NodeId: 2       HostId: 0      COMPUTE        DPDK / RDMA
-NodeId: 3       HostId: 0      COMPUTE        DPDK / RDMA
-NodeId: 4       HostId: 0      COMPUTE        DPDK / RDMA
-NodeId: 5       HostId: 0      COMPUTE        DPDK / RDMA
-NodeId: 6       HostId: 0      DRIVES         DPDK / RDMA
-NodeId: 7       HostId: 0      DRIVES         DPDK / RDMA
-
+# weka cluster processes
+PROCESS ID  HOSTNAME  CONTAINER   IPS         STATUS  ROLES       NETWORK      CPU  MEMORY   UPTIME
+0           weka146   default     10.0.1.146  UP      MANAGEMENT  UDP                        16d 20:07:42h
+1           weka146   default     10.0.1.146  UP      FRONTEND    DPDK / RDMA  1    1.47 GB  16d 23:29:00h
+2           weka146   default     10.0.3.146  UP      COMPUTE     DPDK / RDMA  12   6.45 GB  16d 23:29:00h
+3           weka146   default     10.0.1.146  UP      COMPUTE     DPDK / RDMA  2    6.45 GB  16d 23:29:00h
+4           weka146   default     10.0.3.146  UP      COMPUTE     DPDK / RDMA  13   6.45 GB  16d 23:29:00h
+5           weka146   default     10.0.1.146  UP      COMPUTE     DPDK / RDMA  3    6.45 GB  16d 22:28:58h
+6           weka146   default     10.0.3.146  UP      COMPUTE     DPDK / RDMA  14   6.45 GB  16d 23:29:00h
+7           weka146   default     10.0.3.146  UP      DRIVES      DPDK / RDMA  18   1.49 GB  16d 23:29:00h
+8           weka146   default     10.0.1.146  UP      DRIVES      DPDK / RDMA  8    1.49 GB  16d 23:29:00h
+9           weka146   default     10.0.3.146  UP      DRIVES      DPDK / RDMA  19   1.49 GB  16d 23:29:00h
+10          weka146   default     10.0.1.146  UP      DRIVES      DPDK / RDMA  9    1.49 GB  16d 23:29:00h
+11          weka146   default     10.0.3.146  UP      DRIVES      DPDK / RDMA  20   1.49 GB  16d 23:29:07h
+12          weka147   default     10.0.1.147  UP      MANAGEMENT  UDP                        16d 22:29:02h
+13          weka147   default     10.0.1.147  UP      FRONTEND    DPDK / RDMA  1    1.47 GB  16d 23:29:00h
+14          weka147   default     10.0.3.147  UP      COMPUTE     DPDK / RDMA  12   6.45 GB  16d 23:29:00h
+15          weka147   default     10.0.1.147  UP      COMPUTE     DPDK / RDMA  2    6.45 GB  16d 23:29:00h
+16          weka147   default     10.0.3.147  UP      COMPUTE     DPDK / RDMA  13   6.45 GB  16d 23:29:00h
+17          weka147   default     10.0.1.147  UP      COMPUTE     DPDK / RDMA  3    6.45 GB  16d 23:29:00h
+18          weka147   default     10.0.3.147  UP      COMPUTE     DPDK / RDMA  14   6.45 GB  16d 23:29:00h
+19          weka147   default     10.0.3.147  UP      DRIVES      DPDK / RDMA  18   1.49 GB  16d 23:29:00h
+20          weka147   default     10.0.1.147  UP      DRIVES      DPDK / RDMA  8    1.49 GB  16d 23:29:00h
+21          weka147   default     10.0.3.147  UP      DRIVES      DPDK / RDMA  19   1.49 GB  16d 23:29:07h
+22          weka147   default     10.0.1.147  UP      DRIVES      DPDK / RDMA  9    1.49 GB  16d 23:29:00h
+23          weka147   default     10.0.3.147  UP      DRIVES      DPDK / RDMA  20   1.49 GB  16d 23:29:07h
+. . .
 ```
 
 {% hint style="info" %}

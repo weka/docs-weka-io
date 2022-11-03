@@ -14,9 +14,9 @@ The Weka implementation of SMB makes storage services available to Windows and m
 
 The implementation of the SMB feature in the Weka system is scalable, resilient, and distributed.
 
-* **Scalable:** The Weka system supports an SMB cluster of between 3 to 8 hosts. These hosts run the SMB gateway service, while the backend filesystem can be any Weka filesystem. Therefore, it is practically unlimited in size and performance.
+* **Scalable:** The Weka system supports an SMB cluster of between 3 to 8 servers. These servers run the SMB gateway service, while the backend filesystem can be any Weka filesystem. Therefore, it is practically unlimited in size and performance.
 * **Resilient:** The Weka system implementation of SMB provides clustered access to files in a Weka file store, enabling multiple servers to work together. Consequently, if a server failure occurs, another server is available to take over operations, thereby ensuring failover support and high availability. Weka standard resiliency against failures also protects the SMB filesystems. SMB-W supports transparent failover, thus providing more resiliency than legacy SMB.
-* **Distributed:** A Weka implementation is distributed over a cluster, where all nodes in the cluster handle all SMB filesystems concurrently. Therefore, performance supported by SMB can scale with more hardware resources, and high availability is ensured. SMB-W supports SMB Multichannel and SMB Direct (as opposed to the legacy SMB).
+* **Distributed:** A Weka implementation is distributed over a cluster, where all servers in the cluster manage all SMB filesystems concurrently. Therefore, performance supported by SMB can scale with more hardware resources, and high availability is ensured. SMB-W supports SMB Multichannel and SMB Direct (as opposed to the legacy SMB).
 
 ## SMB-W additional features
 

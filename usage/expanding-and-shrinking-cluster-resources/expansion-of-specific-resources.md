@@ -21,8 +21,8 @@ To dynamically change the memory configuration, use the steps described for the 
 {% hint style="success" %}
 **Example:** To change `container-id 0` memory to 1.5 GB, run the following commands:
 
-`weka cluster` container `memory 0 1.5GB`\
-`weka cluster` container `apply 0`
+`weka cluster container memory 0 1.5GB`\
+`weka cluster container apply 0`
 {% endhint %}
 
 ### Network modifications

@@ -29,7 +29,7 @@ Use the following command line to obtain statistics definition information:\
 
 **Command:** `weka stats realtime`
 
-Use the following command line to obtain the current performance-related statistics of the containers in a one-second interval:\
+Use the following command line to obtain the current performance-related statistics of the processes in a one-second interval:\
 `weka stats realtime [<process-ids>] [--raw-units] [--UTC]`
 
 **Parameters**

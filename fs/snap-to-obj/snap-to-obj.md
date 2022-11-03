@@ -77,7 +77,7 @@ Verify that the locator of the required snapshot is available. If not, see the l
      In the Access Point, set a meaningful access point name to override the default (uploaded access point name) for the directory that serves as the snapshot's access point.
 3. Select **Save**.&#x20;
 
-![Create a filesystem from an uploaded snapshot](../../.gitbook/assets/wmng\_Create\_fs\_from\_snapshot\_animated.gif)
+![Create a filesystem from an uploaded snapshot](../../.gitbook/assets/Create\_fs\_from\_snapshot\_animated.gif)
 
 ## Sync a filesystem from a snapshot <a href="#sync-a-filesystem-from-a-snapshot" id="sync-a-filesystem-from-a-snapshot"></a>
 
