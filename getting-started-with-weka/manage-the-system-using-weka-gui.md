@@ -35,7 +35,7 @@ Weka GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview.gif)
+![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview\_mb.gif)
 
 ## Access the Weka GUI
 
@@ -59,7 +59,7 @@ Make sure that port 14000 is open in the firewall of your organization.
 1. In your browser, go to `https://<weka system or server name>:14000`.\
    ``The sign-in page opens.
 
-![Sign in to Weka GUI](../.gitbook/assets/wmng\_sign\_in.png)
+![Sign in to Weka GUI](<../.gitbook/assets/wmng\_sign\_in (1).png>)
 
 2\. Sign in with the username and password of an account with cluster administration or\
 &#x20;   organization administration privileges. For details about the account types, see  \
@@ -144,7 +144,7 @@ Selecting the Capacity title displays the filesystems page.
 
 This widget shows the average usage and the maximum load level of the Frontend, Compute, and Drive cores.
 
-<figure><img src="../.gitbook/assets/wmng_dashboard_Core_Usage_widget.png" alt=""><figcaption><p>Core Usage widget</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/wmng_dashboard_Core_Usage_widget (1).png" alt=""><figcaption><p>Core Usage widget</p></figcaption></figure>
 
 ### Hardware widget
 
@@ -195,7 +195,7 @@ You can switch the view of the servers to 3D for the backend servers, NFS server
 
 The 3D view provides the server components' status at a glance, including the drives, cores, protocols, and load. The colors indicate, for example, if the drives or processes failed or the container is down.
 
-<figure><img src="broken-reference" alt=""><figcaption><p>Display servers in 3D view</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/wmng_display_servers_in_3d.gif" alt=""><figcaption><p>Display servers in 3D view</p></figcaption></figure>
 
 ## Display tables
 

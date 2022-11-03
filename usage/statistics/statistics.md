@@ -18,7 +18,7 @@ Using the GUI, you can:
 
 1. From the menu, select **Investigate > Statistics**.
 
-![Statistics page](<../../.gitbook/assets/wmng\_statistics\_view (1).png>)
+![Statistics page](../../.gitbook/assets/wmng\_statistics\_view.png)
 
 ## Add a chart to the statistics page <a href="#add-a-chart-to-the-statistics-page" id="add-a-chart-to-the-statistics-page"></a>
 
