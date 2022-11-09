@@ -15,10 +15,10 @@ A server with a single container is limited to using up to 19 cores. This limita
 
 To enable non-disruptive upgrades and flexible deployment of the cores across the cluster, use the multiple containers architecture.
 
-![Single container architecture vs. multiple containers architecture](../../.gitbook/assets/V4\_MBC\_overview.png)
+![Single container architecture vs. multiple containers architecture](broken-reference)
 
 {% hint style="info" %}
-Multiple containers architecture is not supported yet on AWS using the CloudFormation.
+Multiple containers architecture is not supported yet on AWS using the CloudFormation, as well as in a system with Intel E810 NIC.
 {% endhint %}
 
 In a multiple containers architecture, each container has a management process. The container can have several processes of one type for the drive, compute, or frontend functions.
