@@ -338,7 +338,7 @@ Use the following command line to remove a share exposed to SMB:
 
 It is possible to control which hosts are permitted to access the SMB service or share.
 
-**Command:** `weka smb cluster host-access show` / `weka smb share host-access show`
+**Command:** `weka smb cluster host-access list` / `weka smb share host-access list`
 
 Use this command to view the various host-access settings.
 
