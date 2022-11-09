@@ -49,7 +49,7 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 * **Group**: Select the filesystem group that fits your filesystem.
 * **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.&#x20;
 
-![Create a filesystem](../../.gitbook/assets/wmng\_create\_fs\_animated.gif)
+<figure><img src="../../.gitbook/assets/wmng_4_1_create_fs_animated.gif" alt=""><figcaption><p>Create a filesystem</p></figcaption></figure>
 
 4\. Optional: [**Tiering**](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).\
 &#x20;   If tiering **** is required and an object store bucket is already defined, \
@@ -65,12 +65,11 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 &#x20;   If Thin Provision is required, select the toggle button, and set the minimum \
 &#x20;   capacity (guaranteed) and the maximum capacity for the thin provisioned filesystem.\
 &#x20;   The minimum capacity must be less or equal to the available SSD capacity.\
-&#x20;   You can set any maximum capacity, but the available capacity depends on the actual free space\
-&#x20;   of the SSD capacity.&#x20;
+&#x20;   You can set any maximum capacity, but the available capacity depends on the actual free space of the SSD capacity.&#x20;
 
 ![Thin provisioning](../../.gitbook/assets/wmng\_fs\_thin\_provisioning.png)
 
-6\. Optional: If Encryption is required and your Weka system is deployed with a KMS, \
+6\. Optional: If **Encryption** is required and your Weka system is deployed with a KMS, \
 &#x20;   select the toggle button.
 
 7\. Optional: **Required Authentication**.\

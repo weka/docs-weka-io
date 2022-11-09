@@ -30,7 +30,7 @@ Local users are created in the local system as opposed to domain users that are 
    * **Role:** Select the role for the local user. If you select an S3 user role, you can select the relevant S3 policy, POSIX UID, and POSIX GID.
 4. Select **Save**.
 
-![Create new user dialog](../../.gitbook/assets/wmng\_create\_new\_user.gif)
+![Create new user dialog](../../.gitbook/assets/wmng\_local\_users\_add.png)
 
 ### Edit a local user
 
@@ -42,7 +42,7 @@ You can modify the role of a local user, but not your own role (the signed-in us
 2. From the Role property, select the required role. If you modify the role to S3, you can set the S3 policy, POSIX UID, and POSIX GID.
 3. Select **Save**.
 
-![Edit a local user](../../.gitbook/assets/wmng\_edit\_user.png)
+![Edit a local user](../../.gitbook/assets/wmng\_local\_users\_edit.png)
 
 ### Change a local user password
 
@@ -120,7 +120,7 @@ To use LDAP directory for authenticating users, you need to configure the corres
 
 Once the LDAP configuration completes, the User Directory tab displays the details. You can disable the LDAP configuration, update the configuration, or reset the configuration values.
 
-![LDAP configuration](../../.gitbook/assets/wmng\_ldap\_configuration\_result.png)
+![LDAP configuration](<../../.gitbook/assets/wmng\_ldap\_configuration\_result (1).png>)
 
 ### Configure Active Directory
 
