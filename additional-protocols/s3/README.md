@@ -58,6 +58,19 @@ Anonymous access to buckets/objects can be obtained by one of the following:&#x2
 
 [#pre-signed-url-example](s3-examples-using-boto3.md#pre-signed-url-example "mention")
 
+### Supported URL styles for API requests to S3 buckets
+
+Weka supports two URL styles for API requests to S3 buckets: _path-style_ and _virtual-hosted-style_.
+
+| Style                | URL format                                             |
+| -------------------- | ------------------------------------------------------ |
+| Path-style           | `https://`s3`.domain-name.com/bucket-name/object-name` |
+| Virtual-hosted-style | `https://bucket-name.s3.domain-name.com/object-name`   |
+
+The difference between the styles is subtle but significant. When using a URL to reference an object, the DNS resolution maps the subdomain name to an IP address. With the path style, the subdomain is always `s3.domain-name.com`. With the virtual-hosted-style, the subdomain is specific to the bucket.
+
+The addressing style used to construct the request is determined by the S3 client sending the request.
+
 ## S3 security
 
 ### Encryption **of data** at rest
