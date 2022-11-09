@@ -20,7 +20,7 @@ Refer to the screenshots below to enable the SR-IOV support in the server BIOS.
 
 ![Reboot Server and Force it to Enter the BIOS Setup](<../../../.gitbook/assets/image (16).png>)
 
-![Locate the PCIe Configuration and Drill Down](<../../../.gitbook/assets/image (17).png>)
+![Locate the PCIe Configuration and Drill Down](<../../../.gitbook/assets/image (18).png>)
 
 ![Locate SR-IOV Support and Drill Down](<../../../.gitbook/assets/image (19).png>)
 

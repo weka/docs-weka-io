@@ -24,8 +24,8 @@ Local users are created in the local system as opposed to domain users that are 
 1. From the menu, select **Configure > User Management**.
 2. In the Local Users tab, select **+Create**.
 3. In the Create New User dialog, set the following properties:
-   * **Username:**  Set the user name for the local user.
-   * **Password:**  Set a password according to the requirements. The password must contain at least 8 characters, an uppercase letter, a lowercase letter, and a number or a special character.
+   * **Username:** Set the user name for the local user.
+   * **Password:** Set a password according to the requirements. The password must contain at least 8 characters, an uppercase letter, a lowercase letter, and a number or a special character.
    * **Confirm Password:** Type the same password again.
    * **Role:** Select the role for the local user. If you select an S3 user role, you can select the relevant S3 policy, POSIX UID, and POSIX GID.
 4. Select **Save**.
@@ -34,12 +34,12 @@ Local users are created in the local system as opposed to domain users that are 
 
 ### Edit a local user
 
-You can modify the role of a local user, but not your own role (the signed-in user). For an S3 user, you can only modify the S3 policy, POSIX UID, and POSIX GID.&#x20;
+You can modify the role of a local user, but not your own role (the signed-in user). For an S3 user, you can only modify the S3 policy, POSIX UID, and POSIX GID.
 
 **Procedure**
 
 1. In the Local Users tab, select the three dots of the local user you want to edit, then select **Edit User**.
-2. From the Role property, select the required role. If you modify the role to S3, you can set the S3 policy, POSIX UID, and POSIX GID.&#x20;
+2. From the Role property, select the required role. If you modify the role to S3, you can set the S3 policy, POSIX UID, and POSIX GID.
 3. Select **Save**.
 
 ![Edit a local user](../../.gitbook/assets/wmng\_local\_users\_edit.png)
@@ -52,8 +52,8 @@ As a Cluster Admin or Organization Admin, you can change the password of a local
 
 1. In the Local Users tab, select the three dots of the local user you want to change the password for, then select **Change Password**.
 2. In the Change Password for a user dialog, set the following properties:
-   * **Old password:**  Set the old password.
-   * **Password:**  Set a new password according to the requirements.
+   * **Old password:** Set the old password.
+   * **Password:** Set a new password according to the requirements.
    * **Confirm Password:** Type the same new password again.
    * **Revoke Tokens:** If the user's existing tokens are compromised, you can revoke all the user's tokens along with changing the user's password. To re-access the system, the user re-authenticates with the new password, or the user needs to obtain new tokens using the API.
 3. Select **Save**.
@@ -72,7 +72,7 @@ You can change your own password at any time.
 
 2\. In the Change Password dialog set the properties as described in the [Change a local user password](user-management.md#change-a-local-user-password) topic.
 
-3\. Select **Save**.&#x20;
+3\. Select **Save**.
 
 ### Revoke local user tokens
 
@@ -100,7 +100,7 @@ You can remove a local user that is no longer required.
 
 ## Manage user directory
 
-You can set user access to the Weka system from the organization user directory, either by LDAP directory or Active Directory.&#x20;
+You can set user access to the Weka system from the organization user directory, either by LDAP directory or Active Directory.
 
 ![User directory tab](../../.gitbook/assets/user\_directory\_tab\_no\_conf.png)
 
@@ -120,7 +120,7 @@ To use LDAP directory for authenticating users, you need to configure the corres
 
 Once the LDAP configuration completes, the User Directory tab displays the details. You can disable the LDAP configuration, update the configuration, or reset the configuration values.
 
-![LDAP configuration](<../../.gitbook/assets/wmng\_ldap\_configuration\_result (1).png>)
+![LDAP configuration](../../.gitbook/assets/wmng\_ldap\_configuration\_result.png)
 
 ### Configure Active Directory
 

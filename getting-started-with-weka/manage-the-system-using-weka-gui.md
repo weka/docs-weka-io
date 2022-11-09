@@ -28,20 +28,20 @@ Weka GUI application supports the following functions:
   * Investigate overtime statistics, such as total operations, R/W throughput, CPU usage, and read or write latency.
 * **Monitoring**:
   * View the cluster protection and availability.
-  * View the R/W throughput&#x20;
+  * View the R/W throughput
   * View the backend and client top consumers.
   * View alarms.
   * View the used, provisioned, and total capacity.
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview\_mb.gif)
+![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview.gif)
 
 ## Access the Weka GUI
 
 Weka GUI is a web application that you can access using an already configured account and has the appropriate rights to configure, administer, or view.
 
-You can access the Weka GUI with any standard browser using the address: \
+You can access the Weka GUI with any standard browser using the address:\
 `https://<weka system or server name>:14000`
 
 For example: `https://WekaProd:14000` or `https://weka01:14000`.
@@ -57,13 +57,13 @@ Make sure that port 14000 is open in the firewall of your organization.
 **Procedure**
 
 1. In your browser, go to `https://<weka system or server name>:14000`.\
-   ``The sign-in page opens.
+   \`\`The sign-in page opens.
 
 ![Sign in to Weka GUI](<../.gitbook/assets/wmng\_sign\_in (1).png>)
 
 2\. Sign in with the username and password of an account with cluster administration or\
-&#x20;   organization administration privileges. For details about the account types, see  \
-&#x20;   _User management_ in the related topics.&#x20;
+organization administration privileges. For details about the account types, see\
+_User management_ in the related topics.
 
 The system dashboard opens.
 
@@ -75,7 +75,7 @@ The initial default username and password are _admin_ and _admin_[.](../usage/us
 
 [user-management](../usage/user-management/ "mention")
 
-## System Dashboard&#x20;
+## System Dashboard
 
 The system dashboard contains widgets that provide an overview of the Weka system, including an overall status, R/W throughput, top consumers, alerts, capacity, core usage, and hardware.
 
@@ -144,7 +144,7 @@ Selecting the Capacity title displays the filesystems page.
 
 This widget shows the average usage and the maximum load level of the Frontend, Compute, and Drive cores.
 
-<figure><img src="../.gitbook/assets/wmng_dashboard_Core_Usage_widget (1).png" alt=""><figcaption><p>Core Usage widget</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/wmng_dashboard_Core_Usage_widget.png" alt=""><figcaption><p>Core Usage widget</p></figcaption></figure>
 
 ### Hardware widget
 
@@ -206,13 +206,9 @@ When managing filesystems, snapshots, and object stores, the displayed tables li
 
 <figure><img src="../.gitbook/assets/wmng_display_tables.png" alt=""><figcaption><p>Example: Display the filesystems table</p></figcaption></figure>
 
-
-
-
-
 **Related topics**
 
-<mark style="color:purple;">****</mark>[statistics](../usage/statistics/ "mention")<mark style="color:purple;">****</mark>
+[statistics](../usage/statistics/ "mention")
 
 [events](../usage/events/ "mention")
 

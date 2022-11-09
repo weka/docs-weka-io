@@ -83,7 +83,7 @@ Use the following command lines to add/delete an interface group IP:
 | `ips`    | String   | IP range             | Valid IP range  | Yes           |             |
 
 {% hint style="info" %}
-The AWS environment does not support interface group IPs.
+**Note:** Cloud environments do not support interface group IPs.
 {% endhint %}
 
 ## Configure the service mountd port

@@ -6,9 +6,7 @@ description: >-
 
 # Manage SMB using the GUI
 
-
-
-Using the GUI, you can:&#x20;
+Using the GUI, you can:
 
 * [Configure the SMB cluster](smb-management-using-the-gui.md#configure-the-smb-cluster) (not applicable for SMB-W)
 * [Edit the SMB cluster](smb-management-using-the-gui.md#edit-the-smb-cluster)
@@ -48,12 +46,12 @@ Define the Weka system servers that participate in the SMB cluster (with legacy 
 * **Servers**: List of 3-8 Weka system servers to participate in the SMB cluster, based on the server IDs in Weka.
 * **Encryption:** Select the in-transit encryption to use in the SMB cluster:\
   \- enabled: enables encryption negotiation but doesn't turn it on automatically for supported\
-  &#x20;  sessions and share connections.\
+  sessions and share connections.\
   \- disabled: doesn't support encrypted connections.\
   \- desired: enables encryption negotiation and turns on data encryption on supported sessions\
-  &#x20;  and share connections.\
+  and share connections.\
   \- required: enforces data encryption on sessions and share connections. Clients that do not\
-  &#x20;  support encryption will be denied access to the server.
+  support encryption will be denied access to the server.
 * **IPs**: (Optional) List of public IPs (comma-separated) used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA (do not assign these IPs to any server on the network). For IP range, use the following format: **a.b.c.x-y**.
 
 {% hint style="info" %}
@@ -62,7 +60,7 @@ In AWS installations, it is not possible to set a list of SMB service addresses.
 
 5\. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog (1).gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
 
 Once the system completes the configuration process, the server statuses change from not ready (red X icon) to ready (green V icon).
 
@@ -90,15 +88,13 @@ To enable the organizational Active Directory to resolve the access of users and
 
 **Before you begin**
 
-To enable the Weka storage nodes to join the AD domain, verify that the AD server is the DNS server.&#x20;
+To enable the Weka storage nodes to join the AD domain, verify that the AD server is the DNS server.
 
 **Procedure**
 
 1. In the SMB Cluster Configuration, select **Join**.
 
 ![Join the SMB cluster in the Active Directory](../../.gitbook/assets/wmng\_smb\_join\_ad\_button.png)
-
-
 
 2\. In the Join to Active Directory dialog, set the following properties:
 
@@ -149,9 +145,9 @@ The Shares tab displays the list of SMB shares that are already created in the s
 
 2\. In the Add SMB Share dialog, set the following properties:
 
-* **Name**: A meaningful name for the SMB share.&#x20;
+* **Name**: A meaningful name for the SMB share.
 * **Filesystem**: The filesystem name that includes the directory to share. Select one from the list.
-* **Description**: A description or purpose of the SMB share.&#x20;
+* **Description**: A description or purpose of the SMB share.
 * **Path**: A valid internal path, relative to the root, within the filesystem to expose for the SMB share.
 * **Encryption:** Select in-transit encryption enforcement of the share. The cluster global encryption settings can affect the actual encryption.
 * **Read Only:** Select if you want to set the share as read only.
@@ -188,4 +184,4 @@ You can update some of the SMB share settings. These include encryption, hiding 
 ![Remove an SMB . share](../../.gitbook/assets/wmng\_smb\_share\_remove.png)
 
 2\. In the confirmation message that appears, select **Confirm**.\
-&#x20;   The removed share no longer appears in the SMB Shares list.
+The removed share no longer appears in the SMB Shares list.
