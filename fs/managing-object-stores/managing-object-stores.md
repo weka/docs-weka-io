@@ -10,6 +10,7 @@ Using the GUI, you can perform the following actions:
 * [View object store buckets](managing-object-stores.md#view-object-store-buckets)
 * [Add an object store bucket](managing-object-stores.md#add-an-object-store-bucket)
 * [Edit an object store bucket](managing-object-stores.md#edit-an-object-store-bucket)
+* [Show recent operations of an object store bucket](managing-object-stores.md#show-recent-operations-of-an-object-store-bucket)
 * [Delete an object store bucket](managing-object-stores.md#delete-an-object-store-bucket)
 
 ## Edit the default object stores <a href="#edit-the-default-object-stores" id="edit-the-default-object-stores"></a>
@@ -100,11 +101,28 @@ You can modify the object store bucket parameters according to your demand chang
 1. From the menu, select **Manage > Object Stores**.
 2. Select the three dots on the right of the object store you want to modify, and select **Edit**.
 
-![Edit an object store bucket](../../.gitbook/assets/wmng\_edit\_obs\_button.png)
+![Edit an object store bucket](../../.gitbook/assets/wmng\_obs\_edit.png)
 
 3\. In the Edit Object Store Bucket dialog, modify the details, and select **Update**.
 
-![](../../.gitbook/assets/wmng\_edit\_obs.png)
+![Edit an object store bucket](../../.gitbook/assets/wmng\_edit\_obs.png)
+
+## Show recent operations of an object store bucket
+
+For active object store buckets connected to filesystems, the system tracks this activity and provides details about each activity on the Bucket Operations page.
+
+The details include the operation type (download or upload), start time, execution time, previous attempts results, cURL errors, and more.&#x20;
+
+**Procedure**
+
+1. From the menu, select **Manage > Object Stores**.
+2. Select the three dots on the right of the object store bucket you want to show its recent operation, and select **Show Recent Operations**.
+
+<figure><img src="../../.gitbook/assets/wmng_obs_show_recent_operations_menu.png" alt=""><figcaption><p>Show recent operations of an object store bucket</p></figcaption></figure>
+
+The recent operations page for the selected object store bucket appears. To focus on specific operations, you can sort the columns and use the filters that appear on the top of the columns.
+
+<figure><img src="../../.gitbook/assets/wmng_obs_show_recent_ops_example.png" alt=""><figcaption><p>Bucket Operations page</p></figcaption></figure>
 
 ## Delete an object store bucket
 
@@ -116,4 +134,4 @@ You can delete an object store bucket if it is no longer required. The data in t
 2. Select the three dots on the right of the object store bucket you want to delete, and select **Remove**.
 3. To confirm the object store bucket deletion, select **Yes**.
 
-![Delete an object store bucket](../../.gitbook/assets/wmng\_delete\_obs.gif)
+![Delete an object store bucket](../../.gitbook/assets/wmng\_obs\_remove.png)

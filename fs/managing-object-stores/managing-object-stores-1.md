@@ -11,6 +11,7 @@ Using the CLI, you can perform the following actions:
 * [View object store buckets](managing-object-stores-1.md#view-object-store-buckets)
 * [Add an object store bucket](managing-object-stores-1.md#add-an-object-store-bucket)
 * [Edit an object store bucket](managing-object-stores-1.md#edit-an-object-store-bucket)
+* [List recent operations of an object store bucket](managing-object-stores-1.md#show-recent-operations-of-an-object-store-bucket)
 * [Delete an object store bucket](managing-object-stores-1.md#delete-an-object-store-bucket)
 
 ## View object stores
@@ -53,8 +54,6 @@ Use the following command line to edit an object store:
 | `max-concurrent-removals`  | Number   | Maximum number of removals concurrently performed on this object store in a single IO node                                                               | 1-64                                       | No            |             |
 | `enable-upload-tags`       | String   | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not, to be used as a default for added buckets | `true` or `false`                          | No            |             |
 
-
-
 ### View object store buckets
 
 **Command:** `weka fs tier s3`
@@ -96,7 +95,7 @@ Use the following command line to add an object store:
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** The `max-concurrent` settings are applied per Weka compute process and the minimum setting of all object-stores is applied.
+**Note:** The `max-concurrent` settings are applied per Weka compute process and the minimum setting of all object stores is applied.
 {% endhint %}
 
 Make the relevant changes and click Update to update the object store bucket.
@@ -131,6 +130,27 @@ Use the following command line to edit an object-store bucket:
 | `prefetch-mib`       | Number   | How many MiB of data to prefetch when reading a whole MiB on the object store                                     |                                                               | No            |             |
 | `enable-upload-tags` | String   | Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not     | `true` or `false`                                             | No            |             |
 
+## List recent operations of an object store bucket
+
+**Command:** `weka fs tier ops`
+
+Use the following command line to list the recent operations running on an object store:
+
+`weka fs tier ops <name> [--format format] [--output output]...[--sort sort]...[--filter filter]...[--raw-units] [--UTC] [--no-header] [--verbose]`
+
+**Parameters**
+
+| **Name**    | **Type** | **Value**                                                                                                                                                        | **Limitations**                                                                                                                                                                                                                                                                                                                       | **Mandatory** | **Default**                                           |
+| ----------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------------------------------------------------- |
+| `name`      | String   | Name of the object store bucket to show its recent operations.                                                                                                   | Must be a valid name                                                                                                                                                                                                                                                                                                                  | Yes           | ​                                                     |
+| `format`    | String   | Specify the output format.                                                                                                                                       | Available options:                         `view`, `csv`, `markdown`, `json`, or `oldview`                                                                                                                                                                                                                                            | No            | `view`                                                |
+| `output`    | String   | Specify the columns in the output.                                                                                                                               | <p>Available columns:<br><code>node</code>, <code>obsBucket</code>, <code>key</code>, <code>type</code>, <code>execution</code>, <code>phase</code>, <code>previous</code>, <code>start</code>, <code>size</code>, <code>results</code>, <code>errors</code>, <code>lastHTTP</code>, <code>concurrency</code>, <code>inode</code></p> | No            | All columns                                           |
+| `sort`      | String   | Specify the column(s) to consider when sorting the output. For the sorting order, ascending or descending, add - or + signs respectively before the column name. |                                                                                                                                                                                                                                                                                                                                       | No            |                                                       |
+| `filter`    | String   | Specify the values to filter by in a specific column. Usage:                           `column1=val1[,column2=val2[,..]]`                                        |                                                                                                                                                                                                                                                                                                                                       |               |                                                       |
+| `raw-units` | Boolean  | <p>Print values in raw units such as bytes, and seconds.</p><p>                           </p>                                                                   |                                                                                                                                                                                                                                                                                                                                       | No            | Human-readable format, for example, 1KiB 234MiB 2GiB. |
+| `no-header` | Boolean  | Don't show column headers in the output,                                                                                                                         |                                                                                                                                                                                                                                                                                                                                       | No            |                                                       |
+| `verbose`   | Boolean  | Show all columns in the output.                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                       | No            |                                                       |
+
 ## Delete an object store bucket
 
 **Command:** `weka fs tier s3 delete`
@@ -141,6 +161,7 @@ Use the following command line to delete an object-store bucket:
 
 **Parameters**
 
-| **Name** | **Type** | **Value**                                     | **Limitations**      | **Mandatory** | **Default** |
-| -------- | -------- | --------------------------------------------- | -------------------- | ------------- | ----------- |
-| `name`   | String   | Name of the object-store bucket being deleted | Must be a valid name | Yes           | ​           |
+| **Name** | **Type** | **Value**                                       | **Limitations**      | **Mandatory** | **Default** |
+| -------- | -------- | ----------------------------------------------- | -------------------- | ------------- | ----------- |
+| `name`   | String   | Name of the object **** store bucket to delete. | Must be a valid name | Yes           | ​           |
+
