@@ -18,7 +18,7 @@ Using the GUI, you can:
 
 1. From the menu, select **Investigate > Statistics**.
 
-<figure><img src="../../.gitbook/assets/wmng_4_1_statistics_view.png" alt=""><figcaption><p>View Statistics</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_statistics_view.png" alt=""><figcaption><p>View Statistics</p></figcaption></figure>
 
 2\. To view statistics of predefined templates for commonly used categories, select \
 &#x20;   **Predefined Templates** and from the list select the required statistics template.\
@@ -44,7 +44,7 @@ You can add charts to the statistics page to display up to a maximum of five cha
    * From the Categories pane, select a category, and then from the Statistics Name pane select the required chart. You multiple charts (up to 5) at once. The number next to the category name indicates the number of charts already selected.
    * Search for a chart using the **Filter**. Type a keyword or two related to the chart, and then from the Statistics Name pane select the required chart.
 
-![Add a chart to the statistics page](../../.gitbook/assets/wmng\_4\_1\_stats\_add\_charts.png)
+![Add a chart to the statistics page](../../.gitbook/assets/wmng\_statistics\_add\_chart.gif)
 
 ## Remove a chart from the statistics page <a href="#remove-a-chart-from-the-statistics-page" id="remove-a-chart-from-the-statistics-page"></a>
 

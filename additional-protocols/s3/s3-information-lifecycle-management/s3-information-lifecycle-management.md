@@ -1,78 +1,66 @@
 ---
 description: >-
   This page describes how to manage information lifecycle (ILM) rules for S3
-  buckets using the CLI.
+  buckets using the GUI.
 ---
 
-# Manage S3 rules using the CLI
+# Manage S3 lifecycle rules using the GUI
 
-Using the CLI, you can:
+Using the GUI, you can:
 
-* [Create an ILM rule](s3-information-lifecycle-management.md#create-an-ilm-rule)
-* [View ILM rules](s3-information-lifecycle-management.md#viewing-ilm-rules)
-* [Delete an ILM rule](s3-information-lifecycle-management.md#delete-an-ilm-rule)
-* [Reset ILM rules of a bucket](s3-information-lifecycle-management.md#reset-ilm-rules-of-a-bucket)
+* [Add a lifecycle rule](s3-information-lifecycle-management.md#add-a-lifecycle-rule)
+* [View lifecycle rules](s3-information-lifecycle-management.md#viewing-ilm-rules)
+* [Remove a lifecycle rule](s3-information-lifecycle-management.md#remove-a-lifecycle-rule)
+* [Remove all lifecycle rules](s3-information-lifecycle-management.md#or-all-rules)
 
-## Create an ILM rule
+## **Add** a lifecycle rule
 
-**Command:** `weka s3 bucket lifecycle-rule add`
+You can add a lifecycle rule **** to an object (bucket) that defines **** an expiration duration per object prefix and tags.&#x20;
 
-Use the following command line to create an ILM rule:
+**Procedure**
 
-`weka s3 bucket lifecycle-rule add <bucket> <expiry-days>  [--prefix prefix] [--tags tags]`
+1. From the S3 buckets page, select the three dots of the required bucket, and select **Lifecycle Rules**.
 
-**Parameters**
+<figure><img src="../../../.gitbook/assets/wmng_4_1_s3_add_life_cycle_rule_menu.png" alt=""><figcaption><p>Lifecycle Rules menu</p></figcaption></figure>
 
-| **Name**      | **Type** | **Value**                                            | **Limitations**                             | **Mandatory** | **Default** |
-| ------------- | -------- | ---------------------------------------------------- | ------------------------------------------- | ------------- | ----------- |
-| `bucket`      | String   | The name of the S3 bucket                            |                                             | Yes           |             |
-| `expiry-days` | Number   | The number of days to wait before expiring an object | Minimum of 1 day                            | Yes           |             |
-| `prefix`      | String   | The prefix of objects to apply the rule to           |                                             | No            |             |
-| `tags`        | String   | Key value pair of object tags to apply the rule to   | Pairs of key values: `'<k1>=<v1>&<k2=<v2>'` | No            |             |
+2\. In the Add a Lifecycle Rule dialog set the following:&#x20;
 
-{% hint style="info" %}
-**Note:** The `expiry-days` is the minimum time to wait before expiring an object. In extreme load and scale cases, it might take longer than `expiry-days` to delete an object.
-{% endhint %}
+* **Expiration days:** The minimum number of days before expiring the object.
+* **Prefix:** The prefix of objects to apply the rule to.
+* **Tags:** One or more object tags to apply the ILM policy rule. The tags are key-value pairs. Example: \<k1>=\<v1>.
 
-## View ILM rules <a href="#viewing-ilm-rules" id="viewing-ilm-rules"></a>
+3\. Select **Save**.
 
-**Command:** `weka s3 bucket lifecycle-rule list`‌
+<figure><img src="../../../.gitbook/assets/wmng_4_1_s3_add_life_cycle_rule.png" alt=""><figcaption><p>Add a Lifecycle Rule</p></figcaption></figure>
 
-Use the following command line to view a bucket's existing ILM rules:‌
+## View lifecycle rules <a href="#viewing-ilm-rules" id="viewing-ilm-rules"></a>
 
-`weka s3 bucket lifecycle-rule list <bucket>`‌
+You can view the lifecycle rules defined for a bucket and filter according to expiration days, prefixes, or tags.&#x20;
 
-**Parameters**
+**Procedure**
 
-| **Name** | **Type** | **Value**                 | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------- | ------------------------- | --------------- | ------------- | ----------- |
-| `bucket` | String   | The name of the S3 bucket | ​Content        | Yes           | ​Content    |
+1. From the S3 buckets page, select the three dots of the required bucket, and select **Lifecycle Rules**.
 
-## Delete an ILM rule
+<figure><img src="../../../.gitbook/assets/wmng_4_1_s3_lifecycle_rules.png" alt=""><figcaption><p>View Lifecycle Rules</p></figcaption></figure>
 
-**Command:** `weka s3 bucket lifecycle-rule remove`
+## Remove a lifecycle rule
 
-Use the following command line to delete an ILM rule:
+You can remove a specific lifecycle rule of a specified bucket if it is no longer required.
 
-`weka s3 bucket lifecycle-rule remove <bucket> <rule>`
+**Procedure**
 
-**Parameters**
+1. From the S3 buckets page, select the three dots of the required bucket, and select **Lifecycle Rules**.
+2. In the Lifecycle Rules dialog, select the three dots of the required rule and select **Remove**.
 
-| **Name** | **Type** | **Value**                    | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------- | ---------------------------- | --------------- | ------------- | ----------- |
-| `bucket` | String   | The name of the S3 bucket    |                 | Yes           |             |
-| `rule`   | String   | The ID of the rule to delete |                 | Yes           |             |
+<figure><img src="../../../.gitbook/assets/wmng_4_1_s3_remove_lifecycle_rule.png" alt=""><figcaption><p>Remove a lifecycle rule</p></figcaption></figure>
 
-## Reset ILM rules of a bucket
+## Remove all lifecycle rules
 
-**Command:** `weka s3 bucket lifecycle-rule reset`
+You can remove all the lifecycle rules of a specified bucket if they are no longer required.
 
-Use the following command line to delete all the ILM rules of a specified bucket:
+**Procedure**
 
-`weka s3 bucket lifecycle-rule reset <bucket>`
+1. From the S3 buckets page, select the three dots of the required bucket, and select **Lifecycle Rules**.
+2. In the Lifecycle Rules dialog, select **Clear all rules**.
 
-**Parameters**
-
-| **Name** | **Type** | **Value**                 | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------- | ------------------------- | --------------- | ------------- | ----------- |
-| `bucket` | String   | The name of the S3 bucket |                 | Yes           |             |
+<figure><img src="../../../.gitbook/assets/wmng_4_1_s3_lifecycle_rule_clear_all.png" alt=""><figcaption><p>Clear all lifecycle rules</p></figcaption></figure>
