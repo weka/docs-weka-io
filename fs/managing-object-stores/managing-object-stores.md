@@ -101,7 +101,7 @@ You can modify the object store bucket parameters according to your demand chang
 1. From the menu, select **Manage > Object Stores**.
 2. Select the three dots on the right of the object store you want to modify, and select **Edit**.
 
-![Edit an object store bucket](../../.gitbook/assets/wmng\_obs\_edit.png)
+![Edit an object store bucket](../../.gitbook/assets/wmng\_edit\_obs\_button.png)
 
 3\. In the Edit Object Store Bucket dialog, modify the details, and select **Update**.
 
@@ -134,4 +134,4 @@ You can delete an object store bucket if it is no longer required. The data in t
 2. Select the three dots on the right of the object store bucket you want to delete, and select **Remove**.
 3. To confirm the object store bucket deletion, select **Yes**.
 
-![Delete an object store bucket](../../.gitbook/assets/wmng\_obs\_remove.png)
+![Delete an object store bucket](../../.gitbook/assets/wmng\_delete\_obs.gif)
