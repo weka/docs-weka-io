@@ -106,6 +106,10 @@ If you need to upgrade the clients manually, for example, in a maintenance windo
 
 An alert is raised if there is a mismatch between the clients' and the cluster versions.
 
+{% hint style="warning" %}
+For client source versions 4.0.1 and above, add the `--prepare-driver` flag to the command.
+{% endhint %}
+
 {% hint style="info" %}
 **Note:** Clients with two or more versions behind the version of the backends are not supported. Therefore, you must upgrade the clients before the next software version upgrade.
 {% endhint %}
