@@ -102,8 +102,8 @@ Jumbo Frames are not required for clients. However, performance might be limited
 * Intel E810
 * Intel 40 Gbit (Beta)
 * Intel 10 Gbit
-* Mellanox \*\*\*\* ConnectX6-Dx
-* Mellanox \*\*\*\* ConnectX6-Lx
+* Mellanox ConnectX6-Dx
+* Mellanox ConnectX6-Lx
 * Mellanox ConnectX6
 * Mellanox ConnectX5
 * Mellanox ConnectX4

@@ -140,7 +140,7 @@ Use this command to destroy an SMB cluster managed by the Weka system.
 
 Deleting an existing SMB cluster managed by the Weka system does not delete the backend Weka filesystems but removes the SMB share exposures of these filesystems.
 
-## Add or remove SMB cluster \*\*\*\* containers <a href="#add-or-remove-smb-cluster-hosts" id="add-or-remove-smb-cluster-hosts"></a>
+## Add or remove SMB cluster containers <a href="#add-or-remove-smb-cluster-hosts" id="add-or-remove-smb-cluster-hosts"></a>
 
 **Command:** `weka smb cluster containers add`
 
@@ -370,7 +370,7 @@ Use this command to view the various host access settings.
 
 Use the following command line to add a host to the allow/deny list (at either cluster level or share level):
 
-`weka smb cluster host-access add <mode> <--ips ips> <--hosts hosts>` \*\*\*\*
+`weka smb cluster host-access add <mode> <--ips ips> <--hosts hosts>`
 
 `weka smb share host-access add <share-id> <mode> <--ips ips> <--hosts hosts>`
 
@@ -387,7 +387,7 @@ Use the following command line to add a host to the allow/deny list (at either c
 
 Use the following command line to remove hosts from the allow or deny list (at either cluster level or share level):
 
-`weka smb cluster host-access remove <hosts>` \*\*\*\*
+`weka smb cluster host-access remove <hosts>`
 
 `weka smb share host-access remove <share-id> <hosts>`
 
