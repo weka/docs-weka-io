@@ -204,7 +204,7 @@ Supported Mellanox OFED versions:
 * Support PLP (Power Loss Protection)
 * Dedicated for Weka system storage (partition not supported)
 * Supported drive capacity: Up to 128 TiB
-* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the Weka support team.
+* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 {% hint style="info" %}
 **Note:** To get the best performance, make sure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
@@ -260,7 +260,7 @@ VMs can be used as clients only, assuming they meet the following prerequisite:
 * If using `vmxnet3` devices, do not enable the SR-IOV feature (which prevents vMotion). Each FrontEnd process requires a `vmxnet3` device and IP, with an additional device and IP per client VM (for the management process).
 * Using `vmxnet3` is only supported with core dedication.
 
-For additional information and how-to articles, search the Weka knowledgebase in the [Weka support portal](http://support.weka.io) or contact the Weka support team.
+For additional information and how-to articles, search the Weka knowledgebase in the [Weka support portal](http://support.weka.io) or contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 ## KMS
 

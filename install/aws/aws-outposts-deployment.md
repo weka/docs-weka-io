@@ -18,5 +18,5 @@ To deploy a Weka cluster in AWS Outposts, use a CloudFormation template, which c
 **Note:** AWS Outposts do not currently support placement groups, so the placement group from the template should be removed.
 {% endhint %}
 
-This template can be edited to your needs. For further assistance, please contact the Weka Support Team.
+This template can be edited to your needs. For further assistance, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 

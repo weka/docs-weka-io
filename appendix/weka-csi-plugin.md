@@ -892,4 +892,4 @@ Due to a Kubernetes v1.18 issue with allocating mixed hugepages sizes ([https://
 To workaround the Kubernetes issue (required only if the default memory for the client has been increased):
 
 * If the Weka client is installed on the K8s nodes via a manual stateless client mount, set the `reserve_1g_hugepages` mount option to `false` in the mount command.
-* If this is a Weka server or a Weka client, which is part of the Weka cluster, contact the Weka customer support team.
+* If this is a Weka server or a Weka client, which is part of the Weka cluster, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).

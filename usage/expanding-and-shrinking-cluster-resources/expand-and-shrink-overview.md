@@ -27,7 +27,7 @@ For AWS deployments, use the \*\*CloudFormation for the initial deployment, and 
 ## Expand or shrink plan
 
 {% hint style="info" %}
-**Note:** The expansion of a Weka system offers the opportunity to increase performance, while the shrinking of a Weka system may reduce performance. Contact the Weka Support Team for more details and to receive estimates.
+**Note:** The expansion of a Weka system offers the opportunity to increase performance, while the shrinking of a Weka system may reduce performance. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for more details and to receive estimates.
 
 **Note:** In the following descriptions, cluster expansion also relates to cluster shrinking.
 {% endhint %}
@@ -60,7 +60,7 @@ Once an expansion of more SSDs or containers has been planned and executed, the 
 This process can take from minutes to hours, depending on the capacity and the networking CPU resources. However, the capacity increase is instant, and therefore it is possible to define more filesystems immediately, without waiting for the completion of the redistribution process.
 
 {% hint style="info" %}
-**Note:** If necessary, contact the Weka Support Team for more details on the redistribution process and its expected duration.
+**Note:** If necessary, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for more details on the redistribution process and its expected duration.
 {% endhint %}
 
 Once the expansion of more cores or containers has been implemented, the added CPU resources are operational in less than a minute. Write performance improves almost immediately, while read performance only improves on the completion of the redistribution of the data.
