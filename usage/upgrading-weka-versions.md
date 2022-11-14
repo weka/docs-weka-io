@@ -100,9 +100,15 @@ If further assistance and adjustments are required, contact the [Customer Succes
 
 ## Upgrade the clients
 
-Once all backends are upgraded, the clients remain with the existing version and continue working with the upgraded backends. Once a client is rebooted, or a complete `umount` and `mount` is performed, the client is automatically upgraded to the backend version.
+Once all backends are upgraded, the clients remain with the existing version and continue working with the upgraded backends.
 
-If you need to upgrade the clients manually, for example, in a maintenance window, run the `weka local upgrade` CLI command from the client.
+For a stateless client, once it is rebooted, or a complete `umount` and `mount` is performed, the stateless client is automatically upgraded to the backend version.
+
+For stateful clients, a manual upgrade is required, usually during a maintenance window.
+
+For a manual upgrade of both stateless or stateful clients, run the following command line on the client:
+
+`weka local upgrade`
 
 An alert is raised if there is a mismatch between the clients' and the cluster versions.
 
@@ -111,7 +117,7 @@ For client source versions 4.0.1 and above, add the `--prepare-driver` flag to t
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Clients with two or more versions behind the version of the backends are not supported. Therefore, you must upgrade the clients before the next software version upgrade.
+**Note:** Clients with two or more versions behind the version of the backends are not supported. Therefore, clients must be upgraded either automatically or manually before the next software version upgrade.
 {% endhint %}
 
 ## Check the status after the upgrade
