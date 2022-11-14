@@ -9,7 +9,7 @@ description: >-
 Using the CLI, you can:
 
 * [Create an S3 cluster](s3-cluster-management-1.md#create-an-s3-cluster)
-* [Check the status of the S3 cluster and hosts readiness](s3-cluster-management-1.md#check-the-status-of-the-s3-cluster-and-hosts-readiness)
+* [Check the status of the S3 cluster readiness](s3-cluster-management-1.md#check-the-status-of-the-s3-cluster-readiness)
 * [List the S3 cluster containers](s3-cluster-management-1.md#list-the-s3-cluster-containers)
 * [Update an S3 cluster configuration](s3-cluster-management-1.md#update-an-s3-cluster-configuration)
 * [Add containers to the S3 cluster](s3-cluster-management-1.md#add-containers-to-the-s3-cluster)
