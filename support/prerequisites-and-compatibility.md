@@ -17,7 +17,7 @@ description: >-
 
 ## Memory
 
-* Enough memory to support the Weka system needs as described in [memory requirements ](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning)
+* Enough memory to support the Weka system needs as described in [memory requirements](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
 ## Operating system
@@ -26,15 +26,15 @@ description: >-
 
 #### Backends and Clients:
 
-* **RHEL:**&#x20;
+* **RHEL:**
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
-  * 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0&#x20;
-* **CentOS:**&#x20;
-  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2&#x20;
+  * 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+* **CentOS:**
+  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux**
   * 8.6
-* **Ubuntu:**&#x20;
+* **Ubuntu:**
   * 18.04.6, 18.04.5, 18.04.4, 18.04.3, 18.04.2, 18.04.1, 18.04.0
   * 20.04.3, 20.04.2, 20.04.1, 20.04.0
 * **Amazon Linux:** 18.03, 17.09
@@ -42,7 +42,7 @@ description: >-
 
 #### Clients only:
 
-* **SuSe:**&#x20;
+* **SuSe:**
   * 15 SP2
   * 12 SP5
 
@@ -54,7 +54,7 @@ description: >-
 * A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
 * If using `mlocate` or alike, it's advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
 
-#### SELinux&#x20;
+#### SELinux
 
 * SELinux is supported in both `permissive` and `enforcing` mode
   * `targeted` policy is supported
@@ -77,9 +77,9 @@ description: >-
 ## Weka installation directory
 
 * Directory: `/opt/weka`
-* Must be on an SSD or SSD-like performance, for example, M.2.&#x20;
+* Must be on an SSD or SSD-like performance, for example, M.2.
   * Cannot be shared remotely, NFS mounted, or on a RAM drive.
-* If there are two boot drives available, it is recommended to dedicate one for the OS and one for the Weka  `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues).
+* If there are two boot drives available, it is recommended to dedicate one for the OS and one for the Weka `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues).
 * At least 26 GB is available for the Weka system installation, with an additional 10 GB for each core used by Weka.
 * Use a separate filesystem on a separate partition for /opt/weka.
 
@@ -102,23 +102,26 @@ Jumbo Frames are not required for clients. However, performance might be limited
 * Intel E810
 * Intel 40 Gbit (Beta)
 * Intel 10 Gbit
-* Mellanox **** ConnectX6-Dx
-* Mellanox **** ConnectX6-Lx
+* Mellanox \*\*\*\* ConnectX6-Dx
+* Mellanox \*\*\*\* ConnectX6-Lx
 * Mellanox ConnectX6
 * Mellanox ConnectX5
 * Mellanox ConnectX4
 
 {% hint style="info" %}
-Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team). \
+In addition, Intel E810 NIC does not yet support the [multiple containers architecture](../install/prerequisites-for-installation-of-weka-dedicated-hosts/weka-containers-architecture-overview.md) and routed networks.
 {% endhint %}
 
 #### NIC drivers
 
 Supported Mellanox OFED versions:
 
+* 5.7-1.0.2.0
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
-* 5.4-3.4.0.0 (LTS)
+* 5.4-3.5.8.0 LTS
+* 5.4-3.4.0.0 LTS
 * 5.1-2.6.2.0
 * 5.1-2.5.8.0
 
@@ -143,14 +146,14 @@ Supported ice drivers:
 
 #### Ethernet configuration
 
-* Ethernet speeds: 200 GbE / 100 GbE /  50GbE / 40 GbE / 25 GbE / 10 GbE&#x20;
+* Ethernet speeds: 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE
 * NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
 * VLAN: Not supported
 * Connectivity between servers: Ports 14000-14100
 * Mellanox NICs:
   * One Weka system IP address for management and data plane
 * Other vendors NICs
-  * Weka system management IP address: One IP per server (configured prior to Weka installation)&#x20;
+  * Weka system management IP address: One IP per server (configured prior to Weka installation)
   * Weka system data plane IP address: One IP address for each [Weka core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
   * Weka system management IP: Ability to communicate with all Weka system data plane IPs
   * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the server; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configuration may be required in the BIOS
@@ -172,9 +175,11 @@ Supported ice drivers:
 
 Supported Mellanox OFED versions:
 
+* 5.7-1.0.2.0
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
-* 5.4-3.4.0.0 (LTS)
+* 5.4-3.5.8.0 LTS
+* 5.4-3.4.0.0 LTS
 * 5.1-2.6.2.0
 * 5.1-2.5.8.0
 
@@ -207,7 +212,7 @@ Supported Mellanox OFED versions:
 
 ## Object store
 
-* API must be S3 compatible:&#x20;
+* API must be S3 compatible:
   * GET
     * Including byte-range support with expected performance gain when fetching partial objects
   * PUT
@@ -240,7 +245,7 @@ Certified object stores:
 
 VMs can be used as clients only, assuming they meet the following prerequisite:
 
-### &#xD;For UDP clients:
+### For UDP clients:
 
 * To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform and dedicating a core to the Weka client.
 * The root filesystem should handle a 3K IOPS load by the Weka client.
@@ -263,4 +268,3 @@ For additional information and how-to articles, search the Weka knowledgebase in
 * [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) compliant KMS (protocol version 1.2 and up)
   * The KMS should support encryption-as-a-service (KMIP encrypt/decrypt APIs)
   * KMIP certification has been conducted with [Equinix SmartKey](https://www.equinix.com/services/edge-services/smartkey/) (powered by [Fortanix KMS](https://fortanix.com/products/sdkms/))
-
