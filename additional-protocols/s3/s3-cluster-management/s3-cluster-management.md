@@ -33,7 +33,7 @@ An S3 cluster configuration includes a filesystem, port, and list of servers.
 
 Once the system completes the configuration process, the server statuses change from not ready (red X icon) to ready (green V icon).
 
-<figure><img src="../../../.gitbook/assets/wmng_S3_cluster_configuration.gif" alt=""><figcaption><p>S3 Cluster Configuration</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/wmng_4_1_S3_cluster_configuration.gif" alt=""><figcaption><p>S3 Cluster Configuration</p></figcaption></figure>
 
 ## Update an S3 cluster configuration
 
