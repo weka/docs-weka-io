@@ -99,6 +99,10 @@ If satisfied, apply the configuration:
 # initialize the hosts
 weka cluster host apply --all --force
 
+# Verify that the operation is successful
+# Check the alerts and verify that the ResourcesNotApplied alert does not show
+weka alerts
+
 ```
 
 Set a valid license and start the cluster:

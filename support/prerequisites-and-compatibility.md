@@ -109,7 +109,8 @@ Jumbo Frames are not required for clients. However, performance might be limited
 * Mellanox ConnectX4
 
 {% hint style="info" %}
-Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).\
+In addition, Intel E810 NIC only supports non-routed networks.
 {% endhint %}
 
 #### NIC drivers

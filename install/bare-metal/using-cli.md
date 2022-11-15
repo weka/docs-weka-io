@@ -307,6 +307,12 @@ To activate the cluster hosts, use the following command line:
 | `all`      | Boolean                 | Apply all hosts                  |                 | Either `host-ids` or `all` must be specified |             |
 | `force`    | Boolean                 | Do not prompt for confirmation   |                 | No                                           | Off         |
 
+Once the `weka cluster host apply` command completes, verify that the operation is successful. Check the alerts and verify that the `ResourcesNotAppliedalert` alert does not show.
+
+**Related topics**
+
+[alerts](../../usage/alerts/ "mention")
+
 ## Stage 14: Deploy a license
 
 **Command:** `weka cluster license set / payg`
