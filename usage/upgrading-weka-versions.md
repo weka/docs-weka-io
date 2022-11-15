@@ -98,16 +98,22 @@ Using  the `--dont-upgrade-clients` flag in the upgrade command will only upgrad
 
 Performing a backends-only upgrade may ease the upgrade in large clusters, as there is no need to coordinate and wait for the upgrade of all the clients (which can be thousands of hosts). Once the backend servers have been successfully upgraded to the new version, the clients can be upgraded one by one, coordinated separately for each client.
 
-To upgrade a client host, run the `weka local upgrade` CLI command from the client host.
+For a stateless client, once it is rebooted, or a complete `umount` and `mount` is performed, the stateless client is automatically upgraded to the backend version.
 
-An alert is raised once there is a mismatching of versions in the cluster, and Weka requires upgrading all clients before the next software version upgrade (clients with two or more versions behind the version of the backends are not supported). In addition, if a client is rebooted or a umount/mount performed, the client will be automatically upgraded to the version of the backends. &#x20;
+For stateful clients, a manual upgrade is required, usually during a maintenance window.
+
+For a manual upgrade of both stateless or stateful clients, run the following command line on the client:
+
+`weka local upgrade`
+
+An alert is raised once there is a mismatching of versions in the cluster, and Weka requires upgrading all clients before the next software version upgrade (clients with two or more versions behind the version of the backends are not supported). &#x20;
 
 ## After the Upgrade
 
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
 {% hint style="success" %}
-**For Example:** The following will be received when the system has been upgraded to version 3.12.0:
+**Example:** The following will be received when the system has been upgraded to version 3.12.0:
 
 `# weka status`  \
 `Weka v3.12.0`   \
