@@ -168,7 +168,7 @@ The Weka CSI Plugin supports both dynamic (persistent volume claim) and static (
 
 In the [Legacy communication model](weka-csi-plugin.md#legacy-deployment-model), the Weka CSI Plugin does not communicate with the Weka cluster via API and solely relies on in-band communication via the data plane. This configuration does not provide extended configuration abilities.
 
-In the [API-Based communication model](weka-csi-plugin.md#api-based-deployment-model), the Weka CSI Plugin communicates with the Weka cluster using REST API, leveraging this integration to provide extended abilities, such as strict enforcement of volume capacity usage via integration with WekaFS [directory quota](../fs/quota-management.md#directory-quotas) functionality.&#x20;
+In the [API-Based communication model](weka-csi-plugin.md#api-based-deployment-model), the Weka CSI Plugin communicates with the Weka cluster using REST API, leveraging this integration to provide extended abilities, such as strict enforcement of volume capacity usage via integration with WekaFS [directory quota](../fs/quota-management/#directory-quotas) functionality.&#x20;
 
 {% hint style="info" %}
 **Note:** Only the API-Based communication model is maintained and enhanced with new capabilities. If you are running the legacy CSI plugin, it is advisable to replace it with the API-Based one.
