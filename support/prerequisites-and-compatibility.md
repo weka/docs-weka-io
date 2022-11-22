@@ -6,6 +6,10 @@ description: >-
 
 # Prerequisites and compatibility
 
+{% hint style="info" %}
+The versions specified in the prerequisites and compatibility page apply to the latest minor version of the Weka system. See the relevant release notes in [get.weka.io ](https://get.weka.io/ui/releases/)for more details.
+{% endhint %}
+
 ## CPU
 
 * Intel SandyBridge+ processors
