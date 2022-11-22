@@ -69,66 +69,66 @@ description: >-
 
 ## Filesystem
 
-| **Type**                                    | **Severity** | **Description**                                                                                    |
-| ------------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------- |
-| BlockReadFailure                            | CRITICAL     | Failed to read a block                                                                             |
-| BlockSeekFinished                           | MAJOR        | Block seek finished                                                                                |
-| BlockSeekStarted                            | MAJOR        | Block seek started for a secondary metadata block that could not be read                           |
-| BrokenFile                                  | MAJOR        | File metadata corruption                                                                           |
-| CWTaskTemplateFinished                      | INFO         | CWTask template finished                                                                           |
-| CacheFlushHanging                           | MAJOR        | Host is hanging while trying to sync a file's write cache to the cluster                           |
-| ChecksumErrorInCommit                       | MAJOR        | Checksum error detected by SSD node in a committing block                                          |
-| ChecksumErrorInWrite                        | CRITICAL     | Checksum error detected by COMPUTE node in a write                                                 |
-| DefaultDirectoryQuotaSet                    | INFO         | Default directory quota was set                                                                    |
-| DefaultDirectoryQuotaUnset                  | INFO         | Default directory quota was unset                                                                  |
-| DirectoryQuotaSet                           | INFO         | Directory quota was set                                                                            |
-| DirectoryQuotaUnset                         | INFO         | Directory quota was unset                                                                          |
-| DumpSnapHashCompleted                       | INFO         | Finished a snap hash manifest scan                                                                 |
-| FailedToSplitSliceNoRetry                   | CRITICAL     | Failed to split a directory slice - wont retry                                                     |
-| FilesystemAdded                             | INFO         | Filesystem configuration change                                                                    |
-| FilesystemDeleted                           | INFO         | Filesystem configuration change                                                                    |
-| FilesystemDownloadStarted                   | INFO         | Filesystem download started                                                                        |
-| FilesystemGroupAdded                        | INFO         | Filesystem group configuration change                                                              |
-| FilesystemGroupDeleted                      | INFO         | Filesystem group configuration change                                                              |
-| FilesystemGroupUpdated                      | INFO         | Filesystem group configuration change                                                              |
-| FilesystemRemoved                           | INFO         | Filesystem configuration change                                                                    |
-| FilesystemSquashFinished                    | INFO         | Filesystem squash finished                                                                         |
-| FilesystemSquashStarted                     | INFO         | Filesystem squash started                                                                          |
-| FilesystemUpdated                           | INFO         | Filesystem configuration change                                                                    |
-| ForcedBucketStepdown                        | MINOR        | Bucket forced to step down                                                                         |
-| FsCapacityLimitReached                      | WARNING      | Filesystem capacity limit has been reached                                                         |
-| HangingBackendIosDetected                   | CRITICAL     | Some IOs are hanging                                                                               |
-| HangingBackendIosNoLongerDetected           | INFO         | IOs are no longer hanging                                                                          |
-| HangingBucketStepDown                       | WARNING      | Bucket step-down is hanging                                                                        |
-| HangingDirectorySplit                       | MAJOR        | Directory split hasn't any made progress for a long time                                           |
-| HangingDriverFrontendIosDetected            | CRITICAL     | Some IOs are hanging                                                                               |
-| HangingDriverFrontendIosNoLongerDetected    | INFO         | IOs are no longer hanging                                                                          |
-| HangingNFSFrontendIosDetected               | CRITICAL     | Some IOs are hanging                                                                               |
-| HangingNFSFrontendIosNoLongerDetected       | INFO         | IOs are no longer hanging                                                                          |
-| IntegrityCheckFinished                      | INFO         | Integrity check finished                                                                           |
-| IntegrityCheckIssue                         | CRITICAL     | Found an data integrity issue                                                                      |
-| IntegrityCheckStarted                       | INFO         | Integrity check started                                                                            |
-| IntegrityCheckTransientIssue                | WARNING      | Found a possibly transitional data integrity issue - check if a critical issue is found afterwards |
-| ManualOverrideStall                         | WARNING      | Service has been manually-overridden and stalled                                                   |
-| ObjectStoreAttachedToFilesystem             | INFO         | Object Store attached to filesystem                                                                |
-| ObjectStoreFinishedDetachingdFromFilesystem | INFO         | Object Store finished detaching from filesystem                                                    |
-| ObjectStoreStartedDetachingdFromFilesystem  | INFO         | Object Store started detaching from filesystem                                                     |
-| QuotaGraceExpired                           | WARNING      | Directory soft capacity quota has been reached and grace period expired                            |
-| QuotaHardLimitReached                       | WARNING      | Directory hard capacity quota has been reached                                                     |
-| RAIDDataBlockReadFailureInSnaphashDump      | WARNING      | Failed to read data block from RAID when dumping the snapshot manifest                             |
-| RAIDMDReadFailureInSnaphashDump             | WARNING      | Failed to read metadata block from RAID when dumping the snapshot manifest                         |
-| SnapshotContentCopied                       | INFO         | Snapshot content copied                                                                            |
-| SnapshotCreated                             | INFO         | Snapshot created                                                                                   |
-| SnapshotDeleted                             | INFO         | Snapshot deleted                                                                                   |
-| SnapshotDownloadStarted                     | INFO         | Snapshot download started                                                                          |
-| SnapshotFilesystemRestored                  | INFO         | Filesystem restored from snapshot                                                                  |
-| SnapshotParamsUpdated                       | INFO         | Snapshot updated                                                                                   |
-| SnapshotUploadFinished                      | INFO         | Snapshot upload finished                                                                           |
-| SnapshotUploadStarted                       | INFO         | Snapshot upload started                                                                            |
-| SquelchBlockIdSetAbortedFlushed             | DEBUG        | While setting a squelch block's block id for upgrade was already changed to invalid                |
-| SquelchBlockIdSetAbortedRewritten           | WARNING      | While setting a squelch block's block id for upgrade was already rewritten to something else       |
-| SuperblockUnreadable                        | CRITICAL     | Superblock of a bucket could not be loaded                                                         |
-| UnflushedOpOnDeletingSnapview               | MAJOR        | Unflushed IO on a deleting snapshot                                                                |
+| **Type**                                   | **Severity** | **Description**                                                                                    |
+| ------------------------------------------ | ------------ | -------------------------------------------------------------------------------------------------- |
+| BlockReadFailure                           | CRITICAL     | Failed to read a block                                                                             |
+| BlockSeekFinished                          | MAJOR        | Block seek finished                                                                                |
+| BlockSeekStarted                           | MAJOR        | Block seek started for a secondary metadata block that could not be read                           |
+| BrokenFile                                 | MAJOR        | File metadata corruption                                                                           |
+| CWTaskTemplateFinished                     | INFO         | CWTask template finished                                                                           |
+| CacheFlushHanging                          | MAJOR        | Host is hanging while trying to sync a file's write cache to the cluster                           |
+| ChecksumErrorInCommit                      | MAJOR        | Checksum error detected by SSD node in a committing block                                          |
+| ChecksumErrorInWrite                       | CRITICAL     | Checksum error detected by COMPUTE node in a write                                                 |
+| DefaultDirectoryQuotaSet                   | INFO         | Default directory quota was set                                                                    |
+| DefaultDirectoryQuotaUnset                 | INFO         | Default directory quota was unset                                                                  |
+| DirectoryQuotaSet                          | INFO         | Directory quota was set                                                                            |
+| DirectoryQuotaUnset                        | INFO         | Directory quota was unset                                                                          |
+| DumpSnapHashCompleted                      | INFO         | Finished a snap hash manifest scan                                                                 |
+| FailedToSplitSliceNoRetry                  | CRITICAL     | Failed to split a directory slice - wont retry                                                     |
+| FilesystemAdded                            | INFO         | Filesystem configuration change                                                                    |
+| FilesystemDeleted                          | INFO         | Filesystem configuration change                                                                    |
+| FilesystemDownloadStarted                  | INFO         | Filesystem download started                                                                        |
+| FilesystemGroupAdded                       | INFO         | Filesystem group configuration change                                                              |
+| FilesystemGroupDeleted                     | INFO         | Filesystem group configuration change                                                              |
+| FilesystemGroupUpdated                     | INFO         | Filesystem group configuration change                                                              |
+| FilesystemRemoved                          | INFO         | Filesystem configuration change                                                                    |
+| FilesystemSquashFinished                   | INFO         | Filesystem squash finished                                                                         |
+| FilesystemSquashStarted                    | INFO         | Filesystem squash started                                                                          |
+| FilesystemUpdated                          | INFO         | Filesystem configuration change                                                                    |
+| ForcedBucketStepdown                       | MINOR        | Bucket forced to step down                                                                         |
+| FsCapacityLimitReached                     | WARNING      | Filesystem capacity limit has been reached                                                         |
+| HangingBackendIosDetected                  | CRITICAL     | Some IOs are hanging                                                                               |
+| HangingBackendIosNoLongerDetected          | INFO         | IOs are no longer hanging                                                                          |
+| HangingBucketStepDown                      | WARNING      | Bucket step-down is hanging                                                                        |
+| HangingDirectorySplit                      | MAJOR        | Directory split hasn't any made progress for a long time                                           |
+| HangingDriverFrontendIosDetected           | CRITICAL     | Some IOs are hanging                                                                               |
+| HangingDriverFrontendIosNoLongerDetected   | INFO         | IOs are no longer hanging                                                                          |
+| HangingNFSFrontendIosDetected              | CRITICAL     | Some IOs are hanging                                                                               |
+| HangingNFSFrontendIosNoLongerDetected      | INFO         | IOs are no longer hanging                                                                          |
+| IntegrityCheckFinished                     | INFO         | Integrity check finished                                                                           |
+| IntegrityCheckIssue                        | CRITICAL     | Found an data integrity issue                                                                      |
+| IntegrityCheckStarted                      | INFO         | Integrity check started                                                                            |
+| IntegrityCheckTransientIssue               | WARNING      | Found a possibly transitional data integrity issue - check if a critical issue is found afterwards |
+| ManualOverrideStall                        | WARNING      | Service has been manually-overridden and stalled                                                   |
+| ObjectStoreAttachedToFilesystem            | INFO         | Object Store attached to filesystem                                                                |
+| ObjectStoreFinishedDetachingFromFilesystem | INFO         | Object Store finished detaching from filesystem                                                    |
+| ObjectStoreStartedDetachingFromFilesystem  | INFO         | Object Store started detaching from filesystem                                                     |
+| QuotaGraceExpired                          | WARNING      | Directory soft capacity quota has been reached and grace period expired                            |
+| QuotaHardLimitReached                      | WARNING      | Directory hard capacity quota has been reached                                                     |
+| RAIDDataBlockReadFailureInSnaphashDump     | WARNING      | Failed to read data block from RAID when dumping the snapshot manifest                             |
+| RAIDMDReadFailureInSnaphashDump            | WARNING      | Failed to read metadata block from RAID when dumping the snapshot manifest                         |
+| SnapshotContentCopied                      | INFO         | Snapshot content copied                                                                            |
+| SnapshotCreated                            | INFO         | Snapshot created                                                                                   |
+| SnapshotDeleted                            | INFO         | Snapshot deleted                                                                                   |
+| SnapshotDownloadStarted                    | INFO         | Snapshot download started                                                                          |
+| SnapshotFilesystemRestored                 | INFO         | Filesystem restored from snapshot                                                                  |
+| SnapshotParamsUpdated                      | INFO         | Snapshot updated                                                                                   |
+| SnapshotUploadFinished                     | INFO         | Snapshot upload finished                                                                           |
+| SnapshotUploadStarted                      | INFO         | Snapshot upload started                                                                            |
+| SquelchBlockIdSetAbortedFlushed            | DEBUG        | While setting a squelch block's block id for upgrade was already changed to invalid                |
+| SquelchBlockIdSetAbortedRewritten          | WARNING      | While setting a squelch block's block id for upgrade was already rewritten to something else       |
+| SuperblockUnreadable                       | CRITICAL     | Superblock of a bucket could not be loaded                                                         |
+| UnflushedOpOnDeletingSnapview              | MAJOR        | Unflushed IO on a deleting snapshot                                                                |
 
 ## IO
 
