@@ -9,7 +9,7 @@ description: >-
 Using the CLI, you can:
 
 * [Upload a  snapshot](snap-to-obj-1.md#upload-a-snapshot)
-* [Create a filesystem from an uploaded snapshot](snap-to-obj-1.md#create-a-filesystem-from-an-uploaded-snapshot)
+* [Recover a filesystem from an uploaded snapshot](snap-to-obj-1.md#recover-a-filesystem-from-an-uploaded-snapshot)
 * [Manage incremental snapshots](snap-to-obj-1.md#manage-incremental-snapshots)
 * [Recover from a remote snapshot](snap-to-obj-1.md#recover-from-a-remote-snapshot)
 
@@ -29,11 +29,11 @@ Use the following command line to upload an existing snapshot:
 | `snapshot`    | String   | Name of the snapshot to upload    | Must be a snapshot of the `<file-system>` filesystem | Yes                                                    |                                                         |
 | `site`        | String   | Location for the snapshot  upload | `local` or `remote`                                  | Only if both `local` and `remote` buckets are attached | Auto selected if only one bucket for upload is attached |
 
-## Create a filesystem from an uploaded snapshot
+## Recover a filesystem from an uploaded snapshot
 
 **Command:** `weka fs download`
 
-Use the following command line to create a filesystem from an existing snapshot:
+Use the following command line to recover (or recreate) a filesystem from an existing snapshot:
 
 `weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs-bucket> <locator> [--additional-obs additional-obs] [--snapshot-name snapshot-name] [--access-point access-point]`
 
