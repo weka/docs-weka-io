@@ -11,11 +11,11 @@ Processes are dedicated to managing different functions such as:
 
 Each drive, compute, and frontend process requires a dedicated core. In a single container architecture, a container can include a maximum of 19 cores, and all processes in the container must be of the same version. As a result, during an upgrade, the container is not available, and the service is interrupted.
 
-A server with a single container is limited to using up to 19 cores. This limitation reduces the flexibility of the hardware cores usage (a server can have more than 19 cores).
+In the Weka legacy system, the server has a single container and it is limited to using up to 19 cores. This limitation reduces the flexibility of the hardware cores usage (a server can have more than 19 cores).
 
 To enable non-disruptive upgrades and flexible deployment of the cores across the cluster, use the multiple containers architecture.
 
-![Single container architecture vs. multiple containers architecture](../../.gitbook/assets/V4\_MBC\_overview.png)
+<figure><img src="../.gitbook/assets/Weka_containers_arch.png" alt=""><figcaption><p>Single container architecture vs. multiple containers architecture</p></figcaption></figure>
 
 {% hint style="info" %}
 Multiple containers architecture is not supported yet on AWS using the CloudFormation, as well as in a system with Intel E810 NIC.
@@ -34,14 +34,14 @@ The benefits of using the multiple containers architecture are:
 * **Less disruptive maintenance:**
   * Ability to stop the compute and frontend processes while keeping the drive processes running.
 
-Single-container architecture is still supported. However, to support non-disruptive upgrades, multiple containers architecture deployment is mandatory.
+Single-container architecture is still supported. However, to support non-disruptive upgrades, multiple-containers architecture deployment is mandatory.
 
-In a single container architecture, the resource allocation is done automatically. However, to deploy the multiple containers architecture, it is required to use the resource generator tool that provides configuration files in a JSON format with the resource allocations for each container type (`drives0.json`, `compute0.json`, and `frontend0.json`). You use these configuration files during the configuration stage.
+In a single-container architecture, the resource allocation is done automatically. However, to deploy the multiple-containers architecture, it is required to use the resource generator tool that provides configuration files in a JSON format with the resource allocations for each container type (`drives0.json`, `compute0.json`, and `frontend0.json`). You use these configuration files during the configuration stage.
 
 
 
 **Related topics**
 
-[quick-install-guide.md](../../getting-started-with-weka/quick-install-guide.md "mention")
+[quick-install-guide.md](../getting-started-with-weka/quick-install-guide.md "mention")
 
-[weka-system-installation-with-multiple-containers-using-the-cli.md](../bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md "mention")
+[weka-system-installation-with-multiple-containers-using-the-cli.md](../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md "mention")

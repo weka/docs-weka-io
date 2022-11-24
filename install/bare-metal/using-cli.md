@@ -1,10 +1,10 @@
 ---
 description: >-
-  This page describes the stages in the installation process with a single
-  container using the CLI.
+  This page describes the stages in the installation process for the Weka legacy
+  system (single container architecture) using the CLI.
 ---
 
-# Weka system installation process with a single container using the CLI
+# Weka legacy system installation process using the CLI
 
 ## Workflow
 
@@ -137,17 +137,17 @@ To perform this operation, the `cluster container net add`command must be run fo
 
 **Parameters**
 
-| **Name**       | **Type**                   | **Value**                                                                                  | **Limitations**                                                                                                                                                                                                                                          | **Mandatory** | **Default** |
-| -------------- | -------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `container-id` | String                     | Identifier of the container to which a network interface will be added                     | Must be a valid container identifier                                                                                                                                                                                                                     | Yes           |             |
-| `device`       | String                     | A device, or bond-device e.g., `eth1` or `bond0`                                           | Must be a valid Unix network device name                                                                                                                                                                                                                 | Yes           |             |
-| `ips-type`     | String                     | POOL or USER                                                                               | Must be one of the two options                                                                                                                                                                                                                           | No            | POOL        |
-| `ips`          | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic. In IB, use the IPoIB address | Must be part of the data plane IP pool defined in the planning phase. See [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts/#networking). | No            | From Pool   |
-| `netmask`      | Number                     | Number of bits in the netmask                                                              | Describes the number of bits that identify a network ID (also known as CIDR). Not relevant for IB / L2 non-routable networks, and must be supplied for the ethernet NICs if the cluster is set to use both ethernet and IB interfaces.                   | No            |             |
-| `gateway`      | IP address                 | The IP address of the default routing gateway                                              | <p>The gateway must reside within the same IP network of <code>ips</code> (as described by <code>netmask</code>).  </p><p>Not relevant for IB / L2 non-routable networks.</p>                                                                            | No            |             |
-| `label`        | String                     | A label to describe the network device connectivity.                                       | The Weka system will prefer to use paths with the same labels to send data. This is useful when the system is configured with HA networking, to hint the system to send between containers through the same switch rather than using the ISL.            | No            |             |
+| **Name**       | **Type**                   | **Value**                                                                                  | **Limitations**                                                                                                                                                                                                                                            | **Mandatory** | **Default** |
+| -------------- | -------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| `container-id` | String                     | Identifier of the container to which a network interface will be added                     | Must be a valid container identifier                                                                                                                                                                                                                       | Yes           |             |
+| `device`       | String                     | A device, or bond-device e.g., `eth1` or `bond0`                                           | Must be a valid Unix network device name                                                                                                                                                                                                                   | Yes           |             |
+| `ips-type`     | String                     | POOL or USER                                                                               | Must be one of the two options                                                                                                                                                                                                                             | No            | POOL        |
+| `ips`          | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic. In IB, use the IPoIB address | Must be part of the data plane IP pool defined in the planning phase. See [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking). | No            | From Pool   |
+| `netmask`      | Number                     | Number of bits in the netmask                                                              | Describes the number of bits that identify a network ID (also known as CIDR). Not relevant for IB / L2 non-routable networks, and must be supplied for the ethernet NICs if the cluster is set to use both ethernet and IB interfaces.                     | No            |             |
+| `gateway`      | IP address                 | The IP address of the default routing gateway                                              | <p>The gateway must reside within the same IP network of <code>ips</code> (as described by <code>netmask</code>).  </p><p>Not relevant for IB / L2 non-routable networks.</p>                                                                              | No            |             |
+| `label`        | String                     | A label to describe the network device connectivity.                                       | The Weka system will prefer to use paths with the same labels to send data. This is useful when the system is configured with HA networking, to hint the system to send between containers through the same switch rather than using the ISL.              | No            |             |
 
-The number of IP addresses should be according to [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts/#networking).
+The number of IP addresses should be according to [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
 
 {% hint style="info" %}
 **Note:** Additional IP addresses may be assigned for each container if IP per core is needed. In this case, unused IP addresses are reserved for future expansions and can be automatically assigned if the number of cores assigned to the Weka system on that container is increased.
@@ -346,13 +346,23 @@ To activate the cluster containers, use the following command line:
 | `all`           | Boolean                 | Apply all containers                  |                 | Either container`-ids` or `all` must be specified |             |
 | `force`         | Boolean                 | Do not prompt for confirmation        |                 | No                                                | Off         |
 
-### 14. Set a license
+### 14. Verify the containers configuration
+
+**Command:** `weka alerts`
+
+Run the command and verify that the `ResourcesNotAppliedalert` alert does not show.
+
+**Related topics**
+
+[alerts](../../usage/alerts/ "mention")
+
+### 15. Set a license
 
 **Command:** `weka cluster license set / payg`
 
 To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the Weka cluster. For details, see [License overview](../../licensing/overview.md).&#x20;
 
-### 15. Run the Start IO command
+### 16. Run the Start IO command
 
 **Command:** `weka cluster start-io`
 

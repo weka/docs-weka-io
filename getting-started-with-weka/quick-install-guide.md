@@ -16,7 +16,7 @@ For a complete installation guide, as well as the self-service portal on AWS ref
 2. [NIC devices are configured properly](../install/bare-metal/setting-up-the-hosts/#network-configuration)
 3. [NTP is set up](../install/bare-metal/setting-up-the-hosts/#clock-synchronization)
 
-For a complete prerequisite list, refer to the [Prerequisites for Installation](../install/prerequisites-for-installation-of-weka-dedicated-hosts/) section.&#x20;
+For a complete prerequisite list, refer to the [Prerequisites for Installation](../install/prerequisites-for-installation-of-weka-dedicated-hosts.md) section.&#x20;
 
 We'll consider an example of architecture with 8 identical servers (named `weka01` to `weka08`). Each server has more than 20 cores, 6 NVME drives, and a single Mellanox NIC.&#x20;
 
@@ -159,27 +159,29 @@ weka status
 
 ```bash
 # initialize the hosts
-weka cluster host apply --all --force
-
-```
-
-```bash
 weka cluster container apply --all --force
 ```
 
-3\. Obtain a classic or PAYG license from [get.weka.io](https://get.weka.io/) and set the license.&#x20;
+3\. Verify that the `apply` operation is successful. Check the alerts and verify that the\
+&#x20;   `ResourcesNotAppliedalert` alert does not show.
+
+```
+weka alerts
+```
+
+4\. Obtain a classic or PAYG license from [get.weka.io](https://get.weka.io/) and set the license.&#x20;
 
 ```
 weka cluster license set LICENSE_TEXT_OBTAINED_FROM_GET_WEKA_IO
 ```
 
-4\. Start the cluster:
+5\. Start the cluster:
 
 ```bash
 weka cluster start-io
 ```
 
-5\. Check the cluster information and status:
+6\. Check the cluster information and status:
 
 ```bash
 weka status
@@ -207,7 +209,7 @@ WekaIO v4.0.0 (CLI build 4.0.0)
         alerts: 1 active alert, use `weka alerts` to list it
 ```
 
-5\. Change the default admin password and ensure that no other alerts exist in the system.
+7\. Change the default admin password and ensure that no other alerts exist in the system.
 
 ## Quick installation for multiple containers architecture
 

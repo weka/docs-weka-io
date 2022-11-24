@@ -7,5 +7,6 @@ description: >-
 # Expand and shrink cluster resources
 
 {% hint style="info" %}
-**Note:** The cluster expansion process described here is only applicable to a homogeneous Weka system configuration, which is highly recommended. For non-homogeneous Weka system configurations, contact the Weka Support Team.
+**Note:** The cluster expansion process described here is only applicable to a homogeneous Weka system configuration, which is highly recommended. For non-homogeneous Weka system configurations, contact the Customer Success Team.
 {% endhint %}
+

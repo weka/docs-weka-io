@@ -25,19 +25,19 @@ mkdir -p /mnt/weka
 mount -t wekafs Backend-1/my_fs /mnt/weka
 ```
 
-For the first mount, this will install the Weka software and automatically configure the client. For more information on mount and configuration options, refer to [Mounting Filesystems Using the Stateless Clients Feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
+For the first mount, this will install the Weka software and automatically configure the client. For more information on mount and configuration options, refer to [Mounting filesystems using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
 
 It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information refer to [Mounting Filesystems Using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mounting Filesystems Using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs).
 
 {% hint style="info" %}
-**Note:** Clients can be deployed on [diskless-servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for Weka client software and NFS mount for the traces. For more information, contact the Weka Support Team.
+**Note:** Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for Weka client software and NFS mount for the traces. For more information, contact the Weka Support Team.
 {% endhint %}
 
 {% hint style="info" %}
 **Note:** The different clients must have a unique IP and FQDN.
 {% endhint %}
 
-## Add clients that are always part of the cluster
+## Add stateful clients, which are always part of the cluster
 
 {% hint style="info" %}
 **Note:** It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.

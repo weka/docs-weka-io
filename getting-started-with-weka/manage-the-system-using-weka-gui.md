@@ -144,9 +144,9 @@ Selecting the Capacity title displays the filesystems page.
 
 This widget shows the average usage and the maximum load level of the Frontend, Compute, and Drive cores.
 
-<figure><img src="../.gitbook/assets/wmng_dashboard_Core_Usage_widget.png" alt=""><figcaption><p>Core Usage widget</p></figcaption></figure>
-
 <figure><img src="../.gitbook/assets/wmng_dashboard_Core_Usage_widget (1).png" alt=""><figcaption><p>Core Usage widget</p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/wmng_dashboard_Core_Usage_widget.png" alt=""><figcaption><p>Core Usage widget</p></figcaption></figure>
 
 ### Hardware widget
 
@@ -197,7 +197,7 @@ You can switch the view of the servers to 3D for the backend servers, NFS server
 
 The 3D view provides the server components' status at a glance, including the drives, cores, protocols, and load. The colors indicate, for example, if the drives or processes failed or the container is down.
 
-<figure><img src="../.gitbook/assets/wmng_display_servers_in_3d (1).gif" alt=""><figcaption><p>Display servers in 3D view</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/wmng_display_servers_in_3d.gif" alt=""><figcaption><p>Display servers in 3D view</p></figcaption></figure>
 
 ## Display tables
 

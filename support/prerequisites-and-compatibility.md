@@ -6,6 +6,10 @@ description: >-
 
 # Prerequisites and compatibility
 
+{% hint style="info" %}
+The versions specified in the prerequisites and compatibility page apply to the latest minor version of the Weka system. See the relevant release notes in [get.weka.io ](https://get.weka.io/ui/releases/)for more details.
+{% endhint %}
+
 ## CPU
 
 * Intel SandyBridge+ processors
@@ -17,7 +21,7 @@ description: >-
 
 ## Memory
 
-* Enough memory to support the Weka system needs as described in [memory requirements](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning)
+* Sufficient memory to support the Weka system needs as described in [memory requirements](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning)
 * More memory support for the OS kernel or any other application
 
 ## Operating system
@@ -110,7 +114,7 @@ Jumbo Frames are not required for clients. However, performance might be limited
 
 {% hint style="info" %}
 Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team). \
-In addition, Intel E810 NIC does not yet support the [multiple containers architecture](../install/prerequisites-for-installation-of-weka-dedicated-hosts/weka-containers-architecture-overview.md) and routed networks.
+In addition, Intel E810 NIC does not yet support the [multiple containers architecture](../overview/weka-containers-architecture-overview.md) and it only supports non-routed networks.
 {% endhint %}
 
 #### NIC drivers
