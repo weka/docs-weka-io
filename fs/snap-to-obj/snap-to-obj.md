@@ -9,7 +9,7 @@ description: >-
 Using the GUI, you can:
 
 * [Upload a snapshot](snap-to-obj.md#upload-a-snapshot)
-* [Restore a filesystem from an uploaded snapshot](snap-to-obj.md#restore-a-filesystem-from-an-uploaded-snapshot)
+* [Create a filesystem from an uploaded snapshot](snap-to-obj.md#create-a-filesystem-from-an-uploaded-snapshot)
 * [Sync a filesystem from a snapshot](snap-to-obj.md#sync-a-filesystem-from-a-snapshot)
 
 
@@ -53,11 +53,11 @@ You can upload a snapshot to a local, remote, or both object store buckets.
 
 [#pause-resume-abort-a-background-task](../../usage/background-tasks.md#pause-resume-abort-a-background-task "mention")
 
-## Restore a filesystem from an uploaded snapshot
+## Create a filesystem from an uploaded snapshot
 
-You can restore (or recreate) a filesystem from an uploaded snapshot, for example, when you need to migrate the filesystem data from one location to another.
+You can create a filesystem from an uploaded snapshot, for example, when you need to migrate the filesystem data from one location to another.
 
-When restoring a filesystem from a snapshot, adhere to the following guidelines:
+When creating a filesystem from a snapshot, adhere to the following guidelines:
 
 * **Pay attention to upload and download costs**: Due to the bandwidth characteristics and potential costs when interacting with remote object stores it is not allowed to download a filesystem from a remote object store bucket. If a snapshot on a local object store bucket exists, it is advisable to use that one, otherwise, follow the procedure in the [Recover from a remote snapshot](snap-to-obj.md#recover-from-a-remote-snapshot) topic.
 * **Use the same KMS master key**: For an encrypted filesystem, to decrypt the snapshot data, use the same KMS master key as used in the encrypted filesystem. See the [KMS Management Overview](../../usage/security/kms-management/#overview) topic.
