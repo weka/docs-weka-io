@@ -49,10 +49,10 @@ Use the following command line to set an S3 bucket quota:
 
 **Parameters**
 
-| **Name**      | **Type** | **Value**                         | **Limitations**                                                                                                                           | **Mandatory** | **Default** |
-| ------------- | -------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `bucket-name` | String   | The name of an existing S3 bucket | <p></p><p></p>                                                                                                                            | Yes           |             |
-| `hard-quota`  | Number   | Hard quota for the S3 bucket      | Can only be initially set on an empty bucket. Calling this command on a bucket that already has a quota will change the quota limitation. | Yes           |             |
+| **Name**      | **Type** | **Value**                          | **Limitations**                                                                                                                           | **Mandatory** | **Default** |
+| ------------- | -------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| `bucket-name` | String   | The name of an existing S3 bucket. | <p></p><p></p>                                                                                                                            | Yes           |             |
+| `hard-quota`  | Number   | Hard quota for the S3 bucket.      | Can only be initially set on an empty bucket. Calling this command on a bucket that already has a quota will change the quota limitation. | Yes           |             |
 
 ## Unset a bucket quota
 
@@ -222,7 +222,7 @@ Use the following command line to set a pre-defined bucket policy:
 | **Name**        | **Type** | **Value**                                                      | **Limitations**                                | **Mandatory** | **Default** |
 | --------------- | -------- | -------------------------------------------------------------- | ---------------------------------------------- | ------------- | ----------- |
 | `bucket-policy` | String   | The name of a pre-defined bucket policy for anonymous access.  | One of: `none`, `download`, `upload`, `public` | Yes           |             |
-| `bucket-name`   | String   | The name of an existing S3 bucket                              |                                                | Yes           |             |
+| `bucket-name`   | String   | The name of an existing S3 bucket.                             |                                                | Yes           |             |
 
 ### Set a custom bucket policy
 
