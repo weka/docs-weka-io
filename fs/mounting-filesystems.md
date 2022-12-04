@@ -19,14 +19,14 @@ There are two methods available for mounting a filesystem in one of the cluster 
 **Note:** Using the mount command as explained below first requires the installation of the Weka client, configuring the client, and joining it to a Weka cluster.
 {% endhint %}
 
-To mount a filesystem on one of the cluster hosts, let’s assume the cluster has a filesystem called `demo`. To add this filesystem to a host, SSH into one of the hosts and run the `mount`command as the `root` user, as follows:
+To mount a filesystem on one of the cluster hosts, let’s assume the cluster has a filesystem called `demo`. To add this filesystem to a host, SSH into one of the hosts and run the `mount` command as the `root` user, as follows:
 
 ```
 mkdir -p /mnt/weka/demo
 mount -t wekafs demo /mnt/weka/demo
 ```
 
-The general structure of a`mount` command for a Weka filesystem is:
+The general structure of the `mount` command for a Weka filesystem is:
 
 ```
 mount -t wekafs [-o option[,option]...]] <fs-name> <mount-point>
@@ -118,7 +118,7 @@ When a mount option has been explicitly changed, you must set it again in the re
 | `memory_mb=<memory_mb>`                  | Number               | Amount of memory to be used by the client (for huge pages)                                                                                                                                                                                                                                                                  | 1400 MiB                                                                                                                                                               | Yes                   |
 | `num_cores=<frontend-cores>`             | Number               | <p>The number of frontend cores to allocate for the client.</p><p>Either<code>&#x3C;num_cores></code> or<code>&#x3C;core></code> can be specified, but not both.</p><p>If none are specified, the client will be configured with 1 core. </p><p>If 0 is specified then you must use <code>net=udp</code>.</p>               | 1                                                                                                                                                                      | No                    |
 | `core=<core>`                            | Number               | Specify explicit cores to be used by the WekaFS client. Multiple cores can be specified.                                                                                                                                                                                                                                    |                                                                                                                                                                        | No                    |
-| `net=<netdev>[/<ip>/<bits>[/<gateway>]]` | String               | <p>This option must be specified for on-premises installation, and <strong>must not be specified for AWS</strong> installations.</p><p>For more info refer to <a href="mounting-filesystems.md#advanced-network-configuration-via-mount-options">Advanced Network Configuration via Mount Options</a> section.</p>          |                                                                                                                                                                        | No                    |
+| `net=<netdev>[/<ip>/<bits>[/<gateway>]]` | String               | <p>This option must be specified for on-premises installation and <strong>must not be specified for AWS</strong> installations.</p><p>For more details, see <a href="mounting-filesystems.md#advanced-network-configuration-by-mount-options">Advanced Network Configuration via Mount Options</a> section below.</p>       |                                                                                                                                                                        | No                    |
 | `bandwidth_mbps=<bandwidth_mbps>`        | Number               | <p>Maximum network bandwidth in Mb/s, which limits the traffic that the container can send.</p><p>The bandwidth setting is helpful in deployments like AWS, where the bandwidth is limited but allowed to burst.</p>                                                                                                        | Auto-select                                                                                                                                                            | Yes                   |
 | `remove_after_secs=<secs>`               | Number               | <p>The number of seconds without connectivity after which the client will be removed from the cluster. <br>Minimum value: 60 seconds. </p>                                                                                                                                                                                  | 86,400 seconds (24 hours)                                                                                                                                              | Yes                   |
 | `traces_capacity_mb=<size-in-mb>`        | Number               | <p>Traces capacity limit in MB.</p><p>Minimum value: 512 MB.</p>                                                                                                                                                                                                                                                            |                                                                                                                                                                        | No                    |
@@ -226,9 +226,12 @@ Use `-o net=<netdev>` mount option with the various modifiers as described below
 
 For higher performance, the usage of multiple Frontends may be required. When using a NIC other than Mellanox or Intel E810, or when mounting a DPDK client on a VM, it is required to use [SR-IOV](../install/bare-metal/setting-up-the-hosts/#sr-iov-enablement) to expose a VF of the physical device to the client. Once exposed, it can be configured via the mount command.
 
-When you want to determine the VFs IP addresses, or when the client resides in a different subnet and routing is needed in the data network, use`net=<netdev>/[ip]/[bits]/[gateway]`.
+To determine the VFs IP addresses, or when the client resides in a different subnet and routing is needed in the data network, use`net=<netdev>/[ip]/[bits]/[gateway]`.
 
-`ip, bits, gateway` are optional. In case they are not provided, the Weka system tries to deduce them when in AWS or IB environments, or allocate them from the default data network otherwise. If both approaches fail, the mount command will fail.
+`ip, bits, gateway` are optional. If these options are not provided, the Weka system performs one of the following depending on the environment:
+
+* **Cloud environment:** the Weka system deduces the values of these options.
+* **On-premises environment:** the Weka system allocates values of these options from the cluster default network (the `weka cluster default-net` must be set before running the mount command). Otherwise, the Weka cluster does not allocate the IP for the client. For more details, see [Optional: Configure default data networking](../install/bare-metal/using-cli.md#optional-configure-default-data-networking).
 
 For example, the following command allocates two cores and a single physical network device (intel0). It will configure two VFs for the device and assign each one of them to one of the frontend nodes. The first node will receive a 192.168.1.100 IP address, and the second will use a 192.168.1.101 IP address. Both of the IPs have 24 network mask bits and a default gateway of 192.168.1.254.
 
@@ -238,11 +241,11 @@ mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.
 
 ### Multiple physical network devices for performance and HA
 
-For performance or high availability, it is possible to use more than one physical network device.
+It is possible to use more than one physical network device for performance or high availability.
 
 #### Using multiple physical network devices for better performance
 
-It's easy to saturate the bandwidth of a single network interface when using WekaFS. For higher throughput, it is possible to leverage multiple network interface cards (NICs). The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to the WekaFS host driver.
+It's easy to saturate the bandwidth of a single network interface when using WekaFS. It is possible to leverage multiple network interface cards (NICs) for higher throughput. The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to the WekaFS host driver.
 
 For example, the following command will allocate two cores and two physical network devices for increased throughput:
 
@@ -252,9 +255,9 @@ mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/wek
 
 #### Using multiple physical network devices for HA configuration
 
-Multiple NICs can also be configured to achieve redundancy (refer to [Weka Networking HA](../overview/networking-in-wekaio.md#ha) section for more information) in addition to higher throughput, for a complete, highly available solution. For that, use more than one physical device as previously described and, also, specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
+Multiple NICs can also be configured to achieve redundancy (refer to [Weka Networking HA](../overview/networking-in-wekaio.md#ha) section for more information) in addition to higher throughput for a complete, highly available solution. For that, use more than one physical device as previously described and also specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
 
-For example, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. Note the modifier `ha` is used here, which stands for using the device on all processes.
+For example, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. Note that the modifier ha is used here, which means using the device on all processes.
 
 ```
 mount -t wekafs -o num_cores=4 -o net:ha=mlnx0,net:ha=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
@@ -262,7 +265,7 @@ mount -t wekafs -o num_cores=4 -o net:ha=mlnx0,net:ha=mlnx1 backend1/my_fs -o mg
 
 **Advanced mounting options for multiple physical network devices**
 
-With multiple Frontend processes (as expressed by `-o num_cores`), it is possible to control what processes use what NICs. This can be accomplished through the use of special command line modifiers called _slots_. In WekaFS, _slot_ is synonymous with a process number. Typically, the first WekaFS Frontend process will occupy slot 1, then the second - slot 2 and so on.
+With multiple Frontend processes (as expressed by `-o num_cores`), it is possible to control what processes use what NICs. This can be accomplished by using special command line modifiers called _slots_. In WekaFS, _slot_ is synonymous with a process number. Typically, the first WekaFS Frontend process will occupy slot 1, then the second - slot 2, and so on.
 
 Examples of slot notation include `s1`, `s2`, `s2+1`, `s1-2`, `slots1+3`, `slot1`, `slots1-4` , where `-` specifies a range of devices, while `+` specifies a list. For example, `s1-4` implies slots 1, 2, 3 and 4, while `s1+4` specifies slots 1 and 4 only.
 
