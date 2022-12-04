@@ -23,14 +23,14 @@
 
 ## Planning and Installation <a href="#install" id="install"></a>
 
-* [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts.md)
+* [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts/README.md)
 * [Weka installation on bare metal](install/bare-metal/README.md)
-  * [Planning a Weka System Installation](install/bare-metal/planning-a-weka-system-installation.md)
-  * [Prepare the system for Weka installation](install/bare-metal/setting-up-the-hosts/README.md)
+  * [Plan the Weka system Installation](install/bare-metal/planning-a-weka-system-installation.md)
+  * [Prepare the system for Weka software installation](install/bare-metal/setting-up-the-hosts/README.md)
     * [SR-IOV enablement](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Obtain the Weka software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
-  * [Weka system installation with multiple containers using the CLI](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
-  * [Weka legacy system installation process using the CLI](install/bare-metal/using-cli.md)
+  * [Weka system installation with multiple containers](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
+  * [Weka legacy system installation process](install/bare-metal/using-cli.md)
   * [Add clients](install/bare-metal/adding-clients-bare-metal.md)
 * [Weka installation on AWS](install/aws/README.md)
   * [Self-service portal](install/aws/self-service-portal.md)

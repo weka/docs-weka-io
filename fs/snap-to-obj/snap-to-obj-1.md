@@ -33,7 +33,7 @@ Use the following command line to upload an existing snapshot:
 
 **Command:** `weka fs download`
 
-Use the following command line to create a filesystem from an existing snapshot:
+Use the following command line to create (or recreate) a filesystem from an existing snapshot:
 
 `weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs-bucket> <locator> [--additional-obs additional-obs] [--snapshot-name snapshot-name] [--access-point access-point]`
 

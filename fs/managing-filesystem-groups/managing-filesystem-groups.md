@@ -19,13 +19,11 @@ The filesystem groups are displayed on the **Filesystems** page. Each filesystem
 
 1. From the menu, select **Manage > Filesystems**.
 
-The following example shows two filesystem groups defined in the system.
-
-![Filesystem groups](../../.gitbook/assets/wmng\_view\_filesystem\_groups.png)
+![Filesystem groups example](../../.gitbook/assets/wmng\_view\_filesystem\_groups.png)
 
 ## Add a filesystem group
 
-Adding a filesystem group is required when adding a filesystem. If you want to apply a different tiering policy on specific filesystems, you can create more file system groups.
+Adding a filesystem group is required when adding a filesystem. You can create more filesystem groups if you want to apply a different tiering policy on specific filesystems.
 
 **Procedure**
 
@@ -33,8 +31,8 @@ Adding a filesystem group is required when adding a filesystem. If you want to a
 2. Select the + sign right to the Filesystem Groups title.
 3. In the **Create Filesystem Group** dialog, set the following:
    * **Name:** Enter a meaningful name for the filesystem group.
-   * **Drive Retention Period**: Set the number of days to keep the data on the SSD before it is copied to the object store. After this period, the copy of the data is deleted from the SSD.
-   * **Tiering Cue**: Set the time to wait after the last update, before the data is copied from the SSD and sent to the object store.
+   * **Drive Retention Period**: Set the period to keep the data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.
+   * **Tiering Cue**: Set the time to wait after the last update before the data is copied from the SSD and sent to the object store.
 
 ![Add a filesystem group](../../.gitbook/assets/wmng\_add\_fsg.gif)
 
@@ -65,7 +63,7 @@ You can edit the filesystem group policy according to your system requirements.
 
 ## Delete a filesystem group
 
-You can delete a filesystem group that is no longer used by any filesystem.
+You can delete a filesystem group no longer used by any filesystem.
 
 **Procedure**
 

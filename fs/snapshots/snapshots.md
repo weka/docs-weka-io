@@ -43,7 +43,7 @@ Create a directory for filesystem-level snapshots that serves as the access poin
 1. Do one of the following:
    * From the menu, select **Manage > Snapshots**. From the Snapshots page, select **+Create**.\
      The Create Snapshot dialog opens.
-   * From the menu, select **Manage > Filesystems**. From the Filesystems page, select the three dots, and from the menu, select **Create Snapshot**. (The source filesystem is automatically set.)
+   * From the menu, select **Manage > Filesystems**. From the Filesystems page, select the three dots, and from the menu, select **Create Snapshot** (the source filesystem is automatically set).
 
 ![Create a snapshot from the Snapshots page](../../.gitbook/assets/wmng\_create\_snapshot\_animated.gif)
 
@@ -82,8 +82,8 @@ You can duplicate a snapshot (clone), which enables creating a writable snapshot
 
 When deleting a snapshot, consider the following guidelines:
 
-* Deleting a snapshot in parallel to a snapshot upload to the same filesystem is not possible. Uploading a snapshot to a remote object store can take time. Therefore, it is advisable to delete the desired snapshot before uploading it to the remote object store.
-* When uploading snapshots to both local and remote object stores. While the local and remote uploads can progress in parallel, consider the case of a remote upload in progress, then a snapshot is deleted, and later a snapshot is uploaded to the local object store. In this scenario, the local snapshot upload waits for the pending deletion of the snapshot (which happens only once the remote snapshot upload is done).
+* Deleting a snapshot parallel to a snapshot upload to the same filesystem is impossible. Uploading a snapshot to a remote object store can take time. Therefore, it is advisable to delete the desired snapshot before uploading it to the remote object store.
+* When uploading snapshots to both local and remote object stores. While the local and remote uploads can progress in parallel, consider the case of a remote upload in progress. A snapshot is deleted, and later a snapshot is uploaded to the local object store. In this scenario, the local snapshot upload waits for the pending deletion of the snapshot (which happens only once the remote snapshot upload is done).
 
 **Procedure**
 

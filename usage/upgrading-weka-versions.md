@@ -143,10 +143,11 @@ You can control the upgrade window time by setting the following parameters in t
 
 | **Name**                                 | **Type** | **Value**                                                                                                           | **Limitations** | **Mandatory**                             | **Default** |
 | ---------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------- | --------------- | ----------------------------------------- | ----------- |
-| `--stop-io-timeout`                      | Integer  | Maximum time in seconds to wait for IO to stop successfully                                                         |                 | No                                        | 90s         |
-| `--container-version-change-timeout`     | Integer  | Maximum time in seconds to wait for a container version update                                                      |                 | No                                        | 180s        |
-| `--disconnect-stateless-clients-timeout` | Integer  | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them    |                 | No                                        | 60s         |
+| `--stop-io-timeout`                      | String   | Maximum time in seconds to wait for IO to stop successfully                                                         |                 | No                                        | 90s         |
+| `--container-version-change-timeout`     | String   | Maximum time in seconds to wait for a container version update                                                      |                 | No                                        | 180s        |
+| `--disconnect-stateless-clients-timeout` | String   | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them    |                 | No                                        | 60s         |
 | `--prepare-only`                         | Boolean  | Download and prepare a new software version across all servers in the cluster without performing the actual upgrade |                 | No                                        | False       |
+| `--health-check-timeout`                 | String   | Maximum time in seconds to wait for the health check to complete                                                    |                 | No                                        | 10s         |
 | `--container`                            | String   | The container from which to run the upgrade.                                                                        |                 | Yes for multiple containers configuration |             |
 | `--mode`                                 | String   | <p>The method to run the upgrade. <br>For a non-disruptive upgrade, set <code>ndu</code>.</p>                       |                 | Yes for NDU                               |             |
 
@@ -165,6 +166,7 @@ In a successful process, the upgrade stops the cluster IO service, switches all 
 
 * Set `container-version-change-timeout` to `600s`
 * Set `disconnect-stateless-clients-timeout` to `200s`
+* Set `health-check-timeout` to `30s`
 
 If further assistance and adjustments are required, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}

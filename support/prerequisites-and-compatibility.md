@@ -92,7 +92,7 @@ The versions specified in the prerequisites and compatibility page apply to the 
 {% hint style="info" %}
 **Note:** At least 4k MTU is advised on Weka cluster servers NICs, and the switches the servers are connected to.
 
-For both Ethernet and Infiniband configurations, a Weka system can be configured without jumbo frames. However, it will provide very limited performance and will not be able to handle high loads of data; please consult the Weka Sales or Support teams before running in this mode.
+A Weka system can be configured without jumbo frames for both Ethernet and Infiniband configurations. However, it will provide very limited performance and cannot handle high loads of data; please consult the Weka Sales or Support teams before running in this mode.
 
 Jumbo Frames are not required for clients. However, performance might be limited.
 {% endhint %}
@@ -114,7 +114,7 @@ Jumbo Frames are not required for clients. However, performance might be limited
 
 {% hint style="info" %}
 Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team). \
-In addition, Intel E810 NIC does not yet support the [multiple containers architecture](../overview/weka-containers-architecture-overview.md) and it only supports non-routed networks.
+In addition, Intel E810 NIC does not yet support the [multiple containers architecture,](../overview/weka-containers-architecture-overview.md) and it only supports non-routed networks.
 {% endhint %}
 
 #### NIC drivers

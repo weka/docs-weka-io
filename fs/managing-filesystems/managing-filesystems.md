@@ -19,15 +19,13 @@ The filesystems are displayed on the **Filesystems** page. Each filesystem indic
 
 1. From the menu, select **Manage > Filesystems**.
 
-The following example shows one filesystem.
-
-![View filesystems](../../.gitbook/assets/wmng\_view\_filesystems.png)
+![View filesystems example](../../.gitbook/assets/wmng\_view\_filesystems.png)
 
 ## Create a filesystem
 
 When creating a Weka system on-premises, it does not contain any filesystem. You need to create it and set its properties, such as capacity, group, tiering, thin provisioning, encryption, and required authentication during mount.
 
-When creating a Weka system in AWS using the cloud formation, the Weka system contains a default filesystem, which is provisioned with the maximum capacity. If your deployment requires more filesystems with different settings, first reduce the provisioned capacity of the default filesystem, and then add a filesystem with the properties that meet your specific needs.
+When creating a Weka system in AWS using the cloud formation, the Weka system contains a default filesystem, which is provisioned with the maximum capacity. If your deployment requires more filesystems with different settings, reduce the default filesystem's provisioned capacity, and then add a filesystem with the properties that meet your specific needs.
 
 **Before you begin**
 
@@ -52,7 +50,7 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 <figure><img src="../../.gitbook/assets/wmng_4_1_create_fs_animated.gif" alt=""><figcaption><p>Create a filesystem</p></figcaption></figure>
 
 4\. Optional: [**Tiering**](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).\
-&#x20;   If tiering **** is required and an object store bucket is already defined, \
+&#x20;   If tiering **** is required, and an object store bucket is already defined, \
 &#x20;   select the toggle button, and set the details of the object store bucket:
 
 * **Object Store Bucket:** Select a predefined object store bucket from the list.
@@ -69,7 +67,7 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 
 ![Thin provisioning](../../.gitbook/assets/wmng\_fs\_thin\_provisioning.png)
 
-6\. Optional: If **Encryption** is required and your Weka system is deployed with a KMS, \
+6\. Optional: If **Encryption** is required, and your Weka system is deployed with a KMS, \
 &#x20;   select the toggle button.
 
 7\. Optional: **Required Authentication**.\
@@ -92,7 +90,7 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 
 ## Edit a filesystem
 
-You can modify the filesystem parameters according to your demand changes over time. The parameters that you can modify include, filesystem name, capacity, tiering, and thin provisioning (but not encryption).
+You can modify the filesystem parameters according to your demand changes over time. The parameters that you can modify include filesystem name, capacity, tiering, thin provisioning, and required authentication (but not encryption).
 
 **Procedure**
 
@@ -112,7 +110,7 @@ You can modify the filesystem parameters according to your demand changes over t
 You can delete a filesystem if its data is no longer required. Deleting a filesystem does not delete the data in the tiered object store bucket.
 
 {% hint style="info" %}
-If you need to delete also the data in the tiered object store bucket, see [delete a filesystem](managing-filesystems-1.md#delete-a-filesystem) in the CLI section.
+If you also need to delete the data in the tiered object store bucket, see the [Delete a filesystem](managing-filesystems-1.md#delete-a-filesystem) topic in the CLI section.
 {% endhint %}
 
 **Procedure**

@@ -1,11 +1,11 @@
 ---
 description: >-
-  This page provides a detailed workflow for Weka installation with multiple
-  containers using the CLI. These are complementary details for the quick
-  installation guide.
+  This page provides a detailed workflow for Weka system installation with
+  multiple containers using the CLI. These are complementary details for the
+  quick installation guide.
 ---
 
-# Weka system installation with multiple containers using the CLI
+# Weka system installation with multiple containers
 
 ## Workflow
 
@@ -162,10 +162,11 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 **Parameters**
 
-| **Name**                         | **Type**                | **Value**                                                                                                                                                                                                | **Limitations**            | **Mandatory** | **Default** |
-| -------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------- | ----------- |
-| `resources-path`                 | String                  | The path to the resource file.                                                                                                                                                                           | Must be a valid path       | yes           |             |
-| <pre><code>join-ips</code></pre> | Space-separated strings | <p>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. For example: <code>--join-ips 10.10.10.23:15000</code></p> | Must be valid IP addresses |               |             |
+| **Name**                          | **Type**                | **Value**                                                                                                                                                                                                | **Limitations**            | **Mandatory** | **Default** |
+| --------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------- | ----------- |
+| `resources-path`                  | String                  | The path to the resource file.                                                                                                                                                                           | Must be a valid path       | yes           |             |
+| <pre><code>join-ips
+</code></pre> | Space-separated strings | <p>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. For example: <code>--join-ips 10.10.10.23:15000</code></p> | Must be valid IP addresses |               |             |
 
 ### 8. Name the cluster
 
@@ -226,10 +227,11 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 **Parameters**
 
-| **Name**                         | **Type**                | **Value**                                                                                                                                                                                                | **Limitations**      | **Mandatory** | **Default** |
-| -------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------------- | ----------- |
-| `resources-path`                 | String                  | The path to the resource file.                                                                                                                                                                           | Must be a valid path | yes           |             |
-| <pre><code>join-ips</code></pre> | Space-separated strings | <p>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. For example: <code>--join-ips 10.10.10.23:15000</code></p> | Must be valid IPs    | Yes           |             |
+| **Name**                          | **Type**                | **Value**                                                                                                                                                                                                | **Limitations**      | **Mandatory** | **Default** |
+| --------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------------- | ----------- |
+| `resources-path`                  | String                  | The path to the resource file.                                                                                                                                                                           | Must be a valid path | yes           |             |
+| <pre><code>join-ips
+</code></pre> | Space-separated strings | <p>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. For example: <code>--join-ips 10.10.10.23:15000</code></p> | Must be valid IPs    | Yes           |             |
 
 ### 13. Check the cluster configuration
 

@@ -23,19 +23,20 @@ Weka GUI application supports the following functions:
   * Manage snapshots.
   * Manage the object store buckets.
   * Manage the filesystem protocols: SMB, S3, and NFS.
+  * Manage directory quotas.
 * **Investigation**:
-  * Investigate events
+  * Investigate events.
   * Investigate overtime statistics, such as total operations, R/W throughput, CPU usage, and read or write latency.
 * **Monitoring**:
   * View the cluster protection and availability.
-  * View the R/W throughput
+  * View the R/W throughput.
   * View the backend and client top consumers.
   * View alarms.
   * View the used, provisioned, and total capacity.
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview.gif)
+![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview\_mb.gif)
 
 ## Access the Weka GUI
 
@@ -118,7 +119,7 @@ Selecting the Active clients title displays the clients tab.
 
 This widget shows the top 5 backend servers and clients in the system. You can sort the list of servers by total IO operations per second or total throughput.
 
-![Top Consumers widget](../.gitbook/assets/wmng\_dashboard\_Top\_Consumers\_widget.png)
+![Top Consumers widget](../.gitbook/assets/wmng\_top\_consumers\_widget.png)
 
 ### Alerts widget
 
@@ -142,11 +143,9 @@ Selecting the Capacity title displays the filesystems page.
 
 ### Core Usage widget
 
-This widget shows the average usage and the maximum load level of the Frontend, Compute, and Drive cores.
+This widget shows the average usage and the maximum load level of the Frontend, Compute, and Drive cores. Hovering the maximum value displays the most active server and the NodeID number.
 
-<figure><img src="../.gitbook/assets/wmng_dashboard_Core_Usage_widget (1).png" alt=""><figcaption><p>Core Usage widget</p></figcaption></figure>
-
-<figure><img src="../.gitbook/assets/wmng_dashboard_Core_Usage_widget.png" alt=""><figcaption><p>Core Usage widget</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/wmng_core_usage_widget.png" alt=""><figcaption><p>Core Usage widget</p></figcaption></figure>
 
 ### Hardware widget
 
