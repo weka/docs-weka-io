@@ -15,7 +15,7 @@ In the Weka legacy system, the server has a single container and it is limited t
 
 To enable non-disruptive upgrades and flexible deployment of the cores across the cluster, use the multiple containers architecture.
 
-<figure><img src="../.gitbook/assets/v4_weka_architecture.png" alt=""><figcaption><p>Single container architecture vs. multiple containers architecture</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/Weka_containers_arch.png" alt=""><figcaption><p>Single container architecture vs. multiple containers architecture</p></figcaption></figure>
 
 {% hint style="info" %}
 Multiple containers architecture is not supported yet on AWS using the CloudFormation, as well as in a system with Intel E810 NIC.

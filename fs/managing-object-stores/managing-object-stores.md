@@ -39,7 +39,7 @@ Editing the default object store provides you with the following additional adva
 If using the AWS object store type and access from the Weka EC2 instances to the object store is granted by the IAM roles, it is not mandatory to set the access and secret keys in the Edit Object Store dialog.
 {% endhint %}
 
-![Edit the default-remote object store ](../../.gitbook/assets/wmng\_4\_1\_edit\_default\_obs.gif)
+![Edit the default-remote object store ](../../.gitbook/assets/wmng\_edit\_default\_obs.gif)
 
 ## View object store buckets <a href="#view-object-store-buckets" id="view-object-store-buckets"></a>
 
@@ -62,7 +62,7 @@ Add object store buckets to be used for tiering or snapshots.
 1. From the menu, select **Manage > Object Stores**.
 2. Select the **+Create** button.
 
-![Create object store bucket](../../.gitbook/assets/wmng\_4\_1\_create\_obs\_button.png)
+![Create object store bucket](../../.gitbook/assets/wmng\_create\_obs\_button.png)
 
 &#x20;3\. In the **Create Object Store Bucket** dialog, set the following:
 

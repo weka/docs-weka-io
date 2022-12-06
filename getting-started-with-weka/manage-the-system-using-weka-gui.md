@@ -36,7 +36,7 @@ Weka GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview\_mb.gif)
+![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview.gif)
 
 ## Access the Weka GUI
 
@@ -119,7 +119,7 @@ Selecting the Active clients title displays the clients tab.
 
 This widget shows the top 5 backend servers and clients in the system. You can sort the list of servers by total IO operations per second or total throughput.
 
-![Top Consumers widget](../.gitbook/assets/wmng\_top\_consumers\_widget.png)
+![Top Consumers widget](../.gitbook/assets/wmng\_dashboard\_Top\_Consumers\_widget.png)
 
 ### Alerts widget
 
