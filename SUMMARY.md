@@ -170,7 +170,7 @@
 ## Appendix
 
 * [Weka CSI Plugin](appendix/weka-csi-plugin.md)
-* [Monitor using external tools](appendix/external-monitoring.md)
+* [Set up the Weka-mon external monitoring](appendix/external-monitoring.md)
 * [Snapshot management](appendix/snapshot-management.md)
 
 ***

@@ -1,122 +1,124 @@
 ---
 description: >-
-  This page describes how to set up the external monitoring tools, Prometheus
-  and Grafana.
+  The Weka-mon is an external monitoring package, which provides enriched
+  monitoring capabilities using the Grafana and Prometheus tools.
 ---
 
-# Monitor using external tools
+# Set up the Weka-mon external monitoring
 
-The Weka GUI allows monitoring basic information of the CPUs, Network, Drives, IOPS/Throughput, and more advanced information via the statistics as well as Weka Alerts and the Weka Events log.
+Weka provides an external monitoring package named **Weka-mon**. **** The package implements the well-known [_Grafana_](https://grafana.com/) dashboard with [_Prometheus_](https://prometheus.io/docs/introduction/overview/), which provides a central monitoring dashboard of metrics, logs, alerts, and statistics with enriched capabilities.
 
-![Screenshot of Weka Grafana Dashboard](<../.gitbook/assets/image (22).png>)
+The package also includes the following components:
 
-It is sometimes useful to use external tools like Prometheus and Grafana for monitoring. It could be that you already have them in the environment and would like to correlate with other products and see all information on the same dashboard.
+* **Exporter**: The Exporter gets the data from the Weka cluster and sends the data to Prometheus.
+* **Quota Export**:  The Quota Export manages the quotas and sends the data to Prometheus.
+* **Alert Manager**:  The Alert Manger alerts users through an SMTP server when they reach their soft quota limits.
 
-In this guide, we will learn how to easily set-up a nice Grafana dashboard to monitor Weka. We will use a custom Prometheus client that presents weka statistics.&#x20;
+You can set up the Weka-mon package regardless of the data monitoring provided by the Weka GUI.
 
-It is advisable to set-up a machine (or a VM) to run the external services used if you do not already have those running in the environment.&#x20;
+<figure><img src="../.gitbook/assets/weka-mon_setup.png" alt=""><figcaption><p>Weka-mon setup</p></figcaption></figure>
 
-The easiest way to set up a Grafana environment is with Docker. For that, make sure `docker-ce` and `docker-compose` are installed on that machine. Installation instructions for installing Docker are on the [Docker website](https://www.docker.com/get-started).
+One of the advantages of setting up the Weka-mon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with Weka to correlate and display monitoring information from all your products on the same dashboard.
 
-## Set up the Weka-mon package
+![Weka enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (22).png>)
 
-### Step 1: Install the Weka-mon package
+## Before you begin
 
-The package resides on GitHub. There are two ways you can pull it from GitHub - either download a Release or clone the repository.
+Setting up a dedicated management server (or VM) for the installation is recommended.
 
-To download a Release, go to [https://github.com/weka/weka-mon/releases](https://github.com/weka/weka-mon/releases) in your web browser, and select the **latest** release. Click on the "Source Code" link to download. Copy this to your intended management server or VM and unpack it.
+### Server minimum requirements
 
-![Weka-mon GitHub Releases Page](<../.gitbook/assets/image (23).png>)
+* 4 cores
+* 16 GB RAM
+* 50 GB / partition (for the root)
+* 50 GB /opt/ partition (for weka-mon installation)
+* 1 Gbps network
+*   _Docker_ is the recommended container for the Weka-mon setup.\
+    To use Docker, the following must be installed on the dedicated management server:
 
-Alternatively, to clone the repository, run the following commands to pull the weka-mon package from GitHub:
+    * `docker-ce`
+    * `docker-compose` or `docker-compose-plugin` depending on the existing operating system.
+
+    For the Docker installation instructions, see the [Docker website](https://www.docker.com/get-started).
+
+### Authentication token requirement
+
+To enable communication between the management server and the Weka cluster, the security token is required in the **auth-token.json** file.
+
+Verify that the directory `~/.weka` or  `./.weka`  exists in the management server. Generate the `auth-token.json` **** file and save it in the `~/.weka` or  `./.weka` directory.
+
+{% hint style="info" %}
+* To generate the auth-token.json file, see the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
+* It is highly recommended to create a local user with ReadOnly privilege just for the Weka-mon package and use it for cluster communications.\
+  To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
+{% endhint %}
+
+## Workflow: Install the Weka-mon package
+
+1. [Obtain the Weka-mon package](external-monitoring.md#1.-obtain-the-weka-mon-package): Obtain the Weka-mon package from the GitHub repository by downloading or cloning.
+2. [Run the install.sh script](external-monitoring.md#2.-run-the-install.sh-script): The script creates a few directories and sets their permissions.
+3. [Edit the export.yml file](external-monitoring.md#3.-edit-the-export.yml-file): The `export.yml` file contains the Weka-mon and the exporter configuration. Customize the file according to your actual Weka deployment.
+4. [Edit the quota-export.yml file](external-monitoring.md#4.-edit-the-quota-export.yml-file): The `quota-export.yml` file contains the configuration of the quota-export container. Customize the file according to your actual Weka deployment.
+5. [Start the docker-compose containers](external-monitoring.md#4.-start-the-docker-compose-containers): Once done, you can connect to Grafana on port 3000 of the management server running the docker containers.&#x20;
+
+### 1. Obtain the Weka-mon package
+
+The Weka-mon package resides on the GitHub repository. Obtain the Weka-mon package using one of the following methods:
+
+* [Download the Weka-mon source code](external-monitoring.md#download-the-weka-mon-source-code)&#x20;
+* [Clone the repository](external-monitoring.md#clone-the-repository)
+
+#### Download the Weka-mon source code
+
+1. Go to [https://github.com/weka/weka-mon/releases.](https://github.com/weka/weka-mon/releases)
+2. On the **latest** release section, select the **Source Code** link to download.
+3. Copy the downloaded source code to the dedicated management server or VM and unpack it.
+
+#### Clone the repository
+
+Run the following commands to clone the weka-mon package from GitHub:
 
 ```
-# Clone the package from github:
 git clone https://github.com/weka/weka-mon
 cd weka-mon
-
 ```
 
-### Step 2: Run the install.sh script:
+### 2. Run the install.sh script
 
-The `install.sh` script creates some directories and sets the permissions on them:
+The `install.sh` script creates a few directories in /opt/ and sets their permissions.
+
+Run the following command:
 
 ```
-# Set up the package
 ./install.sh
-
 ```
 
-### Step 3: Edit the export.yml file
+### 3. Edit the export.yml file
 
-The `export.yml` configuration file is used to configure weka-mon and the exporter.  The `export.yml` file can be found in the base of the `weka-mon` directory hierarchy.
+The Weka-mon and the exporter configuration are defined in the `export.yml` file.
 
-#### Host Configuration
-
-Edit the list of hosts under the `cluster:` heading to reflect your hostnames or ip addresses; you need to specify one or more hostnames/ips - there's not need to list all the cluster hostnames; two or three will do.
-
-Also under `cluster:` is `auth_token_file:` which is used to provide the security token required to authenticate with the cluster.   This file can be generated with the `weka user login` command on any cluster host (including clients) and copied to the server/VM running weka-mon.   It is highly suggested that you create a ReadOnly User just for this package and use it for cluster communications.  See the Security section in the Operations Guide for details on creating users and using tokens.
+1. Go to the `weka-mon` directory and open the `export.yml` file.
+2. In the **cluster** section under the **hosts** list, replace the hostnames with the actual hostnames/IP addresses of the Weka containers (up to three would be sufficient).&#x20;
 
 ```
-# cluster section - info about the weka cluster we want to export data from:
-cluster:
-  # a list of hostnames or ip addresses.  Minimum of 1 requred.  You do not need to list all hosts in the 
-  #     cluster, but more than one is suggested
-
-  auth_token_file: auth-token.json
-  hosts:
-    - vweka01      # EDIT THESE LINES 
-    - vweka02
-    - vweka03
-
-  force_https: True   # only 3.10+ clusters support https
-  verify_cert: False  # default cert cannot be verified
+hosts:
+ - hostname01 
+ - hostname02
+ - hostname03
 ```
 
-#### Exporter configuration
+3\. Optional. In the **exporter** section, customize the values according to your preferences.\
+&#x20;   For details, see the [Exporter configuration options](external-monitoring.md#exporter-configuration-options-in-the-export.yml-file) topic below.
 
-There are a few more options in the export.yml file in the `exporter:` section that defines the program behavior.
+4\. Optional. Add custom panels to Grafana containing other metrics.
 
-```
-# exporter section - info about how we're going to run
-exporter:
-  listen_port: 8001
-  loki_host:
-  loki_port: 3100
-  timeout: 10.0
-  max_procs: 8
-  max_threads_per_proc: 100
-```
+All other settings in the `export.yml` file have pre-defined defaults that do not need modification to work with weka-mon. All the configurable items are defined but marked as comments by an asterisk (#).
 
-The `listen_port:` parameter defines the port that Prometheus should scrape.  This should not be changed unless you change the Prometheus configuration.
+To add custom panels to Grafana containing other metrics from the cluster, you can remove the asterisk from the required metrics (uncomment).
 
-The `loki_host:`and `loki_port:` parameters should not be changed if you're using the weka-mon setup. Make `loki_host:` blank to disable sending events to Loki entirely.
+**Example:** In the following snippet of the `export.yml`, to enable getting the FILEATOMICOPEN\_OPS statistic, remove the `#` character at the beginning of the line.
 
-The `timeout:` parameter is the max time in seconds to wait for an API call to return. The default should be sufficient for most purposes.
-
-The `max_procs:` and  `max_threads_per_proc:` parameters define the scaling behavior. If the total number of hosts (servers and clients) exceeds `max_threads_per_proc`, the exporter will spawn more processes accordingly.&#x20;
-
-{% hint style="success" %}
-**Example,** a cluster with 80 weka servers and 200 compute nodes (aka clients) has 280 total hosts. With the default `max_threads_per_proc` of 100, it would spawn 3 processes (280 / 100 = 2.8, round up to 3).
-{% endhint %}
-
-It's recommended to have 1 available core per process. With the above example, you should deploy on a VM or server with at least 4 available cores.
-
-The exporter will always try to allocate one host per thread, but will not exceed `max_procs` processes. If you have 1000's of hosts, it will double/triple up hosts on the threads.
-
-{% hint style="success" %}
-**Example,** with 3000 hosts and defaults of `max_procs` of 8 and `max_threads_per_proc`of 100, only 8 processes are spawned, each with 100 threads, but there will be close to 4 hosts serviced per thread instead of the default 1 host per thread.
-{% endhint %}
-
-All other settings have pre-defined defaults that should work with weka-mon without modification.&#x20;
-
-If you want to add custom panels to Grafana containing other metrics from the cluster, you can uncomment any metrics you would like to gather.
-
-To edit the file, do not add or delete any lines; all the configurable items are already in there but commented out with a #.  To enable collecting data for these additional metrics, just uncomment them.
-
-To edit the file, do not add or delete any lines; all the configurable items are already in there but commented out with a #.  To enable collecting data for these additional metrics, just uncomment them.
-
-For example, below is a snippet of the `export.yml`. To enable collecting the FILEATOMICOPEN\_OPS statistic, remove the `#` character at the beginning of the line. Note that if the statistic you wish to gather is in a Category that is commented out, you will need to uncomment the Category line as well if it is not already uncommented (the first line in the example below). Conversely, to stop collecting a statistic, comment out the statistic by inserting a `#` at the beginning of the line.
+If the statistic you want to get is in a Category that is commented out, also uncomment the Category line (the first line in the example). Conversely, insert the # character at the beginning of the line to stop getting a statistic.
 
 ```
  'ops_driver':     # Category
@@ -124,49 +126,91 @@ For example, below is a snippet of the `export.yml`. To enable collecting the FI
    'DIRECT_WRITE_SIZES':  'sizes'
 #   'FILEATOMICOPEN_LATENCY':  'microsecs'
 #   'FILEATOMICOPEN_OPS':  'ops'
-
 ```
 
-### Step 4: Start the containers
+### 4. Edit the quota-export.yml file
 
-To start the containers with docker-compose, run the following command:
+The Weka-mon deployment includes a dedicated container named **quota-export**. The container includes an Alert Manager that emails users when they reach their soft quota.
+
+The configuration of the quota-export container is defined in the `quota-export.yml` file.
+
+1. Go to the `weka-mon` directory and open the `quota-export.yml` file.
+2. Specify the same **hosts** as you specified above.&#x20;
+
+{% hint style="info" %}
+The configuration of the Alert Manager is defined in the `alertmanager.yml` file found in the `etc_alertmanager` directory. It contains details about the SMTP server, user email addresses, quotas, and alert rules. To set this file, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+{% endhint %}
+
+### 5. Start the docker-compose containers
+
+1. Run the following command:
 
 ```
 docker-compose up -d
-
 ```
 
-That's it! Grafana should appear on port 3000 on the server running the docker containers.  The default credentials for Grafana are `admin/admin`.
+2\. Verify that the containers are running using the following command:
 
-## Integrating with an existing Grafana/Prometheus environment
+```
+docker ps
+```
+
+Example:
+
+```
+[root@av0412CL-3 weka-mon] 2022-12-05 17:30:37 $ docker ps
+CONTAINER ID   IMAGE                               COMMAND                  CREATED          STATUS           PORTS                                       NAMES
+ec1d2584acab   grafana/loki:2.3.0                  "/usr/bin/loki -conf…"   20 minutes ago   Up 20 minutes    0.0.0.0:3100->3100/tcp, :::3100->3100/tcp   weka-mon_loki_1
+4645533501f0   grafana/grafana:latest              "/run.sh"                20 minutes ago   Up 20 minutes    0.0.0.0:3000->3000/tcp, :::3000->3000/tcp   weka-mon_grafana_1
+d930e903b74e   wekasolutions/export:latest         "/weka/export -v"        20 minutes ago   Up 7 minutes     0.0.0.0:8001->8001/tcp, :::8001->8001/tcp   weka-mon_export_1
+dc5f9f710997   wekasolutions/quota-export:latest   "/weka/quota-export"     20 minutes ago   Up 7 minutes     0.0.0.0:8101->8101/tcp, :::8101->8101/tcp   weka-mon_quota-export_1
+17689ac9377d   prom/prometheus:latest              "/bin/prometheus --s…"   20 minutes ago   Up 20 minutes    0.0.0.0:9090->9090/tcp, :::9090->9090/tcp   weka-mon_prometheus_1
+[root@av0412CL-3 weka-mon] 2022-12-05 17:35:46 $ 
+```
+
+If the status of the containers is not up, check the logs and troubleshoot accordingly. To check the logs, run the following command:
+
+```
+docker logs <container id>
+```
+
+Once all containers are running, you can connect to Grafana on port 3000 of the management server running the docker containers. The default credentials for Grafana are `admin/admin`.
+
+## Integrate with an existing Grafana/Prometheus environment
 
 If you already have Grafana and Prometheus running in your environment, you only need to run the exporter and add it to the Prometheus configuration.
 
-### Step 1: Install the Weka-mon package
+### 1. Obtain the Weka-mon package
 
-Follow the instructions appearing in the above [Install the Weka-mon package](external-monitoring.md#step-1-install-the-weka-mon-package) section.
+Follow the steps in the [1. Obtain the Weka-mon package](external-monitoring.md#1.-obtain-the-weka-mon-package) section.
 
-### Step 2: Import the dashboards
+### 2. Import the dashboard JSON files
 
-The dashboard `JSON` files are in the subdirectory `weka-mon/var_lib_grafana/dashboards`.  Please follow the [Grafana documentation](https://grafana.com/docs/grafana/latest/dashboards/export-import/#importing-a-dashboard) on how to import the files.
+In the Grafana application, import the dashboard `JSON` files from the directory `weka-mon/var_lib_grafana/dashboards`. For instructions, see the [Import dashboard](https://grafana.com/docs/grafana/v9.0/dashboards/export-import/#importing-a-dashboard) topic in Grafana documentation.
 
-### Step 3: Edit the export.yml (optional)
+### 3. Edit the export.yml and quota-export.yml files&#x20;
 
-Follow the instructions appearing in the above [Edit the export.yml file](external-monitoring.md#step-4-edit-the-export-yml-file-optional) section.
+Follow steps [3](external-monitoring.md#3.-edit-the-export.yml-file) and [4](external-monitoring.md#4.-edit-the-quota-export.yml-file) in the above sections.
 
-### Step 4: Run the exporter
+### 4. Run the exporter
 
-You can run the exporter in a number of ways - as a Docker container, as a compiled binary, or as a Python script. The Docker container is the simplest, but if you don't want or don't have Docker, you can run the binary directly. Running the Python scripts directly is also an option, but will require installing some Python Modules from PyPi.
+Do one of the following:
 
-Perform one of the next 3 steps - 4a, 4b, or 4c:
+* [Run the exporter in the docker container](external-monitoring.md#run-the-exporter-in-the-docker-container) (if you have a docker, this is the simple method).
+* [Run the exporter as a compiled binary](external-monitoring.md#run-the-exporter-as-a-compiled-binary) (if you do not have a docker, use this option)
+* [Run the exporter as a Python script](external-monitoring.md#run-the-exporter-as-a-python-script) (requires installing a few Python Modules from PyPi).
 
-#### Step 4a: Getting and running the container
+#### Run the exporter in the docker container
 
-Get and run the container. There are no required command-line arguments, but you do need to fill in the `export.yml` configuration file. (see above)
+Get and run the container (the `export.yml` configuration file is already edited).
 
-The below example maps in several volumes: the `~/.weka directory` (so the container can read the auth file), `/dev/log` so it can put entries in the Syslog, `/etc/hosts` so it has some name resolution (you can also use DNS if your Docker environment is set up to do so), and finally mapping the config file (`export.yml`) into the container.
+The following example maps the `export.yml` configuration file in several volumes in the container:
 
-There are other options, and you can run the command with `--help` or `-h` for a full description.
+* &#x20;`~/.weka directory` to enable the container to read the authentication file.
+* `/dev/log` to enable entries in the Syslog.
+* `/etc/hosts` to enable the hostname resolution (a DNS can also be used, if exists in the docker environment).
+
+There are more options; you can run the command with`-help` or `-h` for a full description.
 
 ```
 # get the container from dockerhub:
@@ -179,31 +223,62 @@ docker run -d --network=host \
   --mount type=bind,source=/etc/hosts,target=/etc/hosts \
   --mount type=bind,source=$PWD/export.yml,target=/weka/export.yml \
   wekasolutions/export -v
-  
 ```
 
-#### Step 4b: Getting the binary version
+#### Run the exporter as a compiled binary
 
-Go to [https://github.com/weka/export/releases](https://github.com/weka/export/releases) and download the tarball from the latest release. As of the time of this last doc update, the current version is 1.3.0, so download the `export-1.3.0.tar` file from the Version-1.3.0 release. Copy this file to your management server or VM.&#x20;
-
-Then, run the exporter (see above for an explanation of the command-line arguments):
+1. Go to [https://github.com/weka/export/releases](https://github.com/weka/export/releases) and download the tarball from the latest release.
+2. Copy this file to the management server or VM.
+3. Run the exporter as follows (for the description of the command-line parameters, see the [Exporter section parameters](external-monitoring.md#exporter-section-parameters)):
 
 ```
 tar xvf export-1.3.0.tar
 cd export
 ./export -v
-
 ```
 
-#### Step 4c: Get the sources
+#### Run the exporter as a Python script
 
-You can either `git clone https://github.com/weka/export` or go to [https://github.com/weka/export/releases](https://github.com/weka/export/releases) and download the source tarball.
-
-After cloning or unpacking the tarball, you will need to run `pip3 install -r requirements.txt` command to install all the required python modules.
-
-Then, run the exporter (see above for an explanation of the command-line arguments):
+1. Do one of the following:
+   * Run `git clone https://github.com/weka/export`
+   * Go to [https://github.com/weka/export/releases](https://github.com/weka/export/releases) and download the source tarball.
+2. Install the required python modules by running the following command:\
+   `pip3 install -r requirements.txt`
+3. Run the exporter (for the description of the command-line parameters, see the [Exporter section parameters](external-monitoring.md#exporter-section-parameters)):
 
 ```
 ./export -v
+```
+
+### Exporter configuration options in the export.yml file
+
+The **exporter** section defines the program behavior.
 
 ```
+# exporter section
+exporter:
+  listen_port: 8001
+  loki_host: loki
+  loki_port: 3100
+  timeout: 10.0
+  max_procs: 8
+  max_threads_per_proc: 100
+  backends_only: True
+```
+
+#### **Exporter section parameters**
+
+| Parameter                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `listen_port`                          | The Prometheus listening port. Do not modify this port unless you modify the Prometheus configuration.                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `loki_host`                            | If using the Weka-mon setup, do not modify the hostname. Leave blank to disable sending events to Loki.                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `loki_port`                            | If using the Weka-mon setup, do not modify the port.                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `timeout`                              | The max time in seconds to wait for an API call to return. The default value is sufficient for most purposes.                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `max_procs` and `max_threads_per_proc` | <p>Define the scaling behavior. If the number of hosts (servers and clients) exceeds <code>max_threads_per_proc</code>, the exporter runs more processes accordingly.<br><strong>Example:</strong> a cluster with 80 Weka servers and 200 compute nodes (aka clients) has 280 hosts. With the default <code>max_threads_per_proc</code> of 100, it runs 3 processes (280 / 100 ~ 3).<br>It's recommended to have 1 available core per process. In this cluster example, deploy at least 4 available cores on the server/VM.</p> |
+| `backends_only`                        | Run only on the Weka backend hosts                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+
+The exporter always tries to allocate one host per thread but does not exceed the maximum processes specified in the `max_procs` parameter. In a cluster with 1000 hosts, it doubles or triples up the hosts on the threads.
+
+{% hint style="success" %}
+**Example:** In a cluster with 3000 hosts, `max_procs` = 8,  and `max_threads_per_proc`= 100, only 8 processes running. Each process with 100 threads, but there are close to 4 hosts serviced per thread instead of the default 1 host.
+{% endhint %}
