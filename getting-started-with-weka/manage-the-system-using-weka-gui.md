@@ -119,7 +119,7 @@ Selecting the Active clients title displays the clients tab.
 
 This widget shows the top 5 backend servers and clients in the system. You can sort the list of servers by total IO operations per second or total throughput.
 
-![Top Consumers widget](../.gitbook/assets/wmng\_top\_consumers\_widget.png)
+![Top Consumers widget](../.gitbook/assets/wmng\_dashboard\_Top\_Consumers\_widget.png)
 
 ### Alerts widget
 

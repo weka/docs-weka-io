@@ -20,6 +20,10 @@ Using the GUI, you can:
 
 Interface Groups define the servers and ports that provide the NFS service.
 
+{% hint style="info" %}
+The default stack is NFS-W. If you need to create the interface group in the legacy NFS stack, use the CLI. See [Create interface groups](nfs-support-1.md#create-interface-groups).
+{% endhint %}
+
 **Procedure**
 
 1. From the menu, select **Manage > Protocols**.
@@ -28,7 +32,7 @@ Interface Groups define the servers and ports that provide the NFS service.
 
 ![Add an NFS interface group](../../.gitbook/assets/wmng\_add\_nfs\_group\_add.png)
 
-4\. In the Create Interface Group dialog set the following properties:
+4\. In the Create Interface Group dialog, set the following properties:
 
 * **Name**: A unique interface group name (maximum 11 characters).
 * **Gateway**: A valid IP address of the gateway.
@@ -36,7 +40,7 @@ Interface Groups define the servers and ports that provide the NFS service.
 
 5\. Select **Save**.
 
-![Create inteface group dialog](../../.gitbook/assets/wmng\_add\_nfs\_group\_dialog.png)
+![Create interface group dialog](../../.gitbook/assets/wmng\_4\_1\_create\_interface\_group.png)
 
 **Related topic**
 
@@ -185,4 +189,4 @@ You can edit the existing NFS permission settings for a client group.  You can a
 
 **Related topics**
 
-****[#supported-nfs-client-mount-options](nfs-support.md#supported-nfs-client-mount-options "mention")****
+****[#supported-nfs-client-mount-options](./#supported-nfs-client-mount-options "mention")****

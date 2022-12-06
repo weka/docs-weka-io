@@ -6,7 +6,7 @@ description: >-
 
 # Weka installation on AWS
 
-If you already have an AWS account and are familiar with AWS's basic concept and services, you can skip this section.
+If you already have an AWS account and are familiar with AWS's basic concepts and services, you can skip this section.
 
 To install a Weka system in AWS, you need to [create an AWS account](https://aws.amazon.com/account/).
 

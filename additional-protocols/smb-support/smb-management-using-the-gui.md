@@ -64,7 +64,7 @@ In AWS installations, it is not possible to set a list of SMB service addresses.
 
 Once the system completes the configuration process, the server statuses change from not ready (red X icon) to ready (green V icon).
 
-![SMB cluster configuration example](../../.gitbook/assets/wmng\_smb\_configure\_result.png)
+![SMB cluster configuration example](../../.gitbook/assets/wmng\_4\_1\_smb\_configure\_result.png)
 
 ## Edit the SMB cluster <a href="#edit-the-smb-cluster" id="edit-the-smb-cluster"></a>
 
