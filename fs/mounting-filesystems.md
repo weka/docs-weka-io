@@ -63,8 +63,6 @@ Use one of the following command lines to invoke the mount command (note, the de
 
 `mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-point>`
 
-`mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]:/<fs> <mount-point>`
-
 **Parameters**
 
 | **Name**      | **Type** | **Value**                          | **Limitations**           | **Mandatory** | **Default** |
@@ -113,12 +111,12 @@ When a mount option has been explicitly changed, you must set it again in the re
 
 ### **Additional mount options using the stateless clients feature**
 
-| **Option**                               | **Value**            | **Description**                                                                                                                                                                                                                                                                                                             | **Default**                                                                                                                                                            | **Remount Supported** |
+| **Option**                               | **Value**            | **Description**                                                                                                                                                                                                                                                                                                             | **Default**                                                                                                                                                            | **Remount supported** |
 | ---------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | `memory_mb=<memory_mb>`                  | Number               | Amount of memory to be used by the client (for huge pages)                                                                                                                                                                                                                                                                  | 1400 MiB                                                                                                                                                               | Yes                   |
 | `num_cores=<frontend-cores>`             | Number               | <p>The number of frontend cores to allocate for the client.</p><p>Either<code>&#x3C;num_cores></code> or<code>&#x3C;core></code> can be specified, but not both.</p><p>If none are specified, the client will be configured with 1 core. </p><p>If 0 is specified then you must use <code>net=udp</code>.</p>               | 1                                                                                                                                                                      | No                    |
 | `core=<core>`                            | Number               | Specify explicit cores to be used by the WekaFS client. Multiple cores can be specified.                                                                                                                                                                                                                                    |                                                                                                                                                                        | No                    |
-| `net=<netdev>[/<ip>/<bits>[/<gateway>]]` | String               | <p>This option must be specified for on-premises installation and <strong>must not be specified for AWS</strong> installations.</p><p>For more details, see <a href="mounting-filesystems.md#advanced-network-configuration-by-mount-options">Advanced Network Configuration via Mount Options</a> section below.</p>       |                                                                                                                                                                        | No                    |
+| `net=<netdev>[/<ip>/<bits>[/<gateway>]]` | String               | <p>This option must be specified for on-premises installation, and <strong>must not be specified for AWS</strong> installations.</p><p>For more info refer to <a href="mounting-filesystems.md#advanced-network-configuration-via-mount-options">Advanced Network Configuration via Mount Options</a> section.</p>          |                                                                                                                                                                        | No                    |
 | `bandwidth_mbps=<bandwidth_mbps>`        | Number               | <p>Maximum network bandwidth in Mb/s, which limits the traffic that the container can send.</p><p>The bandwidth setting is helpful in deployments like AWS, where the bandwidth is limited but allowed to burst.</p>                                                                                                        | Auto-select                                                                                                                                                            | Yes                   |
 | `remove_after_secs=<secs>`               | Number               | <p>The number of seconds without connectivity after which the client will be removed from the cluster. <br>Minimum value: 60 seconds. </p>                                                                                                                                                                                  | 86,400 seconds (24 hours)                                                                                                                                              | Yes                   |
 | `traces_capacity_mb=<size-in-mb>`        | Number               | <p>Traces capacity limit in MB.</p><p>Minimum value: 512 MB.</p>                                                                                                                                                                                                                                                            |                                                                                                                                                                        | No                    |
@@ -128,8 +126,9 @@ When a mount option has been explicitly changed, you must set it again in the re
 | `dedicated_mode`                         | `full` or `none`     | Determine whether DPKD networking dedicates a core (`full`) or not (`none`). none can only be set when the NIC driver supports it. See [DPDK Without Core Dedication](../overview/networking-in-wekaio.md#dpdk-without-core-dedication) section. This option is relevant when using DPDK networking (`net=udp` is not set). | `full`                                                                                                                                                                 | No                    |
 | `qos_preferred_throughput_mbps`          | Number               | Preferred requests rate for QoS in megabytes per second.                                                                                                                                                                                                                                                                    | <p>No limit.<br>The cluster admin can set this default. See <a href="mounting-filesystems.md#set-mount-option-default-values">Set mount option default values</a>.</p> | Yes                   |
 | `qos_max_throughput_mbps`                | <p></p><p>Number</p> | <p>Maximum requests rate for QoS in megabytes per second.<br>This option allows bursting above the specified limit but aims to keep this limit on average.</p>                                                                                                                                                              | <p>No limit.<br>The cluster admin can set this default. See <a href="mounting-filesystems.md#set-mount-option-default-values">Set mount option default values</a>.</p> | Yes                   |
-| `connect_timeout_secs`                   | Number               | The timeout in seconds for establishing a connection to a single host.                                                                                                                                                                                                                                                      | 10                                                                                                                                                                     | Yes                   |
-| `response_timeout_secs`                  | Number               | The timeout in seconds for waiting for the response from a single host.                                                                                                                                                                                                                                                     | 60                                                                                                                                                                     | Yes                   |
+| `connect_timeout_secs`                   | Number               | The timeout, in seconds, for establishing a connection to a single host.                                                                                                                                                                                                                                                    | 10                                                                                                                                                                     | Yes                   |
+| `response_timeout_secs`                  | Number               | The timeout, in seconds, waiting for the response from a single host.                                                                                                                                                                                                                                                       | 60                                                                                                                                                                     | Yes                   |
+| `join_timeout_secs`                      | Number               | The timeout, in seconds, for the client container to join the Weka cluster.                                                                                                                                                                                                                                                 | 360                                                                                                                                                                    | Yes                   |
 
 {% hint style="info" %}
 **Note:** These parameters, if not stated otherwise, are only effective on the first mount command for each client.
@@ -255,9 +254,9 @@ mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/wek
 
 #### Using multiple physical network devices for HA configuration
 
-Multiple NICs can also be configured to achieve redundancy (refer to [Weka Networking HA](../overview/networking-in-wekaio.md#ha) section for more information) in addition to higher throughput for a complete, highly available solution. For that, use more than one physical device as previously described and also specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
+Multiple NICs can also be configured to achieve redundancy (refer to [Weka Networking HA](../overview/networking-in-wekaio.md#ha) section for more information) in addition to higher throughput, for a complete, highly available solution. For that, use more than one physical device as previously described and, also, specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
 
-For example, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. Note that the modifier ha is used here, which means using the device on all processes.
+For example, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. The modifier `ha` is used here, which means using the device on all processes.
 
 ```
 mount -t wekafs -o num_cores=4 -o net:ha=mlnx0,net:ha=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
@@ -265,7 +264,7 @@ mount -t wekafs -o num_cores=4 -o net:ha=mlnx0,net:ha=mlnx1 backend1/my_fs -o mg
 
 **Advanced mounting options for multiple physical network devices**
 
-With multiple Frontend processes (as expressed by `-o num_cores`), it is possible to control what processes use what NICs. This can be accomplished by using special command line modifiers called _slots_. In WekaFS, _slot_ is synonymous with a process number. Typically, the first WekaFS Frontend process will occupy slot 1, then the second - slot 2, and so on.
+With multiple Frontend processes (as expressed by `-o num_cores`), it is possible to control what processes use what NICs. This can be accomplished through the use of special command line modifiers called _slots_. In WekaFS, _slot_ is synonymous with a process number. Typically, the first WekaFS Frontend process will occupy slot 1, then the second - slot 2 and so on.
 
 Examples of slot notation include `s1`, `s2`, `s2+1`, `s1-2`, `slots1+3`, `slot1`, `slots1-4` , where `-` specifies a range of devices, while `+` specifies a list. For example, `s1-4` implies slots 1, 2, 3 and 4, while `s1+4` specifies slots 1 and 4 only.
 
@@ -297,7 +296,7 @@ mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
 **Note:** Providing multiple IPs in the \<mgmt-ip> in UDP mode will utilize their network interfaces for more bandwidth (can be useful in RDMA environments), rather than using only one NIC.
 {% endhint %}
 
-## Mounting filesystems using fstab
+## Mount filesystems using fstab
 
 {% hint style="info" %}
 **Note:** This option works when using **stateless clients** and with OS that supports `systemd` (e.g.: RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, Amazon Linux 2 LTS).
@@ -305,6 +304,14 @@ mount -t wekafs -o num_cores=0 -o net=udp backend-host-0/my_fs /mnt/weka
 
 Edit `/etc/fstab` file to include the filesystem mount entry:
 
+* A comma-separated list of backend hosts, with the filesystem name
+* The mount point
+* Filesystem type - `wekafs`
+* Mount options:
+  *   Configure `systemd` to wait for the `weka-agent` service to come up, and set the filesystem as a network filesystem, e.g.:
+
+      `x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`
+  * Any additional `wekafs` supported mount option
 * A comma-separated list of backend hosts, with the filesystem name
 * The mount point
 * Filesystem type - `wekafs`
@@ -334,7 +341,7 @@ The filesystem should now be mounted at boot time.
 **Note:** Do not configure this entry for a mounted filesystem before un-mounting it (`umount`), as the `systemd` needs to mark the filesystem as a network filesystem (occurs as part of the `reboot`). Trying to reboot a host when there is a mounted WekaFS filesystem when setting its `fstab` configuration might yield a failure to unmount the filesystem and leave the system hanged.
 {% endhint %}
 
-## Mounting filesystems using autofs
+## Mount filesystems using autofs
 
 **Procedure:**
 
@@ -354,13 +361,6 @@ apt-get install -y autofs
 
 2\. To create the `autofs` configuration files for Weka filesystems, do one of the following\
 &#x20;   depending on the client type:
-
-* For a stateless client, run the following commands (specify the backend names as parameters):
-
-```
-echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
-echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
-```
 
 * For a stateful client (traditional), run the following commands:
 
