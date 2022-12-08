@@ -44,12 +44,13 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 
 To enable communication between the management server and the Weka cluster, the security token is required in the **auth-token.json** file.
 
-Verify that the directory `~/.weka` or  `./.weka`  exists in the management server. Generate the `auth-token.json` **** file and save it in the `~/.weka` or  `./.weka` directory.
+Create the directory `~/.weka` in the management server.
+
+Generate the `auth-token.json` **** file and save it in the `~/.weka` directory. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
 
 {% hint style="info" %}
-* To generate the auth-token.json file, see the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
-* It is highly recommended to create a local user with ReadOnly privilege just for the Weka-mon package and use it for cluster communications.\
-  To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
+It is highly recommended to create a local user with ReadOnly privilege just for the Weka-mon package and use it for cluster communications.\
+To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
 {% endhint %}
 
 ## Workflow: Install the Weka-mon package
