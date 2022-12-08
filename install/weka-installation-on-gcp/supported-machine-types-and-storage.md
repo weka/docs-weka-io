@@ -16,5 +16,5 @@ Weka supports the following compute-optimized machine types:&#x20;
 Each machine type supports 1, 2, 4, or 8 local SSD drives. Each drive has 375 GB (maximum 3 TB per instance). These drives are not individual SSDs but partitions local to the physical server.
 
 {% hint style="info" %}
-The data in a Weka cluster is protected with +2 or +4 failure domains. However, if the data needs to be further protected from multiple server failures, use [snap-to-object](../../fs/snap-to-obj/).
+The data in a Weka cluster is protected with N+2 or N+4. However, use snap-to-object if the data needs further protection from multiple server failures.
 {% endhint %}

@@ -44,7 +44,7 @@ A deployment with Terraform involves three phases:
 
 **Related topics**
 
-[weka-gcp-terraform-package-description.md](weka-gcp-terraform-package-description.md "mention")
+[weka-project-description.md](weka-project-description.md "mention")
 
 
 

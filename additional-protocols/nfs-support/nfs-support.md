@@ -40,7 +40,7 @@ The default stack is NFS-W. If you need to create the interface group in the leg
 
 5\. Select **Save**.
 
-![Create interface group dialog](../../.gitbook/assets/wmng\_4\_1\_create\_interface\_group.png)
+![Create interface group dialog](../../.gitbook/assets/wmng\_add\_nfs\_group\_dialog.png)
 
 **Related topic**
 

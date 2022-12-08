@@ -24,14 +24,14 @@ Each of these performance metrics applies to read operations, write operations, 
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** There is a difference between single client performance to aggregated performance. When running the tests listed below from one client, the client will limit the test's performance. In general, several clients will be required to maximize the performance of a Weka cluster.
+**Note:** There is a difference between single-client performance to aggregated performance. When running the tests listed below from one client, the client will limit the test's performance. In general, several clients will be required to maximize the performance of a Weka cluster.
 {% endhint %}
 
 ## The FIO tool
 
 The [FIO tool](https://linux.die.net/man/1/fio) is a generic open-source storage performance testing tool that can be defined as described [here](https://fio.readthedocs.io/en/latest/fio\_doc.html). In this documentation, the usage of FIO version 3.20 is assumed.
 
-All FIO testing is done using the client/server capabilities of FIO. This makes multiple client testing easier since FIO reports aggregated results for all clients under the test. Single client tests are run the same way to keep the results consistent.
+All FIO testing is done using the client/server capabilities of FIO. This makes multiple-client testing easier since FIO reports aggregated results for all clients under the test. Single-client tests are run the same way to keep the results consistent.
 
 Start the FIO server on every one of the clients:
 
@@ -81,7 +81,7 @@ All clients: (groupid=0, jobs=16): err= 0: pid=0: Wed Jun  3 22:10:46 2020
      issued rwts: total=9033447,0,0,0 short=0,0,0,0 dropped=0,0,0,0
 ```
 
-The single-client or aggregated tests deffer in the clients participating in the test, as defined in the `clients.txt`.
+The single-client or aggregated tests differ in the clients participating in the test, as defined in the `clients.txt`.
 
 ## MDTest
 
@@ -95,7 +95,7 @@ Overall, the tests contained on this page are designed to show off the sustainab
 
 Where possible, the benchmarks try to negate the effects of caching. For file testing, `o_direct` calls are used to bypass the client's cache. In the case of metadata testing, each phase of testing uses different clients. Also, between each test, the Linux caches are flushed to ensure all data being accessed is not present in the cache. While applications will often take advantage of cached data and metadata, this testing focuses on the filesystem's ability to deliver data independent of caching on the client.
 
-While we provide below the output of one iteration, we ran each test several times and provided the average results in the [Result Summary](./#results-summary).
+While we provide below the output of one iteration, we ran each test several times and provided the average results in the following results summary.
 
 ### Results summary
 

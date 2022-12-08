@@ -42,12 +42,13 @@
   * [Auto scaling group](install/aws/auto-scaling-group.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
 * [Weka installation on GCP](install/weka-installation-on-gcp/README.md)
-  * [Supported machine types and storage](install/weka-installation-on-gcp/supported-machine-types-and-storage.md)
+  * [Weka project description](install/weka-installation-on-gcp/weka-project-description.md)
+  * [Deployment on GCP using Terraform](install/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md)
   * [Weka GCP-Terraform package description](install/weka-installation-on-gcp/weka-gcp-terraform-package-description.md)
-  * [Weka installation on GCP using Terraform](install/weka-installation-on-gcp/weka-installation-on-gcp-using-terraform.md)
-  * [Add clients](install/weka-installation-on-gcp/add-clients.md)
+  * [Required services and supported regions](install/weka-installation-on-gcp/required-services-and-supported-regions.md)
+  * [Supported machine types and storage](install/weka-installation-on-gcp/supported-machine-types-and-storage.md)
   * [Auto scale instances in GCP](install/weka-installation-on-gcp/auto-scale-instances-in-gcp.md)
-  * [Destroy a Weka cluster](install/weka-installation-on-gcp/destroy-a-weka-cluster.md)
+  * [Add clients](install/weka-installation-on-gcp/add-clients.md)
   * [Troubleshooting](install/weka-installation-on-gcp/troubleshooting.md)
 
 ## Performance <a href="#testing-and-troubleshooting" id="testing-and-troubleshooting"></a>

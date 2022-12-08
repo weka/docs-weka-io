@@ -21,3 +21,9 @@ curl -m 70 -X POST  https://europe-west1-wekaio-qa.cloudfunctions.net/weka-test 
 -H "Content-Type:application/json" \
 -d '{"value":7}'
 ```
+
+****
+
+**Related topics**
+
+[#resize-cloud-function-operation](weka-project-description.md#resize-cloud-function-operation "mention")
