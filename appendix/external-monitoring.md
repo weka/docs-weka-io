@@ -98,7 +98,7 @@ Run the following command:
 The Weka-mon and the exporter configuration are defined in the `export.yml` file.
 
 1. Change the directory to `weka-mon` and open the `export.yml` file.
-2. In the **cluster** section under the **hosts** list, replace the hostnames with the actual hostnames/IP addresses of the Weka containers (up to three would be sufficient).&#x20;
+2. In the **cluster** section under the **hosts** list, replace the hostnames with the actual hostnames/IP addresses of the Weka containers (up to three would be sufficient). Ensure the hostnames are mapped to the IP addresses in /etc/hosts.
 
 ```
 hosts:
