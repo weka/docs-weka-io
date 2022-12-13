@@ -37,7 +37,7 @@ The Weka system supports a RESTful API for automating the interaction with the W
 
 ```bash
 # deploy the software on all hosts
-pdsh -w weka0[1-8] "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.0.0/4.0.0 | sudo sh"
+pdsh -w weka0[1-8] "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.1.0/4.1.0 | sudo sh"
 
 ```
 
