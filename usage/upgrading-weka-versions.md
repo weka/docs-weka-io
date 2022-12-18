@@ -51,15 +51,13 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
    * Stopping io-nodes
    * Starting io-nodes
    * Starting buckets.
-8.  Starting rolling upgrade of the **frontend** containers:
+8.  Starting rolling upgrade of the **frontend** and **protocol** containers:
 
-    * Upgrading frontend containers on server \[x].
+    * Upgrading frontend and protocol **** containers on server \[x].
     * Upgrading server \[x] from version \<source> \<target>.
     * Rebuilding and redistributing.
 
-    Then continue the same actions on the remaining servers with frontend containers. Finishing the rolling upgrade on all frontend containers.
-9. Starting rolling upgrade of the **protocol** containers (NFS, SMB, S3).\
-   Then continue the same actions on the remaining servers with protocol containers. Finishing the rolling upgrade on all protocol containers.
+    Then continue the same actions on the remaining servers with frontend and protocol containers. Finishing the rolling upgrade on all frontend and protocol containers.
 
 <figure><img src="../.gitbook/assets/NDU_process.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
 
@@ -143,9 +141,9 @@ You can control the upgrade window time by setting the following parameters in t
 
 | **Name**                                 | **Type** | **Value**                                                                                                           | **Limitations** | **Mandatory**                             | **Default** |
 | ---------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------- | --------------- | ----------------------------------------- | ----------- |
-| `--stop-io-timeout`                      | String   | Maximum time in seconds to wait for IO to stop successfully                                                         |                 | No                                        | 90s         |
-| `--container-version-change-timeout`     | String   | Maximum time in seconds to wait for a container version update                                                      |                 | No                                        | 180s        |
-| `--disconnect-stateless-clients-timeout` | String   | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them    |                 | No                                        | 60s         |
+| `--stop-io-timeout`                      | Integer  | Maximum time in seconds to wait for IO to stop successfully                                                         |                 | No                                        | 90s         |
+| `--container-version-change-timeout`     | Integer  | Maximum time in seconds to wait for a container version update                                                      |                 | No                                        | 180s        |
+| `--disconnect-stateless-clients-timeout` | Integer  | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them    |                 | No                                        | 60s         |
 | `--prepare-only`                         | Boolean  | Download and prepare a new software version across all servers in the cluster without performing the actual upgrade |                 | No                                        | False       |
 | `--health-check-timeout`                 | String   | Maximum time in seconds to wait for the health check to complete                                                    |                 | No                                        | 10s         |
 | `--container`                            | String   | The container from which to run the upgrade.                                                                        |                 | Yes for multiple containers configuration |             |
@@ -166,7 +164,7 @@ In a successful process, the upgrade stops the cluster IO service, switches all 
 
 * Set `container-version-change-timeout` to `600s`
 * Set `disconnect-stateless-clients-timeout` to `200s`
-* Set `health-check-timeout` to `30s`
+* Set health-check-timeout to `30s`
 
 If further assistance and adjustments are required, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}

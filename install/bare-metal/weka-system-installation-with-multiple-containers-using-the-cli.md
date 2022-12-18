@@ -12,16 +12,16 @@ description: >-
 1. [Install the Weka software](weka-system-installation-with-multiple-containers-using-the-cli.md#1.-install-the-weka-software)
 2. [Remove the default container](weka-system-installation-with-multiple-containers-using-the-cli.md#2.-remove-the-default-container)
 3. [Generate the resource files](weka-system-installation-with-multiple-containers-using-the-cli.md#3.-generate-the-resource-files)
-4. [Create drive containers](weka-system-installation-with-multiple-containers-using-the-cli.md#4.-create-the-drive-containers)
+4. [Create drive containers](weka-system-installation-with-multiple-containers-using-the-cli.md#4.-create-drive-containers)
 5. [Create a cluster](weka-system-installation-with-multiple-containers-using-the-cli.md#5.-create-a-cluster)
 6. [Configure the SSD drives](weka-system-installation-with-multiple-containers-using-the-cli.md#6.-configure-the-ssd-drives)
 7. [Create compute containers](weka-system-installation-with-multiple-containers-using-the-cli.md#7.-create-compute-containers)
-8. [Name the cluster](weka-system-installation-with-multiple-containers-using-the-cli.md#8.)
-9. [Enable event notifications to the cloud (optional)](weka-system-installation-with-multiple-containers-using-the-cli.md#8.-enable-event-notifications-to-the-cloud-optional)
-10. [Set the license](weka-system-installation-with-multiple-containers-using-the-cli.md#9.-set-the-license)
-11. [Start the cluster IO service](weka-system-installation-with-multiple-containers-using-the-cli.md#10.-start-the-cluster-io-service)
-12. [Create frontend containers](weka-system-installation-with-multiple-containers-using-the-cli.md#11.-create-frontend-containers)
-13. [Check the cluster configuration](weka-system-installation-with-multiple-containers-using-the-cli.md#12.-check-and-apply-the-cluster-configuration)
+8. [Name the cluster](weka-system-installation-with-multiple-containers-using-the-cli.md#8.-name-the-cluster)
+9. [Name the cluster and enable event notifications to the cloud (optional)](weka-system-installation-with-multiple-containers-using-the-cli.md#9.-name-the-cluster-and-enable-event-notifications-to-the-cloud-optional)
+10. [Set the license](weka-system-installation-with-multiple-containers-using-the-cli.md#10.-set-the-license)
+11. [Start the cluster IO service](weka-system-installation-with-multiple-containers-using-the-cli.md#11.-start-the-cluster-io-service)
+12. [Create frontend containers](weka-system-installation-with-multiple-containers-using-the-cli.md#12.-create-frontend-containers)
+13. [Check the cluster configuration](weka-system-installation-with-multiple-containers-using-the-cli.md#13.-check-the-cluster-configuration)
 
 ### 1. Install the Weka software <a href="#1.-install-the-weka-software" id="1.-install-the-weka-software"></a>
 
@@ -43,7 +43,7 @@ Stop and remove the auto-created default container created on each server.
 
 **Command:** `resources_generator.py`
 
-To generate the resource files for the drive, compute, and frontend processes, download the [resources\_generator.py](https://raw.githubusercontent.com/weka/tools/master/topics/resource%20generator/resources\_generator.py) and run the following command on one server of each process type.
+To generate the resource files for the drive, compute, and frontend processes, download the [resource\_generator.py](https://github.com/weka/tools/tree/master/topics/resource\_generator) and run the following command on one server of each process type.
 
 The resource generator automatically calculates the number of cores, memory, and other resource values. However, you can override these values by providing specific options.
 
@@ -179,7 +179,7 @@ Enable event notifications to the cloud for support purposes using one of the fo
 * Enable support through Weka Home
 * Enable support through a private instance of Weka Home
 
-### **Enable support through Weka Home**
+#### **Enable support through Weka Home**
 
 **Command:** `weka cloud enable`
 
@@ -187,7 +187,7 @@ This command enables cloud event notification (via Weka Home), which increases t
 
 To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../support/the-wekaio-support-cloud.md).
 
-### **Enable support through a** private instance of Weka Home
+#### **Enable support through a** private instance of Weka Home
 
 In closed environments, such as dark sites and private VPCs, it is possible to install a private instance of Weka Home.
 
