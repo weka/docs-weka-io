@@ -32,12 +32,12 @@ The versions specified in the prerequisites and compatibility page apply to the 
 
 * **RHEL:**
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
-  * 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **CentOS:**
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux**
-  * 8.6
+  * 8.7, 8.6
 * **Ubuntu:**
   * 18.04.6, 18.04.5, 18.04.4, 18.04.3, 18.04.2, 18.04.1, 18.04.0
   * 20.04.3, 20.04.2, 20.04.1, 20.04.0
@@ -65,17 +65,21 @@ The versions specified in the prerequisites and compatibility page apply to the 
   * `mls` policy is not supported yet
 
 {% hint style="info" %}
-**Note:** To set SELinux security context for files, `-o acl` should be used in the mount command, and `wekafs` should be defined to use extended-attributes in the SELinux policy configuration (`fs_use_xattr`).
+**Note:** To set SELinux security context for files,  use the `-o acl` in the mount command, and define the `wekafs` to use extended-attributes in the SELinux policy configuration (`fs_use_xattr`).
 {% endhint %}
 
 ### Kernel
 
-* 5.3-5.13
+* 5.3-5.15
 * 4.4.0-1106 to 4.19
 * 3.10
 
+{% hint style="warning" %}
+**Note:** Kernel 5.15 is not supported with Amazon Linux operating systems.
+{% endhint %}
+
 {% hint style="info" %}
-**Note:** It is advisable to turn off auto kernel updates so it will not get upgraded to a yet unsupported version.
+**Note:** It is advisable to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
 {% endhint %}
 
 ## Weka installation directory
@@ -92,7 +96,7 @@ The versions specified in the prerequisites and compatibility page apply to the 
 {% hint style="info" %}
 **Note:** At least 4k MTU is advised on Weka cluster servers NICs, and the switches the servers are connected to.
 
-A Weka system can be configured without jumbo frames for both Ethernet and Infiniband configurations. However, it will provide very limited performance and cannot handle high loads of data; please consult the Weka Sales or Support teams before running in this mode.
+A Weka system can be configured without jumbo frames for Ethernet and Infiniband configurations. However, it will provide very limited performance and cannot handle high loads of data; please consult the Weka Sales or Support teams before running in this mode.
 
 Jumbo Frames are not required for clients. However, performance might be limited.
 {% endhint %}
@@ -114,13 +118,14 @@ Jumbo Frames are not required for clients. However, performance might be limited
 
 {% hint style="info" %}
 Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team). \
-In addition, Intel E810 NIC does not yet support the [multiple containers architecture,](../overview/weka-containers-architecture-overview.md) and it only supports non-routed networks.
+In addition, Intel E810 NIC does not yet support the [multiple containers architecture](../overview/weka-containers-architecture-overview.md), and it only supports non-routed networks.
 {% endhint %}
 
 #### NIC drivers
 
 Supported Mellanox OFED versions:
 
+* 5.8-1.1.2.1 LTS
 * 5.7-1.0.2.0
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
@@ -179,6 +184,7 @@ Supported ice drivers:
 
 Supported Mellanox OFED versions:
 
+* 5.8-1.1.2.1 LTS&#x20;
 * 5.7-1.0.2.0
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
