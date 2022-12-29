@@ -97,7 +97,7 @@ This command is used to give the cluster a name. Although this is optional, it i
 
 This command enables cloud event notification (via Weka Home), which increases the ability of the Weka Support Team to resolve any issues that may occur.
 
-To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../support/the-wekaio-support-cloud.md).
+To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../support/the-wekaio-support-cloud/).
 
 #### **Enable support through a** private instance of Weka Home
 
@@ -108,7 +108,7 @@ In closed environments, such as dark sites and private VPCs, it is possible to i
 This command enables the use of a private instance of Weka Home.
 
 {% hint style="info" %}
-For more information, refer to [Private Instance of Weka Home](../../support/the-wekaio-support-cloud.md#private-instance-of-weka-home) and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
+For more information, refer to [Private Instance of Weka Home](../../support/the-wekaio-support-cloud/#private-instance-of-weka-home) and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 ## Stage 5: Set containers dedicated to the cluster (optional)
