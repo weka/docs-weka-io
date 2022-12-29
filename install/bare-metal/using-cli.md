@@ -65,26 +65,24 @@ This command is used to give the cluster a name. Although this is optional, it i
 | -------------- | -------- | ------------------------------ | -------------------------- | ------------- | ----------- |
 | `cluster-name` | String   | Identifier of the cluster name | Must be a valid identifier | No            |             |
 
-## Stage 4: Enable cloud event notifications (optional)
+## Stage 4: Enable cloud notifications (optional)
 
 ### **Enable support via Weka Home**
 
 **Command:** `weka cloud enable`
 
-This command enables cloud event notification (via Weka Home), which increases the ability of the Weka Support Team to resolve any issues that may occur.
+This command enables cloud notification (via Weka Home), which increases the ability of the Customer Success Team to provide proactive support and resolve any issues that may occur.
 
-To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../support/the-wekaio-support-cloud.md).
+To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../support/the-wekaio-support-cloud/).
 
 ### For private instance of Weka Home
 
-In closed environments, such as dark sites and private VPCs, it is possible to install a private instance of Weka Home.
+**Command:** `weka cloud enable --cloud-url=http://<weka home ip>:<port>`
 
-**Command:** `weka cloud enable --cloud-url=http://<weka-home-ip>:<weka-home-port>`
-
-This command enables the use of a private instance of Weka Home.
+This command enables a Weka cluster in an isolated environment, such as dark sites and private VPCs, to send information to a private instance of Weka Home (Local Weka Home).
 
 {% hint style="info" %}
-For more information, refer to [Private Instance of Weka Home](../../support/the-wekaio-support-cloud.md#private-instance-of-weka-home) and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
+For more information, see the Private Instance of Weka Home section.
 {% endhint %}
 
 ## Stage 5: Set hosts dedicated to the cluster (optional)
@@ -97,15 +95,15 @@ It is possible to set the host as dedicated to the Weka cluster. By setting the 
 
 **Command:** `weka cluster host net add`
 
-When PKEYs are used, the device name for InfiniBand should follow the name.PKEY convention.
+When PKEYs are used, the device name for InfiniBand should follow the `name.PKEY` convention.
 
 {% hint style="info" %}
-**Note:** Although in general, devices can be renamed arbitrarily, Weka will only function correctly if the .PKEY naming convention is followed.
+**Note:** Although devices generally can be renamed arbitrarily, you must follow the `name.PKEY` convention. Otherwise, Weka will not function correctly.
 {% endhint %}
 
 The networking type can be either Ethernet (direct over DPDK) or InfiniBand (IB), and can be mixed in the same host (by running multiple `cluster host net add` commands for the same host). A physical network device must be specified for both types. This can be a device dedicated to the Weka system or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
 
-To perform this operation, the `cluster host net add`command must be run for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
+To perform this operation, run the `cluster host net add` command for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
 `weka cluster host net add <host-id> <device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gateway>] [--netmask=<netmask>] [--label=<label>]`
 

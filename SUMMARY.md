@@ -157,7 +157,6 @@
 
 * [Prerequisites and compatibility](support/prerequisites-and-compatibility.md)
 * [Get support for your Weka system](support/getting-support-for-your-weka-system.md)
-* [The Weka support cloud](support/the-wekaio-support-cloud.md)
 * [Diagnostics management](support/diagnostics-management/README.md)
   * [Traces management](support/diagnostics-management/traces-management/README.md)
     * [Manage traces using the GUI](support/diagnostics-management/traces-management/manage-traces-using-the-gui.md)
@@ -166,6 +165,8 @@
     * [Manage protocols debug level using the GUI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-gui.md)
     * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
   * [Collect and upload diagnostics data](support/diagnostics-management/diagnostics-utility.md)
+* [Weka Home - The Weka support cloud](support/the-wekaio-support-cloud/README.md)
+  * [Local Weka Home deployment](support/the-wekaio-support-cloud/local-weka-home-deployment.md)
 
 ## Appendix
 
