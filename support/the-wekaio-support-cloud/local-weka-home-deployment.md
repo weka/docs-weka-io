@@ -255,7 +255,7 @@ In short, set the delivery method and destination on the **Integration** page, t
 6\. On the **Create Rule** page, do the following:
 
 * Enter a meaningful name to the rule.
-* Select the event or alert type from **Rule Type** and set the conditions for the selected rule type. (the conditions depend on the selected rule type).
+* Select the event or alert type from **Rule Type** and set the conditions for the selected rule type.
 * Select **View integrations** and then select the required integration from the list.
 * Select **Save Rule**.
 
