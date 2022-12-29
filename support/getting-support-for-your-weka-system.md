@@ -26,7 +26,7 @@ The SLA detailed in the technical support policy is for Weka software issues. Is
 
 To be ready to get support from Weka, it is recommended to perform the following:
 
-1. For each cluster provisioned, [allow uploading events to the support cloud](the-wekaio-support-cloud/) to enable proactive support and improve the troubleshooting process if needed
+1. For each cluster provisioned, [allow uploading events to the support cloud](the-wekaio-support-cloud.md) to enable proactive support and improve the troubleshooting process if needed
 2. Create an account on the Weka Support Portal [support.weka.io](http://support.weka.io/).  This will allow you to easily submit and check the status of tickets and browse our online knowledgebase.
 3. We suggest opening a shared Slack channel with Weka for day-to-day activities, Slack activity will not substitute opening tickets for issues and Weka does not guarantee any response time SLA while using Slack. To arrange the slack channel, get in touch with your Weka point of contact, open a case in our support portal at [support.weka.io](http://support.weka.io/) or send an email to [support@weka.io](mailto:support@weka.io).
 
