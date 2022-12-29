@@ -69,7 +69,7 @@ Ensure that the `sudoers` file includes the root user.&#x20;
 
 ### 1. Prepare the management server
 
-1. Disable the **SELinux**.
+1. Disable the _SELinux_.
 2. Disable the _iptables_, _UFW_, or _firewalld_.
 3. Install the Docker Engine version 20 or higher on the management server according to the Docker documentation.\
    To install the Docker on RHEL, see [Install Docker Engine on Centos](https://docs.docker.com/engine/install/centos/) (the instructions in _Install Docker Engine on RHEL_ do not work).
