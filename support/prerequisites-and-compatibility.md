@@ -125,6 +125,7 @@ In addition, Intel E810 NIC does not yet support the [multiple containers archit
 
 Supported Mellanox OFED versions:
 
+* 5.8-1.1.2.1 LTS
 * 5.7-1.0.2.0
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
@@ -183,6 +184,7 @@ Supported ice drivers:
 
 Supported Mellanox OFED versions:
 
+* 5.8-1.1.2.1 LTS
 * 5.7-1.0.2.0
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
