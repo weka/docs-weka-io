@@ -48,7 +48,7 @@ To scale up the Local Weka Home server, for each additional 1000 Weka containers
 * RHEL 8.2+
 
 {% hint style="success" %}
-Using other operating systems. To check the options, contact the [Customer Success Team](../getting-support-for-your-weka-system.md#contact-customer-success-team).
+For using other operating systems, contact the [Customer Success Team](../getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ### User account requirements
