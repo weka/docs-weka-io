@@ -4,7 +4,7 @@ description: >-
   installation.
 ---
 
-# Prepare the system for Weka installation
+# Prepare the system for Weka software installation
 
 Once the hardware and software prerequisites are met, prepare the backend servers and clients for the installation of the Weka system.
 
@@ -387,8 +387,7 @@ The `wekachecker` performs the following validations:
 
 **Procedure**
 
-1. Download the tool repository to one of the servers in the group intended for the cluster, using git clone from [https://github.com/weka/tools](https://github.com/weka/tools).\
-   Alternatively, download the tarball from [https://github.com/weka/tools/releases](https://github.com/weka/tools/releases) and extract it.
+1. Download the Wekachecker tarball from [https://github.com/weka/tools/blob/master/install/wekachecker](https://github.com/weka/tools/blob/master/install/wekachecker) and extract it.
 2. From the install directory, run `./wekachecker <hostnames/IPs>`\
    Where:\
    The `hostnames/IPs` is a space-separated list of all the cluster hostnames or IP addresses connected to the **high-speed networking**.\

@@ -43,7 +43,7 @@ Stop and remove the auto-created default container created on each server.
 
 **Command:** `resources_generator.py`
 
-To generate the resource files for the drive, compute, and frontend processes, download the [resource\_generator.py](https://github.com/weka/tools/tree/master/topics/resource\_generator) and run the following command on one server of each process type.
+To generate the resource files for the drive, compute, and frontend processes, download the [resource\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py) and run the following command on one server of each process type.
 
 The resource generator automatically calculates the number of cores, memory, and other resource values. However, you can override these values by providing specific options.
 
@@ -196,7 +196,7 @@ In closed environments, such as dark sites and private VPCs, it is possible to i
 This command enables the use of a private instance of Weka Home.
 
 {% hint style="info" %}
-For more information, refer to [Private Instance of Weka Home](../../support/the-wekaio-support-cloud/#private-instance-of-weka-home) and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
+For more information, refer to the [Private Instance of Weka Home](../../support/the-wekaio-support-cloud/#private-instance-of-weka-home) and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 ### 10. Set the license
