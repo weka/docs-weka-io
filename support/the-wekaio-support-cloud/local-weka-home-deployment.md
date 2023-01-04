@@ -113,7 +113,7 @@ The installation takes about 3 minutes.
 1. Unpack the Local Weka Home package.\
    `tar xvf <file name>`
 2. From the `wekahome_offline` directory, run `./update_config.sh`.
-3. Open the `root/.config/wekahome/config.yaml` file and set the following (the values are just for example):
+3. Open the `/root/.config/wekahome/config.yaml` file and set the following (the values are just for example):
 
 #### Domain&#x20;
 
