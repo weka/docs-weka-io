@@ -60,10 +60,10 @@ Ensure that the `sudoers` file includes the root user.&#x20;
 ## Workflow: Local Weka Home deployment
 
 1. [Prepare the management server](local-weka-home-deployment.md#1.-prepare-the-management-server).
-2. [Download the Weka Home and Minikube packages](local-weka-home-deployment.md#2.-download-the-weka-home-and-minikube-packages).
+2. [Download the Weka Home and Minikube packages](local-weka-home-deployment.md#2.-download-the-local-weka-home-and-minikube-packages).
 3. [Install the Minikube](local-weka-home-deployment.md#3.-install-the-minikube).
-4. [Install and configure the Weka Home](local-weka-home-deployment.md#4.-install-and-configure-weka-home).
-5. [Access the Weka Home portal and Grafana](local-weka-home-deployment.md#5.-access-the-weka-home-portal-and-grafana).
+4. [Install and configure the Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home).
+5. [Access the Weka Home portal and Grafana](local-weka-home-deployment.md#5.-access-the-local-weka-home-portal-and-grafana).
 6. [Enable the Weka cluster to send data to Weka Home](local-weka-home-deployment.md#6.-enable-the-weka-cluster-to-send-information-to-the-local-weka-home).
 7. [Test the deployment](local-weka-home-deployment.md#7.-test-the-deployment).
 
