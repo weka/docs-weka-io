@@ -23,9 +23,9 @@ We'll consider an example of architecture with 8 identical servers (named `weka0
 This quick installation exemplifies two architecture types:
 
 * **Single container architecture:** an architecture with 8 identical servers, named `weka01` to `weka08`. Each container is configured with the drive, compute, and frontend processes.
-* **Multiple containers architecture:** an architecture with 8 servers, named `weka01` to `weka08`. Each container is configured with only one process type: drive, compute, or frontend. See [Weka containers architecture overview](broken-reference).
+* **Multiple containers architecture:** an architecture with 8 servers, named `weka01` to `weka08`. Each container is configured with only one process type: drive, compute, or frontend. See [Weka containers architecture overview](../overview/weka-containers-architecture-overview.md).
 
-In the following examples, we use Mellanox or Intel E810 NICs, which simplifies the installation commands. For example, only a single IP for data is required, no need to expose VFs, identification of the interface netmask, and default routing gateway.&#x20;
+In the following examples, we use Mellanox or Intel E810 NICs to simplify the installation commands. For example, only a single IP for data is required, no need to expose VFs, identification of the interface netmask, and default routing gateway.&#x20;
 
 If the architecture is different, the installation commands are slightly different.
 
