@@ -10,10 +10,10 @@ Snapshots allow the saving of a filesystem state to a `.snapshots`directory loca
 
 * **Physical backup:** The snapshot directory can be copied into a different storage system, possibly on another site, using either the Weka system Snap-To-Object feature or a third-party software.
 * **Logical backup:** Periodic snapshots enable filesystem restoration to a previous state if logical data corruption occurs.
-* **Archive:** Periodic snapshots enable the accessing of a previous filesystem state for compliance or other needs.
+* **Archive:** Periodic snapshots enable accessing a previous filesystem state for compliance or other needs.
 * **DevOps environments:** Writable snapshots enable the execution of software tests on copies of the data.
 
-Snapshots have no impact on system performance and can be taken for each filesystem while applications are running. They consume minimal space, according to the actual differences between the filesystem and the snapshots, or between the snapshots, in 4K granularity.
+Snapshots have no impact on system performance and can be taken for each filesystem while applications are running. They consume minimal space, according to the differences between the filesystem and the snapshots, or between the snapshots, in 4K granularity.
 
 By default, snapshots are read-only, and any attempt to change the content of a read-only snapshot returns an error message.
 
@@ -27,9 +27,9 @@ The Weka system supports the following snapshot operations:
 * Access a snapshot under a dedicated directory name.
 * Restore a filesystem from a snapshot.
 * Make snapshots writable.
-* Create a snapshot of a snapshot (relevant for writable snapshots, or for read-only snapshots before being made writable).
-* List of snapshots and obtaining their metadata.
-* Schedule automatic **** snapshots (see [Snapshot management](../../appendix/snapshot-management.md) **** in the Appendix).
+* Create a snapshot of a snapshot (relevant for writable snapshots or read-only snapshots before being made writable).
+* Obtain the list of snapshots and access their metadata.
+* Schedule automatic **** snapshots (see [Set up the SnapTool external snapshots manager](../../appendix/snapshot-management.md) in the Appendix).
 
 {% hint style="info" %}
 **Note:** The number of snapshots per system is limited to 4,096. Each live filesystem consumes one of the total snapshots count.
