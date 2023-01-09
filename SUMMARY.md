@@ -186,7 +186,7 @@
 
 * [Weka CSI Plugin](appendix/weka-csi-plugin.md)
 * [Set up the Weka-mon external monitoring](appendix/external-monitoring.md)
-* [Snapshot management](appendix/snapshot-management.md)
+* [Set up the SnapTool external snapshots manager](appendix/snapshot-management.md)
 
 ***
 

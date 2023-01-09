@@ -12,21 +12,25 @@ The Weka implementation of SMB makes storage services available to Windows and m
 
 ## SMB implementation key features&#x20;
 
-The implementation of the SMB feature in the Weka system is scalable, resilient, and distributed.
+Implementing the SMB feature in the Weka system is scalable, resilient, and distributed.
 
 * **Scalable:** The Weka system supports an SMB cluster of between 3 to 8 servers. These servers run the SMB gateway service, while the backend filesystem can be any Weka filesystem. Therefore, it is practically unlimited in size and performance.
-* **Resilient:** The Weka system implementation of SMB provides clustered access to files in a Weka file store, enabling multiple servers to work together. Consequently, if a server failure occurs, another server is available to take over operations, thereby ensuring failover support and high availability. Weka standard resiliency against failures also protects the SMB filesystems. SMB-W supports transparent failover, thus providing more resiliency than legacy SMB.
-* **Distributed:** A Weka implementation is distributed over a cluster, where all servers in the cluster manage all SMB filesystems concurrently. Therefore, performance supported by SMB can scale with more hardware resources, and high availability is ensured. SMB-W supports SMB Multichannel and SMB Direct (as opposed to the legacy SMB).
+* **Resilient:** The Weka system implementation of SMB provides clustered access to files in a Weka file store, enabling multiple servers to work together. Consequently, if a server fails, another server is available to take over operations, ensuring failover support and high availability. Weka standard resiliency against failures also protects the SMB filesystems. SMB-W supports transparent failover, thus providing more resiliency than legacy SMB.
+* **Distributed:** A Weka implementation is distributed over a cluster, where all servers in the cluster manage all SMB filesystems concurrently. Therefore, the performance supported by the SMB can scale with more hardware resources, and high availability is ensured. SMB-W supports SMB Multichannel and SMB Direct (as opposed to the legacy SMB).
 
 ## SMB-W additional features
 
 The SMB-W provides the following features in addition to the legacy SMB features:
 
-* **SMB Multichannel**: Weka supports SMB clients configured with multichannel. Therefore increasing the performance in such a configuration.&#x20;
+* **SMB Multichannel**: Weka supports SMB clients configured with multichannel. Therefore increasing the performance in such a configuration.
+* **SMB Transparent Failover:** This feature enables continuous IO availability during failover.
 * **SMB Direct:** SMB over Remote Direct Memory Access (RDMA). To use the SMB Direct feature, make sure that the following pre-requisites are met:
   * The SMB-W servers are RDMA-enabled (both HW and OS).
   * For Windows clients, the SMB client must be configured as multichannel.
-* **SMB Transparent Failover:** This feature enables continuous IO availability during failover.
+
+{% hint style="info" %}
+**Note:** When configuring a CIFS client to work with RDMA, the mounting must be on the host IP (not the floating IP).
+{% endhint %}
 
 ## SMB user mapping
 
@@ -92,7 +96,7 @@ Verify that the DNS "nameserver" of the servers participating in the SMB cluster
 To ensure that the various SMB clients balance the load on the different Weka servers serving SMB, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS) entry that resolves to the list of floating IPs, ensuring that client loads are equally distributed across all servers.
 
 {% hint style="info" %}
-**Note:** Make sure to set the TTL (Time to Live) for all A records assigned to the SMB servers to 0 (Zero). This ensures that the client or the DNS server does not cache the IP.
+**Note:** Set the TTL (Time to Live) for all A records assigned to the SMB servers to 0 (Zero). This ensures that the client or the DNS server does not cache the IP.
 {% endhint %}
 
 ### Create SMB shares
@@ -110,7 +114,7 @@ Once the SMB cluster is connected to the Active Directory, it can assign permiss
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** To obtain root access to the SMB shares, assign an Active Directory user with `uidNumber` and `gidNumber` of 0.
+**Note:** To obtain root access to the SMB shares, assign an Active Directory user with a `uidNumber` and `gidNumber` of 0.
 {% endhint %}
 
 ### Integration with previous versions of Windows&#x20;

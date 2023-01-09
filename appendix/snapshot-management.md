@@ -1,153 +1,189 @@
 ---
-description: This page describes how to set up automatic snapshot mangement
+description: >-
+  The SnapTool is an external snapshots manager that enables scheduled snapshots
+  and automatic operations
 ---
 
-# Snapshot management
+# Set up the SnapTool external snapshots manager
 
-Weka's SnapTool allows for the creation of scheduled snapshots for your cluster automatically and optionally uploads them to a tiered object store.
+Weka provides an external snapshots manager named SnapTool, enabling scheduled snapshots for your Weka cluster.
 
-## Features
+The SnapTool provides the following features:
 
 * Schedule snapshots monthly, daily, or at multiple (minute granularity) intervals during a daily schedule.
-* Retention specification - each schedule controls the number of snapshot copies to retain.
-* Expired snapshots are automatically deleted.
-* Optionally upload snapshots to an Object Store automatically.
-* Background uploads and deletes
+* Set the number of snapshot copies to retain per schedule.
+* Delete expired snapshots automatically.
+* Upload snapshots to an object store automatically.
+* Upload and delete in the background.
+* Access a Web Status GUI to view the snapshot schedules, upload and download queue, , locator IDs for successfully uploaded snapshots, and logs. The default URL is `http://<snaptool server hostname/IP>:8090`.
 
-{% hint style="warning" %}
-**Note:** Configuration files from releases before 1.0.0 are not compatible with 1.0.0 and above. They will need to be modified to use the new syntax.
+The SnapTool runs on any Linux-based management server (or VM). All communication with the Weka cluster is done by an IP connection only to a Weka host using the Weka REST API.
+
+The SnapTool package can be installed with a _systemd_ service or _Docker_ container. In both options, you need to edit the configuration in the `snaptool.yml` file before running the installation.
+
+<figure><img src="../.gitbook/assets/snaptool_setup.png" alt=""><figcaption><p>SnapTool setup</p></figcaption></figure>
+
+## Before you begin
+
+If a previous SnapTool version exists in the management server, make a copy of your existing `snaptool.yml` file.
+
+If the `snaptool.yml` file is from releases before 1.0.0, it is incompatible with 1.0.0 and above. You need to modify the file to use the new syntax.
+
+Setting up a dedicated management server (or VM) for the installation is recommended.
+
+### Server minimum requirements
+
+* 2 cores
+* 8 GB RAM
+* 5 GB /opt/ partition (for the SnapTool installation)
+* Network access to the Weka cluster
+*   To use Docker, the following must be installed on the dedicated management server:
+
+    * `docker-ce`
+    * `docker-compose` or `docker-compose-plugin` depending on the existing operating system.
+
+    For the Docker installation instructions, see the [Docker website](https://www.docker.com/get-started).
+
+### Authentication token requirement
+
+To enable communication between the management server and the Weka cluster, the security token is required in the **auth-token.json** file.
+
+Create the directory `~/.weka` in the management server.
+
+Generate the `auth-token.json` **** file and save it in the `~/.weka` directory. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
+
+{% hint style="info" %}
+It is highly recommended to create a local user with ReadOnly privilege just for the Weka-mon package and use it for cluster communications.\
+See the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
 {% endhint %}
 
-## Where to run?
+## Option 1: Install the SnapTool package with the systemd service
 
-`snaptool` can be run on any Linux system or VM and does not need to be on a server running the Weka protocol. All communication with the Weka Cluster is via the Weka API and needs only IP connectivity to a Weka host.  If `snaptool` is not running on a server with Weka installed, a valid `auth-token.json` file for the weka cluster will need to be copied to the running host, typically into `~/.weka`.
+1. Download the latest `snaptool.tar` file from [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) and extract it to the management server.\
+   Example:\
+   `wget https://github.com/weka/snaptool/releases/download/1.0.0/snaptool-1.0.0.tar`\
+   `tar xvf snaptool.tar`
+2. Edit the `snaptool.yml` configuration file (default location: /opt/weka/snaptool).\
+   See [Edit the configuration in snaptool.yml](snapshot-management.md#edit-the-configuration-in-snaptool.yml).\
+   This is a mandatory step before running the installer. Otherwise, the installation fails.
+3. Install the _unit_ file into the `systemd` and start the service. Run the following command:\
+   `./install.sh`\
+   ``The installer validates the connection to the cluster by the hosts specified in the `snaptool.yml` file.
 
-## Installation
-
-`snaptool` is typically installed as a `systemd` service or in a Docker container; however, you will need to customize the configuration (`snaptool.yml`) file prior to starting the `snaptool`.   See [Deploying the Snapshot Management Tool with Systemd](snapshot-management.md#deploying-the-snapshot-management-tool-with-systemd) or [Deploying the Snapshot Management Tool in Docker](snapshot-management.md#deploying-the-snapshot-management-tool-in-docker) sections for details on each installation type.
-
-## Configuration
-
-A YAML file provides configuration information. The default configuration file name is `snaptool.yml`, and a sample `snaptool.yml` is included. There are three top-level sections, all of which are required:
-
-```
-cluster:  
-filesystems: 
-schedules:
-```
-
-#### Cluster syntax
-
-Cluster information is in the `cluster:` section. A server list is required. Other entries in this section are optional but are recommended for clarity. See the example `snaptool.yml` below for valid syntax.&#x20;
-
-{% hint style="warning" %}
-**Note:** It is not necessary to list all weka hosts/servers in the cluster, but more than one is recommended.
+{% hint style="info" %}
+If the systemd service is already running locally, the installer stops it and preserves the existing `snaptool.yml` file before restarting it.
 {% endhint %}
 
-The allowed entries are:
+## Option 2: Install the SnapTool package in Docker
+
+The `snaptool` container runs similarly to other Weka Docker containers.
+
+1. Download the docker image from the docker hub. Run the following command:\
+   `docker pull wekasolutions/snaptool:latest`
+2. Download the following files from GitHub [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) to a dedicated directory in the management server:
+   * `snaptool.yml`
+   * `docker_run.sh`
+3. Edit the `snaptool.yml` configuration file (default location: /opt/weka/snaptool).\
+   See [Edit the configuration in snaptool.yml](snapshot-management.md#edit-the-configuration-in-snaptool.yml).\
+   This is a mandatory step before running the installer. Otherwise, the installation fails.
+4. Edit the `time_zone` field in the `docker_run.sh` file.
+5. Run the following command:\
+   `./docker_run.sh`
+6. Verify that the SnapTool container is running using the following command:\
+   `docker ps`
+
+Example:
 
 ```
-cluster:
-    auth_token_file: 
-    hosts: 
-    force_https: 
-    verify_cert: 
+oot@weka142:~# docker ps
+CONTAINER ID   IMAGE                   COMMAND                 CREATED      STATUS     PORTS   NAMES
+718486e75b38   wekasolutions/snaptool  "/wekabin/snaptool -…"  30 hours ago Up 5 hours         weka_snaptool
 ```
 
-#### Filesystems syntax
+{% hint style="info" %}
+A `logs` directory is created in the current working directory for logs and snapshot journaling files.
+{% endhint %}
 
-Filesystems are in the `filesystems:` section, and these entries define which snapshot schedule(s) will run for the listed filesystems. Each filesystem line looks like this:
+## Edit the configuration in the snaptool.yml file
+
+The SnapTool configuration is defined in the `snaptool.yml` file.
+
+1. Go to the `snaptool` directory and open the `snaptool.yml` file.
+2. In the **cluster** section under the **hosts** list, replace the hostnames with the actual hostnames/IP addresses of the Weka containers (up to three would be sufficient).&#x20;
+
+&#x20;Syntax:
 
 ```
-<fsname>:  <schedule1>,<schedule2>...
-```
-
-#### Schedule syntax
-
-Schedules Syntax is below. Schedules that are within a scheduled group cannot be assigned separately from the group, and the group name must be used.
-
-Using the example configuration file (YAML file), define your filesystems and which schedule(s) they should use. Also, define custom schedules in the YAML file. Schedule keywords and syntax are shown below.
-
-To indicate that a particular schedule (i.e.,: monthly, weekly) should not run on a filesystem, set the `retain:` to `0`, or remove it from the filesystem's schedule list.
-
-`snaptool` checks to see if the YAML configuration file has changed approximately every 30-60 seconds and reloads it if it has. Snapshot schedules are then recalculated before creating new snapshots.
-
-Each schedule has the following syntax:
-
-```yaml
-<optional schedulegroupname>:  
-
-    <schedulename>:
-
-        every: (required) 'month' | 'day' | list of months | list of days
-            'day' or list of days 
-                - takes a snap at time specified by at: on the specified day(s)
-                - 'day' is equivalent to specifying all 7 days of the week
-                - list of days can be 3 character day abbreviation, or full day names.  For example:
-                    Mon,Tue
-                    Monday,Tuesday,Wednesday,Thursday,Friday
-                - see also 'interval:' <number of minutes> and 'until:'
-            'month' or list of months 
-                - takes a snap on <day:> (integer 1..31) of the month, at time specified by <at:>  
-                - 'month' is equivalent to specifying all 12 months
-                - day: defaults to 1, first day of the month
-                - if day > last day of a month (example: day is 31 and the month is April), 
-                    then the snap is taken on the last day of the month
-                - list of months can be 3 character mon abbreviations, or full month names.  For eample:
-                    "Jan,Jul"
-                    "January,April,Aug,Oct"
-
-        at: time - defaults to '0000' (midnight)
-            - format accepts times like "9am", "9:15am" "2300" etc.  Some valid examples:
-                at: 9am
-                at: 0900
-                at: 9:05pm
-
-        interval: <number of minutes>
-            - number of minutes between snapshots
-            - only applicable for schedules by day, not month ('day' or list of days)
-            - if 'interval:' is not provided, a single snapshot per day is taken at "at:"
-            - if 'interval:' is provided - 'at:' and 'until:' provide the start and end times for the snaps taken
-            - first snap is taken at 'at:' time, then every <interval:> minutes thereafter until 'until:' is reached
-                    Interval will only attempt snaps within a day, between times specified by 'at:' and 'until:'.  
-                    So this value, added to 'at:' time, should always yield a time less than 'until:', otherwise it is ignored.
-
-        until: defaults to '2359'
-            - the latest time that an interval-based snapshot can be created
-
-        retain: defaults to 4.  This is the number of snapshots kept. 0 disables the schedule. 
-
-        upload: defaults to no/False - yes/True uploads the snapshot to the object store associated with the filesystem
-```
-
-Example `snaptool.yml`:
-
-```yaml
 cluster:
     auth_token_file: auth-token.json
-    hosts: vweka1,vweka2,vweka3
-    force_https: True   # only 3.10+ clusters support https
-    verify_cert: False  # default cert cannot be verified
+    hosts: vweka01,vweka02,vweka03
+```
 
+&#x20;Example:
+
+```
+cluster:
+    auth_token_file: auth-token.json
+    hosts: hostname1,hostname2,hostname3
+```
+
+3\. In the **snaptool** section, the default network port to access the Web Status GUI is 8090. If required, you can modify it. To disable the Web Status GUI, set the port to 0.
+
+Syntax:
+
+```
+snaptool:
+    port: 8090
+```
+
+4\. In the **filesystems** section, specify the filesystems and their schedule names to run snapshots.
+
+Syntax:
+
+```
+<fs_name1>:  <schedule1>,<schedule2>...
+<fs_name2>:  <schedule1>,<schedule2>...
+```
+
+&#x20;Example:
+
+```
 filesystems:
-    fs01: default
-    fs02: Weekdays-6pm, Weekends-noon
+   fs01: default
+   fs02: Weekdays-6pm, Weekends-noon
+```
 
+5\. Optional. Customize the snapshot schedules.
+
+Adhere to the following rules when customizing the schedules:
+
+* Schedules within a schedules group, such as `default`, cannot be assigned separately from the group. Use only the group name.
+* To set a specific schedule within a schedules group, such as monthly and weekly, **not** to run on a filesystem, remove it from the filesystem's schedule list.
+* When deleting snapshots automatically, based on the `retain:` value, snapshots for a schedule and filesystem are sorted by the creation time. The oldest snapshots are deleted until the number of snapshots to retain (the value specified in the `retain:` section) remains.
+* The SnapTool checks if the `snaptool.yml` file has changed about every minute and reloads it if it is changed. Snapshot schedules are then recalculated before creating new snapshots.
+
+{% hint style="info" %}
+For details about the syntax of the `schedules` section, see the comments in the `snaptool.yml` file.
+{% endhint %}
+
+Example:
+
+```yaml
 schedules:
     default:
         monthly:
             every: month
             retain: 6
-            # day: 1   (this is default)
-            # at: 0000 (this is default)
+            # day: 1   (this is the default)
+            # at: 0000 (this is the default)
         weekly:
             every: Sunday
             retain: 8
-            # at: 0000 (this is default)
+            # at: 0000 (this is the default)
         daily:
             every: Mon,Tue,Wed,Thu,Fri,Sat
             retain: 14
-            # at: 0000 (this is default)
+            # at: 0000 (this is the default)
         hourly:
             every: Mon,Tue,Wed,Thu,Fri
             retain: 10
@@ -162,96 +198,20 @@ schedules:
         every: Sat,Sun
         at: 1200
         retain: 4
-        
 ```
+
+### Snapshot naming conventions
+
+The format of the snapshot names is `<schedulename>.YYMMDDHHMM`, with the access point `@GMT-YYYY.MM.DD-HH.MM.SS`.&#x20;
+
+**Example:** For a snapshot name `Weekends-noon.2103101200` and access point `@GMT-2021.03.10-12.00.00`, the snapshot name is in the local timezone, the access point is in GMT,  and the server timezone is GMT.
+
+The name for a group of snapshots is`<schedulegroupname>_<schedulename>.YYMMDDHHMM`. The length of the full name before the '.' is a maximum of 18 characters.
+
+**Example:** The `default` schedule group with an `hourly` schedule can be named `default_hourly.YYMMDDHHMM`.
 
 {% hint style="warning" %}
-**Note:** You may use the above example as a template for the `snaptool.yml` file or start with a copy from the GitHub repo ([https://github.com/weka/snaptool](https://github.com/weka/snaptool)) or the release tarball.
+**Note:** The SnapTool distinguishes between user-created snapshots and scheduled snapshots only by their name.
+
+When creating user-created snapshots, avoid name collisions with scheduled snapshot names. The SnapTool might automatically select the user-created snapshots for deletion if the same naming format is used.
 {% endhint %}
-
-## Snapshot naming
-
-The format of the snapshot names is `<schedulename>.YYMMDDHHMM`, with the access point `@GMT-YYYY.MM.DD-HH.MM.SS`. For example, a snapshot might be named `Weekends-noon.2103101200` and have the access point `@GMT-2021.03.10-12.00.00`. The snapshot name will be in the local timezone and the access point in GMT (In this example, the server timezone is set to GMT).
-
-For grouped snapshots, the name will be `<schedulegroupname>_<schedulename>.YYMMDDHHMM`. The full name before the '.' can't be longer than 18 characters. For example, `default` schedule group with an `hourly` schedule in it might be named `default_hourly.YYMMDDHHMM`.
-
-When deleting snapshots automatically, based on the `retain:` keyword, snapshots for a schedule and filesystem are sorted by creation time, and the oldest snapshots will be deleted until there are `retain:` snapshots left for the applicable Schedule and filesystem.
-
-{% hint style="warning" %}
-**Note:** `snaptool` is unable to distinguish between user-created and snapshot manager-created snapshots, other than by the name, so when creating user-created snapshots, name collisions with scheduled snapshot names must be avoided.  If the same naming format is used, the user-created snapshots may be selected for deletion automatically.
-{% endhint %}
-
-## Deploy the snapshot management tool with systemd
-
-In a web browser, please visit [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) to view the latest release.  The `snaptool-<release>.tar` file in the release is a binary version and is the recommended download.
-
-* download and extract the tarball
-* edit the `snaptool.yml` configuration file (if one doesn't exist in the destination directory already).  Default destination is /opt/weka/snaptool.
-*   run the install script `install.sh`
-
-
-
-An easy way if getting the tarball onto your system is via `wget` or `curl` of the tarball directly from GitHub. Right-click on the filename on the releases webpage and select Copy Link Address, then paste into a command line, like this:
-
-```
-wget https://github.com/weka/snaptool/releases/download/1.0.0/snaptool-1.0.0.tar
-tar xvf snaptool-1.0.0.tar
-cd snaptool
-
-```
-
-You can also download the tarball with any browser and copy it to the destination system.
-
-If this is the first time `snaptool` is installed on a system, edit the `snaptool.yml` configuration file (see above). Then run the included `install.sh` to install the unit file into `systemd` and start the service:&#x20;
-
-```
-./install.sh
-
-```
-
-{% hint style="warning" %}
-**Note**: the installer will check for a valid cluster connection using the hosts in the `snaptool.yml` file. The installer will not proceed if the cluster connection test fails.   Therefore, if this is the first time `snaptool` is installed, you **must** edit the `snaptool.yml` file to point to a valid weka cluster before running the installer.
-{% endhint %}
-
-If the service is already running locally, the installer will stop it, and preserve the existing `snaptool.yml` file before restarting the service.
-
-## Deploy the snapshot management tool in docker
-
-The `snaptool` container is run in much the same way as other Weka Docker containers. The docker image can be downloaded from docker hub using `docker pull wekasolutions/snaptool:latest`. Then, edit/create the `snaptool.yml` configuration file in the current directory and run the container. Please see the `docker_run.sh` file in the tarball release[ ](https://github.com/weka/snaptool/releases/latest)for a sample docker run file that sets the required mounts and parameters for the docker image to run properly. The tarball release can be downloaded from:
-
-[https://github.com/weka/snaptool/releases/latest](https://github.com/weka/snaptool/releases/latest)
-
-The `docker_run.sh` file looks like this:
-
-```
-#!/bin/bash
-# sample file for running snaptool as a docker container
-# the wekasolutions/snaptool docker image can be downloaded from docker hub
-#
-# the config_file is expected to be in the current directory when running within docker.
-# logs will be created in a 'logs' directory in the current directory.
-#
-config_file=snaptool.yml
-time_zone=US/Eastern
-auth_dir=$HOME/.weka
-
-mkdir -p logs ; chown 472 logs
-
-if [[ ! -f $config_file ]]; then echo "Config file '$config_file' missing.  Exiting."; exit 1; fi
-
-# some OS variants may not have this syslog option; if it doesn't exist, don't set it up
-if [[ -e /dev/log ]]; then syslog_mount='--mount type=bind,source=/dev/log,target=/dev/log'; fi
-
-docker run --network='host' --restart always -e TZ=$time_zone -d \
-    $syslog_mount \
-    --mount type=bind,source=$PWD,target=/weka \
-    --mount type=bind,source=$auth_dir,target=/weka/.weka,readonly \
-    --mount type=bind,source=/etc/hosts,target=/etc/hosts,readonly \
-    --name weka_snaptool \
-    wekasolutions/snaptool -vv -c $config_file
-
-    
-```
-
-When running in docker, the `snaptool.yml` file should be in the current working directory.  A logs directory will be created in the current working directory for logging and snapshot journaling files.
-
