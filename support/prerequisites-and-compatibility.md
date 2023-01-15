@@ -65,7 +65,7 @@ The versions specified in the prerequisites and compatibility page apply to the 
   * `mls` policy is not supported yet
 
 {% hint style="info" %}
-**Note:** To set SELinux security context for files, `-o acl` should be used in the mount command, and `wekafs` should be defined to use extended-attributes in the SELinux policy configuration (`fs_use_xattr`).
+**Note:** To set the SELinux security context for files, `-o acl` should be used in the mount command, and `wekafs` should be defined to use extended attributes in the SELinux policy configuration (`fs_use_xattr`).
 {% endhint %}
 
 ### Kernel
@@ -75,7 +75,7 @@ The versions specified in the prerequisites and compatibility page apply to the 
 * 3.10
 
 {% hint style="info" %}
-**Note:** It is advisable to turn off auto kernel updates so it will not get upgraded to a yet unsupported version.
+**Note:** It is advisable to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
 {% endhint %}
 
 ## Weka installation directory
@@ -92,7 +92,7 @@ The versions specified in the prerequisites and compatibility page apply to the 
 {% hint style="info" %}
 **Note:** At least 4k MTU is advised on Weka cluster hosts NICs, and the switches the hosts are connected to.
 
-For both Ethernet and Infiniband configurations, a Weka system can be configured without jumbo frames. However, it will provide very limited performance and will not be able to handle high loads of data; please consult the Weka Sales or Support teams before running in this mode.
+A Weka system can be configured without jumbo frames for both Ethernet and Infiniband configurations. However, it will provide very limited performance and will not be able to handle high loads of data; please consult the Weka Sales or Support teams before running in this mode.
 
 Jumbo Frames are not required for clients. However, performance might be limited.
 {% endhint %}
@@ -102,15 +102,27 @@ Jumbo Frames are not required for clients. However, performance might be limited
 #### NIC
 
 * Amazon ENA
-* Broadcom 57810s 10GbE
-* Intel E810
-* Intel 40 Gbit (Beta)
-* Intel 10 Gbit
-* Mellanox **** ConnectX6-Dx
-* Mellanox **** ConnectX6-Lx
-* Mellanox ConnectX6
-* Mellanox ConnectX5
-* Mellanox ConnectX4
+* Broadcom 57810S
+* Intel E810 2CQDA2
+* Intel X540
+* Intel X550-T1
+* Intel X710
+* Intel X710-DA2
+* Intel XL710
+* Intel XL710-Q2
+* Intel XXV710
+* Intel 82599ES
+* Intel 82599
+* Mellanox ConnectX-6-Lx
+* Mellanox ConnectX-6-Dx
+* Mellanox ConnectX-6
+* Mellanox ConnectX-5-Ex
+* Mellanox ConnectX-5-Bf
+* Mellanox ConnectX-5
+* Mellanox ConnectX-4-Lx
+* Mellanox ConnectX-4
+
+
 
 {% hint style="info" %}
 Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).\
@@ -169,9 +181,11 @@ Supported ice drivers:
 
 #### NIC
 
-* Mellanox ConnectX6
-* Mellanox ConnectX5
-* Mellanox ConnectX4
+* Mellanox ConnectX-6
+* Mellanox ConnectX-5
+* Mellanox ConnectX-5-Ex
+* Mellanox ConnectX-4
+* Mellanox ConnectX-4-Lx
 
 #### NIC Drivers
 
