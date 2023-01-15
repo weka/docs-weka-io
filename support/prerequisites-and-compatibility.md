@@ -102,14 +102,25 @@ Jumbo Frames are not required for clients. However, performance might be limited
 #### NIC
 
 * Amazon ENA
-* Broadcom 57810s 10GbE
-* Intel 10 Gbit
-* Intel 40 Gbit (Beta)
-* Intel E810
-* Mellanox ConnectX4
-* Mellanox ConnectX5
-* Mellanox ConnectX6
-* Mellanox **** ConnectX6-Dx
+* Broadcom 57810S
+* Intel E810 2CQDA2
+* Intel X540
+* Intel X550-T1
+* Intel X710
+* Intel X710-DA2
+* Intel XL710
+* Intel XL710-Q2
+* Intel XXV710
+* Intel 82599ES
+* Intel 82599
+* Mellanox ConnectX-6-Lx
+* Mellanox ConnectX-6-Dx
+* Mellanox ConnectX-6
+* Mellanox ConnectX-5-Ex
+* Mellanox ConnectX-5-Bf
+* Mellanox ConnectX-5
+* Mellanox ConnectX-4-Lx
+* Mellanox ConnectX-4
 
 {% hint style="info" %}
 Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).\
