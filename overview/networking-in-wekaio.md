@@ -82,10 +82,6 @@ The high-performance network used to connect all the backend servers must be DPD
 * Mellanox OFED must be installed and loaded.
 * There is no need to use SR-IOV, so the number of IPs allocated to the backend servers on the internal network should be the total number of backend servers, i.e., 8 IPs for 8 backend servers (using the example above).
 
-{% hint style="info" %}
-**Note:** SR-IOV enablement in the hardware is optional. If enabled, DPDK generates its own MAC addresses for the VFs (Virtual Functions) of the NIC and the same NIC can support multiple MAC addresses, some handled by the operating system and others by the Weka system.
-{% endhint %}
-
 #### Backend servers with DPDK-supporting the other NICs
 
 For backend servers equipped with DPDK-supporting the other NICs, the following conditions must be met:

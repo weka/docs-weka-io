@@ -6,7 +6,7 @@ description: This page describes the procedure required in order to set up SR-IO
 
 ## Overview
 
-Many hardware vendors ship their products with the SR-IOV feature disabled. On such platforms, the feature must be enabled prior to installing the Weka system. This enablement applies to both the server BIOS and the NIC. If already enabled, it is recommended to verify the current state before proceeding with the installation of the Weka system.
+Many hardware vendors ship their products with the SR-IOV feature disabled. On such platforms, the feature must be enabled before installing the Weka system. This enablement applies to both the server BIOS and the NIC. If already enabled, it is recommended to verify the current state before proceeding with the installation of the Weka system.
 
 This section assumes that NIC drivers have been installed and loaded successfully. If this is not the case, complete the procedure described in NIC Driver Installation and then continue as described below.
 
