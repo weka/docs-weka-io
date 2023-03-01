@@ -25,7 +25,7 @@ Once the cluster is deployed:
 
 ## Planning a Cluster
 
-The Self-Service Portal is available at [https://start.weka.io](https://start.weka.io). Its main screen is divided into two panes: the left pane, which is used for inputting requirements, and the right pane which displays possible configurations for the defined requirements.
+The Self-Service Portal is available at [https://start.weka.io](https://start.weka.io/). Its main screen is divided into two panes: the left pane, which is used for inputting requirements, and the right pane which displays possible configurations for the defined requirements.
 
 ![Self-Service Portal Main Screen](../../.gitbook/assets/01-calculator-overview.png)
 
@@ -122,7 +122,7 @@ The cluster deployment process takes about 10 minutes. During this time, the fol
 4. All client instances are created.
 5. A filesystem is created using all the available capacity and is mounted on all client instances. This shared filesystem is mounted on `/mnt/weka` in each of the cluster instances.
 
-Once the deployment is complete, the CloudFormation stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link (or by [http://\<backend-host>:14000](http://\<backend-host>:14000)).
+Once the deployment is complete, the CloudFormation stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link (or by http://\<backend-host>:14000).
 
 Visit [Managing the Weka System ](../../getting-started-with-weka/managing-wekaio-system.md)for getting started with Weka CLI and GUI, and [Performing the First IO](../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting, and writing to a WekaFS filesystem.
 

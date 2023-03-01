@@ -179,7 +179,7 @@ Use the following command line to add an interface group:
 
 Access the Group Ports table.
 
-![Group Ports Table](<../.gitbook/assets/image (5).png>)
+![Group Ports Table](../.gitbook/assets/image.png)
 
 To set interface group ports, click the '+' button on the top right-hand side of the Group Ports table. Then select the relevant hosts and ports and click Save.
 

@@ -82,7 +82,7 @@ This is the same step as in the previous method of adding a client.
 
 ### Step 2: Install the Weka Software <a href="#step-2-install-wekaio-software" id="step-2-install-wekaio-software"></a>
 
-To download the Weka software, go to [https://get.weka.io ](https://get.weka.io) and select the software version to be downloaded. After selecting the version, select the operating system it is to be installed on and run the download command line as `root`on all the new client instances.
+To download the Weka software, go to [https://get.weka.io ](https://get.weka.io/) and select the software version to be downloaded. After selecting the version, select the operating system it is to be installed on and run the download command line as `root`on all the new client instances.
 
 When the download is complete, untar the downloaded package and run the `install.sh` command in the package directory.
 

@@ -1,8 +1,8 @@
----
-description: Welcome to the Weka documentation portal.
----
+# Weka v3.14 Documentation
 
-# Weka Documentation
+Welcome to the Weka documentation portal. First, select the version of your Weka system from the top menu.
+
+<figure><img src=".gitbook/assets/version_selector.gif" alt=""><figcaption><p>Weka version selector</p></figcaption></figure>
 
 ## About this Documentation
 
