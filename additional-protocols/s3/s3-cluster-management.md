@@ -30,7 +30,7 @@ To configure the S3 cluster, click the Configure button. The following Configure
 
 ![Configure S3 Cluster Window](<../../.gitbook/assets/s3 cluster configure 3.12.png>)
 
-Select which filesystem to use for the S3 service, select the Weka backend hosts to form the S3 cluster, and optionally change the port for exposing the S3 service through. Then click the Configure button.
+Select which filesystem to use for the S3 service, select the Weka backend hosts to form the S3 cluster, and optionally change the port for exposing the S3 service (do not set port 9001). Then click the Configure button.
 
 The following S3 Cluster Configuration window will be displayed:
 
@@ -73,7 +73,7 @@ Use the following command line to create an S3 cluster:
 | `filesystem`          | String                          | The filesystem name to be used for the S3 service                                                                             | None                                 | Yes                                                |             |
 | `all-hosts`           | Boolean                         | Use all backend hosts to serve S3 commands                                                                                    | None                                 | Either `host` list or `all-hosts` must be provided | Off         |
 | `host`                | Comma-separated list of Numbers | Host IDs to serve the S3 service                                                                                              | Minimum of 3 hosts must be supplied. | Either `host` list or `all-hosts` must be provided |             |
-| `port`                | Number                          | The port where the S3 service is exposed                                                                                      | None                                 | No                                                 | 9000        |
+| `port`                | Number                          | The port where the S3 service is exposed                                                                                      | Do not set port 9001.                | No                                                 | 9000        |
 | `anonymous-posix-uid` | Number                          | POSIX UID for objects  (when accessed via POSIX) created with anonymous access (for bukets with an IAM pocliy allowing that). | None                                 | No                                                 | 65534       |
 | `anonymous-posix-gid` | Number                          | POSIX GID for objects  (when accessed via POSIX) created with anonymous access (for bukets with an IAM pocliy allowing that). | None                                 | No                                                 | 65534       |
 
