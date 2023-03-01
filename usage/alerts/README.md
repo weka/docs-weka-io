@@ -12,7 +12,7 @@ For each alert, the system provides the alert name, its description, and the cor
 
 Usually, an alert is introduced alongside an equivalent event. This can help in identifying the point in time that the problematic state occurred and its root cause.
 
-![Example: active alerts page](../../.gitbook/assets/wmng\_alerts\_overview.png)
+![Example: active alerts page](<../../.gitbook/assets/wmng\_alerts\_overview (1).png>)
 
 
 

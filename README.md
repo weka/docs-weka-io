@@ -1,8 +1,8 @@
----
-description: Welcome to the Weka documentation portal.
----
+# Weka v4.1 documentation
 
-# Weka documentation
+Welcome to the Weka documentation portal. First, select the version of your Weka system from the top menu.
+
+<figure><img src=".gitbook/assets/version_selector.gif" alt=""><figcaption><p>Weka version selector</p></figcaption></figure>
 
 ## About Weka documentation
 
@@ -12,15 +12,15 @@ This portal contains all the documentation necessary for understanding and worki
 
 **Getting started with Weka:** A quick installation guide of the Weka system, configuration of a WekaFS filesystem, and running the first IO tests to validate the system configuration.
 
-**Planning and installation:** Weka software installation on bare metal, AWS, and GCP environments.
+**Planning and installation:** Weka software installation on bare metal, AWS, GCP, and Azure environments.
 
 **Performance:** Results of the FIO performance tests on WekaFS.
 
-**WekaFS filesystems & object stores:** Role and management of filesystems, object stores**,** filesystem groups, and key-management systems in Weka system configurations.
+**WekaFS filesystems & object stores:** Role and management of filesystems, object stores, filesystem groups, and key-management systems in Weka system configurations.
 
-**Additional protocols:** The supported protocols NFS, SMB, and S3, for accessing data stored in a WekaFS filesystem.
+**Additional protocols:** The supported protocols NFS, SMB, and S3 for accessing data stored in a WekaFS filesystem.
 
-**Operation guide:** Weka system various operations, such as events, statistics, user management, upgrades, and more.
+**Operation guide:** Weka system various operations, such as events, statistics, user management, upgrades, expansion, and more.
 
 **Billing & licensing:** Weka system licensing and billing alternatives.
 

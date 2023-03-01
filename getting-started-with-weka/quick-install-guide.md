@@ -16,7 +16,7 @@ For a complete installation guide, as well as the self-service portal on AWS ref
 2. [NIC devices are configured properly](../install/bare-metal/setting-up-the-hosts/#network-configuration)
 3. [NTP is set up](../install/bare-metal/setting-up-the-hosts/#clock-synchronization)
 
-For a complete prerequisite list, refer to the [Prerequisites for Installation](../install/prerequisites-for-installation-of-weka-dedicated-hosts/) section.&#x20;
+For a complete prerequisite list, refer to the [Prerequisites for Installation](../install/prerequisites-for-installation-of-weka-dedicated-hosts.md) section.&#x20;
 
 We'll consider an example of architecture with 8 identical servers (named `weka01` to `weka08`). Each server has more than 20 cores, 6 NVME drives, and a single Mellanox NIC.&#x20;
 
@@ -47,19 +47,6 @@ For a full command set, refer to the **Planning and Installation** section.
 
 It is assumed that the servers are ready for the Weka software installation. In the following example, there are 8 servers. Each server has more than 20 cores, 6 NVME drives, and a single Mellanox NIC.
 
-```bash
-# connect to one of the servers and run the rest of the configuration from there
-ssh weka01
-
-# form the cluster and set basic stuff
-# using bash, you can provide a compact list of hosts; otherwise, a full list of all hosts should be supplied
-# weka cluster create weka01 weka02 weka03 weka04 weka05 weka06 weka07 weka08
-weka cluster create weka0{1..8}
-weka cluster update --cluster-name=WekaProd
-weka cloud enable
-
-```
-
 ### Install the Weka software
 
 1. Install Weka software on all containers:
@@ -83,31 +70,10 @@ weka cluster update --cluster-name=WekaProd
 weka cloud enable
 ```
 
-Configure the network, drives, and CPUs per host:
+Configure the network, drives, and CPUs per container:
 
 2\. Configure the network NICs, drives, and cores per container. Replace network, drives, and cores \
 &#x20;   configuration with your actual data.
-
-```bash
-# configure network, drives, and cores per host
-# replace network, drives, and cores configuration with your actual data
-
-for i in {0..7}
-do
-    weka cluster host dedicate $i on
-    
-    # add network NICs
-    # e.g., weka cluster host net add $i eth1
-    weka cluster host net add $i NETDEV
-    
-    # add the nvme drives; e.g., /dev/nvme0n1, etc.
-    weka cluster drive add $i /dev/nvme0n1 /dev/nvme1n1 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1
-    
-    # set host cores
-    weka cluster host cores $i 19 --frontend-dedicated-cores 1 --drives-dedicated-cores 6
-done
-
-```
 
 ```bash
 for i in {0..7}
@@ -129,7 +95,7 @@ done
 # show hosts info (net, cores, etc.)
 for i in {0..7}
 do
-    weka cluster host resources $i
+    weka cluster container resources $i
 done
 
 # show drives info
@@ -158,7 +124,7 @@ weka status
 2\. If the configuration status is according to your needs, apply the configuration:
 
 ```bash
-# initialize the hosts
+# initialize the containers
 weka cluster container apply --all --force
 ```
 
@@ -323,7 +289,7 @@ weka cluster start-io
 
 #### Create frontend containers
 
-1. Create the frontend containers from the resource generator output file `frontend0.json`. It is required for mounting from the server or for setting one of the additional protocols on the server, which requires a frontend process. Run the following command on all servers in the cluster:
+1. Create the frontend containers from the resource generator output file `frontend0.json`. This step is required for mounting from the server or setting one of the additional protocols on the server, which requires a frontend process. Run the following command on all servers in the cluster:
 
 ```
  pdsh -R ssh -w "weka0-[0-7]" 'weka local setup container --resources-path /tmp/frontend0.json --join-ips  $(hostname -i)'

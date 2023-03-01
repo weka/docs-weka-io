@@ -38,14 +38,18 @@ Other services used or enabled:
   * N. Virginia (us-east4)
   * Montréal (northamerica-northeast1)
   * São Paulo (southamerica-east1)
+  * Columbus (us-east5)
+  * Santiago (southamerica-west1)
 * Europe
   * London (europe-west2)
   * Belgium (europe-west1)
   * Netherlands (europe-west4)
   * Zurich (europe-west6)
   * Frankfurt (europe-west3)
+  * Hamina (europe-north1)
 * Asia Pacific
   * Mumbai (asia-south1)
+  * Delhi (asia-south2)
   * Singapore (asia-southeast1)
   * Taiwan (asia-east1)
   * Tokyo (asia-northeast1)

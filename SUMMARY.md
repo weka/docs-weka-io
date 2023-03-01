@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Weka documentation](README.md)
+* [Weka v4.1 documentation](README.md)
 
 ## Weka System Overview <a href="#overview" id="overview"></a>
 
@@ -23,11 +23,11 @@
 
 ## Planning and Installation <a href="#install" id="install"></a>
 
-* [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts/README.md)
+* [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts.md)
 * [Weka installation on bare metal](install/bare-metal/README.md)
   * [Plan the Weka system Installation](install/bare-metal/planning-a-weka-system-installation.md)
   * [Prepare the system for Weka software installation](install/bare-metal/setting-up-the-hosts/README.md)
-    * [SR-IOV enablement](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
+    * [Enable the SR-IOV](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Obtain the Weka software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
   * [Weka system installation with multiple containers](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
   * [Weka legacy system installation process](install/bare-metal/using-cli.md)
@@ -41,6 +41,13 @@
   * [Add clients](install/aws/adding-clients.md)
   * [Auto scaling group](install/aws/auto-scaling-group.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
+* [Weka installation on Azure](install/weka-installation-on-azure/README.md)
+  * [Azure-Weka Terraform package description](install/weka-installation-on-azure/azure-weka-terraform-package-description.md)
+  * [Deployment on Azure using Terraform](install/weka-installation-on-azure/deployment-on-azure-using-terraform.md)
+  * [Required services and supported regions](install/weka-installation-on-azure/required-services-and-supported-regions.md)
+  * [Supported virtual machine types](install/weka-installation-on-azure/supported-virtual-machine-types.md)
+  * [Add clients](install/weka-installation-on-azure/add-clients.md)
+  * [Troubleshooting](install/weka-installation-on-azure/troubleshooting.md)
 * [Weka installation on GCP](install/weka-installation-on-gcp/README.md)
   * [Weka project description](install/weka-installation-on-gcp/weka-project-description.md)
   * [Deployment on GCP using Terraform](install/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md)
@@ -178,9 +185,12 @@
   * [Protocols debug level management](support/diagnostics-management/protocols-debug-level-management/README.md)
     * [Manage protocols debug level using the GUI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-gui.md)
     * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
-  * [Collect and upload diagnostics data](support/diagnostics-management/diagnostics-utility.md)
+  * [Diagnostics data management](support/diagnostics-management/diagnostics-utility.md)
 * [Weka Home - The Weka support cloud](support/the-wekaio-support-cloud/README.md)
+  * [Local Weka Home overview](support/the-wekaio-support-cloud/local-weka-home-overview.md)
   * [Local Weka Home deployment](support/the-wekaio-support-cloud/local-weka-home-deployment.md)
+  * [Set the Local Weka Home to send alerts or events](support/the-wekaio-support-cloud/set-the-local-weka-home-to-send-alerts-or-events.md)
+  * [Download the Usage Report or Analytics](support/the-wekaio-support-cloud/download-the-usage-report-or-analytics.md)
 
 ## Appendix
 

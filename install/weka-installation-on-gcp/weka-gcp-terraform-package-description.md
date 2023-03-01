@@ -16,22 +16,26 @@ See the README files in the GCP-Terraform package for more details about the mod
 The GCP-Terraform package supports the following deployment types:
 
 * **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform for downloading the Weka release from the public [get.weka.io](https://get.weka.io) service. The following examples are provided:
-  * Public VPC.
-  * Public VPC with multiple clusters.
-  * Public VPC with shared peering.
-  * Use the existing public network.
+  * Public VPC
+  * Public VPC with creating a worker pool
+  * Public VPC with an existing public network
+  * Public VPC with multiple clusters
+  * Public VPC with a shared VPC
+  * Public VPC with an existing worker pool and VPC
 * **Private cloud deployments:** Require uploading the Weka release tar file into the yum repository (instances can download the Weka release from this yum repository). The following examples are provided:
-  * Private VPC with multiple clusters.
-  * Private VPC with additional shared peering.
-  * Use the existing private network.
+  * Private VPC with creating a worker pool
+  * Private VPC with an existing network
+  * Private VPC with an existing worker pool and VPC
+  * Private VPC with multiple clusters
+  * Private VPC with a shared VPC
 
 ## Terraform variables file
 
-Each deployment type includes a variables file `tf.tfvars` that contains only the variables required for the relevant deployment type. The following is an example of the public VPC variables file. See the README files in the GCP-Terraform package for the other variables files.
+Each deployment type includes a variables file `terraform.tfvars` that contains only the variables required for the relevant deployment type. The following is an example of the public VPC variables file. See the README files in the GCP-Terraform package for the other variables files.
 
 ### `tf.tfvars` example: Public VPC
 
-The following is the content of the `tf.tfvars` file for the public VPC example. As part of the **write** phase, you customize the values according to your deployment.
+The following is the content of the `terraform.tfvars` file for the public VPC example. As part of the **write** phase, you customize the values according to your deployment.
 
 ```
 project                  = "gcp1"
@@ -54,24 +58,24 @@ private_network          = false
 
 **Variable descriptions**
 
-| Variable                   | Description                                                                                                                                 | Limitations                                    |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| `project`                  | Your GCP project name.                                                                                                                      |                                                |
-| `region`                   | <p>Wide geographic region.<br>See <a href="required-services-and-supported-regions.md">Required services and supported regions</a>.<br></p> | The region must support the required services. |
-| `zone`                     | Specific zone in the region.                                                                                                                |                                                |
-| `prefix`                   | The prefix for your system name as you choose. It must be in lowercase and without special characters.                                      |                                                |
-| `subnets_cidr_range`       | IP addresses within your range. Provide one IP address per NIC.                                                                             |                                                |
-| `nics_number`              | <p><code>4</code> for c2-standard-8, or<br><code>7</code> for c2-standard-16</p>                                                            |                                                |
-| `cluster_size`             | The number of instances to create. The minimum cluster size is 7.                                                                           |                                                |
-| `machine_type`             | <p><code>c2-standard-8</code>, or<br><code>c2-standard-16</code>.</p>                                                                       |                                                |
-| `nvmes_number`             | <p><code>1</code>, <code>2</code>, <code>4</code>, or <code>8</code>.<br>Each NVME size is 375 GB.</p>                                      |                                                |
-| `weka_version`             | The Weka version from V4.1.0.                                                                                                               |                                                |
-| `internal_bucket_location` | The internal bucket location must be local to your region.                                                                                  |                                                |
-| `vpc_connector_range`      | It must be within your IP space.                                                                                                            |                                                |
-| `sa_name`                  | Leave it as is unless the environment requires a service account naming convention.                                                         |                                                |
-| `cluster_name`             | The name for the cluster as you choose. It must be in lowercase and without special characters.                                             |                                                |
-| `sg_public_ssh_cidr_range` | If the cluster is public, leave the default.                                                                                                |                                                |
-| `private_network`          | <p><code>false</code> for a public network.<br><code>true</code> for a private network (isolated network). </p>                             |                                                |
+| Variable                   | Description                                                                                                                                 | Limitations                                             |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| `project`                  | Your GCP project name.                                                                                                                      |                                                         |
+| `region`                   | <p>Wide geographic region.<br>See <a href="required-services-and-supported-regions.md">Required services and supported regions</a>.<br></p> | The region must support the required services.          |
+| `zone`                     | Specific zone in the region.                                                                                                                |                                                         |
+| `prefix`                   | The prefix for your system name as you choose.                                                                                              | It must be in lowercase and without special characters. |
+| `subnets_cidr_range`       | IP addresses within your range. Provide one IP address per NIC.                                                                             |                                                         |
+| `nics_number`              | <p><code>4</code> for c2-standard-8, or<br><code>7</code> for c2-standard-16</p>                                                            |                                                         |
+| `cluster_size`             | The number of instances to create.                                                                                                          | The minimum cluster size is 7.                          |
+| `machine_type`             | <p><code>c2-standard-8</code>, or<br><code>c2-standard-16</code>.</p>                                                                       |                                                         |
+| `nvmes_number`             | <p><code>1</code>, <code>2</code>, <code>4</code>, or <code>8</code>.<br>Each NVME size is 375 GB.</p>                                      |                                                         |
+| `weka_version`             | The Weka version from V4.1.0.                                                                                                               |                                                         |
+| `internal_bucket_location` | The internal bucket location must be local to your region.                                                                                  |                                                         |
+| `vpc_connector_range`      | It must be within your IP space.                                                                                                            |                                                         |
+| `sa_name`                  | Leave it as is unless the environment requires a service account naming convention.                                                         |                                                         |
+| `cluster_name`             | The name for the cluster as you choose. It must be in lowercase and without special characters.                                             |                                                         |
+| `sg_public_ssh_cidr_range` | If the cluster is public, leave the default.                                                                                                |                                                         |
+| `private_network`          | <p><code>false</code> for a public network.<br><code>true</code> for a private network (isolated network). </p>                             |                                                         |
 
 ## Private network considerations
 

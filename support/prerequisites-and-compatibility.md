@@ -55,17 +55,17 @@ The versions specified in the prerequisites and compatibility page apply to the 
 #### General
 
 * All Weka servers must be synchronized in date/time (NTP recommended)
-* A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
-* If using `mlocate` or alike, it's advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge-base in the [Weka support portal](http://support.weka.io) for more information and how-to articles
+* A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the Weka knowledge base in the [Weka support portal](http://support.weka.io) for more information and how-to articles.
+* If using `mlocate` or alike, it's advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge base in the [Weka support portal](http://support.weka.io) for more information and how-to articles.
 
 #### SELinux
 
-* SELinux is supported in both `permissive` and `enforcing` mode
-  * `targeted` policy is supported
-  * `mls` policy is not supported yet
+* SELinux is supported in both `permissive` and `enforcing` modes.
+  * `The targeted` policy is supported.
+  * The `mls` policy is not supported yet.
 
 {% hint style="info" %}
-**Note:** To set SELinux security context for files,  use the `-o acl` in the mount command, and define the `wekafs` to use extended-attributes in the SELinux policy configuration (`fs_use_xattr`).
+**Note:** To set the SELinux security context for files,  use the `-o acl` in the mount command, and define the `wekafs` to use extended attributes in the SELinux policy configuration (`fs_use_xattr`).
 {% endhint %}
 
 ### Kernel
@@ -87,16 +87,16 @@ The versions specified in the prerequisites and compatibility page apply to the 
 * Directory: `/opt/weka`
 * Must be on an SSD or SSD-like performance, for example, M.2.
   * Cannot be shared remotely, NFS mounted, or on a RAM drive.
-* If there are two boot drives available, it is recommended to dedicate one for the OS and one for the Weka `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues).
+* If two boot drives are available, it is recommended to dedicate one for the OS and one for the Weka `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues).
 * At least 26 GB is available for the Weka system installation, with an additional 10 GB for each core used by Weka.
 * Use a separate filesystem on a separate partition for /opt/weka.
 
 ## Networking
 
 {% hint style="info" %}
-**Note:** At least 4k MTU is advised on Weka cluster servers NICs, and the switches the servers are connected to.
+**Note:** At least 4k MTU is advised on Weka cluster servers NICs and the switches the servers are connected to.
 
-A Weka system can be configured without jumbo frames for Ethernet and Infiniband configurations. However, it will provide very limited performance and cannot handle high loads of data; please consult the Weka Sales or Support teams before running in this mode.
+A Weka system can be configured without jumbo frames for Ethernet and Infiniband configurations. However, it will provide minimal performance and cannot handle high data loads. Consult with the Customer Success Team before running in this mode.
 
 Jumbo Frames are not required for clients. However, performance might be limited.
 {% endhint %}
@@ -127,8 +127,16 @@ Jumbo Frames are not required for clients. However, performance might be limited
 * Mellanox ConnectX-4
 
 {% hint style="info" %}
-Intel E810 NIC requires the ice Linux Base Driver version 1.9.11 and firmware version 4.0.0. Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team). \
-In addition, Intel E810 NIC does not yet support the [multiple containers architecture](../overview/weka-containers-architecture-overview.md), and it only supports non-routed networks.
+Intel E810 NIC has specific requirements and certain limitations:
+
+* The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0.
+* Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+* Only non-routed network is supported with this NIC.
+* [Multiple containers architecture](../overview/weka-containers-architecture-overview.md) is not yet supported with this NIC.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** LACP (link aggregation, also known as bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using virtual functions (VFs).
 {% endhint %}
 
 #### NIC drivers
@@ -168,18 +176,20 @@ Supported ice drivers:
 * Ethernet speeds: 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE
 * NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
 * VLAN: Not supported
-* Connectivity between servers: Ports 14000-14100
+* Connectivity between servers:
+  * For multiple containers architecture, the default for the Resources Generator is 14000-14100, 14200-14300, and 14400-14500 for the first three containers (these values can be customized).
+  * For single container architecture: Ports 14000-14300.
 * Mellanox NICs:
   * One Weka system IP address for management and data plane
 * Other vendors NICs
   * Weka system management IP address: One IP per server (configured before Weka installation)
   * Weka system data plane IP address: One IP address for each [Weka core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
   * Weka system management IP: Ability to communicate with all Weka system data plane IPs
-  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of virtual functions supported by the device must be bigger than the number of physical cores on the server; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configuration may be required in the BIOS
+  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of VFs supported by the device must be bigger than the number of physical cores on the server; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configurations may be required in the BIOS
   * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
-**Note:** When assigning a network device to the Weka system, no other application can create [virtual functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization) on that device.
+**Note:** When assigning a network device to the Weka system, no other application can create VFs on that device.
 {% endhint %}
 
 ### InfiniBand <a href="#networking-infiniband" id="networking-infiniband"></a>
@@ -219,7 +229,7 @@ Supported Mellanox OFED versions:
 
 ### HA
 
-* Network configured as described in [Weka Networking - HA](../overview/networking-in-wekaio.md#ha).
+* The network is configured as described in [Weka Networking - HA](../overview/networking-in-wekaio.md#ha).
 
 ## SSDs
 
@@ -229,7 +239,7 @@ Supported Mellanox OFED versions:
 * IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 {% hint style="info" %}
-**Note:** To get the best performance, make sure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
+**Note:** To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
 {% endhint %}
 
 ## Object store
@@ -241,8 +251,8 @@ Supported Mellanox OFED versions:
     * Supports any byte size of up to 65 MiB
   * DELETE
 * Data Consistency: [AWS S3 consistency guarantee](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel):
-  * GET after single PUT should be fully consistent
-  * Multiple PUTs should be eventually consistent
+  * GET after a single PUT must be entirely consistent
+  * Multiple PUTs should eventually be consistent
 
 Certified object stores:
 
@@ -263,30 +273,40 @@ Certified object stores:
 * Scality (version 7.4.4.8 and up)
 * SwiftStack (version 6.30 and up)
 
-## Virtual machines
+## Virtual Machines
 
-VMs can be used as clients only, assuming they meet the following prerequisite:
+Virtual Machines (VMs) can be used as **clients** only. Ensure the following prerequisites are met for the relevant client type:
 
-### For UDP clients:
+{% tabs %}
+{% tab title="UDP clients" %}
+* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by reserving the CPU in the virtual platform and dedicating a core to the Weka client.
+* The root filesystem must handle a 3K IOPS load by the Weka client.
 
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by both reserving the CPU in the virtual platform and dedicating a core to the Weka client.
-* The root filesystem should handle a 3K IOPS load by the Weka client.
+\
 
-### **For DPDK clients (on top of the UDP requirements):**
+{% endtab %}
 
-* The virtual platform interoperability (hypervisor, NICs, CPUs, different versions, etc.) must support DPDK and SR-IOV VFs passthrough to the VM.
-* The Hypervisor servers and the client VMs must run the same OFED version.
+{% tab title="DPDK clients" %}
+* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by reserving the CPU in the virtual platform and dedicating a core to the Weka client.
+* The root filesystem must handle a 3K IOPS load by the Weka client.
+* The virtual platform interoperability, such as a hypervisor, NICs, CPUs, and different versions, must support DPDK and virtual network driver.
+{% endtab %}
+{% endtabs %}
 
-#### For the VMWare platform:
+<details>
 
-* If using `vmxnet3` devices, do not enable the SR-IOV feature (which prevents vMotion). Each FrontEnd process requires a `vmxnet3` device and IP, with an additional device and IP per client VM (for the management process).
+<summary>Special note for a VMware platform</summary>
+
+* If using `vmxnet3` devices, do not enable the SR-IOV feature (which prevents the `vMotion` feature). Each frontend process requires a `vmxnet3` device and IP, with an additional device and IP per client VM (for the management process).
 * Using `vmxnet3` is only supported with core dedication.
 
-For additional information and how-to articles, search the Weka knowledgebase in the [Weka support portal](http://support.weka.io) or contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+</details>
+
+For additional information and how-to articles, search the Weka Knowledge Base in the [Weka support portal](http://support.weka.io) or contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 ## KMS
 
 * [HashiCorp Vault](https://www.hashicorp.com/products/vault/) (version 1.1.5 up to 1.9.x)
-* [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) compliant KMS (protocol version 1.2 and up)
+* [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html)-compliant KMS (protocol version 1.2 and up)
   * The KMS should support encryption-as-a-service (KMIP encrypt/decrypt APIs)
   * KMIP certification has been conducted with [Equinix SmartKey](https://www.equinix.com/services/edge-services/smartkey/) (powered by [Fortanix KMS](https://fortanix.com/products/sdkms/))

@@ -1,8 +1,7 @@
 ---
 description: >-
-  This section is aimed at a system engineer who is familiar with the GCP
-  concepts and is experienced with using Terraform for deploying a system on
-  GCP.
+  This section aims at a system engineer who is familiar with the GCP concepts
+  and experienced with using Terraform to deploy a system on GCP.
 ---
 
 # Weka installation on GCP
@@ -24,32 +23,34 @@ VPC peering is used for communication between the Weka processes. A project in G
 
 <figure><img src="../../.gitbook/assets/GCP_overview.png" alt=""><figcaption><p>Server infrastructure in GCP</p></figcaption></figure>
 
-## Terraform overview
+<details>
+
+<summary>Terraform overview</summary>
 
 Terraform is an open-source project from Hashicorp. It creates and manages resources on cloud platforms and on-premises clouds. Unlike AWS CloudFormation, it works with many APIs from multiple platforms and services.
 
 The GCP Console is already installed with Terraform by default. It is the primary tool for deploying Weka on GCP. Terraform can be used outside of GCP or independent of GCP Console.
 
-<figure><img src="../../.gitbook/assets/Terraform_overview.png" alt=""><figcaption><p>Terraform overview</p></figcaption></figure>
+<img src="../../.gitbook/assets/Terraform_overview.png" alt="" data-size="original">
 
 ### How does Terraform work?
 
 A deployment with Terraform involves three phases:
 
-* **Write:** Define the infrastructure in configuration files and customize the project variables. Weka provides a Terraform-GCP package containing various configuration file examples (modules) that can meet most customers' requirements.
+* **Write:** Define the infrastructure in configuration files and customize the project variables provided in the Terraform package.
 * **Plan**: Review the changes Terraform will make to your infrastructure.
-* **Apply:** Terraform provisions the infrastructure, including the Compute VM and instances, installs the Weka software, and creates the cluster. Once completed, the Weka cluster runs on GCP.
+* **Apply:** Terraform provisions the infrastructure, including the VMs and instances, installs the Weka software, and creates the cluster. Once completed, the Weka cluster runs on GCP.
 
-<figure><img src="../../.gitbook/assets/Terraform_how.png" alt=""><figcaption><p>Terraform phases</p></figcaption></figure>
-
-**Related topics**
-
-[weka-project-description.md](weka-project-description.md "mention")
-
-
+<img src="../../.gitbook/assets/Terraform_how.png" alt="Terraform phases" data-size="original">
 
 **Related information**
 
 [Terraform Tutorials](https://learn.hashicorp.com/terraform?track=gcp)
 
 [Terraform Installation](https://learn.hashicorp.com/tutorials/terraform/install-cli)
+
+</details>
+
+**Related topics**
+
+[weka-project-description.md](weka-project-description.md "mention")

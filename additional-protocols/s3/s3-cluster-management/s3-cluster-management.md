@@ -23,7 +23,7 @@ An S3 cluster configuration includes a filesystem, port, and list of servers.
 3. On the Configuration tab, select **Configure**.
 4. In the S3 Cluster Configuration dialog, set the following properties:
    * **Filesystem**: The filesystem to use for the S3 service. By default, when adding a bucket, it will be created in this filesystem.
-   * **Port**: Default 9000. If required, modify the port through which the cluster exposes the S3 service.
+   * **Port**: Default 9000. If required, modify the port through which the cluster exposes the S3 service. Do not set port 9001.
    * **Anonymous Posix UID:** If required, modify the Posix UID assigned to anonymous users.
    * **Anonymous Posix GID:** If required, modify the Posix GID assigned to anonymous users.
    * **All servers**: To use all available servers for the S3 configuration, switch on **All servers**. If new servers are deployed later, they do not participate in the S3 cluster automatically.\
@@ -47,7 +47,7 @@ You can update the port and the servers to participate in the S3 cluster.
 
 ![Edit an S3 cluster configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_button.png)
 
-4\. Update the properties as required.
+4\. Update the port and host properties as required. Do not set port 9001.
 
 5\. Select **Save**.
 

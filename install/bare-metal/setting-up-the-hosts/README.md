@@ -12,14 +12,14 @@ This preparation consists of the following steps:
 
 1. [Install NIC drivers](./#install-nic-drivers).
 2. [Enable SR-IOV](./#enable-sr-iov) (when required).
-3. [Configure the networking](./#undefined).
+3. [Configure the networking](./#configure-the-networking).
 4. [Verify the network configuration](./#verify-the-network-configuration).
-5. [Configure the clock synchronization](./#configure-the-clock-synchronization).
+5. [Configure the clock synchronization](./#configure-sync).
 6. [Disable the Numa balancing](./#disable-the-numa-balancing).
 7. [Validate the system preparation](./#validate-the-system-preparation).
 
 {% hint style="info" %}
-**Note:** Some of the examples on this page contain version-specific information. The software is updated frequently, and therefore the package versions available to you may differ from those presented here.
+**Note:** Some of the examples on this page contain version-specific information. The software is updated frequently, so the package versions available to you may differ from those presented here.
 {% endhint %}
 
 **Related topics**
@@ -87,11 +87,10 @@ This concludes the Mellanox OFED installation procedure.
 
 ## Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
-SR-IOV enablement is mandatory for servers equipped with Intel NICs except for E810, or when working with client VMs where there is a need to expose VFs of a physical NIC to the virtual NICs.
+Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following cases:
 
-{% hint style="info" %}
-SR-IOV enablement is **not** required for servers with Mellanox NICs (CX-4 or newer) and Intel E810 NIC.
-{% endhint %}
+* The servers are equipped with Intel or Broadcom NICs.&#x20;
+* When working with client VMs where it is required to expose the virtual functions (VFs) of a physical NIC to the virtual NICs.
 
 **Related topic**
 

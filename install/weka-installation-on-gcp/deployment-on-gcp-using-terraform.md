@@ -19,14 +19,35 @@ Before installing the Weka software on GCP, the following prerequisites must be 
 * Obtain the Weka GCP-Terraform package from [https://github.com/weka/gcp-tf](https://github.com/weka/gcp-tf) and save it to a local directory.&#x20;
 * Initialize the GCP-Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 * The **Compute Engine** and **Workflows API** services must be enabled.
+* The service account used for the deployment must have the following roles:
+  * secretmanager.admin
+  * secretmanager.secretAccessor
+  * compute.serviceAgent
+  * compute.admin
+  * compute.networkAdmin
+  * networkmanagement.admin
+  * cloudfunctions.admin
+  * cloudfunctions.serviceAgent
+  * workflows.admin
+  * storage.admin
+  * iam.serviceAccountAdmin
+  * iam.securityAdmin
+  * vpcaccess.admin
+  * vpcaccess.serviceAgent
+  * cloudscheduler.admin
+  * cloudscheduler.serviceAgent
+  * dns.admin
+  * pubsub.editor
+
+{% hint style="info" %}
+**Note:** To create a service account using the Terraform package, the iam.serviceAccountAdmin role is required.
+{% endhint %}
 
 ## **Installation**
 
-1. According to the required deployment, go to the relevant directory in the examples directory.  Customize the Terraform variables file (`tf.tfvars`).
-2. To validate the configuration, run\
-   `terraform plan -var-file=tf.tfvars.`
-3. Once the configuration validation is successful, run\
-   `terraform apply -var-file=tf.tfvars`.&#x20;
+1. According to the required deployment, go to the relevant directory in the examples directory.  Customize the Terraform variables file (`terraform.tfvars`).
+2. To validate the configuration, run `terraform plan`.
+3. Once the configuration validation is successful, run `terraform apply`.&#x20;
 
 Terraform applies the configuration on the specified GCP project.
 

@@ -47,8 +47,8 @@ Sometimes you may need to investigate an issue that occurred during a certain pe
 
 <figure><img src="../../../.gitbook/assets/wmng_freeze_traces_result.png" alt=""><figcaption><p>Example of a freeze period</p></figcaption></figure>
 
-6\. To clear the freeze period, select **Reset traces freeze**. Then, in the confirmation message, \
-&#x20;   select **Yes**.
+6\. To clear the freeze period, select **Reset traces freeze**. Then, in the confirmation message,\
+select **Yes**.
 
 ## Change traces verbosity level <a href="#change-traces-verbosity-level" id="change-traces-verbosity-level"></a>
 
@@ -64,7 +64,7 @@ The verbosity level determines the amount of information in the tracing data. Sw
 
 You can restore the traces configuration to its default settings as shown in the following image.
 
-<figure><img src="../../../.gitbook/assets/wmng_traces_default_settings.png" alt=""><figcaption><p>Traces default settings</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/wmng_traces_defauly_settings.png" alt=""><figcaption><p>Traces default settings</p></figcaption></figure>
 
 {% hint style="info" %}
 The default maximum capacity per IO-node is 50 GB and the minimum for all IO-nodes is 100 GB. The minimum free capacity is 3.22 GB
@@ -72,4 +72,4 @@ The default maximum capacity per IO-node is 50 GB and the minimum for all IO-nod
 
 **Procedure**
 
-1. In the Traces section,  select **Restore traces default settings**. Then, in the confirmation message, select **Yes**.
+1. In the Traces section, select **Restore traces default settings**. Then, in the confirmation message, select **Yes**.
