@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Weka documentation](README.md)
+* [Weka v4.0 documentation](README.md)
 
 ## Weka System Overview <a href="#overview" id="overview"></a>
 
@@ -166,7 +166,10 @@
     * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
   * [Collect and upload diagnostics data](support/diagnostics-management/diagnostics-utility.md)
 * [Weka Home - The Weka support cloud](support/the-wekaio-support-cloud/README.md)
+  * [Local Weka Home overview](support/the-wekaio-support-cloud/local-weka-home-overview.md)
   * [Local Weka Home deployment](support/the-wekaio-support-cloud/local-weka-home-deployment.md)
+  * [Set the Local Weka Home to send alerts or events](support/the-wekaio-support-cloud/set-the-local-weka-home-to-send-alerts-or-events.md)
+  * [Download the Usage Report or Analytics](support/the-wekaio-support-cloud/download-the-usage-report-or-analytics.md)
 
 ## Appendix
 

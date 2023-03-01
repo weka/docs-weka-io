@@ -87,10 +87,10 @@ This concludes the Mellanox OFED installation procedure.
 
 ## Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
-SR-IOV enablement is mandatory for hosts equipped with Intel NICs except for E810, or when working with client VMs where there is a need to expose VFs of a physical NIC to the virtual NICs.
+SR-IOV enablement is mandatory for hosts equipped with Intel NICs or when working with client VMs where there is a need to expose VFs of a physical NIC to the virtual NICs.
 
 {% hint style="info" %}
-SR-IOV enablement is **not** required for hosts with Mellanox NICs (CX-4 or newer) and Intel E810 NIC.
+SR-IOV enablement is optional for hosts with Mellanox NICs (CX-4 or newer).
 {% endhint %}
 
 **Related topic**

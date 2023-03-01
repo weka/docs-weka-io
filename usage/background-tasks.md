@@ -1,21 +1,26 @@
 ---
 description: >-
-  This page describes the management of background tasks running on Weka
-  clusters.‌
+  This page describes the management of background tasks running on the Weka
+  system.‌
 ---
 
 # Background tasks
 
-‌The Weka system has some internal/external asynchronous operations and maintenance tasks, such as migrating an object store and downloading/uploading snapshots. These tasks are performed in the background and should not interfere nor starve the Weka system from serving IOs with high performance.‌
+‌The Weka system performs internal and external asynchronous operations and maintenance tasks in the background, allowing no interference nor starving the Weka system from serving IOs with high performance.‌
 
-The Weka system limits the CPU resources these tasks consume to 5% per host CPU.
+Background tasks include, for example, downloading and uploading snapshots and migrating an object store.
+
+Adhere to the following:
+
+* **CPU resource consumption:** The Weka system limits these tasks’ CPU resources to 5% of the overall CPU. When the CPU is idle, background tasks can use more than the configured resources but are immediately freed if needed for serving IOs.
+* **Concurrent tasks:** The maximum number of concurrent tasks is 16, with restrictions such as:
+  * Only a single local upload can exist inside a filesystem concurrently.
+  * Only a single remote upload inside a filesystem concurrently (but local and remote uploads can co-exist).
+  * Only a single upload from any filesystem can exist in the same object store bucket to prevent slowing down each other uploads.
+  * Object store snapshot download operation cannot be run simultaneously with other snapshot download or upload operations.
 
 {% hint style="info" %}
-**Note:** When the CPU is idle, background tasks can use more than the configured resources, but they are immediately freed if needed for serving IOs.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** The configured limit affects both external tasks (that are visible using the GUI/CLI) and internal low-priority asynchronous operations.‌
+**Note:** More restrictions exist between different tasks and multiple tasks of the same type. If a background task does not run due to a restriction, the system provides a relevant message.
 {% endhint %}
 
 ## Manage background tasks <a href="#managing-background-tasks" id="managing-background-tasks"></a>
