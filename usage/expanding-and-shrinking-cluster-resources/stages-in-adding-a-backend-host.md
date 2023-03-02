@@ -1,88 +1,77 @@
----
-description: >-
-  The page describes the expansion of a cluster with new hosts, which is similar
-  to the Weka System Installation Process Using the CLI and consists of the
-  following stages.
----
-
 # Workflow: Add a backend host
 
-## Stage 1: Obtain the Weka software installation file
+Expanding a cluster with a new backend host is similar to the Weka system installation process using the CLI. &#x20;
 
-This stage is the same as [Obtaining the Weka Install File](../../install/bare-metal/obtaining-the-weka-install-file.md). However, it is essential to download the install file used when the existing cluster was formed or last upgraded. Use the `weka-status` command to show the current cluster install file version.
+{% hint style="info" %}
+**Note:** In most cases, the host configurations are similar. Therefore, it is possible to import the host setting from a previously exported host in the cluster, saving time and avoiding misconfiguration. \
+See [Expand the Cluster by Importing the Host Settings](stages-in-adding-a-backend-host.md#expand-the-cluster-by-importing-the-host-settings).
+{% endhint %}
 
-To download the appropriate install file, follow the instructions in [Download the Weka Software](../../install/bare-metal/obtaining-the-weka-install-file.md#step-2-download-the-weka-software).
+## Add a backend host to an existing cluster
 
-## Stage 2: Install the Weka software on the new host
+### Stage 1: Obtain the Weka install file
 
-Follow the instructions appearing in [Installation of the Weka Software on Each Host](../../install/bare-metal/using-cli.md#stage-1-installation-of-the-weka-software-on-each-host). At the end of the installation process, the host is in [stem mode](../../overview/glossary.md#stem-mode).
+Download the Weka Install File used when the existing cluster was last upgraded (or formed, if not upgraded)..
 
-## Stage 3: Add the host to the cluster
+Use the `weka-status` command to show the current cluster install file version.
+
+See [obtaining-the-weka-install-file.md](../../install/bare-metal/obtaining-the-weka-install-file.md "mention")
+
+### Stage 2: Install the Weka software on the new host
+
+Run the `untar` command and `install.sh` command on the new host.\
+At the end of the installation process, the host is in stem mode (the host is not attached to a cluster).
+
+### Stage 3: Add the host to the cluster
 
 **Command:** `weka cluster host add`
 
-Once the backend host is in the [stem mode](../../overview/glossary.md#stem-mode), use the following command line on any host to add it to the cluster:
+On any host that is part of the cluster, run the following command line:
 
 ```
-weka -H <existing-backend-hostname> cluster host add <backend-hostname>
+weka cluster host add <backend-hostname>
 ```
 
-**Parameters**
+**Parameters:**
 
-| **Name**                    | **Type** | **Value**                                                           | **Limitations**            | **Mandatory** | **Default**                               |
-| --------------------------- | -------- | ------------------------------------------------------------------- | -------------------------- | ------------- | ----------------------------------------- |
-| `existing-backend-hostname` | String   | IP/hostname of one of the existing backend instances in the cluster | Valid hostname (DNS or IP) | No            | The host on which the command is executed |
-| `backend-hostname`          | String   | IP/hostname of the backend currently being added                    | Valid hostname (DNS or IP) | Yes           |                                           |
-
-{% hint style="info" %}
-**Note:** On completion of this stage, the host-ID of the newly added host will be received. Make a note of it for the next steps.
-{% endhint %}
-
-## Stage 4: Configure the networking
-
-See _Configure the networking_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
-
-## Stage 5: Configure the SSDs
-
-See _Configure the SSDs_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
-
-## Stage 6: Configure the CPU resources
-
-See _Configure the CPU resources_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
-
-## Stage 7: Configure the memory
-
-To display a list of the memory defined (one line per host), run the following command:
-
-`weka cluster host`
-
-To configure the memory, see _Configure the memory_ in[using-cli.md](../../install/bare-metal/using-cli.md "mention").
+| **Name**           | **Type** | **Value**                                  | **Limitations**            | **Mandatory** | **Default** |
+| ------------------ | -------- | ------------------------------------------ | -------------------------- | ------------- | ----------- |
+| `backend-hostname` | String   | IP/hostname of the new backend host to add | Valid hostname (DNS or IP) | Yes           |             |
 
 {% hint style="info" %}
-**Note:** If the memory is configured, you must use the same memory for the expanded host.
+**Note:** On completion of this stage, the host-ID of the newly added host appears in response to the command. Make a note of it to use in the following steps.
 {% endhint %}
 
-## Stage 8: Configure failure domains
+### Stage 4: Configure the networking
 
-See _Configure failure domains_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
+Perform the instructions in [#stage-6-configure-the-networking](../../install/bare-metal/using-cli.md#stage-6-configure-the-networking "mention").
+
+### Stage 5: Configure the CPU resources
+
+Perform the instructions in [#stage-8-configure-the-cpu-resources](../../install/bare-metal/using-cli.md#stage-8-configure-the-cpu-resources "mention").
+
+### Stage 6: Apply the host's configuration
+
+Apply the configuration on the newly added host. Perform the instructions in [#stage-13-apply-hosts-configuration](../../install/bare-metal/using-cli.md#stage-13-apply-hosts-configuration "mention").
 
 {% hint style="info" %}
-**Note:** Plan whether each host is added to an existing failure domain or to a new failure domain.
+**Note:** You can activate the cluster hosts sequentially.
 {% endhint %}
 
-## Stage 9: Apply hosts configuration
+### Stage 7: Configure the SSDs
 
-If hosts are already added to the cluster, see _Apply hosts configuration_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
+Perform the instructions in [#stage-7-configure-the-ssds](../../install/bare-metal/using-cli.md#stage-7-configure-the-ssds "mention").
 
-{% hint style="info" %}
-**Note:** The activation of cluster hosts can be performed with a sequence of hosts.
-{% endhint %}
+## Expand the cluster by importing the host settings
 
-## Import host settings
+In most cases, the host configurations are similar. Therefore, it is possible to import the host setting from a previously exported host in the cluster, saving time and avoiding misconfiguration.
 
-Instead of carrying stages 4-9 above, it is possible to import the host setting from a previously exported host in the cluster. In most cases the host configurations are similar, and importing can save some extra steps and avoid misconfiguration.
+**Procedure:**
 
-To export settings from a host, ssh to this host, and run the `weka local resources export` command.&#x20;
-
-To import the settings to the new host, ssh to it and run the `weka local resources import` command. You can then edit the local configuration as described in [Local resources editing commands](expansion-of-specific-resources.md#local-resources-editing-commands) section and run weka local resources apply to apply the configuration.
-
+1. Perform only stages 1 to 3 in the [Add a backend host to an existing cluster](stages-in-adding-a-backend-host.md#add-a-backend-host-to-an-existing-cluster) procedure (above).
+2. Connect to one of the hosts in the cluster and export the settings by running the following command: `weka local resources export`.
+3. Connect to the new host and import the settings by running the following command: \
+   `weka local resources import`.
+4. Edit the local configuration. See the [#local-resources-editing-commands](expansion-of-specific-resources.md#local-resources-editing-commands "mention") section.
+5. Apply the configuration on the newly added host.\
+   See [#stage-13-apply-hosts-configuration](../../install/bare-metal/using-cli.md#stage-13-apply-hosts-configuration "mention").
