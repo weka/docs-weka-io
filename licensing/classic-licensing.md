@@ -55,7 +55,7 @@ Click Create a license in the Outstanding Entitlements pane in the Account dashb
 
 The Create License dialog box will be displayed. Enter the details obtained from the `weka cluster license` command.
 
-![Create License Dialog Box](<../.gitbook/assets/Screen Shot 2018-07-01 at 13.35.31.png>)
+![Create License Dialog Box](<../.gitbook/assets/Screen Shot 2018-07-01 at 13.35.31 (1).png>)
 
 Fill-in the cluster GUID and capacities. Then click the Create License button to confirm.
 

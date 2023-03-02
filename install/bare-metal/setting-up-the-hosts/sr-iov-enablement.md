@@ -18,15 +18,15 @@ Refer to the screenshots below to enable the SR-IOV support in the server BIOS.
 **Note:** The following screenshots are vendor-specific and provided as a courtesy. Depending on the vendor, the same settings may appear differently or be located in other places. Therefore, always refer to your hardware platform and NIC vendor documentation for the latest information and updates.
 {% endhint %}
 
-![Reboot Server and Force it to Enter the BIOS Setup](<../../../.gitbook/assets/image (9).png>)
+![Reboot Server and Force it to Enter the BIOS Setup](<../../../.gitbook/assets/image (16).png>)
 
-![Locate the PCIe Configuration and Drill Down](<../../../.gitbook/assets/image (5).png>)
+![Locate the PCIe Configuration and Drill Down](<../../../.gitbook/assets/image (17).png>)
 
-![Locate SR-IOV Support and Drill Down](<../../../.gitbook/assets/image (16).png>)
+![Locate SR-IOV Support and Drill Down](<../../../.gitbook/assets/image (19).png>)
 
-![Enable SR-IOV Support](<../../../.gitbook/assets/image (8).png>)
+![Enable SR-IOV Support](<../../../.gitbook/assets/image (20).png>)
 
-![Save and Exit](<../../../.gitbook/assets/image (3).png>)
+![Save and Exit](<../../../.gitbook/assets/image (21).png>)
 
 ## SR-IOV Enablement in the **Mellanox** NICs
 
