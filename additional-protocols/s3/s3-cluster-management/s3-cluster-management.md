@@ -23,7 +23,7 @@ An S3 cluster configuration includes a filesystem, port, and list of hosts.
 3. On the Configuration tab, select **Configure**.
 4. In the S3 Cluster Configuration dialog, set the following properties:
    * **Filesystem**: The filesystem to use for the S3 service. By default, when adding a bucket, it will be created in this filesystem.
-   * **Port**: Default 9000. If required, modify the port through which the cluster exposes the S3 service.
+   * **Port**: Default 9000. If required, modify the port through which the cluster exposes the S3 service. Do not set port 9001.
    * **Anonymous Posix UID:** If required, modify the Posix UID assigned to anonymous users.
    * **Anonymous Posix GID:** If required, modify the Posix GID assigned to anonymous users.
    * **Hosts**: To use all available hosts for the S3 configuration, switch on **All Hosts**. If new hosts are deployed later, they do not participate in the S3 cluster automatically.\

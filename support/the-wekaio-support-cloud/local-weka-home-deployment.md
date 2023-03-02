@@ -1,159 +1,392 @@
 ---
 description: >-
-  Local Weka Home is a private instance of Weka Home deployed with a Weka
-  cluster in a private network.
+  This topic provides procedures for deploying the Local Weka Home on a Minikube
+  infrastructure, upgrading, modifying the configuration, and troubleshooting.
 ---
 
-# Local Weka Home overview
+# Local Weka Home deployment
 
-Suppose a customer does not have connectivity to the public instance of Weka Home, such as when the Weka cluster is deployed on a dark site or VPC. In that case, Weka provides an option to deploy a Local Weka Home, a private instance of Weka Home, on a management server (or VM).
+This implementation runs on Minikube (a lightweight Kubernetes implementation) installed on a single Docker container. You specify the configuration parameters in the config.yaml file as part of the deployment workflow.
 
-The Local Weka Home performs the following:
+{% hint style="info" %}
+**Note:** It is possible to install the Local Weka Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../getting-support-for-your-weka-system.md) to schedule this installation.
+{% endhint %}
 
-* Receives events from the Weka cluster and stores them locally. It enables querying and filtering events.
-* Monitors multiple clusters within the organization.
-* Displays the cluster overview and enables drilling down to the cluster telemetry data.
-* Triggers specific alerts according to predefined rules through an integrated delivery method: Email (SMTP), SNMP, or PagerDuty.
-* Receives diagnostics (support files) from the Weka cluster, stores them, and makes them available for remote viewing by the Customer Success Team.
-* Receives usage, analytics, and performance statistics from the Weka cluster. It stores them, displays them, and enables querying and filtering them.
+<figure><img src="../../.gitbook/assets/weka-home-local.png" alt=""><figcaption><p>Local Weka Home deployment</p></figcaption></figure>
 
-## Key features and capabilities
+## Workflow: Local Weka Home deployment
 
-Each set of features and capabilities is categorized into one of the following categories:
+1. [Verify prerequisites](local-weka-home-deployment.md#1.-verify-prerequisites).
+2. [Prepare the management server](local-weka-home-deployment.md#2.-prepare-the-management-server).
+3. [Download the Weka Home and Minikube packages](local-weka-home-deployment.md#3.-download-the-local-weka-home-and-minikube-packages).
+4. [Install the Minikube](local-weka-home-deployment.md#3.-download-the-local-weka-home-and-minikube-packages).
+5. [Install and configure the Weka Home](local-weka-home-deployment.md#5.-install-and-configure-local-weka-home).
+6. [Access the Weka Home portal and Grafana](local-weka-home-deployment.md#6.-access-the-local-weka-home-portal-and-grafana).
+7. [Enable the Weka cluster to send data to Weka Home](local-weka-home-deployment.md#7.-enable-the-weka-cluster-to-send-information-to-the-local-weka-home).
+8. [Test the deployment](local-weka-home-deployment.md#8.-test-the-deployment).
 
-* Observability
-* Alerting and integrations
-* Security and compliance
-* Supportability and miscellaneous
+### 1.  Verify prerequisites
 
-Select each tab to learn more about each category's key features and capabilities.
+Verify that the following requirement are met:
 
-{% tabs %}
-{% tab title="Observability" %}
-### Clusters page
+* A dedicated management server (or VM) for the installation.
+* The user account used for the installation has root privileges. Ensure that the `sudoers` file includes the root user.
+* Server minimum requirements for up to 1000 Weka containers:
+  * 4 cores
+  * 32 GiB RAM
+  * 500 GiB disk space in /opt/local-path-provisioner (local storage of the collected data)
+  * 1 Gbps network
+  * Docker version 20 or higher.
 
-Local Weka Home monitors and reports on multiple clusters within your organization. The first screen upon entering LWH displays all the Weka clusters in your environment that are enabled to send telemetry data to your local Weka Home instance.
+{% hint style="success" %}
+To scale up the Local Weka Home server, for each additional 1000 Weka containers, add the following:
 
-<figure><img src="../../.gitbook/assets/lwh_clusters_view.png" alt=""><figcaption><p>Clusters view</p></figcaption></figure>
+* 4 cores
+* 10 GiB RAM
+* 150 GiB disk space in /opt/local-path-provisioner (for every 14 days of data retention).
+{% endhint %}
 
-You can filter and sort based on various criteria such as _last seen_, _licensed_ vs. _unlicensed_, and clusters that are _muted_ (silenced alerts). Clicking the cluster name redirects you to the cluster main page.
+* Supported operating systems:
+  * Centos 7.9
+  * Amazon Linux 2
+  * Rocky 8.6
+  * RHEL 8.2+
 
-### Status page
+{% hint style="success" %}
+For using other operating systems, contact the [Customer Success Team](../getting-support-for-your-weka-system.md#contact-customer-success-team).
+{% endhint %}
 
-The Status page displays numerous panels highlighting various cluster-wide statistics including health status information relative to an individual cluster.
+### 2. Prepare the management server
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_overview.png" alt=""><figcaption><p>Cluster main page: Status</p></figcaption></figure>
+1. Disable the _SELinux_.
+2. Disable the _iptables_, _UFW_, or _firewalld_.
+3.  Ensure the following ports are open and not used by any other process. Each port will be used for the process specified in the brackets.
 
-### Details page
+    `6443`   (kube-apiserver)
 
-The Details page displays the Hosts (containers), Drives, Nodes (processes), Filesystems, Net Devices, SmbShares, Overrides, and the cluster configuration in a JSON format.
+    `10259` (kube-scheduler)
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_details.png" alt=""><figcaption><p>Details page: Hosts</p></figcaption></figure>
+    `10257` (kube-controller-manager)
 
-### Events page
+    `10250` (kubelet)
 
-The Events page displays the offline event data for the cluster and associated detail with each event. You can filter the events based on severity, narrow them down to specific node IDs in the cluster, and more.
+    `2379`   (etcd)
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_events.png" alt=""><figcaption><p>Events page</p></figcaption></figure>
+    `2380`   (etcd)
 
-### Diagnostics page&#x20;
+    `80`       (wekahome)
 
-The Diagnostics page displays all the collected event logs, syslog files, trace files, container information, and more. The Customer Support Team uses this information for deeper case analysis.
+    `443`     (wekahome)
+4. Install the Docker Engine version 20 or higher on the management server according to the Docker documentation.\
+   To install the Docker on RHEL, see [Install Docker Engine on Centos](https://docs.docker.com/engine/install/centos/) (the instructions in _Install Docker Engine on RHEL_ do not work).
+5. Run the following to verify that the required docker version is installed:\
+   `docker --version.`
+6. Run the following to start the docker and enable it:\
+   `systemctl start docker && systemctl enable docker`
+7. Run the following to set the iptables and pre-load it:\
+   `echo net.bridge.bridge-nf-call-iptables=1 >> /etc/sysctl.conf; sysctl -p`
+8. Run the following to install the rule tables manager, connection tracking, and multi-purpose relay tool:\
+   `yum install -y ebtables conntrack socat`
+9.  Run the following to install the Traffic Control tool (tc):\
+    `yum install -y tc`
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_diagnostics.png" alt=""><figcaption><p>Diagnostics page</p></figcaption></figure>
+    (Depending on the Linux distribution, `tc` may already be installed. Or it is called iproute-tc. If it is, run: `yum install -y iproute-tc`.)
+10. Verify that the HugePages is disabled (`HugePages_Total: 0`).\
+    Run the following command:\
+    `grep HugePages_Total /proc/meminfo`\
+    If the returned value of the HugePages\_Total is higher than 0, run the following to disable the HugePages:\
+    `echo 0 > /proc/sys/vm/nr_hugepages`
 
-### Usage Report and Analytics
+### 3. Download the Local Weka Home and Minikube packages
 
-You can download the JSON-formatted Usage Report and Analytics onto your local workstation and view them as needed. You can also forwarded the reports to the Customer Success Team for case resolution and to be added to the cloud Weka Home for offline monitoring purposes.
+Download the latest _wekahome-vm-docker-images_ and _weka\_minikube_  packages to the dedicated management server.
 
-For more details, see [Download the Usage Report or Analytics](broken-reference).
+* Minikube for Local Weka Home download current location and version:\
+  `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/weka_minikube_v1.25.1.8.tar.gz`
+* Local Weka Home download current location and version:\
+  `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/wekahome-vm-docker-images_v.2.7.1.tar.gz`
+
+### 4. Install the Minikube
+
+1. Unpack the Minikube package:\
+   `tar xvf <file name>`
+2. From the `minikube_offline` directory, run the install script: \
+   `./minikube-offline_install.sh`\
+   The installation takes about 3 minutes.
+3. Verify the minikube is installed successfully:\
+   `minikube status`
+
+<details>
+
+<summary>Response example of a successful minikube installation</summary>
+
+```
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+```
+
+</details>
+
+{% hint style="info" %}
+If the minikube installation fails, run the command `minikube logs`. A log file is created in `/tmp` directory. Open the log file and search for the reason.&#x20;
+{% endhint %}
+
+### 5. Install and configure Local Weka Home
+
+1. Unpack the Local Weka Home package:\
+   `tar xvf <file name>`
+2. From the `wekahome_offline` directory, run:\
+   `./update_config.sh`
+3. Open the `/root/.config/wekahome/config.yaml` file and set the following:
+
+#### Domain&#x20;
+
+Set the domain for URL accessing the Local Weka Home portal either by the organization domain FQDN (DNS-based) **** or IP address (IP-based).
+
+The URL to access the Local Weka Home does not accept aliases of the DNS name. Only the name configured in the `config.yaml` can be used for accessing the Local Weka Home.
+
+DNS-based domain setting:\
+In the **domain** section at the top of the file, set the domain FQDN after **@DOMAIN** as shown in the following example:
+
+```
+# TOP of file
+domain: &DOMAIN "some.domain.com"
+```
+
+IP-based domain setting:\
+In the **domain** section (at the top of the file) and the **alertdispatcher** section (at the end of the file), set the IP address of the domain as shown in the following example:
+
+```
+# TOP of file
+domain: &DOMAIN "52.20.26.14"
+
+# End of file
+alertdispatcher:
+  email_link_domain_name: "52.20.26.14"
+```
+
+#### SMTP
+
+To enable the Local Weka Home to send emails, set the SMTP details in the **smtp\_user\_data** section as shown in the following example:
+
+<pre><code>smtp_user_data:
+  sender_email_name: "Weka Home"
+  sender_email: "weka-home-noreply@your-domain.com"
+  smtp_host: "smtp.gmail.com"
+  smtp_port: "587"
+  smtp_username: "username@your-domain.com"
+  smtp_password: "heslbgtrjhzfpdci"
+  smtp_insecure_tls: false
+<strong>  # false is the default. Change to true if a non-trusted SSL certificate is used
+</strong></code></pre>
+
+{% hint style="warning" %}
+Ensure to enable the SMTP relay service in your SMTP service.
+
+Once the Local Weka Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See the [Set the Local Weka Home to send alerts](broken-reference) topic.
+{% endhint %}
+
+#### Enforce HTTPS
+
+To enforce HTTPS connection, change the value of `enabled:` to `true`, set the common name (CN, also known as FQDN), certificate data, and private key in the **tls** section (under the **nginx** section) as shown in the following section:
+
+```
+nginx:
+  tls:
+     enabled: true
+     # Must set to the CN of the certificate or wildcard
+     cn: "server.example.com"
+     cert: |
+     -----BEGIN CERTIFICATE-----
+     KJDDLJDLjdkm1718dljkdsljdh92edkjdjdjdkjddjsgsglgLQKSJDKDSKLKSf
+        .... Example of a truncated PEM encoded certificate   ..... 
+     DDSHJkadsjkjask7U782CHDF8HD0ihjx8iwciw8wJHDSKDHIO
+     -----END CERTIFICATE-----
+     key: |
+     -----BEGIN PRIVATE KEY-----
+     MIIBOgIBAAJBAKj34GkxFhD90vcNLYLInFEX6Ppy1tPf9Cnzj4p4WGeKLs1Pt8
+          ..... Example of a truncated private key  ..... 
+     n5OiPgoTdSy7bcF9IGpSE8ZgGKzgYQVZeN97YE00
+     -----END PRIVATE KEY-----
+```
+
+{% hint style="info" %}
+You can generate a self-signed certificate using the following example:\
+`openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
+{% endhint %}
+
+#### Events retention period
+
+The default number of days to keep events in the Local Weka Home is 30 days. To reduce the consumption of disk space, you can specify the max\_age in the **events** section (under the **garbage collection** section), as shown in the following example:
+
+```
+garbage_collection:
+ support_files:
+  # max 365 days
+  max_age: 365d
+ events:
+  # max 30 days
+  max_age: 30d
+```
+
+5. Run `./wekahome-install.sh`.\
+   For new installation, it takes about 5 minutes.
+6. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
+7. Verify the Local Weka Home is installed successfully. Run the following command line:\
+   &#x20;   `helm status homewekaio -n home-weka-io`
+
+<details>
+
+<summary>Response example of a successful Local Weka Home installation</summary>
+
+```
+helm status homewekaio -n home-weka-io
+NAME: homewekaio
+LAST DEPLOYED: Thu Jan  5 09:30:42 2023
+NAMESPACE: home-weka-io
+STATUS: deployed
+REVISION: 3
+TEST SUITE: None
+NOTES:
+Thank you for installing home-weka-io.
+Your release is named homewekaio
+To learn more about the release, try:
+
+  $ helm status homewekaio -n home-weka-io
+  $ helm get all homewekaio -n home-weka-io
+
+------------------------------------------------------------------------
+Weka Home Frontend:
+------------------------------------------------------------------------
+URL:
+https://172.31.46.11
+Username:
+admin
+To obtain password, run:
+kubectl get secret -n home-weka-io weka-home-admin-credentials -o jsonpath='{.data.admin_password}' | base64 -d
+
+------------------------------------------------------------------------
+Weka Home REST API:
+------------------------------------------------------------------------
+URL:
+https://172.31.46.11/api/
+
+------------------------------------------------------------------------
+Weka Home Statistics (Grafana):
+------------------------------------------------------------------------
+URL:
+https://172.31.46.11/stats/
+Username:
+admin
+To obtain password, run:
+kubectl get secret -n home-weka-io weka-home-grafana-credentials  -o jsonpath='{.data.password}' | base64 -d
 
-### Statistics:  performance visualizations
+------------------------------------------------------------------------
+Weka Home Encryption Secret Key
+------------------------------------------------------------------------
+To obtain secretkey, run:
+kubectl get secret -n home-weka-io weka-home-encryption  -o jsonpath='{.data.encryption_secret_key}' | base64 -d
 
-The **Statistics** button redirects to the Grafana login screen from which you can view some of the various performance visualizations.
+------------------------------------------------------------------------
+Technical information
+------------------------------------------------------------------------
+Number of event store databases: 1
+Easy wekahoming!
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_stats1.png" alt=""><figcaption><p>Cluster Summary</p></figcaption></figure>
+```
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_stats2.png" alt=""><figcaption><p>Weka Home Health Dashboard</p></figcaption></figure>
-{% endtab %}
+</details>
 
-{% tab title="Alerting and integrations" %}
-### Create Rule
+### 6. Access the Local Weka Home portal and Grafana
 
-The Create Rule page allows you to create custom rules for specific alerts or events that trigger predefined integrations. Multiple event types and alert types are supported. For example, you might want to create an alert that is raised when the cluster is not responding, and you want it emailed to a specific address.
+* The Local Weka Home URL is `https://<your_domain>`
+* The Grafana URL of the Local Weka Home is `https://<your_domain>/stats/`
+* The Weka Home REST API URL is `https://<your_domain>/api/`
+* The user name for accessing the portals is `admin`.
+* To obtain the password for accessing the Local Weka Home portal, run the following command:\
+  `kubectl get secret -n home-weka-io weka-home-admin-credentials  -o jsonpath='{.data.admin_password}' | base64 -d`
+* To obtain the password for accessing the Local Weka Home grafana portal, run the following command:\
+  `kubectl get secret -n home-weka-io weka-home-grafana-credentials  -o jsonpath='{.data.password}' | base64 -d`
+* To obtain the secret key of the Local Weka Home portal, run the following command:\
+  `kubectl get secret -n home-weka-io weka-home-encryption  -o jsonpath='{.data.encryption_secret_key}' | base64 -d`
 
-<figure><img src="../../.gitbook/assets/lwh_create_rule_overview.png" alt=""><figcaption><p>Create Rule</p></figcaption></figure>
+### 7. Enable the Weka cluster to send information to the Local Weka Home
 
-### Create Integration
+By default, the Weka cluster is set to send information to the public instance of Weka Home. To get the information in the Local Weka Home, set in the Weka cluster the URL of the Local Weka Home.&#x20;
 
-The Create Integration page allows you to create the destinations where you want alerts and events defined in the Rules page to be sent. The available destination types include Email (SMTP), PagerDuty, and SNMP Traps (v1/v2c/v3).
+Connect to the Weka cluster and run the following command:\
+`weka cloud enable --cloud-url https://<ip or hostname of the Local Weka Home server>`
 
-<figure><img src="../../.gitbook/assets/lwh_integration_overview.png" alt=""><figcaption><p>Create Integration</p></figcaption></figure>
+### 8. Test the deployment
 
-For more details, see [Set the Local Weka Home to send alerts or events](broken-reference).
-{% endtab %}
+The Weka cluster uploads data to the Local Weka Home periodically and on-demand according to its information type (see the [Which information is uploaded to the Weka Home](./#which-information-is-uploaded-to-the-weka-home) section).&#x20;
 
-{% tab title="Security and compliance" %}
-### Audit page
+Access the Weka Home portal and verify that the test data appears.
 
-The **Cluster Audit** page lists all audited activities such as _mute/unmute clusters_ and _set maintenance window_.
+To trigger a test event, run `weka events trigger-event test` and verify the test event is received in the Local Weka Home portal under the **Events** section.
 
-The following is an example showing when the cluster was muted and when it was placed into a maintenance window.
+## Upgrade the Local Weka Home
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_audit.png" alt=""><figcaption><p>Cluster Audit</p></figcaption></figure>
+The Local Weka Home upgrade workflow is similar to the deployment workflow (but without reinstalling the Minikube).
 
-### Admin page
+**Procedure:**
 
-The Admin page displays all the admin privileged settings that can be applied to the Local Weka Home for this cluster. You can apply the following settings:
+1. Download the latest Local Weka Home package (_wekahome-vm-docker-images_). See the location in [Download the Local Weka Home and Minikube packages](local-weka-home-deployment.md#2.-download-the-local-weka-home-and-minikube-packages)_._
+2. Unpack the Local Weka Home package to the same directory used for installing the LWH. `tar xvf <file name> -C <path>`
+3. From the `wekahome_offline` directory, run `./update_config.sh`
+4. If you want to modify the existing configuration, open the `/root/.config/wekahome/config.yaml` file and modify the settings (as described in [Install and configure Local Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home)).
+5. Run `./wekahome-install.sh`. For an upgrade, it takes about 2 minutes.
+6. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
+7. Verify the Local Weka Home is upgraded successfully. Run the following command line:\
+   `helm status homewekaio -n home-weka-io`
 
-* **Mute Cluster**: Instructs the cluster to not send any alerts or events to Local Weka Home. This is useful for temporary situations where some maintenance activities will cause an unnecessary number of alerts to be sent to Local Weka Home.
-* **Delete Cluster**: Removes a legacy, already destroyed Weka cluster from Local Weka Home. It does not delete the cluster itself.
-* **Maintenance Window**: Defines a window of time during which alert and event notifications will not be sent (by email, SNMP, and PagerDuty).
+## Modify the Local Weka Home configuration
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_admin.png" alt=""><figcaption><p>Admin page</p></figcaption></figure>
+Suppose there is a change in the SMTP server in your environment, or you need to change the events retention period or any other settings in the Local Weka Home configuration, you can modify the existing `config.yaml` with your new settings and apply them.
 
-### Users and Group pages
+**Procedure:**
 
-The Users page displays the current list of users with login access to Local Weka Home and allows adding new users. The authentication is with a local username and password.
+1. Open the `/root/.config/wekahome/config.yaml` file and modify the settings (as described in [Install and configure Local Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home)).
+2. Run `./wekahome-install.sh`
+3. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
+4. Verify the Local Weka Home is updated successfully. Run the following command line:\
+   `helm status homewekaio -n home-weka-io`
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_users.png" alt=""><figcaption><p>Users page</p></figcaption></figure>
+## Troubleshoot the Local Weka Home deployment
 
-The Groups page displays all the groups, their respective members, and scopes (roles) each group is allowed to access or view in Local Weka Home.
+### Symptom: browsing to the Local Weka Home returns an error
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_groups.png" alt=""><figcaption><p>Groups page</p></figcaption></figure>
+The probable cause can be, for example, a communication problem.
 
-You can create new groups as necessary with custom role-based access control (RBAC scoping).
+#### Resolution
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_create_group.png" alt=""><figcaption><p>Group Creator</p></figcaption></figure>
+1. Retrieve the ingress pod (controller) of the Local Weka Home.\
+   `kubectl get pods -n ingress-nginx -o name|grep controller`
+2. Retrieve the logs and look for the error.\
+   `kubectl logs <pod name from previous command> -n ingress-nginx > nginx.out`
 
-### Anonymization
+### Symptom: when executing any command on the Local Weka Home, the error “no space left” is displayed&#x20;
 
-This capability is designed to allow customers to send data to the cloud Weka Home for enhanced supportability and monitoring by the Customer Success Team without worrying about sensitive data being uploaded.
+The probable cause for this issue is that the docker root dir (/var/lib/docker) consumes disk space.
 
-A toggle button is provided to enable downloading the Usage Report or Analytics data without sensitive data.
+#### Resolution
 
-<figure><img src="../../.gitbook/assets/lwh_anonynization.png" alt=""><figcaption><p>Enable Anonymization</p></figcaption></figure>
+Do one of the following:
 
-For more details, see [Download the Usage Report or Analytics](broken-reference).
-{% endtab %}
+* Resize the disk and reinstall the Local Weka Home.
+* Relocate the docker root directory path to a new path on a larger device (if it exists) and copy the content from the old path to the new path.
 
-{% tab title="Supportability and miscellaneous" %}
-### Cloud forwarding
+### Symptom: when testing the integration, the email is not received
 
-This feature is aimed at customers that want to send events, usage, and analytics data from the Local Weka Home to the cloud Weka Home for supportability and monitoring by the Customer Success Team. The data is not anonymized.
+The probable cause can be issues related to the SMTP server, such as wrong credentials or recipient email address.
 
-This feature is supported for cluster configurations with less than 500 containers. This feature is not relevant for dark sites.
+#### Resolution
 
-This feature is globally defined during the Local Weka Home deployment. It is disabled by default. It can be enabled in the Local Weka Home _config.yaml_ file.
-
-### REST API
-
-The Weka system supports a RESTful API. This is useful when automating the interaction with the Weka system and when integrating it into your workflows or monitoring systems.
-
-The REST API is accessible at port 14000 through the URL: /api/v2.
-
-You can explore the REST API through /api/v2/docs when accessing from the cluster, for example, https://weka01:14000/api/v2/docs.
-
-The static API documentation can be accessed from [api.docs.weka.io](https://api.docs.weka.io/) (you can select the version from the drop-down list). The .json file can also be used to create your client code, using an OpenAPI client generator.
-{% endtab %}
-{% endtabs %}
+1. On the **Integration** page, select **Test Integration**.\
+   Wait until an error appears.
+2. Retrieve the logs and search for the error. On the Local Weka Home terminal, run the following command:\
+   ``for dep in `kubectl get deployment -n home-weka-io -o name`; do echo -----$dep-----; kubectl logs $dep --all-containers=true --timestamps=true --since=5m ; done``
