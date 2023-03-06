@@ -52,8 +52,11 @@ It is assumed that the servers are ready for the Weka software installation. In 
 1. Install Weka software on all containers:
 
 ```bash
-pdsh -w weka0[1-8] "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.0.0/4.0.0 | sudo sh"
+pdsh -w weka0[1-8] "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.1.0/4.1.0 | sudo sh"
 ```
+
+\
+To get the download link with the token, see the [Obtain the Weka software installation package](../install/bare-metal/obtaining-the-weka-install-file.md) topic.
 
 ### Configuration
 
@@ -68,6 +71,7 @@ ssh weka01
 weka cluster create weka0{1..8}
 weka cluster update --cluster-name=WekaProd
 weka cloud enable
+
 ```
 
 Configure the network, drives, and CPUs per container:
@@ -89,6 +93,7 @@ do
     # set the cores each container
     weka cluster container cores $i 19 --frontend-dedicated-cores 1 --drives-dedicated-cores 6
 done
+
 ```
 
 ```bash
@@ -119,6 +124,7 @@ done
 weka cluster drive
 
 weka status
+
 ```
 
 2\. If the configuration status is according to your needs, apply the configuration:
@@ -126,6 +132,7 @@ weka status
 ```bash
 # initialize the containers
 weka cluster container apply --all --force
+
 ```
 
 3\. Verify that the `apply` operation is successful. Check the alerts and verify that the\
@@ -133,30 +140,34 @@ weka cluster container apply --all --force
 
 ```
 weka alerts
+
 ```
 
 4\. Obtain a classic or PAYG license from [get.weka.io](https://get.weka.io/) and set the license.&#x20;
 
 ```
 weka cluster license set LICENSE_TEXT_OBTAINED_FROM_GET_WEKA_IO
+
 ```
 
 5\. Start the cluster:
 
 ```bash
 weka cluster start-io
+
 ```
 
 6\. Check the cluster information and status:
 
 ```bash
 weka status
+
 ```
 
 Output example:
 
 ```bash
-WekaIO v4.0.0 (CLI build 4.0.0)
+WekaIO v4.0.0 (CLI build 4.1.0)
 
        cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
         status: OK (8 backends UP, 48 drives UP)
@@ -189,6 +200,7 @@ To run the commands on all containers in parallel, we use `pdsh` as an example o
 
 ```bash
 pdsh -R ssh -w "weka0-[0-1]" "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.1.0/4.1.0 | sudo sh"
+
 ```
 
 To get the download link with the token, see the [Obtain the Weka software installation package](../install/bare-metal/obtaining-the-weka-install-file.md) topic.
@@ -199,6 +211,7 @@ To get the download link with the token, see the [Obtain the Weka software insta
 
 ```
 pdsh -R ssh -w "weka0-[0-7]" 'weka local stop default && weka local rm -f default'
+
 ```
 
 ### Generate resource files
@@ -209,18 +222,21 @@ pdsh -R ssh -w "weka0-[0-7]" 'weka local stop default && weka local rm -f defaul
 
 ```
 for i in {0..7}; do scp resources_generator.py weka0-$i:/tmp/resources_generator.py; done
+
 ```
 
 3\. To enable execution, change the mode of the resource generator on all servers in the cluster:
 
 ```
 pdsh -R ssh -w "weka0-[0-4]" 'chmod +x /tmp/resources_generator.py'
+
 ```
 
 4\. Run resource generator on all servers in the cluster:
 
 ```
 pdsh -R ssh -w "weka0-[0-4]" '/tmp/resources_generator.py  --path /tmp --net ens{5..7}'
+
 ```
 
 On each server, the resource generator generates three resource files in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`.
