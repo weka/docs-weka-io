@@ -45,8 +45,9 @@ Download the Weka software installation package (tar) from the [get.weka.io](htt
 
 ![get.weka.io: Dashboard tab](../../.gitbook/assets/Get\_Weka\_dashboard.png)
 
-2\. Select the **Releases** tab.
+2. Select the **Releases** tab.
 
 ![get.weka.io: Releases tab](../../.gitbook/assets/Get\_Weka\_download\_tab.png)
 
-3\. Select the required release and follow the download instructions.
+3. Select the required release and follow the download instructions.\
+   (The token in the download link is purposely blurred.)

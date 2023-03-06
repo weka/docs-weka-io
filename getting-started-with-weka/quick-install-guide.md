@@ -175,11 +175,11 @@ WekaIO v4.0.0 (CLI build 4.0.0)
         alerts: 1 active alert, use `weka alerts` to list it
 ```
 
-7\. Change the default admin password and ensure that no other alerts exist in the system.
+7\. Change the default admin password and ensure no other alerts exist.
 
 ## Quick installation for multiple containers architecture
 
-It is assumed that the servers are ready for the Weka software installation. In the following example, there are 8 servers. Each server has more than 20 cores, 6 NVME drives, and a single Mellanox NIC.
+It is assumed that the servers are ready for the Weka software installation. In the following example, there are 8 servers. Each server has over 20 cores, 6 NVME drives, and a single Mellanox NIC.
 
 To run the commands on all containers in parallel, we use `pdsh` as an example only.
 
@@ -188,8 +188,10 @@ To run the commands on all containers in parallel, we use `pdsh` as an example o
 1. Install Weka software on all servers:
 
 ```bash
-pdsh -R ssh -w "weka0-[0-1]" "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.0.0/4.0.0 | sudo sh"
+pdsh -R ssh -w "weka0-[0-1]" "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.1.0/4.1.0 | sudo sh"
 ```
+
+To get the download link with the token, see the [Obtain the Weka software installation package](../install/bare-metal/obtaining-the-weka-install-file.md) topic.
 
 ### Remove the default container
 
@@ -231,6 +233,7 @@ On each server, the resource generator generates three resource files in the `/t
 
 ```
 pdsh -R ssh -w "weka0-[0-7]" 'weka local setup container --resources-path /tmp/drives0.json'
+
 ```
 
 #### Create a cluster
@@ -243,6 +246,7 @@ pdsh -R ssh -w "weka0-[0-7]" 'weka local setup container --resources-path /tmp/d
 ssh weka0-1
 weka cluster create weka0-{0..7}
 weka cluster update --cluster-name=WekaProd
+
 ```
 
 #### Add a drive to the cluster
@@ -251,6 +255,7 @@ weka cluster update --cluster-name=WekaProd
 
 ```
 for i in {0..7} ; do weka cluster drive add $i /dev/nvme0n1 /dev/nvme1n1 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1 ; done
+
 ```
 
 #### Create compute containers
@@ -259,6 +264,7 @@ for i in {0..7} ; do weka cluster drive add $i /dev/nvme0n1 /dev/nvme1n1 /dev/nv
 
 ```
 pdsh -R ssh -w "weka0-[0-7]" 'weka local setup container --resources-path /tmp/compute0.json --join-ips $(hostname -i)'
+
 ```
 
 #### Name the cluster and enable event notifications to the cloud
@@ -268,6 +274,7 @@ pdsh -R ssh -w "weka0-[0-7]" 'weka local setup container --resources-path /tmp/c
 ```
 weka cluster update --cluster-name=WekaProd
 weka cloud enable
+
 ```
 
 #### Set the license
@@ -277,6 +284,7 @@ weka cloud enable
 
 ```
 weka cluster license set LICENSE_TEXT_OBTAINED_FROM_GET_WEKA_IO
+
 ```
 
 #### Start the cluster IO service
@@ -285,6 +293,7 @@ weka cluster license set LICENSE_TEXT_OBTAINED_FROM_GET_WEKA_IO
 
 ```
 weka cluster start-io
+
 ```
 
 #### Create frontend containers
@@ -293,6 +302,7 @@ weka cluster start-io
 
 ```
  pdsh -R ssh -w "weka0-[0-7]" 'weka local setup container --resources-path /tmp/frontend0.json --join-ips  $(hostname -i)'
+
 ```
 
 ### Post configuration
@@ -314,7 +324,7 @@ weka status
 Output example for a **multiple container** architecture:
 
 ```bash
-WekaIO v4.1.0 (CLI build 4.1.0) TBD - replace the following with a successful output
+WekaIO v4.1.0 (CLI build 4.1.0)
 
        cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
         status: OK (8 backends UP, 5 drives UP)
