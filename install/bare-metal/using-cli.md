@@ -269,27 +269,27 @@ If capacity requirements mandate more memory, the following command should be us
 
 **Command:** `weka cluster container failure-domain`
 
-This optional stage in the installation process is used to assign a container to a failure domain. If the specified failure domain does not exist, it will be created by this command. If the container is assigned to another failure domain, it will be reassigned by this command.
+Use this command to assign a container to a failure domain.
 
-{% hint style="info" %}
-**Note:** All containers not assigned to any failure domain will be considered by the Weka system as an additional failure domain. However, it is good practice to either not define failure domains at all or to assign each container to a single failure domain.
-{% endhint %}
+Follow these guidelines:
 
-{% hint style="info" %}
-**Note:** If a failure domain is not specified for the container, the system assigns the failure domain according to the server.
-{% endhint %}
+* Containers not assigned to any failure domain are considered by the system as additional failure domains.&#x20;
+* As a best practice, assign each container to a single failure domain or do not assign any container.
+* If you specify in the command a failure domain that does not exist, the system creates it.
+* If you specify a container already assigned to another failure domain, the system reassigns it.
+* If you do not specify a failure domain for the container, the system assigns the failure domain according to the server.
 
-This operation is performed using the following command line:
+Run the following command line:
 
 `weka cluster container failure-domain <`container`-id> [--name <name>] | [--auto]`
 
 **Parameters**
 
-| **Name**       | **Type** | **Value**                                                                     | **Limitations**                      | **Mandatory**                                       | **Default** |
-| -------------- | -------- | ----------------------------------------------------------------------------- | ------------------------------------ | --------------------------------------------------- | ----------- |
-| `container-id` | String   | Identifier of the container in which the failure domain should be configured. | Must be a valid container identifier | Yes                                                 |             |
-| `name`         | String   | The failure domain that will contain the container from now.                  |                                      | Yes (either `--name` OR `--auto` must be specified) |             |
-| `auto`         | Boolean  | Will automatically assign a failure domain name.                              |                                      | Yes (either `--name` OR `--auto` must be specified) |             |
+| **Name**       | **Type** | **Value**                                                        | **Limitations**                      | **Mandatory**                                       | **Default** |
+| -------------- | -------- | ---------------------------------------------------------------- | ------------------------------------ | --------------------------------------------------- | ----------- |
+| `container-id` | String   | The identifier of the container to assign to the failure domain. | Must be a valid container identifier | Yes                                                 |             |
+| `name`         | String   | The failure domain name for the container to assign.             | Maximum 16 characters                | Yes (either `--name` OR `--auto` must be specified) |             |
+| `auto`         | Boolean  | Automatically assign a failure domain ID.                        |                                      | Yes (either `--name` OR `--auto` must be specified) |             |
 
 ### 11. Configure Weka system protection scheme (optional)
 
