@@ -104,7 +104,7 @@ Download the latest _wekahome-vm-docker-images_ and _weka\_minikube_  packages t
 * Minikube for Local Weka Home download current location and version:\
   `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/weka_minikube_v1.25.1.8.tar.gz`
 * Local Weka Home download current location and version:\
-  `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/wekahome-vm-docker-images_v.2.7.1.tar.gz`
+  `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/wekahome-vm-docker-images.tar.gz`
 
 ### 4. Install the Minikube
 
