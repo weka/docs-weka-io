@@ -242,11 +242,11 @@ This operation is performed using the following command line:
 
 **Parameters in Command Line**
 
-| **Name**  | **Type** | **Value**                                                                | **Limitations**                 | **Mandatory**                                       | **Default** |
-| --------- | -------- | ------------------------------------------------------------------------ | ------------------------------- | --------------------------------------------------- | ----------- |
-| `host-id` | String   | Identifier of the host in which the failure domain should be configured. | Must be a valid host identifier | Yes                                                 |             |
-| `name`    | String   | The failure domain that will contain the host from now.                  |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
-| `auto`    | Boolean  | Will automatically assign a failure domain name.                         |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
+| **Name**  | **Type** | **Value**                                                   | **Limitations**                 | **Mandatory**                                       | **Default** |
+| --------- | -------- | ----------------------------------------------------------- | ------------------------------- | --------------------------------------------------- | ----------- |
+| `host-id` | String   | The identifier of the host to assign to the failure domain. | Must be a valid host identifier | Yes                                                 |             |
+| `name`    | String   | The failure domain name for the host to assign.             |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
+| `auto`    | Boolean  | Automatically assign a failure domain ID.                   |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
 
 ## Stage 11: Configuration of Weka System Protection Scheme (optional)
 
