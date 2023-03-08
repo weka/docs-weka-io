@@ -229,30 +229,34 @@ If capacity requirements mandate more memory, the following command should be us
 | `capacity-memory` | Number   | The memory dedicated to Weka in bytes. It is possible to set the format in other units, e.g.: 1MB, 1GB, 1MiB, 1GiB. | Setting to 0 determines this value automatically | Yes           |             |
 
 {% hint style="info" %}
-**Note:** This command is given the memory per-host and will later be distributed by the system per compute core. Out of this value, 1GB per compute core is reserved for other purposes (as cache) and not used for capacity.
+**Note:** This command is given the memory per host and will later be distributed by the system per compute core. Out of this value, 1GB per compute core is reserved for other purposes (as cache) and not used for capacity.
 {% endhint %}
 
 ## Stage 10: Configure failure domains (optional)
 
 **Command:** `weka cluster host failure-domain`
 
-This optional stage in the installation process is used to assign a host to a failure domain. If the specified failure domain does not exist, it will be created by this command. If the host is assigned to another failure domain, it will be reassigned by this command.
+Use this command to assign a host to a failure domain.
 
-{% hint style="info" %}
-**Note:** All hosts not assigned to any failure domain will be considered by the Weka system as an additional failure domain. However, it is good practice to either not define failure domains at all or to assign each host to a single failure domain.
-{% endhint %}
+Follow these guidelines:
 
-This operation is performed using the following command line:
+* Hosts not assigned to any failure domain are considered by the system as additional failure domains.&#x20;
+* As a best practice, assign each host to a single failure domain or do not assign any host.
+* If you specify in the command a failure domain that does not exist, the system creates it.
+* If you specify a host already assigned to another failure domain, the system reassigns it.
+* If you do not specify a failure domain for the host, the system assigns the failure domain according to the server.
+
+Run the following command line:
 
 `weka cluster host failure-domain <host-id> [--name <name>] | [--auto]`
 
 **Parameters**
 
-| **Name**  | **Type** | **Value**                                                                | **Limitations**                 | **Mandatory**                                       | **Default** |
-| --------- | -------- | ------------------------------------------------------------------------ | ------------------------------- | --------------------------------------------------- | ----------- |
-| `host-id` | String   | Identifier of the host in which the failure domain should be configured. | Must be a valid host identifier | Yes                                                 |             |
-| `name`    | String   | The failure domain that will contain the host from now.                  |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
-| `auto`    | Boolean  | Will automatically assign a failure domain name.                         |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
+| **Name**  | **Type** | **Value**                                                   | **Limitations**                 | **Mandatory**                                       | **Default** |
+| --------- | -------- | ----------------------------------------------------------- | ------------------------------- | --------------------------------------------------- | ----------- |
+| `host-id` | String   | The identifier of the host to assign to the failure domain. | Must be a valid host identifier | Yes                                                 |             |
+| `name`    | String   | The failure domain name for the host to assign.             |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
+| `auto`    | Boolean  | Automatically assign a failure domain ID.                   |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
 
 ## Stage 11: Configure Weka system protection scheme (optional)
 
