@@ -102,7 +102,7 @@ For using other operating systems, contact the [Customer Success Team](../gettin
 Download the latest _wekahome-vm-docker-images_ and _weka\_minikube_  packages to the dedicated management server.
 
 * Minikube for Local Weka Home download current location and version:\
-  `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/weka_minikube_v1.25.1.8.tar.gz`
+  `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/weka_minikube.tar.gz`
 * Local Weka Home download current location and version:\
   `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/wekahome-vm-docker-images.tar.gz`
 
