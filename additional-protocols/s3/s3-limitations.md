@@ -39,8 +39,8 @@ The following standard S3 APIs are supported:
 * Bucket names must be between 3 and 63 characters long.
 * Bucket names can consist only of lowercase letters, numbers, dots (.), and hyphens (-).
 * Bucket names must begin and end with a letter or number.
-* Bucket names must not be formatted as an IP address (for example, 192.168.5.4).
-* Must be unique within the filesystem
+* Bucket names must not be formatted as IP addresses (for example, 192.168.5.4).
+* Bucket names must be unique across the cluster.
 
 ### Objects
 
