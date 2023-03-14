@@ -1,88 +1,62 @@
----
-description: >-
-  The page describes the expansion of a cluster with new containers, which is
-  similar to the Weka System Installation Process Using the CLI and consists of
-  the following stages.
----
+# Add a backend server in a single container architecture
 
-# Workflow: Add a backend server
+Expanding a cluster in a single container architecture with a new backend server is similar to the Weka system installation process in a single container architecture.
 
-## Stage 1: Obtain the Weka software installation file
+Adding a server to the cluster includes adding the containers and configuring the networking, CPU resources, and SSDs.
 
-This stage is the same as [Obtain the Weka software installation package](../../install/bare-metal/obtaining-the-weka-install-file.md). However, it is essential to download the install file used when the existing cluster is already formed or upgraded. Use the `weka-status` command to show the current cluster install file version.
+<figure><img src="../../.gitbook/assets/add_server_single.gif" alt=""><figcaption><p>Adding a server to the cluster in a single container architecture</p></figcaption></figure>
 
-To download the appropriate install file, follow the instructions in [Download the Weka software installation file](../../install/bare-metal/obtaining-the-weka-install-file.md#download-the-weka-software-installation-file).
+{% hint style="info" %}
+**Note:** In most cases, the container configurations are similar. Therefore, importing the container settings from a previously exported container in the cluster is possible, saving time and avoiding misconfiguration. \
+See [Expand the cluster by importing the server settings](stages-in-adding-a-backend-host.md#expand-the-cluster-by-importing-the-server-settings).
+{% endhint %}
 
-## Stage 2: Install the Weka software on the new server&#x20;
+## Add a backend server to an existing cluster
 
-Follow the instructions in the [Installation of the Weka software on each server](../../install/bare-metal/using-cli.md#stage-1-installation-of-the-weka-software-on-each-host). At the end of the installation process, the container is in [stem mode](../../overview/glossary.md#stem-mode).
+1. Obtain the Weka install file.
+   * Download the Weka install file used when the existing cluster was last upgraded (or formed, if not upgraded). See [obtaining-the-weka-install-file.md](../../install/bare-metal/obtaining-the-weka-install-file.md "mention").
+   * Use the `weka-status` command to show the current cluster install file version.\
 
-## Stage 3: Add the container to the cluster
-
-**Command:** `weka cluster container add`
-
-Once the container is in the [stem mode](../../overview/glossary.md#stem-mode), use the following command line on any container to add it to the cluster:
+2. Install the Weka software on the new server.
+   * Run the `untar` command and `install.sh` command on the new server.\
+     At the end of the installation process, the server is in stem mode (the server is not attached to a cluster).
+3. Add the container to the cluster.
+   * Run the following command line on any container that is part of the cluster. In the `backend-hostname` property, specify the IP address or hostname of the new backend server to add.
 
 ```
-weka -H <existing-backend-hostname> cluster container add <backend-hostname>
+weka cluster container add <backend-hostname>
+
 ```
 
-**Parameters**
-
-| **Name**                    | **Type** | **Value**                                                            | **Limitations**            | **Mandatory** | **Default**                                         |
-| --------------------------- | -------- | -------------------------------------------------------------------- | -------------------------- | ------------- | --------------------------------------------------- |
-| `existing-backend-hostname` | String   | IP or hostname of one of the existing backend servers in the cluster | Valid hostname (DNS or IP) | No            | The backend server on which the command is executed |
-| `backend-hostname`          | String   | IP or hostname of the backend server to add                          | Valid hostname (DNS or IP) | Yes           |                                                     |
-
 {% hint style="info" %}
-**Note:** On completion of this stage, the container-id of the newly added backend container is received. Make a note of it for the next steps.
+**Note:** Once this step is completed, the container ID of the newly added server appears in response to the command. Make a note of it to use in the following steps.
 {% endhint %}
 
-## Stage 4: Configure the networking
-
-See _Configure the networking_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
-
-## Stage 5: Configure the SSDs
-
-See _Configure the SSDs_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
-
-## Stage 6: Configure the CPU resources
-
-See _Configure the CPU resources_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
-
-## Stage 7: Configure the memory
-
-To display a list of the memory defined (one line per container), run the following command:
-
-`weka cluster container`
-
-To configure the memory, see _Configure the memory_ in[using-cli.md](../../install/bare-metal/using-cli.md "mention").
+4. Configure the networking.
+   * Perform the instructions in [#stage-6-configure-the-networking](../../install/bare-metal/using-cli.md#stage-6-configure-the-networking "mention").
+5. Configure the CPU resources.
+   * Perform the instructions in [#stage-8-configure-the-cpu-resources](../../install/bare-metal/using-cli.md#stage-8-configure-the-cpu-resources "mention").
+6. Apply the configuration of the container on the newly added server.
+   * Perform the instructions in [#stage-13-apply-containers-configuration](../../install/bare-metal/using-cli.md#stage-13-apply-containers-configuration "mention").
 
 {% hint style="info" %}
-**Note:** If the memory is configured, you must use the same memory for the expanded container.
+**Note:** You can activate the cluster containers sequentially.
 {% endhint %}
 
-## Stage 8: Configure failure domains
+7. Configure the SSDs.
+   * Perform the instructions in [#7.-configure-the-ssds](../../install/bare-metal/using-cli.md#7.-configure-the-ssds "mention").
 
-See _Configure failure domains_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
+## Expand the cluster by importing the container settings
 
-{% hint style="info" %}
-**Note:** Plan whether each container is added to an existing failure domain or to a new failure domain.
-{% endhint %}
+In most cases, the server configurations are similar. Therefore, importing the server setting from a previously exported server in the cluster is possible, saving time and avoiding misconfiguration.
 
-## Stage 9: Apply containers configuration
+**Procedure:**
 
-If containers are already added to the cluster, see _Apply containers configuration_ in [using-cli.md](../../install/bare-metal/using-cli.md "mention").
-
-{% hint style="info" %}
-**Note:** The activation of the container can be performed with a sequence of containers.
-{% endhint %}
-
-## Import container settings
-
-Instead of carrying stages 4-9 above, it is possible to import the container setting from a previously exported container in the cluster. In most cases the container configurations are similar, and importing can save some extra steps and avoid misconfiguration.
-
-To export settings from a container, ssh to the server with this container, and run the `weka local resources export` command.&#x20;
-
-To import the settings to the new container, ssh to it and run the `weka local resources import` command. You can then edit the local configuration as described in [Local resources editing commands](expansion-of-specific-resources.md#local-resources-editing-commands) section and run weka local resources apply to apply the configuration.
-
+1. Perform only steps 1 to 3 in the [Add a backend server to an existing cluster](stages-in-adding-a-backend-host.md#add-a-backend-server-to-an-existing-cluster) procedure (above).
+2. Connect to one of the servers in the cluster and export the settings by running the following command: `weka local resources export`.
+3. Connect to the new server and import the settings by running the following command: \
+   `weka local resources import`.
+4. Edit the local configuration.
+   * See the [#local-resources-editing-commands](expansion-of-specific-resources.md#local-resources-editing-commands "mention") section.
+5. Apply the configuration on the newly added server.
+   * See [#stage-13-apply-containers-configuration](../../install/bare-metal/using-cli.md#stage-13-apply-containers-configuration "mention").

@@ -13,5 +13,5 @@ The following illustrates the weka system installation process in a bare metal e
 <figure><img src="../../.gitbook/assets/weka_install_process.png" alt=""><figcaption><p>Weka installation process on the bare metal environment</p></figcaption></figure>
 
 {% hint style="info" %}
-**Note:** The following topics are related to the installation of a homogeneous Weka system configuration, which is highly recommended. For installation of a non-homogeneous configuration, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+**Note:** The following topics are related to installing a homogeneous Weka system configuration, which is highly recommended. For installation of a heterogeneous configuration, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}

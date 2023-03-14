@@ -1,44 +1,61 @@
----
-description: >-
-  This page describes the procedures involved in the shrinking of a cluster,
-  which may be required when it is necessary to reallocate cluster hardware.
----
+# Shrink a cluster
 
-# Shrink a Cluster
+Shrinking a cluster may be required to save the cluster's costs, and the performance degradation does not affect your business.
 
-## Shrink cluster options
+You can shrink the cluster by performing one of the following:
 
-Cluster shrinking can involve either the removal of some of the assigned SSDs or the removal of containers from the system. The following operations are available:
+* Remove only some drives from the cluster.
+* Remove containers with their allocated drives.
 
-1. List all the drives and their states, to receive a view of currently-allocated resources and their status.
-2. Deactivate drives as the first step before removing a container.
-3. Remove a subset of SSD drives allocated for the cluster.
-4. Deactivate containers, which can be used after deactivating drives in preparation for the removal of the container.
-5. Remove containers to complete the cluster shrinking.
+Removing drives or containers requires deactivating the drives you want to remove. But, if the deactivation leads to insufficient SSD capacity of the currently-provisioned filesystems, the Weka system does not deactivate the drives, and shrinking the cluster is not allowed.
 
-## List drives and their sees
+### Before you begin
 
-**Command:** `weka cluster drive`
+Run the following command to display a list of all the drives in the cluster with their details, such as UUID and status:
 
-Use this command to display a list of all the drives in the cluster and their status.
+`weka cluster drive`
 
-## Deactivate a drive
+<details>
 
-**Command:** `weka cluster drive deactivate`
+<summary>Example</summary>
 
-Running this deactivation command will redistribute the stored data on the remaining drives and can be performed on multiple drives.
+```
+root@void-new-1:~# weka cluster drive
+DISK ID  UUID                                  HOSTNAME     NODE ID  SIZE      STATUS    LIFETIME % USED  ATTACHMENT  DRIVE STATUS
+37       84c4574d-5a46-4644-91aa-df1ceef27ff1  void-new-10  1921     1.09 TiB  ACTIVE    0                OK          OK
+45       ecd05959-629c-4319-9d24-f69497c499e3  void-new-19  2401     1.09 TiB  ACTIVE    0                OK          OK
+46       4c8af0fa-894b-4096-adb6-17fe98a3a690  void-new-17  2281     1.09 TiB  ACTIVE    0                OK          OK
+47       49f684d0-9f2e-4b0a-9153-9aa3570067bd  void-new-18  2341     1.09 TiB  ACTIVE    0                OK          OK
+57       7202db57-1f4e-4332-a132-33a47a729d46  void-new-0   1141     1.09 TiB  INACTIVE  0                OK
+58       6c2ad35b-a1ff-4b30-9882-0ed3ec166747  void-new-1   1321     1.09 TiB  ACTIVE    0                OK          OK
+59       ae8dd40a-9d3d-4154-a26d-3e9643f59e6f  void-new-2   1381     1.09 TiB  ACTIVE    0                OK          OK
+60       b96e3c32-3a29-436a-ac35-2e8cf6808e9a  void-new-3   1441     1.09 TiB  ACTIVE    0                OK          OK
+61       63ab4d5d-82ed-4248-9ce1-817ce5d7e106  void-new-4   1501     1.09 TiB  ACTIVE    0                OK          OK
+62       0f303d2c-5fd0-47e6-9150-0da4afcc454b  void-new-5   1561     1.09 TiB  ACTIVE    0                OK          OK
+63       d21f4b3b-1458-4402-8592-06e7ca426d9c  void-new-6   1621     1.09 TiB  ACTIVE    0                OK          OK
+64       0c3de49c-b123-4b0b-bd64-e7a90454b41d  void-new-7   1681     1.09 TiB  ACTIVE    0                OK          OK
+65       c519e608-ae1d-402e-9f10-da69b227d2c8  void-new-8   1741     1.09 TiB  ACTIVE    0                OK          OK
+66       80d53c1d-206e-4021-848b-e52b47bf32fa  void-new-9   1801     1.09 TiB  ACTIVE    0                OK          OK
+68       3d669d70-6db2-4a7d-a13b-47ad531f43dd  void-new-11  1861     1.09 TiB  ACTIVE    0                OK          OK
+69       ded74ec1-d208-41a9-af2d-eb1c1e81e613  void-new-12  1981     1.09 TiB  ACTIVE    0                OK          OK
+70       4451db18-8417-4d4f-b5d0-02bad359b9ff  void-new-13  2041     1.09 TiB  ACTIVE    0                OK          OK
+71       019f2b88-c284-4cf4-b384-0a0fde6ea128  void-new-14  2101     1.09 TiB  ACTIVE    0                OK          OK
+72       7a315ea8-9f12-4143-b67b-213f2f3f6748  void-new-15  2161     1.09 TiB  ACTIVE    0                OK          OK
+73       dce3f522-5672-4964-8db8-383774c11569  void-new-16  2221     1.09 TiB  ACTIVE    0                OK          OK
+```
 
-{% hint style="info" %}
-**Note:** After running this command, the deactivated drives will still appear in the list.
+</details>
 
-It is not possible to deactivate a drive if it will lead to an unstable state, i.e., if the [system capacity](../../overview/ssd-capacity-management.md) after drive deactivation is insufficient for the SSD capacity of currently-provisioned filesystems.
-{% endhint %}
+## Remove only some drives from the cluster
 
-Drive deactivation starts an asynchronous process known as phasing out, which is a gradual redistribution of the data between the remaining drives in the system. On completion, the phased-out drive is in an inactive state, i.e., not in use by the Weka system, but still appearing in the list of drives.
+Perform the following:
 
-{% hint style="info" %}
-**Note:** Running the `weka cluster drive` command will display whether the redistribution is still being performed.
-{% endhint %}
+1. [Deactivate drives](shrinking-a-cluster.md#deactivate-drives).
+2. [Remove drives from the cluster](shrinking-a-cluster.md#remove-drives-from-the-cluster).
+
+### Deactivate drives
+
+Drive deactivation starts an asynchronous process known as phasing out. It is a gradual redistribution of the data between the remaining drives in the system. On completion, the phased-out drives are in an inactive state. The Weka cluster does not use inactive drives, but they still appear in the drives list.&#x20;
 
 To deactivate a drive, run the following command:
 
@@ -50,11 +67,13 @@ To deactivate a drive, run the following command:
 | -------- | ----------------------- | --------------------------------- | --------------- | ------------- | ----------- |
 | `uuids`  | Comma-separated strings | Comma-separated drive identifiers |                 | Yes           |             |
 
-## Remove a drive
+{% hint style="info" %}
+**Note:** Running the `weka cluster drive` command is displayed whether the redistribution is still being performed.
+{% endhint %}
 
-**Command:** `weka cluster drive remove`
+### Remove drives from the cluster
 
-This command is used to completely remove a drive from the cluster. After removal, the drive will not be recoverable.
+Once you remove a drive from the cluster, the drive is not recoverable.
 
 To remove a drive, run the following command:
 
@@ -66,13 +85,16 @@ To remove a drive, run the following command:
 | -------- | ----------------------- | --------------------------------- | --------------- | ------------- | ----------- |
 | `uuids`  | Comma-separated strings | Comma-separated drive identifiers |                 | Yes           |             |
 
-## Deactivate an entire container
+## Remove containers with their allocated drives
 
-**Command:** `weka cluster container deactivate`
+Perform the following:
 
-This command is used as the first step when shrinking a cluster. Running this command automatically deactivates all the drives in the container.
+1. [Deactivate containers](shrinking-a-cluster.md#deactivate-containers).
+2. [Remove containers from the cluster](shrinking-a-cluster.md#remove-containers-from-the-cluster).
 
-To deactivate an entire container, run the following command:
+### Deactivate containers
+
+To deactivate containers with their drives, run the following command:
 
 `weka cluster container deactivate <container-ids> [--allow-unavailable]`
 
@@ -83,11 +105,9 @@ To deactivate an entire container, run the following command:
 | `container-ids`     | Space-separated integers | Space-separated container identifiers          |                                                                       | Yes           |             |
 | `allow-unavailable` | Boolean                  | Allow deactivation of an unavailable container | If the container returns, it will join the cluster in an active state | No            | No          |
 
-## Remove a container
+### Remove containers from the cluster
 
-**Command:** `weka cluster` c`ontainer remove`
-
-Running this command removes the container from the cluster. The container switches to the [stem mode](../../overview/glossary.md#stem-mode) so that it can be reallocated to another cluster or purpose.
+Removing containers from the cluster switches them to a stem mode (not part of a cluster), so they can be reallocated to another cluster or purpose.
 
 To remove the container from the cluster, run the following command:
 

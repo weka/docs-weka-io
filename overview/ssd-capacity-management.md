@@ -73,7 +73,7 @@ The net capacity of the Weka system is obtained after the following three deduct
 2. The hot spare(s) is the storage capacity set aside for redundancy and to allow for rebuilding following a component failure.
 3. Weka filesystem overhead to improve overall performance.     &#x20;
 
-## The formula for calculating SSD net storage capacity
+## SSD net storage capacity calculation
 
 <figure><img src="../.gitbook/assets/NetSSD_Capacity_Formula_with_Failure_Domains.png" alt=""><figcaption></figcaption></figure>
 

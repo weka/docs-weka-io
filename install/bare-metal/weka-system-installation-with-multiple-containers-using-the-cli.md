@@ -145,7 +145,7 @@ weka cluster drive add <container-id> <device-paths>
 
 | **Name**       | **Type**                        | **Value**                                                                                 | **Limitations**                          | **Mandatory** | **Default** |
 | -------------- | ------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------- | ------------- | ----------- |
-| `container-id` | String                          | Identifier of the container to which a local SSD is **** added                            | Must be a valid container identifier     | Yes           |             |
+| `container-id` | String                          | The Identifier of the drive container to add the local SSD drives                         | Must be a valid container identifier     | Yes           |             |
 | `device-paths` | Space-separated list of strings | List of block devices that identify local SSDs. For example,  `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes           |             |
 
 ### 7. Create compute containers

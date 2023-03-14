@@ -8,7 +8,7 @@ description: >-
 
 ## Workflow
 
-1. [Install the Weka software on each container](using-cli.md#1.-install-the-weka-software-on-each-container)
+1. [Install the Weka software on each server](using-cli.md#1.-install-the-weka-software-on-each-server)
 2. [Create a cluster from the containers](using-cli.md#2.-create-a-cluster-from-the-containers)
 3. [Set a name for the cluster (optional)](using-cli.md#3.-set-a-name-for-the-cluster-optional)
 4. [Enable event notifications to the cloud (optional)](using-cli.md#4.-enable-event-notifications-to-the-cloud-optional)
@@ -24,7 +24,7 @@ description: >-
 14. [Set a license](using-cli.md#14.-set-a-license)
 15. [Run the Start IO command](using-cli.md#15.-run-the-start-io-command)
 
-### 1. Install the Weka software on each container
+### 1. Install the Weka software on each server
 
 Run the untar command and `install.sh` command, according to the instructions, on each server.
 
@@ -126,7 +126,7 @@ It is possible to set the container as dedicated to the Weka cluster. By setting
 When PKEYs are used, the device name for InfiniBand should follow the name.PKEY convention.
 
 {% hint style="info" %}
-**Note:** Although in general, devices can be renamed arbitrarily, Weka will only function correctly if the .PKEY naming convention is followed.
+**Note:** Although devices can generally be renamed arbitrarily, Weka only functions correctly if the .PKEY naming convention is followed.
 {% endhint %}
 
 The networking type can be either Ethernet (direct over DPDK) or InfiniBand (IB), and can be mixed in the same container (by running multiple `cluster container net add` commands for the same container). A physical network device must be specified for both types. This can be a device dedicated to the Weka system or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
@@ -248,7 +248,7 @@ This stage in the installation process is used to configure the number of CPU re
 
 **Command:** `weka cluster container memory`
 
-As defined in the memory requirements, the fixed memory per container and the per compute/SSD cores memory are automatically calculated by the Weka system. By default, 1.4 GB is allocated per compute-core, out of which 0.4 GB is left for the capacity-oriented memory. If the container is set as [dedicated](using-cli.md#stage-5-setting-hosts-as-dedicated-to-the-cluster-optional), all the memory left after reductions, as described in [Memory Resource Planning](planning-a-weka-system-installation.md#memory-resource-planning), is automatically allocated for the Weka system.
+As defined in the memory requirements, the fixed memory per container and the per compute/SSD cores memory are automatically calculated by the Weka system. By default, 1.4 GB is allocated per compute core, of which 0.4 GB is left for capacity-oriented memory. If the container is set as [dedicated](using-cli.md#stage-5-setting-hosts-as-dedicated-to-the-cluster-optional), all the memory left after reductions, as described in [Memory Resource Planning](planning-a-weka-system-installation.md#memory-resource-planning), is automatically allocated for the Weka system.
 
 If capacity requirements mandate more memory, the following command should be used:
 
@@ -256,10 +256,10 @@ If capacity requirements mandate more memory, the following command should be us
 
 **Parameters**
 
-| **Name**          | **Type** | **Value**                                                                                                           | **Limitations**                                     | **Mandatory** | **Default** |
-| ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------- | ----------- |
-| `container-id`    | String   | Identifier of the container in which the memory configuration has to be defined.                                    | Must be a valid container identifier                | Yes           |             |
-| `capacity-memory` | Number   | The memory dedicated to Weka in bytes. It is possible to set the format in other units, e.g.: 1MB, 1GB, 1MiB, 1GiB. | Setting it to 0 determines this value automatically | Yes           |             |
+| **Name**          | **Type** | **Value**                                                                                                                  | **Limitations**                                     | **Mandatory** | **Default** |
+| ----------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------- | ----------- |
+| `container-id`    | String   | Identifier of the container in which the memory configuration has to be defined.                                           | Must be a valid container identifier                | Yes           |             |
+| `capacity-memory` | Number   | The dedicated memory to Weka in bytes. It is possible to set the format in other units. For example, 1MB, 1GB, 1MiB, 1GiB. | Setting it to 0 determines this value automatically | Yes           |             |
 
 {% hint style="info" %}
 **Note:** This command is given the memory per container and will later be distributed by the system per compute core. Out of this value, 1 GB per compute core is reserved for other purposes (as cache) and not used for capacity.
