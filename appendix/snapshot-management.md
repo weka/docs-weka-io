@@ -61,7 +61,7 @@ See the [Create local users](../usage/user-management/user-management.md#create-
 
 1. Download the latest `snaptool.tar` file from [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) and extract it to the management server.\
    Example:\
-   `wget https://github.com/weka/snaptool/releases/download/1.0.0/snaptool-1.0.0.tar`\
+   `wget https://github.com/weka/snaptool/releases/snaptool.tar`\
    `tar xvf snaptool.tar`
 2. Edit the `snaptool.yml` configuration file (default location: /opt/weka/snaptool).\
    See [Edit the configuration in snaptool.yml](snapshot-management.md#edit-the-configuration-in-snaptool.yml).\

@@ -20,7 +20,7 @@ You can set up the Weka-mon package regardless of the data monitoring provided b
 
 One of the advantages of setting up the Weka-mon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with Weka to correlate and display monitoring information from all your products on the same dashboard.
 
-![Weka enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (22).png>)
+![Weka enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (25).png>)
 
 ## Before you begin
 
