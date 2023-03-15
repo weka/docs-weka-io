@@ -129,7 +129,7 @@ When PKEYs are used, the device name for InfiniBand should follow the name.PKEY 
 **Note:** Although devices can generally be renamed arbitrarily, Weka only functions correctly if the .PKEY naming convention is followed.
 {% endhint %}
 
-The networking type can be either Ethernet (direct over DPDK) or InfiniBand (IB), and can be mixed in the same container (by running multiple `cluster container net add` commands for the same container). A physical network device must be specified for both types. This can be a device dedicated to the Weka system or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
+The networking type can be either Ethernet (direct over DPDK) or InfiniBand (IB), and can be mixed in the same container (by running multiple `cluster container net add` commands for the same container). A physical network device must be specified for both types. This can be a device dedicated to the Weka system or a device also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
 
 To perform this operation, the `cluster container net add`command must be run for each container. The commands can run from one container configuring another container, so they can all run on a single container. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
 
@@ -190,11 +190,6 @@ This stage in the installation process is used to add a local SSD to be used by 
 `weka cluster drive add <`container`-id> <device-paths>`
 
 **Parameters**
-
-| **Name**       | **Type**                         | **Value**                                                                         | **Limitations**                          | **Mandatory** | **Default** |
-| -------------- | -------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------- | ------------- | ----------- |
-| `container-id` | String                           | Identifier of the container to which a local SSD will be added                    | Must be a valid container identifier     | Yes           |             |
-| `device-paths` | Space-separated  list of strings | List of block devices that identify local SSDs, e.g., `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes           |             |
 
 | **Name**       | **Type**                         | **Value**                                                                         | **Limitations**                          | **Mandatory** | **Default** |
 | -------------- | -------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------- | ------------- | ----------- |
