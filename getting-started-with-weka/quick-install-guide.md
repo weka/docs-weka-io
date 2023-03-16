@@ -73,14 +73,14 @@ for i in {0..7}; do scp resources_generator.py weka0-$i:/tmp/resources_generator
 3\. To enable execution, change the mode of the resource generator on all servers in the cluster:
 
 ```
-pdsh -R ssh -w "weka0-[0-4]" 'chmod +x /tmp/resources_generator.py'
+pdsh -R ssh -w "weka0-[0-7]" 'chmod +x /tmp/resources_generator.py'
 
 ```
 
 4\. Run resource generator on all servers in the cluster:
 
 ```
-pdsh -R ssh -w "weka0-[0-4]" '/tmp/resources_generator.py  --path /tmp --net ens{5..7}'
+pdsh -R ssh -w "weka0-[0-7]" '/tmp/resources_generator.py  --path /tmp --net ens{5..7}'
 
 ```
 
