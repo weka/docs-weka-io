@@ -12,7 +12,7 @@ The basic Weka deployment model involves the creation of a shareable filesystem 
 
 The file services are implemented by a group of [backend hosts](glossary.md#backend-host) running the Weka software and fully dedicated to the Weka system. SSD drives for storing the data are installed on these servers. The resultant storage system is scalable to hundreds of backends and thousands of clients.
 
-![Basic Weka system deployment](../.gitbook/assets/v4\_weka\_architecture.png)
+![Basic Weka system deployment](<../.gitbook/assets/v4\_weka\_architecture (1).png>)
 
 The Weka backend hosts are configured as a cluster, which together with the Weka clients installed on the application servers, forms one large shareable, distributed, and scalable file storage system:
 

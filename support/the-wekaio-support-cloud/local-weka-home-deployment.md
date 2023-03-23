@@ -12,7 +12,7 @@ This implementation runs on Minikube (a lightweight Kubernetes implementation) i
 **Note:** It is possible to install the Local Weka Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../getting-support-for-your-weka-system.md) to schedule this installation.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/weka-home-local.png" alt=""><figcaption><p>Local Weka Home deployment</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/weka-home-local (1).png" alt=""><figcaption><p>Local Weka Home deployment</p></figcaption></figure>
 
 ## Workflow: Local Weka Home deployment
 

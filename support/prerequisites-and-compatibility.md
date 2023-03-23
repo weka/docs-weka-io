@@ -138,6 +138,7 @@ Intel E810 NIC has specific requirements and certain limitations:
 
 Supported Mellanox OFED versions:
 
+* 5.8-1.1.2.1 LTS
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
 * 5.4-3.4.0.0 (LTS)
@@ -196,6 +197,7 @@ Supported ice drivers:
 
 Supported Mellanox OFED versions:
 
+* 5.8-1.1.2.1 LTS
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
 * 5.4-3.4.0.0 (LTS)
