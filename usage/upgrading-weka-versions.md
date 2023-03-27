@@ -51,13 +51,13 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
    * Stopping io-nodes
    * Starting io-nodes
    * Starting buckets.
-8.  Starting rolling upgrade of the **frontend** and **protocol** containers:
+8.  Starting rolling upgrade of the **frontend** and **protocols** containers:
 
     * Upgrading frontend and protocol **** containers on server \[x].
     * Upgrading server \[x] from version \<source> \<target>.
     * Rebuilding and redistributing.
 
-    Then continue the same actions on the remaining servers with frontend and protocol containers. Finishing the rolling upgrade on all frontend and protocol containers.
+    Then continue the same actions on the remaining servers with frontend and protocol containers. Finishing the rolling upgrade on all frontend and protocols containers.
 
 <figure><img src="../.gitbook/assets/NDU_process.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
 
