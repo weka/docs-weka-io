@@ -162,7 +162,7 @@
   * [Mount authentication for organization filesystems](usage/organizations/organizations-2.md)
 * [Expand and shrink cluster resources](usage/expanding-and-shrinking-cluster-resources/README.md)
   * [Add a backend server in a multiple containers architecture](usage/expanding-and-shrinking-cluster-resources/add-a-backend-server-in-a-multiple-containers-architecture.md)
-  * [Add a backend server in a single container architecture](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
+  * [Add a backend server in a legacy architecture](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
   * [Expand specific resources of a container](usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrink a cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
 * [Background tasks](usage/background-tasks.md)

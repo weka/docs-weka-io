@@ -1,10 +1,10 @@
-# Add a backend server in a single container architecture
+# Add a backend server in a legacy architecture
 
-Expanding a cluster in a single container architecture with a new backend server is similar to the Weka system installation process in a single container architecture.
+Expanding a cluster in a legacy architecture with a new backend server is similar to the Weka legacy system installation process.
 
 Adding a server to the cluster includes adding the containers and configuring the networking, CPU resources, and SSDs.
 
-<figure><img src="../../.gitbook/assets/add_server_single.gif" alt=""><figcaption><p>Adding a server to the cluster in a single container architecture</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/add_server_single.gif" alt=""><figcaption><p>Adding a server to the cluster in a legacy architecture</p></figcaption></figure>
 
 {% hint style="info" %}
 **Note:** In most cases, the container configurations are similar. Therefore, importing the container settings from a previously exported container in the cluster is possible, saving time and avoiding misconfiguration. \
