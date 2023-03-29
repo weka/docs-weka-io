@@ -56,13 +56,13 @@ A collection of filesystems that share a common tiering policy to object-store.
 
 ### Frontend
 
-Is the collection of Weka software that runs on a client and accesses storage services and IO from the Weka storage cluster. The frontend consists of a frontend node that delivers IO to the Weka driver, a DPDK library, and the Weka POSIX driver.
+It is the collection of Weka software that runs on a client and accesses storage services and IO from the Weka storage cluster. The frontend consists of a process that delivers IO to the Weka driver, a DPDK library, and the Weka POSIX driver.
 
 ## H
 
 ### Host
 
-The term node is deprecated. See [Container](glossary.md#container).
+The term host is deprecated. See [Container](glossary.md#container).
 
 ### Hot Data
 
@@ -72,7 +72,7 @@ Frequently used data (as opposed to warm data), usually residing on SSDs.
 
 ### Machine
 
-The term node is deprecated. See [Server](glossary.md#server).
+The term machine is deprecated. See [Server](glossary.md#server).
 
 ## N
 
