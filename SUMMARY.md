@@ -51,7 +51,7 @@
 * [WEKA installation on GCP](install/weka-installation-on-gcp/README.md)
   * [WEKA project description](install/weka-installation-on-gcp/weka-project-description.md)
   * [Deployment on GCP using Terraform](install/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md)
-  * [GCP Terraform package description](install/weka-installation-on-gcp/gcp-terraform-package-description.md)
+  * [GCP Terraform package description](install/weka-installation-on-gcp/weka-gcp-terraform-package-description.md)
   * [Required services and supported regions](install/weka-installation-on-gcp/required-services-and-supported-regions.md)
   * [Supported machine types and storage](install/weka-installation-on-gcp/supported-machine-types-and-storage.md)
   * [Auto scale instances in GCP](install/weka-installation-on-gcp/auto-scale-instances-in-gcp.md)
@@ -195,7 +195,7 @@
 ## Appendix
 
 * [WEKA CSI Plugin](appendix/weka-csi-plugin.md)
-* [Set up the Weka-mon external monitoring](appendix/external-monitoring.md)
+* [Set up the WEKAmon external monitoring](appendix/external-monitoring.md)
 * [Set up the SnapTool external snapshots manager](appendix/snapshot-management.md)
 
 ***

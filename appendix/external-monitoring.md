@@ -1,12 +1,12 @@
 ---
 description: >-
-  The Weka-mon is an external monitoring package, which provides enriched
+  The WEKAmon is an external monitoring package that provides enriched
   monitoring capabilities using the Grafana and Prometheus tools.
 ---
 
-# Set up the Weka-mon external monitoring
+# Set up the WEKAmon external monitoring
 
-WEKA provides an external monitoring package named **Weka-mon**. **** The package implements the well-known [_Grafana_](https://grafana.com/) dashboard with [_Prometheus_](https://prometheus.io/docs/introduction/overview/), which provides a central monitoring dashboard of metrics, logs, alerts, and statistics with enriched capabilities.
+WEKA provides an external monitoring package named **WEKAmon**. **** The package implements the well-known [_Grafana_](https://grafana.com/) dashboard with [_Prometheus_](https://prometheus.io/docs/introduction/overview/), which provides a central monitoring dashboard of metrics, logs, alerts, and statistics with enriched capabilities.
 
 The package also includes the following components:
 
@@ -16,9 +16,9 @@ The package also includes the following components:
 
 You can set up the Weka-mon package regardless of the data monitoring provided by the Weka GUI.
 
-<figure><img src="../.gitbook/assets/weka-mon_setup.png" alt=""><figcaption><p>Weka-mon setup</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/weka-mon_setup.png" alt=""><figcaption><p>WEKAmon setup</p></figcaption></figure>
 
-One of the advantages of setting up the Weka-mon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with WEKA to correlate and display monitoring information from all your products on the same dashboard.
+One of the advantages of setting up the WEKAmon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with WEKA to correlate and display monitoring information from all your products on the same dashboard.
 
 ![Weka enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (25).png>)
 
@@ -31,9 +31,9 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 * 4 cores
 * 16 GB RAM
 * 50 GB / partition (for the root)
-* 50 GB /opt/ partition (for weka-mon installation)
+* 50 GB /opt/ partition (for WEKAmon installation)
 * 1 Gbps network
-* _Docker_ is the recommended container for the Weka-mon setup.\
+* _Docker_ is the recommended container for the WEKAmon setup.\
   To use Docker, the following must be installed on the dedicated management server:
   * `docker-ce`
   * `docker-compose` or `docker-compose-plugin` depending on the existing operating system.
@@ -44,30 +44,30 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 
 To enable communication between the management server and the Weka cluster, the security token is required in the **auth-token.json** file.
 
-1. Create the directory `~/.weka` in the weka-mon installation directory.
+1. Create the directory `~/.weka` in the WEKAmon installation directory.
 2. Generate the `auth-token.json` **** file and save it in the `~/.weka` directory you created. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
 
 {% hint style="info" %}
-It is highly recommended to create a local user with ReadOnly privilege just for the Weka-mon package and use it for cluster communications.\
+It is highly recommended to create a local user with ReadOnly privilege just for the WEKAmon package and use it for cluster communications.\
 To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
 {% endhint %}
 
-## Workflow: Install the Weka-mon package
+## Workflow: Install the WEKAmon package
 
-1. [Obtain the Weka-mon package](external-monitoring.md#1.-obtain-the-weka-mon-package): Obtain the Weka-mon package from the GitHub repository by downloading or cloning.
+1. [Obtain the WEKAmon package](external-monitoring.md#1.-obtain-the-weka-mon-package): Obtain the WEKAmon package from the GitHub repository by downloading or cloning.
 2. [Run the install.sh script](external-monitoring.md#2.-run-the-install.sh-script): The script creates a few directories and sets their permissions.
-3. [Edit the export.yml file](external-monitoring.md#3.-edit-the-export.yml-file): The `export.yml` file contains the Weka-mon and the exporter configuration. Customize the file according to your actual Weka deployment.
+3. [Edit the export.yml file](external-monitoring.md#3.-edit-the-export.yml-file): The `export.yml` file contains the WEKAmon and the exporter configuration. Customize the file according to your actual Weka deployment.
 4. [Edit the quota-export.yml file](external-monitoring.md#4.-edit-the-quota-export.yml-file): The `quota-export.yml` file contains the configuration of the quota-export container. Customize the file according to your actual Weka deployment.
 5. [Start the docker-compose containers](external-monitoring.md#4.-start-the-docker-compose-containers): Once done, you can connect to Grafana on port 3000 of the management server running the docker containers.&#x20;
 
-### 1. Obtain the Weka-mon package
+### 1. Obtain the WEKAmon package
 
-The Weka-mon package resides on the GitHub repository. Obtain the Weka-mon package using one of the following methods:
+The Weka-mon package resides on the GitHub repository. Obtain the WEKAmon package using one of the following methods:
 
-* [Download the Weka-mon source code](external-monitoring.md#download-the-weka-mon-source-code)&#x20;
+* [Download the WEKAmon source code](external-monitoring.md#download-the-wekamon-source-code)&#x20;
 * [Clone the repository](external-monitoring.md#clone-the-repository)
 
-#### Download the Weka-mon source code
+#### Download the WEKAmon source code
 
 1. Go to [https://github.com/weka/weka-mon/releases.](https://github.com/weka/weka-mon/releases)
 2. On the **latest** release section, select the **Source Code** link to download.
@@ -75,7 +75,7 @@ The Weka-mon package resides on the GitHub repository. Obtain the Weka-mon packa
 
 #### Clone the repository
 
-Run the following commands to clone the weka-mon package from GitHub:
+Run the following commands to clone the WEKAmon package from GitHub:
 
 ```
 git clone https://github.com/weka/weka-mon
@@ -94,7 +94,7 @@ Run the following command:
 
 ### 3. Edit the export.yml file
 
-The Weka-mon and the exporter configuration are defined in the `export.yml` file.
+The WEKAmon and the exporter configuration are defined in the `export.yml` file.
 
 1. Change the directory to `weka-mon` and open the `export.yml` file.
 2. In the **cluster** section under the **hosts** list, replace the hostnames with the actual hostnames/IP addresses of the Weka containers (up to three would be sufficient). Ensure the hostnames are mapped to the IP addresses in /etc/hosts.
@@ -111,7 +111,7 @@ hosts:
 
 4\. Optional. Add custom panels to Grafana containing other metrics.
 
-All other settings in the `export.yml` file have pre-defined defaults that do not need modification to work with weka-mon. All the configurable items are defined but marked as comments by an asterisk (#).
+All other settings in the `export.yml` file have pre-defined defaults that do not need modification to work with WEKAmon. All the configurable items are defined but marked as comments by an asterisk (#).
 
 To add custom panels to Grafana containing other metrics from the cluster, you can remove the asterisk from the required metrics (uncomment).
 
@@ -129,7 +129,7 @@ If the statistic you want to get is in a Category that is commented out, also un
 
 ### 4. Edit the quota-export.yml file
 
-The Weka-mon deployment includes a dedicated container named **quota-export**. The container includes an Alert Manager that emails users when they reach their soft quota.
+The WEKAmon deployment includes a dedicated container named **quota-export**. The container includes an Alert Manager that emails users when they reach their soft quota.
 
 The configuration of the quota-export container is defined in the `quota-export.yml` file.
 
@@ -173,15 +173,15 @@ If the status of the containers is not up, check the logs and troubleshoot accor
 docker logs <container id>
 ```
 
-Once all containers are running, you can connect to Grafana on port 3000 of the management server running the docker containers. The default credentials for Grafana are `admin/admin`.
+Once all containers run, you can connect to Grafana on port 3000 of the management server running the docker containers. The default credentials for Grafana are `admin/admin`.
 
 ## Integrate with an existing Grafana/Prometheus environment
 
 If you already have Grafana and Prometheus running in your environment, you only need to run the exporter and add it to the Prometheus configuration.
 
-### 1. Obtain the Weka-mon package
+### 1. Obtain the WEKAmon package
 
-Follow the steps in the [1. Obtain the Weka-mon package](external-monitoring.md#1.-obtain-the-weka-mon-package) section.
+Follow the steps in the [1. Obtain the WEKAmon package](external-monitoring.md#1.-obtain-the-wekamon-package) section.
 
 ### 2. Import the dashboard JSON files
 

@@ -55,7 +55,7 @@ Terraform applies the configuration on the specified GCP project.
 
 **Related topics**
 
-[gcp-terraform-package-description.md](gcp-terraform-package-description.md "mention")
+[weka-gcp-terraform-package-description.md](weka-gcp-terraform-package-description.md "mention")
 
 
 
