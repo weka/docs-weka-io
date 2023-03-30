@@ -233,6 +233,20 @@ garbage_collection:
   max_age: 30d
 ```
 
+#### Listen on all interfaces
+
+If the Local Weka Home requires listening to all interfaces (for example, 0.0.0.0), in the **global** section, under **ingress**, leave the domain empty as shown in the following example:
+
+```yaml
+# Domain name for notifications and alerts
+domain: &DOMAIN "local.weka.home"
+
+global:
+  ingress:
+    # The interface address the LWH listens to. Leave empty to listen to all
+    domain: ""
+```
+
 5. Run `./wekahome-install.sh`.\
    For new installation, it takes about 5 minutes.
 6. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
@@ -314,11 +328,11 @@ Easy wekahoming!
 * To obtain the secret key of the Local Weka Home portal, run the following command:\
   `kubectl get secret -n home-weka-io weka-home-encryption  -o jsonpath='{.data.encryption_secret_key}' | base64 -d`
 
-### 7. Enable the Weka cluster to send information to the Local Weka Home
+### 7. Enable the WEKA cluster to send information to the Local Weka Home
 
-By default, the Weka cluster is set to send information to the public instance of Weka Home. To get the information in the Local Weka Home, set in the Weka cluster the URL of the Local Weka Home.&#x20;
+By default, the WEKA cluster is set to send information to the public instance of Weka Home. To get the information in the Local Weka Home, set in the Weka cluster the URL of the Local Weka Home.&#x20;
 
-Connect to the Weka cluster and run the following command:\
+Connect to the WEKA cluster and run the following command:\
 `weka cloud enable --cloud-url https://<ip or hostname of the Local Weka Home server>`
 
 ### 8. Test the deployment
