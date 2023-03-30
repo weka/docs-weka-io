@@ -1,10 +1,10 @@
 # Table of contents
 
-* [Weka v3.14 Documentation](README.md)
+* [WEKA v3.14 Documentation](README.md)
 
 ## Weka System Overview <a href="#overview" id="overview"></a>
 
-* [About the Weka System](overview/about.md)
+* [About the WEKA System](overview/about.md)
 * [SSD Capacity Management](overview/ssd-capacity-management.md)
 * [Filesystems, Object Stores & Filesystem Groups](overview/filesystems.md)
 * [Weka Networking](overview/networking-in-wekaio.md)
