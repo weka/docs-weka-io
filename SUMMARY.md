@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Weka v4.0 documentation](README.md)
+* [WEKA v4.0 documentation](README.md)
 
 ## Weka System Overview <a href="#overview" id="overview"></a>
 

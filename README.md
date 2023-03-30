@@ -1,6 +1,6 @@
-# Weka v4.0 documentation
+# WEKA v4.0 documentation
 
-Welcome to the Weka documentation portal. First, select the version of your Weka system from the top menu.
+Welcome to the WEKA documentation portal. First, select the version of your WEKA system from the top menu.
 
 <figure><img src=".gitbook/assets/version_selector.gif" alt=""><figcaption><p>Weka version selector</p></figcaption></figure>
 
