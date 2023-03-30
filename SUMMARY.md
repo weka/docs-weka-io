@@ -2,9 +2,9 @@
 
 * [WEKA v4.0 documentation](README.md)
 
-## Weka System Overview <a href="#overview" id="overview"></a>
+## WEKA System Overview <a href="#overview" id="overview"></a>
 
-* [About the Weka system](overview/about.md)
+* [About the WEKA system](overview/about.md)
 * [SSD capacity management](overview/ssd-capacity-management.md)
 * [Filesystems, object stores, and filesystem groups](overview/filesystems.md)
 * [Weka networking](overview/networking-in-wekaio.md)
