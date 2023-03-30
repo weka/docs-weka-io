@@ -1,13 +1,13 @@
 ---
 description: >-
   This page describes a series of tests for measuring performance after the
-  installation of the Weka system. The same tests can be used to test the
+  installation of the WEKA system. The same tests can be used to test the
   performance of any other storage solution.
 ---
 
-# Weka performance tests
+# WEKA performance tests
 
-## About Weka performance tests
+## About WEKA performance tests
 
 There are three main performance metrics when measuring a storage system performance:
 
@@ -17,14 +17,14 @@ There are three main performance metrics when measuring a storage system perform
 
 Each of these performance metrics applies to read operations, write operations, or a mixture of read and write operations.
 
-‌When measuring the Weka system performance, different [mount modes](../../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration (using either user-space DPDK networking or kernel UDP) also significantly affects performance.
+‌When measuring the WEKA system performance, different [mount modes](../../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration (using either user-space DPDK networking or kernel UDP) also significantly affects performance.
 
 {% hint style="info" %}
-**Note:** All performance tests listed here are generic and not specific to the Weka system. They can be used to compare the Weka storage system to other storage systems or a local storage device.
+**Note:** All performance tests listed here are generic and not specific to the WEKA system. They can be used to compare the WEKA storage system to other storage systems or a local storage device.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** There is a difference between single-client performance to aggregated performance. When running the tests listed below from one client, the client will limit the test's performance. In general, several clients will be required to maximize the performance of a Weka cluster.
+**Note:** There is a difference between single-client performance to aggregated performance. When running the tests listed below from one client, the client will limit the test's performance. In general, several clients will be required to maximize the performance of a WEKA cluster.
 {% endhint %}
 
 ## The FIO tool
@@ -39,7 +39,7 @@ Start the FIO server on every one of the clients:
 fio --server --daemonize=/tmp/fio.pid
 ```
 
-Run the test command from one of the clients, note, the clients need to be mounted to a Weka filesystem.
+Run the test command from one of the clients, note, the clients need to be mounted to a WEKA filesystem.
 
 An example of launching a test (`sometest`) on all clients in a file (`clients.txt`) using the server/client model:
 
@@ -89,7 +89,7 @@ MDTest is a generic open-source metadata performance testing tool. In this docum
 
 MDTest uses an MPI framework to coordinate the job across multiple nodes. The results presented here were generated using the [MPICH](https://www.mpich.org/downloads/) version 3.3.2 and can be defined as described [here](https://www.mpich.org/documentation/guides/). While it's possible to have variations with different MPI versions, most are based on the same ROMIO and will perform similarly.
 
-## Weka client performance tests
+## WEKA client performance tests
 
 Overall, the tests contained on this page are designed to show off the sustainable peak performance of the filesystem. Care has been taken to make sure they are realistic and reproducible.
 
@@ -123,7 +123,7 @@ While we provide below the output of one iteration, we ran each test several tim
 | Deletes          | 117,644 ops/s                          | 361,755 ops/s                                        |
 
 {% hint style="info" %}
-**Note:** If the client uses a 100 Gbps NIC or above, mounting the Weka filesystem with more than one core is required to maximize client throughput.
+**Note:** If the client uses a 100 Gbps NIC or above, mounting the WEKA filesystem with more than one core is required to maximize client throughput.
 {% endhint %}
 
 ### Test read throughput

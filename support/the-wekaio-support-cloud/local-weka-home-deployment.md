@@ -39,7 +39,7 @@ Verify that the following requirement are met:
   * Docker version 20 or higher.
 
 {% hint style="success" %}
-To scale up the Local Weka Home server, for each additional 1000 Weka containers, add the following:
+To scale up the Local Weka Home server, for each additional 1000 WEKA containers, add the following:
 
 * 4 cores
 * 10 GiB RAM

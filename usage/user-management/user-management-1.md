@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the management of users licensed to work with the Weka
+  This page describes the management of users licensed to work with the WEKA
   system.
 ---
 

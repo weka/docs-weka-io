@@ -1,12 +1,12 @@
 ---
 description: >-
-  This page describes the procedures required to system for the Weka software
+  This page describes the procedures required to system for the WEKA software
   installation.
 ---
 
-# Prepare the system for Weka software installation
+# Prepare the system for WEKA software installation
 
-Once the hardware and software prerequisites are met, prepare the backend servers and clients for the installation of the Weka system.
+Once the hardware and software prerequisites are met, prepare the backend servers and clients for the installation of the WEKA system.
 
 This preparation consists of the following steps:
 
@@ -261,7 +261,7 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 
 ## Configure the HA networking <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
 
-As described in [Weka Networking HA](../../../overview/networking-in-wekaio.md#ha) section, bonded interfaces are supported for ethernet can be added to Weka after setting the bonded device in the server.
+Bonded interfaces are supported for ethernet can be added to WEKA after setting the bonded device in the server.
 
 When there is a need to configure Dual Network (IB or ETH) without LACP, each NIC must have its own IP address and you will need to properly configure the routing of the interfaces involved.
 
@@ -330,15 +330,19 @@ Refer to this [link](https://access.redhat.com/solutions/30564) to learn how to 
 {% endtab %}
 {% endtabs %}
 
+**Related topic**
+
+[#high-availability-ha](../../../overview/networking-in-wekaio.md#high-availability-ha "mention")
+
 ## Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
 
-The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the Weka system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
+The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the WEKA system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
-Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the Weka software.
+Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the WEKA software.
 
 ## **Disable the NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
 
-The Weka system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies in the operations.
+The WEKA system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies in the operations.
 
 To disable NUMA balancing, run the following command on the server:
 
@@ -348,7 +352,7 @@ echo 0 > /proc/sys/kernel/numa_balancing
 
 ## Validate the system preparation <a href="#validate-the-system-preparation" id="validate-the-system-preparation"></a>
 
-The `wekachecker` is a tool that validates the readiness of the servers in the cluster before installing the Weka software.
+The `wekachecker` is a tool that validates the readiness of the servers in the cluster before installing the WEKA software.
 
 The `wekachecker` performs the following validations:
 
@@ -362,7 +366,7 @@ The `wekachecker` performs the following validations:
 * NTP
 * DNS configuration
 * Firewall rules
-* Weka required packages
+* WEKA required packages
 * OFED required packages
 * Recommended packages
 * HT/AMT is disabled
@@ -378,7 +382,7 @@ The `wekachecker` performs the following validations:
 * noexec mount option on /tmp
 
 {% hint style="info" %}
-**Note:** The `wekachecker`tool applies to all Weka versions. From V4.0, the following validations are not relevant, although the tool displays them:
+**Note:** The `wekachecker`tool applies to all WEKA versions. From V4.0, the following validations are not relevant, although the tool displays them:
 
 * OS has SELinux disabled or in permissive mode.
 * Network Manager is disabled.
@@ -386,7 +390,7 @@ The `wekachecker` performs the following validations:
 
 **Procedure**
 
-1. Download the Wekachecker tarball from [https://github.com/weka/tools/blob/master/install/wekachecker](https://github.com/weka/tools/blob/master/install/wekachecker) and extract it.
+1. Download the **wekachecker** tarball from [https://github.com/weka/tools/blob/master/install/wekachecker](https://github.com/weka/tools/blob/master/install/wekachecker) and extract it.
 2. From the install directory, run `./wekachecker <hostnames/IPs>`\
    Where:\
    The `hostnames/IPs` is a space-separated list of all the cluster hostnames or IP addresses connected to the **high-speed networking**.\
@@ -395,7 +399,7 @@ The `wekachecker` performs the following validations:
 3. Review the output. If failures or warnings are reported, investigate them and correct them as necessary. Repeat the validation until no important issues are reported.\
    The `wekachecker` writes any failures or warnings to the file: **`test_results.txt`**.
 
-Once the report has no failures or warnings that must be fixed, you can install the Weka software.
+Once the report has no failures or warnings that must be fixed, you can install the WEKA software.
 
 **wekachecker report example**
 
@@ -411,7 +415,7 @@ Check if internet connection available...                    [PASS]
 Check for NTP...                                             [PASS]
 Check DNS configuration...                                   [PASS]
 Check Firewall rules...                                      [PASS]
-Check for Weka Required Packages...                          [PASS]
+Check for WEKA Required Packages...                          [PASS]
 Check for OFED Required Packages...                          [PASS]
 Check for Recommended Packages...                            [WARN]
 Check if HT/AMT is disabled                                  [WARN]

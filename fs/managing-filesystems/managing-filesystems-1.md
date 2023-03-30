@@ -16,7 +16,7 @@ Using the CLI, you can perform the following actions:
 
 **Command:** `weka fs`
 
-Use this command to view information on the filesystems in the Weka system.
+Use this command to view information on the filesystems in the WEKA system.
 
 Enter the relevant parameters and click Create to create the filesystem.
 
@@ -41,7 +41,9 @@ Use the following command line to create a filesystem:
 | `max-files`              | Number   | Metadata allocation for this filesystem                                                                                                                                         | Must be a valid number             | No                                                                                                                             | Automatically calculated by the system based on the SSD capacity |
 | `encrypted`              | Boolean  | Encryption of filesystem                                                                                                                                                        |                                    | No                                                                                                                             | No                                                               |
 | `obs-name`               | String   | Object store name for tiering                                                                                                                                                   | Must be a valid name               | Mandatory for tiered filesystems                                                                                               |                                                                  |
-| `auth-required`          | String   | Determines if mounting the filesystem requires to be authenticated to Weka ([weka user login](../../usage/user-management/#user-log-in))                                        | `yes` or `no`                      | No                                                                                                                             | no                                                               |
+| `auth-required`          | String   | Determines if mounting the filesystem requires to be authenticated to WEKA (see [User management](../../usage/user-management/))                                                | `yes` or `no`                      | No                                                                                                                             | no                                                               |
+
+
 
 {% hint style="info" %}
 **Note:** When creating an encrypted filesystem a KMS must be defined.

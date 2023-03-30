@@ -1,16 +1,16 @@
 # Add clients
 
-Once the Weka cluster runs, you can add clients using UDP to your Weka system to run your workflows.
+Once the WEKA cluster runs, you can add clients using UDP to your WEKA system to run your workflows.
 
 {% hint style="info" %}
-**Note:** Using the Azure Console, the client instances are provisioned separately from the Weka cluster.
+**Note:** Using the Azure Console, the client instances are provisioned separately from the WEKA cluster.
 {% endhint %}
 
 ## Mount the filesystem
 
 1. Create a mount point (only once):\
    `mkdir /mnt/weka`
-2. Install the Weka **** agent on your client machine (only once):\
+2. Install the WEKA **** agent on your client machine (only once):\
    `curl <backend server http address>:14000/dist/v1/install | sh`\
    Example:\
    `curl http://10.20.0.2:14000/dist/v1/install | sh`

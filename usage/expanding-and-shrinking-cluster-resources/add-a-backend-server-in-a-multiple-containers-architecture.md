@@ -1,6 +1,6 @@
 # Add a backend server in a multiple containers architecture
 
-Expanding a cluster in a multiple container architecture with a new backend server is similar to the Weka system installation process in a multiple containers architecture.
+Expanding a cluster in a multiple container architecture with a new backend server is similar to the WEKA system installation process in a multiple containers architecture.
 
 Adding a server to the cluster includes discovering the existing cluster resources, generating the resource files, creating containers using the resource files, and adding the SSDs to the new server.
 
@@ -28,7 +28,7 @@ weka local resources -C drives0 | grep "Management IPs"
 ```
 
 4. Ensure that the new backend server meets the requirements and is available for installation.
-5. Download from [get.weka.io](https://get.weka.io/) the same Weka software version as in the existing Weka cluster servers.
+5. Download from [get.weka.io](https://get.weka.io/) the same WEKA software version as in the existing WEKA cluster servers.
 
 {% hint style="info" %}
 **Note:** To learn how about the options of the commands in the following procedure, see the related topics.
@@ -36,7 +36,7 @@ weka local resources -C drives0 | grep "Management IPs"
 
 ### **Procedure**
 
-1. Install the Weka software on the new backend server.
+1. Install the WEKA software on the new backend server.
 2. Remove the default container from the new backend server.
 
 ```

@@ -1,17 +1,17 @@
 ---
 description: >-
-  Weka GUI application enables you to configure, administer, and monitor the
-  Weka system. This page provides an overview of the primary operations, access
+  WEKA GUI application enables you to configure, administer, and monitor the
+  WEKA system. This page provides an overview of the primary operations, access
   to the GUI, and system dashboard.
 ---
 
-# Manage the system using the Weka GUI
+# Manage the system using the WEKA GUI
 
-## Weka GUI overview
+## WEKA GUI overview
 
-Weka GUI application is the administration tool for your Weka system. Use this tool for system configuration, filesystems management, user management, and investigation of alarms, events, and statistics.
+The WEKA GUI application is the administration tool for your WEKA system. Use this tool for system configuration, filesystems management, user management, and investigation of alarms, events, and statistics.
 
-Weka GUI application supports the following functions:
+WEKA GUI application supports the following functions:
 
 * **Configuration**:
   * Configure the cluster, such as data availability, license, security, and central monitoring.
@@ -36,19 +36,19 @@ Weka GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![Weka GUI overview](../.gitbook/assets/wmng\_gui\_overview.gif)
+![WEKA GUI overview](../.gitbook/assets/wmng\_gui\_overview.gif)
 
-## Access the Weka GUI
+## Access the WEKA GUI
 
-Weka GUI is a web application that you can access using an already configured account and has the appropriate rights to configure, administer, or view.
+WEKA GUI is a web application you can access using an already configured account and has the appropriate rights to configure, administer, or view.
 
-You can access the Weka GUI with any standard browser using the address:\
+You can access the WEKA GUI with any standard browser using the address:\
 `https://<weka system or server name>:14000`
 
 For example: `https://WekaProd:14000` or `https://weka01:14000`.
 
 {% hint style="info" %}
-On AWS installations, you can access the Weka GUI from the self-service portal. In the **Outputs** tab of the **CloudFormation** stack, click the **GUI** link.
+On AWS installations, you can access the WEKA GUI from the self-service portal. In the **Outputs** tab of the **CloudFormation** stack, click the **GUI** link.
 {% endhint %}
 
 **Before you begin**
@@ -60,7 +60,7 @@ Make sure that port 14000 is open in the firewall of your organization.
 1. In your browser, go to `https://<weka system or server name>:14000`.\
    The sign-in page opens.
 
-![Sign in to Weka GUI](<../.gitbook/assets/wmng\_sign\_in (1).png>)
+![Sign in to the WEKA GUI](<../.gitbook/assets/wmng\_sign\_in (1).png>)
 
 2\. Sign in with the username and password of an account with cluster administration or\
 organization administration privileges. For details about the account types, see\
@@ -69,7 +69,7 @@ _User management_ in the related topics.
 The system dashboard opens.
 
 {% hint style="info" %}
-The initial default username and password are _admin_ and _admin_[.](../usage/user-management/) In the first sign-in, Weka GUI enforces changing the admin password.
+The initial default username and password are _admin_ and _admin_[.](../usage/user-management/) In the first sign-in, WEKA GUI enforces changing the admin password.
 {% endhint %}
 
 **Related topics**
@@ -78,7 +78,7 @@ The initial default username and password are _admin_ and _admin_[.](../usage/us
 
 ## System Dashboard
 
-The system dashboard contains widgets that provide an overview of the Weka system, including an overall status, R/W throughput, top consumers, alerts, capacity, core usage, and hardware.
+The system dashboard contains widgets that provide an overview of the WEKA system, including an overall status, R/W throughput, top consumers, alerts, capacity, core usage, and hardware.
 
 The system dashboard opens by default when you sign in. If you select another menu and want to display the dashboard again, select **Monitor > System Dashboard**, or click the **WEKA** logo.
 

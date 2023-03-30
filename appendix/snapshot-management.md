@@ -6,7 +6,7 @@ description: >-
 
 # Set up the SnapTool external snapshots manager
 
-Weka provides an external snapshots manager named SnapTool, enabling scheduled snapshots for your Weka cluster.
+WEKA provides an external snapshots manager named SnapTool, enabling scheduled snapshots for your WEKA cluster.
 
 The SnapTool provides the following features:
 
@@ -17,7 +17,7 @@ The SnapTool provides the following features:
 * Upload and delete in the background.
 * Access a Web Status GUI to view the snapshot schedules, upload and download queue, , locator IDs for successfully uploaded snapshots, and logs. The default URL is `http://<snaptool server hostname/IP>:8090`.
 
-The SnapTool runs on any Linux-based management server (or VM). All communication with the Weka cluster is done by an IP connection only to a Weka host using the Weka REST API.
+The SnapTool runs on any Linux-based management server (or VM). All communication with the WEKA cluster is done by an IP connection only to a WEKA host using the WEKA REST API.
 
 The SnapTool package can be installed with a _systemd_ service or _Docker_ container. In both options, you need to edit the configuration in the `snaptool.yml` file before running the installation.
 
@@ -36,7 +36,7 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 * 2 cores
 * 8 GB RAM
 * 5 GB /opt/ partition (for the SnapTool installation)
-* Network access to the Weka cluster
+* Network access to the WEKA cluster
 *   To use Docker, the following must be installed on the dedicated management server:
 
     * `docker-ce`
@@ -46,7 +46,7 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 
 ### Authentication token requirement
 
-To enable communication between the management server and the Weka cluster, the security token is required in the **auth-token.json** file.
+To enable communication between the management server and the WEKA cluster, the security token is required in the **auth-token.json** file.
 
 Create the directory `~/.weka` in the management server.
 
@@ -76,7 +76,7 @@ If the systemd service is already running locally, the installer stops it and pr
 
 ## Option 2: Install the SnapTool package in Docker
 
-The `snaptool` container runs similarly to other Weka Docker containers.
+The `snaptool` container runs similarly to other WEKA Docker containers.
 
 1. Download the docker image from the docker hub. Run the following command:\
    `docker pull wekasolutions/snaptool:latest`

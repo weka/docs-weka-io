@@ -1,14 +1,14 @@
 ---
 description: >-
-  This page describes the events available in the Weka system and how to work
+  This page describes the events available in the WEKA system and how to work
   with them.
 ---
 
 # Events
 
-Weka events indicate relevant information concerning the Weka cluster and customer environment. Triggered by a customer operation or an environment change, events can be informational, indicate an issue in the system, or indicate a previously resolved issue.
+WEKA events indicate relevant information concerning the WEKA cluster and customer environment. Triggered by a customer operation or an environment change, events can be informational, indicate an issue in the system, or indicate a previously resolved issue.
 
-The Weka system sends all events to a predefined central monitoring system.
+The WEKA system sends all events to a predefined central monitoring system.
 
 ![](../../.gitbook/assets/wmng\_events\_overview.png)
 

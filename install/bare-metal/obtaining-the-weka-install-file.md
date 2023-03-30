@@ -1,10 +1,10 @@
 ---
 description: >-
-  This page describes registering to get.weka.io and obtaining the Weka software
+  This page describes registering to get.weka.io and obtaining the WEKA software
   installation file.
 ---
 
-# Obtain the Weka software installation package
+# Obtain the WEKA software installation package
 
 ## **Register to get.weka.io**
 
@@ -31,9 +31,9 @@ The Send Registration Email page opens.
 
 Your request for access to [get.weka.io](http://get.weka.io) is sent to Weka for review. Wait for a validation email. Once your registration is approved, you can sign in to [get.weka.io](http://get.weka.io).
 
-## **Download the Weka software installation file**
+## **Download the** WEKA **software installation file**
 
-Download the Weka software installation package (tar) from the [get.weka.io](https://get.weka.io/ui/dashboard) site. You can only sign in and download the tar file if you are a registered user.
+Download the WEKA software installation package (tar) from the [get.weka.io](https://get.weka.io/ui/dashboard) site. You can only sign in and download the tar file if you are a registered user.
 
 **Procedure**
 

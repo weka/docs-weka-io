@@ -15,17 +15,17 @@ Using the CLI, you can:
 
 **Command:** `weka alerts types`
 
-Use this command to list all possible types of alerts that the Weka cluster can return.
+Use this command to list all possible types of alerts that the WEKA cluster can return.
 
 **Command:**`weka alerts describe`
 
-Use this command to describe all the alert types that the Weka cluster can return along with possible corrective actions for each alert.
+Use this command to describe all the alert types the WEKA cluster can return, along with possible corrective actions for each alert.
 
 ## **View alerts**
 
 **Command:** `weka alerts`
 
-Use the following command line to list all alerts (muted and unmuted) in the Weka cluster:
+Use the following command line to list all alerts (muted and unmuted) in the WEKA cluster:
 
 `weka alerts [--muted]`
 
@@ -39,11 +39,11 @@ Use the following command line to list all alerts (muted and unmuted) in the Wek
 
 **Command:** `weka alerts mute`
 
-Use the following command line to mute an alert-type:
+Use the following command line to mute an alert type:
 
 `weka alerts mute <alert-type> <duration>`
 
-The system does not prompt muted alerts when listing the active alerts. You must specify the duration in which the alret-type is muted. After the expiry of the specified duration, the system unmutes the alert-type automatically.
+The system does not prompt muted alerts when listing active alerts. You must specify the duration in which the alert-type is muted. After the expiry of the specified duration, the system unmutes the alert-type automatically.
 
 **Parameters**
 

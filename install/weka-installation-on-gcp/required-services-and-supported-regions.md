@@ -1,12 +1,12 @@
 # Required services and supported regions
 
-The region must support the services used in WekaFS on GCP. The following sections list these services and the regions that support them.
+The region must support the services used in WEKA on GCP. The following sections list these services and the regions that support them.
 
 {% hint style="info" %}
 If you need to use a region that is missing from the list, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).&#x20;
 {% endhint %}
 
-## Required services used in WekaFS on GCP
+## Required services used in WEKA on GCP
 
 * Cloud Build API
 * Cloud Deployment Manager V2 API

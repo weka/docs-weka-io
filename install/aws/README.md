@@ -1,16 +1,16 @@
 ---
 description: >-
-  This section provides the detailed instructions on how to install a Weka
-  system on AWS.
+  This section provides detailed instructions on installing a WEKA system on
+  AWS.
 ---
 
-# Weka installation on AWS
+# WEKA installation on AWS
 
 If you already have an AWS account and are familiar with AWS's basic concepts and services, you can skip this section.
 
-To install a Weka system in AWS, you need to [create an AWS account](https://aws.amazon.com/account/).
+To install a WEKA system in AWS, you need to [create an AWS account](https://aws.amazon.com/account/).
 
-Make sure you are familiar with the following concepts and services that are used as part of the Weka system deployment:
+Make sure you are familiar with the following concepts and services that are used as part of the WEKA system deployment:
 
 * [IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) - Identity and access management
 * [VPCs](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html), [subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC\_Subnets.html), and [security groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC\_SecurityGroups.html)
@@ -18,11 +18,11 @@ Make sure you are familiar with the following concepts and services that are use
 * [S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html) - Object store (to be used for tiering data)
 * [Cloud Formation](https://aws.amazon.com/documentation/cloudformation/)
 
-During the deployment of the WEKA system, the EC2 instances require access to the internet to download the WEKA software. For this reason, you need to deploy the Weka system in one of the following deployment types in AWS:
+During the deployment of the WEKA system, the EC2 instances require access to the internet to download the WEKA software. For this reason, you need to deploy the WEKA system in one of the following deployment types in AWS:
 
 * **Public subnet:** Use a public subnet within your VPC with an internet gateway, and allow public IP addresses for your instances.
 * **Private subnet with NAT Gateway:** Create a private subnet with a route to a NAT gateway with an elastic IP in the public subnet.
-* **Private subnet using Weka VPC endpoint:** Requires the creation of a [prerequisites stack](./#prerequisites-cloudformation-stack) (once per VPC) that creates the necessary resources.
+* **Private subnet using WEKA VPC endpoint:** Requires the creation of a [prerequisites stack](./#prerequisites-cloudformation-stack) (once per VPC) that creates the necessary resources.
 * **Private subnet using custom proxy:** Requires the creation of a [prerequisites stack](./#prerequisites-cloudformation-stack) (once per VPC) that creates the necessary resources.
 
 The following diagrams illustrate the components of the _public subnet_ and _private subnet with NAT gateway deployment_ types in AWS:

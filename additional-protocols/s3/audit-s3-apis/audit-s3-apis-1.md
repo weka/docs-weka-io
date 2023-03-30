@@ -12,7 +12,7 @@ Follow the steps in [Enable HTTP Event Collector on Splunk](https://docs.splunk.
 
 #### Step 2: Create a token
 
-Follow the steps in [Create an Event Collector token on Splunk](https://docs.splunk.com/Documentation/Splunk/8.0.3/Data/UsetheHTTPEventCollector#Create\_an\_Event\_Collector\_token\_on\_Splunk\_Enterprise) to create a token that Weka will use to access the Splunk as HTTP webhook. You can create a new index or use an existing one for easy discovery/monitor/query.&#x20;
+Follow the steps in [Create an Event Collector token on Splunk](https://docs.splunk.com/Documentation/Splunk/8.0.3/Data/UsetheHTTPEventCollector#Create\_an\_Event\_Collector\_token\_on\_Splunk\_Enterprise) to create a token WEKA will use to access Splunk as an HTTP webhook. You can create a new index or use an existing one for easy discovery/monitor/query.&#x20;
 
 Copy the created token for later use.
 
@@ -27,7 +27,7 @@ curl -k  https://hec.example.com:8088/services/collector/raw -H "Authorization: 
 
 Once completed, you can search the index you have created in Splunk and see this event.
 
-#### Step 4: Configure the audit webhook in Weka
+#### Step 4: Configure the audit webhook in WEKA
 
 As a cluster admin, run the following CLI command to enable the audit webhook:
 

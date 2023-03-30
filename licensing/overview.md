@@ -1,10 +1,10 @@
 ---
-description: This page describes how licensing works in a Weka cluster.
+description: This page describes how licensing works in a WEKA cluster.
 ---
 
 # License overview
 
-A license is a legal instrument governing the usage terms of the Weka cluster.
+A license is a legal instrument governing the usage terms of the WEKA cluster.
 
 The license terms include the following properties:
 
@@ -13,12 +13,12 @@ The license terms include the following properties:
 * Raw or usable hot-tier (SSD) capacity
 * Object store capacity
 
-When a license is applied to a Weka cluster, the cluster verifies the license validity by comparing the license properties and the actual cluster usage.&#x20;
+When a license is applied to a WEKA cluster, the cluster verifies the license validity by comparing the license properties and the actual cluster usage.&#x20;
 
-To start in a newly configured cluster, you must set a valid license. Weka supports two license types:
+To start in a newly configured cluster, you must set a valid license. WEKA supports two license types:
 
 * **Classic license:** With this license type, the cost consists of a predetermined period (For example, one year) and the cluster capacity.
-* **Pay-As-You-Go (PAYG) license:** With this license type, the cost consists of the hourly usage and the cluster capacity.
+* **Pay-As-You-Go (PAYG) license:** With this license type, the cost consists of hourly usage and cluster capacity.
 
 
 
@@ -30,7 +30,7 @@ To start in a newly configured cluster, you must set a valid license. Weka suppo
 
 ## Display the license status using the GUI
 
-The Weka cluster license page displays the license properties: license mode, expiry date, raw or usable drives capacity, and object store capacity.
+The WEKA cluster license page displays the license properties: license mode, expiry date, raw or usable drives capacity, and object store capacity.
 
 **Procedure**
 
@@ -44,7 +44,7 @@ The Weka cluster license page displays the license properties: license mode, exp
 You can display the license status using one of the following commands:
 
 * `weka cluster license`: Displays the license properties.
-* `weka status`: Displays the weka status including the license status and expiry date.
+* `weka status`: Displays the weka status, including the license status and expiry date.
 * `weka alerts`: If no license is assigned to the cluster, the command displays a relevant alert.&#x20;
 
 **Example: License status using the `weka cluster license` command**

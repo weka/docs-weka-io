@@ -8,7 +8,7 @@ description: >-
 
 Snapshots allow the saving of a filesystem state to a `.snapshots`directory located under the root filesystem. They can be used for:
 
-* **Physical backup:** The snapshot directory can be copied into a different storage system, possibly on another site, using either the Weka system Snap-To-Object feature or third-party software.
+* **Physical backup:** The snapshot directory can be copied into a different storage system, possibly on another site, using either the WEKA system Snap-To-Object feature or third-party software.
 * **Logical backup:** Periodic snapshots enable filesystem restoration to a previous state if logical data corruption occurs.
 * **Archive:** Periodic snapshots enable accessing a previous filesystem state for compliance or other needs.
 * **DevOps environments:** Writable snapshots enable the execution of software tests on copies of the data.

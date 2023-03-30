@@ -2,8 +2,8 @@
 
 The authentication tokens include two types: an access token and a refresh token.
 
-* **Access token:** The access token is a short-lived token (five minutes) used for accessing the Weka system API and to allow the mounting of secure filesystems.
-* **Refresh token:** The refresh token is a long-lived token used for obtaining an additional access token.
+* **Access token:** The access token is a short-lived token (five minutes) used for accessing the WEKA system API and to allow the mounting of secure filesystems.
+* **Refresh token:** The refresh token is a long-lived token for obtaining an additional access token.
 
 **Procedure**
 

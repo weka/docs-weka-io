@@ -1,6 +1,6 @@
-# Weka containers architecture overview
+# WEKA containers architecture overview
 
-The servers in a Weka system are members of a cluster. A server includes containers running software instances called processes that communicate with each other to provide storage services in the cluster.
+The servers in a WEKA system are members of a cluster. A server includes containers running software instances called processes that communicate with each other to provide storage services in the cluster.
 
 Processes are dedicated to managing different functions as follows:
 

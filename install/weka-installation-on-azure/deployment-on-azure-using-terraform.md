@@ -1,26 +1,26 @@
 # Deployment on Azure using Terraform
 
-The Azure-Weka Terraform package contains modules and examples you can customize according to your deployment needs. The installation is based on applying the customized Terraform variables file to a predefined Azure subscription.&#x20;
+The Azure-WEKA Terraform package contains modules and examples to customize according to your deployment needs. The installation is based on applying the customized Terraform variables file to a predefined Azure subscription.&#x20;
 
 Applying the Terraform variables file performs the following:
 
 * Creates resources in a predefined resource group, such as virtual machines, network interfaces, function apps, load balancer, and more.
 * Deploys Azure virtual machines.
-* Installs the Weka software.
-* Configures the Weka cluster**.**
+* Installs the WEKA software.
+* Configures the WEKA cluster**.**
 
-The total deployment time is about 30 minutes. Half of the time is for resource deployment, and the second half is for the Weka cluster installation and configuration.
+The total deployment time is about 30 minutes. Half of the time is for resource deployment, and the second half is for the WEKA cluster installation and configuration.
 
 ## Prerequisites
 
-Before installing the Weka software on Azure, the following prerequisites must be met:
+Before installing the WEKA software on Azure, the following prerequisites must be met:
 
 * The following must be installed on the workstation (Linux or Intel-based Mac only) used for the deployment (see specific steps for M1-based Mac below):
   * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
   * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
   * [Go](https://go.dev/doc/install)
-* Obtain the Weka-Azure Terraform package from [https://github.com/weka/terraform-azr-weka](https://github.com/weka/terraform-azr-weka)[ ](https://github.com/weka/terraform-azr-weka)and save it to a local directory. To access the package, a git account is required, and it must be associated with the Weka git organization.&#x20;
-* Initialize the Weka-Azure Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
+* Obtain the Azure-WEKA Terraform package from [https://github.com/weka/terraform-azr-weka](https://github.com/weka/terraform-azr-weka)[ ](https://github.com/weka/terraform-azr-weka)and save it to a local directory. To access the package, a git account is required, and it must be associated with the WEKA git organization.&#x20;
+* Initialize the Azure-WEKA Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 * Required permissions on Azure:
   * Privileged Role Administrator
   * Storage Blob Data Owner
@@ -43,14 +43,14 @@ Follow these additional requirements to get Terraform working on an M1-based Mac
 
 </details>
 
-## Deploy Weka on Azure using Terraform
+## Deploy WEKA on Azure using Terraform
 
 1. You can use one of the provided examples as a template for the required deployment. \
    Go to the relevant directory in the examples directory and customize the Terraform variables file: `vars.auto.tfvars`.\
    Ensure the `prefix` and `cluster_name` variables are unique across the Azure environment.
 
 {% hint style="info" %}
-**Note:** The example templates are simplified and have the minimum variable inputs to customize. For additional variable inputs to customize, you can modify their default values in the main **`variables.tf`** file, or add them to the Terraform variables file. See the README in the Weka-Azure Terraform package for the full list of variable inputs.
+**Note:** The example templates are simplified and have the minimum variable inputs to customize. For additional variable inputs to customize, you can modify their default values in the main **`variables.tf`** file, or add them to the Terraform variables file. See the README in the Azure-WEKA Terraform package for the full list of variable inputs.
 {% endhint %}
 
 2. To validate the configuration, run `terraform plan`.
@@ -156,7 +156,7 @@ $ curl https://v41-jack-function-app.azurewebsites.net/api/status?code=$function
 
 ## **Validate the deployment**
 
-Once the deployment is completed, access the Weka cluster GUI using the URL: `http://<backend server DNS name or IP address>:14000` and get started with the Weka cluster.
+Once the deployment is completed, access the WEKA cluster GUI using the URL: `http://<backend server DNS name or IP address>:14000` and get started with the WEKA cluster.
 
 **Related topics**
 
@@ -168,7 +168,7 @@ Once the deployment is completed, access the Weka cluster GUI using the URL: `ht
 
 ## **Clean up the** deployment
 
-If the Weka cluster is no longer required on Azure or you need to clean up the deployment, use the `terraform destroy` action (a token from [get.weka.io](https://get.weka.io/) is required). The object storage and storage account are not deleted.
+If the WEKA cluster is no longer required on Azure or you need to clean up the deployment, use the `terraform destroy` action (a token from [get.weka.io](https://get.weka.io/) is required). The object storage and storage account are not deleted.
 
 {% hint style="warning" %}
 If the Terraform deployment fails for any reason, such as dependencies not being present and Azure resource starvation, the `destroy` command does not work properly. Manually remove any resources created at the beginning of the Terraform script using the Azure console or Azure CLI before re-running the Terraform script.&#x20;

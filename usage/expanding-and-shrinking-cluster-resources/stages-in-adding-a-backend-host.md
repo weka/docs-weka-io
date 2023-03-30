@@ -1,6 +1,6 @@
 # Add a backend server in a legacy architecture
 
-Expanding a cluster in a legacy architecture with a new backend server is similar to the Weka legacy system installation process.
+Expanding a cluster in a legacy architecture with a new backend server is similar to the WEKA legacy system installation process.
 
 Adding a server to the cluster includes adding the containers and configuring the networking, CPU resources, and SSDs.
 
@@ -13,11 +13,11 @@ See [Expand the cluster by importing the server settings](stages-in-adding-a-bac
 
 ## Add a backend server to an existing cluster
 
-1. Obtain the Weka install file.
-   * Download the Weka install file used when the existing cluster was last upgraded (or formed, if not upgraded). See [obtaining-the-weka-install-file.md](../../install/bare-metal/obtaining-the-weka-install-file.md "mention").
+1. Obtain the WEKA install file.
+   * Download the WEKA install file used when the existing cluster was last upgraded (or formed, if not upgraded). See [obtaining-the-weka-install-file.md](../../install/bare-metal/obtaining-the-weka-install-file.md "mention").
    * Use the `weka-status` command to show the current cluster install file version.\
 
-2. Install the Weka software on the new server.
+2. Install the WEKA software on the new server.
    * Run the `untar` command and `install.sh` command on the new server.\
      At the end of the installation process, the server is in stem mode (the server is not attached to a cluster).
 3. Add the container to the cluster.

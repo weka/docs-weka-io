@@ -15,7 +15,7 @@ Using the GUI, you can perform the following actions:
 
 ## Edit the default object stores <a href="#edit-the-default-object-stores" id="edit-the-default-object-stores"></a>
 
-Object store buckets can reside in different physical object stores. To achieve good QoS between the buckets, Weka requires to map the buckets to the physical object store.
+Object store buckets can reside in different physical object stores. To achieve good QoS between the buckets, WEKA requires mapping the buckets to the physical object store.
 
 You can edit the default local and remote object stores to meet your connection demands. When you add an object store bucket, you apply the relevant object store on the bucket.
 
@@ -36,7 +36,7 @@ Editing the default object store provides you with the following additional adva
 * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
 {% hint style="info" %}
-If using the AWS object store type and access from the Weka EC2 instances to the object store is granted by the IAM roles, it is not mandatory to set the access and secret keys in the Edit Object Store dialog.
+If using the AWS object store type and access from the WEKA EC2 instances to the object store is granted by the IAM roles, it is not mandatory to set the access and secret keys in the Edit Object Store dialog.
 {% endhint %}
 
 ![Edit the default-remote object store ](<../../.gitbook/assets/wmng\_edit\_default\_obs (1).gif>)

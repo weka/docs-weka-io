@@ -11,7 +11,7 @@ You can expand the container's resources dynamically without deactivating the co
 * Add and remove memory and network resources.
 * Modify the IP addresses.
 * Extend the network subnets.
-* Limit the Weka system bandwidth on the container.
+* Limit the WEKA system bandwidth on the container.
 
 Adhere to the following guidelines when expanding specific resources:
 

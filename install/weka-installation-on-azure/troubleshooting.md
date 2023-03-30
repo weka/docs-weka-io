@@ -4,13 +4,13 @@
 
 During the deployment process, errors may occur. You can use the Azure Console tools to verify the resource status and the Azure quota limitations.
 
-For additional Terraform logs during the Weka cluster deployment, you can run the Terraform with the option `TF_LOG variable=ERROR`.
+For additional Terraform logs during the WEKA cluster deployment, you can run the Terraform with the option `TF_LOG variable=ERROR`.
 
 The following is a partial list of errors and the corrective actions that may occur during the deployment:
 
 ### Error when creating virtual machines
 
-When deploying the Weka cluster, an error indicates that more virtual machines have been requested than the quota limit in your Azure subscription.
+When deploying the WEKA cluster, an error indicates that more virtual machines have been requested than the quota limit in your Azure subscription.
 
 **Resolution:**
 

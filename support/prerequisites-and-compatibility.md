@@ -1,13 +1,13 @@
 ---
 description: >-
   This page describes the prerequisites and compatibility for the installation
-  of the Weka system.
+  of the WEKA system.
 ---
 
 # Prerequisites and compatibility
 
 {% hint style="info" %}
-The versions specified in the prerequisites and compatibility page apply to the latest minor version of the Weka system. See the relevant release notes in [get.weka.io ](https://get.weka.io/ui/releases/)for more details.
+The versions specified in the prerequisites and compatibility page apply to the latest minor version of the WEKA system. See the relevant release notes in [get.weka.io ](https://get.weka.io/ui/releases/)for more details.
 {% endhint %}
 
 ## CPU
@@ -24,7 +24,7 @@ Ensure the BIOS settings meet the following requirements:
 
 ## Memory
 
-* Sufficient memory to support the Weka system needs as described in [memory requirements](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
+* Sufficient memory to support the WEKA system needs as described in [memory requirements](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
 * More memory support for the OS kernel or any other application.
 
 ## Operating system
@@ -57,9 +57,9 @@ Ensure the BIOS settings meet the following requirements:
 
 #### General
 
-* All Weka servers must be synchronized in date/time (NTP recommended)
-* A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the Weka knowledge base in the [Weka support portal](http://support.weka.io) for more information and how-to articles.
-* If using `mlocate` or alike, it's advisable to exclude `wekafs` from `updatedb` filesystems lists; search the Weka knowledge base in the [Weka support portal](http://support.weka.io) for more information and how-to articles.
+* All WEKA servers must be synchronized in date/time (NTP recommended)
+* A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the WEKA knowledge base in the [WEKA support portal](http://support.weka.io) for more information and how-to articles.
+* If using `mlocate` or alike, it's advisable to exclude `wekafs` from `updatedb` filesystems lists; search the WEKA knowledge base in the [Weka support portal](http://support.weka.io) for more information and how-to articles.
 
 #### SELinux
 
@@ -90,16 +90,16 @@ Ensure the BIOS settings meet the following requirements:
 * Directory: `/opt/weka`
 * Must be on an SSD or SSD-like performance, for example, M.2.
   * Cannot be shared remotely, NFS mounted, or on a RAM drive.
-* If two boot drives are available, it is recommended to dedicate one for the OS and one for the Weka `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues).
-* At least 26 GB is available for the Weka system installation, with an additional 10 GB for each core used by Weka.
+* If two boot drives are available, it is recommended to dedicate one for the OS and one for the WEKA `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues).
+* At least 26 GB is available for the WEKA system installation, with an additional 10 GB for each core used by WEKA.
 * Use a separate filesystem on a separate partition for /opt/weka.
 
 ## Networking
 
 {% hint style="info" %}
-**Note:** At least 4k MTU is advised on Weka cluster servers NICs and the switches the servers are connected to.
+**Note:** At least 4k MTU is advised on WEKA cluster servers NICs and the switches the servers are connected to.
 
-A Weka system can be configured without jumbo frames for Ethernet and Infiniband configurations. However, it will provide minimal performance and cannot handle high data loads. Consult with the Customer Success Team before running in this mode.
+A WEKA system can be configured without jumbo frames for Ethernet and Infiniband configurations. However, it will provide minimal performance and cannot handle high data loads. Consult with the Customer Success Team before running in this mode.
 
 Jumbo Frames are not required for clients. However, performance might be limited.
 {% endhint %}

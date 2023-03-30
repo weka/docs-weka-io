@@ -7,7 +7,7 @@ You can shrink the cluster by performing one of the following:
 * Remove only some drives from the cluster.
 * Remove containers with their allocated drives.
 
-Removing drives or containers requires deactivating the drives you want to remove. But, if the deactivation leads to insufficient SSD capacity of the currently-provisioned filesystems, the Weka system does not deactivate the drives, and shrinking the cluster is not allowed.
+Removing drives or containers requires deactivating the drives you want to remove. But, if the deactivation leads to insufficient SSD capacity of the currently-provisioned filesystems, the WEKA system does not deactivate the drives, and shrinking the cluster is not allowed.
 
 ### Before you begin
 
@@ -55,7 +55,7 @@ Perform the following:
 
 ### Deactivate drives
 
-Drive deactivation starts an asynchronous process known as phasing out. It is a gradual redistribution of the data between the remaining drives in the system. On completion, the phased-out drives are in an inactive state. The Weka cluster does not use inactive drives, but they still appear in the drives list.&#x20;
+Drive deactivation starts an asynchronous process known as phasing out. It is a gradual redistribution of the data between the remaining drives in the system. On completion, the phased-out drives are in an inactive state. The WEKA cluster does not use inactive drives, but they still appear in the drives list.&#x20;
 
 To deactivate a drive, run the following command:
 

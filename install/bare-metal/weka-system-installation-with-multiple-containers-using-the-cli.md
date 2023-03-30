@@ -1,15 +1,15 @@
 ---
 description: >-
-  This page provides a detailed workflow for Weka system installation with
+  This page provides a detailed workflow for WEKA system installation with
   multiple containers using the CLI. These are complementary details for the
   quick installation guide.
 ---
 
-# Weka system installation with multiple containers
+# WEKA system installation with multiple containers
 
 ## Workflow
 
-1. [Install the Weka software](weka-system-installation-with-multiple-containers-using-the-cli.md#1.-install-the-weka-software)
+1. [Install the WEKA software](weka-system-installation-with-multiple-containers-using-the-cli.md#1.-install-the-weka-software)
 2. [Remove the default container](weka-system-installation-with-multiple-containers-using-the-cli.md#2.-remove-the-default-container)
 3. [Generate the resource files](weka-system-installation-with-multiple-containers-using-the-cli.md#3.-generate-the-resource-files)
 4. [Create drive containers](weka-system-installation-with-multiple-containers-using-the-cli.md#4.-create-drive-containers)
@@ -23,14 +23,14 @@ description: >-
 12. [Create frontend containers](weka-system-installation-with-multiple-containers-using-the-cli.md#12.-create-frontend-containers)
 13. [Check the cluster configuration](weka-system-installation-with-multiple-containers-using-the-cli.md#13.-check-the-cluster-configuration)
 
-### 1. Install the Weka software <a href="#1.-install-the-weka-software" id="1.-install-the-weka-software"></a>
+### 1. Install the WEKA software <a href="#1.-install-the-weka-software" id="1.-install-the-weka-software"></a>
 
-Once the Weka software is downloaded from [get.weka.io](https://get.weka.io), run the untar command and `install.sh` command on each server, according to the instructions in the **Install** tab.
+Once the WEKA software is downloaded from [get.weka.io](https://get.weka.io), run the untar command and `install.sh` command on each server, according to the instructions in the **Install** tab.
 
-Once completed, the Weka software is installed on all the allocated servers and runs in stem mode (no cluster is attached).
+Once completed, the WEKA software is installed on all the allocated servers and runs in stem mode (no cluster is attached).
 
 {% hint style="info" %}
-**Note:** If a failure occurs during the Weka software installation process, an error message prompts detailing the source of the failure. Review the details and try to resolve the failure. If required, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+**Note:** If a failure occurs during the WEKA software installation process, an error message prompts detailing the source of the failure. Review the details and try to resolve the failure. If required, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ### 2. Remove the default container
@@ -56,7 +56,7 @@ The resource generator automatically calculates the number of cores, memory, and
 | `compute-core-ids`         | Space-separated numbers | Specify the CPUs to allocate for the compute processes.                                                                                                                        | No            | -                                                 |
 | `compute-dedicated-cores`  | Number                  | Specify the number of cores to dedicate for the compute processes.                                                                                                             | No            | The maximum available cores                       |
 | `compute-memory`           | String                  | <p>Specify the total memory to allocate for the compute processes.</p><p>Argument format: value and unit without a space.</p><p>Examples: 1024B, 10GiB, 5TiB.</p>              | No            | The maximum available memory                      |
-| `core-ids`                 | Space-separated numbers | Specify the CPUs to allocate for the Weka processes.                                                                                                                           | No            | -                                                 |
+| `core-ids`                 | Space-separated numbers | Specify the CPUs to allocate for the WEKA processes.                                                                                                                           | No            | -                                                 |
 | `drive-core-ids`           | Space-separated numbers | Specify the CPUs to allocate for the drive processes.                                                                                                                          | No            | -                                                 |
 | `drive-dedicated-cores`    | Number                  | Specify the number of cores to dedicate for the drive processes.                                                                                                               | No            | 1 core per each detected drive                    |
 | `drives`                   | Space-separated strings | <p>Specify the drives to use. </p><p>This option overrides automatic detection.</p>                                                                                            | No            | All unmounted NVME devices                        |
@@ -68,8 +68,8 @@ The resource generator automatically calculates the number of cores, memory, and
 | `no-rdma`                  | Boolean                 | Don't take RDMA support into account when computing memory requirements.                                                                                                       | No            | False                                             |
 | `num-cores`                | Number                  | Override the auto-deduction of the number of cores.                                                                                                                            | No            | All available cores                               |
 | `path`                     | String                  | Specify the path to write the resource files.                                                                                                                                  | No            | The default is '.'                                |
-| `spare-cores`              | Number                  | Specify the number of cores to leave for OS and non-Weka processes.                                                                                                            | No            | 1                                                 |
-| `spare-memory`             | String                  | <p>Specify the memory to reserve for non-Weka requirements.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p>                   | No            | The maximum between 8 GiB and 2% of the total RAM |
+| `spare-cores`              | Number                  | Specify the number of cores to leave for OS and non-WEKA processes.                                                                                                            | No            | 1                                                 |
+| `spare-memory`             | String                  | <p>Specify the memory to reserve for non-WEKA requirements.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p>                   | No            | The maximum between 8 GiB and 2% of the total RAM |
 | `weka-hugepages-memory`    | String                  | <p>Specify the memory to allocate for compute, frontend, and drive processes.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p> | No            | The maximum available memory                      |
 
 ### 4. Create drive containers

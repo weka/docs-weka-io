@@ -4,7 +4,7 @@ description: This pages provides an overview about managing filesystems.
 
 # Manage filesystems
 
-The management of filesystems is an integral part of the successful running and performance of the Weka system and overall data lifecycle management.
+The management of filesystems is an integral part of the successful running and performance of the WEKA system and overall data lifecycle management.
 
 
 

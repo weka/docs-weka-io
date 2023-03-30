@@ -18,7 +18,7 @@ Using the CLI, you can perform the following actions:
 
 **Command:** `weka fs tier obs`
 
-This command is used to view information on all the object stores configured to the Weka system.
+This command is used to view information on all the object stores configured to the WEKA system.
 
 {% hint style="info" %}
 **Note:** Using the GUI only object-store buckets are present. Adding an object-store bucket will add it to the only `local` or `remote` object-store present. If more than one is present (such as during the time recovering from a remote snapshot), the CLI should be used.
@@ -58,7 +58,7 @@ Use the following command line to edit an object store:
 
 **Command:** `weka fs tier s3`
 
-This command is used to view information on all the object-store buckets configured to the Weka system.
+This command is used to view information on all the object-store buckets configured to the WEKA system.
 
 ## Add an object store bucket
 

@@ -1,12 +1,12 @@
 ---
 description: >-
-  This page describes the statistics available in the Weka system and how to
+  This page describes the statistics available in the WEKA system and how to
   work with them.
 ---
 
 # Statistics
 
-As the Weka system runs, it collects hundreds of statistics on system performance. These statistics help analyze the Weka system performance and determine the source of any issue.
+As the WEKA system runs, it collects hundreds of statistics on system performance. These statistics help analyze the WEKA system performance and determine the source of any issue.
 
 The statistics categories of the basic charts include:
 
@@ -32,20 +32,20 @@ This Statistics page provides several options to drill down into the charts acco
 
 The options include:
 
-* Move the mouse over the scrollable chart area to view the performance metrics of the Weka cluster.
+* Move the mouse over the scrollable chart area to view the performance metrics of the WEKA cluster.
 * Troubleshoot or obtain a correlation between events and performance using links to events that occurred.
 * Add charts to the Statistics page, or remove charts.
-* Display different charts up to five on the statistics page. The default statistics page shows OPS (total), Throughput (total), and read/write latency for the last hour. You can change the interval by selecting the Hour, Day, or Week buttons or specify a timeframe.
+* Display different charts of up to five on the statistics page. The default statistics page shows OPS (total), Throughput (total), and read/write latency for the last hour. You can change the interval by selecting the Hour, Day, or Week buttons or specifying a timeframe.
 * Display and zoom in on statistics from defined timelines and dates.
-* Bookmark specific statistics for future reference and share with others (using the URL).
+* Bookmark specific statistics for future reference and share them with others (using the URL).
 
 {% hint style="info" %}
-**Note:** The page shows only the statistics of the backend servers and clients that are part of the cluster. The page does not show statistics in the following cases:
+**Note:** The page shows only the statistics of the backend servers and clients in the cluster. The page does not show statistics in the following cases:
 
 * A backend server is removed.
 * A client is not connected to the cluster for more than the [retention period](statistics-1.md#set-statistics-retention).
 
-The Weka cluster does not hold historical statistics data. For historical statistics data, use `weka-mon` (see [Monitor using external tools](../../appendix/external-monitoring.md)).
+The WEKA cluster does not hold historical statistics data. For historical statistics data, use `weka-mon` (see [Monitor using external tools](../../appendix/external-monitoring.md)).
 {% endhint %}
 
 ****

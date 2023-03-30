@@ -15,7 +15,7 @@ Using the CLI, you can perform the following actions:
 
 **Command:** `weka fs group`
 
-Use this command to view information on the filesystem groups in the Weka system.
+Use this command to view information on the filesystem groups in the WEKA system.
 
 ## Add a filesystem group
 

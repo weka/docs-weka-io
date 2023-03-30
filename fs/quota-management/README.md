@@ -1,14 +1,14 @@
 ---
 description: >-
   This page describes how to manage quotas to alert or restrict usage of the
-  WekaFS filesystem.
+  WEKA filesystem.
 ---
 
 # Quota management
 
 ## Overview
 
-There are several levels on the Weka system where capacity usage can be restricted.&#x20;
+There are several levels on the WEKA system where capacity usage can be restricted.&#x20;
 
 1. On an organization level: Set a different organization to manage its own filesystems, where quotas for an organization can be set, as described in the [organization's usage and quota management ](../../usage/organizations/#usage-and-quota-management)section.
 2. On a filesystem level: Set a different filesystem per department/project.
@@ -29,10 +29,10 @@ The organization admin sets quotas to inform/restrict users from using too much 
 When working with quotas, consider the following:
 
 * To set a quota, the relevant filesystem must be mounted on the server where the set quota command is to be run.
-* When setting a quota, you should go through a new mount-point. Meaning, if you are using a server that has mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
+* When setting a quota, you should go through a new mount-point. Meaning, if you are using a server that has mounts from WEKA versions before 3.10, first unmount all relevant mount point and then mount them again.
 * Quotas can be set within nested directories (up to 4 levels of nested quotas are supported) and over-provisioned under the same directory quota tree. E.g., `/home` can have a quota of 1TiB, and each user directory under it can have a quota of 10GiB, while there are 200 users.
-* Before a directory is being deleted, its quota must be removed. A directory tree cannot be deleted without removing all the inner directories quotas beforehand. Note, default (parent) quotas are set as quotas at the directory creation and the actual quota needs to be removed before the directory is deleted (not the default quota of the parent directory)&#x20;
-* Moving files (or directories) between two directories with quotas, into a directory with a quota, or outside of a directory with a quota is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy\&delete but is OS-dependent.
+* Before a directory is deleted, its quota must be removed. A directory tree cannot be deleted without removing all the inner directories quotas beforehand. The default (parent) quotas are set as quotas at the directory creation, and the actual quota needs to be removed before the directory is deleted (not the default quota of the parent directory)&#x20;
+* Moving files (or directories) between two directories with quotas, into a directory with a quota, or outside of a directory with a quota is not supported. The WEKA filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy\&delete but is OS-dependent.
 * Quotas and hardlinks:
   * An existing hardlink is not counted as part of the quota.
   * Once a directory has a quota, it is not allowed to create a hardlink to files residing under directories with different (or without) directory quotas.
@@ -45,7 +45,7 @@ When working with quotas, consider the following:
 When a hard quota is set on a directory, running the `df` utility will consider the hard quota as the total capacity of the directory and provide the `use%` relative to the quota. This can help users understand their usage and how close they are to the hard quota.
 
 {% hint style="info" %}
-**Note:** The `df` utility behavior with quotas is currently global to the Weka system.&#x20;
+**Note:** The `df` utility behavior with quotas is currently global to the WEKA system.&#x20;
 
 To change global behavior, contact the Customer Success Team.
 {% endhint %}

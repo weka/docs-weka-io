@@ -23,9 +23,9 @@ The filesystems are displayed on the **Filesystems** page. Each filesystem indic
 
 ## Create a filesystem
 
-When creating a Weka system on-premises, it does not contain any filesystem. You need to create it and set its properties, such as capacity, group, tiering, thin provisioning, encryption, and required authentication during mount.
+When creating a WEKA system on-premises, it does not contain any filesystem. You must create it and set its properties, such as capacity, group, tiering, thin provisioning, encryption, and required authentication during mount.
 
-When creating a Weka system in AWS using the cloud formation, the Weka system contains a default filesystem, which is provisioned with the maximum capacity. If your deployment requires more filesystems with different settings, reduce the default filesystem's provisioned capacity, and then add a filesystem with the properties that meet your specific needs.
+When creating a WEKA system in AWS using the cloud formation, the WEKA system contains a default filesystem, which is provisioned with the maximum capacity. If your deployment requires more filesystems with different settings, reduce the default filesystem's provisioned capacity and then add a filesystem with the properties that meet your specific needs.
 
 **Before you begin**
 
@@ -67,7 +67,7 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 
 ![Thin provisioning](../../.gitbook/assets/wmng\_fs\_thin\_provisioning.png)
 
-6\. Optional: If **Encryption** is required, and your Weka system is deployed with a KMS, \
+6\. Optional: If **Encryption** is required, and your WEKA system is deployed with a KMS, \
 &#x20;   select the toggle button.
 
 7\. Optional: **Required Authentication**.\

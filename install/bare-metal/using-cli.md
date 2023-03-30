@@ -1,14 +1,14 @@
 ---
 description: >-
-  This page describes the stages in the installation process for the Weka legacy
+  This page describes the stages in the installation process for the WEKA legacy
   system (single container architecture) using the CLI.
 ---
 
-# Weka legacy system installation process
+# WEKA legacy system installation process
 
 ## Workflow
 
-1. [Install the Weka software on each server](using-cli.md#1.-install-the-weka-software-on-each-server)
+1. [Install the WEKA software on each server](using-cli.md#1.-install-the-weka-software-on-each-server)
 2. [Create a cluster from the containers](using-cli.md#2.-create-a-cluster-from-the-containers)
 3. [Set a name for the cluster (optional)](using-cli.md#3.-set-a-name-for-the-cluster-optional)
 4. [Enable event notifications to the cloud (optional)](using-cli.md#4.-enable-event-notifications-to-the-cloud-optional)
@@ -18,17 +18,17 @@ description: >-
 8. [Configure the CPU resources](using-cli.md#8.-configure-the-cpu-resources)
 9. [Configure the memory (optional)](using-cli.md#9.-configure-the-memory-optional)
 10. [Configure failure domains (optional)](using-cli.md#10.-configure-failure-domains-optional)
-11. [Configure Weka system protection scheme (optional)](using-cli.md#11.-configure-weka-system-protection-scheme-optional)
+11. [Configure WEKA system protection scheme (optional)](using-cli.md#11.-configure-weka-system-protection-scheme-optional)
 12. [Configure hot spare (optional)](using-cli.md#12.-configure-hot-spare-optional)
 13. [Apply containers configuration](using-cli.md#13.-apply-containers-configuration)
 14. [Set a license](using-cli.md#14.-set-a-license)
 15. [Run the Start IO command](using-cli.md#15.-run-the-start-io-command)
 
-### 1. Install the Weka software on each server
+### 1. Install the WEKA software on each server
 
-Run the untar command and `install.sh` command, according to the instructions, on each server.
+Run the `untar` command and `install.sh` command, according to the instructions, on each server.
 
-On completion of this stage in the installation process, the Weka software is installed on all the allocated servers and running in the stem mode. That is, no cluster is attached and the Weka system is awaiting instructions.
+On completion of this stage in the installation process, the WEKA software is installed on all the allocated servers and running in the stem mode. That is, no cluster is attached and the WEKA system is awaiting instructions.
 
 {% hint style="info" %}
 **Note:** If a failure occurs during this installation stage, an error message detailing the source of the failure is received. If possible, try to recover this error or alternatively, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
@@ -286,11 +286,11 @@ Run the following command line:
 | `name`         | String   | The failure domain name for the container to assign.             | Maximum 16 characters                | Yes (either `--name` OR `--auto` must be specified) |             |
 | `auto`         | Boolean  | Automatically assign a failure domain ID.                        |                                      | Yes (either `--name` OR `--auto` must be specified) |             |
 
-### 11. Configure Weka system protection scheme (optional)
+### 11. Configure WEKA system protection scheme (optional)
 
 **Command:** `weka cluster update`
 
-To configure the Weka system protection scheme, use the following command line:
+To configure the WEKA system protection scheme, use the following command line:
 
 `weka cluster update [--data-drives=<data-drives>] [--parity-drives=<parity-drives>]`
 
@@ -309,7 +309,7 @@ To configure the Weka system protection scheme, use the following command line:
 
 **Command:** `weka cluster hot-spare`
 
-To configure the Weka system hot spare, use the following command line:
+To configure the WEKA system hot spare, use the following command line:
 
 `weka cluster hot-spare <count>`
 
@@ -325,7 +325,7 @@ To configure the Weka system hot spare, use the following command line:
 
 **Command:** `weka cluster container apply`
 
-This command is used to apply the Weka system cluster containers' configuration. In the install phase, all containers need to be added, so the `--all` parameter can be used.
+This command is used to apply the WEKA system cluster containers' configuration. In the install phase, all containers must be added so the `--all` parameter can be used.
 
 To activate the cluster containers, use the following command line:
 
@@ -353,7 +353,7 @@ Run the command and verify that the `ResourcesNotAppliedalert` alert does not sh
 
 **Command:** `weka cluster license set / payg`
 
-To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the Weka cluster. For details, see [License overview](../../licensing/overview.md).&#x20;
+To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the WEKA cluster. For details, see [License overview](../../licensing/overview.md).&#x20;
 
 ### 16. Run the Start IO command
 

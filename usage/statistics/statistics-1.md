@@ -1,10 +1,10 @@
 ---
-description: This page describes how to manage the statistics using the GUI.
+description: This page describes how to manage the statistics using the CLI.
 ---
 
 # Manage statistics using the CLI
 
-Using the GUI, you can:
+Using the CLI, you can:
 
 * [List statistics types](statistics-1.md#list-statistics-types)
 * [View statistics in real-time](statistics-1.md#view-statistics-in-real-time)
@@ -44,10 +44,10 @@ Use the following command line to obtain the current performance-related statist
 
 **Command:** `weka stats`
 
-The collected statistics can help analyze system performance and determine the source of issues that may occur during Weka system runs. Statistics are divided according to categories. When selecting a category, a list of the possible statistics is displayed, from which you can select the specific statistics.
+The collected statistics can help analyze system performance and determine the source of issues that may occur during WEKA system runs. Statistics are divided according to categories. When selecting a category, a list of the possible statistics is displayed, from which you can select the specific statistics.
 
 {% hint style="info" %}
-**Note:** Weka averages all statistics over one-second intervals. Consequently, the total value or other aggregates relate to a specific minute.
+**Note:** WEKA averages all statistics over one-second intervals. Consequently, the total value or other aggregates relate to a specific minute.
 {% endhint %}
 
 Use the following command line to manage filters and read statistics:

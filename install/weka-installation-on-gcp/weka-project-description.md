@@ -1,6 +1,6 @@
-# Weka project description
+# WEKA project description
 
-The Weka project ultimately uses the internal GCP resources. A basic Weka project includes a cluster with a few virtual networks (vnet), VMs (instances), a load balancer, DNS, cloud storage, a secret manager, and a few more elements that manage the resize of the cluster. The peering between all the virtual networks enables running the functions across all the networks.
+The WEKA project ultimately uses the internal GCP resources. A basic WEKA project includes a cluster with a few virtual networks (vnet), VMs (instances), a load balancer, DNS, cloud storage, a secret manager, and a few more elements that manage the resize of the cluster. The peering between all the virtual networks enables running the functions across all the networks.
 
 <figure><img src="../../.gitbook/assets/GCP_puplic_network.png" alt=""><figcaption><p>Weka project on the GCP</p></figcaption></figure>
 
@@ -16,11 +16,11 @@ The secret manager retains the user name (usually _admin_) and the Terraform-gen
 
 ## GCP subnet types
 
-Depending on the required security level, you can deploy the Weka project on one of the following subnet types:
+Depending on the required security level, you can deploy the WEKA project on one of the following subnet types:
 
 * **Public subnet:** Use a public subnet within your VPC with an internet gateway, and allow public IP addresses for your instances.
-* **Private subnet shared with a Bastion project:** Create a private subnet with a shared project with a Bastion project, a risk-based security solution used for authenticating communication with a public network, such as downloading the Weka software from get.weka.io. The Bastion project includes a Bastion VM (host) acting as a network gateway. The relevant ports are open (by the Terraform files).&#x20;
-* **Private subnet shared with a yum project:** If a connection to get.weka.io for downloading the weka software is impossible, create a private subnet with a yum repository containing the Weka software. The relevant ports are open (by the Terraform files).
+* **Private subnet shared with a Bastion project:** Create a private subnet with a shared project with a Bastion project, a risk-based security solution used for authenticating communication with a public network, such as downloading the WEKA software from get.weka.io. The Bastion project includes a Bastion VM (host) acting as a network gateway. The relevant ports are open (by the Terraform files).&#x20;
+* **Private subnet shared with a yum project:** If a connection to get.weka.io for downloading the WEKA software is impossible, create a private subnet with a yum repository containing the WEKA software. The relevant ports are open (by the Terraform files).
 
 <figure><img src="../../.gitbook/assets/GCP_weka_with_bastion_project.png" alt=""><figcaption><p>Private subnet shared with a Bastion project </p></figcaption></figure>
 

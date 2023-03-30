@@ -1,8 +1,8 @@
 # Required services and supported regions
 
-The region must support the services used in WekaFS on Azure. The following sections list these services and the current regions that support them. See the related information below for updates.
+The region must support the services used in WEKA on Azure. The following sections list these services and the current regions that support them. See the related information below for updates.
 
-## Required services used in Weka on Azure
+## Required services used in WEKA on Azure
 
 * [Lsv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lsv3-series) (VM type)
 * [Functions](https://learn.microsoft.com/en-us/azure/azure-functions/)

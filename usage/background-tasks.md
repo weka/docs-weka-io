@@ -1,18 +1,18 @@
 ---
 description: >-
-  This page describes the management of background tasks running on the Weka
+  This page describes the management of background tasks running on the WEKA
   system.‌
 ---
 
 # Background tasks
 
-The Weka system performs internal and external asynchronous operations and maintenance tasks in the background, allowing no interference nor starving the Weka system from serving IOs with high performance.‌
+The WEKA system performs internal and external asynchronous operations and maintenance tasks in the background, allowing no interference nor starving the WEKA system from serving IOs with high performance.‌
 
 Background tasks include, for example, downloading and uploading snapshots and migrating an object store.
 
 Adhere to the following:
 
-* **CPU resource consumption:** The Weka system limits these tasks’ CPU resources to 5% of the overall CPU. When the CPU is idle, background tasks can use more than the configured resources but are immediately freed if needed for serving IOs.
+* **CPU resource consumption:** The WEKA system limits these tasks’ CPU resources to 5% of the overall CPU. When the CPU is idle, background tasks can use more than the configured resources but are immediately freed if needed for serving IOs.
 * **Concurrent tasks:** The maximum number of concurrent tasks is 16, with restrictions such as:
   * Only a single local upload can exist inside a filesystem concurrently.
   * Only a single remote upload inside a filesystem concurrently (but local and remote uploads can co-exist).

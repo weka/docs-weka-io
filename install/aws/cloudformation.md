@@ -13,7 +13,7 @@ The APIs described here require an API token which can be obtained at [https://g
 
 ## API overview
 
-To generate a CloudFormation template, it is first necessary to decide which Weka system version is to be installed. This is performed using the `https://<token>@get.weka.io/dist/v1/release` API which provides a list of all available versions:
+To generate a CloudFormation template, it is first necessary to decide which WEKA system version is to be installed. This is performed using the `https://<token>@get.weka.io/dist/v1/release` API which provides a list of all available versions:
 
 ```bash
 $ curl https://<token>@get.weka.io/dist/v1/release
@@ -161,7 +161,7 @@ When the deployment is complete, the stack status will update to `CREATE_COMPLET
 {% hint style="info" %}
 **Note:** If there is a valid entitlement or PAYG plan in [get.weka.io](https://get.weka.io), the stack will attempt creating a license, deploy it to the cluster, and start IO automatically.&#x20;
 
-With that, a filesystem is created and mounted on all instances. This shared filesystem is mounted on `/mnt/weka` in each of the cluster instances.
+With that, a filesystem is created and mounted on all instances. This shared filesystem is mounted on `/mnt/weka` in each cluster instance.
 {% endhint %}
 
 If the deployment was unsuccessful, see [Troubleshooting](troubleshooting.md) for the resolution of common deployment issues.

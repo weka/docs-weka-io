@@ -2,7 +2,7 @@
 
 ## Download the Usage Report or Analytics
 
-The Local Weka Home lets you download JSON-formatted reports to your local workstation, view them, and forward them to the Weka Customer Success Team for case resolution and adding them to the Cloud Weka Home for offline monitoring purposes.
+The Local Weka Home lets you download JSON-formatted reports to your local workstation, view them, and forward them to the Customer Success Team for case resolution and adding them to the Cloud Weka Home for offline monitoring purposes.
 
 **Procedure:**
 
@@ -58,7 +58,7 @@ The following properties are affected by anonymization:
 </details>
 
 {% hint style="info" %}
-**Note:** The anonymization option is supported with Weka clusters of version 3.14.2 and above.
+**Note:** The anonymization option is supported with WEKA clusters of version 3.14.2 and above.
 {% endhint %}
 
 **Procedure:**

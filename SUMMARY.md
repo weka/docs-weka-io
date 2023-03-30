@@ -1,38 +1,38 @@
 # Table of contents
 
-* [Weka v4.1 documentation](README.md)
+* [WEKA v4.1 documentation](README.md)
 
-## Weka System Overview <a href="#overview" id="overview"></a>
+## WEKA System Overview <a href="#overview" id="overview"></a>
 
-* [About the Weka system](overview/about.md)
+* [About the WEKA system](overview/about.md)
 * [SSD capacity management](overview/ssd-capacity-management.md)
 * [Filesystems, object stores, and filesystem groups](overview/filesystems.md)
-* [Weka networking](overview/networking-in-wekaio.md)
+* [WEKA networking](overview/networking-in-wekaio.md)
 * [Data lifecycle management](overview/data-storage.md)
-* [Weka client and mount modes](overview/weka-client-and-mount-modes.md)
-* [Weka containers architecture overview](overview/weka-containers-architecture-overview.md)
+* [WEKA client and mount modes](overview/weka-client-and-mount-modes.md)
+* [WEKA containers architecture overview](overview/weka-containers-architecture-overview.md)
 * [Glossary](overview/glossary.md)
 
-## Getting Started with Weka
+## Getting Started with WEKA
 
 * [Quick installation guide](getting-started-with-weka/quick-install-guide.md)
-* [Manage the system using the Weka CLI](getting-started-with-weka/manage-the-system-using-weka-cli.md)
-* [Manage the system using the Weka GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
-* [Run first IOs with WekaFS](getting-started-with-weka/performing-the-first-io.md)
-* [Getting started with Weka REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
+* [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli.md)
+* [Manage the system using the WEKA GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
+* [Run first IOs with WEKA filesystem](getting-started-with-weka/performing-the-first-io.md)
+* [Getting started with WEKA REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
 
 ## Planning and Installation <a href="#install" id="install"></a>
 
 * [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts.md)
-* [Weka installation on bare metal](install/bare-metal/README.md)
-  * [Plan the Weka system Installation](install/bare-metal/planning-a-weka-system-installation.md)
-  * [Prepare the system for Weka software installation](install/bare-metal/setting-up-the-hosts/README.md)
+* [WEKA installation on bare metal](install/bare-metal/README.md)
+  * [Plan the WEKA system Installation](install/bare-metal/planning-a-weka-system-installation.md)
+  * [Prepare the system for WEKA software installation](install/bare-metal/setting-up-the-hosts/README.md)
     * [Enable the SR-IOV](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
-  * [Obtain the Weka software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
-  * [Weka system installation with multiple containers](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
-  * [Weka legacy system installation process](install/bare-metal/using-cli.md)
+  * [Obtain the WEKA software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
+  * [WEKA system installation with multiple containers](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
+  * [WEKA legacy system installation process](install/bare-metal/using-cli.md)
   * [Add clients](install/bare-metal/adding-clients-bare-metal.md)
-* [Weka installation on AWS](install/aws/README.md)
+* [WEKA installation on AWS](install/aws/README.md)
   * [Self-service portal](install/aws/self-service-portal.md)
   * [CloudFormation template generator](install/aws/cloudformation.md)
   * [Deployment types](install/aws/deployment-types.md)
@@ -41,17 +41,17 @@
   * [Add clients](install/aws/adding-clients.md)
   * [Auto scaling group](install/aws/auto-scaling-group.md)
   * [Troubleshooting](install/aws/troubleshooting.md)
-* [Weka installation on Azure](install/weka-installation-on-azure/README.md)
-  * [Azure-Weka Terraform package description](install/weka-installation-on-azure/azure-weka-terraform-package-description.md)
+* [WEKA installation on Azure](install/weka-installation-on-azure/README.md)
+  * [Azure-WEKA Terraform package description](install/weka-installation-on-azure/azure-weka-terraform-package-description.md)
   * [Deployment on Azure using Terraform](install/weka-installation-on-azure/deployment-on-azure-using-terraform.md)
   * [Required services and supported regions](install/weka-installation-on-azure/required-services-and-supported-regions.md)
   * [Supported virtual machine types](install/weka-installation-on-azure/supported-virtual-machine-types.md)
   * [Add clients](install/weka-installation-on-azure/add-clients.md)
   * [Troubleshooting](install/weka-installation-on-azure/troubleshooting.md)
-* [Weka installation on GCP](install/weka-installation-on-gcp/README.md)
-  * [Weka project description](install/weka-installation-on-gcp/weka-project-description.md)
+* [WEKA installation on GCP](install/weka-installation-on-gcp/README.md)
+  * [WEKA project description](install/weka-installation-on-gcp/weka-project-description.md)
   * [Deployment on GCP using Terraform](install/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md)
-  * [Weka GCP-Terraform package description](install/weka-installation-on-gcp/weka-gcp-terraform-package-description.md)
+  * [GCP Terraform package description](install/weka-installation-on-gcp/gcp-terraform-package-description.md)
   * [Required services and supported regions](install/weka-installation-on-gcp/required-services-and-supported-regions.md)
   * [Supported machine types and storage](install/weka-installation-on-gcp/supported-machine-types-and-storage.md)
   * [Auto scale instances in GCP](install/weka-installation-on-gcp/auto-scale-instances-in-gcp.md)
@@ -60,10 +60,10 @@
 
 ## Performance <a href="#testing-and-troubleshooting" id="testing-and-troubleshooting"></a>
 
-* [Weka performance tests](testing-and-troubleshooting/testing-weka-system-performance/README.md)
+* [WEKA performance tests](testing-and-troubleshooting/testing-weka-system-performance/README.md)
   * [Test environment details](testing-and-troubleshooting/testing-weka-system-performance/test-environment-details.md)
 
-## WekaFS Filesystems & Object Stores <a href="#fs" id="fs"></a>
+## WEKA Filesystems & Object Stores <a href="#fs" id="fs"></a>
 
 * [Manage object stores](fs/managing-object-stores/README.md)
   * [Manage object stores using the GUI](fs/managing-object-stores/managing-object-stores.md)
@@ -166,7 +166,7 @@
   * [Expand specific resources of a container](usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrink a cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
 * [Background tasks](usage/background-tasks.md)
-* [Upgrade Weka versions](usage/upgrading-weka-versions.md)
+* [Upgrade WEKA versions](usage/upgrading-weka-versions.md)
 
 ## Billing & Licensing <a href="#licensing" id="licensing"></a>
 
@@ -177,7 +177,7 @@
 ## Support
 
 * [Prerequisites and compatibility](support/prerequisites-and-compatibility.md)
-* [Get support for your Weka system](support/getting-support-for-your-weka-system.md)
+* [Get support for your WEKA system](support/getting-support-for-your-weka-system.md)
 * [Diagnostics management](support/diagnostics-management/README.md)
   * [Traces management](support/diagnostics-management/traces-management/README.md)
     * [Manage traces using the GUI](support/diagnostics-management/traces-management/manage-traces-using-the-gui.md)
@@ -186,7 +186,7 @@
     * [Manage protocols debug level using the GUI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-gui.md)
     * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
   * [Diagnostics data management](support/diagnostics-management/diagnostics-utility.md)
-* [Weka Home - The Weka support cloud](support/the-wekaio-support-cloud/README.md)
+* [Weka Home - The WEKA support cloud](support/the-wekaio-support-cloud/README.md)
   * [Local Weka Home overview](support/the-wekaio-support-cloud/local-weka-home-overview.md)
   * [Local Weka Home deployment](support/the-wekaio-support-cloud/local-weka-home-deployment.md)
   * [Set the Local Weka Home to send alerts or events](support/the-wekaio-support-cloud/set-the-local-weka-home-to-send-alerts-or-events.md)
@@ -194,7 +194,7 @@
 
 ## Appendix
 
-* [Weka CSI Plugin](appendix/weka-csi-plugin.md)
+* [WEKA CSI Plugin](appendix/weka-csi-plugin.md)
 * [Set up the Weka-mon external monitoring](appendix/external-monitoring.md)
 * [Set up the SnapTool external snapshots manager](appendix/snapshot-management.md)
 

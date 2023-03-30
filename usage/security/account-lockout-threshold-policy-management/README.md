@@ -10,4 +10,4 @@ You can control these default values using the GUI or the CLI.
 
 [manage-the-account-lockout-threshold-policy-using-gui.md](manage-the-account-lockout-threshold-policy-using-gui.md "mention")
 
-v[manage-the-account-lockout-threshold-policy-using-cli.md](manage-the-account-lockout-threshold-policy-using-cli.md "mention")
+[manage-the-account-lockout-threshold-policy-using-cli.md](manage-the-account-lockout-threshold-policy-using-cli.md "mention")

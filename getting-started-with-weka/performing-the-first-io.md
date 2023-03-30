@@ -1,20 +1,20 @@
 ---
 description: >-
   This is a quick reference guide using the CLI to perform the first IO in the
-  WekaFS filesystem.
+  WEKA filesystem.
 ---
 
-# Run first IOs with WekaFS
+# Run first IOs with WEKA filesystem
 
 Once the system is installed and you are familiar with the CLI and GUI, you can connect to one of the servers and try it out.
 
-To perform a sanity check that the Weka cluster is configured and IOs can be performed on it, do the following procedures:
+To perform a sanity check that the WEKA cluster is configured and IOs can be performed on it, do the following procedures:
 
 1. [Create the first filesystem](performing-the-first-io.md#create-the-first-filesystem).
 2. [Mount the filesystem](performing-the-first-io.md#mount-the-filesystem).
 3. [Writing to the filesystem](performing-the-first-io.md#write-to-the-filesystem).
 
-To validate that the Weka cluster and IT environment are best configured to benefit from the WekaFS, do the following procedure:
+To validate that the WEKA cluster and IT environment are best configured to benefit from the WEKA filesystem, do the following procedure:
 
 * [Validate the configuration](performing-the-first-io.md#validate-the-configuration).
 
@@ -27,7 +27,7 @@ To validate that the Weka cluster and IT environment are best configured to bene
 $ weka fs group create my_fs_group
 FSGroupId: 0
 
-# to view existing filesystem groups details in the Weka system
+# to view existing filesystem groups details in the WEKA system
 $weka fs group
 FileSystem Group ID | Name        | target-ssd-retention | start-demote
 --------------------+-------------+----------------------+-------------
@@ -41,7 +41,7 @@ FSGroupId: 0        | my_fs_group | 1d 0:00:00h          | 0:15:00h
 $ weka fs create new_fs my_fs_group 1TiB
 FSId: 0
 
-# to view existing filesystems details in the Weka system
+# to view existing filesystems details in the WEKA system
 $ weka fs
 Filesystem ID | Filesystem Name | Group       | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
 --------------+-----------------+-------------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------
@@ -60,7 +60,7 @@ $ weka fs update default --total-capacity 1GiB
 # to create a new filesystem in the default group
 $ weka fs create new_fs default 1GiB
 
-# to view existing filesystems details in the Weka system
+# to view existing filesystems details in the WEKA system
 $ weka fs
 Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
 --------------+-----------------+---------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------
@@ -118,11 +118,11 @@ Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | 
 0             | default         | default | 40.95 MB        | 180.22 KB       | 41.14 MB | 1.03 GB  | 268.43 MB            | 1.07 GB       | 40.95 MB          | 41.14 MB   | 1.03 GB    | 1.07 GB         | 21589     | READY  | False     |                 | False
 ```
 
-This has completed the sanity check that the Weka cluster is configured and IOs can be performed on it.
+This has completed the sanity check that the WEKA cluster is configured and IOs can be performed on it.
 
 ## Validate the configuration
 
-To ensure that the Weka cluster and the IT environment are well configured, more complex IO patterns and benchmark tests should be conducted using the FIO utility.
+To ensure that the WEKA cluster and the IT environment are well configured, more complex IO patterns and benchmark tests should be conducted using the FIO utility.
 
 Although results can vary using different servers and networking, it is not expected to be very different than what many other customers and we achieved. A properly configured Weka cluster and IT environment should yield similar results as described in the [Weka performance tests](../testing-and-troubleshooting/testing-weka-system-performance/) section.
 

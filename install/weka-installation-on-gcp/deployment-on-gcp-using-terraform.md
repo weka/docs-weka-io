@@ -1,22 +1,22 @@
 # Deployment on GCP using Terraform
 
-Weka provides a GCP-Terraform package that contains Terraform modules and variables file examples that you can customize according to your deployment needs. The installation is based on applying the customized Terraform variables file to a predefined GCP project.&#x20;
+WEKA provides a GCP-Terraform package that contains Terraform modules and variables file examples that you can customize according to your deployment needs. The installation is based on applying the customized Terraform variables file to a predefined GCP project.&#x20;
 
 Applying the GCP-Terraform variables file performs the following:
 
 * Creates VPC networks and subnets on the GCP project.
 * Deploys GCP instances.
-* Installs the Weka software.
-* Configures the Weka cluster**.**
+* Installs the WEKA software.
+* Configures the WEKA cluster**.**
 * Additional GCP objects.
 
 ## Prerequisites
 
-Before installing the Weka software on GCP, the following prerequisites must be met:
+Before installing the WEKA software on GCP, the following prerequisites must be met:
 
 * [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install).&#x20;
 * [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (if you are not using the Terraform already installed on the GCP Console).
-* Obtain the Weka GCP-Terraform package from [https://github.com/weka/gcp-tf](https://github.com/weka/gcp-tf) and save it to a local directory.&#x20;
+* Obtain the WEKA GCP-Terraform package from [https://github.com/weka/gcp-tf](https://github.com/weka/gcp-tf) and save it to a local directory.&#x20;
 * Initialize the GCP-Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 * The **Compute Engine** and **Workflows API** services must be enabled.
 * The service account used for the deployment must have the following roles:
@@ -55,7 +55,7 @@ Terraform applies the configuration on the specified GCP project.
 
 **Related topics**
 
-[weka-gcp-terraform-package-description.md](weka-gcp-terraform-package-description.md "mention")
+[gcp-terraform-package-description.md](gcp-terraform-package-description.md "mention")
 
 
 

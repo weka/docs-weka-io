@@ -1,22 +1,22 @@
 ---
 description: >-
-  Understand the key terminologies relating to Weka system capacity management
-  and the formula for calculating the Weka system net data storage capacity.
+  Understand the key terminologies relating to WEKA system capacity management
+  and the formula for calculating the WEKA system net data storage capacity.
 ---
 
 # SSD capacity management
 
 ## Raw capacity
 
-Raw capacity is the total capacity on all the SSDs assigned to a Weka system cluster. For example, 10 SSDs of one terabyte each have a total raw capacity of 10 terabytes. This is the total capacity available for the Weka system. This will change automatically if more servers or SSDs are added to the system.
+Raw capacity is the total capacity on all the SSDs assigned to a WEKA system cluster. For example, 10 SSDs of one terabyte each have a total raw capacity of 10 terabytes. This is the total capacity available for the WEKA system. This will change automatically if more servers or SSDs are added.
 
 ## Net capacity
 
-Net capacity is the space for user data on the SSDs in a configured Weka system. It is based on the raw capacity minus the Weka filesystem overheads for redundancy protection and other needs. This will change automatically if more servers or SSDs are added to the system.
+Net capacity is the space for user data on the SSDs in a configured WEKA system. It is based on the raw capacity minus the WEKA filesystem overheads for redundancy protection and other needs. This will change automatically if more servers or SSDs are added.
 
 ## Stripe width
 
-The stripe width is the number of blocks with a common protection set, ranging from 3 to 16. The Weka system has distributed any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various servers protect each other (rather than a group of 8 servers forming a protection group). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
+The stripe width is the number of blocks with a common protection set, ranging from 3 to 16. The WEKA system has distributed any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various servers protect each other (rather than a group of 8 servers forming a protection group). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
 
 {% hint style="info" %}
 **Note:** If not configured, the stripe width is set automatically to #Failure Domains - Protection Level
@@ -32,7 +32,7 @@ The protection level is the number of additional protection blocks added to each
 
 ## Failure domains (optional)
 
-A failure domain is a group of Weka servers that can fail concurrently due to a single root cause, such as a power circuit or network switch failure.
+A failure domain is a group of WEKA servers that can fail concurrently due to a single root cause, such as a power circuit or network switch failure.
 
 A cluster can be configured with explicit or implicit failure domains:
 
@@ -40,7 +40,7 @@ A cluster can be configured with explicit or implicit failure domains:
 * In a cluster with implicit failure domains, the group of blocks is spread on different servers, and each server is a failure domain. Additional failure domains can be added, and new servers can be added to any existing or new failure domain.
 
 {% hint style="info" %}
-**Note:** This documentation relates to a homogeneous Weka system deployment. That is, the same number of servers per failure domain (if any) and the same SSD capacity per server. For information about heterogeneous Weka system configurations, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+**Note:** This documentation relates to a homogeneous WEKA system deployment. That is, the same number of servers per failure domain (if any) and the same SSD capacity per server. For information about heterogeneous WEKA system configurations, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ## Hot spare

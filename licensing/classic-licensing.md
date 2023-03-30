@@ -1,18 +1,18 @@
 ---
 description: >-
-  This page describes how to obtain a classic Weka license (payment for a
-  predetermined period of time) and apply it to the Weka cluster.
+  This page describes how to obtain a classic WEKA license (payment for a
+  predetermined period of time) and apply it to the WEKA cluster.
 ---
 
 # Classic license
 
-A classic license is a text element you create in **get.weka.io** for your specific Weka cluster and then apply the license text to your Weka cluster.
+A classic license is a text element you create in **get.weka.io** for your specific WEKA cluster and then apply the license text to your WEKA cluster.
 
 ## Obtain a classic license from get.weka.io
 
 **Before you begin**
 
-* To create a classic license in get.weka.io, you need a Weka account. If you already have a Weka account, skip this step. If not, see instructions in [Register to get.weka.io](../install/bare-metal/obtaining-the-weka-install-file.md#register-to-get.weka.io).
+* To create a classic license in get.weka.io, you need a WEKA account. If you already have a WEKA account, skip this step. If not, see instructions in [Register to get.weka.io](../install/bare-metal/obtaining-the-weka-install-file.md#register-to-get.weka.io).
 * Obtain the cluster GUID and capacity from your system and keep it for later use.\
   Run the command `weka cluster license`.\
   The command provides an output of all the information required for creating your license.\
@@ -41,7 +41,7 @@ If you already have a license, please enter it by running
 **Procedure**
 
 1. Sign in to [get.weka.io](http://get.weka.io).
-2. **Obtain an entitlement:** Once you have a Weka account, the Customer Success Team applies an entitlement to the account. You can view the outstanding entitlements on the account dashboard.
+2. **Obtain an entitlement:** Once you have a WEKA account, the Customer Success Team applies an entitlement to the account. You can view the outstanding entitlements on the account dashboard.
 
 ![Outstanding Entitlements pane](../.gitbook/assets/getwekaio\_1\_outstanding\_entitlements.png)
 

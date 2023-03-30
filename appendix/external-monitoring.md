@@ -6,7 +6,7 @@ description: >-
 
 # Set up the Weka-mon external monitoring
 
-Weka provides an external monitoring package named **Weka-mon**. **** The package implements the well-known [_Grafana_](https://grafana.com/) dashboard with [_Prometheus_](https://prometheus.io/docs/introduction/overview/), which provides a central monitoring dashboard of metrics, logs, alerts, and statistics with enriched capabilities.
+WEKA provides an external monitoring package named **Weka-mon**. **** The package implements the well-known [_Grafana_](https://grafana.com/) dashboard with [_Prometheus_](https://prometheus.io/docs/introduction/overview/), which provides a central monitoring dashboard of metrics, logs, alerts, and statistics with enriched capabilities.
 
 The package also includes the following components:
 
@@ -18,7 +18,7 @@ You can set up the Weka-mon package regardless of the data monitoring provided b
 
 <figure><img src="../.gitbook/assets/weka-mon_setup.png" alt=""><figcaption><p>Weka-mon setup</p></figcaption></figure>
 
-One of the advantages of setting up the Weka-mon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with Weka to correlate and display monitoring information from all your products on the same dashboard.
+One of the advantages of setting up the Weka-mon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with WEKA to correlate and display monitoring information from all your products on the same dashboard.
 
 ![Weka enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (25).png>)
 

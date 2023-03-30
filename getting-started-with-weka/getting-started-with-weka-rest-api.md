@@ -1,8 +1,8 @@
-# Getting started with Weka REST API
+# Getting started with WEKA REST API
 
 
 
-The Weka system supports a RESTful API. This is useful when automating the interaction with the Weka system and when integrating it into your workflows or monitoring systems.
+The WEKA system supports a RESTful API. This is useful when automating the interaction with the WEKA system and when integrating it into your workflows or monitoring systems.
 
 The API is accessible at port 14000, via the `/api/v2` URL, you can explore it via `/api/v2/docs` when accessing from the cluster (e.g. `https://weka01:14000/api/v2/docs`).
 
@@ -10,7 +10,7 @@ Our static API documentation can be accessed from [api.docs.weka.io](https://api
 
 ### Obtain an access token
 
-You must provide an access token to use the Weka REST API.&#x20;
+You must provide an access token to use the WEKA REST API.&#x20;
 
 To obtain access/refresh tokens via the CLI, refer to [Obtaining an Authentication Token](../usage/security/#obtaining-an-authentication-token) section (there you can also generate an access token with a longer expiry time). To obtain access/refresh tokens via the API, you can call the `login` API, providing it a `username` and `password`.&#x20;
 
@@ -77,7 +77,7 @@ In response, you will get an access token (valid for 5 minutes), that can be use
 
 ### Call the REST API
 
-Now, that you have obtained an access token, you can call Weka REST API commands with it. For example, you can query the cluster status:
+Now, that you have obtained an access token, you can call WEKA REST API commands with it. For example, you can query the cluster status:
 
 {% code title="Python example calling cluster status API" %}
 ```python

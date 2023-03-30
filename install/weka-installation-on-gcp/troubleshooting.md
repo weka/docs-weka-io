@@ -1,6 +1,6 @@
 # Troubleshooting
 
-The GCP Console has a [Logs Explorer](https://cloud.google.com/logging/docs/view/logs-explorer-interface) interface in which you can view the cloud function logs related to the Weka cluster activities, such as when scaling instances up or down. In addition, the cluster state file retained in the cloud storage provides you with the status of the operations in the weka project.
+The GCP Console has a [Logs Explorer](https://cloud.google.com/logging/docs/view/logs-explorer-interface) interface in which you can view the cloud function logs related to the WEKA cluster activities, such as when scaling instances up or down. In addition, the cluster state file retained in the cloud storage provides you with the status of the operations in the WEKA project.
 
 **Typical troubleshooting flow if the resize cloud function does not resize the cluster**
 

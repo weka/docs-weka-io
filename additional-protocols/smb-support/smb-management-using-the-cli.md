@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page provides procedures for setting up an SMB cluster over Weka
+  This page provides procedures for setting up an SMB cluster over WEKA
   filesystems and managing the cluster itself, using the CLI.
 ---
 
@@ -28,7 +28,7 @@ Using the CLI, you can manage both the SMB-W and legacy SMB:
 
 **Command:** `weka smb cluster`
 
-Use this command to view information about the SMB cluster managed by the Weka system.
+Use this command to view information about the SMB cluster managed by the WEKA system.
 
 ## Show the SMB domain configuration <a href="#show-smb-domain-cfg" id="show-smb-domain-cfg"></a>
 
@@ -40,7 +40,7 @@ Use this command to view information about the SMB domain configuration.
 
 **Command:** `weka smb cluster create`
 
-Use the following command line to create a new SMB cluster to be managed by the Weka system:
+Use the following command line to create a new SMB cluster to be managed by the WEKA system:
 
 `weka smb cluster create <netbios-name> <domain> [--domain-netbios-name domain-netbios-name] [--idmap-backend idmap-backend] [--default-domain-mapping-from-id default-domain-mapping-from-id] [--default-domain-mapping-to-id default-domain-mapping-to-id] [--joined-domain-mapping-from-id joined-domain-mapping-from-id] [--joined-domain-mapping-to-id joined-domain-mapping-to-id] [--encryption encryption] [--smb-conf-extra smb-conf-extra] [--container-ids container-ids]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range]...`
 
@@ -70,7 +70,7 @@ To create an SMB-W cluster, contact the [Customer Success Team](../../support/ge
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The IPs must be configured but **MUST NOT** be in use by any other application/server in the subnet, including Weka system management nodes, Weka system IO nodes, or Weka system NFS floating IPs. In AWS environments, this is not supported and these IPs should not be provided\*\*.\*\*
+**Note:** The IPs must be configured but **MUST NOT** be in use by any other application/server in the subnet, including WEKA system management nodes, WEKA system IO nodes, or WEKA system NFS floating IPs. In AWS environments, this is not supported and these IPs should not be provided\*\*.\*\*
 {% endhint %}
 
 {% hint style="info" %}
@@ -86,7 +86,7 @@ To create an SMB-W cluster, contact the [Customer Success Team](../../support/ge
 
 `weka smb cluster create wekaSMB mydomain --container-ids 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5`
 
-In this example of a full command, an SMB cluster is configured over the Weka system containers 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`and is directed to use public IPs 1.1.1.1 to 1.1.1.5.
+In this example of a full command, an SMB cluster is configured over the WEKA system containers 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`and is directed to use public IPs 1.1.1.1 to 1.1.1.5.
 {% endhint %}
 
 ## Update the SMB cluster <a href="#update-smb-cluster" id="update-smb-cluster"></a>

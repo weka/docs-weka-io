@@ -14,7 +14,7 @@ The S3 service can be exposed from the cluster servers, ranging from three serve
 
 ## Round-robin DNS or load balancer
 
-To ensure that the various S3 clients balance the load on the different Weka servers serving S3, configuring a _Round-robin DNS_ entry is recommended. The round-robin DNS resolves the list of servers' IPs and equally distributes the clients' loads across all servers.
+To ensure that the various S3 clients balance the load on the different WEKA servers serving S3, configuring a _Round-robin DNS_ entry is recommended. The round-robin DNS resolves the list of servers' IPs and equally distributes the clients' loads across all servers.
 
 A DNS server that supports health checks can help with resiliency if any servers serving S3 become unresponsive.
 

@@ -55,7 +55,7 @@ You can update the port and the servers to participate in the S3 cluster.
 
 ## Delete an S3 cluster configuration
 
-Deleting an existing S3 cluster managed by the Weka system does not delete the backend Weka filesystem but removes the S3 bucket exposures of these filesystems.
+Deleting an existing S3 cluster managed by the WEKA system does not delete the backend WEKA filesystem but removes the S3 bucket exposures of these filesystems.
 
 **Procedure**
 

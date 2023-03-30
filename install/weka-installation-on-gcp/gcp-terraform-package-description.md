@@ -1,28 +1,28 @@
-# Weka GCP-Terraform package description
+# GCP Terraform package description
 
-Weka provides a ready-to-deploy [GCP-Terraform package](https://github.com/weka/gcp-tf) that you can customize for installing the Weka cluster on GCP.
+WEKA provides a ready-to-deploy [GCP Terraform package](https://github.com/weka/gcp-tf) you can customize for installing the WEKA cluster on GCP.
 
-The GCP-Terraform package contains the following modules:
+The GCP Terraform package contains the following modules:
 
 * **setup\_network**: includes vpcs, subnets, peering, firewall, and health check.
 * **service\_account**: includes the service account used for deployment with all necessary permissions.
-* **deploy\_weka**: includes the actual Weka deployment, instance template, cloud functions, workflows, job schedulers, secret manager, buckets, and health check.
-* **shared\_vpcs** (_optional_): includes VPC sharing the Weka deployment network with another hosting project. For example, when deploying a private network.
+* **deploy\_weka**: includes the actual WEKA deployment, instance template, cloud functions, workflows, job schedulers, secret manager, buckets, and health check.
+* **shared\_vpcs** (_optional_): includes VPC sharing the WEKA deployment network with another hosting project. For example, when deploying a private network.
 
 See the README files in the GCP-Terraform package for more details about the modules and their properties.
 
-## GCP-Terraform package supported deployment types
+## GCP Terraform package supported deployment types
 
 The GCP-Terraform package supports the following deployment types:
 
-* **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform for downloading the Weka release from the public [get.weka.io](https://get.weka.io) service. The following examples are provided:
+* **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform for downloading the WEKA release from the public [get.weka.io](https://get.weka.io) service. The following examples are provided:
   * Public VPC
   * Public VPC with creating a worker pool
   * Public VPC with an existing public network
   * Public VPC with multiple clusters
   * Public VPC with a shared VPC
   * Public VPC with an existing worker pool and VPC
-* **Private cloud deployments:** Require uploading the Weka release tar file into the yum repository (instances can download the Weka release from this yum repository). The following examples are provided:
+* **Private cloud deployments:** Require uploading the WEKA release tar file into the yum repository (instances can download the WEKA release from this yum repository). The following examples are provided:
   * Private VPC with creating a worker pool
   * Private VPC with an existing network
   * Private VPC with an existing worker pool and VPC
@@ -69,7 +69,7 @@ private_network          = false
 | `cluster_size`             | The number of instances to create.                                                                                                          | The minimum cluster size is 7.                          |
 | `machine_type`             | <p><code>c2-standard-8</code>, or<br><code>c2-standard-16</code>.</p>                                                                       |                                                         |
 | `nvmes_number`             | <p><code>1</code>, <code>2</code>, <code>4</code>, or <code>8</code>.<br>Each NVME size is 375 GB.</p>                                      |                                                         |
-| `weka_version`             | The Weka version from V4.1.0.                                                                                                               |                                                         |
+| `weka_version`             | The WEKA version from V4.1.0.                                                                                                               |                                                         |
 | `internal_bucket_location` | The internal bucket location must be local to your region.                                                                                  |                                                         |
 | `vpc_connector_range`      | It must be within your IP space.                                                                                                            |                                                         |
 | `sa_name`                  | Leave it as is unless the environment requires a service account naming convention.                                                         |                                                         |
@@ -83,6 +83,6 @@ To deploy a private network, the parameter `private_network = true` on the `setu
 
 Depending on the required network topology, the following parameters are optional for private networking:
 
-* To download the Weka release from a local bucket, set the local bucket location in the  `install_url` parameter on the `deploy_weka` module level.&#x20;
+* To download the WEKA release from a local bucket, set the local bucket location in the  `install_url` parameter on the `deploy_weka` module level.&#x20;
 * For Centos7 only, a distributive repository is required to download kernel headers and additional build software. To auto-configure yum to use a distributive repository, run `yum_repo_server`.&#x20;
 * If a custom image is required, use `weka_image_id`.

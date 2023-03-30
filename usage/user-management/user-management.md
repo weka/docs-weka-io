@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes the management of users licensed to work with the Weka
+  This page describes the management of users licensed to work with the WEKA
   system.
 ---
 
@@ -13,7 +13,7 @@ Using the GUI, you can:
 
 ## Manage local users
 
-Local users are created in the local system as opposed to domain users that are managed by the organization's User Directory. You can create up to 1152 local users to work with a Weka system cluster.
+Local users are created in the local system as opposed to domain users that are managed by the organization's User Directory. You can create up to 1152 local users to work with a WEKA system cluster.
 
 ![User Management: Local Users page](../../.gitbook/assets/wmng\_local\_users.png)
 

@@ -1,12 +1,12 @@
 ---
 description: >-
-  This page provides procedures for setting up an SMB cluster over Weka
+  This page provides procedures for setting up an SMB cluster over WEKA
   filesystems and managing the cluster itself, using the GUI.
 ---
 
 # Manage SMB using the GUI
 
-Using the GUI, you can:
+WEKAWEKAUsing the GUI, you can:
 
 * [Configure the SMB cluster](smb-management-using-the-gui.md#configure-the-smb-cluster) (not applicable for SMB-W)
 * [Edit the SMB cluster](smb-management-using-the-gui.md#edit-the-smb-cluster)
@@ -28,7 +28,7 @@ When managing an SMB-W cluster using the GUI, the limitations related to SMB-W i
 
 ## **Configure the SMB cluster** <a href="#configure-the-smb-cluster" id="configure-the-smb-cluster"></a>
 
-Define the Weka system servers that participate in the SMB cluster (with legacy SMB only)**.**
+Define the WEKA system servers that participate in the SMB cluster (with legacy SMB only)**.**
 
 **Procedure**
 
@@ -43,7 +43,7 @@ Define the Weka system servers that participate in the SMB cluster (with legacy 
 * **Name**: A NetBIOS name for the SMB cluster.
 * **Domain**: The domain the SMB cluster joins.
 * **Domain NetBIOS Name**: (Optional) The domain NetBIOS name.
-* **Servers**: List of 3-8 Weka system servers to participate in the SMB cluster, based on the server IDs in Weka.
+* **Servers**: List of 3-8 WEKA system servers to participate in the SMB cluster, based on the server IDs in WEKA.
 * **Encryption:** Select the in-transit encryption to use in the SMB cluster:\
   \- enabled: enables encryption negotiation but doesn't turn it on automatically for supported\
   sessions and share connections.\
@@ -88,7 +88,7 @@ To enable the organizational Active Directory to resolve the access of users and
 
 **Before you begin**
 
-To enable the Weka storage nodes to join the AD domain, verify that the AD server is the DNS server.
+To enable the WEKA storage nodes to join the AD domain, verify that the AD server is the DNS server.
 
 **Procedure**
 
@@ -98,8 +98,8 @@ To enable the Weka storage nodes to join the AD domain, verify that the AD serve
 
 2\. In the Join to Active Directory dialog, set the following properties:
 
-* **Username** and **Password**: A username and password of an account that has access privileges to the Active Directory. Weka does not save the user password. A computer account is created on behalf of the user for the SMB cluster.
-* **Server**: (Optional) Weka identifies the AD server automatically based on the AD name. You do not need to set the server name. In some cases, if required, specify the AD server.
+* **Username** and **Password**: A username and password of an account that has access privileges to the Active Directory. WEKA does not save the user password. A computer account is created on behalf of the user for the SMB cluster.
+* **Server**: (Optional) WEKA identifies the AD server automatically based on the AD name. You do not need to set the server name. In some cases, if required, specify the AD server.
 * **Computers Org. Unit**: The default organization unit is the Computers directory. You can define any other directory to connect to in Active Directory, such as SMB servers or Corporate computers.
 
 ![Join Active Directory dialog](../../.gitbook/assets/wmng\_smb\_join\_ad\_dialog.png)

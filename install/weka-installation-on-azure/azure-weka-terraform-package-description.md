@@ -1,13 +1,13 @@
-# Azure-Weka Terraform package description
+# Azure-WEKA Terraform package description
 
-The [Azure-Weka Terraform package](https://github.com/weka/terraform-azure-weka) contains modules and examples to customize the Weka cluster installation on Azure. The default protocol deployed using the Terraform package is POSIX. The Azure-Weka Terraform package supports the following deployment types:
+The [Azure-WEKA Terraform package](https://github.com/weka/terraform-azure-weka) contains modules and examples to customize the WEKA cluster installation on Azure. The default protocol deployed using the Terraform package is POSIX. The Azure-WEKA Terraform package supports the following deployment types:
 
-* **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform for downloading the Weka release from the public [get.weka.io](https://get.weka.io) service. The following examples are provided:
+* **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform for downloading the WEKArelease from the public [get.weka.io](https://get.weka.io) service. The following examples are provided:
   * Public network.
   * Public network with an existing network.
   * Public network with multiple clusters.
   * Public network with existing object stores.
-* **Private cloud deployments:** Require uploading the Weka release tar file into an Azure blob container from which the virtual machines can download the Weka release. The following examples are provided:
+* **Private cloud deployments:** Require uploading the WEKA release tar file into an Azure blob container from which the virtual machines can download the WEKA release. The following examples are provided:
   * Private network with an existing network.
   * Private network with multiple clusters.
   * Private network with peering.
@@ -51,7 +51,7 @@ cluster_size          = 6
 | `subnets_name_list`   | The subnet name list.                                                                                                                                                                                                                                                                                  |
 | `cluster_name`        | The cluster name.                                                                                                                                                                                                                                                                                      |
 | `instance_type`       | <p>The virtual machine type to deploy:</p><p><code>Standard_L16s_v3</code></p><p>or</p><p><code>Standard_L8s_v3</code></p>                                                                                                                                                                             |
-| `set_obs_integration` | Determines whether to enable object stores on the Weka cluster.                                                                                                                                                                                                                                        |
+| `set_obs_integration` | Determines whether to enable object stores on the WEKA cluster.                                                                                                                                                                                                                                        |
 | `tiering_ssd_percent` | <p>When <code>set_obs_integration</code> is set to <code>true</code>, this variable sets the capacity percentage of the filesystem that resides on SSD.<br>For example, for an SSD with a total capacity of 20GB, and the tiering_ssd_percent is set to 20, the total available capacity is 100GB.</p> |
 | `cluster_size`        | <p>The number of virtual machines to deploy. <br>The minimum value is 6.</p>                                                                                                                                                                                                                           |
 

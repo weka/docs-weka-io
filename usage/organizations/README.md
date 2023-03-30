@@ -1,14 +1,14 @@
 ---
 description: >-
-  This page describes the concept of organizations and how different Weka system
+  This page describes the concept of organizations and how different WEKA system
   features operate within an organizational context.
 ---
 
 # Organizations management
 
-Organizations are used for the separation of duties between different groups of users on the same Weka system. So that an organization cannot control or view other organization data. It is possible to create up to 64 organizations.
+Organizations are used for the separation of duties between different groups of users on the same WEKA system. So that an organization cannot control or view other organization data. It is possible to create up to 64 organizations.
 
-Within an organization, the Organization Admin manages the logical entities participating in obtaining control of data (the Cluster Admin cannot manage these entities).
+Within an organization, the Organization Admin manages the logical entities participating in obtaining data control (the Cluster Admin cannot manage these entities).
 
 The Cluster Admin can perform the following activities:
 
@@ -16,10 +16,10 @@ The Cluster Admin can perform the following activities:
 * Delete existing organizations.
 * Monitor per organization the total capacity used by all the organization filesystems.
 
-‌While Cluster Admins are people trusted by the different organizations (for example, have root access to the backend servers), they are obscured from the organization data in the Weka system. The Cluster Admin separation is partial, for example, they can still see the events of all organizations. The Weka system ensures the separation of any sensitive information between the different organizations.
+‌While Cluster Admins are trusted by different organizations (for example, they have root access to the backend servers), they are obscured from the organization data in the WEKA system. The Cluster Admin separation is partial, for example, they can still see the events of all organizations. The WEKA system ensures the separation of sensitive information between the different organizations.
 
 {% hint style="info" %}
-**Note:** The data at the hardware level is not separated. While the Weka system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations. The system limits are according to the entire system. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
+**Note:** The data at the hardware level is not separated. While the WEKA system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations. The system limits are according to the entire system. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
 {% endhint %}
 
 ## Organization management use cases&#x20;

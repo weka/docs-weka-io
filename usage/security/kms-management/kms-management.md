@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes thow to manage the Key Management System (KMS) using the
+  This page describes how to manage the Key Management System (KMS) using the
   GUI.
 ---
 

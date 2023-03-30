@@ -8,7 +8,7 @@ description: This page provides some examples of using the S3 API.
 
 [Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) is the official AWS SDK for Python, used to create, configure, and manage AWS services.
 
-The following are examples of defining a resource/client in boto3 for the Weka S3 service, managing credentials, and pre-signed URLs, generating secure temporary tokens, and using those to run S3 API calls.
+The following are examples of defining a resource/client in boto3 for the WEKA S3 service, managing credentials, and pre-signed URLs, generating secure temporary tokens, and using those to run S3 API calls.
 
 ### Installation
 

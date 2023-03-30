@@ -1,7 +1,7 @@
 ---
 description: >-
   This page describes the alerts that can be received in this version of the
-  Weka system.
+  WEKA system.
 ---
 
 # Alerts

@@ -1,28 +1,28 @@
 ---
 description: >-
-  This page describes the Weka configuration of the SMB protocol for shared
+  This page describes the WEKA configuration of the SMB protocol for shared
   Windows clients.
 ---
 
 # SMB
 
-SMB (Server Message Block) is a network file-sharing protocol that allows remote systems to connect to shared file and print services. Weka's implementation is based on a new stack named **SMB-W** in addition to the legacy open-source Samba stack. Both SMB flavors support SMB versions 2 and 3.
+SMB (Server Message Block) is a network file-sharing protocol that allows remote systems to connect to shared file and print services. WEKA's implementation is based on a new stack named **SMB-W** in addition to the legacy open-source Samba stack. Both SMB flavors support SMB versions 2 and 3.
 
-The Weka implementation of SMB makes storage services available to Windows and macOS clients. Weka provides shared access from multiple clients, including multi-protocol access to the same files from SMB, NFS, and Weka native filesystem drivers.
+The WEKA implementation of SMB makes storage services available to Windows and macOS clients. WEKA provides shared access from multiple clients, including multi-protocol access to the same files from SMB, NFS, and Weka native filesystem drivers.
 
 ## SMB implementation key features&#x20;
 
-Implementing the SMB feature in the Weka system is scalable, resilient, and distributed.
+Implementing the SMB feature in the WEKA system is scalable, resilient, and distributed.
 
-* **Scalable:** The Weka system supports an SMB cluster of between 3 to 8 servers. These servers run the SMB gateway service, while the backend filesystem can be any Weka filesystem. Therefore, it is practically unlimited in size and performance.
-* **Resilient:** The Weka system implementation of SMB provides clustered access to files in a Weka file store, enabling multiple servers to work together. Consequently, if a server fails, another server is available to take over operations, ensuring failover support and high availability. Weka standard resiliency against failures also protects the SMB filesystems. SMB-W supports transparent failover, thus providing more resiliency than legacy SMB.
-* **Distributed:** A Weka implementation is distributed over a cluster, where all servers in the cluster manage all SMB filesystems concurrently. Therefore, the performance supported by the SMB can scale with more hardware resources, and high availability is ensured. SMB-W supports SMB Multichannel and SMB Direct (as opposed to the legacy SMB).
+* **Scalable:** The WEKA system supports an SMB cluster of between 3 to 8 servers. These servers run the SMB gateway service, while the backend filesystem can be any WEKA filesystem. Therefore, it is practically unlimited in size and performance.
+* **Resilient:** The WEKA system implementation of SMB provides clustered access to files in a WEKA file store, enabling multiple servers to work together. Consequently, if a server fails, another can take over operations, ensuring failover support and high availability. Weka standard resiliency against failures also protects the SMB filesystems. SMB-W supports transparent failover, thus providing more resiliency than legacy SMB.
+* **Distributed:** A WEKA implementation is distributed over a cluster, where all servers in the cluster manage all SMB filesystems concurrently. Therefore, the performance supported by the SMB can scale with more hardware resources, and high availability is ensured. SMB-W supports SMB Multichannel and SMB Direct (as opposed to the legacy SMB).
 
 ## SMB-W additional features
 
 The SMB-W provides the following features in addition to the legacy SMB features:
 
-* **SMB Multichannel**: Weka supports SMB clients configured with multichannel. Therefore increasing the performance in such a configuration.
+* **SMB Multichannel**: WEKA supports SMB clients configured with multichannel. Therefore increasing the performance in such a configuration.
 * **SMB Transparent Failover:** This feature enables continuous IO availability during failover.
 * **SMB Direct:** SMB over Remote Direct Memory Access (RDMA). To use the SMB Direct feature, make sure that the following pre-requisites are met:
   * The SMB-W servers are RDMA-enabled (both HW and OS).
@@ -34,9 +34,9 @@ The SMB-W provides the following features in addition to the legacy SMB features
 
 ## SMB user mapping
 
-The Weka system SMB supports authentication by a single Active Directory with multiple trusted domains. The POSIX users (uid) and groups (gid) mapping for the SMB access must be resolved by the Active Directory.&#x20;
+The WEKA system SMB supports authentication by a single Active Directory with multiple trusted domains. The POSIX users (uid) and groups (gid) mapping for the SMB access must be resolved by the Active Directory.&#x20;
 
-The Weka system pulls users and groups information from the Active Directory automatically and supports two types of id-mapping from the Active Directory:
+The WEKA system pulls users and groups information from the Active Directory automatically and supports two types of id-mapping from the Active Directory:
 
 * **RFC2307:** Where `uidNumber` and `gidNumber` must be defined in the AD user attributes.
 * **rid:** Creates a local mapping with the AD users and groups.

@@ -9,16 +9,16 @@ description: >-
 ## Deployment prerequisites&#x20;
 
 * Check that your AWS account limits allow for the deployment of your selected configuration (it is possible to check your limits under the Limits tab in the EC2 console).
-* Deploying a Weka cluster in AWS requires at least 6 EC2 instances with SSD/NVMe drives (a.k.a instance store), and potentially additional instances that may connect as clients.
-* Weka must have access to instance metadata&#x20;
+* Deploying a WEKA cluster in AWS requires at least 6 EC2 instances with SSD/NVMe drives (a.k.a instance store) and potentially additional instances that may connect as clients.
+* WEKA must have access to instance metadata&#x20;
   * Only IMDSv1 is supported if using the Instance Metadata service.
 
 {% hint style="warning" %}
-**Note:** It is possible to set clients with IMDSv2, but, they would not benefit from seamless cloud configuration and should be manually managed similarly to [Adding Clients](../bare-metal/adding-clients-bare-metal.md) in bare-metal installations.
+**Note:** It is possible to set clients with IMDSv2, but they would not benefit from seamless cloud configuration and should be manually managed similarly to [Adding Clients](../bare-metal/adding-clients-bare-metal.md) in bare-metal installations.
 {% endhint %}
 
-* When deploying in AWS not using the CloudFormation template, or when additional capabilities are added after deployment (e.g., tiering), it is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](cloudformation.md#iam-role-created-in-the-template).
-* Ensure you have enough available IP addresses in the selected subnet, as each core allocated to Weka required an IP address.
+* When deploying in AWS not using the CloudFormation template or when additional capabilities are added after deployment (e.g., tiering), it is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](cloudformation.md#iam-role-created-in-the-template).
+* Ensure you have enough available IP addresses in the selected subnet, as each core allocated to WEKA requires an IP address.
 
 Depending on the instance types being used and how they’re configured, there are two deployment types:
 
@@ -42,9 +42,9 @@ Backend instances can be added to increase the cluster capacity or performance. 
 
 ## Converged deployment
 
-Converged deployments are more generic deployments in which every instance is configured to contribute resources of some kind — drives, CPUs, and/or network interfaces - to the cluster.
+Converged deployments are generic deployments in which every instance is configured to contribute resources — drives, CPUs, and/or network interfaces - to the cluster.
 
 The deployment of a converged cluster is typically selected in the following cases:
 
 * When using very small applications that require a high-performance filesystem but do not require many resources themselves, in which case they can use resources in the same instances storing the data.
-* When cloud-bursting an application to AWS, in which case you seek to utilize as many resources as possible for the application but also seek to provide as many resources as possible to the Weka system cluster, in order to achieve maximum performance.
+* When cloud-bursting an application to AWS, you seek to use as many resources as possible for the application and provide as many resources as possible to the WEKA cluster to achieve maximum performance.

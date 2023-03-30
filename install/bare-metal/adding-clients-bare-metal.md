@@ -6,13 +6,13 @@ description: This page describes how to add clients to a bare-metal cluster.
 
 ## About clients
 
-Clients are used to running applications that need to access the Weka filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
+Clients are used to running applications that need to access the WEKA filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
 
 ## Add stateless clients
 
-To use the Weka filesystems from a client, all that is needed is to call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
+To use the WEKA filesystems from a client, all that is needed is to call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
 
-To mount a filesystem in this manner, first, install the Weka agent from one of the backend instances and then mount the filesystem. For example:
+To mount a filesystem in this manner, first install the WEKA agent from one of the backend instances and then mount the filesystem. For example:
 
 ```
 # Agent Installation (one time)
@@ -25,12 +25,12 @@ mkdir -p /mnt/weka
 mount -t wekafs Backend-1/my_fs /mnt/weka
 ```
 
-For the first mount, this will install the Weka software and automatically configure the client. For more information on mount and configuration options, refer to [Mounting filesystems using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
+For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, refer to [Mount a filesystem using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
 
-It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information refer to [Mounting Filesystems Using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mounting Filesystems Using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs).
+It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, refer to [Mount a filesystem using the traditional method](../../fs/mounting-filesystems.md#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mount-filesystems-using-autofs).
 
 {% hint style="info" %}
-**Note:** Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for Weka client software and NFS mount for the traces. For more information, contact the Weka Support Team.
+**Note:** Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for WEKA client software and NFS mount for the traces. For more information, contact the Customer Success Team.
 {% endhint %}
 
 {% hint style="info" %}
@@ -43,12 +43,12 @@ It is possible to configure the client OS to automatically mount the filesystem 
 **Note:** It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
 {% endhint %}
 
-### Stage 1: Install the Weka software
+### Stage 1: Install the WEKA software
 
-Verify that the Weka software is installed on the client according to the installation instructions. For further information, see [Obtaining the Weka Install File](obtaining-the-weka-install-file.md) and [Stage 1 in Weka System Installation Process.](using-cli.md#stage-1-installation-of-the-wekaio-software-on-each-host)
+Verify that the WEKA software is installed on the client according to the installation instructions. For further information, see [Obtaining the WEKA Install File](obtaining-the-weka-install-file.md) and [Stage 1 in WEKA System Installation Process.](using-cli.md#stage-1-installation-of-the-wekaio-software-on-each-host)
 
 {% hint style="info" %}
-**Note:** All clients in a Weka system cluster must use the same software version as the backends or a maximum of one version back. The backend containers must run the same Weka software version except during upgrades (as managed by the upgrade process).
+**Note:** All clients in a WEKA system cluster must use the same software version as the backends or a maximum of one version back. The backend containers must run the same WEKA software version except during upgrades (as managed by the upgrade process).
 {% endhint %}
 
 ### Stage 2: Join the cluster
@@ -83,7 +83,7 @@ To configure the new container as a client, run the following command:
 | **Name**                   | **Type** | **Value**                                                      | **Limitations**                                                                                 | **Mandatory**                             | **Default** |
 | -------------------------- | -------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------- |
 | `container-id`             | String   | Identifier of the container to be added to the cluster         | Must be a valid container identifier                                                            | Yes                                       |             |
-| `cores`                    | Number   | Number of physical cores to be allocated to the Weka client    | Maximum 19 cores                                                                                | Yes                                       |             |
+| `cores`                    | Number   | Number of physical cores to be allocated to the WEKA client    | Maximum 19 cores                                                                                | Yes                                       |             |
 | `frontend-dedicated-cores` | Number   | Number of physical cores to be dedicated to FrontEnd processes | <p></p><p>For clients, the number of total cores and frontend-dedicated-cores must be equal</p> | Yes, to configure a container as a client |             |
 
 ### Stage 4: Configure client networking
@@ -91,10 +91,10 @@ To configure the new container as a client, run the following command:
 **Command:** `weka cluster container net add`
 
 {% hint style="info" %}
-**Note:** If the new client is to communicate with the Weka system cluster over the kernel UDP stack, it is not necessary to run this command.
+**Note:** If the new client is to communicate with the WEKA cluster over the kernel UDP stack, it is not necessary to run this command.
 {% endhint %}
 
-If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the Weka system cluster:
+If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the WEKA cluster:
 
 `weka cluster container net add <container-id> <device> --ips=<ips> --netmask=<netmask> --gateway=<gateway>`
 

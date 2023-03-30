@@ -12,7 +12,7 @@ description: >-
 
 Tiered files are always accessible and should generally be treated like regular files. Moreover, while files may be tiered, their metadata is always maintained on the SSDs. This allows traversing files and directories without worrying about how such operations may affect performance.
 
-Sometimes, it's necessary to access previously-tiered files quickly. In such situations, it is possible to request the Weka system to fetch the files back to the SSD without accessing them directly. This is performed using the prefetch command, which can be issued via the`weka fs tier fetch`command, as follows:
+Sometimes, it's necessary to access previously-tiered files quickly. In such situations, it is possible to request the WEKA system to fetch the files back to the SSD without accessing them directly. This is performed using the prefetch command, which can be issued via the `weka fs tier fetch` command, as follows:
 
 **Command:** `weka fs tier fetch`
 
@@ -29,7 +29,7 @@ Use the following command to release files:
 
 ### Fetch a directory containing many files
 
-To fetch a directory that contains a large number of files, it is recommended to use the `xargs` command in a similar manner, as follows:
+To fetch a directory that contains a large number of files, it is recommended to use the `xargs` command in a similar manner as follows:
 
 ```bash
 find -L <directory path> -type f | xargs -r -n512 -P64 weka fs tier fetch -v

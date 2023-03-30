@@ -1,17 +1,17 @@
 ---
 description: >-
-  This page provides an overview for Weka CLI, including the top-level commands,
+  This page provides an overview for WEKA CLI, including the top-level commands,
   command hierarchy, how to connect to another server, auto-completion, and how
   to check the status of the cluster.
 ---
 
-# Manage the system using the Weka CLI
+# Manage the system using the WEKA CLI
 
-The Weka CLI is installed on each Weka server and is available through the `weka` command. It's possible to connect to any of the servers using `ssh` and running the `weka` command. The `weka` command displays a list of all top-level commands.
+The WEKA CLI is installed on each WEKA server and is available through the `weka` command. It's possible to connect to any of the servers using `ssh` and running the `weka` command. The `weka` command displays a list of all top-level commands.
 
 ## Top-level commands
 
-The Weka CLI is installed on each Weka server and is available through the `weka` command. Running this command will display a list of all available top-level commands:
+The WEKA CLI is installed on each WEKA server and is available through the `weka` command. Running this command will display a list of all available top-level commands:
 
 ```
 $ weka -h
@@ -70,7 +70,7 @@ The options that are common to many commands include:
 
 ## Commands hierarchy
 
-Most Weka system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
+Most WEKA system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
 
 **Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystems, filesystem groups, and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
 
@@ -147,7 +147,7 @@ Options:
 
 ## Connect to another server
 
-Most Weka system commands deliver the same result on all cluster servers. However, it is sometimes necessary to execute a command on a specific server. This is performed using the `-H`/`--hostname` option and specifying the hostname or IP address of the target server.
+Most WEKA system commands deliver the same result on all cluster servers. However, it is sometimes necessary to execute a command on a specific server. This is performed using the `-H`/`--hostname` option and specifying the hostname or IP address of the target server.
 
 ## CLI auto-completion
 

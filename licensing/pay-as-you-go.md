@@ -14,27 +14,27 @@ To enable PAYG, subscribe to [WekaFS distributed scalable file system ](https://
 2. Review the pricing on the AWS Marketplace subscription page (for more details, see below [How Does Hourly Pricing Work?](pay-as-you-go.md#how-does-hourly-pricing-work)).
 3. Select **Continue** and then select **Subscribe** to **** confirm. Wait a few seconds for the popup to display.
 4. Select **Set Up Your Account**.\
-   You are redirected to the Weka Portal.
-5. In the Weka Portal, do one of the following:
-   * **If you already have a Weka account:** Enter your email address and account password. Your Weka account will be linked to your AWS Marketplace subscription.
-   * **If you do not have a Weka account:** Enter your email address and choose a password for your new account. A new Weka account will be created, and it will be linked to your AWS Marketplace subscription.
+   You are redirected to the WEKA Portal.
+5. In the WEKA Portal, do one of the following:
+   * **If you already have a WEKA account:** Enter your email address and account password. Your WEKA account will be linked to your AWS Marketplace subscription.
+   * **If you do not have a WEKA account:** Enter your email address and choose a password for your new account. A new WEKA account will be created, and it will be linked to your AWS Marketplace subscription.
 
-Your Weka account is now linked to the AWS Marketplace.
+Your WEKA account is now linked to the AWS Marketplace.
 
-## Enable PAYG In your Weka system
+## Enable PAYG In your WEKA system
 
-After subscribing to the AWS Marketplace, create a PAYG plan in your Weka account. A PAYG plan is a plan ID and a secret key pair connected to a payment method, which in this case is your AWS Marketplace.
+After subscribing to the AWS Marketplace, create a PAYG plan in your WEKA account. A PAYG plan is a plan ID and a secret key pair connected to a payment method, which is your AWS Marketplace.
 
-You can change the payment method at any point without having to reconfigure the Weka system because the plan ID and secret key pair do not expire unless you delete them yourself.
+You can change the payment method at any point without reconfiguring the WEKA system because the plan ID and secret key pair do not expire unless you delete them yourself.
 
-This method also allows the connection of multiple Weka system clusters to the same PAYG plan.
+This method also allows the connection of multiple WEKA system clusters to the same PAYG plan.
 
 **Procedure**
 
 1. Go to the **PAYG Plans** page and select the **Create PAYG Plan** button.
 2. Select the **AWS Marketplace** as the payment method.
 3. Select the **Create PAYG Plan** to complete the creation of the plan.
-4. Enable the PAYG plan in the Weka system cluster:
+4. Enable the PAYG plan in the WEKA system cluster:
    * Open a terminal and connect to one of your cluster servers.
    * Copy and paste the `<plan-id>` and `<secret-key>` from the PAYG plan you created above to the following CLI command: \
      `$ weka cluster license payg <plan-id> <secret-key>`
@@ -51,7 +51,7 @@ Weka v4.0.1 (CLI build 4.0.1)
 ...
 ```
 
-If something is wrong, the Weka status shows an error indicating the issue. For example:
+If something is wrong, the WEKA status shows an error indicating the issue. For example:
 
 ```
 $ weka status
@@ -70,26 +70,26 @@ $ weka cluster license reset
 ```
 
 {% hint style="info" %}
-**Note:** Momentary disabling and re-enabling of licensing does not affect the operation of the Weka system cluster and is completely safe.
+**Note:** Momentary disabling and re-enabling of licensing does not affect the operation of the WEKA system cluster and is completely safe.
 {% endhint %}
 
 ## How does hourly pricing work?
 
-Weka charges your AWS account hourly, according to the pricing details published in the AWS Marketplace subscription. However, some cases are worth explaining in more detail.
+WEKA charges your AWS account hourly, according to the pricing details published in the AWS Marketplace subscription. However, some cases are worth explaining in more detail.
 
 ### Client instances are free
 
-Pricing in the AWS Marketplace only includes r3 and i3 instances. At the same time, you can install the Weka system on many other types of instances (for a complete list, see [Supported EC2 Instance Types](../install/aws/supported-ec2-instance-types.md)). The reason is that Weka only charges for **backend instances**, which are the instances storing the data in the cluster. Client instances that include r3 instances when installing as clients are free of charge.
+Pricing in the AWS Marketplace only includes r3 and i3 instances. At the same time, you can install the WEKA system on many other types of instances (for a complete list, see [Supported EC2 Instance Types](../install/aws/supported-ec2-instance-types.md)). The reason is that WEKA only charges for **backend instances**, which store the data in the cluster. Client instances that include r3 instances when installing as clients are free of charge.
 
 ### Duplicate charge protection
 
-When enabling PAYG, the Weka system cluster sends a usage report to the Weka Portal. This usage report contains the information necessary for correctly charging your AWS account. If PAYG is enabled and disabled multiple times in the same hour, multiple usage reports will be sent, which may cause duplicate charges.
+When enabling PAYG, the WEKA system cluster sends a usage report to the WEKA Portal. This usage report contains the information necessary for correctly charging your AWS account. If PAYG is enabled and disabled multiple times in the same hour, multiple usage reports will be sent, which may cause duplicate charges.
 
-The Weka Portal protects against such duplicate charges by ensuring that a cluster is never billed more than once in each given hour. You can view a detailed list of usage reports in your Weka Portal account, with duplicate usage reports marked separately from the other reports.
+The WEKA Portal protects against such duplicate charges by ensuring that a cluster is never billed more than once per hour. You can view a detailed list of usage reports in your WEKA Portal account, with duplicate usage reports marked separately from the other reports.
 
 ### Billing multiple clusters
 
-You can use the same PAYG plan or multiple PAYG plans assigned to the same AWS Marketplace subscription with more than one Weka system cluster. In such situations, the accumulated charges appear in your AWS bill because the AWS Marketplace receives aggregated charges for each hour. You can view the usage for each cluster separately under the usage reports screen in your Weka account.
+You can use the same PAYG plan or multiple PAYG plans assigned to the same AWS Marketplace subscription with more than one WEKA system cluster. In such situations, the accumulated charges appear in your AWS bill because the AWS Marketplace receives aggregated charges for each hour. You can view the usage for each cluster separately under the usage reports screen in your WEKA account.
 
 ## Unsubscribe a license
 

@@ -29,19 +29,19 @@ In the following examples, we use Mellanox or Intel E810 NICs to simplify the in
 
 If the architecture is different, the installation commands are slightly different.
 
-Once the Weka system is installed, learn how to view, manage and operate it using either the GUI or the CLI, and perform the first IO to a WekaFS filesystem.
+Once the WEKA system is installed, learn how to view, manage and operate it using either the GUI or the CLI, and perform the first IO to a WEKA filesystem.
 
-The Weka system supports a RESTful API for automating the interaction with the Weka system,  integrating it into your workflows, and monitoring systems.
+The WEKA system supports a RESTful API for automating the interaction with the Weka system,  integrating it into your workflows, and monitoring systems.
 
 ## Quick installation for multiple containers architecture
 
-It is assumed that the servers are ready for the Weka software installation. In the following example, there are 8 servers. Each server has over 20 cores, 6 NVME drives, and a single Mellanox NIC.
+It is assumed that the servers are ready for the WEKA software installation. In the following example, there are 8 servers. Each server has over 20 cores, 6 NVME drives, and a single Mellanox NIC.
 
 To run the commands on all containers in parallel, we use `pdsh` as an example only.
 
-### Install the Weka software
+### Install the WEKA software
 
-1. Install Weka software on all servers:
+1. Install WEKA software on all servers:
 
 ```bash
 pdsh -R ssh -w "weka0-[0-7]" "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.1.0/4.1.0 | sudo sh"

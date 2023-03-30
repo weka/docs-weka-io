@@ -1,12 +1,12 @@
 ---
 description: >-
-  To use a filesystem via the Weka filesystem driver, it has to be mounted on
+  To use a filesystem via the WEKA filesystem driver, it has to be mounted on
   one of the cluster servers. This page describes how this is performed.
 ---
 
 # Mount filesystems
 
-## Overview
+## WEKAOverview
 
 There are two methods available for mounting a filesystem in one of the cluster servers:
 
@@ -16,7 +16,7 @@ There are two methods available for mounting a filesystem in one of the cluster 
 ## Mount a filesystem using the traditional method&#x20;
 
 {% hint style="info" %}
-**Note:** Using the mount command as explained below first requires the installation of the Weka client, configuring the client, and joining it to a Weka cluster.
+**Note:** Using the mount command as explained below first requires the installation of the WEKA client, configuring the client, and joining it to a WEKA cluster.
 {% endhint %}
 
 To mount a filesystem on one of the cluster servers, let’s assume the cluster has a filesystem called `demo`. To add this filesystem to a server, SSH into one of the servers and run the `mount` command as the `root` user, as follows:
@@ -26,7 +26,7 @@ mkdir -p /mnt/weka/demo
 mount -t wekafs demo /mnt/weka/demo
 ```
 
-The general structure of the `mount` command for a Weka filesystem is as follows:
+The general structure of the `mount` command for a WEKA filesystem is as follows:
 
 ```
 mount -t wekafs [-o option[,option]...]] <fs-name> <mount-point>
@@ -39,17 +39,17 @@ Two options for mounting a filesystem on a cluster client are read cache and wri
 
 ## Mount a filesystem using the stateless clients feature <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
 
-The Stateless Clients feature defers the process of joining the cluster until the mount is performed. They are simplifying and improving the management of clients in the cluster. It removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave at high frequency.
+The stateless clients feature defers the process of joining the cluster until the mount is performed. They are simplifying and improving the management of clients in the cluster. It removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave at high frequency.
 
 Furthermore, it unifies all security aspects in the mount command, eliminating the search for separate credentials at cluster join and mount.
 
-To use the Stateless Clients feature, a Weka agent must be installed. Once this is complete, mounts can be created and configured using the mount command and can be removed from the cluster using the unmount command.
+To use the Stateless Clients feature, a WEKA agent must be installed. Once this is complete, mounts can be created and configured using the mount command and can be removed from the cluster using the unmount command.
 
 {% hint style="info" %}
-**Note:** To allow only Weka authenticated users to mount a filesystem, set the filesystem `--auth-required` flag to `yes`.  For more information, refer to the [Mount authentication for organization filesystems](../usage/organizations/organizations-2.md) topic.
+**Note:** To allow only WEKA authenticated users to mount a filesystem, set the filesystem `--auth-required` flag to `yes`.  For more information, refer to the [Mount authentication for organization filesystems](../usage/organizations/organizations-2.md) topic.
 {% endhint %}
 
-Assuming the Weka cluster is using the backend IP of `1.2.3.4`, running the following command as `root` on a client will install the agent:
+Assuming the WEKA cluster is using the backend IP of `1.2.3.4`, running the following command as `root` on a client will install the agent:
 
 `curl http://1.2.3.4:14000/dist/v1/install | sh`
 

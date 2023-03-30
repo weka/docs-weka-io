@@ -34,19 +34,19 @@ Detaching from a filesystem tiered to one object store bucket un-tiers the files
 **Note:** The SSD must have sufficient capacity. That is, the allocated SSD capacity must be at least the total capacity used by the filesystem.
 {% endhint %}
 
-On completion of detaching, the object-store bucket does not appear under the filesystem when using the `weka fs` command. However, it still appears under the object store and can be removed if it is not being used by any other filesystem. The data in the read-only object-store bucket remains in the object-store bucket for backup purposes. If this is unnecessary or the reclamation of object store space is required, it is possible to delete the object-store bucket.
+On completion of detaching, the object-store bucket does not appear under the filesystem when using the `weka fs` command. However, it still appears under the object store and can be removed if it is not used by any other filesystem. The data in the read-only object-store bucket remains in the object-store bucket for backup purposes. If this is unnecessary or the reclamation of object store space is required, it is possible to delete the object-store bucket.
 
 {% hint style="info" %}
-**Note:** Before deleting an object-store bucket, remember to take into account data from another filesystem or data not relevant to the Weka system on the object-store bucket.
+**Note:** Before deleting an object-store bucket, remember to consider data from another filesystem or data not relevant to the WEKA system on the object-store bucket.
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** After the migration process is done, while relevant data is migrated, old snapshots (and old locators) reside on the old object-store bucket. To recreate snapshots locators on the new object-store bucket, snapshots should be re-uploaded to the (new) object-store bucket.
+**Note:** Once the migration process is completed, while relevant data is migrated, old snapshots (and old locators) reside on the old object-store bucket. To recreate snapshot locators on the new object store bucket, snapshots should be re-uploaded to the (new) bucket.
 {% endhint %}
 
 ### Migration considerations
 
-When migrating data (using the detach operation) you would like to copy only the necessary data (to reduce migration time and capacity), however, you may want to keep snapshots in the old object-store bucket.
+When migrating data (using the detach operation) copy only the necessary data (to reduce migration time and capacity). However, you may want to keep snapshots in the old object-store bucket.
 
 **Migration workflow**
 
@@ -62,7 +62,7 @@ The order of the following steps is important.&#x20;
 
 ### Attach a remote object store bucket
 
-One remote object-store bucket can be attached to a filesystem.  A remote object store bucket is used for backup only, and only snapshots are uploaded to it using **Snap-To-Object**. The snapshot uploads are incremental to the previous one.&#x20;
+One remote object-store bucket can be attached to a filesystem. A remote object store bucket is used for backup only, and only snapshots are uploaded to it using **Snap-To-Object**. The snapshot uploads are incremental to the previous one.&#x20;
 
 ### Detach a remote object store bucket
 

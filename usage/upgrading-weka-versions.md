@@ -1,28 +1,28 @@
 ---
-description: This page describes how to upgrade to the latest Weka software version.
+description: This page describes how to upgrade to the latest WEKA software version.
 ---
 
-# Upgrade Weka versions
+# Upgrade WEKA versions
 
 ## Overview&#x20;
 
-The Weka upgrade process supports upgrading to higher minor versions and major versions of the Weka software.
+The WEKA upgrade process supports upgrading to higher minor versions and major versions of the WEKA software.
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
-* To upgrade to Weka software version 4.1.x, go through version 4.0.2 or above for NDU, or version 4.0.1 for a regular upgrade (see upgrade options).&#x20;
-* To upgrade to Weka software version 4.0.x, go through version 3.14.1 or above
-* To upgrade to Weka software version 3.14.x, go through version 3.13.1 or above
-* To upgrade to Weka software version 3.13.x, go through version 3.12.1 or above
+* To upgrade to WEKA software version 4.1.x, go through version 4.0.2 or above for NDU, or version 4.0.1 for a regular upgrade (see upgrade options).&#x20;
+* To upgrade to WEKA software version 4.0.x, go through version 3.14.1 or above
+* To upgrade to WEKA software version 3.14.x, go through version 3.13.1 or above
+* To upgrade to WEKA software version 3.13.x, go through version 3.12.1 or above
 
 For more information, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 
 ## Upgrade options
 
-Weka provides two main upgrade options depending on the source version and configuration:
+WEKA provides two main upgrade options depending on the source version and configuration:
 
 * [Non-disruptive upgrade (NDU)](upgrading-weka-versions.md#non-disruptive-upgrade-ndu): This upgrade is aimed at source versions 4.0.2 and above configured with multiple containers architecture.
-* [Regular upgrade](upgrading-weka-versions.md#upgrade-during-a-maintenance-window): This upgrade is aimed at source versions 4.0.1 and above configured with single container architecture (Weka legacy system).
+* [Regular upgrade](upgrading-weka-versions.md#upgrade-during-a-maintenance-window): This upgrade is aimed at source versions 4.0.1 and above configured with single container architecture (WEKA legacy system).
 
 ### Non-disruptive upgrade (NDU)
 
@@ -63,7 +63,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 
 ### Regular upgrade
 
-In this upgrade option, the upgrade is done during a maintenance window. The upgrade runs on all backend containers, and the service during this time is disrupted up to a defined window of 10 minutes. Weka system ensures that either the upgrade process to the new version completes successfully or the version is automatically reverted to the previous version within this maintenance window. If a failure occurs, the version is automatically reverted on the backends (run the `weka cluster container` command to verify that).\
+In this upgrade option, the upgrade is done during a maintenance window. The upgrade runs on all backend containers, and the service during this time is disrupted up to a defined window of 10 minutes. WEKA system ensures that either the upgrade process to the new version completes successfully or the version is automatically reverted to the previous version within this maintenance window. If a failure occurs, the version is automatically reverted on the backends (run the `weka cluster container` command to verify that).\
 This upgrade option applies to all versions configured in a single container architecture. However, to upgrade from version 4.0.2 or above, it is recommended to use the NDU option.
 
 **Related topics**

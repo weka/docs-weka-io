@@ -5,20 +5,20 @@ description: >-
   Azure.
 ---
 
-# Weka installation on Azure
+# WEKA installation on Azure
 
-The Weka® Data Platform on Microsoft Azure provides a fast and scalable platform to run, for example, performance-intensive applications and hybrid cloud workflows. It can also be used for object stores, tiering, and snapshots using the Azure Blob service, for example, to create backups and DR copies.
+The WEKA® Data Platform on Microsoft Azure provides a fast and scalable platform to run, for example, performance-intensive applications and hybrid cloud workflows. It can also be used for object stores, tiering, and snapshots using the Azure Blob service, for example, to create backups and DR copies.
 
-Weka provides a ready-to-deploy Terraform package that you can customize for installing the Weka cluster on Azure. The Weka cluster is deployed with a multiple containers architecture, in which each container serves a single process type: Compute, Drives, or Frontend.
+WEKA provides a ready-to-deploy Terraform package that you can customize for installing the WEKA cluster on Azure. The WEKA cluster is deployed with a multiple containers architecture, in which each container serves a single process type: Compute, Drives, or Frontend.
 
-The Weka cluster is deployed in a single virtual network (VNet, similar to VPC in other clouds), where peering is not required. Each VNet has subnets, routes, firewalls, and an internal DNS. The networking uses UDP mode with an MTU of 1500 bytes, which means only one NIC per virtual machine is used.
+The WEKA cluster is deployed in a single virtual network (VNet, similar to VPC in other clouds), where peering is not required. Each VNet has subnets, routes, firewalls, and an internal DNS. The networking uses UDP mode with an MTU of 1500 bytes, which means only one NIC per virtual machine is used.
 
-Depending on the required security level, you can deploy the Weka cluster using the Terraform package on one of the following subnet types:
+Depending on the required security level, you can deploy the WEKA cluster using the Terraform package on one of the following subnet types:
 
 * **Public subnet:** Use a public subnet within your VNet with an internet gateway, and allow public IP addresses for your virtual machines.
 * **Private subnet:** Use a private subnet within your VNet that has access to an APT repository containing the required deployment packages.
 
-<figure><img src="../../.gitbook/assets/azure_deployment.png" alt=""><figcaption><p>Weka cluster on Azure deployment</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/azure_deployment.png" alt=""><figcaption><p>WEKA cluster on Azure deployment</p></figcaption></figure>
 
 <details>
 
@@ -38,7 +38,7 @@ To learn about Azure fundamentals, Microsoft provides learning modules at [https
 
 Terraform is an open-source project from Hashicorp. It creates and manages resources on cloud platforms and on-premises clouds. Unlike AWS CloudFormation, it works with many APIs from multiple platforms and services.
 
-Terraform is the primary tool for deploying Weka on Azure.
+Terraform is the primary tool for deploying WEKA on Azure.
 
 <img src="../../.gitbook/assets/Terraform_overview.png" alt="" data-size="original">
 
@@ -48,7 +48,7 @@ A deployment with Terraform involves three phases:
 
 * **Write:** Define the infrastructure in configuration files and customize the project variables provided in the Terraform package.
 * **Plan**: Review the changes Terraform will make to your infrastructure.
-* **Apply:** Terraform provisions the infrastructure, including the VMs and instances, installs the Weka software, and creates the cluster. Once completed, the Weka cluster runs on Azure.
+* **Apply:** Terraform provisions the infrastructure, including the VMs and instances, installs the WEKA software, and creates the cluster. Once completed, the WEKA cluster runs on Azure.
 
 <img src="../../.gitbook/assets/Terraform_how.png" alt="Terraform phases" data-size="original">
 

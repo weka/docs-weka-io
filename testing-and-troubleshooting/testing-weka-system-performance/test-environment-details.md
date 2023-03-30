@@ -14,7 +14,7 @@ description: >-
 * 8 backend servers instances of [i3en.12xlarge](https://aws.amazon.com/ec2/instance-types/i3en/)
 * Amazon Linux AMI 2017.09.0.20170930 x86\_64 HVM
 * Backend servers are placed in the same placement group
-* 7 dedicated cores for Weka&#x20;
+* 7 dedicated cores for WEKA&#x20;
   * 4 compute
   * 2 drives
   * 1 frontend
@@ -39,7 +39,7 @@ description: >-
   * **Drives**: 6 Micron 9300 drives (MTFDHAL3T8TDP)
   * **Network**: Dual 100 Gbps Ethernet
   * **Cpu/Threads**: 24/48 (Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz)
-  * 19 dedicated cores for Weka&#x20;
+  * 19 dedicated cores for WEKA&#x20;
     * 12 compute
     * 6 drives
     * 1 frontend
