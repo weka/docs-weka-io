@@ -1,5 +1,5 @@
 ---
-description: This page describes how to upgrade to the latest WEKA software version.
+description: This page describes how to upgrade to the latest Weka software version.
 ---
 
 # Upgrade WEKA versions
@@ -63,7 +63,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 
 ### Regular upgrade
 
-In this upgrade option, the upgrade is done during a maintenance window. The upgrade runs on all backend containers, and the service during this time is disrupted up to a defined window of 10 minutes. WEKA system ensures that either the upgrade process to the new version completes successfully or the version is automatically reverted to the previous version within this maintenance window. If a failure occurs, the version is automatically reverted on the backends (run the `weka cluster container` command to verify that).\
+In this upgrade option, the upgrade is done on a legacy Weka system during a maintenance window. The upgrade runs on all backend containers, and the service during this time is disrupted up to a defined window of 10 minutes. Weka system ensures that either the upgrade process to the new version completes successfully or the version is automatically reverted to the previous version within this maintenance window. If a failure occurs, the version is automatically reverted on the backends (run the `weka cluster container` command to verify that).\
 This upgrade option applies to all versions configured in a single container architecture. However, to upgrade from version 4.0.2 or above, it is recommended to use the NDU option.
 
 **Related topics**
@@ -126,9 +126,9 @@ Once the new version is downloaded to one of the backend servers, run the follow
 
 Once a new software version is installed on one of the backend servers, upgrade the cluster to the new version by running one of the following commands on the backend server:
 
-* For non-disruptive upgrade (NDU):\
+* **Non-disruptive upgrade (NDU):**\
   `weka local run -- container <container-name) --in <new-version> upgrade --mode ndu`
-* For upgrades during a maintenance window:\
+* **Regular upgrade of a legacy Weka system**:\
   `weka local run --in <new-version> upgrade`
 
 Where `<new-version>` is the new version's name (for example,`4.1.0`).
