@@ -2,7 +2,7 @@
 
 Welcome to the WEKA documentation portal. First, select the version of your WEKA system from the top menu.
 
-<figure><img src=".gitbook/assets/version_selector.gif" alt=""><figcaption><p>Weka version selector</p></figcaption></figure>
+<figure><img src=".gitbook/assets/version_selector_1.gif" alt=""><figcaption><p>Weka version selector</p></figcaption></figure>
 
 ## About Weka documentation
 
