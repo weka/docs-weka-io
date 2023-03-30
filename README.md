@@ -2,29 +2,29 @@
 
 Welcome to the WEKA documentation portal. First, select the version of your WEKA system from the top menu.
 
-<figure><img src=".gitbook/assets/version_selector_1.gif" alt=""><figcaption><p>Weka version selector</p></figcaption></figure>
+<figure><img src=".gitbook/assets/version_selector.gif" alt=""><figcaption><p>WEKA version selector</p></figcaption></figure>
 
-## About Weka documentation
+## About WEKA documentation
 
-This portal contains all the documentation necessary for understanding and working with the Weka system. It covers the following topics:
+This portal contains all the documentation necessary for understanding and working with the WEKA system. It covers the following topics:
 
-**Weka system overview:** A review of the primary components, principles, and entities that form every Weka system.
+**WEKA system overview:** A review of the primary components, principles, and entities of every WEKA system.
 
-**Getting started with Weka:** A short guide on using the Weka system, configuring a WekaFS filesystem, and conducting tests to validate the system configuration.
+**Getting started with WEKA:** A short guide on using the WEKA system, configuring a WEKA filesystem, and conducting tests to validate the system configuration.
 
-**Planning and installation:** A detailed description of bare metal and AWS installation of the Weka system until it is ready for operation.
+**Planning and installation:** A detailed description of bare metal and AWS installation of the WEKA system until it is ready for operation.
 
-**Performance:** A description and results of the FIO performance tests on WekaFS.
+**Performance:** A description and results of the FIO performance tests on the WEKA filesystem.
 
-**WekaFS filesystems & object stores:** A review of the role and management of filesystems, object stores**,** filesystem groups, and key-management systems in Weka system configurations.
+**WEKA filesystems & object stores:** A review of the role and management of filesystems, object stores**,** filesystem groups, and key-management systems in WEKA system configurations.
 
-**Additional protocols:** Review other supported protocols, including NFS, SMB, and S3, for accessing data stored in a WekaFS filesystem.
+**Additional protocols:** Review other supported protocols, including NFS, SMB, and S3, for accessing data stored in a WEKA filesystem.
 
-**Operation guide:** Description of various operations in the Weka system, such as events, statistics, user management, upgrading, and more.
+**Operation guide:** Description of various operations in the WEKA system, such as events, statistics, user management, upgrading, and more.
 
-**Billing & licensing:** Presentation of Weka system licensing and billing alternatives.
+**Billing & licensing:** Presentation of WEKA system licensing and billing alternatives.
 
-**Weka support:** Provides information on getting support for the Weka system.
+**WEKA support:** Provides information on getting support for the WEKA system.
 
 ## Documentation feedback
 
