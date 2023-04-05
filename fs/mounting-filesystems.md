@@ -6,7 +6,7 @@ description: >-
 
 # Mount filesystems
 
-## WEKAOverview
+## Overview
 
 There are two methods available for mounting a filesystem in one of the cluster servers:
 
