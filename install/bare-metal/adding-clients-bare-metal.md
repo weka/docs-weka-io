@@ -12,7 +12,9 @@ Clients are used to running applications that need to access the WEKA filesystem
 
 To use the WEKA filesystems from a client, all that is needed is to call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
 
-To mount a filesystem in this manner, first install the WEKA agent from one of the backend instances and then mount the filesystem. For example:
+To mount a filesystem in this manner, first install the WEKA agent from one of the backend instances and then mount the filesystem.
+
+Example:
 
 ```
 # Agent Installation (one time)
@@ -22,7 +24,7 @@ curl http://Backend-1:14000/dist/v1/install | sh
 mkdir -p /mnt/weka
 
 # Mounting a filesystem
-mount -t wekafs Backend-1/my_fs /mnt/weka
+mount -t wekafs -o net=eth0 backend-1/my_fs /mnt/weka
 ```
 
 For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, refer to [Mount a filesystem using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
