@@ -38,13 +38,13 @@ Adding a filesystem group is required when adding a filesystem. You can create m
 
 4\. Select **Create**.
 
-****
+
 
 **Related topics**
 
 To learn more about the drive retention period and tiering cue, see**:**
 
-[advanced-time-based-policies-for-data-storage-location.md](../tiering/advanced-time-based-policies-for-data-storage-location.md "mention")****
+[advanced-time-based-policies-for-data-storage-location.md](../tiering/advanced-time-based-policies-for-data-storage-location.md "mention")
 
 ## Edit a filesystem group
 
@@ -55,11 +55,11 @@ You can edit the filesystem group policy according to your system requirements.
 1. From the menu, select **Manage > Filesystems**.
 2. Select the filesystem group you want to edit.
 3. Select the pencil sign right to the filesystem group name.
-4. In the **Edit Filesystem Group** dialog, update the settings as you need. (See the parameter descriptions in the [Add a **** filesystem group](managing-filesystem-groups.md#add-a-filesystem-group) topic.)
+4. In the **Edit Filesystem Group** dialog, update the settings as you need. (See the parameter descriptions in the [Add a filesystem group](managing-filesystem-groups.md#add-a-filesystem-group) topic.)
 
 ![Edit a filesystem group](../../.gitbook/assets/wmng\_edit\_fsg\_animated.gif)
 
-4\. Select **Update**.
+5. Select **Update**.
 
 ## Delete a filesystem group
 
@@ -73,4 +73,4 @@ You can delete a filesystem group no longer used by any filesystem.
 
 ![Delete a filesystem group](../../.gitbook/assets/wmng\_delete\_fsg.png)
 
-4\. Select the **Remove** icon. In the pop-up message, select **Yes** to delete the filesystem group.
+4. Select the **Remove** icon. In the pop-up message, select **Yes** to delete the filesystem group.

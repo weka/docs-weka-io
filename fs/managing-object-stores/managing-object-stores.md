@@ -31,9 +31,8 @@ Editing the default object store provides you with the following additional adva
 1. From the menu, select **Manage > Object Stores**.
 2. On the left, select the pencil icon near the default object store you want to edit.
 3. On the **Edit Object Store** dialog, set the following:
-
-* **Type**: Select the type of object store.
-* **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
+   * **Type**: Select the type of object store.
+   * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
 {% hint style="info" %}
 If using the AWS object store type and access from the WEKA EC2 instances to the object store is granted by the IAM roles, it is not mandatory to set the access and secret keys in the Edit Object Store dialog.
@@ -64,29 +63,26 @@ Add object store buckets to be used for tiering or snapshots.
 
 ![Create object store bucket](../../.gitbook/assets/wmng\_create\_obs\_button.png)
 
-&#x20;3\. In the **Create Object Store Bucket** dialog, set the following:
-
-* **Name**: Enter a meaningful name for the bucket.
-* **Object Store**: Select the location of the object store. For tiering and snapshots, select the local object store. For snapshots only, select the remote object store.
-* **Type**: Select the type of object store.
-* **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
+3. In the **Create Object Store Bucket** dialog, set the following:
+   * **Name**: Enter a meaningful name for the bucket.
+   * **Object Store**: Select the location of the object store. For tiering and snapshots, select the local object store. For snapshots only, select the remote object store.
+   * **Type**: Select the type of object store.
+   * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
 ![Create object store bucket](../../.gitbook/assets/wmng\_create\_obs\_bucket.png)
 
-4\. To validate the connection to the object store bucket, select **Validate**.
-
-5\. Optional**:** If your deployment requires a specific upload and download configuration, select **Advanced**, and set the parameters:
-
-* **Download Bandwidth**: Object store download bandwidth limitation per core (Mbps).
-* **Upload Bandwidth**: Object store upload bandwidth limitation per core (Mbps).
-* **Max concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
-* **Max concurrent Uploads**: Maximum number of uploads concurrently performed on this object store in a single IO node.
-* **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node,
-* **Enable Upload Tags**: Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not.
+5. To validate the connection to the object store bucket, select **Validate**.
+6. Optional**:** If your deployment requires a specific upload and download configuration, select **Advanced**, and set the parameters:
+   * **Download Bandwidth**: Object store download bandwidth limitation per core (Mbps).
+   * **Upload Bandwidth**: Object store upload bandwidth limitation per core (Mbps).
+   * **Max concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
+   * **Max concurrent Uploads**: Maximum number of uploads concurrently performed on this object store in a single IO node.
+   * **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
+   * **Enable Upload Tags**: Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not.
 
 ![Advanced upload and download configuration](../../.gitbook/assets/wmng\_create\_obs\_advanced.png)
 
-6\. Select **Create**.
+7. Select **Create**.
 
 {% hint style="info" %}
 If an error message about the object store bucket configuration appears, to save the configuration, select **Create Anyway**.
@@ -103,7 +99,7 @@ You can modify the object store bucket parameters according to your demand chang
 
 ![Edit an object store bucket](../../.gitbook/assets/wmng\_edit\_obs\_button.png)
 
-3\. In the Edit Object Store Bucket dialog, modify the details, and select **Update**.
+3. In the Edit Object Store Bucket dialog, modify the details, and select **Update**.
 
 ![Edit an object store bucket](../../.gitbook/assets/wmng\_edit\_obs.png)
 
