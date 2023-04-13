@@ -62,7 +62,7 @@ pdsh -R ssh -w "weka0-[0-7]" 'weka local stop default && weka local rm -f defaul
 ### Generate resource files
 
 1. Get the resource generator to your local server:\
-   wget [https://raw.githubusercontent.com/weka/tools/master/topics/resource%20generator/resources\_generator.py](https://raw.githubusercontent.com/weka/tools/master/topics/resource%20generator/resources\_generator.py)
+   wget [https://github.com/weka/tools/blob/master/install/resources\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py)
 2. Copy the resource generator from your local server to all servers in the cluster:
 
 ```
@@ -85,6 +85,8 @@ pdsh -R ssh -w "weka0-[0-7]" '/tmp/resources_generator.py  --path /tmp --net ens
 ```
 
 On each server, the resource generator generates three resource files in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`.
+
+For more details about the resource generator, see the [#3.-generate-the-resource-files](../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md#3.-generate-the-resource-files "mention") procedure in the _WEKA system installation with multiple containers_ topic.
 
 ### Configuration
 
@@ -189,8 +191,8 @@ Output example for a **multiple container** architecture:
 WekaIO v4.1.0 (CLI build 4.1.0)
 
        cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
-        status: OK (8 backends UP, 5 drives UP)
-    protection: 3+2
+        status: OK (8 backends UP, 6 drives UP)
+    protection: 6+2
      hot spare: 1 failure domains
  drive storage: 82.94 TiB total, 82.94 TiB unprovisioned
          cloud: connected
