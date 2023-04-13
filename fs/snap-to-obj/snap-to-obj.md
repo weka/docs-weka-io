@@ -48,7 +48,7 @@ You can upload a snapshot to a local, remote, or both object store buckets.
 
 ![Copy snapshot locator](../../.gitbook/assets/wmng\_copy\_snapshot\_locator.gif)
 
-****
+
 
 **Related topics**
 

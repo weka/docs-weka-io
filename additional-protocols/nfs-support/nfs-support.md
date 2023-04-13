@@ -91,7 +91,7 @@ Once you create an interface group, set its ports.
 1. In the Configuration tab, select the interface group.
 2. In the Group IPs table, select the three dots, and from the menu select **Remove**.&#x20;
 
-![Remove a group IP](<../../.gitbook/assets/wmng\_add\_nfs\_group\_ip\_remove (1).png>)
+![Remove a group IP](../../.gitbook/assets/wmng\_add\_nfs\_group\_ip\_remove.png)
 
 ## Define client access groups <a href="#define-client-access-groups" id="define-client-access-groups"></a>
 
@@ -135,7 +135,7 @@ Once you create an interface group, set its ports.
 
 1. In the Permissions tab, select the **trash** symbol displayed next to the DNS or IP for the relevant Client Group.
 
-![Remove DNS or IP of a client group](../../.gitbook/assets/wmng\_add\_nfs\_group\_ip\_remove.png)
+![Remove DNS or IP of a client group](<../../.gitbook/assets/wmng\_add\_nfs\_group\_ip\_remove (1).png>)
 
 ## Create NFS client permission <a href="#create-nfs-client-permission" id="create-nfs-client-permission"></a>
 
@@ -181,8 +181,8 @@ You can edit the existing NFS permission settings for a client group.  You can a
 
 4\. To remove the client group permission setting, select **Remove**.
 
-****
+
 
 **Related topics**
 
-****[#supported-nfs-client-mount-options](nfs-support.md#supported-nfs-client-mount-options "mention")****
+[#supported-nfs-client-mount-options](nfs-support.md#supported-nfs-client-mount-options "mention")

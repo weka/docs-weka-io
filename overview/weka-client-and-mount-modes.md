@@ -19,14 +19,14 @@ The Weka client can control the information stored in the page cache and also in
 Each filesystem can be mounted in one of two modes of operation in relation to the page cache:
 
 * [**Read Cache**](weka-client-and-mount-modes.md#read-cache-mount-mode)**,** where only read operations are using the page cache, file data is coherent across hosts and resilient to client failures
-* ****[**Write Cache (default)**](weka-client-and-mount-modes.md#write-cache-mount-mode-default)**,** where both read and write operations are using the page cache while keeping data coherency across hosts and which provides the highest data performance
+* [**Write Cache (default)**](weka-client-and-mount-modes.md#write-cache-mount-mode-default)**,** where both read and write operations are using the page cache while keeping data coherency across hosts and which provides the highest data performance
 
 {% hint style="info" %}
 **Note:** Symbolic links are always cached in all cached modes.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Unlike actual file data, the file metadata is managed in the Linux operating system by the Dentry (directory entry) cache, which maximizes efficiency in the handling of directory entries, and is not strongly consistent across Weka client hosts. At the cost of some performance compromises, metadata **** can be configured to be strongly consistent by mounting without Dentry cache (using`dentry_max_age_positive=0, dentry_max_age_negative=0` mount options) if metadata consistency is critical for the application, as described in [Mount Command Options](../fs/mounting-filesystems.md#mount-command-options).&#x20;
+**Note:** Unlike actual file data, the file metadata is managed in the Linux operating system by the Dentry (directory entry) cache, which maximizes efficiency in the handling of directory entries, and is not strongly consistent across Weka client hosts. At the cost of some performance compromises, metadata can be configured to be strongly consistent by mounting without Dentry cache (using`dentry_max_age_positive=0, dentry_max_age_negative=0` mount options) if metadata consistency is critical for the application, as described in [Mount Command Options](../fs/mounting-filesystems.md#mount-command-options).&#x20;
 {% endhint %}
 
 ## **R**ead cache mount mode

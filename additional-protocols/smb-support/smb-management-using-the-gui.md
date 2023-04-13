@@ -89,7 +89,7 @@ To enable the Weka storage nodes to join the AD domain, verify that the AD serve
 
 1. In the SMB Cluster Configuration, select **Join**.
 
-![Join the SMB cluster in the Active Directory](../../.gitbook/assets/wmng\_smb\_join\_ad\_button.png)
+![Join the SMB cluster in the Active Directory](<../../.gitbook/assets/wmng\_smb\_join\_ad\_button (1).png>)
 
 
 

@@ -70,8 +70,8 @@ It can be useful to mark specific activities, maintenance work, or important cha
 
 To trigger a custom event, use `weka events trigger-event <text>`
 
-****
+
 
 **Related topics**
 
-****[list-of-events.md](list-of-events.md "mention")****
+[list-of-events.md](list-of-events.md "mention")

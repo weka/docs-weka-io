@@ -16,7 +16,7 @@ You can switch the verbosity level of the traces between low and high. The verbo
 Do not disable the traces without specific instructions from the [Customer Success Team](../../getting-support-for-your-weka-system.md#contact-customer-success-team). Disabling the traces reduces the amount of troubleshooting information about the system and may affect the SLA if an issue occurs.
 {% endhint %}
 
-****
+
 
 **Related topics**
 

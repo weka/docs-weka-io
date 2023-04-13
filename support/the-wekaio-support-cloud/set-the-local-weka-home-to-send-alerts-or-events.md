@@ -17,7 +17,7 @@ Setting the Local Weka Home to send events and alerts at a glance:
 1. Access the Local Weka Home portal with an admin account and the password obtained.
 2. On the **Integration** page, select **New**.
 
-<figure><img src="../../.gitbook/assets/wmng_integrations_new (1).png" alt=""><figcaption><p>Integrations page</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_integrations_new.png" alt=""><figcaption><p>Integrations page</p></figcaption></figure>
 
 3. On the **Create Integration** page, select one of the destinations and set the relevant values as follows:
 
@@ -64,7 +64,7 @@ Setting the Local Weka Home to send events and alerts at a glance:
 
 4. On the **Rules** page, select **New**.
 
-<figure><img src="../../.gitbook/assets/wmng_rules_new (1).png" alt=""><figcaption><p>Rules page</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_rules_new.png" alt=""><figcaption><p>Rules page</p></figcaption></figure>
 
 5. On the **Create Rule** page, do the following:
 

@@ -27,14 +27,14 @@ Verify that an object store bucket is available.
 
 ## Detach object store bucket from a filesystem
 
-Detaching a local object store bucket from a filesystem migrates the filesystem data residing in the object **** store bucket either to the writable object store bucket (if one exists) or to the SSD.
+Detaching a local object store bucket from a filesystem migrates the filesystem data residing in the object store bucket either to the writable object store bucket (if one exists) or to the SSD.
 
 **Procedure**
 
 1. From the menu, select **Manage > Filesystems**.
 2. On the **Filesystem** page, select the filesystem from which you want to detach the object store bucket.
 3. From the **Detach Object Store Bucket** dialog, select **Detach.**\
-   ****If the filesystem is attached to two object store buckets (one is read-only and the other is writable), you can detach only the one that is read-only. The data of the detached object store **** bucket is migrated to the writable object store bucket.
+   If the filesystem is attached to two object store buckets (one is read-only and the other is writable), you can detach only the one that is read-only. The data of the detached object store bucket is migrated to the writable object store bucket.
 4. In the message that appears, to confirm the detachment, select **Yes**.
 
 ![Detach an object store bucket from a filesystem](../../.gitbook/assets/wmng\_detach\_obs.gif)

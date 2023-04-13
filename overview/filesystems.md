@@ -76,7 +76,7 @@ The following table specifies the required number of metadata units according to
 Each directory requires two metadata units instead of one for a small file.
 {% endhint %}
 
-****
+
 
 **Related topics**
 
@@ -98,9 +98,9 @@ Filesystem connectivity to object store buckets can be used in the data lifecycl
 
 **Related topics**
 
-****[managing-object-stores](../fs/managing-object-stores/ "mention")****
+[managing-object-stores](../fs/managing-object-stores/ "mention")
 
-****[data-storage.md](data-storage.md "mention")****
+[data-storage.md](data-storage.md "mention")
 
 [snap-to-obj](../fs/snap-to-obj/ "mention")
 

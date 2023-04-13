@@ -12,4 +12,3 @@ To control the default values, use the following CLI commands:
 
 `show`: Shows the number of failed attempts until the account is locked and the lockout duration.
 
-``

@@ -39,7 +39,7 @@ To create a custom policy, you can use _AWS Policy Generator_ and select `IAM Po
 **Note:** The IAM policy size is limited to 2KB. If a larger policy is required, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
-****
+
 
 **Related information**
 
@@ -65,7 +65,7 @@ As opposed to IAM temporary credentials (STS), the S3 service account is not tem
 
 Only an S3 user can manage S3 service accounts (Cluster Admin cannot). An S3 user can create up to 100 S3 service accounts. Managing S3 service accounts is only available through the CLI.
 
-****
+
 
 **Related topics**
 

@@ -50,7 +50,7 @@ To enable communication between the management server and the Weka cluster, the 
 
 Create the directory `~/.weka` in the management server.
 
-Generate the `auth-token.json` **** file and save it in the `~/.weka` directory. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
+Generate the `auth-token.json` file and save it in the `~/.weka` directory. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
 
 {% hint style="info" %}
 It is highly recommended to create a local user with ReadOnly privilege just for the Weka-mon package and use it for cluster communications.\
@@ -68,7 +68,7 @@ See the [Create local users](../usage/user-management/user-management.md#create-
    This is a mandatory step before running the installer. Otherwise, the installation fails.
 3. Install the _unit_ file into the `systemd` and start the service. Run the following command:\
    `./install.sh`\
-   ``The installer validates the connection to the cluster by the hosts specified in the `snaptool.yml` file.
+   The installer validates the connection to the cluster by the hosts specified in the `snaptool.yml` file.
 
 {% hint style="info" %}
 If the systemd service is already running locally, the installer stops it and preserves the existing `snaptool.yml` file before restarting it.

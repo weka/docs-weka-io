@@ -99,7 +99,7 @@ Use the following command line to update an existing SMB cluster:
 | `smb-ips-pool`  | Comma-separated IP addresses | The public IPs used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA. The IPs should not be assigned to any host on the network.                                                                                                                                                                                                                                                                                                                                                                                                            | Must be valid IP addresses                          | No            |
 | `smb-ips-range` | IP address range             | <p>The public IPs used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA.<br>The IPs should not be assigned to any host on the network.</p>                                                                                                                                                                                                                                                                                                                                                                                                  | <p>Format: A.B.C.D-E </p><p>E.g., 10.10.0.1-100</p> | No​           |
 
-****
+
 
 ## Check the status of SMB host readiness <a href="#check-status-smb-host-readiness" id="check-status-smb-host-readiness"></a>
 
@@ -136,7 +136,7 @@ Use this command to destroy an SMB cluster managed by the Weka system.
 
 Deleting an existing SMB cluster managed by the Weka system does not delete the backend Weka filesystems but removes the SMB share exposures of these filesystems.
 
-## Add or remove SMB cluster **** hosts <a href="#add-or-remove-smb-cluster-hosts" id="add-or-remove-smb-cluster-hosts"></a>
+## Add or remove SMB cluster hosts <a href="#add-or-remove-smb-cluster-hosts" id="add-or-remove-smb-cluster-hosts"></a>
 
 **Command:** `weka smb cluster hosts add`
 
@@ -267,7 +267,7 @@ Use the following command line to update an existing share:
 
 Use this command to view the various user-list settings.
 
-****
+
 
 **Command:** `weka smb share lists add`
 
@@ -283,7 +283,7 @@ Use the following command line to add users to a share user-list:
 | `user-list-type` | String                            | The type of permissions list for `users`                                                                                                  | <p><code>read_only</code> - list of users that will not be given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>read_write</code>- list of users that will be given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>valid</code> - list of users that are  allowed to log-in to this share SMB service (empty list - all users are allowed)<code>invalid</code> - list of users that are not allowed to log-in to this share SMB service</p> | Yes           |             |
 | `users`          | A comma-separated list of Strings | A list of users to add to the `user-list-type` list. Can use the `@` notation to allow groups of users, e.g. `root, Jack, @domain\admins` | Up to 8 users/groups  for all lists combined per share                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Yes           |             |
 
-****
+
 
 **Command:** `weka smb share lists remove`
 
@@ -299,7 +299,7 @@ Use the following command line to remove users from a share user-list:
 | `user-list-type` | String                            | The type of permissions list for `users`                                                                                                       | <p><code>read_only</code> - list of users that will not be given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>read_write</code>- list of users that will be given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>valid</code> - list of users that are  allowed to log-in to this share SMB service (empty list - all users are allowed)<code>invalid</code> - list of users that are not allowed to log-in to this share SMB service</p> | Yes           |             |
 | `users`          | A comma-separated list of Strings | A list of users to remove from the `user-list-type` list. Can use the `@` notation to allow groups of users, e.g. `root, Jack, @domain\admins` | Up to 8 users/groups  for all lists combined per share                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Yes           |             |
 
-****
+
 
 **Command:** `weka smb share lists reset`
 
@@ -348,7 +348,7 @@ Use this command to view the various host-access settings.
 
 Use the following command line to add hosts to the allow/deny list (in either cluster-level or share-level):
 
-`weka smb cluster host-access add <mode> <--ips ips> <--hosts hosts>` ****&#x20;
+`weka smb cluster host-access add <mode> <--ips ips> <--hosts hosts>`&#x20;
 
 `weka smb share host-access add <share-id> <mode> <--ips ips> <--hosts hosts>`
 
@@ -367,7 +367,7 @@ Use the following command line to add hosts to the allow/deny list (in either cl
 
 Use the following command line to remove hosts from the allow/deny list (in either cluster-level or share-level):
 
-`weka smb cluster host-access remove <hosts>` ****&#x20;
+`weka smb cluster host-access remove <hosts>`&#x20;
 
 `weka smb share host-access remove <share-id> <hosts>`
 
@@ -384,7 +384,7 @@ Use the following command line to remove hosts from the allow/deny list (in eith
 
 Use the following command line to remove all hosts from the allow/deny list (in either cluster-level or share-level):
 
-`weka smb cluster host-access reset <mode>` **** `weka smb share host-access reset <share-id> <mode>`
+`weka smb cluster host-access reset <mode>` `weka smb share host-access reset <share-id> <mode>`
 
 **Parameters**
 

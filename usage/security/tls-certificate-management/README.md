@@ -14,6 +14,6 @@ The system supports TLS 1.2 and higher with at least 128-bit ciphers.
 
 **Related topics**
 
-[manage-the-tls-certificate-using-the-gui.md](manage-the-tls-certificate-using-the-gui.md "mention")****
+[manage-the-tls-certificate-using-the-gui.md](manage-the-tls-certificate-using-the-gui.md "mention")
 
-[manage-the-tls-certificate-using-the-cli.md](manage-the-tls-certificate-using-the-cli.md "mention")****
+[manage-the-tls-certificate-using-the-cli.md](manage-the-tls-certificate-using-the-cli.md "mention")

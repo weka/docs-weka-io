@@ -16,13 +16,16 @@ The versions specified in the prerequisites and compatibility page apply to the 
 * AMD 2nd and 3rd Gen EPYC processors
 
 {% hint style="info" %}
-**Note:** AES must be enabled in the BIOS
+Ensure the BIOS settings meet the following requirements:
+
+* AES must be enabled.
+* Secure Boot must be disabled.&#x20;
 {% endhint %}
 
 ## Memory
 
-* Enough memory to support the Weka system needs as described in [memory requirements ](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning)
-* More memory support for the OS kernel or any other application
+* Enough memory to support the Weka system needs as described in [memory requirements](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
+* More memory support for the OS kernel or any other application.
 
 ## Operating system
 

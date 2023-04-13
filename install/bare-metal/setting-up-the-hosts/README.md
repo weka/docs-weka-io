@@ -375,7 +375,7 @@ The `wekachecker` performs the following validations:
 * Mellanox OFED is installed
 * IOMMU mode for SSD drives is disabled
 * rpcbind utility is enabled
-* SquashFS **** is enabled
+* SquashFS is enabled
 * noexec mount option on /tmp
 
 {% hint style="info" %}

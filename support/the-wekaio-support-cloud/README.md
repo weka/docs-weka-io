@@ -20,7 +20,7 @@ Weka Home provides the following main features:&#x20;
 
 In the Weka Home portal, the Customer Success Team can view a cluster’s statistics, state of health, consolidated view of events, and diagnostics for various triaging activities. It allows the team to offer a comprehensive 24x7x365 support view of all customer systems sending telemetry data.
 
-<figure><img src="../../.gitbook/assets/weka-home-overview.png" alt=""><figcaption><p>Weka clusters and clients connected to Weka Home</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekahome_overview.png" alt=""><figcaption><p>Weka clusters and clients connected to Weka Home</p></figcaption></figure>
 
 ## Which information is uploaded to the Weka Home?
 
@@ -46,7 +46,7 @@ The Weka cluster periodically and on-demand uploads various information types to
 
 Uploading information to Weka Home from the backend servers and clients is recommended for optimal support. If client connectivity cannot be configured, enabling upload information from the backend servers is still beneficial.
 
-****
+
 
 **Related topics**
 
@@ -56,4 +56,4 @@ Uploading information to Weka Home from the backend servers and clients is recom
 
 [list-of-statistics.md](../../usage/statistics/list-of-statistics.md "mention")
 
-[#upload-diagnostics-to-weka-home](../diagnostics-management/diagnostics-utility.md#upload-diagnostics-to-weka-home "mention")****
+[#upload-diagnostics-to-weka-home](../diagnostics-management/diagnostics-utility.md#upload-diagnostics-to-weka-home "mention")

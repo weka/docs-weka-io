@@ -14,7 +14,7 @@ When attaching an object store bucket to a non-tiered filesystem, the filesystem
 
 ### Detachment of a local object store bucket from a filesystem
 
-Detaching a local object-store bucket from a filesystem migrates the filesystem data residing in the object **** store bucket either to the writable object store bucket (if one exists) or to the SSD.
+Detaching a local object-store bucket from a filesystem migrates the filesystem data residing in the object store bucket either to the writable object store bucket (if one exists) or to the SSD.
 
 When detaching, the background task of detaching the object-store bucket begins. Detaching can be a long process, depending on the amount of data and the load on the object stores.
 
@@ -72,7 +72,7 @@ Detaching a remote object-store bucket from a filesystem keeps the backup data w
 
 **Related topics**
 
-****[background-tasks.md](../../usage/background-tasks.md "mention")****
+[background-tasks.md](../../usage/background-tasks.md "mention")
 
 [snap-to-obj](../snap-to-obj/ "mention")
 

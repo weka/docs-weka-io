@@ -181,10 +181,10 @@ You can change the following mount options. These values are commonly used with 
 * `proto=tcp`
 * `mountproto=tcp`
 
-``
+
 
 **Related topics**
 
-****[nfs-support.md](nfs-support.md "mention")****
+[nfs-support.md](nfs-support.md "mention")
 
-****[nfs-support-1.md](nfs-support-1.md "mention")****
+[nfs-support-1.md](nfs-support-1.md "mention")

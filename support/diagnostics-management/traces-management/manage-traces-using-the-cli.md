@@ -18,4 +18,3 @@ To manage the traces settings, use the following CLI commands:
 
 `freeze:` Sets, shows, or resets the traces freeze period.
 
-``

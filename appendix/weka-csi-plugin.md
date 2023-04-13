@@ -798,7 +798,7 @@ Once the volume to API binding configuration described in the previous section i
 Weka provides a migration script that automates the process.
 
 {% hint style="info" %}
-**Note:** This procedure must be performed only once, and can be performed from any Linux host that is connected to the same WekaFS cluster. **** Additional runs of the script will migrate only those volumes that were created in legacy mode after the migration process. It is safe to execute the migration script multiple times, although usually this should not be required.
+**Note:** This procedure must be performed only once, and can be performed from any Linux host that is connected to the same WekaFS cluster. Additional runs of the script will migrate only those volumes that were created in legacy mode after the migration process. It is safe to execute the migration script multiple times, although usually this should not be required.
 {% endhint %}
 
 {% hint style="info" %}

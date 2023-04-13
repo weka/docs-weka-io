@@ -51,7 +51,7 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 
 ![Add a filesystem](../../.gitbook/assets/wmng\_create\_fs\_animated.gif)
 
-4\. Optional: If [Tiering](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy) **** is required and an object store bucket is already defined, \
+4\. Optional: If [Tiering](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy) is required and an object store bucket is already defined, \
 &#x20;   select the toggle button, and set the details of the object store bucket:
 
 * **Object Store Bucket:** Select a predefined object store bucket from the list.
@@ -73,13 +73,13 @@ When creating a Weka system in AWS using the cloud formation, the Weka system co
 
 7\. Select **Save**.
 
-****
+
 
 **Related topics**
 
-****[managing-filesystem-groups](../managing-filesystem-groups/ "mention")****
+[managing-filesystem-groups](../managing-filesystem-groups/ "mention")
 
-****[managing-object-stores](../managing-object-stores/ "mention")****
+[managing-object-stores](../managing-object-stores/ "mention")
 
 [kms-management](../../usage/security/kms-management/ "mention")
 

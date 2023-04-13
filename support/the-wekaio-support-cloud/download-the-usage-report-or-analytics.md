@@ -64,7 +64,7 @@ The following properties are affected by anonymization:
 **Procedure:**
 
 1. In the Local Weka Home portal, select the cluster.
-2. Below the Usage Report and Analytics **** download buttons, switch on the **Enable Anonymization** option.
+2. Below the Usage Report and Analytics download buttons, switch on the **Enable Anonymization** option.
 3. Select the **Usage Report** or **Analytics** download button.
 
 <figure><img src="../../.gitbook/assets/wmng_lwh_anonymization (1).png" alt=""><figcaption><p>Enable anonymization in Usage Report and Analytics</p></figcaption></figure>

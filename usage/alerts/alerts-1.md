@@ -66,7 +66,7 @@ Use the following command line to unmute a muted alert-type:
 | ------------ | -------- | -------------------------------------------------------------- | --------------- | ------------- | ----------- |
 | `alert-type` | String   | An alert-type to unmute, use `weka alerts types` to list types |                 | Yes           |             |
 
-****
+
 
 **Related topics**
 

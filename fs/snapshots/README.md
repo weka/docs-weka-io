@@ -29,16 +29,16 @@ The Weka system supports the following snapshot operations:
 * Make snapshots writable.
 * Create a snapshot of a snapshot (relevant for writable snapshots or read-only snapshots before being made writable).
 * Obtain the list of snapshots and access their metadata.
-* Schedule automatic **** snapshots (see [Set up the SnapTool external snapshots manager](../../appendix/snapshot-management.md) in the Appendix).
+* Schedule automatic snapshots (see [Set up the SnapTool external snapshots manager](../../appendix/snapshot-management.md) in the Appendix).
 
 {% hint style="info" %}
 **Note:** The number of snapshots per system is limited to 4,096. Each live filesystem consumes one of the total snapshots count.
 {% endhint %}
 
-****
+
 
 **Related topics**
 
-****[snapshots.md](snapshots.md "mention")****
+[snapshots.md](snapshots.md "mention")
 
-****[snapshots-1.md](snapshots-1.md "mention")****
+[snapshots-1.md](snapshots-1.md "mention")
