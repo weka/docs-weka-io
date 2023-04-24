@@ -59,7 +59,7 @@ Ensure the BIOS settings meet the following requirements:
 
 * All WEKA servers must be synchronized in date/time (NTP recommended)
 * A watchdog driver should be installed in /dev/watchdog (hardware watchdog recommended); search the WEKA knowledge base in the [WEKA support portal](http://support.weka.io) for more information and how-to articles.
-* If using `mlocate` or alike, it's advisable to exclude `wekafs` from `updatedb` filesystems lists; search the WEKA knowledge base in the [Weka support portal](http://support.weka.io) for more information and how-to articles.
+* If using `mlocate` or alike, it's advisable to exclude `wekafs` from `updatedb` filesystems lists; search the WEKA knowledge base in the [WEKA support portal](http://support.weka.io) for more information and how-to articles.
 
 #### SELinux
 
