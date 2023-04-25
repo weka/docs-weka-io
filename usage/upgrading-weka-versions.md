@@ -53,7 +53,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
    * Starting buckets.
 8.  Starting rolling upgrade of the **frontend** and **protocols** containers:
 
-    * Upgrading frontend and protocol **** containers on server \[x].
+    * Upgrading frontend and protocol containers on server \[x].
     * Upgrading server \[x] from version \<source> \<target>.
     * Rebuilding and redistributing.
 

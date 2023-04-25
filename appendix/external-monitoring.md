@@ -6,7 +6,7 @@ description: >-
 
 # Set up the WEKAmon external monitoring
 
-WEKA provides an external monitoring package named **WEKAmon**. **** The package implements the well-known [_Grafana_](https://grafana.com/) dashboard with [_Prometheus_](https://prometheus.io/docs/introduction/overview/), which provides a central monitoring dashboard of metrics, logs, alerts, and statistics with enriched capabilities.
+WEKA provides an external monitoring package named **WEKAmon**. The package implements the well-known [_Grafana_](https://grafana.com/) dashboard with [_Prometheus_](https://prometheus.io/docs/introduction/overview/), which provides a central monitoring dashboard of metrics, logs, alerts, and statistics with enriched capabilities.
 
 The package also includes the following components:
 
@@ -20,7 +20,7 @@ You can set up the Weka-mon package regardless of the data monitoring provided b
 
 One of the advantages of setting up the WEKAmon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with WEKA to correlate and display monitoring information from all your products on the same dashboard.
 
-![Weka enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (25).png>)
+![Weka enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (22).png>)
 
 ## Before you begin
 
@@ -45,7 +45,7 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 To enable communication between the management server and the Weka cluster, the security token is required in the **auth-token.json** file.
 
 1. Create the directory `~/.weka` in the WEKAmon installation directory.
-2. Generate the `auth-token.json` **** file and save it in the `~/.weka` directory you created. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
+2. Generate the `auth-token.json` file and save it in the `~/.weka` directory you created. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
 
 {% hint style="info" %}
 It is highly recommended to create a local user with ReadOnly privilege just for the WEKAmon package and use it for cluster communications.\

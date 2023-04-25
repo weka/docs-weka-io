@@ -12,7 +12,7 @@ To enable PAYG, subscribe to [WekaFS distributed scalable file system ](https://
 
 1. Go to the [AWS Marketplace subscription](https://aws.amazon.com/marketplace/pp/B07W8V4PN9?ref\_=srh\_res\_product\_title) page.
 2. Review the pricing on the AWS Marketplace subscription page (for more details, see below [How Does Hourly Pricing Work?](pay-as-you-go.md#how-does-hourly-pricing-work)).
-3. Select **Continue** and then select **Subscribe** to **** confirm. Wait a few seconds for the popup to display.
+3. Select **Continue** and then select **Subscribe** to confirm. Wait a few seconds for the popup to display.
 4. Select **Set Up Your Account**.\
    You are redirected to the WEKA Portal.
 5. In the WEKA Portal, do one of the following:

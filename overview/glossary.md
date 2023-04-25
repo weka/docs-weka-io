@@ -88,7 +88,7 @@ The term node is deprecated. See [Process](glossary.md#process).
 
 ### **POSIX**
 
-The Portable Operating System Interface (POSIX) is a family of **** standards specified by the [I](https://en.wikipedia.org/wiki/IEEE\_Computer\_Society)EEE Computer Society for maintaining compatibility between operating systems. The WEKA client is POSIX compliant, which means that it presents data to the OS on which it is installed in a manner that conforms to the POSIX standard. The WEKA client is sometimes called the POSIX client or POSIX driver when describing the overall storage system architecture.
+The Portable Operating System Interface (POSIX) is a family of standards specified by the [I](https://en.wikipedia.org/wiki/IEEE\_Computer\_Society)EEE Computer Society for maintaining compatibility between operating systems. The WEKA client is POSIX compliant, which means that it presents data to the OS on which it is installed in a manner that conforms to the POSIX standard. The WEKA client is sometimes called the POSIX client or POSIX driver when describing the overall storage system architecture.
 
 ### Process
 

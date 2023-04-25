@@ -6,7 +6,7 @@ The WEKA project ultimately uses the internal GCP resources. A basic WEKA projec
 
 ### Resize cloud function operation
 
-A resize cloud function in vnet-0 and a workload listener are deployed for auto-scale instances in GCP. Once a user sends a [request for resizing](auto-scale-instances-in-gcp.md) the number of instances in the cluster, the workload listener checks the _cluster state_ file in the cloud storage and triggers the resize cloud function if a resize is required. The cluster state __ file is an essential part of the resizing decision. It indicates states such as:
+A resize cloud function in vnet-0 and a workload listener are deployed for auto-scale instances in GCP. Once a user sends a [request for resizing](auto-scale-instances-in-gcp.md) the number of instances in the cluster, the workload listener checks the _cluster state_ file in the cloud storage and triggers the resize cloud function if a resize is required. The cluster state file is an essential part of the resizing decision. It indicates states such as:
 
 * Readiness of the cluster.
 * The number of existing instances.

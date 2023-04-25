@@ -10,7 +10,7 @@ Using the CLI, you can:
   * [Create interface groups](nfs-support-1.md#define-interface-groups)
   * [Set interface group ports](nfs-support-1.md#set-interface-group-ports)
   * [Set interface group IPs](nfs-support-1.md#set-interface-group-ips)
-  * [Configure the service mountd port](nfs-support-1.md#configure-the-service-mountd-port)****
+  * [Configure the service mountd port](nfs-support-1.md#configure-the-service-mountd-port)
   * [Configure the NFS configuration filesystem](nfs-support-1.md#configure-the-nfs-configuration-filesystem)
 * **Configure the NFS export level (permissions)**
   * [Define client access groups](nfs-support-1.md#uploading-a-snapshot-using-the-ui)
@@ -183,4 +183,4 @@ Use the following command lines to add/update/delete NFS permissions:\
 | `obs-direct`         | Boolean  | See [Object-store Direct Mount](../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option) section                                  | `on` or `off`                                                                                                                                                         | No                                 | No          |
 | `manage-gids`        | String   | <p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client is replaced by a list of group IDs determined by an appropriate lookup on the server.</p> | <p><code>on</code> or <code>off</code>.</p><p><br>This option is only applicable in NFS-W.</p>                                                                        | No                                 | `off`       |
 | `privileged-port`    | String   | Sets the share to only be mounted via privileged ports (1-1024), usually only allowed by the root user.                                                                               | <p><code>on</code> or <code>off</code>.</p><p><br>This option is only applicable in NFS-W.</p>                                                                        | No                                 | `off`       |
-| `supported-versions` | String   | A comma-separated list of supported NFS versions.                                                                                                                                     | <p><code>v3,v4</code><br><code></code><br><code></code><code>v4</code> is only applicable in NFS-W.</p>                                                               | No                                 | `v3`        |
+| `supported-versions` | String   | A comma-separated list of supported NFS versions.                                                                                                                                     | <p><code>v3,v4</code><br><br><code>v4</code> is only applicable in NFS-W.</p>                                                                                         | No                                 | `v3`        |

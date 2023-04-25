@@ -185,8 +185,8 @@ You can edit the existing NFS permission settings for a client group.  You can a
 
 4\. To remove the client group permission setting, select **Remove**.
 
-****
+
 
 **Related topics**
 
-****[#supported-nfs-client-mount-options](./#supported-nfs-client-mount-options "mention")****
+[#supported-nfs-client-mount-options](./#supported-nfs-client-mount-options "mention")

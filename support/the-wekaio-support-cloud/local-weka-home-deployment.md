@@ -145,7 +145,7 @@ If the minikube installation fails, run the command `minikube logs`. A log file 
 
 #### Domain&#x20;
 
-Set the domain for URL accessing the Local Weka Home portal either by the organization domain FQDN (DNS-based) **** or IP address (IP-based).
+Set the domain for URL accessing the Local Weka Home portal either by the organization domain FQDN (DNS-based) or IP address (IP-based).
 
 The URL to access the Local Weka Home does not accept aliases of the DNS name. Only the name configured in the `config.yaml` can be used for accessing the Local Weka Home.
 

@@ -155,10 +155,10 @@ Snap-To-Object and tiering use SSDs and object stores for the storage of data. T
 You can implement this paradigm for each filesystem using one of the following use cases:
 
 * **Data resides on the SSDs only, and the object store is used only for the various Snap-To-Object use cases, such as backup, archiving, and bursting:**\
-  ****The allocated SSD capacity must be identical to the filesystem size for each filesystem. The data retention period must be defined as the longest time possible (for example, five years).\
+  The allocated SSD capacity must be identical to the filesystem size for each filesystem. The data retention period must be defined as the longest time possible (for example, five years).\
   The Tiering Cue must be defined using the same considerations based on IO patterns. In this case, the applications always work with a high-performance SSD storage system and use the object store only as a backup device.
 * **Snap-To-Object on filesystems is used with active tiering between the SSDs and the object store:**\
-  ****Objects in the object store are used for tiering all data and for data backup using Snap-To-Object. If possible, the WEKA system uses the same object for both purposes, eliminating the unnecessary need to acquire additional storage and copy data.
+  Objects in the object store are used for tiering all data and for data backup using Snap-To-Object. If possible, the WEKA system uses the same object for both purposes, eliminating the unnecessary need to acquire additional storage and copy data.
 
 {% hint style="info" %}
 **Note:** When using Snap-To-Object to rehydrate data from an object store, some of the metadata may still be in the object store until it is accessed for the first time.
@@ -168,6 +168,6 @@ You can implement this paradigm for each filesystem using one of the following u
 
 **Related topics**
 
-****[snap-to-obj.md](snap-to-obj.md "mention")****
+[snap-to-obj.md](snap-to-obj.md "mention")
 
 [snap-to-obj-1.md](snap-to-obj-1.md "mention")

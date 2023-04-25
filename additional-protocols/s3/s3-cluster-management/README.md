@@ -28,7 +28,7 @@ Even a robust DNS server or load-balancer may become overloaded with an extreme 
 
 [Sidekick Load Balancer](https://github.com/minio/sidekick)
 
-****
+
 
 **Related topics**
 

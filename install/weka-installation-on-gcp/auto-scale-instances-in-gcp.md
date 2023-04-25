@@ -22,7 +22,7 @@ curl -m 70 -X POST  https://europe-west1-wekaio-qa.cloudfunctions.net/weka-test 
 -d '{"value":7}'
 ```
 
-****
+
 
 **Related topics**
 

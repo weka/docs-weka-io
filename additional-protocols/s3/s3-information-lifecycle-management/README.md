@@ -14,6 +14,6 @@ WEKA supports rules for expiring objects and enables you to set different expira
 
 **Related topics**
 
-[s3-information-lifecycle-management.md](s3-information-lifecycle-management.md "mention")****
+[s3-information-lifecycle-management.md](s3-information-lifecycle-management.md "mention")
 
-****[s3-information-lifecycle-management-1.md](s3-information-lifecycle-management-1.md "mention")****
+[s3-information-lifecycle-management-1.md](s3-information-lifecycle-management-1.md "mention")

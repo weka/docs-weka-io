@@ -265,6 +265,7 @@ Certified object stores:
   * S3 Standard-IA
   * S3 One Zone-IA
   * S3 Glacier Instant Retrieval
+* Azure Blob Storage
 * Google Cloud Storage (GCS)
 * Cloudian HyperStore (version 7.3 and up)
 * Dell EMC ECS v3.5 and up

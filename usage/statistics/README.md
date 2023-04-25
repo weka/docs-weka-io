@@ -48,7 +48,7 @@ The options include:
 The WEKA cluster does not hold historical statistics data. For historical statistics data, use `weka-mon` (see [Monitor using external tools](../../appendix/external-monitoring.md)).
 {% endhint %}
 
-****
+
 
 **Related topics**
 

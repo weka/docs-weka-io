@@ -15,7 +15,7 @@ Using the GUI, you can:
 
 ## **Add** a lifecycle rule
 
-You can add a lifecycle rule **** to an object (bucket) that defines **** an expiration duration per object prefix and tags.&#x20;
+You can add a lifecycle rule to an object (bucket) that defines an expiration duration per object prefix and tags.&#x20;
 
 **Procedure**
 

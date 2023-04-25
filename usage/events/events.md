@@ -73,10 +73,10 @@ You can filter the events according to the event severity, timestamp, category, 
 
 ![Event filter example: filter by AlertMuted and DirectoryQuataSet](../../.gitbook/assets/wmng\_events\_filter\_event.png)
 
-****
+
 
 **Related topics**
 
-****[list-of-events.md](list-of-events.md "mention")****
+[list-of-events.md](list-of-events.md "mention")
 
-****[#switch-the-display-time](../../getting-started-with-weka/manage-the-system-using-weka-gui.md#switch-the-display-time "mention")****
+[#switch-the-display-time](../../getting-started-with-weka/manage-the-system-using-weka-gui.md#switch-the-display-time "mention")

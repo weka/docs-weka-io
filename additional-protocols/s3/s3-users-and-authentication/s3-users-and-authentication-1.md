@@ -31,7 +31,7 @@ Use the following command line to add an S3 user account:
 
 `weka s3 service-account add <policy-file>`
 
-The **** system returns an access key and a secret key. If you do not specify a `policy-file`, the S3 service account inherits the IAM policy from the parent S3 user.
+The system returns an access key and a secret key. If you do not specify a `policy-file`, the S3 service account inherits the IAM policy from the parent S3 user.
 
 {% hint style="warning" %}
 The secret key is visible **only once** when adding the S3 service account. You must save the secret key in a safe place for later use.

@@ -38,7 +38,7 @@ Use the following command line to edit an object store:
 | -------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ------------- | ----------- |
 | `name`                     | String   | Name of the object store being created                                                                                                                   | Must be a valid name                       | Yes           | ​           |
 | `new-name`                 | String   | New name for the object store                                                                                                                            | Must be a valid name                       | No            |             |
-| `site`                     | String   | `local` - for tiering+snapshots, `remote` - for snapshots only                                                                                           | `local` or `remote`                        | No            | ``          |
+| `site`                     | String   | `local` - for tiering+snapshots, `remote` - for snapshots only                                                                                           | `local` or `remote`                        | No            |             |
 | `hostname`                 | String   | Object store host identifier, to be used as a default for added buckets                                                                                  | Must be a valid name/IP                    | No            |             |
 | `port`                     | String   | Object store port, to be used as a default for added buckets                                                                                             | Must be a valid name                       | No            |             |
 | `auth-method`              | String   | Authentication method, to be used as a default for added buckets                                                                                         | `None`, `AWSSignature2` or `AWSSignature4` | No            |             |
@@ -161,7 +161,7 @@ Use the following command line to delete an object-store bucket:
 
 **Parameters**
 
-| **Name** | **Type** | **Value**                                       | **Limitations**      | **Mandatory** | **Default** |
-| -------- | -------- | ----------------------------------------------- | -------------------- | ------------- | ----------- |
-| `name`   | String   | Name of the object **** store bucket to delete. | Must be a valid name | Yes           | ​           |
+| **Name** | **Type** | **Value**                                  | **Limitations**      | **Mandatory** | **Default** |
+| -------- | -------- | ------------------------------------------ | -------------------- | ------------- | ----------- |
+| `name`   | String   | Name of the object store bucket to delete. | Must be a valid name | Yes           | ​           |
 

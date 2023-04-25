@@ -34,7 +34,7 @@ The following standard S3 APIs are supported:
 | Maximum length of an S3 IAM user policy                                          | 2048                                                         |
 | Maximum number of S3 IAM user policies                                           | 1024                                                         |
 | Maximum number of S3 regular users                                               | 1024                                                         |
-| Maximum **** number of S3 service accounts                                       | 5000                                                         |
+| Maximum number of S3 service accounts                                            | 5000                                                         |
 | Maximum number of S3 STS credentials                                             | 5000                                                         |
 
 ## Naming limitations
@@ -64,7 +64,7 @@ The following standard S3 APIs are supported:
 The S3 protocol implementation supports the following policy actions:
 
 * `s3:*`\
-  ``**Note**: this wildcard is supported for IAM policies but not for bucket policies
+  **Note**: this wildcard is supported for IAM policies but not for bucket policies
 * `s3:AbortMultipartUpload`
 * `s3:CreateBucket`
 * `s3:DeleteBucket`
