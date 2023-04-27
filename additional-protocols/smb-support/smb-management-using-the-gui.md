@@ -60,7 +60,7 @@ In AWS installations, it is not possible to set a list of SMB service addresses.
 
 5\. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog (2).gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
 
 Once the system completes the configuration process, the server statuses change from not ready (red X icon) to ready (green V icon).
 
@@ -94,7 +94,7 @@ To enable the WEKA storage nodes to join the AD domain, verify that the AD serve
 
 1. In the SMB Cluster Configuration, select **Join**.
 
-![Join the SMB cluster in the Active Directory](../../.gitbook/assets/wmng\_smb\_join\_ad\_button.png)
+![Join the SMB cluster in the Active Directory](<../../.gitbook/assets/wmng\_smb\_join\_ad\_button (1).png>)
 
 2\. In the Join to Active Directory dialog, set the following properties:
 

@@ -46,6 +46,7 @@
   * [Deployment on Azure using Terraform](install/weka-installation-on-azure/deployment-on-azure-using-terraform.md)
   * [Required services and supported regions](install/weka-installation-on-azure/required-services-and-supported-regions.md)
   * [Supported virtual machine types](install/weka-installation-on-azure/supported-virtual-machine-types.md)
+  * [Auto-scale virtual machines in Azure](install/weka-installation-on-azure/auto-scale-virtual-machines-in-azure.md)
   * [Add clients](install/weka-installation-on-azure/add-clients.md)
   * [Troubleshooting](install/weka-installation-on-azure/troubleshooting.md)
 * [WEKA installation on GCP](install/weka-installation-on-gcp/README.md)
@@ -54,7 +55,7 @@
   * [GCP Terraform package description](install/weka-installation-on-gcp/weka-gcp-terraform-package-description.md)
   * [Required services and supported regions](install/weka-installation-on-gcp/required-services-and-supported-regions.md)
   * [Supported machine types and storage](install/weka-installation-on-gcp/supported-machine-types-and-storage.md)
-  * [Auto scale instances in GCP](install/weka-installation-on-gcp/auto-scale-instances-in-gcp.md)
+  * [Auto-scale instances in GCP](install/weka-installation-on-gcp/auto-scale-instances-in-gcp.md)
   * [Add clients](install/weka-installation-on-gcp/add-clients.md)
   * [Troubleshooting](install/weka-installation-on-gcp/troubleshooting.md)
 
