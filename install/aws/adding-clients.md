@@ -98,7 +98,7 @@ When installing on an AWS instance with Elastic Network Adapter (ENA) and a non-
 
 ### Step 3: Add clients to the cluster <a href="#step-3-add-clients-to-cluster" id="step-3-add-clients-to-cluster"></a>
 
-Once the WEKA software is installed, the clients are ready to join the cluster. To add the clients, run the following command line on each of the client instances:
+Once the WEKA software is installed, the clients are ready to join the cluster. To add the clients, run the following command line on each of the new client instances:
 
 ```
 weka local run -e WEKA_HOST=<backend-ip> aws-add-client <client-instance-id>
@@ -112,7 +112,7 @@ On most shells, the following would get the client instance ID and add it to the
 weka local run -e WEKA_HOST=<backend-ip> aws-add-client `curl -s http://169.254.169.254/latest/meta-data/instance-id`
 ```
 
-If successful, running the`aws-add-client` command will display the following line:
+If successful, running the `aws-add-client` command displays the following line:
 
 ```
 Client has joined the cluster
