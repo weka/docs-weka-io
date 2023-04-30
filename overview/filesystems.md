@@ -32,7 +32,7 @@ Thin provisioning is beneficial in various use cases:
 * **Number of files in a single directory:** Up to 6.4 billion (6.4 \* 10^9)
 * **Total capacity with object store:** Up to 14 EB&#x20;
 * **Total SSD capacity:** Up to 512 PB&#x20;
-* **File size:** UP to 4 PB
+* **File size:** Up to 4 PB
 
 ### Encrypted filesystems
 

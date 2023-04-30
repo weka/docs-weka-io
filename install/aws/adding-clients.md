@@ -82,18 +82,18 @@ This is the same step as in the previous method of adding a client.
 
 ### Step 2: Install the WEKA software <a href="#step-2-install-wekaio-software" id="step-2-install-wekaio-software"></a>
 
-To download the WEKA software, go to [https://get.weka.io ](https://get.weka.io/) and select the software version to be downloaded. After selecting the version, select the operating system it is to be installed on and run the download command line as `root`on all the new client instances.
+To download the WEKA software, go to [https://get.weka.io ](https://get.weka.io/) and select the software version. After selecting the version, select the operating system to install and run the download command line as `root` on all the new client instances.
 
 When the download is complete, untar the downloaded package and run the `install.sh` command in the package directory.
 
 {% hint style="success" %}
-**For Example:** If you downloaded version 3.6.1, run`cd weka-3.6.1` and then run `./install.sh`.
+**For Example:** If you downloaded version 3.6.1, run `cd weka-3.6.1` and then run `./install.sh`.
 {% endhint %}
 
 {% hint style="info" %}
 **Note: ENA Driver Notice**
 
-When installing on an AWS instance with Elastic Network Adapter (ENA) and a non-up-to-date kernel, it may be necessary to install the ENA drivers or upgrade to a more recent operating system version. The ENA driver is automatically available on recent operating systems, such as RedHat/Centos 7.4, Ubuntu 16, and Amazon Linux 2017.09.
+When installing on an AWS instance with Elastic Network Adapter (ENA) and a non-up-to-date kernel, it may be necessary to install the ENA drivers or upgrade to a more recent operating system version. The ENA driver is automatically available on operating systems starting with RedHat/Centos 7.4, Ubuntu 16, and Amazon Linux 2017.09.
 {% endhint %}
 
 ### Step 3: Add clients to the cluster <a href="#step-3-add-clients-to-cluster" id="step-3-add-clients-to-cluster"></a>
@@ -106,7 +106,7 @@ weka local run -e WEKA_HOST=<backend-ip> aws-add-client <client-instance-id>
 
 where `<backend-ip>` is the IP address or hostname of one of the backend instances.
 
-On most shells the following would get the client instance ID and add it to the cluster:
+On most shells, the following would get the client instance ID and add it to the cluster:
 
 ```
 weka local run -e WEKA_HOST=<backend-ip> aws-add-client `curl -s http://169.254.169.254/latest/meta-data/instance-id`
