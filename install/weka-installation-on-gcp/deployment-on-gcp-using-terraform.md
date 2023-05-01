@@ -14,8 +14,8 @@ Applying the GCP-Terraform variables file performs the following:
 
 Before installing the WEKA software on GCP, the following prerequisites must be met:
 
-* [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install).&#x20;
-* [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (if you are not using the Terraform already installed on the GCP Console).
+* [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install) (it is pre-installed if you use the Cloud Shell).&#x20;
+* [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (it is pre-installed if you use the Cloud Shell).
 * Obtain the WEKA GCP-Terraform package from [https://github.com/weka/gcp-tf](https://github.com/weka/gcp-tf) and save it to a local directory.&#x20;
 * Initialize the GCP-Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 * The **Compute Engine** and **Workflows API** services must be enabled.
