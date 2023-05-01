@@ -61,8 +61,14 @@ pdsh -R ssh -w "weka0-[0-7]" 'weka local stop default && weka local rm -f defaul
 
 ### Generate resource files
 
-1. Get the resource generator to your local server:\
-   wget [https://github.com/weka/tools/blob/master/install/resources\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py)
+1. Get the resource generator to your local server:
+
+```
+wget 
+https://raw.githubusercontent.com/weka/tools/master/install/resources_generator.py
+
+```
+
 2. Copy the resource generator from your local server to all servers in the cluster:
 
 ```
