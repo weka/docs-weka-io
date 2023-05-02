@@ -8,40 +8,73 @@ description: >-
 
 | Name | Description | Actions |
 | :--- | :--- | :--- |
-| AdminDefault Password | The admin password is still set to the factory default.  | Change the admin user password to ensure only authorized users can access the cluster. |
-| AgentNotRunning | The WekaIO local control agent is not running on a host. | Restart the agent with `service weka-agent start.` |
-| BackendNumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance.  | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the backend host. |
-| BucketHasNoQuorum | Too many compute nodes are down, causing the bucket compute resource to be unavailable. | Check that the compute nodes and their hosts are up and running and fully connected; contact the WekaIO Support Team if issue is not resolved. |
-| BucketUnresponsive | A compute resource has failed, causing system unavailability.  | Check that the compute nodes and their hosts are up and running and fully connected; contact the WekaIO Support Team if issue is not resolved. |
-| ChokingDetected |  High congestion level detected in the cluster. | For more information, refer  to [System Congestion](../system-congestion.md). |
-| ClientNumaBalancingEnabled | A host has automatic NUMA balancing enabled which can negatively impact performance.  | To disable, run `echo 0 > /proc/sys/kernel/numa_balancing` on the client host. |
-| ClockSkew | The clock of a host is skewed in relation to the cluster leader, with a time difference more than the permitted maximum of 30 seconds. | Make sure NTP is configured correctly on the hosts and that their dates are synchronized. |
-| CloudHealth | A host cannot upload events to the WekaIO cloud.  | Check the host has Internet connectivity and is connected to the WekaIO cloud as explained in [WekaIO Support Cloud section](../../support/the-wekaio-support-cloud.md). |
-| ClusterIsUpgrading | Cluster is upgrading. | If the upgrade doesn't finish normally, contact the WekaIO support for assistance. |
-| DataProtection | Some of the system's data is not fully redundant. | Check which node/host/drive is down and act accordingly. |
-| DedicatedWatchdog | A dedicated WekaIO host requires the installation of a  watchdog driver. | Make sure a watchdog is available at /dev/watchdog. For more information, search the WekaIO knowledgebase in the [WekaIO support portal](http://support.weka.io). |
-| DriveDown | A drive is not responding. | Contact WekaIO support to check if the drive should be replaced. |
-| DriveEndurancePercentageUsed | Drive exceeding its life expectancy. | It is recommended to replace the drive before it fails. |
-| DriveEnduranceSparesRemaining | Drive internal spares running too low. | It is recommended to replace the drive before it fails. |
-| DriveNeedsPhaseout | A drive has too many errors. | Phase-out the drive and probably replace it. |
-| FilesystemHasToo ManyFiles | The filesystem storage configuration is not large enough for the size of files and directory entries being stored.  | Increase the max-files for the filesystem; it may be necessary decrease max-files from another filesystem or install more memory. |
-| HangingIOs | Some IOs are hanging on the node acting as a driver/NFS/backend. | Check that the compute nodes and their hosts are up and running, and fully connected. Also check that if a backend object store is configured, it is connected and responsive. Contact the WekaIO Support Team if issue is not resolved. |
-| HighDrivesCapacity | The average capacity of the SSDs is too high.  | Free-up space on the SSDs or [add more SSDs](https://docs.weka.io/v/3.4/usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources) to the cluster. |
-| HugePagesAlloc | WekaIO could not allocate Huge Pages on a host, perhaps because of insufficient memory on the host or if memory is fragmented by usage of other processes. | Reboot the host to avoid memory fragmentation and allow WekaIO to run startIO again. If this fails, verify that the host has enough free memory for use by WekaIO or configure WekaIO to use less memory. |
-| IPConflictDetected | An IP conflict has been detected. | Resolve the conflict of the reported IP. |
-| JumboConnectivity | A host cannot send jumbo frames to any of its cluster peers.  | Check the host network settings and the switch to which it is connected, even if WekaIO seems to be functional, since this will improve performance. |
-| KmsConfigurationError | KMS Configuration Error | Review the KMS credentials, permissions and configuration, as suggested in [KMS management](../../fs/managing-filesystems/kms-management.md). |
-| LicenseError | A license conflict exists. | Make sure the cluster is using a correct license; that the license has not expired; and that the cluster allocated space does not exceed the license. |
-| MismatchedDriveFailureDomain | Drive failure domain does not match the failure domain of its attached host. | Either connect the mismatched drive to a host with a matching failure domain, or re-provision the drive to erase its failure domain. |
-| Negative UnprovisionedCapacity | WekaIO capacity usage changes detected due to cluster upgrade. | One or more of the filesystems need to be resized in order to reclaim capacity; contact the WekaIO Support Team. |
-| NetworkInterfaceLinkDown | A Network interface has link down. | Check the connectivity to the down interface and see if there is anything blocking it. |
-| NoClusterLicense | No license is assigned to the cluster. | Obtain and install a license from get.weka.io. |
-| NodeDisconnected |  A node is disconnected from the cluster.  | Check network connectivity to make sure the node can communicate with the cluster. |
-| NodeTiering Connectivity | A node cannot connect to an object store.  | Check connectivity with the object store and make sure the node can communicate with it. |
-| NotEnoughActiveDrives | There are not enough active failure domains. | Check connectivity, host status  and/or replace problematic drives. |
-| NotEnoughAvailable MemoryForFilesystems | There are not enough working compute nodes in the cluster to store the file and directory entries for all the filesystems in the cluster.  | Either try to decrease the max-files for some of the filesystems or return the dead compute nodes to get their memory back. |
-| NotEnoughConfigured MemoryForFilesystems | The total configured memory bytes for filesystems is insufficient to store the file and directory entries of the filesystems in the cluster.  | Decrease the max-files for some of the filesystems, decrease their capacity or increase the configured RAM of the cluster backend hosts. |
-|  |  |  |
-| OfedVersions | A host Mellanox OFED version ID does not match the one used by the WekaIO container. | Install a supported OFED. If the current version needs to be retained or the alert continues after a supported version is installed, contact the WekaIO Support Team. |
-| PartiallyConnectedNode | A node seems to be only partially connected. | Make sure there is no network connectivity issue. |
-
+| AdminDefaultPassword | Default admin password in use | Change the admin user password to ensure only authorized users can access the cluster. | 
+| AgentNotRunning | The local agent does not run |  Restart the local agent on the specified server using the command ‘service weka-agent start’.
+| ApproachingClientsUnavailability | Approaching connected clients limit | Ensure all backend containers are up or expand the cluster with more backend containers or servers. | 
+| AutoRemoveTimeoutTooLow | Stateless Client auto-remove timeout too low | Remount the host with a higher auto-remove timeout value. | 
+| BackendNumaBalancingEnabled | NUMA balancing is enabled on a backend server | Disable the automatic NUMA balancing by running the command line 'echo 0 > /proc/sys/kernel/numa_balancing' on the backend server. | 
+| BackendVersionsMismatch | Backends mismatch cluster version | Upgrade all the backends to match the cluster's version. | 
+| BlockedJrpcMethod | JRPC method is blocked | Unblock the JRPC method by running the command 'blocked_jrpc_methods_remove' or 'blocked_jrpc_methods_clear' manhole. | 
+| BondInterfaceCompromised | Network high availability interface compromised | Ensure a proper operation of the network configuration, cables, and NICs. | 
+| BucketHasNoQuorum | Too many compute processes are down | Ensure the compute processes on the containers {hosts} are up and running and connected. If the issue is not resolved, contact the Customer Success Team. | 
+| BucketUnresponsive | Compute resource failure | Check the connectivity and status of the drives of the container {leader_hostname} ({leader_hid}) and ensure the compute processes are up and running and connected. If the issue is not resolved, contact the Customer Success Team. | 
+| CPUFrequentStarvation | CPU frequent starvation detected at the last minute | Check the logs of the relevant containers for potential hardware or core allocation problems. | 
+| CPUStarvation | CPU starvation detected at the last minute | Check the logs of the relevant containers for potential hardware problems. | 
+| ChokingDetected | High congestion level | For more information, see the System congestion topic in the documentation. | 
+| ClientNumaBalancingEnabled | NUMA balancing is enabled on a client | Disable the automatic NUMA balancing by running the command line 'echo 0 > /proc/sys/kernel/numa_balancing' on the client. | 
+| ClientVersionsMismatch | Clients mismatch cluster version | Upgrade the clients to the same version as the cluster by running 'weka local upgrade' locally. | 
+| ClockSkew | Clock skew on server | Ensure the NTP is configured correctly on the containers and that their clocks are synchronized. | 
+| CloudHealth | Weka Home disconnected | Check that the server has Internet connectivity and is connected to the Weka Home. See the Weka Home - The Weka support cloud topic in the documentation. | 
+| CloudStatsError | Statistics upload failed | See the event details in the System Events. | 
+| ClusterInitializationError | Cluster initialization error | Search for the underlying problem causing the error and act accordingly to start IO operations. To clear this alert, run 'weka cluster stop-io'. | 
+| ClusterIsUpgrading | Cluster is upgrading | If the upgrade doesn't finish successfully, contact the Customer Success Team. | 
+| DataIntegrity | Data integrity problem found | Contact the Customer Success Team. | 
+| DataProtection | Partial data protection | Check which process, container, or drive is down and act accordingly.
+| DedicatedWatchdog | A dedicated server requires the installation of a hardware watchdog driver. | Ensure a hardware watchdog driver is available at /dev/watchdog. For details, search the Knowledge Base in the Weka support portal. | 
+| DriveCriticalWarnings | Drive critical warnings | Deactivate the drive using the command 'weka cluster drive deactivate' and replace it. | 
+| DriveDown | Drive down | Contact the Customer Success Team to check if the drive requires a replacement. | 
+| DriveEndurancePercentageUsed | Drive exceeds its life expectancy | Replace the specified drive before it fails. | 
+| DriveEnduranceSparesRemaining | Drive internal spares run too low  | Replace the specified drive before it fails. | 
+| DriveNeedsPhaseout | A drive has too many errors | Deactivate the drive using the command 'weka cluster drive deactivate', and probably replace it. | 
+| FaultsEnabled | Faults are enabled | Contact the Customer Success Team. | 
+| FilesystemHasTooManyFiles | Too many files in a filesystem | Increase the filesystem 'max-files' value. If required, decrease the 'max-files' value of another filesystem, or expand the memory. | 
+| FilesystemsThinProvisioningLowSpace | Filesystems thin provisioning low space | Consider adding SSD capacity to this organization containing these filesystems. | 
+| FilesystemsThinProvisioningReserveReached | Filesystems thin provisioning capacity reserve reached | You can create a filesystem or expand the filesystem capacity using the reserved capacity. | 
+| HangingCacheSync | Cache sync is stopped | Reboot the server or remove it from the cluster.
+| HangingIos| Some IOs stop responding| Ensure the compute processes are up and running and connected. If a backend object store is configured, ensure it is connected and responsive. If the issue is not resolved, contact the Customer Success Team. | 
+| HighDrivesCapacity  | SSD capacity overflow | Free up space on the SSDs or add more SSDs to the cluster. To add SSDs, see the Exapnd specific resources of a container topic in the documentation. | 
+| HighLevelOfUnreclaimedCapacityInObjectStore | High level of unreclaimed space in an object store |  | 
+| JumboConnectivity | A container cannot send jumbo frames | Check the container network settings and the switch to which the container is connected, and ensure to enable jumbo frames. This setting improves performance. | 
+| KMSError | KMS Error | Review the KMS configuration and connectivity. | 
+| LegacyManualOverridesActive  | Legacy manual overrides are active | Contact the Customer Success Team. | 
+| LicenseError | License error | Ensure the cluster uses the correct license, the license has not expired, and the allocated space does not exceed the license limits. | 
+| LowDiskSpace | Low disk space | See the event details in the System Events. | 
+| ManualOverridesActive | Manual overrides are active | Contact the Customer Success Team. | 
+| ManualOverridesForced | Manual overrides are forced  | Contact the Customer Success Team. | 
+| MismatchedDriveFailureDomain | A drive failure domain does not match the failure domain of its attached container | Do one of the following: a) Connect the mismatched drive to a container with a matching failure domain. b) Re-provision the drive to erase its failure domain. | 
+| NegativeUnprovisionedCapacity | Negative unprovisioned capacity | Resize one or more filesystems to reclaim capacity. For more information, contact the Customer Success Team. | 
+| NetworkInterfaceLinkDown | Network interface link status down | Check the connectivity to the specified network interface. Verify that nothing blocks it. | 
+| NoClusterLicense | No license assigned | Obtain and install a license from get.weka.io. | 
+| NodeBlacklisted | A process cannot rejoin the cluster | To enable the process to rejoin the cluster, whitelist it by running the command ‘weka debug blacklist disable’. | 
+| NodeDisconnected | Process disconnected | Check network connectivity to ensure the processes can communicate with the cluster. | 
+| NodeNetworkUnstable | A process with an unstable network detected | Ensure proper network connectivity in the cluster. If the problem is not resolved, contact the Customer Success Team. | 
+| NodeRDMANotActive | PA process with supported RDMA is Inactive | Ensure Mellanox OFED version 4.6 or later is installed on the server and at least one RDMA-capable device exists. | 
+| NodeTieringConnectivity | A process cannot Connect to an object store | Check the connectivity with the object store and ensure the process communicates with it. | 
+| NotEnoughActiveDrives | Reduced data protection | Check the connectivity and server status. Replace failed drives and expand the cluster with new failure domains. | 
+| PartialConnectivityTrackingDisabled | Partial connectivity tracking is disabled | To turn on the grim reaper, please Contact the Weka Support Team. | 
+| PartiallyConnectedNode | A partially connected process detected  | Ensure proper network connectivity in the cluster. If the problem is not resolved, contact the Customer Success Team. | 
+| PassedClientsAvailabilityThreshold | Reached connected clients limit | Add more backend containers or servers to the cluster, check whether the backends are down, or disconnect some clients. | 
+| PerformanceDegradedLowRAM | Server low RAM | Ensure all the compute processes are up. Add more servers to the cluster or add RAM to the backend servers. | 
+| QuotasHardLimitReached | Directory quota hard limit exceeded | Run 'weka fs quota list' to get the list of directories exceeding their hard quota limits. Clear some space for these directories or increase their hard quota limit. | 
+| QuotasSoftLimitReached | Directory quota soft limit exceeded | Run 'weka fs quota list' to get the list of directories exceeding their soft quota limits. Clear some space for these directories or increase their soft quota limit. | 
+| ResourcesNotApplied | Resource changes are not applied | Apply the resource changes by running the command 'weka cluster container apply <host-id>'. | 
+| SSDCapacityDiscrepancy | Used SSD capacity mismatches the expected range | Monitor the compute processes' stability and contact the Customer Success Team. | 
+| SystemDefinedTLS | TLS certificate is not user-defined | Replace the auto-generated self-signed certificate with a user-defined certificate by running the command 'weka security tls set'. | 
+| TLSCertificateExpired | TLS certificate expired | Replace the existing certificate by running the command 'weka security tls set'. | 
+| TLSCertificateExpiresSoon | TLS certificate is about to expire | Replace the existing certificate by running the command 'weka security tls set'. | 
+| TieredFilesystemOverfillingSSD | Tiered filesystems' SSD capacity overfilling | Resolve tiering connectivity problems or increase the upload bandwidth. | 
+| TraceDumperDown | Trace dumper is down | Contact the Customer Success Team to restart the trace dumper.' | 
+| TracesDisabled | Traces are disabled | To turn the cluster traces, run the command 'weka debug traces start'. For more information, see the Traces management topic in the documentation. | 
+| TracesFreezePeriodActive | Freeze traces is active | If the problem persists after the case is resolved, contact the Customer Success Team. | 
+| UdpModePerformanceWarning | A backend container is configured in UDP mode | If this is a misconfiguration, add network devices to the specified backend container using the command ‘weka cluster container net add’. | 
+| UnwritableDisksConfigured | A drive is set to unwritable | If the drive remains unwritable after maintenance, contact the Customer Success Team. | 
