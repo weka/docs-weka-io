@@ -79,7 +79,7 @@ Once you create an interface group, set its ports.
 
 ![Group IPs table](../../.gitbook/assets/wmng\_add\_nfs\_group\_ips\_add.png)
 
-3. In the Add Rang IP dialog, set the relevant IP range.
+3. In the Add Range IP dialog, set the relevant IP range.
 4. Select **Save**.
 
 ![Add range IP dialog](../../.gitbook/assets/wmng\_add\_nfs\_group\_ips\_dialog.png)

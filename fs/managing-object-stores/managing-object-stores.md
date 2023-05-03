@@ -69,7 +69,15 @@ Add object store buckets to be used for tiering or snapshots.
    * **Type**: Select the type of object store.
    * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
+{% tabs %}
+{% tab title="AWS" %}
 ![Create object store bucket](../../.gitbook/assets/wmng\_create\_obs\_bucket.png)
+{% endtab %}
+
+{% tab title="GCP" %}
+<figure><img src="../../.gitbook/assets/wmng_obs_on_gcp.png" alt=""><figcaption><p>Create object store bucket on GCP</p></figcaption></figure>
+{% endtab %}
+{% endtabs %}
 
 4. To validate the connection to the object store bucket, select **Validate**.
 5. Optional**:** If your deployment requires a specific upload and download configuration, select **Advanced**, and set the parameters:
