@@ -38,7 +38,7 @@ Editing the default object store provides you with the following additional adva
 If using the AWS object store type and access from the WEKA EC2 instances to the object store is granted by the IAM roles, it is not mandatory to set the access and secret keys in the Edit Object Store dialog.
 {% endhint %}
 
-![Edit the default-remote object store ](../../.gitbook/assets/wmng\_edit\_default\_obs.gif)
+![Edit the default-remote object store ](<../../.gitbook/assets/wmng\_edit\_default\_obs (1).gif>)
 
 ## View object store buckets <a href="#view-object-store-buckets" id="view-object-store-buckets"></a>
 

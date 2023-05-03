@@ -16,7 +16,7 @@ The bell icon on the top bar indicates the number of existing active alerts in t
 
 If there are no alerts (active or muted), the alerts pane is empty, and the bell does not specify any number.
 
-![View alerts](<../../.gitbook/assets/wmng\_alerts\_overview (1).png>)
+![View alerts](../../.gitbook/assets/wmng\_alerts\_overview.png)
 
 **Procedure**
 

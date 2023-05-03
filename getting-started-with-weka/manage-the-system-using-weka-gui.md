@@ -36,7 +36,7 @@ WEKA GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![WEKA GUI overview](<../.gitbook/assets/wmng\_gui\_overview\_mb (1).gif>)
+![WEKA GUI overview](../.gitbook/assets/wmng\_gui\_overview.gif)
 
 ## Access the WEKA GUI
 
@@ -135,7 +135,7 @@ The top bar indicates the total capacity provisioned for all filesystems and the
 
 The bottom bar indicates the total SSD capacity available in the system, the provisioned capacity, and the used capacity.
 
-![Capacity widget](../.gitbook/assets/wmng\_dashboard\_Capacity\_widget.png)
+![Capacity widget](<../.gitbook/assets/wmng\_dashboard\_Capacity\_widget (1).png>)
 
 {% hint style="info" %}
 Selecting the Capacity title displays the filesystems page.
