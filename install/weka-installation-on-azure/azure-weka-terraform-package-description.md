@@ -2,7 +2,7 @@
 
 The [Azure-WEKA Terraform package](https://github.com/weka/terraform-azure-weka) contains modules and examples to customize the WEKA cluster installation on Azure. The default protocol deployed using the Terraform package is POSIX. The Azure-WEKA Terraform package supports the following deployment types:
 
-* **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform for downloading the WEKArelease from the public [get.weka.io](https://get.weka.io) service. The following examples are provided:
+* **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform for downloading the WEKA release from the public [get.weka.io](https://get.weka.io) service. The following examples are provided:
   * Public network.
   * Public network with an existing network.
   * Public network with multiple clusters.

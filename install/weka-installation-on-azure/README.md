@@ -11,7 +11,7 @@ The WEKA® Data Platform on Microsoft Azure provides a fast and scalable platfor
 
 WEKA provides a ready-to-deploy Terraform package that you can customize for installing the WEKA cluster on Azure. The WEKA cluster is deployed with a multiple containers architecture, in which each container serves a single process type: Compute, Drives, or Frontend.
 
-The WEKA cluster is deployed in a single virtual network (VNet, similar to VPC in other clouds), where peering is not required. Each VNet has subnets, routes, firewalls, and an internal DNS. The networking uses UDP mode with an MTU of 1500 bytes, which means only one NIC per virtual machine is used.
+The WEKA cluster is deployed in a single virtual network (VNet, similar to VPC in other clouds), where peering is not required. Each VNet has subnets, routes, firewalls, and an internal DNS. The networking supports MTU 3900 or 1500 in DPDK and UDP modes.
 
 Depending on the required security level, you can deploy the WEKA cluster using the Terraform package on one of the following subnet types:
 
