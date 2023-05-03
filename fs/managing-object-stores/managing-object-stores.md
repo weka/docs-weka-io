@@ -69,15 +69,23 @@ Add object store buckets to be used for tiering or snapshots.
    * **Type**: Select the type of object store.
    * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
-![Create object store bucket](../../.gitbook/assets/wmng\_create\_obs\_bucket.png)
+{% tabs %}
+{% tab title="AWS" %}
+![Create object store bucket on AWS](../../.gitbook/assets/wmng\_create\_obs\_bucket.png)
+{% endtab %}
+
+{% tab title="GCP" %}
+<figure><img src="../../.gitbook/assets/wmng_obs_on_gcp.png" alt=""><figcaption><p>Create object store bucket on GCP</p></figcaption></figure>
+{% endtab %}
+{% endtabs %}
 
 5. To validate the connection to the object store bucket, select **Validate**.
 6. Optional**:** If your deployment requires a specific upload and download configuration, select **Advanced**, and set the parameters:
    * **Download Bandwidth**: Object store download bandwidth limitation per core (Mbps).
    * **Upload Bandwidth**: Object store upload bandwidth limitation per core (Mbps).
-   * **Max concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
-   * **Max concurrent Uploads**: Maximum number of uploads concurrently performed on this object store in a single IO node.
-   * **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
+   * **Max Concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
+   * **Max Concurrent Uploads**: Maximum number of uploads concurrently performed on this object store in a single IO node.
+   * **Max Concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
    * **Enable Upload Tags**: Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not.
 
 ![Advanced upload and download configuration](../../.gitbook/assets/wmng\_create\_obs\_advanced.png)
