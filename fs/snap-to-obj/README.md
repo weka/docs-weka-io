@@ -102,7 +102,7 @@ When uploading a snapshot to an object store, adhere to the following requiremen
 
 ### Upload one snapshot at a time
 
-To achieve fast upload and prevent bandwidth competition with other snapshot uploads to the same object store, you can upload only one snapshot at a time to the object store. However, you can upload one snapshot to a local object store and one snapshot to a remote object store in parallel.
+To achieve fast upload and prevent bandwidth competition with other snapshot uploads to the same object store, you can upload only one snapshot at a time to the object store. However, you can upload one snapshot to a local object store and one to a remote object store in parallel.
 
 ### A writeable snapshot cannot be uploaded
 
@@ -116,9 +116,9 @@ Uploading all snapshots or the same snapshots to a local object store is not req
 
 ### No deletion in parallel to snapshot upload
 
-You cannot delete a snapshot in parallel to a snapshot upload to the same filesystem. Because uploading a snapshot to a remote object store can take a while, it is recommended to delete the required snapshots before uploading to the remote object store.
+You cannot delete a snapshot parallel to one uploaded to the same filesystem. Because uploading a snapshot to a remote object store can take a while, it is recommended to delete the required snapshots before uploading to the remote object store.
 
-This requirement is more important in a scenario when uploading snapshots to both the local and remote object stores in parallel. Consider the following:
+This requirement is more important when uploading snapshots to the local and remote object stores in parallel. Consider the following:
 
 1. A remote upload is in progress.
 2. A snapshot is deleted.
@@ -128,37 +128,37 @@ In this scenario, the local snapshot upload waits for the pending deletion of th
 
 ### Pause or abort a snapshot upload
 
-If required, you can pause or abort a snapshot upload using commands described in the [background tasks](../../usage/background-tasks.md#pause-resume-abort-a-background-task) section.
+If required, you can pause or abort a snapshot upload using the commands described in the [background tasks](../../usage/background-tasks.md#pause-resume-abort-a-background-task) section.
 
 ## Incremental snapshots
 
 Incremental snapshots are point-in-time backups for filesystems. When taken, they consist only of the changes since the last snapshot. When you download and restore an incremental snapshot to a live filesystem, the system reconstructs the filesystem on-the-fly with the changes since the previous snapshot.
 
-This capability for filesystem snapshots potentially makes them more cost-effective because you do not have to update the entire filesystem with each snapshot, you update only the changes since the last snapshot.
+This capability for filesystem snapshots potentially makes them more cost-effective because you do not have to update the entire filesystem with each snapshot. You update only the changes since the last snapshot.
 
 Incremental snapshots download and restore are only available through the CLI. It is recommended to download the Incremental snapshots in chronological order. Only snapshots uploaded from a 4.0 version or above can be downloaded as increments.
 
 ## Delete snapshots residing on an object store
 
-Deleting a snapshot from a filesystem that uploaded it, removes all of its data from the local object store bucket. It does not remove any data from a remote object store bucket.
+Deleting a snapshot from a filesystem that uploaded it removes all of its data from the local object store bucket. It does not remove any data from a remote object store bucket.
 
 {% hint style="danger" %}
-If the snapshot has been (or is) downloaded and used by a different filesystem, that filesystem stops functioning correctly, data can be unavailable and errors can occur when accessing the data.
+If the snapshot has been (or is) downloaded and used by a different filesystem, that filesystem stops functioning correctly, data can be unavailable, and errors can occur when accessing the data.
 
 Before deleting the downloaded snapshot, it is recommended to either un-tier or migrate the filesystem to a different object store bucket.
 {% endhint %}
 
 ## Snap-To-Object and tiering
 
-Snap-To-Object and tiering use SSDs and object stores for the storage of data. To save both storage and performance resources, the WEKA system uses the same paradigm for holding SSD and object store data for both Snap-To-Object and tiering.
+Snap-To-Object and tiering use SSDs and object stores for the storage of data. The WEKA system uses the same paradigm for holding SSD and object store data for both Snap-To-Object and tiering to save storage and performance resources.
 
 You can implement this paradigm for each filesystem using one of the following use cases:
 
 * **Data resides on the SSDs only, and the object store is used only for the various Snap-To-Object use cases, such as backup, archiving, and bursting:**\
-  The allocated SSD capacity must be identical to the filesystem size for each filesystem. The data retention period must be defined as the longest time possible (for example, five years).\
-  The Tiering Cue must be defined using the same considerations based on IO patterns. In this case, the applications always work with a high-performance SSD storage system and use the object store only as a backup device.
+  The allocated SSD capacity must be identical to the filesystem size (total capacity) for each filesystem. The drive retention period must be defined as the longest time possible (which is 60 months).\
+  The Tiering Cue must be defined using the same considerations based on IO patterns. In this case, the applications always work with a high-performance SSD storage system and use the object store only as a backup device.&#x20;
 * **Snap-To-Object on filesystems is used with active tiering between the SSDs and the object store:**\
-  Objects in the object store are used for tiering all data and for data backup using Snap-To-Object. If possible, the WEKA system uses the same object for both purposes, eliminating the unnecessary need to acquire additional storage and copy data.
+  Objects in the object store are used for tiering all data and backup using Snap-To-Object. If possible, the WEKA system uses the same object for both purposes, eliminating the unnecessary need to acquire additional storage and copy data.
 
 {% hint style="info" %}
 **Note:** When using Snap-To-Object to rehydrate data from an object store, some of the metadata may still be in the object store until it is accessed for the first time.
