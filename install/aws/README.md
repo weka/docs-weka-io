@@ -64,7 +64,7 @@ The Weka system is a distributed cluster protected from 2 or 4 failure domain fa
 
 #### Instance failure
 
-If an instance failure occurs, the Weka system [rebuilds](../../overview/about.md#distributed-network-scheme) the data. [Add a new instance to the cluster](../../usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md) to regain the reduced compute and storage due to the instance failure.
+If an instance failure occurs, the Weka system [rebuilds](../../overview/about.md#distributed-network-scheme) the data. [Add a new instance to the cluster](broken-reference) to regain the reduced compute and storage due to the instance failure.
 
 #### Upload snapshots to S3
 

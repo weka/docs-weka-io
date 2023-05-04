@@ -47,7 +47,7 @@ It is possible to configure the client OS to automatically mount the filesystem 
 
 ### Stage 1: Install the WEKA software
 
-Verify that the WEKA software is installed on the client according to the installation instructions. For further information, see [Obtaining the WEKA Install File](obtaining-the-weka-install-file.md) and [Stage 1 in WEKA System Installation Process.](using-cli.md#stage-1-installation-of-the-wekaio-software-on-each-host)
+Verify that the WEKA software is installed on the client according to the installation instructions. For further information, see [Obtaining the WEKA Install File](obtaining-the-weka-install-file.md) and [Stage 1 in WEKA System Installation Process.](broken-reference)
 
 {% hint style="info" %}
 **Note:** All clients in a WEKA system cluster must use the same software version as the backends or a maximum of one version back. The backend containers must run the same WEKA software version except during upgrades (as managed by the upgrade process).

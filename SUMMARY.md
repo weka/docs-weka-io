@@ -10,7 +10,7 @@
 * [WEKA networking](overview/networking-in-wekaio.md)
 * [Data lifecycle management](overview/data-storage.md)
 * [WEKA client and mount modes](overview/weka-client-and-mount-modes.md)
-* [WEKA containers architecture overview](overview/weka-containers-architecture-overview.md)
+* [WEKA multi-container backend architecture overview](overview/weka-containers-architecture-overview.md)
 * [Glossary](overview/glossary.md)
 
 ## Getting Started with WEKA
@@ -24,13 +24,12 @@
 ## Planning and Installation <a href="#install" id="install"></a>
 
 * [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts.md)
-* [WEKA installation on bare metal](install/bare-metal/README.md)
+* [WEKA system installation in a bare metal environment](install/bare-metal/README.md)
   * [Plan the WEKA system Installation](install/bare-metal/planning-a-weka-system-installation.md)
   * [Prepare the system for WEKA software installation](install/bare-metal/setting-up-the-hosts/README.md)
     * [Enable the SR-IOV](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Obtain the WEKA software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
-  * [WEKA system installation with multiple containers](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
-  * [WEKA legacy system installation process](install/bare-metal/using-cli.md)
+  * [WEKA multi-container backend installation](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
   * [Add clients](install/bare-metal/adding-clients-bare-metal.md)
 * [WEKA installation on AWS](install/aws/README.md)
   * [Self-service portal](install/aws/self-service-portal.md)
@@ -162,8 +161,7 @@
   * [Manage organizations using the CLI](usage/organizations/organizations-1.md)
   * [Mount authentication for organization filesystems](usage/organizations/organizations-2.md)
 * [Expand and shrink cluster resources](usage/expanding-and-shrinking-cluster-resources/README.md)
-  * [Add a backend server in a multiple containers architecture](usage/expanding-and-shrinking-cluster-resources/add-a-backend-server-in-a-multiple-containers-architecture.md)
-  * [Add a backend server in a legacy architecture](usage/expanding-and-shrinking-cluster-resources/stages-in-adding-a-backend-host.md)
+  * [Add a backend server](usage/expanding-and-shrinking-cluster-resources/add-a-backend-server.md)
   * [Expand specific resources of a container](usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrink a cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
 * [Background tasks](usage/background-tasks.md)

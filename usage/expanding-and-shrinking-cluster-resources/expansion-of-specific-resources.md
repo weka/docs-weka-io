@@ -43,7 +43,7 @@ To change the memory of `container-id 0` to 1.5 GB, run the following commands:
 
 </details>
 
-For more details and options, see [#9.-configure-the-memory-optional](../../install/bare-metal/using-cli.md#9.-configure-the-memory-optional "mention").
+For more details and options, see [Broken link](broken-reference "mention").
 
 ## Modify the network configuration
 
@@ -66,7 +66,7 @@ To add another network device to `container-id 0`, run the following commands:
 
 </details>
 
-For more details and options, see [#6.-configure-the-networking](../../install/bare-metal/using-cli.md#6.-configure-the-networking "mention").
+For more details and options, see [Broken link](broken-reference "mention").
 
 ## Modify the container IP addresses
 
@@ -99,11 +99,11 @@ If the cluster uses InfiniBand and Ethernet network technologies, you can define
 
 Adding CPU cores to the cluster can only be done on a deactivated container.
 
-For more details and options, see [#8.-configure-the-cpu-resources](../../install/bare-metal/using-cli.md#8.-configure-the-cpu-resources "mention").
+For more details and options, see [Broken link](broken-reference "mention").
 
 ## Expand SSDs only
 
-Follow the instructions appearing in [Configuration of SSDs](../../install/bare-metal/using-cli.md#stage-6-configuration-of-ssds).
+Follow the instructions appearing in [Configuration of SSDs](broken-reference).
 
 ## Modify resources on a local container
 

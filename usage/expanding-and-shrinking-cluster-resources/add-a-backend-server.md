@@ -1,10 +1,10 @@
-# Add a backend server in a multiple containers architecture
+# Add a backend server
 
-Expanding a cluster in a multiple container architecture with a new backend server is similar to the WEKA system installation process in a multiple containers architecture.
+Expanding a cluster in a multi-container backend architecture with a new server is similar to the WEKA multi-container backend installation process.
 
 Adding a server to the cluster includes discovering the existing cluster resources, generating the resource files, creating containers using the resource files, and adding the SSDs to the new server.
 
-<figure><img src="../../.gitbook/assets/add_server_multi.gif" alt=""><figcaption><p>Adding a server to the cluster in a multiple containers architecture</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/add_server_multi.gif" alt=""><figcaption><p>Adding a server to the cluster in a multi-container backend architecture</p></figcaption></figure>
 
 ### Before you begin
 

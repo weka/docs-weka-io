@@ -80,7 +80,7 @@ In a typical WEKA system configuration, the WEKA backend servers access the netw
 **Note:** To run both functions on the same physical interface, contact the Customer Success Team.
 {% endhint %}
 
-The high-performance network used to connect all the backend servers must be DPDK-based. This internal WEKA network also requires a separate IP address space (see [Network Planning](../install/bare-metal/planning-a-weka-system-installation.md#network-planning) and [Configuration of Networking](../install/bare-metal/using-cli.md#stage-5-configuration-of-networking)). The WEKA system maintains a separate ARP database for its IP addresses and virtual functions and does not use the kernel or operating system ARP services.
+The high-performance network used to connect all the backend servers must be DPDK-based. This internal WEKA network also requires a separate IP address space (see [Network Planning](../install/bare-metal/planning-a-weka-system-installation.md#network-planning) and [Configuration of Networking](broken-reference)). The WEKA system maintains a separate ARP database for its IP addresses and virtual functions and does not use the kernel or operating system ARP services.
 
 #### Backend servers with DPDK-supporting Mellanox NICs
 

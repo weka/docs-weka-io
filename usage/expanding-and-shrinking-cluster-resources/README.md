@@ -9,7 +9,7 @@ A WEKA cluster is a collection of backend servers configured with containers, SS
 * **Expansion:** To increase the performance and capacity of your cluster, you can expand your cluster by adding new servers to the cluster and configuring new resources anytime after installing and connecting them to the network on the same subnet as the cluster.
 * **Shrinking:** If you want to save the cluster's costs and the performance degradation does not affect your business, you can shrink the cluster by removing SSDs and backend servers.
 
-The expansion and shrinking procedures only apply to homogeneous WEKA clusters in which all cluster servers are similar and have the same number of cores, memory, SSD capacity per server, and servers per failure domain (if any).
+The expansion and shrinking procedures only apply to homogeneous WEKA clusters in which all the cluster servers are similar and have the same number of cores, memory, SSD capacity per server, and servers per failure domain (if any).
 
 {% hint style="info" %}
 **Notes:**

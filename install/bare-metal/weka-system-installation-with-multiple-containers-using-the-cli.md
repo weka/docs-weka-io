@@ -1,11 +1,11 @@
 ---
 description: >-
-  This page provides a detailed workflow for WEKA system installation with
-  multiple containers using the CLI. These are complementary details for the
-  quick installation guide.
+  This page provides a detailed workflow for WEKA multi-container backend
+  installation. These are complementary details for the quick installation
+  guide.
 ---
 
-# WEKA system installation with multiple containers
+# WEKA multi-container backend installation
 
 ## Workflow
 
@@ -107,28 +107,15 @@ weka cluster create <hostnames> [--host-ips <ips | ip+ip+ip+ip>]
 | `hostnames` | Space-separated strings      | <p>Hostnames or IP addresses.<br>If port 14000 is not the default for the drives, you can specify hostnames:port or ips:port. </p>                                                                                                                                                                                      | Need at least 6 strings, as this is the minimal cluster size | Yes           |                                                 |
 | `host-ips`  | Comma-separated IP addresses | IP addresses of the management interfaces. Use a list of `ip+ip` addresses pairs of two cards for HA configuration. In case the cluster is connected to both IB and Ethernet, it is possible to set up to 4 management IPs for redundancy of both the IB and Ethernet networks using a list of `ip+ip+ip+ip` addresses. | The same number of values as in `hostnames`.                 | No            | IP of the first network device of the container |
 
-
-
 {% hint style="info" %}
-**Note:** It is possible to use either a hostname or an IP address; this string serves as the identifier of the container in subsequent commands.
-{% endhint %}
+**Notes:**
 
-{% hint style="info" %}
-**Note:** If a hostname is used, make sure that the hostname to IP resolution mechanism is reliable. A failure of this mechanism causes a loss of service in the cluster. It is recommended to add the hostnames to `/etc/hosts`.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** After the successful completion of this command, the cluster is in the initialization phase, and some commands can only run in this phase.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** For configuring HA, at least two cards must be defined for each container.
-{% endhint %}
-
-On successful completion of the formation of the cluster, every container receives a container-ID. To display the list of the containers and IDs, run `weka cluster container`.
-
-{% hint style="info" %}
-**Note:** In IB installations the `--containers-ips` parameter must specify the IP addresses of the IPoIB interfaces.
+* It is possible to use a hostname or an IP address. This string serves as the container's identifier in subsequent commands.
+* If a hostname is used, ensure the hostname to IP resolution mechanism is reliable. A failure of this mechanism causes a loss of service in the cluster. It is recommended to add the hostnames to `/etc/hosts`.
+* Once the cluster creation is successfully completed, the cluster is in the initialization phase, and some commands can only run in this phase.
+* To configure high availability (HA), at least two cards must be defined for each container.
+* On successful completion of the formation of the cluster, every container receives a container-ID. To display the list of the containers and IDs, run `weka cluster container`.
+* In IB installations the `--containers-ips` parameter must specify the IP addresses of the IPoIB interfaces.
 {% endhint %}
 
 ### 6. Configure the SSD drives
