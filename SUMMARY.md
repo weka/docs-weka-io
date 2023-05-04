@@ -10,7 +10,7 @@
 * [WEKA networking](overview/networking-in-wekaio.md)
 * [Data lifecycle management](overview/data-storage.md)
 * [WEKA client and mount modes](overview/weka-client-and-mount-modes.md)
-* [WEKA multi-container backend architecture overview](overview/weka-containers-architecture-overview.md)
+* [WEKA multi-container backend (MCB) architecture overview](overview/weka-containers-architecture-overview.md)
 * [Glossary](overview/glossary.md)
 
 ## Getting Started with WEKA

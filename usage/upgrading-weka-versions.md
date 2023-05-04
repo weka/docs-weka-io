@@ -78,12 +78,12 @@ Before upgrading the cluster, ensure the following prerequisites:
 2. Ensure the source version is configured in an MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the source version from the legacy architecture to MCB.
 3. All the backend servers are online.
 4. Any rebuild has been completed.
-5. There are no outstanding alerts that haven't been addressed.
+5. There are no outstanding alerts that still need to be addressed.
 6. There is at least 4 GB of free space in the `/opt/weka` directory.
 7. Verify that no stateful clients are connected to the cluster.
 
 {% hint style="info" %}
-**Note:** If you plan a multi-hop version upgrade, once an upgrade is done, a background process of converting metadata to a new format may occur (in some versions). This upgrade takes several minutes to complete before another upgrade can start. You can monitor the progress using the `weka status` CLI command and check if there is a `data upgrade` task in a `RUNNING` state.
+**Note:** If you plan a multi-hop version upgrade, once an upgrade is done, a background process of converting metadata to a new format may occur (in some versions). This upgrade takes several minutes to complete before another upgrade can start. You can monitor the progress using the `weka status` CLI command and check if a data upgrade task is in a `RUNNING` state.
 {% endhint %}
 
 ### 2. Prepare the cluster for upgrade&#x20;
@@ -102,7 +102,7 @@ weka version get 4.2.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
 
 ### 3. Prepare the backend servers for upgrade (optional)
 
-When working with many backend servers, it is possible to prepare them separately from the upgrade process in advance to minimize the total upgrade time. For a small number of backend servers, this step is not required.&#x20;
+When working with many backend servers, preparing them separately from the upgrade process in advance is possible to minimize the total upgrade time. For a small number of backend servers, this step is not required.&#x20;
 
 The preparation phase prepares all the connected backend servers for the upgrade, which includes downloading the new version and getting it ready to be applied.
 
@@ -116,21 +116,21 @@ Once a new software version is installed on one of the backend servers, upgrade 
 
 Where `<new-version>` is the new version's name (for example,`4.2.0`).
 
-The upgrade command skips the download and preparation operations if you already ran the preparation step.
+If you already ran the preparation step, the upgrade command skips the download and preparation operations.
 
 You can control the upgrade window time by setting the following parameters in the `upgrade` command:
 
 **Parameters**
 
-| **Name**                                 | **Type** | **Value**                                                                                                           | **Limitations** | **Mandatory**             | **Default** |
-| ---------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------- | --------------- | ------------------------- | ----------- |
-| `--stop-io-timeout`                      | Integer  | Maximum time in seconds to wait for IO to stop successfully                                                         |                 | No                        | 90s         |
-| `--container-version-change-timeout`     | Integer  | Maximum time in seconds to wait for a container version update                                                      |                 | No                        | 180s        |
-| `--disconnect-stateless-clients-timeout` | Integer  | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them    |                 | No                        | 60s         |
-| `--prepare-only`                         | Boolean  | Download and prepare a new software version across all servers in the cluster without performing the actual upgrade |                 | No                        | False       |
-| `--health-check-timeout`                 | String   | Maximum time in seconds to wait for the health check to complete                                                    |                 | No                        | 10s         |
-| `--container`                            | String   | The container from which to run the upgrade.                                                                        |                 | Yes for MBC configuration |             |
-| `--mode`                                 | String   | <p>The method to run the upgrade. <br>For a non-disruptive upgrade, set <code>ndu</code>.</p>                       |                 | Yes for NDU               |             |
+| **Name**                                 | **Type** | **Value**                                                                                                            | **Limitations** | **Mandatory**              | **Default** |
+| ---------------------------------------- | -------- | -------------------------------------------------------------------------------------------------------------------- | --------------- | -------------------------- | ----------- |
+| `--stop-io-timeout`                      | Integer  | Maximum time in seconds to wait for IO to stop successfully.                                                         |                 | No                         | 90s         |
+| `--container-version-change-timeout`     | Integer  | Maximum time in seconds to wait for a container version update.                                                      |                 | No                         | 180s        |
+| `--disconnect-stateless-clients-timeout` | Integer  | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them.    |                 | No                         | 60s         |
+| `--prepare-only`                         | Boolean  | Download and prepare a new software version across all servers in the cluster without performing the actual upgrade. |                 | No                         | False       |
+| `--health-check-timeout`                 | String   | Maximum time in seconds to wait for the health check to complete                                                     |                 | No                         | 10s         |
+| `--container`                            | String   | The container from which to run the upgrade.                                                                         |                 | Yes, for MCB configuration |             |
+| `--mode`                                 | String   | <p>The method to run the upgrade. <br>For a non-disruptive upgrade, set <code>ndu</code>.</p>                        |                 | Yes for NDU                |             |
 
 {% hint style="info" %}
 **Note:** To run the upgrade command, ensure you are logged in as a Cluster Admin (using a `weka user login`).
