@@ -6,52 +6,53 @@ description: >-
 
 # WEKA CSI Plugin
 
-The [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md) (CSI) is a standard for exposing arbitrary block and file storage systems to containerized workloads on Container Orchestration Systems (COs) like Kubernetes.
+The Container Storage Interface (CSI) is a standard for exposing arbitrary block and file storage systems to containerized workloads on Container Orchestration Systems (COs) like Kubernetes. For more details, see the [CSI standard specifications](https://github.com/container-storage-interface/spec/blob/master/spec.md).
 
 The WEKA CSI Plugin provides the creation and configuration of persistent storage external to Kubernetes. CSI replaces plugins developed earlier in the Kubernetes evolution. It replaces the `hostPath` method to expose WEKA mounts as Kubernetes volumes.
 
 ### Interoperability
 
-* CSI protocol: 1.0-1.2
-* Kubernetes: 1.18 - 1.2
-* WEKA: 3.8 and up
-* AppArmor is not supported yet
+* CSI protocol: 1.0-1.2.
+* Kubernetes: 1.18 - 1.2x.
+* WEKA: V3.13 and up. To get all features, WEKA V4.2 and up is required.
+* SELinux supported (AppArmor for Ubuntu is not supported yet).
 
 {% hint style="info" %}
-**Note:** Quota enforcement on persistent volumes requires WEKA version 3.13 and up
+**Notes:**
+
+* Quota enforcement on directory backed persistent volumes requires WEKA version 3.13 and up.
+* Quota enforcement on snapshot backed persistent volumes requires WEKA version 4.2 and up.
 {% endhint %}
 
-### Prerequisites
-
-* The privileged mode must be allowed on the Kubernetes cluster
-* The following Kubernetes feature gates must be enabled: DevicePlugins, CSINodeInfo, CSIDriverRegistry, ExpandCSIVolumes (if not changed, they should be enabled by default)
-* A WEKA cluster is installed and accessible from the Kubernetes worker nodes
-* The WEKA client is installed on the Kubernetes worker nodes
-  * It is recommended to use a [WEKA client which is part of the cluster](../install/bare-metal/adding-clients-bare-metal.md#adding-clients-which-are-always-part-of-the-cluster) rather than a [stateless client](../install/bare-metal/adding-clients-bare-metal.md#adding-stateless-clients)
-  * If the Kubernetes nodes are part of the WEKA cluster (converged mode on the WEKA servers), make sure the WEKA processes come up before `kubelet`
-* Filesystems are pre-configured on the WEKA system
-
 ### Capabilities
-
-#### Supported capabilities
 
 * Static and dynamic volumes provisioning
 * Mounting a volume as a WEKA filesystem directory
 * All volume access modes are supported: ReadWriteMany, ReadWriteOnce, and ReadOnlyMany
 * Volume expansion
+* Snapshots
 * Quota enforcement on persistent volumes
 
 {% hint style="info" %}
-**Note:** Quota enforcement on persistent volumes requires WEKA version 3.13 and up. For additional information about enforcing quotas on existing persistent volumes, see the  [Upgrading Legacy Persistent Volumes for Capacity Enforcement](weka-csi-plugin.md#upgrading-legacy-persistent-volumes-for-capacity-enforcement) section.
+**Notes:**
+
+* Quota enforcement on persistent volumes requires WEKA version 3.13 and up. For additional information about enforcing quotas on existing persistent volumes, see the  Upgrade Legacy Persistent Volumes for Capacity Enforcement section.
+* Snapshots require WEKA version 4.2 and up.
 {% endhint %}
-
-#### Unsupported capabilities
-
-* Snapshots
 
 ## Deployment
 
 The WEKA CSI Plugin deployment can be performed with a [Helm chart](https://artifacthub.io/packages/helm/csi-wekafs/csi-wekafsplugin) from the official WEKA ArtifactHub repository.
+
+### Prerequisites
+
+* The privileged mode must be allowed on the Kubernetes cluster.
+* The following Kubernetes feature gates must be enabled: DevicePlugins, CSINodeInfo, CSIDriverRegistry, ExpandCSIVolumes (if not changed, they should be enabled by default)
+* A WEKA cluster is installed and accessible from the Kubernetes worker nodes.
+* The WEKA client is installed on the Kubernetes worker nodes.
+  * It is recommended to use a [WEKA client which is part of the cluster](../install/bare-metal/adding-clients-bare-metal.md#adding-clients-which-are-always-part-of-the-cluster) rather than a stateless client.
+  * If the Kubernetes nodes are part of the WEKA cluster (converged mode on the WEKA servers), make sure the WEKA processes come up before `kubelet`.
+* Filesystems are pre-configured on the WEKA system.
 
 ### Installation
 
@@ -149,6 +150,16 @@ To learn more about the release, try:
 Official Weka CSI Plugin documentation can be found here: https://docs.weka.io/appendix/weka-csi-plugin
 ```
 
+### OpenShift privileges
+
+If running OpenShift with Worker nodes running RHEL (RHCoreOS on Worker nodes not supported)  the CSI Plugin will need elevated privileges. These can be created at the command line.
+
+```
+oc create namespace csi-wekafs
+oc adm policy add-scc-to-user privileged system:serviceaccount:csi-wekafs:csi-wekafs-node
+oc adm policy add-scc-to-user privileged system:serviceaccount:csi-wekafs:csi-wekafs-controller
+```
+
 ### CSI plugin and WekaFS cluster software upgrade
 
 The CSI Plugin fetches the WekaFS cluster capabilities during the first login to the API endpoint and caches it throughout the login refresh token validity period, to improve the efficiency and performance of the plugin.
@@ -166,64 +177,9 @@ kubectl delete pod -n csi-wekafs -lapp=csi-wekafs-node
 
 The Weka CSI Plugin supports both dynamic (persistent volume claim) and static (persistent volume) volume provisioning. For provisioning either type of a persistent volume, a Storage Class must exist in Kubernetes deployment that matches the Weka cluster configuration.
 
-In the [Legacy communication model](weka-csi-plugin.md#legacy-deployment-model), the Weka CSI Plugin does not communicate with the Weka cluster via API and solely relies on in-band communication via the data plane. This configuration does not provide extended configuration abilities.
+The Weka CSI Plugin communicates with the Weka cluster using REST API, leveraging this integration to provides extended abilities, such as strict enforcement of volume capacity usage via integration with WekaFS [directory quota](../fs/quota-management/#directory-quotas) functionality.&#x20;
 
-In the [API-Based communication model](weka-csi-plugin.md#api-based-deployment-model), the Weka CSI Plugin communicates with the Weka cluster using REST API, leveraging this integration to provide extended abilities, such as strict enforcement of volume capacity usage via integration with WekaFS [directory quota](../fs/quota-management/#directory-quotas) functionality.&#x20;
-
-{% hint style="info" %}
-**Note:** Only the API-Based communication model is maintained and enhanced with new capabilities. If you are running the legacy CSI plugin, it is advisable to replace it with the API-Based one.
-{% endhint %}
-
-### Legacy communication model
-
-This model assumes no API connectivity to the Weka cluster. As a result, the functionality provided by the Weka CSI Plugin is limited.
-
-{% hint style="info" %}
-**Note:** This section refers to the configuration of the CSI plugin prior to version v0.7.0
-
-Although this configuration is supported in version 0.7.0 and up, the user is encouraged to upgrade any existing deployment of the Weka CSI Plugin to the API-based model
-{% endhint %}
-
-It is first required to define a storage class to use the Weka CSI Plugin.
-
-#### Storage class example
-
-{% code title="csi-wekafs/examples/dynamic/storageclass-wekafs-dir.yaml" %}
-```yaml
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: storageclass-wekafs-dir
-provisioner: csi.weka.io
-reclaimPolicy: Delete
-volumeBindingMode: Immediate
-allowVolumeExpansion: true
-parameters:
-  volumeType: dir/v1
-  filesystemName: podsFilesystem
-```
-{% endcode %}
-
-#### **Storage class parameters**
-
-| **Parameter**    | **Description**                                                                | **Limitations**                                 |
-| ---------------- | ------------------------------------------------------------------------------ | ----------------------------------------------- |
-| `filesystemName` | The name of the Weka filesystem to create directories in as Kubernetes volumes | The filesystem should exist in the Weka cluster |
-
-Apply the StorageClass and check it has been created successfully:
-
-```
-# apply the storageclass .yaml file
-$ kubectl apply -f storageclass-wekafs-dir.yaml
-storageclass.storage.k8s.io/storageclass-wekafs-dir created
-
-# check the storageclass resource has been created
-$ kubectl get sc
-NAME                           PROVISIONER         RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
-storageclass-wekafs-dir        csi.weka.io         Delete          Immediate           true                   75s
-```
-
-It is possible to define multiple storage classes with different filesystems.
+Starting with CSI Plugin **v2.0** three Storage Class configurations exist; Directory Backed, Snapshot Backed, Filesystem Backed.
 
 ### API-based communication model
 
@@ -232,7 +188,7 @@ In the API-based model, the API endpoint addresses and authentication credential
 The information is stored securely in [Kubernetes secret](https://kubernetes.io/docs/concepts/configuration/secret/), which is, in turn, referred to by the  Storage Class.
 
 {% hint style="info" %}
-**Note:** This section refers to the configuration of CSI plugin version **v0.7.0** and up.
+**Note:** This section refers to the configuration of CSI plugin version **v0.8.4** and up.  version 2.0 recommend.
 {% endhint %}
 
 {% hint style="info" %}
@@ -240,13 +196,11 @@ The information is stored securely in [Kubernetes secret](https://kubernetes.io/
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Authenticated mounts for filesystems set with `auth-required=true`, and filesystems in the non-root organization, require WekaFS software version **v3.14.0** and up.
+**Note:** Snapshot quota intergration requires WekaFS software version **v4.2** and up.
 {% endhint %}
 
-{% hint style="warning" %}
-**Note:** It is recommended to deploy the CSI plugin in API-Based communication model even if the Weka cluster is below version **v3.13.0**
-
-Volumes provisioned using the API-Based model on older Weka clusters, do not support capacity enforcement, and are still considered "Legacy". However, they can be easily upgraded to capacity enforcement capabilities after the Weka cluster upgrade.
+{% hint style="info" %}
+**Note:** Authenticated mounts for filesystems set with `auth-required=true`, and filesystems in the non-root organization, require WekaFS software version **v3.14.0** and up.
 {% endhint %}
 
 #### Secret data example
@@ -295,10 +249,10 @@ csi-wekafs-api-secret   Opaque   5      7m
 ```
 
 {% hint style="info" %}
-**Note:** To provision CSI volumes on filesystem residing in non-root organizations, or filesystems set with `auth-required=true,` CSI plugin of version **0.7.4** or higher is required, as well as Weka software of version **3.14** or higher
+**Note:** To provision CSI volumes on filesystem residing in non-root organizations, or filesystems set with `auth-required=true,` CSI plugin of version **0.8.4** or higher is required, as well as Weka software of version **3.14** or higher
 {% endhint %}
 
-#### Storage class example
+#### Directory backed storage class example
 
 {% code title="csi-wekafs/examples/dynamic_api/storageclass-wekafs-dir-api.yaml" %}
 ```yaml
@@ -345,8 +299,8 @@ parameters:
 | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `filesystemName`                                  | <p>The name of the Weka filesystem to create directories in as Kubernetes volumes. </p><ul><li>The filesystem must exist on the Weka cluster</li><li>The filesystem may not be defined as "authenticated"</li></ul>                                                                                                                                                                          |
 | `capacityEnforcement`                             | <p>Can be <code>HARD</code> or <code>SOFT</code></p><ul><li><code>HARD</code>: strictly enforce quota and deny any write operation to the persistent volume consumer until space is freed up</li><li><code>SOFT</code>: do not strictly enforce the quota, but create an alert on the Weka cluster</li></ul>                                                                                 |
-| `ownerUid`                                        | Effective User ID of the owner user for the provisioned CSI volume. Might be required for application deployments running under non-root accounts. Defaults to `0`                                                                                                                                                                                                                           |
-| `ownerGid`                                        | Effective Group ID of the owner user for the provisioned CSI volume. Might be required for application deployments running under non-root accounts. Defaults to `0`                                                                                                                                                                                                                          |
+| `ownerUid`                                        | Effective User ID of the owner user for the provisioned CSI volume. Might be required for application deployments running under non-root accounts. Defaults to `0`` `**`CSI plugin v2.0 adds fsgroup features so this is optional.`**                                                                                                                                                        |
+| `ownerGid`                                        | Effective Group ID of the owner user for the provisioned CSI volume. Might be required for application deployments running under non-root accounts. Defaults to `0`` `**`CSI plugin v2.0 adds fsgroup features so this is optional.`**                                                                                                                                                       |
 | `permissions`                                     | Unix permissions for the provisioned volume root directory, in octal format. Must be set in quotes. Defaults to `"0775"`                                                                                                                                                                                                                                                                     |
 | `csi.storage.k8s.io/provisioner-secret-name`      | <p>Name of the K8s secret, e.g. <code>csi-wekafs-api-secret</code></p><p>It is recommended to use an anchor definition in order to avoid mistakes since the same value has to be entered in additional fields below, according to the CSI spec definitions. Refer to the example above for exact formatting.</p>                                                                             |
 | `csi.storage.k8s.io/provisioner-secret-namespace` | <p>The namespace the secret is located in. </p><p>The secret does not have to be located in the same namespace as the CSI plugin is installed.</p><p>It is recommended using an anchor definition in order to avoid mistakes since the same value has to be entered in additional fields below, accordings to the CSI spec definitions. Refer to the example above for exact formatting.</p> |
@@ -374,11 +328,150 @@ storageclass-wekafs-dir        csi.weka.io         Delete          Immediate    
 However, different Kubernetes nodes within the same cluster (e.g., in different regions or availability zones) can be connected to different Weka clusters. In such a case, provided that the Weka CSI plugin can access the Weka cluster REST API, a single CSI plugin instance can orchestrate persistent volume provisioning on multiple clusters.
 {% endhint %}
 
+#### Snapshot backed storage class example
+
+{% code title="csi-wekafs/examples/dynamic_snapshot/storageclass-wekafs-snap-api.yaml" %}
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: storageclass-wekafs-snap-api
+provisioner: csi.weka.io
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+parameters:
+  volumeType: weka/v2  # this line can be ommitted completely
+
+  # name of an EMPTY filesystem to provision volumes on
+  filesystemName: default
+
+  # name of the secret that stores API credentials for a cluster
+  # change the name of secret to match secret of a particular cluster (if you have several Weka clusters)
+  csi.storage.k8s.io/provisioner-secret-name: &secretName csi-wekafs-api-secret
+  # change the name of the namespace in which the cluster API credentials
+  csi.storage.k8s.io/provisioner-secret-namespace: &secretNamespace csi-wekafs
+  # do not change anything below this line, or set to same parameters as above
+  csi.storage.k8s.io/controller-publish-secret-name: *secretName
+  csi.storage.k8s.io/controller-publish-secret-namespace: *secretNamespace
+  csi.storage.k8s.io/controller-expand-secret-name: *secretName
+  csi.storage.k8s.io/controller-expand-secret-namespace: *secretNamespace
+  csi.storage.k8s.io/node-stage-secret-name: *secretName
+  csi.storage.k8s.io/node-stage-secret-namespace: *secretNamespace
+  csi.storage.k8s.io/node-publish-secret-name: *secretName
+  csi.storage.k8s.io/node-publish-secret-namespace: *secretNamespace
+
+```
+{% endcode %}
+
+#### **Storage class parameters**
+
+| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `volumeType`                                      | The volumeType of the CSI Plugin to use.  'weka/v2' is used for Snapshot and Filesystem backed Storage Class configurations.                                                                                                                                                                                                                                                                |
+| `filesystemName`                                  | <p>The name of the Weka filesystem to create snapshots in as Kubernetes volumes. </p><ul><li>The filesystem must exist on the Weka cluster</li><li>The filesystem must be left empty</li></ul>                                                                                                                                                                                              |
+| `csi.storage.k8s.io/provisioner-secret-name`      | <p>Name of the K8s secret, e.g. <code>csi-wekafs-api-secret</code></p><p>It is recommended to use an anchor definition in order to avoid mistakes since the same value has to be entered in additional fields below, according to the CSI spec definitions. Refer to the example above for exact formatting.</p>                                                                            |
+| `csi.storage.k8s.io/provisioner-secret-namespace` | <p>The namespace the secret is located in. </p><p>The secret does not have to be located in the same namespace as the CSI plugin is installed.</p><p>It is recommended using an anchor definition in order to avoid mistakes since the same value has to be entered in additional fields below, according to the CSI spec definitions. Refer to the example above for exact formatting.</p> |
+
+Apply the StorageClass and check it has been created successfully:
+
+```
+# apply the storageclass.yaml file
+$ kubectl apply -f storageclass-wekafs-fs-api.yaml
+storageclass.storage.k8s.io/storageclass-wekafs-snap-api created
+
+# check the storageclass resource has been created successfully 
+$ kubectl get sc
+NAME                           PROVISIONER         RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+storageclass-wekafs-snap-api   csi.weka.io         Delete          Immediate           true                   75s
+```
+
+* It is possible to define multiple storage classes with different filesystems.&#x20;
+* The same secret may be reused for multiple storage classes, as long as credentials are valid to access the filesystems
+* Several secrets may be used, e.g., for different organizations on the same Weka cluster, or for different Weka clusters spanning across the same Kubernetes cluster
+
+{% hint style="info" %}
+**Note:** Multiple weka cluster connections from the same Kubernetes node are not supported in the current release of Weka software.&#x20;
+
+However, different Kubernetes nodes within the same cluster (e.g., in different regions or availability zones) can be connected to different Weka clusters. In such a case, provided that the Weka CSI plugin can access the Weka cluster REST API, a single CSI plugin instance can orchestrate persistent volume provisioning on multiple clusters.
+{% endhint %}
+
+#### Filesystem backed Storage class example
+
+{% code title="csi-wekafs/examples/dynamic_filesystem/storageclass-wekafs-fs-api.yaml" %}
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: storageclass-wekafs-fs-api
+provisioner: csi.weka.io
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+parameters:
+  volumeType: weka/v2  # this line can be ommitted completely
+
+  # name of the filesystem group to create FS in.
+  filesystemGroupName: default
+  # minimum size of filesystem to create (preallocate space for snapshots and derived volumes)
+  initialFilesystemSizeGB: "100"
+
+  # name of the secret that stores API credentials for a cluster
+  # change the name of secret to match secret of a particular cluster (if you have several Weka clusters)
+  csi.storage.k8s.io/provisioner-secret-name: &secretName csi-wekafs-api-secret
+  # change the name of the namespace in which the cluster API credentials
+  csi.storage.k8s.io/provisioner-secret-namespace: &secretNamespace csi-wekafs
+  # do not change anything below this line, or set to same parameters as above
+  csi.storage.k8s.io/controller-publish-secret-name: *secretName
+  csi.storage.k8s.io/controller-publish-secret-namespace: *secretNamespace
+  csi.storage.k8s.io/controller-expand-secret-name: *secretName
+  csi.storage.k8s.io/controller-expand-secret-namespace: *secretNamespace
+  csi.storage.k8s.io/node-stage-secret-name: *secretName
+  csi.storage.k8s.io/node-stage-secret-namespace: *secretNamespace
+  csi.storage.k8s.io/node-publish-secret-name: *secretName
+  csi.storage.k8s.io/node-publish-secret-namespace: *secretNamespace
+
+```
+{% endcode %}
+
+#### **Storage class parameters**
+
+| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `volumeType`                                      | The volumeType of the CSI Plugin to use.  'weka/v2' is used for Snapshot and Filesystem backed Storage Class configurations.                                                                                                                                                                                                                                                                |
+| `filesystemGroupName`                             | <p>The name of the Weka filesystem group to create filesystems in as Kubernetes volumes. </p><ul><li>The filesystem group must exist on the Weka cluster</li></ul>                                                                                                                                                                                                                          |
+| `initialFilesystemSizeGB`                         | The default size to create new filesystems if PVC requested size is lower than intialFilesystemSizeGB.                                                                                                                                                                                                                                                                                      |
+| `csi.storage.k8s.io/provisioner-secret-name`      | <p>Name of the K8s secret, e.g. <code>csi-wekafs-api-secret</code></p><p>It is recommended to use an anchor definition in order to avoid mistakes since the same value has to be entered in additional fields below, according to the CSI spec definitions. Refer to the example above for exact formatting.</p>                                                                            |
+| `csi.storage.k8s.io/provisioner-secret-namespace` | <p>The namespace the secret is located in. </p><p>The secret does not have to be located in the same namespace as the CSI plugin is installed.</p><p>It is recommended using an anchor definition in order to avoid mistakes since the same value has to be entered in additional fields below, according to the CSI spec definitions. Refer to the example above for exact formatting.</p> |
+
+Apply the StorageClass and check it has been created successfully:
+
+```
+# apply the storageclass.yaml file
+$ kubectl apply -f storageclass-wekafs-fs-api.yaml
+storageclass.storage.k8s.io/storageclass-wekafs-fs-api created
+
+# check the storageclass resource has been created successfully 
+$ kubectl get sc
+NAME                           PROVISIONER         RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+storageclass-wekafs-fs-api     csi.weka.io         Delete          Immediate           true                   75s
+```
+
+* It is possible to define multiple storage classes with different filesystem groups.&#x20;
+* The same secret may be reused for multiple storage classes, as long as credentials are valid to access the filesystem groups
+* Several secrets may be used, e.g., for different organizations on the same Weka cluster, or for different Weka clusters spanning across the same Kubernetes cluster
+
+{% hint style="info" %}
+**Note:** Multiple weka cluster connections from the same Kubernetes node are not supported in the current release of Weka software.&#x20;
+
+However, different Kubernetes nodes within the same cluster (e.g., in different regions or availability zones) can be connected to different Weka clusters. In such a case, provided that the Weka CSI plugin can access the Weka cluster REST API, a single CSI plugin instance can orchestrate persistent volume provisioning on multiple clusters.
+{% endhint %}
+
 ## Provision usage
 
 ### Dynamic provisioning
 
-Using a similar storage class to the above, it is possible to define a persistent volume claim (PVC) for the pods.
+Using a similar storage class to one of the above, it is possible to define a persistent volume claim (PVC) for the pods.
 
 #### Persistent volume claim example
 
