@@ -36,14 +36,16 @@ Ensure the BIOS settings meet the following requirements:
 * **RHEL:**
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
   * 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 9.1, 9.0
 * **CentOS:**
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux**
   * 8.7, 8.6
+  * 9.1, 9.0
 * **Ubuntu:**
   * 18.04.6, 18.04.5, 18.04.4, 18.04.3, 18.04.2, 18.04.1, 18.04.0
-  * 20.04.3, 20.04.2, 20.04.1, 20.04.0
+  * 22.04, 20.04.3, 20.04.2, 20.04.1, 20.04.0
 * **Amazon Linux:** 18.03, 17.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
 
@@ -70,6 +72,11 @@ Ensure the BIOS settings meet the following requirements:
 {% hint style="info" %}
 **Note:** To set the SELinux security context for files,  use the `-o acl` in the mount command, and define the `wekafs` to use extended attributes in the SELinux policy configuration (`fs_use_xattr`).
 {% endhint %}
+
+#### cgroups
+
+* WEKA backends and stateful clients that serve protocols must be deployed on a supported OS with **cgroups V1** (legacy).
+* WEKA stateless clients can run on a supported OS with **cgroups V1** or **V2.**
 
 ### Kernel
 
@@ -134,7 +141,6 @@ Intel E810 NIC has specific requirements and certain limitations:
 
 * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0.
 * Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
-* Only non-routed network is supported with this NIC.
 * [Multiple containers architecture](../overview/weka-containers-architecture-overview.md) is not yet supported with this NIC.
 {% endhint %}
 
@@ -146,6 +152,7 @@ Intel E810 NIC has specific requirements and certain limitations:
 
 Supported Mellanox OFED versions:
 
+* 5.9-0.5.6.0
 * 5.8-1.1.2.1 LTS
 * 5.7-1.0.2.0
 * 5.6-2.0.9.0
@@ -209,6 +216,7 @@ Supported ice drivers:
 
 Supported Mellanox OFED versions:
 
+* 5.9-0.5.6.0
 * 5.8-1.1.2.1 LTS
 * 5.7-1.0.2.0
 * 5.6-2.0.9.0
@@ -257,7 +265,7 @@ Supported Mellanox OFED versions:
   * GET after a single PUT must be entirely consistent
   * Multiple PUTs should eventually be consistent
 
-Certified object stores:
+### Certified object stores
 
 * AWS S3
   * S3 Standard
@@ -283,16 +291,16 @@ Virtual Machines (VMs) can be used as **clients** only. Ensure the following pre
 
 {% tabs %}
 {% tab title="UDP clients" %}
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by reserving the CPU in the virtual platform and dedicating a core to the Weka client.
-* The root filesystem must handle a 3K IOPS load by the Weka client.
+* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by reserving the CPU in the virtual platform and dedicating a core to the WEKA client.
+* The root filesystem must handle a 3K IOPS load by the WEKA client.
 
 \
 
 {% endtab %}
 
 {% tab title="DPDK clients" %}
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by reserving the CPU in the virtual platform and dedicating a core to the Weka client.
-* The root filesystem must handle a 3K IOPS load by the Weka client.
+* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by reserving the CPU in the virtual platform and dedicating a core to the WEKA client.
+* The root filesystem must handle a 3K IOPS load by the WEKA client.
 * The virtual platform interoperability, such as a hypervisor, NICs, CPUs, and different versions, must support DPDK and virtual network driver.
 {% endtab %}
 {% endtabs %}
@@ -306,7 +314,7 @@ Virtual Machines (VMs) can be used as **clients** only. Ensure the following pre
 
 </details>
 
-For additional information and how-to articles, search the Weka Knowledge Base in the [Weka support portal](http://support.weka.io) or contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+For additional information and how-to articles, search the Weka Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 ## KMS
 
