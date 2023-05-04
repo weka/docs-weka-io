@@ -86,10 +86,19 @@ The system dashboard opens by default when you sign in. If you select another me
 
 ### Cluster Protection and Availability widget
 
-This widget shows the overall status of the system's health and protection.
+This widget shows the overall status of the system's health and protection state.
 
 The overall status widget includes the following indications:
 
+* **Protection state:** The possible protection states include:
+  * OK: The system operates properly.
+  * UNKNOWN: The protection state is unknown.
+  * UNINITIALIZED: The system still needs to complete the cluster configuration and run the first IOs.
+  * REBUILDING: When a failure occurs, the data rebuild process reads all the stripes where the failure occurred, rebuilds the data, and returns the system to full protection.
+  * PARTIALLY\_PROTECTED: Some or all of the data is not fully protected. The reported number of protections indicates the cluster's failure resilience.
+  * UNPROTECTED: The data is not protected against any failure.
+  * UNAVAILABLE: Too many parallel failures occur in the system that can cause system unavailability.
+  * REDISTRIBUTING: The system redistributes the data between servers and drives due to scale-up or scale-down.
 * **Service Uptime**: The elapsed time since the I/O services started.
 * **Data Protection**: The number of data drives and protection parity drives. The color of the protection parity drives indicates their status.
 * **Virtual (Hot) Spares**: The number of failure domains the system can lose and still complete the data rebuild while maintaining the same net capacity.
