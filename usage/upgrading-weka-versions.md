@@ -79,6 +79,11 @@ This upgrade option applies to all versions configured in a single container arc
 5. [Upgrade the clients](upgrading-weka-versions.md#5.-upgrade-the-clients)
 6. [Check the status after the upgrade](upgrading-weka-versions.md#6.-check-the-status-after-the-upgrade)
 
+{% hint style="warning" %}
+**Note:** Upgrading a Weka cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start.\
+Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
+{% endhint %}
+
 ### 1. Verify prerequisites for the upgrade
 
 Before upgrading the cluster, ensure the following prerequisites. Otherwise, the NDU is not possible:

@@ -28,7 +28,10 @@ Use the following command line to add an interface group:
 The parameter `allow-manage-gids` determines the type of NFS stack. The default value of this parameter is `on`, which sets the NFS-W stack.
 
 {% hint style="warning" %}
-**Note:** Do not mount the same filesystem by containers residing in interface groups with different values of the `allow-manage-gids.`
+**Notes:**
+
+* Do not mount the same filesystem by containers residing in interface groups with different values of the `allow-manage-gids.`
+* As a best practice, it is recommended to have only one of the following protocol containers, NFS, SMB, or S3, installed on the same server. Starting from version 4.2, setting more than one additional protocol to the existing POSIX is not allowed.
 {% endhint %}
 
 **Parameters**

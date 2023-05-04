@@ -48,6 +48,10 @@ Use the following command line to create a new SMB cluster to be managed by the 
 To create an SMB-W cluster, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
+{% hint style="warning" %}
+**Note:** As a best practice, it is recommended to have only one of the following protocol containers, NFS, SMB, or S3, installed on the same server. Starting from version 4.2, setting more than one additional protocol to the existing POSIX is not allowed.
+{% endhint %}
+
 **Parameters**
 
 | **Name**                         | **Type**                     | **Value**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | **Limitations**                                                                                                                                                                                 | **Mandatory** | **Default**                              |
