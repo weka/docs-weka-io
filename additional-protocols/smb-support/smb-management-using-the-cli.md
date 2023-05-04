@@ -42,6 +42,10 @@ Use the following command line to create a new SMB cluster to be managed by the 
 
 `weka smb cluster create <name> <domain> [--samba-hosts samba-hosts]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range] [--domain-netbios-name domain-netbios-name] [--idmap-backend idmap-backend] [--joined-domain-mapping-from-id joined-domain-mapping-from-id] [--joined-domain-mapping-to-id joined-domain-mapping-to-id] [--default-domain-mapping-from-id default-domain-mapping-from-id] [--default-domain-mapping-to-id default-domain-mapping-to-id] [--encryption encryption]`
 
+{% hint style="warning" %}
+**Note:** As a best practice, it is recommended to have only one of the following protocol containers, NFS, SMB, or S3, installed on the same server. Starting from version 4.2, setting more than one additional protocol to the existing POSIX is not allowed.
+{% endhint %}
+
 **Parameters**
 
 | **Name**                         | **Type**                     | **Value**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | **Limitations**                                     | **Mandatory** | **Default**                     |

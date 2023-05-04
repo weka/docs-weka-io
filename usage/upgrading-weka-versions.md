@@ -15,12 +15,17 @@ Before upgrading your cluster, ensure the following:
 5. There is at least 4 GB of free space in the `/opt/weka` directory.
 
 {% hint style="info" %}
-**Note:** If you plan a multi-hop version upgrade, once an upgrade is done, a background process of converting metadata to a new format may occur (in some versions). This upgrade takes several minutes to complete and must finish before another upgrade can start. You can monitor the progress using the `weka status` CLI command and check if there is a `data upgrade` task in a`RUNNING` state.
+**Note:** If you plan a multi-hop version upgrade, once an upgrade is done, a background process of converting metadata to a new format may occur (in some versions). This upgrade takes several minutes to complete before another upgrade can start. You can monitor the progress using the `weka status` CLI command and check if there is a `data upgrade` task in a`RUNNING` state.
+{% endhint %}
+
+{% hint style="warning" %}
+**Note:** Upgrading a Weka cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not recommended.\
+Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
 {% endhint %}
 
 ## Supported upgrade paths
 
-The Weka upgrade process supports upgrading to higher minor versions and major versions of the Weka software.
+The Weka upgrade process supports upgrading to higher _minor versions_ and _major versions_ of the Weka software.
 
 When upgrading to a major version, always upgrade to the latest minor version in the new major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 

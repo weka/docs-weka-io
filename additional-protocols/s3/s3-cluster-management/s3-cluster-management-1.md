@@ -24,6 +24,10 @@ Use the following command line to create an S3 cluster:
 
 `weka s3 cluster create <default-fs-name> [--all-hosts] [--host hosts] [--port port] [--anonymous-posix-uid uid] [--anonymous-posix-gid gid] [--config-fs-name config-fs-name]`
 
+{% hint style="warning" %}
+**Note:** As a best practice, it is recommended to have only one of the following protocol containers, NFS, SMB, or S3, installed on the same server. Starting from version 4.2, setting more than one additional protocol to the existing POSIX is not allowed.
+{% endhint %}
+
 **Parameters**
 
 | **Name**              | **Type**                        | **Value**                                                                                                                      | **Limitations**                                                            | **Mandatory**                                      | **Default**                                                       |

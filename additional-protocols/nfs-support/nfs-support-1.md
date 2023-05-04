@@ -35,7 +35,10 @@ Use the following command line to add an interface group:
 | `allow-manage-gids` | String   | <p>Allows the hosts within this interface group to use <code>manage-gids</code> when set in exports. </p><p>With <code>manage-gids</code>, the list of group IDs received from the client will be replaced by a list of group IDs determined by an appropriate lookup on the server.</p> | <p><code>on</code> or <code>off</code>.</p><p>Cannot be set if one of the hosts belongs to an interface group which does not have the <code>allow-manage-gids</code> flag set.</p> | No            | `on`            |
 
 {% hint style="warning" %}
-**Note:** Each host can be set to be part of interface groups with the same value of `allow-manage-gids. In` addition, you must not mount the same filesystem by the  hosts residing in interface groups with different values of `allow-manage-gids.`
+**Notes:**
+
+* Do not mount the same filesystem by containers residing in interface groups with different values of the `allow-manage-gids.`
+* As a best practice, it is recommended to have only one of the following protocol containers, NFS, SMB, or S3, installed on the same server. Starting from version 4.2, setting more than one additional protocol to the existing POSIX is not allowed.
 {% endhint %}
 
 ## Set interface group ports
