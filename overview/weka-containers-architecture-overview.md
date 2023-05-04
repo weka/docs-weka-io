@@ -16,7 +16,7 @@ Adhere to the following rules of the multi-container backend architecture:
 * The containers are not limited to running the same software version and enable non-disruptive upgrades.
 * The server can use the maximum available cores, allowing flexibility in the hardware cores' usage.&#x20;
 
-<figure><img src="../.gitbook/assets/MCB_arch.png" alt=""><figcaption><p>Multi-container backend architecture</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/V4_MBC_overview.png" alt=""><figcaption><p>Multi-container backend architecture</p></figcaption></figure>
 
 ## Multi-container backend architecture benefits
 
