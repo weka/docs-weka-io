@@ -1,6 +1,6 @@
 # Manage the CA certificate using the CLI
 
-Weka uses well-known CAs to establish trust with external services. For example, when using a KMS.
+A CA certificate is a digital certificate issued by a certificate authority (CA). The system uses well-known CA certificates to establish trust with external services. For example, when using a KMS. If a different CA certificate is required for Weka servers to establish trust, set this custom CA certificate on the Weka servers.
 
 Use the CLI command:
 
