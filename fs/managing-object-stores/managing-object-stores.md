@@ -66,7 +66,7 @@ Add object store buckets to be used for tiering or snapshots.
 3. In the **Create Object Store Bucket** dialog, set the following:
    * **Name**: Enter a meaningful name for the bucket.
    * **Object Store**: Select the location of the object store. For tiering and snapshots, select the local object store. For snapshots only, select the remote object store.
-   * **Type**: Select the type of object store: AWS, AZURE, or OTHER (for GCP).
+   * **Type**: Select the type of object store: AWS, AZURE, or OTHER (for GCP and others).
    * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
 {% tabs %}
