@@ -42,7 +42,7 @@ If using the AWS object store type and access from the WEKA EC2 instances to the
 
 ## View object store buckets <a href="#view-object-store-buckets" id="view-object-store-buckets"></a>
 
-The object store buckets are displayed on the **Object Stores** page. Each object store indicates the status, bucket name, protocol (HTTP/HTTPS), port, region, object store location (local or remote), authentication method, and error information (if exists).
+The object store buckets are displayed on the **Object Stores** page. Each object store indicates the status, bucket name, protocol (HTTP/HTTPS), port, region, object store location (local or remote), authentication method, and error information (if it exists).
 
 **Procedure**
 
@@ -66,7 +66,7 @@ Add object store buckets to be used for tiering or snapshots.
 3. In the **Create Object Store Bucket** dialog, set the following:
    * **Name**: Enter a meaningful name for the bucket.
    * **Object Store**: Select the location of the object store. For tiering and snapshots, select the local object store. For snapshots only, select the remote object store.
-   * **Type**: Select the type of object store.
+   * **Type**: Select the type of object store: AWS, AZURE, or OTHER (for GCP).
    * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
 {% tabs %}
@@ -76,6 +76,10 @@ Add object store buckets to be used for tiering or snapshots.
 
 {% tab title="GCP" %}
 <figure><img src="../../.gitbook/assets/wmng_obs_on_gcp.png" alt=""><figcaption><p>Create object store bucket on GCP</p></figcaption></figure>
+{% endtab %}
+
+{% tab title="Azure" %}
+<figure><img src="../../.gitbook/assets/obs_Azure_example.png" alt=""><figcaption><p>Create object store bucket on Azure</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
