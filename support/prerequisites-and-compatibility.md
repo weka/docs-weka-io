@@ -274,7 +274,9 @@ Certified object stores:
 * IBM Cloud Object Storage System (version 3.14.7 and up)
 * Quantum ActiveScale (version 5.5.1 and up)
 * Red Hat Ceph Storage (version 5.0 and up)
-* Scality (version 7.4.4.8 and up)
+* Oracle Cloud Infrastructure (OCI) S3 compatibility layer
+* Scality Ring8 (version 7.4.4.8 and up)
+* Scality Artesca (version 1.5.2 and up)
 * SwiftStack (version 6.30 and up)
 
 ## Virtual Machines
