@@ -124,7 +124,7 @@ Plan the number of physical cores dedicated to the WEKA software according to th
   * A backend server can have as many as possible cores. However, a container within a backend server can have a maximum of 19 physical cores.
   * Leave enough cores for the container serving the protocol if it runs on the same server.
 * Allocate enough cores to support performance targets.
-  * In general, use 1 drive process per SSD for up to 6 SSDs and 1 drive process per 2 SSDs for more, with a ratio of 2 compute processes per SSD process.
+  * Generally, use 1 drive process per SSD for up to 6 SSDs and 1 drive process per 2 SSDs for more, with a ratio of 2 compute processes per SSD process.
   * For finer tuning, please contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 * Allocate enough memory to match core allocation, as discussed above.
 * The running of other applications on the same server (converged WEKA system deployment) is supported. However, this is not covered in this documentation. For further information, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
