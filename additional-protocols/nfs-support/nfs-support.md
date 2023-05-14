@@ -185,4 +185,4 @@ You can edit the existing NFS permission settings for a client group.  You can a
 
 **Related topics**
 
-[#supported-nfs-client-mount-options](nfs-support.md#supported-nfs-client-mount-options "mention")
+[#supported-nfs-client-mount-options](./#supported-nfs-client-mount-options "mention")
