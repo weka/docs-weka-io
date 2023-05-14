@@ -12,8 +12,8 @@ The versions specified in the prerequisites and compatibility page apply to the 
 
 ## CPU
 
-* Intel SandyBridge+ processors
-* AMD 2nd and 3rd Gen EPYC processors
+* Intel Icelake+ processors
+* AMD 2nd, 3rd Gen EPYC processors
 
 {% hint style="info" %}
 Ensure the BIOS settings meet the following requirements:
@@ -227,7 +227,7 @@ Supported Mellanox OFED versions:
 
 * Support PLP (Power Loss Protection)
 * Dedicated for Weka system storage (partition not supported)
-* Supported drive capacity: Up to 128 TiB
+* Supported drive capacity: Up to 15TB (soon to increase to 30TB)
 * IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the Weka support team.
 
 {% hint style="info" %}
