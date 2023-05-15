@@ -55,7 +55,7 @@ Define the WEKA system servers that participate in the SMB cluster (with legacy 
 * **IPs**: (Optional) List of public IPs (comma-separated) used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA (do not assign these IPs to any server on the network). For IP range, use the following format: **a.b.c.x-y**.
 
 {% hint style="info" %}
-In AWS installations, it is not possible to set a list of SMB service addresses. The SMB service must be accessed using the primary addresses of the cluster nodes.
+In all cloud installations, it is not possible to set a list of SMB service addresses. The SMB service must be accessed using the primary addresses of the cluster nodes.
 {% endhint %}
 
 5\. Select **Save**.
@@ -88,7 +88,7 @@ To enable the organizational Active Directory to resolve the access of users and
 
 **Before you begin**
 
-To enable the WEKA storage nodes to join the AD domain, verify that the AD server is the DNS server.
+Enable the WEKA storage nodes to join the AD domain. On all backend servers used for SMB, set the AD servers as DNS servers in the  /`etc/resolv.conf` file.
 
 **Procedure**
 
