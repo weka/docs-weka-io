@@ -21,8 +21,10 @@ description: >-
 11. [Configure WEKA system protection scheme (optional)](using-cli.md#11.-configure-weka-system-protection-scheme-optional)
 12. [Configure hot spare (optional)](using-cli.md#12.-configure-hot-spare-optional)
 13. [Apply containers configuration](using-cli.md#13.-apply-containers-configuration)
-14. [Set a license](using-cli.md#14.-set-a-license)
-15. [Run the Start IO command](using-cli.md#15.-run-the-start-io-command)
+14. [Verify the containers configuration](using-cli.md#14.-verify-the-containers-configuration)
+15. [Set a license](using-cli.md#14.-set-a-license)
+16. [Run the Start IO command](using-cli.md#15.-run-the-start-io-command)
+17. Bypass the proxy server
 
 ### 1. Install the WEKA software on each server
 
@@ -364,3 +366,7 @@ To start the system IO and exit from the initialization phase, use the following
 `weka cluster start-io`
 
 Once the `start-io` process is completed successfully, the system exits the initialization state and accepts IOs from the user applications.
+
+### 17. Bypass the proxy server
+
+See [#14.-bypass-the-proxy-server](weka-system-installation-with-multiple-containers-using-the-cli.md#14.-bypass-the-proxy-server "mention")

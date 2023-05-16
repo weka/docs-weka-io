@@ -22,6 +22,7 @@ description: >-
 11. [Start the cluster IO service](weka-system-installation-with-multiple-containers-using-the-cli.md#11.-start-the-cluster-io-service)
 12. [Create frontend containers](weka-system-installation-with-multiple-containers-using-the-cli.md#12.-create-frontend-containers)
 13. [Check the cluster configuration](weka-system-installation-with-multiple-containers-using-the-cli.md#13.-check-the-cluster-configuration)
+14. [Bypass the proxy server](weka-system-installation-with-multiple-containers-using-the-cli.md#14.-bypass-the-proxy-server)
 
 ### 1. Install the WEKA software <a href="#1.-install-the-weka-software" id="1.-install-the-weka-software"></a>
 
@@ -411,3 +412,22 @@ DISK ID  UUID                                  HOSTNAME  NODE ID  SIZE        ST
 The `weka status` command displays the overall status of the Weka cluster.
 
 For details, see [Cluster status](../../getting-started-with-weka/manage-the-system-using-weka-cli.md#cluster-status).
+
+### 14. Bypass the proxy server
+
+If the WEKA cluster is deployed in an environment with a proxy server, a WEKA client trying to mount or download the client installation from the WEKA cluster may be blocked by the proxy server. You can disable the proxy for specific URLs using the shell `no_proxy` environment variable.
+
+#### Procedure
+
+1. Connect to one of the WEKA backend servers.
+2. Open the `/etc/wekaio/service.conf` file.
+3. In the `[downloads_proxy]` section, add to the `no_proxy` parameter a comma-separated list of IP addresses or qualified domain names of your WEKA clients and cluster backend servers. Do not use wildcards (\*).
+
+```
+[downloads_proxy]
+force_no_proxy=true
+proxy=
+no_proxy=<comma-separated list of IPs or domains>
+```
+
+4. Restart the agent service.
