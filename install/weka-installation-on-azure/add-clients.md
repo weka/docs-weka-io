@@ -25,4 +25,4 @@ Once the WEKA cluster runs, you can add clients to your WEKA system to run your 
 
 **Related topics**
 
-[mounting-filesystems](../../fs/mounting-filesystems/ "mention")
+[mounting-filesystems.md](../../fs/mounting-filesystems.md "mention")

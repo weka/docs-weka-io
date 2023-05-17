@@ -32,4 +32,4 @@ The client instance must be in the same region as the WEKA cluster on GCP.
 
 **Related topics**
 
-[mounting-filesystems](../../fs/mounting-filesystems/ "mention")
+[mounting-filesystems.md](../../fs/mounting-filesystems.md "mention")

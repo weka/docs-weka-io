@@ -26,9 +26,9 @@ mkdir -p /mnt/weka
 <strong>mount -t wekafs -o net=eth0 backend-1/my_fs /mnt/weka
 </strong></code></pre>
 
-For the first mount, this installs the WEKA software and automatically configures the client. For more information on mount and configuration options, refer to [Mount a filesystem using the stateless clients feature](../../fs/mounting-filesystems/#mounting-filesystems-using-stateless-clients).
+For the first mount, this installs the WEKA software and automatically configures the client. For more information on mount and configuration options, refer to [Mount a filesystem using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
 
-It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, refer to [Mount a filesystem using the traditional method](../../fs/mounting-filesystems/#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../fs/mounting-filesystems/#mount-filesystems-using-autofs).
+It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, refer to [Mount a filesystem using the traditional method](../../fs/mounting-filesystems.md#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mount-filesystems-using-autofs).
 
 {% hint style="info" %}
 **Note:** Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for WEKA client software and NFS mount for the traces. For more information, contact the Customer Success Team.

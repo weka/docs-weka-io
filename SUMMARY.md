@@ -82,7 +82,7 @@
   * [Data management in tiered filesystems](fs/tiering/data-management-in-tiered-filesystems.md)
   * [Transition between tiered and SSD-only filesystems](fs/tiering/transition-between-tiered-and-ssd-only-filesystems.md)
   * [Manual fetch and release of data](fs/tiering/pre-fetching-from-object-store.md)
-* [Mount filesystems](fs/mounting-filesystems/README.md)
+* [Mount filesystems](fs/mounting-filesystems.md)
   * [Mount filesystems from multiple clusters on a single client](fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)
 * [Snapshots](fs/snapshots/README.md)
   * [Manage snapshots using the GUI](fs/snapshots/snapshots.md)

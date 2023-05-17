@@ -84,4 +84,4 @@ WEKA_PORT=<port number> mount -t wekafs <fs-name> <mount-point> -o container_nam
 
 [adding-clients-bare-metal.md](../../install/bare-metal/adding-clients-bare-metal.md "mention")
 
-[.](./ "mention")
+[mounting-filesystems.md](../mounting-filesystems.md "mention")
