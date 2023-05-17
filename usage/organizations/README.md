@@ -6,7 +6,7 @@ description: >-
 
 # Organizations management
 
-Organizations are used for the separation of duties between different groups of users on the same WEKA system. So that an organization cannot control or view other organization data. It is possible to create up to 64 organizations.
+Organizations are used for the separation of duties between different groups of users on the same WEKA system. So that an organization cannot control or view other organization data. It is possible to create up to 256 organizations.
 
 Within an organization, the Organization Admin manages the logical entities participating in obtaining data control (the Cluster Admin cannot manage these entities).
 
