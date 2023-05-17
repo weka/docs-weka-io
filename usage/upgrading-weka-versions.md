@@ -130,7 +130,7 @@ You can control the upgrade window time by setting the following parameters in t
 | `--prepare-only`                         | Boolean  | Download and prepare a new software version across all servers in the cluster without performing the actual upgrade. |                 | No                         | False       |
 | `--health-check-timeout`                 | String   | Maximum time in seconds to wait for the health check to complete                                                     |                 | No                         | 10s         |
 | `--container`                            | String   | The container from which to run the upgrade.                                                                         |                 | Yes, for MCB configuration |             |
-| `--mode`                                 | String   | <p>The method to run the upgrade. <br>For a non-disruptive upgrade, set <code>ndu</code>.</p>                        |                 | Yes for NDU                |             |
+| `--mode`                                 | String   | <p>The method to run the upgrade. <br>For a non-disruptive upgrade, set <code>ndu</code>.</p>                        |                 | Yes, for NDU               |             |
 
 {% hint style="info" %}
 **Note:** To run the upgrade command, ensure you are logged in as a Cluster Admin (using a `weka user login`).
