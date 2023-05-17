@@ -26,7 +26,7 @@ Then mount the filesystem:
 mount -t wekafs backend-host-0/my_fs /mnt/weka/my_fs
 ```
 
-For all mount options, see [Mount Command Options](../../fs/mounting-filesystems.md#mount-command-options).
+For all mount options, see [Mount Command Options](../../fs/mounting-filesystems/#mount-command-options).
 
 ## Authentication‌
 

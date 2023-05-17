@@ -34,6 +34,27 @@ Thin provisioning is beneficial in various use cases:
 * **Total SSD capacity:** Up to 512 PB&#x20;
 * **File size:** Up to 4 PB
 
+### Data reduction
+
+WEKA data reduction is a cluster-wide capability that can be enabled per filesystem. It uses block-variable differential compression and advanced de-duplication techniques across all filesystems to reduce the capacity consumed by the user data to provide significant capacity savings to customers.
+
+The compression ratio is workload-dependent and is efficient with text-based data, large-scale unstructured datasets, log analysis, databases, code repositories, and sensor data.
+
+The data reduction applies to user data (not metadata) per filesystem. The data reduction can be enabled only on thin-provision, non-tiered, and unencrypted filesystems on a cluster with a valid Data Efficiency Option (DEO) license.
+
+#### How does data reduction operate?
+
+Data reduction is a post-process activity. New data written to the cluster is written uncompressed. The data reduction process runs as a background task with lower priority than tasks serving user IO requests.
+
+The data reduction starts when enough data is written to the filesystems. It includes the following tasks:
+
+1. **Ingestion:** The data reduction runs two sub-tasks:
+   * **Clusterization:** The data reduction is applied on data blocks at the 4K block level. The system looks for similarity across uncompressed data in all the filesystems enabled for data reduction.
+   * **Compression**: The system reads the similar and unique blocks and compresses each type separately. Then, the system writes the compressed data to the filesystem.&#x20;
+2. **Defragmentation**: Uncompressed data related to the successful compression operation is marked for deletion. Then, the defrag process waits for sufficient blocks to be invalidated and then deletes them permanently.&#x20;
+
+<figure><img src="../.gitbook/assets/DataReduction.gif" alt=""><figcaption><p>Data reduction process at a glance</p></figcaption></figure>
+
 ### Encrypted filesystems
 
 Both data at rest (residing on SSD and object store) and data in transit can be encrypted. This is achieved by enabling the filesystem encryption feature. A decision on whether a filesystem is to be encrypted is made when creating the filesystem.

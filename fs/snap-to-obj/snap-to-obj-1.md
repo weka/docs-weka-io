@@ -55,7 +55,7 @@ When creating a filesystem from a snapshot, a background cluster task automatica
 
 The `locator` can be a previously saved locator for disaster scenarios, or you can obtain the `locator` using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [Manage background tasks](../../usage/background-tasks.md#managing-background-tasks).
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [Manage background tasks](../../usage/background-tasks/#managing-background-tasks).
 
 {% hint style="info" %}
 **Note:** Due to the bandwidth characteristics and potential costs when interacting with remote object stores it is not allowed to download a filesystem from a remote object-store bucket. If a snapshot on a local object-store bucket exists, it is advisable to use that one. Otherwise, follow the procedure in [Recover from a remote snapshot](./#recover-from-a-remote-snapshot).&#x20;
@@ -94,7 +94,7 @@ If you need to download a snapshot earlier than the latest downloaded one, for e
 | `file-system` | String   | Name of the filesystem                                                     |                 | Yes           |             |
 | `locator`     | String   | Object store locator obtained from a previously successful snapshot upload |                 | Yes           |             |
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly. For details, see [Manage background tasks](../../usage/background-tasks.md#managing-background-tasks).
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly. For details, see [Manage background tasks](../../usage/background-tasks/#managing-background-tasks).
 
 **Related topics**
 

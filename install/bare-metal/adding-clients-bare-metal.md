@@ -6,48 +6,47 @@ description: This page describes how to add clients to a bare-metal cluster.
 
 ## About clients
 
-Clients are used to running applications that need to access the WEKA filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
+Clients are used to run applications that need to access the WEKA filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
 
 ## Add stateless clients
 
-To use the WEKA filesystems from a client, all that is needed is to call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
+To use the WEKA filesystems from a client, just call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
 
-To mount a filesystem in this manner, first install the WEKA agent from one of the backend instances and then mount the filesystem.
+To mount a filesystem in this method, first, install the WEKA agent from one of the backend instances and then mount the filesystem.
 
 Example:
 
-```
-# Agent Installation (one time)
+<pre><code># Agent Installation (one time)
 curl http://Backend-1:14000/dist/v1/install | sh
 
 # Creating a mount point (one time)
 mkdir -p /mnt/weka
 
 # Mounting a filesystem
-mount -t wekafs -o net=eth0 backend-1/my_fs /mnt/weka
-```
+<strong>mount -t wekafs -o net=eth0 backend-1/my_fs /mnt/weka
+</strong></code></pre>
 
-For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, refer to [Mount a filesystem using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
+For the first mount, this installs the WEKA software and automatically configures the client. For more information on mount and configuration options, refer to [Mount a filesystem using the stateless clients feature](../../fs/mounting-filesystems/#mounting-filesystems-using-stateless-clients).
 
-It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, refer to [Mount a filesystem using the traditional method](../../fs/mounting-filesystems.md#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mount-filesystems-using-autofs).
+It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, refer to [Mount a filesystem using the traditional method](../../fs/mounting-filesystems/#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../fs/mounting-filesystems/#mount-filesystems-using-autofs).
 
 {% hint style="info" %}
 **Note:** Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for WEKA client software and NFS mount for the traces. For more information, contact the Customer Success Team.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The different clients must have a unique IP and FQDN.
+**Note:** Each client must have a unique IP and FQDN.
 {% endhint %}
 
 ## Add stateful clients, which are always part of the cluster
 
 {% hint style="info" %}
-**Note:** It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
+**Note:** It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases, it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
 {% endhint %}
 
 ### Stage 1: Install the WEKA software
 
-Verify that the WEKA software is installed on the client according to the installation instructions. For further information, see [Obtaining the WEKA Install File](obtaining-the-weka-install-file.md) and [Stage 1 in WEKA System Installation Process.](broken-reference)
+Verify that the WEKA software is installed on the client according to the installation instructions. For further information, see [Download the WEKA software installation file](obtaining-the-weka-install-file.md) and [1. Install the WEKA software](weka-system-installation-with-multiple-containers-using-the-cli.md#1.-install-the-weka-software).
 
 {% hint style="info" %}
 **Note:** All clients in a WEKA system cluster must use the same software version as the backends or a maximum of one version back. The backend containers must run the same WEKA software version except during upgrades (as managed by the upgrade process).

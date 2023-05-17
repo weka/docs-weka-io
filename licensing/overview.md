@@ -12,6 +12,7 @@ The license terms include the following properties:
 * Expiry date (usage period)
 * Raw or usable hot-tier (SSD) capacity
 * Object store capacity
+* Data Efficiency Option (DEO) license (if provided)
 
 When a license is applied to a WEKA cluster, the cluster verifies the license validity by comparing the license properties and the actual cluster usage.&#x20;
 
@@ -67,7 +68,7 @@ Installed license:
 **Example: Display the license status using the `weka status` command**
 
 ```
-WekaIO v4.0.1 (CLI build 4.0.1)
+WekaIO v4.2.0 (CLI build 4.2.0)
 
 ...
        license: OK, valid thru 2023-07-19T09:22:34Z
@@ -78,7 +79,7 @@ WekaIO v4.0.1 (CLI build 4.0.1)
 
 ```
 # weka status
-Weka v4.0.0.1 (CLI build 4.0.1)
+Weka v4.2.0 (CLI build 4.2.0)
 ...
        license: Unlicensed
 ...

@@ -82,7 +82,8 @@
   * [Data management in tiered filesystems](fs/tiering/data-management-in-tiered-filesystems.md)
   * [Transition between tiered and SSD-only filesystems](fs/tiering/transition-between-tiered-and-ssd-only-filesystems.md)
   * [Manual fetch and release of data](fs/tiering/pre-fetching-from-object-store.md)
-* [Mount filesystems](fs/mounting-filesystems.md)
+* [Mount filesystems](fs/mounting-filesystems/README.md)
+  * [Mount filesystems from multiple clusters on a single client](fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)
 * [Snapshots](fs/snapshots/README.md)
   * [Manage snapshots using the GUI](fs/snapshots/snapshots.md)
   * [Manage snapshots using the CLI](fs/snapshots/snapshots-1.md)
@@ -136,6 +137,7 @@
   * [Manage statistics using the GUI](usage/statistics/statistics.md)
   * [Manage statistics using the CLI](usage/statistics/statistics-1.md)
   * [List of statistics](usage/statistics/list-of-statistics.md)
+* [Insights](usage/insights.md)
 * [System congestion](usage/system-congestion.md)
 * [Security management](usage/security/README.md)
   * [Obtain authentication tokens](usage/security/obtain-authentication-tokens.md)
@@ -165,7 +167,9 @@
   * [Add a backend server](usage/expanding-and-shrinking-cluster-resources/add-a-backend-server.md)
   * [Expand specific resources of a container](usage/expanding-and-shrinking-cluster-resources/expansion-of-specific-resources.md)
   * [Shrink a cluster](usage/expanding-and-shrinking-cluster-resources/shrinking-a-cluster.md)
-* [Background tasks](usage/background-tasks.md)
+* [Background tasks](usage/background-tasks/README.md)
+  * [Manage background tasks using the GUI](usage/background-tasks/manage-background-tasks-using-the-gui.md)
+  * [Manage background tasks using the CLI](usage/background-tasks/manage-background-tasks-using-the-cli.md)
 * [Upgrade WEKA versions](usage/upgrading-weka-versions.md)
 
 ## Billing & Licensing <a href="#licensing" id="licensing"></a>

@@ -89,7 +89,10 @@ Total memory requirement per server= 2.8 + 2.2 + 55.7 + 12 + 6.3 + 8 + 2 + 1.9 =
 
 For the same system as in example 1, but with smaller files, the required memory for metadata would be larger.
 
-For an average file size of 64 KB, the number of files is potentially up to \~12 billion files for all servers; \~980 million files per server.
+For an average file size of 64 KB, the number of files is potentially up to:
+
+* \~12 billion for all servers.
+* \~980 million files per server.
 
 Required memory for metadata: 20 Bytes x 980 million files x 1 unit = \~19.6 GB
 
@@ -101,7 +104,10 @@ Total memory requirement per server = 2.8 + 2.2 + 55.7 + 12 + 6.3 + 8 + 2 + 19.6
 
 ### Client's memory requirements
 
-The WEKA software on a client requires 4 GB of additional memory.
+The WEKA software on a client requires the following minimum additional memory:
+
+* UDP client: 4 GB
+* DPDK client: 5 GB
 
 ## CPU resource planning
 
@@ -120,14 +126,14 @@ Consider the following regarding to the CPU allocation strategy:
 Plan the number of physical cores dedicated to the WEKA software according to the following guidelines and limitations:
 
 * Dedicate at least one physical core to the operating system; the rest can be allocated to the WEKA software.
-  * In general, it is recommended to allocate as many cores as possible to the WEKA system.
-  * A backend server can have as many as possible cores. However, a container within a backend server can have a maximum of 19 physical cores.
+  * Generally, it is recommended to allocate as many cores as possible to the WEKA system.
+  * A backend server can have as many cores as possible. However, a container within a backend server can have a maximum of 19 physical cores.
   * Leave enough cores for the container serving the protocol if it runs on the same server.
 * Allocate enough cores to support performance targets.
   * Generally, use 1 drive process per SSD for up to 6 SSDs and 1 drive process per 2 SSDs for more, with a ratio of 2 compute processes per SSD process.
   * For finer tuning, please contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 * Allocate enough memory to match core allocation, as discussed above.
-* The running of other applications on the same server (converged WEKA system deployment) is supported. However, this is not covered in this documentation. For further information, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+* Running other applications on the same server (converged WEKA system deployment) is supported. However, this is not covered in this documentation. For further information, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 
 ### Clients
 

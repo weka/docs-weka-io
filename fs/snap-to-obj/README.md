@@ -128,7 +128,7 @@ In this scenario, the local snapshot upload waits for the pending deletion of th
 
 ### Pause or abort a snapshot upload
 
-If required, you can pause or abort a snapshot upload using the commands described in the [background tasks](../../usage/background-tasks.md#pause-resume-abort-a-background-task) section.
+If required, you can pause or abort a snapshot upload using the commands described in the [background tasks](../../usage/background-tasks/#pause-resume-abort-a-background-task) section.
 
 ## Incremental snapshots
 

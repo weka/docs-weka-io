@@ -13,7 +13,7 @@ Using the GUI, you can perform the following actions:
 
 ## View filesystems
 
-The filesystems are displayed on the **Filesystems** page. Each filesystem indicates the status, tiering status, backup status, encryption status, SDD capacity, total capacity, and the filesystem group used.
+The filesystems are displayed on the **Filesystems** page. Each filesystem indicates the status, tiering, remote backup, encryption, SDD capacity, total capacity, filesystem group, and data reduction details.
 
 **Procedure**
 
@@ -46,28 +46,38 @@ When creating a WEKA system in AWS using the cloud formation, the WEKA system co
    * **Group**: Select the filesystem group that fits your filesystem.
    * **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.&#x20;
 
-<figure><img src="../../.gitbook/assets/wmng_4_1_create_fs_animated.gif" alt=""><figcaption><p>Create a filesystem</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_4_2_create_fs_animated.gif" alt=""><figcaption><p>Create a filesystem</p></figcaption></figure>
 
-4. Optional: [**Tiering**](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).\
-   If tiering is required, and an object store bucket is already defined, select the toggle button and set the details of the object store bucket:
-   * **Object Store Bucket:** Select a predefined object store bucket from the list.
-   * **Drive Capacity**: Enter the capacity to provision on the SSD, or select **Use All** to use all free capacity.
-   * **Total Capacity**: Enter the total capacity of the object store bucket, including the drive capacity.
+4.  Optional: [**Tiering**](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).\
+    If tiering is required, an object store bucket is already defined, and data reduction is not enabled, select the toggle button and set the details of the object store bucket:
+
+    * **Object Store Bucket:** Select a predefined object store bucket from the list.
+    * **Drive Capacity**: Enter the capacity to provision on the SSD, or select **Use All** to use all free capacity.
+    * **Total Capacity**: Enter the total capacity of the object store bucket, including the drive capacity.
+
+    When you set tiering, you can create the filesystem from an uploaded snapshot. See the related topics below.
 
 ![Tiering](../../.gitbook/assets/wmng\_fs\_tiering.png)
 
 5. Optional: **Thin Provision**.\
    If Thin Provision is required, select the toggle button, and set the minimum (guaranteed) and the maximum capacity for the thin provisioned filesystem.\
    The minimum capacity must be less or equal to the available SSD capacity.\
-   You can set any maximum capacity, but the available capacity depends on the actual free space of the SSD capacity.&#x20;
+   You can set any maximum capacity, but the available capacity depends on the actual free space of the SSD capacity.\
+   Thin provisioning is mandatory when enabling data reduction.
 
 ![Thin provisioning](../../.gitbook/assets/wmng\_fs\_thin\_provisioning.png)
 
-6. Optional: If **Encryption** is required and your WEKA system is deployed with a KMS, select the toggle button.
-7. Optional: **Required Authentication**.\
+6. Optional: **Data Reduction**.\
+   Data reduction can be enabled only on thin provision and non-tiered filesystems on a cluster with a valid data reduction license (you can verify the data reduction license in the cluster settings). For more details, see the related topics below. \
+   To enable the Data Reduction, select the toggle button.
+
+<figure><img src="../../.gitbook/assets/wmng_fs_data_reduction.png" alt=""><figcaption><p>Data reduction</p></figcaption></figure>
+
+7. Optional: If **Encryption** is required and your WEKA system is deployed with a KMS, select the toggle button.
+8. Optional: **Required Authentication**.\
    When ON, user authentication is required when mounting to the filesystem. This option is only relevant to a filesystem created in the root organization.\
    To authenticate during mount, the user is required to run the `weka user login` command, or use `auth_token_path`.
-8. Select **Save**.
+9. Select **Save**.
 
 
 
@@ -79,9 +89,15 @@ When creating a WEKA system in AWS using the cloud formation, the WEKA system co
 
 [kms-management](../../usage/security/kms-management/ "mention")
 
+[overview.md](../../licensing/overview.md "mention")
+
+[#data-reduction](../../overview/filesystems.md#data-reduction "mention")
+
+[#create-a-filesystem-from-an-uploaded-snapshot](../snap-to-obj/snap-to-obj.md#create-a-filesystem-from-an-uploaded-snapshot "mention")
+
 ## Edit a filesystem
 
-You can modify the filesystem parameters according to your demand changes over time. The parameters that you can modify include filesystem name, capacity, tiering, thin provisioning, and required authentication (but not encryption).
+You can modify the filesystem parameters according to your demand changes over time. The parameters you can modify include filesystem name, capacity, tiering, thin provisioning, and required authentication (but not encryption).
 
 **Procedure**
 

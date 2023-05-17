@@ -84,6 +84,10 @@ The S3 protocol implementation supports the following policy actions:
 * `s3:GetBucketTagging`
 * `s3:PutBucketTagging`
 
+## Supported checksum&#x20;
+
+Only MD5 checksum algorithm is supported.
+
 ## Lifecycle configuration
 
 WEKA supports the [AWS S3 Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) elements and definitions, with the limitation of only supporting the lifecycle `Expiration` action.

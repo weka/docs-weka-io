@@ -10,7 +10,7 @@ WEKA events indicate relevant information concerning the WEKA cluster and custom
 
 The WEKA system sends all events to a predefined central monitoring system.
 
-![](../../.gitbook/assets/wmng\_events\_overview.png)
+![System events](../../.gitbook/assets/wmng\_events\_overview.png)
 
 **Related topics**
 

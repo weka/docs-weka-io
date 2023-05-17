@@ -26,7 +26,7 @@ Each filesystem can be mounted in one of two modes of operation in relation to t
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Unlike actual file data, the file metadata is managed in the Linux operating system by the Dentry (directory entry) cache, which maximizes efficiency in the handling of directory entries and is not strongly consistent across WEKA clients. At the cost of some performance compromises, metadata can be configured to be strongly consistent by mounting without Dentry cache (using`dentry_max_age_positive=0, dentry_max_age_negative=0` mount options) if metadata consistency is critical for the application, as described in [Mount Command Options](../fs/mounting-filesystems.md#mount-command-options).&#x20;
+**Note:** Unlike actual file data, the file metadata is managed in the Linux operating system by the Dentry (directory entry) cache, which maximizes efficiency in the handling of directory entries and is not strongly consistent across WEKA clients. At the cost of some performance compromises, metadata can be configured to be strongly consistent by mounting without Dentry cache (using`dentry_max_age_positive=0, dentry_max_age_negative=0` mount options) if metadata consistency is critical for the application, as described in [Mount Command Options](../fs/mounting-filesystems/#mount-command-options).&#x20;
 {% endhint %}
 
 ## **R**ead cache mount mode

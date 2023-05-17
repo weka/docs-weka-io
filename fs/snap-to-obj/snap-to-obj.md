@@ -50,7 +50,7 @@ The snapshot is uploaded to the target object store bucket.
 
 **Related topics**
 
-[#pause-resume-abort-a-background-task](../../usage/background-tasks.md#pause-resume-abort-a-background-task "mention")
+[#pause-resume-abort-a-background-task](../../usage/background-tasks/#pause-resume-abort-a-background-task "mention")
 
 ## Create a filesystem from an uploaded snapshot
 

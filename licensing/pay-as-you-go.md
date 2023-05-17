@@ -45,7 +45,7 @@ After enabling PAYG, you can verify that it is active by running the `weka statu
 
 ```
 $ weka status
-Weka v4.0.1 (CLI build 4.0.1)
+Weka v4.2.0 (CLI build 4.2.0)
 ...
   License: PAYG (Last renew successful at 2017-09-15, 13:55 local time)
 ...
@@ -55,7 +55,7 @@ If something is wrong, the WEKA status shows an error indicating the issue. For 
 
 ```
 $ weka status
-Weka Weka v4.0.1 (CLI build 4.0.1)
+Weka Weka v4.2.0 (CLI build 4.2.0)
 ...
   License: PAYG (Last renew unsuccessful, error: Invalid PAYG plan or secret)
 ...

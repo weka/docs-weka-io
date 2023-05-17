@@ -137,11 +137,15 @@ Jumbo Frames are not required for clients. However, performance might be limited
 * Mellanox ConnectX-4
 
 {% hint style="info" %}
-Intel E810 NIC has specific requirements and certain limitations:
+**Note:** Intel E810 NIC has specific requirements and certain limitations:
 
 * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0.
 * Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 * [Multiple containers architecture](../overview/weka-containers-architecture-overview.md) is not yet supported with this NIC.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** Connecting Ethernet and IB clients to the same cluster is not supported with E810 NIC and Mellanox ConnectX-6-Dx on the cluster backends.
 {% endhint %}
 
 {% hint style="info" %}
