@@ -145,7 +145,7 @@ The Shares tab displays the list of SMB shares that are already created in the s
 
 3. In the Add SMB Share dialog, set the following properties:
    * **Name**: A meaningful name for the SMB share.
-   * **Filesystem**: The filesystem name that includes the directory to share. Select one from the list.
+   * **Filesystem**: The filesystem name that includes the directory to share. Select one from the list. A filesystem with Required Authentication set to ON cannot be used for SMB share.
    * **Description**: A description or purpose of the SMB share.
    * **Path**: A valid internal path, relative to the root, within the filesystem to expose the SMB share.
    * **Encryption:** Select in-transit encryption enforcement of the share. The global cluster encryption settings can affect the actual encryption.
