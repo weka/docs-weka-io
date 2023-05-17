@@ -154,7 +154,7 @@ You can create NFS permission for a client group.
 2\. In the Create NFS Permission Creation dialog, set the following properties:
 
 * **Client Group**: The client group to which the permissions are applied.
-* **Filesystem**: The filesystem to which the permissions are applied.
+* **Filesystem**: The filesystem to which the permissions are applied. A filesystem set with required authentication cannot be used for NFS client permissions.
 * **Path**: The exported directory path (root share).
 * **Type**: The access type: RO (read-only) or RW (read/write).
 * **Priority:** The priority of the client's permission. When access is evaluated, the system first processes the permissions set with the lower priority number. Setting a number in tens (10, 20, 100, and so on) is recommended (it allows adding priorities in between).

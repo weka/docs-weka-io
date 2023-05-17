@@ -66,7 +66,8 @@ When creating a WEKA system in AWS using the cloud formation, the WEKA system co
 7. Optional: If **Encryption** is required and your WEKA system is deployed with a KMS, select the toggle button.
 8. Optional: **Required Authentication**.\
    When ON, user authentication is required when mounting to the filesystem. This option is only relevant to a filesystem created in the root organization.\
-   To authenticate during mount, the user is required to run the `weka user login` command, or use `auth_token_path`.
+   Enabling authentication is not allowed for a filesystem hosting NFS client permissions or SMB shares.\
+   To authenticate during mount, the user must run the `weka user login` command or use `auth_token_path`.
 9. Select **Save**.
 
 
@@ -81,7 +82,7 @@ When creating a WEKA system in AWS using the cloud formation, the WEKA system co
 
 ## Edit a filesystem
 
-You can modify the filesystem parameters according to your demand changes over time. The parameters that you can modify include filesystem name, capacity, tiering, thin provisioning, and required authentication (but not encryption).
+You can modify the filesystem parameters according to your demand changes over time. The parameters you can modify include filesystem name, capacity, tiering, thin provisioning, and required authentication (but not encryption).
 
 **Procedure**
 
