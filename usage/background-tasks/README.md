@@ -8,7 +8,7 @@ description: >-
 
 The WEKA system performs internal and external asynchronous operations and maintenance tasks in the background using minimal CPU resources, allowing no interference nor starving the WEKA system from serving high-performing IOs.‌
 
-Background tasks include, for example, checking data integrity, downloading and uploading snapshots, and detaching an object store.
+Background tasks include, for example, checking metadata integrity, downloading and uploading snapshots, and detaching an object store.
 
 Adhere to the following considerations:
 
@@ -34,10 +34,9 @@ Adhere to the following considerations:
 | STOW\_UPLOAD               | Uploading snapshot \<snapshot name> from filesystem \<fs name> to \<OBS site> object-store bucket \<OBS bucket name>    | Pause, Resume, Abort |
 | STOW\_DOWNLOAD\_FILESYSTEM | Downloading filesystem \<fs name> from locator \<snapshot locator> in object-store \<OBS bucket name>                   | Pause, Resume        |
 | STOW\_DOWNLOAD\_SNAPSHOT   | Downloading snapshot \<snapshot name> to \<fs name> from locator \<snapshot locator> in object-store \<OBS bucket name> | Pause, Resume        |
-| FSCK                       | Checking data integrity                                                                                                 | Pause, Resume, Abort |
+| FSCK                       | Checking metadata integrity                                                                                             | Pause, Resume, Abort |
 | FILESYSTEM\_SQUASH         | Squashing filesystem \<fs name>                                                                                         | Pause, Resume        |
 | SNAPSHOT\_PREFETCH         | Fetching metadata of snapshot \<snapshot name> of filesystem \<fs name> from object-store \<OBS bucket name>            | Pause, Resume, Abort |
 | DATA\_REDUCTION            | Compressing data                                                                                                        | Pause, Resume, Abort |
 | DATA\_REDUCTION\_GC        | Garbage collection (GC)                                                                                                 | Pause, Resume, Abort |
-| FILESYSTEM\_RECOMPRESS     | Recompressing filesystem data                                                                                           | Pause, Resume, Abort |
 
