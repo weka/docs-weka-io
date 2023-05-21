@@ -112,11 +112,11 @@ The WEKA software on a client requires 5 GB minimum additional memory.&#x20;
 
 The WEKA system implements a Non-Uniform Memory Access (NUMA) aware CPU allocation strategy to maximize the overall performance of the system. The allocation of cores utilizes all NUMAs equally to balance memory usage from all NUMAs.
 
-Consider the following regarding to the CPU allocation strategy:
+Consider the following regarding the CPU allocation strategy:
 
 * The code allocates CPU resources by assigning individual cores to tasks in a cgroup
 * Cores in a cgroup won't be available to run any other user processes
-* On systems with Intel hyperthreading enabled, the corresponding sibling cores will be placed into a cgroup along with the physical ones.
+* On systems with Intel hyper-threading enabled, the corresponding sibling cores will be placed into a cgroup along with the physical ones.
 
 ### Backend servers
 

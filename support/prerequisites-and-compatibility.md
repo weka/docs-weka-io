@@ -76,8 +76,7 @@ Ensure the BIOS settings meet the following requirements:
 
 #### cgroups
 
-* WEKA backends and stateful clients that serve protocols must be deployed on a supported OS with **cgroups V1** (legacy).
-* WEKA stateless clients can run on a supported OS with **cgroups V1** or **V2.**
+* WEKA backends and clients that serve protocols must be deployed on a supported OS with **cgroups V1** (legacy).
 
 ### Kernel
 

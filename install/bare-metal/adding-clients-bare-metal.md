@@ -8,6 +8,24 @@ description: This page describes how to add clients to a bare-metal cluster.
 
 Clients are used to run applications that need to access the WEKA filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
 
+A default WEKA installation uses the cgroups functionality to limit or isolate resources for WEKA sole usage. For example, using specific CPUs.
+
+WEKA backends and clients that serve protocols can run on a supported OS with **cgroups V1** (legacy).
+
+Customers using a supported OS with cgroups V2 (hierarchy) or want to modify the cgroups usage can either set it during the agent installation or edit the service configuration file (see [Modify the cgroups usage](adding-clients-bare-metal.md#modify-the-cgroups-usage)).
+
+If the OS is configured with cgroups hybrid mode, which operates with cgroups V1 and V2, WEKA uses V1 by default.
+
+<details>
+
+<summary>What is the cgroups feature?</summary>
+
+cgroups, short for control groups, is a feature in the Linux kernel that allows for fine-grained resource allocation and management of system resources such as CPU, memory, and I/O. It enables administrators to create hierarchies of processes and allocate system resources based on defined rules.
+
+With cgroups, processes can be organized into groups, and each group can be allocated specific amounts of resources such as CPU time, memory, or network bandwidth. This allows for more efficient use of system resources and can help prevent individual processes from monopolizing system resources.
+
+</details>
+
 ## Add stateless clients
 
 To use the WEKA filesystems from a client, just call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
@@ -28,7 +46,7 @@ mkdir -p /mnt/weka
 
 For the first mount, this installs the WEKA software and automatically configures the client. For more information on mount and configuration options, refer to [Mount a filesystem using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
 
-It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, refer to [Mount a filesystem using the traditional method](../../fs/mounting-filesystems.md#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mount-filesystems-using-autofs).
+Configuring the client OS to automatically mount the filesystem at boot time is possible. For more information, refer to [Mount a filesystem using the traditional method](../../fs/mounting-filesystems.md#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mount-filesystems-using-autofs).
 
 {% hint style="info" %}
 **Note:** Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for WEKA client software and NFS mount for the traces. For more information, contact the Customer Success Team.
@@ -38,10 +56,51 @@ It is possible to configure the client OS to automatically mount the filesystem 
 **Note:** Each client must have a unique IP and FQDN.
 {% endhint %}
 
+## Modify the cgroups usage
+
+Customers using a supported OS with cgroups V2 (hierarchy ) or want to modify the cgroups usage can set the cgroups usage during the agent installation or edit the service configuration file.
+
+The cgroups setting includes the following modes:
+
+* `auto`: WEKA tries using cgroups V1 (default). If it fails, the cgroups is set to `none` automatically.&#x20;
+* `force`: WEKA always uses cgroups V1. If the OS does not support it, WEKA fails.
+* `none`: WEKA never uses cgroups. Even if it runs on OS with cgroups V1. For example, use this option to prevent a conflict with third-party components, such as the _slurm workload manager_.
+
+### Set the cgroups usage during the agent installation
+
+In the agent installation command line, specify the required cgroups mode.
+
+Example:
+
+```
+curl http://Backend-1:14000/dist/v1/install | WEKA_CGROUPS_MODE=none sh
+```
+
+### Edit the service configuration file
+
+1. Open the service configuration file `/etc/wekaio/service.conf` and add one of the following:
+   * `cgroups=auto`
+   * `cgroups=force`
+   * `cgroups=none`
+2. Restart the WEKA agent service.
+3. Verify the cgroups setting by running the `weka local status` command.
+
+Example:
+
+```
+[root@weka-cluster] #weka local status
+Weka v4.2.0 (CLI build 4.2.0)
+Cgroups: mode=auto, enabled=true
+
+Containers: 1/1 running (1 weka)
+Nodes: 2/2 running (2 READY)
+Mounts: 1
+```
+
 ## Add stateful clients, which are always part of the cluster
 
 {% hint style="info" %}
-**Note:** It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases, it could be useful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
+**Note:** It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases, it could be helpful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
 {% endhint %}
 
 ### Stage 1: Install the WEKA software
@@ -60,7 +119,7 @@ Once the client is in the stem mode (this is the mode defined immediately after 
 
 `weka -H <backend-hostname> cluster container add <client-hostname>`
 
-**Parameters in command line**
+**Parameters in the command line**
 
 | **Name**           | **Type** | **Value**                                                           | **Limitations**          | **Mandatory** | **Default** |
 | ------------------ | -------- | ------------------------------------------------------------------- | ------------------------ | ------------- | ----------- |
@@ -79,7 +138,7 @@ To configure the new container as a client, run the following command:
 
 `weka cluster container cores <container-id> <cores> --frontend-dedicated-cores=<frontend-dedicated-cores>`
 
-**Parameters in command line**
+**Parameters in the command line**
 
 | **Name**                   | **Type** | **Value**                                                      | **Limitations**                                                                                 | **Mandatory**                             | **Default** |
 | -------------------------- | -------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------- |
