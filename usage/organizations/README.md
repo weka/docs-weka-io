@@ -16,23 +16,26 @@ The Cluster Admin can perform the following activities:
 * Delete existing organizations.
 * Monitor per organization the total capacity used by all the organization filesystems.
 
-‌While Cluster Admins are trusted by different organizations (for example, they have root access to the backend servers), they are obscured from the organization data in the WEKA system. The Cluster Admin separation is partial, for example, they can still see the events of all organizations. The WEKA system ensures the separation of sensitive information between the different organizations.
+‌While Cluster Admins are trusted by different organizations (for example, they have root access to the backend servers), they are obscured from the organization data in the WEKA system. The Cluster Admin separation is partial. For example, they can still see the events of all organizations. The WEKA system ensures the separation of sensitive information between different organizations.
 
 {% hint style="info" %}
-**Note:** The data at the hardware level is not separated. While the WEKA system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations. The system limits are according to the entire system. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
+**Notes:**
+
+* The data at the hardware level is not separated. While the WEKA system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations. The system limits are according to the entire system. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
+* When creating mounts, you can specify the maximum and preferred throughput. See   [Set mount option default values](../../fs/mounting-filesystems.md#set-mount-option-default-values).
 {% endhint %}
 
 ## Organization management use cases&#x20;
 
 ### Private cloud multi-tenancy
 
-Working with organizations makes it possible to manage different departments. While this requires more configuration, for example, different LDAP configurations are usually unnecessary between different departments in the same organization, the Cluster Admin is fully trusted.
+Working with organizations makes it possible to manage different departments. While this requires more configuration, for example, different LDAP configurations are usually unnecessary between various departments in the same organization, the Cluster Admin is fully trusted.
 
-It is possible to separate and obscure specific departments, such as IT, Finance, Life Sciences, Genomics, and even specific projects in departments.
+It is possible to separate and obscure specific departments, such as IT, Finance, Life Sciences, Genomics, and even particular projects in departments.
 
 ### Logical separation of external user groups
 
-When multiple independent groups use the same infrastructure, the use of multiple organizations provides much better security, obscuration, and separation of data.
+When multiple independent groups use the same infrastructure, using multiple organizations provides much better security, obscuration, and separation of data.
 
 ## Cluster level entities
 
@@ -46,36 +49,36 @@ The Cluster Admin manages the following entities at the cluster level:
 
 ## Organization level entities
 
-At the organization level, only the relevant Organization Admin manages all system entities, while the users can only view the system entities within the organization.
+Only the relevant Organization Admin manages all system entities at the organization level, while the users can only view the system entities within the organization.
 
 Cluster Admins **do not** have permissions to view or manage the system entities within the organization, which include the following:
 
-* Filesystems, and the option to mount the filesystems (also a Cluster Adminfile cannot  mount  the filesystems)
+* Filesystems, and the option to mount the filesystems (also, a Cluster Admin cannot  mount  the filesystems)
 * Object store buckets
 * LDAP server
 * NFS exports (NFS client permissions)
 
 {% hint style="warning" %}
-**Note**: Different protocols are not supported other than in the **root** organization.
-{% endhint %}
+**Note**:
 
-{% hint style="warning" %}
-**Note:** Only exports of the 'legacy' NFS stack can be managed within a **non-root** organization.
+* Different protocols are only supported in the **root** organization.
+* Only the 'legacy' NFS stack exports can be managed within a **non-root** organization.
+* A filesystem cannot be moved between organizations, including to or from the root organization.
 {% endhint %}
 
 ## Manage organizations
 
-Only users defined as Cluster Admins can manage organizations. When no organization is created, the root organization is the default organization and all operations are regular. That is, it is not necessary to authenticate the mounts or supply an organization name when logging in using the GUI/CLI.
+Only users defined as Cluster Admins can manage organizations. When no organization is created, the root organization is the default organization, and all operations are regular. It is unnecessary to authenticate the mounts or supply an organization name when logging in using the GUI/CLI.
 
 Once a new organization is created, the organization name must be provided in every login command, using the `--org` attribute in the `weka user login` command.
 
 ## Usage and quota management
 
-Cluster Admins can view an organization's usage (both SSD and total) and can limit usage with quotas per organization. This can be leveraged for charge-backs on either used or allocated capacity of SSD or object store data.
+Cluster Admins can view an organization's usage (SSD and total) and limit usage with quotas per organization. This can be leveraged for charge-backs on either used or allocated capacity of SSD or object store data.
 
 ## Organization admin role privileges
 
-When a new organization is created, the Cluster Admin creates an Organization Admin user for the organization, who is the administrator within the organization responsible for managing each [organization level entity.](./#organization-level-entities)
+When a new organization is created, the Cluster Admin creates an Organization Admin user for the organization, who is the administrator within the organization responsible for managing each organization-level entity.
 
 Organization Admins have similar privileges to Cluster Admins, except that these privileges are limited to the organization level. They can perform the following within the organization:
 
