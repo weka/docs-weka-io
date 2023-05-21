@@ -52,26 +52,26 @@ The resource generator automatically calculates the number of cores, memory, and
 
 **Parameters**
 
-| **Name**                   | **Type**                | **Value**                                                                                                                                                                      | **Mandatory** | **Default**                                       |
-| -------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ------------------------------------------------- |
-| `compute-core-ids`         | Space-separated numbers | Specify the CPUs to allocate for the compute processes.                                                                                                                        | No            | -                                                 |
-| `compute-dedicated-cores`  | Number                  | Specify the number of cores to dedicate for the compute processes.                                                                                                             | No            | The maximum available cores                       |
-| `compute-memory`           | String                  | <p>Specify the total memory to allocate for the compute processes.</p><p>Argument format: value and unit without a space.</p><p>Examples: 1024B, 10GiB, 5TiB.</p>              | No            | The maximum available memory                      |
-| `core-ids`                 | Space-separated numbers | Specify the CPUs to allocate for the WEKA processes.                                                                                                                           | No            | -                                                 |
-| `drive-core-ids`           | Space-separated numbers | Specify the CPUs to allocate for the drive processes.                                                                                                                          | No            | -                                                 |
-| `drive-dedicated-cores`    | Number                  | Specify the number of cores to dedicate for the drive processes.                                                                                                               | No            | 1 core per each detected drive                    |
-| `drives`                   | Space-separated strings | <p>Specify the drives to use. </p><p>This option overrides automatic detection.</p>                                                                                            | No            | All unmounted NVME devices                        |
-| `frontend-core-ids`        | Space-separated numbers | Specify the CPUs to allocate for the frontend processes.                                                                                                                       | No            | -                                                 |
-| `frontend-dedicated-cores` | Number                  | Specify the number of cores to dedicate for the frontend processes.                                                                                                            | No            | 1                                                 |
-| `max-cores-per-container`  | Number                  | Override the default maximum number of cores per container for IO processes (19). If provided, the new value must be lower.                                                    | No            | 19                                                |
-| `minimal-memory`           | Flag                    | Set each container's hugepages memory to 1.4 GiB \* number of IO processes on the container.                                                                                   | No            | -                                                 |
-| `net-devices`              | Space-separated strings | Specify the network devices to use.                                                                                                                                            | Yes           | -                                                 |
-| `no-rdma`                  | Boolean                 | Don't take RDMA support into account when computing memory requirements.                                                                                                       | No            | False                                             |
-| `num-cores`                | Number                  | Override the auto-deduction of the number of cores.                                                                                                                            | No            | All available cores                               |
-| `path`                     | String                  | Specify the path to write the resource files.                                                                                                                                  | No            | The default is '.'                                |
-| `spare-cores`              | Number                  | Specify the number of cores to leave for OS and non-WEKA processes.                                                                                                            | No            | 1                                                 |
-| `spare-memory`             | String                  | <p>Specify the memory to reserve for non-WEKA requirements.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p>                   | No            | The maximum between 8 GiB and 2% of the total RAM |
-| `weka-hugepages-memory`    | String                  | <p>Specify the memory to allocate for compute, frontend, and drive processes.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p> | No            | The maximum available memory                      |
+| Name                       | Value                                                                                                                                                                          | Default                                           |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
+| `compute-core-ids`         | <p>Specify the CPUs to allocate for the compute processes.<br>Format: space-separated numbers</p>                                                                              |                                                   |
+| `compute-dedicated-cores`  | Specify the number of cores to dedicate for the compute processes.                                                                                                             | The maximum available cores                       |
+| `compute-memory`           | <p>Specify the total memory to allocate for the compute processes.</p><p>Format: value and unit without a space.</p><p>Examples: 1024B, 10GiB, 5TiB.</p>                       | The maximum available memory                      |
+| `core-ids`                 | <p>Specify the CPUs to allocate for the WEKA processes.<br>Format: space-separated numbers.</p>                                                                                |                                                   |
+| `drive-core-ids`           | <p>Specify the CPUs to allocate for the drive processes.<br>Format: space-separated numbers.</p>                                                                               |                                                   |
+| `drive-dedicated-cores`    | Specify the number of cores to dedicate for the drive processes.                                                                                                               | 1 core per each detected drive                    |
+| `drives`                   | <p>Specify the drives to use. </p><p>This option overrides automatic detection.<br>Format: space-separated strings.</p>                                                        | All unmounted NVME devices                        |
+| `frontend-core-ids`        | <p>Specify the CPUs to allocate for the frontend processes.<br>Format: space-separated numbers.</p>                                                                            | -                                                 |
+| `frontend-dedicated-cores` | Specify the number of cores to dedicate for the frontend processes.                                                                                                            | 1                                                 |
+| `max-cores-per-container`  | Override the default maximum number of cores per container for IO processes (19). If provided, the new value must be lower.                                                    | 19                                                |
+| `minimal-memory`           | Set each container's hugepages memory to 1.4 GiB \* number of IO processes on the container.                                                                                   |                                                   |
+| `net-devices`\*            | <p>Specify the network devices to use.<br>Format: space-separated strings.</p>                                                                                                 |                                                   |
+| `no-rdma`                  | Don't take RDMA support into account when computing memory requirements.                                                                                                       | False                                             |
+| `num-cores`                | Override the auto-deduction of the number of cores.                                                                                                                            | All available cores                               |
+| `path`                     | Specify the path to write the resource files.                                                                                                                                  | '.'                                               |
+| `spare-cores`              | Specify the number of cores to leave for OS and non-WEKA processes.                                                                                                            | 1                                                 |
+| `spare-memory`             | <p>Specify the memory to reserve for non-WEKA requirements.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p>                   | The maximum between 8 GiB and 2% of the total RAM |
+| `weka-hugepages-memory`    | <p>Specify the memory to allocate for compute, frontend, and drive processes.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p> | The maximum available memory                      |
 
 ### 4. Create drive containers
 
@@ -87,9 +87,9 @@ weka local setup container --resources-path <resources-path>/drives0.json
 
 **Parameters**
 
-| **Name**         | **Type** | **Value**                      | **Limitations**      | **Mandatory** | **Default** |
-| ---------------- | -------- | ------------------------------ | -------------------- | ------------- | ----------- |
-| `resources-path` | String   | The path to the resource file. | Must be a valid path | Yes           |             |
+| Name               | Value                          |
+| ------------------ | ------------------------------ |
+| `resources-path`\* | The path to the resource file. |
 
 ### 5. Create a cluster
 
@@ -103,10 +103,10 @@ weka cluster create <hostnames> [--host-ips <ips | ip+ip+ip+ip>]
 
 **Parameters**
 
-| **Name**    | **Type**                     | **Value**                                                                                                                                                                                                                                                                                                               | **Limitations**                                              | **Mandatory** | **Default**                                     |
-| ----------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------- | ----------------------------------------------- |
-| `hostnames` | Space-separated strings      | <p>Hostnames or IP addresses.<br>If port 14000 is not the default for the drives, you can specify hostnames:port or ips:port. </p>                                                                                                                                                                                      | Need at least 6 strings, as this is the minimal cluster size | Yes           |                                                 |
-| `host-ips`  | Comma-separated IP addresses | IP addresses of the management interfaces. Use a list of `ip+ip` addresses pairs of two cards for HA configuration. In case the cluster is connected to both IB and Ethernet, it is possible to set up to 4 management IPs for redundancy of both the IB and Ethernet networks using a list of `ip+ip+ip+ip` addresses. | The same number of values as in `hostnames`.                 | No            | IP of the first network device of the container |
+| Name          | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Default                                         |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| `hostnames`\* | <p>Hostnames or IP addresses.<br>If port 14000 is not the default for the drives, you can specify hostnames:port or ips:port.<br>Minimum cluster size: 6<br>Format: space-separated strings</p>                                                                                                                                                                                                                                                              |                                                 |
+| `host-ips`    | <p>IP addresses of the management interfaces. Use a list of <code>ip+ip</code> addresses pairs of two cards for HA configuration. In case the cluster is connected to both IB and Ethernet, it is possible to set up to 4 management IPs for redundancy of both the IB and Ethernet networks using a list of <code>ip+ip+ip+ip</code> addresses.<br>The same number of values as in <code>hostnames</code>.<br>Format: comma-separated IP addresses.<br></p> | IP of the first network device of the container |
 
 {% hint style="info" %}
 **Notes:**
@@ -131,10 +131,10 @@ weka cluster drive add <container-id> <device-paths>
 
 **Parameters**
 
-| **Name**       | **Type**                        | **Value**                                                                                 | **Limitations**                          | **Mandatory** | **Default** |
-| -------------- | ------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------- | ------------- | ----------- |
-| `container-id` | String                          | The Identifier of the drive container to add the local SSD drives                         | Must be a valid container identifier     | Yes           |             |
-| `device-paths` | Space-separated list of strings | List of block devices that identify local SSDs. For example,  `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes           |             |
+| Name             | Value                                                                                                                                                                                                            |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `container-id`\* | The Identifier of the drive container to add the local SSD drives.                                                                                                                                               |
+| `device-paths`\* | <p>List of block devices that identify local SSDs. <br>It must be a valid Unix network device name<strong>.</strong><br>Format: Space-separated strings.<br>Example,  <code>/dev/nvme0n1 /dev/nvme1n1</code></p> |
 
 ### 7. Create compute containers
 
@@ -150,11 +150,10 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 **Parameters**
 
-| **Name**                          | **Type**                | **Value**                                                                                                                                                                                                | **Limitations**            | **Mandatory** | **Default** |
-| --------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------- | ----------- |
-| `resources-path`                  | String                  | The path to the resource file.                                                                                                                                                                           | Must be a valid path       | yes           |             |
-| <pre><code>join-ips
-</code></pre> | Space-separated strings | <p>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. For example: <code>--join-ips 10.10.10.23:15000</code></p> | Must be valid IP addresses |               |             |
+| Name               | Value                                                                                                                                                                                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `resources-path`\* | The path to the resource file.                                                                                                                                                                                                                    |
+| `join-ip`          | <p>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. <br>Format: space-separated IP addresses.<br>Example: <code>--join-ips 10.10.10.23:15000</code></p> |
 
 ### 8. Name the cluster
 
@@ -215,11 +214,10 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 **Parameters**
 
-| **Name**                          | **Type**                | **Value**                                                                                                                                                                                                | **Limitations**      | **Mandatory** | **Default** |
-| --------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------------- | ----------- |
-| `resources-path`                  | String                  | The path to the resource file.                                                                                                                                                                           | Must be a valid path | yes           |             |
-| <pre><code>join-ips
-</code></pre> | Space-separated strings | <p>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. For example: <code>--join-ips 10.10.10.23:15000</code></p> | Must be valid IPs    | Yes           |             |
+| Name               | Value                                                                                                                                                                                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `resources-path`\* | The valid path to the resource file.                                                                                                                                                                                                             |
+| `join-ip`\*        | <p>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port.<br>Format: space-separated IP addresses.<br>Example: <code>--join-ips 10.10.10.23:15000</code></p> |
 
 ### 13. Check the cluster configuration
 

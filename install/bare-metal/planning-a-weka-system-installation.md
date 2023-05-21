@@ -50,7 +50,7 @@ SSD resource planning involves how the defined capacity is going to be implement
 
 The total per server memory requirements is the sum of the following requirements:
 
-| **Purpose**                       | **Per-server memory**                                                                                                                              |
+| Purpose                           | Per-server memory                                                                                                                                  |
 | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Fixed                             | 2.8 GB                                                                                                                                             |
 | Frontend processes                | 2.2 GB x # of Frontend processes                                                                                                                   |

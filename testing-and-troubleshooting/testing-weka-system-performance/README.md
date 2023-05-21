@@ -101,7 +101,7 @@ While we provide below the output of one iteration, we ran each test several tim
 
 #### Single client results
 
-| Benchmark        | [AWS](test-environment-details.md#aws)                 | [SuperMicro](test-environment-details.md#supermicro)      |
+| Benchmark        | AWS                                                    | SuperMicro                                                |
 | ---------------- | ------------------------------------------------------ | --------------------------------------------------------- |
 | Read Throughput  | 8.9 GiB/s                                              | 21.4 GiB/s                                                |
 | Write Throughput | 9.4 GiB/s                                              | 17.2 GiB/s                                                |
@@ -540,5 +540,5 @@ fio --client=clients.txt FIOmaster.txt
 mpiexec -f clients.txt -np 1088 mdtest -v -N 136 -i 3 -n 18382 -F -u -d /mnt/weka/mdtest
 ```
 
-{% file src="../../.gitbook/assets/FIOmaster.txt" %}
+{% file src="../../.gitbook/assets/FIOmaster (1).txt" %}
 

@@ -28,13 +28,13 @@ Use the following command to set a default quota of a directory:
 
 #### &#x20;**Parameters**
 
-| **Name** | **Type** | **Value**                                                                                                                                                                          | **Limitations**                                                                      | **Mandatory** | **Default** |
-| -------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------- | ----------- |
-| `path`   | String   | Path to the directory to set the quota on.                                                                                                                                         | The relevant filesystem must be mounted when setting the quota.                      | Yes           | ​           |
-| `soft`   | Number   | Soft quota limit; Exceeding this number will be shown as exceeded quota but will not be enforced until the `grace` period is over.                                                 | Capacity in decimal or binary units, e.g.: `1GB`, `1TB`, `1GiB`, `1TiB`, `unlimited` | No            | `unlimited` |
-| `hard`   | Number   | Hard quota limit; Exceeding this number will not allow any more writes before clearing some space in the directory.                                                                | Capacity in decimal or binary units, e.g.: `1GB`, `1TB`, `1GiB`, `1TiB`, `unlimited` | No            | `unlimited` |
-| `grace`  | Number   | Specify the grace period before the soft limit is treated as a hard limit.                                                                                                         | Format: `1d`, `1w`, `unlimited`                                                      | No            | `unlimited` |
-| `owner`  | String   | An opaque string identifying the directory owner (can be a name, email, slack ID, etc.) This owner will be shown in the quota report and can be notified upon exceeding the quota. | Up to 48 characters.                                                                 | No            |             |
+| Name     | Value                                                                                                                                                                                                                                                                                                                | Default     |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `path`\* | <p>Path to the directory to set the quota.<br>The relevant filesystem must be mounted when setting the quota. </p>                                                                                                                                                                                                   | ​           |
+| `soft`   | <p>Soft quota limit.<br>Exceeding this number is displayed as exceeded quota but it is not enforced until the <code>grace</code> period is over.<br>The capacity can be in decimal or binary units.<br>Format:  <code>1GB</code>, <code>1TB</code>, <code>1GiB</code>, <code>1TiB</code>, <code>unlimited</code></p> | `unlimited` |
+| `hard`   | <p>Hard quota limit.<br>Exceeding this number does not allow more writes before clearing some space in the directory.<br>The capacity can be in decimal or binary units.<br>Format: <code>1GB</code>, <code>1TB</code>, <code>1GiB</code>, <code>1TiB</code>, <code>unlimited</code></p>                             | `unlimited` |
+| `grace`  | <p>Specify the grace period before the soft limit is treated as a hard limit.<br>Format: <code>1d</code>, <code>1w</code>, <code>unlimited</code></p>                                                                                                                                                                | `unlimited` |
+| `owner`  | <p>An opaque string identifying the directory owner (can be a name, email, slack ID, etc.) This owner will be shown in the quota report and can be notified upon exceeding the quota.<br>Supports up to 48 characters.</p>                                                                                           |             |
 
 {% hint style="info" %}
 **Note:** To set advisory only quotas, use a `soft` quota limit without setting a `grace` period.
@@ -54,15 +54,15 @@ Use the following command to list the directory quotas (by default, only exceedi
 
 #### **Parameters**
 
-| **Name**    | **Type** | **Value**                                                                                     | **Limitations**                                                                    | **Mandatory** | **Default**     |
-| ----------- | -------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------- | --------------- |
-| `fs-name`   | String   | Shows quota report only on the specified filesystem.                                          | A valid wekafs filesystem name.                                                    | No            | All filesystems |
-| `snap-name` | String   | Shows the quota report from the time of the snapshot.                                         | Must be a valid snapshot name and be given along with the corresponding `fs-name.` | No            |                 |
-| `path`      | String   | Path to a directory. Shows quota report only on the specified directory.                      | The relevant filesystem must be mounted in the server running the query.           | No            |                 |
-| `under`     | String   | A path to a directory under a wekafs mount.                                                   | The relevant filesystem must be mounted in the server running the query.           | No            |                 |
-| `over`      | Number   | Shows only quotas over this percentage of usage                                               | 0-100                                                                              | No            |                 |
-| `quick`     | Boolean  | Do not resolve inode to a path (provides quicker result if the report contains many entries). |                                                                                    | No            | False           |
-| `all`       | Boolean  | Shows all the quotas, not just the exceeding ones.                                            |                                                                                    | No            | False           |
+| Name        | Value                                                                                                                                                         | Default         |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| `fs-name`   | Shows quota report only on the specified valid filesystem.                                                                                                    | All filesystems |
+| `snap-name` | <p>Shows the quota report from the time of the snapshot.<br>Must be a valid snapshot name and be given along with the corresponding <code>fs-name.</code></p> |                 |
+| `path`      | <p>Path to a directory. Shows quota report only on the specified directory.<br>The relevant filesystem must be mounted in the server running the query.</p>   |                 |
+| `under`     | <p>A path to a directory under a wekafs mount.<br>The relevant filesystem must be mounted in the server running the query.</p>                                |                 |
+| `over`      | <p>Shows only quotas over this percentage of usage.<br>Possible values: <code>0</code>-<code>100</code></p>                                                   |                 |
+| `quick`     | Do not resolve inode to a path. Provides quicker results if the report contains many entries.                                                                 | False           |
+| `all`       | Shows all the quotas, not just the exceeding ones.                                                                                                            | False           |
 
 Use the following command to list the directory default quotas:
 
@@ -70,11 +70,11 @@ Use the following command to list the directory default quotas:
 
 #### **Parameters**
 
-| **Name**    | **Type** | **Value**                                                                             | **Limitations**                                                                    | **Mandatory** | **Default**     |
-| ----------- | -------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------- | --------------- |
-| `fs-name`   | String   | Shows the default quotas of the specified filesystem only.                            | A valid wekafs filesystem name.                                                    | No            | All filesystems |
-| `snap-name` | String   | Shows the default quotas from the time of the snapshot.                               | Must be a valid snapshot name and be given along with the corresponding `fs-name.` | No            |                 |
-| `path`      | String   | Path to a directory. Shows the default quotas report only on the specified directory. | The relevant filesystem must be mounted in the server running the query.           | No            |                 |
+| Name        | Value                                                                                                                                                                    | Default         |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
+| `fs-name`   | Shows the default quotas only on the specified valid filesystem.                                                                                                         | All filesystems |
+| `snap-name` | <p>Shows the default quotas from the time of the snapshot.<br>Must be a valid snapshot name and be given along with the corresponding <code>fs-name.</code></p>          |                 |
+| `path`      | <p>Path to a directory. Shows the default quotas report only on the specified directory.<br>The relevant filesystem must be mounted in the server running the query.</p> |                 |
 
 ## Unsetting directory quota/default quota
 
@@ -90,6 +90,6 @@ Use the following command to unset a default quota of a directory:
 
 #### **Parameters**
 
-| **Name** | **Type** | **Value**                                 | **Limitations**                                                | **Mandatory** | **Default** |
-| -------- | -------- | ----------------------------------------- | -------------------------------------------------------------- | ------------- | ----------- |
-| `path`   | String   | Path to the directory to set the quota on | The relevant filesystem must be mounted when setting the quota | Yes           | ​           |
+| Name     | Value                                                                                                             |
+| -------- | ----------------------------------------------------------------------------------------------------------------- |
+| `path`\* | <p>Path to the directory to set the quota.<br>The relevant filesystem must be mounted when setting the quota.</p> |
