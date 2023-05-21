@@ -68,6 +68,10 @@ The options that are common to many commands include:
 | `-C\|--CONNECT-TIMEOUT` | Modifies the default timeout used for connecting to the system via the JRPC protocol.                                             |
 | `-T\|--TIMEOUT`         | Modifies the default timeout for which the commands wait for a response before giving up.                                         |
 
+{% hint style="info" %}
+**Note:** Throughout the documentation, the CLI mandatory parameters are marked with an asterisk (\*).&#x20;
+{% endhint %}
+
 ## Commands hierarchy
 
 Most WEKA system top-level commands are the default list command for their own collection. Additional sub-commands may be available under them.
