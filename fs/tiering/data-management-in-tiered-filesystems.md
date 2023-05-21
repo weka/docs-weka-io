@@ -50,7 +50,7 @@ While the steady-state of a filesystem requires up to 13% more raw capacity in t
 
 Whenever WEKA uploads objects to the object store, it classifies them using tags. It is useful to carry further lifecycle management rules via the object-store based on these tags (e.g., transfer objects of a specific filesystem to/from Glacier).
 
-| **Tag**        | **Description**                                                                                                                                                                                 |
+| Tag            |                                                                                                                                                                                                 |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `wekaBlobType` | <p>The WEKA-internal type representation of the object. One of:  </p><p><code>DATA</code>, <code>METADATA</code>, <code>METAMETADATA</code>, <code>LOCATOR</code>, <code>RELOCATIONS</code></p> |
 | `wekaFsId`     | The filesystem ID (a combination of the filesystem ID and the cluster GUID uniquely identifies a filesystem).                                                                                   |

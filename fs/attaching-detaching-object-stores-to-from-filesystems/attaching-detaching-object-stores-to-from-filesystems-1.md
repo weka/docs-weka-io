@@ -21,11 +21,11 @@ To attach an object store to a filesystem, use the following command:
 
 **Parameters**
 
-| **Name**   | **Type** | **Value**                                                 | **Limitations**                                                                                         | **Mandatory** | **Default** |
-| ---------- | -------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `fs-name`  | String   | Name of the filesystem to be attached to the object store | Must be a valid name                                                                                    | Yes           | ​           |
-| `obs-name` | String   | Name of the object store to be  attached                  | Must be a valid name                                                                                    | Yes           |             |
-| `mode`     | String   | `local` or `remote`                                       | A `local` bucket can only be attached as `local` and a `remote` bucket can only be attached as `remote` | No            | `local`     |
+| Name         | Value                                                                                                                                                                                                                                                                      | Default |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `fs-name`\*  | Name of the filesystem to attach with the object store.                                                                                                                                                                                                                    | ​       |
+| `obs-name`\* | Name of the object store to attach.                                                                                                                                                                                                                                        |         |
+| `mode`       | <p>The type of the object store bucket.<br>Possible values: <code>local</code> or <code>remote</code>.<br><br>A <code>local</code> bucket can only be attached as <code>local</code> .</p><p>A <code>remote</code> bucket can only be attached as <code>remote</code>.</p> | `local` |
 
 ## **Detach an object store bucket** from a filesystem
 
@@ -37,10 +37,10 @@ To detach an object store from a filesystem, use the following command:
 
 **Parameters**
 
-| **Name**   | **Type** | **Value**                                                   | **Limitations**      | **Mandatory** | **Default** |
-| ---------- | -------- | ----------------------------------------------------------- | -------------------- | ------------- | ----------- |
-| `fs-name`  | String   | Name of the filesystem to be detached from the object store | Must be a valid name | Yes           | ​           |
-| `obs-name` | String   | Name of the object store to be  detached                    | Must be a valid name | Yes           |             |
+| Name         | Value                                                       |
+| ------------ | ----------------------------------------------------------- |
+| `fs-name`\*  | Name of the filesystem to be detached from the object store |
+| `obs-name`\* | Name of the object store to be  detached                    |
 
 {% hint style="info" %}
 **Note:** To [recover from a snapshot](../snap-to-obj/#creating-a-filesystem-from-a-snapshot-using-the-cli) uploaded when two `local` object stores have been attached, use the `--additional-obs` parameter in the `weka fs download` command. The primary object store should be the one where the locator has been uploaded to

@@ -22,10 +22,10 @@ Use the following command to release files:
 
 **Parameters**
 
-| **Name**        | **Type**                         | **Value**                                    | **Limitations** | **Mandatory** | **Default** |
-| --------------- | -------------------------------- | -------------------------------------------- | --------------- | ------------- | ----------- |
-| `path`          | A comma-separated list of string | List of file paths                           |                 | Yes           | ​           |
-| `-v, --verbose` | Boolean                          | Showing fetch requests as they are submitted |                 | No            | Off         |
+| Name            | Value                                        | Default |
+| --------------- | -------------------------------------------- | ------- |
+| `path`\*        | A comma-separated list of file paths.        | ​       |
+| `-v, --verbose` | Showing fetch requests as they are submitted | Off     |
 
 ### Fetch a directory containing many files
 
@@ -58,10 +58,10 @@ Use the following command to release files:
 
 **Parameters**
 
-| **Name**        | **Type**                         | **Value**                                      | **Limitations** | **Mandatory** | **Default** |
-| --------------- | -------------------------------- | ---------------------------------------------- | --------------- | ------------- | ----------- |
-| `path`          | A comma-separated list of string | List of file paths                             |                 | Yes           | ​           |
-| `-v, --verbose` | Boolean                          | Showing release requests as they are submitted |                 | No            | Off         |
+| Name            | Value                                          | Default |
+| --------------- | ---------------------------------------------- | ------- |
+| `path`\*        | A comma-separated list of file paths.          | ​       |
+| `-v, --verbose` | Showing release requests as they are submitted | Off     |
 
 ### Release a directory containing many files
 

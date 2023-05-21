@@ -27,11 +27,11 @@ Use the following command to add a filesystem group:
 
 **Parameters**
 
-| **Name**               | **Type** | **Value**                                                               | **Limitations**        | **Mandatory** | **Default**      |
-| ---------------------- | -------- | ----------------------------------------------------------------------- | ---------------------- | ------------- | ---------------- |
-| `name`                 | String   | Name of the filesystem group being created                              | Must be a valid name   | Yes           | ​                |
-| `target-ssd-retention` | Number   | Target retention period (in seconds) before tiering to the object store | Must be a valid number | No            | 86400 (24 hours) |
-| `start-demote`         | Number   | Target tiering cue (in seconds) before tiering to the object store      | Must be a valid number | No            | 10               |
+| Name                   | Value                                                                   | Default          |
+| ---------------------- | ----------------------------------------------------------------------- | ---------------- |
+| `name`\*               | Name of the filesystem group being created                              | ​                |
+| `target-ssd-retention` | Target retention period (in seconds) before tiering to the object store | 86400 (24 hours) |
+| `start-demote`         | Target tiering cue (in seconds) before tiering to the object store      | 10               |
 
 ## Edit a filesystem group
 
@@ -43,12 +43,12 @@ Use the following command to edit a filesystem group:
 
 **Parameters**
 
-| **Name**               | **Type** | **Value**                                                                   | **Limitations**        | **Mandatory** | **Default** |
-| ---------------------- | -------- | --------------------------------------------------------------------------- | ---------------------- | ------------- | ----------- |
-| `name`                 | String   | Name of the filesystem group being edited                                   | Must be a valid name   | Yes           | ​           |
-| `new-name`             | String   | New name for the filesystem group                                           | Must be a valid name   | Yes           |             |
-| `target-ssd-retention` | Number   | New target retention period (in seconds) before tiering to the object store | Must be a valid number | No            |             |
-| `start-demote`         | Number   | New target tiering cue (in seconds) before tiering to the object store      | Must be a valid number | No            |             |
+| Name                   | Value                                                                        |
+| ---------------------- | ---------------------------------------------------------------------------- |
+| `name`\*               | <p>Name of the filesystem group to edit.<br>It must be a valid name.</p>     |
+| `new-name`             | New name for the filesystem group.                                           |
+| `target-ssd-retention` | New target retention period (in seconds) before tiering to the object store. |
+| `start-demote`         | New target tiering cue (in seconds) before tiering to the object store.      |
 
 ## Delete a filesystem group
 
@@ -60,9 +60,9 @@ Use the following command line to delete a filesystem group:
 
 **Parameters**
 
-| **Name** | **Type** | **Value**                              | **Limitations**      | **Mandatory** | **Default** |
-| -------- | -------- | -------------------------------------- | -------------------- | ------------- | ----------- |
-| `name`   | String   | Name of the filesystem group to delete | Must be a valid name | Yes           | ​           |
+| Name     | Value                                  |
+| -------- | -------------------------------------- |
+| `name`\* | Name of the filesystem group to delete |
 
 **Related topics**
 
