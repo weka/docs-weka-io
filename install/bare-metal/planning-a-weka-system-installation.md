@@ -89,7 +89,7 @@ Total memory requirement per server= 2.8 + 2.2 + 55.7 + 12 + 6.3 + 8 + 2 + 1.9 =
 
 For the same system as in example 1, but with smaller files, the required memory for metadata would be larger.
 
-For an average file size of 64 KB, the number of files is potentially up to \~12 billion files for all servers; \~980 million files per server.
+For an average file size of 64 KB, the number of files is potentially up to \~12 billion for all servers, \~980 million files per server.
 
 Required memory for metadata: 20 Bytes x 980 million files x 1 unit = \~19.6 GB
 
@@ -101,7 +101,7 @@ Total memory requirement per server = 2.8 + 2.2 + 55.7 + 12 + 6.3 + 8 + 2 + 19.6
 
 ### Client's memory requirements
 
-The WEKA software on a client requires 4 GB of additional memory.
+The WEKA software on a client requires 5 GB minimum additional memory.&#x20;
 
 ## CPU resource planning
 
@@ -109,11 +109,11 @@ The WEKA software on a client requires 4 GB of additional memory.
 
 The WEKA system implements a Non-Uniform Memory Access (NUMA) aware CPU allocation strategy to maximize the overall performance of the system. The allocation of cores utilizes all NUMAs equally to balance memory usage from all NUMAs.
 
-Consider the following regarding to the CPU allocation strategy:
+Consider the following regarding  the CPU allocation strategy:
 
 * The code allocates CPU resources by assigning individual cores to tasks in a cgroup
 * Cores in a cgroup won't be available to run any other user processes
-* On systems with Intel hyperthreading enabled, the corresponding sibling cores will be placed into a cgroup along with the physical ones.
+* On systems with Intel hyper-threading enabled, the corresponding sibling cores will be placed into a cgroup along with the physical ones.
 
 ### Backend servers
 
