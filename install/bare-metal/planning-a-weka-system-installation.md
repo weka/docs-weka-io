@@ -104,10 +104,7 @@ Total memory requirement per server = 2.8 + 2.2 + 55.7 + 12 + 6.3 + 8 + 2 + 19.6
 
 ### Client's memory requirements
 
-The WEKA software on a client requires the following minimum additional memory:
-
-* UDP client: 4 GB
-* DPDK client: 5 GB
+The WEKA software on a client requires 5 GB minimum additional memory.&#x20;
 
 ## CPU resource planning
 
