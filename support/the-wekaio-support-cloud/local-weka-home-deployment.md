@@ -143,7 +143,9 @@ If the minikube installation fails, run the command `minikube logs`. A log file 
    `./update_config.sh`
 3. Open the `/root/.config/wekahome/config.yaml` file and set the following:
 
-#### Domain&#x20;
+<details>
+
+<summary>Domain</summary>
 
 Set the domain for URL accessing the Local Weka Home portal either by the organization domain FQDN (DNS-based) or IP address (IP-based).
 
@@ -169,7 +171,11 @@ alertdispatcher:
   email_link_domain_name: "52.20.26.14"
 ```
 
-#### SMTP
+</details>
+
+<details>
+
+<summary>SMTP</summary>
 
 To enable the Local Weka Home to send emails, set the SMTP details in the **smtp\_user\_data** section as shown in the following example:
 
@@ -184,13 +190,15 @@ To enable the Local Weka Home to send emails, set the SMTP details in the **smtp
 <strong>  # false is the default. Change to true if a non-trusted SSL certificate is used
 </strong></code></pre>
 
-{% hint style="warning" %}
 Ensure to enable the SMTP relay service in your SMTP service.
 
 Once the Local Weka Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See the [Set the Local Weka Home to send alerts](set-the-local-weka-home-to-send-alerts-or-events.md) topic.
-{% endhint %}
 
-#### Enforce HTTPS
+</details>
+
+<details>
+
+<summary>Enforce HTTPS</summary>
 
 To enforce HTTPS connection, change the value of `enabled:` to `true`, set the common name (CN, also known as FQDN), certificate data, and private key in the **tls** section (under the **nginx** section) as shown in the following section:
 
@@ -214,12 +222,14 @@ nginx:
      -----END PRIVATE KEY-----
 ```
 
-{% hint style="info" %}
 You can generate a self-signed certificate using the following example:\
 `openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
-{% endhint %}
 
-#### Events retention period
+</details>
+
+<details>
+
+<summary>Events retention period</summary>
 
 The default number of days to keep events in the Local Weka Home is 30 days. To reduce the consumption of disk space, you can specify the max\_age in the **events** section (under the **garbage collection** section), as shown in the following example:
 
@@ -233,7 +243,11 @@ garbage_collection:
   max_age: 30d
 ```
 
-#### Listen on all interfaces
+</details>
+
+<details>
+
+<summary>Listen on all interfaces</summary>
 
 If the Local Weka Home requires listening to all interfaces (for example, 0.0.0.0), in the **global** section, under **ingress**, leave the domain empty as shown in the following example:
 
@@ -247,11 +261,44 @@ global:
     domain: ""
 ```
 
-5. Run `./wekahome-install.sh`.\
+</details>
+
+<details>
+
+<summary>Forward data from Local Weka Home to Cloud Weka Home</summary>
+
+In the **apiforwarding** section, set the forwarding parameters to **true** (except the forwarding\_bulk\_size).
+
+```
+apiforwarding:
+  enabled: false
+  api_forwarding_url: "https://api.home.weka.io"
+  replica_count: 1
+  resources:
+    requests:
+      memory: "100Mi"
+      cpu: 10m
+    limits:
+      memory: "200Mi"
+      cpu: 300m
+  nodeSelector: { }
+  priorityClassName: ""
+  forwarding_cluster_registration_enabled: true
+  forwarding_events_enabled: true
+  forwarding_usage_report_enabled: true
+  forwarding_analytics_enabled: true
+  forwarding_diagnostics_enabled: true
+  forwarding_stats_enabled: true
+  forwarding_bulk_size: 50
+```
+
+</details>
+
+4. Run `./wekahome-install.sh`.\
    For new installation, it takes about 5 minutes.
-6. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
-7. Verify the Local Weka Home is installed successfully. Run the following command line:\
-   &#x20;   `helm status homewekaio -n home-weka-io`
+5. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
+6. Verify the Local Weka Home is installed successfully. Run the following command line:\
+   `helm status homewekaio -n home-weka-io`
 
 <details>
 
