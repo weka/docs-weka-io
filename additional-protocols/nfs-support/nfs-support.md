@@ -46,7 +46,7 @@ The default stack is NFS-W. If you need to create the interface group in the leg
 
 ## Set interface group ports
 
-Once you create an interface group, set its ports.
+Once you create an interface group, set its ports. You can set the ports only on frontend containers.
 
 **Procedure**
 

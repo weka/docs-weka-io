@@ -57,11 +57,11 @@ Use the following command lines to add or delete an interface group port:
 
 **Parameters**
 
-| Name             | Value                                                                                                                          |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `name`\*         | Interface group name.                                                                                                          |
-| `container-id`\* | Valid container ID on which the port resides. You can obtain the container ID by running the `weka cluster container` command. |
-| `port`\*         | <p>Valid port's device.<br>Example: <code>eth1</code>.</p>                                                                     |
+| Name             | Value                                                                                                                                   |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*         | Interface group name.                                                                                                                   |
+| `container-id`\* | Valid frontend container ID on which the port resides. You can obtain the container ID by running the `weka cluster container` command. |
+| `port`\*         | <p>Valid port's device.<br>Example: <code>eth1</code>.</p>                                                                              |
 
 ## Set interface group IPs
 

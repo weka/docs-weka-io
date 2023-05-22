@@ -119,7 +119,7 @@ To use LDAP for authenticating users, you need to configure the corresponding va
 
 Once the LDAP configuration completes, the User Directory tab displays the details. You can disable the LDAP configuration, update the configuration, or reset the configuration values.
 
-![LDAP configuration](<../../.gitbook/assets/wmng\_ldap\_configuration\_result (1).png>)
+![LDAP configuration](../../.gitbook/assets/wmng\_ldap\_configuration\_result.png)
 
 ### Configure Active Directory
 
