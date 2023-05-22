@@ -150,8 +150,9 @@ Once all backends are upgraded, the clients remain with the existing version and
 
 #### Stateful client upgrade options
 
-* If the stateful clients run protocols, you must upgrade them with the backend servers.&#x20;
+*
 * You can manually upgrade the clients, either locally (one by one) or remotely (in batches), usually during a maintenance window.
+* A gateway, which is a stateful client running a protocol, is upgraded with the backend servers.&#x20;
 
 {% tabs %}
 {% tab title="Upgrade a client locally" %}
