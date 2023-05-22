@@ -55,9 +55,9 @@ Use the following command line to display the policy details attached to the spe
 
 **Parameters**
 
-| **Name**     | **Type** | **Value**                                | **Limitations** | **Mandatory** | **Default** |
-| ------------ | -------- | ---------------------------------------- | --------------- | ------------- | ----------- |
-| `access-key` | String   | The access key of the S3 service account |                 | Yes           |             |
+| Name           | Value                                     |
+| -------------- | ----------------------------------------- |
+| `access-key`\* | The access key of the S3 service account. |
 
 ## Remove S3 service account <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -69,6 +69,6 @@ Use the following command line to remove an S3 service account:‌
 
 **Parameters**
 
-| **Name**     | **Type** | **Value**                                          | **Limitations** | **Mandatory** | **Default** |
-| ------------ | -------- | -------------------------------------------------- | --------------- | ------------- | ----------- |
-| `access-key` | String   | The access key of the S3 service account to remove |                 | Yes           |             |
+| Name           | Value                                               |
+| -------------- | --------------------------------------------------- |
+| `access-key`\* | The access key of the S3 service account to remove. |

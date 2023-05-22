@@ -105,10 +105,10 @@ Use the following command line to add an S3 IAM policy:
 
 **Parameters**
 
-| **Name**      | **Type** | **Value**                                                    | **Limitations**                                                                                                                                                                         | **Mandatory** | **Default** |
-| ------------- | -------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `policy-name` | String   | The name of the IAM policy to add                            |                                                                                                                                                                                         | Yes           |             |
-| `policy-file` | String   | A path to the custom policy JSON file for anonymous access.  | <p>A JSON file representing an IAM policy. </p><p>For supported actions, refer to the <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a> section.</p> | Yes           |             |
+| Name            | Value                                                                                                                                                                              |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `policy-name`\* | Name of the IAM policy to add.                                                                                                                                                     |
+| `policy-file`\* | <p>Path to the custom JSON file representing an IAM policy for anonymous access. <br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</p> |
 
 ## Delete an IAM policy <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -120,9 +120,9 @@ Use the following command line to delete an S3 IAM policy:‌
 
 **Parameters**
 
-| **Name**      | **Type** | **Value**                             | **Limitations** | **Mandatory** | **Default** |
-| ------------- | -------- | ------------------------------------- | --------------- | ------------- | ----------- |
-| `policy-name` | String   | The name of the IAM policy to  remove | ​               | Yes           | ​           |
+| Name            | Value                              |
+| --------------- | ---------------------------------- |
+| `policy-name`\* | Name of the IAM policy to  remove. |
 
 ## Attach a policy to an S3 user <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -134,10 +134,10 @@ Use the following command line to attach an IAM policy to an S3 user:‌
 
 **Parameters**
 
-| **Name** | **Type** | **Value**                          | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------- | ---------------------------------- | --------------- | ------------- | ----------- |
-| `policy` | String   | The name of an existing IAM policy | ​               | Yes           | ​           |
-| `user`   | String   | The name of an existing S3 user    |                 | Yes           | ​           |
+| Name       | Value                           |
+| ---------- | ------------------------------- |
+| `policy`\* | Name of an existing IAM policy. |
+| `user`\*   | Name of an existing S3 user.    |
 
 ## Detach a policy from an S3 user <a href="#creating-a-new-iam-policies-1" id="creating-a-new-iam-policies-1"></a>
 
@@ -149,9 +149,9 @@ Use the following command line to detach an IAM policy from an S3 user:‌‌
 
 **Parameters**
 
-| **Name** | **Type** | **Value**                       | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------- | ------------------------------- | --------------- | ------------- | ----------- |
-| `user`   | String   | The name of an existing S3 user | ​               | Yes           | ​           |
+| Name     | Value                        |
+| -------- | ---------------------------- |
+| `user`\* | Name of an existing S3 user. |
 
 ## Generate a temporary security token
 
@@ -163,12 +163,12 @@ Use the following command line to generate a temporary security token:
 
 **Parameters**
 
-| **Name**      | **Type** | **Value**                                                  | **Limitations**                                                                                                                                                                                                                                                             | **Mandatory** | **Default**                                                       |
-| ------------- | -------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------------------------------------------------------------- |
-| `access-key`  | String   | An S3 user access key                                      |                                                                                                                                                                                                                                                                             | Yes           |                                                                   |
-| `secret-key`  | String   | An S3 user secret key                                      |                                                                                                                                                                                                                                                                             | No            | If not supplied, the command will prompt to supply the secret-key |
-| `policy-file` | String   | A path to a custom policy JSON file for anonymous access.  | <p>A JSON file representing an IAM policy. </p><p>For supported actions, refer to the <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a> section. You cannot gain additional capabilities to the IAM policy attached to this S3 user.</p> | No            | ​                                                                 |
-| `duration`    | String   | Duration for the token validity                            | Between 15 minutes and 1 week. Format: `900s`, `60m`, `2d`, `1w`                                                                                                                                                                                                            | Yes           | ​                                                                 |
+| Name           | Value                                                                                                                                                                                                                                                                   | Default                                                        |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `access-key`\* | An S3 user access key                                                                                                                                                                                                                                                   |                                                                |
+| `secret-key`   | An S3 user secret key                                                                                                                                                                                                                                                   | If not supplied, the command prompts to supply the secret-key. |
+| `policy-file`  | <p>Path to a custom JSON file representing an IAM policy for anonymous access.<br>You cannot gain additional capabilities to the IAM policy attached to this S3 user.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>. </p> | ​                                                              |
+| `duration`\*   | <p>Duration for the token validity.<br>Possible values between 15 minutes and 1 week. Format: <code>900s</code>, <code>60m</code>, <code>2d</code>, <code>1w</code></p>                                                                                                 | ​                                                              |
 
 An example response:
 

@@ -23,16 +23,12 @@ Use the following command line to add a lifecycle rule:
 
 **Parameters**
 
-| **Name**      | **Type** | **Value**                                            | **Limitations**                             | **Mandatory** | **Default** |
-| ------------- | -------- | ---------------------------------------------------- | ------------------------------------------- | ------------- | ----------- |
-| `bucket`      | String   | The name of the S3 bucket                            |                                             | Yes           |             |
-| `expiry-days` | Number   | The number of days to wait before expiring an object | Minimum of 1 day                            | Yes           |             |
-| `prefix`      | String   | The prefix of objects to apply the rule to           |                                             | No            |             |
-| `tags`        | String   | Key value pair of object tags to apply the rule to   | Pairs of key values: `'<k1>=<v1>&<k2=<v2>'` | No            |             |
-
-{% hint style="info" %}
-**Note:** The `expiry-days` is the minimum time to wait before expiring an object. In extreme load and scale cases, it might take longer than `expiry-days` to delete an object.
-{% endhint %}
+| Name            | Value                                                                                                                                                                                                      |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `bucket`\*      | Name of the S3 bucket.                                                                                                                                                                                     |
+| `expiry-days`\* | <p>The minimum time to wait before expiring an object.<br>In extreme load and scale cases, it might take longer than the set value in  <code>expiry-days</code> to delete an object.<br>Minimum: 1 day</p> |
+| `prefix`        | Prefix of objects to apply the rule to.                                                                                                                                                                    |
+| `tags`          | <p>Key value pair of object tags to apply the rule to.<br>Pairs of key values: <code>'&#x3C;k1>=&#x3C;v1>&#x26;&#x3C;k2=&#x3C;v2>'</code></p>                                                              |
 
 ## View lifecycle rules <a href="#viewing-ilm-rules" id="viewing-ilm-rules"></a>
 
@@ -44,9 +40,9 @@ Use the following command line to view a bucket's existing lifecycle rules:‌
 
 **Parameters**
 
-| **Name** | **Type** | **Value**                 | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------- | ------------------------- | --------------- | ------------- | ----------- |
-| `bucket` | String   | The name of the S3 bucket | ​Content        | Yes           | ​Content    |
+| Name       | Value                      | Default  |
+| ---------- | -------------------------- | -------- |
+| `bucket`\* | The name of the S3 bucket. | ​Content |
 
 ## Remove a lifecycle rule
 
@@ -58,10 +54,10 @@ Use the following command line to remove an lifecycle rule of a specified bucket
 
 **Parameters**
 
-| **Name** | **Type** | **Value**                    | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------- | ---------------------------- | --------------- | ------------- | ----------- |
-| `bucket` | String   | The name of the S3 bucket    |                 | Yes           |             |
-| `rule`   | String   | The ID of the rule to delete |                 | Yes           |             |
+| Name       | Value                         |
+| ---------- | ----------------------------- |
+| `bucket`\* | The name of the S3 bucket.    |
+| `rule`\*   | The ID of the rule to delete. |
 
 ## Remove all lifecycle rules
 
@@ -73,6 +69,6 @@ Use the following command line to remove all the lifecycle rules of a specified 
 
 **Parameters**
 
-| **Name** | **Type** | **Value**                 | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------- | ------------------------- | --------------- | ------------- | ----------- |
-| `bucket` | String   | The name of the S3 bucket |                 | Yes           |             |
+| Name       | Value                      |
+| ---------- | -------------------------- |
+| `bucket`\* | The name of the S3 bucket. |

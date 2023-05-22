@@ -21,7 +21,7 @@ The following standard S3 APIs are supported:
 
 ## General limits
 
-| **Item**                                                                         | **Limits**                                                   |
+| Item                                                                             | Limits                                                       |
 | -------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | Maximum number of buckets                                                        | 10000                                                        |
 | Maximum object size                                                              | 5 TiB                                                        |
