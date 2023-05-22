@@ -91,7 +91,7 @@ For the same system as in example 1, but with smaller files, the required memory
 
 For an average file size of 64 KB, the number of files is potentially up to:
 
-* \~12 billion for all servers.
+* \~12 billion files for all servers.
 * \~980 million files per server.
 
 Required memory for metadata: 20 Bytes x 980 million files x 1 unit = \~19.6 GB
