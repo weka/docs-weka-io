@@ -69,7 +69,7 @@ UnresponsiveBuckets|MAJOR|Some compute resources are not responding.
 WrongConfigSignatureForRaftSnapshot|MINOR|Tried to load a RAFT snapshot with an unsupported configuration root snapshot signature.
 WrongSchemaVersionForRaftSnapshot|MINOR|Tried to load a RAFT snapshot with an unsupported schema version.
 
-## Config
+## Configuration
 
 **Type** | **Severity** | **Description**
 -|-|-
@@ -210,7 +210,7 @@ UnflushedOpOnDeletingSnapview|MAJOR|Unflushed IO on a deleting snapshot
 -|-|-
 SystemDriveIsTooSlow|MAJOR|System drive is slow to respond.
 
-## InterfaceGroup
+## Interface Group
 
 **Type** | **Severity** | **Description**
 -|-|-
@@ -224,7 +224,7 @@ InterfaceGroupPortAdded|INFO|Interface group port configuration change
 InterfaceGroupPortDeleted|INFO|Interface group port configuration change
 InterfaceGroupUpdated|INFO|Interface group configuration change
 
-## Kms
+## KMS
 
 **Type** | **Severity** | **Description**
 -|-|-
@@ -240,7 +240,7 @@ LicensingReset|INFO|Licensing state has been reset
 NewLicenseInstalled|INFO|New license installed
 PaygLicensingEnabled|INFO|PAYG licensing enabled
 
-## ManualOverride
+## Manual Override
 
 **Type** | **Severity** | **Description**
 -|-|-
@@ -327,7 +327,7 @@ ObjectStoreStatusUp|INFO|The object store status is UP.
 ObsIsMissingObject|MAJOR|Permanently failed to download an object from object storage - The object was not found
 PersistentChecksumErrorInDownloadedObject|MAJOR|Checksum error detected by COMPUTE node in a downloaded OBS data block
 
-## Org
+## Organization
 
 **Type** | **Severity** | **Description**
 -|-|-
@@ -337,13 +337,13 @@ OrgRenamed|INFO|The organization is renamed.
 OrgSsdQuotaChanged|INFO|The organization SSD quota is changed.
 OrgTotalQuotaChanged|INFO|The organization total quota is changed.
 
-## Raft
+## RAFT
 
 **Type** | **Severity** | **Description**
 -|-|-
 IndexChangeDuringStream|INFO|The RAFT index changed during the streaming of the raft snapshot.
 
-## Raid
+## RAID
 
 **Type** | **Severity** | **Description**
 -|-|-
@@ -445,7 +445,7 @@ CaCertUnset|INFO|The CA certificate was unset
 TLSSet|INFO|TLS was set
 TLSUnset|INFO|TLS was unset
 
-## Smb
+## SMB
 
 **Type** | **Severity** | **Description**
 -|-|-
