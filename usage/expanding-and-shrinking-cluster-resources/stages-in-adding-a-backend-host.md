@@ -15,13 +15,13 @@ See [Expand the cluster by importing the server settings](stages-in-adding-a-bac
 
 1. Obtain the WEKA install file.
    * Download the WEKA install file used when the existing cluster was last upgraded (or formed, if not upgraded). See [obtaining-the-weka-install-file.md](../../install/bare-metal/obtaining-the-weka-install-file.md "mention").
-   * Use the `weka-status` command to show the current cluster install file version.\
+   * Use the `weka status` command to show the current cluster install file version.\
 
 2. Install the WEKA software on the new server.
    * Run the `untar` command and `install.sh` command on the new server.\
      At the end of the installation process, the server is in stem mode (the server is not attached to a cluster).
 3. Add the container to the cluster.
-   * Run the following command line on any container that is part of the cluster. In the `backend-hostname` property, specify the IP address or hostname of the new backend server to add.
+   * Run the following command line on any container in the cluster. In the `backend-hostname` property, specify the IP address or hostname of the new backend server to add.
 
 ```
 weka cluster container add <backend-hostname>
