@@ -44,6 +44,7 @@ ClusteringFailure|MINOR|Conainer clustering failed.
 ConfigChangeSetsSliderFull|MINOR|Configuration changeset slider is full while the process (node) is pulling the configuration.
 ConfigGenerationHasNoFirstChunk|MINOR|Applying a partial configuration generation is prohibited.
 ConfigSnapshotPulled|MINOR|Configuration snapshot is pulled.
+DoubleUnmatchingMachineIdentifier|MAJOR|There is a container with same Agent-Machine-ID, but different SMBIOS UID.
 GrimReaperFencingNode|MINOR|A partially connected process (node) is selected to be fenced by the grim-reaper.
 HostActivated|INFO|Host configuration change
 HostAdded|INFO|Host configuration change
@@ -72,6 +73,7 @@ WrongSchemaVersionForRaftSnapshot|MINOR|Tried to load a RAFT snapshot with an un
 
 **Type** | **Severity** | **Description**
 -|-|-
+BlockTaskStateChanged|DEBUG|Block task state changed.
 CachedSnapshotIsNewerThanStreamed|INFO|The streamed snapshot is older than the cached snapshot.
 CachedSnapshotIsOlderThanStreamed|INFO|Requested snapshot doesn't exist yet.
 ClientTargetVersionChange|INFO|Client target version has been set
@@ -84,6 +86,7 @@ LoginBannerCleared|INFO|Login banner has been cleared
 LoginBannerDisabled|INFO|Login banner disabled
 LoginBannerEnabled|INFO|Login banner enabled
 LoginBannerSet|INFO|Login banner has been set
+UpgradeBlockTaskStartInvoked|DEBUG|Block task upgrade task start invoked.
 
 ## Custom
 
@@ -177,6 +180,7 @@ IntegrityCheckIssue|CRITICAL|Found a data integrity issue
 IntegrityCheckStarted|DEBUG|Integrity check has started.
 IntegrityCheckTransientIssue|DEBUG|Found a transient state which is expected to be encountered. Can be ignored, unless it persists. In which case a non transient issue event will be produced
 ManualOverrideStall|WARNING|A service has been manually overridden and stalled.
+MetadataCommitQueueHang|MINOR|Bucket step down due to hanging metadata commit queue
 ObjectStoreAttachedToFilesystem|INFO|The object store is attached to the filesystem.
 ObjectStoreFinishedDetachingFromFilesystem|INFO|The object store finished detaching from the filesystem.
 ObjectStoreStartedDetachingFromFilesystem|INFO|The object store started detaching from the filesystem.
