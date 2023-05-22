@@ -89,7 +89,7 @@ WRITE_LATENCY|Average latency of WRITE operations|Microseconds
 
 **Type** | **Description** | **Units**
 -|-|-
-BUCKET_FAILOVERS|Number of times swapping from a remote primary node to a secondary|Failovers
+BUCKET_FAILOVERS|Number of failovers detected in remote buckets|Failovers
 REMOTE_BUCKET_IS_SECONDARY|Number of times a remote bucket reported it is secondary and cannot serve us|Exceptions
 
 ## Bucket Rebalances
@@ -220,6 +220,7 @@ OBS_SHARED_DOWNLOADS|Number of shared downloads from object-store per second|Ops
 OBS_TRUNCATE|Number of truncates that needed data from the object-store per second|Ops/Sec
 OBS_UNEXPECTED_TAG_ON_DOWNLOAD|Number of unexpected tags found when downloading extents|Occurrences
 OBS_WRITE|Number of writes that needed data from the object-store per second|Ops/Sec
+STOW_COMMIT_QUEUE_HANG|Number of times metadata download queue was hanging full|Occurrences
 STOW_SERIALIZED_EXTENT_DATA|Number of extent descriptors uploaded that contain data|Extent Descriptors
 STOW_SERIALIZED_EXTENT_DESCS|Number of extent descriptors uploaded|Extent Descriptors
 STOW_SERIALIZED_EXTENT_REDIRECTS|Number of extent descriptors uploaded that redirect to previous snapshot|Extent Descriptors
@@ -1157,10 +1158,3 @@ GATHER_FROM_NODE_LATENCY|Time spent responding to a stats-gathering request (not
 GATHER_FROM_NODE_SLEEP|Time spent in-between responding to a stats-gathering request (not including metadata)|Seconds/Sec
 TIMES_QUERIED_STATS|Number of times the process queried other processes for stats|Times
 TIMES_QUERIED|Number of times the process was queried for stats (not including metadata)|Times
-
-## _
-
-**Type** | **Description** | **Units**
--|-|-
-TEST_STAT_ABSOLUTE|Absolute stat used in the tests|Undefined
-TEST_STAT_MOMENTARY|Momentary stat used in the tests|Undefined
