@@ -39,7 +39,7 @@ These permissions are automatically created in an instance profile as part of th
 
 The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the WEKA client to preallocate the network resource for the fastest performance.
 
-If the client is not provided with these permissions, it can only provide `ec2:*` and create an additional NIC in the same security group and subnet described above and when mounting a second cluster from a single client.
+If the client is not provided with these permissions, it can only provide `ec2:*` and create an additional NIC in the same security group and subnet described above and when mounting a second cluster from a single client (see [Mount filesystems from multiple clusters on a single client](../../fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)).
 
 #### Root volume
 

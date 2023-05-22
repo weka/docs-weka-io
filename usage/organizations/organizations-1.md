@@ -22,13 +22,14 @@ Use the following command line to create an organization:
 
 **Parameters**
 
-| **Name**      | T**ype** | **Value**                                                           | **Limitations**        | **Mandatory** | **Default**     |
-| ------------- | -------- | ------------------------------------------------------------------- | ---------------------- | ------------- | --------------- |
-| `name`        | String   | Organization name                                                   | Must be a valid name   | Yes           |                 |
-| `username`    | String   | Username of the created Organization Admin                          | Must be a valid name   | Yes           |                 |
-| `password`    | String   | Password of the created Organization Admin                          |                        | Yes           |                 |
-| `ssd-quota`   | Number   | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number | No            | 0 (not limited) |
-| `total-quota` | Number   | Total allowed quota for the organization (SSD and object store)     | Must be a valid number | No            | 0 (not limited) |
+| Name          | Value                                                                | Default         |
+| ------------- | -------------------------------------------------------------------- | --------------- |
+| **Name**      | **Value**                                                            | **Default**     |
+| `name`\*      | Valid organization name.                                             |                 |
+| `username`\*  | Valid username of the created Organization Admin.                    |                 |
+| `password`\*  | Password of the created Organization Admin.                          |                 |
+| `ssd-quota`   | Allowed quota out of the system SSDs to be used by the organization. | 0 (not limited) |
+| `total-quota` | Total allowed quota for the organization (SSD and object store).     | 0 (not limited) |
 
 ## View organizations
 
@@ -54,10 +55,10 @@ Use the following command line to rename an organization:
 
 **Parameters**
 
-| **Name**   | **Type**       | **Value**                       | **Limitations** | **Mandatory** | **Default** |
-| ---------- | -------------- | ------------------------------- | --------------- | ------------- | ----------- |
-| `org`      | String/Integer | Current organization name or ID |                 | Yes           |             |
-| `new-name` | String         | New organization name           |                 | Yes           |             |
+| Name         | Value                            |
+| ------------ | -------------------------------- |
+| `org`\*      | Current organization name or ID. |
+| `new-name`\* | New organization name.           |
 
 ## Update the quota of an organization
 
@@ -69,11 +70,12 @@ Use the following command line to update an organization's quota:
 
 **Parameters**
 
-| **Name**      | **Type**       | **Value**                                                           | **Limitations**                                      | **Mandatory** | **Default** |
-| ------------- | -------------- | ------------------------------------------------------------------- | ---------------------------------------------------- | ------------- | ----------- |
-| `org`         | String/Integer | Organization name or ID                                             | The root organization (org ID = 0 cannot be limited) | Yes           |             |
-| `ssd-quota`   | Number         | Allowed quota out of the system SSDs to be used by the organization | Must be a valid number                               | No            |             |
-| `total-quota` | Number         | Total allowed quota for the organization (SSD and object store)     | Must be a valid number                               | No            |             |
+| Name          | Value                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------- |
+| **Name**      | **Value**                                                                               |
+| `org`\*       | <p>Organization name or ID.<br>The root organization (org ID = 0 cannot be limited)</p> |
+| `ssd-quota`   | Allowed quota out of the system SSDs to be used by the organization                     |
+| `total-quota` | Total allowed quota for the organization (SSD and object store)                         |
 
 ## Delete an organization
 
@@ -89,9 +91,9 @@ Use the following command line to delete an organization:
 
 **Parameters**
 
-| **Name** | **Type**       | **Value**               | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------------- | ----------------------- | --------------- | ------------- | ----------- |
-| `org`    | String/Integer | Organization name or ID |                 | Yes           |             |
+| Name    | Value                    |
+| ------- | ------------------------ |
+| `org`\* | Organization name or ID. |
 
 
 

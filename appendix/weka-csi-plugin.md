@@ -228,7 +228,7 @@ data:
 **Note:** Make sure that all data is base64-encoded when creating a secret.
 {% endhint %}
 
-| **Key**        | **Description**                                                                                                                             | **Notes**                                                                                                                                           |
+| Key            | Description                                                                                                                                 | Notes                                                                                                                                               |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `username`     | The user name for API access to the Weka cluster, in base64 encoding.                                                                       | Must have at least read-write permissions in the organization. It is recommended to create a separate user with admin privileges for the CSI plugin |
 | `password`     | The user password for API access to the Weka cluster, in base64 encoding.                                                                   |                                                                                                                                                     |
@@ -295,7 +295,7 @@ parameters:
 
 #### **Storage class parameters**
 
-| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                              |
+| Parameter                                         | Description                                                                                                                                                                                                                                                                                                                                                                                  |
 | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `filesystemName`                                  | <p>The name of the Weka filesystem to create directories in as Kubernetes volumes. </p><ul><li>The filesystem must exist on the Weka cluster</li><li>The filesystem may not be defined as "authenticated"</li></ul>                                                                                                                                                                          |
 | `capacityEnforcement`                             | <p>Can be <code>HARD</code> or <code>SOFT</code></p><ul><li><code>HARD</code>: strictly enforce quota and deny any write operation to the persistent volume consumer until space is freed up</li><li><code>SOFT</code>: do not strictly enforce the quota, but create an alert on the Weka cluster</li></ul>                                                                                 |
@@ -366,7 +366,7 @@ parameters:
 
 #### **Storage class parameters**
 
-| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                             |
+| Parameter                                         | Description                                                                                                                                                                                                                                                                                                                                                                                 |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `volumeType`                                      | The volumeType of the CSI Plugin to use.  'weka/v2' is used for Snapshot and Filesystem backed Storage Class configurations.                                                                                                                                                                                                                                                                |
 | `filesystemName`                                  | <p>The name of the Weka filesystem to create snapshots in as Kubernetes volumes. </p><ul><li>The filesystem must exist on the Weka cluster</li><li>The filesystem must be left empty</li></ul>                                                                                                                                                                                              |
@@ -436,7 +436,7 @@ parameters:
 
 #### **Storage class parameters**
 
-| **Parameter**                                     | **Description**                                                                                                                                                                                                                                                                                                                                                                             |
+| Parameter                                         | Description                                                                                                                                                                                                                                                                                                                                                                                 |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `volumeType`                                      | The volumeType of the CSI Plugin to use.  'weka/v2' is used for Snapshot and Filesystem backed Storage Class configurations.                                                                                                                                                                                                                                                                |
 | `filesystemGroupName`                             | <p>The name of the Weka filesystem group to create filesystems in as Kubernetes volumes. </p><ul><li>The filesystem group must exist on the Weka cluster</li></ul>                                                                                                                                                                                                                          |
@@ -494,7 +494,7 @@ spec:
 
 #### Persistent volume claim **parameters**
 
-| **Parameter**                     | **Description**                            | **Limitations**                                                                                                 |
+| Parameter                         | Description                                | Limitation                                                                                                      |
 | --------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
 | `spec.accessModes`                | The volume access mode                     | `ReadWriteMany`, `ReadWriteOnce`, or `ReadOnlyMany`                                                             |
 | `spec.storageClassName`           | The storage class to use to create the PVC | Must be an existing storage class                                                                               |
@@ -550,7 +550,7 @@ spec:
 
 #### Persistent volume **parameters**
 
-| **Parameter**           | **Description**                               | **Limitations**                                                                                                                                                                                       |
+| Parameter               | Description                                   | Limitation                                                                                                                                                                                            |
 | ----------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `spec.accessModes`      | The volume access mode                        | `ReadWriteMany`, `ReadWriteOnce`, or `ReadOnlyMany`                                                                                                                                                   |
 | `spec.storageClassName` | The storage class to use to create the PV     | Must be an existing storage class                                                                                                                                                                     |
@@ -594,7 +594,7 @@ spec:
 
 #### Persistent volume claim for static provisioning example
 
-| **Parameter**                     | **Description**                              | **Limitations**                                                                                                 |
+| Parameter                         | Description                                  | Limitation                                                                                                      |
 | --------------------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `spec.accessModes`                | The volume access mode                       | `ReadWriteMany`, `ReadWriteOnce`, or `ReadOnlyMany`                                                             |
 | `spec.storageClassName`           | The storage class to use to create the PVC   | Must be the same storage class as the PV requested to bind in `spec.volumeName`                                 |

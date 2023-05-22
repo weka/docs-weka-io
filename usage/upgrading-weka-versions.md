@@ -121,15 +121,14 @@ You can control the upgrade window time by setting the following parameters in t
 
 **Parameters**
 
-| **Name**                                 | **Value**                                                                                                         | **Mandatory**              | **Default** |
-| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------- | ----------- |
-| `--stop-io-timeout`                      | Maximum time in seconds to wait for IO to stop successfully.                                                      | No                         | 90s         |
-| `--container-version-change-timeout`     | Maximum time in seconds to wait for a container version update.                                                   | No                         | 180s        |
-| `--disconnect-stateless-clients-timeout` | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them. | No                         | 60s         |
-| `--prepare-only`                         | Download and prepare a new software version across all servers in the cluster without performing the upgrade.     | No                         | False       |
-| `--health-check-timeout`                 | Maximum time in seconds to wait for the health check to complete                                                  | No                         | 10s         |
-| `--container`                            | The container from which to run the upgrade.                                                                      | <p>Yes</p><p>(for MCB)</p> |             |
-| `--mode`                                 | <p>The method to run the upgrade. <br>For a non-disruptive upgrade, set <code>ndu</code>.</p>                     | <p>Yes<br>(for NDU)</p>    |             |
+| Name                                     | Value                                                                                                             | Default |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------- |
+| `--container-version-change-timeout`     | Maximum time in seconds to wait for a container version update.                                                   | 180s    |
+| `--disconnect-stateless-clients-timeout` | Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them. | 60s     |
+| `--prepare-only`                         | Download and prepare a new software version across all servers in the cluster without performing the upgrade.     | False   |
+| `--health-check-timeout`                 | Maximum time in seconds to wait for the health check to complete                                                  | 10s     |
+| `--container`\*                          | The container from which to run the upgrade.                                                                      |         |
+| `--mode`\*                               | <p>The method to run the upgrade. <br>Set <code>ndu</code> for a non-disruptive upgrade.</p>                      |         |
 
 {% hint style="info" %}
 **Note:** To run the upgrade command, ensure you are logged in as a Cluster Admin (using a `weka user login`).

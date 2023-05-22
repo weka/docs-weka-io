@@ -63,9 +63,9 @@ To deactivate a drive, run the following command:
 
 **Parameters**
 
-| **Name** | **Type**                | **Value**                         | **Limitations** | **Mandatory** | **Default** |
-| -------- | ----------------------- | --------------------------------- | --------------- | ------------- | ----------- |
-| `uuids`  | Comma-separated strings | Comma-separated drive identifiers |                 | Yes           |             |
+| Name      | Value                              |
+| --------- | ---------------------------------- |
+| `uuids`\* | Comma-separated drive identifiers. |
 
 {% hint style="info" %}
 **Note:** Running the `weka cluster drive` command is displayed whether the redistribution is still being performed.
@@ -81,9 +81,10 @@ To remove a drive, run the following command:
 
 **Parameters**
 
-| **Name** | **Type**                | **Value**                         | **Limitations** | **Mandatory** | **Default** |
-| -------- | ----------------------- | --------------------------------- | --------------- | ------------- | ----------- |
-| `uuids`  | Comma-separated strings | Comma-separated drive identifiers |                 | Yes           |             |
+| Name      | Value                              |
+| --------- | ---------------------------------- |
+| **Name**  | **Value**                          |
+| `uuids`\* | Comma-separated drive identifiers. |
 
 ## Remove containers with their allocated drives
 
@@ -100,10 +101,10 @@ To deactivate containers with their drives, run the following command:
 
 **Parameters**
 
-| **Name**            | **Type**                 | **Value**                                      | **Limitations**                                                       | **Mandatory** | **Default** |
-| ------------------- | ------------------------ | ---------------------------------------------- | --------------------------------------------------------------------- | ------------- | ----------- |
-| `container-ids`     | Space-separated integers | Space-separated container identifiers          |                                                                       | Yes           |             |
-| `allow-unavailable` | Boolean                  | Allow deactivation of an unavailable container | If the container returns, it will join the cluster in an active state | No            | No          |
+| Name                | Value                                                                                                                                              | Default |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `container-ids`\*   | Space-separated container identifiers                                                                                                              |         |
+| `allow-unavailable` | <p>Allow deactivation of an unavailable container.<br>If the <code>container-id</code> value returns, it joins the cluster in an active state.</p> | No      |
 
 ### Remove containers from the cluster
 
@@ -115,6 +116,4 @@ To remove the container from the cluster, run the following command:
 
 **Parameters**
 
-| **Name**       | **Type**                | **Value**                             | **Limitations** | **Mandatory** | **Default** |
-| -------------- | ----------------------- | ------------------------------------- | --------------- | ------------- | ----------- |
-| `container-id` | Comma-separated strings | Comma-separated container identifiers |                 | Yes           |             |
+<table><thead><tr><th>Name</th><th>Value</th><th data-hidden>Default</th></tr></thead><tbody><tr><td><code>container-id</code>*</td><td>Comma-separated container identifiers.</td><td></td></tr></tbody></table>

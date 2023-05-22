@@ -31,9 +31,9 @@ Use the following command line to list all alerts (muted and unmuted) in the WEK
 
 **Parameters**
 
-| **Name** | **Type** | **Value**                                    | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------- | -------------------------------------------- | --------------- | ------------- | ----------- |
-| `muted`  | Boolean  | List muted alerts alongside the unmuted ones |                 | No            | False       |
+| Name    | Value                                     | Default |
+| ------- | ----------------------------------------- | ------- |
+| `muted` | List muted alerts alongside unmuted ones. | False   |
 
 ## **Mute alerts**
 
@@ -47,10 +47,10 @@ The system does not prompt muted alerts when listing active alerts. You must spe
 
 **Parameters**
 
-| **Name**     | **Type** | **Value**                                                    | **Limitations**                  | **Mandatory** | **Default** |
-| ------------ | -------- | ------------------------------------------------------------ | -------------------------------- | ------------- | ----------- |
-| `alert-type` | String   | An alert-type to mute, use `weka alerts types` to list types |                                  | Yes           |             |
-| `duration`   | String   | Expiration time for muting this alert type                   | Format: 3s, 2h, 4m, 1d, 1d5h, 1w | Yes           |             |
+| Name           | Value                                                                                                                                                                 |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `alert-type`\* | An alert-type to mute, use `weka alerts types` to list types.                                                                                                         |
+| `duration`\*   | <p>Expiration time for muting this alert type.<br>Format: <code>3s</code>, <code>2h</code>, <code>4m</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>.</p> |
 
 ## **Unmute alerts**
 
@@ -62,9 +62,9 @@ Use the following command line to unmute a muted alert-type:
 
 **Parameters**
 
-| **Name**     | **Type** | **Value**                                                      | **Limitations** | **Mandatory** | **Default** |
-| ------------ | -------- | -------------------------------------------------------------- | --------------- | ------------- | ----------- |
-| `alert-type` | String   | An alert-type to unmute, use `weka alerts types` to list types |                 | Yes           |             |
+| Name           | Value                                                           |
+| -------------- | --------------------------------------------------------------- |
+| `alert-type`\* | An alert-type to unmute, use `weka alerts types` to list types. |
 
 
 
