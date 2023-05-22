@@ -10,10 +10,14 @@ The WEKA upgrade process supports upgrading to higher minor and major versions o
 
 Always upgrade to the latest minor version in the new major version when upgrading to a major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
-* To upgrade to WEKA software version 4.2.x, the minimum source version must be 4.1.2.
-* To upgrade to WEKA software version 4.1.x, the minimum source version must be 4.0.2 in MCB configuration.&#x20;
+* To upgrade to WEKA software version 4.2.x, the minimum source version must be 4.1.2 in MCB architecture.
+* To upgrade to WEKA software version 4.1.x, the minimum source version must be 4.0.2 in MCB architecture.&#x20;
 
-For more information, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+If the source system is not in MCB architecture, it is required to convert the cluster architecture to MCB. Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for assistance.
+
+{% hint style="info" %}
+**Caution:** Customers running WEKA clusters on AWS with **auto-scaling groups** must contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) before converting the cluster to MCB.
+{% endhint %}
 
 {% hint style="info" %}
 **Note:** Backend servers with Intel E810 NIC are not supported on V4.2, so they cannot be upgraded.
@@ -150,7 +154,6 @@ Once all backends are upgraded, the clients remain with the existing version and
 
 #### Stateful client upgrade options
 
-*
 * You can manually upgrade the clients, either locally (one by one) or remotely (in batches), usually during a maintenance window.
 * A gateway, which is a stateful client running a protocol, is upgraded with the backend servers.&#x20;
 

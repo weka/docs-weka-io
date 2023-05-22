@@ -26,8 +26,8 @@ When launching new clients, ensure the following concerning networking and root 
 
 #### **Networking**
 
-* For best performance, it is recommended that the new clients will be in the **same subnet** as the backend instances, alternatively, they can be in a routable subnet to the backend instances in the same AZ (note that cross-AZ traffic also incurs expensive network charges).&#x20;
-* They must use the same **security group** as the backends they will connect to, or alternatively use a **security group** that allows them to connect to the backend instances.
+* For best performance, it is recommended that the new clients will be in the **same subnet** as the backend instances. Alternatively, they can be in a routable subnet to the backend instances in the same AZ (note that cross-AZ traffic also incurs expensive network charges).&#x20;
+* They must use the same **security group** as the backends they will connect to, or alternatively, use a **security group** that allows them to connect to the backend instances.
 * **Enhanced networking** is enabled as described in [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html).
 * The OS **network manager** must be disabled.
 
@@ -35,15 +35,15 @@ When launching new clients, ensure the following concerning networking and root 
 
 When adding a client, it is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](cloudformation.md#iam-role-created-in-the-template).
 
-These permissions are automatically created in an instance profile as part of the CloudFormation stack. It is possible to use the same instance profile as one of the backend instances to ensure that the same credentials are given to the new client.
+These permissions are automatically created in an instance profile as part of the CloudFormation stack. It is possible to use the same instance profile as one of the backend instances to ensure the same credentials are given to the new client.
 
 The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the WEKA client to preallocate the network resource for the fastest performance.
 
-If the client is not to be provided with these permissions, it is possible to only provide `ec2:*` and create an additional NIC in the same security group and subnet as described above.
+If the client is not provided with these permissions, it can only provide `ec2:*` and create an additional NIC in the same security group and subnet described above and when mounting a second cluster from a single client.
 
 #### Root volume
 
-The clients **root volume** must be at least 48 GiB in size and either `GP2` or `IO1` type.
+The client's **root volume** must be at least 48 GiB in size and either `GP2` or `IO1` type.
 
 The WEKA software is installed under `/opt/weka`. If it is not possible to change the size of the root volume, an additional EBS volume can be created, formatted, and mounted under `/opt/weka`. Make sure that the new volume is either `GP2` or `IO1` type.
 
