@@ -13,7 +13,7 @@ See [Expand the Cluster by Importing the Host Settings](stages-in-adding-a-backe
 
 Download the Weka Install File used when the existing cluster was last upgraded (or formed, if not upgraded)..
 
-Use the `weka-status` command to show the current cluster install file version.
+Use the `weka status` command to show the current cluster install file version.
 
 See [obtaining-the-weka-install-file.md](../../install/bare-metal/obtaining-the-weka-install-file.md "mention")
 
