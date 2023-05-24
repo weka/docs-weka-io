@@ -29,9 +29,9 @@ Ensure the BIOS settings meet the following requirements:
 
 ## Operating system
 
-### Types
-
-#### Backends and Clients:
+{% tabs %}
+{% tab title="Backends and Clients" %}
+The following operating systems are supported for backend servers and clients:
 
 * **RHEL:**
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
@@ -50,14 +50,37 @@ Ensure the BIOS settings meet the following requirements:
 * **Amazon Linux:** 18.03, 17.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
 
-#### Clients only:
+{% hint style="info" %}
+**Note:** Ensure using an OS with a supported kernel.
+{% endhint %}
+{% endtab %}
 
-* **SuSe:**
-  * 15 SP2
-  * 12 SP5
+{% tab title="Clients only" %}
+The following operating systems are supported for clients only:
 
-### Configuration
+**SuSe:**
 
+* 15 SP2
+* 12 SP5
+{% endtab %}
+
+{% tab title="Kernel" %}
+The following kernel versions are supported:
+
+* 5.3-5.15
+* 4.4.0-1106 to 4.19
+* 3.10
+
+{% hint style="warning" %}
+**Note:** Kernel 5.15 is not supported with Amazon Linux operating systems.
+{% endhint %}
+
+{% hint style="info" %}
+**Note:** It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
+{% endhint %}
+{% endtab %}
+
+{% tab title="Configuration" %}
 #### General
 
 * All WEKA servers must be synchronized in date/time (NTP recommended)
@@ -77,20 +100,8 @@ Ensure the BIOS settings meet the following requirements:
 #### cgroups
 
 * WEKA backends and clients that serve protocols must be deployed on a supported OS with **cgroups V1** (legacy).
-
-### Kernel
-
-* 5.3-5.15
-* 4.4.0-1106 to 4.19
-* 3.10
-
-{% hint style="warning" %}
-**Note:** Kernel 5.15 is not supported with Amazon Linux operating systems.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** It is advisable to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
-{% endhint %}
+{% endtab %}
+{% endtabs %}
 
 ## Weka installation directory
 
@@ -113,7 +124,9 @@ Jumbo Frames are not required for clients. However, performance might be limited
 
 ### Ethernet <a href="#networking-ethernet" id="networking-ethernet"></a>
 
-#### NIC
+{% tabs %}
+{% tab title="NIC" %}
+WEKA supports the following Ethernet NICs:
 
 * Amazon ENA
 * Broadcom 57810S
@@ -151,10 +164,10 @@ Jumbo Frames are not required for clients. However, performance might be limited
 {% hint style="info" %}
 **Note:** LACP (link aggregation, also known as bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using virtual functions (VFs).
 {% endhint %}
+{% endtab %}
 
-#### NIC drivers
-
-Supported Mellanox OFED versions:
+{% tab title="NIC drivers" %}
+Supported Mellanox OFED versions for the Ethernet NICs:
 
 * 5.9-0.5.6.0
 * 5.8-1.1.2.1 LTS
@@ -184,9 +197,9 @@ Supported Intel 40 drivers:
 Supported ice drivers:
 
 * 1.9.11
+{% endtab %}
 
-#### Ethernet configuration
-
+{% tab title="Ethernet configuration" %}
 * Ethernet speeds: 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE
 * NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
 * VLAN: Not supported
@@ -205,20 +218,24 @@ Supported ice drivers:
 {% hint style="info" %}
 **Note:** When assigning a network device to the Weka system, no other application can create VFs on that device.
 {% endhint %}
+{% endtab %}
+{% endtabs %}
 
 ### InfiniBand <a href="#networking-infiniband" id="networking-infiniband"></a>
 
-#### NIC
+{% tabs %}
+{% tab title="NIC" %}
+WEKA supports the following InfiniBand NICs:
 
 * Mellanox ConnectX-6
 * Mellanox ConnectX-5
 * Mellanox ConnectX-5-Ex
 * Mellanox ConnectX-4
 * Mellanox ConnectX-4-Lx
+{% endtab %}
 
-#### NIC Drivers
-
-Supported Mellanox OFED versions:
+{% tab title="NIC Drivers" %}
+WEKA supports the following Mellanox OFED versions InfiniBand NICs:
 
 * 5.9-0.5.6.0
 * 5.8-1.1.2.1 LTS
@@ -229,8 +246,10 @@ Supported Mellanox OFED versions:
 * 5.4-3.4.0.0 LTS
 * 5.1-2.6.2.0
 * 5.1-2.5.8.0
+{% endtab %}
 
-#### Infiniband Configuration
+{% tab title="Configuration" %}
+WEKA supports the following InfiniBand configurations:
 
 * InfiniBand speeds: FDR / EDR / HDR
 * Subnet manager: Configured to 4092
@@ -241,6 +260,8 @@ Supported Mellanox OFED versions:
 {% hint style="info" %}
 **Note:** If it is necessary to change PKEYs, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 {% endhint %}
+{% endtab %}
+{% endtabs %}
 
 ### HA
 
