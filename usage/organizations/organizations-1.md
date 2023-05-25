@@ -22,14 +22,7 @@ Use the following command line to create an organization:
 
 **Parameters**
 
-| Name          | Value                                                                | Default         |
-| ------------- | -------------------------------------------------------------------- | --------------- |
-| **Name**      | **Value**                                                            | **Default**     |
-| `name`\*      | Valid organization name.                                             |                 |
-| `username`\*  | Valid username of the created Organization Admin.                    |                 |
-| `password`\*  | Password of the created Organization Admin.                          |                 |
-| `ssd-quota`   | Allowed quota out of the system SSDs to be used by the organization. | 0 (not limited) |
-| `total-quota` | Total allowed quota for the organization (SSD and object store).     | 0 (not limited) |
+<table><thead><tr><th width="202">Name</th><th>Value</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Value</strong></td><td><strong>Default</strong></td></tr><tr><td><code>name</code>*</td><td>Valid organization name.</td><td></td></tr><tr><td><code>username</code>*</td><td>Valid username of the created Organization Admin.</td><td></td></tr><tr><td><code>password</code>*</td><td>Password of the created Organization Admin.</td><td></td></tr><tr><td><code>ssd-quota</code></td><td>Allowed quota out of the system SSDs to be used by the organization.</td><td>0 (not limited)</td></tr><tr><td><code>total-quota</code></td><td>Total allowed quota for the organization (SSD and object store).</td><td>0 (not limited)</td></tr></tbody></table>
 
 ## View organizations
 
@@ -55,10 +48,7 @@ Use the following command line to rename an organization:
 
 **Parameters**
 
-| Name         | Value                            |
-| ------------ | -------------------------------- |
-| `org`\*      | Current organization name or ID. |
-| `new-name`\* | New organization name.           |
+<table><thead><tr><th width="245">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Current organization name or ID.</td></tr><tr><td><code>new-name</code>*</td><td>New organization name.</td></tr></tbody></table>
 
 ## Update the quota of an organization
 
@@ -70,12 +60,7 @@ Use the following command line to update an organization's quota:
 
 **Parameters**
 
-| Name          | Value                                                                                   |
-| ------------- | --------------------------------------------------------------------------------------- |
-| **Name**      | **Value**                                                                               |
-| `org`\*       | <p>Organization name or ID.<br>The root organization (org ID = 0 cannot be limited)</p> |
-| `ssd-quota`   | Allowed quota out of the system SSDs to be used by the organization                     |
-| `total-quota` | Total allowed quota for the organization (SSD and object store)                         |
+<table><thead><tr><th width="215">Name</th><th>Value</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Value</strong></td></tr><tr><td><code>org</code>*</td><td>Organization name or ID.<br>The root organization (org ID = 0 cannot be limited)</td></tr><tr><td><code>ssd-quota</code></td><td>Allowed quota out of the system SSDs to be used by the organization</td></tr><tr><td><code>total-quota</code></td><td>Total allowed quota for the organization (SSD and object store)</td></tr></tbody></table>
 
 ## Delete an organization
 
@@ -91,9 +76,7 @@ Use the following command line to delete an organization:
 
 **Parameters**
 
-| Name    | Value                    |
-| ------- | ------------------------ |
-| `org`\* | Organization name or ID. |
+<table><thead><tr><th width="221">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr></tbody></table>
 
 
 

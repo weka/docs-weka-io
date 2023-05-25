@@ -22,10 +22,7 @@ Use the following command line to enable an audit webhook for the S3 cluster:
 
 **Parameters**
 
-| Name           | Value                                                       |
-| -------------- | ----------------------------------------------------------- |
-| `endpoint`\*   | The webhook endpoint.                                       |
-| `auth-token`\* | The authentication token obtained from the webhook service. |
+<table><thead><tr><th width="239">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>endpoint</code>*</td><td>The webhook endpoint.</td></tr><tr><td><code>auth-token</code>*</td><td>The authentication token obtained from the webhook service.</td></tr></tbody></table>
 
 ## Disable an audit webhook for S3 APIs
 

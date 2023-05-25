@@ -39,9 +39,7 @@ The secret key is visible **only once** when adding the S3 service account. You 
 
 **Parameters**
 
-| **Name**      | **Type** | **Value**                                               | **Limitations** | **Mandatory** | **Default**                                     |
-| ------------- | -------- | ------------------------------------------------------- | --------------- | ------------- | ----------------------------------------------- |
-| `policy-file` | String   | The IAM policy file to attach to the S3 service account |                 |               | Inherits the IAM policy from the parent S3 user |
+<table data-header-hidden><thead><tr><th>Name</th><th>Type</th><th width="168">Value</th><th>Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>policy-file</code></td><td>String</td><td>The IAM policy file to attach to the S3 service account</td><td></td><td></td><td>Inherits the IAM policy from the parent S3 user</td></tr></tbody></table>
 
 
 
@@ -55,9 +53,7 @@ Use the following command line to display the policy details attached to the spe
 
 **Parameters**
 
-| Name           | Value                                     |
-| -------------- | ----------------------------------------- |
-| `access-key`\* | The access key of the S3 service account. |
+<table><thead><tr><th width="228">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>access-key</code>*</td><td>The access key of the S3 service account.</td></tr></tbody></table>
 
 ## Remove S3 service account <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -69,6 +65,4 @@ Use the following command line to remove an S3 service account:‌
 
 **Parameters**
 
-| Name           | Value                                               |
-| -------------- | --------------------------------------------------- |
-| `access-key`\* | The access key of the S3 service account to remove. |
+<table><thead><tr><th width="232">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>access-key</code>*</td><td>The access key of the S3 service account to remove.</td></tr></tbody></table>

@@ -60,7 +60,7 @@ In all cloud installations, it is not possible to set a list of SMB service addr
 
 5\. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog (2).gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
 
 Once the system completes the configuration process, the server statuses change from not ready (red X icon) to ready (green V icon).
 

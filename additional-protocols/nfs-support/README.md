@@ -14,15 +14,7 @@ In addition, a legacy NFS stack is also available for backward compatibility. Th
 
 ## Workflow: Deploy NFS service with a WEKA client software
 
-| **Step**                                                                                                      | **Implementation method**                                                    |
-| ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Define a set of servers that provide the NFS service. It can be the whole cluster or a subset of the cluster. | Define an interface group.                                                   |
-| Define Ethernet ports on each defined server that provides the NFS service.                                   | Define an interface group.                                                   |
-| Allocate a pool of IP addresses used by the WEKA software to provide the NFS service.                         | Define an interface group.                                                   |
-| Define a round-robin DNS name that resolves to the floating IPs.                                              | On the local DNS service configuration. It does not involve WEKA management. |
-| Define the list of clients that have access permissions to the NFS filesystems.                               | Create a client permission group.                                            |
-| Configure the clients and the filesystems that they can access.                                               | Create a client permission group.                                            |
-| Mount the file systems on the clients using the NFS mount operating system support.                           | On the client operating system. It does not involve WEKA management.         |
+<table data-header-hidden><thead><tr><th width="476.8152042902094">Step</th><th>Implementation method</th></tr></thead><tbody><tr><td><strong>Step</strong></td><td><strong>Implementation method</strong></td></tr><tr><td>Define a set of servers that provide the NFS service. It can be the whole cluster or a subset of the cluster.</td><td>Define an interface group.</td></tr><tr><td>Define Ethernet ports on each defined server that provides the NFS service.</td><td>Define an interface group.</td></tr><tr><td>Allocate a pool of IP addresses used by the WEKA software to provide the NFS service.</td><td>Define an interface group.</td></tr><tr><td>Define a round-robin DNS name that resolves to the floating IPs.</td><td>On the local DNS service configuration. It does not involve WEKA management.</td></tr><tr><td>Define the list of clients that have access permissions to the NFS filesystems.</td><td>Create a client permission group.</td></tr><tr><td>Configure the clients and the filesystems that they can access.</td><td>Create a client permission group.</td></tr><tr><td>Mount the file systems on the clients using the NFS mount operating system support.</td><td>On the client operating system. It does not involve WEKA management.</td></tr></tbody></table>
 
 ### Define the NFS networking configuration (interface groups)
 

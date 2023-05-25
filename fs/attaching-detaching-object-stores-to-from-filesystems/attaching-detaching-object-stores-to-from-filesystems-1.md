@@ -21,11 +21,7 @@ To attach an object store to a filesystem, use the following command:
 
 **Parameters**
 
-| Name         | Value                                                                                                                                                                                                                                                                      | Default |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `fs-name`\*  | Name of the filesystem to attach with the object store.                                                                                                                                                                                                                    | ​       |
-| `obs-name`\* | Name of the object store to attach.                                                                                                                                                                                                                                        |         |
-| `mode`       | <p>The type of the object store bucket.<br>Possible values: <code>local</code> or <code>remote</code>.<br><br>A <code>local</code> bucket can only be attached as <code>local</code> .</p><p>A <code>remote</code> bucket can only be attached as <code>remote</code>.</p> | `local` |
+<table><thead><tr><th>Name</th><th width="367.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>fs-name</code>*</td><td>Name of the filesystem to attach with the object store.</td><td>​</td></tr><tr><td><code>obs-name</code>*</td><td>Name of the object store to attach.</td><td></td></tr><tr><td><code>mode</code></td><td><p>The type of the object store bucket.<br>Possible values: <code>local</code> or <code>remote</code>.<br><br>A <code>local</code> bucket can only be attached as <code>local</code> .</p><p>A <code>remote</code> bucket can only be attached as <code>remote</code>.</p></td><td><code>local</code></td></tr></tbody></table>
 
 ## **Detach an object store bucket** from a filesystem
 
@@ -37,10 +33,7 @@ To detach an object store from a filesystem, use the following command:
 
 **Parameters**
 
-| Name         | Value                                                       |
-| ------------ | ----------------------------------------------------------- |
-| `fs-name`\*  | Name of the filesystem to be detached from the object store |
-| `obs-name`\* | Name of the object store to be  detached                    |
+<table><thead><tr><th width="265">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>fs-name</code>*</td><td>Name of the filesystem to be detached from the object store</td></tr><tr><td><code>obs-name</code>*</td><td>Name of the object store to be  detached</td></tr></tbody></table>
 
 {% hint style="info" %}
 **Note:** To [recover from a snapshot](../snap-to-obj/#creating-a-filesystem-from-a-snapshot-using-the-cli) uploaded when two `local` object stores have been attached, use the `--additional-obs` parameter in the `weka fs download` command. The primary object store should be the one where the locator has been uploaded to

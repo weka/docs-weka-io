@@ -76,9 +76,7 @@ If the KMS key is compromised or requires rotation, the KMS admin can rotate the
 
 **Parameters**
 
-| Name            | Value                                                                                                                                                                     |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `new-key-uid`\* | <p>Unique identifier for the new key to be used to wrap filesystem keys.<br>Mandatory for <code>kmip</code> only.<br>Do not specify any value for <code>vault</code>.</p> |
+<table><thead><tr><th width="175">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>new-key-uid</code>*</td><td>Unique identifier for the new key to be used to wrap filesystem keys.<br>Mandatory for <code>kmip</code> only.<br>Do not specify any value for <code>vault</code>.</td></tr></tbody></table>
 
 {% hint style="info" %}
 **Note:** Existing filesystem keys that are part of the Snap-To-Object feature will not be automatically re-encrypted with the new KMS key.

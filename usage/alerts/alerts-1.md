@@ -31,9 +31,7 @@ Use the following command line to list all alerts (muted and unmuted) in the WEK
 
 **Parameters**
 
-| Name    | Value                                     | Default |
-| ------- | ----------------------------------------- | ------- |
-| `muted` | List muted alerts alongside unmuted ones. | False   |
+<table><thead><tr><th width="208">Name</th><th width="355">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>muted</code></td><td>List muted alerts alongside unmuted ones.</td><td>False</td></tr></tbody></table>
 
 ## **Mute alerts**
 
@@ -47,10 +45,7 @@ The system does not prompt muted alerts when listing active alerts. You must spe
 
 **Parameters**
 
-| Name           | Value                                                                                                                                                                 |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `alert-type`\* | An alert-type to mute, use `weka alerts types` to list types.                                                                                                         |
-| `duration`\*   | <p>Expiration time for muting this alert type.<br>Format: <code>3s</code>, <code>2h</code>, <code>4m</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>.</p> |
+<table><thead><tr><th width="226">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>alert-type</code>*</td><td>An alert-type to mute, use <code>weka alerts types</code> to list types.</td></tr><tr><td><code>duration</code>*</td><td>Expiration time for muting this alert type.<br>Format: <code>3s</code>, <code>2h</code>, <code>4m</code>, <code>1d</code>, <code>1d5h</code>, <code>1w</code>.</td></tr></tbody></table>
 
 ## **Unmute alerts**
 
@@ -62,9 +57,7 @@ Use the following command line to unmute a muted alert-type:
 
 **Parameters**
 
-| Name           | Value                                                           |
-| -------------- | --------------------------------------------------------------- |
-| `alert-type`\* | An alert-type to unmute, use `weka alerts types` to list types. |
+<table><thead><tr><th width="221">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>alert-type</code>*</td><td>An alert-type to unmute, use <code>weka alerts types</code> to list types.</td></tr></tbody></table>
 
 
 

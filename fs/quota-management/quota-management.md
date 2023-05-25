@@ -28,13 +28,7 @@ Use the following command to set a default quota of a directory:
 
 #### &#x20;**Parameters**
 
-| Name     | Value                                                                                                                                                                                                                                                                                                                | Default     |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `path`\* | <p>Path to the directory to set the quota.<br>The relevant filesystem must be mounted when setting the quota. </p>                                                                                                                                                                                                   | ​           |
-| `soft`   | <p>Soft quota limit.<br>Exceeding this number is displayed as exceeded quota but it is not enforced until the <code>grace</code> period is over.<br>The capacity can be in decimal or binary units.<br>Format:  <code>1GB</code>, <code>1TB</code>, <code>1GiB</code>, <code>1TiB</code>, <code>unlimited</code></p> | `unlimited` |
-| `hard`   | <p>Hard quota limit.<br>Exceeding this number does not allow more writes before clearing some space in the directory.<br>The capacity can be in decimal or binary units.<br>Format: <code>1GB</code>, <code>1TB</code>, <code>1GiB</code>, <code>1TiB</code>, <code>unlimited</code></p>                             | `unlimited` |
-| `grace`  | <p>Specify the grace period before the soft limit is treated as a hard limit.<br>Format: <code>1d</code>, <code>1w</code>, <code>unlimited</code></p>                                                                                                                                                                | `unlimited` |
-| `owner`  | <p>An opaque string identifying the directory owner (can be a name, email, slack ID, etc.) This owner will be shown in the quota report and can be notified upon exceeding the quota.<br>Supports up to 48 characters.</p>                                                                                           |             |
+<table><thead><tr><th width="166">Name</th><th width="369">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>path</code>*</td><td>Path to the directory to set the quota.<br>The relevant filesystem must be mounted when setting the quota. </td><td>​</td></tr><tr><td><code>soft</code></td><td>Soft quota limit.<br>Exceeding this number is displayed as exceeded quota but it is not enforced until the <code>grace</code> period is over.<br>The capacity can be in decimal or binary units.<br>Format:  <code>1GB</code>, <code>1TB</code>, <code>1GiB</code>, <code>1TiB</code>, <code>unlimited</code></td><td><code>unlimited</code></td></tr><tr><td><code>hard</code></td><td>Hard quota limit.<br>Exceeding this number does not allow more writes before clearing some space in the directory.<br>The capacity can be in decimal or binary units.<br>Format: <code>1GB</code>, <code>1TB</code>, <code>1GiB</code>, <code>1TiB</code>, <code>unlimited</code></td><td><code>unlimited</code></td></tr><tr><td><code>grace</code></td><td>Specify the grace period before the soft limit is treated as a hard limit.<br>Format: <code>1d</code>, <code>1w</code>, <code>unlimited</code></td><td><code>unlimited</code></td></tr><tr><td><code>owner</code></td><td>An opaque string identifying the directory owner (can be a name, email, slack ID, etc.) This owner will be shown in the quota report and can be notified upon exceeding the quota.<br>Supports up to 48 characters.</td><td></td></tr></tbody></table>
 
 {% hint style="info" %}
 **Note:** To set advisory only quotas, use a `soft` quota limit without setting a `grace` period.
@@ -54,15 +48,7 @@ Use the following command to list the directory quotas (by default, only exceedi
 
 #### **Parameters**
 
-| Name        | Value                                                                                                                                                         | Default         |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| `fs-name`   | Shows quota report only on the specified valid filesystem.                                                                                                    | All filesystems |
-| `snap-name` | <p>Shows the quota report from the time of the snapshot.<br>Must be a valid snapshot name and be given along with the corresponding <code>fs-name.</code></p> |                 |
-| `path`      | <p>Path to a directory. Shows quota report only on the specified directory.<br>The relevant filesystem must be mounted in the server running the query.</p>   |                 |
-| `under`     | <p>A path to a directory under a wekafs mount.<br>The relevant filesystem must be mounted in the server running the query.</p>                                |                 |
-| `over`      | <p>Shows only quotas over this percentage of usage.<br>Possible values: <code>0</code>-<code>100</code></p>                                                   |                 |
-| `quick`     | Do not resolve inode to a path. Provides quicker results if the report contains many entries.                                                                 | False           |
-| `all`       | Shows all the quotas, not just the exceeding ones.                                                                                                            | False           |
+<table><thead><tr><th width="192">Name</th><th width="389">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>fs-name</code></td><td>Shows quota report only on the specified valid filesystem.</td><td>All filesystems</td></tr><tr><td><code>snap-name</code></td><td>Shows the quota report from the time of the snapshot.<br>Must be a valid snapshot name and be given along with the corresponding <code>fs-name.</code></td><td></td></tr><tr><td><code>path</code></td><td>Path to a directory. Shows quota report only on the specified directory.<br>The relevant filesystem must be mounted in the server running the query.</td><td></td></tr><tr><td><code>under</code></td><td>A path to a directory under a wekafs mount.<br>The relevant filesystem must be mounted in the server running the query.</td><td></td></tr><tr><td><code>over</code></td><td>Shows only quotas over this percentage of usage.<br>Possible values: <code>0</code>-<code>100</code></td><td></td></tr><tr><td><code>quick</code></td><td>Do not resolve inode to a path. Provides quicker results if the report contains many entries.</td><td>False</td></tr><tr><td><code>all</code></td><td>Shows all the quotas, not just the exceeding ones.</td><td>False</td></tr></tbody></table>
 
 Use the following command to list the directory default quotas:
 
@@ -70,11 +56,7 @@ Use the following command to list the directory default quotas:
 
 #### **Parameters**
 
-| Name        | Value                                                                                                                                                                    | Default         |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- |
-| `fs-name`   | Shows the default quotas only on the specified valid filesystem.                                                                                                         | All filesystems |
-| `snap-name` | <p>Shows the default quotas from the time of the snapshot.<br>Must be a valid snapshot name and be given along with the corresponding <code>fs-name.</code></p>          |                 |
-| `path`      | <p>Path to a directory. Shows the default quotas report only on the specified directory.<br>The relevant filesystem must be mounted in the server running the query.</p> |                 |
+<table><thead><tr><th width="197.33333333333331">Name</th><th width="388">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>fs-name</code></td><td>Shows the default quotas only on the specified valid filesystem.</td><td>All filesystems</td></tr><tr><td><code>snap-name</code></td><td>Shows the default quotas from the time of the snapshot.<br>Must be a valid snapshot name and be given along with the corresponding <code>fs-name.</code></td><td></td></tr><tr><td><code>path</code></td><td>Path to a directory. Shows the default quotas report only on the specified directory.<br>The relevant filesystem must be mounted in the server running the query.</td><td></td></tr></tbody></table>
 
 ## Unsetting directory quota/default quota
 
@@ -90,6 +72,4 @@ Use the following command to unset a default quota of a directory:
 
 #### **Parameters**
 
-| Name     | Value                                                                                                             |
-| -------- | ----------------------------------------------------------------------------------------------------------------- |
-| `path`\* | <p>Path to the directory to set the quota.<br>The relevant filesystem must be mounted when setting the quota.</p> |
+<table><thead><tr><th width="244">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>path</code>*</td><td>Path to the directory to set the quota.<br>The relevant filesystem must be mounted when setting the quota.</td></tr></tbody></table>

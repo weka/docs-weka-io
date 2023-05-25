@@ -22,10 +22,7 @@ Use the following command to release files:
 
 **Parameters**
 
-| Name            | Value                                        | Default |
-| --------------- | -------------------------------------------- | ------- |
-| `path`\*        | A comma-separated list of file paths.        | ​       |
-| `-v, --verbose` | Showing fetch requests as they are submitted | Off     |
+<table><thead><tr><th>Name</th><th width="333.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>path</code>*</td><td>A comma-separated list of file paths.</td><td>​</td></tr><tr><td><code>-v, --verbose</code></td><td>Showing fetch requests as they are submitted</td><td>Off</td></tr></tbody></table>
 
 ### Fetch a directory containing many files
 

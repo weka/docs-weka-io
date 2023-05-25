@@ -33,13 +33,7 @@ The parameter `allow-manage-gids` determines the type of NFS stack. The default 
 
 **Parameters**
 
-| Name                | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Default           |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| `name`\*            | <p>Unique interface group name.<br>Supports a maximum of 11 characters.</p>                                                                                                                                                                                                                                                                                                                                                                                                            |                   |
-| `type`\*            | <p>Group type.<br>Can only be  <code>NFS</code>.</p>                                                                                                                                                                                                                                                                                                                                                                                                                                   |                   |
-| `subnet`            | The valid subnet mask in the 255.255.0.0 format.                                                                                                                                                                                                                                                                                                                                                                                                                                       | `255.255.255.255` |
-| `gateway`           | Gateway valid IP.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `255.255.255.255` |
-| `allow-manage-gids` | <p>Allows the containers within this interface group to use <code>manage-gids</code> when set in exports. </p><p>With <code>manage-gids</code>, the list of group IDs received from the client is replaced by a list of group IDs determined by an appropriate lookup on the server.<br><br>NFS-W: <code>on</code></p><p>Legacy NFS: <code>off</code></p><p></p><p>Each container can be set to be part of interface groups with the same value of <code>allow-manage-gids</code>.</p> | `on`              |
+<table><thead><tr><th width="225">Name</th><th width="325">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Unique interface group name.<br>Supports a maximum of 11 characters.</td><td></td></tr><tr><td><code>type</code>*</td><td>Group type.<br>Can only be  <code>NFS</code>.</td><td></td></tr><tr><td><code>subnet</code></td><td>The valid subnet mask in the 255.255.0.0 format.</td><td><code>255.255.255.255</code></td></tr><tr><td><code>gateway</code></td><td>Gateway valid IP.</td><td><code>255.255.255.255</code></td></tr><tr><td><code>allow-manage-gids</code></td><td><p>Allows the containers within this interface group to use <code>manage-gids</code> when set in exports. </p><p>With <code>manage-gids</code>, the list of group IDs received from the client is replaced by a list of group IDs determined by an appropriate lookup on the server.<br><br>NFS-W: <code>on</code></p><p>Legacy NFS: <code>off</code></p><p></p><p>Each container can be set to be part of interface groups with the same value of <code>allow-manage-gids</code>.</p></td><td><code>on</code></td></tr></tbody></table>
 
 ## Set interface group ports
 
@@ -57,11 +51,7 @@ Use the following command lines to add or delete an interface group port:
 
 **Parameters**
 
-| Name             | Value                                                                                                                                   |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*         | Interface group name.                                                                                                                   |
-| `container-id`\* | Valid frontend container ID on which the port resides. You can obtain the container ID by running the `weka cluster container` command. |
-| `port`\*         | <p>Valid port's device.<br>Example: <code>eth1</code>.</p>                                                                              |
+<table><thead><tr><th width="220">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Interface group name.</td></tr><tr><td><code>container-id</code>*</td><td>Valid frontend container ID on which the port resides. You can obtain the container ID by running the <code>weka cluster container</code> command.</td></tr><tr><td><code>port</code>*</td><td>Valid port's device.<br>Example: <code>eth1</code>.</td></tr></tbody></table>
 
 ## Set interface group IPs
 
@@ -79,10 +69,7 @@ Use the following command lines to add/delete an interface group IP:
 
 **Parameters**
 
-| Name     | Value                |
-| -------- | -------------------- |
-| `name`\* | Interface group name |
-| `ips`\*  | Valid IP range       |
+<table><thead><tr><th width="222">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Interface group name</td></tr><tr><td><code>ips</code>*</td><td>Valid IP range</td></tr></tbody></table>
 
 {% hint style="info" %}
 **Note:** Cloud environments do not support interface group IPs.
@@ -118,9 +105,7 @@ Use the following command lines to add/delete a client access group:
 
 **Parameters**
 
-| Name     | Value             |
-| -------- | ----------------- |
-| `name`\* | Valid group name. |
+<table><thead><tr><th width="258">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid group name.</td></tr></tbody></table>
 
 ## Manage client access groups
 
@@ -136,10 +121,7 @@ Use the following command lines to add/delete a client group DNS:
 
 **Parameters**
 
-| Name     | Value                                |
-| -------- | ------------------------------------ |
-| `name`\* | Valid group name.                    |
-| `dns`\*  | DNS rule with \*?\[] wildcard rules. |
+<table><thead><tr><th width="250">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid group name.</td></tr><tr><td><code>dns</code>*</td><td>DNS rule with *?[] wildcard rules.</td></tr></tbody></table>
 
 ### **Add or delete an IP**
 
@@ -153,10 +135,7 @@ Use the following command lines to add/delete a client group IP:
 
 **Parameters**
 
-| Name     | Value                                                                          |
-| -------- | ------------------------------------------------------------------------------ |
-| `name`\* | Valid group name.                                                              |
-| `ip`\*   | <p>Valid IP with netmask rule.<br>Format: <code>1.1.1.1/255.255.0.0</code></p> |
+<table><thead><tr><th width="251">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid group name.</td></tr><tr><td><code>ip</code>*</td><td>Valid IP with netmask rule.<br>Format: <code>1.1.1.1/255.255.0.0</code></td></tr></tbody></table>
 
 ## **Manage NFS client permissions**
 
@@ -171,16 +150,4 @@ Use the following command lines to add/update/delete NFS permissions:\
 
 **Parameters**
 
-| Name                 | Value                                                                                                                                                                                                                                                                       | Default |
-| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `filesystem`\*       | <p>Existing filesystem name.<br>A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.</p>                                                                                                                                          |         |
-|  `group`\*           | Existing client group name.                                                                                                                                                                                                                                                 |         |
-|  `path`              | The root of the valid share path.                                                                                                                                                                                                                                           | /       |
-| `permission-type`    | <p>Permission type.<br>Possible values: <code>ro</code> (read-only), <code>rw</code> (read-write)</p>                                                                                                                                                                       | `rw`    |
-| `squash`             | <p>Squashing type.<br>Possible values: <code>none</code> , <code>root</code>, <code>all</code> <br><br><code>all</code> is only applicable for NFS-W. Otherwise, it is treated as <code>root</code>.</p>                                                                    | `none`  |
-| `anon-uid`\*         | <p>Anonymous user ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</p>                                                                                                                                                    | `65534` |
-| `anon-gid`\*         | <p>Anonymous user group ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</p>                                                                                                                                              | `65534` |
-| `obs-direct`         | <p>See <a href="../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a>.<br>Possible values: <code>on</code>, <code>off</code>.</p>                                                      | `on`    |
-| `manage-gids`        | <p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client is replaced by a list determined by an appropriate lookup on the server.<br>This option is only applicable in NFS-W.<br>Possible values: <code>on</code>, <code>off</code>.</p> | `off`   |
-| `privileged-port`    | <p>Sets the share only to be mounted via privileged ports (1-1024), usually allowed by the root user.<br>This option is only applicable in NFS-W.<br>Possible values: <code>on</code>, <code>off</code>.</p>                                                                | `off`   |
-| `supported-versions` | <p>A comma-separated list of supported NFS versions.<br>Possible values: <code>v3</code>, <code>v4</code>.<br><code>v4</code> is only applicable in NFS-W.</p>                                                                                                              | `v3`    |
+<table><thead><tr><th width="229">Name</th><th width="391">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>filesystem</code>*</td><td>Existing filesystem name.<br>A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.</td><td></td></tr><tr><td> <code>group</code>*</td><td>Existing client group name.</td><td></td></tr><tr><td> <code>path</code></td><td>The root of the valid share path.</td><td>/</td></tr><tr><td><code>permission-type</code></td><td>Permission type.<br>Possible values: <code>ro</code> (read-only), <code>rw</code> (read-write)</td><td><code>rw</code></td></tr><tr><td><code>squash</code></td><td>Squashing type.<br>Possible values: <code>none</code> , <code>root</code>, <code>all</code> <br><br><code>all</code> is only applicable for NFS-W. Otherwise, it is treated as <code>root</code>.</td><td><code>none</code></td></tr><tr><td><code>anon-uid</code>*</td><td>Anonymous user ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>anon-gid</code>*</td><td>Anonymous user group ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>obs-direct</code></td><td>See <a href="../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a>.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>on</code></td></tr><tr><td><code>manage-gids</code></td><td><p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client is replaced by a list determined by an appropriate lookup on the server.<br>This option is only applicable in NFS-W.<br>Possible values: <code>on</code>, <code>off</code>.</p></td><td><code>off</code></td></tr><tr><td><code>privileged-port</code></td><td>Sets the share only to be mounted via privileged ports (1-1024), usually allowed by the root user.<br>This option is only applicable in NFS-W.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>off</code></td></tr><tr><td><code>supported-versions</code></td><td>A comma-separated list of supported NFS versions.<br>Possible values: <code>v3</code>, <code>v4</code>.<br><code>v4</code> is only applicable in NFS-W.</td><td><code>v3</code></td></tr></tbody></table>

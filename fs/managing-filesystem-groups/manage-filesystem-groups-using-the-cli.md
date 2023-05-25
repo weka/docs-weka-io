@@ -43,12 +43,7 @@ Use the following command to edit a filesystem group:
 
 **Parameters**
 
-| Name                   | Value                                                                        |
-| ---------------------- | ---------------------------------------------------------------------------- |
-| `name`\*               | <p>Name of the filesystem group to edit.<br>It must be a valid name.</p>     |
-| `new-name`             | New name for the filesystem group.                                           |
-| `target-ssd-retention` | New target retention period (in seconds) before tiering to the object store. |
-| `start-demote`         | New target tiering cue (in seconds) before tiering to the object store.      |
+<table><thead><tr><th width="291.43669250645996">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem group to edit.<br>It must be a valid name.</td></tr><tr><td><code>new-name</code></td><td>New name for the filesystem group.</td></tr><tr><td><code>target-ssd-retention</code></td><td>New target retention period (in seconds) before tiering to the object store.</td></tr><tr><td><code>start-demote</code></td><td>New target tiering cue (in seconds) before tiering to the object store.</td></tr></tbody></table>
 
 ## Delete a filesystem group
 
@@ -60,9 +55,7 @@ Use the following command line to delete a filesystem group:
 
 **Parameters**
 
-| Name     | Value                                  |
-| -------- | -------------------------------------- |
-| `name`\* | Name of the filesystem group to delete |
+<table><thead><tr><th width="295">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem group to delete</td></tr></tbody></table>
 
 **Related topics**
 

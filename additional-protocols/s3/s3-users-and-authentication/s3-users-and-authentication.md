@@ -105,10 +105,7 @@ Use the following command line to add an S3 IAM policy:
 
 **Parameters**
 
-| Name            | Value                                                                                                                                                                              |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `policy-name`\* | Name of the IAM policy to add.                                                                                                                                                     |
-| `policy-file`\* | <p>Path to the custom JSON file representing an IAM policy for anonymous access. <br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</p> |
+<table><thead><tr><th width="237">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy-name</code>*</td><td>Name of the IAM policy to add.</td></tr><tr><td><code>policy-file</code>*</td><td>Path to the custom JSON file representing an IAM policy for anonymous access. <br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</td></tr></tbody></table>
 
 ## Delete an IAM policy <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -120,9 +117,7 @@ Use the following command line to delete an S3 IAM policy:‌
 
 **Parameters**
 
-| Name            | Value                              |
-| --------------- | ---------------------------------- |
-| `policy-name`\* | Name of the IAM policy to  remove. |
+<table><thead><tr><th width="241">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy-name</code>*</td><td>Name of the IAM policy to  remove.</td></tr></tbody></table>
 
 ## Attach a policy to an S3 user <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
@@ -134,10 +129,7 @@ Use the following command line to attach an IAM policy to an S3 user:‌
 
 **Parameters**
 
-| Name       | Value                           |
-| ---------- | ------------------------------- |
-| `policy`\* | Name of an existing IAM policy. |
-| `user`\*   | Name of an existing S3 user.    |
+<table><thead><tr><th width="248">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name of an existing IAM policy.</td></tr><tr><td><code>user</code>*</td><td>Name of an existing S3 user.</td></tr></tbody></table>
 
 ## Detach a policy from an S3 user <a href="#creating-a-new-iam-policies-1" id="creating-a-new-iam-policies-1"></a>
 
@@ -149,9 +141,7 @@ Use the following command line to detach an IAM policy from an S3 user:‌‌
 
 **Parameters**
 
-| Name     | Value                        |
-| -------- | ---------------------------- |
-| `user`\* | Name of an existing S3 user. |
+<table><thead><tr><th width="247">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>user</code>*</td><td>Name of an existing S3 user.</td></tr></tbody></table>
 
 ## Generate a temporary security token
 
@@ -163,12 +153,7 @@ Use the following command line to generate a temporary security token:
 
 **Parameters**
 
-| Name           | Value                                                                                                                                                                                                                                                                   | Default                                                        |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `access-key`\* | An S3 user access key                                                                                                                                                                                                                                                   |                                                                |
-| `secret-key`   | An S3 user secret key                                                                                                                                                                                                                                                   | If not supplied, the command prompts to supply the secret-key. |
-| `policy-file`  | <p>Path to a custom JSON file representing an IAM policy for anonymous access.<br>You cannot gain additional capabilities to the IAM policy attached to this S3 user.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>. </p> | ​                                                              |
-| `duration`\*   | <p>Duration for the token validity.<br>Possible values between 15 minutes and 1 week. Format: <code>900s</code>, <code>60m</code>, <code>2d</code>, <code>1w</code></p>                                                                                                 | ​                                                              |
+<table><thead><tr><th width="186">Name</th><th width="349">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>access-key</code>*</td><td>An S3 user access key</td><td></td></tr><tr><td><code>secret-key</code></td><td>An S3 user secret key</td><td>If not supplied, the command prompts to supply the secret-key.</td></tr><tr><td><code>policy-file</code></td><td>Path to a custom JSON file representing an IAM policy for anonymous access.<br>You cannot gain additional capabilities to the IAM policy attached to this S3 user.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>. </td><td>​</td></tr><tr><td><code>duration</code>*</td><td>Duration for the token validity.<br>Possible values between 15 minutes and 1 week. Format: <code>900s</code>, <code>60m</code>, <code>2d</code>, <code>1w</code></td><td>​</td></tr></tbody></table>
 
 An example response:
 
