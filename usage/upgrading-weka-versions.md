@@ -10,13 +10,13 @@ The WEKA upgrade process supports upgrading to higher minor and major versions o
 
 Always upgrade to the latest minor version in the new major version when upgrading to a major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
-* To upgrade to WEKA software version 4.2.x, the minimum source version must be 4.1.2 in MCB architecture.
+* To upgrade to WEKA software version 4.2.x, the minimum source version must be 4.1.0 in MCB architecture.
 * To upgrade to WEKA software version 4.1.x, the minimum source version must be 4.0.2 in MCB architecture.&#x20;
 
 If the source system is not in MCB architecture, it is required to convert the cluster architecture to MCB. Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for assistance.
 
-{% hint style="info" %}
-**Caution:** Customers running WEKA clusters on AWS with **auto-scaling groups** must contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) before converting the cluster to MCB.
+{% hint style="warning" %}
+**Warning:** Customers running WEKA clusters on AWS with **auto-scaling groups** must contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) before converting the cluster to MCB.
 {% endhint %}
 
 {% hint style="info" %}
@@ -25,7 +25,7 @@ If the source system is not in MCB architecture, it is required to convert the c
 
 ## What is non-disruptive upgrade (NDU)
 
-In MCB architecture, each container serves a single type of process: drive, frontend, or compute function. Therefore it is possible to upgrade one container at a time (rolling upgrade) while the remaining containers continue serving the clients.
+In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore it is possible to upgrade one container at a time (rolling upgrade) while the remaining containers continue serving the clients with one exception that the compute containers are upgraded at once in a very short time with a minimal impact on serving IOs.
 
 {% hint style="info" %}
 **Note:** Some background tasks, such as snapshot uploads or downloads, must be postponed or aborted. See the [prerequisites](upgrading-weka-versions.md#1.-verify-prerequisites-for-the-upgrade) in the upgrade workflow for details.
@@ -37,10 +37,10 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 
 1. Downloading the version and preparing all backend servers.
 2. Rolling upgrade of the **drive** containers.
-3. Rolling upgrade of the **compute** containers.
+3. Upgrading all **compute** containers at once.
 4. Rolling upgrade of the **frontend** and **protocol** containers.
 
-<figure><img src="../.gitbook/assets/NDU_process_4.2.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/NDU_process_4.1.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
 
 **Related topics**
 
@@ -56,7 +56,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 6. [Check the status after the upgrade](upgrading-weka-versions.md#6.-check-the-status-after-the-upgrade)
 
 {% hint style="warning" %}
-**Note:** Upgrading a Weka cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation.\
+**Note:** Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation.\
 Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
 {% endhint %}
 
@@ -72,7 +72,7 @@ Before upgrading the cluster, ensure the following prerequisites:
 6. There is at least 4 GB of free space in the `/opt/weka` directory.
 7. The NDU process requires the following tasks to be stopped. If these tasks are planned, postpone them. If the tasks are running, perform the required action.
 
-<table><thead><tr><th width="208">Task</th><th width="242">Required action</th><th>Backgrounk task name</th></tr></thead><tbody><tr><td>Upload a snapshot  </td><td>Wait for the snapshot upload to complete,  or abort it.</td><td>STOW_UPLOAD</td></tr><tr><td>Create a filesystem from an uploaded snapshot</td><td>Wait for the download to complete or abort it by deleting the downloaded filesystem or snapshot.<br><br>If the task is in the snapshot prefetch metadata stage, wait for the prefetch to complete or abort it by <a data-footnote-ref href="#user-content-fn-1">deleting the downloaded snapshot</a>. It is not possible to resume the snapshot prefetch metadata after the upgrade.</td><td>STOW_DOWNLOAD_SNAPSHOT<br>STOW_DOWNLOAD_FILESYSTEM<br>FILESYSTEM_SQUASH<br>SNAPSHOT_PREFETCH</td></tr><tr><td>Sync a filesystem from a snapshot</td><td>Wait for the download to complete or abort it by deleting the downloaded filesystem or snapshot.</td><td>STOW_DOWNLOAD_SNAPSHOT</td></tr><tr><td>Detach object store bucket from a filesystem</td><td>Detaching an object store is blocked during the upgrade. If it is running, ignore it. </td><td>OBS_DETACH</td></tr></tbody></table>
+<table><thead><tr><th width="208">Task</th><th width="242">Required action</th><th>Backgrounk task name</th></tr></thead><tbody><tr><td>Upload a snapshot  </td><td>Wait for the snapshot upload to complete,  or abort it.</td><td>STOW_UPLOAD</td></tr><tr><td>Create a filesystem from an uploaded snapshot</td><td>Wait for the download to complete or abort it by deleting the downloaded filesystem or snapshot.<br><br>If the task is in the snapshot prefetch of the metadata stage, wait for the prefetch to complete or abort it by. It is not possible to resume the snapshot prefetch after the upgrade.</td><td>STOW_DOWNLOAD_SNAPSHOT<br>STOW_DOWNLOAD_FILESYSTEM<br>FILESYSTEM_SQUASH<br>SNAPSHOT_PREFETCH</td></tr><tr><td>Sync a filesystem from a snapshot</td><td>Wait for the download to complete or abort it by deleting the downloaded filesystem or snapshot.</td><td>STOW_DOWNLOAD_SNAPSHOT</td></tr><tr><td>Detach object store bucket from a filesystem</td><td>Detaching an object store is blocked during the upgrade. If it is running, ignore it. </td><td>OBS_DETACH</td></tr></tbody></table>
 
 For details on managing the background tasks, see the [Background tasks](background-tasks/) topic.
 
@@ -100,13 +100,15 @@ When working with many backend servers, preparing them separately from the upgra
 
 The preparation phase prepares all the connected backend servers for the upgrade, which includes downloading the new version and getting it ready to be applied.
 
-Once the new version is downloaded to one of the backend servers, run the following CLI command:\
-`weka local run -- container <container-name) --in <new-version> upgrade --mode ndu --prepare-only`
+Once the new version is downloaded to one of the backend servers, run the following CLI command:
+
+`weka local run --in <new-version> upgrade --prepare-only`
 
 ### 4. Upgrade the backend servers
 
-Once a new software version is installed on one of the backend servers, upgrade the cluster to the new version by running the following command on the backend server:\
-`weka local run -- container <container-name) --in <new-version> upgrade --mode ndu`
+Once a new software version is installed on one of the backend servers, upgrade the cluster to the new version by running the following command on the backend server:
+
+`weka local run --in <new-version> upgrade`
 
 Where `<new-version>` is the new version's name (for example,`4.2.0`).
 
@@ -116,7 +118,7 @@ You can control the upgrade window time by setting the following parameters in t
 
 **Parameters**
 
-<table><thead><tr><th width="280">Name</th><th width="358">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>--container-version-change-timeout</code></td><td>Maximum time in seconds to wait for a container version update.</td><td>180s</td></tr><tr><td><code>--disconnect-stateless-clients-timeout</code></td><td>Maximum time in seconds to wait for stateless clients to be marked as DOWN and continue the upgrade without them.</td><td>60s</td></tr><tr><td><code>--prepare-only</code></td><td>Download and prepare a new software version across all servers in the cluster without performing the upgrade.</td><td>False</td></tr><tr><td><code>--health-check-timeout</code></td><td>Maximum time in seconds to wait for the health check to complete</td><td>10s</td></tr><tr><td><code>--container</code>*</td><td>The container from which to run the upgrade.</td><td></td></tr><tr><td><code>--mode</code>*</td><td>The method to run the upgrade. <br>Set <code>ndu</code> for a non-disruptive upgrade.</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="215">Name</th><th width="421">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>--prepare-only</code></td><td>Download and prepare a new software version across all servers in the cluster without performing the upgrade.</td><td>False</td></tr><tr><td>--mode</td><td>The method to run the upgrade.<br>Possible values: <code>ndu</code>, <code>clients-upgrade</code>.</td><td><code>ndu</code></td></tr></tbody></table>
 
 {% hint style="info" %}
 **Note:** To run the upgrade command, ensure you are logged in as a Cluster Admin (using a `weka user login`).
@@ -199,6 +201,3 @@ Once the upgrade is complete, verify that the cluster is in the new version by r
 `...`
 {% endhint %}
 
-
-
-[^1]: [Ari Attias](http://localhost:5000/u/uUk8wYa75jNNvD16jX751wzFmZN2 "mention")this can be aborted directly, no need to delete anything
