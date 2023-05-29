@@ -27,7 +27,8 @@ An S3 cluster configuration includes a filesystem, port, and list of servers.
    * **Anonymous Posix UID:** If required, modify the Posix UID assigned to anonymous users.
    * **Anonymous Posix GID:** If required, modify the Posix GID assigned to anonymous users.
    * **All servers**: To use all available servers for the S3 configuration, switch on **All servers**. If new servers are deployed later, they do not participate in the S3 cluster automatically.\
-     To use specific servers, switch off **All servers**, and select the available servers from the list to participate in the S3 cluster.&#x20;
+     To use specific servers, switch off **All servers**, and select the available servers from the list to participate in the S3 cluster.
+   * **Virtual-hosted-style Domains:** Virtual-hosted-style domains enable addressing the S3 bucket in a REST API request using the HTTP host header. The bucket name is part of the domain name in the URL. For the domain name, use DNS-compatible values. You can add a list of domains with a total of 1024 characters.
 5. In the **Config Filesystem**, select the filesystem used for persisting S3 cluster-wide configuration.
 6. Select **Save**.
 
@@ -47,7 +48,7 @@ You can update the port and the servers to participate in the S3 cluster.
 
 ![Edit an S3 cluster configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_button.png)
 
-4. Update the port and host properties as required. Do not set port 9001.
+4. Update the properties as required. Do not set port 9001.
 5. Select **Save**.
 
 ![Edit S3 Cluster Configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_dialog.png)

@@ -96,14 +96,14 @@ Verify that the DNS "nameserver" of the servers participating in the SMB cluster
 To ensure that the various SMB clients balance the load on the different Weka servers serving SMB, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS) entry that resolves to the list of floating IPs, ensuring that client loads are equally distributed across all servers.
 
 {% hint style="info" %}
-**Note:** Set the TTL (Time to Live) for all A records assigned to the SMB servers to 0 (Zero). This ensures that the client or the DNS server does not cache the IP.
+**Note:** Set the TTL (Time to Live) for all A records assigned to the SMB servers to 0 (Zero). This ensures the client or the DNS server does not cache the IP.
 {% endhint %}
 
 ### Create SMB shares
 
-After establishing an SMB cluster, it is possible to declare SMB shares. Each share must have a name and a shared path. That is the path into the Weka filesystem. It can be the root of the Weka filesystem or a sub-directory.
+Once the SMB cluster is created, you can set SMB shares. Each share must have a name and a shared path to the filesystem. It can be the root of the filesystem or a sub-directory.
 
-If the share is declared without providing a sub-directory, the WekaFS root is used and it is not required to create a root folder (it already exists). If you need to create sub-directories, you can create the sub-directory in the shell using either a WekaFS mount or an NFS mount. Adjust the permissions of the sub-directory accordingly.&#x20;
+If the share is declared without providing a sub-directory, the WekaFS root is used, and it is not required to create a root folder (it already exists). If you need to create sub-directories, you can create the sub-directory in the shell using either a WekaFS mount or an NFS mount. Adjust the permissions of the sub-directory accordingly.&#x20;
 
 ### Filesystem permissions and access rights
 

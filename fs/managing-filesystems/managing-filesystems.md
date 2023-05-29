@@ -46,7 +46,7 @@ When creating a WEKA system in AWS using the cloud formation, the WEKA system co
    * **Group**: Select the filesystem group that fits your filesystem.
    * **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.&#x20;
 
-<figure><img src="../../.gitbook/assets/wmng_4_1_create_fs_animated.gif" alt=""><figcaption><p>Create a filesystem</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_4_2_create_fs_animated.gif" alt=""><figcaption><p>Create a filesystem</p></figcaption></figure>
 
 4.  Optional: [**Tiering**](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).\
     If tiering is required, an object store bucket is already defined, and data reduction is not enabled, select the toggle button and set the details of the object store bucket:

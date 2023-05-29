@@ -24,7 +24,7 @@ By default, when a WEKA Sales or Support cluster is created, the first user with
 
 Cluster Admin users are responsible for managing the cluster as a whole. When using multiple organizations, there is a difference between managing a single organization and managing the cluster because managing the cluster also covers the management of the cluster hardware and resources. These are the additional permissions given to a Cluster Admin compared to an Organization Admin.
 
-A WEKA Sales or Support system cluster must have at least one defined **internal** Cluster Admin user. However**,** it is possible to create a Cluster Admin user with a different name and delete the default admin user, if required.
+The WEKA Customer Success Team must have at least one defined **internal** Cluster Admin user. However**,** it is possible to create a Cluster Admin user with a different name and delete the default admin user, if required.
 
 ### Cluster Admin role privileges
 
