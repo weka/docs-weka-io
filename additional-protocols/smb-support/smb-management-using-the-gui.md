@@ -62,7 +62,7 @@ In all cloud installations, it is not possible to set a list of SMB service addr
 
 5\. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog (1).gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
 
 Once the system completes the configuration process, the server statuses change from not ready (red X icon) to ready (green V icon).
 
@@ -125,7 +125,7 @@ You can add servers to the SMB cluster already joined to the Active Directory (d
 2. In the Add SMB Cluster Servers dialog, select an available server or more from the list (maximum eight servers).
 3. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_add_server_to_smb_cluser (1).gif" alt=""><figcaption><p>Add servers to the SMB cluster</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_add_server_to_smb_cluser.gif" alt=""><figcaption><p>Add servers to the SMB cluster</p></figcaption></figure>
 
 ## Remove servers from the SMB cluster <a href="#delete-the-smb-cluster" id="delete-the-smb-cluster"></a>
 

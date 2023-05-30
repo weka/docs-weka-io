@@ -23,7 +23,7 @@ If the source system is not in MCB architecture, it is required to convert the c
 **Note:** Backend servers with Intel E810 NIC are not supported on V4.2, so they cannot be upgraded.
 {% endhint %}
 
-## What is non-disruptive upgrade (NDU)
+## What is a non-disruptive upgrade (NDU)
 
 In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore it is possible to upgrade one container at a time (rolling upgrade) while the remaining containers continue serving the clients with one exception that the compute containers are upgraded at once in a very short time with a minimal impact on serving IOs.
 
@@ -40,7 +40,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 3. Upgrading all **compute** containers at once.
 4. Rolling upgrade of the **frontend** and **protocol** containers.
 
-<figure><img src="../.gitbook/assets/NDU_process_4.2.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/NDU_process_4.1.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
 
 **Related topics**
 
@@ -67,10 +67,11 @@ Before upgrading the cluster, ensure the following prerequisites:
 1. The backend servers meet the [prerequisites and compatibility](../support/prerequisites-and-compatibility.md) of the target version.
 2. Ensure the source version is configured in an MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the source version from the legacy architecture to MCB.
 3. All the backend servers are online.
-4. Any rebuild has been completed.
-5. There are no outstanding alerts that still need to be addressed.
-6. There is at least 4 GB of free space in the `/opt/weka` directory.
-7. The NDU process requires the following tasks to be stopped. If these tasks are planned, postpone them. If the tasks are running, perform the required action.
+4. Ensure you are logged in as a Cluster Admin (using a `weka user login`).
+5. Any rebuild has been completed.
+6. There are no outstanding alerts that still need to be addressed.
+7. There is at least 4 GB of free space in the `/opt/weka` directory.
+8. The NDU process requires the following tasks to be stopped. If these tasks are planned, postpone them. If the tasks are running, perform the required action.
 
 <table><thead><tr><th width="208">Task</th><th width="242">Required action</th><th>Backgrounk task name</th></tr></thead><tbody><tr><td>Upload a snapshot  </td><td>Wait for the snapshot upload to complete,  or abort it.</td><td>STOW_UPLOAD</td></tr><tr><td>Create a filesystem from an uploaded snapshot</td><td>Wait for the download to complete or abort it by deleting the downloaded filesystem or snapshot.<br><br>If the task is in the snapshot prefetch of the metadata stage, wait for the prefetch to complete or abort it by. It is not possible to resume the snapshot prefetch after the upgrade.</td><td>STOW_DOWNLOAD_SNAPSHOT<br>STOW_DOWNLOAD_FILESYSTEM<br>FILESYSTEM_SQUASH<br>SNAPSHOT_PREFETCH</td></tr><tr><td>Sync a filesystem from a snapshot</td><td>Wait for the download to complete or abort it by deleting the downloaded filesystem or snapshot.</td><td>STOW_DOWNLOAD_SNAPSHOT</td></tr><tr><td>Detach object store bucket from a filesystem</td><td>Detaching an object store is blocked during the upgrade. If it is running, ignore it. </td><td>OBS_DETACH</td></tr></tbody></table>
 
@@ -85,11 +86,9 @@ For details on managing the background tasks, see the [Background tasks](backgro
 Download the new software release on one of the backends using one of the following methods:
 
 * From the backend server, run `weka version get <new-version>` where `<new-version>` is the name of the new version (for example,`4.2.0`), followed by `weka version prepare <new-version>`.&#x20;
-* If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `4.2.0` version from [get.weka.io](https://get.weka.io/ui/releases/), use a token as follows:&#x20;
-
-```bash
-weka version get 4.2.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
-```
+* If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `4.2.0` version from [get.weka.io](https://get.weka.io/ui/releases/), use a token as follows: \
+  \
+  `weka version get 4.2.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io`\
 
 * From the backend server, run the `curl` command described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new release page.
 * Download the new version tar file to the backend server and run the `install.sh` command. This method is helpful in environments without connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs.
@@ -106,29 +105,19 @@ Once the new version is downloaded to one of the backend servers, run the follow
 
 ### 4. Upgrade the backend servers
 
-Once a new software version is installed on one of the backend servers, upgrade the cluster to the new version by running the following command on the backend server:
+Once a new software version is installed on one of the backend servers, upgrade the cluster to the new version by running the following command on the backend server.
+
+If you already ran the preparation step, the upgrade command skips the download and preparation operations.
 
 `weka local run --in <new-version> upgrade`
 
 Where `<new-version>` is the new version's name (for example,`4.2.0`).
 
-If you already ran the preparation step, the upgrade command skips the download and preparation operations.
+Adhere to the following:
 
-You can control the upgrade window time by setting the following parameters in the `upgrade` command:
-
-**Parameters**
-
-<table><thead><tr><th width="215">Name</th><th width="421">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>--prepare-only</code></td><td>Download and prepare a new software version across all servers in the cluster without performing the upgrade.</td><td>False</td></tr><tr><td>--mode</td><td>The method to run the upgrade.<br>Possible values: <code>ndu</code>, <code>clients-upgrade</code>.</td><td><code>ndu</code></td></tr></tbody></table>
-
-{% hint style="info" %}
-**Note:** To run the upgrade command, ensure you are logged in as a Cluster Admin (using a `weka user login`).
-{% endhint %}
-
-Before switching the cluster to the new software release, the upgrade command distributes the new release to all cluster servers. It makes the necessary preparations, such as compiling the new `wekafs` driver.
-
-Suppose a failure occurs during the preparation, such as the disconnection of a server or failure to build a driver. In that case, the upgrade process stops, and a summary message indicates the problematic server.
-
-In a successful process, the upgrade stops the cluster IO service, switches all servers to the new release, and then turns the IO service back on. This process takes about 1 minute, depending on the cluster size.
+* Before switching the cluster to the new software release, the upgrade command distributes the new release to all cluster servers. It makes the necessary preparations, such as compiling the new `wekafs` driver.
+* If a failure occurs during the preparation, such as a disconnection of a server or failure to build a driver, the upgrade process stops, and a summary message indicates the problematic server.
+* In a successful process, the upgrade stops the cluster IO service, switches all servers to the new release, and then turns the IO service back on. This process takes about 1 minute, depending on the cluster size.
 
 ### 5. Upgrade the clients
 
@@ -200,4 +189,3 @@ Once the upgrade is complete, verify that the cluster is in the new version by r
 `Weka v4.2.0`   \
 `...`
 {% endhint %}
-

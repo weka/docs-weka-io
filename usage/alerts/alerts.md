@@ -37,7 +37,7 @@ The system automatically unmutes the muted alerts after the expiry period.
 
 The muted alert is moved to the Muted Alerts area. The total number of active alerts is deducted by the number of muted alerts.
 
-![Mute alerts](<../../.gitbook/assets/wmng\_alerts\_mute (1).gif>)
+![Mute alerts](../../.gitbook/assets/wmng\_alerts\_mute.gif)
 
 ## Unmute alerts
 
