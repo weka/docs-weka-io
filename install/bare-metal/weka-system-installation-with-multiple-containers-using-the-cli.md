@@ -42,9 +42,11 @@ Stop and remove the auto-created default container created on each server.
 
 ### 3. Generate the resource files
 
-**Command:** `./resources_generator.py --net <net-devices> [options]`
+**Command:** `resources_generator.py`
 
-To generate the resource files for the drive, compute, and frontend processes, download the [resource\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py) and run the following command on each backend server.
+To generate the resource files for the drive, compute, and frontend processes, download the [resource\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py) and run the following command on each backend server:
+
+`./resources_generator.py --net <net-devices> [options]`
 
 The resource generator allocates the number of cores, memory, and other resources according to the values specified in the parameters.&#x20;
 
@@ -60,14 +62,14 @@ The best practice for resources allocation is as follows:
 For a server with **24** cores and 6 SSDs, allocate 6 drive cores and 12 compute cores, and optionally you can use 2 cores of the remaining cores for the frontend container. The OS uses the remaining 4 cores.
 
 Run the following command line:\
-`./resources_generator.py --net eth1 --drive-dedicated-cores 6 --compute-dedicated-cores 12 --frontend-dedicated-cores 2`
+`./resources_generator.py --net eth1 --net eth2 --drive-dedicated-cores 6 --compute-dedicated-cores 12 --frontend-dedicated-cores 2`
 
 #### Example 2: a server with a limited number of cores
 
 For a server with **14** cores and 6 SSDs, allocate 6 drive cores and 6 compute cores, and optionally you can use 1 core of the remaining cores for the frontend container. The OS uses the remaining 1 core.
 
 Run the following command line:\
-`./resources_generator.py --net eth1 --drive-dedicated-cores 6 --compute-dedicated-cores 6 --frontend-dedicated-cores 1`
+`./resources_generator.py --net eth1 --net eth2 --drive-dedicated-cores 6 --compute-dedicated-cores 6 --frontend-dedicated-cores 1`
 
 {% hint style="info" %}
 **Note:** Contact Professional Services for the recommended resource allocation settings.
