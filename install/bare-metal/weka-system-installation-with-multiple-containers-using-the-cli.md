@@ -1,11 +1,11 @@
 ---
 description: >-
-  This page provides a detailed workflow for WEKA system installation with
+  This page provides a detailed workflow for WEKA cluster installation with
   multiple containers using the CLI. These are complementary details for the
   quick installation guide.
 ---
 
-# WEKA system installation with multiple containers
+# WEKA cluster installation
 
 ## Workflow
 

@@ -38,7 +38,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 1. Downloading the version and preparing all backend servers.
 2. Rolling upgrade of the **drive** containers.
 3. Upgrading all **compute** containers at once.
-4. Rolling upgrade of the **frontend** and **protocol** containers.
+4. Rolling upgrade of the **frontend** and **protocol** containers and the protocol gateways.
 
 <figure><img src="../.gitbook/assets/NDU_process_4.1.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
 
