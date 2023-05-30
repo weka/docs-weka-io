@@ -42,36 +42,42 @@ Stop and remove the auto-created default container created on each server.
 
 ### 3. Generate the resource files
 
-**Command:** `resources_generator.py`
+**Command:** `./resources_generator.py --net <net-devices> [options]`
 
-To generate the resource files for the drive, compute, and frontend processes, download the [resource\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py) and run the following command on one server of each process type.
+To generate the resource files for the drive, compute, and frontend processes, download the [resource\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py) and run the following command on each backend server.
 
-The resource generator automatically calculates the number of cores, memory, and other resource values. However, you can override these values by providing specific options.
+The resource generator allocates the number of cores, memory, and other resources according to the values specified in the parameters.&#x20;
 
-`./resources_generator.py --net <net-devices> [options]`
+The best practice for resources allocation is as follows:
+
+* 1 drive core per NVMe device (SSD).
+* 2-3 compute cores per drive core.&#x20;
+* 1-2 frontend cores if deploying a protocol container. If there is a spare core, it is used for a frontend container.
+* Minimum of 1 core for the OS.
+
+#### Example 1: according to the best practice
+
+For a server with **24** cores and 6 SSDs, allocate 6 drive cores and 12 compute cores, and optionally you can use 2 cores of the remaining cores for the frontend container. The OS uses the remaining 4 cores.
+
+Run the following command line:\
+`./resources_generator.py --net <net-devices> --drive-dedicated-cores 6 --compute-dedicated-cores 12 --frontend-dedicated-cores 2`
+
+#### Example 2: a server with a limited number of cores
+
+For a server with **14** cores and 6 SSDs, allocate 6 drive cores and 6 compute cores, and optionally you can use 1 core of the remaining cores for the frontend container. The OS uses the remaining 1 core.
+
+Run the following command line:\
+`./resources_generator.py --net <net-devices> --drive-dedicated-cores 6 --compute-dedicated-cores 6 --frontend-dedicated-cores 1`
+
+{% hint style="info" %}
+**Note:** Contact Professional Services for the recommended resource allocation settings.
+{% endhint %}
 
 **Parameters**
 
-| **Name**                   | **Type**                | **Value**                                                                                                                                                                      | **Mandatory** | **Default**                                       |
-| -------------------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ------------------------------------------------- |
-| `compute-core-ids`         | Space-separated numbers | Specify the CPUs to allocate for the compute processes.                                                                                                                        | No            | -                                                 |
-| `compute-dedicated-cores`  | Number                  | Specify the number of cores to dedicate for the compute processes.                                                                                                             | No            | The maximum available cores                       |
-| `compute-memory`           | String                  | <p>Specify the total memory to allocate for the compute processes.</p><p>Argument format: value and unit without a space.</p><p>Examples: 1024B, 10GiB, 5TiB.</p>              | No            | The maximum available memory                      |
-| `core-ids`                 | Space-separated numbers | Specify the CPUs to allocate for the WEKA processes.                                                                                                                           | No            | -                                                 |
-| `drive-core-ids`           | Space-separated numbers | Specify the CPUs to allocate for the drive processes.                                                                                                                          | No            | -                                                 |
-| `drive-dedicated-cores`    | Number                  | Specify the number of cores to dedicate for the drive processes.                                                                                                               | No            | 1 core per each detected drive                    |
-| `drives`                   | Space-separated strings | <p>Specify the drives to use. </p><p>This option overrides automatic detection.</p>                                                                                            | No            | All unmounted NVME devices                        |
-| `frontend-core-ids`        | Space-separated numbers | Specify the CPUs to allocate for the frontend processes.                                                                                                                       | No            | -                                                 |
-| `frontend-dedicated-cores` | Number                  | Specify the number of cores to dedicate for the frontend processes.                                                                                                            | No            | 1                                                 |
-| `max-cores-per-container`  | Number                  | Override the default maximum number of cores per container for IO processes (19). If provided, the new value must be lower.                                                    | No            | 19                                                |
-| `minimal-memory`           | Flag                    | Set each container's hugepages memory to 1.4 GiB \* number of IO processes on the container.                                                                                   | No            | -                                                 |
-| `net-devices`              | Space-separated strings | Specify the network devices to use.                                                                                                                                            | Yes           | -                                                 |
-| `no-rdma`                  | Boolean                 | Don't take RDMA support into account when computing memory requirements.                                                                                                       | No            | False                                             |
-| `num-cores`                | Number                  | Override the auto-deduction of the number of cores.                                                                                                                            | No            | All available cores                               |
-| `path`                     | String                  | Specify the path to write the resource files.                                                                                                                                  | No            | The default is '.'                                |
-| `spare-cores`              | Number                  | Specify the number of cores to leave for OS and non-WEKA processes.                                                                                                            | No            | 1                                                 |
-| `spare-memory`             | String                  | <p>Specify the memory to reserve for non-WEKA requirements.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p>                   | No            | The maximum between 8 GiB and 2% of the total RAM |
-| `weka-hugepages-memory`    | String                  | <p>Specify the memory to allocate for compute, frontend, and drive processes.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p> | No            | The maximum available memory                      |
+**Parameters**
+
+<table data-header-hidden><thead><tr><th width="307">Name</th><th width="187">Type</th><th width="292">Value</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>compute-core-ids</code></td><td>Space-separated numbers</td><td>Specify the CPUs to allocate for the compute processes.</td><td>No</td><td>-</td></tr><tr><td><code>compute-dedicated-cores</code></td><td>Number</td><td>Specify the number of cores to dedicate for the compute processes.</td><td>No</td><td>The maximum available cores</td></tr><tr><td><code>compute-memory</code></td><td>String</td><td><p>Specify the total memory to allocate for the compute processes.</p><p>Argument format: value and unit without a space.</p><p>Examples: 1024B, 10GiB, 5TiB.</p></td><td>No</td><td>The maximum available memory</td></tr><tr><td><code>core-ids</code></td><td>Space-separated numbers</td><td>Specify the CPUs to allocate for the WEKA processes.</td><td>No</td><td>-</td></tr><tr><td><code>drive-core-ids</code></td><td>Space-separated numbers</td><td>Specify the CPUs to allocate for the drive processes.</td><td>No</td><td>-</td></tr><tr><td><code>drive-dedicated-cores</code></td><td>Number</td><td>Specify the number of cores to dedicate for the drive processes.</td><td>No</td><td>1 core per each detected drive</td></tr><tr><td><code>drives</code></td><td>Space-separated strings</td><td><p>Specify the drives to use. </p><p>This option overrides automatic detection.</p></td><td>No</td><td>All unmounted NVME devices</td></tr><tr><td><code>frontend-core-ids</code></td><td>Space-separated numbers</td><td>Specify the CPUs to allocate for the frontend processes.</td><td>No</td><td>-</td></tr><tr><td><code>frontend-dedicated-cores</code></td><td>Number</td><td>Specify the number of cores to dedicate for the frontend processes.</td><td>No</td><td>1</td></tr><tr><td><code>max-cores-per-container</code></td><td>Number</td><td>Override the default maximum number of cores per container for IO processes (19). If provided, the new value must be lower.</td><td>No</td><td>19</td></tr><tr><td><code>minimal-memory</code></td><td>Flag</td><td>Set each container's hugepages memory to 1.4 GiB * number of IO processes on the container.</td><td>No</td><td>-</td></tr><tr><td><code>net-devices</code></td><td>Space-separated strings</td><td>Specify the network devices to use.</td><td>Yes</td><td>-</td></tr><tr><td><code>no-rdma</code></td><td>Boolean</td><td>Don't take RDMA support into account when computing memory requirements.</td><td>No</td><td>False</td></tr><tr><td><code>num-cores</code></td><td>Number</td><td>Override the auto-deduction of the number of cores.</td><td>No</td><td>All available cores</td></tr><tr><td><code>path</code></td><td>String</td><td>Specify the path to write the resource files.</td><td>No</td><td>The default is '.'</td></tr><tr><td><code>spare-cores</code></td><td>Number</td><td>Specify the number of cores to leave for OS and non-WEKA processes.</td><td>No</td><td>1</td></tr><tr><td><code>spare-memory</code></td><td>String</td><td><p>Specify the memory to reserve for non-WEKA requirements.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p></td><td>No</td><td>The maximum between 8 GiB and 2% of the total RAM</td></tr><tr><td><code>weka-hugepages-memory</code></td><td>String</td><td><p>Specify the memory to allocate for compute, frontend, and drive processes.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p></td><td>No</td><td>The maximum available memory</td></tr></tbody></table>
 
 ### 4. Create drive containers
 
@@ -144,10 +150,7 @@ weka cluster drive add <container-id> <device-paths>
 
 **Parameters**
 
-| **Name**       | **Type**                        | **Value**                                                                                 | **Limitations**                          | **Mandatory** | **Default** |
-| -------------- | ------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------- | ------------- | ----------- |
-| `container-id` | String                          | The Identifier of the drive container to add the local SSD drives                         | Must be a valid container identifier     | Yes           |             |
-| `device-paths` | Space-separated list of strings | List of block devices that identify local SSDs. For example,  `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes           |             |
+<table data-header-hidden><thead><tr><th width="179">Name</th><th width="159">Type</th><th width="176">Value</th><th width="210">Limitations</th><th width="134">Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>container-id</code></td><td>String</td><td>The Identifier of the drive container to add the local SSD drives</td><td>Must be a valid container identifier</td><td>Yes</td><td></td></tr><tr><td><code>device-paths</code></td><td>Space-separated list of strings</td><td>List of block devices that identify local SSDs. For example,  <code>/dev/nvme0n1 /dev/nvme1n1</code></td><td>Must be a valid Unix network device name</td><td>Yes</td><td></td></tr></tbody></table>
 
 ### 7. Create compute containers
 
@@ -228,11 +231,8 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 **Parameters**
 
-| **Name**                          | **Type**                | **Value**                                                                                                                                                                                                | **Limitations**      | **Mandatory** | **Default** |
-| --------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------------- | ----------- |
-| `resources-path`                  | String                  | The path to the resource file.                                                                                                                                                                           | Must be a valid path | yes           |             |
-| <pre><code>join-ips
-</code></pre> | Space-separated strings | <p>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. For example: <code>--join-ips 10.10.10.23:15000</code></p> | Must be valid IPs    | Yes           |             |
+<table data-header-hidden><thead><tr><th width="200">Name</th><th width="155">Type</th><th width="220">Value</th><th width="170">Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>resources-path</code></td><td>String</td><td>The path to the resource file.</td><td>Must be a valid path</td><td>yes</td><td></td></tr><tr><td><pre><code>join-ips
+</code></pre></td><td>Space-separated strings</td><td>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. For example: <code>--join-ips 10.10.10.23:15000</code></td><td>Must be valid IPs</td><td>Yes</td><td></td></tr></tbody></table>
 
 ### 13. Check the cluster configuration
 
