@@ -24,7 +24,7 @@ The WEKA S3 service works on top of the WEKA filesystem service. Buckets are map
 
 **Related topics**
 
-****[s3-cluster-management](s3-cluster-management/ "mention")****
+[s3-cluster-management](s3-cluster-management/ "mention")
 
 ## S3 access
 
@@ -41,9 +41,9 @@ As an S3 user, you can create temporary security tokens (STS AssumeRole) or serv
 
 **Related topics**
 
-****[user-management](../../usage/user-management/ "mention")****
+[user-management](../../usage/user-management/ "mention")
 
-****[s3-users-and-authentication](s3-users-and-authentication/ "mention")****
+[s3-users-and-authentication](s3-users-and-authentication/ "mention")
 
 ### Anonymous access
 
@@ -62,10 +62,7 @@ Anonymous access to buckets/objects can be obtained by one of the following:&#x2
 
 WEKA supports two URL styles for API requests to S3 buckets: _path-style_ and _virtual-hosted-style_.
 
-| Style                | URL format                                             |
-| -------------------- | ------------------------------------------------------ |
-| Path-style           | `https://`s3`.domain-name.com/bucket-name/object-name` |
-| Virtual-hosted-style | `https://bucket-name.s3.domain-name.com/object-name`   |
+<table><thead><tr><th width="212">Style</th><th>URL format</th></tr></thead><tbody><tr><td>Path-style</td><td><code>https://</code>s3<code>.domain-name.com/bucket-name/object-name</code></td></tr><tr><td>Virtual-hosted-style</td><td><code>https://bucket-name.s3.domain-name.com/object-name</code></td></tr></tbody></table>
 
 The difference between the styles is subtle but significant. When using a URL to reference an object, the DNS resolution maps the subdomain name to an IP address. With the path style, the subdomain is always `s3.domain-name.com`. With the virtual-hosted-style, the subdomain is specific to the bucket.
 
@@ -83,7 +80,7 @@ Clients' access to the service through HTTPS is provided using the same certific
 
 **Related topics**
 
-****[#encrypted-filesystems](../../overview/filesystems.md#encrypted-filesystems "mention")****
+[#encrypted-filesystems](../../overview/filesystems.md#encrypted-filesystems "mention")
 
 [#tls](../../usage/security/#tls "mention")
 

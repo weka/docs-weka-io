@@ -161,7 +161,5 @@ Use the following command line to delete an object-store bucket:
 
 **Parameters**
 
-| **Name** | **Type** | **Value**                                  | **Limitations**      | **Mandatory** | **Default** |
-| -------- | -------- | ------------------------------------------ | -------------------- | ------------- | ----------- |
-| `name`   | String   | Name of the object store bucket to delete. | Must be a valid name | Yes           | ​           |
+<table data-header-hidden><thead><tr><th>Name</th><th width="113">Type</th><th width="180">Value</th><th>Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>name</code></td><td>String</td><td>Name of the object store bucket to delete.</td><td>Must be a valid name</td><td>Yes</td><td>​</td></tr></tbody></table>
 

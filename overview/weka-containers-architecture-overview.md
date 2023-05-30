@@ -9,22 +9,13 @@ Processes are dedicated to managing different functions as follows:
 * Frontend processes for POSIX client access and sending IO to the compute and drive processes. Each frontend process requires a dedicated core.
 * A management process for managing the overall cluster. The management process does not require a dedicated core.
 
-Two container architectures are available:
+In the WEKA cluster, each server includes multiple containers in which each container runs processes of a specific type: drive, compute, or frontend. This deployment is known as **multi-container backend** architecture (MCB).
 
-* **Multiple containers architecture:** This is the new architecture, where each server in the cluster includes multiple containers. Adhere to the following:
-  * Each container runs processes of a specific type: drive, compute, or frontend.
-  * A server can have multiple containers per process type.
-  * The containers are not limited to running the same software version and enable non-disruptive upgrades.
-  * The server can use the maximum available cores, allowing flexibility in the hardware cores' usage.&#x20;
-* **Single container architecture:** This is the legacy architecture, where each server in the cluster includes a single container with all the processes running on it. Adhere to the following:
-  * All the processes must be in the same software version. As a result, during an upgrade, the container is not available, and the service is interrupted.
-  * The container is limited to using up to 19 cores. This limitation reduces the flexibility of the hardware cores' usage (a server can include more than 19 cores).
+<figure><img src="../.gitbook/assets/MCB_arch_4.2.png" alt=""><figcaption><p>Multi-container backend architecture (MCB)</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/V4_MBC_overview.png" alt=""><figcaption><p>Multiple containers architecture vs.  single containers architecture</p></figcaption></figure>
+With MCB, a server can have multiple containers per process type. The containers are not limited to running the same software version and enable non-disruptive upgrades. The server can use the maximum available cores, allowing flexibility in the hardware cores' usage.
 
-## Multiple containers architecture benefits
-
-The benefits of using the multiple containers architecture are:
+The benefits of using the MCB architecture include:
 
 * **Support non-disruptive upgrades:**
   * Each container can have a different version and be installed separately from the other containers.
@@ -35,10 +26,12 @@ The benefits of using the multiple containers architecture are:
 * **Less disruptive maintenance:**
   * Ability to stop the compute and frontend processes while running the drive processes.
 
-To support non-disruptive upgrades, multiple-containers architecture deployment is mandatory. The deployment requires using the resource generator tool. The tool provides configuration files in a JSON format with the resource allocations for each container type: `drives0.json`, `compute0.json`, and `frontend0.json`, to use during the deployment.
+{% hint style="info" %}
+**Note:** The legacy architecture, where each server in the cluster includes a single container with all the processes running on it, is deprecated. Contact the Customer Success Team to convert from the legacy architecture to MCB
+{% endhint %}
 
 {% hint style="info" %}
-Multiple containers architecture is not supported yet on AWS using the CloudFormation, as well as in a system with Intel E810 NIC.
+**Note:** Multi-container backend architecture is not supported yet on AWS using the CloudFormation, as well as in a system with Intel E810 NIC.
 {% endhint %}
 
 
