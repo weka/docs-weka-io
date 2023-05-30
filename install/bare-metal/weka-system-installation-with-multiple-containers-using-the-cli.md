@@ -60,14 +60,14 @@ The best practice for resources allocation is as follows:
 For a server with **24** cores and 6 SSDs, allocate 6 drive cores and 12 compute cores, and optionally you can use 2 cores of the remaining cores for the frontend container. The OS uses the remaining 4 cores.
 
 Run the following command line:\
-`./resources_generator.py --net <net-devices> --drive-dedicated-cores 6 --compute-dedicated-cores 12 --frontend-dedicated-cores 2`
+`./resources_generator.py --net eth1 --drive-dedicated-cores 6 --compute-dedicated-cores 12 --frontend-dedicated-cores 2`
 
 #### Example 2: a server with a limited number of cores
 
 For a server with **14** cores and 6 SSDs, allocate 6 drive cores and 6 compute cores, and optionally you can use 1 core of the remaining cores for the frontend container. The OS uses the remaining 1 core.
 
 Run the following command line:\
-`./resources_generator.py --net <net-devices> --drive-dedicated-cores 6 --compute-dedicated-cores 6 --frontend-dedicated-cores 1`
+`./resources_generator.py --net eth1 --drive-dedicated-cores 6 --compute-dedicated-cores 6 --frontend-dedicated-cores 1`
 
 {% hint style="info" %}
 **Note:** Contact Professional Services for the recommended resource allocation settings.
