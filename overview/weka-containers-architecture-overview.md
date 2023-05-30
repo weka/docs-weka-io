@@ -1,4 +1,4 @@
-# WEKA multi-container backend (MCB) architecture overview
+# WEKA containers architecture overview
 
 The servers in a WEKA system are members of a cluster. A server includes multiple containers running software instances called processes that communicate with each other to provide storage services in the cluster.
 
@@ -11,7 +11,7 @@ The processes are dedicated to managing different functions as follows:
 
 In the WEKA cluster, each server includes multiple containers in which each container runs processes of a specific type: drive, compute, or frontend. This deployment is known as **multi-container backend** architecture (MCB).
 
-<figure><img src="../.gitbook/assets/V4_MBC_overview.png" alt=""><figcaption><p>Multi-container backend architecture (MCB)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/MCB_arch_4.2.png" alt=""><figcaption><p>Multi-container backend architecture (MCB)</p></figcaption></figure>
 
 With MCB, a server can have multiple containers per process type. The containers are not limited to running the same software version and enable non-disruptive upgrades. The server can use the maximum available cores, allowing flexibility in the hardware cores' usage.
 

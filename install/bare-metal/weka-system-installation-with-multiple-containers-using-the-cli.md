@@ -1,11 +1,11 @@
 ---
 description: >-
-  This page provides a detailed workflow for WEKA multi-container backend
-  installation. These are complementary details for the quick installation
-  guide.
+  This page provides a detailed workflow for WEKA cluster installation in a
+  multi-container backend architecture. These are complementary details for the
+  quick installation guide.
 ---
 
-# WEKA multi-container backend installation
+# WEKA cluster installation
 
 ## Workflow
 

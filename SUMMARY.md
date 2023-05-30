@@ -10,7 +10,7 @@
 * [WEKA networking](overview/networking-in-wekaio.md)
 * [Data lifecycle management](overview/data-storage.md)
 * [WEKA client and mount modes](overview/weka-client-and-mount-modes.md)
-* [WEKA multi-container backend (MCB) architecture overview](overview/weka-containers-architecture-overview.md)
+* [WEKA containers architecture overview](overview/weka-containers-architecture-overview.md)
 * [Glossary](overview/glossary.md)
 
 ## Getting Started with WEKA
@@ -29,7 +29,7 @@
   * [Prepare the system for WEKA software installation](install/bare-metal/setting-up-the-hosts/README.md)
     * [Enable the SR-IOV](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Obtain the WEKA software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
-  * [WEKA multi-container backend installation](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
+  * [WEKA cluster installation](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
   * [Add clients](install/bare-metal/adding-clients-bare-metal.md)
 * [WEKA installation on AWS](install/aws/README.md)
   * [Self-service portal](install/aws/self-service-portal.md)
