@@ -62,7 +62,7 @@ In all cloud installations, it is not possible to set a list of SMB service addr
 
 5\. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog (1).gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog (2).gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
 
 Once the system completes the configuration process, the server statuses change from not ready (red X icon) to ready (green V icon).
 
@@ -98,7 +98,7 @@ Enable the WEKA storage nodes to join the AD domain. On all backend servers used
 
 1. In the SMB Cluster Configuration, select **Join**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button (2).png" alt=""><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button.png" alt=""><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
 
 2. In the Join to Active Directory dialog, set the following properties:
    * **Username** and **Password**: A username and password of an account that has access privileges to the Active Directory. WEKA does not save the user password. A computer account is created on behalf of the user for the SMB cluster.
