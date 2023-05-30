@@ -72,7 +72,7 @@ Run the following command line:\
 `./resources_generator.py --net eth1 --net eth2 --drive-dedicated-cores 6 --compute-dedicated-cores 6 --frontend-dedicated-cores 1`
 
 {% hint style="info" %}
-**Note:** Contact Professional Services for the recommended resource allocation settings.
+**Note:** Contact Professional Services for the recommended resource allocation settings for your system.
 {% endhint %}
 
 **Parameters**
