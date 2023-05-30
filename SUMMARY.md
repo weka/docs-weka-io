@@ -198,7 +198,14 @@
 
 ## Appendix
 
-* [WEKA CSI Plugin](appendix/weka-csi-plugin.md)
+* [WEKA CSI Plugin](appendix/weka-csi-plugin/README.md)
+  * [Deployment](appendix/weka-csi-plugin/deployment.md)
+  * [Storage class configurations](appendix/weka-csi-plugin/storage-class-configurations.md)
+  * [Dynamic and static provisioning](appendix/weka-csi-plugin/dynamic-and-static-provisioning.md)
+  * [Launch an application using WEKA as the POD's storage](appendix/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage.md)
+  * [Add SELinux support](appendix/weka-csi-plugin/add-selinux-support.md)
+  * [Upgrade legacy persistent volumes for capacity enforcement](appendix/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
+  * [Troubleshooting](appendix/weka-csi-plugin/troubleshooting.md)
 * [Set up the WEKAmon external monitoring](appendix/external-monitoring.md)
 * [Set up the SnapTool external snapshots manager](appendix/snapshot-management.md)
 

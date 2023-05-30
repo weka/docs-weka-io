@@ -23,6 +23,10 @@ Ensure the following requirements are met:
 
 &#x20;Mounting a filesystem without these requirements may fail or overload the WEKA client.
 
+{% hint style="info" %}
+**Note:** Mounting a stateful client using **autofs** is only supported on filesystems on a single cluster.
+{% endhint %}
+
 ## Set the client target version in the clusters
 
 When a stateless client mounts a filesystem in a cluster, it creates a client container with the same version as provided by the cluster. Because there may be situations where some of the clusters run a different WEKA version than the others, such as during an upgrade, it is required to set the same client target version on all clusters. The client target version is retained regardless of the cluster upgrade.
