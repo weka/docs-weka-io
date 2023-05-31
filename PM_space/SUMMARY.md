@@ -4,4 +4,4 @@
 
 ## Group 1
 
-* [Page 1](group-1/page-1.md)
+* [4.2 RN: What's New](group-1/4.2-rn-whats-new.md)
