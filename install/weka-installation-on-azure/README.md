@@ -15,10 +15,12 @@ The WEKA cluster is deployed in a single virtual network (VNet, similar to VPC i
 
 Depending on the required security level, you can deploy the WEKA cluster using the Terraform package on one of the following subnet types:
 
-* **Public subnet:** Use a public subnet within your VNet with an internet gateway, and allow public IP addresses for your virtual machines.
-* **Private subnet:** Use a private subnet within your VNet that has access to an APT repository containing the required deployment packages.
+* **Public subnets:** Use 4 to 8 public subnets within your VNet with an internet gateway, and allow public IP addresses for your virtual machines.&#x20;
+* **Private subnets:** Use 4 to 8 private subnets within your VNet with access to an APT repository containing the required deployment packages.
 
-<figure><img src="../../.gitbook/assets/azure_deployment.png" alt=""><figcaption><p>WEKA cluster on Azure deployment</p></figcaption></figure>
+The number of public subnets depends on the maximum number of supported NICs in the selected VM size.
+
+<figure><img src="../../.gitbook/assets/azure_deployment_4.2.png" alt=""><figcaption><p>WEKA cluster on Azure deployment with four subnets</p></figcaption></figure>
 
 <details>
 

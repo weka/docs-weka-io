@@ -40,13 +40,10 @@ The following operating systems are supported for backend servers and clients:
 * **CentOS:**
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-* **Rocky Linux**
+* **Rocky Linux:**
   * 8.7, 8.6
-  * 9.1, 9.0
 * **Ubuntu:**
   * 18.04
-  * 20.04
-  * 22.04
 * **Amazon Linux:** 18.03, 17.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
 
@@ -62,6 +59,22 @@ The following operating systems are supported for clients only:
 
 * 15 SP2
 * 12 SP5
+
+**RHEL:**
+
+* 9.1, 9.0
+
+**Rocky Linux:**&#x20;
+
+* 9.1, 9.0
+
+**Ubuntu:**&#x20;
+
+* 22.04&#x20;
+
+{% hint style="info" %}
+**Note:** For kernels 5.13 and higher, do not use applications that use 1GB hugepages. RHEL/Rocky Linux 9.1, 9.0 and Ubuntu 22.04 use kernels higher than 5.13.
+{% endhint %}
 {% endtab %}
 
 {% tab title="Kernel" %}
@@ -72,7 +85,10 @@ The following kernel versions are supported:
 * 3.10
 
 {% hint style="warning" %}
-**Note:** Kernel 5.15 is not supported with Amazon Linux operating systems.
+**Notes:**
+
+* Kernel 5.15 is not supported with Amazon Linux operating systems.
+* For kernels 5.13 and higher, do not use applications that use 1GB hugepages.
 {% endhint %}
 
 {% hint style="info" %}

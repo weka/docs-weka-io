@@ -107,35 +107,56 @@ Use the following command lines to add/delete a client access group:
 
 <table><thead><tr><th width="258">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid group name.</td></tr></tbody></table>
 
-## Manage client access groups
+## Manage client access groups' rules
 
-### **Add or delete DNS**
+Clients are part of groups when their IP address or DNS hostname match the rules of that group. Similar to IP routing rules, clients are matched to client groups according to the most specific matching rule.
+
+### **Add or delete DNS-based client group rules**
 
 **Command:** `weka nfs rules`
 
-Use the following command lines to add/delete a client group DNS:
+Use the following command lines to add or delete a rule that causes a client to be part of a client group based on its DNS hostname:
 
 `weka nfs rules add dns <name> <dns>`
 
+Example:\
+&#x20;`weka nfs rules add dns client-group1 hostname.example.com`
+
+
+
 `weka nfs rules delete dns <name> <dns>`
+
+Example:\
+`weka nfs rules delete dns client-group1 hostname.example.com`
 
 **Parameters**
 
-<table><thead><tr><th width="250">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid group name.</td></tr><tr><td><code>dns</code>*</td><td>DNS rule with *?[] wildcard rules.</td></tr></tbody></table>
+<table><thead><tr><th width="250">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid client group name.</td></tr><tr><td><code>dns</code>*</td><td>DNS rule with *?[] wildcard rules.</td></tr></tbody></table>
 
-### **Add or delete an IP**
+### **Add or delete IP-based client group rules**
 
 **Command:** `weka nfs rules`
 
-Use the following command lines to add/delete a client group IP:
+Use the following command lines to add or delete a rule which causes a client to be part of a client group based on its IP and netmask:
 
 `weka nfs rules add ip <name> <ip>`
 
+Examples:\
+&#x20;`weka nfs rules add ip client-group1 192.168.114.0/255.255.255.0`\
+&#x20;`weka nfs rules add ip client-group2 172.16.0.0/255.255.0.0`
+
+
+
 `weka nfs rules delete ip <name> <ip>`
+
+Examples:\
+&#x20;`weka nfs rules delete ip client-group1 192.168.114.0/255.255.255.0`\
+&#x20;`weka nfs rules delete ip client-group2 172.16.0.0/255.255.0.0`\
+&#x20;
 
 **Parameters**
 
-<table><thead><tr><th width="251">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid group name.</td></tr><tr><td><code>ip</code>*</td><td>Valid IP with netmask rule.<br>Format: <code>1.1.1.1/255.255.0.0</code></td></tr></tbody></table>
+<table><thead><tr><th width="251">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid client group name.</td></tr><tr><td><code>ip</code>*</td><td>Valid IP with netmask rule.<br>Format: <code>1.1.1.1/255.255.0.0</code></td></tr></tbody></table>
 
 ## **Manage NFS client permissions**
 
