@@ -235,7 +235,7 @@ WEKA supports the following InfiniBand NICs:
 {% endtab %}
 
 {% tab title="NIC Drivers" %}
-WEKA supports the following Mellanox OFED versions InfiniBand NICs:
+WEKA supports the following Mellanox OFED versions for the InfiniBand NICs:
 
 * 5.9-0.5.6.0
 * 5.8-1.1.2.1 LTS
