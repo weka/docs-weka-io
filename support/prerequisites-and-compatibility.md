@@ -44,11 +44,12 @@ The following operating systems are supported for backend servers and clients:
   * 8.7, 8.6
 * **Ubuntu:**
   * 18.04
+  * 20.04
 * **Amazon Linux:** 18.03, 17.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
 
 {% hint style="info" %}
-**Note:** Ensure using an OS with a supported kernel.
+**Note:** Ensure using an OS with a supported kernel. Do not use an OS with kernel 5.13 and higher for backends.
 {% endhint %}
 {% endtab %}
 
