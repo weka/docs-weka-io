@@ -20,7 +20,7 @@ If the source system is not in MCB architecture, it is required to convert the c
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Backend servers with Intel E810 NIC are not supported MCB architecture, so the cluster cannot be upgraded to 4.2.
+**Note:** Backend servers with Intel E810 NIC are not supported in the MCB architecture, so the cluster cannot be upgraded to 4.2.
 {% endhint %}
 
 ## What is a non-disruptive upgrade (NDU)
