@@ -2,7 +2,13 @@
 description: Welcome to the Weka documentation portal.
 ---
 
-# Weka Documentation
+# Weka Documentation V3.11
+
+{% hint style="warning" %}
+**Attention: Version 3.11 EOL Notification**
+
+Version 3.11 has reached its End of Life (EOL). Upgrade now for continued support, enhanced features, and improved security. Contact the Customer Success Team.
+{% endhint %}
 
 ## About this Documentation
 
@@ -16,7 +22,7 @@ This portal contains all the documentation necessary for understanding and worki
 
 **Performance:** A description and results of the FIO performance tests on WekaFS.
 
-**WekaFS Filesystems in the Weka System:** A review of the role and management of filesystems, object stores**,** filesystem groups, and key-management systems in Weka system configurations.
+**WekaFS Filesystems in the Weka System:** A review of the role and management of filesystems, object stores\*\*,\*\* filesystem groups, and key-management systems in Weka system configurations.
 
 **Additional Protocols:** A review of additional protocols support as NFS and SMB for accessing data stored in a WekaFS filesystem.
 
@@ -35,4 +41,3 @@ Good documentation is based on customer input. We value and appreciate your thou
 {% hint style="info" %}
 **Note:** If for any reason it is not possible to use the online documentation, offline documentation of this portal can be obtained [here](https://drive.google.com/open?id=1HwWq3BtaRLT2j9y-hmVO9xzzikpzFb5X).
 {% endhint %}
-
