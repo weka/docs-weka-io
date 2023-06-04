@@ -27,7 +27,7 @@ The benefits of using the MCB architecture include:
   * Ability to stop the compute and frontend processes while running the drive processes.
 
 {% hint style="info" %}
-**Note:** The legacy architecture, where each server in the cluster includes a single container with all the processes running on it, is deprecated. Contact the Customer Success Team to convert from the legacy architecture to MCB
+**Note:** The legacy architecture, where each server in the cluster includes a single container with all the processes running on it, is deprecated. Contact the Customer Success Team to convert from the legacy architecture to MCB.
 {% endhint %}
 
 {% hint style="info" %}

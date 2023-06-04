@@ -1,6 +1,6 @@
 # WEKA v4.1 documentation
 
-Welcome to the WEKA documentation portal. It displays the documentation for the latest WEKA version. If you have a different WEKA version, select it from the top menu.
+Welcome to the WEKA documentation portal. It displays the documentation for WEKA version 4.1. If you have a different WEKA version, select it from the top menu.
 
 <figure><img src=".gitbook/assets/version_selector.gif" alt=""><figcaption><p>WEKA version selector</p></figcaption></figure>
 
