@@ -20,7 +20,7 @@ Depending on the required security level, you can deploy the WEKA cluster using 
 
 The number of public subnets depends on the maximum number of supported NICs in the selected VM size.
 
-<figure><img src="../../.gitbook/assets/azure_deployment_4.2.png" alt=""><figcaption><p>WEKA cluster on Azure deployment with four subnets</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/azure_deployment.png" alt=""><figcaption><p>WEKA cluster on Azure deployment with four subnets</p></figcaption></figure>
 
 <details>
 

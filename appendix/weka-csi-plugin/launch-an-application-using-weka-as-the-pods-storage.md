@@ -1,8 +1,8 @@
 # Launch an application using WEKA as the POD's storage
 
-Now that we have a storage class and a PVC in place, we can configure the Kubernetes pods to provision volumes via the Weka system.
+Once a storage class and a PVC are in place, you can configure the Kubernetes pods to provision volumes via the Weka system.
 
-We'll take an example application that echos the current timestamp every 10 seconds, and provide it with the previously created `pvc-wekafs-dir` PVC.
+We'll take an example application that echos the current timestamp every 10 seconds and provide it with the previously created `pvc-wekafs-dir` PVC.
 
 Note that multiple pods can share a volume produced by the same PVC as long as the `accessModes` parameter is set to `ReadWriteMany`.
 
@@ -28,14 +28,14 @@ spec:
 ```
 {% endcode %}
 
-Apply that pod:
+Create the pod by applying manifest:
 
 ```yaml
 $ kubectl apply -f csi-app-on-dir.yaml
 pod/my-csi-app created
 ```
 
-Kubernetes will allocate a persistent volume and attach it to the pod, it will use a directory within the WekaFS filesystem as defined in the storage class mentioned in the persistent volume claim. The pod will be in `Running` status, and the `temp.txt` file will get updated with occasional `date` information.
+Kubernetes allocates a persistent volume and attach it to the pod, it uses a directory within the WEKA filesystem as defined in the storage class mentioned in the persistent volume claim. The pod is in `Running` status, and the `temp.txt` file is updated with occasional `date` information.
 
 ```
 $ kubectl get pod my-csi-app

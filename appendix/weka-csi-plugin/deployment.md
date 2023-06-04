@@ -11,9 +11,13 @@ Ensure the following prerequisites are met:
 * A WEKA cluster is installed and accessible from the Kubernetes worker nodes.
 * For snapshot and directory backing, filesystems must be pre-defined on the WEKA cluster.
 * Your workstation has a valid connection to the Kubernetes worker nodes.
-* The WEKA client is installed on the Kubernetes worker nodes. Adhere the to the following:
+* The WEKA client is installed on the Kubernetes worker nodes. Adhere to the following:
   * A WEKA client part of the cluster is recommended rather than a stateless client. See [Add clients](../../install/bare-metal/adding-clients-bare-metal.md).
   * If the Kubernetes worker nodes are part of the WEKA cluster (converged mode on the WEKA servers), ensure the WEKA processes are up before the `kubelet` process.
+
+{% hint style="info" %}
+**Note:** Using stateless clients is deprecated and will not be supported on the next WEKA CSI Plugin version.
+{% endhint %}
 
 ## Installation
 
@@ -102,6 +106,12 @@ $REPO_ROOT/deploy/kubernetes-latest/cleanup.sh
 
 If the existing installation was done using the `helm install` command, perform the following:
 
+{% hint style="warning" %}
+**Note:** In WEKA CSI Plugin v2.0, the CSIDriver object has changed. The installed release cannot be upgraded in place because the CSIDriver objects are immutable, so first, uninstall the existing WEKA CSI Plugin. \
+Run the following command:\
+`helm uninstall csi-wekafs --namespace csi-wekafs`
+{% endhint %}
+
 1. Download the `csi-wekafs` git repository.
 
 ```
@@ -109,8 +119,6 @@ git clone https://github.com/weka/csi-wekafs.git --branch v0.6.6 --single-branch
 ```
 
 2. Upgrade the existing helm release as follows:
-   * In WEKA CSI Plugin v2.0, the CSIDriver object has changed. The installed release cannot be upgraded in-place because the CSIDriver objects are immutable, so first, uninstall the existing WEKA CSI Plugin. Run the following command:\
-     `helm uninstall csi-wekafs --namespace csi-wekafs`
    * Ensure the Helm repository is installed. See the [Installation](deployment.md#installation) section.
    * Run the following command line:
 

@@ -1,5 +1,7 @@
 # Dynamic and static provisioning
 
+The section provides some examples of dynamic and static provisioning. For more examples, see  [https://github.com/weka/csi-wekafs/tree/main/examples](https://github.com/weka/csi-wekafs/tree/main/examples).
+
 ## Dynamic provisioning
 
 Dynamic provisioning means defining a persistent volume claim (PVC) for the pods using a storage class similar to the storage class described in the [Storage class configuration](storage-class-configurations.md) section.
