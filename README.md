@@ -1,8 +1,8 @@
 ---
-description: Welcome to the Weka documentation portal.
+description: Welcome to the WEKA documentation portal.
 ---
 
-# Weka Documentation V3.11
+# WEKA v3.11 Documentation
 
 {% hint style="warning" %}
 **Attention: Version 3.11 EOL Notification**
