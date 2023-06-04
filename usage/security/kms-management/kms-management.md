@@ -22,7 +22,15 @@ Using the GUI, you can:
 3. On the **Security** page, select **Configure KMS**.
 4. On the **Configure KMS** dialog, select the KMS type to deploy: **HashiCorp Vault** or **Kmip**.
 
-![Configure KMS of HashiCorp Vault type](../../../.gitbook/assets/wmng\_add\_kms\_hashicorp.png) ![Configure KMS of Kmpi type](../../../.gitbook/assets/wmng\_add\_kms\_kmpi.png)
+<div align="left">
+
+<img src="../../../.gitbook/assets/wmng_add_kms_hashicorp.png" alt="Configure KMS of HashiCorp Vault type">
+
+ 
+
+<img src="../../../.gitbook/assets/wmng_add_kms_kmpi.png" alt="Configure KMS of Kmpi type">
+
+</div>
 
 5\. Enter the connection properties. The required properties depend on the KMS type you select.
 

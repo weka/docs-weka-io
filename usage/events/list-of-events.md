@@ -8,486 +8,112 @@ description: >-
 
 ## Alerts
 
-**Type** | **Severity** | **Description**
--|-|-
-AlertMuted|INFO|Alert muted
-AlertUnmuted|INFO|Alert unmuted
+<table data-header-hidden><thead><tr><th width="299.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>AlertMuted</td><td>INFO</td><td>Alert muted</td></tr><tr><td>AlertUnmuted</td><td>INFO</td><td>Alert unmuted</td></tr></tbody></table>
 
 ## Cloud
 
-**Type** | **Severity** | **Description**
--|-|-
-CloudDisabled|INFO|Cloud disabled
-CloudEnabled|INFO|Cloud enabled
-CloudProxyUpdated|INFO|Cloud proxy updated
-CloudSetUploadRate|INFO|Cloud upload rate changed
-CloudStatsErrorClearedEvent|WARNING|Cloud stats have now been written successfully
-CloudStatsErrorEvent|WARNING|Error writing cloud stats for upload
-DiagsUploaded|INFO|Diags uploaded
-LowDiskSpaceClearedEvent|WARNING|Host no longer has low disk space
-LowDiskSpaceEvent|WARNING|Host has low disk space
+<table data-header-hidden><thead><tr><th width="320.30709724328483"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>CloudDisabled</td><td>INFO</td><td>Cloud disabled</td></tr><tr><td>CloudEnabled</td><td>INFO</td><td>Cloud enabled</td></tr><tr><td>CloudProxyUpdated</td><td>INFO</td><td>Cloud proxy updated</td></tr><tr><td>CloudSetUploadRate</td><td>INFO</td><td>Cloud upload rate changed</td></tr><tr><td>CloudStatsErrorClearedEvent</td><td>WARNING</td><td>Cloud stats have now been written successfully</td></tr><tr><td>CloudStatsErrorEvent</td><td>WARNING</td><td>Error writing cloud stats for upload</td></tr><tr><td>DiagsUploaded</td><td>INFO</td><td>Diags uploaded</td></tr><tr><td>LowDiskSpaceClearedEvent</td><td>WARNING</td><td>Host no longer has low disk space</td></tr><tr><td>LowDiskSpaceEvent</td><td>WARNING</td><td>Host has low disk space</td></tr></tbody></table>
 
 ## Clustering
 
-**Type** | **Severity** | **Description**
--|-|-
-AllBucketsResponsive|INFO|All compute resources are now responding
-BucketRedist|INFO|Buckets were redistributed in the cluster
-ClientConnected|INFO|Client connected
-ClientDisconnected|INFO|Client disconnected
-ClientNodesFencedDuringStopIO|INFO|Some clients disconnected during stop-io
-ClientRemoved|INFO|Disconnected client is being removed from the cluster
-ClientsUnavailable|CRITICAL|Some clients are unavailable because too many backends are down
-ClockSkewedHostJoin|MINOR|Host cannot join because of clock skew
-ClusterInitializationFailed|MAJOR|Cluster initialization failed
-ClusterInitialized|INFO|Cluster successfully initialization
-ClusteringFailure|MINOR|Node clustering failed
-ConfigChangeSetsSliderFull|MINOR|Config changeset slider is full while the node is pulling config
-ConfigGenerationHasNoFirstChunk|MINOR|Applying a partial config generation is prohibited
-ConfigSnapshotPulled|MINOR|Config snapshot pulled
-GrimReaperFencingNode|MINOR|Partially connected node selected to be fenced by grim reaper
-HostActivated|INFO|Host configuration change
-HostAdded|INFO|Host configuration change
-HostAdding|INFO|Host configuration change
-HostDeactivated|INFO|Host configuration change
-HostDeactivating|INFO|Host configuration change
-HostRemoved|INFO|Host configuration change
-HostRemovingFailed|INFO|Host configuration change
-HostRemoving|INFO|Host configuration change
-LeaderChanged|WARNING|Cluster leader has changed
-NodeNetworkUnstable|MAJOR|A node with unstable network detected
-NodePartiallyConnected|MINOR|A partially connected node was removed
-NodeRejoined|INFO|Node rejoined the cluster
-NodeUnreachable|MINOR|An unreachable node was removed
-PreviousCluster|INFO|This host was part of another cluster before
-RejoinFailureReport|MINOR|Node(s) failed to rejoin
-UnresponsiveBuckets|CRITICAL|Some compute resources are not responding
-WrongConfigSignatureForRaftSnapshot|MINOR|Tried loading RAFT snapshot with unsupported config root snapshot signature
-WrongSchemaVersionForRaftSnapshot|MINOR|Tried loading RAFT snapshot with unsupported schema version
+<table data-header-hidden><thead><tr><th width="318.5456129521666"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>AllBucketsResponsive</td><td>INFO</td><td>All compute resources are now responding</td></tr><tr><td>BucketRedist</td><td>INFO</td><td>Buckets were redistributed in the cluster</td></tr><tr><td>ClientConnected</td><td>INFO</td><td>Client connected</td></tr><tr><td>ClientDisconnected</td><td>INFO</td><td>Client disconnected</td></tr><tr><td>ClientNodesFencedDuringStopIO</td><td>INFO</td><td>Some clients disconnected during stop-io</td></tr><tr><td>ClientRemoved</td><td>INFO</td><td>Disconnected client is being removed from the cluster</td></tr><tr><td>ClientsUnavailable</td><td>CRITICAL</td><td>Some clients are unavailable because too many backends are down</td></tr><tr><td>ClockSkewedHostJoin</td><td>MINOR</td><td>Host cannot join because of clock skew</td></tr><tr><td>ClusterInitializationFailed</td><td>MAJOR</td><td>Cluster initialization failed</td></tr><tr><td>ClusterInitialized</td><td>INFO</td><td>Cluster successfully initialization</td></tr><tr><td>ClusteringFailure</td><td>MINOR</td><td>Node clustering failed</td></tr><tr><td>ConfigChangeSetsSliderFull</td><td>MINOR</td><td>Config changeset slider is full while the node is pulling config</td></tr><tr><td>ConfigGenerationHasNoFirstChunk</td><td>MINOR</td><td>Applying a partial config generation is prohibited</td></tr><tr><td>ConfigSnapshotPulled</td><td>MINOR</td><td>Config snapshot pulled</td></tr><tr><td>GrimReaperFencingNode</td><td>MINOR</td><td>Partially connected node selected to be fenced by grim reaper</td></tr><tr><td>HostActivated</td><td>INFO</td><td>Host configuration change</td></tr><tr><td>HostAdded</td><td>INFO</td><td>Host configuration change</td></tr><tr><td>HostAdding</td><td>INFO</td><td>Host configuration change</td></tr><tr><td>HostDeactivated</td><td>INFO</td><td>Host configuration change</td></tr><tr><td>HostDeactivating</td><td>INFO</td><td>Host configuration change</td></tr><tr><td>HostRemoved</td><td>INFO</td><td>Host configuration change</td></tr><tr><td>HostRemovingFailed</td><td>INFO</td><td>Host configuration change</td></tr><tr><td>HostRemoving</td><td>INFO</td><td>Host configuration change</td></tr><tr><td>LeaderChanged</td><td>WARNING</td><td>Cluster leader has changed</td></tr><tr><td>NodeNetworkUnstable</td><td>MAJOR</td><td>A node with unstable network detected</td></tr><tr><td>NodePartiallyConnected</td><td>MINOR</td><td>A partially connected node was removed</td></tr><tr><td>NodeRejoined</td><td>INFO</td><td>Node rejoined the cluster</td></tr><tr><td>NodeUnreachable</td><td>MINOR</td><td>An unreachable node was removed</td></tr><tr><td>PreviousCluster</td><td>INFO</td><td>This host was part of another cluster before</td></tr><tr><td>RejoinFailureReport</td><td>MINOR</td><td>Node(s) failed to rejoin</td></tr><tr><td>UnresponsiveBuckets</td><td>CRITICAL</td><td>Some compute resources are not responding</td></tr><tr><td>WrongConfigSignatureForRaftSnapshot</td><td>MINOR</td><td>Tried loading RAFT snapshot with unsupported config root snapshot signature</td></tr><tr><td>WrongSchemaVersionForRaftSnapshot</td><td>MINOR</td><td>Tried loading RAFT snapshot with unsupported schema version</td></tr></tbody></table>
 
 ## Config
 
-**Type** | **Severity** | **Description**
--|-|-
-DirectoryQuotasDisabled|INFO|Directory Quotas were disabled
-DirectoryQuotasEnabled|INFO|Directory Quotas were enabled
-LoginBannerCleared|INFO|Login banner has been cleared
-LoginBannerDisabled|INFO|Login banner disabled
-LoginBannerEnabled|INFO|Login banner enabled
-LoginBannerSet|INFO|Login banner has been set
-S3ClusterCreated|INFO|S3 Cluster Created
-S3ClusterDestroyed|INFO|S3 Cluster Destroyed
-S3ClusterUpdated|INFO|S3 Cluster Updated
+<table data-header-hidden><thead><tr><th width="330.39061430045945"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>DirectoryQuotasDisabled</td><td>INFO</td><td>Directory Quotas were disabled</td></tr><tr><td>DirectoryQuotasEnabled</td><td>INFO</td><td>Directory Quotas were enabled</td></tr><tr><td>LoginBannerCleared</td><td>INFO</td><td>Login banner has been cleared</td></tr><tr><td>LoginBannerDisabled</td><td>INFO</td><td>Login banner disabled</td></tr><tr><td>LoginBannerEnabled</td><td>INFO</td><td>Login banner enabled</td></tr><tr><td>LoginBannerSet</td><td>INFO</td><td>Login banner has been set</td></tr><tr><td>S3ClusterCreated</td><td>INFO</td><td>S3 Cluster Created</td></tr><tr><td>S3ClusterDestroyed</td><td>INFO</td><td>S3 Cluster Destroyed</td></tr><tr><td>S3ClusterUpdated</td><td>INFO</td><td>S3 Cluster Updated</td></tr></tbody></table>
 
 ## Custom
 
-**Type** | **Severity** | **Description**
--|-|-
-Custom|INFO|Custom event
+<table data-header-hidden><thead><tr><th width="369.34827618703616"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>Custom</td><td>INFO</td><td>Custom event</td></tr></tbody></table>
 
 ## Drive
 
-**Type** | **Severity** | **Description**
--|-|-
-CorruptedDrive|MAJOR|Drive has a valid header but is corrupt
-DriveAdded|INFO|Drive provisioned
-DriveDeactivated|INFO|Drive deactivated
-DriveExcessiveErrors|WARNING|Drive has excessive error rate and will be phased out; call Contact Support Team
-DriveFormatUpgraded|INFO|Drive format was upgraded
-DriveImmediateShutdown|MAJOR|Drive had to be shutdown immediately; call Contact Support Team
-DriveInfoReport|INFO|Drive Information reporting
-DriveInitFailed|MAJOR|Drive failed to initialize
-DriveIoErrorBMS|MAJOR|Drive found an IO error in background media scan
-DriveIoError|MAJOR|Drive had an IO error
-DriveLimitExceeded|WARNING|Attempted to add more drives than supported
-DriveMediumError|MINOR|Drive had a Medium error
-DriveNvmeErrorLog|WARNING|NVMe Drive Error Log Entry
-DriveNvmeSmartChange|MINOR|NVMe Drive SMART status changed
-DriveNvmeSmartInfo|INFO|NVMe Drive SMART status update - drive normal
-DriveRemoved|INFO|Drive removed
-DriveSignatureUnknown|MINOR|Drive has an unknown signature
-DriveSmartCriticalWarning|MINOR|Drive SMART reports critical warning, failing it immediately
-DriveStateChangesReport|MINOR|Drive state changes
-DriveTrimAborted|WARNING|Drive TRIM commands at initialization timed out and aborted, potentially degrading write performance
-DriveUnderIOMMU|MAJOR|Drive is under IOMMU but IOMMU is currently disabled, please contact support
-DriveUnresponsive|MAJOR|Drive is unresponsive and failed to return IOs for an extended period of time; consider power cycling the host
-DriveWrongFailureDomain|MINOR|Drive is attached to a host from an incorrect failure domain
-NvmeBindTimingOut|MAJOR|NVMe device bind is stuck, server needs power cycle to recover
+<table data-header-hidden><thead><tr><th width="377.6308658815549"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>CorruptedDrive</td><td>MAJOR</td><td>Drive has a valid header but is corrupt</td></tr><tr><td>DriveAdded</td><td>INFO</td><td>Drive provisioned</td></tr><tr><td>DriveDeactivated</td><td>INFO</td><td>Drive deactivated</td></tr><tr><td>DriveExcessiveErrors</td><td>WARNING</td><td>Drive has excessive error rate and will be phased out; call Contact Support Team</td></tr><tr><td>DriveFormatUpgraded</td><td>INFO</td><td>Drive format was upgraded</td></tr><tr><td>DriveImmediateShutdown</td><td>MAJOR</td><td>Drive had to be shutdown immediately; call Contact Support Team</td></tr><tr><td>DriveInfoReport</td><td>INFO</td><td>Drive Information reporting</td></tr><tr><td>DriveInitFailed</td><td>MAJOR</td><td>Drive failed to initialize</td></tr><tr><td>DriveIoErrorBMS</td><td>MAJOR</td><td>Drive found an IO error in background media scan</td></tr><tr><td>DriveIoError</td><td>MAJOR</td><td>Drive had an IO error</td></tr><tr><td>DriveLimitExceeded</td><td>WARNING</td><td>Attempted to add more drives than supported</td></tr><tr><td>DriveMediumError</td><td>MINOR</td><td>Drive had a Medium error</td></tr><tr><td>DriveNvmeErrorLog</td><td>WARNING</td><td>NVMe Drive Error Log Entry</td></tr><tr><td>DriveNvmeSmartChange</td><td>MINOR</td><td>NVMe Drive SMART status changed</td></tr><tr><td>DriveNvmeSmartInfo</td><td>INFO</td><td>NVMe Drive SMART status update - drive normal</td></tr><tr><td>DriveRemoved</td><td>INFO</td><td>Drive removed</td></tr><tr><td>DriveSignatureUnknown</td><td>MINOR</td><td>Drive has an unknown signature</td></tr><tr><td>DriveSmartCriticalWarning</td><td>MINOR</td><td>Drive SMART reports critical warning, failing it immediately</td></tr><tr><td>DriveStateChangesReport</td><td>MINOR</td><td>Drive state changes</td></tr><tr><td>DriveTrimAborted</td><td>WARNING</td><td>Drive TRIM commands at initialization timed out and aborted, potentially degrading write performance</td></tr><tr><td>DriveUnderIOMMU</td><td>MAJOR</td><td>Drive is under IOMMU but IOMMU is currently disabled, please contact support</td></tr><tr><td>DriveUnresponsive</td><td>MAJOR</td><td>Drive is unresponsive and failed to return IOs for an extended period of time; consider power cycling the host</td></tr><tr><td>DriveWrongFailureDomain</td><td>MINOR</td><td>Drive is attached to a host from an incorrect failure domain</td></tr><tr><td>NvmeBindTimingOut</td><td>MAJOR</td><td>NVMe device bind is stuck, server needs power cycle to recover</td></tr></tbody></table>
 
 ## Events
 
-**Type** | **Severity** | **Description**
--|-|-
-DedupEventsDiscarded|WARNING|Deduplicated events discarded
-EventsDedupReport|INFO|Event deduplication ended
-EventsDiscarded|MINOR|Too many events were generated in a short period of time, so some of them were discarded and lost
-ExampleAggregated|INFO|Example Aggregated
-ExampleDebug|DEBUG|ExampleDebug
-Example|INFO|Example
-TracesDumperDownEvent|MAJOR|Traces Dumper is inactive
+<table data-header-hidden><thead><tr><th width="387.51853796975314"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>DedupEventsDiscarded</td><td>WARNING</td><td>Deduplicated events discarded</td></tr><tr><td>EventsDedupReport</td><td>INFO</td><td>Event deduplication ended</td></tr><tr><td>EventsDiscarded</td><td>MINOR</td><td>Too many events were generated in a short period of time, so some of them were discarded and lost</td></tr><tr><td>ExampleAggregated</td><td>INFO</td><td>Example Aggregated</td></tr><tr><td>ExampleDebug</td><td>DEBUG</td><td>ExampleDebug</td></tr><tr><td>Example</td><td>INFO</td><td>Example</td></tr><tr><td>TracesDumperDownEvent</td><td>MAJOR</td><td>Traces Dumper is inactive</td></tr></tbody></table>
 
 ## Filesystem
 
-**Type** | **Severity** | **Description**
--|-|-
-BlockReadFailure|CRITICAL|Failed to read a block
-BlockSeekFinished|MAJOR|Block seek finished
-BlockSeekStarted|MAJOR|Block seek started for a secondary metadata block that could not be read
-BrokenFile|MAJOR|File metadata corruption
-CWTaskTemplateFinished|INFO|CWTask template finished
-CacheFlushHanging|MAJOR|Host is hanging while trying to sync a file's write cache to the cluster
-ChecksumErrorInCommit|MAJOR|Checksum error detected by SSD node in a committing block
-ChecksumErrorInWrite|CRITICAL|Checksum error detected by COMPUTE node in a write
-DefaultDirectoryQuotaSet|INFO|Default directory quota was set
-DefaultDirectoryQuotaUnset|INFO|Default directory quota was unset
-DirectoryQuotaSet|INFO|Directory quota was set
-DirectoryQuotaUnset|INFO|Directory quota was unset
-DumpSnapHashCompleted|INFO|Finished a snap hash manifest scan
-FailedToSplitSliceNoRetry|CRITICAL|Failed to split a directory slice - wont retry
-FilesystemAdded|INFO|Filesystem configuration change
-FilesystemDeleted|INFO|Filesystem configuration change
-FilesystemDownloadStarted|INFO|Filesystem download started
-FilesystemGroupAdded|INFO|Filesystem group configuration change
-FilesystemGroupDeleted|INFO|Filesystem group configuration change
-FilesystemGroupUpdated|INFO|Filesystem group configuration change
-FilesystemRemoved|INFO|Filesystem configuration change
-FilesystemSquashFinished|INFO|Filesystem squash finished
-FilesystemSquashStarted|INFO|Filesystem squash started
-FilesystemUpdated|INFO|Filesystem configuration change
-ForcedBucketStepdown|MINOR|Bucket forced to step down
-FsCapacityLimitReached|WARNING|Filesystem capacity limit has been reached
-HangingBackendIosDetected|CRITICAL|Some IOs are hanging
-HangingBackendIosNoLongerDetected|INFO|IOs are no longer hanging
-HangingBucketStepDown|WARNING|Bucket step-down is hanging
-HangingDirectorySplit|MAJOR|Directory split hasn't any made progress for a long time
-HangingDriverFrontendIosDetected|CRITICAL|Some IOs are hanging
-HangingDriverFrontendIosNoLongerDetected|INFO|IOs are no longer hanging
-HangingNFSFrontendIosDetected|CRITICAL|Some IOs are hanging
-HangingNFSFrontendIosNoLongerDetected|INFO|IOs are no longer hanging
-IntegrityCheckFinished|INFO|Integrity check finished
-IntegrityCheckIssue|CRITICAL|Found an data integrity issue
-IntegrityCheckStarted|INFO|Integrity check started
-IntegrityCheckTransientIssue|WARNING|Found a possibly transitional data integrity issue - check if a critical issue is found afterwards
-ManualOverrideStall|WARNING|Service has been manually-overridden and stalled
-ObjectStoreAttachedToFilesystem|INFO|Object Store attached to filesystem
-ObjectStoreFinishedDetachingdFromFilesystem|INFO|Object Store finished detaching from filesystem
-ObjectStoreStartedDetachingdFromFilesystem|INFO|Object Store started detaching from filesystem
-QuotaGraceExpired|WARNING|Directory soft capacity quota has been reached and grace period expired
-QuotaHardLimitReached|WARNING|Directory hard capacity quota has been reached
-RAIDDataBlockReadFailureInSnaphashDump|WARNING|Failed to read data block from RAID when dumping the snapshot manifest
-RAIDMDReadFailureInSnaphashDump|WARNING|Failed to read metadata block from RAID when dumping the snapshot manifest
-SnapshotContentCopied|INFO|Snapshot content copied
-SnapshotCreated|INFO|Snapshot created
-SnapshotDeleted|INFO|Snapshot deleted
-SnapshotDownloadStarted|INFO|Snapshot download started
-SnapshotFilesystemRestored|INFO|Filesystem restored from snapshot
-SnapshotParamsUpdated|INFO|Snapshot updated
-SnapshotUploadFinished|INFO|Snapshot upload finished
-SnapshotUploadStarted|INFO|Snapshot upload started
-SquelchBlockIdSetAbortedFlushed|DEBUG|While setting a squelch block's block id for upgrade was already changed to invalid
-SquelchBlockIdSetAbortedRewritten|WARNING|While setting a squelch block's block id for upgrade was already rewritten to something else
-SuperblockUnreadable|CRITICAL|Superblock of a bucket could not be loaded
-UnflushedOpOnDeletingSnapview|MAJOR|Unflushed IO on a deleting snapshot
+<table data-header-hidden><thead><tr><th width="444.1736027125317"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>BlockReadFailure</td><td>CRITICAL</td><td>Failed to read a block</td></tr><tr><td>BlockSeekFinished</td><td>MAJOR</td><td>Block seek finished</td></tr><tr><td>BlockSeekStarted</td><td>MAJOR</td><td>Block seek started for a secondary metadata block that could not be read</td></tr><tr><td>BrokenFile</td><td>MAJOR</td><td>File metadata corruption</td></tr><tr><td>CWTaskTemplateFinished</td><td>INFO</td><td>CWTask template finished</td></tr><tr><td>CacheFlushHanging</td><td>MAJOR</td><td>Host is hanging while trying to sync a file's write cache to the cluster</td></tr><tr><td>ChecksumErrorInCommit</td><td>MAJOR</td><td>Checksum error detected by SSD node in a committing block</td></tr><tr><td>ChecksumErrorInWrite</td><td>CRITICAL</td><td>Checksum error detected by COMPUTE node in a write</td></tr><tr><td>DefaultDirectoryQuotaSet</td><td>INFO</td><td>Default directory quota was set</td></tr><tr><td>DefaultDirectoryQuotaUnset</td><td>INFO</td><td>Default directory quota was unset</td></tr><tr><td>DirectoryQuotaSet</td><td>INFO</td><td>Directory quota was set</td></tr><tr><td>DirectoryQuotaUnset</td><td>INFO</td><td>Directory quota was unset</td></tr><tr><td>DumpSnapHashCompleted</td><td>INFO</td><td>Finished a snap hash manifest scan</td></tr><tr><td>FailedToSplitSliceNoRetry</td><td>CRITICAL</td><td>Failed to split a directory slice - wont retry</td></tr><tr><td>FilesystemAdded</td><td>INFO</td><td>Filesystem configuration change</td></tr><tr><td>FilesystemDeleted</td><td>INFO</td><td>Filesystem configuration change</td></tr><tr><td>FilesystemDownloadStarted</td><td>INFO</td><td>Filesystem download started</td></tr><tr><td>FilesystemGroupAdded</td><td>INFO</td><td>Filesystem group configuration change</td></tr><tr><td>FilesystemGroupDeleted</td><td>INFO</td><td>Filesystem group configuration change</td></tr><tr><td>FilesystemGroupUpdated</td><td>INFO</td><td>Filesystem group configuration change</td></tr><tr><td>FilesystemRemoved</td><td>INFO</td><td>Filesystem configuration change</td></tr><tr><td>FilesystemSquashFinished</td><td>INFO</td><td>Filesystem squash finished</td></tr><tr><td>FilesystemSquashStarted</td><td>INFO</td><td>Filesystem squash started</td></tr><tr><td>FilesystemUpdated</td><td>INFO</td><td>Filesystem configuration change</td></tr><tr><td>ForcedBucketStepdown</td><td>MINOR</td><td>Bucket forced to step down</td></tr><tr><td>FsCapacityLimitReached</td><td>WARNING</td><td>Filesystem capacity limit has been reached</td></tr><tr><td>HangingBackendIosDetected</td><td>CRITICAL</td><td>Some IOs are hanging</td></tr><tr><td>HangingBackendIosNoLongerDetected</td><td>INFO</td><td>IOs are no longer hanging</td></tr><tr><td>HangingBucketStepDown</td><td>WARNING</td><td>Bucket step-down is hanging</td></tr><tr><td>HangingDirectorySplit</td><td>MAJOR</td><td>Directory split hasn't any made progress for a long time</td></tr><tr><td>HangingDriverFrontendIosDetected</td><td>CRITICAL</td><td>Some IOs are hanging</td></tr><tr><td>HangingDriverFrontendIosNoLongerDetected</td><td>INFO</td><td>IOs are no longer hanging</td></tr><tr><td>HangingNFSFrontendIosDetected</td><td>CRITICAL</td><td>Some IOs are hanging</td></tr><tr><td>HangingNFSFrontendIosNoLongerDetected</td><td>INFO</td><td>IOs are no longer hanging</td></tr><tr><td>IntegrityCheckFinished</td><td>INFO</td><td>Integrity check finished</td></tr><tr><td>IntegrityCheckIssue</td><td>CRITICAL</td><td>Found an data integrity issue</td></tr><tr><td>IntegrityCheckStarted</td><td>INFO</td><td>Integrity check started</td></tr><tr><td>IntegrityCheckTransientIssue</td><td>WARNING</td><td>Found a possibly transitional data integrity issue - check if a critical issue is found afterwards</td></tr><tr><td>ManualOverrideStall</td><td>WARNING</td><td>Service has been manually-overridden and stalled</td></tr><tr><td>ObjectStoreAttachedToFilesystem</td><td>INFO</td><td>Object Store attached to filesystem</td></tr><tr><td>ObjectStoreFinishedDetachingdFromFilesystem</td><td>INFO</td><td>Object Store finished detaching from filesystem</td></tr><tr><td>ObjectStoreStartedDetachingdFromFilesystem</td><td>INFO</td><td>Object Store started detaching from filesystem</td></tr><tr><td>QuotaGraceExpired</td><td>WARNING</td><td>Directory soft capacity quota has been reached and grace period expired</td></tr><tr><td>QuotaHardLimitReached</td><td>WARNING</td><td>Directory hard capacity quota has been reached</td></tr><tr><td>RAIDDataBlockReadFailureInSnaphashDump</td><td>WARNING</td><td>Failed to read data block from RAID when dumping the snapshot manifest</td></tr><tr><td>RAIDMDReadFailureInSnaphashDump</td><td>WARNING</td><td>Failed to read metadata block from RAID when dumping the snapshot manifest</td></tr><tr><td>SnapshotContentCopied</td><td>INFO</td><td>Snapshot content copied</td></tr><tr><td>SnapshotCreated</td><td>INFO</td><td>Snapshot created</td></tr><tr><td>SnapshotDeleted</td><td>INFO</td><td>Snapshot deleted</td></tr><tr><td>SnapshotDownloadStarted</td><td>INFO</td><td>Snapshot download started</td></tr><tr><td>SnapshotFilesystemRestored</td><td>INFO</td><td>Filesystem restored from snapshot</td></tr><tr><td>SnapshotParamsUpdated</td><td>INFO</td><td>Snapshot updated</td></tr><tr><td>SnapshotUploadFinished</td><td>INFO</td><td>Snapshot upload finished</td></tr><tr><td>SnapshotUploadStarted</td><td>INFO</td><td>Snapshot upload started</td></tr><tr><td>SquelchBlockIdSetAbortedFlushed</td><td>DEBUG</td><td>While setting a squelch block's block id for upgrade was already changed to invalid</td></tr><tr><td>SquelchBlockIdSetAbortedRewritten</td><td>WARNING</td><td>While setting a squelch block's block id for upgrade was already rewritten to something else</td></tr><tr><td>SuperblockUnreadable</td><td>CRITICAL</td><td>Superblock of a bucket could not be loaded</td></tr><tr><td>UnflushedOpOnDeletingSnapview</td><td>MAJOR</td><td>Unflushed IO on a deleting snapshot</td></tr></tbody></table>
 
 ## IO
 
-**Type** | **Severity** | **Description**
--|-|-
-SystemDriveIsTooSlow|MAJOR|System drive is slow to respond
+<table data-header-hidden><thead><tr><th width="404.3333333333333"></th><th width="158"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>SystemDriveIsTooSlow</td><td>MAJOR</td><td>System drive is slow to respond</td></tr></tbody></table>
 
 ## InterfaceGroup
 
-**Type** | **Severity** | **Description**
--|-|-
-FloatingIpAcquired|INFO|Floating IP was acquired by Node
-FloatingIpReleased|INFO|Floating IP was released by Node
-InterfaceGroupAdded|INFO|Interface group configuration change
-InterfaceGroupDeleted|INFO|Interface group configuration change
-InterfaceGroupIpsAdded|INFO|Interface group IPs configuration change
-InterfaceGroupIpsDeleted|INFO|Interface group IPs configuration change
-InterfaceGroupPortAdded|INFO|Interface group port configuration change
-InterfaceGroupPortDeleted|INFO|Interface group port configuration change
-InterfaceGroupUpdated|INFO|Interface group configuration change
+<table data-header-hidden><thead><tr><th width="378.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>FloatingIpAcquired</td><td>INFO</td><td>Floating IP was acquired by Node</td></tr><tr><td>FloatingIpReleased</td><td>INFO</td><td>Floating IP was released by Node</td></tr><tr><td>InterfaceGroupAdded</td><td>INFO</td><td>Interface group configuration change</td></tr><tr><td>InterfaceGroupDeleted</td><td>INFO</td><td>Interface group configuration change</td></tr><tr><td>InterfaceGroupIpsAdded</td><td>INFO</td><td>Interface group IPs configuration change</td></tr><tr><td>InterfaceGroupIpsDeleted</td><td>INFO</td><td>Interface group IPs configuration change</td></tr><tr><td>InterfaceGroupPortAdded</td><td>INFO</td><td>Interface group port configuration change</td></tr><tr><td>InterfaceGroupPortDeleted</td><td>INFO</td><td>Interface group port configuration change</td></tr><tr><td>InterfaceGroupUpdated</td><td>INFO</td><td>Interface group configuration change</td></tr></tbody></table>
 
 ## KMS
 
-**Type** | **Severity** | **Description**
--|-|-
-KmsConfigurationAdded|INFO|KMS configuration change
-KmsConfigurationRemoved|INFO|KMS configuration change
-KmsConfigurationUpdated|INFO|KMS configuration change
+<table data-header-hidden><thead><tr><th width="361.3333333333333"></th><th width="157"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>KmsConfigurationAdded</td><td>INFO</td><td>KMS configuration change</td></tr><tr><td>KmsConfigurationRemoved</td><td>INFO</td><td>KMS configuration change</td></tr><tr><td>KmsConfigurationUpdated</td><td>INFO</td><td>KMS configuration change</td></tr></tbody></table>
 
 ## Licensing
 
-**Type** | **Severity** | **Description**
--|-|-
-LicensingReset|INFO|Licensing state has been reset
-NewLicenseInstalled|INFO|New license installed
-PaygLicensingEnabled|INFO|PAYG licensing enabled
+<table data-header-hidden><thead><tr><th width="353.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>LicensingReset</td><td>INFO</td><td>Licensing state has been reset</td></tr><tr><td>NewLicenseInstalled</td><td>INFO</td><td>New license installed</td></tr><tr><td>PaygLicensingEnabled</td><td>INFO</td><td>PAYG licensing enabled</td></tr></tbody></table>
 
 ## ManualOverride
 
-**Type** | **Severity** | **Description**
--|-|-
-ManualOverrideChanged|INFO|Manual override changed
+<table data-header-hidden><thead><tr><th width="347.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>ManualOverrideChanged</td><td>INFO</td><td>Manual override changed</td></tr></tbody></table>
 
 ## NFS
 
-**Type** | **Severity** | **Description**
--|-|-
-NfsClientGroupAdded|INFO|NFS client group configuration change
-NfsClientGroupDeleted|INFO|NFS client group configuration change
-NfsClientGroupRuleAdded|INFO|NFS client group rule configuration change
-NfsClientGroupRuleDeleted|INFO|NFS client group rule configuration change
-NfsCustomOptionsUpdated|INFO|NFS custom options configuration change
-NfsExportsPermissionsAdded|INFO|NFS export permissions for configuration change
-NfsExportsPermissionsDeleted|INFO|NFS export permissions for configuration change
-NfsExportsPermissionsUpdated|INFO|NFS export permissions for configuration change
-NfsMountFail|WARNING|NFS mount request failed
-NfsPortmapFail|MAJOR|NFS server failed to register in portmap
+<table data-header-hidden><thead><tr><th width="352.7804302179334"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>NfsClientGroupAdded</td><td>INFO</td><td>NFS client group configuration change</td></tr><tr><td>NfsClientGroupDeleted</td><td>INFO</td><td>NFS client group configuration change</td></tr><tr><td>NfsClientGroupRuleAdded</td><td>INFO</td><td>NFS client group rule configuration change</td></tr><tr><td>NfsClientGroupRuleDeleted</td><td>INFO</td><td>NFS client group rule configuration change</td></tr><tr><td>NfsCustomOptionsUpdated</td><td>INFO</td><td>NFS custom options configuration change</td></tr><tr><td>NfsExportsPermissionsAdded</td><td>INFO</td><td>NFS export permissions for configuration change</td></tr><tr><td>NfsExportsPermissionsDeleted</td><td>INFO</td><td>NFS export permissions for configuration change</td></tr><tr><td>NfsExportsPermissionsUpdated</td><td>INFO</td><td>NFS export permissions for configuration change</td></tr><tr><td>NfsMountFail</td><td>WARNING</td><td>NFS mount request failed</td></tr><tr><td>NfsPortmapFail</td><td>MAJOR</td><td>NFS server failed to register in portmap</td></tr></tbody></table>
 
 ## Network
 
-**Type** | **Severity** | **Description**
--|-|-
-ClientNodeDisconnected|INFO|Client Node disconnected from cluster
-DefaultDataNetworkingChange|INFO|Default data networking configuration changed
-DpdkPoolSummary|DEBUG|Summary of DPDK pool status
-HangingRPCs|MAJOR|RPCs are hanging too long
-HugepagesAllocationFailure|MINOR|Hugepages allocation failure
-IONodeCannotFetchConfig|WARNING|Node cannot join cluster for too long
-MgmtNodeCannotFetchConfig|WARNING|Node cannot join cluster for too long
-NICNotFound|INFO|NIC not found when initializing
-NetDeviceLinkDown|MINOR|Network interface DOWN
-NetDeviceLinkUp|MINOR|Network interface UP
-NetSlaveDeviceLinkDown|MINOR|Network slave interface DOWN
-NetSlaveDeviceLinkUp|MINOR|Network slave interface UP
-NetworkPortConfigFail|MINOR|Network port configuration failed
-NetworkPortDead|MAJOR|Network Port hasn't passed packets for a long period of time, it is likely dead
-NoConnectivityToLivingNode|MAJOR|Node is disconnected from living peer(s)
-NoHardwareWatchdog|MAJOR|No hardware watchdog found
-NoJumboFrames|MINOR|Network does not allow large-enough messages through
-NodeCannotJoinCluster|WARNING|Node cannot join cluster for too long
-NodeCannotSendJumboFrames|MINOR|Node cannot send jumbo packets
-NodeDisconnected|MINOR|Node disconnected from cluster
-RDMAClientDisabled|MINOR|RDMA optimization disabled
-RDMAClientEnabled|MINOR|RDMA optimization enabled
+<table data-header-hidden><thead><tr><th width="366.01677539608573"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>ClientNodeDisconnected</td><td>INFO</td><td>Client Node disconnected from cluster</td></tr><tr><td>DefaultDataNetworkingChange</td><td>INFO</td><td>Default data networking configuration changed</td></tr><tr><td>DpdkPoolSummary</td><td>DEBUG</td><td>Summary of DPDK pool status</td></tr><tr><td>HangingRPCs</td><td>MAJOR</td><td>RPCs are hanging too long</td></tr><tr><td>HugepagesAllocationFailure</td><td>MINOR</td><td>Hugepages allocation failure</td></tr><tr><td>IONodeCannotFetchConfig</td><td>WARNING</td><td>Node cannot join cluster for too long</td></tr><tr><td>MgmtNodeCannotFetchConfig</td><td>WARNING</td><td>Node cannot join cluster for too long</td></tr><tr><td>NICNotFound</td><td>INFO</td><td>NIC not found when initializing</td></tr><tr><td>NetDeviceLinkDown</td><td>MINOR</td><td>Network interface DOWN</td></tr><tr><td>NetDeviceLinkUp</td><td>MINOR</td><td>Network interface UP</td></tr><tr><td>NetSlaveDeviceLinkDown</td><td>MINOR</td><td>Network slave interface DOWN</td></tr><tr><td>NetSlaveDeviceLinkUp</td><td>MINOR</td><td>Network slave interface UP</td></tr><tr><td>NetworkPortConfigFail</td><td>MINOR</td><td>Network port configuration failed</td></tr><tr><td>NetworkPortDead</td><td>MAJOR</td><td>Network Port hasn't passed packets for a long period of time, it is likely dead</td></tr><tr><td>NoConnectivityToLivingNode</td><td>MAJOR</td><td>Node is disconnected from living peer(s)</td></tr><tr><td>NoHardwareWatchdog</td><td>MAJOR</td><td>No hardware watchdog found</td></tr><tr><td>NoJumboFrames</td><td>MINOR</td><td>Network does not allow large-enough messages through</td></tr><tr><td>NodeCannotJoinCluster</td><td>WARNING</td><td>Node cannot join cluster for too long</td></tr><tr><td>NodeCannotSendJumboFrames</td><td>MINOR</td><td>Node cannot send jumbo packets</td></tr><tr><td>NodeDisconnected</td><td>MINOR</td><td>Node disconnected from cluster</td></tr><tr><td>RDMAClientDisabled</td><td>MINOR</td><td>RDMA optimization disabled</td></tr><tr><td>RDMAClientEnabled</td><td>MINOR</td><td>RDMA optimization enabled</td></tr></tbody></table>
 
 ## Node
 
-**Type** | **Severity** | **Description**
--|-|-
-AssertionFailed|MAJOR|Assertion failed
-GCCrashReport|MINOR|Node has crashed in GC on the previous run
-NodeAbruptExitReport|MINOR|Node has crashed on the previous run
-NodeExceptionExit|MAJOR|Node exited with an exception
-NodeKernelStack|WARNING|Kernel stack of node before reset
-NodeStarted|INFO|Node started
-NodeStopped|INFO|Node stopped
-NodeTraceback|WARNING|Traceback of node before reset
+<table data-header-hidden><thead><tr><th width="349.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>AssertionFailed</td><td>MAJOR</td><td>Assertion failed</td></tr><tr><td>GCCrashReport</td><td>MINOR</td><td>Node has crashed in GC on the previous run</td></tr><tr><td>NodeAbruptExitReport</td><td>MINOR</td><td>Node has crashed on the previous run</td></tr><tr><td>NodeExceptionExit</td><td>MAJOR</td><td>Node exited with an exception</td></tr><tr><td>NodeKernelStack</td><td>WARNING</td><td>Kernel stack of node before reset</td></tr><tr><td>NodeStarted</td><td>INFO</td><td>Node started</td></tr><tr><td>NodeStopped</td><td>INFO</td><td>Node stopped</td></tr><tr><td>NodeTraceback</td><td>WARNING</td><td>Traceback of node before reset</td></tr></tbody></table>
 
 ## ObjectStorage
 
-**Type** | **Severity** | **Description**
--|-|-
-ChecksumErrorInDownloadedObject|MINOR|Checksum error detected by COMPUTE node in a downloaded OBS data block
-ChecksumErrorOnObjectUpload|MAJOR|Checksum error detected by COMPUTE node when uploading an OBS data block (corrupted after verifying data read from the drive)
-DataBlobDownloadFailed|WARNING|Failed downloading data blob header
-DownloadedExtentHasInvalidBlobId|MAJOR|Downloaded extent has invalid blob id
-DownloadedExtentMissingExpectedBlock|MAJOR|Downloaded extent missing expected block
-InvalidDataBlobHeader|MAJOR|Invalid header detected by COMPUTE node in a downloaded OBS data blob
-ObjectStoreBucketAdded|INFO|Object store bucket configuration change
-ObjectStoreBucketDeleted|INFO|Object store bucket configuration change
-ObjectStoreBucketUpdated|INFO|Object store bucket configuration change
-ObjectStoreGroupAdded|INFO|Object store configuration change
-ObjectStoreGroupDeleted|INFO|Object store configuration change
-ObjectStoreGroupUpdated|INFO|Object store configuration change
-ObjectStoreHasHighLevelOfUnreclaimedCapacity|WARNING|Object store has high level of unreclaimed capacity
-ObjectStoreIsFull|CRITICAL|Object store is full
-ObjectStoreNoLongerHasHighLevelOfUnreclaimedCapacity|INFO|Object store has high level of unreclaimed capacity
-ObjectStoreStatusDown|MAJOR|Object Store status is now down
-ObjectStoreStatusUp|INFO|Object Store status is now up
-ObsIsMissingObject|MAJOR|Permanently failed to download an object from object storage - The object was not found
-PersistentChecksumErrorInDownloadedObject|MAJOR|Checksum error detected by COMPUTE node in a downloaded OBS data block
+<table data-header-hidden><thead><tr><th width="411.3774804706216"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>ChecksumErrorInDownloadedObject</td><td>MINOR</td><td>Checksum error detected by COMPUTE node in a downloaded OBS data block</td></tr><tr><td>ChecksumErrorOnObjectUpload</td><td>MAJOR</td><td>Checksum error detected by COMPUTE node when uploading an OBS data block (corrupted after verifying data read from the drive)</td></tr><tr><td>DataBlobDownloadFailed</td><td>WARNING</td><td>Failed downloading data blob header</td></tr><tr><td>DownloadedExtentHasInvalidBlobId</td><td>MAJOR</td><td>Downloaded extent has invalid blob id</td></tr><tr><td>DownloadedExtentMissingExpectedBlock</td><td>MAJOR</td><td>Downloaded extent missing expected block</td></tr><tr><td>InvalidDataBlobHeader</td><td>MAJOR</td><td>Invalid header detected by COMPUTE node in a downloaded OBS data blob</td></tr><tr><td>ObjectStoreBucketAdded</td><td>INFO</td><td>Object store bucket configuration change</td></tr><tr><td>ObjectStoreBucketDeleted</td><td>INFO</td><td>Object store bucket configuration change</td></tr><tr><td>ObjectStoreBucketUpdated</td><td>INFO</td><td>Object store bucket configuration change</td></tr><tr><td>ObjectStoreGroupAdded</td><td>INFO</td><td>Object store configuration change</td></tr><tr><td>ObjectStoreGroupDeleted</td><td>INFO</td><td>Object store configuration change</td></tr><tr><td>ObjectStoreGroupUpdated</td><td>INFO</td><td>Object store configuration change</td></tr><tr><td>ObjectStoreHasHighLevelOfUnreclaimedCapacity</td><td>WARNING</td><td>Object store has high level of unreclaimed capacity</td></tr><tr><td>ObjectStoreIsFull</td><td>CRITICAL</td><td>Object store is full</td></tr><tr><td>ObjectStoreNoLongerHasHighLevelOfUnreclaimedCapacity</td><td>INFO</td><td>Object store has high level of unreclaimed capacity</td></tr><tr><td>ObjectStoreStatusDown</td><td>MAJOR</td><td>Object Store status is now down</td></tr><tr><td>ObjectStoreStatusUp</td><td>INFO</td><td>Object Store status is now up</td></tr><tr><td>ObsIsMissingObject</td><td>MAJOR</td><td>Permanently failed to download an object from object storage - The object was not found</td></tr><tr><td>PersistentChecksumErrorInDownloadedObject</td><td>MAJOR</td><td>Checksum error detected by COMPUTE node in a downloaded OBS data block</td></tr></tbody></table>
 
 ## Org
 
-**Type** | **Severity** | **Description**
--|-|-
-OrgCreated|INFO|Org Created
-OrgDeleted|INFO|Org Deleted
-OrgRenamed|INFO|Org Renamed
-OrgSsdQuotaChanged|INFO|Org SSD Quota Changed
-OrgTotalQuotaChanged|INFO|Org Total Quota Changed
+<table data-header-hidden><thead><tr><th width="346.4406381980291"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>OrgCreated</td><td>INFO</td><td>Org Created</td></tr><tr><td>OrgDeleted</td><td>INFO</td><td>Org Deleted</td></tr><tr><td>OrgRenamed</td><td>INFO</td><td>Org Renamed</td></tr><tr><td>OrgSsdQuotaChanged</td><td>INFO</td><td>Org SSD Quota Changed</td></tr><tr><td>OrgTotalQuotaChanged</td><td>INFO</td><td>Org Total Quota Changed</td></tr></tbody></table>
 
 ## RAID
 
-**Type** | **Severity** | **Description**
--|-|-
-BitmapChecksumMismatch|MINOR|Bitmap checksum mismatch detected
-DataGenerationNumberBug|WARNING|Bug in the advancement of the applied data generation number report from a bucket
-DataProtectionLevelDecreased|MINOR|Data protection level decreased
-DataProtectionLevelIncreased|INFO|Data protection level increased
-DisksFailureDetected|MINOR|Disk(s) failures detected
-DisksRecoveryDetected|INFO|Disk(s) quick recovery detected
-EnoughActiveFailureDomains|MINOR|Enough active failure domains
-FixedFalseFreeBlock|CRITICAL|Found and fixed a false free block 
-HotSpareFailureDomainsUpdated|INFO|Hot spare failure domains updated
-NoDataProtection|CRITICAL|No data protection
-QuorumGenerationNumberBug|WARNING|Bug in the advancement of the applied quorum generation number report from a bucket
-RaidScrubbingRateUpdated|INFO|RAID scrubber limit updated
-RaidsStarted|INFO|RAIDs started
-SwitchPlacementHanging|MINOR|SwitchPlacement has no non-dirty chunks
-SwitchPlacementRetrying|MINOR|SwitchPlacement retrying
-TooFewActiveFailureDomains|MAJOR|Too few active failure domains
-TooManyFailures|CRITICAL|Too many failures, some data is unavailable
-UsedSSDCapacityCriticalOverflow|CRITICAL|SSD capacity use is critically overflowing, internal spares are running out. Cluster may soon become unavailable for writes.
-UsedSSDCapacityNoLongerOverflows|INFO|SSD capacity use is no longer overflowing
-UsedSSDCapacityOverflow|MAJOR|SSD capacity use is overflowing, internal capacity spares are being utilized
+<table data-header-hidden><thead><tr><th width="347.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>BitmapChecksumMismatch</td><td>MINOR</td><td>Bitmap checksum mismatch detected</td></tr><tr><td>DataGenerationNumberBug</td><td>WARNING</td><td>Bug in the advancement of the applied data generation number report from a bucket</td></tr><tr><td>DataProtectionLevelDecreased</td><td>MINOR</td><td>Data protection level decreased</td></tr><tr><td>DataProtectionLevelIncreased</td><td>INFO</td><td>Data protection level increased</td></tr><tr><td>DisksFailureDetected</td><td>MINOR</td><td>Disk(s) failures detected</td></tr><tr><td>DisksRecoveryDetected</td><td>INFO</td><td>Disk(s) quick recovery detected</td></tr><tr><td>EnoughActiveFailureDomains</td><td>MINOR</td><td>Enough active failure domains</td></tr><tr><td>FixedFalseFreeBlock</td><td>CRITICAL</td><td>Found and fixed a false free block</td></tr><tr><td>HotSpareFailureDomainsUpdated</td><td>INFO</td><td>Hot spare failure domains updated</td></tr><tr><td>NoDataProtection</td><td>CRITICAL</td><td>No data protection</td></tr><tr><td>QuorumGenerationNumberBug</td><td>WARNING</td><td>Bug in the advancement of the applied quorum generation number report from a bucket</td></tr><tr><td>RaidScrubbingRateUpdated</td><td>INFO</td><td>RAID scrubber limit updated</td></tr><tr><td>RaidsStarted</td><td>INFO</td><td>RAIDs started</td></tr><tr><td>SwitchPlacementHanging</td><td>MINOR</td><td>SwitchPlacement has no non-dirty chunks</td></tr><tr><td>SwitchPlacementRetrying</td><td>MINOR</td><td>SwitchPlacement retrying</td></tr><tr><td>TooFewActiveFailureDomains</td><td>MAJOR</td><td>Too few active failure domains</td></tr><tr><td>TooManyFailures</td><td>CRITICAL</td><td>Too many failures, some data is unavailable</td></tr><tr><td>UsedSSDCapacityCriticalOverflow</td><td>CRITICAL</td><td>SSD capacity use is critically overflowing, internal spares are running out. Cluster may soon become unavailable for writes.</td></tr><tr><td>UsedSSDCapacityNoLongerOverflows</td><td>INFO</td><td>SSD capacity use is no longer overflowing</td></tr><tr><td>UsedSSDCapacityOverflow</td><td>MAJOR</td><td>SSD capacity use is overflowing, internal capacity spares are being utilized</td></tr></tbody></table>
 
 ## Resources
 
-**Type** | **Severity** | **Description**
--|-|-
-APIServerStartFailed|WARNING|Failed to start the API server
-APIServerStarted|INFO|Successfully started the API server
-BandwidthSelected|INFO|Bandwidth set for host
-CoreAllocated|INFO|Allocated core
-DisabledNumaBalancing|INFO|Disabled NUMA Balancing
-DriverLoaded|INFO|Driver attached
-FailedToLoadDriver|WARNING|Failed to load the wekafs driver
-HugepagesAllocated|INFO|Hugepages allocated
-HugepagesAllocationRetries|WARNING|Hugepages allocation retried
-HugepagesAllocationStarted|INFO|Hugepages allocation started
-InactiveHostCannotJoinCluster|INFO|Inactive host cannot join the cluster
-LoadingStableResourcesFailed|INFO|Failed loading stable resources
-NetworkDeviceAllocated|INFO|Allocated network device
-NetworkDeviceNotUsedByAnySlots|MINOR|Network device not used by any slots
-NoIPsConfiguredForHostJoinWithNoDefaultNet|WARNING|No IP configured for node {nid} with no default-net
-RevertToStableResources|INFO|Reverted to stable resources
-UnlimitedBandwidthSelected|INFO|Bandwidth set to unlimited
+<table data-header-hidden><thead><tr><th width="388.7585351225365"></th><th width="150.4451495920218"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>APIServerStartFailed</td><td>WARNING</td><td>Failed to start the API server</td></tr><tr><td>APIServerStarted</td><td>INFO</td><td>Successfully started the API server</td></tr><tr><td>BandwidthSelected</td><td>INFO</td><td>Bandwidth set for host</td></tr><tr><td>CoreAllocated</td><td>INFO</td><td>Allocated core</td></tr><tr><td>DisabledNumaBalancing</td><td>INFO</td><td>Disabled NUMA Balancing</td></tr><tr><td>DriverLoaded</td><td>INFO</td><td>Driver attached</td></tr><tr><td>FailedToLoadDriver</td><td>WARNING</td><td>Failed to load the wekafs driver</td></tr><tr><td>HugepagesAllocated</td><td>INFO</td><td>Hugepages allocated</td></tr><tr><td>HugepagesAllocationRetries</td><td>WARNING</td><td>Hugepages allocation retried</td></tr><tr><td>HugepagesAllocationStarted</td><td>INFO</td><td>Hugepages allocation started</td></tr><tr><td>InactiveHostCannotJoinCluster</td><td>INFO</td><td>Inactive host cannot join the cluster</td></tr><tr><td>LoadingStableResourcesFailed</td><td>INFO</td><td>Failed loading stable resources</td></tr><tr><td>NetworkDeviceAllocated</td><td>INFO</td><td>Allocated network device</td></tr><tr><td>NetworkDeviceNotUsedByAnySlots</td><td>MINOR</td><td>Network device not used by any slots</td></tr><tr><td>NoIPsConfiguredForHostJoinWithNoDefaultNet</td><td>WARNING</td><td>No IP configured for node {nid} with no default-net</td></tr><tr><td>RevertToStableResources</td><td>INFO</td><td>Reverted to stable resources</td></tr><tr><td>UnlimitedBandwidthSelected</td><td>INFO</td><td>Bandwidth set to unlimited</td></tr></tbody></table>
 
 ## S3
 
-**Type** | **Severity** | **Description**
--|-|-
-S3AddBucketILMRuleEvent|INFO|S3 Add Bucket ILM Rule
-S3AsssumeRoleEvent|INFO|S3 Assume Role STS Token Created
-S3AttachIAMPolicyEvent|INFO|S3 Attach IAM policy
-S3AuditWebhookDisabledEvent|INFO|S3 Audit Webhook Disabled
-S3AuditWebhookEnabledEvent|INFO|S3 Audit Webhook Enabled
-S3BucketDestroyedEvent|INFO|S3 Bucket Destroyed
-S3ClusterDestroyFailed|MAJOR|Failed to destroy S3 cluster
-S3ContainerStateChangesEvent|INFO|S3 Container Status Change
-S3CreateBucketEvent|INFO|S3 Bucket Created
-S3CreateIAMPolicyEvent|INFO|S3 Create IAM Policy
-S3CreateServiceAccountEvent|INFO|S3 Create Service Account
-S3DestroyBucketEvent|INFO|S3 Bucket Destroyed
-S3DetachIAMPolicyEvent|INFO|S3 Detach IAM policy
-S3DrainEvent|INFO|S3 Container Drain
-S3ETCDDisabledEvent|INFO|S3 Cluster etcd Disabled
-S3ETCDEnabledEvent|INFO|S3 Cluster etcd Enabled
-S3KVAddedEvent|INFO|S3 Config Add Key
-S3KVRemovedEvent|INFO|S3 Config Remove Key
-S3KVResetEvent|INFO|S3 KV Store Config Reset
-S3RemoveBucketILMRuleEvent|INFO|S3 Remove Bucket ILM Rule
-S3RemoveIAMPolicyEvent|INFO|S3 Remove IAM Policy
-S3RemoveServiceAccountEvent|INFO|S3 Remove Service Account
-S3ResetBucketILMRuleEvent|INFO|S3 Reset Bucket ILM Rules
-S3SetBucketPolicyEvent|INFO|S3 Set Bucket Policy
-S3UnDrainEvent|INFO|S3 Container Undrain
+<table data-header-hidden><thead><tr><th width="398.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>S3AddBucketILMRuleEvent</td><td>INFO</td><td>S3 Add Bucket ILM Rule</td></tr><tr><td>S3AsssumeRoleEvent</td><td>INFO</td><td>S3 Assume Role STS Token Created</td></tr><tr><td>S3AttachIAMPolicyEvent</td><td>INFO</td><td>S3 Attach IAM policy</td></tr><tr><td>S3AuditWebhookDisabledEvent</td><td>INFO</td><td>S3 Audit Webhook Disabled</td></tr><tr><td>S3AuditWebhookEnabledEvent</td><td>INFO</td><td>S3 Audit Webhook Enabled</td></tr><tr><td>S3BucketDestroyedEvent</td><td>INFO</td><td>S3 Bucket Destroyed</td></tr><tr><td>S3ClusterDestroyFailed</td><td>MAJOR</td><td>Failed to destroy S3 cluster</td></tr><tr><td>S3ContainerStateChangesEvent</td><td>INFO</td><td>S3 Container Status Change</td></tr><tr><td>S3CreateBucketEvent</td><td>INFO</td><td>S3 Bucket Created</td></tr><tr><td>S3CreateIAMPolicyEvent</td><td>INFO</td><td>S3 Create IAM Policy</td></tr><tr><td>S3CreateServiceAccountEvent</td><td>INFO</td><td>S3 Create Service Account</td></tr><tr><td>S3DestroyBucketEvent</td><td>INFO</td><td>S3 Bucket Destroyed</td></tr><tr><td>S3DetachIAMPolicyEvent</td><td>INFO</td><td>S3 Detach IAM policy</td></tr><tr><td>S3DrainEvent</td><td>INFO</td><td>S3 Container Drain</td></tr><tr><td>S3ETCDDisabledEvent</td><td>INFO</td><td>S3 Cluster etcd Disabled</td></tr><tr><td>S3ETCDEnabledEvent</td><td>INFO</td><td>S3 Cluster etcd Enabled</td></tr><tr><td>S3KVAddedEvent</td><td>INFO</td><td>S3 Config Add Key</td></tr><tr><td>S3KVRemovedEvent</td><td>INFO</td><td>S3 Config Remove Key</td></tr><tr><td>S3KVResetEvent</td><td>INFO</td><td>S3 KV Store Config Reset</td></tr><tr><td>S3RemoveBucketILMRuleEvent</td><td>INFO</td><td>S3 Remove Bucket ILM Rule</td></tr><tr><td>S3RemoveIAMPolicyEvent</td><td>INFO</td><td>S3 Remove IAM Policy</td></tr><tr><td>S3RemoveServiceAccountEvent</td><td>INFO</td><td>S3 Remove Service Account</td></tr><tr><td>S3ResetBucketILMRuleEvent</td><td>INFO</td><td>S3 Reset Bucket ILM Rules</td></tr><tr><td>S3SetBucketPolicyEvent</td><td>INFO</td><td>S3 Set Bucket Policy</td></tr><tr><td>S3UnDrainEvent</td><td>INFO</td><td>S3 Container Undrain</td></tr></tbody></table>
 
 ## Security
 
-**Type** | **Severity** | **Description**
--|-|-
-CaCertSet|INFO|CA cert was added to the cluster
-CaCertUnset|INFO|CA cert was unset
-TLSSet|INFO|TLS was set
-TLSUnset|INFO|TLS was unset
+<table data-header-hidden><thead><tr><th width="345.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>CaCertSet</td><td>INFO</td><td>CA cert was added to the cluster</td></tr><tr><td>CaCertUnset</td><td>INFO</td><td>CA cert was unset</td></tr><tr><td>TLSSet</td><td>INFO</td><td>TLS was set</td></tr><tr><td>TLSUnset</td><td>INFO</td><td>TLS was unset</td></tr></tbody></table>
 
 ## SMB
 
-**Type** | **Severity** | **Description**
--|-|-
-SmbAdJoined|INFO|Active Directory configuration change
-SmbAdLeft|INFO|Active Directory configuration change
-SmbClusterConfigured|INFO|SMB cluster configuration change
-SmbClusterCreated|INFO|SMB cluster configuration change
-SmbClusterDestroyed|INFO|SMB cluster configuration change
-SmbConfigGenerationUpdated|INFO|SMB Config configuration change
-SmbShareAdded|INFO|Share configuration change
-SmbShareConfigured|INFO|Share configuration change
-SmbShareHostnameACERemovedRemoved|INFO|SambaHostnameACE configuration change
-SmbShareHostnameACEResetDestroyed|INFO|SambaHostnameACE configuration change
-SmbShareRemoved|INFO|Share configuration change
-SmbTrustedDomainAdded|INFO|TrustedDomain configuration change
-SmbTrustedDomainRemoved|INFO|TrustedDomain configuration change
+<table data-header-hidden><thead><tr><th width="396.5452436194896"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>SmbAdJoined</td><td>INFO</td><td>Active Directory configuration change</td></tr><tr><td>SmbAdLeft</td><td>INFO</td><td>Active Directory configuration change</td></tr><tr><td>SmbClusterConfigured</td><td>INFO</td><td>SMB cluster configuration change</td></tr><tr><td>SmbClusterCreated</td><td>INFO</td><td>SMB cluster configuration change</td></tr><tr><td>SmbClusterDestroyed</td><td>INFO</td><td>SMB cluster configuration change</td></tr><tr><td>SmbConfigGenerationUpdated</td><td>INFO</td><td>SMB Config configuration change</td></tr><tr><td>SmbShareAdded</td><td>INFO</td><td>Share configuration change</td></tr><tr><td>SmbShareConfigured</td><td>INFO</td><td>Share configuration change</td></tr><tr><td>SmbShareHostnameACERemovedRemoved</td><td>INFO</td><td>SambaHostnameACE configuration change</td></tr><tr><td>SmbShareHostnameACEResetDestroyed</td><td>INFO</td><td>SambaHostnameACE configuration change</td></tr><tr><td>SmbShareRemoved</td><td>INFO</td><td>Share configuration change</td></tr><tr><td>SmbTrustedDomainAdded</td><td>INFO</td><td>TrustedDomain configuration change</td></tr><tr><td>SmbTrustedDomainRemoved</td><td>INFO</td><td>TrustedDomain configuration change</td></tr></tbody></table>
 
 ## Statistics
 
-**Type** | **Severity** | **Description**
--|-|-
-StatLimitExceeded|WARNING|A set limit on a stat was exceeded
+<table data-header-hidden><thead><tr><th width="395.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>StatLimitExceeded</td><td>WARNING</td><td>A set limit on a stat was exceeded</td></tr></tbody></table>
 
 ## System
 
-**Type** | **Severity** | **Description**
--|-|-
-BlockTaskAborted|INFO|A bucket task aborted successfully
-BlockTaskComplete|INFO|A bucket task completed successfully
-BucketsCreated|INFO|System has created buckets
-ClusterTaskAborted|INFO|Cluster task aborted
-ClusterTaskPaused|INFO|Cluster task paused
-ClusterTaskResumed|INFO|Cluster task resumed
-ClusterTasksCpuLimitUpdated|INFO|Cluster tasks CPU limit set
-ClusterwideTaskChanged|INFO|Clusterwide task changed
-HaveEnoughSSDCapacity|MINOR|Enough SSD capacity now exists for all provisioned file systems
-IOStarted|INFO|System has started
-IOStopped|INFO|System has stopped
-NotEnoughSSDCapacity|CRITICAL|Not enough SSD capacity exists for all provisioned file systems
-QOSConfigReset|INFO|QoS configuration reset
-QOSConfigSet|INFO|QoS configuration set
-StartIORequested|INFO|The user has requested that IO be started
-StopIORequested|INFO|The user has requested that IO be stopped
-SystemInfoReport|INFO|Management node started; reporting OS info
+<table data-header-hidden><thead><tr><th width="389.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>BlockTaskAborted</td><td>INFO</td><td>A bucket task aborted successfully</td></tr><tr><td>BlockTaskComplete</td><td>INFO</td><td>A bucket task completed successfully</td></tr><tr><td>BucketsCreated</td><td>INFO</td><td>System has created buckets</td></tr><tr><td>ClusterTaskAborted</td><td>INFO</td><td>Cluster task aborted</td></tr><tr><td>ClusterTaskPaused</td><td>INFO</td><td>Cluster task paused</td></tr><tr><td>ClusterTaskResumed</td><td>INFO</td><td>Cluster task resumed</td></tr><tr><td>ClusterTasksCpuLimitUpdated</td><td>INFO</td><td>Cluster tasks CPU limit set</td></tr><tr><td>ClusterwideTaskChanged</td><td>INFO</td><td>Clusterwide task changed</td></tr><tr><td>HaveEnoughSSDCapacity</td><td>MINOR</td><td>Enough SSD capacity now exists for all provisioned file systems</td></tr><tr><td>IOStarted</td><td>INFO</td><td>System has started</td></tr><tr><td>IOStopped</td><td>INFO</td><td>System has stopped</td></tr><tr><td>NotEnoughSSDCapacity</td><td>CRITICAL</td><td>Not enough SSD capacity exists for all provisioned file systems</td></tr><tr><td>QOSConfigReset</td><td>INFO</td><td>QoS configuration reset</td></tr><tr><td>QOSConfigSet</td><td>INFO</td><td>QoS configuration set</td></tr><tr><td>StartIORequested</td><td>INFO</td><td>The user has requested that IO be started</td></tr><tr><td>StopIORequested</td><td>INFO</td><td>The user has requested that IO be stopped</td></tr><tr><td>SystemInfoReport</td><td>INFO</td><td>Management node started; reporting OS info</td></tr></tbody></table>
 
 ## Traces
 
-**Type** | **Severity** | **Description**
--|-|-
-TracesConfigurationActivated|INFO|Traces configuration change
-TracesConfigurationDeactivated|INFO|Traces configuration change
-TracesConfigurationReset|INFO|Traces configuration change
-TracesConfigurationUpdated|INFO|Traces configuration change
-TracesFreezePeriodReset|INFO|Traces freeze period has been reset
-TracesFreezePeriodSet|INFO|Traces freeze period has been set
+<table data-header-hidden><thead><tr><th width="404.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>TracesConfigurationActivated</td><td>INFO</td><td>Traces configuration change</td></tr><tr><td>TracesConfigurationDeactivated</td><td>INFO</td><td>Traces configuration change</td></tr><tr><td>TracesConfigurationReset</td><td>INFO</td><td>Traces configuration change</td></tr><tr><td>TracesConfigurationUpdated</td><td>INFO</td><td>Traces configuration change</td></tr><tr><td>TracesFreezePeriodReset</td><td>INFO</td><td>Traces freeze period has been reset</td></tr><tr><td>TracesFreezePeriodSet</td><td>INFO</td><td>Traces freeze period has been set</td></tr></tbody></table>
 
 ## Upgrade
 
-**Type** | **Severity** | **Description**
--|-|-
-ClientUpgradeRequested|INFO|Client upgrade requested
-ExternalUpgradeCancelled|INFO|External Upgrade was cancelled
-ExternalUpgradeFinished|INFO|External Upgrade complete
-ExternalUpgradeStarting|INFO|External Upgrade was started
-FinishedExternalHostUpgrade|INFO|External host upgrade complete
-StartingExternalHostUpgrade|INFO|External host upgrade started
-WekaVersionDowngraded|WARNING|Weka is now running a lower version
+<table data-header-hidden><thead><tr><th width="403.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>ClientUpgradeRequested</td><td>INFO</td><td>Client upgrade requested</td></tr><tr><td>ExternalUpgradeCancelled</td><td>INFO</td><td>External Upgrade was cancelled</td></tr><tr><td>ExternalUpgradeFinished</td><td>INFO</td><td>External Upgrade complete</td></tr><tr><td>ExternalUpgradeStarting</td><td>INFO</td><td>External Upgrade was started</td></tr><tr><td>FinishedExternalHostUpgrade</td><td>INFO</td><td>External host upgrade complete</td></tr><tr><td>StartingExternalHostUpgrade</td><td>INFO</td><td>External host upgrade started</td></tr><tr><td>WekaVersionDowngraded</td><td>WARNING</td><td>Weka is now running a lower version</td></tr></tbody></table>
 
 ## User
 
-**Type** | **Severity** | **Description**
--|-|-
-LDAPAuthDisabled|INFO|LDAP authentication disabled
-LDAPAuthEnabled|INFO|LDAP authentication enabled
-LDAPConfigUpdated|INFO|LDAP configuration updated
-UserCreated|INFO|User Created
-UserDeleted|INFO|User Deleted
-UserLoggedIn|INFO|User logged in
-UserLoginFailed|INFO|User login failed
-UserLoginLocked|MINOR|User login locked
-UserPasswordChangedByAnotherUser|INFO|User password changed by an admin
-UserPasswordChanged|INFO|User changed password
-UserRoleChanged|INFO|User role changed
-
+<table data-header-hidden><thead><tr><th width="402.3333333333333"></th><th width="150"></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Severity</strong></td><td><strong>Description</strong></td></tr><tr><td>LDAPAuthDisabled</td><td>INFO</td><td>LDAP authentication disabled</td></tr><tr><td>LDAPAuthEnabled</td><td>INFO</td><td>LDAP authentication enabled</td></tr><tr><td>LDAPConfigUpdated</td><td>INFO</td><td>LDAP configuration updated</td></tr><tr><td>UserCreated</td><td>INFO</td><td>User Created</td></tr><tr><td>UserDeleted</td><td>INFO</td><td>User Deleted</td></tr><tr><td>UserLoggedIn</td><td>INFO</td><td>User logged in</td></tr><tr><td>UserLoginFailed</td><td>INFO</td><td>User login failed</td></tr><tr><td>UserLoginLocked</td><td>MINOR</td><td>User login locked</td></tr><tr><td>UserPasswordChangedByAnotherUser</td><td>INFO</td><td>User password changed by an admin</td></tr><tr><td>UserPasswordChanged</td><td>INFO</td><td>User changed password</td></tr><tr><td>UserRoleChanged</td><td>INFO</td><td>User role changed</td></tr></tbody></table>

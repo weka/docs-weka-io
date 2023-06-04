@@ -50,17 +50,7 @@ SSD resource planning involves how the defined capacity is going to be implement
 
 The total per host memory requirements is the sum of the following requirements:
 
-| **Purpose**                       | **Per host memory**                                                                                                                              |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Fixed                             | 2.3 GB                                                                                                                                           |
-| Frontend cores                    | 2.3 GB x # of Frontend cores                                                                                                                     |
-| Compute cores                     | 3.3 GB x # of Compute cores                                                                                                                      |
-| Drive cores                       | 2.3 GB x # of Drive cores                                                                                                                        |
-| SSD capacity management           | <p><em>HostSSDSize/10,000</em><br><em>(HostSSDSize = Total SSD raw capacity / # of hosts)</em></p>                                               |
-| Operating System                  | The maximum between 8 GB and 2% from the total RAM                                                                                               |
-| Additional protocols (NFS/SMB/S3) | 8 GB                                                                                                                                             |
-| RDMA                              | 2 GB                                                                                                                                             |
-| Metadata (pointers)               | <p>20 Bytes x # Metadata units per host<br>See <a href="../../overview/filesystems.md#metadata-calculations">Metadata units calculation</a>.</p> |
+<table data-header-hidden><thead><tr><th width="150">Purpose</th><th>Per host memory</th></tr></thead><tbody><tr><td><strong>Purpose</strong></td><td><strong>Per host memory</strong></td></tr><tr><td>Fixed</td><td>2.3 GB</td></tr><tr><td>Frontend cores</td><td>2.3 GB x # of Frontend cores</td></tr><tr><td>Compute cores</td><td>3.3 GB x # of Compute cores</td></tr><tr><td>Drive cores</td><td>2.3 GB x # of Drive cores</td></tr><tr><td>SSD capacity management</td><td><em>HostSSDSize/10,000</em><br><em>(HostSSDSize = Total SSD raw capacity / # of hosts)</em></td></tr><tr><td>Operating System</td><td>The maximum between 8 GB and 2% from the total RAM</td></tr><tr><td>Additional protocols (NFS/SMB/S3)</td><td>8 GB</td></tr><tr><td>RDMA</td><td>2 GB</td></tr><tr><td>Metadata (pointers)</td><td>20 Bytes x # Metadata units per host<br>See <a href="../../overview/filesystems.md#metadata-calculations">Metadata units calculation</a>.</td></tr></tbody></table>
 
 #### Example 1: A system with large files
 

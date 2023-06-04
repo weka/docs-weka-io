@@ -54,19 +54,7 @@ Options:
 
 The options that are common to many commands include:
 
-| Option                  | Flag description                                                                                                                  |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `-J\|--json`            | Prints the raw JSON value returned by the cluster.                                                                                |
-| `-H\|--hostname`        | Directs the CLI to communicate with the cluster through the given hostname.                                                       |
-| `--raw-units`           | Sets the units such as capacity and bytes to be printed in their raw format, as returned by the cluster.                          |
-| `--UTC`                 | Sets the timestamps to be printed in UTC timezone, instead of the local time of the machine running the CLI command.              |
-| `-f\|--format`          | Specifies the format to output the result (view, csv, markdown, or JSON).                                                         |
-| `-o\|--output`          | Specifies the columns to include in the output.                                                                                   |
-| `-s\|--sort`            | Specifies the order to sort the output. May include a '+' or '-' before the column name to sort by ascending or descending order. |
-| `-F\| --filter`         | Specifies the filter values for a member (without forcing it to be in the output).                                                |
-| `--no-header`           | Indicates that the column header should not be shown when printing the output.                                                    |
-| `-C\|--CONNECT-TIMEOUT` | Modifies the default timeout used for connecting to the system via the JRPC protocol.                                             |
-| `-T\|--TIMEOUT`         | Modifies the default timeout for which the commands wait for a response before giving up.                                         |
+<table><thead><tr><th width="171.37895556573716">Option</th><th>Flag description</th></tr></thead><tbody><tr><td><code>-J|--json</code></td><td>Prints the raw JSON value returned by the cluster.</td></tr><tr><td><code>-H|--hostname</code></td><td>Directs the CLI to communicate with the cluster through the given hostname.</td></tr><tr><td><code>--raw-units</code></td><td>Sets the units such as capacity and bytes to be printed in their raw format, as returned by the cluster.</td></tr><tr><td><code>--UTC</code></td><td>Sets the timestamps to be printed in UTC timezone, instead of the local time of the machine running the CLI command.</td></tr><tr><td><code>-f|--format</code></td><td>Specifies the format to output the result (view, csv, markdown, or JSON).</td></tr><tr><td><code>-o|--output</code></td><td>Specifies the columns to include in the output.</td></tr><tr><td><code>-s|--sort</code></td><td>Specifies the order to sort the output. May include a '+' or '-' before the column name to sort by ascending or descending order.</td></tr><tr><td><code>-F| --filter</code></td><td>Specifies the filter values for a member (without forcing it to be in the output).</td></tr><tr><td><code>--no-header</code></td><td>Indicates that the column header should not be shown when printing the output.</td></tr><tr><td><code>-C|--CONNECT-TIMEOUT</code></td><td>Modifies the default timeout used for connecting to the system via the JRPC protocol.</td></tr><tr><td><code>-T|--TIMEOUT</code></td><td>Modifies the default timeout for which the commands wait for a response before giving up.</td></tr></tbody></table>
 
 ## Commands hierarchy
 
