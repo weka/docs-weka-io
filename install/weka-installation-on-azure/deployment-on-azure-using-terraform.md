@@ -9,7 +9,7 @@ Applying the Terraform variables file performs the following:
 * Installs the WEKA software.
 * Configures the WEKA cluster**.**
 
-The total deployment time is about 30 minutes. Half the time is for resource deployment. The second is for the WEKA cluster installation and configuration.
+The total deployment time is about 30 minutes. Half of that time is for resource deployment, the remainder is for the WEKA cluster installation and configuration.
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Before installing the WEKA software on Azure, the following prerequisites must b
   * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
   * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 * For an M1/M2-based Mac workstation, see specific instructions below.
-* Obtain the Azure-WEKA Terraform package from [https://github.com/weka/terraform-azr-weka](https://github.com/weka/terraform-azr-weka)[ ](https://github.com/weka/terraform-azr-weka)and save it to a local directory. To access the package, a git account is required, and it must be associated with the WEKA git organization.&#x20;
+* Obtain the Azure-WEKA Terraform package from [https://github.com/weka/terraform-azr-weka](https://github.com/weka/terraform-azr-weka) and save it to a local directory. To access the package, a git account is required, and it must be associated with the WEKA git organization.&#x20;
 * Initialize the Azure-WEKA Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 * Required permissions on Azure:
   * Privileged Role Administrator
@@ -27,13 +27,13 @@ Before installing the WEKA software on Azure, the following prerequisites must b
   * Storage Account Contributor
   * Key Vault Administrator
 * To login to the Azure account using Azure CLI, use the **az login** command.
-* An Azure resource group is created within your subscription. The resource group also includes the Azure region.
+* An Azure resource group needs to be created within your subscription. The resource group also includes the Azure region.
 
 <details>
 
-<summary>M1-based Mac workstation additional requirements</summary>
+<summary>M1/M2-based Mac workstation additional requirements</summary>
 
-Follow these additional requirements to get Terraform working on an M1-based Mac:
+Follow these additional requirements to get Terraform working on an M1/M2-based Mac:
 
 1. Run `brew install tfenv`
 2. Run `TFENV_ARCH=amd64 tfenv install 1.3.7`
@@ -46,13 +46,13 @@ Follow these additional requirements to get Terraform working on an M1-based Mac
 
 1. You can use one of the provided examples as a template for the required deployment. \
    Go to the relevant directory in the examples directory and customize the Terraform variables file: `vars.auto.tfvars`.\
-   Ensure the `prefix` and `cluster_name` variables are unique across the Azure environment.
+   Ensure the `prefix` and `cluster_name` variables are unique across the Azure environment.    You can optionally also add your Weka token (to download the Weka software) with `get_weka_io_token` and your Microsoft subscription with `subscription_id` or you can supply them later when running `terraform plan` and `terraform apply`.
 
 {% hint style="info" %}
-**Note:** The example templates are simplified and have the minimum variable inputs to customize. For additional variable inputs to customize, you can modify their default values in the main **`variables.tf`** file, or add them to the Terraform variables file. See the README in the Azure-WEKA Terraform package for the full list of variable inputs.
+**Note:** The example templates are simplified and have the minimum variable inputs to customize. For additional variable inputs to customize, you can modify their default values in the main **`variables.tf`** file, or add them to the Terraform variables file. See the README in the Azure-WEKA Terraform package for the complete list of variable inputs.
 {% endhint %}
 
-2. To validate the configuration, run `terraform plan`.
+2. To validate the configuration, run `terraform plan`. You are prompted for your get.weka.io token and Microsoft subscription ID if these were not added as variables in step one or supplied as variables as part of the terraform command.
 3. Once the configuration validation is successful, run `terraform apply`.\
    Terraform applies the configuration on the specified Azure subscription and displays the cluster help commands.
 
@@ -324,7 +324,7 @@ In the following response example, the cluster formation is completed as shown i
 </details>
 
 {% hint style="success" %}
-**Note:** You can also track the cluster formation progress on the last backend (in this example, `v41-jack-vmss_3`) by opening the `/tmp/cluster_creation.log` file.
+**Note:** You can also track the cluster formation progress on the last backend by opening the `/tmp/cluster_creation.log` file.
 {% endhint %}
 
 ## **Validate the deployment**
@@ -338,6 +338,10 @@ Once the deployment is completed, access the WEKA cluster GUI using the URL: `ht
 [manage-the-system-using-weka-cli.md](../../getting-started-with-weka/manage-the-system-using-weka-cli.md "mention")
 
 [performing-the-first-io.md](../../getting-started-with-weka/performing-the-first-io.md "mention")
+
+## **Update the** Cluster Admin password
+
+If you [update the Cluster admin password](https://docs.weka.io/usage/user-management/user-management#change-a-local-user-password) in the WEKA application, also update the weka-password secret in the key vault in the Azure console or Azure CLI.
 
 ## **Clean up the** deployment
 
