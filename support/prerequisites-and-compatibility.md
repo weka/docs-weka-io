@@ -227,7 +227,7 @@ Supported Mellanox OFED versions:
 
 * Support PLP (Power Loss Protection)
 * Dedicated for Weka system storage (partition not supported)
-* Supported drive capacity: Up to 15TB (soon to increase to 30TB)
+* Supported drive capacity: Up to 17 TiB
 * IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the Weka support team.
 
 {% hint style="info" %}
