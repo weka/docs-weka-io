@@ -29,7 +29,7 @@ The SMB-W provides the following features in addition to the legacy SMB features
   * For Windows clients, the SMB client must be configured as multichannel.
 
 {% hint style="info" %}
-**Note:** When configuring a CIFS client to work with RDMA, the mounting must be on the host IP (not the floating IP).
+When configuring a CIFS client to work with RDMA, the mounting must be on the host IP (not the floating IP).
 {% endhint %}
 
 ## SMB user mapping
@@ -96,7 +96,7 @@ Verify that the DNS "nameserver" of the servers participating in the SMB cluster
 To ensure that the various SMB clients balance the load on the different Weka servers serving SMB, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS) entry that resolves to the list of floating IPs, ensuring that client loads are equally distributed across all servers.
 
 {% hint style="info" %}
-**Note:** Set the TTL (Time to Live) for all A records assigned to the SMB servers to 0 (Zero). This ensures the client or the DNS server does not cache the IP.
+Set the TTL (Time to Live) for all A records assigned to the SMB servers to 0 (Zero). This ensures the client or the DNS server does not cache the IP.
 {% endhint %}
 
 ### Create SMB shares
@@ -110,11 +110,11 @@ If the share is declared without providing a sub-directory, the WekaFS root is u
 Once the SMB cluster is connected to the Active Directory, it can assign permissions and access rights of SMB cluster filesystems to specific users or user groups. This is performed according to POSIX permissions (Windows permissions are stored in the POSIX permissions system). Any change in the Windows permissions is adapted to the POSIX permissions.
 
 {% hint style="info" %}
-**Note:** The initial set of POSIX permissions is done by the user through the driver/NFS.&#x20;
+The user does the initial set of POSIX permissions through the driver/NFS.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** To obtain root access to the SMB shares, assign an Active Directory user with a `uidNumber` and `gidNumber` of 0.
+To obtain root access to the SMB shares, assign an Active Directory user with a `uidNumber` and `gidNumber` of 0.
 {% endhint %}
 
 ### Integration with previous versions of Windows&#x20;

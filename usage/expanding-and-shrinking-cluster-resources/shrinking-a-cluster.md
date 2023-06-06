@@ -66,7 +66,7 @@ To deactivate a drive, run the following command:
 <table><thead><tr><th width="229">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>uuids</code>*</td><td>Comma-separated drive identifiers.</td></tr></tbody></table>
 
 {% hint style="info" %}
-**Note:** Running the `weka cluster drive` command is displayed whether the redistribution is still being performed.
+Running the `weka cluster drive` command is displayed whether the redistribution is still being performed.
 {% endhint %}
 
 ### Remove drives from the cluster

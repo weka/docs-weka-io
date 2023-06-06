@@ -40,7 +40,7 @@ Use the following command line to obtain the current performance-related statist
 The collected statistics can help analyze system performance and determine the source of issues that may occur during WEKA system runs. Statistics are divided according to categories. When selecting a category, a list of the possible statistics is displayed, from which you can select the specific statistics.
 
 {% hint style="info" %}
-**Note:** WEKA averages all statistics over one-second intervals. Consequently, the total value or other aggregates relate to a specific minute.
+WEKA averages all statistics over one-second intervals. Consequently, the total value or other aggregates relate to a specific minute.
 {% endhint %}
 
 Use the following command line to manage filters and read statistics:

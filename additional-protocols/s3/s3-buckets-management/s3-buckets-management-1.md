@@ -50,7 +50,7 @@ Use the following command line to set an S3 bucket quota:
 Use this command to unset an existing bucket quota.
 
 {% hint style="info" %}
-**Note:** If the bucket point to a directory shared with other protocols, changing the quota affects all protocols (changes the associated directory quota).
+If the bucket point to a directory shared with other protocols, changing the quota affects all protocols (changes the associated directory quota).
 {% endhint %}
 
 ## Delete a bucket
@@ -60,7 +60,7 @@ Use this command to unset an existing bucket quota.
 Use this command to delete an existing bucket.
 
 {% hint style="info" %}
-**Note:** You can only delete a bucket if it is empty (all its objects are deleted).
+You can only delete a bucket if it is empty (all its objects are deleted).
 {% endhint %}
 
 ## Manage bucket policies

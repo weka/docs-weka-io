@@ -45,7 +45,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 `weka smb cluster create <netbios-name> <domain> [--domain-netbios-name domain-netbios-name] [--idmap-backend idmap-backend] [--default-domain-mapping-from-id default-domain-mapping-from-id] [--default-domain-mapping-to-id default-domain-mapping-to-id] [--joined-domain-mapping-from-id joined-domain-mapping-from-id] [--joined-domain-mapping-to-id joined-domain-mapping-to-id] [--encryption encryption] [--smb-conf-extra smb-conf-extra] [--container-ids container-ids]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range]...`
 
 {% hint style="info" %}
-**Note:** To create an SMB-W cluster, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+To create an SMB-W cluster, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 **Parameters**
@@ -53,23 +53,23 @@ Use the following command line to create a new SMB cluster to be managed by the 
 <table><thead><tr><th>Name</th><th width="361">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>netbios-name</code>*</td><td>NetBIOS name for the SMB cluster</td><td></td></tr><tr><td><code>domain</code>*</td><td>The domain to join the SMB cluster to</td><td>​</td></tr><tr><td><code>domain-netbios-name</code></td><td>Domain NetBIOS name.</td><td>The first part of the <code>domain</code> parameter</td></tr><tr><td><code>idmap-backend</code></td><td>The ID mapping method to use.<br><br>SMB-W possible values: <code>rfc2307</code><br><br>Legacy SMB possible values: <code>rfc2307</code> or <code>rid</code></td><td><code>rfc2307</code></td></tr><tr><td><code>default-domain-mapping-from-id</code></td><td>The last ID of the range for the default AD ID mapping (for trusted domains that have no range defined).<br>Not supported in SMB-W yet.</td><td>4290000000</td></tr><tr><td><code>joined-domain-mapping-from-id</code></td><td>The first ID of the range for the main AD ID mapping.</td><td>4290000000</td></tr><tr><td><code>joined-domain-mapping-to-id</code></td><td>The last ID of the range for the main AD ID mapping.</td><td>4290000001</td></tr><tr><td><code>encryption</code></td><td><p>The global encryption policy to use:</p><p><br><code>enabled</code> - enables encryption negotiation but doesn't turn it on automatically for supported sessions and share connections.</p><p><br><code>disabled</code> - doesn't support encrypted connections.</p><p><code>desired</code> - enables encryption negotiation and turns on data encryption on supported sessions and share connections.</p><p><br><code>required</code> - enforces data encryption on sessions and share connections. Clients that do not support encryption will be denied access to the server.<br><br>SMB-W possible values: <code>enabled,</code> <code>desired</code> or <code>required</code><br><br>Legacy SMB possible values: <code>enabled,</code> <code>disabled</code>, <code>desired</code> or <code>required</code></p></td><td><code>enabled</code></td></tr><tr><td><code>smb-conf-extra</code></td><td>Additional SMB configuration options.</td><td></td></tr><tr><td><code>container-ids</code></td><td>The container IDS of the containers with the frontend process to serve the SMB service.<br>Minimum of 3 containers.</td><td></td></tr><tr><td><code>smb-ips-pool</code></td><td>The public IPs used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA. Do not assign these IPs to any server on the network.<br>Format: comma-separated IP addresses</td><td></td></tr><tr><td><code>smb-ips-range</code></td><td>The public IPs range used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA. Do not assign these IPs to any server on the network.<br>Format: <code>A.B.C.D-E</code><br>Example: <code>10.10.0.1-100</code></td><td></td></tr></tbody></table>
 
 {% hint style="info" %}
-**Note:** To enable HA through IP takeover, all IPs must reside on the same subnet.
+To enable HA through IP takeover, all IPs must reside on the same subnet.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The IPs must be configured but **MUST NOT** be in use by any other application/server in the subnet, including WEKA system management nodes, WEKA system IO nodes, or WEKA system NFS floating IPs. In AWS environments, this is not supported and these IPs should not be provided\*\*.\*\*
+The IPs must be configured but **MUST NOT** be in use by any other application/server in the subnet, including WEKA system management nodes, WEKA system IO nodes, or WEKA system NFS floating IPs. In AWS environments, this is not supported and these IPs should not be provided\*\*.\*\*
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The `--smb-ips` parameter is supposed to accept the public IPs that the SMB cluster will expose. To mount the SMB cluster in an HA manner, clients should be mounted via one of the exposed public IPs, thereby ensuring that they will automatically reconnect if one of the SMB containers fails.
+The `--smb-ips` parameter is supposed to accept the public IPs that the SMB cluster will expose. To mount the SMB cluster in an HA manner, clients should be mounted via one of the exposed public IPs, thereby ensuring that they will automatically reconnect if one of the SMB containers fails.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** If it is necessary to set global options to the SMB library, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
+If it is necessary to set global options to the SMB library, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 {% hint style="success" %}
-**For Example:**
+**Example:**
 
 `weka smb cluster create wekaSMB mydomain --container-ids 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5`
 
@@ -135,7 +135,7 @@ Use these commands to add or remove containers from the SMB cluster.
 `weka smb cluster containers remove [--containers-id containers-id]...`
 
 {% hint style="info" %}
-**Note:** This operation might take some time to complete. During that time, SMB IOs are stalled.
+This operation might take some time to complete. During that time, SMB IOs are stalled.
 {% endhint %}
 
 **Parameters**
@@ -145,7 +145,7 @@ Use these commands to add or remove containers from the SMB cluster.
 ## Configure trusted domains <a href="#configure-trusted-domains" id="configure-trusted-domains"></a>
 
 {% hint style="info" %}
-**Note:** SMB-W does not yet support trusted domains.
+SMB-W does not yet support trusted domains.
 {% endhint %}
 
 ### List trusted domains
@@ -197,7 +197,7 @@ Use the following command line to add a new share to be exposed to SMB:
 <table><thead><tr><th>Name</th><th width="322">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>share-name</code>*</td><td>Valid name of the share to add.<br><br>SMB-W: cannot create the same share name with different case insensitivity.</td><td>​</td></tr><tr><td><code>fs-name</code>*</td><td>Valid name of the filesystem to share.<br>A filesystem with Required Authentication set to ON cannot be used for SMB share.</td><td>​</td></tr><tr><td><code>description</code></td><td>The description of the share received in remote views.</td><td>​</td></tr><tr><td><code>internal-path</code></td><td>The internal valid path within the filesystem (relative to its root) which will be exposed</td><td>.</td></tr><tr><td><code>mount-option</code></td><td>The mount mode for the share.<br>Possible values: <code>readcache</code>, <code>writecache</code></td><td><code>readcache</code></td></tr><tr><td><code>file-create-mask</code></td><td>POSIX permissions for the file created through the SMB share.<br>Numeric (octal) notation</td><td>0744</td></tr><tr><td><code>directory-create-mask</code></td><td>POSIX permissions for directories created through the SMB share.<br>Numeric (octal) notation.<br><br>SMB-W: the specified string must be greater or equal to 0600.</td><td>0755</td></tr><tr><td><code>acl</code></td><td>Enable Windows ACLs on the share (which will be translated to POSIX).<br>Supports up to 16 ACEs per file.<br>Possible values: <code>on</code>, <code>off</code></td><td><code>off</code></td></tr><tr><td><code>obs-direct</code></td><td>See <a href="../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a> section.<br><br>Possible values for legacy SMB: <code>on</code>, <code>off</code><br><br>SMB-W: not supported</td><td><code>off</code></td></tr><tr><td><code>encryption</code></td><td><p>The share encryption policy.</p><p><code>cluster_default:</code> The he share encryption policy follows the global SMB cluster setting.</p><p><code>desired</code>: If negotiation is enabled globally, it turns on data encryption for this share for clients that support encryption.</p><p><code>required</code>: Enforces encryption for the shares. Clients that do not support encryption are denied when accessing the share. If the global option is <code>disabled</code>, the access is restricted to these shares for all clients.<br>Possible value for SMB-W: <code>cluster_default</code><br><br>Possible values legacy SMB: <code>cluster_default</code> , <code>desired</code>, <code>required</code></p></td><td><code>cluster_default</code></td></tr><tr><td><code>read-only</code></td><td>Sets the share as read-only. Users cannot create or modify files in this share.<br>Possible values: <code>on</code>, <code>off</code></td><td><code>off</code></td></tr><tr><td><code>user-list-type</code></td><td><p>The type of initial permissions list for <code>users</code>.<br><br>SMB-W: not supported<br><br>Possible values for legacy SMB:<br><code>read_only</code> : List of users that will not be given write access to the share, regardless of the <code>read-only</code> setting.<br><code>read_write</code>: List of users that are given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>valid</code> : List of users that are allowed to log-in to this share SMB service (empty list all users are allowed)<code>invalid</code> - list of users that are not allowed to log-in to this share SMB service</p></td><td></td></tr><tr><td><code>users</code></td><td>A list of users to use with the <code>user-list-type</code> list. Can use the <code>@</code> notation to allow groups of users, e.g. <code>root, Jack, @domain\admins</code>.<br><br>SMB-W: not supported<br><br>Possible values for legacy SMB: Up to 8 users/groups for all lists combined per share.</td><td>Empty list</td></tr><tr><td><code>allow-guest-access</code></td><td>Allows connecting to the SMB service without a password. Permissions are as the <code>nobody</code> user account permissions.<br><br>SMB-W: not supported.<br><br>Possible values for legacy SMB: <code>on</code>, <code>off</code><br></td><td><code>off</code></td></tr><tr><td><code>hidden</code></td><td>Sets the share as non-browsable. It will be accessible for mounting and IOs but not discoverable by SMB clients.<br>Possible values: <code>on</code>, <code>off</code></td><td><code>off</code></td></tr></tbody></table>
 
 {% hint style="info" %}
-**Note:** If it is necessary to set a share with specific options to the SMB library, contact Weka support.
+If it is necessary to set a share with specific options to the SMB library, contact Weka support.
 {% endhint %}
 
 {% hint style="success" %}
@@ -218,7 +218,7 @@ Use the following command line to update an existing share:
 `weka smb share update <share-id> [--encryption encryption] [--read-only read-only] [--allow-guest-access allow-guest-access] [--hidden hidden]`
 
 {% hint style="info" %}
-**Note:** SMB-W does not yet support share update.
+SMB-W does not yet support share update.
 {% endhint %}
 
 **Parameters**

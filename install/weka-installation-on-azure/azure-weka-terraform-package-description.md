@@ -38,7 +38,7 @@ cluster_size          = 6
 ```
 
 {% hint style="info" %}
-**Note**: This is just one example of the variables files. The other examples may include more variables according to the deployment type.
+This is one example of the variables files. Other examples may include more variables according to the deployment type.
 {% endhint %}
 
 **Variable descriptions**

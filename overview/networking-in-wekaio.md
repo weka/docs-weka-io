@@ -56,7 +56,7 @@ For CPU-optimized networking, WEKA can yield CPU resources to other applications
 For CPU-optimized networking, when [mounting filesystems using stateless clients](../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients), it is possible to use DPDK networking without dedicating cores. This mode is recommended when available and supported by the NIC drivers. In this mode, the DPDK networking uses RX interrupts instead of dedicating the cores.&#x20;
 
 {% hint style="info" %}
-**Note:** This mode is supported in most NIC drivers. Consult [https://doc.dpdk.org/guides/nics/overview.html](https://doc.dpdk.org/guides-18.11/nics/overview.html) for compatibility.
+This mode is supported in most NIC drivers. Consult [https://doc.dpdk.org/guides/nics/overview.html](https://doc.dpdk.org/guides-18.11/nics/overview.html) for compatibility.
 
 AWS (ENA drivers) does not support this mode, hence, in CPU-optimized networking in AWS, use the [UDP Mode](networking-in-wekaio.md#udp-mode).
 {% endhint %}
@@ -77,7 +77,7 @@ In a typical WEKA system configuration, the WEKA backend servers access the netw
 2. High-performance network for data-path traffic.
 
 {% hint style="info" %}
-**Note:** To run both functions on the same physical interface, contact the Customer Success Team.
+To run both functions on the same physical interface, contact the Customer Success Team.
 {% endhint %}
 
 The high-performance network used to connect all the backend servers must be DPDK-based. This internal WEKA network also requires a separate IP address space (see [Network Planning](../install/bare-metal/planning-a-weka-system-installation.md#network-planning) and [Configuration of Networking](broken-reference)). The WEKA system maintains a separate ARP database for its IP addresses and virtual functions and does not use the kernel or operating system ARP services.
@@ -148,7 +148,7 @@ HA performs failover and failback for reliability and load balancing on both int
 When working with HA networking, it is helpful to label the system to send data between servers through the same switch rather than using the ISL or other paths in the fabric. This can reduce the overall traffic in the network. To label the system for identifying the switch and network port, use the `label` parameter in the `weka cluster container net add` command.&#x20;
 
 {% hint style="info" %}
-**Note:** LACP (link aggregation, also known as  bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using VFs (virtual functions).
+LACP (link aggregation, also known as  bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using VFs (virtual functions).
 {% endhint %}
 
 ## RDMA and GPUDirect storage
@@ -175,11 +175,11 @@ For the RDMA/GPUDirect Storage technology to take effect, the following requirem
     * For GPUDirect Storage: install with `--upstream-libs` and `--dpdk`.
 
 {% hint style="info" %}
-**Note:** GPUDirect Storage bypasses the kernel and does not use the page cache. Standard RDMA clients still use the page cache.
+GPUDirect Storage bypasses the kernel and does not use the page cache. Standard RDMA clients still use the page cache.
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** RDMA/GPUDirect Storage technology is not supported when working with a mixed IB and Ethernet networking cluster.
+RDMA/GPUDirect Storage technology is not supported when working with a mixed IB and Ethernet networking cluster.
 {% endhint %}
 
 Running `weka cluster processes` indicates if the RDMA is used. For example:
@@ -215,5 +215,5 @@ PROCESS ID  HOSTNAME  CONTAINER   IPS         STATUS  ROLES       NETWORK      C
 ```
 
 {% hint style="info" %}
-**Note:** GPUDirect Storage is auto-enabled and detected by the system. Contact the Customer Success Team to enable or disable RDMA networking on the cluster or a specific client.
+GPUDirect Storage is auto-enabled and detected by the system. Contact the Customer Success Team to enable or disable RDMA networking on the cluster or a specific client.
 {% endhint %}

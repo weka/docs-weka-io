@@ -23,7 +23,7 @@ Adhere to the following considerations:
 * **Up to 16 background tasks can run in parallel:** A paused or aborted task is also counted as a running background task.
 
 {% hint style="info" %}
-**Note:** More restrictions exist between different tasks and multiple tasks of the same type. If a background task does not run due to a restriction, the system provides a relevant message.
+More restrictions exist between different tasks and multiple tasks of the same type. If a background task does not run due to a restriction, the system provides a relevant message.
 {% endhint %}
 
 ### Background tasks list <a href="#managing-background-tasks" id="managing-background-tasks"></a>

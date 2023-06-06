@@ -33,7 +33,7 @@ You can define up to 10 different Interface groups. Use multiple interface group
 The WEKA system automatically distributes the IP addresses evenly on each server and port. If a  server fails, the WEKA system redistributes the IP addresses associated with the failed server to other servers. To minimize the effect of server failures, it is recommended to define sufficient floating IPs so that the Weka system can assign four floating IPs per server.
 
 {% hint style="info" %}
-**Note:** The WEKA system configures the server IP networking for the NFS service on the server operating system. The user must not perform this action.
+The WEKA system configures the server IP networking for the NFS service on the server operating system. The user must not perform this action.
 {% endhint %}
 
 ### Configure the round-robin DNS server
@@ -41,7 +41,7 @@ The WEKA system automatically distributes the IP addresses evenly on each server
 To ensure that the various NFS clients balance the load on the different WEKA servers serving NFS, it is recommended to define a [round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS) entry that resolves to the list of floating IPs, ensuring that client loads are equally distributed across all servers.
 
 {% hint style="info" %}
-**Note:** Set the TTL (Time to Live) for all A records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
+Set the TTL (Time to Live) for all A records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
 {% endhint %}
 
 ### Define NFS access control (client access groups)
@@ -165,13 +165,13 @@ You can change the following mount options. These values are commonly used with 
 #### Fixed-mount options
 
 {% hint style="danger" %}
-**Note:** Set these values on the mount command because different values are not supported.
+Set these values on the mount command because different values are not supported.
 {% endhint %}
 
 * `nolock`
 
 {% hint style="info" %}
-**Note:** The following options must have fixed values, but usually are either the NFS mount defaults or are negotiated to these values by the protocol.
+The following options must have fixed values, but usually are either the NFS mount defaults or are negotiated to these values by the protocol.
 {% endhint %}
 
 * `sec=sys`

@@ -12,8 +12,6 @@ A WEKA cluster is a collection of backend servers configured with containers, SS
 The expansion and shrinking procedures only apply to homogeneous WEKA clusters in which all the cluster servers are similar and have the same number of cores, memory, SSD capacity per server, and servers per failure domain (if any).
 
 {% hint style="info" %}
-**Notes:**
-
 * For heterogeneous WEKA cluster configurations and estimation of the performance change, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 * For AWS deployments, use the CloudFormation for the initial deployment, not for expanding and shrinking cluster resources.
 {% endhint %}
@@ -38,7 +36,7 @@ The expansion procedures are similar to the _WEKA installation on bare metal_ pr
 * **Memory expansion:** When expanding the memory resources, the new containers must have the same memory as the existing containers.
 
 {% hint style="info" %}
-**Note:** To calculate the capacity of the WEKA cluster after the expansion, refer to the [SSD net storage capacity calculation](../../overview/ssd-capacity-management.md#ssd-net-storage-capacity-calculation) section.
+To calculate the capacity of the WEKA cluster after the expansion, refer to the [SSD net storage capacity calculation](../../overview/ssd-capacity-management.md#ssd-net-storage-capacity-calculation) section.
 {% endhint %}
 
 **Related topics**

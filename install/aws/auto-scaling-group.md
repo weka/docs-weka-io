@@ -9,7 +9,7 @@ You can create an auto-scaling group for your cluster by running the [wekactl ut
 You can control the number of instances by either changing the desired capacity of instances from the AWS auto-scaling group console or defining your custom metrics and scaling policy in AWS. Once the desired capacity has changed, WEKA takes care of safely scaling the instances.
 
 {% hint style="info" %}
-**Note:** When scaling the number of instances increase/decrease and, along with that, the cluster resources, to automatically take advantage of the extra SSD capacity, it is possible to use [thin-provisioned](../../overview/filesystems.md#thin-provisioning) filesystems.
+When scaling the number of instances increase/decrease and, along with that, the cluster resources, to automatically take advantage of the extra SSD capacity, it is possible to use [thin-provisioned](../../overview/filesystems.md#thin-provisioning) filesystems.
 
 When downscaling, ensure the minimum SSD capacity of the filesystems can fit into the lower capacity cluster or tiered to S3.&#x20;
 {% endhint %}

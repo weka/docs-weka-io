@@ -41,11 +41,11 @@ In the WEKA system, by default, any data read or written by customer application
 This mechanism ensures coherence, providing the WEKA system with full page cache utilization whenever only a single server or multiple servers access a file for read-only purposes. If multiple servers access a file and at least one of them is writing to the file, the page cache is not used, and any IO operation is handled by the backends. Conversely, when either a single server or multiple servers open a file for read-only purposes, the page cache is fully utilized by the WEKA client, enabling read operations from memory without accessing the backend servers.
 
 {% hint style="info" %}
-**Note:** A server is defined as writing to a file on the actual first write operation and not based on the read/write flags of the open system call.
+A server is defined as writing to a file on the actual first write operation and not based on the read/write flags of the open system call.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** In some scenarios, particularly random reads of small blocks of data from large files, a read cache enablement can create an amplification of reads, due to the Linux operating system's prefetch mechanism. If necessary, this mechanism can be tuned as explained [here](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-bdi).
+In some scenarios, particularly random reads of small blocks of data from large files, a read cache enablement can amplify reads due to the Linux operating system's prefetch mechanism. If necessary, this mechanism can be tuned as explained [here](https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-bdi).
 {% endhint %}
 
 ## Write cache mount mode (default)
@@ -61,5 +61,5 @@ To sync the filesystem and commit all changes in the write cache (e.g., if there
 The WEKA client supports multiple mount points of the same file system on the same server, even with different mount modes. This can be effective in environments such as containers where different processes in the server need to have different definitions of read/write access or caching schemes.
 
 {% hint style="info" %}
-Note that two mounts on the same servers are treated as two different servers with respect to the consistency of the cache, as described above. For example, two mounts on the same server, mounted with write cache mode, might have different data simultaneously.
+Two mounts on the same servers are treated as two different servers with respect to the consistency of the cache, as described above. For example, two mounts on the same server, mounted with write cache mode, might have different data simultaneously.
 {% endhint %}

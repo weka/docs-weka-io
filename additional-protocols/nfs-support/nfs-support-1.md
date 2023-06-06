@@ -28,7 +28,7 @@ Use the following command line to add an interface group:
 The parameter `allow-manage-gids` determines the type of NFS stack. The default value of this parameter is `on`, which sets the NFS-W stack.
 
 {% hint style="warning" %}
-**Note:** Do not mount the same filesystem by containers residing in interface groups with different values of the `allow-manage-gids.`
+Do not mount the same filesystem by containers residing in interface groups with different values of the `allow-manage-gids.`
 {% endhint %}
 
 **Parameters**
@@ -72,7 +72,7 @@ Use the following command lines to add/delete an interface group IP:
 <table><thead><tr><th width="222">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Interface group name</td></tr><tr><td><code>ips</code>*</td><td>Valid IP range</td></tr></tbody></table>
 
 {% hint style="info" %}
-**Note:** Cloud environments do not support interface group IPs.
+Cloud environments do not support interface group IPs.
 {% endhint %}
 
 ## Configure the service mountd port

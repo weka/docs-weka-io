@@ -49,11 +49,11 @@ For the first mount, this installs the WEKA software and automatically configure
 Configuring the client OS to automatically mount the filesystem at boot time is possible. For more information, refer to [Mount a filesystem using the traditional method](../../fs/mounting-filesystems.md#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mount-filesystems-using-autofs).
 
 {% hint style="info" %}
-**Note:** Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for WEKA client software and NFS mount for the traces. For more information, contact the Customer Success Team.
+Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for WEKA client software and NFS mount for the traces. For more information, contact the Customer Success Team.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Each client must have a unique IP and FQDN.
+Each client must have a unique IP and FQDN.
 {% endhint %}
 
 ## Modify the cgroups usage
@@ -108,7 +108,7 @@ Mounts: 1
 Verify that the WEKA software is installed on the client according to the installation instructions. For further information, see [Download the WEKA software installation file](obtaining-the-weka-install-file.md) and [1. Install the WEKA software](weka-system-installation-with-multiple-containers-using-the-cli.md#1.-install-the-weka-software).
 
 {% hint style="info" %}
-**Note:** All clients in a WEKA system cluster must use the same software version as the backends or a maximum of one version back. The backend containers must run the same WEKA software version except during upgrades (as managed by the upgrade process).
+All clients in a WEKA system cluster must use the same software version as the backends or a maximum of one version back. The backend containers must run the same WEKA software version except during upgrades (as managed by the upgrade process).
 {% endhint %}
 
 ### Stage 2: Join the cluster
@@ -127,7 +127,7 @@ Once the client is in the stem mode (this is the mode defined immediately after 
 | `client-hostname`  | String   | IP/hostname of the client currently being added                     | Unique IP/FQDN           | Yes           |             |
 
 {% hint style="info" %}
-**Note:** On completion of this stage, the container-id of the newly added container will be received. Make a note of it for the next steps.
+On completion of this stage, the container-id of the newly added container will be received. Make a note of it for the next steps.
 {% endhint %}
 
 ### Stage 3: Configure the container as a client
@@ -151,7 +151,7 @@ To configure the new container as a client, run the following command:
 **Command:** `weka cluster container net add`
 
 {% hint style="info" %}
-**Note:** If the new client is to communicate with the WEKA cluster over the kernel UDP stack, it is not necessary to run this command.
+If the new client is to communicate with the WEKA cluster over the kernel UDP stack, it is not necessary to run this command.
 {% endhint %}
 
 If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the WEKA cluster:
@@ -169,11 +169,11 @@ If a high-performance client is required and the appropriate network NIC is avai
 | `netmask`      | Number     | Number of bits in the netmask, e.g., the netmask of `255.255.0.0` has `16` netmask bits | Describes the number of bits that identify a network ID (also known as CIDR).                                                                                                | No            |             |
 
 {% hint style="info" %}
-**Note:** When configuring an InfiniBand client, do not pass the `--ips`, `--netmask` and `--gateway` parameters.
+When configuring an InfiniBand client, do not pass the `--ips`, `--netmask` and `--gateway` parameters.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** InfiniBand/Ethernet clients can only join a cluster with the same network technology connectivity. It is possible to mix InfiniBand and Ethernet clients in the same cluster as long as the cluster backends are connected to both network technologies.
+InfiniBand/Ethernet clients can only join a cluster with the same network technology connectivity. It is possible to mix InfiniBand and Ethernet clients in the same cluster as long as the cluster backends are connected to both network technologies.
 {% endhint %}
 
 ### Stage 5: Apply the container configuration

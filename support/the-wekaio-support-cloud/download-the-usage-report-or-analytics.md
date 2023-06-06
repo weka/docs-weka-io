@@ -58,7 +58,7 @@ The following properties are affected by anonymization:
 </details>
 
 {% hint style="info" %}
-**Note:** The anonymization option is supported with WEKA clusters of version 3.14.2 and above.
+The anonymization option is supported with WEKA clusters of version 3.14.2 and above.
 {% endhint %}
 
 **Procedure:**

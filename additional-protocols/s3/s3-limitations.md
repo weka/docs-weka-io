@@ -40,7 +40,7 @@ The following standard S3 APIs are supported:
 * See [AWS S3 object name limitations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html). Match them to limitations in other protocols.
 
 {% hint style="info" %}
-**Note:** It is recommended to avoid special characters that might be unsupported using protocols other than S3.&#x20;
+It is recommended to avoid special characters that might be unsupported using protocols other than S3.&#x20;
 {% endhint %}
 
 ## Policy limitations

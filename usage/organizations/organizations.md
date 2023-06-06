@@ -69,7 +69,7 @@ You can modify an organization's SSD and total quota to meet the capacity demand
 If an organization is no longer required, you can remove it. You cannot remove the root organization.
 
 {% hint style="danger" %}
-**Warning:** Deleting an organization is irreversible**.** It removes all entities related to the organization, such as filesystems, object stores, and users.
+Deleting an organization is irreversible**.** It removes all entities related to the organization, such as filesystems, object stores, and users.
 {% endhint %}
 
 **Procedure**

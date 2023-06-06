@@ -32,8 +32,6 @@ The command response provides an access identifier, `Diags collection ID`. Send 
 When running the command for all servers in the cluster, a local diagnostics file is created in each server in the location `/opt/weka/diags/local`. The local diagnostics file of each server is consolidated in a single diagnostics file in the server where you run the command in the `/opt/weka/diags` directory.
 
 {% hint style="info" %}
-**Notes:**
-
 * HTTPS access is required to upload the diagnostics to AWS S3 endpoints.
 * The upload process is asynchronous. Therefore, connectivity failure events are reflected in the events log even if the command exits successfully.
 {% endhint %}
@@ -249,7 +247,7 @@ When you collect diagnostics data using `weka diags collect`, it creates a separ
 First, list the diagnostic files in the system and their IDs, then delete the specific diagnostic file according to its ID.
 
 {% hint style="danger" %}
-**Warning:** The diagnostic files are essential for troubleshooting purposes. Only delete these files if you are sure they are already uploaded to Weka Home and are no longer required. If you need clarification, contact the [Customer Success Team](../getting-support-for-your-weka-system.md#contact-customer-success-team).
+The diagnostic files are essential for troubleshooting purposes. Only delete these files if you are sure they are already uploaded to Weka Home and are no longer required. If you need clarification, contact the [Customer Success Team](../getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ### List the diagnostic files

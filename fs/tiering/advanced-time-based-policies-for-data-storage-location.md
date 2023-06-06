@@ -19,11 +19,11 @@ To further help describe this section, let us use an example where the [Tiering 
 Consequently, the drive Retention Period policy determines the resolution of the WEKA system release decisions. If it is set to 1 month and the SSD capacity is sufficient for 10 months of writing, then the first month will be kept on the SSDs.
 
 {% hint style="info" %}
-**Note:** If the WEKA system cannot comply with the defined Retention Period, e.g., the SSD is full and data has not been released from the SSD to the object store, a Break-In Policy will occur. In such a situation, an event is received in the WEKA system event log, advising that the system has not succeeded in complying with the policy and that data has been automatically released from the SSD to the object store, before completion of the defined Retention Period. No data will be lost (since the data has been transferred to the object store), but slower performance may be experienced.
+If the WEKA system cannot comply with the defined Retention Period, e.g., the SSD is full, and data has not been released to the object store, a Break-In Policy will occur. In such a situation, an event is received in the WEKA system event log, advising that the system has not complied with the policy and that data has been automatically released from the SSD to the object store before the completion of the defined Retention Period. No data will be lost (since the data has been transferred to the object store), but slower performance may be experienced.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** If the data writing rate is always high and the WEKA system fails to successfully release the data to the object store, an Object Store Bottleneck will occur. If the bottleneck continues, this will also result in a Policy Violation event.
+If the data writing rate is always high and the WEKA system fails to successfully release the data to the object store, an Object Store Bottleneck will occur. If the bottleneck continues, this will also result in a Policy Violation event.
 {% endhint %}
 
 ## Tiering cue policy
@@ -37,7 +37,7 @@ The WEKA system integrates a rolling progress control with three rotating period
 3. Period 2: Starts after the period of time defined in the Tiering Cue, triggering the transfer of data written in period 0 from the SSD to the object store.
 
 {% hint style="info" %}
-**Note:** Not all data is transferred to the object store in the order that it was written. If, for example, the Tiering Cue is set to 1 month, there is no priority or order in which the data from the whole month is released to the object store; data written at the end of the month may be released to the object store before data written at the beginning of the month.
+Not all data is transferred to the object store in the order that it was written. If, for example, the Tiering Cue is set to 1 month, there is no priority or order in which the data from the whole month is released to the object store; data written at the end of the month may be released to the object store before data written at the beginning of the month.
 {% endhint %}
 
 {% hint style="success" %}
@@ -53,7 +53,7 @@ Since the WEKA system is a highly scalable data storage system, data storage pol
 Users only specify the Drive Retention Period and based on this, each interval is one-quarter of the Drive Retention Period. Data written, modified, or accessed prior to the last interval is always released, even if SSD space is available.
 
 {% hint style="info" %}
-**Note:** The timestamp is maintained per piece of data in chunks of up to 1 MB, and not per file. Consequently, different parts of big files may have different tiering states.
+The timestamp is maintained per piece of data in chunks of up to 1 MB, and not per file. Consequently, different parts of big files may have different tiering states.
 {% endhint %}
 
 {% hint style="success" %}
@@ -103,11 +103,11 @@ When much more data is written and there is insufficient SSD capacity for storag
 The tiering process (the tiering of data from the SSDs to the object stores) is based on when data is created or modified. It is managed similar to the Drive Retention Period, with the data timestamped in intervals. The length of each interval is the size of the user-defined Tiering Cue. The WEKA system maintains 3 such intervals at any given time, and always tiers the data in the third interval. Refer to the example provided in the "Tiering Cue Policy" section above for further clarity.
 
 {% hint style="info" %}
-**Note:** While the data release process is based on timestamps of access, creation, or modification, the tiering process is based only on the timestamps of the creation or modification.
+While the data release process is based on timestamps of access, creation, or modification, the tiering process is based only on the timestamps of the creation or modification.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** These timestamps are per 1 MB chunk and not the file timestamp.
+These timestamps are per 1 MB chunk and not the file timestamp.
 {% endhint %}
 
 {% hint style="success" %}
@@ -119,7 +119,7 @@ The tiering process (the tiering of data from the SSDs to the object stores) is 
 Since the tiering process applies to data in the first interval in this example, the data written or modified on January 1 will be tiered to the object store on January 3. Consequently, data will never be tiered before it is at least 1 day old (which is the user-defined Tiering Cue), with the worst case being the tiering of data written at the end of January 1 at the beginning of January 3.
 
 {% hint style="info" %}
-**Note:** The Tiering Cue default is 10 seconds and cannot exceed 1/3 of the Drive Retention period.
+The Tiering Cue default is 10 seconds and cannot exceed 1/3 of the Drive Retention period.
 {% endhint %}
 
 ## Breaks in retention period or tiering cue policies <a href="#breaks-in-retention-period-or-tiering-cue-policies" id="breaks-in-retention-period-or-tiering-cue-policies"></a>
@@ -133,5 +133,5 @@ Regardless of the time-based policies, it is possible to use a special mount opt
 In addition, any read done through such a mount point will read the extents from the object-store and will not be kept persistently on the SSD (it still goes through the SSD, but is released immediately before any other interval).
 
 {% hint style="warning" %}
-**Note:** In AWS, this mode should only be used for importing data. It should **not** be used for general access to the filesystem as any data read via this mount point would be immediately released from the SSD tier again. This can lead to excessive S3 charges.
+In AWS, this mode should only be used for importing data. It should **not** be used for general access to the filesystem as any data read via this mount point would be immediately released from the SSD tier again. This can lead to excessive S3 charges.
 {% endhint %}

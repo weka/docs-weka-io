@@ -71,7 +71,7 @@ Use the following command line to delete an organization:
 `weka org delete <org>`
 
 {% hint style="danger" %}
-**Warning:** Deleting an organization is irreversible. It removes all entities related to the organization, such as filesystems, object stores, and users.
+Deleting an organization is irreversible. It removes all entities related to the organization, such as filesystems, object stores, and users.
 {% endhint %}
 
 **Parameters**

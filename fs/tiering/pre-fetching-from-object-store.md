@@ -33,7 +33,7 @@ find -L <directory path> -type f | xargs -r -n512 -P64 weka fs tier fetch -v
 ```
 
 {% hint style="info" %}
-**Note:** The pre-fetching of files does not guarantee that they will reside on the SSD until they are accessed.
+The pre-fetching of files does not guarantee that they will reside on the SSD until they are accessed.
 {% endhint %}
 
 In order to ensure that the fetch is effective, the following must be taken into account:

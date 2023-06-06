@@ -154,12 +154,12 @@ In case tiering is configured, additional AWS APIs permissions are given:
 
 ## Additional operations
 
-Once a CloudFormation template has been generated, it is possible to create a stack from it using the AWS console or the AWS CLI.
+Once a CloudFormation template has been generated, it is possible to create a stack using the AWS console or the AWS CLI.
 
-When the deployment is complete, the stack status will update to `CREATE_COMPLETE` and it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link.
+When the deployment is complete, the stack status will update to `CREATE_COMPLETE,` and it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link.
 
 {% hint style="info" %}
-**Note:** If there is a valid entitlement or PAYG plan in [get.weka.io](https://get.weka.io), the stack will attempt creating a license, deploy it to the cluster, and start IO automatically.&#x20;
+If there is a valid entitlement or PAYG plan in [get.weka.io](https://get.weka.io), the stack attempts to create a license, deploy it to the cluster, and start IO automatically.&#x20;
 
 With that, a filesystem is created and mounted on all instances. This shared filesystem is mounted on `/mnt/weka` in each cluster instance.
 {% endhint %}

@@ -49,7 +49,7 @@ Follow these additional requirements to get Terraform working on an M1/M2-based 
    Ensure the `prefix` and `cluster_name` variables are unique across the Azure environment.    You can optionally also add your Weka token (to download the Weka software) with `get_weka_io_token` and your Microsoft subscription with `subscription_id` or you can supply them later when running `terraform plan` and `terraform apply`.
 
 {% hint style="info" %}
-**Note:** The example templates are simplified and have the minimum variable inputs to customize. For additional variable inputs to customize, you can modify their default values in the main **`variables.tf`** file, or add them to the Terraform variables file. See the README in the Azure-WEKA Terraform package for the complete list of variable inputs.
+The example templates are simplified and have the minimum variable inputs to customize. For additional variable inputs to customize, you can modify their default values in the main **`variables.tf`** file, or add them to the Terraform variables file. See the README in the Azure-WEKA Terraform package for the complete list of variable inputs.
 {% endhint %}
 
 2. To validate the configuration, run `terraform plan`. You are prompted for your get.weka.io token and Microsoft subscription ID if these were not added as variables in step one or supplied as variables as part of the terraform command.
@@ -324,7 +324,7 @@ In the following response example, the cluster formation is completed as shown i
 </details>
 
 {% hint style="success" %}
-**Note:** You can also track the cluster formation progress on the last backend by opening the `/tmp/cluster_creation.log` file.
+You can also track the cluster formation progress on the last backend by opening the `/tmp/cluster_creation.log` file.
 {% endhint %}
 
 ## **Validate the deployment**

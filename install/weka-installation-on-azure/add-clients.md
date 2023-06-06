@@ -3,7 +3,7 @@
 Once the WEKA cluster runs, you can add clients to your WEKA system to run your workflows.
 
 {% hint style="info" %}
-**Note:** Using the Azure Console, the client instances are provisioned separately from the WEKA cluster.
+Using the Azure Console, the client instances are provisioned separately from the WEKA cluster.
 {% endhint %}
 
 ## Mount the filesystem

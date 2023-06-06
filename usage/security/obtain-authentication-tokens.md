@@ -35,7 +35,7 @@ As a local user, you can generate a long-lived token using the GUI or the CLI.
 <figure><img src="../../.gitbook/assets/wmng_manage_api_token.png" alt=""><figcaption><p>Manage API Token</p></figcaption></figure>
 
 {% hint style="info" %}
-**Note:** If you want to revoke all existing login tokens of the local user and refresh them, select **Revoke Tokens**.
+If you want to revoke all existing login tokens of the local user and refresh them, select **Revoke Tokens**.
 {% endhint %}
 
 3\. Copy the generated token and paste it to the REST API authorization dialog.

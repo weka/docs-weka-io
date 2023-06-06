@@ -19,8 +19,6 @@ The Cluster Admin can perform the following activities:
 ‌While Cluster Admins are trusted by different organizations (for example, they have root access to the backend servers), they are obscured from the organization data in the WEKA system. The Cluster Admin separation is partial. For example, they can still see the events of all organizations. The WEKA system ensures the separation of sensitive information between different organizations.
 
 {% hint style="info" %}
-**Notes:**
-
 * The data at the hardware level is not separated. While the WEKA system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations. The system limits are according to the entire system. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
 * When creating mounts, you can specify the maximum and preferred throughput. See   [Set mount option default values](../../fs/mounting-filesystems.md#set-mount-option-default-values).
 {% endhint %}
@@ -59,8 +57,6 @@ Cluster Admins **do not** have permissions to view or manage the system entities
 * NFS exports (NFS client permissions)
 
 {% hint style="warning" %}
-**Note**:
-
 * Different protocols are only supported in the **root** organization.
 * Only the 'legacy' NFS stack exports can be managed within a **non-root** organization.
 * A filesystem cannot be moved between organizations, including to or from the root organization.

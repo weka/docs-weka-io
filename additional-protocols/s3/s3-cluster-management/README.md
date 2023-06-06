@@ -9,7 +9,7 @@ description: This page describes how to set up, update, monitor, and delete an S
 The S3 service can be exposed from the cluster servers, ranging from three servers to the entire cluster. The service performance scales linearly as the S3 cluster scales.
 
 {% hint style="info" %}
-**Note:** Depending on the workload, you may need to use several FE cores to gain maximum performance.
+Depending on the workload, you may need several FE cores to gain maximum performance.
 {% endhint %}
 
 ## Round-robin DNS or load balancer

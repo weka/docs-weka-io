@@ -40,7 +40,7 @@ Before installing the WEKA software on GCP, the following prerequisites must be 
   * pubsub.editor
 
 {% hint style="info" %}
-**Note:** To create a service account using the Terraform package, the iam.serviceAccountAdmin role is required.
+To create a service account using the Terraform package, the iam.serviceAccountAdmin role is required.
 {% endhint %}
 
 ## **Installation**

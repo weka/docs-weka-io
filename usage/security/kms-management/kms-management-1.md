@@ -35,7 +35,7 @@ Use the following command line to add or update the Vault KMS configuration in t
 | `ca-cert`        | String   | Path to the CA certificate PEM file                    |                                                                                                                                                                                                                                                                                                                                        | Optional for `kmip` and must not be supplied for `vault`          |             |
 
 {% hint style="info" %}
-**Note:** For the add/update command to succeed, the KMS should be preconfigured and available with the key and a valid token.
+For the add/update command to succeed, the KMS should be preconfigured and available with the key and a valid token.
 {% endhint %}
 
 {% hint style="success" %}
@@ -63,7 +63,7 @@ Use this command to show the details of the configured KMS.
 Use this command to remove the KMS from the Weka system. It is only possible to remove a KMS configuration if no encrypted filesystems exist.
 
 {% hint style="warning" %}
-**Note:** To force remove a KMS even if encrypted filesystems exist, use the `--allow-downgrade` attribute. In such cases, the encrypted filesystem keys are re-encrypted with local encryption and may be compromised.
+To force remove a KMS even if encrypted filesystems exist, use the `--allow-downgrade` attribute. In such cases, the encrypted filesystem keys are re-encrypted with local encryption and may be compromised.
 {% endhint %}
 
 ### **Re-wrap filesystem keys**
@@ -79,11 +79,11 @@ If the KMS key is compromised or requires rotation, the KMS admin can rotate the
 <table><thead><tr><th width="175">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>new-key-uid</code>*</td><td>Unique identifier for the new key to be used to wrap filesystem keys.<br>Mandatory for <code>kmip</code> only.<br>Do not specify any value for <code>vault</code>.</td></tr></tbody></table>
 
 {% hint style="info" %}
-**Note:** Existing filesystem keys that are part of the Snap-To-Object feature will not be automatically re-encrypted with the new KMS key.
+Existing filesystem keys that are part of the Snap-To-Object feature will not be automatically re-encrypted with the new KMS key.
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** Unlike in Vault KMS, re-wrapping a KMIP-based KMS requires generating a new key in the KMS, rather than rotating the same key. Hence, the old key should be preserved in the KMS in order to be able to decrypt old Snap2Obj snapshots.
+Unlike in Vault KMS, re-wrapping a KMIP-based KMS requires generating a new key in the KMS, rather than rotating the same key. Hence, the old key should be preserved in the KMS in order to be able to decrypt old Snap2Obj snapshots.
 {% endhint %}
 
 ## Set up vault configuration
@@ -109,7 +109,7 @@ Success! Data written to: transit/keys/weka-key
 ```
 
 {% hint style="info" %}
-**Note:** It is possible to either create a different key for each Weka cluster or to share the key between different Weka clusters.
+It is possible to either create a different key for each Weka cluster or to share the key between different Weka clusters.
 {% endhint %}
 
 For more information, refer to [Vault transit secret-engine documentation](https://www.vaultproject.io/docs/secrets/transit/index.html).
@@ -185,7 +185,7 @@ policies             ["default"]
 For more information on obtaining an API token, refer to [Vault Tokens documentation](https://learn.hashicorp.com/vault/security/tokens).
 
 {% hint style="warning" %}
-**Note:** The Weka system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max\_lease\_ttl).
+The Weka system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max\_lease\_ttl).
 {% endhint %}
 
 ## Obtain a certificate for a KMIP-based KMS

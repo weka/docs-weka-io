@@ -40,7 +40,7 @@ To add SELinux support, perform the following procedures:
     $ semodule -i csi-wekafs.pp
     ```
 
-    > **NOTE**: For this purpose, the `policycoreutils-devel` package (or its alternative in case of Linux distribution different from the RedHat family) is required.
+    > For this purpose, the `policycoreutils-devel` package (or its alternative in case of Linux distribution different from the RedHat family) is required.
 
     Verify that the policy is applied correctly:
 
@@ -143,7 +143,7 @@ $ helm install --upgrade csi-wekafsplugin csi-wekafs/csi-wekafsplugin --namespac
 
     *   If the output is empty, proceed to [Install and configure the Weka CSI Plugin](add-selinux-support.md#install-and-configure-the-weka-csi-plugin).
 
-        > **NOTE:** If the label was missing and added by you during troubleshooting, the CSI node server component must be restarted on the node.\
+        > If the label was missing and added by you during troubleshooting, the CSI node server component must be restarted on the node.\
         > Perform the following command to terminate the relevant pod and another instance will start automatically:
         >
         > ```

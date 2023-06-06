@@ -24,8 +24,6 @@ Ensure the following requirements are met:
 &#x20;Mounting a filesystem without these requirements may fail or overload the WEKA client.
 
 {% hint style="info" %}
-**Notes:**
-
 * Mounting filesystems from multiple clusters from clients with Intel E810 are only supported using UDP mode.
 * Mounting a stateful client using **autofs** is only supported on filesystems on a single cluster.
 {% endhint %}

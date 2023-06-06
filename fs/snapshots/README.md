@@ -46,7 +46,7 @@ Some examples of mixing maximum read-only and writable snapshots that a system c
 * 12K read-only and 8K writable snapshots.
 
 {% hint style="info" %}
-**Note:** A live filesystem is counted as part of the maximum writable snapshots.
+A live filesystem is counted as part of the maximum writable snapshots.
 {% endhint %}
 
 **Related topics**

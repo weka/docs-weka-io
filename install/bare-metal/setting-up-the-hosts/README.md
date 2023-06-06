@@ -19,7 +19,7 @@ This preparation consists of the following steps:
 7. [Validate the system preparation](./#validate-the-system-preparation).
 
 {% hint style="info" %}
-**Note:** Some of the examples on this page contain version-specific information. The software is updated frequently, so the package versions available to you may differ from those presented here.
+Some of the examples on this page contain version-specific information. The software is updated frequently, so the package versions available to you may differ from those presented here.
 {% endhint %}
 
 **Related topics**
@@ -29,7 +29,7 @@ This preparation consists of the following steps:
 ## Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
 {% hint style="info" %}
-**Note:** The steps describing the installation of NIC drivers are provided as a courtesy. Refer to your NIC vendor documentation for the latest information and updates.
+The steps describing the installation of NIC drivers are provided as a courtesy. Refer to your NIC vendor documentation for the latest information and updates.
 {% endhint %}
 
 ### Mellanox OFED installation
@@ -382,7 +382,7 @@ The `wekachecker` performs the following validations:
 * noexec mount option on /tmp
 
 {% hint style="info" %}
-**Note:** The `wekachecker`tool applies to all WEKA versions. From V4.0, the following validations are not relevant, although the tool displays them:
+The `wekachecker`tool applies to all WEKA versions. From V4.0, the following validations are not relevant, although the tool displays them:
 
 * OS has SELinux disabled or in permissive mode.
 * Network Manager is disabled.

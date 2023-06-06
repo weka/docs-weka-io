@@ -18,7 +18,7 @@ If you need to mount a single client to multiple clusters, refer to the [Mount f
 ## Mount a filesystem using the traditional method&#x20;
 
 {% hint style="info" %}
-**Note:** Using the mount command as explained below first requires the installation of the WEKA client, configuring the client, and joining it to a WEKA cluster.
+Using the mount command as explained below first requires the installation of the WEKA client, configuring the client, and joining it to a WEKA cluster.
 {% endhint %}
 
 To mount a filesystem on one of the cluster servers, let’s assume the cluster has a filesystem called `demo`. To add this filesystem to a server, SSH into one of the servers and run the `mount` command as the `root` user, as follows:
@@ -48,7 +48,7 @@ Furthermore, it unifies all security aspects in the mount command, eliminating t
 To use the stateless clients feature, a WEKA agent must be installed. Once this is complete, mounts can be created and configured using the mount command and can be removed from the cluster using the unmount command.
 
 {% hint style="info" %}
-**Note:** To allow only WEKA authenticated users to mount a filesystem, set the filesystem `--auth-required` flag to `yes`.  For more information, refer to the [Mount authentication for organization filesystems](../usage/organizations/organizations-2.md) topic.
+To allow only WEKA authenticated users to mount a filesystem, set the filesystem `--auth-required` flag to `yes`.  For more information, refer to the [Mount authentication for organization filesystems](../usage/organizations/organizations-2.md) topic.
 {% endhint %}
 
 Assuming the WEKA cluster is using the backend IP of `1.2.3.4`, running the following command as `root` on a client will install the agent:

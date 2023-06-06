@@ -33,14 +33,14 @@ This use case supports backup in any of the following WEKA system deployment mod
 * **Remote object store:** The WEKA cluster and object store are located in different geographic locations, typically with longer latencies between them. In such a deployment, you can send snapshots to both local and remote object stores.
 
 {% hint style="info" %}
-**Note:** This deployment type requires supporting the latency of hundreds of milliseconds. For performance issues on Snap-To-Object tiering cross-interactions/resonance, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
+This deployment type requires supporting the latency of hundreds of milliseconds. For performance issues on Snap-To-Object tiering cross-interactions/resonance, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 * **Local object store replicating to a remote object store:** A local object store in one datacenter replicates data to another object store using the object store system features, such as [AWS S3 cross-region replication](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html).\
   This deployment provides both integrated tiering and Snap-To-Object local high performance between the WEKA object store and the additional object store. The object store manages the data replication, enabling data survival in multiple regions.
 
 {% hint style="info" %}
-**Note:** This deployment requires ensuring that the object store system perfectly replicates all objects on time to ensure consistency across regions.
+This deployment requires ensuring that the object store system perfectly replicates all objects on time to ensure consistency across regions.
 {% endhint %}
 
 ### Archiving data
@@ -161,7 +161,7 @@ You can implement this paradigm for each filesystem using one of the following u
   Objects in the object store are used for tiering all data and backup using Snap-To-Object. If possible, the WEKA system uses the same object for both purposes, eliminating the unnecessary need to acquire additional storage and copy data.
 
 {% hint style="info" %}
-**Note:** When using Snap-To-Object to rehydrate data from an object store, some of the metadata may still be in the object store until it is accessed for the first time.
+When using Snap-To-Object to rehydrate data from an object store, some of the metadata may still be in the object store until it is accessed for the first time.
 {% endhint %}
 
 

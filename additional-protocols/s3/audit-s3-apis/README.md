@@ -9,7 +9,7 @@ S3 API calls can generate JSON events that webhook target applications can recei
 Enabling an audit webhook comes instead of the `BucketLogging` S3 APIs. The purpose of the audit logs is to indicate the nature of traffic.
 
 {% hint style="info" %}
-**Note:** If the WEKA cluster disconnects from the webhook application or the S3 clusters' internal events buffer fills up, events are thrown away. It is recommended to monitor the external webhook target application's availability.
+If the WEKA cluster disconnects from the webhook application or the S3 clusters' internal events buffer fills up, events are thrown away. It is recommended to monitor the external webhook target application's availability.
 {% endhint %}
 
 

@@ -19,7 +19,7 @@ Detaching a local object-store bucket from a filesystem migrates the filesystem 
 When detaching, the background task of detaching the object-store bucket begins. Detaching can be a long process, depending on the amount of data and the load on the object stores.
 
 {% hint style="warning" %}
-**Note:** Detaching an object store bucket is irreversible. Attaching the same bucket again is considered as re-attaching a new bucket regardless of the data stored in the bucket.
+Detaching an object store bucket is irreversible. Attaching the same bucket again is considered as re-attaching a new bucket regardless of the data stored in the bucket.
 {% endhint %}
 
 #### Migration to a different object store
@@ -31,17 +31,17 @@ When detaching from a filesystem tiered to two object store buckets, only the re
 Detaching from a filesystem tiered to one object store bucket un-tiers the filesystem and copies the data back to the SSD.
 
 {% hint style="info" %}
-**Note:** The SSD must have sufficient capacity. That is, the allocated SSD capacity must be at least the total capacity used by the filesystem.
+The SSD must have sufficient capacity. That is, the allocated SSD capacity must be at least the total capacity used by the filesystem.
 {% endhint %}
 
 On completion of detaching, the object-store bucket does not appear under the filesystem when using the `weka fs` command. However, it still appears under the object store and can be removed if it is not used by any other filesystem. The data in the read-only object-store bucket remains in the object-store bucket for backup purposes. If this is unnecessary or the reclamation of object store space is required, it is possible to delete the object-store bucket.
 
 {% hint style="info" %}
-**Note:** Before deleting an object-store bucket, remember to consider data from another filesystem or data not relevant to the WEKA system on the object-store bucket.
+Before deleting an object-store bucket, remember to consider data from another filesystem or data not relevant to the WEKA system on the object-store bucket.
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** Once the migration process is completed, while relevant data is migrated, old snapshots (and old locators) reside on the old object-store bucket. To recreate snapshot locators on the new object store bucket, snapshots should be re-uploaded to the (new) bucket.
+Once the migration process is completed, while relevant data is migrated, old snapshots (and old locators) reside on the old object-store bucket. To recreate snapshot locators on the new object store bucket, snapshots should be re-uploaded to the (new) bucket.
 {% endhint %}
 
 ### Migration considerations
@@ -57,7 +57,7 @@ The order of the following steps is important.&#x20;
 3. Detach the old object store bucket.
 
 {% hint style="info" %}
-**Note**: If you perform the workflow steps in a different order, the snapshots can be completely deleted from any of the object store buckets. It is also possible that the snapshots are already in a migration process, and cannot be deleted until the migration is completed.
+If you perform the workflow steps in a different order, the snapshots can be completely deleted from any of the object store buckets. It is also possible that the snapshots are already in a migration process and cannot be deleted until the migration is completed.
 {% endhint %}
 
 ### Attach a remote object store bucket

@@ -40,7 +40,7 @@ The options include:
 * Bookmark specific statistics for future reference and share them with others (using the URL).
 
 {% hint style="info" %}
-**Note:** The page shows only the statistics of the backend servers and clients in the cluster. The page does not show statistics in the following cases:
+The page shows only the statistics of the backend servers and clients in the cluster. The page does not show statistics in the following cases:
 
 * A backend server is removed.
 * A client is not connected to the cluster for more than the [retention period](statistics-1.md#set-statistics-retention).

@@ -9,22 +9,22 @@ description: >-
 
 ## About WEKA performance tests
 
-There are three main performance metrics when measuring a storage system performance:
+There are three main performance metrics when measuring a storage system's performance:
 
 1. Latency, which is the time from operation initiation to completion
 2. The number of different IO operations (read/write/metadata) that the system can process concurrently
 3. The bandwidth of data that the system can process concurrently
 
-Each of these performance metrics applies to read operations, write operations, or a mixture of read and write operations.
+Each performance metric applies to read operations, write operations, or a mixture of read and write operations.
 
-‌When measuring the WEKA system performance, different [mount modes](../../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration (using either user-space DPDK networking or kernel UDP) also significantly affects performance.
+‌When measuring the WEKA system performance, different [mount modes](../../overview/weka-client-and-mount-modes.md) produce different performance characteristics. Additionally, client network configuration (using user-space DPDK networking or kernel UDP) significantly affects performance.
 
 {% hint style="info" %}
-**Note:** All performance tests listed here are generic and not specific to the WEKA system. They can be used to compare the WEKA storage system to other storage systems or a local storage device.
+All performance tests listed here are generic and not specific to the WEKA system. They can be used to compare the WEKA storage system to other storage systems or a local storage device.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** There is a difference between single-client performance to aggregated performance. When running the tests listed below from one client, the client will limit the test's performance. In general, several clients will be required to maximize the performance of a WEKA cluster.
+There is a difference between single-client performance to aggregated performance. When running the tests listed below from one client, the client will limit the test's performance. In general, several clients will be required to maximize the performance of a WEKA cluster.
 {% endhint %}
 
 ## The FIO tool
@@ -123,7 +123,7 @@ While we provide below the output of one iteration, we ran each test several tim
 | Deletes          | 117,644 ops/s                          | 361,755 ops/s                                        |
 
 {% hint style="info" %}
-**Note:** If the client uses a 100 Gbps NIC or above, mounting the WEKA filesystem with more than one core is required to maximize client throughput.
+If the client uses a 100 Gbps NIC or above, mounting the WEKA filesystem with more than one core is required to maximize client throughput.
 {% endhint %}
 
 ### Test read throughput

@@ -79,7 +79,7 @@ Define the following optional parameters if tiering to S3 is desired:
 | `Tiering SSD Percent` | Sets how much of the filesystem capacity (in percent) should reside on SSD. This parameter is applicable only if `New S3 Bucket` or `Existing S3 Bucket` parameters have been defined.                                           |
 
 {% hint style="info" %}
-**Note:** For public subnets, make sure to select a subnet that has the Enable Auto-Assign Public IPv4 Address setting turned on, or select a subnet that has Internet connectivity.
+For public subnets, make sure to select a subnet that has the Enable Auto-Assign Public IPv4 Address setting turned on, or select a subnet that has Internet connectivity.
 {% endhint %}
 
 Once all required parameters have been filled, make sure to check the "I acknowledge that AWS CloudFormation might create IAM resources” checkbox at the bottom and click the Create Stack button:
@@ -97,7 +97,7 @@ In the Create Stack screen, define the parameters specific to your AWS account.
 ### Prerequisites CloudFormation stack
 
 {% hint style="info" %}
-**Note:** To run this stack, `enableDnsHostnames`  and `enableDnsSupport` [DNS attributes](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support) should be enabled for the VPC.
+To run this stack, `enableDnsHostnames`  and `enableDnsSupport` [DNS attributes](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support) should be enabled for the VPC.
 {% endhint %}
 
 ![AWS Create Prerequisites Stack Screen](../../.gitbook/assets/CF\_pre\_3\_13.png)
@@ -123,7 +123,7 @@ The cluster deployment process takes about 10 minutes. During this time, the fol
 5. A filesystem is created using all the available capacity and is mounted on all client instances. This shared filesystem is mounted on `/mnt/weka` in each cluster instance.
 
 {% hint style="info" %}
-**Note:** If the deployment is unsuccessful, see [Troubleshooting](troubleshooting.md) for how to resolve common deployment issues.
+If the deployment is unsuccessful, see [Troubleshooting](troubleshooting.md) for how to resolve common deployment issues.
 {% endhint %}
 
 Once the deployment is complete, the CloudFormation stack status will be updated to `CREATE_COMPLETE`. At this point, it is possible to access the WEKA system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link (or by http://\<backend server name or IP address>:14000).

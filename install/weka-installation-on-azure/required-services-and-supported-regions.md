@@ -44,7 +44,7 @@ The region must support the services used in WEKA on Azure. The following sectio
   * Southeast Asia
 
 {% hint style="info" %}
-**Note:** Australia Southeast, Canada East, and North Central US do not include the Zone-redundant storage (ZRS) blob. If the snap-to-object feature is required, use a bucket from a different region or a lower durability blob such as the Locally-redundant storage (LRS) blob.
+Australia Southeast, Canada East, and North Central US do not include the Zone-redundant storage (ZRS) blob. If the snap-to-object feature is required, use a bucket from a different region or a lower durability blob such as the Locally-redundant storage (LRS) blob.
 {% endhint %}
 
 

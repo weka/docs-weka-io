@@ -272,5 +272,7 @@ exporter:
 The exporter always tries to allocate one host per thread but does not exceed the maximum processes specified in the `max_procs` parameter. In a cluster with 1000 hosts, it doubles or triples up the hosts on the threads.
 
 {% hint style="success" %}
-**Example:** In a cluster with 3000 hosts, `max_procs` = 8,  and `max_threads_per_proc`= 100, only 8 processes running. Each process with 100 threads, but there are close to 4 hosts serviced per thread instead of the default 1 host.
+**Example:**
+
+In a cluster with 3000 hosts, `max_procs` = 8,  and `max_threads_per_proc`= 100, only 8 processes running. Each process with 100 threads, but there are close to 4 hosts serviced per thread instead of the default 1 host.
 {% endhint %}

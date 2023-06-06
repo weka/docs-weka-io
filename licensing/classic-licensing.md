@@ -56,9 +56,9 @@ If you already have a license, please enter it by running
 &#x20;   (as part of the Before you begin section above) and select **Create License**.
 
 {% hint style="info" %}
-**Note:** If you plan a cluster expansion for the future, you can fill in capacities larger than those appearing in the Weka cluster license.
+If you plan a cluster expansion for the future, you can fill in capacities larger than those appearing in the Weka cluster license.
 
-The capacities in the license represent the limits to which it is possible to expand the cluster and do not have to match the actual usage.
+The licenses' capacities represent the limits to which it is possible to expand the cluster and do not have to match the actual usage.
 {% endhint %}
 
 ![Create license dialog](../.gitbook/assets/getwekaio\_3\_create\_license\_dialog.png)

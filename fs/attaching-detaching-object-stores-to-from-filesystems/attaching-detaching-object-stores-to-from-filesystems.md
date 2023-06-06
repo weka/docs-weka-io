@@ -49,7 +49,7 @@ Detaching a local object store bucket from a filesystem migrates the filesystem 
    * Configure a different capacity.
 
 {% hint style="info" %}
-**Note:** Used capacity must be taken into account. Un-tiering takes time to propagate the data from the object store to the SSD. When un-tiering an active filesystem, to accommodate the additional writes during the detaching process, it is recommended to adjust to a higher value than the used capacity.
+Used capacity must be taken into account. Un-tiering takes time to propagate the data from the object store to the SSD. When un-tiering an active filesystem, to accommodate the additional writes during the detaching process, it is recommended to adjust to a higher value than the used capacity.
 {% endhint %}
 
 7. Select the option that best meets your needs, and select **Continue**.

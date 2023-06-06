@@ -25,7 +25,7 @@ When managing an SMB-W cluster using the GUI, the limitations related to SMB-W i
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Use ASCII format when configuring name fields, such as domain and shares.
+Use ASCII format when configuring name fields, such as domain and shares.
 {% endhint %}
 
 ## **Configure the SMB cluster** <a href="#configure-the-smb-cluster" id="configure-the-smb-cluster"></a>

@@ -45,11 +45,11 @@ Use the following command line to create a filesystem:
 
 
 {% hint style="info" %}
-**Note:** When creating an encrypted filesystem a KMS must be defined.
+When creating an encrypted filesystem a KMS must be defined.
 {% endhint %}
 
 {% hint style="warning" %}
-**Note:** To define an encrypted filesystem without a KMS, it is possible to use the`--allow-no-kms` parameter in the command. This can be useful when running POCs but should not be used in production since the security chain is compromised when a KMS is not used.
+To define an encrypted filesystem without a KMS, it is possible to use the`--allow-no-kms` parameter in the command. This can be useful when running POCs but should not be used in production since the security chain is compromised when a KMS is not used.
 
 If filesystem keys exist when adding a KMS, they are automatically re-encrypted by the KMS for any future use.
 {% endhint %}
@@ -97,7 +97,7 @@ Use the following command line to delete a filesystem:
 | `purge-from-obs` | For a tiered filesystem, if set, all filesystem data is deleted from the object store bucket. | False   |
 
 {% hint style="danger" %}
-**Note:** Using `purge-from-obs` will remove all data from the object-store. This includes any backup data or snapshots created from this filesystem (if this filesystem has been downloaded from a snapshot of a different filesystem, it will leave the original snapshot data intact).
+Using `purge-from-obs` removes all data from the object-store. This includes any backup data or snapshots created from this filesystem (if this filesystem has been downloaded from a snapshot of a different filesystem, it will leave the original snapshot data intact).
 
 * If any of the removed snapshots have been (or are) downloaded and used by a different filesystem, that filesystem will stop functioning correctly, data might be unavailable and errors might occur when accessing the data.
 

@@ -16,7 +16,7 @@ In the WEKA system, data can be stored on two forms of media:
 The WEKA system can be configured either as an SSD-only system or as a data management system consisting of both SSDs and object stores. By nature, SSDs provide high performance and low latency storage, while object stores compromise performance and latency but are the most cost-effective solution available for storage. Consequently, users focused on high performance only should consider using an SSD-only WEKA system configuration, while users are seeking to balance performance and cost should consider a tiered data management system, with the assurance that the WEKA system features will control the allocation of hot data on SSDs and warm data on object stores, thereby optimizing the overall user experience and budget.
 
 {% hint style="info" %}
-**Note:** In SSD-only configurations, the WEKA system will sometimes use an external object store for backup, as explained in [Snap-To-Object Data Lifecycle Management](../fs/snap-to-obj/#snap-to-object-in-data-lifecycle-management).
+In SSD-only configurations, the WEKA system will sometimes use an external object store for backup, as explained in [Snap-To-Object Data Lifecycle Management](../fs/snap-to-obj/#snap-to-object-in-data-lifecycle-management).
 {% endhint %}
 
 ## Guidelines for data storage in tiered WEKA system configurations
@@ -42,7 +42,7 @@ Data management represents the media being used for the storage of data. In tier
 3. **Object store only:** Data resides only on the object store.
 
 {% hint style="info" %}
-**Note:** These states represent the lifecycle of data and not the lifecycle of a file. When a file is modified, each modification creates a separate data lifecycle for the modified data.
+These states represent the lifecycle of data and not the lifecycle of a file. When a file is modified, each modification creates a separate data lifecycle for the modified data.
 {% endhint %}
 
 ![Data Lifecycle Diagram](../.gitbook/assets/lifecycle.png)
@@ -74,14 +74,14 @@ Since writing directly to an object store demands high latency levels while wait
 Recently accessed or modified data is stored on SSDs, and most read operations will be of such data and served from SSDs. This is based on a single, large LRU clearing policy for the cache that ensures optimal read performance.
 
 {% hint style="info" %}
-**Note:** On a tiered filesystem, the total capacity determines the maximum capacity that will be used to store data. It could be that it will all reside on the object store due to the SSD uses above and the below time-based policies.
+On a tiered filesystem, the total capacity determines the maximum capacity that will be used to store data. It could be that it will all reside on the object store due to the SSD uses above and the below time-based policies.
 
-E.g., consider a 100 TB filesystem (total capacity) with a 10TB SSD capacity for this filesystem. It could be that all the data will reside on the object-store, and no new writes will be allowed, although the SSD space is not completely used (until deleting files or increasing filesystem total size), leaving the SSD for metadata and cache only.
+E.g., consider a 100 TB filesystem (total capacity) with a 10TB SSD capacity for this filesystem. It could be that all the data will reside on the object-store, and no new writes will be allowed, although the SSD space is not completely used (until deleting files or increasing the filesystem total size), leaving the SSD for metadata and cache only.
 {% endhint %}
 
 ## Time-based policies for the control of data storage location
 
-The WEKA system includes user-defined policies that serve as guidelines to control data storage management. They are derived from a number of factors:
+The WEKA system includes user-defined policies that serve as guidelines to control data storage management. They are derived from several factors:
 
 1. The rate at which data is written to the system and the quantity of data.
 2. The capacity of the SSDs configured to the WEKA system.
@@ -96,23 +96,23 @@ For tiered filesystems, the following parameters should be defined per filesyste
 
 The following parameters should be defined per filesystem group:
 
-1. The [Drive Retention Period Policy](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#drive-retention-period-policy), a time-based policy which is the target time for data to be stored on an SSD after creation, modification, or access, and before release from the SSD, even if it is already tiered to the object store, for metadata processing and SSD caching purposes (this is only a target; the actual release schedule depends on the amount of available space).&#x20;
-2. The [Tiering Cue Policy](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy), a time-based policy that determines the minimum amount of time that data will remain on an SSD before it is considered for release to the object store. As a rule of thumb, this should be configured to a third of the Retention Period, and in most cases, this will work well. The Tiering Cue is important because it is pointless to tier a file that is about to be modified or deleted from the object store.&#x20;
+1. The [Drive Retention Period Policy](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#drive-retention-period-policy) is a time-based policy which is the target time for data to be stored on an SSD after creation, modification, or access, and before release from the SSD, even if it is already tiered to the object store, for metadata processing and SSD caching purposes (this is only a target; the actual release schedule depends on the amount of available space).&#x20;
+2. The [Tiering Cue Policy](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy) is a time-based policy that determines the minimum time that data remain on an SSD before it is considered for release to the object store. As a rule of thumb, this should be configured to a third of the Retention Period, and in most cases, this will work well. The Tiering Cue is important because it is pointless to tier a file about to be modified or deleted from the object store.&#x20;
 
 {% hint style="success" %}
-**For Example:**
+**Example**
 
-_When writing log files that are processed every month but retained forever:_ It is recommended to define a Retention Period of 1 month, a Tiering Cue of 1 day, and ensure that there is sufficient SSD capacity to hold 1 month of log files.
+_When writing log files that are processed every month but retained forever:_ It is recommended to define a Retention Period of 1 month, a Tiering Cue of 1 day, and ensure sufficient SSD capacity to hold 1 month of log files.
 
-_When storing genomic data which is frequently accessed during the first 3 months after creation, requires a scratch space for 6 hours of processing, and requires output to be retained forever:_ It is recommended to define a Retention Period of 3 months and to allocate an SSD capacity that will be sufficient for 3 months of output data and the scratch space. The Tiering Cue should be defined as 1 day in order to avoid a situation where the scratch space data is tiered to an object store and released from the SSD immediately afterward.
+_When storing genomic data, which is frequently accessed during the first 3 months after creation, requires a scratch space for 6 hours of processing, and requires output to be retained forever:_ It is recommended to define a Retention Period of 3 months and to allocate an SSD capacity that will be sufficient for 3 months of output data and the scratch space. The Tiering Cue should be defined as 1 day to avoid a situation where the scratch space data is tiered to an object store and released from the SSD immediately afterward.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Using the [Snap-To-Object](../fs/snap-to-obj/) feature causes data to be tiered regardless of the tiering policies.
+Using the [Snap-To-Object](../fs/snap-to-obj/) feature causes data to be tiered regardless of the tiering policies.
 {% endhint %}
 
 ### Bypassing the time-based policies
 
-Regardless of the time-based policies, it is possible to use a special mount option [`obs_direct`](../fs/mounting-filesystems.md#mount-command-options) to bypass the time-based policies. Any creation/writing of files from a mount point with this option will mark it to release as soon as possible, before taking into account other files retention policy.
+Regardless of the time-based policies, it is possible to use a special mount option [`obs_direct`](../fs/mounting-filesystems.md#mount-command-options) to bypass the time-based policies. Any creation/writing of files from a mount point with this option will mark it to release as soon as possible before considering other file retention policies.
 
 For a more in-depth explanation, refer to [Advanced Data Lifecycle Management](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md).

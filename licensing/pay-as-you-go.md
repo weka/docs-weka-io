@@ -70,7 +70,7 @@ $ weka cluster license reset
 ```
 
 {% hint style="info" %}
-**Note:** Momentary disabling and re-enabling of licensing does not affect the operation of the WEKA system cluster and is completely safe.
+Momentary disabling and re-enabling of licensing does not affect the operation of the WEKA system cluster and is completely safe.
 {% endhint %}
 
 ## How does hourly pricing work?

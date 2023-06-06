@@ -31,7 +31,7 @@ weka local resources -C drives0 | grep "Management IPs"
 5. Download from [get.weka.io](https://get.weka.io/) the same WEKA software version as in the existing WEKA cluster servers.
 
 {% hint style="info" %}
-**Note:** To learn how about the options of the commands in the following procedure, see the related topics.
+To learn how about the options of the commands in the following procedure, see the related topics.
 {% endhint %}
 
 ### **Procedure**

@@ -49,7 +49,7 @@ The following operating systems are supported for backend servers and clients:
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
 
 {% hint style="info" %}
-**Note:** Ensure using an OS with a supported kernel. Do not use an OS with kernel 5.13 and higher for backends.
+Ensure using an OS with a supported kernel. Do not use an OS with kernel 5.13 and higher for backends.
 {% endhint %}
 {% endtab %}
 
@@ -74,7 +74,7 @@ The following operating systems are supported for clients only:
 * 22.04&#x20;
 
 {% hint style="info" %}
-**Note:** For kernels 5.13 and higher, do not use applications that use 1GB hugepages. RHEL/Rocky Linux 9.1, 9.0 and Ubuntu 22.04 use kernels higher than 5.13.
+For kernels 5.13 and higher, do not use applications that use 1GB hugepages. RHEL/Rocky Linux 9.1, 9.0 and Ubuntu 22.04 use kernels higher than 5.13.
 {% endhint %}
 {% endtab %}
 
@@ -86,14 +86,12 @@ The following kernel versions are supported:
 * 3.10
 
 {% hint style="warning" %}
-**Notes:**
-
 * Kernel 5.15 is not supported with Amazon Linux operating systems.
 * For kernels 5.13 and higher, do not use applications that use 1GB hugepages.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
+It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
 {% endhint %}
 {% endtab %}
 
@@ -111,7 +109,7 @@ The following kernel versions are supported:
   * The `mls` policy is not supported yet.
 
 {% hint style="info" %}
-**Note:** To set the SELinux security context for files,  use the `-o acl` in the mount command, and define the `wekafs` to use extended attributes in the SELinux policy configuration (`fs_use_xattr`).
+To set the SELinux security context for files,  use the `-o acl` in the mount command, and define the `wekafs` to use extended attributes in the SELinux policy configuration (`fs_use_xattr`).
 {% endhint %}
 
 #### cgroups
@@ -132,7 +130,7 @@ The following kernel versions are supported:
 ## Networking
 
 {% hint style="info" %}
-**Note:** At least 4k MTU is advised on WEKA cluster servers NICs and the switches the servers are connected to.
+At least 4k MTU is advised on WEKA cluster servers NICs and the switches the servers are connected to.
 
 A WEKA system can be configured without jumbo frames for Ethernet and Infiniband configurations. However, it will provide minimal performance and cannot handle high data loads. Consult with the Customer Success Team before running in this mode.
 
@@ -167,7 +165,7 @@ WEKA supports the following Ethernet NICs:
 * Mellanox ConnectX-4
 
 {% hint style="info" %}
-**Note:** Intel E810 NIC has specific requirements and certain limitations:
+Intel E810 NIC has specific requirements and certain limitations:
 
 * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0.
 * Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
@@ -175,11 +173,11 @@ WEKA supports the following Ethernet NICs:
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Connecting Ethernet and IB clients to the same cluster is not supported with E810 NIC and Mellanox ConnectX-6-Dx on the cluster backends.
+Connecting Ethernet and IB clients to the same cluster is not supported with E810 NIC and Mellanox ConnectX-6-Dx on the cluster backends.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** LACP (link aggregation, also known as bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using virtual functions (VFs).
+LACP (link aggregation, also known as bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using virtual functions (VFs).
 {% endhint %}
 {% endtab %}
 
@@ -233,7 +231,7 @@ Supported ice drivers:
   * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
-**Note:** When assigning a network device to the Weka system, no other application can create VFs on that device.
+When assigning a network device to the Weka system, no other application can create VFs on that device.
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -275,7 +273,7 @@ WEKA supports the following InfiniBand configurations:
 * Dual InfiniBand can be used for both HA and higher bandwidth
 
 {% hint style="info" %}
-**Note:** If it is necessary to change PKEYs, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+If it is necessary to change PKEYs, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -292,7 +290,7 @@ WEKA supports the following InfiniBand configurations:
 * IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 {% hint style="info" %}
-**Note:** To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
+To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
 {% endhint %}
 
 ## Object store

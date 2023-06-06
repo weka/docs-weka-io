@@ -51,7 +51,7 @@ When a _ClusterBootCondition timeout_ occurs, there was a problem creating the i
 When the message _Clients failed to join for uniqueId: ClientN_ is received while in the WaitCondition, one of the clients was unable to join the cluster. Look at the Syslog of the client specified in uniqueId as described above.
 
 {% hint style="success" %}
-**For Example:** If the error message specifies that client 3 failed to join, a message ending with `uniqueId: Client3` should be displayed. Look at the log-stream named `Client3-syslog`.
+**Example:** If the error message specifies that client 3 failed to join, a message ending with `uniqueId: Client3` should be displayed. Look at the log-stream named `Client3-syslog`.
 {% endhint %}
 
 ## Health monitoring&#x20;

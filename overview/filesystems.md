@@ -62,7 +62,7 @@ Both data at rest (residing on SSD and object store) and data in transit can be 
 To create encrypted filesystems, deploy a Key Management System (KMS).
 
 {% hint style="info" %}
-**Note:** You can only set the data encryption when creating a filesystem.
+You can only set the data encryption when creating a filesystem.
 {% endhint %}
 
 **Related topics**

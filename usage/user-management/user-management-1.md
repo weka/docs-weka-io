@@ -76,7 +76,7 @@ Use the following command line to change a local user password:
 | `username` | String   | Name of the user to change the password for | Must be a valid local user | No            | Current logged-in user |
 
 {% hint style="info" %}
-**Note:** If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
+If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
 {% endhint %}
 
 ## Revoke user access
@@ -96,7 +96,7 @@ You can revoke the access for LDAP users by changing the `user-revocation-attrib
 | `username` | String/Integer | A valid user in the organization of the Organization Admin running the command |                 | Yes           |             |
 
 {% hint style="warning" %}
-**Note:** NFS and SMB are different protocols from WekaFS, which require additional security considerations when used. For example, The system grants NFS permissions per server. Therefore, manage the permissions for accessing these servers for NFS export carefully.
+NFS and SMB are different protocols from WekaFS, which require additional security considerations when used. For example, The system grants NFS permissions per server. Therefore, manage the permissions for accessing these servers for NFS export carefully.
 {% endhint %}
 
 ## Update a local user
@@ -160,11 +160,11 @@ When users open the GUI, they are prompted to provide their username and passwor
 Alternatively, it is possible to log into the CLI as a specific user using the`weka user login <username> <password>`command. This will run each CLI command from that user. When a user logs in, a token file is created to be used for authentication (default to `~/.weka/auth-token.json`, which can be changed using the `--path` attribute). To see the logged-in CLI user, run the`weka user whoami` command.
 
 {% hint style="info" %}
-**Note:** The`weka user login` command is persistent, but only applies to the server on which it was set.
+The`weka user login` command is persistent, but only applies to the server on which it was set.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** If the`WEKA_USERNAME`/`WEKA_PASSWORD` environment variables are not specified, the CLI uses the default token file. If no CLI user is explicitly logged-in, and no token file is present the CLI uses the default `admin`/`admin`.
+If the`WEKA_USERNAME`/`WEKA_PASSWORD` environment variables are not specified, the CLI uses the default token file. If no CLI user is explicitly logged-in, and no token file is present the CLI uses the default `admin`/`admin`.
 
 To use a non-default path for the token file, use the `WEKA_TOKEN` environment variable.
 {% endhint %}
@@ -227,5 +227,5 @@ This command is used for viewing the current LDAP configuration used for authent
 These commands are used for disabling or enabling user authentication through a configured LDAP user directory.
 
 {% hint style="info" %}
-**Note:** You can only disable an LDAP configuration, but not delete it.
+You can only disable an LDAP configuration, but not delete it.
 {% endhint %}

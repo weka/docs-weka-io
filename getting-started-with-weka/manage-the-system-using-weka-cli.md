@@ -57,7 +57,7 @@ The options that are common to many commands include:
 <table><thead><tr><th width="171.37895556573716">Option</th><th>Flag description</th></tr></thead><tbody><tr><td><code>-J|--json</code></td><td>Prints the raw JSON value returned by the cluster.</td></tr><tr><td><code>-H|--hostname</code></td><td>Directs the CLI to communicate with the cluster through the specified hostname or IP.</td></tr><tr><td><code>--raw-units</code></td><td>Sets the units such as capacity and bytes to be printed in their raw format, as returned by the cluster.</td></tr><tr><td><code>--UTC</code></td><td>Sets the timestamps to be printed in UTC timezone, instead of the local time of the server running the CLI command.</td></tr><tr><td><code>-f|--format</code></td><td>Specifies the format to output the result (view, csv, markdown, or JSON).</td></tr><tr><td><code>-o|--output</code></td><td>Specifies the columns to include in the output.</td></tr><tr><td><code>-s|--sort</code></td><td>Specifies the order to sort the output. May include a '+' or '-' before the column name to sort by ascending or descending order.</td></tr><tr><td><code>-F| --filter</code></td><td>Specifies the filter values for a member (without forcing it to be in the output).</td></tr><tr><td><code>--no-header</code></td><td>Indicates that the column header should not be shown when printing the output.</td></tr><tr><td><code>-C|--CONNECT-TIMEOUT</code></td><td>Modifies the default timeout used for connecting to the system via the JRPC protocol.</td></tr><tr><td><code>-T|--TIMEOUT</code></td><td>Modifies the default timeout for which the commands wait for a response before giving up.</td></tr></tbody></table>
 
 {% hint style="info" %}
-**Note:** Throughout the documentation, the CLI mandatory parameters are marked with an asterisk (\*).&#x20;
+Throughout the documentation, the CLI mandatory parameters are marked with an asterisk (\*).&#x20;
 {% endhint %}
 
 ## Commands hierarchy
@@ -159,7 +159,7 @@ The `weka status` command displays the overall status of the Weka system.
 
 ```
 $ weka status
-WekaIO v4.1.0 (CLI build 4.1.0)
+WekaIO v4.2.0 (CLI build 4.2.0)
 
        cluster: wekaprod (a5d41195-a9b2-4668-914a-77c175f4cfb4)
         status: OK (8 backends UP, 48 drives UP)
@@ -182,7 +182,7 @@ WekaIO v4.1.0 (CLI build 4.1.0)
 
 ```
    $ weka status
-WekaIO v4.1.0 (CLI build 4.1.0)
+WekaIO v4.2.0 (CLI build 4.2.0)
 
        cluster: WekaProd (b231e060-c5c1-421d-a68d-1dfa94ff149b)
         status: DEGRADED (7 backends UP, 42 drives UP)

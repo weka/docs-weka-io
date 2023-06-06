@@ -9,7 +9,7 @@ The planning of a WEKA system is essential prior to the actual installation proc
 5. Network
 
 {% hint style="info" %}
-**Note:** When implementing an AWS configuration, it is possible to go to the [Self-Service Portal in start.weka.io](../aws/self-service-portal.md) to automatically map capacity and performance requirements into various configurations.
+When implementing an AWS configuration, it is possible to go to the [Self-Service Portal in start.weka.io](../aws/self-service-portal.md) to automatically map capacity and performance requirements into various configurations.
 {% endhint %}
 
 ## Total SSD net capacity and performance planning
@@ -30,7 +30,7 @@ Once all this data is clarified, you can plan the SSD net storage capacity accor
 5. Planned hot spare.
 
 {% hint style="info" %}
-**Note:** This is an iterative process. Depending on the scenario, some options can be fixed constraints while others are flexible.
+This is an iterative process. Depending on the scenario, some options can be fixed constraints while others are flexible.
 {% endhint %}
 
 ## SSD resource planning
@@ -41,7 +41,7 @@ SSD resource planning involves how the defined capacity is going to be implement
 * The technology to be used (NVME, SAS, or SATA) and the specific SSD models, which have implications on SSD endurance and performance.
 
 {% hint style="info" %}
-**Note:** For on-premises planning, it is possible to consult with the Customer Success Team to map between performance requirements and the recommended WEKA system configuration.
+For on-premises planning, it is possible to consult with the Customer Success Team to map between performance requirements and the recommended WEKA system configuration.
 {% endhint %}
 
 ## Memory resource planning <a href="#memory-resource-planning" id="memory-resource-planning"></a>
@@ -99,7 +99,7 @@ Required memory for metadata: 20 Bytes x 980 million files x 1 unit = \~19.6 GB
 Total memory requirement per server = 2.8 + 2.2 + 55.7 + 12 + 6.3 + 8 + 2 + 19.6 = \~109 GB
 
 {% hint style="info" %}
-**Note:** The memory requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to receive an estimate for your specific configuration.
+The memory requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to receive an estimate for your specific configuration.
 {% endhint %}
 
 ### Client's memory requirements
@@ -145,7 +145,7 @@ If the client networking is defined as based on UDP, there is no allocation of c
 WEKA backend servers can be connected to both InfiniBand or Ethernet networks. For each network technology used, all backends must be connected via this technology. If backends are connected both through Infiniband and Ethernet, the WEKA system will favor the Infiniband links for traffic, unless there are connectivity issues with the Infiniband network. In that case, the system will use the Ethernet links (clients connecting to the system can connect either via Infiniband or Ethernet).
 
 {% hint style="info" %}
-**Note:** A network port can either be dedicated to the WEKA system or run the WEKA system with other applications.
+A network port can either be dedicated to the WEKA system or run the WEKA system with other applications.
 {% endhint %}
 
 ### Clients

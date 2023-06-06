@@ -50,9 +50,9 @@ Use the following command line to delete a snapshot:
 | `name`        | String   | Unique name for filesystem snapshot | Must be a valid name | Yes           |             |
 
 {% hint style="warning" %}
-**Note:** A snapshot deletion cannot happen in parallel to a snapshot upload to the same filesystem. Since uploading a snapshot to a remote object store might take a while, it is advisable to delete the desired snapshots before uploading to the remote object store.&#x20;
+A snapshot deletion cannot happen in parallel to a snapshot upload to the same filesystem. Since uploading a snapshot to a remote object store might take a while, it is advisable to delete the desired snapshots before uploading to the remote object store.&#x20;
 
-Also, note that this becomes more important when uploading snapshots to both local and remote object stores. While local and remote uploads can progress in parallel, consider the case of a remote upload in progress, then a snapshot is deleted, and later a snapshot is uploaded to the local object store. In this scenario, the local snapshot upload waits for the pending deletion of the snapshot (which happens only once the remote snapshot upload is done).
+Also, note that this becomes more important when uploading snapshots to local and remote object stores. While local and remote uploads can progress in parallel, consider the case of a remote upload in progress, then a snapshot is deleted, and later a snapshot is uploaded to the local object store. In this scenario, the local snapshot upload waits for the pending deletion of the snapshot (which happens only once the remote snapshot upload is done).
 {% endhint %}
 
 ## Restore a snapshot to a filesystem or another snapshot
@@ -78,7 +78,7 @@ Use the following command line to restore a snapshot to another snapshot:
 | `preserved-overwritten-snapshot-access-point` | A directory that serves as the access point for the preserved overwritten snapshot.                                                                                                                                                                               | If the `preserved-overwritten-snapshot-name` parameter is specified, but the `preserved-overwritten-snapshot-access-point`parameter is not, it is created automatically based on the snapshot name. |
 
 {% hint style="warning" %}
-**Note:** When restoring a filesystem from a snapshot (or copying over an existing snapshot), the filesystem data and metadata are changed. If you do not specify the `preserved-overwritten-snapshot-name` parameter, ensure IOs to the filesystem are stopped during this time.
+When restoring a filesystem from a snapshot (or copying over an existing snapshot), the filesystem data and metadata are changed. If you do not specify the `preserved-overwritten-snapshot-name` parameter, ensure IOs to the filesystem are stopped during this time.
 {% endhint %}
 
 ## Update a snapshot

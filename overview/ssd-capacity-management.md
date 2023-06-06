@@ -19,7 +19,7 @@ Net capacity is the space for user data on the SSDs in a configured WEKA system.
 The stripe width is the number of blocks with a common protection set, ranging from 3 to 16. The WEKA system has distributed any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various servers protect each other (rather than a group of 8 servers forming a protection group). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
 
 {% hint style="info" %}
-**Note:** If not configured, the stripe width is set automatically to #Failure Domains - Protection Level
+If not configured, the stripe width is set automatically to #Failure Domains - Protection Level
 {% endhint %}
 
 ## Protection level
@@ -27,7 +27,7 @@ The stripe width is the number of blocks with a common protection set, ranging f
 The protection level is the number of additional protection blocks added to each stripe, which can be either 2 or 4. A system with a protection level of 2 can survive 2 concurrent failures. In comparison, system data with a protection level of 4 is protected against any concurrent 4 server/disk failures, and its availability is protected against any 4 concurrent disk failures or 2 concurrent server failures. A high protection level has space and performance implications. The protection level is set during the cluster formation and cannot be changed.
 
 {% hint style="info" %}
-**Note:** If not configured, the data protection drives in the cluster stripes are automatically set to 2.
+If not configured, the data protection drives in the cluster stripes are automatically set to 2.
 {% endhint %}
 
 ## Failure domains (optional)
@@ -40,7 +40,7 @@ A cluster can be configured with explicit or implicit failure domains:
 * In a cluster with implicit failure domains, the group of blocks is spread on different servers, and each server is a failure domain. Additional failure domains can be added, and new servers can be added to any existing or new failure domain.
 
 {% hint style="info" %}
-**Note:** This documentation relates to a homogeneous WEKA system deployment. That is, the same number of servers per failure domain (if any) and the same SSD capacity per server. For information about heterogeneous WEKA system configurations, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+This documentation relates to a homogeneous WEKA system deployment. That is, the same number of servers per failure domain (if any) and the same SSD capacity per server. For information about heterogeneous WEKA system configurations, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ## Hot spare

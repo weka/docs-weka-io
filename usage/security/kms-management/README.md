@@ -35,7 +35,7 @@ The KMS is the only source holding the key to decrypt WEKA Sales or Support syst
 * Refer to [Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) for additional best practices suggested by HashiCorp when using Vault.
 
 {% hint style="info" %}
-**Note:** Taking a Snap-To-Object ensures that the (encrypted) filesystems keys are backed up to the object store, which is important if a total corruption of the WEKA Sales or Support system configuration occurs.
+Taking a Snap-To-Object ensures that the (encrypted) filesystems keys are backed up to the object store, which is important if a total corruption of the WEKA Sales or Support system configuration occurs.
 {% endhint %}
 
 

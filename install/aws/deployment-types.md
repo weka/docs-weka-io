@@ -14,7 +14,7 @@ description: >-
   * Only IMDSv1 is supported if using the Instance Metadata service.
 
 {% hint style="warning" %}
-**Note:** It is possible to set clients with IMDSv2, but they would not benefit from seamless cloud configuration and should be manually managed similarly to [Adding Clients](../bare-metal/adding-clients-bare-metal.md) in bare-metal installations.
+It is possible to set clients with IMDSv2, but they would not benefit from seamless cloud configuration and should be manually managed similarly to [Adding Clients](../bare-metal/adding-clients-bare-metal.md) in bare-metal installations.
 {% endhint %}
 
 * When deploying in AWS not using the CloudFormation template or when additional capabilities are added after deployment (e.g., tiering), it is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](cloudformation.md#iam-role-created-in-the-template).
@@ -37,7 +37,7 @@ In client backend deployments, it is possible to add or remove clients according
 Backend instances can be added to increase the cluster capacity or performance. They can also be removed, provided that they are deactivated to safely allow for data migration.
 
 {% hint style="danger" %}
-**Note:** Stopping or terminating backend instances causes a loss of all data of the instance store. Refer to [Amazon EC2 Instance Store](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html) for more information.
+Stopping or terminating backend instances causes a loss of all data of the instance store. Refer to [Amazon EC2 Instance Store](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html) for more information.
 {% endhint %}
 
 ## Converged deployment

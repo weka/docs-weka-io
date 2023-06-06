@@ -31,7 +31,7 @@ Once the WEKA software is downloaded from [get.weka.io](https://get.weka.io), ru
 Once completed, the WEKA software is installed on all the allocated servers and runs in stem mode (no cluster is attached).
 
 {% hint style="info" %}
-**Note:** If a failure occurs during the WEKA software installation process, an error message prompts detailing the source of the failure. Review the details and try to resolve the failure. If required, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+If a failure occurs during the WEKA software installation process, an error message prompts detailing the source of the failure. Review the details and try to resolve the failure. If required, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ### 2. Remove the default container
@@ -72,7 +72,7 @@ Run the following command line:\
 `./resources_generator.py --net eth1 --net eth2 --drive-dedicated-cores 6 --compute-dedicated-cores 6 --frontend-dedicated-cores 1`
 
 {% hint style="info" %}
-**Note:** Contact Professional Services for the recommended resource allocation settings for your system.
+Contact Professional Services for the recommended resource allocation settings for your system.
 {% endhint %}
 
 **Parameters**

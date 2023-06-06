@@ -90,7 +90,7 @@ new_fs on /mnt/weka type wekafs (rw,relatime,writecache,inode_bits=64,dentry_max
 ```
 
 {% hint style="info" %}
-**Note:** In AWS installation via the [self-service portal](https://start.weka.io/), the `default` filesystem is already mounted under `/mnt/weka.`
+In AWS installation via the [self-service portal](https://start.weka.io/), the `default` filesystem is already mounted under `/mnt/weka.`
 {% endhint %}
 
 For more information about mounting filesystems and mount options, refer to [Mounting Filesystems](../fs/mounting-filesystems.md#overview).
@@ -127,7 +127,7 @@ To ensure that the WEKA cluster and the IT environment are well configured, more
 Although results can vary using different servers and networking, it is not expected to be very different than what many other customers and we achieved. A properly configured Weka cluster and IT environment should yield similar results as described in the [Weka performance tests](../testing-and-troubleshooting/testing-weka-system-performance/) section.
 
 {% hint style="info" %}
-**Note:** The numbers achieved in the benchmark tests, as described in the [Weka performance tests](../testing-and-troubleshooting/testing-weka-system-performance/) section, are not just achieved in a controlled environment. Similar numbers should be achieved using a similar configuration if the Weka cluster and IT environment are properly configured.
+The numbers achieved in the benchmark tests, as described in the [Weka performance tests](../testing-and-troubleshooting/testing-weka-system-performance/) section, are not just achieved in a controlled environment. Similar numbers should be achieved using a similar configuration if the Weka cluster and IT environment are properly configured.
 
 If the numbers achieved in your environment significantly vary from those, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) before running any other workload on the Weka cluster.
 {% endhint %}
