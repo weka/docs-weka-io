@@ -25,13 +25,7 @@ Use the following command line to create a local user:
 
 **Parameters**
 
-| **Name**    | **Type** | **Value**                                                                                          | **Limitations**                                           | **Mandatory** | **Default**                                                 |
-| ----------- | -------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------- | ----------------------------------------------------------- |
-| `username`  | String   | Name for the new user                                                                              |                                                           | Yes           |                                                             |
-| `role`      | String   | Role of the new created user                                                                       | `regular`,  `s3`,`readonly`, `orgadmin` or `clusteradmin` | Yes           |                                                             |
-| `password`  | String   | New user password                                                                                  |                                                           | No            | If not supplied, command will prompt to supply the password |
-| `posix-uid` | Number   | POSIX UID of underlying files representing objects created by this S3 user access/keys credentials | For S3 user roles only                                    | No            | 0                                                           |
-| `posix-gid` | Number   | POSIX GID of underlying files representing objects created by this S3 user access/keys credentials | For S3 user roles only                                    | No            | 0                                                           |
+<table><thead><tr><th width="193.33333333333331">Name</th><th width="426">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name for the new user</td><td></td></tr><tr><td><code>role</code></td><td>Role of the new created user.<br>Possible values: <code>regular</code>,  <code>s3</code>,<code>readonly</code>, <code>orgadmin</code> or <code>clusteradmin</code></td><td></td></tr><tr><td><code>password</code></td><td>New user password.<br>If not supplied, the command prompts to supply the password.</td><td></td></tr><tr><td><code>posix-uid</code></td><td>POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td><td>0</td></tr><tr><td><code>posix-gid</code></td><td>POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td><td>0</td></tr></tbody></table>
 
 {% hint style="success" %}
 **Example:**
@@ -70,10 +64,7 @@ Use the following command line to change a local user password:
 
 **Parameters**
 
-| **Name**   | **Type** | **Value**                                   | **Limitations**            | **Mandatory** | **Default**            |
-| ---------- | -------- | ------------------------------------------- | -------------------------- | ------------- | ---------------------- |
-| `password` | String   | New password                                |                            | Yes           |                        |
-| `username` | String   | Name of the user to change the password for | Must be a valid local user | No            | Current logged-in user |
+<table><thead><tr><th>Name</th><th width="389.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>password</code>*</td><td>New password</td><td></td></tr><tr><td><code>username</code></td><td>Name of the user to change the password for.<br>It must be a valid local user.</td><td>The current logged-in user</td></tr></tbody></table>
 
 {% hint style="info" %}
 If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
@@ -91,9 +82,7 @@ You can revoke the access for LDAP users by changing the `user-revocation-attrib
 
 **Parameters**
 
-| **Name**   | **Type**       | **Value**                                                                      | **Limitations** | **Mandatory** | **Default** |
-| ---------- | -------------- | ------------------------------------------------------------------------------ | --------------- | ------------- | ----------- |
-| `username` | String/Integer | A valid user in the organization of the Organization Admin running the command |                 | Yes           |             |
+<table><thead><tr><th width="176">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>A valid user in the organization of the Organization Admin running the command.</td></tr></tbody></table>
 
 {% hint style="warning" %}
 NFS and SMB are different protocols from WekaFS, which require additional security considerations when used. For example, The system grants NFS permissions per server. Therefore, manage the permissions for accessing these servers for NFS export carefully.
@@ -109,12 +98,7 @@ Use the following command line to update a local user:
 
 **Parameters**
 
-| **Name**    | **Type** | **Value**                                                                                          | **Limitations**                                           | **Mandatory** | **Default** |
-| ----------- | -------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ------------- | ----------- |
-| `username`  | String   | Name of an existing user                                                                           | Must be a valid local user                                | Yes           |             |
-| `role`      | String   | Updated user role                                                                                  | `regular`,  `s3`,`readonly`, `orgadmin` or `clusteradmin` | No            |             |
-| `posix-uid` | Number   | POSIX UID of underlying files representing objects created by this S3 user access/keys credentials | For S3 user roles only                                    | No            |             |
-| `posix-gid` | Number   | POSIX GID of underlying files representing objects created by this S3 user access/keys credentials | For S3 user roles only                                    | No            |             |
+<table><thead><tr><th width="181">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of an existing user.<br>It must be a valid local user.</td></tr><tr><td><code>role</code></td><td>Updated user role.<br>Possible values: <code>regular</code>,  <code>s3</code>,<code>readonly</code>, <code>orgadmin</code> or <code>clusteradmin</code></td></tr><tr><td><code>posix-uid</code></td><td>POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr><tr><td><code>posix-gid</code></td><td>POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr></tbody></table>
 
 ## Delete a local user
 
@@ -126,9 +110,7 @@ To delete a user, use the following command line:
 
 **Parameters**
 
-| **Name**   | **Type** | **Value**                  | **Limitations**            | **Mandatory** | **Default** |
-| ---------- | -------- | -------------------------- | -------------------------- | ------------- | ----------- |
-| `username` | String   | Name of the user to delete | Must be a valid local user | Yes           |             |
+<table><thead><tr><th width="188">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of the user to delete.<br>It must be a valid local user.</td></tr></tbody></table>
 
 {% hint style="success" %}
 **Example:**
@@ -191,25 +173,7 @@ To configure an Active Directory server, use the following command line:
 
 **Parameters**
 
-| **Name**                                | **Type** | **Value**                                                                                                   | **Limitations**                                                                                                                                  | **Mandatory** | **Default** |
-| --------------------------------------- | -------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | ----------- |
-| `server-uri`                            | String   | Either the LDAP server hostname/IP or a URI                                                                 | URI must be in format `ldap://hostname:port` or `ldaps://hostname:port`                                                                          | Yes           |             |
-| `base-dn`                               | String   | Base DN under which users are stored                                                                        | Must be valid name                                                                                                                               | Yes           |             |
-| `user-id-attribute`                     | String   | Attribute storing user IDs                                                                                  | Must be valid name                                                                                                                               | Yes           |             |
-| `user-object-class`                     | String   | Object class of users                                                                                       | Must be valid name                                                                                                                               | Yes           |             |
-| `group-object-class`                    | String   | Object class of groups                                                                                      | Must be valid name                                                                                                                               | Yes           |             |
-| `group-membership-attribute`            | String   | Attribute of group containing the DN of a user membership in the group                                      | Must be valid name                                                                                                                               | Yes           |             |
-| `group-id-attribute`                    | String   | Attribute storing the group name                                                                            | Name has to match names used in the `<admin-group>`, `<regular group>` and `<readonly group>`                                                    | Yes           |             |
-| `reader-username` and `reader-password` | String   | Credentials of a user with read access to the directory                                                     | Password is kept in the Weka cluster configuration in plain text, as it is used to authenticate against the directory during user authentication | Yes           |             |
-| `cluster-admin-group`                   | String   | Name of group containing users defined with cluster admin role                                              | Must be valid name                                                                                                                               | Yes           |             |
-| `org-admin-group`                       | String   | Name of group containing users defined with organization admin role                                         | Must be valid name                                                                                                                               | Yes           |             |
-| `regular-group`                         | String   | Name of group containing users defined with regular privileges                                              | Must be valid name                                                                                                                               | Yes           |             |
-| `readonly-group`                        | String   | Name of group containing users defined with read only privileges                                            | Must be valid name                                                                                                                               | Yes           |             |
-| `server-timeout-secs`                   | Number   | Server connection timeout                                                                                   | Seconds                                                                                                                                          | No            |             |
-| `protocol-version`                      | String   | Selection of LDAP version                                                                                   | LDAP v2 or v3                                                                                                                                    | No\`          | LDAP v3     |
-| `user-revocation-attribute`             | String   | The LDAP attribute; when its value  changes in the LDAP directory, user access and mount tokens are revoked | User must re-login after a change is detected                                                                                                    | No            |             |
-| `start-tls`                             | String   | Issue StartTLS after connecting                                                                             | <p><code>yes</code> or <code>no</code></p><p>should not be used with <code>ldaps://</code> </p><p></p>                                           | No            | `no`        |
-| `ignore-start-tls-failure`              | String   | Ignore start TLS failure                                                                                    | `yes` or `no`                                                                                                                                    | No            | `no`        |
+<table><thead><tr><th width="281">Name</th><th width="333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>server-uri</code>*</td><td>Either the LDAP server hostname/IP or a URI.<br>Format: <code>ldap://hostname:port</code> or <code>ldaps://hostname:port</code></td><td></td></tr><tr><td><code>base-dn</code>*</td><td>Base DN under which users are stored.<br>It must be a valid name.</td><td></td></tr><tr><td><code>user-id-attribute</code>*</td><td>Attribute storing user IDs.<br>It must be a valid name.</td><td></td></tr><tr><td><code>user-object-class</code>*</td><td>Object class of users.<br>It must be a valid name.</td><td></td></tr><tr><td><code>group-object-class</code>*</td><td>Object class of groups.<br>It must be a valid name.</td><td></td></tr><tr><td><code>group-membership-attribute</code>*</td><td>Attribute of group containing the DN of a user membership in the group.<br>It must be a valid name.</td><td></td></tr><tr><td><code>group-id-attribute</code>*</td><td>Attribute storing the group name.<br>The name must match the names used in the <code>&#x3C;admin-group></code>, <code>&#x3C;regular group></code> and <code>&#x3C;readonly group></code></td><td></td></tr><tr><td><code>reader-username</code> and <code>reader-password</code>*</td><td>Credentials of a user with read access to the directory.<br>The password is kept in the Weka cluster configuration in plain text, as it is used to authenticate against the directory during user authentication</td><td></td></tr><tr><td><code>cluster-admin-group</code>*</td><td>Name of group containing users defined with cluster admin role.<br>It must be a valid name.</td><td></td></tr><tr><td><code>org-admin-group</code>*</td><td>Name of group containing users defined with organization admin role.<br>It must be a valid name.</td><td></td></tr><tr><td><code>regular-group</code>*</td><td>Name of group containing users defined with regular privileges.<br>It must be a valid name.</td><td></td></tr><tr><td><code>readonly-group</code>*</td><td>Name of group containing users defined with read only privileges.<br>It must be a valid name.</td><td></td></tr><tr><td><code>server-timeout-secs</code></td><td>Server connection timeout in seconds.</td><td></td></tr><tr><td><code>protocol-version</code></td><td>Selection of LDAP version.<br>Possible values: <code>LDAP v2</code> or <code>LDAP v3</code></td><td><code>LDAP v3</code></td></tr><tr><td><code>user-revocation-attribute</code></td><td>The LDAP attribute; when its value  changes in the LDAP directory, user access and mount tokens are revoked.<br>UThe user must re-login after a change is detected</td><td></td></tr><tr><td><code>start-tls</code></td><td>Issue StartTLS after connecting.<br>Possible values: <code>yes</code> or <code>no</code><br>Do not use with <code>ldaps://</code> </td><td><code>no</code></td></tr><tr><td><code>ignore-start-tls-failure</code></td><td>Ignore start TLS failure.<br>Possible values: <code>yes</code> or <code>no</code></td><td><code>no</code></td></tr></tbody></table>
 
 ### View a configured LDAP User Directory
 

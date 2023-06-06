@@ -19,7 +19,7 @@ To further help describe this section, let us use an example where the [Tiering 
 Consequently, the drive Retention Period policy determines the resolution of the WEKA system release decisions. If it is set to 1 month and the SSD capacity is sufficient for 10 months of writing, then the first month will be kept on the SSDs.
 
 {% hint style="info" %}
-If the WEKA system cannot comply with the defined Retention Period, e.g., the SSD is full, and data has not been released to the object store, a Break-In Policy will occur. In such a situation, an event is received in the WEKA system event log, advising that the system has not complied with the policy and that data has been automatically released from the SSD to the object store before the completion of the defined Retention Period. No data will be lost (since the data has been transferred to the object store), but slower performance may be experienced.
+If the WEKA system cannot comply with the defined Retention Period, for example, the SSD is full, and data is not released to the object store, a Break-In Policy occurs. In such a situation, an event is received in the WEKA system event log, advising that the system has not complied with the policy and that data has been automatically released from the SSD to the object store before the completion of the defined Retention Period. No data will be lost (since the data has been transferred to the object store), but slower performance may be experienced.
 {% endhint %}
 
 {% hint style="info" %}
@@ -41,10 +41,14 @@ Not all data is transferred to the object store in the order that it was written
 {% endhint %}
 
 {% hint style="success" %}
-**Example:** Let us say your Tiering Cue Policy is set to 1 day. All data written within the first day is tagged for Period 0. After one day, and for the next day, the next set of data is tagged for Period 1, and the data written in the next day is tagged for Period 2. As Period 0 rolls around to be next, the data marked for Period 0 is then offloaded to the object store, and new data is then tagged for Period 0. When Period 1 rolls around to be next, it is time to offload the data tagged for Period 1 to the object store and so on.
+**Example:**
+
+If the Tiering Cue Policy is set to 1 day, all data written within the first day is tagged for Period 0. After one day, and for the next day, the next set of data is tagged for Period 1, and the data written the next day is tagged for Period 2.
+
+As Period 0 rolls around to be next, the data marked for Period 0 is offloaded to the object store, and new data is then tagged for Period 0. When Period 1 rolls around to be next, it is time to offload the data tagged for Period 1 to the object store and so on.
 {% endhint %}
 
-One important caveat to mention is that in the above example, if none of the data is touched or modified during the time set for the Tiering Cue Policy, then all the data as described will offload to the object store as planned. But let’s say there is some data in Period 0 that was updated/modified, that data is pulled out of Period 0 and is then tagged with the current Period of data being written at the moment, let’s say that is Period 2. So now, that newly modified data will not get offloaded to the object store until it is Period 2’s time. This is true for any data modified residing in one of the 3 Period cycles. It will be removed from its original Period and placed into the current Period that is marking the active writes.
+One important caveat to mention is that in the above example, if none of the data is touched or modified during the time set for the Tiering Cue Policy, then all the data as described will offload to the object store as planned. But let’s say there is some data in Period 0 that was updated/modified, that data is pulled out of Period 0 and is then tagged with the current Period of data being written at the moment, let’s say that is Period 2. So now, that newly modified data will not get offloaded to the object store until it is Period 2’s time. This is true for any data modified residing in one of the 3 Period cycles. It will be removed from its original Period and placed into the current Period marking the active writes.
 
 ## Management of drive retention policies <a href="#management-of-data-retention-policies" id="management-of-data-retention-policies"></a>
 
@@ -57,7 +61,11 @@ The timestamp is maintained per piece of data in chunks of up to 1 MB, and not p
 {% endhint %}
 
 {% hint style="success" %}
-**Example:** In a WEKA system that is configured with a Drive Retention Period of 20 days, data is split into 7 interval groups, with each group spanning a total of 5 days in this scenario (5 is 25% of 20, the Drive Retention Period). If the system starts operating on January 1, then data written, accessed, or modified between January 1-5 is classified as belonging to interval 0, data written, accessed, or modified between January 6-10 belongs to interval 1, and so on. In such a case, the 7 intervals will be timestamped and divided as follows:
+**Example:**
+
+In a WEKA system configured with a Drive Retention Period of 20 days, data is split into 7 interval groups, each spanning 5 days in this scenario (5 is 25% of 20, the Drive Retention Period).
+
+If the system starts operating on January 1, data written, accessed, or modified between January 1-5 are classified as belonging to interval 0, data written, accessed, or modified between January 6-10 belongs to interval 1, and so on. In such a case, the 7 intervals will be timestamped and divided as follows:
 {% endhint %}
 
 ![](<../../.gitbook/assets/Table 1B.jpg>)
@@ -69,7 +77,9 @@ In the above scenario, there are seven data intervals on the SSDs (the last one 
 At any given moment, the WEKA system releases the filesystem data of a single interval, transferring it from the SSD to the object-store. _The release process is based on data aging characteristics_ (as implemented through the intervals system and revolving tags). Consequently, if there is sufficient SSD capacity, only data modified or written before seven intervals will be released. The release process also considers the amount of available SSD capacity through the mechanism of _**Backpressure**_. Backpressure works against two watermarks - 90% and 95%. It kicks in when SSD utilization per file system crosses above 95% and stops when it crosses below 90%. It's also important to understand that _Backpressure_ works in parallel and **independently** of the _Tiering Policy_. If the SSD utilization crosses the 95% watermark, then data will be released from SSD and sent to the object-store sooner than was configured.
 
 {% hint style="success" %}
-**Example:** If 3 TB of data is produced every day, i.e., 15 TB of data in each interval, the division of data will be as follows:
+**Example:**
+
+If 3 TB of data is produced every day, i.e., 15 TB of data in each interval, the division of data will be as follows:
 {% endhint %}
 
 ![](<../../.gitbook/assets/Table 2.jpg>)
