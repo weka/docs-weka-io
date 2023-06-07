@@ -66,8 +66,6 @@ To add another network device to `container-id 0`, run the following commands:
 
 </details>
 
-For more details and options, see [Broken link](broken-reference "mention").
-
 ## Modify the container IP addresses
 
 Run the following command lines on the active container:
@@ -99,11 +97,9 @@ If the cluster uses InfiniBand and Ethernet network technologies, you can define
 
 Adding CPU cores to the cluster can only be done on a deactivated container.
 
-For more details and options, see [Broken link](broken-reference "mention").
-
 ## Expand SSDs only
 
-Follow the instructions appearing in [Configuration of SSDs](broken-reference).
+Follow the instructions in the [#6.-configure-the-ssd-drives](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md#6.-configure-the-ssd-drives "mention")section.
 
 ## Modify resources on a local container
 

@@ -78,7 +78,7 @@ Add object store buckets to be used for tiering or snapshots.
 <figure><img src="../../.gitbook/assets/wmng_obs_on_gcp.png" alt=""><figcaption><p>Create object store bucket on GCP</p></figcaption></figure>
 {% endtab %}
 
-{% tab title="AWS" %}
+{% tab title="Azure" %}
 <figure><img src="../../.gitbook/assets/wmng_obs_on_azure.png" alt=""><figcaption><p>Create object store bucket on Azure</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
