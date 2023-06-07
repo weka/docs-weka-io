@@ -31,9 +31,9 @@ Before installing the WEKA software on Azure, the following prerequisites must b
 
 <details>
 
-<summary>M1/M2-based Mac workstation additional requirements</summary>
+<summary>Arm-based Mac workstation additional requirements</summary>
 
-Follow these additional requirements to get Terraform working on an M1/M2-based Mac:
+Follow these additional requirements to get Terraform working on an Arm-based Mac:
 
 1. Run `brew install tfenv`
 2. Run `TFENV_ARCH=amd64 tfenv install 1.3.7`
