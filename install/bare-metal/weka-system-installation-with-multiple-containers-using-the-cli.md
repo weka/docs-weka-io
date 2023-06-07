@@ -275,7 +275,7 @@ HOST ID  HOSTNAME  CONTAINER  IPS             STATUS  RELEASE                   
 27       av299-7   frontend0  10.108.173.56   UP      4.1.1.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-007         1      1.47 GB                 1:06:56h
 28       av299-8   frontend0  10.108.253.194  UP      4.1.1.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-008         1      1.47 GB                 1:06:57h
 29       av299-9   frontend0  10.108.220.115  UP      4.1.1.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-009         1      1.47 GB                 1:06:56h
-30       av2991-0  client     10.108.227.233  UP      4.1.1.8076-9e87a37af8169f32fb3c81c73d6844a1                  0      1.46 GB                 0:05:49h
+5:49h
 ```
 
 #### Check cluster container resources
