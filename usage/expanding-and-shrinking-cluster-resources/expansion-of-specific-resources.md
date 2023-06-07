@@ -43,8 +43,6 @@ To change the memory of `container-id 0` to 1.5 GB, run the following commands:
 
 </details>
 
-For more details and options, see [Broken link](broken-reference "mention").
-
 ## Modify the network configuration
 
 Run the following command lines on the active container:
