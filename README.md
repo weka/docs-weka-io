@@ -2,7 +2,7 @@
 
 Welcome to the WEKA documentation portal. It displays the documentation for the latest WEKA version. If you have a different WEKA version, select it from the top menu.
 
-<figure><img src=".gitbook/assets/doc_version_selector_4.2.gif" alt=""><figcaption><p>WEKA version selector</p></figcaption></figure>
+<figure><img src=".gitbook/assets/selector_animation.gif" alt=""><figcaption><p>WEKA version selector</p></figcaption></figure>
 
 ## About WEKA documentation
 
@@ -10,7 +10,7 @@ This portal contains all the documentation necessary for understanding and worki
 
 **WEKA system overview:** Introduction of the primary components, principles, and entities that form the WEKA system.
 
-**Getting started with WEKA:** A quick installation guide of the WEKA system, configuration of a WekaFS filesystem, and running the first IO tests to validate the system configuration.
+**Getting started with WEKA:** A quick installation guide of the WEKA system, configuration of a WEKA filesystem, and running the first IO tests to validate the system configuration.
 
 **Planning and installation:** WEKA software installation on bare metal, AWS, GCP, and Azure environments.
 

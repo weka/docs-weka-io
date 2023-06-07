@@ -18,7 +18,7 @@ Using the GUI, you can:
 
 1. From the menu, select **Investigate > Statistics**.
 
-<figure><img src="../../.gitbook/assets/wmng_statistics_view.png" alt=""><figcaption><p>View Statistics</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_statistics_view (1).png" alt=""><figcaption><p>View Statistics</p></figcaption></figure>
 
 2\. To view statistics of predefined templates for commonly used categories, select \
 &#x20;   **Predefined Templates** and from the list select the required statistics template.\

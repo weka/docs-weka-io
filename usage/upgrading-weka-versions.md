@@ -85,7 +85,8 @@ If you plan a multi-hop version upgrade, once an upgrade is done, a background p
 
 Download the new software release on one of the backends using one of the following methods:
 
-* From the backend server, run `weka version get <new-version>` where `<new-version>` is the name of the new version (for example,`4.2.0`), followed by `weka version prepare <new-version>`.&#x20;
+* From the backend server, run `weka version get <new-version>` \
+  (`<new-version>` is for example, `4.2.0`). Then, run `weka version prepare <new-version>`.&#x20;
 * If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `4.2.0` version from [get.weka.io](https://get.weka.io/ui/releases/), use a token as follows: \
   \
   `weka version get 4.2.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io`\
@@ -101,7 +102,15 @@ The preparation phase prepares all the connected backend servers for the upgrade
 
 Once the new version is downloaded to one of the backend servers, run the following CLI command:
 
-`weka local run --in <new-version> upgrade --prepare-only`
+`weka local run -- container <container-name) --in <new-version> upgrade --prepare-only`
+
+Where:
+
+`<new-version>`: Specify the new version. For example,`4.2.0`.
+
+`<container-name)`: Specify only one container name. For example: `frontend0`.
+
+The default upgrade mode to 4.2.x is `ndu`. Therefore, no need to specify it.
 
 ### 4. Upgrade the backend servers
 
@@ -109,11 +118,13 @@ Once a new software version is installed on one of the backend servers, upgrade 
 
 If you already ran the preparation step, the upgrade command skips the download and preparation operations.
 
-`weka local run --in <new-version> upgrade`
+`weka local run -- container <container-name) --in <new-version> upgrade`
 
-Where `<new-version>` is the new version's name (for example,`4.2.0`).
+Example:
 
-Adhere to the following:
+`weka local run --container frontend0 --in 4.2.0 upgrade`
+
+**Adhere to the following:**
 
 * Before switching the cluster to the new software release, the upgrade command distributes the new release to all cluster servers. It makes the necessary preparations, such as compiling the new `wekafs` driver.
 * If a failure occurs during the preparation, such as a disconnection of a server or failure to build a driver, the upgrade process stops, and a summary message indicates the problematic server.
