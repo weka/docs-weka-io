@@ -108,7 +108,7 @@ Where:
 
 `<new-version>`: Specify the new version. For example,`4.2.0`.
 
-`<container-name)`: Specify only one container name. For example: `frontend0`.
+`<container-name)`: Specify only one container name. For example: `drives0`.
 
 The default upgrade mode to 4.2.x is `ndu`. Therefore, no need to specify it.
 
@@ -122,7 +122,7 @@ If you already ran the preparation step, the upgrade command skips the download 
 
 Example:
 
-`weka local run --container frontend0 --in 4.2.0 upgrade`
+`weka local run --container drives0 --in 4.2.0 upgrade`
 
 **Adhere to the following:**
 
