@@ -107,7 +107,7 @@ Where:
 
 `<new-version>`: Specify the new version. For example,`4.1.0`.
 
-`<container-name)`: Specify only one container name. For example: `frontend0`.
+`<container-name)`: Specify only one container name. For example: `drives0`.
 
 `<upgrade mode>`: For a cluster in MCB architecture, specify `ndu`.  For a cluster in legacy architecture, the default is `oneshot`, so it is not required to specify it.
 
@@ -121,7 +121,7 @@ If you already ran the preparation step, the upgrade command skips the download 
 
 Example:
 
-`weka local run --container frontend0 --in 4.1.1 upgrade --mode ndu`
+`weka local run --container drives0 --in 4.1.1 upgrade --mode ndu`
 
 **Adhere to the following:**
 
