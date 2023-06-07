@@ -16,7 +16,7 @@ Before installing the WEKA software on GCP, the following prerequisites must be 
 
 * [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install) (it is pre-installed if you use the Cloud Shell).
 * [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (it is pre-installed if you use the Cloud Shell).
-* Obtain the WEKA GCP-Terraform package from [https://github.com/weka/gcp-tf](https://github.com/weka/gcp-tf) and save it to a local directory.&#x20;
+* Obtain the latest release of the WEKA GCP-Terraform package from [https://github.com/weka/terraform-gcp-weka/releases](https://github.com/weka/terraform-gcp-weka/releases) and unpack it in your workstation.&#x20;
 * Initialize the GCP-Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 * The **Compute Engine** and **Workflows API** services must be enabled.
 * The service account used for the deployment must have the following roles:

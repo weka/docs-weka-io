@@ -19,7 +19,7 @@ Before installing the WEKA software on Azure, the following prerequisites must b
   * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
   * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 * For an M1/M2-based Mac workstation, see specific instructions below.
-* Obtain the Azure-WEKA Terraform package from [https://github.com/weka/terraform-azr-weka](https://github.com/weka/terraform-azr-weka) and save it to a local directory. To access the package, a git account is required, and it must be associated with the WEKA git organization.&#x20;
+* Obtain the latest release of the Azure-WEKA Terraform package from [https://github.com/weka/terraform-azure-weka/releases](https://github.com/weka/terraform-azure-weka/releases) and unpack it in your workstation.
 * Initialize the Azure-WEKA Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 * Required permissions on Azure:
   * Privileged Role Administrator
