@@ -108,7 +108,7 @@ Where:
 
 `<new-version>`: Specify the new version. For example,`4.2.0`.
 
-`<container-name)`: Specify only one container name. For example: `drives0`.
+`<container-name>`: Specify only one container name. For example: `drives0`.
 
 The default upgrade mode to 4.2.x is `ndu`. Therefore, no need to specify it.
 
