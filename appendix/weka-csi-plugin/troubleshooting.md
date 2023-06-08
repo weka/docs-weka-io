@@ -44,3 +44,5 @@ Only if the default memory for the client is increased, do one of the following:
 
 * If the WEKA client is installed on the K8s nodes by a manual stateless client mount, set the `reserve_1g_hugepages` mount option to `false` in the mount command.
 * If this is a WEKA server or a WEKA client part of the WEKA cluster, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+
+Advanced examples and detailed instructions are also available at [www.github.com/weka/csi-wekafs](http://localhost:5000/s/wsv77VATX9FPfXGq2501/).

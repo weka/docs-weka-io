@@ -40,7 +40,7 @@ To add SELinux support, perform the following procedures:
     $ semodule -i csi-wekafs.pp
     ```
 
-    > For this purpose, the `policycoreutils-devel` package (or its alternative in case of Linux distribution different from the RedHat family) is required.
+    For this purpose, the `policycoreutils-devel` package (or its alternative in case of Linux distribution different from the RedHat family) is required.
 
     Verify that the policy is applied correctly:
 
@@ -141,19 +141,23 @@ $ helm install --upgrade csi-wekafsplugin csi-wekafs/csi-wekafsplugin --namespac
                  csi.weka.io/selinux_enabled=true
     ```
 
-    *   If the output is empty, proceed to [Install and configure the Weka CSI Plugin](add-selinux-support.md#install-and-configure-the-weka-csi-plugin).
+    *   If the output is empty, [Install and configure the Weka CSI Plugin](add-selinux-support.md#install-and-configure-the-weka-csi-plugin).
 
-        > If the label was missing and added by you during troubleshooting, the CSI node server component must be restarted on the node.\
-        > Perform the following command to terminate the relevant pod and another instance will start automatically:
-        >
-        > ```
-        > $ POD=$(kubectl get pod -n csi-wekafs -lcomponent=csi-wekafs-node -o wide | grep -w don-kube-8 | cut -d" " -f1)
-        > $ kubectl delete pod -n csi-wekafs $POD
-        > ```
-    * If the output matches the example, proceed to the next step.
-8.  Collect CSI node server logs from the matching Kubernetes nodes and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 
-    ```
-    $ POD=$(kubectl get pod -n csi-wekafs -lcomponent=csi-wekafs-node -o wide | grep -w don-kube-8 | cut -d" " -f1)
-    $ kubectl logs -n csi-wekafs -c wekafs $POD > log.txt  
-    ```
+
+        If the label was missing and added by you during troubleshooting, the CSI node server component must be restarted on the node.\
+        Perform the following command to terminate the relevant pod, and another instance will start automatically:
+
+{% code fullWidth="false" %}
+```
+$ POD=$(kubectl get pod -n csi-wekafs -lcomponent=csi-wekafs-node -o wide | grep -w don-kube-8 | cut -d" " -f1)
+$ kubectl delete pod -n csi-wekafs $POD
+```
+{% endcode %}
+
+8. Collect CSI node server logs from the matching Kubernetes nodes and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+
+```
+$ POD=$(kubectl get pod -n csi-wekafs -lcomponent=csi-wekafs-node -o wide | grep -w don-kube-8 | cut -d" " -f1)
+$ kubectl logs -n csi-wekafs -c wekafs $POD > log.txt  
+```

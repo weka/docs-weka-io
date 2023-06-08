@@ -7,11 +7,11 @@ The Weka CSI Plugin supports the following persistent volume types:
 
 The Weka CSI Plugin communicates with the WEKA cluster using REST API, leveraging this integration to provide extended capabilities, such as strictly enforcing volume capacity usage through integration with filesystem directory quota functionality. For details, see [Quota management](../../fs/quota-management/).
 
-Starting from CSI Plugin **v2.0,** three storage class configurations are available:
+Starting from CSI Plugin **v2.0,** three StorageClass configurations are available:
 
-* Directory backed volume class&#x20;
-* Snapshot backed volume class
-* Filesystem backed volume class
+* Directory-backed StorageClass&#x20;
+* Snapshot-backed StorageClass
+* Filesystem-backed StorageClass
 
 ## API-based communication model
 
@@ -33,11 +33,11 @@ The API-based communication model is deprecated and will be removed in the next 
 ## Prerequisites
 
 * To provision any persistent volume type, a Storage Class must exist in Kubernetes deployment that matches the secret name and namespace in the WEKA cluster configuration.
-* For directory backed and snapshot backed volume class configurations, a filesystem must be pre-created on the WEKA cluster to create PVCs.
-* For filesystem backed volume class configuration, the filesystem name is generated automatically based on the PVC name, but the filesystem group name must be declared in the Storage Class configuration.
+* For directory-backed and snapshot-backed storage class configurations, a filesystem must be pre-created on the WEKA cluster to create PVCs.
+* For filesystem-backed StorageClass configuration, the filesystem name is generated automatically based on the PVC name, but the filesystem group name must be declared in the Storage Class configuration.
 
 {% hint style="info" %}
-**Note:** Multiple WEKA cluster connections from the same Kubernetes node are not supported in the current release of WEKA software.&#x20;
+Multiple WEKA cluster connections from the same Kubernetes node are not supported in the current release of WEKA software.&#x20;
 
 However, you can connect different Kubernetes nodes within the same cluster to different WEKA clusters, such as in different regions or availability zones, provided that the WEKA CSI Plugin can access the WEKA cluster REST API. A single CSI Plugin instance can orchestrate persistent volume provisioning on multiple clusters.
 {% endhint %}
@@ -88,7 +88,7 @@ csi-wekafs-api-secret   Opaque   5      7m
 </details>
 
 {% hint style="info" %}
-**Note:** To provision CSI volumes on filesystems residing in non-root organizations or filesystems, set with `auth-required=true`. A CSI Plugin of version **0.8.4** and higher and WEKA cluster version **3.14** and higher are required.
+To provision CSI volumes on filesystems residing in non-root organizations or filesystems, set with `auth-required=true`. A CSI Plugin of version **0.8.4** and higher and WEKA cluster version **3.14** and higher are required.
 {% endhint %}
 
 #### Secret data parameters
@@ -97,9 +97,9 @@ All values in the secret data file must be in base64-encoded format.
 
 <table><thead><tr><th width="177">Key</th><th>Description</th><th>Comments</th></tr></thead><tbody><tr><td><code>username</code></td><td>The user name for API access to the WEKA cluster.</td><td>Must have at least read-write permissions in the organization. Creating a separate user with admin privileges for the CSI Plugin is recommended.</td></tr><tr><td><code>password</code></td><td>The user password for API access to the Weka cluster.</td><td></td></tr><tr><td><code>organization</code></td><td>The WEKA organization name for the user.<br>For a single organization, use <code>Root</code>.</td><td>You can use multiple secrets to access multiple organizations, which are specified in different storage classes.</td></tr><tr><td><code>scheme</code></td><td>The URL scheme that is used for communicating with the Weka cluster API.</td><td><code>http</code> or <code>https</code> can be used. The user must ensure that the Weka cluster was configured to use the same connection scheme.</td></tr><tr><td><code>endpoints</code></td><td><p>Comma-separated list of endpoints consisting of IP address and port. For example, </p><p><code>172.31.15.113:14000,172.31.12.91:14000</code></p></td><td>For redundancy, specify the management IP addresses of at least 2 backend servers.</td></tr></tbody></table>
 
-## Configure directory backed storage class
+## Configure directory-backed StorageClass
 
-1. Create a directory backed storage class yaml file (see the following example).
+1. Create a directory-backed storage class yaml file (see the following example).
 
 <details>
 
@@ -148,7 +148,7 @@ parameters:
 
 </details>
 
-2. Apply the directory backed storage class and validate it is created successfully.
+2. Apply the director-backed storage class and validate it is created successfully.
 
 <details>
 
@@ -173,13 +173,13 @@ Adhere to the following:
 * You can use the same secret for multiple storage classes, as long as the credentials are valid to access the filesystem.
 * You can use several secret data files for different organizations on the same WEKA cluster, or for different WEKA clusters spanning across the same Kubernetes cluster.
 
-#### Directory backed  storage **class parameters**
+#### Directory-backed  StorageClass **parameters**
 
 <table><thead><tr><th width="293">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>filesystemName</code></td><td><p>The name of the WEKA filesystem to create directories as Kubernetes volumes.</p><p>The filesystem must exist on the WEKA cluster.</p><p>The filesystem may not be defined as authenticated.</p></td></tr><tr><td><code>capacityEnforcement</code></td><td><p>Possible values: <code>HARD</code> or <code>SOFT</code>.</p><ul><li><code>HARD</code>: Strictly enforce quota and deny any write operation to the persistent volume consumer until space is freed.</li><li><code>SOFT</code>: Do not strictly enforce the quota. If the quota is reached, create an alert on the WEKA cluster.</li></ul></td></tr><tr><td><code>ownerUid</code></td><td>Effective User ID of the owner user for the provisioned CSI volume. Might be required for application deployments running under non-root accounts.<br>Defaults to <code>0 CSI plugin v2.0 adds fsgroup features so this is optional</code><strong>.</strong></td></tr><tr><td><code>ownerGid</code></td><td>Effective Group ID of the owner user for the provisioned CSI volume. Might be required for application deployments running under non-root accounts.<br>Defaults to <code>0 CSI plugin v2.0 adds fsgroup features so this is optional</code>.</td></tr><tr><td><code>permissions</code></td><td>Unix permissions for the provisioned volume root directory in octal format. It must be set in quotes. Defaults to <code>0775</code></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-name</code></td><td><p>Name of the K8s secret. For example, <code>csi-wekafs-api-secret</code>.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value (<code>&#x26;secretName</code>) must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-dir-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-namespace</code></td><td><p>The namespace the secret is located in. </p><p>The secret must be located in a different namespace than the installed CSI Plugin.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value (<code>&#x26;secretNamespace</code>) must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-dir-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr></tbody></table>
 
-## Configure snapshot backed storage class
+## Configure snapshot-backed StorageClass
 
-1. Create a snapshot backed volume class yaml file (see the following example).
+1. Create a snapshot-backed StorageClass yaml file (see the following example).
 
 <details>
 
@@ -220,7 +220,7 @@ parameters:
 
 </details>
 
-2. Apply the snapshot backed volume class and validate it is created successfully.
+2. Apply the snapshot-backed StorageClass and validate it is created successfully.
 
 <details>
 
@@ -245,13 +245,13 @@ Adhere to the following:
 * You can use the same secret for multiple storage classes, as long as the credentials are valid to access the filesystem.
 * You can use several secret data files for different organizations on the same WEKA cluster, or for different WEKA clusters spanning across the same Kubernetes cluster.
 
-#### &#x20;Snapshot backed storage class parameters
+#### &#x20;snapshot-backed StorageClass parameters
 
-<table><thead><tr><th width="257">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>volumeType</code></td><td><p>The CSI Plugin volume type.</p><p>For snapshot backed volume class configurations, use <code>weka/v2</code>.</p></td></tr><tr><td><code>filesystemName</code></td><td><p>The name of the WEKA filesystem to create snapshots as Kubernetes volumes.</p><p>The filesystem must exist on the WEKA cluster and be empty.</p></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-name</code></td><td><p>Name of the K8s secret. For example, <code>csi-wekafs-api-secret</code>.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-snap-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-namespace</code></td><td><p>The namespace the secret is located in. </p><p>The secret must be located in a different namespace than the installed CSI Plugin.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-snap-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr></tbody></table>
+<table><thead><tr><th width="257">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>volumeType</code></td><td><p>The CSI Plugin volume type.</p><p>For snapshot-backed StorageClass configurations, use <code>weka/v2</code>.</p></td></tr><tr><td><code>filesystemName</code></td><td><p>The name of the WEKA filesystem to create snapshots as Kubernetes volumes.</p><p>The filesystem must exist on the WEKA cluster and be empty.</p></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-name</code></td><td><p>Name of the K8s secret. For example, <code>csi-wekafs-api-secret</code>.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-snap-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-namespace</code></td><td><p>The namespace the secret is located in. </p><p>The secret must be located in a different namespace than the installed CSI Plugin.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-snap-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr></tbody></table>
 
-## Configure filesystem backed storage class
+## Configure filesystem-backed StorageClass
 
-1. Create a filesystem backed volume class yaml file (see the following example).
+1. Create a filesystem-backed StorageClass yaml file (see the following example).
 
 <details>
 
@@ -295,7 +295,7 @@ parameters:
 
 </details>
 
-2. Apply the filesystem backed volume class and validate it is created successfully.
+2. Apply the filesystem-backed StorageClass and validate it is created successfully.
 
 <details>
 
@@ -320,6 +320,6 @@ Adhere to the following:
 * You can use the same secret for multiple storage classes, as long as the credentials are valid to access the filesystem.
 * You can use several secret data files for different organizations on the same WEKA cluster, or for different WEKA clusters spanning across the same Kubernetes cluster.
 
-#### Filesystem backed storage **class parameters**
+#### filesystem-backed StorageClass **parameters**
 
-<table><thead><tr><th width="282">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>volumeType</code></td><td><p>The CSI Plugin volume type.</p><p>For filesystem backed volume class configurations, use <code>weka/v2</code>.</p></td></tr><tr><td><code>filesystemGroupName</code></td><td>The name of the WEKA filesystem to create filesystems as Kubernetes volumes.<br>The filesystem group must exist on the WEKA cluster.</td></tr><tr><td><code>initialFilesystemSizeGB</code></td><td><p>The default size to create new filesystems.<br>Set this parameter in the following cases:</p><ul><li>When the PVC requested size is smaller than the specified value.</li><li>For additional space required by snapshots of a volume or snapshot-backed volumes derived from this filesystem.</li></ul></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-name</code></td><td><p>Name of the K8s secret. For example, <code>csi-wekafs-api-secret</code>.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters below, according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-snap-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-namespace</code></td><td><p>The namespace the secret is located in. </p><p>The secret must be located in a different namespace than the installed CSI Plugin.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-fs-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr></tbody></table>
+<table><thead><tr><th width="282">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>volumeType</code></td><td><p>The CSI Plugin volume type.</p><p>For filesystem-backed StorageClass configurations, use <code>weka/v2</code>.</p></td></tr><tr><td><code>filesystemGroupName</code></td><td>The name of the WEKA filesystem to create filesystems as Kubernetes volumes.<br>The filesystem group must exist on the WEKA cluster.</td></tr><tr><td><code>initialFilesystemSizeGB</code></td><td><p>The default size to create new filesystems.<br>Set this parameter in the following cases:</p><ul><li>When the PVC requested size is smaller than the specified value.</li><li>For additional space required by snapshots of a volume or snapshot-backed volumes derived from this filesystem.</li></ul></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-name</code></td><td><p>Name of the K8s secret. For example, <code>csi-wekafs-api-secret</code>.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters below, according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-snap-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr><tr><td><code>csi.storage.k8s.io/provisioner-secret-namespace</code></td><td><p>The namespace the secret is located in. </p><p>The secret must be located in a different namespace than the installed CSI Plugin.</p><p>It is recommended to use a trust anchor definition to avoid mistakes because the same value must be specified in the additional parameters according to the CSI specifications.<br>Format: see <em>Example: storageclass-wekafs-fs-api.yaml</em> above (the additional parameters appear at the end of the example).</p></td></tr></tbody></table>

@@ -1,6 +1,6 @@
 ---
 description: >-
-  Connect Kubernetes clients to the WEKA client to leverage the WEKA cluster
+  Connect Kubernetes worker nodes to the WEKA data platform to leverage its
   capabilities.
 ---
 
@@ -37,11 +37,11 @@ The WEKA CSI Plugin provides the following features:
 
 ## Interoperability
 
-* CSI protocol: 1.0-1.2.
+* CSI protocol: 1.0 - 1.2.
 * Kubernetes: 1.18 - 1.2x.
-* WEKA: V3.14 and up. To get all features, WEKA V4.2 and up is required.
-* SELinux is supported (AppArmor for Ubuntu is not supported yet).
+* WEKA: V3.14 and up. To get all features, WEKA V4.2 and up and WEK CSI Plugin V2.0 are required.
+* SELinux is supported (AppArmor for Ubuntu is not supported).
 
 {% hint style="info" %}
-**Note:** The WEKA CSI Plugin replaces plugins developed earlier in the Kubernetes evolution. It replaces the `hostPath` method to expose WEKA mounts as Kubernetes volumes.
+The WEKA CSI Plugin replaces plugins developed earlier in the Kubernetes evolution. It replaces the `hostPath` method to expose WEKA mounts as Kubernetes volumes.
 {% endhint %}
