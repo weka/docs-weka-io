@@ -101,7 +101,7 @@ When working with many backend servers, preparing them separately from the upgra
 The preparation phase prepares all the connected backend servers for the upgrade, which includes downloading the new version and getting it ready to be applied.
 
 Once the new version is downloaded to one of the backend servers, run the following CLI command:\
-`weka local run -- container <container-name) --in <new-version> upgrade --mode ndu --prepare-only`
+`weka local run --container <container-name> --in <new-version> upgrade --mode ndu --prepare-only`
 
 Where:
 
@@ -117,7 +117,7 @@ Once a new software version is installed on one of the backend servers, upgrade 
 
 If you already ran the preparation step, the upgrade command skips the download and preparation operations.
 
-`weka local run -- container <container-name) --in <new-version> upgrade --mode <upgrade mode>`
+`weka local run --container <container-name> --in <new-version> upgrade --mode <upgrade mode>`
 
 Example:
 
