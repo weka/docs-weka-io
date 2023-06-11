@@ -38,7 +38,6 @@ The region must support the services used in WEKA on Azure. The following sectio
   * Australia East
   * Australia Southeast
   * Central India
-  * China North 3
   * Japan East
   * East Asia
   * Southeast Asia
