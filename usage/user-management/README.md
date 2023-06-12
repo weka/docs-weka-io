@@ -1,16 +1,16 @@
 ---
 description: >-
   This page describes the management of users licensed to work with the WEKA
-  Sales or Support system.
+  system.
 ---
 
 # User management
 
 ## User types
 
-Access to a WEKA Sales or Support system cluster is controlled by creating, modifying, and deleting users. You can add up to 1152 local users to work with a WEKA Sales or Support system cluster. Each user is identified by a username and must provide a password for authentication to work with the WEKA Sales or Support system GUI or CLI.
+Access to a WEKA system cluster is controlled by creating, modifying, and deleting users. You can add up to 1152 local users to work with a WEKA system cluster. A username identifies each user and must provide a password for authentication to work with the WEKA system GUI or CLI.
 
-Every WEKA Sales or Support system user has one of the following defined roles:
+Every WEKA system user has one of the following defined roles:
 
 * **Cluster Admin**: A user with additional privileges. See [Cluster Admin role privileges](./#cluster-admin-role-privileges).
 * **Organization Admin**: A user with additional privileges within an organization. This role is relevant when working with different organizations. See [Organization Admin role privileges](../organizations/#organization-admin-role-privileges).
@@ -20,11 +20,11 @@ Every WEKA Sales or Support system user has one of the following defined roles:
 
 ## Cluster Admin **(**the first user)
 
-By default, when a WEKA Sales or Support cluster is created, the first user with an `admin` username and password is created. A prompt to change the password on the first login is displayed. This user has a Cluster Admin role, which allows running all commands.&#x20;
+By default, when a WEKA cluster is created, the first user with an `admin` username and password is created. A prompt to change the password on the first login is displayed. This user has a Cluster Admin role, which allows running all commands.&#x20;
 
 Cluster Admin users are responsible for managing the cluster as a whole. When using multiple organizations, there is a difference between managing a single organization and managing the cluster because managing the cluster also covers the management of the cluster hardware and resources. These are the additional permissions given to a Cluster Admin compared to an Organization Admin.
 
-A WEKA Sales or Support system cluster must have at least one defined **internal** Cluster Admin user. However**,** it is possible to create a Cluster Admin user with a different name and delete the default admin user, if required.
+A WEKA cluster must have at least one defined **internal** Cluster Admin user. However**,** it is possible to create a Cluster Admin user with a different name and delete the default admin user, if required.
 
 ### Cluster Admin role privileges
 
@@ -53,6 +53,6 @@ Additionally, the following restrictions apply to Cluster Admin users to avoid s
 
 **Related topics**
 
-****[user-management.md](user-management.md "mention")****
+[user-management.md](user-management.md "mention")
 
-****[user-management-1.md](user-management-1.md "mention")****
+[user-management-1.md](user-management-1.md "mention")

@@ -26,16 +26,16 @@ Deploy one of the supported KMS types that best suit your requirements. For addi
 
 ## KMS best practices
 
-The KMS is the only source holding the key to decrypt WEKA Sales or Support system filesystem keys. For non-disruptive operation, it is highly recommended to follow these guidelines:
+The KMS is the only source holding the key to decrypt WEKA system filesystem keys. For non-disruptive operations, it is highly recommended to follow these guidelines:
 
-* Set up DR for the KMS (backup/replication) to avoid any chance of data loss.
-* Ensure that the KMS is highly available (note that the KMS is represented by a single URL in the WEKA Sales or Support system).
-* Provide access to the KMS from the WEKA Sales or Support system backend servers.
-* Verify the methods used by the KMS being implemented (each KMS has different methods for securing/unsealing keys and for reconstructing lost keys, e.g., [Vault unsealing methods](https://www.vaultproject.io/docs/concepts/seal.html), which enable the configuration of [auto unsealing using a trusted service](https://learn.hashicorp.com/vault/operations/ops-autounseal-aws-kms)).
+* Set up DR for the KMS (backup/replication) to avoid data loss.
+* Ensure that the KMS is highly available (note that a single URL in the WEKA system represents the KMS).
+* Provide access to the KMS from the WEKA system backend servers.
+* Verify the methods used by the KMS being implemented (each KMS has different methods for securing/unsealing keys and reconstructing lost keys, for example, [Vault unsealing methods](https://www.vaultproject.io/docs/concepts/seal.html), which enable the configuration of [auto unsealing using a trusted service](https://learn.hashicorp.com/vault/operations/ops-autounseal-aws-kms)).
 * Refer to [Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) for additional best practices suggested by HashiCorp when using Vault.
 
 {% hint style="info" %}
-**Note:** Taking a Snap-To-Object ensures that the (encrypted) filesystems keys are backed up to the object store, which is important if a total corruption of the WEKA Sales or Support system configuration occurs.
+**Note:** Taking a Snap-To-Object ensures that the (encrypted) filesystems keys are backed up to the object store, which is important if a total corruption of the WEKA system configuration occurs.
 {% endhint %}
 
 
