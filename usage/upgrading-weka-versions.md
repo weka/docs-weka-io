@@ -90,7 +90,8 @@ Download the new software release on one of the backends using one of the follow
 * If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `4.2.0` version from [get.weka.io](https://get.weka.io/ui/releases/), use a token as follows: \
   \
   `weka version get 4.2.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io`\
-
+  \
+  Then, run `weka version prepare <new-version>`. &#x20;
 * From the backend server, run the `curl` command described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new release page.
 * Download the new version tar file to the backend server and run the `install.sh` command. This method is helpful in environments without connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs.
 
