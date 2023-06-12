@@ -29,8 +29,8 @@ To get started, sign up as a user in the Support Portal: [support.weka.io](http:
 You can monitor tickets and receive timely notifications and updates whenever any changes occur to the tickets.
 {% endtab %}
 
-{% tab title="Major / Minor / Product question / Feature request " %}
-For classifications other than critical, do one of the following:
+{% tab title="Major / Minor / Question " %}
+For _Major_, _Minor_, and _Question_ (feature request or product question) classifications, do one of the following:
 
 #### Open a ticket in the Support Portal
 
@@ -52,8 +52,12 @@ The SLA detailed in the technical support policy is for WEKA software issues. Is
 
 ## Recommended preparations for getting support&#x20;
 
-* [Enable uploading information from the WEKA cluster to Weka Home](https://docs.weka.io/support/the-wekaio-support-cloud#enable-upload-information-from-the-weka-cluster-to-weka-home) for each provisioned cluster.
+* Upload information from the WEKA cluster to Weka Home for each provisioned cluster.&#x20;
 * Create an account on the Weka Support Portal [support.weka.io](http://support.weka.io/). This account allows you to submit and check the status of tickets and browse our online knowledge base.
+
+**Related topic**
+
+[#upload-information-from-the-weka-cluster-to-weka-home](the-wekaio-support-cloud/#upload-information-from-the-weka-cluster-to-weka-home "mention")
 
 ## Escalation
 

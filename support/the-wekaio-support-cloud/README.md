@@ -38,7 +38,7 @@ The WEKA cluster periodically and on-demand uploads various information types to
 
 * **Diagnostics (support files):** Uploaded on-demand from the container that collected the diagnostics.
 
-## Enable upload information from the WEKA cluster to Weka Home
+## Upload information from the WEKA cluster to Weka Home
 
 1. To enable cloud notifications, run the `weka cloud enable` command (during the Weka cluster installation, it is an optional step, which may be already done).
 2. To upload diagnostics collected by the cluster, run the `weka diags upload` command.
