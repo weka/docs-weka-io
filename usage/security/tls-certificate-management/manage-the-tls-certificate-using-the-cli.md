@@ -15,7 +15,7 @@ The command receives an unencrypted private key.
 {% hint style="success" %}
 **Example:**
 
-This command is similar to the OpenSSL command that WEKA Sales or Support uses to generate the self-signed certificate: `openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
+This command is similar to the OpenSSL command that WEKA uses to generate the self-signed certificate: `openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
 {% endhint %}
 
 ### Replace the TLS certificate
