@@ -24,13 +24,13 @@ Leave a voice message, which is directed to the active support personnel.
 
 #### Open a ticket in the Support Portal
 
-To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). Then, open a ticket and select the appropriate classification based on the severity of the issue.
+To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). Then, open a ticket and select the _Critical_ classification.
 
 You can monitor tickets and receive timely notifications and updates whenever any changes occur to the tickets.
 {% endtab %}
 
 {% tab title="Major / Minor / Question " %}
-For _Major_, _Minor_, and _Question_ (feature request or product question) classifications, do one of the following:
+For _Major_, _Minor_, and _Question_ classifications, do one of the following:
 
 #### Open a ticket in the Support Portal
 
@@ -41,6 +41,10 @@ You can track tickets and receive notifications and updates when there are chang
 #### Send an email to [support@weka.io](mailto:support@weka.io)
 
 To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). When you send an email, it automatically creates a ticket in the Support Portal. Problem notifications sent via email are not considered critical.
+
+{% hint style="info" %}
+If you have a feature request, contact your sales team to submit the request.&#x20;
+{% endhint %}
 {% endtab %}
 {% endtabs %}
 
