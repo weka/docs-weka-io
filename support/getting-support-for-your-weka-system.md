@@ -34,7 +34,7 @@ For _Major_, _Minor_, and _Question_ classifications, do one of the following:
 
 #### Open a ticket in the Support Portal
 
-To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). Then, open a ticket and select the appropriate severity level based on the severity of the issue.
+To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). Then, open a ticket and select the appropriate classification according to the issue severity.
 
 You can track tickets and receive notifications and updates when there are changes to the tickets.
 
