@@ -47,11 +47,19 @@ Ensure the BIOS settings meet the following requirements:
 * **Amazon Linux:** 18.03, 17.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
 
+{% hint style="info" %}
+Ensure using an OS with a supported kernel. Do not use an OS with kernel 5.13 for backends in MCB architecture.
+{% endhint %}
+
 #### Clients only:
 
 * **SuSe:**&#x20;
   * 15 SP2
   * 12 SP5
+
+{% hint style="info" %}
+For kernel 5.13 in clients, do not use applications that use 1GB hugepages.
+{% endhint %}
 
 ### Configuration
 
