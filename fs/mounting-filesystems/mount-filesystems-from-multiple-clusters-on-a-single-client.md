@@ -1,6 +1,6 @@
 # Mount filesystems from multiple clusters on a single client
 
-You can mount filesystems from up to sever clusters in parallel on a single WEKA client.
+You can mount filesystems from up to seven clusters in parallel on a single WEKA client.
 
 This feature provides the following benefits:
 
