@@ -36,7 +36,6 @@ The following operating systems are supported for backend servers and clients:
 * **RHEL:**
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
   * 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-  * 9.1, 9.0
 * **CentOS:**
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
