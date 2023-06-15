@@ -117,13 +117,13 @@ Once the SMB cluster is connected to the Active Directory, it can assign permiss
 **Note:** To obtain root access to the SMB shares, assign an Active Directory user with a `uidNumber` and `gidNumber` of 0.
 {% endhint %}
 
-### Integration with previous versions of Windows&#x20;
+### Integration with Windows previous versions feature&#x20;
 
-Creating snapshots of the Weka filesystem and naming the access point in the `@GMT_%Y.%m.%d-%H.%M.%S` format exposes those to the previous windows versions mechanism.
+Creating snapshots of the Weka filesystem and naming the access point in the `@GMT_%Y.%m.%d-%H.%M.%S` format exposes those to the Windows previous versions mechanism.
 
 To view a list of available previous versions that correspond to the filesystem snapshots, right-click a file or a folder in the Weka SMB share in the windows client, and select **Properties** -> **Previous Versions**.
 
-**Example**: creating a snapshot using the CLI:
+**Example**: creating a snapshot using the CLI with the required access point syntax:
 
 ```
 $ weka fs snapshot create fs_name snapshot_name --access-point `TZ=GMT date +@GMT-%Y.%m.%d-%H.%M.%S` 
