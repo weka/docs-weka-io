@@ -105,20 +105,16 @@ For more details and options, see [#8.-configure-the-cpu-resources](../../instal
 
 Adding SSD drives can alter the ratio between SSDs and drive cores.
 
-Adding a drive is only possible when the container is deactivated.
+#### Procedure
 
-To add additional drives, determine the relevant container ID with the following:
-
-`weka cluster container`
-
-Scan for new drives with:
-
-`weka cluster drive scan`
-
-Depending on the architecture, use the following instructions to add the SSDs:&#x20;
-
-* [Legacy architecture](../../install/bare-metal/using-cli.md#7.-configure-the-ssds)&#x20;
-* [Multiple container architecture](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md#6.-configure-the-ssd-drives)
+1. Ensure the cluster has a drive core to allocate for the new SSD. If required, deactivate the container and then add the drive core to the container.&#x20;
+2. Determine the relevant container ID by running  the command:\
+   `weka cluster container`
+3. Scan for new drives by running  the command:\
+   `weka cluster drive scan`
+4. Depending on the architecture, use the following instructions to add the SSDs:&#x20;
+   * [Legacy architecture](../../install/bare-metal/using-cli.md#7.-configure-the-ssds)&#x20;
+   * [Multiple container architecture](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md#6.-configure-the-ssd-drives)
 
 ## Modify resources on a local container
 
