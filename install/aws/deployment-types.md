@@ -17,8 +17,8 @@ description: >-
 It is possible to set clients with IMDSv2, but they would not benefit from seamless cloud configuration and should be manually managed similarly to [Adding Clients](../bare-metal/adding-clients-bare-metal.md) in bare-metal installations.
 {% endhint %}
 
-* When deploying in AWS not using the CloudFormation template or when additional capabilities are added after deployment (e.g., tiering), it is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](cloudformation.md#iam-role-created-in-the-template).
-* Ensure you have enough available IP addresses in the selected subnet, as each core allocated to WEKA requires an IP address.
+* When deploying in AWS not using the CloudFormation template or when additional capabilities are added after deployment (e.g., tiering), it is required to provide permissions to several AWS APIs. For details, see the [IAM role created in the template](cloudformation.md#iam-role-created-in-the-template) section.
+* Ensure you have enough available IP addresses in the selected subnet. Each core allocated to WEKA requires an IP address.
 
 Depending on the instance types being used and how they’re configured, there are two deployment types:
 
@@ -29,7 +29,7 @@ Depending on the instance types being used and how they’re configured, there a
 
 In a client backend deployment, two different types of instances are launched:
 
-* **Backend Instances**: Instances that contribute their drives and all possible CPU and network resources.
+* **Backend Instances**: Instances that contribute to their drives and all possible CPU and network resources.
 * **Client Instances**: Instances that connect to the cluster created by the backend instances and run an application using one or more shared filesystems.
 
 In client backend deployments, it is possible to add or remove clients according to the resources required by the application at any given moment.

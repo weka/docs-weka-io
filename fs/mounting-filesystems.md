@@ -39,13 +39,13 @@ Two options for mounting a filesystem on a cluster client are read cache and wri
 * [Read cache mount mode](../overview/weka-client-and-mount-modes.md#read-cache-mount-mode-default)
 * [Write cache mount mode](../overview/weka-client-and-mount-modes.md#write-cache-mount-mode)
 
-## Mount a filesystem using the stateless clients feature <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
+## Mount a filesystem using the stateless client feature <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
 
-The stateless clients feature defers the process of joining the cluster until the mount is performed. They are simplifying and improving the management of clients in the cluster. It removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave at high frequency.
+The stateless client feature defers the process of joining the cluster until the mount is performed. They are simplifying and improving the management of clients in the cluster. It removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave at high frequency.
 
 Furthermore, it unifies all security aspects in the mount command, eliminating the search for separate credentials at cluster join and mount.
 
-To use the stateless clients feature, a WEKA agent must be installed. Once this is complete, mounts can be created and configured using the mount command and can be removed from the cluster using the unmount command.
+To use the stateless client feature, a WEKA agent must be installed. Once complete, you can create and configure mounts with the mount command. You can remove existing mounts from the cluster using the unmount command.
 
 {% hint style="info" %}
 To allow only WEKA authenticated users to mount a filesystem, set the filesystem `--auth-required` flag to `yes`.  For more information, refer to the [Mount authentication for organization filesystems](../usage/organizations/organizations-2.md) topic.
@@ -154,11 +154,11 @@ It is now possible to access Weka filesystems via the mount-point, e.g., by `cd 
 After the execution of an`umount` command, which unmounts the last Weka filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores, and networking parameters again.
 
 {% hint style="info" %}
-**Note:** When running in AWS, the instance IAM role is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](../install/aws/cloudformation.md#iam-role-created-in-the-template).
+**Note:** When running in AWS, the instance IAM role must provide permissions to several AWS APIs (see the [IAM role created in template](../install/aws/cloudformation.md#iam-role-created-in-the-template) section).
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Memory allocation for a client is predefined. Contact the Weka Support Team when it is necessary to change the amount of memory allocated to a client.
+**Note:** Memory allocation for a client is predefined. To change the memory allocation, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ### Remount of stateless clients options
@@ -218,7 +218,7 @@ When you want to determine the VFs IP addresses or when the client resides in a 
 * **Cloud environment:** the Weka system deduces the values of these options.
 * **On-premises environment:** the Weka system allocates values of these options from the cluster default network (the `weka cluster default-net` must be set before running the mount command). Otherwise, the Weka cluster does not allocate the IP for the client. For more details, see [Optional: Configure default data networking](broken-reference).
 
-For example, the following command allocates two cores and a single physical network device (intel0). It will configure two VFs for the device and assign each one of them to one of the frontend processes. The first container will receive a 192.168.1.100 IP address, and the second will use a 192.168.1.101 IP address. Both of the IPs have 24 network mask bits and a default gateway of 192.168.1.254.
+For example, the following command allocates two cores and a single physical network device (intel0). It will configure two VFs for the device and assign each one of them to one of the frontend processes. The first container will receive a 192.168.1.100 IP address, and the second will use a 192.168.1.101 IP address. Both IPs have 24 network mask bits and a default gateway of 192.168.1.254.
 
 ```
 mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.168.1.254 backend1/my_fs /mnt/weka
@@ -240,7 +240,7 @@ mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/wek
 
 #### Using multiple physical network devices for HA configuration
 
-Multiple NICs can also be configured to achieve redundancy (refer to [Weka Networking HA](../overview/networking-in-wekaio.md#ha) section for more information) in addition to higher throughput, for a complete, highly available solution. For that, use more than one physical device as previously described and, also, specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
+Multiple NICs can also be configured to achieve redundancy (for details, see the [WEKA networking HA](../overview/networking-in-wekaio.md#ha) section) and higher throughput for a complete, highly available solution. For that, use more than one physical device as previously described, and also, specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
 
 For example, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. Note the modifier `ha` is used here, which stands for using the device on all processes.
 
@@ -268,7 +268,7 @@ mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -
 
 ### UDP mode
 
-In cases where DPDK cannot be used, it is possible to use WekaFS in [UDP mode](../overview/networking-in-wekaio.md#udp-mode) through the kernel. Use `net=udp` in the mount command to set the UDP networking mode, for example:
+If DPDK cannot be used, you can use the WEKA filesystem UDP networking mode through the kernel (for details about UDP mode. see the [WEKA networking](../overview/networking-in-wekaio.md) section). Use `net=udp` in the mount command to set the UDP networking mode, for example:
 
 ```
 mount -t wekafs -o num_cores=0 -o net=udp backend-server-0/my_fs /mnt/weka

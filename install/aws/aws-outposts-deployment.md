@@ -10,9 +10,9 @@ description: This page describes how to install WEKA on AWS Outposts
 
 ## Deployment of a WEKA cluster in AWS outposts
 
-A WEKA cluster deployment in AWS Outposts follows the guidelines described in the [Deployment types](deployment-types.md) section.
+A WEKA cluster deployment in AWS Outposts follows the guidelines specified in the [Deployment types](deployment-types.md) section.
 
-To deploy a WEKA cluster in AWS Outposts, use a CloudFormation template, which can be obtained as described in the [CloudFormation template Generator](cloudformation.md) section.
+To deploy a WEKA cluster in AWS Outposts, use a CloudFormation template, which can be obtained as specified in the [CloudFormation template Generator](cloudformation.md) section.
 
 {% hint style="warning" %}
 AWS Outposts do not currently support placement groups, so the placement group from the template should be removed.

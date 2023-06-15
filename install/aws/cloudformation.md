@@ -75,19 +75,13 @@ $ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@ge
 }
 ```
 
-In the example above, a template was generated for a cluster with 10 `i3en.2xlarge` backend instances and 2 `r3.xlarge` client instances. Refer to the [Deployment Types](deployment-types.md) page to learn more, and see all supported instance types in [Supported EC2 Instance Types](supported-ec2-instance-types.md).
+In the example above, a template is generated for a cluster with 10 `i3en.2xlarge` backend instances and 2 `r3.xlarge` client instances. For details, see the [Deployment Types](deployment-types.md) and  [Supported EC2 instance types](supported-ec2-instance-types.md) sections.
 
 ## Request body
 
 The `https://<token>@get.weka.io/dist/v1/aws/cfn/<version>` API provides a JSON object with a `cluster` property. `cluster` is a list of instance types, roles, and counts:
 
-| **Property**    | **Description**                                                                                                                                                     |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `role`          | Either `backend` or `client;`see [Deployment Types](deployment-types.md) for more information.                                                                      |
-| `instance_type` | One of the supported instance types according to the `role` and supported instances in [Supported EC2 Instance Types](supported-ec2-instance-types.md).             |
-| `count`         | The number of instances of this type to be included in the template.                                                                                                |
-| `ami_id`        | When `role` is `client,` it is possible to specify a custom AMI-ID. See [Custom Client AMI](cloudformation.md#custom-client-ami) below to learn more.               |
-| `net`           | Either `dedicated` or `shared`, in `client` role only. See [Dedicated vs. Shared Client Networking](cloudformation.md#dedicated-vs-shared-client-networking) below. |
+<table data-header-hidden><thead><tr><th width="202">Property</th><th>Description</th></tr></thead><tbody><tr><td><strong>Property</strong></td><td><strong>Description</strong></td></tr><tr><td><code>role</code></td><td>Either <code>backend</code> or <code>client</code>.<br>See the <a href="deployment-types.md">Deployment Types</a> section.</td></tr><tr><td><code>instance_type</code></td><td>One of the supported instance types, according to the <code>role</code> and supported instances.<br>See the <a href="supported-ec2-instance-types.md">Supported EC2 Instance Types</a> section.</td></tr><tr><td><code>count</code></td><td>The number of instances of this type to include in the template.</td></tr><tr><td><code>ami_id</code></td><td>When <code>role</code> is <code>client,</code> it is possible to specify a custom AMI-ID. <br>For details, see the <a href="cloudformation.md#custom-client-ami">Custom Client AMI</a> section.</td></tr><tr><td><code>net</code></td><td>Either <code>dedicated</code> or <code>shared</code>, in <code>client</code> role only. <br>For details, see the <a href="cloudformation.md#dedicated-vs.-shared-client-networking">Dedicated vs. shared client networking</a> section.</td></tr></tbody></table>
 
 It is possible to specify multiple groups of instances by adding more `role`/`instance_type`/`count` objects to the `cluster`array, as long as there are at least 6 backend instances (the minimum number of backend instances required to deploy a cluster).
 
@@ -99,14 +93,14 @@ When `ami_id` is not specified, the client instances are launched with the lates
 
 Note the following when using a custom AMI-ID:
 
-* AMIs are stored per region. Make sure to specify an AMI-ID that matches the region in which the CloudFormation template is being deployed.
-* The AMI operating system must be one of the supported operating systems listed in the [prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#operating-system) page of the version being installed. If the AMI defined is not supported or has an unsupported operating system, the installation may fail and the CloudFormation stack will not be created successfully.
+* AMIs are stored per region. Make sure to specify an AMI-ID that matches the region in which the CloudFormation template is deployed.
+* The AMI operating system must be one of the supported operating systems listed in the [Prerequisites and compatibility](../../support/prerequisites-and-compatibility.md#operating-system) section of the version installed. If the AMI defined is not supported or has an unsupported operating system, the installation may fail, and the CloudFormation stack will not be created successfully.
 
 ### Dedicated vs. shared client networking
 
 By default, both client and backend instances are launched in the dedicated networking mode. Although this cannot be changed for backends, it can be controlled for client instances.
 
-Dedicated networking means that an ENI is created for internal cluster traffic in the client instances. This allows the Weka system to bypass the kernel and provide throughput that is only limited by the instance network.
+Dedicated networking means an ENI is created for internal cluster traffic in the client instances. This allows the WEKA system to bypass the kernel and provide throughput only limited by the instance network.
 
 In shared networking, the client shares the instance’s network interface with all traffic passing through the kernel. Although slower, this mode is sometimes desirable when an ENI cannot be allocated or if the operating system does not allow more than one NIC.
 
@@ -122,7 +116,7 @@ To deploy the CloudFormation template through the AWS console, a `quick_create_s
 **Note:** CloudFormation template URLs are valid for up to 1 week.
 {% endhint %}
 
-It is also possible to receive the template directly from the API call, without saving it in a bucket. To do this, use a `?type=template`query parameter:
+It is also possible to receive the template directly from the API call without saving it in a bucket. To do this, use a `?type=template`query parameter:
 
 ```bash
 $ spec='...'  # same as above
@@ -132,7 +126,7 @@ $ curl -X POST -H 'Content-Type: application/json' -d "$spec" https://<token>@ge
 
 ## CloudFormation template parameters
 
-The  CloudFormation stacks parameters are described in the [Cluster CloudFormation Stack](self-service-portal.md#cluster-cloudformation-stack) section.
+The  CloudFormation stack parameters are described in the [Cluster CloudFormation Stack](self-service-portal.md#cluster-cloudformation-stack) section.
 
 ## IAM role created in the template
 

@@ -19,7 +19,7 @@ It is advisable to turn off auto kernel updates so it will not get upgraded to a
 ### Step 1: Launch the new instances <a href="#step-1-launch-new-instances" id="step-1-launch-new-instances"></a>
 
 {% hint style="info" %}
-Any new client instances must be of one of the types appearing in [Supported EC2 instance types](supported-ec2-instance-types.md).
+New client instances must be one of the types specified in the [Supported EC2 instance types](supported-ec2-instance-types.md) section.
 {% endhint %}
 
 When launching new clients, ensure the following concerning networking and root volume:
@@ -28,18 +28,18 @@ When launching new clients, ensure the following concerning networking and root 
 
 * For best performance, it is recommended that the new clients will be in the **same subnet** as the backend instances. Alternatively, they can be in a routable subnet to the backend instances in the same AZ (note that cross-AZ traffic also incurs expensive network charges).&#x20;
 * They must use the same **security group** as the backends they will connect to, or alternatively, use a **security group** that allows them to connect to the backend instances.
-* **Enhanced networking** is enabled as described in [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html).
+* **Enhanced networking** is enabled as specified in [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html).
 * The OS **network manager** must be disabled.
 
 #### IAM instance profile
 
-When adding a client, it is required to provide permissions to several AWS APIs, as described in [IAM Role Created in Template](cloudformation.md#iam-role-created-in-the-template).
+When adding a client, it is required to provide permissions to several AWS APIs, as described in [IAM role created in the template](cloudformation.md#iam-role-created-in-the-template).
 
 These permissions are automatically created in an instance profile as part of the CloudFormation stack. It is possible to use the same instance profile as one of the backend instances to ensure the same credentials are given to the new client.
 
 The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the WEKA client to preallocate the network resource for the fastest performance.
 
-If the client is not provided with these permissions, it can only provide `ec2:*` and create an additional NIC in the same security group and subnet described above and when mounting a second cluster from a single client (see [Mount filesystems from multiple clusters on a single client](../../fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)).
+If the client is not provided with these permissions, it can only provide `ec2:*` and create an additional NIC in the same security group and subnet described above when mounting a second cluster from a single client (see [Mount filesystems from multiple clusters on a single client](../../fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)).
 
 #### Root volume
 
@@ -66,9 +66,9 @@ mkdir -p /mnt/weka
 mount -t wekafs Backend-1/my_fs /mnt/weka
 ```
 
-For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, refer to [Mount filesystems using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
+For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, see the [Mount filesystems using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients) section.
 
-It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, refer to [Mount filesystems using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs).
+It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, see the [Mount filesystems using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs) sections.
 
 ## Add clients that are always part of the cluster
 
