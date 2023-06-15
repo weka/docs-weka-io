@@ -128,7 +128,7 @@ When a mount option has been explicitly changed, you must set it again in the re
 
 `mount -t wekafs -o num_cores=1 -o net=ib0 backend-server-0/my_fs /mnt/weka`
 
-Running this command on a server installed with the Weka agent will download the appropriate Weka version from the `ackend-server-0`and create a Weka container that allocates a single core and a named network interface (`ib0`). Then it will join the cluster that `backend-server-0` is part of and mount the filesystem `my_fs` on `/mnt/weka.`
+Running this command on a server installed with the Weka agent will download the appropriate Weka version from the `backend-server-0`and create a Weka container that allocates a single core and a named network interface (`ib0`). Then it will join the cluster that `backend-server-0` is part of and mount the filesystem `my_fs` on `/mnt/weka.`
 
 `mount -t wekafs -o num_cores=0 -o net=udp backend-server-0/my_fs /mnt/weka`
 
