@@ -97,7 +97,16 @@ Adding CPU cores to the cluster can only be done on a deactivated container.
 
 ## Expand SSDs only
 
-Follow the instructions in the [#6.-configure-the-ssd-drives](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md#6.-configure-the-ssd-drives "mention")section.
+Adding SSD drives can alter the ratio between SSDs and drive cores.
+
+#### Procedure
+
+1. Ensure the cluster has a drive core to allocate for the new SSD. If required, deactivate the container and then add the drive core to the container.&#x20;
+2. Determine the relevant container ID by running  the command:\
+   `weka cluster container`
+3. Scan for new drives by running  the command:\
+   `weka cluster drive scan`
+4. To add the SSDs, follow the instructions in the [#6.-configure-the-ssd-drives](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md#6.-configure-the-ssd-drives "mention")section.
 
 ## Modify resources on a local container
 
