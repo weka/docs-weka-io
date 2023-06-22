@@ -24,7 +24,7 @@ In the Weka Home portal, the Customer Success Team can view a cluster’s statis
 
 ## Which information is uploaded to the Weka Home?
 
-The WEKA cluster periodically and on-demand uploads various information types to Cloud Weka Home. The retention period for all the following is currently limited to 14 days. &#x20;
+The WEKA cluster periodically and on-demand uploads various information types to Cloud Weka Home. The retention period for all the following is 14 days. &#x20;
 
 **Periodic uploads:**
 
@@ -38,15 +38,18 @@ The WEKA cluster periodically and on-demand uploads various information types to
 
 * **Diagnostics (support files):** Uploaded on-demand from the container that collected the diagnostics.
 
-## Upload information from the WEKA cluster to Weka Home
+## Upload information from the WEKA cluster to the cloud Weka Home
+
+Uploading information to Weka Home from the WEKA cluster backend servers and clients is essential for the Customer Success Team to provide effective assistance. If client connectivity cannot be configured, enabling upload information from the backend servers is still beneficial.
+
+**Procedure**
 
 1. To enable cloud notifications, run the `weka cloud enable` command (during the Weka cluster installation, it is an optional step, which may be already done).
 2. To upload diagnostics collected by the cluster, run the `weka diags upload` command.
-3. Ensure that your network allows the cluster to send events to Weka by allowing HTTPS connections from the Weka container management IP interfaces to **api.home.weka.io** and **get.weka.io**. If the connection to Weka Home is through a proxy, to set the proxy, run the `weka cloud proxy --set <proxy_url>` command.
-
-Uploading information to Weka Home from the backend servers and clients is recommended for optimal support. If client connectivity cannot be configured, enabling upload information from the backend servers is still beneficial.
-
-
+3. Ensure your network allows HTTPS communication using the following network ports:
+   * 443: HTTPS communication from the WEKA cluster to [api.home.weka.io](http://api.home.weka.io/) and [get.weka.io](http://get.weka.io/).
+   * 4000, 4001, and 22: Remote access from [api.home.weka.io](http://api.home.weka.io/) for troubleshooting by the Customer Success Team.
+4. If the connection to Weka Home is through a proxy, set the proxy by running the command: `weka cloud proxy --set <proxy_url>`.
 
 **Related topics**
 
