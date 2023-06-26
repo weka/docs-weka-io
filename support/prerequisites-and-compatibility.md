@@ -30,7 +30,7 @@ Ensure the BIOS settings meet the following requirements:
 ## Operating system
 
 {% tabs %}
-{% tab title="Backends and Clients" %}
+{% tab title="Backends and clients" %}
 The following operating systems are supported for backend servers and clients:
 
 * **RHEL:**
@@ -52,8 +52,8 @@ Ensure using an OS with a supported kernel. Do not use an OS with kernel 5.13 an
 {% endhint %}
 {% endtab %}
 
-{% tab title="Clients only" %}
-The following operating systems are supported for clients only:
+{% tab title="POSIX clients only" %}
+The following operating systems are supported for POSIX clients only:
 
 **SuSe:**
 
@@ -165,14 +165,14 @@ WEKA supports the following Ethernet NICs:
 * Intel XXV710
 * Intel 82599ES
 * Intel 82599
-* Mellanox ConnectX-6-Lx
-* Mellanox ConnectX-6-Dx
-* Mellanox ConnectX-6
-* Mellanox ConnectX-5-Ex
-* Mellanox ConnectX-5-Bf
-* Mellanox ConnectX-5
-* Mellanox ConnectX-4-Lx
-* Mellanox ConnectX-4
+* NVIDIA Mellanox ConnectX-6-Lx (CX-6 LX)
+* NVIDIA Mellanox ConnectX-6-Dx (CX-6 DX)
+* NVIDIA Mellanox ConnectX-6 (CX-6)
+* NVIDIA Mellanox ConnectX-5-Ex (CX-5 EX)
+* NVIDIA Mellanox ConnectX-5-Bf (CX-5 BF)
+* NVIDIA Mellanox ConnectX-5 (CX-5)
+* NVIDIA Mellanox ConnectX-4-Lx (CX-4 LX)
+* NVIDIA Mellanox ConnectX-4 (CX-4)
 
 {% hint style="info" %}
 Intel E810 NIC has specific requirements and certain limitations:
@@ -183,7 +183,7 @@ Intel E810 NIC has specific requirements and certain limitations:
 {% endhint %}
 
 {% hint style="info" %}
-Connecting Ethernet and IB clients to the same cluster is not supported with E810 NIC and Mellanox ConnectX-6-Dx on the cluster backends.
+Connecting Ethernet and IB clients to the same cluster is not supported with E810 NIC and NVIDIA Mellanox ConnectX-6-Dx on the cluster backends.
 {% endhint %}
 
 {% hint style="info" %}

@@ -18,7 +18,7 @@ Depending on the required security level, you can deploy the WEKA cluster using 
 * **Public subnets:** Use a single public subnet within your VNet with an internet gateway, and allow public IP addresses for your virtual machines.&#x20;
 * **Private subnets:** Use a single private subnet within your VNet with access to an APT repository containing the required deployment packages.
 
-<figure><img src="../../.gitbook/assets/azure_deployment_4.2.png" alt=""><figcaption><p>WEKA cluster on Azure deployment with four subnets</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/azure_deployment_single_subnet.png" alt=""><figcaption><p>WEKA cluster on Azure deployment</p></figcaption></figure>
 
 <details>
 
