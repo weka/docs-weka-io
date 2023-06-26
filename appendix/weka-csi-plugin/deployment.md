@@ -136,7 +136,7 @@ helm repo update csi-wekafs
 Run the following command line:
 
 ```
-helm upgrade csi-wekafs
+helm upgrade --install csi-wekafs --namespace csi-wekafs csi-wekafs/csi-wekafsplugin
 ```
 
 <details>
