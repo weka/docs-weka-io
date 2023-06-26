@@ -176,13 +176,13 @@ If an upgrade of a client part of a batch fails, it stops the following batch up
 
 **Command syntax**
 
-`weka local upgrade -C <backend name> --in <target release> upgrade --mode=clients-upgrade --client-rolling-batch-size <number of clients in a batch> --clients-to-upgrade <comma separated clients' ids> --drop-host <comma separated clients' ids> --from backends`
+`weka local run -C <backend name> --in <target release> upgrade --mode=clients-upgrade --client-rolling-batch-size <number of clients in a batch> --clients-to-upgrade <comma separated clients' ids> --drop-host <comma separated clients' ids> --from backends`
 
 **Example**
 
 The following command line upgrade two clients in two batches (each batch has one client):
 
-`weka local upgrade -C drive0 --in 4.2.0.78 upgrade --mode=clients-upgrade --client-rolling-batch-size 1`
+`weka local run -C drive0 --in 4.2.0.78 upgrade --mode=clients-upgrade --client-rolling-batch-size 1`
 
 **Output example:**
 
