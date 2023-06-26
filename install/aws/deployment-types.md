@@ -18,7 +18,7 @@ It is possible to set clients with IMDSv2, but they would not benefit from seaml
 {% endhint %}
 
 * When deploying in AWS not using the CloudFormation template or when additional capabilities are added after deployment (e.g., tiering), it is required to provide permissions to several AWS APIs. For details, see the [IAM role created in the template](cloudformation.md#iam-role-created-in-the-template) section.
-* Ensure you have enough available IP addresses in the selected subnet. Each core allocated to WEKA requires an IP address.
+* Ensure the client has enough available IP addresses in the selected subnet. Each core allocated to WEKA requires an ENI.
 
 Depending on the instance types being used and how they’re configured, there are two deployment types:
 

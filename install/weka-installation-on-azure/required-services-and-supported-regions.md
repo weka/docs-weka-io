@@ -11,6 +11,8 @@ The region must support the services used in WEKA on Azure. The following sectio
 * [Zone-redundant storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy#zone-redundant-storage) (ZRS) Blobs
 * [Virtual Network](https://learn.microsoft.com/en-us/azure/virtual-network/)
 * [Load Balancer](https://learn.microsoft.com/en-us/azure/load-balancer/) (LB)
+* [Logic App](https://learn.microsoft.com/en-us/azure/logic-apps/)
+* Service Plan for the Logic App
 
 ## Supported regions
 

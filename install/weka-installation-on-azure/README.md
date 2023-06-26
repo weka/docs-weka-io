@@ -11,16 +11,14 @@ The WEKA® Data Platform on Microsoft Azure provides a fast and scalable platfor
 
 WEKA provides a ready-to-deploy Terraform package that you can customize for installing the WEKA cluster on Azure. The WEKA cluster is deployed with a multiple containers architecture, in which each container serves a single process type: Compute, Drives, or Frontend.
 
-The WEKA cluster is deployed in a single virtual network (VNet, similar to VPC in other clouds), where peering is not required. Each VNet has subnets, routes, firewalls, and an internal DNS. The networking supports MTU 3900 or 1500 in DPDK and UDP modes.
+The WEKA cluster is deployed in a single virtual network (VNet, similar to VPC in other clouds), where peering is not required. Each VNet has a subnet, routes, firewalls, and an internal DNS. The networking supports MTU 3900. The VM includes 4 or 8 NICs, each NIC is mapped to a dedicated core to support DPDK.
 
 Depending on the required security level, you can deploy the WEKA cluster using the Terraform package on one of the following subnet types:
 
-* **Public subnets:** Use 4 to 8 public subnets within your VNet with an internet gateway, and allow public IP addresses for your virtual machines.&#x20;
-* **Private subnets:** Use 4 to 8 private subnets within your VNet with access to an APT repository containing the required deployment packages.
+* **Public subnets:** Use a single public subnet within your VNet with an internet gateway, and allow public IP addresses for your virtual machines.&#x20;
+* **Private subnets:** Use a single private subnet within your VNet with access to an APT repository containing the required deployment packages.
 
-The number of public subnets depends on the maximum number of supported NICs in the selected VM size.
-
-<figure><img src="../../.gitbook/assets/azure_deployment_4.2.png" alt=""><figcaption><p>WEKA cluster on Azure deployment with four subnets</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/azure_deployment_single_subnet.png" alt=""><figcaption><p>WEKA cluster on Azure deployment with four subnets</p></figcaption></figure>
 
 <details>
 
