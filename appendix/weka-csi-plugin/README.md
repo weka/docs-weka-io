@@ -25,13 +25,10 @@ The WEKA CSI Plugin provides the following features:
 * Support all volume access modes: ReadWriteMany, ReadWriteOnce, and ReadOnlyMany.
 * Volume expansion.
 * Snapshots and volume cloning.
-*   Quota enforcement on:
-
-    * Snapshot-backed persistent volumes in WEKA version 4.2 and up.
-    * Filesystem-backed persistent volumes in WEKA version 4.2 and up.
-    * Directory-backed persistent volumes in WEKA version 3.14 and up. See [Upgrade legacy persistent volumes for capacity enforcement](upgrade-legacy-persistent-volumes-for-capacity-enforcement.md).
-
-
+* Quota enforcement on:
+  * Snapshot-backed persistent volumes in WEKA version 4.2 and up.
+  * Filesystem-backed persistent volumes in WEKA version 4.2 and up.
+  * Directory-backed persistent volumes in WEKA version 3.14 and up. See [Upgrade legacy persistent volumes for capacity enforcement](upgrade-legacy-persistent-volumes-for-capacity-enforcement.md).
 
 <figure><img src="../../.gitbook/assets/CSI_plugin_implementation.png" alt=""><figcaption><p>WEKA CSI Plugin implementation</p></figcaption></figure>
 
@@ -39,7 +36,7 @@ The WEKA CSI Plugin provides the following features:
 
 * CSI protocol: 1.0 - 1.2.
 * Kubernetes: 1.18 - 1.2x.
-* WEKA: V3.14 and up. To get all features, WEKA V4.2 and up and WEK CSI Plugin V2.0 are required.
+* WEKA: V3.14 and up. WEKA V4.2 and up and WEK CSI Plugin V2.0 are required to get all features.
 * SELinux is supported (AppArmor for Ubuntu is not supported).
 
 {% hint style="info" %}
