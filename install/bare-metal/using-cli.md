@@ -1,332 +1,433 @@
 ---
-description: This page describes the stages in the installation process when using the CLI.
+description: >-
+  This page provides a detailed workflow for WEKA cluster installation with
+  multiple containers using the CLI. These are complementary details for the
+  quick installation guide.
 ---
 
-# Weka system installation process using the CLI
+# Weka cluster installation
 
-## Stage 1: Installation of the Weka software on each host
+## Workflow
 
-Run the untar command and `install.sh` command, according to the instructions, on each host.
+1. [Install the WEKA software](using-cli.md#1.-install-the-weka-software)
+2. [Remove the default container](using-cli.md#2.-remove-the-default-container)
+3. [Generate the resource files](using-cli.md#3.-generate-the-resource-files)
+4. [Create drive containers](using-cli.md#4.-create-drive-containers)
+5. [Create a cluster](using-cli.md#5.-create-a-cluster)
+6. [Configure the SSD drives](using-cli.md#6.-configure-the-ssd-drives)
+7. [Create compute containers](using-cli.md#7.-create-compute-containers)
+8. [Name the cluster](using-cli.md#8.-name-the-cluster)
+9. [Name the cluster and enable event notifications to the cloud (optional)](using-cli.md#9.-name-the-cluster-and-enable-event-notifications-to-the-cloud-optional)
+10. [Set the license](using-cli.md#10.-set-the-license)
+11. [Start the cluster IO service](using-cli.md#11.-start-the-cluster-io-service)
+12. [Create frontend containers](using-cli.md#12.-create-frontend-containers)
+13. [Check the cluster configuration](using-cli.md#13.-check-the-cluster-configuration)
+14. [Bypass the proxy server](using-cli.md#14.-bypass-the-proxy-server)
 
-On completion of this stage in the installation process, the Weka software is installed on all the allocated hosts and running in the stem mode i.e., no cluster is attached and the Weka system is awaiting instructions.
+### 1. Install the WEKA software <a href="#1.-install-the-weka-software" id="1.-install-the-weka-software"></a>
+
+Once the WEKA software is downloaded from [get.weka.io](https://get.weka.io), run the untar command and `install.sh` command on each server, according to the instructions in the **Install** tab.
+
+Once completed, the WEKA software is installed on all the allocated servers and runs in stem mode (no cluster is attached).
 
 {% hint style="info" %}
-**Note:** If a failure occurs during this installation stage, an error message detailing the source of the failure will be received. If possible, try to recover this error or alternatively, contact the Weka Support Team.
+**Note:** If a failure occurs during the WEKA software installation process, an error message prompts detailing the source of the failure. Review the details and try to resolve the failure. If required, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
-## Stage 2: Formation of a cluster from the hosts
+### 2. Remove the default container
+
+**Command:** `weka local stop default && weka local rm -f default`
+
+Stop and remove the auto-created default container created on each server.
+
+### 3. Generate the resource files
+
+**Command:** `resources_generator.py`
+
+To generate the resource files for the drive, compute, and frontend processes, download the [resource\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py) and run the following command on each backend server:
+
+`./resources_generator.py --net <net-devices> [options]`
+
+The resource generator allocates the number of cores, memory, and other resources according to the values specified in the parameters.&#x20;
+
+The best practice for resources allocation is as follows:
+
+* 1 drive core per NVMe device (SSD).
+* 2-3 compute cores per drive core.&#x20;
+* 1-2 frontend cores if deploying a protocol container. If there is a spare core, it is used for a frontend container.
+* Minimum of 1 core for the OS.
+
+#### Example 1: according to the best practice
+
+For a server with **24** cores and 6 SSDs, allocate 6 drive cores and 12 compute cores, and optionally you can use 2 cores of the remaining cores for the frontend container. The OS uses the remaining 4 cores.
+
+Run the following command line:\
+`./resources_generator.py --net eth1 --net eth2 --drive-dedicated-cores 6 --compute-dedicated-cores 12 --frontend-dedicated-cores 2`
+
+#### Example 2: a server with a limited number of cores
+
+For a server with **14** cores and 6 SSDs, allocate 6 drive cores and 6 compute cores, and optionally you can use 1 core of the remaining cores for the frontend container. The OS uses the remaining 1 core.
+
+Run the following command line:\
+`./resources_generator.py --net eth1 --net eth2 --drive-dedicated-cores 6 --compute-dedicated-cores 6 --frontend-dedicated-cores 1`
+
+{% hint style="info" %}
+**Note:** Contact Professional Services for the recommended resource allocation settings for your system.
+{% endhint %}
+
+**Parameters**
+
+<table data-header-hidden><thead><tr><th width="273">Name</th><th width="161">Type</th><th width="225">Value</th><th width="125">Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>compute-core-ids</code></td><td>Space-separated numbers</td><td>Specify the CPUs to allocate for the compute processes.</td><td>No</td><td>-</td></tr><tr><td><code>compute-dedicated-cores</code></td><td>Number</td><td>Specify the number of cores to dedicate for the compute processes.</td><td>No</td><td>The maximum available cores</td></tr><tr><td><code>compute-memory</code></td><td>String</td><td><p>Specify the total memory to allocate for the compute processes.</p><p>Argument format: value and unit without a space.</p><p>Examples: 1024B, 10GiB, 5TiB.</p></td><td>No</td><td>The maximum available memory</td></tr><tr><td><code>core-ids</code></td><td>Space-separated numbers</td><td>Specify the CPUs to allocate for the WEKA processes.</td><td>No</td><td>-</td></tr><tr><td><code>drive-core-ids</code></td><td>Space-separated numbers</td><td>Specify the CPUs to allocate for the drive processes.</td><td>No</td><td>-</td></tr><tr><td><code>drive-dedicated-cores</code></td><td>Number</td><td>Specify the number of cores to dedicate for the drive processes.</td><td>No</td><td>1 core per each detected drive</td></tr><tr><td><code>drives</code></td><td>Space-separated strings</td><td><p>Specify the drives to use. </p><p>This option overrides automatic detection.</p></td><td>No</td><td>All unmounted NVME devices</td></tr><tr><td><code>frontend-core-ids</code></td><td>Space-separated numbers</td><td>Specify the CPUs to allocate for the frontend processes.</td><td>No</td><td>-</td></tr><tr><td><code>frontend-dedicated-cores</code></td><td>Number</td><td>Specify the number of cores to dedicate for the frontend processes.</td><td>No</td><td>1</td></tr><tr><td><code>max-cores-per-container</code></td><td>Number</td><td>Override the default maximum number of cores per container for IO processes (19). If provided, the new value must be lower.</td><td>No</td><td>19</td></tr><tr><td><code>minimal-memory</code></td><td>Flag</td><td>Set each container's hugepages memory to 1.4 GiB * number of IO processes on the container.</td><td>No</td><td>-</td></tr><tr><td><code>net-devices</code></td><td>Space-separated strings</td><td>Specify the network devices to use.</td><td>Yes</td><td>-</td></tr><tr><td><code>no-rdma</code></td><td>Boolean</td><td>Don't take RDMA support into account when computing memory requirements.</td><td>No</td><td>False</td></tr><tr><td><code>num-cores</code></td><td>Number</td><td>Override the auto-deduction of the number of cores.</td><td>No</td><td>All available cores</td></tr><tr><td><code>path</code></td><td>String</td><td>Specify the path to write the resource files.</td><td>No</td><td>The default is '.'</td></tr><tr><td><code>spare-cores</code></td><td>Number</td><td>Specify the number of cores to leave for OS and non-WEKA processes.</td><td>No</td><td>1</td></tr><tr><td><code>spare-memory</code></td><td>String</td><td><p>Specify the memory to reserve for non-WEKA requirements.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p></td><td>No</td><td>The maximum between 8 GiB and 2% of the total RAM</td></tr><tr><td><code>weka-hugepages-memory</code></td><td>String</td><td><p>Specify the memory to allocate for compute, frontend, and drive processes.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p></td><td>No</td><td>The maximum available memory</td></tr></tbody></table>
+
+### 4. Create drive containers
+
+**Command:** `weka local setup container`
+
+For each server in the cluster, create the drive containers using the resource generator output file `drives0.json`.
+
+The drives JSON file includes all the required values for creating the drive containers. Therefore, it is not required to set all the options of the `weka local setup container` command. Only the path to the JSON resource file is required.
+
+```
+weka local setup container --resources-path <resources-path>/drives0.json
+```
+
+**Parameters**
+
+| **Name**         | **Type** | **Value**                      | **Limitations**      | **Mandatory** | **Default** |
+| ---------------- | -------- | ------------------------------ | -------------------- | ------------- | ----------- |
+| `resources-path` | String   | The path to the resource file. | Must be a valid path | Yes           |             |
+
+### 5. Create a cluster
 
 **Command:** `weka cluster create`
 
-This stage involves the formation of a cluster from the allocated hosts. It is performed using the following command line:
+To create a cluster of the allocated containers, use the following command:
 
-`weka cluster create <hostnames> [--host-ips <ips | ip+ip+ip+ip>]`
-
-**Parameters**
-
-| **Name**    | **Type**                     | **Value**                                                                                                                                                                                                                                                                                                               | **Limitations**                                              | **Mandatory** | **Default**                                |
-| ----------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------- | ------------------------------------------ |
-| `hostnames` | Space-separated strings      | Hostnames or IP addresses                                                                                                                                                                                                                                                                                               | Need at least 6 strings, as this is the minimal cluster size | Yes           |                                            |
-| `host-ips`  | Comma-separated IP addresses | IP addresses of the management interfaces. Use a list of `ip+ip` addresses pairs of two cards for HA configuration. In case the cluster is connected to both IB and Ethernet, it is possible to set up to 4 management IPs for redundancy of both the IB and Ethernet networks using a list of `ip+ip+ip+ip` addresses. | The same number of values as in `hostnames`.                 | No            | IP of the first network device of the host |
-
-{% hint style="info" %}
-**Note:** It is possible to use either a host-name or an IP address; this string serves as the identifier of the host in subsequent commands.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** If a host-name is used, make sure that the host-name to IP resolution mechanism is reliable since a failure of this mechanism will cause a loss of service in the cluster. It is recommended to add the host-names to `/etc/hosts`.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** After successful completion of this command, the cluster is in the initialization phase, and some commands can only run in this phase.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** For configuring HA, at least two cards must be defined for each host.
-{% endhint %}
-
-On successful completion of the formation of the cluster, every host receives a host ID. Use of the command line `weka cluster host` will display a list of the hosts and IDs.
-
-{% hint style="info" %}
-**Note:** In IB installations the `--hosts-ips` parameter must specify the IP addresses of the IPoIB interfaces.
-{% endhint %}
-
-## Stage 3: Name the cluster (optional)
-
-**Command:** `weka cluster update`
-
-This command is used to give the cluster a name. Although this is optional, it is highly recommended, because the name enables cloud event notification and increases the ability of the Weka Support Team to resolve any issues that may occur. To perform this operation, use the following command line:
-
-`weka cluster update --cluster-name=<cluster-name>`
+```
+weka cluster create <hostnames> [--host-ips <ips | ip+ip+ip+ip>]
+```
 
 **Parameters**
 
-| **Name**       | **Type** | **Value**                      | **Limitations**            | **Mandatory** | **Default** |
-| -------------- | -------- | ------------------------------ | -------------------------- | ------------- | ----------- |
-| `cluster-name` | String   | Identifier of the cluster name | Must be a valid identifier | No            |             |
+| **Name**    | **Type**                     | **Value**                                                                                                                                                                                                                                                                                                               | **Limitations**                                              | **Mandatory** | **Default**                                     |
+| ----------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------- | ----------------------------------------------- |
+| `hostnames` | Space-separated strings      | <p>Hostnames or IP addresses.<br>If port 14000 is not the default for the drives, you can specify hostnames:port or ips:port. </p>                                                                                                                                                                                      | Need at least 6 strings, as this is the minimal cluster size | Yes           |                                                 |
+| `host-ips`  | Comma-separated IP addresses | IP addresses of the management interfaces. Use a list of `ip+ip` addresses pairs of two cards for HA configuration. In case the cluster is connected to both IB and Ethernet, it is possible to set up to 4 management IPs for redundancy of both the IB and Ethernet networks using a list of `ip+ip+ip+ip` addresses. | The same number of values as in `hostnames`.                 | No            | IP of the first network device of the container |
 
-## Stage 4: Enable cloud notifications (optional)
 
-### **Enable support via Weka Home**
-
-**Command:** `weka cloud enable`
-
-This command enables cloud notification (via Weka Home), which increases the ability of the Customer Success Team to provide proactive support and resolve any issues that may occur.
-
-To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../support/the-wekaio-support-cloud/).
-
-### For private instance of Weka Home
-
-**Command:** `weka cloud enable --cloud-url=http://<weka home ip>:<port>`
-
-This command enables a Weka cluster in an isolated environment, such as dark sites and private VPCs, to send information to a private instance of Weka Home (Local Weka Home).
 
 {% hint style="info" %}
-For more information, see the Private Instance of Weka Home section.
-{% endhint %}
-
-## Stage 5: Set hosts dedicated to the cluster (optional)
-
-**Command:** `weka cluster host dedicate`
-
-It is possible to set the host as dedicated to the Weka cluster. By setting the host to dedicated, no other application is expected to run on it, and the Weka system optimizes it for performance and stability. For example, the host can be rebooted by the system at need, and all the host's memory is allocatable by the Weka processes.
-
-## Stage 6: Configure the networking
-
-**Command:** `weka cluster host net add`
-
-When PKEYs are used, the device name for InfiniBand should follow the `name.PKEY` convention.
-
-{% hint style="info" %}
-**Note:** Although devices generally can be renamed arbitrarily, you must follow the `name.PKEY` convention. Otherwise, Weka will not function correctly.
-{% endhint %}
-
-The networking type can be either Ethernet (direct over DPDK) or InfiniBand (IB), and can be mixed in the same host (by running multiple `cluster host net add` commands for the same host). A physical network device must be specified for both types. This can be a device dedicated to the Weka system or a device that is also being used for other purposes in parallel. For IP over DPDK, the standard routing parameters can be specified for routed networks.
-
-To perform this operation, run the `cluster host net add` command for each host. The commands can run from one host configuring another host, so they can all run on a single host. The IP addresses specified using this command are the data plane IPs allocated in the planning stage. To perform this operation, use the following command line:
-
-`weka cluster host net add <host-id> <device> [--ips-type=<POOL|USER>] [--ips=<ips>]... [--gateway=<gateway>] [--netmask=<netmask>] [--label=<label>]`
-
-**Parameters**
-
-| **Name**   | **Type**                   | **Value**                                                                                  | **Limitations**                                                                                                                                                                                                                                            | **Mandatory** | **Default** |
-| ---------- | -------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `host-id`  | String                     | Identifier of the host to which a network interface will be added                          | Must be a valid host identifier                                                                                                                                                                                                                            | Yes           |             |
-| `device`   | String                     | A device, or bond-device e.g., `eth1` or `bond0`                                           | Must be a valid Unix network device name                                                                                                                                                                                                                   | Yes           |             |
-| `ips-type` | String                     | POOL or USER                                                                               | Must be one of the two options                                                                                                                                                                                                                             | No            | POOL        |
-| `ips`      | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic. In IB, use the IPoIB address | Must be part of the data plane IP pool defined in the planning phase. See [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking). | No            | From Pool   |
-| `netmask`  | Number                     | Number of bits in the netmask                                                              | Describes the number of bits that identify a network ID (also known as CIDR). Not relevant for IB / L2 non-routable networks, and must be supplied for the ethernet NICs if the cluster is set to use both ethernet and IB interfaces.                     | No            |             |
-| `gateway`  | IP address                 | The IP address of the default routing gateway                                              | <p>The gateway must reside within the same IP network of <code>ips</code> (as described by <code>netmask</code>).  </p><p>Not relevant for IB / L2 non-routable networks.</p>                                                                              | No            |             |
-| `label`    | String                     | A label to describe the network device connectivity.                                       | The Weka system will prefer to use paths with the same labels to send data. This is useful when the system is configured with HA networking, to hint the system to send between hosts through the same switch rather than using the ISL.                   | No            |             |
-
-The number of IP addresses should be according to [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
-
-{% hint style="info" %}
-**Note:** Additional IP addresses may be assigned for each host if IP per core is needed. In this case, unused IP addresses are reserved for future expansions and can be automatically assigned if the number of cores assigned to the Weka system on that host is increased.
+**Note:** It is possible to use either a hostname or an IP address; this string serves as the identifier of the container in subsequent commands.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** For HA configurations, this command has to be run separately for each interface.
+**Note:** If a hostname is used, make sure that the hostname to IP resolution mechanism is reliable. A failure of this mechanism causes a loss of service in the cluster. It is recommended to add the hostnames to `/etc/hosts`.
 {% endhint %}
-
-### Optional: Configure default data networking
-
-**Command:** `weka cluster default-net set`
-
-Instead of explicit IP address configuration per each network device, dynamic IP address allocation is supported. Weka supports adding a range of IP addresses to a dynamic pool, from which the IP addresses can be automatically allocated on demand.
 
 {% hint style="info" %}
-**For Ethernet networking only**, a mixed approach is supported: for certain network devices the IP addresses are assigned explicitly by the administrator, while the other devices in the cluster get an automatic allocation from the IP range. Such an approach could be useful in an environment where clients are being spawned automatically.
+**Note:** After the successful completion of this command, the cluster is in the initialization phase, and some commands can only run in this phase.
 {% endhint %}
 
-`weka cluster default-net set --range <range> [--gateway=<gateway>] [--netmask-bits=<netmask-bits>]`
+{% hint style="info" %}
+**Note:** For configuring HA, at least two cards must be defined for each container.
+{% endhint %}
 
-**Parameters**
+On successful completion of the formation of the cluster, every container receives a container-ID. To display the list of the containers and IDs, run `weka cluster container`.
 
-| **Name**       | **Type**         | **Value**                                                                                | **Limitations**                                                                                                                                                                             | **Mandatory** | **Default** |
-| -------------- | ---------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `range`        | IP address range | A range of IP addresses that can be used for dynamic allocation across the whole cluster | <p>Format: A.B.C.D-E </p><p>E.g., 10.10.0.1-100</p>                                                                                                                                         | Yes           |             |
-| `netmask-bits` | Number           | Number of bits in the netmask                                                            | Describes the number of bits that identify a network ID (also known as CIDR).                                                                                                               | Yes           |             |
-| `gateway`      | IP address       | The IP address of the default routing gateway                                            | <p>The gateway must reside within the same IP network of IPs in <code>range</code> (as described by <code>netmask-bits</code>).  </p><p>Not relevant for IB / L2 non-routable networks.</p> | No            |             |
+{% hint style="info" %}
+**Note:** In IB installations the `--containers-ips` parameter must specify the IP addresses of the IPoIB interfaces.
+{% endhint %}
 
-To view the current default data networking settings use the command `weka cluster default-net`.
-
-If a default data networking was previously configured on a cluster and is no longer needed, it is possible to remove it using the command `weka cluster default-net reset`.
-
-## Stage 7: Configure the SSDs
+### 6. Configure the SSD drives
 
 **Command:** `weka cluster drive add`
 
-This stage in the installation process is used to add a local SSD to be used by a Weka filesystem. The same command can be used for adding multiple drive paths. To perform this operation, use the following command line:
+To configure the SSD drives on each server in the cluster, or add multiple drive paths, use the following command:
 
-`weka cluster drive add <host-id> <device-paths>`
+```
+weka cluster drive add <container-id> <device-paths>
+```
 
 **Parameters**
 
-| **Name**       | **Type**                         | **Value**                                                                         | **Limitations**                          | **Mandatory** | **Default** |
-| -------------- | -------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------- | ------------- | ----------- |
-| `host-id`      | String                           | Identifier of the host to which a local SSD will be added                         | Must be a valid host identifier          | Yes           |             |
-| `device-paths` | Space-separated  list of strings | List of block devices that identify local SSDs, e.g., `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes           |             |
+<table data-header-hidden><thead><tr><th width="179">Name</th><th width="159">Type</th><th width="176">Value</th><th width="210">Limitations</th><th width="134">Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>container-id</code></td><td>String</td><td>The Identifier of the drive container to add the local SSD drives</td><td>Must be a valid container identifier</td><td>Yes</td><td></td></tr><tr><td><code>device-paths</code></td><td>Space-separated list of strings</td><td>List of block devices that identify local SSDs. For example,  <code>/dev/nvme0n1 /dev/nvme1n1</code></td><td>Must be a valid Unix network device name</td><td>Yes</td><td></td></tr></tbody></table>
+
+### 7. Create compute containers
+
+**Command:** `weka local setup container`
+
+For each server in the cluster, create the compute containers using the resource generator output file `compute0.json`.
+
+The compute JSON file includes all the required values for creating the compute containers. Therefore, it is not required to set all the options of the `weka local setup container` command. Only the path to the JSON resource file is required.
+
+```
+weka local setup container --join-ips <IP addresses> --resources-path <resources-path>/compute0.json
+```
+
+**Parameters**
+
+| **Name**                          | **Type**                | **Value**                                                                                                                                                                                                | **Limitations**            | **Mandatory** | **Default** |
+| --------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | ------------- | ----------- |
+| `resources-path`                  | String                  | The path to the resource file.                                                                                                                                                                           | Must be a valid path       | yes           |             |
+| <pre><code>join-ips
+</code></pre> | Space-separated strings | <p>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. For example: <code>--join-ips 10.10.10.23:15000</code></p> | Must be valid IP addresses |               |             |
+
+### 8. Name the cluster
+
+**Command:** `weka cluster update --cluster-name=<cluster name>`
+
+### 9. Name the cluster and enable event notifications to the cloud (optional)
+
+Enable event notifications to the cloud for support purposes using one of the following options:
+
+* Enable support through Weka Home
+* Enable support through a private instance of Weka Home
+
+#### **Enable support through Weka Home**
+
+**Command:** `weka cloud enable`
+
+This command enables cloud event notification (via Weka Home), which increases the ability of the Weka Support Team to resolve any issues that may occur.
+
+To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../support/the-wekaio-support-cloud/).
+
+#### **Enable support through a** private instance of Weka Home
+
+In closed environments, such as dark sites and private VPCs, it is possible to install a private instance of Weka Home.
+
+**Command:** `weka cloud enable --cloud-url=http://<weka-home-ip>:<weka-home-port>`
+
+This command enables the use of a private instance of Weka Home.
 
 {% hint style="info" %}
-**Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
+For more information, refer to the [Private Instance of Weka Home](../../support/the-wekaio-support-cloud/#private-instance-of-weka-home) and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
-## Stage 8: Configure the CPU resources
-
-**Command:** `weka cluster host cores`
-
-This stage in the installation process is used to configure the number of CPU resources, which are physical rather than logical cores. To perform this operation, use the following command line:
-
-`weka cluster host cores <host-id> <cores> [--frontend-dedicated-cores <frontend-dedicated-cores>] [--drives-dedicated-cores <drives-dedicated-cores>] [--cores-ids <cores-ids>] [--compute-dedicated-cores <compute-dedicated-cores>] [--only-drives-cores] [--only-compute-cores] [--only-frontend-cores]`
-
-**Parameters**
-
-| **Name**                   | **Type**                           | **Value**                                                                          | **Limitations**                                                                                          | **Mandatory** | **Default**                                          |
-| -------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------- | ---------------------------------------------------- |
-| `host-id`                  | String                             | Identifier of the host in which a core count is configured                         | Must be a valid host identifier                                                                          | Yes           |                                                      |
-| `cores`                    | Number                             | Number of physical cores allocated to the Weka system                              | Must be less than the number of physical cores in the host (leaving 1 core for the OS). Maximum 19 cores | Yes           |                                                      |
-| `frontend-dedicated-cores` | Number                             | Number of physical cores dedicated to FrontEnd processes                           | The total of frontend,   drives, and compute cores cannot exceed  the `cores` value                      | No            | zero                                                 |
-| `drives-dedicated-cores`   | Number                             | Number of physical cores dedicated to Drive/SSD processes                          | The total of frontend,   drives, and compute cores cannot exceed  the `cores` value                      | No            | Typically 1 core per drive or 1/2 core per drive/SSD |
-| `compute-dedicated-cores`  | Number                             | Number of physical cores dedicated to compute processes                            | The total of frontend,   drives, and compute cores cannot exceed  the `cores` value                      | No            |                                                      |
-| `cores-ids`                | A comma-separated list  of numbers | Physical Core numbers                                                              | Specification of which cores to use.                                                                     | No            | Select cores automatically                           |
-| `only-drives-cores`        | Boolean                            | Determines whether all cores in the host are dedicated only to drive processes     |                                                                                                          | No            |                                                      |
-| `only-compute-cores`       | Boolean                            | Determines whether all cores in the host are dedicated only to compute processes   |                                                                                                          | No            |                                                      |
-| `only-frontend-cores`      | Boolean                            | Determines whether all cores in the host are dedicated only to FrontEnd processes  |                                                                                                          | No            |                                                      |
-
-{% hint style="success" %}
-**Note:** `cores-ids` are distributed in the following order: first, all the FrontEnd processes, second, all the Compute processes, and last, all the Drive processes. By ordering the `cores-ids` list, it is possible to determine the exact assignment of cores to processes (e.g., for taking into account NUMA distribution).
-
-**Example:** If we have 1 FrontEnd, 2 Compute, and 3 Drive, setting `cores-ids` to `1, 2, 4, 3, 5, 6` will put the FrontEnd on core 1, Compute on cores 2 and 4, and Drive on cores 3, 5 and 6. Assuming cores 1, 2, 3 are at NUMA 0 and cores 4, 5, 6 are at NUMA 1, we will have the following distribution of processes:
-
-* NUMA 0: FrontEnd, Compute, Drive
-* NUMA 1: Compute, Drive, Drive
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** Performance can be optimized by assigning different functions to the various Weka cores. If necessary, contact the Weka Support Team for more information.
-{% endhint %}
-
-{% hint style="info" %}
-**Note:** Weka supports more than 19 cores per machine. This option enables taking advantage of all machine core resources. To set the system with more than 19 cores, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
-{% endhint %}
-
-## Stage 9: Configure the memory (optional)
-
-**Command:** `weka cluster host memory`
-
-As defined in the memory requirements, the fixed memory per host and the per compute/SSD cores memory are automatically calculated by the Weka system. By default, 1.4 GB is allocated per compute-core, out of which 0.4 GB is left for the capacity-oriented memory. If the host is set as [dedicated](using-cli.md#stage-5-setting-hosts-as-dedicated-to-the-cluster-optional), all the memory left after reductions, as described in [Memory Resource Planning](planning-a-weka-system-installation.md#memory-resource-planning), is automatically allocated for the Weka system.
-
-If capacity requirements mandate more memory, the following command should be used:
-
-`weka cluster host memory <host-id> <capacity-memory>`
-
-**Parameters**
-
-| **Name**          | **Type** | **Value**                                                                                                           | **Limitations**                                  | **Mandatory** | **Default** |
-| ----------------- | -------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ | ------------- | ----------- |
-| `host-id`         | String   | Identifier of the host in which the memory configuration has to be defined.                                         | Must be a valid host identifier                  | Yes           |             |
-| `capacity-memory` | Number   | The memory dedicated to Weka in bytes. It is possible to set the format in other units, e.g.: 1MB, 1GB, 1MiB, 1GiB. | Setting to 0 determines this value automatically | Yes           |             |
-
-{% hint style="info" %}
-**Note:** This command is given the memory per host and will later be distributed by the system per compute core. Out of this value, 1GB per compute core is reserved for other purposes (as cache) and not used for capacity.
-{% endhint %}
-
-## Stage 10: Configure failure domains (optional)
-
-**Command:** `weka cluster host failure-domain`
-
-Use this command to assign a host to a failure domain.
-
-Follow these guidelines:
-
-* Hosts not assigned to any failure domain are considered by the system as additional failure domains.&#x20;
-* As a best practice, assign each host to a single failure domain or do not assign any host.
-* If you specify in the command a failure domain that does not exist, the system creates it.
-* If you specify a host already assigned to another failure domain, the system reassigns it.
-* If you do not specify a failure domain for the host, the system assigns the failure domain according to the server.
-
-Run the following command line:
-
-`weka cluster host failure-domain <host-id> [--name <name>] | [--auto]`
-
-**Parameters**
-
-| **Name**  | **Type** | **Value**                                                   | **Limitations**                 | **Mandatory**                                       | **Default** |
-| --------- | -------- | ----------------------------------------------------------- | ------------------------------- | --------------------------------------------------- | ----------- |
-| `host-id` | String   | The identifier of the host to assign to the failure domain. | Must be a valid host identifier | Yes                                                 |             |
-| `name`    | String   | The failure domain name for the host to assign.             |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
-| `auto`    | Boolean  | Automatically assign a failure domain ID.                   |                                 | Yes (either `--name` OR `--auto` must be specified) |             |
-
-## Stage 11: Configure Weka system protection scheme (optional)
-
-**Command:** `weka cluster update`
-
-To configure the Weka system protection scheme, use the following command line:
-
-`weka cluster update [--data-drives=<data-drives>] [--parity-drives=<parity-drives>]`
-
-**Parameters**
-
-| **Name**        | **Type** | **Value**               | **Limitations**                                                                                     | **Mandatory** | **Default**                                          |
-| --------------- | -------- | ----------------------- | --------------------------------------------------------------------------------------------------- | ------------- | ---------------------------------------------------- |
-| `data-drives`   | Number   | Protection stripe width | Between 3-16. The stripe width + the protection level cannot exceed the number of failure domains.  | No            | #failure domains - protection level; no more than 16 |
-| `parity-drives` | Number   | Protection level        | Either 2 or 4. The stripe width + the protection level cannot exceed the number of failure domains. | No            | 2                                                    |
-
-{% hint style="info" %}
-**Note:** This command can only be used in the initialization phase.
-{% endhint %}
-
-## Stage 12: Configure hot spare (optional)
-
-**Command:** `weka cluster hot-spare`
-
-To configure the Weka system hot spare, use the following command line:
-
-`weka cluster hot-spare <count>`
-
-**Parameters**
-
-| **Name** | **Type** | **Value** | **Limitations** | **Mandatory** | **Default** |
-| -------- | -------- | --------- | --------------- | ------------- | ----------- |
-| `count`  | Number   | Hot spare |                 | No            | 1           |
-
-## Stage 13: Apply hosts configuration
-
-**Command:** `weka cluster host apply`
-
-This command is used to apply the Weka system cluster hosts' configuration. In the install phase, all hosts need to be added, so the `--all` parameter can be used.
-
-To activate the cluster hosts, use the following command line:
-
-`weka cluster host apply [--all] [<host-ids>...] [--force]`
-
-**Parameters**
-
-| **Name**   | **Type**                | **Value**                        | **Limitations** | **Mandatory**                                | **Default** |
-| ---------- | ----------------------- | -------------------------------- | --------------- | -------------------------------------------- | ----------- |
-| `host-ids` | Comma-separated strings | Comma-separated host identifiers |                 | Either `host-ids` or `all` must be specified |             |
-| `all`      | Boolean                 | Apply all hosts                  |                 | Either `host-ids` or `all` must be specified |             |
-| `force`    | Boolean                 | Do not prompt for confirmation   |                 | No                                           | Off         |
-
-Once the `weka cluster host apply` command completes, verify that the operation is successful. Check the alerts and verify that the `ResourcesNotAppliedalert` alert does not show.
-
-**Related topics**
-
-[alerts](../../usage/alerts/ "mention")
-
-## Stage 14: Deploy a license
+### 10. Set the license
 
 **Command:** `weka cluster license set / payg`
 
-At this point, you've finished configuring and deploying the cluster. To run IOs against the cluster, you need to deploy a license. Follow the steps in [obtaining a license](../../licensing/overview.md#obtaining-a-license) section to obtain a valid license and deploy it to the Weka cluster.
+To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the Weka cluster. For details, see [License overview](../../licensing/overview.md).&#x20;
 
-## Stage 15: Running the Start IO Command
+### 11. Start the cluster IO service
 
 **Command:** `weka cluster start-io`
 
-To start the system IO and exit from the initialization phase, use the following command line:
+To start the system IO and exit from the initialization state, use the following command line:
 
 `weka cluster start-io`
 
-After successful completion of this command, the system exits the initialization state and accepts IOs from the user applications.
+### 12. Create frontend containers
+
+**Command:** `weka local setup container`
+
+For each server in the cluster, create the frontend containers using the resource generator output file `frontend0.json`.
+
+The compute JSON file includes all the required values for creating the frontend containers. Therefore, it is not required to set all the options of the `weka local setup container` command. Only the path to the JSON resource file is required.
+
+```
+weka local setup container --join-ips <IP addresses> --resources-path <resources-path>/frontend0.json
+```
+
+**Parameters**
+
+<table data-header-hidden><thead><tr><th width="200">Name</th><th width="155">Type</th><th width="220">Value</th><th width="170">Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>resources-path</code></td><td>String</td><td>The path to the resource file.</td><td>Must be a valid path</td><td>yes</td><td></td></tr><tr><td><pre><code>join-ips
+</code></pre></td><td>Space-separated strings</td><td>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. For example: <code>--join-ips 10.10.10.23:15000</code></td><td>Must be valid IPs</td><td>Yes</td><td></td></tr></tbody></table>
+
+### 13. Check the cluster configuration
+
+#### Check the cluster container
+
+**Command:** `weka cluster container`
+
+Use this command to display the list of containers and their details.
+
+```
+$ weka cluster container
+HOST ID  HOSTNAME  CONTAINER  IPS             STATUS  RELEASE                                      FAILURE DOMAIN  CORES  MEMORY    LAST FAILURE  UPTIME
+0        av299-0   drives0    10.108.79.121   UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-000         7      10.45 GB                1:08:30h
+1        av299-1   drives0    10.108.115.194  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-001         7      10.45 GB                1:08:30h
+2        av299-2   drives0    10.108.2.136    UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-002         7      10.45 GB                1:08:29h
+3        av299-3   drives0    10.108.165.185  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-003         7      10.45 GB                1:08:30h
+4        av299-4   drives0    10.108.116.49   UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-004         7      10.45 GB                1:08:29h
+5        av299-5   drives0    10.108.7.63     UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-005         7      10.45 GB                1:08:30h
+6        av299-6   drives0    10.108.80.75    UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-006         7      10.45 GB                1:08:29h
+7        av299-7   drives0    10.108.173.56   UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-007         7      10.45 GB                1:08:30h
+8        av299-8   drives0    10.108.253.194  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-008         7      10.45 GB                1:08:29h
+9        av299-9   drives0    10.108.220.115  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-009         7      10.45 GB                1:08:29h
+10       av299-0   compute0   10.108.79.121   UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-000         6      20.22 GB                1:08:08h
+11       av299-1   compute0   10.108.115.194  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-001         6      20.22 GB                1:08:08h
+12       av299-2   compute0   10.108.2.136    UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-002         6      20.22 GB                1:08:09h
+13       av299-3   compute0   10.108.165.185  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-003         6      20.22 GB                1:08:09h
+14       av299-4   compute0   10.108.116.49   UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-004         6      20.22 GB                1:08:09h
+15       av299-5   compute0   10.108.7.63     UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-005         6      20.22 GB                1:08:08h
+16       av299-6   compute0   10.108.80.75    UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-006         6      20.22 GB                1:08:09h
+17       av299-7   compute0   10.108.173.56   UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-007         6      20.22 GB                1:08:08h
+18       av299-8   compute0   10.108.253.194  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-008         6      20.22 GB                1:08:09h
+19       av299-9   compute0   10.108.220.115  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-009         6      20.22 GB                1:08:08h
+20       av299-0   frontend0  10.108.79.121   UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-000         1      1.47 GB                 1:06:57h
+21       av299-1   frontend0  10.108.115.194  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-001         1      1.47 GB                 1:06:57h
+22       av299-2   frontend0  10.108.2.136    UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-002         1      1.47 GB                 1:06:57h
+23       av299-3   frontend0  10.108.165.185  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-003         1      1.47 GB                 1:06:56h
+24       av299-4   frontend0  10.108.116.49   UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-004         1      1.47 GB                 1:06:57h
+25       av299-5   frontend0  10.108.7.63     UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-005         1      1.47 GB                 1:06:56h
+26       av299-6   frontend0  10.108.80.75    UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-006         1      1.47 GB                 1:06:57h
+27       av299-7   frontend0  10.108.173.56   UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-007         1      1.47 GB                 1:06:56h
+28       av299-8   frontend0  10.108.253.194  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-008         1      1.47 GB                 1:06:57h
+29       av299-9   frontend0  10.108.220.115  UP      4.0.5.14.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-009         1      1.47 GB                 1:06:56h
+5:49h
+```
+
+#### Check cluster container resources
+
+**Command:** `weka cluster container resources`
+
+Use this command to check the resources of each container in the cluster.
+
+`weka cluster container resources <container-id>`
+
+Example for a drive container resources output:
+
+```
+$ weka cluster container resources 0
+ROLES       NODE ID  CORE ID
+MANAGEMENT  0        <auto>
+DRIVES      1        12
+DRIVES      2        14
+DRIVES      3        2
+DRIVES      4        20
+DRIVES      5        6
+DRIVES      6        8
+DRIVES      7        22
+
+NET DEVICE    IDENTIFIER    DEFAULT GATEWAY  IPS             NETMASK  NETWORK LABEL
+0000:00:0a.0  0000:00:0a.0  10.108.0.1       10.108.34.80    16
+0000:00:0b.0  0000:00:0b.0  10.108.0.1       10.108.190.166  16
+0000:00:0c.0  0000:00:0c.0  10.108.0.1       10.108.125.213  16
+0000:00:0f.0  0000:00:0f.0  10.108.0.1       10.108.61.111   16
+0000:00:10.0  0000:00:10.0  10.108.0.1       10.108.26.149   16
+0000:00:11.0  0000:00:11.0  10.108.0.1       10.108.30.216   16
+0000:00:12.0  0000:00:12.0  10.108.0.1       10.108.217.129  16
+
+Allow Protocols         false
+Bandwidth               <auto>
+Base Port               14000
+Dedicate Memory         true
+Disable NUMA Balancing  true
+Failure Domain          DOM-000
+Hardware Watchdog       false
+Management IPs          10.108.79.121
+Mask Interrupts         true
+Memory                  <dedicated>
+Mode                    BACKEND
+Set CPU Governors       PERFORMANCE
+```
+
+Example of a compute container resources output:
+
+```
+$ weka cluster container resources 10
+ROLES       NODE ID  CORE ID
+MANAGEMENT  0        <auto>
+COMPUTE     1        16
+COMPUTE     2        4
+COMPUTE     3        18
+COMPUTE     4        26
+COMPUTE     5        28
+COMPUTE     6        10
+
+NET DEVICE    IDENTIFIER    DEFAULT GATEWAY  IPS             NETMASK  NETWORK LABEL
+0000:00:04.0  0000:00:04.0  10.108.0.1       10.108.145.137  16
+0000:00:05.0  0000:00:05.0  10.108.0.1       10.108.212.87   16
+0000:00:06.0  0000:00:06.0  10.108.0.1       10.108.199.231  16
+0000:00:07.0  0000:00:07.0  10.108.0.1       10.108.86.172   16
+0000:00:08.0  0000:00:08.0  10.108.0.1       10.108.190.88   16
+0000:00:09.0  0000:00:09.0  10.108.0.1       10.108.77.31    16
+
+Allow Protocols         false
+Bandwidth               <auto>
+Base Port               14300
+Dedicate Memory         true
+Disable NUMA Balancing  true
+Failure Domain          DOM-000
+Hardware Watchdog       false
+Management IPs          10.108.79.121
+Mask Interrupts         true
+Memory                  20224982280
+Mode                    BACKEND
+Set CPU Governors       PERFORMANCE
+```
+
+Example of a frontend container resources output:
+
+```
+$ weka cluster container resources 20
+ROLES       NODE ID  CORE ID
+MANAGEMENT  0        <auto>
+FRONTEND    1        24
+
+NET DEVICE    IDENTIFIER    DEFAULT GATEWAY  IPS             NETMASK  NETWORK LABEL
+0000:00:13.0  0000:00:13.0  10.108.0.1       10.108.217.249  16
+
+Allow Protocols         true
+Bandwidth               <auto>
+Base Port               14200
+Dedicate Memory         true
+Disable NUMA Balancing  true
+Failure Domain          DOM-000
+Hardware Watchdog       false
+Management IPs          10.108.79.121
+Mask Interrupts         true
+Memory                  <dedicated>
+Mode                    BACKEND
+Set CPU Governors       PERFORMANCE
+```
+
+#### Check cluster drives
+
+**Command:** `weka cluster drive`
+
+Use this command to check all drives in the cluster.
+
+Example:
+
+```
+$ weka cluster drive
+DISK ID  UUID                                  HOSTNAME  NODE ID  SIZE        STATUS  LIFETIME % USED  ATTACHMENT  DRIVE STATUS
+0        d3d000d4-a76b-405d-a226-c40dcd8d622c  av299-4   87       399.99 GiB  ACTIVE  0                OK          OK
+1        c68cf47a-f91d-499f-83c8-69aa06ed37d4  av299-7   143      399.99 GiB  ACTIVE  0                OK          OK
+2        c97f83b5-b9e3-4ccd-bfb8-d78537fa8a6f  av299-1   23       399.99 GiB  ACTIVE  0                OK          OK
+3        908dadc5-740c-4e08-9cc2-290b4b311f81  av299-0   7        399.99 GiB  ACTIVE  0                OK          OK
+.
+.
+.
+68       1c4c4d54-6553-44b2-bc61-0f0e946919fb  av299-4   84       399.99 GiB  ACTIVE  0                OK          OK
+69       969d3521-9057-4db9-8304-157f50719683  av299-3   62       399.99 GiB  ACTIVE  0                OK          OK
+```
+
+#### Check Weka cluster status
+
+**Command:** `weka status`
+
+The `weka status` command displays the overall status of the Weka cluster.
+
+For details, see [Cluster status](../../getting-started-with-weka/manage-the-system-using-weka-cli.md#cluster-status).
+
+### 14. Bypass the proxy server
+
+If the WEKA cluster is deployed in an environment with a proxy server, a WEKA client trying to mount or download the client installation from the WEKA cluster may be blocked by the proxy server. You can disable the proxy for specific URLs using the shell `no_proxy` environment variable.
+
+#### Procedure
+
+1. Connect to one of the WEKA backend servers.
+2. Open the `/etc/wekaio/service.conf` file.
+3. In the `[downloads_proxy]` section, add to the `no_proxy` parameter a comma-separated list of IP addresses or qualified domain names of your WEKA clients and cluster backend servers. Do not use wildcards (\*).
+
+```
+[downloads_proxy]
+force_no_proxy=true
+proxy=
+no_proxy=<comma-separated list of IPs or domains>
+```
+
+4. Restart the agent service.

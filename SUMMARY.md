@@ -10,6 +10,7 @@
 * [Weka networking](overview/networking-in-wekaio.md)
 * [Data lifecycle management](overview/data-storage.md)
 * [Weka client and mount modes](overview/weka-client-and-mount-modes.md)
+* [Weka containers architecture overview](overview/weka-containers-architecture-overview.md)
 * [Glossary](overview/glossary.md)
 
 ## Getting Started with Weka
@@ -28,7 +29,8 @@
   * [Prepare the system for Weka installation](install/bare-metal/setting-up-the-hosts/README.md)
     * [SR-IOV enablement](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Obtain the Weka software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
-  * [Weka system installation process using the CLI](install/bare-metal/using-cli.md)
+  * [Weka cluster installation](install/bare-metal/using-cli.md)
+  * [WEKA legacy system installation process](install/bare-metal/weka-legacy-system-installation-process.md)
   * [Add clients](install/bare-metal/adding-clients-bare-metal.md)
 * [Weka installation on AWS](install/aws/README.md)
   * [Self-service portal](install/aws/self-service-portal.md)

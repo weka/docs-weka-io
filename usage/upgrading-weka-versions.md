@@ -133,6 +133,10 @@ Once the upgrade is complete, verify that the cluster is in the new version by r
 `...`
 {% endhint %}
 
+{% hint style="info" %}
+**Note:** Once the upgrade completes successfully, contact the Customer Success Team to convert the cluster from a single-container Backend (SCB) to a multi-container backend (MCB) architecture.
+{% endhint %}
+
 ## Upgrade revert on failure
 
 The disruptiveness of the upgrade procedure is limited to a defined window of 10 minutes. Weka system ensures that either the upgrade process to the new version finishes successfully or the version is automatically reverted to the old one within this window.
