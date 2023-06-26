@@ -130,13 +130,13 @@ In this scenario, the local snapshot upload waits for the pending deletion of th
 
 If required, you can pause or abort a snapshot upload using the commands described in the [background tasks](../../usage/background-tasks/#pause-resume-abort-a-background-task) section.
 
-## Incremental snapshots
+## Synchronous snapshots
 
-Incremental snapshots are point-in-time backups for filesystems. When taken, they consist only of the changes since the last snapshot. When you download and restore an incremental snapshot to a live filesystem, the system reconstructs the filesystem on-the-fly with the changes since the previous snapshot.
+Synchronous snapshots are point-in-time backups for filesystems. When taken, they consist only of the changes since the last snapshot. When you download and restore a synchronous snapshot to a live filesystem, the system reconstructs the filesystem on-the-fly with the changes since the previous snapshot.
 
 This capability for filesystem snapshots potentially makes them more cost-effective because you do not have to update the entire filesystem with each snapshot. You update only the changes since the last snapshot.
 
-Incremental snapshots download and restore are only available through the CLI. It is recommended to download the Incremental snapshots in chronological order. Only snapshots uploaded from a 4.0 version or above can be downloaded as increments.
+Synchronous snapshots download and restore are only available through the CLI. It is recommended to download the synchronous snapshots in chronological order. Only snapshots uploaded from a 4.0 version or above can be downloaded as increments.
 
 ## Delete snapshots residing on an object store
 

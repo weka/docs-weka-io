@@ -62,7 +62,7 @@ If you perform the workflow steps in a different order, the snapshots can be com
 
 ### Attach a remote object store bucket
 
-One remote object-store bucket can be attached to a filesystem. A remote object store bucket is used for backup only, and only snapshots are uploaded to it using **Snap-To-Object**. The snapshot uploads are incremental to the previous one.&#x20;
+One remote object-store bucket can be attached to a filesystem. A remote object store bucket is used for backup, and only snapshots are uploaded using **Snap-To-Object**. The snapshot uploads are incremental to the previous one.&#x20;
 
 ### Detach a remote object store bucket
 

@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes the Snap-To-Object feature, which enables the committing
-  of all the data of a specific snapshot to an object store.
+  The Snap-To-Object feature enables the committing of all the data of a
+  specific snapshot to an object store.
 ---
 
 # Manage Snap-To-Object using the CLI
@@ -10,7 +10,7 @@ Using the CLI, you can:
 
 * [Upload a  snapshot](snap-to-obj-1.md#upload-a-snapshot)
 * [Create a filesystem from an uploaded snapshot](snap-to-obj-1.md#create-a-filesystem-from-an-uploaded-snapshot)
-* [Manage incremental snapshots](snap-to-obj-1.md#manage-incremental-snapshots)
+* [Manage synchronous snapshots](snap-to-obj-1.md#manage-synchronous-snapshots)
 * [Recover from a remote snapshot](snap-to-obj-1.md#recover-from-a-remote-snapshot)
 
 ## Upload a  snapshot
@@ -51,26 +51,26 @@ Due to the bandwidth characteristics and potential costs when interacting with r
 For encrypted filesystem, when downloading, you must use the same KMS master key to decrypt the snapshot data. For more information, see the [KMS Management](../../usage/security/kms-management/#overview) section.
 {% endhint %}
 
-## Manage incremental snapshots
+## Manage synchronous snapshots
 
-The workflow to manage the incremental snapshots includes:
+The workflow to manage the synchronous snapshots includes:
 
 1. Upload snapshots using, for example, the snapshots scheduler. See [Snapshot management](../../appendix/snapshot-management.md).
-2. Download the incremental snapshot (described below).
+2. Download the synchronous snapshot (described below).
 3. Restore a specific snapshot to a filesystem. See [Restore a snapshot to a filesystem or another snapshot](../snapshots/snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot).
 
-### Download an incremental snapshot
+### Download a synchronous snapshot
 
 **Command:** `weka fs snapshot download`
 
-Use the following command line to download an incremental snapshot. This command is only relevant for snapshots uploaded from a system of version 4.0 and higher:
+Use the following command line to download a synchronous snapshot. This command is only relevant for snapshots uploaded from a system of version 4.0 and higher:
 
 &#x20;`weka fs snapshot download <file-system> <locator>`
 
 {% hint style="warning" %}
-Make sure to download incremental snapshots in chronological order. Non-chronological snapshots are inefficient and are not incremental.&#x20;
+Make sure to download synchronous snapshots in chronological order. Non-chronological snapshots are inefficient and are not synchronous.&#x20;
 
-If you need to download a snapshot earlier than the latest downloaded one, for example, when you need one of the daily incremental snapshots after the weekly incremental snapshot was downloaded, add the `--allow-non-chronological` flag to download it anyway.
+If you need to download a snapshot earlier than the latest downloaded one, for example, when you need one of the daily synchronous snapshots after the weekly synchronous snapshot was downloaded, add the `--allow-non-chronological` flag to download it anyway.
 {% endhint %}
 
 **Parameters**
@@ -81,7 +81,7 @@ If you need to pause and resume the download process, use the command: `weka clu
 
 **Related topics**
 
-[#incremental-snapshots](./#incremental-snapshots "mention")
+[#synchronous-snapshots](./#synchronous-snapshots "mention")
 
 ## Recover from a remote snapshot
 

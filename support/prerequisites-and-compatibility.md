@@ -117,14 +117,25 @@ To set the SELinux security context for files,  use the `-o acl` in the mount co
 {% endtab %}
 {% endtabs %}
 
-## Weka installation directory
+## WEKA installation directory
 
-* Directory: `/opt/weka`
-* Must be on an SSD or SSD-like performance, for example, M.2.
-  * Cannot be shared remotely, NFS mounted, or on a RAM drive.
-* If two boot drives are available, it is recommended to dedicate one for the OS and one for the WEKA `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues).
-* At least 26 GB is available for the WEKA system installation, with an additional 10 GB for each core used by WEKA.
-* Use a separate filesystem on a separate partition for /opt/weka.
+* **WEKA installation directory**: `/opt/weka`
+* **Boot drive minimum requirements**:
+  * Capacity: NVMe SSD with 960 GB capacity
+  * Durability: 1 DWPD (Drive Writes Per Day)
+  * Write throughput: 1 GB/s
+* **Boot drive considerations**:
+  * Do not share the boot drive.
+  * Do not mount using NFS.
+  * Do not use a RAM drive remotely.
+  * If two boot drives are available:
+    * It is recommended to dedicate one boot drive for the OS and the other for the /opt/weka directory.
+    * Do not use software RAID to have two boot drives.
+* **Software required space**:
+  * Ensure that at least 26 GB is available for the WEKA system installation.
+  * Allocate an additional 10 GB per core used by WEKA.
+* **Filesystem requirement**:
+  * Set a separate filesystem on a separate partition for `/opt/weka`.
 
 ## Networking
 
