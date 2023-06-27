@@ -36,8 +36,6 @@ WEKA supports the following virtual machine types for clients:
 
 <table><thead><tr><th width="230">VM size</th><th width="108">vCPU</th><th>Memory (GiB)</th><th>Max NICs</th><th data-type="number">BW (Mbps)</th></tr></thead><tbody><tr><td>Standard_L8s_v3</td><td>8</td><td>64</td><td>4</td><td>12500</td></tr><tr><td>Standard_D8_v5</td><td>8</td><td>32</td><td>4</td><td>12500</td></tr></tbody></table>
 
-
-
 **Related information**
 
-[Dv5 series](https://learn.microsoft.com/en-us/azure/virtual-machines/dv5-dsv5-series#dv5-series) (Azure learning site)
+[Dv5-series](https://learn.microsoft.com/en-us/azure/virtual-machines/dv5-dsv5-series#dv5-series) (Azure learning site)
