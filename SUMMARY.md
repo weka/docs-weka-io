@@ -25,7 +25,7 @@
 
 * [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts.md)
 * [WEKA system installation in a bare metal environment](install/bare-metal/README.md)
-  * [Plan the WEKA system Installation](install/bare-metal/planning-a-weka-system-installation.md)
+  * [Plan the WEKA system installation](install/bare-metal/planning-a-weka-system-installation.md)
   * [Prepare the system for WEKA software installation](install/bare-metal/setting-up-the-hosts/README.md)
     * [Enable the SR-IOV](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Obtain the WEKA software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
