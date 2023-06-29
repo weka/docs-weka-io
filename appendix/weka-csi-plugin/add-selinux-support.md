@@ -75,10 +75,10 @@ $ helm install --upgrade csi-wekafsplugin csi-wekafs/csi-wekafsplugin --namespac
 Follow these considerations:
 
 * WEKA CSI Plugin supports both the `enforced` and `mixed` modes of `selinuxSupport`. The installation depends on the following mode settings:
-  * When `selinuxSupport` is set to `enforced`, only SELinux-enabled CSI plugin node components are installed.
-  * When `selinuxSupport` is set to `mixed`, both non-SELinux and SELinux-enabled components are installed.
-  * When `selinuxSupport` is set to `off`, only non-SELinux CSI plugin node components are installed.
-*   The SELinux status cannot be known from within the CSI plugin pod. Therefore, a way of distinguishing between SELinux-enabled and non-SELinux nodes is required. WEKA CSI Plugin relies on the node affinity mechanism by matching the value of a certain node label, in a mutually exclusive way. That is, only when the label exists and is set to `"true"`, an SELinux-enabled node component will start on that node, otherwise non-SELinux node component will start.
+  * When `selinuxSupport` is `enforced`, only SELinux-enabled CSI plugin node components are installed.
+  * When `selinuxSupport` is `mixed`, both non-SELinux and SELinux-enabled components are installed.
+  * When `selinuxSupport` is `off`, only non-SELinux CSI plugin node components are installed.
+*   The SELinux status cannot be known from within the CSI plugin pod. Therefore, a way of distinguishing between SELinux-enabled and non-SELinux nodes is required. WEKA CSI Plugin relies on the node affinity mechanism by matching the value of a certain node label in a mutually exclusive way. Only when the label exists and is set to true, an SELinux-enabled node component will start on that node. Otherwise, the non-SELinux node component will start.
 
     To ensure that the plugin starts in compatibility mode, set the following label on each SELinux-enabled Kubernetes node:&#x20;
 * If a node label is modified after installing the WEKA CSI Plugin node component on that node, terminate the csi-wekafs-node-XXXX component on the affected node. As a result, a replacement pod is automatically scheduled on the node but with the correct SELinux configuration.
@@ -99,9 +99,9 @@ $ helm install --upgrade csi-wekafsplugin csi-wekafs/csi-wekafsplugin --namespac
 
 ### Test the WEKA CSI plugin operation <a href="#test-csi-plugin" id="test-csi-plugin"></a>
 
-1. Make sure you have configured a valid CSI API [`secret`](https://github.com/weka/csi-wekafs/blob/master/examples/dynamic\_api/csi-wekafs-api-secret.yaml). Create a valid WEKA CSI Plugin [`storageClass`](https://github.com/weka/csi-wekafs/blob/master/examples/dynamic\_api).
-2. Provision a [`PersistentVolumeClaim`](https://github.com/weka/csi-wekafs/blob/master/examples/dynamic\_api/pvc-wekafs-dir-api.yaml).
-3. Provision a [`DaemonSet`](https://github.com/weka/csi-wekafs/blob/master/examples/dynamic\_api/csi-daemonset.app-on-dir-api.yaml), to enable access of all pods on all nodes.
+1. Make sure you have configured a valid CSI API [`secret`](https://github.com/weka/csi-wekafs/blob/d15a5e14b53056d1d2f2f5f36fdc4534711a1756/examples/common/csi-wekafs-api-secret.yaml). Create a valid WEKA CSI Plugin [`storageClass`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic\_directory/storageclass-wekafs-dir-api.yaml).
+2. Provision a [`PersistentVolumeClaim`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic\_directory/pvc-wekafs-dir-api.yaml).
+3. Provision a [`DaemonSet`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic\_directory/csi-daemonset.app-on-dir-api.yaml) to enable access to all pods on all nodes.
 4.  Monitor the pod logs using the following command (expect no printing in the log files):
 
     ```
@@ -128,20 +128,20 @@ $ helm install --upgrade csi-wekafsplugin csi-wekafs/csi-wekafsplugin --namespac
     ```
 
     * If the result matches the example, proceed to the next step.
-    * If no result, the policy is not installed. Perform the [Install a custom SELinux policy](add-selinux-support.md#install-a-custom-selinux-policy) procedure.
+    * If there is no result, the policy is not installed. Perform the [Install a custom SELinux policy](add-selinux-support.md#install-a-custom-selink-p) procedure.
     *   If the policy is off, enable it and check the pod output again by running:
 
         ```
         $ setsebool container_use_wekafs=on
         ```
-7.  Check if the node is labeled with plugin is operating in SELinux-compatible mode by running the following command:
+7.  Check if the node is labeled with the plugin is operating in SELinux-compatible mode by running the following command:
 
     ```
     $ kubectl describe node don-kube-8 | grep csi.weka.io/selinux_enabled
                  csi.weka.io/selinux_enabled=true
     ```
 
-    *   If the output is empty, [Install and configure the Weka CSI Plugin](add-selinux-support.md#install-and-configure-the-weka-csi-plugin).
+    *   If the output is empty, Perform the [Install and configure the Weka CSI Plugin](add-selinux-support.md#install-config-csi-plugin) procedure.
 
 
 
