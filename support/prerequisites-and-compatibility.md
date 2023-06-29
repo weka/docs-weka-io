@@ -30,21 +30,22 @@ Ensure the BIOS settings meet the following requirements:
 ## Operating system
 
 {% tabs %}
-{% tab title="Backends and clients" %}
-The following operating systems are supported for backend servers and clients:
-
+{% tab title="Backends" %}
 * **RHEL:**
-  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
   * 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-* **CentOS:**
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
-  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux:**
-  * 8.7, 8.6
+  * 8.7
+  * 8.6
+* **CentOS:**
+  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Ubuntu:**
-  * 18.04
   * 20.04
-* **Amazon Linux:** 18.03, 17.09
+  * 18.04
+* **Amazon Linux:**
+  * 18.03
+  * 17.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
 
 {% hint style="info" %}
@@ -52,25 +53,28 @@ Ensure using an OS with a supported kernel. Do not use an OS with kernel 5.13 an
 {% endhint %}
 {% endtab %}
 
-{% tab title="POSIX clients only" %}
-The following operating systems are supported for POSIX clients only:
-
-**SuSe:**
-
-* 15 SP2
-* 12 SP5
-
-**RHEL:**
-
-* 9.1, 9.0
-
-**Rocky Linux:**&#x20;
-
-* 9.1, 9.0
-
-**Ubuntu:**&#x20;
-
-* 22.04&#x20;
+{% tab title="Clients" %}
+* **RHEL:**
+  * 9.1, 9.0
+  * 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
+* **Rocky Linux:**
+  * 9.1, 9.0
+  * 8.7, 8.6
+* **CentOS:**
+  * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
+* **Ubuntu:**
+  * 22.04
+  * 20.04
+  * 18.04
+* **Amazon Linux:**
+  * 18.03
+  * 17.09
+* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
+* **SuSe:**
+  * 15 SP2
+  * 12 SP5
 
 {% hint style="info" %}
 For kernels 5.13 and higher, do not use applications that use 1GB hugepages. RHEL/Rocky Linux 9.1, 9.0 and Ubuntu 22.04 use kernels higher than 5.13.
