@@ -140,18 +140,18 @@ Once all backends are upgraded, the clients remain with the existing version and
 * If a stateless client is mounted on a single cluster, it is automatically upgraded to the backend version after rebooting, or a complete `umount` and `mount` is performed.
 * If a stateless client is mounted on multiple clusters, the client container version is the same as the `client-target-version` in the cluster (see [Mount filesystems from multiple clusters on a single client](../fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)).
 * Stateless clients can also be upgraded manually.
-* You can manually upgrade the clients, either locally (one by one) or remotely (in batches), usually during a maintenance window.
+* You can manually upgrade the clients locally (one by one) or remotely (in batches), usually during a maintenance window.
 
 #### Stateful client upgrade options
 
-* You can manually upgrade the clients, either locally (one by one) or remotely (in batches), usually during a maintenance window.
+* You can manually upgrade the clients locally (one by one) or remotely (in batches), usually during a maintenance window.
 * A gateway, which is a stateful client running a protocol, is upgraded with the backend servers.&#x20;
 
 {% tabs %}
 {% tab title="Upgrade a client locally" %}
 To upgrade a stateless or stateful client locally, connect to the client and run the following command line:
 
-1. Run: `weka version get <target-version> --from <backend name or IP>`
+1. Run: `weka version get <target-version> --from <backend name or IP>:<port>`
 2. Upgrade the agent by running the following:\
    `/opt/weka/dist/cli/<target_cli> version set --agent-only <target-version>`
 3. Upgrade the client containers by running the following:\
@@ -159,7 +159,7 @@ To upgrade a stateless or stateful client locally, connect to the client and run
 
 An alert is raised if there is a mismatch between the clients' and the cluster versions.
 
-**Note:** Add the `--from <backend name or IP>` option to download the client package only from the backend, thus avoiding downloading from get.weka.io.
+**Note:** Add the `--from <backend name or IP>` option to download the client package only from the backend, thus avoiding downloading from get.weka.io. The default port is 14000.
 {% endtab %}
 
 {% tab title="Upgrade remote clients in batches" %}
