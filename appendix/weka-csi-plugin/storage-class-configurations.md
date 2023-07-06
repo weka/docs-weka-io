@@ -27,14 +27,14 @@ Adhere to the following:
 * Authenticated mounts for filesystems set with `auth-required=true`, and filesystems in the non-root organization, require WEKA cluster version **3.14.0** and higher.
 
 {% hint style="info" %}
-The API-based communication model is deprecated and will be removed in the next release.
+The legacy communication model is deprecated and will be removed in the next release. If you are using the legacy communication model, replacing it with the API-based one is recommended.
 {% endhint %}
 
 ## Prerequisites
 
 * To provision any persistent volume type, a Storage Class must exist in Kubernetes deployment that matches the secret name and namespace in the WEKA cluster configuration.
 * For directory-backed and snapshot-backed storage class configurations, a filesystem must be pre-created on the WEKA cluster to create PVCs.
-* For filesystem-backed StorageClass configuration, the filesystem name is generated automatically based on the PVC name, but the filesystem group name must be declared in the Storage Class configuration.
+* For the filesystem-backed StorageClass configuration, the filesystem name is generated automatically based on the PVC name, but the filesystem group name must be declared in the Storage Class configuration.
 
 {% hint style="info" %}
 Multiple WEKA cluster connections from the same Kubernetes node are not supported in the current release of WEKA software.&#x20;
