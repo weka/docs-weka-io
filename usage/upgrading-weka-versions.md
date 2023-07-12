@@ -153,7 +153,7 @@ To upgrade a stateless or stateful client locally, connect to the client and run
 
 1. Run: `weka version get <target-version> --from <backend name or IP>:<port>`
 2. Upgrade the agent by running the following:\
-   `/opt/weka/dist/cli/<target_cli> version set --agent-only <target-version>`
+   `/opt/weka/dist/cli/<target_client> agent install-agent --no-update`
 3. Upgrade the client containers by running the following:\
    `weka local upgrade`
 
