@@ -190,11 +190,14 @@
     * [Manage protocols debug level using the GUI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-gui.md)
     * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
   * [Diagnostics data management](support/diagnostics-management/diagnostics-utility.md)
+* [WEKA Management Station (WMS)](support/weka-management-station-wms.md)
 * [Weka Home - The WEKA support cloud](support/the-wekaio-support-cloud/README.md)
   * [Local Weka Home overview](support/the-wekaio-support-cloud/local-weka-home-overview.md)
   * [Local Weka Home deployment](support/the-wekaio-support-cloud/local-weka-home-deployment.md)
   * [Set the Local Weka Home to send alerts or events](support/the-wekaio-support-cloud/set-the-local-weka-home-to-send-alerts-or-events.md)
   * [Download the Usage Report or Analytics](support/the-wekaio-support-cloud/download-the-usage-report-or-analytics.md)
+* [Set up the WEKAmon external monitoring](support/external-monitoring.md)
+* [Set up the SnapTool external snapshots manager](support/snapshot-management.md)
 
 ## Appendix
 
@@ -206,8 +209,6 @@
   * [Add SELinux support](appendix/weka-csi-plugin/add-selinux-support.md)
   * [Upgrade legacy persistent volumes for capacity enforcement](appendix/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
   * [Troubleshooting](appendix/weka-csi-plugin/troubleshooting.md)
-* [Set up the WEKAmon external monitoring](appendix/external-monitoring.md)
-* [Set up the SnapTool external snapshots manager](appendix/snapshot-management.md)
 
 ***
 
