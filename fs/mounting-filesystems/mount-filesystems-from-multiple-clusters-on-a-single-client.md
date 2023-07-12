@@ -1,10 +1,10 @@
 # Mount filesystems from multiple clusters on a single client
 
-You can mount filesystems from up to seven clusters in parallel on a single WEKA client.
+You can mount filesystems from multiple clusters simultaneously on a single WEKA client.&#x20;
 
 This feature provides the following benefits:
 
-* **Expanded cluster connectivity:** WEKA allows a single client to connect to multiple clusters simultaneously, resulting in increased storage capacity and enhanced computational capabilities.
+* **Expanded cluster connectivity:** WEKA allows a single client to connect to a **maximum of 7 clusters** simultaneously, increasing storage capacity and enhancing computational capabilities. The maximum number of clusters&#x20;
 * **Streamlined data access:** The enhanced cluster connectivity offers users a unified view of data across multiple clusters, simplifying data access and management. This allows for improved data availability, increased flexibility, and more efficient resource usage.
 * **Efficient workload distribution:** With the ability to connect to multiple clusters, WEKA enables efficient workload distribution across distributed environments. Users can easily scale out their applications, balance workloads across clusters, and optimize performance based on their specific requirements.
 * **Seamless integration:** WEKA ensures a seamless integration process for clients leveraging this feature.
