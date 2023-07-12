@@ -181,7 +181,7 @@ Use `-o net=<netdev>` mount option with the various modifiers as described below
 
 For higher performance, the usage of multiple Frontends may be required. When using a NIC other than Mellanox or Intel E810 or mounting a DPDK client on a VM, it is required to use [SR-IOV](../install/bare-metal/setting-up-the-hosts/#sr-iov-enablement) to expose a VF of the physical device to the client. Once exposed, it can be configured via the mount command.
 
-When you want to determine the VFs IP addresses or when the client resides in a different subnet and routing is needed in the data network, use`net=<netdev>/[ip]/[bits]/[gateway]`.
+To assign the VF IP addresses or when the client resides in a different subnet and routing is needed in the data network, use`net=<netdev>/[ip]/[bits]/[gateway]`.
 
 `ip, bits, gateway` are optional. If these options are not provided, the Weka system performs one of the following depending on the environment:
 
