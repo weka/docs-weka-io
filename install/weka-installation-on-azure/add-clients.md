@@ -38,7 +38,7 @@ When deploying a WEKA cluster, it is possible to create clients using Terraform.
        valid_lft forever preferred_lft forever
     inet6 ::1/128 scope host
        valid_lft forever preferred_lft forever
-2: eth0: &#x3C;BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+2: eth0: &#x3C;BROADCAST,MULTICAST,UP,LOWER_UP> mtu 3900 qdisc mq state UP group default qlen 1000
     link/ether 00:0d:3a:8e:3a:67 brd ff:ff:ff:ff:ff:ff
     inet 10.0.0.30/24 brd 10.0.0.255 scope global eth0
        valid_lft forever preferred_lft forever
@@ -50,7 +50,7 @@ When deploying a WEKA cluster, it is possible to create clients using Terraform.
        valid_lft forever preferred_lft forever
     inet6 fe80::20d:3aff:fe8b:d9bd/64 scope link
        valid_lft forever preferred_lft forever
-4: enP18334s1np0: &#x3C;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc mq master eth0 state UP group default qlen 1000
+4: enP18334s1np0: &#x3C;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 3900 qdisc mq master eth0 state UP group default qlen 1000
     link/ether 00:0d:3a:8e:3a:67 brd ff:ff:ff:ff:ff:ff
 5: enP39539s2np0: &#x3C;BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 4038 qdisc mq master eth1 state UP group default qlen 1000
     link/ether 00:0d:3a:8b:d9:bd brd ff:ff:ff:ff:ff:ff
