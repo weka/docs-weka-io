@@ -33,7 +33,7 @@ Run the `untar` command and `install.sh` command, according to the instructions,
 On completion of this stage in the installation process, the WEKA software is installed on all the allocated servers and running in the stem mode. That is, no cluster is attached and the WEKA system is awaiting instructions.
 
 {% hint style="info" %}
-**Note:** If a failure occurs during this installation stage, an error message detailing the source of the failure is received. If possible, try to recover this error or alternatively, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+**Note:** If a failure occurs during this installation stage, an error message detailing the source of the failure is received. If possible, try to recover this error or alternatively, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ## Stage 2: Formation of a cluster from the containers
@@ -99,7 +99,7 @@ This command is used to give the cluster a name. Although this is optional, it i
 
 This command enables cloud event notification (via Weka Home), which increases the ability of the Weka Support Team to resolve any issues that may occur.
 
-To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../../support/the-wekaio-support-cloud/).
+To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../support/the-wekaio-support-cloud/).
 
 #### **Enable support through a** private instance of Weka Home
 
@@ -110,7 +110,7 @@ In closed environments, such as dark sites and private VPCs, it is possible to i
 This command enables the use of a private instance of Weka Home.
 
 {% hint style="info" %}
-For more information, refer to [Private Instance of Weka Home](../../../support/the-wekaio-support-cloud/#private-instance-of-weka-home) and contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md).
+For more information, refer to [Private Instance of Weka Home](../../support/the-wekaio-support-cloud/#private-instance-of-weka-home) and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 ## Stage 5: Set containers dedicated to the cluster (optional)
@@ -139,17 +139,17 @@ To perform this operation, the `cluster container net add`command must be run fo
 
 **Parameters**
 
-| **Name**       | **Type**                   | **Value**                                                                                  | **Limitations**                                                                                                                                                                                                                                                  | **Mandatory** | **Default** |
-| -------------- | -------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `container-id` | String                     | Identifier of the container to which a network interface will be added                     | Must be a valid container identifier                                                                                                                                                                                                                             | Yes           |             |
-| `device`       | String                     | A device, or bond-device e.g., `eth1` or `bond0`                                           | Must be a valid Unix network device name                                                                                                                                                                                                                         | Yes           |             |
-| `ips-type`     | String                     | POOL or USER                                                                               | Must be one of the two options                                                                                                                                                                                                                                   | No            | POOL        |
-| `ips`          | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic. In IB, use the IPoIB address | Must be part of the data plane IP pool defined in the planning phase. See [Weka Networking](../../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking). | No            | From Pool   |
-| `netmask`      | Number                     | Number of bits in the netmask                                                              | Describes the number of bits that identify a network ID (also known as CIDR). Not relevant for IB / L2 non-routable networks, and must be supplied for the ethernet NICs if the cluster is set to use both ethernet and IB interfaces.                           | No            |             |
-| `gateway`      | IP address                 | The IP address of the default routing gateway                                              | <p>The gateway must reside within the same IP network of <code>ips</code> (as described by <code>netmask</code>).  </p><p>Not relevant for IB / L2 non-routable networks.</p>                                                                                    | No            |             |
-| `label`        | String                     | A label to describe the network device connectivity.                                       | The Weka system will prefer to use paths with the same labels to send data. This is useful when the system is configured with HA networking, to hint the system to send between containers through the same switch rather than using the ISL.                    | No            |             |
+| **Name**       | **Type**                   | **Value**                                                                                  | **Limitations**                                                                                                                                                                                                                                            | **Mandatory** | **Default** |
+| -------------- | -------------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| `container-id` | String                     | Identifier of the container to which a network interface will be added                     | Must be a valid container identifier                                                                                                                                                                                                                       | Yes           |             |
+| `device`       | String                     | A device, or bond-device e.g., `eth1` or `bond0`                                           | Must be a valid Unix network device name                                                                                                                                                                                                                   | Yes           |             |
+| `ips-type`     | String                     | POOL or USER                                                                               | Must be one of the two options                                                                                                                                                                                                                             | No            | POOL        |
+| `ips`          | Comma-separated IP address | The data plane IP addresses for internal Weka system traffic. In IB, use the IPoIB address | Must be part of the data plane IP pool defined in the planning phase. See [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking). | No            | From Pool   |
+| `netmask`      | Number                     | Number of bits in the netmask                                                              | Describes the number of bits that identify a network ID (also known as CIDR). Not relevant for IB / L2 non-routable networks, and must be supplied for the ethernet NICs if the cluster is set to use both ethernet and IB interfaces.                     | No            |             |
+| `gateway`      | IP address                 | The IP address of the default routing gateway                                              | <p>The gateway must reside within the same IP network of <code>ips</code> (as described by <code>netmask</code>).  </p><p>Not relevant for IB / L2 non-routable networks.</p>                                                                              | No            |             |
+| `label`        | String                     | A label to describe the network device connectivity.                                       | The Weka system will prefer to use paths with the same labels to send data. This is useful when the system is configured with HA networking, to hint the system to send between containers through the same switch rather than using the ISL.              | No            |             |
 
-The number of IP addresses should be according to [Weka Networking](../../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
+The number of IP addresses should be according to [Weka Networking](../../overview/networking-in-wekaio.md#backend-hosts) and [Networking Prerequisites](../prerequisites-for-installation-of-weka-dedicated-hosts.md#networking).
 
 {% hint style="info" %}
 **Note:** Additional IP addresses may be assigned for each container if IP per core is needed. In this case, unused IP addresses are reserved for future expansions and can be automatically assigned if the number of cores assigned to the Weka system on that container is increased.
@@ -199,7 +199,7 @@ This stage in the installation process is used to add a local SSD to be used by 
 | `device-paths` | Space-separated  list of strings | List of block devices that identify local SSDs, e.g., `/dev/nvme0n1 /dev/nvme1n1` | Must be a valid Unix network device name | Yes           |             |
 
 {% hint style="info" %}
-**Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md).
+**Note:** If, due to some technical limitation, the use of an NVMe device through the kernel is required, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 ### 8. Configure the CPU resources
@@ -234,18 +234,18 @@ This stage in the installation process is used to configure the number of CPU re
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Performance can be optimized by assigning different functions to the various Weka cores. If necessary, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md). for more information.
+**Note:** Performance can be optimized by assigning different functions to the various Weka cores. If necessary, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md). for more information.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Weka supports more than 19 cores per server. This option enables taking advantage of all server core resources. To set the system with more than 19 cores, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md).
+**Note:** Weka supports more than 19 cores per server. This option enables taking advantage of all server core resources. To set the system with more than 19 cores, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 ### 9. Configure the memory (optional)
 
 **Command:** `weka cluster container memory`
 
-As defined in the memory requirements, the fixed memory per container and the per compute/SSD cores memory are automatically calculated by the Weka system. By default, 1.4 GB is allocated per compute core, of which 0.4 GB is left for capacity-oriented memory. If the container is set as [dedicated](using-cli.md#stage-5-setting-hosts-as-dedicated-to-the-cluster-optional), all the memory left after reductions, as described in [Memory Resource Planning](../planning-a-weka-system-installation.md#memory-resource-planning), is automatically allocated for the Weka system.
+As defined in the memory requirements, the fixed memory per container and the per compute/SSD cores memory are automatically calculated by the Weka system. By default, 1.4 GB is allocated per compute core, of which 0.4 GB is left for capacity-oriented memory. If the container is set as [dedicated](using-cli.md#stage-5-setting-hosts-as-dedicated-to-the-cluster-optional), all the memory left after reductions, as described in [Memory Resource Planning](planning-a-weka-system-installation.md#memory-resource-planning), is automatically allocated for the Weka system.
 
 If capacity requirements mandate more memory, the following command should be used:
 
@@ -349,13 +349,13 @@ Run the command and verify that the `ResourcesNotAppliedalert` alert does not sh
 
 **Related topics**
 
-[alerts](../../../usage/alerts/ "mention")
+[alerts](../../usage/alerts/ "mention")
 
 ### 15. Set a license
 
 **Command:** `weka cluster license set / payg`
 
-To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the WEKA cluster. For details, see [License overview](../../../licensing/overview.md).&#x20;
+To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the WEKA cluster. For details, see [License overview](../../licensing/overview.md).&#x20;
 
 ### 16. Run the Start IO command
 
@@ -369,4 +369,4 @@ Once the `start-io` process is completed successfully, the system exits the init
 
 ### 17. Bypass the proxy server
 
-See [#14.-bypass-the-proxy-server](./#14.-bypass-the-proxy-server "mention")
+See [#14.-bypass-the-proxy-server](weka-system-installation-with-multiple-containers-using-the-cli.md#14.-bypass-the-proxy-server "mention")

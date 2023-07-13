@@ -212,7 +212,7 @@ When you want to determine the VFs IP addresses or when the client resides in a 
 `ip, bits, gateway` are optional. If these options are not provided, the Weka system performs one of the following depending on the environment:
 
 * **Cloud environment:** the Weka system deduces the values of these options.
-* **On-premises environment:** the Weka system allocates values of these options from the cluster default network (the `weka cluster default-net` must be set before running the mount command). Otherwise, the Weka cluster does not allocate the IP for the client. For more details, see [Optional: Configure default data networking](../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/using-cli.md#optional-configure-default-data-networking).
+* **On-premises environment:** the Weka system allocates values of these options from the cluster default network (the `weka cluster default-net` must be set before running the mount command). Otherwise, the Weka cluster does not allocate the IP for the client. For more details, see [Optional: Configure default data networking](../install/bare-metal/using-cli.md#optional-configure-default-data-networking).
 
 For example, the following command allocates two cores and a single physical network device (intel0). It will configure two VFs for the device and assign each one of them to one of the frontend processes. The first container will receive a 192.168.1.100 IP address, and the second will use a 192.168.1.101 IP address. Both of the IPs have 24 network mask bits and a default gateway of 192.168.1.254.
 

@@ -33,18 +33,18 @@ weka cluster container add <backend-hostname>
 {% endhint %}
 
 4. Configure the networking.
-   * Perform the instructions in [#stage-6-configure-the-networking](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/using-cli.md#stage-6-configure-the-networking "mention").
+   * Perform the instructions in [#stage-6-configure-the-networking](../../install/bare-metal/using-cli.md#stage-6-configure-the-networking "mention").
 5. Configure the CPU resources.
-   * Perform the instructions in [#stage-8-configure-the-cpu-resources](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/using-cli.md#stage-8-configure-the-cpu-resources "mention").
+   * Perform the instructions in [#stage-8-configure-the-cpu-resources](../../install/bare-metal/using-cli.md#stage-8-configure-the-cpu-resources "mention").
 6. Apply the configuration of the container on the newly added server.
-   * Perform the instructions in [#stage-13-apply-containers-configuration](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/using-cli.md#stage-13-apply-containers-configuration "mention").
+   * Perform the instructions in [#stage-13-apply-containers-configuration](../../install/bare-metal/using-cli.md#stage-13-apply-containers-configuration "mention").
 
 {% hint style="info" %}
 **Note:** You can activate the cluster containers sequentially.
 {% endhint %}
 
 7. Configure the SSDs.
-   * Perform the instructions in [#7.-configure-the-ssds](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/using-cli.md#7.-configure-the-ssds "mention").
+   * Perform the instructions in [#7.-configure-the-ssds](../../install/bare-metal/using-cli.md#7.-configure-the-ssds "mention").
 
 ## Expand the cluster by importing the container settings
 
@@ -59,4 +59,4 @@ In most cases, the server configurations are similar. Therefore, importing the s
 4. Edit the local configuration.
    * See the [#local-resources-editing-commands](expansion-of-specific-resources.md#local-resources-editing-commands "mention") section.
 5. Apply the configuration on the newly added server.
-   * See [#stage-13-apply-containers-configuration](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/using-cli.md#stage-13-apply-containers-configuration "mention").
+   * See [#stage-13-apply-containers-configuration](../../install/bare-metal/using-cli.md#stage-13-apply-containers-configuration "mention").

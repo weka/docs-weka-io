@@ -108,4 +108,4 @@ weka cluster drive add <container-id> <device-paths>
 
 [obtaining-the-weka-install-file.md](../../install/bare-metal/obtaining-the-weka-install-file.md "mention")
 
-[weka-system-installation-with-multiple-containers-using-the-cli](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/ "mention")
+[weka-system-installation-with-multiple-containers-using-the-cli.md](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md "mention")

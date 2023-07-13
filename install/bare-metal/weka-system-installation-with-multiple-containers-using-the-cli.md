@@ -9,20 +9,20 @@ description: >-
 
 ## Workflow
 
-1. [Install the WEKA software](./#1.-install-the-weka-software)
-2. [Remove the default container](./#2.-remove-the-default-container)
-3. [Generate the resource files](./#3.-generate-the-resource-files)
-4. [Create drive containers](./#4.-create-drive-containers)
-5. [Create a cluster](./#5.-create-a-cluster)
-6. [Configure the SSD drives](./#6.-configure-the-ssd-drives)
-7. [Create compute containers](./#7.-create-compute-containers)
-8. [Name the cluster](./#8.-name-the-cluster)
-9. [Name the cluster and enable event notifications to the cloud (optional)](./#9.-name-the-cluster-and-enable-event-notifications-to-the-cloud-optional)
-10. [Set the license](./#10.-set-the-license)
-11. [Start the cluster IO service](./#11.-start-the-cluster-io-service)
-12. [Create frontend containers](./#12.-create-frontend-containers)
-13. [Check the cluster configuration](./#13.-check-the-cluster-configuration)
-14. [Bypass the proxy server](./#14.-bypass-the-proxy-server)
+1. [Install the WEKA software](weka-system-installation-with-multiple-containers-using-the-cli.md#1.-install-the-weka-software)
+2. [Remove the default container](weka-system-installation-with-multiple-containers-using-the-cli.md#2.-remove-the-default-container)
+3. [Generate the resource files](weka-system-installation-with-multiple-containers-using-the-cli.md#3.-generate-the-resource-files)
+4. [Create drive containers](weka-system-installation-with-multiple-containers-using-the-cli.md#4.-create-drive-containers)
+5. [Create a cluster](weka-system-installation-with-multiple-containers-using-the-cli.md#5.-create-a-cluster)
+6. [Configure the SSD drives](weka-system-installation-with-multiple-containers-using-the-cli.md#6.-configure-the-ssd-drives)
+7. [Create compute containers](weka-system-installation-with-multiple-containers-using-the-cli.md#7.-create-compute-containers)
+8. [Name the cluster](weka-system-installation-with-multiple-containers-using-the-cli.md#8.-name-the-cluster)
+9. [Name the cluster and enable event notifications to the cloud (optional)](weka-system-installation-with-multiple-containers-using-the-cli.md#9.-name-the-cluster-and-enable-event-notifications-to-the-cloud-optional)
+10. [Set the license](weka-system-installation-with-multiple-containers-using-the-cli.md#10.-set-the-license)
+11. [Start the cluster IO service](weka-system-installation-with-multiple-containers-using-the-cli.md#11.-start-the-cluster-io-service)
+12. [Create frontend containers](weka-system-installation-with-multiple-containers-using-the-cli.md#12.-create-frontend-containers)
+13. [Check the cluster configuration](weka-system-installation-with-multiple-containers-using-the-cli.md#13.-check-the-cluster-configuration)
+14. [Bypass the proxy server](weka-system-installation-with-multiple-containers-using-the-cli.md#14.-bypass-the-proxy-server)
 
 ### 1. Install the WEKA software <a href="#1.-install-the-weka-software" id="1.-install-the-weka-software"></a>
 
@@ -31,7 +31,7 @@ Once the WEKA software is downloaded from [get.weka.io](https://get.weka.io), ru
 Once completed, the WEKA software is installed on all the allocated servers and runs in stem mode (no cluster is attached).
 
 {% hint style="info" %}
-**Note:** If a failure occurs during the WEKA software installation process, an error message prompts detailing the source of the failure. Review the details and try to resolve the failure. If required, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+**Note:** If a failure occurs during the WEKA software installation process, an error message prompts detailing the source of the failure. Review the details and try to resolve the failure. If required, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ### 2. Remove the default container
@@ -189,7 +189,7 @@ Enable event notifications to the cloud for support purposes using one of the fo
 
 This command enables cloud event notification (via Weka Home), which increases the ability of the Weka Support Team to resolve any issues that may occur.
 
-To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../../support/the-wekaio-support-cloud/).
+To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](../../support/the-wekaio-support-cloud/).
 
 #### **Enable support through a** private instance of Weka Home
 
@@ -200,14 +200,14 @@ In closed environments, such as dark sites and private VPCs, it is possible to i
 This command enables the use of a private instance of Weka Home.
 
 {% hint style="info" %}
-For more information, refer to the [Private Instance of Weka Home](../../../support/the-wekaio-support-cloud/#private-instance-of-weka-home) and contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md).
+For more information, refer to the [Private Instance of Weka Home](../../support/the-wekaio-support-cloud/#private-instance-of-weka-home) and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
 ### 10. Set the license
 
 **Command:** `weka cluster license set / payg`
 
-To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the Weka cluster. For details, see [License overview](../../../licensing/overview.md).&#x20;
+To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the Weka cluster. For details, see [License overview](../../licensing/overview.md).&#x20;
 
 ### 11. Start the cluster IO service
 
@@ -411,7 +411,7 @@ DISK ID  UUID                                  HOSTNAME  NODE ID  SIZE        ST
 
 The `weka status` command displays the overall status of the Weka cluster.
 
-For details, see [Cluster status](../../../getting-started-with-weka/manage-the-system-using-weka-cli.md#cluster-status).
+For details, see [Cluster status](../../getting-started-with-weka/manage-the-system-using-weka-cli.md#cluster-status).
 
 ### 14. Bypass the proxy server
 

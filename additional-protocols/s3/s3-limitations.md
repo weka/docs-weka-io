@@ -19,11 +19,15 @@ The following standard S3 APIs are supported:
 * Object Tagging (GET/PUT/DEL)
 * Object Multiparts (POST Create/Complete, GET/DEL/PUT, GET Parts)
 
+{% hint style="info" %}
+For multipart object upload, the free capacity of the bucket must be double the object's size until the upload is complete.
+{% endhint %}
+
 ## General limits
 
 <table data-header-hidden><thead><tr><th width="406">Item</th><th>Limits</th></tr></thead><tbody><tr><td><strong>Item</strong></td><td><strong>Limits</strong></td></tr><tr><td>Maximum number of buckets</td><td>10000</td></tr><tr><td>Maximum object size</td><td>5 TiB</td></tr><tr><td>Maximum number of parts per upload</td><td>10000</td></tr><tr><td>Part numbers</td><td>1 to 10000 (inclusive)</td></tr><tr><td>Part size</td><td>5 MiB to 5 GiB. <br>The last part can be &#x3C; 5 MiB</td></tr><tr><td>Maximum number of parts returned for a list parts request</td><td>1000</td></tr><tr><td>Maximum number of multipart uploads returned in a list multipart uploads request</td><td>1000</td></tr><tr><td>User-defined metadata per object</td><td>2 KB</td></tr><tr><td>Maximum length of an S3 IAM user policy</td><td>2048</td></tr><tr><td>Maximum number of S3 IAM user policies</td><td>1024</td></tr><tr><td>Maximum number of S3 regular users</td><td>1024</td></tr><tr><td>Maximum number of S3 service accounts</td><td>5000</td></tr><tr><td>Maximum number of S3 STS credentials</td><td>5000</td></tr></tbody></table>
 
-## Naming limitations
+## Naming considerations
 
 ### Buckets
 
@@ -43,9 +47,7 @@ The following standard S3 APIs are supported:
 **Note:** It is recommended to avoid special characters that might be unsupported using protocols other than S3.&#x20;
 {% endhint %}
 
-## Policy limitations
-
-### Supported S3 policy actions
+## Supported S3 policy actions
 
 The S3 protocol implementation supports the following policy actions:
 

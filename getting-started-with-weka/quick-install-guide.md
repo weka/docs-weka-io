@@ -79,7 +79,7 @@ pdsh -R ssh -w "weka0-[0-7]" '/tmp/resources_generator.py  --path /tmp --net ens
 
 The resource generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`.
 
-For more details about the resource generator, see the [#3.-generate-the-resource-files](../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/#3.-generate-the-resource-files "mention") procedure in the _WEKA system installation with multiple containers_ topic.
+For more details about the resource generator, see the [#3.-generate-the-resource-files](../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md#3.-generate-the-resource-files "mention") procedure in the _WEKA system installation with multiple containers_ topic.
 
 ### Configuration
 
