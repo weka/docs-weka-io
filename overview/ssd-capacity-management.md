@@ -19,7 +19,8 @@ Net capacity is the space for user data on the SSDs in a configured WEKA system.
 The stripe width is the number of blocks with a common protection set, ranging from 3 to 16. The WEKA system has distributed any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various servers protect each other (rather than a group of 8 servers forming a protection group). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
 
 {% hint style="info" %}
-If not configured, the stripe width is set automatically to #Failure Domains - Protection Level
+If not configured, the stripe width is set automatically to:\
+`#Failure Domains - Protection Level -1`.
 {% endhint %}
 
 ## Protection level
