@@ -40,4 +40,4 @@ The benefits of using the MCB architecture include:
 
 [quick-install-guide.md](../getting-started-with-weka/quick-install-guide.md "mention")
 
-[weka-system-installation-with-multiple-containers-using-the-cli.md](../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md "mention")
+[weka-system-installation-with-multiple-containers-using-the-cli](../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/ "mention")
