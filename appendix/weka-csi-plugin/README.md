@@ -30,7 +30,7 @@ The WEKA CSI Plugin provides the following features:
   * Filesystem-backed persistent volumes in WEKA version 4.2 and up.
   * Directory-backed persistent volumes in WEKA version 3.14 and up. See [Upgrade legacy persistent volumes for capacity enforcement](upgrade-legacy-persistent-volumes-for-capacity-enforcement.md).
 
-<figure><img src="../../.gitbook/assets/CSI_plugin_implementation.png" alt=""><figcaption><p>WEKA CSI Plugin implementation</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/CSI_plugin_implementation.png" alt="" width="250"><figcaption><p>WEKA CSI Plugin implementation</p></figcaption></figure>
 
 ## Interoperability
 

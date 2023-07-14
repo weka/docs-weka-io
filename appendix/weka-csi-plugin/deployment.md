@@ -2,7 +2,7 @@
 
 You can deploy the WEKA CSI Plugin using the helm chart from the official [WEKA ArtifactHub repository](https://artifacthub.io/packages/helm/csi-wekafs/csi-wekafsplugin).
 
-## Before you begin
+## Prerequisites
 
 Ensure the following prerequisites are met:
 
@@ -14,10 +14,6 @@ Ensure the following prerequisites are met:
 * The WEKA client is installed on the Kubernetes worker nodes. Adhere to the following:
   * A WEKA client part of the cluster (stateful client) is recommended rather than a stateless client. See [Add clients](../../install/bare-metal/adding-clients-bare-metal.md).
   * If the Kubernetes worker nodes run on the WEKA cluster backends (converged mode), ensure the WEKA processes are up before the `kubelet` process.
-
-{% hint style="info" %}
-Using stateless clients is deprecated and will not be supported on the next WEKA CSI Plugin version.
-{% endhint %}
 
 ## Installation
 

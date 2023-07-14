@@ -36,12 +36,6 @@ The legacy communication model is deprecated and will be removed in the next rel
 * For directory-backed and snapshot-backed storage class configurations, a filesystem must be pre-created on the WEKA cluster to create PVCs.
 * For the filesystem-backed StorageClass configuration, the filesystem name is generated automatically based on the PVC name, but the filesystem group name must be declared in the Storage Class configuration.
 
-{% hint style="info" %}
-Multiple WEKA cluster connections from the same Kubernetes node are not supported in the current release of WEKA software.&#x20;
-
-However, you can connect different Kubernetes nodes within the same cluster to different WEKA clusters, such as in different regions or availability zones, provided that the WEKA CSI Plugin can access the WEKA cluster REST API. A single CSI Plugin instance can orchestrate persistent volume provisioning on multiple clusters.
-{% endhint %}
-
 ## Configure secret data
 
 1. Create a secret data file (see the following example).
@@ -59,11 +53,20 @@ metadata:
   namespace: csi-wekafs
 type: Opaque
 data:
-  username: Y3Np
-  password: TXlBd2Vzb21lUGFzc3dvcmQ=
+  # A username to connect to the cluster API (base64-encoded)
+  username: YWRtaW4=
+  # A password to connect to the cluster API (base64-encoded)
+  password: YWRtaW4=
+  # An organization to connect to (default Root, base64-encoded)
   organization: Um9vdA==
-  endpoints: MTcyLjMxLjE1LjExMzoxNDAwMCwxNzIuMzEuMTIuOTE6MTQwMDA=
+  # A comma-separated list of cluster management endpoints. Format: <IP:port> (base64-encoded)
+  # It is recommended to configure at least 2 management endpoints (cluster backend nodes), or a load-balancer if used
+  # e.g. 172.31.15.113:14000,172.31.12.91:14000
+  endpoints: MTcyLjMxLjQxLjU0OjE0MDAwLDE3Mi4zMS40Ny4xNTI6MTQwMDAsMTcyLjMxLjM4LjI1MDoxNDAwMCwxNzIuMzEuNDcuMTU1OjE0MDAwLDE3Mi4zMS4zMy45MToxNDAwMCwxNzIuMzEuMzguMTU1OjE0MDAwCg==
+  # protocol to use for API connection (may be either http or https, base64-encoded)
   scheme: aHR0cA==
+  # for multiple clusters setup, set a specific container name (base64-encoded)
+  localContainerName: ""
 ```
 {% endcode %}
 
@@ -95,7 +98,28 @@ To provision CSI volumes on filesystems residing in non-root organizations or fi
 
 All values in the secret data file must be in base64-encoded format.
 
-<table><thead><tr><th width="177">Key</th><th>Description</th><th>Comments</th></tr></thead><tbody><tr><td><code>username</code></td><td>The user name for API access to the WEKA cluster.</td><td>Must have at least read-write permissions in the organization. Creating a separate user with admin privileges for the CSI Plugin is recommended.</td></tr><tr><td><code>password</code></td><td>The user password for API access to the Weka cluster.</td><td></td></tr><tr><td><code>organization</code></td><td>The WEKA organization name for the user.<br>For a single organization, use <code>Root</code>.</td><td>You can use multiple secrets to access multiple organizations, which are specified in different storage classes.</td></tr><tr><td><code>scheme</code></td><td>The URL scheme that is used for communicating with the Weka cluster API.</td><td><code>http</code> or <code>https</code> can be used. The user must ensure that the Weka cluster was configured to use the same connection scheme.</td></tr><tr><td><code>endpoints</code></td><td><p>Comma-separated list of endpoints consisting of IP address and port. For example, </p><p><code>172.31.15.113:14000,172.31.12.91:14000</code></p></td><td>For redundancy, specify the management IP addresses of at least 2 backend servers.</td></tr></tbody></table>
+<table><thead><tr><th width="232">Key</th><th>Description</th><th>Comments</th></tr></thead><tbody><tr><td><code>username</code></td><td>The user name for API access to the WEKA cluster.</td><td>Must have at least read-write permissions in the organization. Creating a separate user with admin privileges for the CSI Plugin is recommended.</td></tr><tr><td><code>password</code></td><td>The user password for API access to the Weka cluster.</td><td></td></tr><tr><td><code>organization</code></td><td>The WEKA organization name for the user.<br>For a single organization, use <code>Root</code>.</td><td>You can use multiple secrets to access multiple organizations, which are specified in different storage classes.</td></tr><tr><td><code>scheme</code></td><td>The URL scheme that is used for communicating with the Weka cluster API.</td><td><code>http</code> or <code>https</code> can be used. The user must ensure that the Weka cluster was configured to use the same connection scheme.</td></tr><tr><td><code>endpoints</code></td><td><p>Comma-separated list of endpoints consisting of IP address and port. For example, </p><p><code>172.31.15.113:14000,172.31.12.91:14000</code></p></td><td>For redundancy, specify the management IP addresses of at least 2 backend servers.</td></tr><tr><td><code>localContainerName</code></td><td>WEKA client container name for the client connected to the relevant WEKA cluster.<br><strong>Only required when connecting a K8s worker node to multiple WEKA clusters</strong>.<br>For a single cluster, do not set this parameter.</td><td><p>All local container names relevant to a specific WEKA cluster must be the same across all k8s worker nodes.</p><p>For details, see <a href="storage-class-configurations.md#connect-k8s-worker-nodes-to-multiple-weka-clusters">Connect k8s worker nodes to multiple WEKA clusters</a>.</p></td></tr></tbody></table>
+
+## Connect k8s worker nodes to multiple WEKA clusters
+
+A single Kubernetes worker node can be connected to multiple WEKA clusters (maximum 7 clusters) simultaneously.
+
+<figure><img src="../../.gitbook/assets/CSI_to_multiple_clusters.png" alt=""><figcaption><p>k8s worker nodes connected to multiple WEKA clusters</p></figcaption></figure>
+
+#### Procedure
+
+1. For each k8s worker node, create a number of WEKA client containers according to the number of clusters you want to connect to.\
+   The WEKA client container name must be according to the WEKA cluster that is connected to. For example, to connect to 7 WEKA clusters, it is required to create 7 WEKA client containers named client 1, client 2, and so on.&#x20;
+2. Create secret data files for each WEKA cluster. In the `localContainerName` set the relevant client container name. For example, for client 1 set the name of the client container connected to cluster 1.
+3. Configure storage classes using the relevant secret data file.
+
+{% hint style="info" %}
+Filesystem names used for k8s (defined in the storage classes) must be unique across all clusters.
+{% endhint %}
+
+**Related topic**
+
+[mount-filesystems-from-multiple-clusters-on-a-single-client.md](../../fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md "mention")
 
 ## Configure directory-backed StorageClass
 
