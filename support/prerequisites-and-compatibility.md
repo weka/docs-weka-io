@@ -158,7 +158,6 @@ Jumbo Frames are not required for clients. However, performance might be limited
 WEKA supports the following Ethernet NICs:
 
 * Amazon ENA
-* Broadcom 57810S
 * Intel E810 2CQDA2
 * Intel X540
 * Intel X550-T1
