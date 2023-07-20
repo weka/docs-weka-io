@@ -89,7 +89,7 @@ This concludes the Mellanox OFED installation procedure.
 
 Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following cases:
 
-* The servers are equipped with Intel or Broadcom NICs.&#x20;
+* The servers are equipped with Intel NICs.&#x20;
 * When working with client VMs where it is required to expose the virtual functions (VFs) of a physical NIC to the virtual NICs.
 
 **Related topic**
