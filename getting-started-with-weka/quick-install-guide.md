@@ -33,7 +33,7 @@ To run the commands on all containers in parallel, we use `pdsh` as an example o
 1. Install WEKA software on all servers:
 
 ```bash
-pdsh -R ssh -w "weka0-[0-7]" "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.1.0/4.1.0 | sudo sh"
+pdsh -R ssh -w "weka0-[0-7]" "curl https://[GET.WEKA.IO-TOKEN]@get.weka.io/dist/v1/install/4.2.0/4.2.0 | sudo sh"
 
 ```
 
@@ -181,7 +181,7 @@ weka status
 Output example for a **multiple container** architecture:
 
 ```bash
-WekaIO v4.1.0 (CLI build 4.1.0)
+WekaIO v4.2.0 (CLI build 4.2.0)
 
        cluster: WekaProd (00569cef-5679-4e1d-afe5-7e82748887de)
         status: OK (8 backends UP, 6 drives UP)
