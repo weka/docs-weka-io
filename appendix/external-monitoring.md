@@ -137,7 +137,7 @@ The configuration of the quota-export container is defined in the `quota-export.
 2. Specify the same **hosts** as you specified in the `export.yml file` (see [above](external-monitoring.md#3.-edit-the-export.yml-file)).
 
 {% hint style="info" %}
-The configuration of the Alert Manager is defined in the `alertmanager.yml` file found in the `etc_alertmanager` directory. It contains details about the SMTP server, user email addresses, quotas, and alert rules. To set this file, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contact-customer-success-team).
+The configuration of the Alert Manager is defined in the `alertmanager.yml` file found in the `etc_alertmanager` directory. It contains details about the SMTP server, user email addresses, quotas, and alert rules. To set this file, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ### 5. Start the docker-compose containers

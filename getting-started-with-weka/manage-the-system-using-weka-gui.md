@@ -228,4 +228,4 @@ When managing filesystems, snapshots, and object stores, the displayed tables li
 
 [smb-management-using-the-gui.md](../additional-protocols/smb-support/smb-management-using-the-gui.md "mention")
 
-[external-monitoring.md](../support/external-monitoring.md "mention")
+[external-monitoring.md](../appendix/external-monitoring.md "mention")
