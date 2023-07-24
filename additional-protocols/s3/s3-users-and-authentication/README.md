@@ -8,9 +8,9 @@ description: >-
 
 ## S3 user role
 
-A user with an S3 user role is required to access the WEKA cluster through the S3 protocol and run S3 commands and S3 APIs. The S3 user operates within the limits of the IAM policy attached to it.
+A user with an S3 user role must access the WEKA cluster through the S3 protocol and run S3 commands and S3 APIs. The S3 user operates within the limits of the IAM policy attached to it.
 
-When accessing data with S3 and other protocols (such as POSIX), you can control the POSIX UID/GID of the underlying file representation of objects created with a specific S3 user access/secret keys.
+When accessing data with S3 and other protocols (such as POSIX), you can control the POSIX UID/GID of the underlying file representation of objects created with specific S3 user access/secret keys.
 
 Use `--posix-uid` and `--posix-gid` flags for a local user with an S3 user role.
 
@@ -23,6 +23,8 @@ The S3 user name and password serve as the S3 access key and secret key, respect
 **Related topics**
 
 [#create-users](../../../usage/user-management/#create-users "mention")
+
+[#creating-a-new-iam-policies-1](s3-users-and-authentication.md#creating-a-new-iam-policies-1 "mention")
 
 ## IAM policy
 
