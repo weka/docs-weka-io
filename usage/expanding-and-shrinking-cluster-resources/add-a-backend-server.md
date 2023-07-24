@@ -97,6 +97,17 @@ weka local setup container --name frontend0 --resources-path &#x3C;path>/fronten
 
 </code></pre>
 
+Once the containers are created, verify that they are added successfully.\
+Run `weka local ps`.
+
+```
+[root@weka8 ~]# weka local ps
+CONTAINER  STATE    DISABLED  UPTIME    MONITORING  PERSISTENT  PORT   PID    STATUS  VERSION    LAST FAILURE
+compute0   Running  False     0:09:08h  True        True        14300  26441  Ready   4.2.0.153
+drives0    Running  False     0:09:41h  True        True        14000  25295  Ready   4.2.0.153
+frontend0  Running  False     0:08:35h  True        True        14200  27911  Ready   4.2.0.153
+```
+
 6. Configure the SSD drives on the drive container.&#x20;
 
 ```
