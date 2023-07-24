@@ -97,7 +97,7 @@ weka local setup container --name frontend0 --resources-path &#x3C;path>/fronten
 
 </code></pre>
 
-Once the containers are created, verify that they are added successfully.\
+Verify that the server is added to the cluster successfully.\
 Run `weka local ps`.
 
 ```
