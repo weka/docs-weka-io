@@ -97,8 +97,8 @@ weka local setup container --name frontend0 --resources-path &#x3C;path>/fronten
 
 </code></pre>
 
-Verify that the server is added to the cluster successfully.\
-Run `weka local ps`.
+6. Verify that the server is added to the cluster successfully.\
+   Run `weka local ps`.
 
 ```
 [root@weka8 ~]# weka local ps
@@ -108,7 +108,7 @@ drives0    Running  False     0:09:41h  True        True        14000  25295  Re
 frontend0  Running  False     0:08:35h  True        True        14200  27911  Ready   4.2.0.153
 ```
 
-6. Configure the SSD drives on the drive container.&#x20;
+7. Configure the SSD drives on the drive container.&#x20;
 
 ```
 weka cluster drive add <container-id> <device-paths>
