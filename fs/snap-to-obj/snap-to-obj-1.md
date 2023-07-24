@@ -55,7 +55,7 @@ For encrypted filesystem, when downloading, you must use the same KMS master key
 
 The workflow to manage the synchronous snapshots includes:
 
-1. Upload snapshots using, for example, the snapshots scheduler. See [Snapshot management](../../support/snapshot-management.md).
+1. Upload snapshots using, for example, the snapshots scheduler. See [Snapshot management](../../appendix/snapshot-management.md).
 2. Download the synchronous snapshot (described below).
 3. Restore a specific snapshot to a filesystem. See [Restore a snapshot to a filesystem or another snapshot](../snapshots/snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot).
 

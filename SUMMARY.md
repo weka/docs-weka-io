@@ -196,8 +196,8 @@
   * [Local Weka Home deployment](support/the-wekaio-support-cloud/local-weka-home-deployment.md)
   * [Set the Local Weka Home to send alerts or events](support/the-wekaio-support-cloud/set-the-local-weka-home-to-send-alerts-or-events.md)
   * [Download the Usage Report or Analytics](support/the-wekaio-support-cloud/download-the-usage-report-or-analytics.md)
-* [Set up the WEKAmon external monitoring](support/external-monitoring.md)
-* [Set up the SnapTool external snapshots manager](support/snapshot-management.md)
+* [Set up the WEKAmon external monitoring](appendix/external-monitoring.md)
+* [Set up the SnapTool external snapshots manager](appendix/snapshot-management.md)
 
 ## Appendix
 

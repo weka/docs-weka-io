@@ -16,9 +16,9 @@ See the related topics to learn about the tools installed with the WMS.
 
 [the-wekaio-support-cloud](the-wekaio-support-cloud/ "mention")
 
-[external-monitoring.md](external-monitoring.md "mention")
+[external-monitoring.md](../appendix/external-monitoring.md "mention")
 
-[snapshot-management.md](snapshot-management.md "mention")
+[snapshot-management.md](../appendix/snapshot-management.md "mention")
 
 ## WMS deployment prerequisites
 
@@ -230,7 +230,7 @@ The WMS provides a simple text editor to facilitate editing the `/etc/hosts` fil
 Snaptool is pre-installed in the `/opt/snaptool` directory and includes all the containers, so there is no need to download anything. Only configuration is required.
 
 1. From the left pane, select **Snaptool Configuration**.
-2. In the Snaptool Configuration Editor, if required, you can update the configuration. For details, see [Edit the configuration in the snaptool.yml file](snapshot-management.md#edit-the-configuration-in-the-snaptool.yml-file).\
+2. In the Snaptool Configuration Editor, if required, you can update the configuration. For details, see [Edit the configuration in the snaptool.yml file](../appendix/snapshot-management.md#edit-the-configuration-in-the-snaptool.yml-file).\
    Snaptool shares the same cluster login information as WEKAmon and automatically detects and re-loads its configuration when any changes are made.
 3. Select **Save**.&#x20;
 

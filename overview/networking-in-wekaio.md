@@ -166,9 +166,9 @@ For the RDMA/GPUDirect Storage technology to take effect, the following requirem
 * All the cluster servers support RDMA networking.
 * For a client:
   * GPUDirect Storage: The IB interfaces added to the Nvidia GPUDirect configuration should support RDMA.
-  * RDMA: All the NICs used by WEKA must support RDMA networking.
+  * RDMA: All the Infiniband Host Channel Adapters (HCA) used by WEKA must support RDMA networking.
 * Encrypted filesystems: The framework will not be used for encrypted filesystems and will fall back to work without RDMA/GPUDirect for IOs to encrypted filesystems.
-* A NIC is considered to support RDMA Networking if the following requirements are met:
+* An HCA is considered to support RDMA networking if the following requirements are met:
   * For GPUDirect Storage only: InfiniBand network.
   * Mellanox ConnectX5 or ConnectX6.
   * OFED 4.6-1.0.1.1 or higher.
@@ -182,7 +182,9 @@ GPUDirect Storage bypasses the kernel and does not use the page cache. Standard 
 RDMA/GPUDirect Storage technology is not supported when working with a mixed IB and Ethernet networking cluster.
 {% endhint %}
 
-Running `weka cluster processes` indicates if the RDMA is used. For example:
+Running `weka cluster processes` indicates if the RDMA is used.
+
+Example:
 
 ```
 # weka cluster processes

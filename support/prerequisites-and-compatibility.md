@@ -252,8 +252,8 @@ When assigning a network device to the Weka system, no other application can cre
 ### InfiniBand <a href="#networking-infiniband" id="networking-infiniband"></a>
 
 {% tabs %}
-{% tab title="NIC" %}
-WEKA supports the following InfiniBand NICs:
+{% tab title="HCP" %}
+WEKA supports the following InfiniBand Host Channel Adapters:
 
 * Mellanox ConnectX-6
 * Mellanox ConnectX-5
@@ -262,8 +262,8 @@ WEKA supports the following InfiniBand NICs:
 * Mellanox ConnectX-4-Lx
 {% endtab %}
 
-{% tab title="NIC Drivers" %}
-WEKA supports the following Mellanox OFED versions for the InfiniBand NICs:
+{% tab title="HCP Drivers" %}
+WEKA supports the following Mellanox OFED versions for the InfiniBand HCPs:
 
 * 5.9-0.5.6.0
 * 5.8-1.1.2.1 LTS
