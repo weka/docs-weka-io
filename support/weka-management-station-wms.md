@@ -28,7 +28,7 @@ The server or VM must meet the following requirements:
   * A system with two identical boot drives has the OS installed on mirrored partitions (LVM).
   * A system with one drive has a simple partition.
 * **Minimum boot drive capacity:**
-  * If not configuring LWH: 120 GB.
+  * If not configuring LWH: 125 GB.
   * If configuring LWH: 500 GB.
 * **Boot type:** UEFI boot (BIOS boot is also supported but deprecated).
 * **Cores and RAM:**
