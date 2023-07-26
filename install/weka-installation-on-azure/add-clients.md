@@ -10,6 +10,7 @@ When deploying a WEKA cluster, it is possible to create clients using Terraform.
     * The NICs must be configured with at least MTU 3900.
     * Ensure a supported OFED is installed.
     * Remove the secondary default gateway from the routing table.
+    * If working with a different security type than the standard, for example, trusted launch virtual machines, clear the **Enable secure boot** option in the **Configure security features**.
   * **Using a custom image of a WEKA client:**&#x20;
     * In the Azure console, search for the community image named **weka** with ID `WekaIO-d7d3f308-d5a1-4c45-8e8a-818aed57375a`. The **weka** custom image includes ubuntu 20.04 with kernel 5.4 and ofed 5.8-1.1.2.1.
     * Enable the _Accelerated Networking_ feature in the NICs.
