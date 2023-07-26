@@ -230,7 +230,7 @@ SMB-W does not yet support share update.
 ## **Control SMB share user-lists** <a href="#control-smb-share-user-lists" id="control-smb-share-user-lists"></a>
 
 {% hint style="info" %}
-**Note:** SMB-W does not yet support share user-lists.
+SMB-W does not yet support share user-lists.
 {% endhint %}
 
 **Command:** `weka smb share lists show`
@@ -296,7 +296,7 @@ Use the following command line to remove a share exposed to SMB:
 It is possible to control which hosts are permitted to access the SMB service or share.
 
 {% hint style="info" %}
-**Note:** SMB-W does not yet support access based on hosts' IP/name.
+SMB-W does not yet support access based on hosts' IP/name.
 {% endhint %}
 
 **Command:** `weka smb cluster host-access list`

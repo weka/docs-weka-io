@@ -50,7 +50,7 @@ It is recommended to avoid special characters that might be unsupported using pr
 The S3 protocol implementation supports the following policy actions:
 
 * `s3:*`\
-  **Note**: this wildcard is supported for IAM policies but not for bucket policies
+  This wildcard is supported for IAM policies but not for bucket policies.
 * `s3:AbortMultipartUpload`
 * `s3:CreateBucket`
 * `s3:DeleteBucket`

@@ -100,7 +100,7 @@ Mounts: 1
 ## Add stateful clients, which are always part of the cluster
 
 {% hint style="info" %}
-**Note:** It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases, it could be helpful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
+It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases, it could be helpful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
 {% endhint %}
 
 ### Stage 1: Install the WEKA software

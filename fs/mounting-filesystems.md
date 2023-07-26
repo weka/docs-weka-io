@@ -61,7 +61,7 @@ On completion, the agent is installed on the client.
 
 **Command:** `mount -t wekafs`
 
-Use one of the following command lines to invoke the mount command (note, the delimiter between the server and filesystem can be either `:/` or `/`):
+Use one of the following command lines to invoke the mount command. The delimiter between the server and filesystem can be either `:/` or `/`:
 
 `mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-point>`
 
@@ -124,11 +124,11 @@ It is now possible to access Weka filesystems via the mount-point, e.g., by `cd 
 After the execution of an`umount` command, which unmounts the last Weka filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores, and networking parameters again.
 
 {% hint style="info" %}
-**Note:** When running in AWS, the instance IAM role must provide permissions to several AWS APIs (see the [IAM role created in template](../install/aws/cloudformation.md#iam-role-created-in-the-template) section).
+When running in AWS, the instance IAM role must provide permissions to several AWS APIs (see the [IAM role created in template](../install/aws/cloudformation.md#iam-role-created-in-the-template) section).
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Memory allocation for a client is predefined. To change the memory allocation, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+Memory allocation for a client is predefined. To change the memory allocation, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ### Remount of stateless clients options
@@ -174,7 +174,7 @@ Use `-o net=<netdev>` mount option with the various modifiers as described below
 `<netdev>` is either the name, MAC address, or PCI address of the physical network device (can be a bond device) to allocate for the client.
 
 {% hint style="warning" %}
-**Note:** When using `wekafs` mounts, both clients and backends should use the same type of networking technology (either IB or Ethernet).
+When using `wekafs` mounts, both clients and backends should use the same type of networking technology (either IB or Ethernet).
 {% endhint %}
 
 ### IP, subnet, gateway, and virtual functions
@@ -212,7 +212,7 @@ mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/wek
 
 Multiple NICs can also be configured to achieve redundancy (for details, see the [WEKA networking HA](../overview/networking-in-wekaio.md#ha) section) and higher throughput for a complete, highly available solution. For that, use more than one physical device as previously described, and also, specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
 
-For example, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. Note the modifier `ha` is used here, which stands for using the device on all processes.
+For example, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. The modifier `ha` is used here, which stands for using the device on all processes.
 
 ```
 mount -t wekafs -o num_cores=4 -o net:ha=mlnx0,net:ha=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
@@ -245,17 +245,17 @@ mount -t wekafs -o num_cores=0 -o net=udp backend-server-0/my_fs /mnt/weka
 ```
 
 {% hint style="info" %}
-**Note:** A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster.&#x20;
+A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Providing multiple IPs in the \<mgmt-ip> in UDP mode will utilize their network interfaces for more bandwidth (which can be useful in RDMA environments) rather than using only one NIC.
+Providing multiple IPs in the \<mgmt-ip> in UDP mode will utilize their network interfaces for more bandwidth (which can be useful in RDMA environments) rather than using only one NIC.
 {% endhint %}
 
 ## Mount filesystems using fstab
 
 {% hint style="info" %}
-**Note:** This option works when using **stateless clients** and with OS that supports `systemd` (example: RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, Amazon Linux 2 LTS).
+This option works when using **stateless clients** and with OS that supports `systemd` (example: RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, Amazon Linux 2 LTS).
 {% endhint %}
 
 Edit `/etc/fstab` file to include the filesystem mount entry:
@@ -286,7 +286,7 @@ Reboot the server for the `systemd` unit to be created and marked correctly.
 The filesystem should now be mounted at boot time.
 
 {% hint style="danger" %}
-**Note:** Do not configure this entry for a mounted filesystem before un-mounting it (`umount`), as the `systemd` needs to mark the filesystem as a network filesystem (occurs as part of the `reboot`). Trying to reboot a server when there is a mounted WekaFS filesystem when setting its `fstab` configuration might yield a failure to unmount the filesystem and leave the system hanged.
+Do not configure this entry for a mounted filesystem before un-mounting it (`umount`), as the `systemd` needs to mark the filesystem as a network filesystem (occurs as part of the `reboot`). Trying to reboot a server when there is a mounted WekaFS filesystem when setting its `fstab` configuration might yield a failure to unmount the filesystem and leave the system hanged.
 {% endhint %}
 
 ## Mount filesystems using autofs

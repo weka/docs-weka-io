@@ -128,7 +128,7 @@ proxy_lib_name = ldap
 ```
 
 {% hint style="info" %}
-**Note:** All users must be present and resolved in the method used in the `sssd` for the group's resolution. In the above example, using an LDAP-only provider, local users (such as a local root) who are not present in LDAP do not receive their groups resolved and are denied. For such users or applications, add the LDAP user.
+All users must be present and resolved in the method used in the `sssd` for the group's resolution. In the above example, using an LDAP-only provider, local users (such as a local root) who are absent in LDAP do not receive their groups resolved and are denied. For such users or applications, add the LDAP user.
 {% endhint %}
 
 ## Supported NFS client mount options&#x20;

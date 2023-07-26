@@ -56,7 +56,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 6. [Check the status after the upgrade](upgrading-weka-versions.md#6.-check-the-status-after-the-upgrade)
 
 {% hint style="warning" %}
-**Note:** Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation.\
+Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation.\
 Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
 {% endhint %}
 
@@ -159,7 +159,7 @@ To upgrade a stateless or stateful client locally, connect to the client and run
 
 An alert is raised if there is a mismatch between the clients' and the cluster versions.
 
-**Note:** Add the `--from <backend name or IP>` option to download the client package only from the backend, thus avoiding downloading from get.weka.io. The default port is 14000.
+Add the `--from <backend name or IP>` option to download the client package only from the backend, thus avoiding downloading from get.weka.io. The default port is 14000.
 {% endtab %}
 
 {% tab title="Upgrade remote clients in batches" %}
