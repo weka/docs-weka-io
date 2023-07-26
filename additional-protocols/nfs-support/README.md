@@ -61,7 +61,7 @@ The WEKA NFS service is a scalable, fully load-balanced, and resilient service t
 
 Scalability is implemented by defining many servers that serve the NFS protocol, thereby enabling performance scaling by adding more servers to the interface group.
 
-Load balancing is implemented by floating IPs. By default, the floating IPs are evenly distributed over all the interface group servers/ports. When different clients resolve the DNS name into an IP service, each receives a different IP address, ensuring that other clients access different servers. This allows the WEKA system to scale and service thousands of clients.
+Floating IPs implement load balancing. By default, the floating IPs are evenly distributed over all the interface group servers/ports. When different clients resolve the DNS name into an IP service, each receives a different IP address, ensuring that other clients access different servers. This allows the WEKA system to scale and service thousands of clients.
 
 The exact mechanism ensures the resiliency of the service. On a server failure, all IP addresses associated with the failed server are reassigned to other servers (using the GARP network messages), and the clients reconnect to the new servers without any reconfiguration or service interruption.
 

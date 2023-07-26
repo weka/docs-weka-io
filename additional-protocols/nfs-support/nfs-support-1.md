@@ -11,7 +11,7 @@ Using the CLI, you can:
   * [Set interface group ports](nfs-support-1.md#set-interface-group-ports)
   * [Set interface group IPs](nfs-support-1.md#set-interface-group-ips)
   * [Configure the service mountd port](nfs-support-1.md#configure-the-service-mountd-port)
-  * [Configure the NFS configuration filesystem](nfs-support-1.md#configure-the-nfs-configuration-filesystem)
+  * [Set the global configuration filesystem](nfs-support-1.md#configure-the-nfs-configuration-filesystem)
 * **Configure the NFS export level (permissions)**
   * [Define client access groups](nfs-support-1.md#uploading-a-snapshot-using-the-ui)
   * [Manage client access groups](nfs-support-1.md#manage-client-access-groups)
@@ -85,11 +85,11 @@ Use the following command lines to set and view the mountd configuration:
 
 `weka nfs global-config show`
 
-## Configure the NFS configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
+## Set the global configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
 
-The NFS configuration filesystem is used as a shared location for persisting cluster-wide NFS configuration. This setting only applies to NFSv4. It is recommended to allocate 100 GB to support future system expansions.&#x20;
+The global configuration filesystem is used as a shared location for persisting cluster-wide NFS v4,  S3, and SMB-W protocol cluster configurations. It is recommended to allocate 100 GB to support future system expansions.&#x20;
 
-Use the following command line to set the NFS configuration filesystem:
+Use the following command line to set the configuration filesystem:
 
 `weka nfs global-config set --config-fs <config-fs>`&#x20;
 

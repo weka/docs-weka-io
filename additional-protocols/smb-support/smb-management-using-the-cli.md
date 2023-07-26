@@ -46,6 +46,8 @@ Use the following command line to create a new SMB cluster to be managed by the 
 
 {% hint style="info" %}
 To create an SMB-W cluster, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+
+The SMB-W cluster requires a predefined global configuration filesystem. See [Set the global configuration filesystem](../nfs-support/nfs-support-1.md#configure-the-nfs-configuration-filesystem).
 {% endhint %}
 
 **Parameters**

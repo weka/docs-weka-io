@@ -16,13 +16,17 @@ Using the GUI, you can:
 
 An S3 cluster configuration includes a filesystem, port, and list of servers.
 
+**Before you begin**
+
+Verify that a global configuration filesystem is already set in the system. If not, set it using the CLI. See [Set the global configuration filesystem](../../nfs-support/nfs-support-1.md#configure-the-nfs-configuration-filesystem).&#x20;
+
 **Procedure**
 
 1. From the menu, select **Manage > Protocols**.
 2. From the Protocols pane, select **S3**.
 3. On the Configuration tab, select **Configure**.
 4. In the S3 Cluster Configuration dialog, set the following properties:
-   * **Filesystem**: The filesystem to use for the S3 service. By default, when adding a bucket, it will be created in this filesystem.
+   * **Filesystem**: The filesystem to use for the S3 service. By default, when adding a bucket, it is created in this filesystem.
    * **Port**: Default 9000. If required, modify the port through which the cluster exposes the S3 service. Do not set port 9001.
    * **Anonymous Posix UID:** If required, modify the Posix UID assigned to anonymous users.
    * **Anonymous Posix GID:** If required, modify the Posix GID assigned to anonymous users.

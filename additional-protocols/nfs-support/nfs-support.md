@@ -21,7 +21,7 @@ Using the GUI, you can:
 Interface Groups define the servers and ports that provide the NFS service.
 
 {% hint style="info" %}
-The default stack is NFS-W. If you need to create the interface group in the legacy NFS stack, use the CLI. See [Create interface groups](nfs-support-1.md#create-interface-groups).
+The default stack is NFS-W (NFSv4). If you need to create the interface group in the legacy NFS stack, use the CLI. See [Create interface groups](nfs-support-1.md#create-interface-groups).
 {% endhint %}
 
 **Procedure**
@@ -139,6 +139,10 @@ Once you create an interface group, set its ports. You can set the ports only on
 
 You can create NFS permission for a client group.
 
+**Before you begin**
+
+If you create an NFS v4 client permission, verify that a global configuration filesystem is already set in the system. If not, set it using the CLI. See [Set the global configuration filesystem](nfs-support-1.md#configure-the-nfs-configuration-filesystem).&#x20;
+
 **Procedure**
 
 1. In the Permissions table, select **+Create**.
@@ -161,7 +165,7 @@ You can create NFS permission for a client group.
 
 ## Edit NFS client permission <a href="#edit-nfs-client-permission" id="edit-nfs-client-permission"></a>
 
-You can edit the existing NFS permission settings for a client group.  You can also move the priority to the top or bottom priority (in relation to other client group priorities). If the client group permission setting is no longer required, you can remove it.
+You can edit the existing NFS permission settings for a client group.  You can also move the priority to the top or bottom priority (related to other client group priorities). If the client group permission setting is no longer required, you can remove it.
 
 **Procedure**
 
