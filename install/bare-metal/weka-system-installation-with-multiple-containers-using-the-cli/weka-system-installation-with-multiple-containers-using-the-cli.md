@@ -6,7 +6,39 @@ description: >-
 
 # Manually configure the WEKA cluster using the resource generator
 
-Perform this workflow only if you not using the automated WMS, WSA, or WEKA Configurator. This is a fully manual workflow.
+Perform this workflow using the resource generator only if you are not using the automated WMS, WSA, or WEKA Configurator.
+
+The resource generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you apply the generated files of the cluster servers.&#x20;
+
+## Before you begin
+
+1. Download the resource generator from the GitHub repository to your local server: [https://github.com/weka/tools/blob/master/install/resources\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py).
+
+Example:&#x20;
+
+```
+wget 
+https://raw.githubusercontent.com/weka/tools/master/install/resources_generator.py
+
+```
+
+2. Copy the resource generator from your local server to all servers in the cluster.
+
+Example for a cluster with 8 servers:&#x20;
+
+```
+for i in {0..7}; do scp resources_generator.py weka0-$i:/tmp/resources_generator.py; done
+
+```
+
+2. To enable execution, change the mode of the resource generator on all servers in the cluster.
+
+Example for a cluster with 8 servers:&#x20;
+
+```
+pdsh -R ssh -w "weka0-[0-7]" 'chmod +x /tmp/resources_generator.py'
+
+```
 
 ## Workflow
 
@@ -29,7 +61,7 @@ Stop and remove the auto-created default container created on each server.
 
 **Command:** `resources_generator.py`
 
-To generate the resource files for the drive, compute, and frontend processes, download the [resource\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py) and run the following command on each backend server:
+To generate the resource files for the drive, compute, and frontend processes, run the following command on each backend server:
 
 `./resources_generator.py --net <net-devices> [options]`
 
