@@ -4,9 +4,11 @@ description: >-
   SnapTool.
 ---
 
-# WEKA Management Station (WMS)
+# WEKA Management Station (WMS) as a monitoring tool
 
 The WEKA Management Station (WMS) is an install kit similar to an OS install disk that simplifies the installation and configuration of the Local WEKA Home (LWH), WEKAmon, and SnapTool, in an on-premises environment. The WMS installs the WEKA OS, drivers, and WEKA software automatically and unattended.
+
+The WMS is also used for installing a WEKA cluster by deploying the WEKA Software Appliance (WSA) package on bare metal servers.
 
 <figure><img src="../.gitbook/assets/WMS_deployment.png" alt=""><figcaption><p>WEKA Management Station deployment</p></figcaption></figure>
 
@@ -16,9 +18,11 @@ See the related topics to learn about the tools installed with the WMS.
 
 [the-wekaio-support-cloud](the-wekaio-support-cloud/ "mention")
 
-[external-monitoring.md](../appendix/external-monitoring.md "mention")
+[external-monitoring.md](external-monitoring.md "mention")
 
-[snapshot-management.md](../appendix/snapshot-management.md "mention")
+[snapshot-management.md](snapshot-management.md "mention")
+
+[bare-metal](../install/bare-metal/ "mention")
 
 ## WMS deployment prerequisites
 
@@ -36,7 +40,7 @@ The server or VM must meet the following requirements:
   * If configuring LWH: Minimum 8 cores and 48 GB for a cluster with up to 500 containers. More cores and memory are required for larger clusters.
 * **Network interface:** 1 Gbps.&#x20;
 
-## WMS deployment workflow
+## Before you begin
 
 Before deploying the WMS, adhere to the following:
 
@@ -47,21 +51,21 @@ Before deploying the WMS, adhere to the following:
   * On macOS, type **ctrl+option+f2**&#x20;
   * On Windows, type **ctrl+alt+f2**.
 
-### &#x20;Workflow
+## &#x20;WMS deployment workflow
 
-1. [Install the WMS](weka-management-station-wms.md#install-the-wms).
-2. [Configure the WMS](weka-management-station-wms.md#configure-the-wms).
-3. [Set the email notifications](weka-management-station-wms.md#set-the-email-notifications).
-4. [Install and configure the LWH](weka-management-station-wms.md#install-and-configure-the-lwh).
-5. [Configure the WEKAmon](weka-management-station-wms.md#configure-the-wekamon).
-6. [Edit the hosts file](weka-management-station-wms.md#edit-the-hosts-file).
-7. [Configure the Snaptool](weka-management-station-wms.md#configure-the-snaptool).
-8. [Download logs](weka-management-station-wms.md#download-logs).
+1. [Install the WMS](weka-management-station-wms-as-a-monitoring-tool.md#install-the-wms).
+2. [Configure the WMS](weka-management-station-wms-as-a-monitoring-tool.md#configure-the-wms).
+3. [Set the email notifications](weka-management-station-wms-as-a-monitoring-tool.md#set-the-email-notifications).
+4. [Install and configure the LWH](weka-management-station-wms-as-a-monitoring-tool.md#install-and-configure-the-lwh).
+5. [Configure the WEKAmon](weka-management-station-wms-as-a-monitoring-tool.md#configure-the-wekamon).
+6. [Edit the hosts file](weka-management-station-wms-as-a-monitoring-tool.md#edit-the-hosts-file).
+7. [Configure the Snaptool](weka-management-station-wms-as-a-monitoring-tool.md#configure-the-snaptool).
+8. [Download logs](weka-management-station-wms-as-a-monitoring-tool.md#download-logs).
 
 ### Install the WMS
 
-1. Download the latest Weka Management Station ISO image from [get.weka.io](https://get.weka.io/) (requires sign-in).
-2. Boot the server from the WEKA Management Station ISO image. The following are some options to do that:
+1. Download the latest WMS image from [get.weka.io](https://get.weka.io/) (requires sign-in).
+2. Boot the server from the WMS image. The following are some options to do that:
 
 {% tabs %}
 {% tab title="Copy to a mountable location" %}
@@ -81,7 +85,7 @@ To use PXE boot, use the WEKA Management Station as any other Operating System I
 {% endtab %}
 
 {% tab title="Create a DVD " %}
-Burn the ISO image to a DVD and boot it from the physical DVD. However, most modern servers do not have DVD readers anymore.
+Burn the WMS image to a DVD and boot it from the physical DVD. However, most modern servers do not have DVD readers anymore.
 {% endtab %}
 
 {% tab title="Use a bootable USB drive" %}
@@ -190,8 +194,8 @@ The WMS could have more than one IP interface. For example, it can be installed 
 {% hint style="info" %}
 If DNS does not have the hostnames of the cluster, do one of the following:
 
-* Edit the /etc/hosts file before trying again. See [Edit the hosts file](weka-management-station-wms.md#edit-the-hosts-file).
-* Use the Cockpit Web Interface on port 9090 to change the DNS settings. See Cockpit Web Interface in [Configure the WMS](weka-management-station-wms.md#configure-the-wms).
+* Edit the /etc/hosts file before trying again. See [Edit the hosts file](weka-management-station-wms-as-a-monitoring-tool.md#edit-the-hosts-file).
+* Use the Cockpit Web Interface on port 9090 to change the DNS settings. See Cockpit Web Interface in [Configure the WMS](weka-management-station-wms-as-a-monitoring-tool.md#configure-the-wms).
 {% endhint %}
 
 Once the WMS successfully logs in to the cluster, the WEKAmon installation begins.
@@ -230,7 +234,7 @@ The WMS provides a simple text editor to facilitate editing the `/etc/hosts` fil
 Snaptool is pre-installed in the `/opt/snaptool` directory and includes all the containers, so there is no need to download anything. Only configuration is required.
 
 1. From the left pane, select **Snaptool Configuration**.
-2. In the Snaptool Configuration Editor, if required, you can update the configuration. For details, see [Edit the configuration in the snaptool.yml file](../appendix/snapshot-management.md#edit-the-configuration-in-the-snaptool.yml-file).\
+2. In the Snaptool Configuration Editor, if required, you can update the configuration. For details, see [Edit the configuration in the snaptool.yml file](broken-reference).\
    Snaptool shares the same cluster login information as WEKAmon and automatically detects and re-loads its configuration when any changes are made.
 3. Select **Save**.&#x20;
 

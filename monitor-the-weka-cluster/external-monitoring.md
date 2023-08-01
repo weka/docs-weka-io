@@ -26,6 +26,8 @@ One of the advantages of setting up the WEKAmon package is that if you already u
 
 Setting up a dedicated management server (or VM) for the installation is recommended.
 
+If you have deployed the WMS, follow the procedure in [WEKA Management Station (WMS)](broken-reference) topic.&#x20;
+
 ### Server minimum requirements
 
 * 4 cores

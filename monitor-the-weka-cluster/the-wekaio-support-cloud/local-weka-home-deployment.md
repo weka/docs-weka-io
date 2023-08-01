@@ -9,12 +9,14 @@ description: >-
 This implementation runs on Minikube (a lightweight Kubernetes implementation) installed on a single Docker container. You specify the configuration parameters in the config.yaml file as part of the deployment workflow.
 
 {% hint style="info" %}
-It is possible to install the Local Weka Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../getting-support-for-your-weka-system.md) to schedule this installation.
+It is possible to install the Local Weka Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md) to schedule this installation.
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/weka-home-local.png" alt=""><figcaption><p>Local Weka Home deployment</p></figcaption></figure>
 
 ## Workflow: Local Weka Home deployment
+
+If you have deployed the WMS, follow the procedure in [WEKA Management Station (WMS)](broken-reference) topic.&#x20;
 
 1. [Verify prerequisites](local-weka-home-deployment.md#1.-verify-prerequisites).
 2. [Prepare the management server](local-weka-home-deployment.md#2.-prepare-the-management-server).
@@ -53,7 +55,7 @@ To scale up the Local Weka Home server, for each additional 1000 WEKA containers
   * RHEL 8.2+
 
 {% hint style="success" %}
-For using other operating systems, contact the [Customer Success Team](../getting-support-for-your-weka-system.md#contact-customer-success-team).
+For using other operating systems, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ### 2. Prepare the management server
@@ -192,7 +194,7 @@ To enable the Local Weka Home to send emails, set the SMTP details in the **smtp
 
 Ensure to enable the SMTP relay service in your SMTP service.
 
-Once the Local Weka Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See the [Set the Local Weka Home to send alerts](set-the-local-weka-home-to-send-alerts-or-events.md) topic.
+Once the Local Weka Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See the [Set the Local Weka Home to send alerts](broken-reference) topic.
 
 </details>
 
@@ -384,7 +386,7 @@ Connect to the WEKA cluster and run the following command:\
 
 ### 8. Test the deployment
 
-The Weka cluster uploads data to the Local Weka Home periodically and on-demand according to its information type (see the [Which information is uploaded to the Weka Home](./#which-information-is-uploaded-to-the-weka-home) section).&#x20;
+The Weka cluster uploads data to the Local Weka Home periodically and on-demand according to its information type (see the [Which information is uploaded to the Weka Home](broken-reference) section).&#x20;
 
 Access the Weka Home portal and verify that the test data appears.
 

@@ -24,7 +24,7 @@ Ensure the BIOS settings meet the following requirements:
 
 ## Memory
 
-* Sufficient memory to support the WEKA system needs as described in [memory requirements](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
+* Sufficient memory to support the WEKA system needs as described in [memory requirements](bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
 * More memory support for the OS kernel or any other application.
 
 ## Operating system
@@ -181,7 +181,7 @@ WEKA supports the following Ethernet NICs:
 Intel E810 NIC has specific requirements and certain limitations:
 
 * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0.
-* Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+* Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 * [Multiple containers architecture](../overview/weka-containers-architecture-overview.md) is not yet supported with this NIC.
 {% endhint %}
 
@@ -232,13 +232,12 @@ Supported ice drivers:
 * NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
 * VLAN: Not supported
 * Connectivity between servers:
-  * For multiple containers architecture, the default for the Resources Generator is 14000-14100, 14200-14300, and 14400-14500 for the first three containers (these values can be customized).
-  * For single container architecture: Ports 14000-14300.
+  * The default for the Resources Generator is 14000-14100, 14200-14300, and 14400-14500 for the first three containers (these values can be customized).
 * Mellanox NICs:
   * One Weka system IP address for management and data plane
 * Other vendors NICs
   * Weka system management IP address: One IP per server (configured before Weka installation)
-  * Weka system data plane IP address: One IP address for each [Weka core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
+  * Weka system data plane IP address: One IP address for each [Weka core](bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
   * Weka system management IP: Ability to communicate with all Weka system data plane IPs
   * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of VFs supported by the device must be bigger than the number of physical cores on the server; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configurations may be required in the BIOS
   * SR-IOV: Enabled in BIOS
@@ -286,7 +285,7 @@ WEKA supports the following InfiniBand configurations:
 * Dual InfiniBand can be used for both HA and higher bandwidth
 
 {% hint style="info" %}
-If it is necessary to change PKEYs, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+If it is necessary to change PKEYs, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -300,7 +299,7 @@ If it is necessary to change PKEYs, contact the [Customer Success Team](getting-
 * Support PLP (Power Loss Protection)
 * Dedicated for Weka system storage (partition not supported)
 * Supported drive capacity: Up to 30 TiB
-* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 {% hint style="info" %}
 To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
@@ -367,7 +366,7 @@ Virtual Machines (VMs) can be used as **clients** only. Ensure the following pre
 
 </details>
 
-For additional information and how-to articles, search the Weka Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+For additional information and how-to articles, search the Weka Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 ## KMS
 

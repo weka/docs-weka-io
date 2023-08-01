@@ -4,8 +4,6 @@ description: This page describes how to add clients to a bare-metal cluster.
 
 # Add clients
 
-## About clients
-
 Clients are used to run applications that need to access the WEKA filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
 
 A default WEKA installation uses the cgroups functionality to limit or isolate resources for WEKA sole usage. For example, using specific CPUs.
@@ -105,7 +103,7 @@ It is possible to add instances that do not contribute resources to the cluster 
 
 ### Stage 1: Install the WEKA software
 
-Verify that the WEKA software is installed on the client according to the installation instructions. For further information, see [Download the WEKA software installation file](obtaining-the-weka-install-file.md) and [1. Install the WEKA software](weka-system-installation-with-multiple-containers-using-the-cli/#1.-install-the-weka-software).
+Verify that the WEKA software is installed on the client according to the installation instructions. For further information, see [Download the WEKA software installation file](obtaining-the-weka-install-file.md) and [1. Install the WEKA software](weka-system-installation-with-multiple-containers-using-the-cli.md#1.-install-the-weka-software).
 
 {% hint style="info" %}
 All clients in a WEKA system cluster must use the same software version as the backends or a maximum of one version back. The backend containers must run the same WEKA software version except during upgrades (as managed by the upgrade process).

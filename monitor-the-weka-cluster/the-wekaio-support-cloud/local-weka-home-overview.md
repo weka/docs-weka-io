@@ -66,7 +66,7 @@ The Diagnostics page displays all the collected event logs, syslog files, trace 
 
 You can download the JSON-formatted Usage Report and Analytics onto your local workstation and view them as needed. You can also forwarded the reports to the Customer Success Team for case resolution and to be added to the cloud Weka Home for offline monitoring purposes.
 
-For more details, see [Download the Usage Report or Analytics](download-the-usage-report-or-analytics.md).
+For more details, see [Download the Usage Report or Analytics](broken-reference).
 
 ### Statistics:  performance visualizations
 
@@ -90,7 +90,7 @@ The Create Integration page allows you to create the destinations where you want
 
 <figure><img src="../../.gitbook/assets/lwh_integration_overview.png" alt=""><figcaption><p>Create Integration</p></figcaption></figure>
 
-For more details, see [Set the Local Weka Home to send alerts or events](set-the-local-weka-home-to-send-alerts-or-events.md).
+For more details, see [Set the Local Weka Home to send alerts or events](broken-reference).
 {% endtab %}
 
 {% tab title="Security and compliance" %}
@@ -134,7 +134,7 @@ A toggle button is provided to enable downloading the Usage Report or Analytics 
 
 <figure><img src="../../.gitbook/assets/lwh_anonynization.png" alt=""><figcaption><p>Enable Anonymization</p></figcaption></figure>
 
-For more details, see [Download the Usage Report or Analytics](download-the-usage-report-or-analytics.md).
+For more details, see [Download the Usage Report or Analytics](broken-reference).
 {% endtab %}
 
 {% tab title="Supportability and miscellaneous" %}

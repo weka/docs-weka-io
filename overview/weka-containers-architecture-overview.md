@@ -34,6 +34,6 @@ Multi-container backend architecture is not supported yet on AWS using the Cloud
 
 **Related topics**
 
-[quick-install-guide.md](../getting-started-with-weka/quick-install-guide.md "mention")
+[Broken link](broken-reference "mention")
 
-[weka-system-installation-with-multiple-containers-using-the-cli](../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/ "mention")
+[weka-system-installation-with-multiple-containers-using-the-cli.md](../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md "mention")

@@ -1,10 +1,10 @@
 ---
 description: >-
-  This page describes the procedures required to system for the WEKA software
-  installation.
+  If the system is not prepared using the WMS, perform this procedure to set the
+  networking and other tasks before configuring the WEKA cluster.
 ---
 
-# Prepare the system for WEKA software installation
+# Manually prepare the system for WEKA software installation
 
 Once the hardware and software prerequisites are met, prepare the backend servers and clients for the installation of the WEKA system.
 
@@ -19,12 +19,12 @@ This preparation consists of the following steps:
 7. [Validate the system preparation](./#validate-the-system-preparation).
 
 {% hint style="info" %}
-Some of the examples on this page contain version-specific information. The software is updated frequently, so the package versions available to you may differ from those presented here.
+Some of the examples contain version-specific information. The software is updated frequently, so the package versions available to you may differ from those presented here.
 {% endhint %}
 
 **Related topics**
 
-[prerequisites-and-compatibility.md](../../../support/prerequisites-and-compatibility.md "mention")
+[prerequisites-and-compatibility.md](../../prerequisites-and-compatibility.md "mention")
 
 ## Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 

@@ -64,7 +64,7 @@ Contact the Customer Success Team to ensure only one additional protocol is inst
 
 Before upgrading the cluster, ensure the following prerequisites:
 
-1. The backend servers meet the [prerequisites and compatibility](../support/prerequisites-and-compatibility.md) of the target version.
+1. The backend servers meet the [prerequisites and compatibility](../install/prerequisites-and-compatibility.md) of the target version.
 2. Ensure the source version is configured in an MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the source version from the legacy architecture to MCB.
 3. All the backend servers are online.
 4. Ensure you are logged in as a Cluster Admin (using a `weka user login`).

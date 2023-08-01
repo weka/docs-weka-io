@@ -61,7 +61,7 @@ The SLA detailed in the technical support policy is for WEKA software issues. Is
 
 **Related topic**
 
-[#upload-information-from-the-weka-cluster-to-weka-home](the-wekaio-support-cloud/#upload-information-from-the-weka-cluster-to-weka-home "mention")
+[Broken link](broken-reference "mention")
 
 ## Escalation
 

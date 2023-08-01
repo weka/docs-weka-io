@@ -1,6 +1,6 @@
-# Plan the WEKA system Installation
+# Plan the WEKA system hardware requirements
 
-The planning of a WEKA system is essential prior to the actual installation process. It involves the planning of the following:
+The planning of a WEKA system is essential before the actual installation process. It involves the planning of the following:
 
 1. Total SSD net capacity and performance requirements
 2. SSD resources
@@ -9,7 +9,7 @@ The planning of a WEKA system is essential prior to the actual installation proc
 5. Network
 
 {% hint style="info" %}
-When implementing an AWS configuration, it is possible to go to the [Self-Service Portal in start.weka.io](../aws/self-service-portal.md) to automatically map capacity and performance requirements into various configurations.
+When implementing an AWS configuration, it is possible to go to the [Self-Service Portal in start.weka.io](../aws/self-service-portal.md) to map capacity and performance requirements into various configurations automatically.
 {% endhint %}
 
 ## Total SSD net capacity and performance planning
@@ -150,4 +150,8 @@ A network port can either be dedicated to the WEKA system or run the WEKA system
 
 ### Clients
 
-Clients can be configured with networking as above, which provides the highest performance and lowest latency, but requires compatible hardware and dedicated core resources. If compatible hardware is not available, or if allocating a physical core to the WEKA system is problematic, the client networking can be configured to use the kernel UDP service. In such cases, performance is reduced, and latency increases.
+Clients can be configured with networking as above, which provides the highest performance and lowest latency, but requires compatible hardware and dedicated core resources. If compatible hardware is unavailable or allocating a physical core to the WEKA system is problematic, the client networking can be configured to use the kernel UDP service. In such cases, performance is reduced, and latency increases.
+
+## What to do next?
+
+[obtaining-the-weka-install-file.md](obtaining-the-weka-install-file.md "mention") (all paths)

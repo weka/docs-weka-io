@@ -31,6 +31,8 @@ If the `snaptool.yml` file is from releases before 1.0.0, it is incompatible wit
 
 Setting up a dedicated management server (or VM) for the installation is recommended.
 
+If you have deployed the WMS, follow the procedure in [WEKA Management Station (WMS)](broken-reference) topic.&#x20;
+
 ### Server minimum requirements
 
 * 2 cores

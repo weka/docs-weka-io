@@ -29,7 +29,7 @@ Any backend instance can also be a client instance.
 
 [deployment-types.md](deployment-types.md "mention")
 
-[prerequisites-and-compatibility.md](../../support/prerequisites-and-compatibility.md "mention")
+[prerequisites-and-compatibility.md](../prerequisites-and-compatibility.md "mention")
 
 
 

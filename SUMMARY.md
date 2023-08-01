@@ -13,24 +13,20 @@
 * [WEKA containers architecture overview](overview/weka-containers-architecture-overview.md)
 * [Glossary](overview/glossary.md)
 
-## Getting Started with WEKA
-
-* [Quick installation guide](getting-started-with-weka/quick-install-guide.md)
-* [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli.md)
-* [Manage the system using the WEKA GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
-* [Run first IOs with WEKA filesystem](getting-started-with-weka/performing-the-first-io.md)
-* [Getting started with WEKA REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
-
 ## Planning and Installation <a href="#install" id="install"></a>
 
-* [Prerequisites for installation](install/prerequisites-for-installation-of-weka-dedicated-hosts.md)
-* [WEKA system installation in a bare metal environment](install/bare-metal/README.md)
-  * [Plan the WEKA system installation](install/bare-metal/planning-a-weka-system-installation.md)
-  * [Prepare the system for WEKA software installation](install/bare-metal/setting-up-the-hosts/README.md)
+* [Prerequisites and compatibility](install/prerequisites-and-compatibility.md)
+* [WEKA cluster installation on bare metal servers](install/bare-metal/README.md)
+  * [Plan the WEKA system hardware requirements](install/bare-metal/planning-a-weka-system-installation.md)
+  * [Obtain the WEKA installation packages](install/bare-metal/obtaining-the-weka-install-file.md)
+  * [Install the WEKA cluster using the WMS with WSA](install/bare-metal/install-the-weka-cluster-using-the-wms-with-wsa.md)
+  * [Install the WEKA cluster using the WSA](install/bare-metal/install-the-weka-cluster-using-the-wsa.md)
+  * [Manually install OS and WEKA on servers](install/bare-metal/manually-install-os-and-weka-on-servers.md)
+  * [Configure the WEKA cluster using the WEKA Configurator](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli.md)
+  * [Manually configure the WEKA cluster using the resource generator](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli-1.md)
+  * [Manually prepare the system for WEKA software installation](install/bare-metal/setting-up-the-hosts/README.md)
     * [Enable the SR-IOV](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
-  * [Obtain the WEKA software installation package](install/bare-metal/obtaining-the-weka-install-file.md)
-  * [WEKA cluster installation](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/README.md)
-    * [WEKA cluster installation using the resource generator (for advanced users)](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/weka-system-installation-with-multiple-containers-using-the-cli.md)
+  * [Perform post-configuration procedures](install/bare-metal/perform-post-configuration-procedures.md)
   * [Add clients](install/bare-metal/adding-clients-bare-metal.md)
 * [WEKA installation on AWS](install/aws/README.md)
   * [Self-service portal](install/aws/self-service-portal.md)
@@ -58,6 +54,13 @@
   * [Auto scale instances in GCP](install/weka-installation-on-gcp/auto-scale-instances-in-gcp.md)
   * [Add clients](install/weka-installation-on-gcp/add-clients.md)
   * [Troubleshooting](install/weka-installation-on-gcp/troubleshooting.md)
+
+## Getting Started with WEKA
+
+* [Manage the system using the WEKA GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
+* [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli.md)
+* [Run first IOs with WEKA filesystem](getting-started-with-weka/performing-the-first-io.md)
+* [Getting started with WEKA REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
 
 ## Performance <a href="#testing-and-troubleshooting" id="testing-and-troubleshooting"></a>
 
@@ -178,9 +181,19 @@
 * [License overview](licensing/overview.md)
 * [Classic license](licensing/classic-licensing.md)
 
+## Monitor the WEKA Cluster
+
+* [WEKA Management Station (WMS) as a monitoring tool](monitor-the-weka-cluster/weka-management-station-wms-as-a-monitoring-tool.md)
+* [Weka Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
+  * [Local Weka Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
+  * [Local Weka Home deployment](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)
+  * [Set the Local Weka Home to send alerts or events](monitor-the-weka-cluster/the-wekaio-support-cloud/set-the-local-weka-home-to-send-alerts-or-events.md)
+  * [Download the Usage Report or Analytics](monitor-the-weka-cluster/the-wekaio-support-cloud/download-the-usage-report-or-analytics.md)
+* [Set up the WEKAmon external monitoring](monitor-the-weka-cluster/external-monitoring.md)
+* [Set up the SnapTool external snapshots manager](monitor-the-weka-cluster/snapshot-management.md)
+
 ## Support
 
-* [Prerequisites and compatibility](support/prerequisites-and-compatibility.md)
 * [Get support for your WEKA system](support/getting-support-for-your-weka-system.md)
 * [Diagnostics management](support/diagnostics-management/README.md)
   * [Traces management](support/diagnostics-management/traces-management/README.md)
@@ -190,14 +203,6 @@
     * [Manage protocols debug level using the GUI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-gui.md)
     * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
   * [Diagnostics data management](support/diagnostics-management/diagnostics-utility.md)
-* [WEKA Management Station (WMS)](support/weka-management-station-wms.md)
-* [Weka Home - The WEKA support cloud](support/the-wekaio-support-cloud/README.md)
-  * [Local Weka Home overview](support/the-wekaio-support-cloud/local-weka-home-overview.md)
-  * [Local Weka Home deployment](support/the-wekaio-support-cloud/local-weka-home-deployment.md)
-  * [Set the Local Weka Home to send alerts or events](support/the-wekaio-support-cloud/set-the-local-weka-home-to-send-alerts-or-events.md)
-  * [Download the Usage Report or Analytics](support/the-wekaio-support-cloud/download-the-usage-report-or-analytics.md)
-* [Set up the WEKAmon external monitoring](appendix/external-monitoring.md)
-* [Set up the SnapTool external snapshots manager](appendix/snapshot-management.md)
 
 ## Appendix
 
