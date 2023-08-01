@@ -29,10 +29,4 @@ If a failure occurs during the WEKA software installation process, an error mess
 
 ## What to do next?
 
-If you can use the WEKA Configurator, go to:
-
-[weka-system-installation-with-multiple-containers-using-the-cli](weka-system-installation-with-multiple-containers-using-the-cli/ "mention")
-
-Otherwise, go to:
-
-[weka-system-installation-with-multiple-containers-using-the-cli.md](weka-system-installation-with-multiple-containers-using-the-cli/weka-system-installation-with-multiple-containers-using-the-cli.md "mention")
+[setting-up-the-hosts](setting-up-the-hosts/ "mention")

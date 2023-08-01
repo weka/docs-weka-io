@@ -433,3 +433,13 @@ Check for /tmp noexec mount                                  [PASS]
 
 RESULTS: 21 Tests Passed, 0 Failed, 5 Warnings
 ```
+
+## What to do next?
+
+If you can use the WEKA Configurator, go to:
+
+[weka-system-installation-with-multiple-containers-using-the-cli](../weka-system-installation-with-multiple-containers-using-the-cli/ "mention")
+
+Otherwise, go to:
+
+[weka-system-installation-with-multiple-containers-using-the-cli.md](../weka-system-installation-with-multiple-containers-using-the-cli/weka-system-installation-with-multiple-containers-using-the-cli.md "mention")
