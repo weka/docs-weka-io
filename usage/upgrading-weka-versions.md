@@ -21,7 +21,7 @@ Customers running WEKA clusters on AWS with **auto-scaling groups** must contact
 
 ## What is a non-disruptive upgrade (NDU)
 
-In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore it is possible to upgrade one container at a time (rolling upgrade) while the remaining containers continue serving the clients with one exception that the compute containers are upgraded at once in a very short time with a minimal impact on serving IOs.
+In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore it is possible to upgrade one container at a time (rolling upgrade) while the remaining containers continue serving the clients.
 
 {% hint style="info" %}
 Some background tasks, such as snapshot uploads or downloads, must be postponed or aborted. See the [prerequisites](upgrading-weka-versions.md#1.-verify-prerequisites-for-the-upgrade) in the upgrade workflow for details.
@@ -33,10 +33,10 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 
 1. Downloading the version and preparing all backend servers.
 2. Rolling upgrade of the **drive** containers.
-3. Upgrading all **compute** containers at once.
+3. Rolling upgrade of the **compute** containers.
 4. Rolling upgrade of the **frontend** and **protocol** containers and the protocol gateways.
 
-<figure><img src="../.gitbook/assets/NDU_process_4.1.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/NDU_process_4.2 (1).png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
 
 **Related topics**
 
