@@ -1,7 +1,7 @@
 ---
 description: >-
-  WEKA cluster configuration in a multi-container backend architecture using the
-  Weka Configurator.
+  Detailed workflow for WEKA cluster installation in a multi-container backend
+  architecture using the Weka Configurator.
 ---
 
 # Configure the WEKA cluster using the WEKA Configurator
@@ -292,7 +292,7 @@ echo Configuration process complete
 {% hint style="info" %}
 Advanced users can edit the config.sh using `vim` or `nano` (or any text editor) to further customize the configuration. If editing is necessary, consult the Customer Success Team.
 
-Regarding the drive selection, it is not possible to select the data drives (NVMe SSD) to include in the configuration. As WEKA clusters are typically dedicated to running WEKA services and homogeneous, the `wekaconfig` includes all NVMe drives that are over about 1.5 GB in size, (typical). To change the drives used in the cluster, edit the `config.sh` (see the`config.sh`output example above).
+Regarding the drive selection, it is not possible to select the data drives (NVMe SSD) to include in the configuration. WEKA clusters are typically dedicated to running WEKA services and homogeneous, therefore `wekaconfig` includes all NVMe drives that are over about 1.5 GB in size (typical). To change the drives used in the cluster, edit the `config.sh` (see the`config.sh`output example above).
 {% endhint %}
 
 ### Apply the configuration

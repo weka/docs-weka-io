@@ -35,8 +35,8 @@ Ensure the BIOS settings meet the following requirements:
   * 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
-  * 8.7
-  * 8.6
+  * 9.1, 9.0
+  * 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
@@ -44,13 +44,10 @@ Ensure the BIOS settings meet the following requirements:
   * 20.04
   * 18.04
 * **Amazon Linux:**
-  * 18.03
-  * 17.09
+  * AMI 2018.03
+  * AMI 2017.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
-
-{% hint style="info" %}
-Ensure using an OS with a supported kernel. Do not use an OS with kernel 5.13 and higher for backends.
-{% endhint %}
+  * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
 {% endtab %}
 
 {% tab title="Clients" %}
@@ -69,16 +66,12 @@ Ensure using an OS with a supported kernel. Do not use an OS with kernel 5.13 an
   * 20.04
   * 18.04
 * **Amazon Linux:**
-  * 18.03
-  * 17.09
+  * AMI 2018.03
+  * AMI 2017.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
 * **SuSe:**
   * 15 SP2
   * 12 SP5
-
-{% hint style="info" %}
-For kernels 5.13 and higher, do not use applications that use 1GB hugepages. RHEL/Rocky Linux 9.1, 9.0 and Ubuntu 22.04 use kernels higher than 5.13.
-{% endhint %}
 {% endtab %}
 
 {% tab title="Kernel" %}
@@ -88,13 +81,9 @@ The following kernel versions are supported:
 * 4.4.0-1106 to 4.19
 * 3.10
 
-{% hint style="warning" %}
-* Kernel 5.15 is not supported with Amazon Linux operating systems.
-* For kernels 5.13 and higher, do not use applications that use 1GB hugepages.
-{% endhint %}
-
 {% hint style="info" %}
-It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
+* Kernel 5.15 is not supported with Amazon Linux operating systems.
+* It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
 {% endhint %}
 {% endtab %}
 
