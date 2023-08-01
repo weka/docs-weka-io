@@ -140,29 +140,20 @@ The WSA packages that appear in the list are taken from `/home/weka`. You can ha
 {% endhint %}
 
 3. In **Step 2 - Load values from**, select one of the following options:
+   * **Option 1: Enter environment data:**\
+     Click **Go directly to forms to enter data**.
+   *   **Option 2: Import CSV file:**\
+       If you have the environment data in a CSV file, click **Upload a CSV file to pre-populate data**. Step 3 - CSV File Upload section opens.
 
-TBD - Change to bullets
+       Drag or click to upload the CSV file, and click **Next**.
 
-{% tabs %}
-{% tab title="Option 1: Enter environment data" %}
-Click **Go directly to forms to enter data**.
-
-<figure><img src="../../.gitbook/assets/WSA_step2.png" alt="" width="563"><figcaption></figcaption></figure>
-{% endtab %}
-
-{% tab title="Option 2: Import CSV file" %}
-If you have the environment data in a CSV file, click **Upload a CSV file to pre-populate data**.\
-**Step 3 - CSV File Upload** section opens.
-
-Drag or click to upload the CSV file, and click **Next**.
-
-The WMS skips to **Step 9 - Prepare ISO for installation**.
+       The WMS skips to **Step 9 - Prepare ISO for installation**.
 
 <figure><img src="../../.gitbook/assets/WSA_step3.png" alt="" width="563"><figcaption></figcaption></figure>
-{% endtab %}
-{% endtabs %}
 
 **CSV template example**
+
+You can prepare a CSV file with the columns as specified in the following example:
 
 ```
 IPMI_IP,Username,Password,OS_Mgmt_IP,Hostname,OS_Netmask,OS_Gateway,MTU,DNS,Hostname_Pattern,Hostname_Startnum,Server_Count,Data1_IP,Data1_Type,Data1_Netmask,Data1_MTU,Data1_Gateway,Data2_IP,Data2_Type,Data2_Netmask,Data2_MTU,Data2_Gateway
