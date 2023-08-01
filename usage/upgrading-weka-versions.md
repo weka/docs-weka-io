@@ -19,10 +19,6 @@ If the source system is not in MCB architecture, it is required to convert the c
 Customers running WEKA clusters on AWS with **auto-scaling groups** must contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) before converting the cluster to MCB.
 {% endhint %}
 
-{% hint style="info" %}
-Backend servers with Intel E810 NIC are not supported in the MCB architecture, so the cluster cannot be upgraded to 4.2.
-{% endhint %}
-
 ## What is a non-disruptive upgrade (NDU)
 
 In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore it is possible to upgrade one container at a time (rolling upgrade) while the remaining containers continue serving the clients with one exception that the compute containers are upgraded at once in a very short time with a minimal impact on serving IOs.

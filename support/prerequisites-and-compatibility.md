@@ -182,7 +182,6 @@ Intel E810 NIC has specific requirements and certain limitations:
 
 * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0.
 * Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
-* [Multiple containers architecture](../overview/weka-containers-architecture-overview.md) is not yet supported with this NIC.
 {% endhint %}
 
 {% hint style="info" %}
@@ -232,7 +231,8 @@ Supported ice drivers:
 * NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
 * VLAN: Not supported
 * Connectivity between servers:
-  * The default for the Resources Generator is 14000-14100, 14200-14300, and 14400-14500 for the first three containers (these values can be customized).
+  * For multiple containers architecture, the default for the Resources Generator is 14000-14100, 14200-14300, and 14400-14500 for the first three containers (these values can be customized).
+  * For single container architecture: Ports 14000-14300.
 * Mellanox NICs:
   * One Weka system IP address for management and data plane
 * Other vendors NICs

@@ -27,7 +27,7 @@ The benefits of using the MCB architecture include:
   * Ability to stop the compute and frontend processes while running the drive processes.
 
 {% hint style="info" %}
-Multi-container backend architecture is not supported yet on AWS using the CloudFormation, as well as in a system with Intel E810 NIC.
+Multi-container backend architecture is not supported yet on AWS using the CloudFormation.
 {% endhint %}
 
 

@@ -129,7 +129,7 @@ Change the port from 9090 to 8051, which is the WMS Admin port.
 3. Enter username and password (default: _admin_/_admin_), and select **Login**.\
    The Landing Page appears.
 
-<figure><img src="../.gitbook/assets/WMS_landing_page.png" alt="" width="375"><figcaption><p>WMS Landing Page</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/WMS_landing_page (1).png" alt="" width="375"><figcaption><p>WMS Landing Page</p></figcaption></figure>
 
 ### Set the email notifications
 
