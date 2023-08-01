@@ -8,7 +8,7 @@ description: >-
 
 Perform this workflow using the resource generator only if you are not using the automated WMS, WSA, or WEKA Configurator.
 
-The resource generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you apply the generated files of the cluster servers.&#x20;
+The resource generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you create the containers using these generated files of the cluster servers.&#x20;
 
 ## Before you begin
 
