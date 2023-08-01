@@ -85,13 +85,17 @@ Use this command to find the file location during the data lifecycle operations.
 
 **Command:** `weka fs tier location`
 
-Use the following command to fetch files:
+Use the following command to find files:
 
 `weka fs tier location <path>`
 
 For multiple paths, use the following command:
 
 `weka fs tier location <paths>`
+
+To find all files in a single directory, use the following command:
+
+`weka fs tier location *`
 
 **Parameters**
 
