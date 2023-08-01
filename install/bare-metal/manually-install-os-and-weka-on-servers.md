@@ -23,7 +23,7 @@ If a failure occurs during the WEKA software installation process, an error mess
 
 **Related topic**
 
-[#operating-system](../prerequisites-and-compatibility.md#operating-system "mention") (on the Prerequisites and compatibility topic)
+[#operating-system](../../support/prerequisites-and-compatibility.md#operating-system "mention") (on the Prerequisites and compatibility topic)
 
 
 
@@ -31,8 +31,8 @@ If a failure occurs during the WEKA software installation process, an error mess
 
 If you can use the WEKA Configurator, go to:
 
-[weka-system-installation-with-multiple-containers-using-the-cli.md](weka-system-installation-with-multiple-containers-using-the-cli.md "mention")
+[weka-system-installation-with-multiple-containers-using-the-cli](weka-system-installation-with-multiple-containers-using-the-cli/ "mention")
 
 Otherwise, go to:
 
-[weka-system-installation-with-multiple-containers-using-the-cli-1.md](weka-system-installation-with-multiple-containers-using-the-cli-1.md "mention")
+[weka-system-installation-with-multiple-containers-using-the-cli.md](weka-system-installation-with-multiple-containers-using-the-cli/weka-system-installation-with-multiple-containers-using-the-cli.md "mention")

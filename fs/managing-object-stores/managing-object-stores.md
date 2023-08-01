@@ -35,7 +35,10 @@ Editing the default object store provides you with the following additional adva
    * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
 {% hint style="info" %}
-If using the AWS object store type and access from the WEKA EC2 instances to the object store is granted by the IAM roles, it is not mandatory to set the access and secret keys in the Edit Object Store dialog.
+It is not mandatory to set the access and secret keys in the **Edit Object Store** dialog in the following clouds:
+
+* **AWS:** The AWS object store type is accessed from the WEKA EC2 instances to the object store and granted by the IAM roles assigned to the instances.
+* **GCP:** Google Cloud Storage is accessed using a service account attached to each Compute Engine Instance that is running Weka software, provided that the service account has the required permissions granted by the IAM role (`storage.admin` for creating buckets.  `storage.objectAdmin` for using an existing bucket ).
 {% endhint %}
 
 ![Edit the default-remote object store ](<../../.gitbook/assets/wmng\_edit\_default\_obs (1).gif>)

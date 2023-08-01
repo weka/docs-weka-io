@@ -18,30 +18,62 @@ Before installing the WEKA software on GCP, the following prerequisites must be 
 * [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (it is pre-installed if you use the Cloud Shell).
 * Obtain the latest release of the WEKA GCP-Terraform package from [https://github.com/weka/terraform-gcp-weka/releases](https://github.com/weka/terraform-gcp-weka/releases) and unpack it in your workstation.&#x20;
 * Initialize the GCP-Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
-* The **Compute Engine** and **Workflows API** services must be enabled.
-* The service account used for the deployment must have the following roles:
-  * secretmanager.admin
-  * secretmanager.secretAccessor
-  * compute.serviceAgent
-  * compute.admin
-  * compute.networkAdmin
-  * networkmanagement.admin
-  * cloudfunctions.admin
-  * cloudfunctions.serviceAgent
-  * workflows.admin
-  * storage.admin
-  * iam.serviceAccountAdmin
-  * iam.securityAdmin
-  * vpcaccess.admin
-  * vpcaccess.serviceAgent
-  * cloudscheduler.admin
-  * cloudscheduler.serviceAgent
-  * dns.admin
-  * pubsub.editor
+*   The **Compute Engine** and **Workflows API** services must be enabled to allow the following services:
 
-{% hint style="info" %}
-To create a service account using the Terraform package, the iam.serviceAccountAdmin role is required.
-{% endhint %}
+    ```
+    cloudfunctions.googleapis.com
+    cloudbuild.googleapis.com
+    artifactregistry.googleapis.com
+    serviceusage.googleapis.com
+    cloudscheduler.googleapis.com
+    compute.googleapis.com
+    secretmanager.googleapis.com
+    servicenetworking.googleapis.com
+    vpcaccess.googleapis.com
+    cloudresourcemanager.googleapis.com
+    vpcaccess.googleapis.com
+    iam.googleapis.com
+    dns.googleapis.com
+    workflows.googleapis.com
+    eventarc.googleapis.com
+    ```
+* If the customer does not provide the service account email, the user running the Terraform package requires the `iam.serviceAccountAdmin` role.&#x20;
+*   The service account used for the deployment must have the following roles:
+
+    ```
+    "roles/secretmanager.secretAccessor",
+    "roles/compute.serviceAgent",
+    "roles/cloudfunctions.developer",
+    "roles/workflows.invoker",
+    "roles/vpcaccess.serviceAgent",
+    "roles/pubsub.subscriber"
+    ```
+
+
+
+    The Terraform adds the following roles to the services accounts per to the following resources:
+
+    *   Worker pool roles:
+
+        ```
+        "roles/compute.networkAdmin"
+        "roles/servicenetworking.networksAdmin"
+        "roles/cloudbuild.workerPoolOwner"
+        ```
+
+
+    *   To create a new bucket (state and obs):
+
+        ```jsx
+        "roles/storage.admin"
+        ```
+
+
+    *   To use an existing bucket (state and obs):
+
+        ```jsx
+        "roles/storage.objectAdmin"
+        ```
 
 ## **Installation**
 

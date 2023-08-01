@@ -10,14 +10,14 @@ Perform this workflow only if you not using the automated WMS, WSA, or WEKA Conf
 
 ## Workflow
 
-1. [Remove the default container](weka-system-installation-with-multiple-containers-using-the-cli-1.md#2.-remove-the-default-container)
-2. [Generate the resource files](weka-system-installation-with-multiple-containers-using-the-cli-1.md#3.-generate-the-resource-files)
-3. [Create drive containers](weka-system-installation-with-multiple-containers-using-the-cli-1.md#4.-create-drive-containers)
-4. [Create a cluster](weka-system-installation-with-multiple-containers-using-the-cli-1.md#5.-create-a-cluster)
-5. [Configure the SSD drives](weka-system-installation-with-multiple-containers-using-the-cli-1.md#6.-configure-the-ssd-drives)
-6. [Create compute containers](weka-system-installation-with-multiple-containers-using-the-cli-1.md#7.-create-compute-containers)
-7. [Create frontend containers](weka-system-installation-with-multiple-containers-using-the-cli-1.md#7.-create-compute-containers)
-8. [Name the cluster](weka-system-installation-with-multiple-containers-using-the-cli-1.md#8.-name-the-cluster)
+1. [Remove the default container](weka-system-installation-with-multiple-containers-using-the-cli.md#2.-remove-the-default-container)
+2. [Generate the resource files](weka-system-installation-with-multiple-containers-using-the-cli.md#3.-generate-the-resource-files)
+3. [Create drive containers](weka-system-installation-with-multiple-containers-using-the-cli.md#4.-create-drive-containers)
+4. [Create a cluster](weka-system-installation-with-multiple-containers-using-the-cli.md#5.-create-a-cluster)
+5. [Configure the SSD drives](weka-system-installation-with-multiple-containers-using-the-cli.md#6.-configure-the-ssd-drives)
+6. [Create compute containers](weka-system-installation-with-multiple-containers-using-the-cli.md#7.-create-compute-containers)
+7. [Create frontend containers](weka-system-installation-with-multiple-containers-using-the-cli.md#7.-create-compute-containers)
+8. [Name the cluster](weka-system-installation-with-multiple-containers-using-the-cli.md#8.-name-the-cluster)
 
 ### 1. Remove the default container
 
@@ -159,4 +159,4 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 ## What to do next?
 
-[perform-post-configuration-procedures.md](perform-post-configuration-procedures.md "mention")
+[perform-post-configuration-procedures.md](../perform-post-configuration-procedures.md "mention")

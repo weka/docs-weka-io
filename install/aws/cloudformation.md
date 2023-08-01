@@ -94,7 +94,7 @@ When `ami_id` is not specified, the client instances are launched with the lates
 Note the following when using a custom AMI-ID:
 
 * AMIs are stored per region. Make sure to specify an AMI-ID that matches the region in which the CloudFormation template is deployed.
-* The AMI operating system must be one of the supported operating systems listed in the [Prerequisites and compatibility](../prerequisites-and-compatibility.md#operating-system) section of the version installed. If the AMI defined is not supported or has an unsupported operating system, the installation may fail, and the CloudFormation stack will not be created successfully.
+* The AMI operating system must be one of the supported operating systems listed in the [Prerequisites and compatibility](../../support/prerequisites-and-compatibility.md#operating-system) section of the version installed. If the AMI defined is not supported or has an unsupported operating system, the installation may fail, and the CloudFormation stack will not be created successfully.
 
 ### Dedicated vs. shared client networking
 

@@ -24,7 +24,7 @@ Some of the examples contain version-specific information. The software is updat
 
 **Related topics**
 
-[prerequisites-and-compatibility.md](../../prerequisites-and-compatibility.md "mention")
+[prerequisites-and-compatibility.md](../../../support/prerequisites-and-compatibility.md "mention")
 
 ## Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 

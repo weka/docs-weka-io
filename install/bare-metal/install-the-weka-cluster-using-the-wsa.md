@@ -137,4 +137,4 @@ The server provides a status report indicating the system is in STEM mode, and i
 
 ## What to do next?
 
-[weka-system-installation-with-multiple-containers-using-the-cli.md](weka-system-installation-with-multiple-containers-using-the-cli.md "mention")
+[weka-system-installation-with-multiple-containers-using-the-cli](weka-system-installation-with-multiple-containers-using-the-cli/ "mention")

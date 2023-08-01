@@ -49,7 +49,7 @@ You can only sign in and download the packages if you are a registered user.
 
 [get.weka.io](http://get.weka.io) page opens.
 
-![get.weka.io: Dashboard tab](../../.gitbook/assets/Get\_Weka\_dashboard\_tab.png)
+![get.weka.io: Dashboard tab](../../.gitbook/assets/Get\_Weka\_dashboard.png)
 
 2. Do one of the following:
    * Select the required package from the dashboard.
