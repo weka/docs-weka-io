@@ -10,9 +10,9 @@ This portal contains all the documentation necessary for understanding and worki
 
 **WEKA system overview:** Introduction of the primary components, principles, and entities that form the WEKA system.
 
-**Getting started with WEKA:** A quick installation guide of the WEKA system, configuration of a WEKA filesystem, and running the first IO tests to validate the system configuration.
+**Planning and installation:** Prerequisites and compatibility details, WEKA cluster installation on bare metal, AWS, GCP, and Azure environments.
 
-**Planning and installation:** WEKA software installation on bare metal, AWS, GCP, and Azure environments.
+**Getting started with WEKA:** The first steps to managing a WEKA filesystem using the GUI and CLI, running the first IOs with the WEKA filesystem and getting started with the WEKA REST API.
 
 **Performance:** Results of the FIO performance tests on the WEKA filesystem.
 
@@ -24,7 +24,9 @@ This portal contains all the documentation necessary for understanding and worki
 
 **Billing & licensing:** WEKA system licensing and billing alternatives.
 
-**WEKA support:** Prerequisites and compatibility details, getting support for the WEKA system, and diagnostics management.
+**Monitor the WEKA cluster:** Deploy the WEKA Management Server (WMS) with the monitoring tools: Local WEKA Home, WEKAmon, and SnapTool.
+
+**WEKA support:** Getting support for the WEKA system and diagnostics management.
 
 ## Documentation feedback
 
