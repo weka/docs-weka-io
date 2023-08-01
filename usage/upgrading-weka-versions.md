@@ -52,7 +52,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 6. [Check the status after the upgrade](upgrading-weka-versions.md#6.-check-the-status-after-the-upgrade)
 
 {% hint style="warning" %}
-Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation.\
+**Note:** Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation.\
 Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
 {% endhint %}
 
@@ -141,7 +141,9 @@ Once all backends are upgraded, the clients remain with the existing version and
 #### Stateful client upgrade options
 
 * You can manually upgrade the clients locally (one by one) or remotely (in batches), usually during a maintenance window.
-* A gateway, which is a stateful client running a protocol, is upgraded with the backend servers.&#x20;
+* A gateway, which is a stateful client running a protocol, is upgraded with the backend servers.
+
+#### Client upgrade procedures
 
 {% tabs %}
 {% tab title="Upgrade a client locally" %}
@@ -150,8 +152,9 @@ To upgrade a stateless or stateful client locally, connect to the client and run
 1. Run: `weka version get <target-version> --from <backend name or IP>:<port>`
 2. Upgrade the agent by running the following:\
    `/opt/weka/dist/cli/<target_client> agent install-agent --no-update`
-3. Upgrade the client containers by running the following:\
-   `weka local upgrade`
+3. Upgrade the client containers. Do one the following following:
+   * For clients connected to a single cluster, run `weka local upgrade`
+   * For clients connected to a multiple  clusters, upgrade all containers simultaneously by running  `weka local upgrade --all`
 
 An alert is raised if there is a mismatch between the clients' and the cluster versions.
 
