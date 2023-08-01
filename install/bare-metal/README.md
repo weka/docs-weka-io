@@ -39,7 +39,13 @@ The following illustrates a high-level deployment workflow on a group of bare me
 
 ### Deployment workflow paths summary
 
-The following summarizes the three workflow paths to install and configure the WEKA cluster. Select the path applicable to your needs.
+The following summarizes the three workflow paths to install and configure the WEKA cluster.
+
+* **Path A:** Automated with WMS and WSA
+* **Path B:** Automated with WSA only
+* **Path C:** Manual installation and configuration
+
+Select the path applicable to your needs.
 
 {% tabs %}
 {% tab title="Path A: Automated with WMS and WSA" %}
