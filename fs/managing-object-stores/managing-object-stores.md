@@ -7,8 +7,8 @@ description: This page describes how to view and manage object stores using the 
 Using the GUI, you can perform the following actions:
 
 * [Edit the default object stores](managing-object-stores.md#edit-the-default-object-stores)
-* [View object store buckets](managing-object-stores.md#view-object-store-buckets)
 * [Add an object store bucket](managing-object-stores.md#add-an-object-store-bucket)
+* [View object store buckets](managing-object-stores.md#view-object-store-buckets)
 * [Edit an object store bucket](managing-object-stores.md#edit-an-object-store-bucket)
 * [Show recent operations of an object store bucket](managing-object-stores.md#show-recent-operations-of-an-object-store-bucket)
 * [Delete an object store bucket](managing-object-stores.md#delete-an-object-store-bucket)
@@ -43,18 +43,6 @@ It is not mandatory to set the access and secret keys in the **Edit Object Store
 
 ![Edit the default-remote object store ](<../../.gitbook/assets/wmng\_edit\_default\_obs (1).gif>)
 
-## View object store buckets <a href="#view-object-store-buckets" id="view-object-store-buckets"></a>
-
-The object store buckets are displayed on the **Object Stores** page. Each object store indicates the status, bucket name, protocol (HTTP/HTTPS), port, region, object store location (local or remote), authentication method, and error information (if exists).
-
-**Procedure**
-
-1. From the menu, select **Manage > Object Stores**.
-
-The following example shows two object store buckets.
-
-![View object store buckets](../../.gitbook/assets/wmng\_view\_obs\_buckets.png)
-
 ## Add an object store bucket <a href="#add-an-object-store-bucket" id="add-an-object-store-bucket"></a>
 
 Add object store buckets to be used for tiering or snapshots.
@@ -70,14 +58,22 @@ Add object store buckets to be used for tiering or snapshots.
    * **Name**: Enter a meaningful name for the bucket.
    * **Object Store**: Select the location of the object store. For tiering and snapshots, select the local object store. For snapshots only, select the remote object store.
    * **Type**: Select the type of object store: AWS, AZURE, or OTHER (for GCP and others).
-   * **Buckets Default Parameters**: Set the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
+   * **Buckets Default Parameters**: If required, modify the protocol, hostname, port, bucket folder, authentication method, region name, access key, and secret key.
 
 {% tabs %}
 {% tab title="AWS" %}
+If the WEKA EC2 instances have the required permissions granted by the IAM role, then it is not required to provide the Access Key and Secret Key.
+
+If the WEKA cluster is not running in AWS then the Access Key and Secret Key are required.
+
 <figure><img src="../../.gitbook/assets/wmng_obs_on_aws.png" alt=""><figcaption><p>Create object store bucket on AWS</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="GCP" %}
+If the service account has the required permissions granted by the IAM role, then it is not required to provide the Access Key and Secret Key.
+
+If the WEKA cluster is not running in GCP then the Access Key and Secret Key are required.
+
 <figure><img src="../../.gitbook/assets/wmng_obs_on_gcp.png" alt=""><figcaption><p>Create object store bucket on GCP</p></figcaption></figure>
 {% endtab %}
 
@@ -102,6 +98,18 @@ Add object store buckets to be used for tiering or snapshots.
 {% hint style="info" %}
 If an error message about the object store bucket configuration appears, to save the configuration, select **Create Anyway**.
 {% endhint %}
+
+## View object store buckets <a href="#view-object-store-buckets" id="view-object-store-buckets"></a>
+
+The object store buckets are displayed on the **Object Stores** page. Each object store indicates the status, bucket name, protocol (HTTP/HTTPS), port, region, object store location (local or remote), authentication method, and error information (if it exists).
+
+**Procedure**
+
+1. From the menu, select **Manage > Object Stores**.
+
+The following example shows two object store buckets.
+
+![View object store buckets](../../.gitbook/assets/wmng\_view\_obs\_buckets.png)
 
 ## Edit an object store bucket <a href="#edit-an-object-store-bucket" id="edit-an-object-store-bucket"></a>
 
