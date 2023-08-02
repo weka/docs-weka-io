@@ -67,6 +67,13 @@ If the WEKA EC2 instances have the required permissions granted by the IAM role,
 If the WEKA cluster is not running in AWS then the Access Key and Secret Key are required.
 
 <figure><img src="../../.gitbook/assets/wmng_obs_on_aws.png" alt=""><figcaption><p>Create object store bucket on AWS</p></figcaption></figure>
+
+{% hint style="success" %}
+When you create the object store bucket in AWS, to use the storage classes: S3 Intelligent-Tiering, S3 Standard-IA, S3 One Zone-IA, and S3 Glacier Instant Retrieval, do the following:
+
+1. Create the bucket in S3 Standard.
+2. Create an AWS lifecycle policy to transition objects to these storage classes.
+{% endhint %}
 {% endtab %}
 
 {% tab title="GCP" %}

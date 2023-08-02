@@ -25,6 +25,8 @@ Defining multiple object store buckets for a filesystem allows a range of use ca
 * Increasing the total tiering capacity of filesystems.
 * Backing up data in a remote site.
 
+For example, in AWS, you can move objects from S3 standard storage class to S3 intelligent tiering storage class for long-term retention using the AWS lifecycle policy.
+
 
 
 **Related topics**

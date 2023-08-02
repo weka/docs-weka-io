@@ -63,7 +63,14 @@ When using the CLI, by default a misconfigured object store will not be created.
 The `max-concurrent` settings are applied per Weka compute process and the minimum setting of all object stores is applied.
 {% endhint %}
 
-Make the relevant changes and click Update to update the object store bucket.
+{% hint style="success" %}
+When you create the object store bucket in AWS, to use the storage classes: S3 Intelligent-Tiering, S3 Standard-IA, S3 One Zone-IA, and S3 Glacier Instant Retrieval, do the following:
+
+1. Create the bucket in S3 Standard.
+2. Create an AWS lifecycle policy to transition objects to these storage classes.
+{% endhint %}
+
+Make the relevant changes and click **Update** to update the object store bucket.
 
 ## Edit an object store bucket
 
