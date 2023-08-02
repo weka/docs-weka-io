@@ -41,6 +41,7 @@ Ensure the BIOS settings meet the following requirements:
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Ubuntu:**
+  * 22.04
   * 20.04
   * 18.04
 * **Amazon Linux:**
