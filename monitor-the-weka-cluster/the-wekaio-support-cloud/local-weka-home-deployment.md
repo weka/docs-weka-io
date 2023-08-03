@@ -16,7 +16,7 @@ It is possible to install the Local Weka Home within the customer's Kubernetes i
 
 ## Workflow: Local Weka Home deployment
 
-If you have deployed the WMS, follow the procedure in [WEKA Management Station (WMS)](broken-reference) topic.&#x20;
+If you have deployed the WMS, follow the procedure in [WEKA Management Station (WMS)](broken-reference) topic. Otherwise, perform the follow workflow:
 
 1. [Verify prerequisites](local-weka-home-deployment.md#1.-verify-prerequisites).
 2. [Prepare the management server](local-weka-home-deployment.md#2.-prepare-the-management-server).
@@ -33,21 +33,12 @@ Verify that the following requirement are met:
 
 * A dedicated management server (or VM) for the installation.
 * The user account used for the installation has root privileges. Ensure that the `sudoers` file includes the root user.
-* Server minimum requirements for up to 1000 Weka containers:
-  * 4 cores
-  * 32 GiB RAM
+* Server minimum requirements for up to 500 Weka containers:
+  * 8 cores
+  * 48 GiB RAM
   * 500 GiB disk space in /opt/local-path-provisioner (local storage of the collected data)
   * 1 Gbps network
   * Docker version 20 or higher.
-
-{% hint style="success" %}
-To scale up the Local Weka Home server, for each additional 1000 WEKA containers, add the following:
-
-* 4 cores
-* 10 GiB RAM
-* 150 GiB disk space in /opt/local-path-provisioner (for every 14 days of data retention).
-{% endhint %}
-
 * Supported operating systems:
   * Centos 7.9
   * Amazon Linux 2
