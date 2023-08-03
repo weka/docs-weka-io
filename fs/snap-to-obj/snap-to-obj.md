@@ -46,7 +46,7 @@ The snapshot is uploaded to the target object store bucket.
 
 ![Copy snapshot locator](../../.gitbook/assets/wmng\_copy\_snapshot\_locator.gif)
 
-
+***
 
 **Related topics**
 

@@ -27,13 +27,5 @@ The benefits of using the MCB architecture include:
   * Ability to stop the compute and frontend processes while running the drive processes.
 
 {% hint style="info" %}
-Multi-container backend architecture is not supported yet on AWS using the CloudFormation.
+Multi-container backend architecture is not supported yet on AWS using CloudFormation.
 {% endhint %}
-
-
-
-**Related topics**
-
-[Broken link](broken-reference "mention")
-
-[weka-system-installation-with-multiple-containers-using-the-cli](../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/ "mention")

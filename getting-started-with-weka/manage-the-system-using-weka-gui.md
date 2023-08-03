@@ -215,17 +215,3 @@ When managing filesystems, snapshots, and object stores, the displayed tables li
 * You can customize the columns displayed on the table using the column selector.
 
 <figure><img src="../.gitbook/assets/wmng_display_tables.png" alt=""><figcaption><p>Example: Display the filesystems table</p></figcaption></figure>
-
-**Related topics**
-
-[statistics](../usage/statistics/ "mention")
-
-[events](../usage/events/ "mention")
-
-[alerts](../usage/alerts/ "mention")
-
-[nfs-support](../additional-protocols/nfs-support/ "mention")
-
-[smb-management-using-the-gui.md](../additional-protocols/smb-support/smb-management-using-the-gui.md "mention")
-
-[Broken link](broken-reference "mention")

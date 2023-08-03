@@ -124,16 +124,14 @@ This has completed the sanity check that the WEKA cluster is configured and IOs 
 
 To ensure that the WEKA cluster and the IT environment are well configured, more complex IO patterns and benchmark tests should be conducted using the FIO utility.
 
-Although results can vary using different servers and networking, it is not expected to be very different than what many other customers and we achieved. A properly configured Weka cluster and IT environment should yield similar results as described in the [Weka performance tests](../testing-and-troubleshooting/testing-weka-system-performance/) section.
+Although results can vary using different servers and networking, it is not expected to be very different than what many other customers and we achieved. A properly configured WEKA cluster and IT environment should yield similar results described in the WEKA performance tests section.
 
 {% hint style="info" %}
-The numbers achieved in the benchmark tests, as described in the [Weka performance tests](../testing-and-troubleshooting/testing-weka-system-performance/) section, are not just achieved in a controlled environment. Similar numbers should be achieved using a similar configuration if the Weka cluster and IT environment are properly configured.
+The numbers achieved in the benchmark tests, as described in the WEKA performance tests section, are not just achieved in a controlled environment. Similar numbers should be achieved using a similar configuration if the WEKA cluster and IT environment are properly configured.
 
-If the numbers achieved in your environment significantly vary from those, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) before running any other workload on the Weka cluster.
+If the numbers achieved in your environment significantly vary from those, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) before running any other workload on the WEKA cluster.
 {% endhint %}
 
 **Related topic**
 
-{% content-ref url="../testing-and-troubleshooting/testing-weka-system-performance/" %}
-[testing-weka-system-performance](../testing-and-troubleshooting/testing-weka-system-performance/)
-{% endcontent-ref %}
+[testing-weka-system-performance](../testing-and-troubleshooting/testing-weka-system-performance/ "mention")

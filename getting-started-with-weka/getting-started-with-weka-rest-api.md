@@ -2,17 +2,19 @@
 
 
 
-The WEKA system supports a RESTful API. This is useful when automating the interaction with the WEKA system and when integrating it into your workflows or monitoring systems.
+The WEKA system supports a RESTful API. This is useful when automating the interaction with the WEKA system and integrating it into your workflows or monitoring systems.
 
 The API is accessible at port 14000, via the `/api/v2` URL, you can explore it via `/api/v2/docs` when accessing from the cluster (e.g. `https://weka01:14000/api/v2/docs`).
 
-Our static API documentation can be accessed from [api.docs.weka.io](https://api.docs.weka.io) (the version can be selected from the drop-down list). The `.json` file can also be used to create your client code, using an OpenAPI client generator.
+THE WEKA static API documentation can be accessed from [api.docs.weka.io](https://api.docs.weka.io) (the version can be selected from the drop-down list). The `.json` file can also create client code using an OpenAPI client generator.
 
 ### Obtain an access token
 
 You must provide an access token to use the WEKA REST API.&#x20;
 
-To obtain access/refresh tokens via the CLI, refer to [Obtaining an Authentication Token](../usage/security/#obtaining-an-authentication-token) section (there you can also generate an access token with a longer expiry time). To obtain access/refresh tokens via the API, you can call the `login` API, providing it a `username` and `password`.&#x20;
+To obtain access/refresh tokens via the CLI, refer to [Obtaining an Authentication Token](../usage/security/#obtaining-an-authentication-token) section (you can also generate an access token with a longer expiry time).
+
+You can call the login API to obtain access/refresh tokens via the API, providing it with a `username` and `password`.&#x20;
 
 If you already obtained a refresh token, you can use the `login/refresh` API to refresh the access token.
 

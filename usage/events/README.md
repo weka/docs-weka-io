@@ -19,5 +19,3 @@ The WEKA system sends all events to a predefined central monitoring system.
 [events-1.md](events-1.md "mention")
 
 [list-of-events.md](list-of-events.md "mention")
-
-**Manage Central Monitoring**
