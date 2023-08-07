@@ -238,7 +238,7 @@ parameters:
   csi.storage.k8s.io/node-stage-secret-name: *secretName
   csi.storage.k8s.io/node-stage-secret-namespace: *secretNamespace
   csi.storage.k8s.io/node-publish-secret-name: *secretName
-  csi.storage.k8s.io/node-publish-secret-namespace: *secretNamespacem
+  csi.storage.k8s.io/node-publish-secret-namespace: *secretNamespace
 ```
 {% endcode %}
 
