@@ -16,7 +16,7 @@ It is possible to install the Local Weka Home within the customer's Kubernetes i
 
 ## Workflow: Local Weka Home deployment
 
-If you have deployed the WMS, follow the procedure in [WEKA Management Station (WMS)](broken-reference) topic. Otherwise, perform the follow workflow:
+If you have deployed the WMS, follow the procedure in [WEKA Management Station (WMS)](broken-reference) topic. Otherwise, perform the following workflow:
 
 1. [Verify prerequisites](local-weka-home-deployment.md#1.-verify-prerequisites).
 2. [Prepare the management server](local-weka-home-deployment.md#2.-prepare-the-management-server).
@@ -125,7 +125,10 @@ kubeconfig: Configured
 </details>
 
 {% hint style="info" %}
-If the minikube installation fails, run the command `minikube logs`. A log file is created in `/tmp` directory. Open the log file and search for the reason.&#x20;
+If the minikube installation fails, do one of the following:
+
+* Go to `/var/log/wekahome` and review the relevant log according to the timestamp (for example, `minikube-install-03-08-2023_16-29.log`).
+* Run the command `minikube logs`. A log file is created in `/tmp` directory. Open the log file and search for the reason.&#x20;
 {% endhint %}
 
 ### 5. Install and configure Local Weka Home
@@ -382,6 +385,8 @@ The Weka cluster uploads data to the Local Weka Home periodically and on-demand 
 Access the Weka Home portal and verify that the test data appears.
 
 To trigger a test event, run `weka events trigger-event test` and verify the test event is received in the Local Weka Home portal under the **Events** section.
+
+If required, go to `/var/log/wekahome` and review the relevant log according to the timestamp (for example, `wekahome-install-03-08-2023_16-29.log`).
 
 ## Upgrade the Local Weka Home
 
