@@ -33,15 +33,15 @@ Your request for access to [get.weka.io](http://get.weka.io) is sent to WEKA for
 
 ## **Download the** WEKA **installation packages**
 
-Download the required WEKA installation packages according to the workflow path from the [get.weka.io](https://get.weka.io/ui/dashboard) site.
+Download the required WEKA installation packages according to the workflow path.
 
-* Path A (automated with WMS and WSA): Download the WMS package.
-* Path B (automated with WSA): Download the WSA package.
-* Path C (manual installation and configuration): Download the WEKA software tarball.
+* Path A (automated with WMS and WSA): Download the WMS package from [get.weka.io](https://get.weka.io/ui/dashboard) and WSA from  [https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso](https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso).
+* Path B (automated with WSA): Download the WSA package from [https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso](https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso).
+* Path C (manual installation and configuration): Download the WEKA software tarball from [get.weka.io](https://get.weka.io/ui/dashboard).
 
 You can only sign in and download the packages if you are a registered user.
 
-**Procedure**
+**Procedure: Download from get.weka.io**
 
 1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and sign in with your registered account.
 

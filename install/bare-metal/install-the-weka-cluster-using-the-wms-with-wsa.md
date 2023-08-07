@@ -34,6 +34,7 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (not
 
 Before deploying the WMS, adhere to the following:
 
+* Obtain the WMS package (see [Obtain the WEKA installation packages](obtaining-the-weka-install-file.md)).
 * The root password is `WekaService`
 * The WEKA user password is `weka.io123`
 * If errors occur during installation and the installation halts (no error messages appear), use the system console to review the logs in `/tmp`. The primary log is `/tmp/ks-pre.log`.
@@ -50,8 +51,7 @@ Before deploying the WMS, adhere to the following:
 
 ### Install the WMS
 
-1. Download the latest WMS image from [get.weka.io](https://get.weka.io/) (requires sign-in).
-2. Boot the server from the WMS image. The following are some options to do that:
+1. Boot the server from the WMS image. The following are some options to do that:
 
 {% tabs %}
 {% tab title="Copy to a mountable location" %}
@@ -119,7 +119,7 @@ Change the port from 9090 to 8051, which is the WMS Admin port.
 
 ### Add the WSA package to the WMS
 
-1. Download the WSA package. See instruction in "obtain ...".
+1. Download the WSA package from [https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso](https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso).
 2. Copy the WSA package to **/home/weka** .\
    For example:  `scp <wsa.iso> weka@<wms-server>:`
 
