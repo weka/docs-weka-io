@@ -449,3 +449,33 @@ The probable cause can be issues related to the SMTP server, such as wrong crede
    Wait until an error appears.
 2. Retrieve the logs and search for the error. On the Local Weka Home terminal, run the following command:\
    ``for dep in `kubectl get deployment -n home-weka-io -o name`; do echo -----$dep-----; kubectl logs $dep --all-containers=true --timestamps=true --since=5m ; done``
+
+## Collect LWH deployment diagnostics
+
+The LWH provides a script that collects various resource details from the LWH deployed on the Kubernetes cluster and generates an archive. This information helps the Customer Success Team and R\&D to analyze and provide support when troubleshooting is needed.
+
+The LWH deployment diagnostics provide the following information:
+
+* Pods status
+* Logs of all pods
+* Minikube settings
+* Free disk space
+* CPU and memory usage
+* Name resolutions
+* LWH version
+* Syslogs
+
+**Procedure**
+
+1. Obtain the `dump.sh` script from the LWH installation package.
+2. Run the following command:
+
+```
+dump.sh [archive] [--include-sensitive] [--full-disk-scan] [--verbose]
+```
+
+Once you generate the LWH deployment diagnostics archive file, send it to the Customer Success Team for analysis.
+
+**Parameters**
+
+<table><thead><tr><th width="242">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>archive</code>*</td><td>The path and output archive file name. <br>For example: <code>/path/diag/lwh_diagnostics.tar.gz</code></td></tr><tr><td><code>include-sensitive</code></td><td>Include sensitive data in the archive. For example, value overrides.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>full-disk-scan</code></td><td>Perform a higher level of disk scan.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>verbose</code></td><td>Provide a higher verbosity level of the debug information.</td></tr></tbody></table>
