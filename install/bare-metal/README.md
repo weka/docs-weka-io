@@ -64,7 +64,7 @@ If the OS (Rocky 8.6) meets your needs but the bare-metal servers are not HPe, D
 {% tab title="Path C: Manual installation and configuration" %}
 Manually install and configure the WEKA cluster if:
 
-* The the bare metal servers are not HPe, Dell, or Supermicro, or
+* The bare metal servers are not HPe, Dell, or Supermicro, or
 * You want to use a different OS than Rocky 8.6, or
 * You need special customization, where you cannot use the WEKA Configurator.
 
