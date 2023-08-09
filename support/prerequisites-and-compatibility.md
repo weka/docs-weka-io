@@ -323,9 +323,11 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\
 * HCP Classic V9.2 and up (with versioned buckets only)
 * HCP for Cloud-Scale V2.x
 * IBM Cloud Object Storage System (version 3.14.7 and up)
+* Lenovo MagnaScale (version 3.0 and up)
 * Quantum ActiveScale (version 5.5.1 and up)
 * Red Hat Ceph Storage (version 5.0 and up)
-* Scality (version 7.4.4.8 and up)
+* Scality Ring (version 7.4.4.8 and up)
+* Scality Artesca (version 1.5.2 and up)
 * SwiftStack (version 6.30 and up)
 
 ## Virtual Machines
