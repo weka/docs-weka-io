@@ -263,11 +263,11 @@ global:
 
 <summary>Forward data from the Local Weka Home to the Cloud Weka Home</summary>
 
-In the **apiforwarding** section, set the forwarding parameters to **true** (except the forwarding\_bulk\_size).
+In the **apiforwarding** section, set the forwarding parameters to **true** (except the forwarding\_bulk\_size), as shown in the following sample. This is the default setting starting in Local Weka Home v2.10. To disable forwarding metrics to Cloud WEKA Home from Local WEKA Home, set `enabled: false` below.
 
 ```
 apiforwarding:
-  enabled: false
+  enabled: true
   api_forwarding_url: "https://api.home.weka.io"
   replica_count: 1
   resources:

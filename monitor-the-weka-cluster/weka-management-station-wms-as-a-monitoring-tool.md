@@ -149,7 +149,8 @@ You can set the sender and target SMTP server details for email notifications ab
 ### Install and configure the LWH
 
 1. From the left pane, select **Configure Local WEKA Home**.
-2. If required, customize the LWH settings.
+2. If required, customize the LWH settings.\
+   The forward data to the Cloud Weka Home is enabled by default.
 3. Select **Save**.\
    The WMS saves the configuration and installs the Minikube and LWH. This process can take several minutes. When the process completes, the following appears:
 
