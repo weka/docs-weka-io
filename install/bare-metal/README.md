@@ -68,6 +68,10 @@ Manually install and configure the WEKA cluster if:
 * You want to use a different OS than Rocky 8.6, or
 * You need special customization, where you cannot use the WEKA Configurator.
 
+{% hint style="info" %}
+The manual installation workflow requires deep level of knowledge with WEKA architecture. Visit [WEKA U](https://learnweka.weka.io/learn/signin) for training materials (requires sign-in).
+{% endhint %}
+
 <figure><img src="../../.gitbook/assets/workflow_path_C.png" alt=""><figcaption><p>Path C</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
