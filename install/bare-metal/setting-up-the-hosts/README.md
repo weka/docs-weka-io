@@ -4,9 +4,9 @@ description: >-
   networking and other tasks before configuring the WEKA cluster.
 ---
 
-# Manually prepare the system for WEKA software installation
+# Manually prepare the system for WEKA configuration
 
-Once the hardware and software prerequisites are met, prepare the backend servers and clients for the installation of the WEKA system.
+Once the hardware and software prerequisites are met, prepare the backend servers and clients for the WEKA system configuration.
 
 This preparation consists of the following steps:
 

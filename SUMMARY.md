@@ -22,7 +22,7 @@
   * [Install the WEKA cluster using the WMS with WSA](install/bare-metal/install-the-weka-cluster-using-the-wms-with-wsa.md)
   * [Install the WEKA cluster using the WSA](install/bare-metal/install-the-weka-cluster-using-the-wsa.md)
   * [Manually install OS and WEKA on servers](install/bare-metal/manually-install-os-and-weka-on-servers.md)
-  * [Manually prepare the system for WEKA software installation](install/bare-metal/setting-up-the-hosts/README.md)
+  * [Manually prepare the system for WEKA configuration](install/bare-metal/setting-up-the-hosts/README.md)
     * [Enable the SR-IOV](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Configure the WEKA cluster using the WEKA Configurator](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/README.md)
   * [Manually configure the WEKA cluster using the resource generator](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/weka-system-installation-with-multiple-containers-using-the-cli.md)
