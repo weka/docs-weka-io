@@ -6,7 +6,7 @@ description: >-
 
 # WEKA CSI Plugin
 
-The WEKA CSI Plugin interfaces Kubernetes worker nodes and the WEKA client. It enables the creation and configuration of persistent storage external to Kubernetes. It is based on the CSI Plugin standard.
+The WEKA CSI Plugin interfaces Kubernetes worker nodes and control plane with the WEKA clients. It enables the creation and configuration of persistent storage external to Kubernetes. It is based on the CSI Plugin standard.
 
 <details>
 
