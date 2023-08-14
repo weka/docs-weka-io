@@ -37,7 +37,7 @@ The Weka system automatically distributes the IP addresses evenly on each host a
 To ensure that the various NFS clients balance the load on the various Weka hosts serving NFS, it is recommended to define a [round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS) entry that resolves to the list of floating IPs, ensuring that client loads are equally distributed across all hosts.
 
 {% hint style="info" %}
-**Note:** Make sure to set the TTL (Time to Live) for all A records assigned to the NFS servers to 0 (Zero). This action ensures that the IP is not cached by the client or the DNS server.
+**Note:** Make sure to set the TTL (Time to Live) for all A records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
 {% endhint %}
 
 ### Define NFS access control (client access groups)
@@ -49,17 +49,17 @@ To control the access mapping between the hosts and the filesystems, the NFS cli
 
 ### Configure NFS on the client
 
-Configure the NFS mount on the client host by the standard NFS stack operating system. The NFS server IP address must point to the round-robin DNS name as defined [above](./#configure-the-round-robin-dns-server).
+Configure the NFS mount on the client host by the standard NFS stack operating system. The NFS server IP address must point to the round-robin DNS name defined [above](./#configure-the-round-robin-dns-server).
 
 ## NFS service load balancing and resiliency&#x20;
 
 The Weka NFS service is a scalable, fully load-balanced, and resilient service that provides continuous service through failures of any kind.
 
-Scalability is implemented by defining many hosts that serve the NFS protocol, thereby enabling the scaling of performance by adding more hosts to the interface group.
+Scalability is implemented by defining many hosts that serve the NFS protocol, thereby enabling performance scaling by adding more hosts to the interface group.
 
 Load balancing is implemented by floating IPs. By default, the floating IPs are evenly distributed over all the interface group hosts/ports. When different clients resolve the DNS name into an IP service, each of them receives a different IP address, thereby ensuring that different clients access different hosts. This allows the Weka system to scale and service thousands of clients.
 
-The same mechanism ensures the resiliency of the service. On a host failure, all IP addresses associated with the failed host are reassigned to other hosts (using the GARP network messages) and the clients reconnect to the new hosts without any reconfiguration or service interruption.
+The same mechanism ensures the resiliency of the service. On a host failure, all IP addresses associated with the failed host are reassigned to other hosts (using the GARP network messages), and the clients reconnect to the new hosts without reconfiguration or service interruption.
 
 ## User groups resolution
 
@@ -68,7 +68,7 @@ The NFS protocol, using AUTH\_SYS protocol, has a limitation of 16 security grou
 As in many cases, a user can be part of more than 16 security groups. It is possible to configure the Weka system to ignore the groups passed by the NFS protocol and resolve the user's groups external to the protocol. For that, several steps should be taken:
 
 1. Define an interface group that supports external group-IDs resolution (`allow-manage-gids` option).
-2. Define the NFS client permissions to use external group-IDs resolution (`manage-gids` option).
+2. Define the NFS client permissions for external group-IDs resolution (`manage-gids` option).
 3. Set up the relevant hosts to retrieve the user's group-IDs information.
 
 ### Set up the hosts to retrieve user's group-IDs information
@@ -124,7 +124,7 @@ proxy_lib_name = ldap
 ```
 
 {% hint style="info" %}
-**Note:** All users must be present and resolved in the method used in the `sssd` for the groups resolution. In the above example, using an LDAP-only provider, local users (such as a local root) that are not present in LDAP do not receive their groups resolved and they are denied. For such users or applications, add the LDAP user.
+**Note:** All users must be present and resolved in the method used in the `sssd` for the groups resolution. In the above example, using an LDAP-only provider, local users (such as a local root) that are not present in LDAP do not receive their groups resolved, and they are denied. For such users or applications, add the LDAP user.
 {% endhint %}
 
 ## Supported NFS client mount options&#x20;

@@ -43,9 +43,18 @@ Use the following command line to add an interface group:
 
 ## Set interface group ports
 
-**Commands:** `weka nfs interface-group port add`and `weka nfs interface-group port delete`
+**Commands:**
 
-Use the following command lines to add/delete an interface group port:`weka nfs interface-group port add <name> <host-id> <port>`  \
+`weka nfs interface-group port add`
+
+`weka nfs interface-group port delete`
+
+Use the following command lines to add an interface group port:
+
+`weka nfs interface-group port add <name> <host-id> <port>`
+
+Use the following command lines to delete an interface group port:
+
 `weka nfs interface-group port delete <name> <host-id> <port>`
 
 **Parameters**
@@ -58,10 +67,18 @@ Use the following command lines to add/delete an interface group port:`weka nfs 
 
 ## Set interface group IPs
 
-**Commands:** `weka nfs interface-group ip-range add`and `weka nfs interface-group ip-range delete`
+**Commands:**&#x20;
 
-Use the following command lines to add/delete an interface group IP:\
-`weka nfs interface-group ip-range add <name> <ips>`\
+`weka nfs interface-group ip-range add`
+
+`weka nfs interface-group ip-range delete`
+
+Use the following command lines to add an interface group IP:
+
+`weka nfs interface-group ip-range add <name> <ips>`
+
+Use the following command lines to delete an interface group IP:
+
 `weka nfs interface-group ip-range delete <name> <ips>`
 
 **Parameters**
@@ -77,7 +94,7 @@ The AWS environment does not support interface group IPs.
 
 ## Configure the service mountd port
 
-The mountd service receives requests from clients to mount to the NFS server. When working with interface groups (with `allow-manage-gids=on`), it is possible to set it explicitly, rather than have it randomly selected on each server startup. This allows an easier setup of the firewalls to allow that port.
+The mountd service receives requests from clients to mount to the NFS server. When working with interface groups (with `allow-manage-gids=on`), it is possible to set it explicitly rather than have it randomly selected on each server startup. This allows an easier setup of the firewalls to allow that port.
 
 Use the following command to set and view the mountd configuration: `weka nfs global-config set --mountd-port <mountd-port>` and `weka nfs global-config show`
 
@@ -85,8 +102,12 @@ Use the following command to set and view the mountd configuration: `weka nfs gl
 
 **Command:** `weka nfs client-group`
 
-Use the following command lines to add/delete a client access group:\
-`weka nfs client-group add <name>`\
+Use the following command lines to add a client access group:
+
+`weka nfs client-group add <name>`
+
+Use the following command lines to delete a client access group:
+
 `weka nfs client-group delete <name>`
 
 **Parameters**
@@ -101,8 +122,12 @@ Use the following command lines to add/delete a client access group:\
 
 **Command:** `weka nfs rules`
 
-Use the following command lines to add/delete a client group DNS:\
-`weka nfs rules add dns <name> <dns>`\
+Use the following command lines to add a client group DNS:
+
+`weka nfs rules add dns <name> <dns>`
+
+Use the following command lines to delete a client group DNS:
+
 `weka nfs rules delete dns <name> <dns>`
 
 **Parameters**
@@ -116,8 +141,12 @@ Use the following command lines to add/delete a client group DNS:\
 
 **Command:** `weka nfs rules`
 
-Use the following command lines to add/delete a client group IP:\
-`weka nfs rules add ip <name> <ip>`\
+Use the following command line to add a client group IP:
+
+`weka nfs rules add ip <name> <ip>`
+
+Use the following command line to delete a client group IP:
+
 `weka nfs rules delete ip <name> <ip>`
 
 **Parameters**
@@ -131,10 +160,15 @@ Use the following command lines to add/delete a client group IP:\
 
 **Command:** `weka nfs permission`
 
-Use the following command lines to add/update/delete NFS permissions:\
+Use the following command line to add or update NFS permissions:
+
 `weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port]`
 
+Use the following command line to update NFS permissions:
+
 `weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port] [--supported-versions supported-versions]`
+
+Use the following command line to delete NFS permissions:
 
 `weka nfs permission delete <filesystem> <group> [--path path]`
 
