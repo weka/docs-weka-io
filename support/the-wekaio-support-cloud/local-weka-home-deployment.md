@@ -198,7 +198,7 @@ Once the Local Weka Home is deployed, you can set it to send alerts by email, SN
 
 <details>
 
-<summary>Enforce HTTPS</summary>
+<summary>TLS certificates</summary>
 
 To enforce HTTPS connection, change the value of `enabled:` to `true`, set the common name (CN, also known as FQDN), certificate data, and private key in the **tls** section (under the **nginx** section) as shown in the following section:
 
@@ -411,7 +411,39 @@ Suppose there is a change in the SMTP server in your environment, or you need to
 
 **Procedure:**
 
-1. Open the `/root/.config/wekahome/config.yaml` file and modify the settings (as described in [Install and configure Local Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home)).
+1. Open the `/root/.config/wekahome/config.yaml` file and do the following:
+   * Modify the settings (as described in [Install and configure Local Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home)).
+   * If you update the following sections: **TLS**, **admin credentials**, **encryption**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
+
+<details>
+
+<summary>Update the TLS certificates</summary>
+
+```
+nginx:
+  tls:
+     enabled: true
+     # Must set to the CN of the certificate or wildcard
+     cn: "server.example.com"
+     cert: |
+     -----BEGIN CERTIFICATE-----
+     KJDDLJDLjdkm1718dljkdsljdh92edkjdjdjdkjddjsgsglgLQKSJDKDSKLKSf
+        .... Example of a truncated PEM encoded certificate   ..... 
+     DDSHJkadsjkjask7U782CHDF8HD0ihjx8iwciw8wJHDSKDHIO
+     -----END CERTIFICATE-----
+     key: |
+     -----BEGIN PRIVATE KEY-----
+     MIIBOgIBAAJBAKj34GkxFhD90vcNLYLInFEX6Ppy1tPf9Cnzj4p4WGeKLs1Pt8
+          ..... Example of a truncated private key  ..... 
+     n5OiPgoTdSy7bcF9IGpSE8ZgGKzgYQVZeN97YE00
+     -----END PRIVATE KEY-----
+     force_update: true
+```
+
+After applying the configuration change, return the `force_update` to `false`.
+
+</details>
+
 2. Run `./wekahome-install.sh`
 3. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
 4. Verify the Local Weka Home is updated successfully. Run the following command line:\
