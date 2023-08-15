@@ -7,15 +7,23 @@ description: This page describes how to configure the NFS networking using the C
 Using the CLI, you can:
 
 * **Configure the NFS cluster level**
+  * [Set the global configuration filesystem](nfs-support-1.md#configure-the-nfs-configuration-filesystem)
   * [Create interface groups](nfs-support-1.md#define-interface-groups)
   * [Set interface group ports](nfs-support-1.md#set-interface-group-ports)
   * [Set interface group IPs](nfs-support-1.md#set-interface-group-ips)
   * [Configure the service mountd port](nfs-support-1.md#configure-the-service-mountd-port)
-  * [Configure the NFS configuration filesystem](nfs-support-1.md#configure-the-nfs-configuration-filesystem)
 * **Configure the NFS export level (permissions)**
   * [Define client access groups](nfs-support-1.md#uploading-a-snapshot-using-the-ui)
   * [Manage client access groups](nfs-support-1.md#manage-client-access-groups)
   * [Manage NFS client permissions](nfs-support-1.md#manage-nfs-client-permissions)
+
+## Set the global configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
+
+The global configuration filesystem is a shared location for persistent cluster-wide NFS v4,  S3, and SMB-W protocol configurations. It is recommended to allocate 100 GB to support future system expansions.&#x20;
+
+Use the following command line to set the configuration filesystem:
+
+`weka nfs global-config set --config-fs <config-fs>`&#x20;
 
 ## Create interface groups
 
@@ -26,6 +34,10 @@ Use the following command line to add an interface group:
 `weka nfs interface-group add <name> <type> [--subnet subnet] [--gateway gateway] [--allow-manage-gids allow-manage-gids]`
 
 The parameter `allow-manage-gids` determines the type of NFS stack. The default value of this parameter is `on`, which sets the NFS-W stack.
+
+**Example**
+
+`weka nfs interface-group add nfsw NFS  --subnet 255.255.255.0 --gateway 10.0.1.254`
 
 {% hint style="warning" %}
 **Notes:**
@@ -58,6 +70,12 @@ Use the following command lines to add or delete an interface group port:
 
 `weka nfs interface-group port delete <name> <container-id> <port>`
 
+**Example**
+
+The following command line adds the interface `enp2s0` on the Frontend container-id `3` to the interface group named `nfsw`.
+
+`weka nfs interface-group port add nfsw 3 enp2s0`
+
 **Parameters**
 
 <table data-header-hidden><thead><tr><th width="189">Name</th><th>Type</th><th width="265">Value</th><th width="181">Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>name</code></td><td>String</td><td>Interface group name</td><td>None</td><td>Yes</td><td></td></tr><tr><td><code>container-id</code></td><td>String</td><td>Container ID on which the port resides (can be obtained by running the <code>weka cluster container</code> command)</td><td>Valid container ID</td><td>Yes</td><td></td></tr><tr><td><code>port</code></td><td>String</td><td>Port's device, e.g., eth1</td><td>Valid device</td><td>Yes</td><td></td></tr></tbody></table>
@@ -75,6 +93,12 @@ Use the following command lines to add/delete an interface group IP:
 `weka nfs interface-group ip-range add <name> <ips>`
 
 `weka nfs interface-group ip-range delete <name> <ips>`
+
+**Example**
+
+The following command line adds IPs in the range `10.0.1.101` to `10.0.1.118` to the interface group named `nfsw`.
+
+`weka nfs interface-group ip-range add nfsw 10.0.1.101-118`
 
 **Parameters**
 
@@ -96,14 +120,6 @@ Use the following command lines to set and view the mountd configuration:
 `weka nfs global-config set --mountd-port <mountd-port>`&#x20;
 
 `weka nfs global-config show`
-
-## Configure the NFS configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
-
-The NFS configuration filesystem is used as a shared location for persisting cluster-wide NFS configuration. This setting only applies to NFSv4. It is recommended to allocate 100 GB to support future system expansions.&#x20;
-
-Use the following command line to set the NFS configuration filesystem:
-
-`weka nfs global-config set --config-fs <config-fs>`&#x20;
 
 ## Define client access groups <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
 

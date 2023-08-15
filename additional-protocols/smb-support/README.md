@@ -4,7 +4,7 @@ description: >-
   Windows clients.
 ---
 
-# SMB
+# Manage the SMB protocol
 
 SMB (Server Message Block) is a network file-sharing protocol that allows remote systems to connect to shared file and print services. WEKA's implementation is based on a new stack named **SMB-W** in addition to the legacy open-source Samba stack. Both SMB flavors support SMB versions 2 and 3.
 
@@ -70,9 +70,13 @@ For more details about Active Directory properties, see the Microsoft site.
 
 To configure the Weka SMB support, you can use either the Weka system GUI or CLI commands.
 
+**Before you begin**
+
+Verify a persistent cluster-wide configuration filesystem is set (see [Set the global configuration filesystem](../nfs-support/nfs-support-1.md#configure-the-nfs-configuration-filesystem)).
+
 **Workflow**
 
-1. **Configure SMB cluster**: Set the Weka system servers that participate in the SMB cluster.
+1. **Configure SMB cluster**: Set the Weka system servers participating in the SMB cluster.
 2. **Join the SMB cluster in the Active Directory**: Connect and define the Weka system in the Active Directory.
 3. Create shares and folders, and set permissions. By default, the filesystem permissions are root/root/755 and initially can only be set by a WekaFS/NFS mount.
 
@@ -91,12 +95,18 @@ Verify that the DNS "nameserver" of the servers participating in the SMB cluster
 1. Select the Weka servers participating in the SMB cluster and set the domain name.
 2. In on-premises deployments, it is possible to configure a list of public IP addresses distributed across the SMB cluster. If a server fails, the IP addresses from that server are reassigned to another server.
 
-### Configure the round-robin DNS server
+{% hint style="info" %}
+Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
+{% endhint %}
 
-To ensure that the various SMB clients balance the load on the different Weka servers serving SMB, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS) entry that resolves to the list of floating IPs, ensuring that client loads are equally distributed across all servers.
+To ensure load balancing between the NFS clients on the different WEKA servers serving SMB, it is recommended to configure a round-robin DNS entry that resolves to the list of floating IPs.
+
+### Round-robin DNS server configuration
+
+To ensure load balancing between the NFS clients on the different WEKA servers serving SMB, it is recommended to configure a round-robin DNS entry that resolves to the list of floating IPs.
 
 {% hint style="info" %}
-**Note:** Set the TTL (Time to Live) for all A records assigned to the SMB servers to 0 (Zero). This ensures that the client or the DNS server does not cache the IP.
+Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
 {% endhint %}
 
 ### Create SMB shares
@@ -110,7 +120,7 @@ If the share is declared without providing a sub-directory, the WekaFS root is u
 Once the SMB cluster is connected to the Active Directory, it can assign permissions and access rights of SMB cluster filesystems to specific users or user groups. This is performed according to POSIX permissions (Windows permissions are stored in the POSIX permissions system). Any change in the Windows permissions is adapted to the POSIX permissions.
 
 {% hint style="info" %}
-**Note:** The initial set of POSIX permissions is done by the user through the driver/NFS.&#x20;
+**Note:** The user does the initial set of POSIX permissions through the driver/NFS.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
