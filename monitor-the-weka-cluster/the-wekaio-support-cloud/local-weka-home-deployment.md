@@ -443,9 +443,9 @@ After applying the configuration change, return the `force_update` to `false`.
 
 </details>
 
-1. Run `./wekahome-install.sh`
-2. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
-3. Verify the Local Weka Home is updated successfully. Run the following command line:\
+2. Run `./wekahome-install.sh`
+3. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
+4. Verify the Local Weka Home is updated successfully. Run the following command line:\
    `helm status homewekaio -n home-weka-io`
 
 ## Troubleshoot the Local Weka Home deployment
