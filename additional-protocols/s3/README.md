@@ -1,8 +1,8 @@
 ---
-description: This page describes the WEKA implementation of the S3 protocol.
+description: The WEKA configuration of the S3 protocol.
 ---
 
-# S3
+# Manage the S3 protocol
 
 The S3 protocol is widely used and spans many cloud-native or cloud-ready applications.&#x20;
 

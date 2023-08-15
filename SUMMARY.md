@@ -101,13 +101,14 @@
 ## Additional Protocols
 
 * [Additional protocols overview](additional-protocols/additional-protocols-overview.md)
-* [NFS](additional-protocols/nfs-support/README.md)
+* [Manage the NFS protocol](additional-protocols/nfs-support/README.md)
+  * [Supported NFS client mount options](additional-protocols/nfs-support/supported-nfs-client-mount-options.md)
   * [Manage NFS networking using the GUI](additional-protocols/nfs-support/nfs-support.md)
   * [Manage NFS networking using the CLI](additional-protocols/nfs-support/nfs-support-1.md)
-* [SMB](additional-protocols/smb-support/README.md)
+* [Manage the SMB protocol](additional-protocols/smb-support/README.md)
   * [Manage SMB using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
   * [Manage SMB using the CLI](additional-protocols/smb-support/smb-management-using-the-cli.md)
-* [S3](additional-protocols/s3/README.md)
+* [Manage the S3 protocol](additional-protocols/s3/README.md)
   * [S3 cluster management](additional-protocols/s3/s3-cluster-management/README.md)
     * [Manage the S3 service using the GUI](additional-protocols/s3/s3-cluster-management/s3-cluster-management.md)
     * [Manage the S3 service using the CLI](additional-protocols/s3/s3-cluster-management/s3-cluster-management-1.md)

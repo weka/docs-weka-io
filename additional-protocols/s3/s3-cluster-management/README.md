@@ -6,21 +6,16 @@ description: This page describes how to set up, update, monitor, and delete an S
 
 ## Considerations
 
-The S3 service can be exposed from the cluster servers, ranging from three servers to the entire cluster. The service performance scales linearly as the S3 cluster scales.
-
-{% hint style="info" %}
-Depending on the workload, you may need several FE cores to gain maximum performance.
-{% endhint %}
+* **Performance scale:** The S3 service can be exposed from the cluster servers, ranging from three servers to the entire cluster. The service performance scales linearly as the S3 cluster scales. Depending on the workload, you may need several Frontend cores to gain maximum performance.
+* **Cluster-wide configuration filesystem:** The S3 protocol requires a persistent cluster-wide configuration filesystem (see [Set the global configuration filesystem](../../nfs-support/nfs-support-1.md#configure-the-nfs-configuration-filesystem)).
 
 ## Round-robin DNS or load balancer
 
-To ensure that the various S3 clients balance the load on the different WEKA servers serving S3, configuring a _Round-robin DNS_ entry is recommended. The round-robin DNS resolves the list of servers' IPs and equally distributes the clients' loads across all servers.
+To ensure load balancing between the S3 clients on the different WEKA servers serving S3, it is recommended to configure a round-robin DNS entry that resolves to the list of servers' IPs.
 
 A DNS server that supports health checks can help with resiliency if any servers serving S3 become unresponsive.
 
-Even a robust DNS server or load-balancer may become overloaded with an extreme load. You can also use a client-side load balancer, where each client checks the health of each S3 container in the cluster. One such load balancer is the open-source _Sidekick Load Balancer_.
-
-
+Even a robust DNS server or load-balancer may become overloaded with an extreme load. You can also use a client-side load balancer, where each client checks the health of each S3 container in the cluster. An example of such a load balancer is the open-source _Sidekick Load Balancer_.
 
 **Related information**
 

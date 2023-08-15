@@ -1,10 +1,8 @@
 ---
-description: >-
-  This page describes the WEKA configuration of the SMB protocol for shared
-  Windows clients.
+description: The WEKA configuration of the SMB protocol for shared Windows clients.
 ---
 
-# SMB
+# Manage the SMB protocol
 
 SMB (Server Message Block) is a network file-sharing protocol that allows remote systems to connect to shared file and print services. WEKA's implementation is based on a new stack named **SMB-W** in addition to the legacy open-source Samba stack. Both SMB flavors support SMB versions 2 and 3.
 
@@ -41,7 +39,7 @@ The WEKA system pulls users and groups information from the Active Directory aut
 * **RFC2307:** Where `uidNumber` and `gidNumber` must be defined in the AD user attributes.
 * **rid:** Creates a local mapping with the AD users and groups.
 
-Using **rid** mapping can ease the configuration, where user IDs are tracked automatically. All domain user accounts and groups are automatically available on the domain member, and no attributes need to be set for domain users and groups. On the other hand, if the **rid** AD range configuration changes, user mapping might change and result in wrong uids/gids resolution.&#x20;
+Using **rid** mapping can ease the configuration, where user IDs are tracked automatically. All domain user accounts, and groups are automatically available on the domain member, and no attributes need to be set for domain users and groups. On the other hand, if the **rid** AD range configuration changes, user mapping might change and result in wrong uids/gids resolution.&#x20;
 
 ### Active Directory attributes
 
@@ -70,9 +68,13 @@ For more details about Active Directory properties, see the Microsoft site.
 
 To configure the Weka SMB support, you can use either the Weka system GUI or CLI commands.
 
+**Before you begin**
+
+Verify a persistent cluster-wide configuration filesystem is set (see [Set the global configuration filesystem](../nfs-support/nfs-support-1.md#configure-the-nfs-configuration-filesystem)).
+
 **Workflow**
 
-1. **Configure SMB cluster**: Set the Weka system servers that participate in the SMB cluster.
+1. **Configure SMB cluster**: Set the Weka system servers participating in the SMB cluster.
 2. **Join the SMB cluster in the Active Directory**: Connect and define the Weka system in the Active Directory.
 3. Create shares and folders, and set permissions. By default, the filesystem permissions are root/root/755 and initially can only be set by a WekaFS/NFS mount.
 
@@ -91,13 +93,17 @@ Verify that the DNS "nameserver" of the servers participating in the SMB cluster
 1. Select the Weka servers participating in the SMB cluster and set the domain name.
 2. In on-premises deployments, it is possible to configure a list of public IP addresses distributed across the SMB cluster. If a server fails, the IP addresses from that server are reassigned to another server.
 
-### Configure the round-robin DNS server
+### Round-robin DNS server configuration
 
-To ensure that the various SMB clients balance the load on the different Weka servers serving SMB, it is recommended to define a [Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS) entry that resolves to the list of floating IPs, ensuring that client loads are equally distributed across all servers.
+To ensure load balancing between the NFS clients on the different WEKA servers serving SMB, it is recommended to configure a round-robin DNS entry that resolves to the list of floating IPs.
 
 {% hint style="info" %}
-Set the TTL (Time to Live) for all A records assigned to the SMB servers to 0 (Zero). This ensures the client or the DNS server does not cache the IP.
+Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
 {% endhint %}
+
+**Related information**
+
+[Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS)
 
 ### Create SMB shares
 
