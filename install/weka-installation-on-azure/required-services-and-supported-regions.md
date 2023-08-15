@@ -24,7 +24,6 @@ The region must support the services used in WEKA on Azure. The following sectio
   * East US 2
   * North Central US
   * South Central US
-  * West US
   * West US 2
   * West US 3
 * **Europe**
