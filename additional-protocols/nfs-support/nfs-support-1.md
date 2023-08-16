@@ -12,20 +12,23 @@ Using the CLI, you can:
   * [Set interface group ports](nfs-support-1.md#set-interface-group-ports)
   * [Set interface group IPs](nfs-support-1.md#set-interface-group-ips)
   * [Configure the service mountd port](nfs-support-1.md#configure-the-service-mountd-port)
+  *
 * **Configure the NFS export level (permissions)**
   * [Define client access groups](nfs-support-1.md#uploading-a-snapshot-using-the-ui)
   * [Manage client access groups](nfs-support-1.md#manage-client-access-groups)
   * [Manage NFS client permissions](nfs-support-1.md#manage-nfs-client-permissions)
 
-## Set the global configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
+## **Configure the NFS cluster level** <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
 
-The global configuration filesystem is a shared location for persistent cluster-wide NFS v4,  S3, and SMB-W protocol configurations. It is recommended to allocate 100 GB to support future system expansions.&#x20;
+### Set the global configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
+
+The global configuration filesystem is a shared location for persistent cluster-wide NFSv4,  S3, and SMB-W protocol configurations. It is recommended to allocate 100 GB to support future system expansions.&#x20;
 
 Use the following command line to set the configuration filesystem:
 
 `weka nfs global-config set --config-fs <config-fs>`&#x20;
 
-## Create interface groups
+### Create interface groups
 
 **Command:** `weka nfs interface-group add`
 
@@ -56,7 +59,7 @@ The parameter `allow-manage-gids` determines the type of NFS stack. The default 
 | `gateway`           | String   | Gateway IP                                                                                                                                                                                                                                                                               | Valid IP                                                                                                                                                                                      | No            | 255.255.255.255 |
 | `allow-manage-gids` | String   | <p>Allows the containers within this interface group to use <code>manage-gids</code> when set in exports. </p><p>With <code>manage-gids</code>, the list of group IDs received from the client is replaced by a list of group IDs determined by an appropriate lookup on the server.</p> | <p>NFS-W: <code>on</code></p><p>Legacy NFS: <code>off</code></p><p></p><p>Each container can be set to be part of interface groups with the same value of <code>allow-manage-gids</code>.</p> | No            | `on`            |
 
-## Set interface group ports
+### Set interface group ports
 
 **Commands:**
 
@@ -80,7 +83,7 @@ The following command line adds the interface `enp2s0` on the Frontend container
 
 <table data-header-hidden><thead><tr><th width="189">Name</th><th>Type</th><th width="265">Value</th><th width="181">Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>name</code></td><td>String</td><td>Interface group name</td><td>None</td><td>Yes</td><td></td></tr><tr><td><code>container-id</code></td><td>String</td><td>Container ID on which the port resides (can be obtained by running the <code>weka cluster container</code> command)</td><td>Valid container ID</td><td>Yes</td><td></td></tr><tr><td><code>port</code></td><td>String</td><td>Port's device, e.g., eth1</td><td>Valid device</td><td>Yes</td><td></td></tr></tbody></table>
 
-## Set interface group IPs
+### Set interface group IPs
 
 **Commands:**&#x20;
 
@@ -111,7 +114,7 @@ The following command line adds IPs in the range `10.0.1.101` to `10.0.1.118` to
 **Note:** Cloud environments do not support interface group IPs.
 {% endhint %}
 
-## Configure the service mountd port
+### Configure the service mountd port
 
 The mountd service receives requests from clients to mount to the NFS server. In NFS-W, it is possible to set it explicitly rather than have it randomly selected on each server startup. This allows an easier setup of the firewalls to allow that port.
 
@@ -121,7 +124,79 @@ Use the following command lines to set and view the mountd configuration:
 
 `weka nfs global-config show`
 
-## Define client access groups <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
+### Configure user groups resolution when using the legacy NFS
+
+The legacy NFS protocol uses the AUTH\_SYS protocol to authenticate clients and grant them access to network resources. This protocol is limited to 16 security groups. Therefore, it truncates the group list to 16 if a user is in more than 16 groups. This can cause an access failure for authorized users.
+
+To ignore the groups passed by the NFS protocol and resolve the user's groups external to the protocol, configure the WEKA system as follows:
+
+**Procedure**
+
+1. Ensure the interface group supports the external group-IDs resolution. When [creating interface groups](nfs-support-1.md#create-interface-groups), ensure that the `allow-manage-gids` option is set to `on` (default value).&#x20;
+2. [Set the NFS client permissions](nfs-support-1.md#manage-nfs-client-permissions) for external group-IDs resolution by setting the `manage-gids` option to `on`.
+3. Set up the relevant servers to retrieve the user's group-IDs information. See the following procedure. (This task does not involve the WEKA management.)
+
+<details>
+
+<summary>Set up the servers to retrieve user's group-IDs information</summary>
+
+For the servers that are part of the interface group, set the servers to retrieve the user's group-IDs information in any method that is part of the environment.
+
+You can also set the group resolution by joining the AD and Kerberos domains or using LDAP with a read-only user.
+
+Configure the `sssd` on the server to serve as a group IDs provider. For example, you can configure the `sssd` directly using LDAP or as a proxy to a different `nss` group IDs provider.
+
+**Example: set `sssd` directly for `nss` services using LDAP with a read-only user**
+
+```
+[sssd]
+services = nss
+config_file_version = 2
+domains = LDAP
+
+[domain/LDAP]
+id_provider = ldap
+ldap_uri = ldap://ldap.example.com
+ldap_search_base = dc=example,dc=com
+
+# The DN used to search the ldap directory with. 
+ldap_default_bind_dn = cn=ro_admin,ou=groups,dc=example,dc=com
+
+# The password of the bind DN.
+ldap_default_authtok = password
+
+```
+
+If you use another method than the `sssd` but with a different provider, configure an `sssd proxy` on each relevant server. The proxy is used for the WEKA container to resolve the groups by any method defined on the server.
+
+To configure `sssd proxy` on a server, use the following:
+
+```
+# install sssd
+yum install sssd
+
+# set up a proxy for WEKA in /etc/sssd/sssd.conf
+[sssd]
+services = nss
+config_file_version = 2
+domains = proxy_for_weka
+
+[nss]
+[domain/proxy_for_weka]
+id_provider = proxy
+auth_provider = none
+ 
+# the name of the nss lib to be proxied, e.g., ldap, nis, winbind, vas4, etc.
+proxy_lib_name = ldap
+```
+
+All users must be present and resolved in the method used in the `sssd` for the group's resolution. In the above example, using an LDAP-only provider, local users (such as a local root) absent in LDAP do not receive their groups resolved and are denied. For such users or applications, add the LDAP user.
+
+</details>
+
+## **Configure the NFS export level (permissions)**
+
+### Define client access groups <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
 
 **Command:** `weka nfs client-group`
 
@@ -137,9 +212,9 @@ Use the following command lines to add/delete a client access group:
 | -------- | -------- | ---------- | --------------- | ------------- | ----------- |
 | `name`   | String   | Group name | Valid name      | Yes           |             |
 
-## Manage client access groups
+### Manage client access groups
 
-### **Add or delete DNS**
+#### **Add or delete DNS**
 
 **Command:** `weka nfs rules`
 
@@ -156,7 +231,7 @@ Use the following command lines to add/delete a client group DNS:
 | `name`   | String   | Group name                          | Valid name      | Yes           |             |
 | `dns`    | String   | DNS rule with \*?\[] wildcard rules |                 | Yes           |             |
 
-### **Add or delete an IP**
+#### **Add or delete an IP**
 
 **Command:** `weka nfs rules`
 
@@ -173,7 +248,7 @@ Use the following command lines to add/delete a client group IP:
 | `name`   | String   | Group name                                              | Valid name      | Yes           |             |
 | `ip`     | String   | IP with netmask rule, in the 1.1.1.1/255.255.0.0 format | Valid IP        | Yes           |             |
 
-## **Manage NFS client permissions**
+### **Manage NFS client permissions**
 
 **Command:** `weka nfs permission`
 
