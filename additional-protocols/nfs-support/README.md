@@ -18,7 +18,7 @@ Adhere to the following guidelines and requirements when deploying the NFS servi
 
 ### **Global configuration filesystem**
 
-NFSv4.0/4.1 requires a persistent cluster-wide configuration filesystem. The S3 and SMB-W services also share this filesystem.
+NFSv4 requires a persistent cluster-wide configuration filesystem. The S3 and SMB-W services also share this filesystem.
 
 ### **Interface groups**
 
