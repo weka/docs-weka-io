@@ -12,7 +12,7 @@ Using the CLI, you can:
   * [Set interface group ports](nfs-support-1.md#set-interface-group-ports)
   * [Set interface group IPs](nfs-support-1.md#set-interface-group-ips)
   * [Configure the service mountd port](nfs-support-1.md#configure-the-service-mountd-port)
-  *
+  * [Configure user groups resolution when using the legacy NFS](nfs-support-1.md#configure-user-groups-resolution-when-using-the-legacy-nfs)
 * **Configure the NFS export level (permissions)**
   * [Define client access groups](nfs-support-1.md#uploading-a-snapshot-using-the-ui)
   * [Manage client access groups](nfs-support-1.md#manage-client-access-groups)
