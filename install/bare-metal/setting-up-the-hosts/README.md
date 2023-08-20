@@ -10,13 +10,14 @@ Once the hardware and software prerequisites are met, prepare the backend server
 
 This preparation consists of the following steps:
 
-1. [Install NIC drivers](./#install-nic-drivers).
-2. [Enable SR-IOV](./#enable-sr-iov) (when required).
-3. [Configure the networking](./#configure-the-networking).
-4. [Verify the network configuration](./#verify-the-network-configuration).
-5. [Configure the clock synchronization](./#configure-sync).
-6. [Disable the Numa balancing](./#disable-the-numa-balancing).
-7. [Validate the system preparation](./#validate-the-system-preparation).
+1. [Install NIC drivers](./#install-nic-drivers)
+2. [Enable SR-IOV](./#enable-sr-iov) (when required)
+3. [Configure the networking](./#configure-the-networking)
+4. [Verify the network configuration](./#verify-the-network-configuration)
+5. [Configure the clock synchronization](./#configure-the-ha-networking)
+6. [Disable the Numa balancing](./#configure-sync)
+7. [Disable the NUMA balancing](./#disable-the-numa-balancing)
+8. [Validate the system preparation](./#validate-the-system-preparation)
 
 {% hint style="info" %}
 Some of the examples contain version-specific information. The software is updated frequently, so the package versions available to you may differ from those presented here.
@@ -26,7 +27,7 @@ Some of the examples contain version-specific information. The software is updat
 
 [prerequisites-and-compatibility.md](../../../support/prerequisites-and-compatibility.md "mention")
 
-## Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
+## 1. Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
 {% hint style="info" %}
 The steps describing the installation of NIC drivers are provided as a courtesy. Refer to your NIC vendor documentation for the latest information and updates.
@@ -85,7 +86,7 @@ On completion of the OFED installation, the NIC firmware may be updated to match
 
 This concludes the Mellanox OFED installation procedure.
 
-## Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
+## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
 Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following cases:
 
@@ -96,7 +97,7 @@ Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following
 
 [sr-iov-enablement.md](sr-iov-enablement.md "mention")
 
-## Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
+## 3. Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
 
 ### Ethernet configuration
 
@@ -239,7 +240,7 @@ Verify the connection is up with all the non-default partition attributes set:
 {% endtab %}
 {% endtabs %}
 
-## Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
+## 4. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
 
 Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the servers:
 
@@ -259,7 +260,7 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 
 `-s 8972` is the maximum ICMP packet size that can be transferred with MTU 9000, due to the overhead of ICMP and IP protocols.
 
-## Configure the HA networking <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
+## 5. Configure the HA networking <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
 
 Bonded interfaces are supported for ethernet can be added to WEKA after setting the bonded device in the server.
 
@@ -334,13 +335,13 @@ Refer to this [link](https://access.redhat.com/solutions/30564) to learn how to 
 
 [#high-availability-ha](../../../overview/networking-in-wekaio.md#high-availability-ha "mention")
 
-## Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
+## 6. Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
 
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the WEKA system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
 Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the WEKA software.
 
-## **Disable the NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
+## **7. Disable the NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
 
 The WEKA system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies in the operations.
 
@@ -350,7 +351,7 @@ To disable NUMA balancing, run the following command on the server:
 echo 0 > /proc/sys/kernel/numa_balancing
 ```
 
-## Validate the system preparation <a href="#validate-the-system-preparation" id="validate-the-system-preparation"></a>
+## 8. Validate the system preparation <a href="#validate-the-system-preparation" id="validate-the-system-preparation"></a>
 
 The `wekachecker` is a tool that validates the readiness of the servers in the cluster before installing the WEKA software.
 
@@ -401,7 +402,9 @@ The `wekachecker`tool applies to all WEKA versions. From V4.0, the following val
 
 Once the report has no failures or warnings that must be fixed, you can install the WEKA software.
 
-**wekachecker report example**
+<details>
+
+<summary><strong>wekachecker report example</strong></summary>
 
 ```
 Dataplane IP Jumbo Frames/Routing test                       [PASS]
@@ -434,12 +437,14 @@ Check for /tmp noexec mount                                  [PASS]
 RESULTS: 21 Tests Passed, 0 Failed, 5 Warnings
 ```
 
+</details>
+
 ## What to do next?
 
 If you can use the WEKA Configurator, go to:
 
-[weka-system-installation-with-multiple-containers-using-the-cli](../weka-system-installation-with-multiple-containers-using-the-cli/ "mention")
+[configure-the-weka-cluster-using-the-weka-configurator.md](../configure-the-weka-cluster-using-the-weka-configurator.md "mention")
 
 Otherwise, go to:
 
-[weka-system-installation-with-multiple-containers-using-the-cli.md](../weka-system-installation-with-multiple-containers-using-the-cli/weka-system-installation-with-multiple-containers-using-the-cli.md "mention")
+[manually-configure-the-weka-cluster-using-the-resource-generator.md](../manually-configure-the-weka-cluster-using-the-resource-generator.md "mention")

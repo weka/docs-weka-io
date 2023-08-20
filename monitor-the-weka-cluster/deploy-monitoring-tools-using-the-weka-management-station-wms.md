@@ -1,10 +1,10 @@
 ---
 description: >-
-  Install WMS in an on-premises environment, including LWH, WEKAmon, and
-  SnapTool.
+  Deploy the monitoring tools, LWH, WEKAmon, and SnapTool, using the WEKA
+  Management Station (WMS) in an on-premises environment.
 ---
 
-# WEKA Management Station (WMS) as a monitoring tool
+# Deploy monitoring tools using the WEKA Management Station (WMS)
 
 The WEKA Management Station (WMS) is an install kit similar to an OS install disk that simplifies the installation and configuration of the Local WEKA Home (LWH), WEKAmon, and SnapTool, in an on-premises environment. The WMS installs the WEKA OS, drivers, and WEKA software automatically and unattended.
 
@@ -53,14 +53,14 @@ Before deploying the WMS, adhere to the following:
 
 ## &#x20;WMS deployment workflow
 
-1. [Install the WMS](weka-management-station-wms-as-a-monitoring-tool.md#install-the-wms).
-2. [Configure the WMS](weka-management-station-wms-as-a-monitoring-tool.md#configure-the-wms).
-3. [Set the email notifications](weka-management-station-wms-as-a-monitoring-tool.md#set-the-email-notifications).
-4. [Install and configure the LWH](weka-management-station-wms-as-a-monitoring-tool.md#install-and-configure-the-lwh).
-5. [Configure the WEKAmon](weka-management-station-wms-as-a-monitoring-tool.md#configure-the-wekamon).
-6. [Edit the hosts file](weka-management-station-wms-as-a-monitoring-tool.md#edit-the-hosts-file).
-7. [Configure the Snaptool](weka-management-station-wms-as-a-monitoring-tool.md#configure-the-snaptool).
-8. [Download logs](weka-management-station-wms-as-a-monitoring-tool.md#download-logs).
+1. [Install the WMS](deploy-monitoring-tools-using-the-weka-management-station-wms.md#install-the-wms).
+2. [Configure the WMS](deploy-monitoring-tools-using-the-weka-management-station-wms.md#configure-the-wms).
+3. [Set the email notifications](deploy-monitoring-tools-using-the-weka-management-station-wms.md#set-the-email-notifications).
+4. [Install and configure the LWH](deploy-monitoring-tools-using-the-weka-management-station-wms.md#install-and-configure-the-lwh).
+5. [Configure the WEKAmon](deploy-monitoring-tools-using-the-weka-management-station-wms.md#configure-the-wekamon).
+6. [Edit the hosts file](deploy-monitoring-tools-using-the-weka-management-station-wms.md#edit-the-hosts-file).
+7. [Configure the Snaptool](deploy-monitoring-tools-using-the-weka-management-station-wms.md#configure-the-snaptool).
+8. [Download logs](deploy-monitoring-tools-using-the-weka-management-station-wms.md#download-logs).
 
 ### Install the WMS
 
@@ -195,8 +195,8 @@ The WMS could have more than one IP interface. For example, it can be installed 
 {% hint style="info" %}
 If DNS does not have the hostnames of the cluster, do one of the following:
 
-* Edit the /etc/hosts file before trying again. See [Edit the hosts file](weka-management-station-wms-as-a-monitoring-tool.md#edit-the-hosts-file).
-* Use the Cockpit Web Interface on port 9090 to change the DNS settings. See Cockpit Web Interface in [Configure the WMS](weka-management-station-wms-as-a-monitoring-tool.md#configure-the-wms).
+* Edit the /etc/hosts file before trying again. See [Edit the hosts file](deploy-monitoring-tools-using-the-weka-management-station-wms.md#edit-the-hosts-file).
+* Use the Cockpit Web Interface on port 9090 to change the DNS settings. See Cockpit Web Interface in [Configure the WMS](deploy-monitoring-tools-using-the-weka-management-station-wms.md#configure-the-wms).
 {% endhint %}
 
 Once the WMS successfully logs in to the cluster, the WEKAmon installation begins.

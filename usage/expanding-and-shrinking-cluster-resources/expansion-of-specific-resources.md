@@ -106,7 +106,7 @@ Adding SSD drives can alter the ratio between SSDs and drive cores.
    `weka cluster container`
 3. Scan for new drives by running  the command:\
    `weka cluster drive scan`
-4. To add the SSDs, follow the instructions in the [#6.-configure-the-ssd-drives](../../install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/#6.-configure-the-ssd-drives "mention") section.
+4. To add the SSDs, follow the instructions in the [Broken link](broken-reference "mention") section.
 
 ## Modify resources on a local container
 

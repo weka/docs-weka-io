@@ -2,7 +2,7 @@
 
 The WEKA Management Station (WMS) is an install kit similar to an OS install disk that simplifies the installation and configuration of the WEKA cluster in an on-premises environment by deploying the WEKA Software Appliance (WSA) package on bare metal servers. The WMS installs the WEKA OS, drivers, and WEKA software automatically and unattended.
 
-The WMS is also used for installing the monitoring tools: Local WEKA Home (LWH), WEKAmon, and SnapTool. See [WEKA Management Station (WMS) as a monitoring tool](../../monitor-the-weka-cluster/weka-management-station-wms-as-a-monitoring-tool.md).
+The WMS is also used for installing the monitoring tools: Local WEKA Home (LWH), WEKAmon, and SnapTool (for details, see [deploy-monitoring-tools-using-the-weka-management-station-wms.md](../../monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention").
 
 <figure><img src="../../.gitbook/assets/WMS_and_WSA_install_cluster.png" alt=""><figcaption><p>Install the WEKA cluster using the WMS with WSA</p></figcaption></figure>
 
@@ -27,14 +27,14 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (not
 * Target servers must be **HPe**, **Dell,** or **Supermicro**. Other servers are not supported.
 * The RedFish interface must be installed, enabled, and licensed for all target servers. (RedFish is a network standard API for managing servers, networks, storage devices, and more.)
 * The WMS must be able to connect over Ethernet to the servers’ IPMI/iDRAC/iLO interface and the management interface.
-* The bare metal servers must conform to the [Prerequisites and compatibility](../../support/prerequisites-and-compatibility.md).
+* The bare metal servers must conform to the [prerequisites-and-compatibility.md](../../support/prerequisites-and-compatibility.md "mention").
 * The bare metal servers must have an OS management network interface for administering the servers using DHCP.
 
 ## Before you begin
 
 Before deploying the WMS, adhere to the following:
 
-* Obtain the WMS package (see [Obtain the WEKA installation packages](obtaining-the-weka-install-file.md)).
+* Obtain the WMS package. For details, see [obtaining-the-weka-install-file.md](obtaining-the-weka-install-file.md "mention").
 * The root password is `WekaService`
 * The WEKA user password is `weka.io123`
 * If errors occur during installation and the installation halts (no error messages appear), use the system console to review the logs in `/tmp`. The primary log is `/tmp/ks-pre.log`.
@@ -44,12 +44,12 @@ Before deploying the WMS, adhere to the following:
 
 ## WMS deployment workflow
 
-1. [Install the WMS](install-the-weka-cluster-using-the-wms-with-wsa.md#install-the-wms).
-2. [Configure the WMS](install-the-weka-cluster-using-the-wms-with-wsa.md#configure-the-wms).
-3. [Add the WSA package to the WMS](install-the-weka-cluster-using-the-wms-with-wsa.md#add-the-wsa-package-to-the-wms).
-4. [Install a WEKA Cluster](install-the-weka-cluster-using-the-wms-with-wsa.md#install-a-weka-cluster).
+1. [Install the WMS](install-the-weka-cluster-using-the-wms-with-wsa.md#1.-install-the-wms)
+2. [Configure the WMS](install-the-weka-cluster-using-the-wms-with-wsa.md#2.-configure-the-wms)
+3. [Add the WSA package to the WMS](install-the-weka-cluster-using-the-wms-with-wsa.md#3.-add-the-wsa-package-to-the-wms)
+4. [Install a WEKA Cluster](install-the-weka-cluster-using-the-wms-with-wsa.md#4.-install-a-weka-cluster)
 
-### Install the WMS
+### 1. Install the WMS
 
 1. Boot the server from the WMS image. The following are some options to do that:
 
@@ -85,7 +85,7 @@ Depending on network speed, this can take about 10-60 mins (or more) per server.
 
 <figure><img src="../../.gitbook/assets/WMS_install_1.png" alt="" width="375"><figcaption><p>WMS installation progress</p></figcaption></figure>
 
-### Configure the WMS
+### 2. Configure the WMS
 
 Once the WMS installation is complete and rebooted, configure the WMS.
 
@@ -117,13 +117,13 @@ Change the port from 9090 to 8051, which is the WMS Admin port.
 
 <figure><img src="../../.gitbook/assets/WMS_landing_page.png" alt="" width="375"><figcaption><p>WMS Landing Pag</p></figcaption></figure>
 
-### Add the WSA package to the WMS
+### 3. Add the WSA package to the WMS
 
 1. Download the WSA package from [https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso](https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso).
 2. Copy the WSA package to **/home/weka** .\
    For example:  `scp <wsa.iso> weka@<wms-server>:`
 
-### Install a WEKA Cluster
+### 4. Install a WEKA Cluster
 
 1. Go to the WMS Admin UI (landing page) and select **Deploy a WEKA Custer**.
 
@@ -260,4 +260,4 @@ Ensure the DNS is operational, or copy the `/etc/hosts` entries from one of the 
 
 ## What to do next?
 
-[weka-system-installation-with-multiple-containers-using-the-cli](weka-system-installation-with-multiple-containers-using-the-cli/ "mention")
+[configure-the-weka-cluster-using-the-weka-configurator.md](configure-the-weka-cluster-using-the-weka-configurator.md "mention")

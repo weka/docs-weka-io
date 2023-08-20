@@ -42,14 +42,14 @@ pdsh -R ssh -w "weka0-[0-7]" 'chmod +x /tmp/resources_generator.py'
 
 ## Workflow
 
-1. [Remove the default container](weka-system-installation-with-multiple-containers-using-the-cli.md#2.-remove-the-default-container)
-2. [Generate the resource files](weka-system-installation-with-multiple-containers-using-the-cli.md#3.-generate-the-resource-files)
-3. [Create drive containers](weka-system-installation-with-multiple-containers-using-the-cli.md#4.-create-drive-containers)
-4. [Create a cluster](weka-system-installation-with-multiple-containers-using-the-cli.md#5.-create-a-cluster)
-5. [Configure the SSD drives](weka-system-installation-with-multiple-containers-using-the-cli.md#6.-configure-the-ssd-drives)
-6. [Create compute containers](weka-system-installation-with-multiple-containers-using-the-cli.md#7.-create-compute-containers)
-7. [Create frontend containers](weka-system-installation-with-multiple-containers-using-the-cli.md#7.-create-compute-containers)
-8. [Name the cluster](weka-system-installation-with-multiple-containers-using-the-cli.md#8.-name-the-cluster)
+1. [Remove the default container](manually-configure-the-weka-cluster-using-the-resource-generator.md#1.-remove-the-default-container)
+2. [Generate the resource files](manually-configure-the-weka-cluster-using-the-resource-generator.md#2.-generate-the-resource-files)
+3. [Create drive containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#3.-create-drive-containers)
+4. [Create a cluster](manually-configure-the-weka-cluster-using-the-resource-generator.md#4.-create-a-cluster)
+5. [Configure the SSD drives](manually-configure-the-weka-cluster-using-the-resource-generator.md#5.-configure-the-ssd-drives)
+6. [Create compute containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#6.-create-compute-containers)
+7. [Create frontend containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#7.-create-frontend-containers)
+8. [Name the cluster](manually-configure-the-weka-cluster-using-the-resource-generator.md#8.-name-the-cluster)
 
 ### 1. Remove the default container
 
@@ -191,4 +191,4 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 ## What to do next?
 
-[perform-post-configuration-procedures.md](../perform-post-configuration-procedures.md "mention")
+[perform-post-configuration-procedures.md](perform-post-configuration-procedures.md "mention")

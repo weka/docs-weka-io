@@ -24,8 +24,8 @@
   * [Manually install OS and WEKA on servers](install/bare-metal/manually-install-os-and-weka-on-servers.md)
   * [Manually prepare the system for WEKA configuration](install/bare-metal/setting-up-the-hosts/README.md)
     * [Enable the SR-IOV](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
-  * [Configure the WEKA cluster using the WEKA Configurator](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/README.md)
-  * [Manually configure the WEKA cluster using the resource generator](install/bare-metal/weka-system-installation-with-multiple-containers-using-the-cli/weka-system-installation-with-multiple-containers-using-the-cli.md)
+  * [Configure the WEKA cluster using the WEKA Configurator](install/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md)
+  * [Manually configure the WEKA cluster using the resource generator](install/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator.md)
   * [Perform post-configuration procedures](install/bare-metal/perform-post-configuration-procedures.md)
   * [Add clients](install/bare-metal/adding-clients-bare-metal.md)
 * [WEKA installation on AWS](install/aws/README.md)
@@ -184,7 +184,7 @@
 
 ## Monitor the WEKA Cluster
 
-* [WEKA Management Station (WMS) as a monitoring tool](monitor-the-weka-cluster/weka-management-station-wms-as-a-monitoring-tool.md)
+* [Deploy monitoring tools using the WEKA Management Station (WMS)](monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md)
 * [Weka Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
   * [Local Weka Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
   * [Local Weka Home deployment](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)

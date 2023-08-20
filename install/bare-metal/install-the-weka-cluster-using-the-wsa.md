@@ -39,13 +39,12 @@ Before deploying the WSA, adhere to the following:
 
 ## WSA deployment workflow
 
-1. [Install the WSA](install-the-weka-cluster-using-the-wsa.md#install-the-wsa)
-2. [Configure the WSA](install-the-weka-cluster-using-the-wsa.md#configure-the-wsa)
-3. [Test the environment](install-the-weka-cluster-using-the-wsa.md#test-the-environment)
-4. [Validate the WEKA software installation](install-the-weka-cluster-using-the-wsa.md#validate-the-weka-software-installation)
-5. [Configure the WEKA cluster and complete the installation](install-the-weka-cluster-using-the-wsa.md#configure-the-weka-cluster-and-complete-the-installation)
+1. [Install the WSA](install-the-weka-cluster-using-the-wsa.md#1.-install-the-wsa)
+2. [Configure the WSA](install-the-weka-cluster-using-the-wsa.md#2.-configure-the-wsa)
+3. [Test the environment](install-the-weka-cluster-using-the-wsa.md#3.-test-the-environment)
+4. [Validate the WEKA software installation](install-the-weka-cluster-using-the-wsa.md#4.-validate-the-weka-software-installation)
 
-### Install the WSA
+### 1. Install the WSA
 
 1. Boot the server from the WSA image. The following are some options to do that:
 
@@ -71,7 +70,7 @@ Depending on network speed, this can take about 10-60 mins (or more) per server.
 
 <figure><img src="../../.gitbook/assets/WMS_install_1.png" alt="" width="563"><figcaption></figcaption></figure>
 
-### Configure the WSA
+### 2. Configure the WSA
 
 Once the WSA installation is complete and the server is rebooted, configure the WSA.
 
@@ -117,15 +116,15 @@ Then the server reboots, it runs with WEKA in STEM mode.
 For detailed instructions on setting the configuration options, see general Linux documentation for RedHat-based Linux Distributions.
 {% endhint %}
 
-### Test the environment
+### 3. Test the environment
 
 Each server has the WEKA Tools pre-installed in `/opt/tools`, including:
 
 * `wekanetperf`: This tool runs `iperf` between the servers to ensure line rate can be achieved.
-* `wekachecker`: This tool checks a variety of network settings and more. For details, see [Validate the system preparation](setting-up-the-hosts/#validate-the-system-preparation).
+* `wekachecker`: This tool checks a variety of network settings and more. For details, see [#validate-the-system-preparation](setting-up-the-hosts/#validate-the-system-preparation "mention").
 * `bios_tool`: This tool helps you to set the required BIOS settings on the servers.
 
-### Validate the WEKA software installation
+### 4. Validate the WEKA software installation
 
 Verify that the WEKA software is installed and running on the server.
 
@@ -137,4 +136,4 @@ The server provides a status report indicating the system is in STEM mode, and i
 
 ## What to do next?
 
-[weka-system-installation-with-multiple-containers-using-the-cli](weka-system-installation-with-multiple-containers-using-the-cli/ "mention")
+[configure-the-weka-cluster-using-the-weka-configurator.md](configure-the-weka-cluster-using-the-weka-configurator.md "mention")

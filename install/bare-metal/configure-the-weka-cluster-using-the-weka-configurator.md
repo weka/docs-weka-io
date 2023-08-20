@@ -34,10 +34,10 @@ Adhere to the following concepts:
 
 ## Workflow
 
-1. [Configure a WEKA cluster with the WEKA Configurator](./#2.-configure-a-weka-cluster-with-the-weka-configurator)
-2. [Apply the configuration (`config.sh`)](./#3.-apply-the-configuration-config.sh)
+1. [Configure a WEKA cluster with the WEKA Configurator](configure-the-weka-cluster-using-the-weka-configurator.md#1.-configure-a-weka-cluster-with-the-weka-configurator)
+2. [Apply the configuration (`config.sh`)](configure-the-weka-cluster-using-the-weka-configurator.md#2.-apply-the-configuration)
 
-### Configure a WEKA cluster with the WEKA Configurator
+### 1. Configure a WEKA cluster with the WEKA Configurator
 
 1. Download the WEKA’s tools repository to one of the servers by running the following:\
    `git clone https://github.com/weka/tools`
@@ -45,7 +45,7 @@ Adhere to the following concepts:
 
 The `wekaconfig` scans the environment, detects the servers, and determines if the group of servers is homogeneous. The following example shows the servers do not have a homogeneous number of cores.
 
-<figure><img src="../../../.gitbook/assets/wekaconfig_detection.png" alt="" width="563"><figcaption><p>Example: <code>wekaconfig</code> detection results</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_detection.png" alt="" width="563"><figcaption><p>Example: <code>wekaconfig</code> detection results</p></figcaption></figure>
 
 3. Review the detection results. If the configuration meets your requirements, press **Enter**. \
    Select each of the following tabs to set the WEKA configuration.
@@ -64,7 +64,7 @@ Use the arrow and Tab keys to move between the fields and sections, and the spac
 
 **Note:** The green labels have entry fields. The yellow labels have read-only fields.&#x20;
 
-<figure><img src="../../../.gitbook/assets/wekaconfig_1_networking.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_1_networking.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="2. HA and Multi-container" %}
@@ -82,7 +82,7 @@ Press Tab to accept value and move to the next field: Multicontainer. The defaul
 
 Press Tab to move to the lower-right. Use the arrow to move to **Next**. Then, press the space-bar.
 
-<figure><img src="../../../.gitbook/assets/wekaconfig_2_HA.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_2_HA.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="3. BIAS and other read-only fields" %}
@@ -116,13 +116,13 @@ The Bias options determine the optimal CPU core and memory allocation scheme.
 
 The **Usable Weka Cores** and **Available Weka Cores** read-only fields are updated as you make changes so you can ensure you are not exceeding the number of available cores as you change any values. This is an advanced feature, and core allocation must not be changed without consulting the Customer Success Team.
 
-<figure><img src="../../../.gitbook/assets/wekaconfig_3_bias.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_3_bias.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="4. Cluster name" %}
 Move to the Cluster Name field and set a unique name for your WEKA cluster.
 
-<figure><img src="../../../.gitbook/assets/wekaconfig_3_cores.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_3_cores.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="5. Stripe setting" %}
@@ -132,11 +132,11 @@ The stripe settings include:
 * **Parity Drives:** The number of parity members.
 * **Hot Spares:** The number of Hot Spare members.
 
-These settings are in terms of servers, not SSDs. WEKA stripes over the entire servers, not over individual drives. For more details, see [WEKA cluster installation using the resource generator (for advanced users)](weka-system-installation-with-multiple-containers-using-the-cli.md).
+These settings are in terms of servers, not SSDs. WEKA stripes over the entire servers, not over individual drives. For more details, see [WEKA cluster installation using the resource generator (for advanced users)](broken-reference).
 
 The following example shows a stripe width of 6 (4+2) on 7 servers, and one hot spare.
 
-<figure><img src="../../../.gitbook/assets/wekaconfig_5_stripe.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_5_stripe.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
@@ -295,32 +295,32 @@ Advanced users can edit the config.sh using `vim` or `nano` (or any text editor)
 Regarding the drive selection, it is not possible to select the data drives (NVMe SSD) to include in the configuration. WEKA clusters are typically dedicated to running WEKA services and homogeneous, therefore `wekaconfig` includes all NVMe drives that are over about 1.5 GB in size (typical). To change the drives used in the cluster, edit the `config.sh` (see the`config.sh`output example above).
 {% endhint %}
 
-### Apply the configuration
+### 2. Apply the configuration
 
 From the install directory, run `./config.sh`.
 
-<figure><img src="../../../.gitbook/assets/wekaconfig_run_config.sh.png" alt="" width="563"><figcaption><p>Apply the configuration </p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_run_config.sh.png" alt="" width="563"><figcaption><p>Apply the configuration </p></figcaption></figure>
 
 The configuration takes a few minutes and possibly longer for large clusters. See some examples of the configuration process and WEKA status.
 
 {% tabs %}
 {% tab title="Configuration starts" %}
-<figure><img src="../../../.gitbook/assets/wekaconfig_conf_starts.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_conf_starts.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="Configuration completes" %}
-<figure><img src="../../../.gitbook/assets/wekaconfig_conf1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_conf1.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="WEKA status (IO not started)" %}
-<figure><img src="../../../.gitbook/assets/wekaconfig_weka_status_1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_weka_status_1.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="WEKA status (IO started)" %}
-<figure><img src="../../../.gitbook/assets/wekaconfig_weka_status_3.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_weka_status_3.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
 ## What to do next?
 
-[perform-post-configuration-procedures.md](../perform-post-configuration-procedures.md "mention")
+[perform-post-configuration-procedures.md](perform-post-configuration-procedures.md "mention")

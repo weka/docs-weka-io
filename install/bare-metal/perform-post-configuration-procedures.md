@@ -2,13 +2,13 @@
 
 Once the WEKA cluster is installed and configured, perform the following:
 
-1. [Enable event notifications to the cloud (optional)](perform-post-configuration-procedures.md#enable-event-notifications-to-the-cloud-optional).
-2. [Set the license](perform-post-configuration-procedures.md#set-the-license).
-3. [Start the cluster IO service](perform-post-configuration-procedures.md#start-the-cluster-io-service).
-4. [Check the cluster configuration](perform-post-configuration-procedures.md#check-the-cluster-configuration).
-5. [Bypass the proxy server (optional)](perform-post-configuration-procedures.md#bypass-the-proxy-server-optional).
+1. [Enable event notifications to the cloud (optional)](perform-post-configuration-procedures.md#1.-enable-event-notifications-to-the-cloud-optional)
+2. [Set the license](perform-post-configuration-procedures.md#2.-set-the-license)
+3. [Start the cluster IO service](perform-post-configuration-procedures.md#3.-start-the-cluster-io-service)
+4. [Check the cluster configuration](perform-post-configuration-procedures.md#4.-check-the-cluster-configuration)
+5. [Bypass the proxy server (optional)](perform-post-configuration-procedures.md#5.-bypass-the-proxy-server-optional)
 
-## Enable event notifications to the cloud (optional)
+## 1. Enable event notifications to the cloud (optional)
 
 Enable event notifications to the cloud for support purposes using one of the following options:
 
@@ -21,27 +21,27 @@ Enable event notifications to the cloud for support purposes using one of the fo
 
 This command enables cloud event notification (via Weka Home), which increases the ability of the Weka Support Team to resolve any issues that may occur.
 
-To learn more about this and how to enable cloud event notification, refer to [Weka Support Cloud](broken-reference).
+To learn more about this and how to enable cloud event notification, see [the-wekaio-support-cloud](../../monitor-the-weka-cluster/the-wekaio-support-cloud/ "mention").
 
-### **Enable support through a** private instance of Weka Home
+### **Enable support through** Local Weka Home
 
-In closed environments, such as dark sites and private VPCs, it is possible to install a private instance of Weka Home.
+In closed environments, such as dark sites and private VPCs, it is possible to install Local Weka Home, which is a private instance of Weka Home.
 
 **Command:** `weka cloud enable --cloud-url=http://<weka-home-ip>:<weka-home-port>`
 
-This command enables the use of a private instance of Weka Home.
+This command enables the WEKA cluster to send event notifications to the Local Weka Home.
 
 {% hint style="info" %}
-For more information, refer to the [Private Instance of Weka Home](broken-reference) and contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
+For details, see [local-weka-home-overview.md](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md "mention").
 {% endhint %}
 
-## Set the license
+## 2. Set the license
 
 **Command:** `weka cluster license set / payg`
 
-To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the Weka cluster. For details, see [License overview](../../licensing/overview.md).&#x20;
+To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the Weka cluster. For details, see [overview.md](../../licensing/overview.md "mention").&#x20;
 
-## Start the cluster IO service
+## 3. Start the cluster IO service
 
 **Command:** `weka cluster start-io`
 
@@ -49,13 +49,17 @@ To start the system IO and exit from the initialization state, use the following
 
 `weka cluster start-io`
 
-## Check the cluster configuration
+## 4. Check the cluster configuration
 
 ### Check the cluster container
 
 **Command:** `weka cluster container`
 
 Use this command to display the list of containers and their details.
+
+<details>
+
+<summary>Example of a list of containers and their details</summary>
 
 ```
 $ weka cluster container
@@ -90,8 +94,9 @@ HOST ID  HOSTNAME  CONTAINER  IPS             STATUS  RELEASE                   
 27       av299-7   frontend0  10.108.173.56   UP      4.2.0.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-007         1      1.47 GB                 1:06:56h
 28       av299-8   frontend0  10.108.253.194  UP      4.2.0.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-008         1      1.47 GB                 1:06:57h
 29       av299-9   frontend0  10.108.220.115  UP      4.2.0.8076-9e87a37af8169f32fb3c81c73d6844a1  DOM-009         1      1.47 GB                 1:06:56h
-
 ```
+
+</details>
 
 ### Check cluster container resources
 
@@ -101,7 +106,9 @@ Use this command to check the resources of each container in the cluster.
 
 `weka cluster container resources <container-id>`
 
-Example for a drive container resources output:
+<details>
+
+<summary>Example for a drive container resources output</summary>
 
 ```
 $ weka cluster container resources 0
@@ -138,7 +145,11 @@ Mode                    BACKEND
 Set CPU Governors       PERFORMANCE
 ```
 
-Example of a compute container resources output:
+</details>
+
+<details>
+
+<summary>Example of a compute container resources output</summary>
 
 ```
 $ weka cluster container resources 10
@@ -173,7 +184,11 @@ Mode                    BACKEND
 Set CPU Governors       PERFORMANCE
 ```
 
-Example of a frontend container resources output:
+</details>
+
+<details>
+
+<summary>Example of a frontend container resources output</summary>
 
 ```
 $ weka cluster container resources 20
@@ -198,13 +213,17 @@ Mode                    BACKEND
 Set CPU Governors       PERFORMANCE
 ```
 
+</details>
+
 #### Check cluster drives
 
 **Command:** `weka cluster drive`
 
 Use this command to check all drives in the cluster.
 
-Example:
+<details>
+
+<summary>Example</summary>
 
 ```
 $ weka cluster drive
@@ -220,15 +239,17 @@ DISK ID  UUID                                  HOSTNAME  NODE ID  SIZE        ST
 69       969d3521-9057-4db9-8304-157f50719683  av299-3   62       399.99 GiB  ACTIVE  0                OK          OK
 ```
 
+</details>
+
 ### Check the Weka cluster status
 
 **Command:** `weka status`
 
 The `weka status` command displays the overall status of the Weka cluster.
 
-For details, see [Cluster status](../../getting-started-with-weka/manage-the-system-using-weka-cli.md#cluster-status).
+For details, see [#cluster-status](../../getting-started-with-weka/manage-the-system-using-weka-cli.md#cluster-status "mention").
 
-## Bypass the proxy server (optional)
+## 5. Bypass the proxy server (optional)
 
 If the WEKA cluster is deployed in an environment with a proxy server, a WEKA client trying to mount or download the client installation from the WEKA cluster may be blocked by the proxy server. You can disable the proxy for specific URLs using the shell `no_proxy` environment variable.
 
