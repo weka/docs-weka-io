@@ -90,4 +90,4 @@ Use the following command line to remove containers from the S3 cluster:
 
 Use this command to destroy an S3 cluster managed by the Weka system.
 
-Deleting an existing S3 cluster removes the S3 service and configuration, such as IAM policies, buckets, and ILM rules. S3 access is no longer available for clients. Data that resides within the buckets are not deleted. Internal users with S3 roles are deleted from the system.
+Deleting an existing S3 cluster removes the S3 service and configuration, such as IAM policies, buckets, and ILM rules. S3 access is no longer available for clients. Data that resides within the buckets is not deleted. Internal users with S3 roles are deleted from the system.
