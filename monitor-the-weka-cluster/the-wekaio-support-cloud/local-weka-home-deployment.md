@@ -391,14 +391,44 @@ If required, go to `/var/log/wekahome` and review the relevant log according to 
 
 ## Upgrade the Local Weka Home
 
-The Local Weka Home upgrade workflow is similar to the deployment workflow (but without reinstalling the Minikube).
+The Local Weka Home upgrade workflow is similar to the deployment workflow (without reinstalling the Minikube).
 
 **Procedure:**
 
 1. Download the latest Local Weka Home package (_wekahome-vm-docker-images_). See the location in [Download the Local Weka Home and Minikube packages](local-weka-home-deployment.md#2.-download-the-local-weka-home-and-minikube-packages)_._
 2. Unpack the Local Weka Home package to the same directory used for installing the LWH. `tar xvf <file name> -C <path>`
 3. From the `wekahome_offline` directory, run `./update_config.sh`
-4. If you want to modify the existing configuration, open the `/root/.config/wekahome/config.yaml` file and modify the settings (as described in [Install and configure Local Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home)).
+4. If you want to modify the existing configuration, open the `/root/.config/wekahome/config.yaml` file and do the following:
+   * Modify the settings (as described in [Install and configure Local Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home)).
+   * If you update the following sections: **TLS**, **admin credentials**, **TLS certificates**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
+
+<details>
+
+<summary>Update the TLS certificates</summary>
+
+```
+nginx:
+  tls:
+     enabled: true
+     # Must set to the CN of the certificate or wildcard
+     cn: "server.example.com"
+     cert: |
+     -----BEGIN CERTIFICATE-----
+     KJDDLJDLjdkm1718dljkdsljdh92edkjdjdjdkjddjsgsglgLQKSJDKDSKLKSf
+        .... Example of a truncated PEM encoded certificate   ..... 
+     DDSHJkadsjkjask7U782CHDF8HD0ihjx8iwciw8wJHDSKDHIO
+     -----END CERTIFICATE-----
+     key: |
+     -----BEGIN PRIVATE KEY-----
+     MIIBOgIBAAJBAKj34GkxFhD90vcNLYLInFEX6Ppy1tPf9Cnzj4p4WGeKLs1Pt8
+          ..... Example of a truncated private key  ..... 
+     n5OiPgoTdSy7bcF9IGpSE8ZgGKzgYQVZeN97YE00
+     -----END PRIVATE KEY-----
+     force_update: true
+```
+
+</details>
+
 5. Run `./wekahome-install.sh`. For an upgrade, it takes about 2 minutes.
 6. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
 7. Verify the Local Weka Home is upgraded successfully. Run the following command line:\
@@ -406,7 +436,7 @@ The Local Weka Home upgrade workflow is similar to the deployment workflow (but 
 
 ## Modify the Local Weka Home configuration
 
-Suppose there is a change in the SMTP server in your environment, or you need to change the events retention period or any other settings in the Local Weka Home configuration, you can modify the existing `config.yaml` with your new settings and apply them.
+Suppose there is a change in the TLS certificates, SMTP server in your environment, or any other settings in the Local Weka Home configuration, you can modify the existing `config.yaml` with your new settings and apply them.
 
 **Procedure:**
 
