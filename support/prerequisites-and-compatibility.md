@@ -54,7 +54,7 @@ Ensure the BIOS settings meet the following requirements:
 {% tab title="Clients" %}
 * **RHEL:**
   * 9.1, 9.0
-  * 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 8.8. 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
   * 9.1, 9.0
@@ -72,6 +72,7 @@ Ensure the BIOS settings meet the following requirements:
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
   * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
 * **SuSe:**
+  * 15 SP4
   * 15 SP2
   * 12 SP5
 {% endtab %}
@@ -363,7 +364,7 @@ For additional information and how-to articles, search the Weka Knowledge Base i
 
 ## KMS
 
-* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) (version 1.1.5 up to 1.14.x)
+* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) (version 1.1.5 up to 1.13.x)
 * [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html)-compliant KMS (protocol version 1.2 and up)
   * The KMS should support encryption-as-a-service (KMIP encrypt/decrypt APIs)
   * KMIP certification has been conducted with [Equinix SmartKey](https://www.equinix.com/services/edge-services/smartkey/) (powered by [Fortanix KMS](https://fortanix.com/products/sdkms/))
