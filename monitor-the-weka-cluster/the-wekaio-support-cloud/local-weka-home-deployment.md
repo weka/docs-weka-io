@@ -391,16 +391,24 @@ If required, go to `/var/log/wekahome` and review the relevant log according to 
 
 ## Upgrade the Local Weka Home
 
-The Local Weka Home upgrade workflow is similar to the deployment workflow (without reinstalling the Minikube).
+The Local Weka Home upgrade workflow is similar to the deployment workflow (without reinstalling the Minikube). The upgrade process takes about 5 minutes, and the LWH is unavailable during this time. It is recommended to perform the upgrade during a maintenance window.
 
-**Procedure:**
+**Before you begin**
+
+If the source LWH version is lower than 2.11.0, run the following command lines to prepare the source LWH for the upgrade:
+
+`kubectl delete statefulset -l` [`app.kubernetes.io/name=nats`](http://app.kubernetes.io/name=nats) `-n home-weka-io`
+
+`kubectl delete pvc -l` [`app.kubernetes.io/name=nats`](http://app.kubernetes.io/name=nats) `-n home-weka-io`
+
+**Procedure**
 
 1. Download the latest Local Weka Home package (_wekahome-vm-docker-images_). See the location in [Download the Local Weka Home and Minikube packages](local-weka-home-deployment.md#2.-download-the-local-weka-home-and-minikube-packages)_._
 2. Unpack the Local Weka Home package to the same directory used for installing the LWH. `tar xvf <file name> -C <path>`
 3. From the `wekahome_offline` directory, run `./update_config.sh`
 4. If you want to modify the existing configuration, open the `/root/.config/wekahome/config.yaml` file and do the following:
    * Modify the settings (as described in [Install and configure Local Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home)).
-   * If you update the following sections: **TLS**, **admin credentials**, **TLS certificates**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
+   * If you update the following sections: **TLS certificates**, **admin credentials**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
 
 <details>
 
@@ -439,11 +447,11 @@ nginx:
 
 Suppose there is a change in the TLS certificates, SMTP server in your environment, or any other settings in the Local Weka Home configuration, you can modify the existing `config.yaml` with your new settings and apply them.
 
-**Procedure:**
+**Procedure**
 
 1. Open the `/root/.config/wekahome/config.yaml` file and do the following:
    * Modify the settings (as described in [Install and configure Local Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home)).
-   * If you update the following sections: **TLS**, **admin credentials**, **encryption**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
+   * If you update the following sections: **TLS certificates**, **admin credentials**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
 
 <details>
 
