@@ -66,7 +66,7 @@ Once you create an interface group, set its ports. You can set the ports only on
 **Procedure**
 
 1. In the Configuration tab, select the interface group.
-2. In the Group Ports table, select the three dots, and from the menu select **Remove**.&#x20;
+2. In the Group Ports table, select the three dots, and from the menu, select **Remove**.&#x20;
 
 ![Remove an interface group port](../../.gitbook/assets/wmng\_add\_nfs\_group\_ports\_remove.png)
 
@@ -154,7 +154,7 @@ If you create an NFS v4 client permission, verify that a global configuration fi
    * **Filesystem**: The filesystem to which the permissions are applied. A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.
    * **Path**: The exported directory path (root share).
    * **Type**: The access type: RO (read-only) or RW (read/write).
-   * **Priority:** The priority of the client's permission. The system processes the permissions set with the lower priority number when access is evaluated. Setting a number in tens (10, 20, 100, and so on) is recommended (it allows adding priorities in between).
+   * **Priority:** The priority of the client's permission. When access is evaluated, the system processes the permissions set with the lower priority number. Setting a number in tens (10, 20, 100, and so on) is recommended (it allows adding priorities in between).
    * **Supported Versions:** The supported NFS versions (V3, V4, or both).
    * **Squash Root**: The system enforces squash mode with the client's permission.
    * **Anon. UID**: Anonymous user ID. Only relevant for Root and All user squashing.

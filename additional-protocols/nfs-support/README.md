@@ -16,9 +16,9 @@ In addition, the legacy NFS stack is also available for backward compatibility. 
 
 Adhere to the following guidelines and requirements when deploying the NFS service.
 
-### **Global configuration filesystem**
+### **Configuration filesystem**
 
-NFSv4 requires a persistent cluster-wide configuration filesystem. The S3 and SMB-W services also share this filesystem.
+NFSv4 requires a persistent cluster-wide configuration filesystem for internal operations of the protocol.
 
 ### **Interface groups**
 
@@ -71,7 +71,7 @@ To ensure the resilience of the service if a server fails, all IP addresses asso
 
 ## NFS service deployment high-level workflow
 
-<figure><img src="../../.gitbook/assets/NFS_deploy_workflow.png" alt=""><figcaption><p>NFS service deployment workflow</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/NFS_deploy_workflow (1).png" alt=""><figcaption><p>NFS service deployment workflow</p></figcaption></figure>
 
 For detailed procedures, see the related topics.
 

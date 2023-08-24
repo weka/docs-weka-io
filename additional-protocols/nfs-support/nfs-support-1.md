@@ -20,13 +20,17 @@ Using the CLI, you can:
 
 ## **Configure the NFS cluster level**
 
-### Set the global configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
+### Set the NFS configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
 
-The global configuration filesystem is a shared location for persistent cluster-wide NFS v4, S3, and SMB-W protocol configurations. It is recommended to allocate 100 GB to support future system expansions.&#x20;
+NFSv4 requires a persistent cluster-wide configuration filesystem for internal operations of the protocol.
 
-Use the following command line to set the configuration filesystem:
+Use the following command line to set the NFS configuration on the configuration filesystem:
 
 `weka nfs global-config set --config-fs <config-fs>`&#x20;
+
+**Parameters**
+
+<table><thead><tr><th width="220">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>config-fs</code>*</td><td>The predefined filesystem name for maintaining the persisting cluster-wide protocol configurations.<br>Ensure the filesystem is already created. If not, create a filesystem with 100 GB capacity.</td></tr></tbody></table>
 
 ### Create interface groups
 

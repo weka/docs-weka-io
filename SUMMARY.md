@@ -105,9 +105,6 @@
   * [Supported NFS client mount options](additional-protocols/nfs-support/supported-nfs-client-mount-options.md)
   * [Manage NFS networking using the GUI](additional-protocols/nfs-support/nfs-support.md)
   * [Manage NFS networking using the CLI](additional-protocols/nfs-support/nfs-support-1.md)
-* [Manage the SMB protocol](additional-protocols/smb-support/README.md)
-  * [Manage SMB using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
-  * [Manage SMB using the CLI](additional-protocols/smb-support/smb-management-using-the-cli.md)
 * [Manage the S3 protocol](additional-protocols/s3/README.md)
   * [S3 cluster management](additional-protocols/s3/s3-cluster-management/README.md)
     * [Manage the S3 service using the GUI](additional-protocols/s3/s3-cluster-management/s3-cluster-management.md)
@@ -127,6 +124,9 @@
     * [Example: How to use Splunk to audit S3](additional-protocols/s3/audit-s3-apis/audit-s3-apis-1.md)
   * [S3 supported APIs and limitations](additional-protocols/s3/s3-limitations.md)
   * [S3 examples using boto3](additional-protocols/s3/s3-examples-using-boto3.md)
+* [Manage the SMB protocol](additional-protocols/smb-support/README.md)
+  * [Manage SMB using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
+  * [Manage SMB using the CLI](additional-protocols/smb-support/smb-management-using-the-cli.md)
 
 ## Operation Guide <a href="#usage" id="usage"></a>
 

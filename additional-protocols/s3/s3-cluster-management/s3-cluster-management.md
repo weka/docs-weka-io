@@ -16,10 +16,6 @@ Using the GUI, you can:
 
 An S3 cluster configuration includes a filesystem, port, and list of servers.
 
-**Before you begin**
-
-Verify that a global configuration filesystem is already set in the system. If not, set it using the CLI. See [Set the global configuration filesystem](../../nfs-support/nfs-support-1.md#configure-the-nfs-configuration-filesystem).&#x20;
-
 **Procedure**
 
 1. From the menu, select **Manage > Protocols**.
