@@ -433,6 +433,7 @@ nginx:
 6. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
 7. Verify the Local Weka Home is upgraded successfully. Run the following command line:\
    `helm status homewekaio -n home-weka-io`
+8. If any changes made to the _config.yaml_ required setting `force_update: true`, change it back to `false`.
 
 ## Modify the Local Weka Home configuration
 
