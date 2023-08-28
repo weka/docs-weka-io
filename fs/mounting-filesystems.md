@@ -241,7 +241,7 @@ mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -
 If DPDK cannot be used, you can use the WEKA filesystem UDP networking mode through the kernel (for details about UDP mode. see the [WEKA networking](../overview/networking-in-wekaio.md) section). Use `net=udp` in the mount command to set the UDP networking mode, for example:
 
 ```
-mount -t wekafs -o num_cores=0 -o net=udp backend-server-0/my_fs /mnt/weka
+mount -t wekafs -o net=udp backend-server-0/my_fs /mnt/weka
 ```
 
 {% hint style="info" %}
@@ -249,7 +249,7 @@ A client in UDP mode cannot be configured in HA mode. However, the client can st
 {% endhint %}
 
 {% hint style="info" %}
-Providing multiple IPs in the \<mgmt-ip> in UDP mode will utilize their network interfaces for more bandwidth (which can be useful in RDMA environments) rather than using only one NIC.
+Providing multiple IPs in the \<mgmt-ip> in UDP mode uses their network interfaces for more bandwidth, which can be useful in RDMA environments, rather than using only one NIC.
 {% endhint %}
 
 ## Mount filesystems using fstab
