@@ -136,7 +136,7 @@ To set the SELinux security context for files,  use the `-o acl` in the mount co
 ## Networking
 
 {% hint style="info" %}
-At least 4k MTU is advised on WEKA cluster servers NICs and the switches the servers are connected to.
+At least 4k MTU is advised on WEKA cluster servers NICs, and the switches the servers are connected to.
 
 A WEKA system can be configured without jumbo frames for Ethernet and Infiniband configurations. However, it will provide minimal performance and cannot handle high data loads. Consult with the Customer Success Team before running in this mode.
 
@@ -222,9 +222,6 @@ Supported ice drivers:
 * Ethernet speeds: 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE
 * NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
 * VLAN: Not supported
-* Connectivity between servers:
-  * For multiple containers architecture, the default for the Resources Generator is 14000-14100, 14200-14300, and 14400-14500 for the first three containers (these values can be customized).
-  * For single container architecture: Ports 14000-14300.
 * Mellanox NICs:
   * One Weka system IP address for management and data plane
 * Other vendors NICs
@@ -239,6 +236,22 @@ When assigning a network device to the Weka system, no other application can cre
 {% endhint %}
 {% endtab %}
 {% endtabs %}
+
+#### Required ports
+
+When configuring firewall ingress and egress rules the following access must be allowed. &#x20;
+
+| Target                     | Purpose                     | Target Ports                                     | Protocol                                         | Comments                                                                                                               | Source                |
+| -------------------------- | --------------------------- | ------------------------------------------------ | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| All WEKA servers IPs       | WEKA server traffic         | <p>14000-14100<br>14200-14300<br>14400-14500</p> | <p>TCP and UDP<br>TCP and UDP<br>TCP and UDP</p> | These ports are the default for the Resources Generator for the first three containers. You can customize these values | All WEKA servers IPs  |
+| All WEKA servers IPs       | WEKA SSH management traffic | 22                                               | TCP                                              |                                                                                                                        | All WEKA servers IPs  |
+| All WEKA server IPs        | WEKA clients traffic        | 14000-14100                                      | TCP and UDP                                      |                                                                                                                        | Client host IPs       |
+| All WEKA management IPs    | WEKA GUI access             | 14000                                            | TCP                                              |                                                                                                                        | User web browser IP   |
+| WEKA Server NFS IPs        | NFS                         | <p>2049<br>&#x3C;mountd port></p>                | <p>TCP and UDP<br>TCP and UDP</p>                | You can set the mountd port using the command: `weka nfs global-config set --mountd-port`                              | NFS client IPs        |
+| WEKA Server SMB IPs        | SMB                         | <p>139<br>445</p>                                | <p>TCP<br>TCP</p>                                |                                                                                                                        | SMB client IPs        |
+| WEKA Server S3 IPs         | S3                          | 9000                                             | TCP                                              |                                                                                                                        | S3 client IPs         |
+| All WEKA server IPs        | wekatester                  | <p>5001</p><p>8765</p>                           | <p>TCP<br>TCP</p>                                | Port 5001 is used by wekanetperf.                                                                                      | All WEKA server IPs   |
+| WEKA Management Station IP | WEKA Management Station     | <p>8501<br>9090</p>                              | <p>TCP<br>TCP</p>                                |                                                                                                                        | User web browser IP   |
 
 ### InfiniBand <a href="#networking-infiniband" id="networking-infiniband"></a>
 
