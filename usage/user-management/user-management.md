@@ -30,11 +30,11 @@ Local users are created in the local system as opposed to domain users that are 
    * **Role:** Select the role for the local user. If you select an S3 user role, you can select the relevant S3 policy, POSIX UID, and POSIX GID.
 4. Select **Save**.
 
-![Create new user dialog](../../.gitbook/assets/wmng\_local\_users\_add.png)
+![Create a new user dialog](../../.gitbook/assets/wmng\_local\_users\_add.png)
 
 ### Edit a local user
 
-You can modify the role of a local user, but not your own role (the signed-in user). For an S3 user, you can only modify the S3 policy, POSIX UID, and POSIX GID.
+You can modify the role of a local user but not your role (the signed-in user). For an S3 user, you can only modify the S3 policy, POSIX UID, and POSIX GID.
 
 **Procedure**
 
@@ -55,20 +55,20 @@ As a Cluster Admin or Organization Admin, you can change the password of a local
    * **Old password:** Set the old password.
    * **Password:** Set a new password according to the requirements.
    * **Confirm Password:** Type the same new password again.
-   * **Revoke Tokens:** If the user's existing tokens are compromised, you can revoke all the user's tokens along with changing the user's password. To re-access the system, the user re-authenticates with the new password, or the user needs to obtain new tokens using the API.
+   * **Revoke Tokens:** If the user's existing tokens are compromised, you can revoke all the user's tokens and change the user's password. To re-access the system, the user re-authenticates with the new password, or the user needs to obtain new tokens using the API.
 3. Select **Save**.
 
-![Change password for a local user](../../.gitbook/assets/wmng\_local\_users\_change\_psw.png)
+![Change the password for a local user](../../.gitbook/assets/wmng\_local\_users\_change\_psw.png)
 
-### Change your own password
+### Change your password
 
-You can change your own password at any time.
+You can change your password at any time.
 
 **Procedure**
 
 1. From the top bar, select the signed-in user, then select **Change Password**.
 
-![Change your own password (signed-in user)](../../.gitbook/assets/wmng\_change\_your\_password.png)
+![Change your password (signed-in user)](../../.gitbook/assets/wmng\_change\_your\_password.png)
 
 2. In the Change Password dialog, set the properties described in the [Change a local user password](user-management.md#change-a-local-user-password) topic.
 3. Select **Save**.
@@ -81,7 +81,7 @@ If the user's existing tokens are compromised, you can revoke all the user's tok
 
 1. In the Local Users tab, select the three dots of the local user you want to revoke the user tokens, then select **Revoke User Tokens**.
 
-![Revoke a local user tokens](../../.gitbook/assets/wmng\_revoke\_user\_tokens\_menu.png)
+![Revoke local user tokens](../../.gitbook/assets/wmng\_revoke\_user\_tokens\_menu.png)
 
 2. In the confirmation message, select **Revoke Tokens**.
 
@@ -105,36 +105,98 @@ You can set user access to the Weka system from the organization user directory,
 
 ### Configure LDAP
 
-To use LDAP for authenticating users, you need to configure the corresponding values in the LDAP Configuration dialog.
+To use LDAP for authenticating users, set the property values based on your specific LDAP environment and configuration.
+
+<details>
+
+<summary>LDAP property descriptions</summary>
+
+* **Server URI:** The URI or address of the LDAP server, including the protocol (in this case, LDAP), the server's hostname or IP address, and the port number.\
+  Example value: ldap://ldap.example.com:389
+* **Protocol Version:** The version of the LDAP protocol being used. Common versions include LDAPv2 and LDAPv3.\
+  Example value: 3
+* **Start TLS:** When enabled, this option initiates a Transport Layer Security (TLS) connection with the LDAP server. TLS provides encryption and secure communication between the client and server, protecting the confidentiality and integrity of data transmitted over the network.
+*   **Ignore Certificate Failures:** When enabled, this option instructs the LDAP client to ignore certificate validation failures during the TLS/SSL handshake process. Certificate validation failures can include expired, self-signed, or mismatched certificates. Enabling this option allows the client to establish a connection even if the server's certificate cannot be fully validated. Use this option cautiously, as it may expose the connection to potential security risks.
+
+    Enabling _Start TLS_ and _Ignore Certificate Failures_ must be done based on your specific security requirements and the configuration of your LDAP server.
+* **Server Timeout Seconds:** The maximum amount of time, in seconds, the client waits for a response from the LDAP server before timing out.\
+  Example value: 30
+* **Base DN :** The base distinguished name (DN) is the starting point for searching the directory tree. It represents the top-level entry in the LDAP directory.\
+  Example Value: dc=example,dc=com
+* **Reader Username:** The username or distinguished name (DN) of a dedicated reader user account used for authenticating and reading data from the LDAP server.\
+  Example value: cn=reader,dc=example,dc=com
+* **Reader Password:** The password is associated with the reader user account for authentication purposes.\
+  Example Value: \*\*\*\*\*\*\*\*
+* **User ID Attribute:** The attribute in the LDAP schema that represents the unique identifier or username for user entries.\
+  Example value: uid
+* **User Object Class:** The object class or object type in the LDAP schema defines the structure and attributes of user entries.\
+  Example value: person
+* **User Revocation Attribute:** An attribute indicates a user account's revocation status, typically a boolean attribute set to true or false.\
+  Example value: isRevoked
+* **Group ID Attribute:** The attribute in the LDAP schema represents the unique identifier or name for group entries.\
+  Example value: cn
+* **Group Membership Attribute:** The attribute establishes the membership relationship between users and groups, specifying which users are members of a particular group.\
+  Example value: member
+* **Group Object Class:** The object class or object type in the LDAP schema defines the structure and attributes of group entries.\
+  Example value: groupOfNames
+* **Cluster Admin Group:** The LDAP group granted administrative privileges for managing the LDAP cluster.\
+  Example value: cn=cluster\_admins,ou=groups,dc=example,dc=com
+* **Organization Admin Role Group:** The LDAP group granted administrative privileges for managing specific organizations or units within the LDAP directory.\
+  Example value: cn=org\_admins,ou=groups,dc=example,dc=com
+* **Regular User Role Group:** The group in LDAP represents regular users with standard access privileges.\
+  Example value: cn=regular\_users,ou=groups,dc=example,dc=com
+* **Read-only User Role Group:** The group in LDAP represents users with read-only access privileges restricted from making modifications.\
+  Example value: cn=read\_only\_users,ou=groups,dc=example,dc=com
+
+</details>
 
 **Procedure**
 
 1. From the menu, select **Configure > User Management**.
 2. Select the User Directory tab.
 3. Select **Configure LDAP**.
-4. Set all properties according to the organization's LDAP details.
+4. Set all properties based on your specific LDAP environment and configuration.
 5. Select **Save**.
 
-![Configure LDAP](../../.gitbook/assets/wmng\_configure\_ldap.png)
+![Configure LDAP dialog](../../.gitbook/assets/wmng\_configure\_ldap.png)
 
-Once the LDAP configuration completes, the User Directory tab displays the details. You can disable the LDAP configuration, update the configuration, or reset the configuration values.
-
-![LDAP configuration](<../../.gitbook/assets/wmng\_ldap\_configuration\_result (1).png>)
+Once the LDAP configuration is completed, the User Directory tab displays the details. You can disable the LDAP configuration, update the configuration, or reset the configuration values.
 
 ### Configure Active Directory
 
-To use Active Directory for authenticating users, you configure the corresponding values in the Active Directory Configuration dialog.
+To use Active Directory for authenticating users, set the property values based on your specific Active Directory environment and configuration.
+
+<details>
+
+<summary>Active Directory property descriptions</summary>
+
+* **Domain:** The domain name of the Active Directory environment. It represents the network boundary and provides a way to organize and manage resources, users, and groups.\
+  Example value: example.com
+* **Server URI:** The URI or address of the Active Directory server, including the protocol (in this case, LDAP) and the server's hostname or IP address.\
+  Example value: ldap://ad.example.com
+* **Reader Username:** A dedicated reader user account's username or user principal name (UPN) used for authenticating and reading data from the Active Directory.\
+  Example value: readeruser@example.com
+* **Reader Password:** The password associated with the reader user account for authentication purposes.\
+  Example Value: \*\*\*\*\*\*\*\*
+* **Cluster Admin Role Group:** The group in Active Directory granted administrative privileges for managing the cluster or server infrastructure.\
+  Example value: CN=ClusterAdmins,CN=Users,DC=example,DC=com
+* **Organization Admin Role Group:** The group in Active Directory granted administrative privileges for managing specific organizations or units within the Active Directory environment.\
+  Example value: CN=OrgAdmins,CN=Users,DC=example,DC=com
+* **Regular User Role Group:** The group in Active Directory represents regular users with standard access privileges.\
+  Example value: CN=RegularUsers,CN=Users,DC=example,DC=com
+* **Read-only User Role Group:** The group in Active Directory represents users with read-only access privileges, restricted from making modifications.\
+  Example value: CN=ReadOnlyUsers,CN=Users,DC=example,DC=com
+
+</details>
 
 **Procedure**
 
 1. From the menu, select **Configure > User Management**.
 2. Select the User Directory tab.
 3. Select **Configure Active Directory**.
-4. Set all properties according to the organization's Active Directory details.
+4. Set all properties based on your specific Active Directory environment and configuration.
 5. Select **Save**.
 
 ![Configure Active Directory dialog](../../.gitbook/assets/wmng\_configure\_active\_directory.png)
 
-Once the Active Directory configuration completes, the User Directory tab displays the details. You can disable the Active Directory configuration, update the configuration, or reset the configuration values.
-
-![Active Directory configuration](../../.gitbook/assets/wmng\_active\_directory\_dialog.png)
+Once the Active Directory configuration is completed, the User Directory tab displays the details. You can disable the Active Directory configuration, update the configuration, or reset the configuration values.
