@@ -249,45 +249,86 @@ A client in UDP mode cannot be configured in HA mode. However, the client can st
 {% endhint %}
 
 {% hint style="info" %}
-Providing multiple IPs in the \<mgmt-ip> in UDP mode uses their network interfaces for more bandwidth, which can be useful in RDMA environments, rather than using only one NIC.
+Providing multiple IPs in the \<mgmt-ip> in UDP mode uses their network interfaces for more bandwidth, which can be useful in RDMA environments rather than using only one NIC.
 {% endhint %}
 
-## Mount filesystems using fstab
+## Mount a filesystem using fstab
 
-{% hint style="info" %}
-This option works when using **stateless clients** and with OS that supports `systemd` (example: RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, Amazon Linux 2 LTS).
-{% endhint %}
+Using the _fstab_ (filesystem table) enables automatic remount after reboot. It applies to **stateless clients** running on an OS that supports `systemd`, such as RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, and Amazon Linux 2 LTS.
 
-Edit `/etc/fstab` file to include the filesystem mount entry:
+**Before you begin**
 
-* A comma-separated list of backend servers with the filesystem name
-* The mount point. If the client mounts multiple clusters, specify a unique name for each client container. Example: for two client containers, set `container_name=client1` and  `container_name=client2`.
-* Filesystem type - `wekafs`
-* Mount options:
-  *   Configure `systemd` to wait for the `weka-agent` service to come up and set the filesystem as a network filesystem, e.g.:
+If the mount point you want to set in the fstab is already mounted,  unmount it before setting the fstab file.
 
-      `x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`
-  * Any additional `wekafs` supported mount option
+**Procedure**
+
+1. Remove the `/etc/init.d/weka-agent` file.
+2. Create a file named `weka-agent.service` with the following content and save it in `/etc/systemd/system`.
+
+{% code title="weka-agent.service" %}
+```
+[Unit]
+Description=WEKA Agent Service
+Wants=network.target network-online.target
+After=network.target network-online.target rpcbind.service
+Documentation=http://docs.weka.io
+Before=remote-fs-pre.target remote-fs.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/weka --agent
+Restart=always
+WorkingDirectory=/
+EnvironmentFile=/etc/environment
+# Increase the default a bit in order to allow many simultaneous
+# files to be monitored, we might need a lot of fds.
+LimitNOFILE=65535
+
+[Install]
+RequiredBy=remote-fs-pre.target remote-fs.target
+```
+{% endcode %}
+
+3. Run the following command:
 
 ```
-# create a mount point 
-mkdir -p /mnt/weka/my_fs
+systemd daemon-reload; systemd enable weka-agent.service
+```
 
-# edit fstab file
-vi /etc/fstab
+4. Create a mount point.\
+   Example: `mkdir -p /mnt/weka/my_fs`
+5. Edit `/etc/fstab` file.
 
-# fstab with weka options (for example, change with your desired settings)
+**fstab structure**
+
+```
+<backend servers/my_fs> <mount point> <filesystem type> <mount options> <systemd mount options>  0     0
+
+```
+
+**fstab example**
+
+```
 backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  num_cores=1,net=eth1,x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev   0       0
 
 ```
 
-Reboot the server for the `systemd` unit to be created and marked correctly.
+**fstab structure descriptions**
 
-The filesystem should now be mounted at boot time.
+* **Backend servers/my\_fs:** A comma-separated list of backend servers with the filesystem name
+* **Mount point:** If the client mounts multiple clusters, specify a unique name for each client container. Example: For two client containers, set `container_name=client1` and  `container_name=client2`.
+* **Filesystem type:** `wekafs`
+* **Mount options:**
+  * See [Additional mount options using the stateless clients feature](mounting-filesystems.md#additional-mount-options-using-the-stateless-clients-feature).
+  * **Systemd mount options:**\
+    `x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`
 
-{% hint style="danger" %}
-Do not configure this entry for a mounted filesystem before un-mounting it (`umount`), as the `systemd` needs to mark the filesystem as a network filesystem (occurs as part of the `reboot`). Trying to reboot a server when there is a mounted WekaFS filesystem when setting its `fstab` configuration might yield a failure to unmount the filesystem and leave the system hanged.
-{% endhint %}
+7. Reboot the server.\
+   WEKA creates the mounts for the next boot.
+8. Mount the the filesystem to test the fstab setting by running the command, for example:\
+   `mount /mnt/weka/my_fs`
+
+The filesystem is mounted automatically after server reboot.
 
 ## Mount filesystems using autofs
 
