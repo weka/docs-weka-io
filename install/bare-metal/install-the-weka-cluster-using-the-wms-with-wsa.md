@@ -110,7 +110,7 @@ Change the port from 9090 to 8051, which is the WMS Admin port.
 2. Browse to the WMS Admin UI using the following URL:\
    `http://<WMS-hostname-or-ip>:8501`
 
-<figure><img src="../../.gitbook/assets/WMS_login.png" alt="" width="375"><figcaption><p>WMS Admin UI: Login Page</p></figcaption></figure>
+<figure><img src="broken-reference" alt="" width="375"><figcaption><p>WMS Admin UI: Login Page</p></figcaption></figure>
 
 3. Enter username and password (default: _admin_/_admin_), and select **Login**.\
    The Landing Page appears.

@@ -115,16 +115,16 @@ Run the OS through the Cockpit Web Interface on port 9090 of the OS management n
 
 If you don’t know the WMS hostname or IP address, go to the console and press the **Return** key a couple of times until it prompts the URL of the WMS OS Web Console (Cockpit) on port 9090.
 
-Change the port from 9090 to 8051, which is the WMS Admin port.
+Change the port from 9090 to 8501, which is the WMS Admin port.
 
 <figure><img src="../.gitbook/assets/cockpit.png" alt=""><figcaption><p>Cockpit URL (IP address of this WMS is 172.29.7.152)</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
 2. Browse to the WMS Admin UI using the following URL:\
-   `http://<WMS-hostname-or-ip>:8501`
+   `https://<WMS-hostname-or-ip>:8501`
 
-<figure><img src="../.gitbook/assets/WMS_login.png" alt="" width="375"><figcaption><p>WMS Admin UI: Login Page</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/WMS_login.png" alt=""><figcaption><p>WMS Admin UI: Login Page</p></figcaption></figure>
 
 3. Enter username and password (default: _admin_/_admin_), and select **Login**.\
    The Landing Page appears.
