@@ -330,7 +330,7 @@ backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  num_cores=1,net=eth
 
 The filesystem is mounted automatically after server reboot.
 
-## Mount filesystems using autofs
+## Mount a filesystem using autofs
 
 **Procedure:**
 
