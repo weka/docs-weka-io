@@ -10,7 +10,32 @@ If you are not using the WMS or WSA's automated tools for installing a WEKA clus
 
 **Procedure**
 
-1. Follow the relevant Linux documentation to install the OS.
+1. Follow the relevant Linux documentation to install the operating system, including the required packages.
+
+**Required packages**
+
+| RHEL and derivatives                                                                                                 | Ubuntu                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| <pre><code>elfutils-libelf-devel
+gcc
+glibc-headers
+glibc-devel
+make
+perl
+rpcbind
+xfsprogs
+kernel-devel
+</code></pre> | <pre><code>libelf-dev
+linux-headers-$(uname -r)
+gcc
+make
+perl
+python2-minimal
+rpcbind
+xfsprogs
+
+</code></pre> |
+
 2. Install the WEKA software.
    * Once the WEKA software tarball is downloaded from [get.weka.io](https://get.weka.io), run the untar command.
    * Run the `install.sh` command on each server, according to the instructions in the **Install** tab.
