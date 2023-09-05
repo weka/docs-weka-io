@@ -159,6 +159,10 @@ COMPUTE     10       <auto>
 
 </details>
 
+5. Activate the container.\
+   Run the following command:\
+   `weka cluster container activate <container-ids>`
+
 ### Expand SSDs only
 
 You can add new SSD drives to a container. Adding SSD drives can alter the ratio between SSDs and drive cores.
