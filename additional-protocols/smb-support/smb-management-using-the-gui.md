@@ -14,7 +14,7 @@ WEKAWEKAUsing the GUI, you can:
 * [Delete the SMB cluster](smb-management-using-the-gui.md#delete-the-smb-cluster)
 * [Display the SMB shares list](smb-management-using-the-gui.md#display-the-smb-shares-list)
 * [Add an SMB share](smb-management-using-the-gui.md#add-an-smb-share)
-* [Edit an SMB share](smb-management-using-the-gui.md#undefined)
+* [Edit an SMB share](smb-management-using-the-gui.md#edit-an-smb-share)
 * [Remove an SMB share](smb-management-using-the-gui.md#remove-an-smb-share)
 
 {% hint style="info" %}
@@ -159,7 +159,7 @@ The Shares tab displays the list of SMB shares that are already created in the s
 
 3\. Select **Save**.
 
-![Add SMB Share dialog](../../.gitbook/assets/wmng\_smb\_share\_add\_dialog.png)
+![Add SMB Share dialog](<../../.gitbook/assets/wmng\_smb\_share\_add\_dialog (1).png>)
 
 ## Edit an SMB share <a href="#edit-an-smb-share" id="edit-an-smb-share"></a>
 
@@ -173,7 +173,7 @@ You can update some of the SMB share settings. These include encryption, hiding 
 
 2\. In the Update Share Settings dialog, update the relevant properties and select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_update_share_settings.png" alt=""><figcaption><p>Update the SMB share settings</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_update_share_settings.png" alt="" width="563"><figcaption><p>Update the SMB share settings</p></figcaption></figure>
 
 ## Remove an SMB share <a href="#remove-an-smb-share" id="remove-an-smb-share"></a>
 
