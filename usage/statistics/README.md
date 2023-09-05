@@ -45,7 +45,7 @@ The page shows only the statistics of the backend servers and clients in the clu
 * A backend server is removed.
 * A client is not connected to the cluster for more than the [retention period](statistics-1.md#set-statistics-retention).
 
-The WEKA cluster does not hold historical statistics data. For historical statistics data, use `weka-mon` (see [Monitor using external tools](broken-reference)).
+The WEKA cluster does not hold historical statistics data. For historical statistics data, use `weka-mon` (see [Set up the WEKAmon external monitoring](../../monitor-the-weka-cluster/external-monitoring.md)).
 {% endhint %}
 
 
