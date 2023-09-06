@@ -26,7 +26,7 @@ One of the advantages of setting up the WEKAmon package is that if you already u
 
 Setting up a dedicated management server (or VM) for the installation is recommended.
 
-If you have deployed the WMS, follow the procedure in [WEKA Management Station (WMS)](broken-reference) topic.&#x20;
+If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, perform the following workflow.
 
 ### Server minimum requirements
 

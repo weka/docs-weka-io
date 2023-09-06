@@ -16,16 +16,16 @@ It is possible to install the Local Weka Home within the customer's Kubernetes i
 
 ## Workflow: Local Weka Home deployment
 
-If you have deployed the WMS, follow the procedure in [WEKA Management Station (WMS)](broken-reference) topic. Otherwise, perform the following workflow:
+If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](../deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, perform the following workflow:
 
-1. [Verify prerequisites](local-weka-home-deployment.md#1.-verify-prerequisites).
-2. [Prepare the management server](local-weka-home-deployment.md#2.-prepare-the-management-server).
-3. [Download the Weka Home and Minikube packages](local-weka-home-deployment.md#3.-download-the-local-weka-home-and-minikube-packages).
-4. [Install the Minikube](local-weka-home-deployment.md#3.-download-the-local-weka-home-and-minikube-packages).
-5. [Install and configure the Weka Home](local-weka-home-deployment.md#5.-install-and-configure-local-weka-home).
-6. [Access the Weka Home portal and Grafana](local-weka-home-deployment.md#6.-access-the-local-weka-home-portal-and-grafana).
-7. [Enable the Weka cluster to send data to Weka Home](local-weka-home-deployment.md#7.-enable-the-weka-cluster-to-send-information-to-the-local-weka-home).
-8. [Test the deployment](local-weka-home-deployment.md#8.-test-the-deployment).
+1. [Verify prerequisites](local-weka-home-deployment.md#1.-verify-prerequisites)
+2. [Prepare the management server](local-weka-home-deployment.md#2.-prepare-the-management-server)
+3. [Download the Weka Home and Minikube packages](local-weka-home-deployment.md#3.-download-the-local-weka-home-and-minikube-packages)
+4. [Install the Minikube](local-weka-home-deployment.md#4.-install-the-minikube)
+5. [Install and configure the Weka Home](local-weka-home-deployment.md#5.-install-and-configure-local-weka-home)
+6. [Access the Weka Home portal and Grafana](local-weka-home-deployment.md#6.-access-the-local-weka-home-portal-and-grafana)
+7. [Enable the Weka cluster to send data to Weka Home](local-weka-home-deployment.md#7.-enable-the-weka-cluster-to-send-information-to-the-local-weka-home)
+8. [Test the deployment](local-weka-home-deployment.md#8.-test-the-deployment)
 
 ### 1.  Verify prerequisites
 
