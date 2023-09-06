@@ -36,6 +36,48 @@ xfsprogs
 
 </code></pre> |
 
+<details>
+
+<summary>Recommended packages for remote support and maintenance</summary>
+
+RHEL and derivatives
+
+```
+@network-tools
+@large-systems
+@hardware-monitoring
+bind-utils
+elfutils
+ipmitool
+kexec-tools
+nvme-cli
+python3
+yum-utils
+sysstat
+telnet
+nmap
+git
+sshpass
+lldpd
+fio
+numactl
+numactl-devel
+libaio-devel
+hwloc
+tmux
+pdsh
+pdsh-rcmd-ssh
+pdsh-mod-dshgroup
+tmate
+iperf
+htop
+nload
+screen
+ice
+```
+
+</details>
+
 2. Install the WEKA software.
    * Once the WEKA software tarball is downloaded from [get.weka.io](https://get.weka.io), run the untar command.
    * Run the `install.sh` command on each server, according to the instructions in the **Install** tab.
