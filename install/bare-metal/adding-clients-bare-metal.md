@@ -98,18 +98,21 @@ Mounts: 1
 ## Add stateful clients, which are always part of the cluster
 
 {% hint style="info" %}
-It is possible to add instances that do not contribute resources to the cluster but are used for mounting filesystems. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases, it could be helpful to permanently add them to the cluster, e.g., to use these instances as NFS/SMB servers which are always expected to be up.
+Adding instances that do not contribute resources to the cluster but are used for mounting filesystems is possible. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases, adding them to the cluster permanently is helpful. For example, use these instances as NFS/SMB servers, which are always expected to be up.
 {% endhint %}
 
-### Stage 1: Install the WEKA software
+### 1. Install the WEKA software
 
-Verify that the WEKA software is installed on the client according to the installation instructions. For further information, see [Download the WEKA software installation file](obtaining-the-weka-install-file.md) and [1. Install the WEKA software](broken-reference).
+Install the WEKA software.
+
+* Once the WEKA software tarball is downloaded from [get.weka.io](https://get.weka.io), run the untar command.
+* Run the `install.sh` command on each server, according to the instructions in the **Install** tab.
 
 {% hint style="info" %}
 All clients in a WEKA system cluster must use the same software version as the backends or a maximum of one version back. The backend containers must run the same WEKA software version except during upgrades (as managed by the upgrade process).
 {% endhint %}
 
-### Stage 2: Join the cluster
+### 2. Join the cluster
 
 **Command:** `weka cluster container add`
 
@@ -128,7 +131,7 @@ Once the client is in the stem mode (this is the mode defined immediately after 
 On completion of this stage, the container-id of the newly added container will be received. Make a note of it for the next steps.
 {% endhint %}
 
-### Stage 3: Configure the container as a client
+### 3. Configure the container as a client
 
 **Command:** `weka cluster container cores`
 
@@ -144,12 +147,12 @@ To configure the new container as a client, run the following command:
 | `cores`                    | Number   | Number of physical cores to be allocated to the WEKA client    | Maximum 19 cores                                                                                | Yes                                       |             |
 | `frontend-dedicated-cores` | Number   | Number of physical cores to be dedicated to FrontEnd processes | <p></p><p>For clients, the number of total cores and frontend-dedicated-cores must be equal</p> | Yes, to configure a container as a client |             |
 
-### Stage 4: Configure client networking
+### 4. Configure client networking
 
 **Command:** `weka cluster container net add`
 
 {% hint style="info" %}
-If the new client is to communicate with the WEKA cluster over the kernel UDP stack, it is not necessary to run this command.
+If the new client is to communicate with the WEKA cluster over the kernel UDP stack, running this command is unnecessary.
 {% endhint %}
 
 If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the WEKA cluster:
@@ -174,7 +177,7 @@ When configuring an InfiniBand client, do not pass the `--ips`, `--netmask` and 
 InfiniBand/Ethernet clients can only join a cluster with the same network technology connectivity. It is possible to mix InfiniBand and Ethernet clients in the same cluster as long as the cluster backends are connected to both network technologies.
 {% endhint %}
 
-### Stage 5: Apply the container configuration
+### 5. Apply the container configuration
 
 **Command:** `weka cluster container apply`
 
