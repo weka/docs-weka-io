@@ -6,7 +6,7 @@ description: >-
 
 # Manually install OS and WEKA on servers
 
-If you are not using the WMS or WSA's automated tools for installing a WEKA cluster, manually install a supported OS on the bare metal server.
+If you are not using the WMS or WSA automated tools for installing a WEKA cluster, manually install a supported OS and the WEKA software on the bare metal server.
 
 **Procedure**
 
