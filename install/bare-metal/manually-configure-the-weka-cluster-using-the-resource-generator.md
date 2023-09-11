@@ -17,8 +17,7 @@ The resource generator generates three resource files on each server in the `/tm
 Example:&#x20;
 
 ```
-wget 
-https://raw.githubusercontent.com/weka/tools/master/install/resources_generator.py
+wget https://raw.githubusercontent.com/weka/tools/master/install/resources_generator.py
 
 ```
 
