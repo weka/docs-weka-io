@@ -6,7 +6,7 @@ description: >-
 
 # Events
 
-WEKA events indicate relevant information concerning the WEKA cluster and customer environment. Triggered by a customer operation or an environment change, events can be informational, indicate an issue in the system, or indicate a previously resolved issue.
+WEKA events provide important information about the WEKA cluster and customer environment. These timestamped events can be triggered by cluster events, changes in the environment, or user operations. They may convey information, signal a system issue, or report a previously resolved problem.
 
 The WEKA system sends all events to a predefined central monitoring system.
 
