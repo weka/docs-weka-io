@@ -6,7 +6,7 @@ description: >-
 
 # Events
 
-WEKA events provide important information about the WEKA cluster and customer environment. These timestamped events can be triggered by cluster events, changes in the environment, or user operations. They may convey information, signal a system issue, or report a previously resolved problem.
+WEKA events provide important information about the WEKA cluster and customer environment. These timestamped events can be triggered by cluster operations, changes in the environment, or user operations. They may convey information, signal a system issue, or report a previously resolved problem.
 
 The WEKA cluster sends all events to a predefined central monitoring system, WEKA Home or Local WEKA Home. The GUI displays the events retrieved from the central monitoring system.
 
