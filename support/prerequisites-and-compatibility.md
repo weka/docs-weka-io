@@ -7,7 +7,8 @@ description: >-
 # Prerequisites and compatibility
 
 {% hint style="info" %}
-The versions specified in the prerequisites and compatibility page apply to the latest minor version of the WEKA system. See the relevant release notes in [get.weka.io ](https://get.weka.io/ui/releases/)for more details.
+* The versions specified in the prerequisites and compatibility page apply to the latest minor version of the WEKA system. See the relevant release notes in [get.weka.io ](https://get.weka.io/ui/releases/)for more details.
+* In certain instances, WEKA collaborates with Strategic Server Partners to conduct platform qualifications alongside complementary components. Contact your designated WEKA representative with any inquiries.
 {% endhint %}
 
 ## CPU
