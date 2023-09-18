@@ -79,17 +79,56 @@ If you plan a multi-hop version upgrade, once an upgrade is done, a background p
 
 ### 2. Prepare the cluster for upgrade&#x20;
 
-Download the new software release on one of the backends using one of the following methods:
+Download the new WEKA version to one of the backend servers using one of the following methods depending on the cluster deployment:
 
-* From the backend server, run `weka version get <new-version>` \
-  (`<new-version>` is for example, `4.2.0`). Then, run `weka version prepare <new-version>`.&#x20;
-* If you don't have a distribution server set, you can add it explicitly to the command. For example, to get the `4.2.0` version from [get.weka.io](https://get.weka.io/ui/releases/), use a token as follows: \
-  \
-  `weka version get 4.2.0 --from https://[GET.WEKA.IO-TOKEN]@get.weka.io`\
-  \
-  Then, run `weka version prepare <new-version>`. &#x20;
-* From the backend server, run the `curl` command described in the install tab on the [get.weka.io](https://get.weka.io/ui/releases/) new release page.
-* Download the new version tar file to the backend server and run the `install.sh` command. This method is helpful in environments without connectivity to [get.weka.io](https://get.weka.io), such as dark sites or private VPCs.
+* Method A: Using a distribution server
+* Method B: Direct download and install from get.weka.io
+* Method C: If the connectivity to get.weka.io is limited
+
+For details, select the relevant tab.
+
+{% tabs %}
+{% tab title="Method A" %}
+Use this method if the cluster environment includes a distribution server from which the target WEKA version can be downloaded.
+
+If the distribution server contains the target WEKA version, run the following commands from the cluster backend server:
+
+```
+weka version get <version>
+weka version prepare <version>
+```
+
+Where: \<version> is the target WEKA version, for example: `4.2.3`.
+
+If the distribution server does not contain the target WEKA version, add the option `--from` to the command, and specify the [get.weka.io](https://get.weka.io/ui/releases/) distribution site, along with the token.
+
+Example:
+
+```
+weka version get <version> --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
+weka version prepare <version>
+```
+{% endtab %}
+
+{% tab title="Method B" %}
+Use this method if the cluster environment has connectivity to [get.weka.io](https://get.weka.io).
+
+1. From the Public Releases on the [get.weka.io](https://get.weka.io/ui/releases/), select the required release.
+2. Select the **Install** tab.
+3. From the backend server, run the `curl` command line as shown in the following example.&#x20;
+
+<figure><img src="../.gitbook/assets/get-weka-io-curl.png" alt=""><figcaption><p>Example: Install tab</p></figcaption></figure>
+{% endtab %}
+
+{% tab title="Method D" %}
+Use this method if the cluster environment does not have connectivity to [get.weka.io](https://get.weka.io), such as with private networks or dark sites.
+
+1. Download the new version tar file and copy it to the cluster backend server.
+2. Run the `install.sh` command.
+
+<figure><img src="../.gitbook/assets/get-weka-io-download.png" alt=""><figcaption><p>Example: Download tab</p></figcaption></figure>
+{% endtab %}
+{% endtabs %}
 
 ### 3. Prepare the backend servers for upgrade (optional)
 
