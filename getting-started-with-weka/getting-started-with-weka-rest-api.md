@@ -1,20 +1,53 @@
 # Getting started with WEKA REST API
 
+The WEKA system provides a RESTful API, enabling you to automate interactions with the WEKA system and integrate them into your workflows or monitoring systems.
 
+{% hint style="info" %}
+It is essential to have a solid understanding of the WEKA CLI commands and parameters related to the REST API functions.
 
-The WEKA system supports a RESTful API. This is useful when automating the interaction with the WEKA system and integrating it into your workflows or monitoring systems.
+For example, to create a filesystem using the `POST /fileSystems` function, see the related documentation in [#create-a-filesystem](../fs/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention") (using the CLI).
+{% endhint %}
 
-The API is accessible at port 14000, via the `/api/v2` URL, you can explore it via `/api/v2/docs` when accessing from the cluster (e.g. `https://weka01:14000/api/v2/docs`).
+## Access the REST API
 
-THE WEKA static API documentation can be accessed from [api.docs.weka.io](https://api.docs.weka.io) (the version can be selected from the drop-down list). The `.json` file can also create client code using an OpenAPI client generator.
+You can access the RSET API using one of the following methods:
 
-### Obtain an access token
+{% tabs %}
+{% tab title="Direct access" %}
+Using port 14000 and the URL `/api/v2`.
+{% endtab %}
 
-You must provide an access token to use the WEKA REST API.&#x20;
+{% tab title="Through the cluster" %}
+By browsing to: `https://<cluster name>:14000/api/v2/docs`
+{% endtab %}
 
-To obtain access/refresh tokens via the CLI, refer to [Obtaining an Authentication Token](../usage/security/#obtaining-an-authentication-token) section (you can also generate an access token with a longer expiry time).
+{% tab title="Through the WEKA GUI" %}
+Select the three dots on the upper right menu and select **REST API**.
 
-You can call the login API to obtain access/refresh tokens via the API, providing it with a `username` and `password`.&#x20;
+<figure><img src="../.gitbook/assets/wmng_access_rest_api.png" alt=""><figcaption><p>Access the REST API through the WEKA GUI</p></figcaption></figure>
+{% endtab %}
+
+{% tab title="WEKA static API" %}
+Browse to [api.docs.weka.io](https://api.docs.weka.io) and select the REST API version from the definition selector.
+
+In addition, you can create a client code using the OpenAPI client generator and the `.json` file.
+
+<figure><img src="../.gitbook/assets/static-api-docs.png" alt=""><figcaption><p>api.docs.weka.io</p></figcaption></figure>
+{% endtab %}
+{% endtabs %}
+
+## Explore the REST API through the GUI
+
+<figure><img src="../.gitbook/assets/Get_started_with_REST_API.gif" alt=""><figcaption><p>Explore the REST API through the GUI</p></figcaption></figure>
+
+## Obtain an access token
+
+To use the WEKA REST API, provide an access or refresh token.
+
+You can generate an access or refresh for the REST API usage through the CLI or the GUI.\
+See[obtain-authentication-tokens.md](../usage/security/obtain-authentication-tokens.md "mention").
+
+You can also call the login API to obtain access or refresh tokens through the API, providing it with a `username` and `password`.&#x20;
 
 If you already obtained a refresh token, you can use the `login/refresh` API to refresh the access token.
 
@@ -60,7 +93,7 @@ print(response.text)
 {% endtab %}
 {% endtabs %}
 
-In response, you will get an access token (valid for 5 minutes), that can be used in the other APIs that require token authentication, along with the refresh token (valid for 1 year), for getting additional access tokens without using the username/password.
+The response includes the access token (valid for 5 minutes) to use in the other APIs requiring token authentication, along with the refresh token (valid for 1 year), for getting additional access tokens without using the username/password.
 
 {% code title="Login/Refresh Response" %}
 ```python
@@ -77,9 +110,9 @@ In response, you will get an access token (valid for 5 minutes), that can be use
 ```
 {% endcode %}
 
-### Call the REST API
+## Call the REST API
 
-Now, that you have obtained an access token, you can call WEKA REST API commands with it. For example, you can query the cluster status:
+Once you obtain an access token, you can call WEKA REST API commands with it. For example, you can query the cluster status:
 
 {% code title="Python example calling cluster status API" %}
 ```python
@@ -98,6 +131,8 @@ print(response.text)
 
 ```
 {% endcode %}
+
+
 
 **Related topics**
 
