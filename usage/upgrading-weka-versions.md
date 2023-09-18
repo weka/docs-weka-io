@@ -120,11 +120,11 @@ Use this method if the cluster environment has connectivity to [get.weka.io](htt
 <figure><img src="../.gitbook/assets/get-weka-io-curl.png" alt=""><figcaption><p>Example: Install tab</p></figcaption></figure>
 {% endtab %}
 
-{% tab title="Method D" %}
+{% tab title="Method C" %}
 Use this method if the cluster environment does not have connectivity to [get.weka.io](https://get.weka.io), such as with private networks or dark sites.
 
-1. Download the new version tar file, copy it to the cluster backend server, and untar the file.
-2. From the cluster backend server, run the `install.sh` command.
+1. Download the new version tar file to a location from which you copy it to a dedicated directory in the cluster backend server, and untar the file.
+2. From the dedicated directory in the cluster backend server, run the `install.sh` command.
 
 <figure><img src="../.gitbook/assets/get-weka-io-download.png" alt=""><figcaption><p>Example: Download tab</p></figcaption></figure>
 {% endtab %}
@@ -142,7 +142,7 @@ Once the new version is downloaded to one of the backend servers, run the follow
 
 Where:
 
-`<new-version>`: Specify the new version. For example,`4.2.0`.
+`<new-version>`: Specify the new version. For example,`4.2.3`.
 
 `<container-name>`: Specify only one container name. For example: `drives0`.
 
@@ -158,7 +158,7 @@ If you already ran the preparation step, the upgrade command skips the download 
 
 Example:
 
-`weka local run --container drives0 --in 4.2.0 upgrade`
+`weka local run --container drives0 --in 4.2.3 upgrade`
 
 **Adhere to the following:**
 
@@ -233,9 +233,9 @@ The following command line upgrade two clients in two batches (each batch has on
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
 {% hint style="success" %}
-**Example:** The following is returned when the system is upgraded to version 4.2.0:
+**Example:** The following is returned when the system is upgraded to version 4.2.3:
 
 `# weka status`  \
-`Weka v4.2.0`   \
+`Weka v4.2.3`   \
 `...`
 {% endhint %}
