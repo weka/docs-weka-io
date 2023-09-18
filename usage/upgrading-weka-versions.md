@@ -123,8 +123,8 @@ Use this method if the cluster environment has connectivity to [get.weka.io](htt
 {% tab title="Method D" %}
 Use this method if the cluster environment does not have connectivity to [get.weka.io](https://get.weka.io), such as with private networks or dark sites.
 
-1. Download the new version tar file and copy it to the cluster backend server.
-2. Run the `install.sh` command.
+1. Download the new version tar file, copy it to the cluster backend server, and untar the file.
+2. From the cluster backend server, run the `install.sh` command.
 
 <figure><img src="../.gitbook/assets/get-weka-io-download.png" alt=""><figcaption><p>Example: Download tab</p></figcaption></figure>
 {% endtab %}
