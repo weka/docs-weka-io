@@ -22,17 +22,16 @@ The organization admin can set a quota on a directory. Setting a quota will star
 **Note:** Currently, a mount point to the relevant filesystem is required to set a quota on a directory, and the quota set command should not be interrupted until the quota accounting is over.
 {% endhint %}
 
-The organization admin sets quotas to inform/restrict users from using too much of the filesystem capacity. For that, only data in the user's control is taken into account. Hence, the quota doesn't count the overhead of the protection bits and snapshots. It does take into account data\&metadata of files in the directory, regardless if tiered or not.&#x20;
+The organization admin sets quotas to inform/restrict users from using too much of the filesystem capacity. For that, only data in the user's control is considered. Hence, the quota doesn't count the overhead of the protection bits and snapshots. It does take into account data and metadata of files in the directory, regardless if tiered or not.&#x20;
 
 ### Working with quotas
 
 When working with quotas, consider the following:
 
-* Currently, to set a quota, the relevant filesystem must be mounted on the host where the set quota command is to be run.
-* When setting a quota, you should go through a new mount-point. Meaning, if you are using a host that has mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
+* To set a quota, the relevant filesystem must be mounted on the host where the set quota command is to be run.
+* When setting a quota, you should go through a new mount-point. This means that if you are using a host that has mounts from Weka versions before 3.10, first unmount all relevant mount point and then mount them again.
 * Quotas can be set within nested directories (up to 4 levels of nested quotas are supported) and over-provisioned under the same directory quota tree. E.g., `/home` can have a quota of 1TiB, and each user directory under it can have a quota of 10GiB, while there are 200 users.
-* Before a directory is being deleted, its quota must be removed. A directory tree cannot be deleted without removing all the inner directories quotas beforehand. Note, default (parent) quotas are set as quotas at the directory creation and the actual quota needs to be removed before the directory is deleted (not the default quota of the parent directory)&#x20;
-* Moving files (or directories) between two directories with quotas, into a directory with a quota, or outside of a directory with a quota is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy\&delete but is OS-dependent.
+* Moving files (or directories) between two directories with quotas, into a directory with a quota, or outside a directory with a quota is not supported. The WekaFS filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy and delete but is OS-dependent.
 * Quotas and hardlinks:
   * An existing hardlink is not counted as part of the quota.
   * Once a directory has a quota, it is not allowed to create a hardlink to files residing under directories with different (or without) directory quotas.
@@ -75,7 +74,7 @@ It is also possible to set a default quota on a directory. It does not account f
 | `owner`  | String   | An opaque string identifying the directory owner (can be a name, email, slack ID, etc.) This owner will be shown in the quota report and can be notified upon exceeding the quota. | Up to 48 characters.                                                                 | No            |             |
 
 {% hint style="info" %}
-**Note:** To set advisory only quotas, use a `soft` quota limit without setting a `grace` period.
+**Note:** To set advisory-only quotas, use a `soft` quota limit without setting a `grace` period.
 {% endhint %}
 
 {% hint style="info" %}
