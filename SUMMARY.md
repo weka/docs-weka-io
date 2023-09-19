@@ -95,8 +95,8 @@
   * [Manage Snap-To-Object using the GUI](fs/snap-to-obj/snap-to-obj.md)
   * [Manage Snap-To-Object using the CLI](fs/snap-to-obj/snap-to-obj-1.md)
 * [Quota management](fs/quota-management/README.md)
-  * [Manage quotas using the CLI](fs/quota-management/quota-management.md)
   * [Manage quotas using the GUI](fs/quota-management/manage-quotas-using-the-gui.md)
+  * [Manage quotas using the CLI](fs/quota-management/quota-management.md)
 
 ## Additional Protocols
 

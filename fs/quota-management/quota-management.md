@@ -31,11 +31,8 @@ Use the following command to set a default quota of a directory:
 <table><thead><tr><th width="166">Name</th><th width="369">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>path</code>*</td><td>Path to the directory to set the quota.<br>The relevant filesystem must be mounted when setting the quota. </td><td>​</td></tr><tr><td><code>soft</code></td><td>Soft quota limit.<br>Exceeding this number is displayed as exceeded quota but it is not enforced until the <code>grace</code> period is over.<br>The capacity can be in decimal or binary units.<br>Format:  <code>1GB</code>, <code>1TB</code>, <code>1GiB</code>, <code>1TiB</code>, <code>unlimited</code></td><td><code>unlimited</code></td></tr><tr><td><code>hard</code></td><td>Hard quota limit.<br>Exceeding this number does not allow more writes before clearing some space in the directory.<br>The capacity can be in decimal or binary units.<br>Format: <code>1GB</code>, <code>1TB</code>, <code>1GiB</code>, <code>1TiB</code>, <code>unlimited</code></td><td><code>unlimited</code></td></tr><tr><td><code>grace</code></td><td>Specify the grace period before the soft limit is treated as a hard limit.<br>Format: <code>1d</code>, <code>1w</code>, <code>unlimited</code></td><td><code>unlimited</code></td></tr><tr><td><code>owner</code></td><td>An opaque string identifying the directory owner (can be a name, email, slack ID, etc.) This owner will be shown in the quota report and can be notified upon exceeding the quota.<br>Supports up to 48 characters.</td><td></td></tr></tbody></table>
 
 {% hint style="info" %}
-To set advisory only quotas, use a `soft` quota limit without setting a `grace` period.
-{% endhint %}
-
-{% hint style="info" %}
-When `hard` and `soft` quotas exist, setting the value of one of them to `0` will clear this quota.
+* To set advisory only quotas, use a `soft` quota limit without setting a `grace` period.
+* When `hard` and `soft` quotas exist, setting the value of one of them to `0` will clear this quota.
 {% endhint %}
 
 ## List directory quotas/default quotas
