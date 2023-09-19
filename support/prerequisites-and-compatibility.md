@@ -136,129 +136,79 @@ To set the SELinux security context for files,  use the `-o acl` in the mount co
 
 ## Networking
 
+Adhere to the following considerations when choosing the adapters:
+
+* **LACP:**  Link aggregation, also known as bond interfaces, is supported between ports on a single Mellanox NIC and is not supported when using Virtual Functions (VFs).
+* **Mixed networks:** Connecting Ethernet and InfiniBand clients to the same cluster is not supported with Intel E810, NVIDIA Mellanox CX-6 DX, and CX-6 LX on the cluster backends.
+* **Intel E810:**
+  * Only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, consult with the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+  * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0 are required.
+* **MTU:** At least 4k MTU is advised on WEKA cluster servers NICs, and the switches the servers are connected to.
+*   **Jumbo frames:** You can set up the WEKA cluster without jumbo frames for Ethernet and InfiniBand, but this will result in minimal performance and an inability to handle high data loads. Before using this mode, it's advisable to consult with the Customer Success Team.
+
+    For clients, jumbo frames are not necessary, but performance may be limited.
+
+### Supported network adapters <a href="#networking-ethernet" id="networking-ethernet"></a>
+
+The following table provides the supported network adapters for Ethernet and InfiniBand, and their supported features.
+
 {% hint style="info" %}
-At least 4k MTU is advised on WEKA cluster servers NICs, and the switches the servers are connected to.
-
-A WEKA system can be configured without jumbo frames for Ethernet and Infiniband configurations. However, it will provide minimal performance and cannot handle high data loads. Consult with the Customer Success Team before running in this mode.
-
-Jumbo Frames are not required for clients. However, performance might be limited.
+Right-scroll the table to view all columns.
 {% endhint %}
 
-### Ethernet <a href="#networking-ethernet" id="networking-ethernet"></a>
+<table><thead><tr><th width="176">Adapters</th><th width="125">Protocol</th><th width="158">Mixed networks</th><th width="87">LACP</th><th width="108">Shared IP</th><th width="104">SRIOV VF</th><th width="154">rx interrupts</th><th width="117">RDMA</th><th width="74">HA</th><th width="122">PKEY</th><th width="155">Routed network</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Intel E810 2CQDA2</td><td>Ethernet</td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td></tr><tr><td>Intel X540</td><td>Ethernet</td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Intel X550-T1</td><td>Ethernet</td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Intel X710</td><td>Ethernet</td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Intel X710-DA2</td><td>Ethernet</td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Intel XL710</td><td>Ethernet</td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Intel XL710-Q2</td><td>Ethernet</td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Intel XXV710</td><td>Ethernet</td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Intel 82599ES</td><td>Ethernet</td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Intel 82599</td><td>Ethernet</td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(ETH only)</td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(ETH only)</td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet<br>InfiniBand</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(IB only)</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(IB only)</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(ETH only)</td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet<br>InfiniBand</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(IB only)</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(IB only)</td><td></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet<br>InfiniBand</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(IB only)</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(IB only)</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(ETH only)</td></tr><tr><td>NVIDIA Mellanox CX-4 LX</td><td>Ethernet<br>InfiniBand</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(ETH only)</td></tr><tr><td>NVIDIA Mellanox CX-4</td><td>Ethernet<br>InfiniBand</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span></td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span>(ETH only)</td></tr></tbody></table>
+
+### Ethernet drivers and configurations
 
 {% tabs %}
-{% tab title="NIC" %}
-WEKA supports the following Ethernet NICs:
-
-* Amazon ENA
-* Intel E810 2CQDA2
-* Intel X540
-* Intel X550-T1
-* Intel X710
-* Intel X710-DA2
-* Intel XL710
-* Intel XL710-Q2
-* Intel XXV710
-* Intel 82599ES
-* Intel 82599
-* NVIDIA Mellanox ConnectX-6-Lx (CX-6 LX)
-* NVIDIA Mellanox ConnectX-6-Dx (CX-6 DX)
-* NVIDIA Mellanox ConnectX-6 (CX-6)
-* NVIDIA Mellanox ConnectX-5-Ex (CX-5 EX)
-* NVIDIA Mellanox ConnectX-5-Bf (CX-5 BF)
-* NVIDIA Mellanox ConnectX-5 (CX-5)
-* NVIDIA Mellanox ConnectX-4-Lx (CX-4 LX)
-* NVIDIA Mellanox ConnectX-4 (CX-4)
-
-{% hint style="info" %}
-Intel E810 NIC has specific requirements and certain limitations:
-
-* The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0.
-* Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
-{% endhint %}
-
-{% hint style="info" %}
-Connecting Ethernet and IB clients to the same cluster is not supported with E810 NIC and NVIDIA Mellanox ConnectX-6-Dx on the cluster backends.
-{% endhint %}
-
-{% hint style="info" %}
-LACP (link aggregation, also known as bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using virtual functions (VFs).
-{% endhint %}
+{% tab title="Ethernet drivers" %}
+* **Supported Mellanox OFED versions for the Ethernet NICs:**
+  * 5.9-0.5.6.0
+  * 5.8-1.1.2.1 LTS
+  * 5.7-1.0.2.0
+  * 5.6-2.0.9.0
+  * 5.6-1.0.3.3
+  * 5.4-3.5.8.0 LTS
+  * 5.4-3.4.0.0 LTS
+  * 5.1-2.6.2.0
+  * 5.1-2.5.8.0
+* **Supported ENA drivers:**
+  * 1.0.2 - 2.0.2
+  * A current driver from an official OS repository is recommended
+* **Supported ixgbevf drivers:**
+  * 3.2.2 - 4.1.2
+  * A current driver from an official OS repository is recommended
+* **Supported Intel 40 drivers:**
+  * 3.0.1-k - 4.1.0
+  * A current driver from an official OS repository is recommended
+* **Supported ice drivers:**
+  * 1.9.11
 {% endtab %}
 
-{% tab title="NIC drivers" %}
-Supported Mellanox OFED versions for the Ethernet NICs:
-
-* 5.9-0.5.6.0
-* 5.8-1.1.2.1 LTS
-* 5.7-1.0.2.0
-* 5.6-2.0.9.0
-* 5.6-1.0.3.3
-* 5.4-3.5.8.0 LTS
-* 5.4-3.4.0.0 LTS
-* 5.1-2.6.2.0
-* 5.1-2.5.8.0
-
-Supported ENA drivers:
-
-* 1.0.2 - 2.0.2
-* A current driver from an official OS repository is recommended
-
-Supported ixgbevf drivers:
-
-* 3.2.2 - 4.1.2
-* A current driver from an official OS repository is recommended
-
-Supported Intel 40 drivers:
-
-* 3.0.1-k - 4.1.0
-* A current driver from an official OS repository is recommended
-
-Supported ice drivers:
-
-* 1.9.11
-{% endtab %}
-
-{% tab title="Ethernet configuration" %}
+{% tab title="Ethernet configurations" %}
 * Ethernet speeds: 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE
-* NICs bonding: Can bond dual ports on the same NIC (modes 1 or 4)
+* NICs bonding: Can bond dual ports on the same NIC (modes 1 and 4)
 * VLAN: Not supported
 * Mellanox NICs:
-  * One Weka system IP address for management and data plane
+  * One WEKA system IP address for management and data plane
 * Other vendors NICs
-  * Weka system management IP address: One IP per server (configured before Weka installation)
-  * Weka system data plane IP address: One IP address for each [Weka core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
-  * Weka system management IP: Ability to communicate with all Weka system data plane IPs
-  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of VFs supported by the device must be bigger than the number of physical cores on the server; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configurations may be required in the BIOS
+  * WEKA system management IP address: One IP per server (configured before WEKA installation)
+  * WEKA system data plane IP address: One IP address for each [Weka core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
+  * Weka system management IP: Ability to communicate with all WEKA system data plane IPs
+  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of VFs supported by the device must be bigger than the number of physical cores on the server; you should set the number of VFs to the number of cores you wish to dedicate to WEKA; some configurations may be required in the BIOS
   * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
-When assigning a network device to the Weka system, no other application can create VFs on that device.
+When assigning a network device to the WEKA system, no other application can create VFs on that device.
 {% endhint %}
 {% endtab %}
 {% endtabs %}
 
-#### Required ports
-
-When configuring firewall ingress and egress rules the following access must be allowed.
-
-<table><thead><tr><th width="178">Purpose</th><th width="146">Source</th><th width="168">Target</th><th width="145">Target Ports</th><th width="142">Protocol</th><th width="100">Comments</th></tr></thead><tbody><tr><td>WEKA server traffic</td><td>All WEKA server IPs </td><td>All WEKA server IPs</td><td>14000-14100<br>14200-14300<br>14400-14500</td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default for the Resources Generator for the first three containers. You can customize these values.</td></tr><tr><td>WEKA SSH management traffic</td><td>All WEKA server IPs </td><td>All WEKA server IPs</td><td>22</td><td>TCP</td><td></td></tr><tr><td>WEKA clients traffic</td><td>Client host IPs</td><td>All WEKA server IPs</td><td>14000-14100</td><td>TCP and UDP</td><td></td></tr><tr><td>WEKA GUI access </td><td></td><td>All WEKA management IPs</td><td>14000</td><td>TCP</td><td>User web browser IP</td></tr><tr><td>NFS</td><td>NFS client IPs</td><td>WEKA Server NFS IPs</td><td>2049<br>&#x3C;mountd port></td><td>TCP and UDP<br>TCP and UDP</td><td>You can set the mountd port using the command: <code>weka nfs global-config set --mountd-port</code></td></tr><tr><td>SMB</td><td>SMB client IPs</td><td>WEKA Server SMB IPs</td><td>139<br>445</td><td>TCP<br>TCP</td><td></td></tr><tr><td>S3</td><td>S3 client IPs</td><td>WEKA Server S3 IPs</td><td>9000</td><td>TCP</td><td></td></tr><tr><td>wekatester</td><td>All WEKA server IPs</td><td>All WEKA server IPs</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td>Port 5001 is used by wekanetperf.</td></tr><tr><td>WEKA Management Station</td><td>User web browser IP</td><td>WEKA Management Station IP</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td></td></tr></tbody></table>
-
-### InfiniBand <a href="#networking-infiniband" id="networking-infiniband"></a>
+### InfiniBand drivers and configurations <a href="#networking-infiniband" id="networking-infiniband"></a>
 
 {% tabs %}
-{% tab title="HCP" %}
-WEKA supports the following InfiniBand Host Channel Adapters:
-
-* Mellanox ConnectX-6
-* Mellanox ConnectX-5
-* Mellanox ConnectX-5-Ex
-* Mellanox ConnectX-4
-* Mellanox ConnectX-4-Lx
-{% endtab %}
-
-{% tab title="HCP Drivers" %}
-WEKA supports the following Mellanox OFED versions for the InfiniBand HCPs:
+{% tab title="InfiniBand drivers" %}
+WEKA supports the following Mellanox OFED versions for the InfiniBand adapters:
 
 * 5.9-0.5.6.0
 * 5.8-1.1.2.1 LTS
@@ -271,12 +221,12 @@ WEKA supports the following Mellanox OFED versions for the InfiniBand HCPs:
 * 5.1-2.5.8.0
 {% endtab %}
 
-{% tab title="Configuration" %}
+{% tab title="InfiniBand configurations" %}
 WEKA supports the following InfiniBand configurations:
 
 * InfiniBand speeds: FDR / EDR / HDR
 * Subnet manager: Configured to 4092
-* One Weka system IP address for management and data plane
+* One WEKA system IP address for management and data plane
 * PKEYs: Supported
 * Dual InfiniBand can be used for both HA and higher bandwidth
 
@@ -286,16 +236,26 @@ If it is necessary to change PKEYs, contact the [Customer Success Team](getting-
 {% endtab %}
 {% endtabs %}
 
-### HA
+### Required ports
 
-* The network is configured as described in [Weka Networking - HA](../overview/networking-in-wekaio.md#ha).
+When configuring firewall ingress and egress rules the following access must be allowed.
+
+{% hint style="info" %}
+Right-scroll the table to view all columns.
+{% endhint %}
+
+<table><thead><tr><th width="178">Purpose</th><th width="146">Source</th><th width="168">Target</th><th width="145">Target Ports</th><th width="142">Protocol</th><th width="224">Comments</th></tr></thead><tbody><tr><td>WEKA server traffic</td><td>All WEKA server IPs </td><td>All WEKA server IPs</td><td>14000-14100<br>14200-14300<br>14400-14500</td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default for the Resources Generator for the first three containers. You can customize these values.</td></tr><tr><td>WEKA SSH management traffic</td><td>All WEKA server IPs </td><td>All WEKA server IPs</td><td>22</td><td>TCP</td><td></td></tr><tr><td>WEKA clients traffic</td><td>Client host IPs</td><td>All WEKA server IPs</td><td>14000-14100</td><td>TCP and UDP</td><td></td></tr><tr><td>WEKA GUI access </td><td></td><td>All WEKA management IPs</td><td>14000</td><td>TCP</td><td>User web browser IP</td></tr><tr><td>NFS</td><td>NFS client IPs</td><td>WEKA Server NFS IPs</td><td>2049<br>&#x3C;mountd port></td><td>TCP and UDP<br>TCP and UDP</td><td>You can set the mountd port using the command: <code>weka nfs global-config set --mountd-port</code></td></tr><tr><td>SMB</td><td>SMB client IPs</td><td>WEKA Server SMB IPs</td><td>139<br>445</td><td>TCP<br>TCP</td><td></td></tr><tr><td>S3</td><td>S3 client IPs</td><td>WEKA Server S3 IPs</td><td>9000</td><td>TCP</td><td></td></tr><tr><td>wekatester</td><td>All WEKA server IPs</td><td>All WEKA server IPs</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td>Port 5001 is used by wekanetperf.</td></tr><tr><td>WEKA Management Station</td><td>User web browser IP</td><td>WEKA Management Station IP</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td></td></tr></tbody></table>
+
+## HA
+
+See [#high-availability-ha](../overview/networking-in-wekaio.md#high-availability-ha "mention").
 
 ## SSDs
 
 * Support PLP (Power Loss Protection)
-* Dedicated for Weka system storage (partition not supported)
+* Dedicated for WEKA system storage (partition not supported)
 * Supported drive capacity: Up to 30 TiB
-* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the WEKA cluster servers (e.g., due to specific applications when running the WEKA cluster in converged mode), contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 {% hint style="info" %}
 To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
@@ -309,13 +269,13 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\
   * PUT
     * Supports any byte size of up to 65 MiB
   * DELETE
-* Data Consistency: [AWS S3 consistency guarantee](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel):
-  * GET after a single PUT must be entirely consistent
-  * Multiple PUTs should eventually be consistent
+* Data Consistency: [Amazon S3 consistency model](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel):
+  * GET after a single PUT is strongly consistent
+  * Multiple PUTs are eventually consistent
 
 ### Certified object stores
 
-* AWS S3
+* Amazon S3
   * S3 Standard
   * S3 Intelligent-Tiering
   * S3 Standard-IA
@@ -341,7 +301,7 @@ Virtual Machines (VMs) can be used as **clients** only. Ensure the following pre
 
 {% tabs %}
 {% tab title="UDP clients" %}
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by reserving the CPU in the virtual platform and dedicating a core to the WEKA client.
+* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the WEKA process by reserving the CPU in the virtual platform and dedicating a core to the WEKA client.
 * The root filesystem must handle a 3K IOPS load by the WEKA client.
 
 \
@@ -364,7 +324,7 @@ Virtual Machines (VMs) can be used as **clients** only. Ensure the following pre
 
 </details>
 
-For additional information and how-to articles, search the Weka Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+For additional information and how-to articles, search the WEKA Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 ## KMS
 
