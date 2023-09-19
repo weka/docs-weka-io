@@ -37,11 +37,10 @@ Use the following command to set a default quota of a directory:
 | `owner`  | String   | An opaque string identifying the directory owner (can be a name, email, slack ID, etc.) This owner will be shown in the quota report and can be notified upon exceeding the quota. | Up to 48 characters.                                                                 | No            |             |
 
 {% hint style="info" %}
-**Note:** To set advisory only quotas, use a `soft` quota limit without setting a `grace` period.
-{% endhint %}
+**Notes:**
 
-{% hint style="info" %}
-**Note:** When both `hard` and `soft` quotas exist, setting the value of one of them to `0` will clear this quota.
+* Use a soft quota limit without setting a grace period to set advisory-only quotas.
+* When both `hard` and `soft` quotas exist, setting the value of one of them to `0` will clear this quota.
 {% endhint %}
 
 ## List directory quotas/default quotas
