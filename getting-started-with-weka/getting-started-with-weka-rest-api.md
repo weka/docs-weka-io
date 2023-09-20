@@ -10,7 +10,7 @@ For example, to create a filesystem using the `POST /fileSystems` function, see 
 
 ## Access the REST API
 
-You can access the RSET API using one of the following methods:
+You can access the REST API using one of the following methods:
 
 {% tabs %}
 {% tab title="Direct access" %}
