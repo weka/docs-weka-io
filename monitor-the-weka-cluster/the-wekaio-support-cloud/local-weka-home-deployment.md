@@ -67,9 +67,9 @@ For using other operating systems, contact the [Customer Success Team](../../sup
 
     `2380`   (etcd)
 
-    `80`       (wekahome)
+    `80`       (Local WEKA Home, WEKA cluster, and web browser)
 
-    `443`     (wekahome)
+    `443`     (Local WEKA Home, WEKA cluster, and web browser)
 4. Install the Docker Engine version 20 or higher on the management server according to the Docker documentation.\
    To install the Docker on RHEL, see [Install Docker Engine on Centos](https://docs.docker.com/engine/install/centos/) (the instructions in _Install Docker Engine on RHEL_ do not work).
 5. Run the following to verify that the required docker version is installed:\
