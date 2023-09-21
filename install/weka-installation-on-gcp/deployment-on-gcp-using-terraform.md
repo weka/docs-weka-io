@@ -77,15 +77,19 @@ Before installing the WEKA software on GCP, the following prerequisites must be 
 
 ## **Installation**
 
-1. According to the required deployment, go to the relevant directory in the examples directory.  Customize the Terraform variables file (`terraform.tfvars`).
-2. To validate the configuration, run `terraform plan`.
-3. Once the configuration validation is successful, run `terraform apply`.&#x20;
+1. In the WEKA GCP-Terraform unpacked package, go to the **examples** directory and locate the required deployment type example.
+2. Select the Terraform variables file (`terraform.tfvars`) and customize it (see the related topic below).
+
+<figure><img src="../../.gitbook/assets/gcp_tfvars_example (1).png" alt=""><figcaption><p>Location of the terraform.tfvars file in one of the provided examples</p></figcaption></figure>
+
+3. To validate the configuration, run `terraform plan`.
+4. Once the configuration validation is successful, run `terraform apply`.&#x20;
 
 Terraform applies the configuration on the specified GCP project.
 
 
 
-**Related topics**
+**Related topic**
 
 [gcp-terraform-package-description.md](gcp-terraform-package-description.md "mention")
 
