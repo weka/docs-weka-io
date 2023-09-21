@@ -93,7 +93,19 @@ Terraform applies the configuration on the specified GCP project.
 
 [gcp-terraform-package-description.md](gcp-terraform-package-description.md "mention")
 
+## **Upgrade the WEKA version**
 
+Upgrading the WEKA version on the cloud is similar to the standard WEKA upgrade process. However, in a cloud configured with auto-scaling, the new instances created by the scale-up must be configured with the new WEKA version.
+
+**Before you begin**
+
+Ensure the cluster does not undergo a scale-up or scale-down process before and during the WEKA version upgrade.
+
+**Procedure**
+
+1. Perform the upgrade process. See [upgrading-weka-versions.md](../../usage/upgrading-weka-versions.md "mention").
+2. Update the `weka_version` variable in the Terraform deployment file (`terraform.tfvars`).
+3. Run `terraform apply`.
 
 ## Rollback
 

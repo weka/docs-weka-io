@@ -52,7 +52,7 @@ Follow these additional requirements to get Terraform working on an Arm-based Ma
 
 1. You can use one of the provided examples as a template for the required deployment. \
    Go to the relevant directory in the examples directory and customize the Terraform variables file: `vars.auto.tfvars`.\
-   Ensure the `prefix` and `cluster_name` variables are unique across the Azure environment.    You can optionally also add your Weka token (to download the Weka software) with `get_weka_io_token` and your Microsoft subscription with `subscription_id` or you can supply them later when running `terraform plan` and `terraform apply`.
+   Ensure the `prefix` and `cluster_name` variables are unique across the Azure environment.    You can optionally also add your Weka token (to download the Weka software) with `get_weka_io_token` and your Microsoft subscription with `subscription_id,` or you can supply them later when running `terraform plan` and `terraform apply`.
 
 {% hint style="info" %}
 The example templates are simplified and have the minimum variable inputs to customize. For additional variable inputs to customize, you can modify their default values in the main **`variables.tf`** file, or add them to the Terraform variables file. See the README in the Azure-WEKA Terraform package for the complete list of variable inputs.
@@ -348,6 +348,20 @@ Once the deployment is completed, access the WEKA cluster GUI using the URL: `ht
 ## **Update the** Cluster Admin password
 
 If you [update the Cluster admin password](https://docs.weka.io/usage/user-management/user-management#change-a-local-user-password) in the WEKA application, also update the weka-password secret in the key vault in the Azure console or Azure CLI.
+
+## **Upgrade the WEKA version**
+
+Upgrading the WEKA version on the cloud is similar to the standard WEKA upgrade process. However, in a cloud configured with auto-scaling, the new instances created by the scale-up must be configured with the new WEKA version.
+
+**Before you begin**
+
+Ensure the cluster does not undergo a scale-up or scale-down process before and during the WEKA version upgrade.
+
+**Procedure**
+
+1. Perform the upgrade process. See [upgrading-weka-versions.md](../../usage/upgrading-weka-versions.md "mention").
+2. Update the `weka_version` variables in the Terraform deployment file (`vars.auto.tfvars`) with the new WEKA version.
+3. Run `terraform apply`.
 
 ## **Clean up the** deployment
 

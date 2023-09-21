@@ -51,7 +51,7 @@
   * [Deployment on GCP using Terraform](install/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md)
   * [Required services and supported regions](install/weka-installation-on-gcp/required-services-and-supported-regions.md)
   * [Supported machine types and storage](install/weka-installation-on-gcp/supported-machine-types-and-storage.md)
-  * [Auto scale instances in GCP](install/weka-installation-on-gcp/auto-scale-instances-in-gcp.md)
+  * [Auto-scale instances in GCP](install/weka-installation-on-gcp/auto-scale-instances-in-gcp.md)
   * [Add clients](install/weka-installation-on-gcp/add-clients.md)
   * [Troubleshooting](install/weka-installation-on-gcp/troubleshooting.md)
 
