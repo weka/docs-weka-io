@@ -7,7 +7,7 @@ WEKA provides a cloud function for scale-up or scale-down of the number of compu
 To change the cluster size (up or down), specify the link to the resize cloud function on GCP and the resize target value for the number of compute engine instances in the following command and run it:
 
 ```
-curl -m 70 -X POST  https://<resize_cloud_funcltion_name> \
+curl -m 70 -X POST  https://<resize_cloud_function_name> \
 -H "Authorization:bearer $(gcloud auth print-identity-token)" \
 -H "Content-Type:application/json" \
 -d '{"value":<Resize_target_value>}'
