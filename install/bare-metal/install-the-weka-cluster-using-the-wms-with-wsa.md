@@ -8,7 +8,7 @@ The WMS is also used for installing the monitoring tools: Local WEKA Home (LWH),
 
 ## WMS deployment prerequisites
 
-Using the WMS with WSA to install a WEKA cluster requires a physical server (not VM) that meets the following requirements:
+Using the WMS with WSA to install a WEKA cluster requires a physical server (or VM) that meets the following requirements:
 
 * **Boot drives:** One or two identical boot drives as an installation target.
   * A system with two identical boot drives has the OS installed on mirrored partitions (LVM).
