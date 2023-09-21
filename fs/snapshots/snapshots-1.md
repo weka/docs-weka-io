@@ -4,23 +4,12 @@ description: This page describes how to manage snapshots using the CLI.
 
 # Manage snapshots using the CLI
 
-
-
 Using the CLI, you can:
 
 * [Create a snapshot](snapshots-1.md#create-a-snapshot)
 * [Delete a snapshot](snapshots-1.md#delete-a-snapshot)
 * [Restore a snapshot to a filesystem or another snapshot](snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot)
 * [Update a snapshot](snapshots-1.md#update-a-snapshot)
-
-Consider the following when working with snapshots:
-
-* When moving a file in or out of a snapshot directory, or between snapshots, the kernel implements the move operation as a copy operation, similar to moving a file between two different filesystems. Such operations for directories fail.
-* If symbolic links are accessed via the `.snapshots` directory, the symlinks with absolute paths can lead to the current filesystem. Consequently, depending on the usage, it may be preferable not to follow symlinks or to use relative paths.
-
-{% hint style="info" %}
-The `.snapshots` directory is not listed. Running `ls` on the root of the filesystem does not show the `.snapshots` directory. However, it can be explicitly accessed, e.g. using the `cd .snapshots` command.&#x20;
-{% endhint %}
 
 ## Create a snapshot
 
