@@ -8,9 +8,9 @@ description: >-
 
 ### Attachment of a local object store bucket to a filesystem
 
-Two local object store buckets can be attached to a filesystem, but only one of the buckets is writable. A local object store bucket is used for both tiering and snapshots. When attaching a new object store bucket to an already tiered filesystem, the existing object-store bucket becomes read-only, and the new object store bucket is read/write. Multiple object stores allow a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
+Two local object store buckets can be attached to a filesystem, but only one of the buckets is writable. A local object store bucket is used for both tiering and snapshots. When attaching a new local object store bucket to an already tiered filesystem, the existing local object-store bucket becomes read-only, and the new object store bucket is read/write. Multiple local object stores allow a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
 
-When attaching an object store bucket to a non-tiered filesystem, the filesystem becomes tiered.
+When attaching a local object store bucket to a non-tiered filesystem, the filesystem becomes tiered.
 
 ### Detachment of a local object store bucket from a filesystem
 
@@ -24,7 +24,7 @@ Detaching an object store bucket is irreversible. Attaching the same bucket agai
 
 #### Migration to a different object store
 
-When detaching from a filesystem tiered to two object store buckets, only the read-only object-store bucket can be detached. In such cases, the background task copies the relevant data to the writable object store.
+When detaching from a filesystem tiered to two local object store buckets, only the read-only object-store bucket can be detached. In such cases, the background task copies the relevant data to the writable object store.
 
 #### Un-tiering a filesystem
 

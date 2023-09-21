@@ -60,7 +60,7 @@ When using the CLI, by default a misconfigured object store will not be created.
 {% endhint %}
 
 {% hint style="warning" %}
-The `max-concurrent` settings are applied per Weka compute process and the minimum setting of all object stores is applied.
+The `max-concurrent` settings are applied per WEKA compute process and the minimum setting of all object stores is applied.
 {% endhint %}
 
 {% hint style="success" %}
