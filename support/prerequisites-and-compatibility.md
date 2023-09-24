@@ -152,6 +152,8 @@ Adhere to the following considerations when choosing the adapters:
 
 The following table provides the supported network adapters for Ethernet and InfiniBand, and their supported features.
 
+For more information about the supported features, see [networking-in-wekaio.md](../overview/networking-in-wekaio.md "mention").
+
 {% hint style="info" %}
 Right-scroll the table to view all columns.
 {% endhint %}
