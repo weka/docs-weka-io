@@ -10,7 +10,7 @@ The WEKA upgrade process supports upgrading to higher minor and major versions o
 
 Always upgrade to the latest minor version in the new major version when upgrading to a major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
-* To upgrade to WEKA software version 4.2.x, the minimum source version must be 4.1.0 in MCB architecture.
+* To upgrade to WEKA software version 4.2.x, the minimum source version must be 4.1.2 in MCB architecture.
 * To upgrade to WEKA software version 4.1.x, the minimum source version must be 4.0.2 in MCB architecture.&#x20;
 
 If the source system is not in MCB architecture, it is required to convert the cluster architecture to MCB. Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for assistance.
