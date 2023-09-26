@@ -139,7 +139,6 @@ To set the SELinux security context for files,  use the `-o acl` in the mount co
 Adhere to the following considerations when choosing the adapters:
 
 * **LACP:**  Link aggregation, also known as bond interfaces, is supported between ports on a single Mellanox NIC and is not supported when using Virtual Functions (VFs).
-* **Mixed networks:** Connecting Ethernet and InfiniBand clients to the same cluster is not supported with Intel E810, NVIDIA Mellanox CX-6 DX, and CX-6 LX on the cluster backends.
 * **Intel E810:**
   * Only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, consult with the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
   * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0 are required.
