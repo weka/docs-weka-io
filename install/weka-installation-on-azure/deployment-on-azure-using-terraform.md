@@ -349,20 +349,6 @@ Once the deployment is completed, access the WEKA cluster GUI using the URL: `ht
 
 If you [update the Cluster admin password](https://docs.weka.io/usage/user-management/user-management#change-a-local-user-password) in the WEKA application, also update the weka-password secret in the key vault in the Azure console or Azure CLI.
 
-## **Upgrade the WEKA version**
-
-Upgrading the WEKA version on the cloud is similar to the standard WEKA upgrade process. However, in a cloud configured with auto-scaling, the new instances created by the scale-up must be configured with the new WEKA version.
-
-**Before you begin**
-
-Ensure the cluster does not undergo a scale-up or scale-down process before and during the WEKA version upgrade.
-
-**Procedure**
-
-1. Perform the upgrade process. See [upgrading-weka-versions.md](../../usage/upgrading-weka-versions.md "mention").
-2. Update the `weka_version` variables in the Terraform deployment file (`vars.auto.tfvars`) with the new WEKA version.
-3. Run `terraform apply`.
-
 ## **Clean up the** deployment
 
 If the WEKA cluster is no longer required on Azure or you need to clean up the deployment, use the `terraform destroy` action (a token from [get.weka.io](https://get.weka.io/) is required). The object storage and storage account are not deleted.
