@@ -236,27 +236,27 @@ Use the following command lines to delete a rule that causes a client to be part
 
 **Command:** `weka nfs rules`
 
-Use the following command lines to add or delete a rule which causes a client to be part of a client group based on its IP and netmask:
+Use the following command lines to add or delete a rule which causes a client to be part of a client group based on its IP and subnet mask:
 
-`weka nfs rules add ip <name> <ip>`
+`weka nfs rules add ip <name> <ip/subnet mask>`
 
 **Examples**
 
-&#x20;`weka nfs rules add ip client-group1 192.168.114.0/255.255.255.0`\
-&#x20;`weka nfs rules add ip client-group2 172.16.0.0/255.255.0.0`
+&#x20;`weka nfs rules add ip client-group1 192.168.114.0/8`\
+&#x20;`weka nfs rules add ip client-group2 172.16.0.0/16`
 
 #### **Delete IP-based client group rules**
 
-`weka nfs rules delete ip <name> <ip>`
+`weka nfs rules delete ip <name> <ip/subnet mask>`
 
 **Examples**
 
-&#x20;`weka nfs rules delete ip client-group1 192.168.114.0/255.255.255.0`\
-&#x20;`weka nfs rules delete ip client-group2 172.16.0.0/255.255.0.0`
+&#x20;`weka nfs rules delete ip client-group1 192.168.114.0/8`\
+&#x20;`weka nfs rules delete ip client-group2 172.16.0.0/16`
 
 **Parameters**
 
-<table><thead><tr><th width="251">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid client group name.</td></tr><tr><td><code>ip</code>*</td><td>Valid IP with netmask rule.<br>Format: <code>1.1.1.1/255.255.0.0</code></td></tr></tbody></table>
+<table><thead><tr><th width="167">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid client group name.</td></tr><tr><td><code>ip</code>*</td><td><p>Valid IP address with a subnet mask.</p><p>The subnet mask is represented in CIDR (Classless Inter-Domain Routing) format.</p><p>Examples of subnet masks in CIDR format:</p><ul><li>A value of <code>16</code> corresponds to a subnet mask of <code>255.255.0.0</code>.</li><li>A value of <code>8</code> corresponds to a subnet mask of <code>255.255.255.0</code>.</li></ul><p>Format: <code>1.1.1.1/16</code></p></td></tr></tbody></table>
 
 ### **Manage NFS client permissions**
 
