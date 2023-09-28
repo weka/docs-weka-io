@@ -88,6 +88,7 @@ The following kernel versions are supported:
 {% hint style="info" %}
 * Kernel 5.15 is not supported with Amazon Linux operating systems.
 * It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
+* Confirm that both the kernel version and the operating system version are listed as supported, as these are distinct components with their own compatibility considerations.
 {% endhint %}
 {% endtab %}
 
