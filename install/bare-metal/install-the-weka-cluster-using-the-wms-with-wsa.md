@@ -119,7 +119,7 @@ Change the port from 9090 to 8051, which is the WMS Admin port.
 
 ### 3. Add the WSA package to the WMS
 
-1. Download the WSA package from [https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso](https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso).
+1. Download the latest release of the WSA package from [get.weka.io](https://get.weka.io/ui/dashboard) dashboard.
 2. Copy the WSA package to **/home/weka** .\
    For example:  `scp <wsa.iso> weka@<wms-server>:`
 
