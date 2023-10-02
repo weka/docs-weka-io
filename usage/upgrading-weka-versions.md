@@ -52,7 +52,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 6. [Check the status after the upgrade](upgrading-weka-versions.md#6.-check-the-status-after-the-upgrade)
 
 {% hint style="warning" %}
-**Note:** Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation.\
+Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation.\
 Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
 {% endhint %}
 
@@ -62,12 +62,13 @@ Before upgrading the cluster, ensure the following prerequisites:
 
 1. The backend servers meet the [prerequisites and compatibility](../support/prerequisites-and-compatibility.md) of the target version.
 2. Ensure the source version is configured in an MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the source version from the legacy architecture to MCB.
-3. All the backend servers are online.
-4. Ensure you are logged in as a Cluster Admin (using a `weka user login`).
-5. Any rebuild has been completed.
-6. There are no outstanding alerts that still need to be addressed.
-7. There is at least 4 GB of free space in the `/opt/weka` directory.
-8. The NDU process requires the following tasks to be stopped. If these tasks are planned, postpone them. If the tasks are running, perform the required action.
+3. If the S3 protocol is configured and the target version is 4.2.4, contact the Customer Success Team to confirm the ETCD (internal key-value store) has been upgraded to KWAS.&#x20;
+4. All the backend servers are online.
+5. Ensure you are logged in as a Cluster Admin (using a `weka user login`).
+6. Any rebuild has been completed.
+7. There are no outstanding alerts that still need to be addressed.
+8. There is at least 4 GB of free space in the `/opt/weka` directory.
+9. The NDU process requires the following tasks to be stopped. If these tasks are planned, postpone them. If the tasks are running, perform the required action.
 
 <table><thead><tr><th width="208">Task</th><th width="242">Required action</th><th>Backgrounk task name</th></tr></thead><tbody><tr><td>Upload a snapshot  </td><td>Wait for the snapshot upload to complete,  or abort it.</td><td>STOW_UPLOAD</td></tr><tr><td>Create a filesystem from an uploaded snapshot</td><td>Wait for the download to complete or abort it by deleting the downloaded filesystem or snapshot.<br><br>If the task is in the snapshot prefetch of the metadata stage, wait for the prefetch to complete or abort it by. It is not possible to resume the snapshot prefetch after the upgrade.</td><td>STOW_DOWNLOAD_SNAPSHOT<br>STOW_DOWNLOAD_FILESYSTEM<br>FILESYSTEM_SQUASH<br>SNAPSHOT_PREFETCH</td></tr><tr><td>Sync a filesystem from a snapshot</td><td>Wait for the download to complete or abort it by deleting the downloaded filesystem or snapshot.</td><td>STOW_DOWNLOAD_SNAPSHOT</td></tr><tr><td>Detach object store bucket from a filesystem</td><td>Detaching an object store is blocked during the upgrade. If it is running, ignore it. </td><td>OBS_DETACH</td></tr></tbody></table>
 
