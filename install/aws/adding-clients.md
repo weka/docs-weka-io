@@ -29,7 +29,6 @@ When launching new clients, ensure the following concerning networking and root 
 * For best performance, it is recommended that the new clients will be in the **same subnet** as the backend instances, alternatively, they can be in a routable subnet to the backend instances in the same AZ (note that cross-AZ traffic also incurs expensive network charges).&#x20;
 * They must use the same **security group** as the backends they will connect to, or alternatively use a **security group** that allows them to connect to the backend instances.
 * **Enhanced networking** is enabled as described in [https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html).
-* The OS **network manager** must be disabled.
 
 #### IAM instance profile
 
