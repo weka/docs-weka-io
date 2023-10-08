@@ -8,15 +8,17 @@ description: >-
 
 ## User types
 
-Access to a WEKA system cluster is controlled by creating, modifying, and deleting users. You can add up to 1152 local users to work with a WEKA system cluster. A username identifies each user and must provide a password for authentication to work with the WEKA system GUI or CLI.
+Access to a WEKA system cluster is controlled by creating, modifying, and deleting users. You can add up to 1152 local users to work with a WEKA system cluster. A username identifies each user and must provide a password for authentication to work with the WEKA system GUI, CLI, and API.
 
 Every WEKA system user has one of the following defined roles:
 
-* **Cluster Admin**: A user with additional privileges. See [Cluster Admin role privileges](./#cluster-admin-role-privileges).
-* **Organization Admin**: A user with additional privileges within an organization. This role is relevant when working with different organizations. See [Organization Admin role privileges](../organizations/#organization-admin-role-privileges).
-* **Read-only:** A user with read-only privileges.
-* **S3:** A user to run S3 commands and APIs. This user can operate within the limits of the S3 IAM policy attached to it. An S3 user can create S3 service accounts with a specific policy.
-* **Regular**: A user that is only used for mounting filesystems. This user can sign in to obtain an access token and change the password but cannot access the GUI or run other CLI/API commands.
+* **Cluster Admin**: A user role with additional privileges. See [Cluster Admin role privileges](./#cluster-admin-role-privileges).
+* **Organization Admin**: A user role with additional privileges within an organization. This role is relevant when working with different organizations. See [Organization Admin role privileges](../organizations/#organization-admin-role-privileges).
+*   **Read-only:** A user role with limited privileges across the GUI, CLI, and API interfaces. Users with this role are restricted from making any changes to the system configuration, including tasks like creating file systems, protocols, and user accounts. Their permissions are strictly limited to 'read' operations, allowing them to view system settings and data but not to modify them.
+
+    The term 'read-only' does not apply to authenticated mounts. In such cases, even users with a read-only role can still authenticate and write data to a mounted location.
+* **S3:** A user role to run S3 commands and APIs. This user can operate within the limits of the S3 IAM policy attached to it. An S3 user can create S3 service accounts with a specific policy.
+* **Regular**: A user role only used for mounting filesystems. This user can sign in to obtain an access token and change the password but cannot access the GUI or run other CLI/API commands.
 
 ## Cluster Admin **(**the first user)
 
