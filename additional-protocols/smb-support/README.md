@@ -95,10 +95,10 @@ Verify that the DNS "nameserver" of the servers participating in the SMB cluster
 
 ### Round-robin DNS server configuration
 
-To ensure load balancing between the NFS clients on the different WEKA servers serving SMB, it is recommended to configure a round-robin DNS entry that resolves to the list of floating IPs.
+To ensure load balancing between each of the different WEKA servers serving SMB, it is recommended to configure a round-robin DNS entry that resolves to the list of floating IPs.
 
 {% hint style="info" %}
-Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
+Set the TTL (Time to Live) for all records assigned to the SMB servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
 {% endhint %}
 
 **Related information**
