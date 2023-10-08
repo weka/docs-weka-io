@@ -172,34 +172,49 @@ Example:
 
 ```yaml
 schedules:
-    default:
-        monthly:
-            every: month
-            retain: 6
-            # day: 1   (this is the default)
-            # at: 0000 (this is the default)
-        weekly:
-            every: Sunday
-            retain: 8
-            # at: 0000 (this is the default)
-        daily:
-            every: Mon,Tue,Wed,Thu,Fri,Sat
-            retain: 14
-            # at: 0000 (this is the default)
-        hourly:
-            every: Mon,Tue,Wed,Thu,Fri
-            retain: 10
-            interval: 60
-            at: 9:00am
-            until: 5pm
-    Weekdays-6pm:
-        every: Mon,Tue,Wed,Thu,Fri
-        at: 6pm
-        retain: 4
-    Weekends-noon:
-        every: Sat,Sun
-        at: 1200
-        retain: 4
+   default:
+      monthly:
+         every: month
+         retain: 6
+         # day: 1   (this is default)
+         # at: 0000 (this is default)
+      weekly:
+         every: Sunday
+         retain: 8
+         # at: 0000 (this is default)
+      daily:
+         every: Mon,Tue,Wed,Thu,Fri,Sat
+         retain: 14
+         # at: 0000 (this is default)
+      hourly:
+         every: Mon,Tue,Wed,Thu,Fri
+         retain: 8
+         interval: 60
+         at: 9:00am
+         until: 5pm
+   workhoursHourlyUp:
+      every: Mon,Tue,Wed,Thu,Fri
+      retain: 7
+      at: 0900
+      until: 5pm
+      interval: 60
+      upload: True
+   workhoursEvery20:
+      every: Mon,Tue,Wed,Thu,Fri
+      retain: 7
+      at: 0900
+      until: 5pm
+      interval: 20
+   weekendsNoon:
+      every: Sat,Sun
+      retain: 4
+      at: 1200
+   fridayUpload:
+      every: Friday
+      retain: 3
+      at: 7pm
+      upload: True
+
 ```
 
 ### Snapshot naming conventions
