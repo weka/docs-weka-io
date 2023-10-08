@@ -14,9 +14,9 @@ This preparation consists of the following steps:
 2. [Enable SR-IOV](./#enable-sr-iov) (when required)
 3. [Configure the networking](./#configure-the-networking)
 4. [Verify the network configuration](./#verify-the-network-configuration)
-5. [Configure the clock synchronization](./#configure-the-ha-networking)
-6. [Disable the Numa balancing](./#configure-sync)
-7. [Disable the NUMA balancing](./#disable-the-numa-balancing)
+5. [Configure the HA networking](./#configure-the-ha-networking)
+6. [Configure the clock synchronization](./#configure-sync)
+7. [Disable the Numa balancing](./#disable-the-numa-balancing)
 8. [Validate the system preparation](./#validate-the-system-preparation)
 
 {% hint style="info" %}

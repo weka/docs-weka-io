@@ -196,7 +196,7 @@ Right-scroll the table to view all columns.
 * Other vendors NICs
   * WEKA system management IP address: One IP per server (configured before WEKA installation)
   * WEKA system data plane IP address: One IP address for each [Weka core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
-  * Weka system management IP: Ability to communicate with all WEKA system data plane IPs
+  * WEKA system management IP: Ability to communicate with all WEKA system data plane IPs
   * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of VFs supported by the device must be bigger than the number of physical cores on the server; you should set the number of VFs to the number of cores you wish to dedicate to WEKA; some configurations may be required in the BIOS
   * SR-IOV: Enabled in BIOS
 
