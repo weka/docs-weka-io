@@ -40,7 +40,7 @@ xfsprogs
 
 <summary>Recommended packages for remote support and maintenance</summary>
 
-RHEL and derivatives
+#### RHEL and derivatives
 
 ```
 @network-tools
@@ -74,6 +74,32 @@ htop
 nload
 screen
 ice
+```
+
+#### Ubuntu
+
+```
+elfutils
+fio
+git
+hwloc
+iperf
+ipmitool
+kexec-tools
+jk
+ldap-client
+libaio-dev
+lldpd
+nfs-client
+nload
+nmap
+numactl
+nvme-cli
+pdsh
+python3
+sshpass
+sysstat
+tmate
 ```
 
 </details>
