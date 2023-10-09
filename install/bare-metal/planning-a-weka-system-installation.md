@@ -62,6 +62,10 @@ The total per server memory requirements is the sum of the following requirement
 | RDMA                              | 2 GB                                                                                                                                               |
 | Metadata (pointers)               | <p>20 Bytes x # Metadata units per server<br>See <a href="../../overview/filesystems.md#metadata-calculations">Metadata units calculation</a>.</p> |
 
+{% hint style="warning" %}
+The maximum memory per **container** is 384 GB.
+{% endhint %}
+
 #### Example 1: A system with large files
 
 A system with 16 servers with the following details:
