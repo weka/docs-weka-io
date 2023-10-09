@@ -1,20 +1,28 @@
 # Supported machine types and storage
 
-WEKA supports the following compute-optimized machine types:&#x20;
+## Supported machine types for backends
 
-* **c2-standard-8:**
-  *   Resources: 8 vCPUs, 32 GB memory
+The following table provides the supported machine types for backends applied by the Terraform package:
 
-      Target use case: light use workloads, demos, or test environments
-
-      Networking: supports 4 network interfaces, 16 Gbps
-* **c2-standard-16:**
-  * Resources: 16 vCPUs, 64 GB memory
-  * Targeted use case: performance and production environments
-  * Networking: supports up to 7 network interfaces, 32 Gbps
-
-Each machine type supports 1, 2, 4, or 8 local SSD drives. Each drive has 375 GB (maximum 3 TB per instance). These drives are not individual SSDs but partitions locally to the physical server.
+<table><thead><tr><th width="183">Machine series</th><th>Machine types</th></tr></thead><tbody><tr><td>C2</td><td>c2-standard-8, c2-standard-16</td></tr></tbody></table>
 
 {% hint style="info" %}
-The data in a WEKA cluster is protected with N+2 or N+4. However, use snap-to-object if the data needs further protection from multiple server failures.
+* Each machine type supports 1, 2, 4, or 8 local SSD drives. Each drive has 375 GB (maximum 3 TB per instance). These drives are not individual SSDs but partitions locally to the physical server.
+* The data in a WEKA cluster is protected with N+2 or N+4. However, use snap-to-object if the data needs further protection from multiple server failures.
 {% endhint %}
+
+**Related information**
+
+[C2 machine series](https://cloud.google.com/compute/docs/compute-optimized-machines#c2\_machine\_types)
+
+## Supported machine types for clients
+
+The following table provides the supported machine types for clients applied by the Terraform package:
+
+<table><thead><tr><th width="184">Machine series</th><th>Machine type</th></tr></thead><tbody><tr><td>C2D</td><td>c2d-standard-4, c2d-standard-8, c2d-standard-16, c2d-standard-32, c2d-standard-56, c2d-standard-112</td></tr><tr><td>N2</td><td>n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32, n2-standard-48, n2-standard-96, n2-standard-128</td></tr></tbody></table>
+
+**Related information**
+
+[C2D machine series](https://cloud.google.com/compute/docs/compute-optimized-machines#c2d\_series)
+
+[N2 machine series](https://cloud.google.com/compute/docs/general-purpose-machines#n2\_series)
