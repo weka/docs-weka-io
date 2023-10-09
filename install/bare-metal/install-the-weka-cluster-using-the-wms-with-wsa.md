@@ -14,12 +14,12 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
   * A system with two identical boot drives has the OS installed on mirrored partitions (LVM).
   * A system with one drive has a simple partition.
 * **Minimum boot drive capacity:**
-  * If not configuring LWH: 125 GB.
-  * If configuring LWH: 500 GB.
+  * If not configuring LWH: SSD 125 GiB.
+  * If configuring LWH: SSD-backed storage of 500 GiB.
 * **Boot type:** UEFI boot.
 * **Cores and RAM:**
-  * If not configuring LWH: minimum 4 cores and 16 GB.
-  * If configuring LWH: Minimum 8 cores and 48 GB for a cluster with up to 500 containers. More cores and memory are required for larger clusters.
+  * If not configuring LWH: minimum 4 cores and 16 GiB.
+  * If configuring LWH: Minimum 8 cores and 48 GiB for a cluster with up to 500 containers. More cores and memory are required for larger clusters.
 * **Network interface:** 1 Gbps.
 
 ### Prerequisites for the target bare metal servers&#x20;

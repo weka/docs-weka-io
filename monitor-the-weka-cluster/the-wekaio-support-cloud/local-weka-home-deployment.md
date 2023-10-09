@@ -36,9 +36,9 @@ Verify that the following requirement are met:
 * Server minimum requirements for up to 500 Weka containers:
   * 8 cores
   * 48 GiB RAM
-  * 500 GiB disk space in /opt/local-path-provisioner (local storage of the collected data)
+  * 500 GiB SSD for the local collected data stored in `/opt/local-path-provisioner`
   * 1 Gbps network
-  * Docker version 20 or higher.
+  * Docker version 20 or higher
 * Supported operating systems:
   * Centos 7.9
   * Amazon Linux 2
