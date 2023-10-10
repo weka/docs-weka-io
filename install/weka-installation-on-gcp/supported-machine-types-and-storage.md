@@ -19,7 +19,7 @@ The following table provides the supported machine types for backends applied by
 
 The following table provides the supported machine types for clients applied by the Terraform package:
 
-<table><thead><tr><th width="184">Machine series</th><th>Machine type</th></tr></thead><tbody><tr><td>C2D</td><td>c2d-standard-4, c2d-standard-8, c2d-standard-16, c2d-standard-32, c2d-standard-56, c2d-standard-112</td></tr><tr><td>N2</td><td>n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32, n2-standard-48, n2-standard-96, n2-standard-128</td></tr></tbody></table>
+<table><thead><tr><th width="184">Machine series</th><th>Machine type</th></tr></thead><tbody><tr><td>A2</td><td>a2-highgpu-1g</td></tr><tr><td>C2D</td><td>c2d-standard-4, c2d-standard-8, c2d-standard-16, c2d-standard-32, c2d-standard-56, c2d-standard-112</td></tr><tr><td>N2</td><td>n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32, n2-standard-48, n2-standard-96, n2-standard-128</td></tr></tbody></table>
 
 **Related information**
 
