@@ -172,7 +172,7 @@ parameters:
 
 </details>
 
-2. Apply the director-backed storage class and validate it is created successfully.
+2. Apply the directory-backed storage class and validate it is created successfully.
 
 <details>
 
