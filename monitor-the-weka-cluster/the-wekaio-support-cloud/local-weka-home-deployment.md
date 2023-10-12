@@ -1,20 +1,20 @@
 ---
 description: >-
-  This topic provides procedures for deploying the Local Weka Home on a Minikube
+  This topic provides procedures for deploying the Local WEKA Home on a Minikube
   infrastructure, upgrading, modifying the configuration, and troubleshooting.
 ---
 
-# Local Weka Home deployment
+# Local WEKA Home deployment
 
 This implementation runs on Minikube (a lightweight Kubernetes implementation) installed on a single Docker container. You specify the configuration parameters in the config.yaml file as part of the deployment workflow.
 
 {% hint style="info" %}
-It is possible to install the Local Weka Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md) to schedule this installation.
+It is possible to install the Local WEKA Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md) to schedule this installation.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/weka-home-local.png" alt=""><figcaption><p>Local Weka Home deployment</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/weka-home-local.png" alt=""><figcaption><p>Local WEKA Home deployment</p></figcaption></figure>
 
-## Workflow: Local Weka Home deployment
+## Workflow: Local WEKA Home deployment
 
 If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](../deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, perform the following workflow:
 
@@ -33,12 +33,12 @@ Verify that the following requirement are met:
 
 * A dedicated management server (or VM) for the installation.
 * The user account used for the installation has root privileges. Ensure that the `sudoers` file includes the root user.
-* Server minimum requirements for up to 500 Weka containers:
+* Server minimum requirements for up to 500 WEKA containers:
   * 8 cores
   * 48 GiB RAM
-  * 500 GiB SSD for the local collected data stored in `/opt/local-path-provisioner`
+  * 500 GiB disk space in /opt/local-path-provisioner (local storage of the collected data)
   * 1 Gbps network
-  * Docker version 20 or higher
+  * Docker version 20 or higher.
 * Supported operating systems:
   * Centos 7.9
   * Amazon Linux 2
@@ -53,7 +53,7 @@ For using other operating systems, contact the [Customer Success Team](../../sup
 
 1. Disable the _SELinux_.
 2. Disable the _iptables_, _UFW_, or _firewalld_.
-3.  Ensure the following ports are open and not used by any other process. Each port will be used for the process specified in the brackets.
+3.  Ensure the following ports are open and not used by any other process. Each port is used for the process specified in the brackets.
 
     `6443`   (kube-apiserver)
 
@@ -70,33 +70,38 @@ For using other operating systems, contact the [Customer Success Team](../../sup
     `80`       (Local WEKA Home, WEKA cluster, and web browser)
 
     `443`     (Local WEKA Home, WEKA cluster, and web browser)
-4. Install the Docker Engine version 20 or higher on the management server according to the Docker documentation.\
+
+{% hint style="info" %}
+If you forward data from the Local WEKA Home to the Cloud WEKA Home, ensure the outbound traffic on port 443 is open.
+{% endhint %}
+
+1. Install the Docker Engine version 20 or higher on the management server according to the Docker documentation.\
    To install the Docker on RHEL, see [Install Docker Engine on Centos](https://docs.docker.com/engine/install/centos/) (the instructions in _Install Docker Engine on RHEL_ do not work).
-5. Run the following to verify that the required docker version is installed:\
+2. Run the following to verify that the required docker version is installed:\
    `docker --version.`
-6. Run the following to start the docker and enable it:\
+3. Run the following to start the docker and enable it:\
    `systemctl start docker && systemctl enable docker`
-7. Run the following to set the iptables and pre-load it:\
+4. Run the following to set the iptables and pre-load it:\
    `echo net.bridge.bridge-nf-call-iptables=1 >> /etc/sysctl.conf; sysctl -p`
-8. Run the following to install the rule tables manager, connection tracking, and multi-purpose relay tool:\
+5. Run the following to install the rule tables manager, connection tracking, and multi-purpose relay tool:\
    `yum install -y ebtables conntrack socat`
-9.  Run the following to install the Traffic Control tool (tc):\
+6.  Run the following to install the Traffic Control tool (tc):\
     `yum install -y tc`
 
     (Depending on the Linux distribution, `tc` may already be installed. Or it is called iproute-tc. If it is, run: `yum install -y iproute-tc`.)
-10. Verify that the HugePages is disabled (`HugePages_Total: 0`).\
-    Run the following command:\
-    `grep HugePages_Total /proc/meminfo`\
-    If the returned value of the HugePages\_Total is higher than 0, run the following to disable the HugePages:\
-    `echo 0 > /proc/sys/vm/nr_hugepages`
+7. Verify that the HugePages is disabled (`HugePages_Total: 0`).\
+   Run the following command:\
+   `grep HugePages_Total /proc/meminfo`\
+   If the returned value of the HugePages\_Total is higher than 0, run the following to disable the HugePages:\
+   `echo 0 > /proc/sys/vm/nr_hugepages`
 
-### 3. Download the Local Weka Home and Minikube packages
+### 3. Download the Local WEKA Home and Minikube packages
 
 Download the latest _wekahome-vm-docker-images_ and _weka\_minikube_  packages to the dedicated management server.
 
-* Minikube for Local Weka Home download current location and version:\
+* Minikube for Local WEKA Home download current location and version:\
   `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/weka_minikube.tar.gz`
-* Local Weka Home download current location and version:\
+* Local WEKA Home download current location and version:\
   `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/wekahome-vm-docker-images.tar.gz`
 
 ### 4. Install the Minikube
@@ -131,9 +136,9 @@ If the minikube installation fails, do one of the following:
 * Run the command `minikube logs`. A log file is created in `/tmp` directory. Open the log file and search for the reason.&#x20;
 {% endhint %}
 
-### 5. Install and configure Local Weka Home
+### 5. Install and configure Local WEKA Home
 
-1. Unpack the Local Weka Home package:\
+1. Unpack the Local WEKA Home package:\
    `tar xvf <file name>`
 2. From the `wekahome_offline` directory, run:\
    `./update_config.sh`
@@ -262,9 +267,9 @@ global:
 
 <details>
 
-<summary>Forward data from the Local Weka Home to the Cloud Weka Home</summary>
+<summary>Forward data from the Local WEKA Home to the Cloud WEKA Home</summary>
 
-In the **apiforwarding** section, set the forwarding parameters to **true** (except the forwarding\_bulk\_size), as shown in the following sample. This is the default setting starting in Local Weka Home v2.10. To disable forwarding metrics to Cloud WEKA Home from Local WEKA Home, set `enabled: false` below.
+In the **apiforwarding** section, set the forwarding parameters to **true** (except the forwarding\_bulk\_size), as shown in the following sample. This is the default setting starting in Local WEKA Home v2.10. To disable forwarding metrics to Cloud WEKA Home from Local WEKA Home, set `enabled: false` below.
 
 ```
 apiforwarding:
@@ -294,12 +299,12 @@ apiforwarding:
 4. Run `./wekahome-install.sh`.\
    For new installation, it takes about 5 minutes.
 5. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
-6. Verify the Local Weka Home is installed successfully. Run the following command line:\
+6. Verify the Local WEKA Home is installed successfully. Run the following command line:\
    `helm status homewekaio -n home-weka-io`
 
 <details>
 
-<summary>Response example of a successful Local Weka Home installation</summary>
+<summary>Response example of a successful Local WEKA Home installation</summary>
 
 ```
 helm status homewekaio -n home-weka-io
@@ -359,39 +364,39 @@ Easy wekahoming!
 
 </details>
 
-### 6. Access the Local Weka Home portal and Grafana
+### 6. Access the Local WEKA Home portal and Grafana
 
-* The Local Weka Home URL is `https://<your_domain>`
-* The Grafana URL of the Local Weka Home is `https://<your_domain>/stats/`
-* The Weka Home REST API URL is `https://<your_domain>/api/`
+* The Local WEKA Home URL is `https://<your_domain>`
+* The Grafana URL of the Local WEKA Home is `https://<your_domain>/stats/`
+* The WEKA Home REST API URL is `https://<your_domain>/api/`
 * The user name for accessing the portals is `admin`.
-* To obtain the password for accessing the Local Weka Home portal, run the following command:\
+* To obtain the password for accessing the Local WEKA Home portal, run the following command:\
   `kubectl get secret -n home-weka-io weka-home-admin-credentials  -o jsonpath='{.data.admin_password}' | base64 -d`
 * To obtain the password for accessing the Local Weka Home grafana portal, run the following command:\
   `kubectl get secret -n home-weka-io weka-home-grafana-credentials  -o jsonpath='{.data.password}' | base64 -d`
-* To obtain the secret key of the Local Weka Home portal, run the following command:\
+* To obtain the secret key of the Local WEKA Home portal, run the following command:\
   `kubectl get secret -n home-weka-io weka-home-encryption  -o jsonpath='{.data.encryption_secret_key}' | base64 -d`
 
-### 7. Enable the WEKA cluster to send information to the Local Weka Home
+### 7. Enable the WEKA cluster to send information to the Local WEKA Home
 
-By default, the WEKA cluster is set to send information to the public instance of Weka Home. To get the information in the Local Weka Home, set in the Weka cluster the URL of the Local Weka Home.&#x20;
+By default, the WEKA cluster is set to send information to the public instance of WEKA Home. To get the information in the Local WEKA Home, set in the WEKA cluster the URL of the Local WEKA Home.&#x20;
 
 Connect to the WEKA cluster and run the following command:\
 `weka cloud enable --cloud-url https://<ip or hostname of the Local Weka Home server>`
 
 ### 8. Test the deployment
 
-The Weka cluster uploads data to the Local Weka Home periodically and on-demand according to its information type (see the [Which information is uploaded to the Weka Home](broken-reference) section).&#x20;
+The WEKA cluster uploads data to the Local WEKA Home periodically and on-demand according to its information type (see the Which information is uploaded to the WEKA Home section).&#x20;
 
-Access the Weka Home portal and verify that the test data appears.
+Access the WEKA Home portal and verify that the test data appears.
 
-To trigger a test event, run `weka events trigger-event test` and verify the test event is received in the Local Weka Home portal under the **Events** section.
+To trigger a test event, run `weka events trigger-event test` and verify the test event is received in the Local WEKA Home portal under the **Events** section.
 
 If required, go to `/var/log/wekahome` and review the relevant log according to the timestamp (for example, `wekahome-install-03-08-2023_16-29.log`).
 
-## Upgrade the Local Weka Home
+## Upgrade the Local WEKA Home
 
-The Local Weka Home upgrade workflow is similar to the deployment workflow (without reinstalling the Minikube). The upgrade process takes about 5 minutes, and the LWH is unavailable during this time. It is recommended to perform the upgrade during a maintenance window.
+The Local WEKA Home upgrade workflow is similar to the deployment workflow (without reinstalling the Minikube). The upgrade process takes about 5 minutes, and the LWH is unavailable during this time. It is recommended to perform the upgrade during a maintenance window.
 
 **Before you begin**
 
@@ -403,11 +408,11 @@ If the source LWH version is lower than 2.11.0, run the following command lines 
 
 **Procedure**
 
-1. Download the latest Local Weka Home package (_wekahome-vm-docker-images_). See the location in [Download the Local Weka Home and Minikube packages](local-weka-home-deployment.md#2.-download-the-local-weka-home-and-minikube-packages)_._
+1. Download the latest Local WEKA Home package (_wekahome-vm-docker-images_). See the location in [Download the Local Weka Home and Minikube packages](local-weka-home-deployment.md#2.-download-the-local-weka-home-and-minikube-packages)_._
 2. Unpack the Local Weka Home package to the same directory used for installing the LWH. `tar xvf <file name> -C <path>`
 3. From the `wekahome_offline` directory, run `./update_config.sh`
 4. If you want to modify the existing configuration, open the `/root/.config/wekahome/config.yaml` file and do the following:
-   * Modify the settings (as described in [Install and configure Local Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home)).
+   * Modify the settings. See [Install and configure Local WEKA Home](local-weka-home-deployment.md#5.-install-and-configure-local-weka-home).
    * If you update the following sections: **TLS certificates**, **admin credentials**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
 
 <details>
@@ -439,18 +444,18 @@ nginx:
 
 5. Run `./wekahome-install.sh`. For an upgrade, it takes about 2 minutes.
 6. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
-7. Verify the Local Weka Home is upgraded successfully. Run the following command line:\
+7. Verify the Local WEKA Home is upgraded successfully. Run the following command line:\
    `helm status homewekaio -n home-weka-io`
 8. If any changes made to the _config.yaml_ required setting `force_update: true`, change it back to `false`.
 
-## Modify the Local Weka Home configuration
+## Modify the Local WEKA Home configuration
 
-Suppose there is a change in the TLS certificates, SMTP server in your environment, or any other settings in the Local Weka Home configuration, you can modify the existing `config.yaml` with your new settings and apply them.
+Suppose there is a change in the TLS certificates, SMTP server in your environment, or any other settings in the Local WEKA Home configuration, you can modify the existing `config.yaml` with your new settings and apply them.
 
 **Procedure**
 
 1. Open the `/root/.config/wekahome/config.yaml` file and do the following:
-   * Modify the settings (as described in [Install and configure Local Weka Home](local-weka-home-deployment.md#4.-install-and-configure-local-weka-home)).
+   * Modify the settings. See [Install and configure Local WEKA Home](local-weka-home-deployment.md#5.-install-and-configure-local-weka-home).
    * If you update the following sections: **TLS certificates**, **admin credentials**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
 
 <details>
@@ -482,24 +487,24 @@ nginx:
 
 2. Run `./wekahome-install.sh`
 3. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
-4. Verify the Local Weka Home is updated successfully. Run the following command line:\
+4. Verify the Local WEKA Home is updated successfully. Run the following command line:\
    `helm status homewekaio -n home-weka-io`
 5. If any changes made to the _config.yaml_ required setting `force_update: true`, change it back to `false`.
 
-## Troubleshoot the Local Weka Home deployment
+## Troubleshoot the Local WEKA Home deployment
 
-### Symptom: browsing to the Local Weka Home returns an error
+### Symptom: browsing to the Local WEKA Home returns an error
 
 The probable cause can be, for example, a communication problem.
 
 #### Resolution
 
-1. Retrieve the ingress pod (controller) of the Local Weka Home.\
+1. Retrieve the ingress pod (controller) of the Local WEKA Home.\
    `kubectl get pods -n ingress-nginx -o name|grep controller`
 2. Retrieve the logs and look for the error.\
    `kubectl logs <pod name from previous command> -n ingress-nginx > nginx.out`
 
-### Symptom: when executing any command on the Local Weka Home, the error “no space left” is displayed&#x20;
+### Symptom: when executing any command on the Local WEKA Home, the error “no space left” is displayed&#x20;
 
 The probable cause for this issue is that the docker root dir (/var/lib/docker) consumes disk space.
 
@@ -507,7 +512,7 @@ The probable cause for this issue is that the docker root dir (/var/lib/docker) 
 
 Do one of the following:
 
-* Resize the disk and reinstall the Local Weka Home.
+* Resize the disk and reinstall the Local WEKA Home.
 * Relocate the docker root directory path to a new path on a larger device (if it exists) and copy the content from the old path to the new path.
 
 ### Symptom: when testing the integration, the email is not received
@@ -518,7 +523,7 @@ The probable cause can be issues related to the SMTP server, such as wrong crede
 
 1. On the **Integration** page, select **Test Integration**.\
    Wait until an error appears.
-2. Retrieve the logs and search for the error. On the Local Weka Home terminal, run the following command:\
+2. Retrieve the logs and search for the error. On the Local WEKA Home terminal, run the following command:\
    ``for dep in `kubectl get deployment -n home-weka-io -o name`; do echo -----$dep-----; kubectl logs $dep --all-containers=true --timestamps=true --since=5m ; done``
 
 ## Collect LWH deployment diagnostics

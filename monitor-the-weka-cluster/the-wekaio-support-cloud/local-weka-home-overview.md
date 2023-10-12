@@ -1,21 +1,21 @@
 ---
 description: >-
-  Local Weka Home is a private instance of Weka Home deployed with a Weka
+  Local WEKA Home is a private instance of WEKA Home deployed with a WEKA
   cluster in a private network.
 ---
 
-# Local Weka Home overview
+# Local WEKA Home overview
 
-Suppose a customer does not have connectivity to the public instance of Weka Home, such as when the Weka cluster is deployed on a dark site or VPC. In that case, Weka provides an option to deploy a Local Weka Home, a private instance of Weka Home, on a management server (or VM).
+Suppose a customer does not have connectivity to the public instance of the WEKA Home, such as when the WEKA cluster is deployed on a dark site or VPC. In that case, WEKA provides an option to deploy a Local WEKA Home, a private instance of WEKA Home, on a management server (or VM).
 
-The Local Weka Home performs the following:
+The Local WEKA Home performs the following:
 
-* Receives events from the Weka cluster and stores them locally. It enables querying and filtering events.
+* Receives events from the WEKA cluster and stores them locally. It enables querying and filtering events.
 * Monitors multiple clusters within the organization.
 * Displays the cluster overview and enables drilling down to the cluster telemetry data.
 * Triggers specific alerts according to predefined rules through an integrated delivery method: Email (SMTP), SNMP, or PagerDuty.
-* Receives diagnostics (support files) from the Weka cluster, stores them, and makes them available for remote viewing by the Customer Success Team.
-* Receives usage, analytics, and performance statistics from the Weka cluster. It stores them, displays them, and enables querying and filtering them.
+* Receives diagnostics (support files) from the WEKA cluster, stores them, and makes them available for remote viewing by the Customer Success Team.
+* Receives usage, analytics, and performance statistics from the WEKA cluster. It stores them, displays them, and enables querying and filtering them.
 
 ## Key features and capabilities
 
@@ -32,7 +32,7 @@ Select each tab to learn more about each category's key features and capabilitie
 {% tab title="Observability" %}
 ### Clusters page
 
-Local Weka Home monitors and reports on multiple clusters within your organization. The first screen upon entering LWH displays all the Weka clusters in your environment that are enabled to send telemetry data to your local Weka Home instance.
+Local WEKA Home monitors and reports on multiple clusters within your organization. The first screen upon entering LWH displays all the WEKA clusters in your environment that are enabled to send telemetry data to your local WEKA Home instance.
 
 <figure><img src="../../.gitbook/assets/lwh_clusters_view.png" alt=""><figcaption><p>Clusters view</p></figcaption></figure>
 
@@ -66,7 +66,7 @@ The Diagnostics page displays all the collected event logs, syslog files, trace 
 
 You can download the JSON-formatted Usage Report and Analytics onto your local workstation and view them as needed. You can also forwarded the reports to the Customer Success Team for case resolution and to be added to the cloud Weka Home for offline monitoring purposes.
 
-For more details, see [Download the Usage Report or Analytics](broken-reference).
+For more details, see [download-the-usage-report-or-analytics.md](download-the-usage-report-or-analytics.md "mention").
 
 ### Statistics:  performance visualizations
 
@@ -74,7 +74,7 @@ The **Statistics** button redirects to the Grafana login screen from which you c
 
 <figure><img src="../../.gitbook/assets/lwh_cluster_stats1.png" alt=""><figcaption><p>Cluster Summary</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/lwh_cluster_stats2.png" alt=""><figcaption><p>Weka Home Health Dashboard</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/lwh_cluster_stats2.png" alt=""><figcaption><p>WEKA Home Health Dashboard</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Alerting and integrations" %}
@@ -90,7 +90,7 @@ The Create Integration page allows you to create the destinations where you want
 
 <figure><img src="../../.gitbook/assets/lwh_integration_overview.png" alt=""><figcaption><p>Create Integration</p></figcaption></figure>
 
-For more details, see [Set the Local Weka Home to send alerts or events](broken-reference).
+For more details, see [set-the-local-weka-home-to-send-alerts-or-events.md](set-the-local-weka-home-to-send-alerts-or-events.md "mention").
 {% endtab %}
 
 {% tab title="Security and compliance" %}
@@ -104,21 +104,21 @@ The following is an example showing when the cluster was muted and when it was p
 
 ### Admin page
 
-The Admin page displays all the admin privileged settings that can be applied to the Local Weka Home for this cluster. You can apply the following settings:
+The Admin page displays all the admin privileged settings that can be applied to the Local WEKA Home for this cluster. You can apply the following settings:
 
-* **Mute Cluster**: Instructs the cluster to not send any alerts or events to Local Weka Home. This is useful for temporary situations where some maintenance activities will cause an unnecessary number of alerts to be sent to Local Weka Home.
-* **Delete Cluster**: Removes a legacy, already destroyed Weka cluster from Local Weka Home. It does not delete the cluster itself.
+* **Mute Cluster**: Instructs the cluster to not send any alerts or events to Local WEKA Home. This is useful for temporary situations where some maintenance activities will cause an unnecessary number of alerts to be sent to Local WEKA Home.
+* **Delete Cluster**: Removes a legacy, already destroyed WEKA cluster from Local WEKA Home. It does not delete the cluster itself.
 * **Maintenance Window**: Defines a window of time during which alert and event notifications will not be sent (by email, SNMP, and PagerDuty).
 
 <figure><img src="../../.gitbook/assets/lwh_cluster_admin.png" alt=""><figcaption><p>Admin page</p></figcaption></figure>
 
 ### Users and Group pages
 
-The Users page displays the current list of users with login access to Local Weka Home and allows adding new users. The authentication is with a local username and password.
+The Users page displays the current list of users with login access to Local WEKA Home and allows adding new users. The authentication is with a local username and password.
 
 <figure><img src="../../.gitbook/assets/lwh_cluster_users.png" alt=""><figcaption><p>Users page</p></figcaption></figure>
 
-The Groups page displays all the groups, their respective members, and scopes (roles) each group is allowed to access or view in Local Weka Home.
+The Groups page displays all the groups, their respective members, and scopes (roles) each group is allowed to access or view in Local WEKA Home.
 
 <figure><img src="../../.gitbook/assets/lwh_cluster_groups.png" alt=""><figcaption><p>Groups page</p></figcaption></figure>
 
@@ -128,27 +128,27 @@ You can create new groups as necessary with custom role-based access control (RB
 
 ### Anonymization
 
-This capability is designed to allow customers to send data to the cloud Weka Home for enhanced supportability and monitoring by the Customer Success Team without worrying about sensitive data being uploaded.
+This capability is designed to allow customers to send data to the cloud WEKA Home for enhanced supportability and monitoring by the Customer Success Team without worrying about sensitive data being uploaded.
 
 A toggle button is provided to enable downloading the Usage Report or Analytics data without sensitive data.
 
 <figure><img src="../../.gitbook/assets/lwh_anonynization.png" alt=""><figcaption><p>Enable Anonymization</p></figcaption></figure>
 
-For more details, see [Download the Usage Report or Analytics](broken-reference).
+For more details, see [download-the-usage-report-or-analytics.md](download-the-usage-report-or-analytics.md "mention").
 {% endtab %}
 
 {% tab title="Supportability and miscellaneous" %}
 ### Cloud forwarding
 
-This feature is aimed at customers that want to send events, usage, and analytics data from the Local Weka Home to the cloud Weka Home for supportability and monitoring by the Customer Success Team. The data is not anonymized.
+This feature is aimed at customers that want to send events, usage, and analytics data from the Local WEKA Home to the cloud WEKA Home for supportability and monitoring by the Customer Success Team. The data is not anonymized.
 
 This feature is supported for cluster configurations with less than 500 containers. This feature is not relevant for dark sites.
 
-This feature is globally defined during the Local Weka Home deployment. It is disabled by default. It can be enabled in the Local Weka Home _config.yaml_ file.
+This feature is globally defined during the Local WEKA Home deployment. It is disabled by default. It can be enabled in the Local WEKA Home _config.yaml_ file.
 
 ### REST API
 
-The Weka system supports a RESTful API. This is useful when automating the interaction with the Weka system and when integrating it into your workflows or monitoring systems.
+The WEKA system supports a RESTful API. This is useful when automating the interaction with the WEKA system and when integrating it into your workflows or monitoring systems.
 
 The REST API is accessible at port 14000 through the URL: /api/v2.
 

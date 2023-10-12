@@ -185,10 +185,10 @@
 ## Monitor the WEKA Cluster
 
 * [Deploy monitoring tools using the WEKA Management Station (WMS)](monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md)
-* [Weka Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
-  * [Local Weka Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
-  * [Local Weka Home deployment](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)
-  * [Set the Local Weka Home to send alerts or events](monitor-the-weka-cluster/the-wekaio-support-cloud/set-the-local-weka-home-to-send-alerts-or-events.md)
+* [WEKA Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
+  * [Local WEKA Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
+  * [Local WEKA Home deployment](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)
+  * [Set the Local WEKA Home to send alerts or events](monitor-the-weka-cluster/the-wekaio-support-cloud/set-the-local-weka-home-to-send-alerts-or-events.md)
   * [Download the Usage Report or Analytics](monitor-the-weka-cluster/the-wekaio-support-cloud/download-the-usage-report-or-analytics.md)
 * [Set up the WEKAmon external monitoring](monitor-the-weka-cluster/external-monitoring.md)
 * [Set up the SnapTool external snapshots manager](monitor-the-weka-cluster/snapshot-management.md)

@@ -1,12 +1,12 @@
-# Set the Local Weka Home to send alerts or events
+# Set the Local WEKA Home to send alerts or events
 
-Once the Local Weka Home is deployed, you can set it to send specific alerts or events by Email (SMTP), PagerDuty, and SNMP Traps (v1/v2c/v3).
+Once the Local WEKA Home is deployed, you can set it to send specific alerts or events by Email (SMTP), PagerDuty, and SNMP Traps (v1/v2c/v3).
 
-For example, you can set the Local Weka Home to send alerts by email to a specific address when the cluster is at a lower level of data protection than configured.
+For example, you can set the Local WEKA Home to send alerts by email to a specific address when the cluster is at a lower level of data protection than configured.
 
-<figure><img src="../../.gitbook/assets/lwh_email_alert_example.png" alt=""><figcaption><p>Weka Home email alert example</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/lwh_email_alert_example.png" alt="" width="371"><figcaption><p>WEKA Home email alert example</p></figcaption></figure>
 
-Setting the Local Weka Home to send events and alerts at a glance:
+Setting the Local WEKA Home to send events and alerts at a glance:
 
 1. Set the destination on the **Integration** page.
 2. On the **Rules** page, select the rule conditions to trigger specific alerts or events.
@@ -14,7 +14,7 @@ Setting the Local Weka Home to send events and alerts at a glance:
 
 **Procedure:**
 
-1. Access the Local Weka Home portal with an admin account and the password obtained.
+1. Access the Local WEKA Home portal with an admin account and the password obtained.
 2. On the **Integration** page, select **New**.
 
 <figure><img src="../../.gitbook/assets/wmng_integrations_new.png" alt=""><figcaption><p>Integrations page</p></figcaption></figure>

@@ -19,15 +19,15 @@ The `weka local diags` command is useful in the following situations:
 * The local container is down.
 * The server cannot reach the leader, or a remote server fails to respond to the `weka diags` remote command.
 
-## Upload diagnostics to Weka Home
+## Upload diagnostics to WEKA Home
 
 **Command:** `weka diags upload`
 
-Use the following command to collect diagnostics information, save it, and upload it to Weka Home (the Weka support cloud):
+Use the following command to collect diagnostics information, save it, and upload it to WEKA Home (the Weka support cloud):
 
 `weka diags upload [--timeout timeout] [--core-limit core-limit] [--dump-id dump-id] [--container-id container-id]... [--clients]`
 
-The command response provides an access identifier, `Diags collection ID`. Send this access identifier to the Customer Success Team for retrieving the information from the Weka Home.
+The command response provides an access identifier, `Diags collection ID`. Send this access identifier to the Customer Success Team for retrieving the information from the WEKA Home.
 
 When running the command for all servers in the cluster, a local diagnostics file is created in each server in the location `/opt/weka/diags/local`. The local diagnostics file of each server is consolidated in a single diagnostics file in the server where you run the command in the `/opt/weka/diags` directory.
 
@@ -67,7 +67,7 @@ Uploading to cloud (this could take a while) [■■■■■■■■■■■�
 
 **Command:** `weka diags collect`
 
-Use the following command to create diagnostics information and save it without uploading it to Weka Home. This command is useful when there is no connection to Weka Home, and you want to share the diagnostics file using other options.
+Use the following command to create diagnostics information and save it without uploading it to WEKA Home. This command is useful when there is no connection to WEKA Home, and you want to share the diagnostics file using other options.
 
 `weka diags collect [--id id] [--timeout timeout] [--output-dir output-dir] [--core-limit core-limit] [--container-id container-id] [--clients] [--backends] [--tar]`
 
@@ -242,12 +242,12 @@ The following errors were found:
 
 ## Clean up the diagnostic files
 
-When you collect diagnostics data using `weka diags collect`, it creates a separate diagnostic file that consumes disk space. Therefore, the system may end up with many diagnostic files that are no longer required, for example, after uploading the diagnostic file to Weka Home. You can clean up a specified diagnostic file or a directory with multiple diagnostic files to free up space from the disk.
+When you collect diagnostics data using `weka diags collect`, it creates a separate diagnostic file that consumes disk space. Therefore, the system may end up with many diagnostic files that are no longer required, for example, after uploading the diagnostic file to WEKA Home. You can clean up a specified diagnostic file or a directory with multiple diagnostic files to free up space from the disk.
 
 First, list the diagnostic files in the system and their IDs, then delete the specific diagnostic file according to its ID.
 
 {% hint style="danger" %}
-The diagnostic files are essential for troubleshooting purposes. Only delete these files if you are sure they are already uploaded to Weka Home and are no longer required. If you need clarification, contact the [Customer Success Team](../getting-support-for-your-weka-system.md#contact-customer-success-team).
+The diagnostic files are essential for troubleshooting purposes. Only delete these files if you are sure they are already uploaded to WEKA Home and are no longer required. If you need clarification, contact the [Customer Success Team](../getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ### List the diagnostic files
