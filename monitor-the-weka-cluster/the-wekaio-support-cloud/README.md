@@ -22,7 +22,7 @@ In the WEKA Home portal, the Customer Success Team can view a cluster’s statis
 
 <figure><img src="../../.gitbook/assets/wekahome_overview.png" alt=""><figcaption><p>WEKA clusters and clients connected to WEKA Home</p></figcaption></figure>
 
-## Which information is uploaded to the WEKA Home?
+## Which information is uploaded to WEKA Home?
 
 The WEKA cluster periodically and on-demand uploads various information types to Cloud WEKA Home. The retention period for all the following is 14 days. &#x20;
 
@@ -38,13 +38,13 @@ The WEKA cluster periodically and on-demand uploads various information types to
 
 * **Diagnostics (support files):** Uploaded on-demand from the container that collected the diagnostics.
 
-## Upload information from the WEKA cluster to the cloud WEKA Home
+## Upload information from the WEKA cluster to WEKA Home
 
 Uploading information to WEKA Home from the WEKA cluster backend servers and clients is essential for the Customer Success Team to provide effective assistance. If client connectivity cannot be configured, enabling upload information from the backend servers is still beneficial.
 
 **Before you begin**
 
-* Ensure the network ports are open. See [#required-ports](../../support/prerequisites-and-compatibility.md#required-ports "mention").
+* Ensure the required ports for Cloud WEKA Home and Customer Success Team remote access are open. For details, see [#required-ports](../../support/prerequisites-and-compatibility.md#required-ports "mention").
 * If the connection to the cloud WEKA Home is through a proxy, set the proxy by running the command: `weka cloud proxy --set <proxy_url>`.
 
 **Procedure**
