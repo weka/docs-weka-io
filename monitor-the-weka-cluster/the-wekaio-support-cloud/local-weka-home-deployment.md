@@ -33,10 +33,14 @@ Verify that the following requirement are met:
 
 * A dedicated management server (or VM) for the installation.
 * The user account used for the installation has root privileges. Ensure that the `sudoers` file includes the root user.
-* Server minimum requirements for up to 500 WEKA containers:
-  * 8 cores
-  * 48 GiB RAM
-  * 500 GiB disk space in /opt/local-path-provisioner (local storage of the collected data)
+* Server minimum requirements:
+  *   CPU and RAM: It depends on the total number of processes (cores used on backends for Management/Frontend/Compute/Drives roles, and cores used on clients for Management/Frontend roles):
+
+      * For 1000 processes: 8 CPUs and 20 GiB RAM&#x20;
+      * For every additional 1000 processes or less, add 1 CPU and 8 GiB RAM.
+
+      **Example:** 20 backends with 10 processes each = 200 processes; 500 clients with 2 processes each = 1000 processes. The total is 1200 processes. This deployment requires 9 CPUs and 28 GiB.
+  * SSD-backed storage of 500 GiB for local collected data storage in `/opt/local-path-provisioner`
   * 1 Gbps network
   * Docker version 20 or higher.
 * Supported operating systems:

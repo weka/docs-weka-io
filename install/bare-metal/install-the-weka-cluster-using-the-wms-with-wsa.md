@@ -19,7 +19,12 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
 * **Boot type:** UEFI boot.
 * **Cores and RAM:**
   * If not configuring LWH: minimum 4 cores and 16 GiB.
-  * If configuring LWH: Minimum 8 cores and 48 GiB for a cluster with up to 500 containers. More cores and memory are required for larger clusters.
+  *   If configuring LWH, it depends on the total number of processes (cores used on backends for Management/Frontend/Compute/Drives roles, and cores used on clients for Management/Frontend roles):
+
+      * For 1000 processes: 8 CPUs and 20 GiB RAM&#x20;
+      * For every additional 1000 processes or less, add 1 CPU and 8 GiB RAM.
+
+      **Example:** 20 backends with 10 processes each = 200 processes; 500 clients with 2 processes each = 1000 processes. The total is 1200 processes. This deployment requires 9 CPUs and 28 GiB.
 * **Network interface:** 1 Gbps.
 
 ### Prerequisites for the target bare metal servers&#x20;
