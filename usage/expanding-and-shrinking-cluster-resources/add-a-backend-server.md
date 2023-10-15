@@ -117,6 +117,5 @@ weka cluster drive add <container-id> <device-paths>
 
 **Related topics**
 
-[obtaining-the-weka-install-file.md](../../install/bare-metal/obtaining-the-weka-install-file.md "mention")
-
-[Broken link](broken-reference "mention")
+[bare-metal](../../install/bare-metal/ "mention")\
+(see Path C: Manual installation and configuration)
