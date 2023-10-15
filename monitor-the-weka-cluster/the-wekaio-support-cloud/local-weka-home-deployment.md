@@ -33,21 +33,20 @@ Verify that the following requirement are met:
 
 * A dedicated management server (or VM) for the installation.
 * The user account used for the installation has root privileges. Ensure that the `sudoers` file includes the root user.
-* Server minimum requirements:
-  *   CPU and RAM: It depends on the total number of processes (cores used on backends for Management/Frontend/Compute/Drives roles, and cores used on clients for Management/Frontend roles):
+* Server minimum CPU and RAM requirements:
+  * Minimum 8 CPUs and 20 GiB RAM for up to 1000 total processes.
+    * Total processes are equal to the cores used on the cluster **backends** for Management/Frontend/Compute/Drives roles and the cores used on **clients** for Management/Frontend roles.
+  *   Sizing for additional processes:
 
-      * For 1000 processes: 8 CPUs and 20 GiB RAM&#x20;
+      * The total number of processes determines the number of CPU and RAM required.
       * For every additional 1000 processes or less, add 1 CPU and 8 GiB RAM.
 
-      **Example:** 20 backends with 10 processes each = 200 processes; 500 clients with 2 processes each = 1000 processes. The total is 1200 processes. This deployment requires 9 CPUs and 28 GiB.
-  * SSD-backed storage of 500 GiB for local collected data storage in `/opt/local-path-provisioner`
-  * 1 Gbps network
-  * Docker version 20 or higher.
-* Supported operating systems:
-  * Centos 7.9
-  * Amazon Linux 2
-  * Rocky 8.6
-  * RHEL 8.2+
+      Example: 20 backends with 10 processes each = 200 processes; 500 clients with 2 processes each = 1000 processes. The total is 1200 processes. This deployment requires 9 CPUs and 28 GiB.
+* SSD-backed storage requirements:
+  * Minimum 500 GiB for local collected data in `/opt/local-path-provisioner`
+  * Minimum 10 GiB for `/tmp/host-path-provisioner`.
+* Docker version 20 or higher.
+* 1 Gbps network
 
 {% hint style="success" %}
 For using other operating systems, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).

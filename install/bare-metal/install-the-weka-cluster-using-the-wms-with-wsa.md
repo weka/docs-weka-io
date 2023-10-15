@@ -15,16 +15,11 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
   * A system with one drive has a simple partition.
 * **Minimum boot drive capacity:**
   * If not configuring LWH: SSD 125 GiB.
-  * If configuring LWH: SSD-backed storage of 500 GiB.
+  * If configuring LWH: See the SSD-backed storage requirements section in [#1.-verify-prerequisites](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
 * **Boot type:** UEFI boot.
 * **Cores and RAM:**
   * If not configuring LWH: minimum 4 cores and 16 GiB.
-  *   If configuring LWH, it depends on the total number of processes (cores used on backends for Management/Frontend/Compute/Drives roles, and cores used on clients for Management/Frontend roles):
-
-      * For 1000 processes: 8 CPUs and 20 GiB RAM&#x20;
-      * For every additional 1000 processes or less, add 1 CPU and 8 GiB RAM.
-
-      **Example:** 20 backends with 10 processes each = 200 processes; 500 clients with 2 processes each = 1000 processes. The total is 1200 processes. This deployment requires 9 CPUs and 28 GiB.
+  * If configuring LWH, see the Server minimum CPU and RAM requirements section in [#1.-verify-prerequisites](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
 * **Network interface:** 1 Gbps.
 
 ### Prerequisites for the target bare metal servers&#x20;
