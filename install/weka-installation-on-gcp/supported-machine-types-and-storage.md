@@ -2,7 +2,7 @@
 
 ## Supported machine types for backends
 
-The following table provides the supported machine types for backends applied by the Terraform package:
+The following table provides the supported machine types for backends (and clients) applied by the Terraform package:
 
 <table><thead><tr><th width="183">Machine series</th><th>Machine types</th></tr></thead><tbody><tr><td>C2</td><td>c2-standard-8, c2-standard-16</td></tr></tbody></table>
 
@@ -17,9 +17,13 @@ The following table provides the supported machine types for backends applied by
 
 ## Supported machine types for clients
 
-The following table provides the supported machine types for clients applied by the Terraform package:
+The following table provides the supported machine types for clients applied by the Terraform package.
 
-<table><thead><tr><th width="184">Machine series</th><th>Machine type</th></tr></thead><tbody><tr><td>A2</td><td>a2-highgpu-1g</td></tr><tr><td>C2D</td><td>c2d-standard-4, c2d-standard-8, c2d-standard-16, c2d-standard-32, c2d-standard-56, c2d-standard-112</td></tr><tr><td>N2</td><td>n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32, n2-standard-48, n2-standard-96, n2-standard-128</td></tr></tbody></table>
+{% hint style="info" %}
+Any backend instance can also be a client instance.
+{% endhint %}
+
+<table><thead><tr><th width="170">Machine series</th><th>Machine type</th></tr></thead><tbody><tr><td>A2</td><td><p>a2-highgpu-1g, a2-highgpu-2g, a2-highgpu-4g, a2-highgpu-8g, <br>a2-megagpu-16g</p><p></p></td></tr><tr><td>C2D</td><td>c2d-standard-4, c2d-standard-8, c2d-standard-16, c2d-standard-32, c2d-standard-56, c2d-standard-112</td></tr><tr><td>N2</td><td>n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32, <br>n2-standard-48, n2-standard-96, n2-standard-128</td></tr></tbody></table>
 
 **Related information**
 
