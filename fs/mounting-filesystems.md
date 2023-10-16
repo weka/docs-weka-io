@@ -292,7 +292,7 @@ RequiredBy=remote-fs-pre.target remote-fs.target
 3. Run the following command:
 
 ```
-systemd daemon-reload; systemd enable weka-agent.service
+systemctl daemon-reload; systemctl enable weka-agent.service
 ```
 
 4. Create a mount point.\
