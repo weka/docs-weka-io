@@ -23,6 +23,10 @@ The SnapTool package can be installed with a _systemd_ service or _Docker_ conta
 
 <figure><img src="../.gitbook/assets/snaptool_setup.png" alt=""><figcaption><p>SnapTool setup</p></figcaption></figure>
 
+{% hint style="info" %}
+If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.&#x20;
+{% endhint %}
+
 ## Before you begin
 
 If a previous SnapTool version exists in the management server, make a copy of your existing `snaptool.yml` file.
@@ -30,8 +34,6 @@ If a previous SnapTool version exists in the management server, make a copy of y
 If the `snaptool.yml` file is from releases before 1.0.0, it is incompatible with 1.0.0 and above. You need to modify the file to use the new syntax.
 
 Setting up a dedicated management server (or VM) for the installation is recommended.
-
-If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, perform the following workflow.&#x20;
 
 ### Server minimum requirements
 
