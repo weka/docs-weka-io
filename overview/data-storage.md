@@ -45,13 +45,13 @@ Data management represents the media being used for the storage of data. In tier
 These states represent the lifecycle of data and not the lifecycle of a file. When a file is modified, each modification creates a separate data lifecycle for the modified data.
 {% endhint %}
 
-![Data Lifecycle Diagram](../.gitbook/assets/lifecycle.png)
+![Data lifecycle flow](../.gitbook/assets/lifecycle.png)
 
-The Data Lifecycle Diagram represents the transitions of data between the above states. #1 represents the **Tiering** operation, #2 represents the **Releasing** operation, and #3 represents the **Rehydrating** operation:
+The Data Lifecycle Diagram represents the transitions of data between the above states. #1 represents the **Tiering** operation, #2 represents the **Releasing** operation, and #3 represents the **Promoting** operation:
 
 1. **Tiering** data from the SSD to create a replicate in the object store. A guideline for data tiering is based on a user-defined, time-based policy ([Tiering Cue](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy)).
 2. **Releasing** data from the SSD, leaving only the object-store copy (based on the demand for more space for data on the SSD). A guideline for releasing data is based on a user-defined, time-based policy ([Retention Period](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#data-retention-period-policy)).
-3. **Rehydrating** data from the object store to the SSD for the purpose of data access.
+3. **Promoting** data from the object store to the SSD for the purpose of data access.
 
 To read data residing only on an object store, the data first must be rehydrated back to the SSD.
 
@@ -76,7 +76,7 @@ Recently accessed or modified data is stored on SSDs, and most read operations w
 {% hint style="info" %}
 On a tiered filesystem, the total capacity determines the maximum capacity that will be used to store data. It could be that it will all reside on the object store due to the SSD uses above and the below time-based policies.
 
-E.g., consider a 100 TB filesystem (total capacity) with a 10TB SSD capacity for this filesystem. It could be that all the data will reside on the object-store, and no new writes will be allowed, although the SSD space is not completely used (until deleting files or increasing the filesystem total size), leaving the SSD for metadata and cache only.
+E.g., consider a 100 TB filesystem (total capacity) with a 10 TB SSD capacity for this filesystem. It could be that all the data will reside on the object-store, and no new writes will be allowed, although the SSD space is not completely used (until deleting files or increasing the filesystem total size), leaving the SSD for metadata and cache only.
 {% endhint %}
 
 ## Time-based policies for the control of data storage location

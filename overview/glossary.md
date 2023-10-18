@@ -62,7 +62,7 @@ It is the collection of WEKA software that runs on a client and accesses storage
 
 ### Host
 
-The term host is deprecated. See [Container](glossary.md#container).
+The term host is deprecated. See [#container](glossary.md#container "mention").
 
 ### Hot Data
 
@@ -72,7 +72,7 @@ Frequently used data (as opposed to warm data), usually residing on SSDs.
 
 ### Machine
 
-The term machine is deprecated. See [Server](glossary.md#server).
+The term machine is deprecated. See [#server](glossary.md#server "mention").
 
 ## N
 
@@ -82,7 +82,7 @@ Amount of space available for user data on SSDs in a configured WEKA system.
 
 ### Node
 
-The term node is deprecated. See [Process](glossary.md#process).
+The term node is deprecated. See [#process](glossary.md#process "mention").
 
 ## P
 
@@ -100,13 +100,21 @@ The total capacity that is assigned to filesystems. This includes both SSD and o
 
 ### Prefetch
 
-The WEKA process of rehydrating data from an object store to an SSD, based on a prediction of future data access.
+The WEKA process of promoting data from an object store to an SSD, based on a prediction of future data access.
+
+### Promoting
+
+To move data from a lower-tier storage (object store) to a more accessible storage medium (SSD) when it's needed for active use.
 
 ## R
 
 ### Raw Capacity
 
 Total SSD capacity owned by the user.
+
+### Rehydrating
+
+See [#promoting](glossary.md#promoting "mention").
 
 ### Retention Period
 
@@ -115,10 +123,6 @@ The target time for data to be stored on SSDs before releasing from the SSDs to 
 ### Releasing
 
 The deletion of the SSD copy of data that has been tiered to the object store.
-
-### Rehydrating
-
-The creation of an SSD copy of data stored only on the object store.
 
 ## S
 
