@@ -22,11 +22,13 @@ One of the advantages of setting up the WEKAmon package is that if you already u
 
 ![Weka enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (25).png>)
 
+{% hint style="info" %}
+If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.
+{% endhint %}
+
 ## Before you begin
 
 Setting up a dedicated management server (or VM) for the installation is recommended.
-
-If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, perform the following workflow.
 
 ### Server minimum requirements
 
