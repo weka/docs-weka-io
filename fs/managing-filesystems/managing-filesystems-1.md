@@ -56,7 +56,7 @@ If filesystem keys exist when adding a KMS, they are automatically re-encrypted 
 
 ## Add a filesystem when thin-provisioning is used&#x20;
 
-To create a new filesystem, the SSD space for the filesystem must be free and unprovisioned. When using thin-provisioned filesystems, that might not be the case. SSD space can be occupied for the thin-provisioned portion of other filesystems. Even if those are tiered, and data can be released (to object-store) or deleted, the SSD space can still get filled when data keeps being written or rehydrated from the object-store.
+To create a new filesystem, the SSD space for the filesystem must be free and unprovisioned. When using thin-provisioned filesystems, that might not be the case. SSD space can be occupied for the thin-provisioned portion of other filesystems. Even if those are tiered, and data can be released (to object-store) or deleted, the SSD space can still get filled when data keeps being written or promoted from the object-store.
 
 To create a new filesystem, in this case, use the `weka fs reserve` CLI command. Once enough space is cleared from the SSD (either by releasing to object-store or explicitly deleting data), it is possible to create the new filesystem using the reserved space.
 

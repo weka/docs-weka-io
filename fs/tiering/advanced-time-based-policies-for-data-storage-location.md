@@ -70,7 +70,7 @@ If the system starts operating on January 1, data written, accessed, or modified
 
 ![](<../../.gitbook/assets/Table 1B.jpg>)
 
-In the above scenario, there are seven data intervals on the SSDs (the last one is accumulating new/modified data). In addition, another interval is currently being released to the object-store. Yes, the retention period is almost twice as long as the user specifies, as long as there is sufficient space on the SSD. Why? If possible, it provides better performance and reduces unnecessary release/rehydration of data to/from the object-store if data is modified.
+In the above scenario, there are seven data intervals on the SSDs (the last one is accumulating new/modified data). In addition, another interval is currently being released to the object-store. Yes, the retention period is almost twice as long as the user specifies, as long as there is sufficient space on the SSD. Why? If possible, it provides better performance and reduces unnecessary release/promotion of data to/from the object-store if data is modified.
 
 ## Data release process from SSD to object store <a href="#data-release-process-from-ssd-to-object-store" id="data-release-process-from-ssd-to-object-store"></a>
 

@@ -85,7 +85,7 @@ Cloud bursting requires the following steps:
 3. Create a WEKA cluster in AWS and make the data uploaded to S3 available to the newly-formed cluster at AWS.
 4. Process the data in-cloud using cloud compute resources.
 
-Optionally, you may also rehydrate data back to on-premises by doing the following:
+Optionally, you may also promote data back to on-premises by doing the following:
 
 1. Take a snapshot of the WEKA filesystem in the cloud on completion of cloud processing.
 2. Upload the cloud snapshot to the on-premises WEKA cluster.
@@ -161,7 +161,7 @@ You can implement this paradigm for each filesystem using one of the following u
   Objects in the object store are used for tiering all data and backup using Snap-To-Object. If possible, the WEKA system uses the same object for both purposes, eliminating the unnecessary need to acquire additional storage and copy data.
 
 {% hint style="info" %}
-When using Snap-To-Object to rehydrate data from an object store, some of the metadata may still be in the object store until it is accessed for the first time.
+When using Snap-To-Object to promote data from an object store, some of the metadata may still be in the object store until it is accessed for the first time.
 {% endhint %}
 
 

@@ -10,7 +10,7 @@ When creating an encrypted filesystem, a KMS must be used to secure the encrypti
 
 The WEKA system uses the KMS to encrypt filesystem keys. When the WEKA system comes up, it uses the KMS to decrypt the filesystem keys and its in-memory capabilities for data encrypting/decrypting operations.
 
-When a snapshot is taken using the Snap-To-Object feature, the encrypted filesystem key is saved along with the encrypted data. When rehydrating this snapshot to a different filesystem (or when recovering from a disaster to the same filesystem in the WEKA cluster), the KMS decrypts the filesystem key. Consequently, the same KMS data must be present when performing such operations.
+When a snapshot is taken using the Snap-To-Object feature, the encrypted filesystem key is saved along with the encrypted data. When promoting this snapshot to a different filesystem (or when recovering from a disaster to the same filesystem in the WEKA cluster), the KMS decrypts the filesystem key. Consequently, the same KMS data must be present when performing such operations.
 
 For increased security, the WEKA system does not save any information that can reconstruct the KMS encryption keys, performed by the KMS configuration alone. Therefore, the following should be considered:
 
