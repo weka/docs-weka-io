@@ -15,7 +15,7 @@ Kubernetes does not allow modifying the StorageClass parameters; hence every vol
 WEKA CSI Plugin **0.7.0** provides a unique configuration mode in which legacy volumes can be bound to a single secret, referring to a single WEKA cluster API connection parameters. In this configuration mode, every request to serve, such as create, delete, and expand, a legacy Persistent Volume (or Persistent Volume Claim) that originates from a Legacy Storage Class (without reference to an API secret) communicates to that cluster.
 
 {% hint style="info" %}
-Volumes provisioned by the CSI Plugin of version **0.7.0** in the API-Based communication model, but on older versions of the WEKA cluster (below version **3.13.0**), are still in legacy mode. However, because the storage class already contains the secret reference, specifying the `legacyVolumeSecretName` parameter is unnecessary, and you can safely skip to the next section.
+Volumes provisioned by the CSI Plugin of version **0.7.0** in the API-Based communication model, but on older versions of the WEKA cluster (below version **3.13.0**), are still in legacy mode. However, because the storage class already contains the secret reference, specifying the `legacyVolumeSecretName` parameter is unnecessary, and you can safely skip to the next procedure [#migrate-legacy-volumes](upgrade-legacy-persistent-volumes-for-capacity-enforcement.md#migrate-legacy-volumes "mention").
 {% endhint %}
 
 To bind legacy volumes to a single secret, perform the following:
