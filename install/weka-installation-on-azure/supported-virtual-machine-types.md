@@ -34,8 +34,10 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 WEKA supports the following virtual machine types for clients:
 
-<table><thead><tr><th width="230">VM size</th><th width="108">vCPU</th><th>Memory (GiB)</th><th>Max NICs</th><th data-type="number">BW (Mbps)</th></tr></thead><tbody><tr><td>Standard_L8s_v3</td><td>8</td><td>64</td><td>4</td><td>12500</td></tr><tr><td>Standard_D8_v5</td><td>8</td><td>32</td><td>4</td><td>12500</td></tr></tbody></table>
+<table><thead><tr><th width="210">VM size</th><th width="112">vCPU</th><th width="140">Memory (GiB)</th><th width="111">Max NICs</th><th data-type="number">BW (Mbps)</th></tr></thead><tbody><tr><td>Standard_D8_v5</td><td>8</td><td>32</td><td>6</td><td>12500</td></tr><tr><td>Standard_L8s_v3</td><td>8</td><td>64</td><td>4</td><td>12500</td></tr><tr><td>Standard_L16s_v3</td><td>16</td><td>128</td><td>8</td><td>12500</td></tr><tr><td>Standard_L32s_v3</td><td>32</td><td>256</td><td>8</td><td>16000</td></tr><tr><td>Standard_L48s_v3</td><td>48</td><td>384</td><td>8</td><td>24000</td></tr><tr><td>Standard_L64s_v3</td><td>64</td><td>512</td><td>8</td><td>30000</td></tr></tbody></table>
 
 **Related information**
 
 [Dv5-series](https://learn.microsoft.com/en-us/azure/virtual-machines/dv5-dsv5-series#dv5-series) (Azure learning site)
+
+[Lsv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lsv3-series) (Azure learning site)
