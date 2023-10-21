@@ -27,9 +27,13 @@ For logically freed data that resides on SSD, the WEKA system immediately delete
 
 ### Object store space reclamation
 
-Object store space reclamation is an important process that involves efficiently managing data stored on object storage. In the WEKA system, object store space reclamation is only relevant for object store buckets used for tiering (defined as `local`) and not for buckets used for backup-only (defined as `remote`).
+Object store space reclamation is an important process that involves efficiently managing data stored on object storage.
 
-WEKA organizes files into 64 MB objects for tiering. Each object can contain data from multiple files. Files smaller than 1 MB are consolidated into a single 64 MB object. For larger files, their parts are distributed across multiple objects. As a result, when a file is deleted (or updated and is not used by any snapshots), the space within one or more objects is marked as available for reclamation. However, the deletion of these objects only occurs under specific conditions.
+{% hint style="info" %}
+In the WEKA system, object store space reclamation is only relevant for object store buckets used for tiering (defined as `local`) and not for buckets used for backup-only (defined as `remote`).
+{% endhint %}
+
+&#x20;WEKA organizes files into 64 MB objects for tiering. Each object can contain data from multiple files. Files smaller than 1 MB are consolidated into a single 64 MB object. For larger files, their parts are distributed across multiple objects. As a result, when a file is deleted (or updated and is not used by any snapshots), the space within one or more objects is marked as available for reclamation. However, the deletion of these objects only occurs under specific conditions.
 
 The deletion of related objects happens when either all associated files are deleted, allowing for complete space reclamation within the object, or during the reclamation process. Reclamation entails reading an eligible object from object storage and packing the active portions (representing data from undeleted files) with sections from other files that need to be written to the object store. The resulting object is then written back to object store, freeing up reclaimed space.
 
@@ -51,6 +55,19 @@ If tuning of the system interaction with the object store is required, such as o
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/obs_reclaim_space.png" alt=""><figcaption><p>Object store space reclamation</p></figcaption></figure>
+
+{% hint style="success" %}
+You can show the filesystem tired capacity details.&#x20;
+
+Example:
+
+```
+[root@jack-0 ~] 2023-10-21 10:06:46 $ weka fs tier capacity
+FILESYSTEM  BUCKET  TOTAL CONSUMED CAPACITY  USED CAPACITY  RECLAIMABLE%  RECLAIMABLE THRESHOLD%
+default     prod    13.29 GB                 13.29 GB       0.00          10.00
+fs01        logs    1.05 GB                  1.05 GB        0.00          10.00
+```
+{% endhint %}
 
 ## Object tagging
 
