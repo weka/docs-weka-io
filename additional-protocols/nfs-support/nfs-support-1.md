@@ -242,8 +242,8 @@ Use the following command lines to add or delete a rule which causes a client to
 
 **Examples**
 
-&#x20;`weka nfs rules add ip client-group1 192.168.114.0/8`\
-&#x20;`weka nfs rules add ip client-group2 172.16.0.0/16`
+&#x20;`weka nfs rules add ip client-group1 192.168.114.0/255.255.255.0`\
+&#x20;`weka nfs rules add ip client-group2 172.16.0.0/255.255.0.0`
 
 #### **Delete IP-based client group rules**
 
@@ -251,12 +251,12 @@ Use the following command lines to add or delete a rule which causes a client to
 
 **Examples**
 
-&#x20;`weka nfs rules delete ip client-group1 192.168.114.0/8`\
-&#x20;`weka nfs rules delete ip client-group2 172.16.0.0/16`
+&#x20;`weka nfs rules delete ip client-group1 192.168.114.0/255.255.255.0`\
+&#x20;`weka nfs rules delete ip client-group2 172.16.0.0/255.255.0.0`
 
 **Parameters**
 
-<table><thead><tr><th width="167">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid client group name.</td></tr><tr><td><code>ip</code>*</td><td><p>Valid IP address with a subnet mask.</p><p>The subnet mask is represented in CIDR (Classless Inter-Domain Routing) format.</p><p>Examples of subnet masks in CIDR format:</p><ul><li>A value of <code>16</code> corresponds to a subnet mask of <code>255.255.0.0</code>.</li><li>A value of <code>8</code> corresponds to a subnet mask of <code>255.255.255.0</code>.</li></ul><p>Format: <code>1.1.1.1/16</code></p></td></tr></tbody></table>
+<table><thead><tr><th width="167">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid client group name.</td></tr><tr><td><code>ip</code>*</td><td><p>Valid IP address and subnet mask.</p><p>Format: <code>1.1.1.1/255.255.0.0</code></p></td></tr></tbody></table>
 
 ### **Manage NFS client permissions**
 
