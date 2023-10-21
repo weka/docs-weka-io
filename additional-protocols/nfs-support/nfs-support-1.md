@@ -8,7 +8,7 @@ Using the CLI, you can:
 
 * **Configure the NFS cluster level**
   * [Set the global configuration filesystem](nfs-support-1.md#configure-the-nfs-configuration-filesystem)
-  * [Create interface groups](nfs-support-1.md#define-interface-groups)
+  * [Create interface groups](nfs-support-1.md#create-interface-groups)
   * [Set interface group ports](nfs-support-1.md#set-interface-group-ports)
   * [Set interface group IPs](nfs-support-1.md#set-interface-group-ips)
   * [Configure the service mountd port](nfs-support-1.md#configure-the-service-mountd-port)
