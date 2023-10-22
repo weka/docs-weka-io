@@ -136,7 +136,7 @@ Synchronous snapshots are point-in-time backups for filesystems. When taken, the
 
 This capability for filesystem snapshots potentially makes them more cost-effective because you do not have to update the entire filesystem with each snapshot. You update only the changes since the last snapshot.
 
-Synchronous snapshots download and restore are only available through the CLI. It is recommended to download the synchronous snapshots in chronological order. Only snapshots uploaded from a 4.0 version or above can be downloaded as increments.
+It is recommended to download the synchronous snapshots in chronological order. Only snapshots uploaded from a 4.0 version or above can be downloaded as increments.
 
 ## Delete snapshots residing on an object store
 
