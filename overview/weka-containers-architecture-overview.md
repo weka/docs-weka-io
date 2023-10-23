@@ -22,7 +22,7 @@ The benefits of using the MCB architecture include:
   * You can roll back each upgraded container separately.
   * Can access the network control plane seamlessly during the upgrade.
 * **Effective use of the hardware:**
-  * The number of cores that can be used in the server is no longer limited to 19. A server can include more than one container, each for a dedicated process type with up to 19 processes.
+  * The number of Weka cores per server is 64 cores. A server can include more than one container, each for a dedicated process type with up to 19 processes.
 * **Less disruptive maintenance:**
   * Ability to stop the compute and frontend processes while running the drive processes.
 
