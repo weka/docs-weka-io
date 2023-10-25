@@ -72,7 +72,7 @@ Ensure the BIOS settings meet the following requirements:
   * AMI 2017.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
   * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
-* **SuSe:**
+* **SLES:**
   * 15 SP4
   * 15 SP2
   * 12 SP5
