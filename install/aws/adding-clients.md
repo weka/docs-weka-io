@@ -94,7 +94,7 @@ If you downloaded version 3.6.1, run `cd weka-3.6.1` and then run `./install.sh`
 {% hint style="info" %}
 **ENA Driver Notice**
 
-When installing on an AWS instance with Elastic Network Adapter (ENA) and a non-up-to-date kernel, it may be necessary to install the ENA drivers or upgrade to a more recent operating system version. The ENA driver is automatically available on operating systems starting with RedHat/Centos 7.4, Ubuntu 16, and Amazon Linux 2017.09.
+When installing on an AWS instance with Elastic Network Adapter (ENA) and a non-up-to-date kernel, it may be necessary to install the ENA drivers or upgrade to a more recent operating system version. The ENA driver is automatically available on operating systems starting with Red Hat/CentOS 7.4, Ubuntu 16, and Amazon Linux 2017.09.
 {% endhint %}
 
 ### Step 3: Add clients to the cluster <a href="#step-3-add-clients-to-cluster" id="step-3-add-clients-to-cluster"></a>

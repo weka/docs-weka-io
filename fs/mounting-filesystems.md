@@ -336,7 +336,7 @@ The filesystem is mounted automatically after server reboot.
 
 1. Install `autofs` on the server using one of the following commands according to your deployment:
 
-* On RedHat or Centos:&#x20;
+* On Red Hat or CentOS:&#x20;
 
 ```
 yum install -y autofs

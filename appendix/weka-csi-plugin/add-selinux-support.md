@@ -40,7 +40,7 @@ To add SELinux support, perform the following procedures:
     $ semodule -i csi-wekafs.pp
     ```
 
-    For this purpose, the `policycoreutils-devel` package (or its alternative in case of Linux distribution different from the RedHat family) is required.
+    For this purpose, the `policycoreutils-devel` package (or its alternative in case of Linux distribution different from the Red Hat family) is required.
 
     Verify that the policy is applied correctly:
 
