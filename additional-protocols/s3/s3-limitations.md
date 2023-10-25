@@ -35,9 +35,9 @@ The following standard S3 APIs are supported:
 
 ### Objects
 
-* Object key names must be up to 1024 characters long.
+* Object key names may be up to 1024 characters long.
 * The prefix `/` of an object is interpreted as a directory, and such directory segments are limited to 255 characters.
-* See [AWS S3 object name limitations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html). Match them to limitations in other protocols.
+* See [Amazon S3 object name limitations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html). Match them to limitations in other protocols.
 
 {% hint style="info" %}
 It is recommended to avoid special characters that might be unsupported using protocols other than S3.&#x20;
@@ -76,4 +76,4 @@ Only MD5 checksum algorithm is supported.
 
 ## Lifecycle configuration
 
-WEKA supports the [AWS S3 Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) elements and definitions, with the limitation of only supporting the lifecycle `Expiration` action.
+WEKA supports the [Amazon S3 Lifecycle Configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/intro-lifecycle-rules.html) elements and definitions, with the limitation of only supporting the lifecycle `Expiration` action.
