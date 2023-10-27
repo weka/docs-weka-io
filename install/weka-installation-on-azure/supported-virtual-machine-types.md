@@ -28,16 +28,16 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 <figure><img src="../../.gitbook/assets/azure_lvs16.png" alt=""><figcaption><p>Mapped WEKA processes for a standard_L16s_v3</p></figcaption></figure>
 
-<table><thead><tr><th>VM size</th><th width="180"># of compute cores</th><th width="161"># of drive cores</th><th># of frontend cores</th></tr></thead><tbody><tr><td>Standard_L8s_v3</td><td>1</td><td>1</td><td>1</td></tr><tr><td>Standard_L16s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L32s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L48s_v3</td><td>3</td><td>3</td><td>1</td></tr><tr><td>Standard_L64s_v3</td><td>4</td><td>2</td><td>1</td></tr></tbody></table>
+<table><thead><tr><th>VM type</th><th width="180"># of compute cores</th><th width="161"># of drive cores</th><th># of frontend cores</th></tr></thead><tbody><tr><td>Standard_L8s_v3</td><td>1</td><td>1</td><td>1</td></tr><tr><td>Standard_L16s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L32s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L48s_v3</td><td>3</td><td>3</td><td>1</td></tr><tr><td>Standard_L64s_v3</td><td>4</td><td>2</td><td>1</td></tr></tbody></table>
 
 ## Supported VM types for clients
 
 WEKA supports the following virtual machine types for clients:
 
-<table><thead><tr><th width="210">VM size</th><th width="112">vCPU</th><th width="140">Memory (GiB)</th><th width="111">Max NICs</th><th data-type="number">BW (Mbps)</th></tr></thead><tbody><tr><td>Standard_D8_v5</td><td>8</td><td>32</td><td>6</td><td>12500</td></tr><tr><td>Standard_L8s_v3</td><td>8</td><td>64</td><td>4</td><td>12500</td></tr><tr><td>Standard_L16s_v3</td><td>16</td><td>128</td><td>8</td><td>12500</td></tr><tr><td>Standard_L32s_v3</td><td>32</td><td>256</td><td>8</td><td>16000</td></tr><tr><td>Standard_L48s_v3</td><td>48</td><td>384</td><td>8</td><td>24000</td></tr><tr><td>Standard_L64s_v3</td><td>64</td><td>512</td><td>8</td><td>30000</td></tr></tbody></table>
+<table><thead><tr><th width="218">VM series prefix</th><th>VM type</th></tr></thead><tbody><tr><td>D4</td><td>Standard_D4s_v3, Standard_D4as_v4</td></tr><tr><td>D8</td><td>Standard_D8_v5, Standard_D8s_v3, Standard_D8as_v4, Standard_D8as_v5</td></tr><tr><td>D16</td><td>Standard_D16s_v3, Standard_D16ds_v4, Standard_D16as_v4</td></tr><tr><td>E16</td><td>Standard_E16-8ds_v4</td></tr><tr><td>E32</td><td>Standard_E32-16as_v4, Standard_E32-16as_v5, Standard_E32-16ds_v4</td></tr><tr><td>L8</td><td>Standard_L8s_v3</td></tr><tr><td>L16</td><td>Standard_L16s_v3</td></tr><tr><td>L32</td><td>Standard_L32s_v3</td></tr><tr><td>L48</td><td>Standard_L48s_v3</td></tr><tr><td>L64</td><td>Standard_L64s_v3</td></tr></tbody></table>
+
+
 
 **Related information**
 
-[Dv5-series](https://learn.microsoft.com/en-us/azure/virtual-machines/dv5-dsv5-series#dv5-series) (Azure learning site)
-
-[Lsv3-series](https://learn.microsoft.com/en-us/azure/virtual-machines/lsv3-series) (Azure learning site)
+[Sizes for virtual machines in Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes) (Azure learning site)
