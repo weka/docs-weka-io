@@ -3,9 +3,9 @@
 The WEKA system provides a RESTful API, enabling you to automate interactions with the WEKA system and integrate them into your workflows or monitoring systems.
 
 {% hint style="info" %}
-It is essential to have a solid understanding of the WEKA CLI commands and parameters related to the REST API functions.
+It is essential to have a solid understanding of the WEKA CLI commands and parameters related to the REST API services.
 
-For example, to create a filesystem using the `POST /fileSystems` function, see the related documentation in [#create-a-filesystem](../fs/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention") (using the CLI).
+For example, to create a filesystem using the `POST /fileSystems` service, see the related documentation in [#create-a-filesystem](../fs/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention") (using the CLI).
 {% endhint %}
 
 ## Access the REST API
