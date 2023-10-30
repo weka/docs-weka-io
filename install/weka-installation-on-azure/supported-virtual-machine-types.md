@@ -1,8 +1,8 @@
 # Supported virtual machine types
 
-## Supported VM types for backends
+## Supported VM sizes for backends
 
-On Azure, WEKA is deployed in a multiple containers architecture using the Lsv3-series of Azure Virtual Machines (Azure VMs), which features high throughput, low latency, and directly mapped local NVMe storage.
+On Azure, WEKA is deployed in a multiple containers architecture using the storage optimized Lsv3-series  of Azure Virtual Machines (Azure VMs), which features high throughput, low latency, and directly mapped local NVMe storage.
 
 Each virtual machine size has a specific number of NICs, but only one is used for UDP mode connection for all traffic through the management interface.&#x20;
 
@@ -28,13 +28,13 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 <figure><img src="../../.gitbook/assets/azure_lvs16.png" alt=""><figcaption><p>Mapped WEKA processes for a standard_L16s_v3</p></figcaption></figure>
 
-<table><thead><tr><th>VM type</th><th width="180"># of compute cores</th><th width="161"># of drive cores</th><th># of frontend cores</th></tr></thead><tbody><tr><td>Standard_L8s_v3</td><td>1</td><td>1</td><td>1</td></tr><tr><td>Standard_L16s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L32s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L48s_v3</td><td>3</td><td>3</td><td>1</td></tr><tr><td>Standard_L64s_v3</td><td>4</td><td>2</td><td>1</td></tr></tbody></table>
+<table><thead><tr><th>VM size</th><th width="180"># of compute cores</th><th width="161"># of drive cores</th><th># of frontend cores</th></tr></thead><tbody><tr><td>Standard_L8s_v3</td><td>1</td><td>1</td><td>1</td></tr><tr><td>Standard_L16s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L32s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L48s_v3</td><td>3</td><td>3</td><td>1</td></tr><tr><td>Standard_L64s_v3</td><td>4</td><td>2</td><td>1</td></tr></tbody></table>
 
-## Supported VM types for clients
+## Supported VM sizes for clients
 
-WEKA supports the following virtual machine types for clients:
+WEKA supports the following virtual machine sizes for clients:
 
-<table><thead><tr><th width="218">VM series prefix</th><th>VM type</th></tr></thead><tbody><tr><td>D4</td><td>Standard_D4s_v3, Standard_D4as_v4</td></tr><tr><td>D8</td><td>Standard_D8_v5, Standard_D8s_v3, Standard_D8as_v4, Standard_D8as_v5</td></tr><tr><td>D16</td><td>Standard_D16s_v3, Standard_D16ds_v4, Standard_D16as_v4</td></tr><tr><td>D32</td><td>Standard_D32as_v4</td></tr><tr><td>E16</td><td>Standard_E16ds_v4, Standard_E16-8ds_v4</td></tr><tr><td>E32</td><td>Standard_E32ds_v4, Standard_E32-16as_v4, Standard_E32-16as_v5, Standard_E32-16ds_v4</td></tr><tr><td>E48</td><td>Standard_E48ds_v4</td></tr><tr><td>E96</td><td>Standard_E96ads_v5</td></tr><tr><td>FX48</td><td>Standard_FX48mds</td></tr><tr><td>L8</td><td>Standard_L8s_v3</td></tr><tr><td>L16</td><td>Standard_L16s_v3</td></tr><tr><td>L32</td><td>Standard_L32s_v3</td></tr><tr><td>L48</td><td>Standard_L48s_v3</td></tr><tr><td>L64</td><td>Standard_L64s_v3</td></tr><tr><td>M64</td><td>Standard_M64dms_v2</td></tr><tr><td>M208</td><td>Standard_M208s_v2, Standard_M208ms_v2</td></tr><tr><td>M416</td><td>Standard_M416ms_v2</td></tr></tbody></table>
+<table><thead><tr><th width="143">VM type</th><th>VM size</th></tr></thead><tbody><tr><td>General purpose</td><td>Standard_D4s_v3, Standard_D4as_v4, Standard_D8_v5, Standard_D8s_v3, Standard_D8as_v4, Standard_D8as_v5, Standard_D16s_v3, Standard_D16ds_v4, Standard_D16as_v4, Standard_D32as_v4</td></tr><tr><td>Memory optimized</td><td>Standard_E16ds_v4, Standard_E16-8ds_v4, Standard_E32ds_v4, Standard_E32-16as_v4, Standard_E32-16as_v5, Standard_E32-16ds_v4, Standard_E48ds_v4, Standard_E96ads_v5, Standard_M64dms_v2, Standard_M208s_v2, Standard_M208ms_v2, Standard_M416ms_v2</td></tr><tr><td>Compute optimized</td><td>Standard_FX48mds</td></tr><tr><td>Storage optimized</td><td>Standard_L8s_v3, Standard_L16s_v3, Standard_L32s_v3, Standard_L48s_v3, Standard_L64s_v3</td></tr></tbody></table>
 
 
 
