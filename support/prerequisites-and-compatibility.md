@@ -256,10 +256,11 @@ See [#high-availability-ha](../overview/networking-in-wekaio.md#high-availabilit
 
 ## SSDs
 
-* Support PLP (Power Loss Protection)
-* Dedicated for WEKA system storage (partition not supported)
-* Supported drive capacity: Up to 30 TiB
-* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the WEKA cluster servers (e.g., due to specific applications when running the WEKA cluster in converged mode), contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
+* The SSDs must support PLP (Power Loss Protection).
+* WEKA system storage must be dedicated, and partitioning is not supported.
+* The supported drive capacity is up to 30 TiB.
+* IOMMU mode is not supported for SSD drives.\
+  If you need to configure IOMMU on WEKA cluster servers, for instance, due to specific applications when running the WEKA cluster in converged mode, contact our [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team) for assistance.
 
 {% hint style="info" %}
 To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
