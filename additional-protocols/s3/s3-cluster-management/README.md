@@ -6,7 +6,8 @@ description: This page describes how to set up, update, monitor, and delete an S
 
 ## Considerations
 
-* **Performance scale:** The S3 service can be exposed from the cluster servers, ranging from three servers to the entire cluster. The service performance scales linearly as the S3 cluster scales. Depending on the workload, you may need several Frontend cores to gain maximum performance.
+* **Performance scale:** The S3 service can be exposed from the cluster containers**.** The service performance scales linearly as the S3 cluster scales. Depending on the workload, you may need several Frontend cores to gain maximum performance.
+* **Redundancy:** To ensure redundancy and fault tolerance a minimum of two containers is required for the S3 cluster. However, it is possible to create a single-container S3 cluster, which means there will be no redundancy.
 * **Cluster-wide configuration filesystem:** The S3 protocol requires a persistent cluster-wide configuration filesystem (see [Set the global configuration filesystem](../../nfs-support/nfs-support-1.md#configure-the-nfs-configuration-filesystem)).
 
 ## Round-robin DNS or load balancer
