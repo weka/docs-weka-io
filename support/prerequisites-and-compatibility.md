@@ -13,14 +13,18 @@ description: >-
 
 ## CPU
 
-* Intel SandyBridge+ processors
-* AMD 2nd and 3rd Gen EPYC processors
+* Intel processor families Haswell and later
+* AMD processor families 2nd and 3rd Gen EPYC
+
+{% hint style="warning" %}
+Intel processor families Sandy Bridge and Ivy Bridge have been deprecated, and support for these processors will be discontinued in version 4.3.
+{% endhint %}
 
 {% hint style="info" %}
 Ensure the BIOS settings meet the following requirements:
 
 * AES must be enabled.
-* Secure Boot must be disabled.&#x20;
+* Secure Boot must be disabled.
 {% endhint %}
 
 ## Memory
