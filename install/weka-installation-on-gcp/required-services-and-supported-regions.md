@@ -30,34 +30,50 @@ Other services used or enabled:
 
 ## Supported regions
 
-* Americas
-  * Oregon (us-west1)
-  * Las Vegas (us-west4)
-  * Iowa (us-central1)
-  * South Carolina (us-east1)
-  * N. Virginia (us-east4)
-  * Montréal (northamerica-northeast1)
-  * São Paulo (southamerica-east1)
-  * Columbus (us-east5)
-  * Santiago (southamerica-west1)
-* Europe
-  * London (europe-west2)
-  * Belgium (europe-west1)
-  * Netherlands (europe-west4)
-  * Zurich (europe-west6)
-  * Frankfurt (europe-west3)
-  * Hamina (europe-north1)
-* Asia Pacific
-  * Mumbai (asia-south1)
-  * Delhi (asia-south2)
-  * Singapore (asia-southeast1)
-  * Taiwan (asia-east1)
-  * Tokyo (asia-northeast1)
-  * Osaka (asia-northeast2)
-  * Sydney (australia-southeast1)
+To ensure support for a specific region, it must meet the requirements for the C2 machine series, Cloud Functions, Cloud Scheduler, and Workflows. If the region you're interested in is not on the supported list, verify the availability of these services in that region. If they are available and your region is not listed, contact the WEKA [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for validation.
 
+### Americas
 
+| Region Name             | Region Description            |
+| ----------------------- | ----------------------------- |
+| northamerica-northeast1 | Montréal, Canada              |
+| southamerica-east1      | São Paulo, Brazil             |
+| southamerica-west1      | Santiago, Chile               |
+| us-central1             | Iowa, United States           |
+| us-east1                | South Carolina, United States |
+| us-east4                | Virginia, United States       |
+| us-east5                | Columbus, United States       |
+| us-west1                | Oregon, United States         |
+| us-west2                | Los Angeles, United States    |
+| us-west4                | Las Vegas, United States      |
+
+### Asia Pacific
+
+| Region name          | Region Description       |
+| -------------------- | ------------------------ |
+| asia-east1           | Changhua County, Taiwan  |
+| asia-east2           | Hong Kong                |
+| asia-northeast1      | Tokyo, Japan             |
+| asia-northeast2      | Osaka, Japan             |
+| asia-northeast3      | Seoul, South Korea       |
+| asia-south1          | Mumbai, India            |
+| asia-south2          | Delhi, India             |
+| asia-southeast1      | Jurong West, Singapore   |
+| australia-southeast1 | Sydney, Australia        |
+
+### Europe
+
+| Region Name   | Region Description     |
+| ------------- | ---------------------- |
+| europe-north1 | Hamina, Finland        |
+| europe-west1  | St. Ghislain, Belgium  |
+| europe-west2  | London, England        |
+| europe-west3  | Frankfurt, Germany     |
+| europe-west4  | Eemshaven, Netherlands |
+| europe-west6  | Zurich, Switzerland    |
 
 **Related information**
 
-[GCP locations](https://cloud.google.com/about/locations)
+[Regions and zones](https://cloud.google.com/compute/docs/regions-zones)
+
+[Cloud locations](https://cloud.google.com/about/locations)

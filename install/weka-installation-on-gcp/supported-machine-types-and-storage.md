@@ -9,6 +9,7 @@ The following table provides the supported machine types for backends (and clien
 {% hint style="info" %}
 * Each machine type supports 1, 2, 4, or 8 local SSD drives. Each drive has 375 GB (maximum 3 TB per instance). These drives are not individual SSDs but partitions locally to the physical server.
 * The data in a WEKA cluster is protected with N+2 or N+4. However, use snap-to-object if the data needs further protection from multiple server failures.
+* The C2 series may not be available in your chosen [GCP region](https://cloud.google.com/compute/docs/regions-zones).&#x20;
 {% endhint %}
 
 ## Supported machine types for clients
