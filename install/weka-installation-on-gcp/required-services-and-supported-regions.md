@@ -2,10 +2,6 @@
 
 The region must support the services used in WEKA on GCP. The following sections list these services and the regions that support them.
 
-{% hint style="info" %}
-If you need to use a region that is missing from the list, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).&#x20;
-{% endhint %}
-
 ## Required services used in WEKA on GCP
 
 * Cloud Build API
@@ -30,7 +26,11 @@ Other services used or enabled:
 
 ## Supported regions
 
-To ensure support for a specific region, it must meet the requirements for the C2 machine series, Cloud Functions, Cloud Scheduler, and Workflows. If the region you're interested in is not on the supported list, verify the availability of these services in that region. If they are available and your region is not listed, contact the WEKA [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for validation.
+To ensure support for a specific region, it must meet the requirements listed [above](required-services-and-supported-regions.md#required-services-used-in-weka-on-gcp).
+
+{% hint style="info" %}
+If the region you're interested in is not on the supported list, verify the availability of these services in that region. If they are available and your region is not listed, contact the WEKA [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for validation.
+{% endhint %}
 
 ### Americas
 
