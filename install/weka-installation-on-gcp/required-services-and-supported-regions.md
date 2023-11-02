@@ -45,6 +45,7 @@ If the region you're interested in is not on the supported list, verify the avai
 | us-east5                | Columbus, United States       |
 | us-west1                | Oregon, United States         |
 | us-west2                | Los Angeles, United States    |
+| us-west3                | Salt Lake City, United States |
 | us-west4                | Las Vegas, United States      |
 
 ### Asia Pacific
