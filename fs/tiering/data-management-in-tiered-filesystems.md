@@ -71,21 +71,26 @@ fs01        logs    1.05 GB                  1.05 GB        0.00          10.00
 
 ## Object tagging
 
-When WEKA uploads objects to the object store, it classifies them using tags. It is useful for applying further lifecycle management rules by the object store based on these tags. For example, transfer objects of a specific filesystem to/from Glacier.
+When WEKA uploads objects to the object store, it assigns tags to categorize them. These tags serve a crucial purpose because they enable the customer to implement specific lifecycle management rules in the object store based on the assigned tags.
 
-{% hint style="info" %}
-To enable the object-tagging capability, configure the WEKA object-store entity using the`enable-upload-tags`parameter in `weka fs tier s3 add/update` CLI commands.
-{% endhint %}
+For example, you can transfer objects of a specific filesystem when interacting with [S3 Glacier Deep Archive](https://aws.amazon.com/s3/storage-classes/glacier/instant-retrieval/).
+
+To enable upload tags, set it when adding or updating the object store bucket. For details, see the following:
+
+* Using the GUI: [#add-an-object-store-bucket](../managing-object-stores/managing-object-stores.md#add-an-object-store-bucket "mention") or [#edit-an-object-store-bucket](../managing-object-stores/managing-object-stores.md#edit-an-object-store-bucket "mention") by selecting **Enable Upload Tags** in the Advanced section.
+* Using the CLI: [#add-an-object-store-bucket](../managing-object-stores/managing-object-stores-1.md#add-an-object-store-bucket "mention") or [#edit-an-object-store-bucket](../managing-object-stores/managing-object-stores-1.md#edit-an-object-store-bucket "mention") by setting the `enable-upload-tags` parameter in `weka fs tier s3 add/update` commands.
+
+The following table indicates the additional tags WEKA adds to the object when using object tagging:
 
 <table><thead><tr><th width="212">Tag</th><th>Description</th></tr></thead><tbody><tr><td><code>wekaBlobType</code></td><td><p>The WEKA-internal type representation of the object.</p><p>Possible values:  </p><p><code>DATA</code>, <code>METADATA</code>, <code>METAMETADATA</code>, <code>LOCATOR</code>, <code>RELOCATIONS</code></p></td></tr><tr><td><code>wekaFsId</code></td><td>A unique filesystem ID (a combination of the filesystem ID and the cluster GUID).</td></tr><tr><td><code>wekaGuid</code></td><td>The cluster GUID.</td></tr><tr><td><code>wekaFsName</code></td><td>The filesystem name that uploaded this object. </td></tr></tbody></table>
 
-The object-store must support S3 object-tagging and might require additional permissions to use object tagging.
+The object store must support S3 object-tagging and might require additional permissions to use object tagging.
 
-The following extra permissions are required when using AWS S3:
+For example, the following extra permissions are required in AWS S3:
 
 * `s3:PutObjectTagging`&#x20;
 * `s3:DeleteObjectTagging`
 
 {% hint style="info" %}
-Additional charges may apply when using AWS S3.
+Additional charges may apply by your cloud service provider.
 {% endhint %}
