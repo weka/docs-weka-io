@@ -13,7 +13,12 @@ Always upgrade to the latest minor version in the new major version when upgradi
 * To upgrade to WEKA software version 4.2.x, the minimum source version must be 4.1.2 in MCB architecture.
 * To upgrade to WEKA software version 4.1.x, the minimum source version must be 4.0.2 in MCB architecture.&#x20;
 
-If the source system is not in MCB architecture, it is required to convert the cluster architecture to MCB. Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for assistance.
+{% hint style="warning" %}
+If the source system is not in MCB architecture, it is required to convert the cluster architecture to MCB. \
+See [convert-a-single-container-cluster-to-a-multi-container-mcb.md](../appendix/convert-a-single-container-cluster-to-a-multi-container-mcb.md "mention"). \
+This workflow is only intended for professional services.\
+Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for assistance.
+{% endhint %}
 
 {% hint style="warning" %}
 Customers running WEKA clusters on AWS with **auto-scaling groups** must contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) before converting the cluster to MCB.
