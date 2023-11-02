@@ -215,6 +215,7 @@
   * [Add SELinux support](appendix/weka-csi-plugin/add-selinux-support.md)
   * [Upgrade legacy persistent volumes for capacity enforcement](appendix/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
   * [Troubleshooting](appendix/weka-csi-plugin/troubleshooting.md)
+* [Convert a single-container cluster to a multi-container (MCB)](appendix/convert-a-single-container-cluster-to-a-multi-container-mcb.md)
 
 ***
 
