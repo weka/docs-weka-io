@@ -6,11 +6,11 @@ description: >-
 
 # Manage the NFS protocol
 
-NFS (Network File System) is a protocol that allows clients to access the WEKA filesystem without installing WEKA’s client software using the standard NFS implementation of the client operating system.
+NFS (Network File System) is a protocol that enables clients to access the WEKA filesystem without requiring WEKA's client software. This leverages the standard NFS implementation of the client's operating system.
 
-WEKA’s default NFS implementation is NFS**-**W. NFS-W allows overcoming the inherent limitation in the NFS protocol of up to 16 security groups a user can be part of. It supports the NFSv3, NFSv4.0, and NFSv4.1 protocols.&#x20;
+WEKA supports an advanced NFS implementation, NFS-W, designed to overcome inherent limitations in the NFS protocol. NFS-W is compatible with NFSv3 and NFSv4[^1] protocols, offering enhanced capabilities, including support for more than 16 security groups for users.
 
-In addition, the legacy NFS stack is also available for backward compatibility. The legacy NFS supports only the NFSv3 protocol, and up to 16 security groups a user can be part of.
+For backward compatibility, the legacy NFS stack is also available, supporting only the NFSv3 protocol and a maximum of 16 security groups for users.
 
 ## NFS service deployment guidelines and requirements
 
@@ -80,3 +80,5 @@ For detailed procedures, see the related topics.
 [nfs-support.md](nfs-support.md "mention")
 
 [nfs-support-1.md](nfs-support-1.md "mention")
+
+[^1]: NFSv4.0 and NFSv4.1

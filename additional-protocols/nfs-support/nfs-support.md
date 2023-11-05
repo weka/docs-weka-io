@@ -21,7 +21,7 @@ Using the GUI, you can:
 Interface Groups define the servers and ports that provide the NFS service.
 
 {% hint style="info" %}
-The default stack is NFS-W (NFSv4). If you need to create the interface group in the legacy NFS stack, use the CLI. See [Create interface groups](nfs-support-1.md#create-interface-groups).
+If you need to create the interface group in the legacy NFS stack, use the CLI. See [Create interface groups](nfs-support-1.md#create-interface-groups) and set the `allow-manage-gids` parameter to `off.`
 {% endhint %}
 
 **Procedure**
@@ -149,7 +149,7 @@ If you create an NFS v4 client permission, verify that a global configuration fi
 
 ![Permissions table](../../.gitbook/assets/wmng\_add\_NFS\_client\_permissions.png)
 
-2. In the Create NFS Permission Creation dialog, set the following properties:
+2. In the Create NFS Permission dialog, set the following properties:
    * **Client Group**: The client group to which the permissions are applied.
    * **Filesystem**: The filesystem to which the permissions are applied. A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.
    * **Path**: The exported directory path (root share).
@@ -161,7 +161,7 @@ If you create an NFS v4 client permission, verify that a global configuration fi
    * **Anon. GID:** Anonymous group ID. Only relevant for Root and All user squashing.
 3. Select **Save**.
 
-![Create filesystem permissions](../../.gitbook/assets/wmng\_add\_fs\_permission.png)
+![Create filesystem permissions](../../.gitbook/assets/wmng\_create\_nfs\_permission.png)
 
 ## Edit NFS client permission <a href="#edit-nfs-client-permission" id="edit-nfs-client-permission"></a>
 
