@@ -2,9 +2,9 @@
 description: Professional services workflow
 ---
 
-# Convert a single-container cluster to a multi-container (MCB)
+# Convert the cluster architecture from a single-container backend to a multi-container backend
 
-Since WEKA introduced the multi-container backend (MCB or MBC) architecture, it is required to convert existing single-container (SCB) clusters to MCB.
+Since WEKA introduced the multi-container backend (MCB or MBC) architecture, it is required to convert existing single-container backend (SCB) architecture to MCB.
 
 In SCB, the drive, compute, and frontend processes are in the same container. In MCB, a server includes multiple containers, each running a specific process type. The MCB offers benefits such as:
 
@@ -26,11 +26,11 @@ This workflow is intended for experienced professionals in the field of professi
 
 The conversion runs on one server at a time (rolling). It takes about 4.5 minutes per server, so the cluster performance hit is minimal. Therefore, it is recommended (not mandatory) to perform this workflow during the corporate maintenance window.
 
-1. [Prepare the source cluster for conversion](convert-a-single-container-cluster-to-a-multi-container-mcb.md#2.-prepare-the-source-cluster-for-conversion)
-2. [Remove the protocol cluster configurations (if exist)](convert-a-single-container-cluster-to-a-multi-container-mcb.md#2.-remove-the-protocol-cluster-configurations-if-exist)
-3. [Ensure failure domains are named](convert-a-single-container-cluster-to-a-multi-container-mcb.md#3.-ensure-failure-domains-are-named)
-4. [Convert the cluster from SCB to MCB](convert-a-single-container-cluster-to-a-multi-container-mcb.md#4.-convert-the-cluster-to-mbc)
-5. [Restore the protocol cluster configurations (if required)](convert-a-single-container-cluster-to-a-multi-container-mcb.md#5.-restore-the-protocol-cluster-configurations-if-required)
+1. [Prepare the source cluster for conversion](convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md#2.-prepare-the-source-cluster-for-conversion)
+2. [Remove the protocol cluster configurations (if exist)](convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md#2.-remove-the-protocol-cluster-configurations-if-exist)
+3. [Ensure failure domains are named](convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md#3.-ensure-failure-domains-are-named)
+4. [Convert the cluster from SCB to MCB](convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md#4.-convert-the-cluster-to-mbc)
+5. [Restore the protocol cluster configurations (if required)](convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md#5.-restore-the-protocol-cluster-configurations-if-required)
 
 ### 1. Prepare the source cluster for conversion
 
@@ -320,7 +320,7 @@ When this error occurs, the drive container is still active, with all the drives
 
 To reverse, create the other containers manually or remove the drives container and restart the default container.\
 If the drives are phased out or unavailable, deactivate the phased-out drives and immediately activate them. Alternatively, remove the drives and re-add them.\
-See [Drives are not activated correctly during phase-out](convert-a-single-container-cluster-to-a-multi-container-mcb.md#drives-are-not-activated-correctly-during-phase-out).
+See [Drives are not activated correctly during phase-out](convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md#drives-are-not-activated-correctly-during-phase-out).
 {% endhint %}
 
 ### Compute0 conversion failed on VMware hosts

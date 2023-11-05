@@ -15,7 +15,7 @@ Always upgrade to the latest minor version in the new major version when upgradi
 
 {% hint style="warning" %}
 If the source system is not in MCB architecture, it is required to convert the cluster architecture to MCB. \
-See [convert-a-single-container-cluster-to-a-multi-container-mcb.md](../appendix/convert-a-single-container-cluster-to-a-multi-container-mcb.md "mention"). \
+See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendix/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention"). \
 This workflow is only intended for professional services.\
 Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for assistance.
 {% endhint %}
