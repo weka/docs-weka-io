@@ -9,6 +9,10 @@
   * Existing private network.
   * Existing private network with peering.
 
+{% hint style="info" %}
+WEKA deployment on Azure only supports Ethernet networking.&#x20;
+{% endhint %}
+
 ## Terraform variables file
 
 Each deployment type includes a variables file `vars.auto.tfvars` that contains only the variables required for the relevant deployment type.
