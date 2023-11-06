@@ -417,7 +417,7 @@ To support dark site customers and other users with local Certificate Authoritie
     ```
 
     In this annotation, replace `default` with the namespace you've specified (or leave it as "default"), and replace `ca-secret` with the actual name of the secret.
-3. After making these changes, proceed to the general upgrade instructions (the `forceUpdateSecret` flag is not required).
+3. After making these changes, proceed to the general upgrade instructions.
 
 ## Upgrade the Local WEKA Home
 
