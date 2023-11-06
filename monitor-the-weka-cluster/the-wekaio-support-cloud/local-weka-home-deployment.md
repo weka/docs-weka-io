@@ -397,6 +397,28 @@ To trigger a test event, run `weka events trigger-event test` and verify the tes
 
 If required, go to `/var/log/wekahome` and review the relevant log according to the timestamp (for example, `wekahome-install-03-08-2023_16-29.log`).
 
+## Set local Certificate Authorities
+
+To support dark site customers and other users with local Certificate Authorities (CAs) for configuring secure connectivity to the Local WEKA Home.
+
+**Procedure**
+
+1.  Create a secret using the same method as described in the nginx documentation. For example, you can use the following command:
+
+    ```
+    kubectl create secret generic ca-secret --from-file=ca.crt=ca.crt
+    ```
+
+    Optionally, you can specify a name for the secret (in this command, it's named `ca-secret`) and a namespace for it using the `-n` option.
+2.  Add an Ingress annotation that references this CA certificate by extending the `global.ingress.annotations` with the following field:
+
+    ```
+    nginx.ingress.kubernetes.io/auth-tls-secret: "default/ca-secret"
+    ```
+
+    In this annotation, replace `default` with the namespace you've specified (or leave it as "default"), and replace `ca-secret` with the actual name of the secret.
+3. After making these changes, proceed to the general upgrade instructions (the `forceUpdateSecret` flag is not required).
+
 ## Upgrade the Local WEKA Home
 
 The Local WEKA Home upgrade workflow is similar to the deployment workflow (without reinstalling the Minikube). The upgrade process takes about 5 minutes, and the LWH is unavailable during this time. It is recommended to perform the upgrade during a maintenance window.

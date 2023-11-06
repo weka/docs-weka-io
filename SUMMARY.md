@@ -188,8 +188,10 @@
 * [WEKA Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
   * [Local WEKA Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
   * [Local WEKA Home deployment](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)
-  * [Set the Local WEKA Home to send alerts or events](monitor-the-weka-cluster/the-wekaio-support-cloud/set-the-local-weka-home-to-send-alerts-or-events.md)
-  * [Download the Usage Report or Analytics](monitor-the-weka-cluster/the-wekaio-support-cloud/download-the-usage-report-or-analytics.md)
+  * [Explore cluster insights and statistics](monitor-the-weka-cluster/the-wekaio-support-cloud/explore-cluster-insights-and-statistics.md)
+  * [Manage alerts and integrations](monitor-the-weka-cluster/the-wekaio-support-cloud/manage-alerts-and-integrations.md)
+  * [Enforce security and compliance](monitor-the-weka-cluster/the-wekaio-support-cloud/enforce-security-and-compliance.md)
+  * [Optimize support and data management](monitor-the-weka-cluster/the-wekaio-support-cloud/optimize-support-and-data-management.md)
 * [Set up the WEKAmon external monitoring](monitor-the-weka-cluster/external-monitoring.md)
 * [Set up the SnapTool external snapshots manager](monitor-the-weka-cluster/snapshot-management.md)
 
