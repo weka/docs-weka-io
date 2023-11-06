@@ -425,17 +425,52 @@ The Local WEKA Home upgrade workflow is similar to the deployment workflow (with
 
 **Before you begin**
 
-If the source LWH version is lower than 2.11.0, run the following command lines to prepare the source LWH for the upgrade:
+1. If your initial Local WEKA Home (LWH) installation was done using the WMS, change the directory to `/opt/local-weka-home`. Otherwise, change the directory to the location where LWH was initially installed.
 
-`kubectl delete statefulset -l` [`app.kubernetes.io/name=nats`](http://app.kubernetes.io/name=nats) `-n home-weka-io`
+Here's an example of how to change the directory to `/opt/local-weka-home` when the WMS was used:
 
-`kubectl delete pvc -l` [`app.kubernetes.io/name=nats`](http://app.kubernetes.io/name=nats) `-n home-weka-io`
+* Log into the WMS:
+  *   As root user:
+
+      ```
+      ssh root@my_wms
+      # Enter password (default: WekaService)
+      ```
+  *   Or as the weka user:
+
+      ```
+      ssh weka@my_wms
+      # Enter password (default: weka.io123)
+      ```
+*   Switch to root user (if not already):
+
+    ```
+    sudo bash
+    ```
+*   Change to the local-weka-home directory:
+
+    ```
+    cd /opt/local-weka-home
+    ```
+
+2. Check the version.
+
+```
+curl http://localhost/api/v3/status
+```
+
+3. If the source LWH version is lower than 2.11.0, run the following commands to prepare the source LWH for upgrade:
+
+```
+kubectl delete statefulset -l app.kubernetes.io/name=nats -n home-weka-io
+kubectl delete pvc -l app.kubernetes.io/name=nats -n home-weka-io
+```
 
 **Procedure**
 
 1. Download the latest Local WEKA Home package (_wekahome-vm-docker-images_). See the location in [Download the Local Weka Home and Minikube packages](local-weka-home-deployment.md#2.-download-the-local-weka-home-and-minikube-packages)_._
 2. Unpack the Local Weka Home package to the same directory used for installing the LWH. `tar xvf <file name> -C <path>`
-3. From the `wekahome_offline` directory, run `./update_config.sh`
+3. From the `wekahome_offline` sub-directory, run `./update_config.sh`
 4. If you want to modify the existing configuration, open the `/root/.config/wekahome/config.yaml` file and do the following:
    * Modify the settings. See [Install and configure Local WEKA Home](local-weka-home-deployment.md#5.-install-and-configure-local-weka-home).
    * If you update the following sections: **TLS certificates**, **admin credentials**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
