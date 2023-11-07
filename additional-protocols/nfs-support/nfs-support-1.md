@@ -116,17 +116,23 @@ Use the following command lines to set and view the mountd configuration:
 
 `weka nfs global-config show`
 
-### Configure user groups resolution when using the legacy NFS
+### Configure user groups resolution
 
-The legacy NFS protocol uses the AUTH\_SYS protocol to authenticate clients and grant them access to network resources. This protocol is limited to 16 security groups. Therefore, it truncates the group list to 16 if a user is in more than 16 groups. This can cause an access failure for authorized users.
+NFS-W can authenticate more than 16 user groups, but it requires the external resolution of the user's groups, which means associating users with their respective group-IDs outside of the NFS protocol.
 
-To ignore the groups passed by the NFS protocol and resolve the user's groups external to the protocol, configure the WEKA system as follows:
+{% hint style="info" %}
+Configuring more than 16 user groups is not supported with the legacy NFS.
+{% endhint %}
 
 **Procedure**
 
-1. Ensure the interface group supports the external group-IDs resolution. When [creating interface groups](nfs-support-1.md#create-interface-groups), ensure that the `allow-manage-gids` option is set to `on` (default value).&#x20;
-2. [Set the NFS client permissions](nfs-support-1.md#manage-nfs-client-permissions) for external group-IDs resolution by setting the `manage-gids` option to `on`.
-3. Set up the relevant servers to retrieve the user's group-IDs information. See the following procedure. (This task does not involve the WEKA management.)
+1. **Configure interface groups:**
+   * Ensure that the `allow-manage-gids` option is set to `on` (default value). See [Create interface groups](nfs-support-1.md#create-interface-groups).&#x20;
+2. **Configure NFS client permissions:**
+   * Set the `manage-gids` option to `on` for the NFS client to enable external group-IDs resolution. See [Set the NFS client permissions](nfs-support-1.md#manage-nfs-client-permissions).
+3. **Set up servers for group-IDs retrieval:**
+   * Configure relevant servers to retrieve user group-IDs information.\
+     This task is specific to NFS-W and does not involve WEKA management. See the following procedure.
 
 <details>
 
