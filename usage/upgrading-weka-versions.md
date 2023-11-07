@@ -174,7 +174,7 @@ Example:
 
 ### 5. Upgrade the clients
 
-Once all backends are upgraded, the clients remain with the existing version and continue working with the upgraded backends. The client's version can only be one version behind the version of the backends. Therefore, clients must be upgraded before the next cluster software version upgrade.\
+Once all backends are upgraded, the clients remain with the existing version and continue working with the upgraded backends. The client's version can only be one major version behind the version of the backends. Therefore, clients must be upgraded before the next cluster software version upgrade.\
 The minimum source version for clients upgrade is 4.1.2.
 
 #### Stateless client upgrade options
