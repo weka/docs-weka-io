@@ -79,18 +79,22 @@ If the KMS key is compromised or requires rotation, the KMS admin can rotate the
 <table><thead><tr><th width="175">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>new-key-uid</code>*</td><td>Unique identifier for the new key to be used to wrap filesystem keys.<br>Mandatory for <code>kmip</code> only.<br>Do not specify any value for <code>vault</code>.</td></tr></tbody></table>
 
 {% hint style="info" %}
-Existing filesystem keys that are part of the Snap-To-Object feature will not be automatically re-encrypted with the new KMS key.
+The Snap-to-Object feature does not automatically re-encrypt existing filesystem keys with the new KMS key.
 {% endhint %}
 
 {% hint style="warning" %}
-Unlike in Vault KMS, re-wrapping a KMIP-based KMS requires generating a new key in the KMS, rather than rotating the same key. Hence, the old key should be preserved in the KMS in order to be able to decrypt old Snap2Obj snapshots.
+In contrast to Vault KMS, the process of re-wrapping a KMIP-based KMS involves generating a new key within the KMS, rather than rotating the existing key. Therefore, it is essential to retain the old key within the KMS to ensure the ability to decrypt older Snap-to-Object snapshots.
 {% endhint %}
 
 ## Set up vault configuration
 
+{% hint style="info" %}
+Namespaces are not supported with HashiCorp vault.
+{% endhint %}
+
 ### Enable 'Transit' secret engine in vault
 
-The Weka system uses [encryption-as-a-service](https://learn.hashicorp.com/vault/encryption-as-a-service/eaas-transit) capabilities of the KMS to encrypt/decrypt the filesystem keys. This requires the configuration of Vault with the `transit` secret engine.
+The WEKA system uses [encryption-as-a-service](https://learn.hashicorp.com/vault/encryption-as-a-service/eaas-transit) capabilities of the KMS to encrypt/decrypt the filesystem keys. This requires the configuration of Vault with the `transit` secret engine.
 
 ```
 $ vault secrets enable transit
@@ -99,9 +103,9 @@ Success! Enabled the transit secrets engine at: transit/
 
 For more information, refer to [Vault transit secret-engine documentation](https://www.vaultproject.io/docs/secrets/transit/index.html).
 
-### Set up a master key for the Weka system
+### Set up a master key for the WEKA system
 
-Once the `transit` secret engine is set up, a master key for use with the Weka system must be created.
+Once the `transit` secret engine is set up, a master key for use with the WEKA system must be created.
 
 ```
 $ vault write -f transit/keys/weka-key
@@ -109,7 +113,7 @@ Success! Data written to: transit/keys/weka-key
 ```
 
 {% hint style="info" %}
-It is possible to either create a different key for each Weka cluster or to share the key between different Weka clusters.
+It is possible to either create a different key for each WEKA cluster or to share the key between different WEKA clusters.
 {% endhint %}
 
 For more information, refer to [Vault transit secret-engine documentation](https://www.vaultproject.io/docs/secrets/transit/index.html).
@@ -137,7 +141,7 @@ $ vault policy write weka weka_policy.hcl
 
 ### Obtain an API token from the vault
 
-Authentication from the Weka system to Vault relies on an API token. Since the Weka system must always be able to communicate with the KMS, a [periodic service token](https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens) must be used.
+Authentication from the WEKA system to Vault relies on an API token. Since the WEKA system must always be able to communicate with the KMS, a [periodic service token](https://www.vaultproject.io/docs/concepts/tokens.html#periodic-tokens) must be used.
 
 * Verify that the`token` authentication method in Vault is enabled. This can be performed using the following command:
 
@@ -163,7 +167,7 @@ $ vault write auth/token/roles/weka allowed_policies="weka" period="768h"
 ```
 
 {% hint style="info" %}
-**Note:** The `period` is the time set for a renewal request. If no renewal is requested during this time period, the token will be revoked and a new token must be retrieved from Vault and set in the Weka system.
+**Note:** The `period` is the time set for a renewal request. If no renewal is requested during this time period, the token will be revoked and a new token must be retrieved from Vault and set in the WEKA system.
 {% endhint %}
 
 * Generate a token for the logged-in identity using the following command:
@@ -185,7 +189,7 @@ policies             ["default"]
 For more information on obtaining an API token, refer to [Vault Tokens documentation](https://learn.hashicorp.com/vault/security/tokens).
 
 {% hint style="warning" %}
-The Weka system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max\_lease\_ttl).
+The WEKA system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max\_lease\_ttl).
 {% endhint %}
 
 ## Obtain a certificate for a KMIP-based KMS
