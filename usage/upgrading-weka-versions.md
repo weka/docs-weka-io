@@ -149,7 +149,7 @@ Add the `--prepare-driver` flag to the command for client source versions 4.0.1 
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Clients with two or more versions behind the version of the backends are not supported. Therefore, clients must be automatically or manually upgraded before the next cluster software version upgrade.
+**Note:** Clients with two or more major versions behind the version of the backends are not supported. Therefore, clients must be automatically or manually upgraded before the next cluster software major version upgrade.
 {% endhint %}
 
 ### 6. Check the status after the upgrade
