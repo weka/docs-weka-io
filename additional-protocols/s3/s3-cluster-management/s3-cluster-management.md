@@ -49,9 +49,14 @@ You can update the port and the servers to participate in the S3 cluster.
 ![Edit an S3 cluster configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_button.png)
 
 4. Update the properties as required. Do not set port 9001.
+
+{% hint style="warning" %}
+Modifying the domain triggers an automatic restart of all S3 containers, resulting in I/O disruption.
+{% endhint %}
+
 5. Select **Save**.
 
-![Edit S3 Cluster Configuration](../../../.gitbook/assets/wmng\_s3\_edit\_configuration\_dialog.png)
+![Edit S3 Cluster Configuration](../../../.gitbook/assets/wmng\_S3\_edit\_configuration.png)
 
 ## Delete an S3 cluster configuration
 
