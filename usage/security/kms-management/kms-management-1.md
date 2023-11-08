@@ -79,7 +79,7 @@ If the KMS key is compromised or requires rotation, the KMS admin can rotate the
 <table><thead><tr><th width="175">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>new-key-uid</code>*</td><td>Unique identifier for the new key to be used to wrap filesystem keys.<br>Mandatory for <code>kmip</code> only.<br>Do not specify any value for <code>vault</code>.</td></tr></tbody></table>
 
 {% hint style="info" %}
-The Snap-to-Object feature does not automatically re-encrypt existing filesystem keys with the new KMS key.
+WEKA does not automatically re-encrypt existing filesystem keys with the new KMS key for the existing snapshots already uploaded with the old encrypted keys.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -89,7 +89,7 @@ In contrast to Vault KMS, the process of re-wrapping a KMIP-based KMS involves g
 ## Set up vault configuration
 
 {% hint style="info" %}
-Namespaces are not supported with HashiCorp vault.
+Using HashiCorp Vault with its namespaces feature is not supported.
 {% endhint %}
 
 ### Enable 'Transit' secret engine in vault
