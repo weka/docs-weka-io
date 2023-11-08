@@ -37,7 +37,7 @@ Ensure the BIOS settings meet the following requirements:
 {% tabs %}
 {% tab title="Backends" %}
 * **RHEL:**
-  * 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 8.8[^1], 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
   * 9.1, 9.0
@@ -174,17 +174,20 @@ Right-scroll the table to view all columns.
 
 {% tabs %}
 {% tab title="Ethernet drivers" %}
-* **Supported Mellanox OFED versions for the Ethernet NICs:**
-  * 23.04-1.1.3.0
-  * 5.9-0.5.6.0
-  * 5.8-1.1.2.1 LTS
-  * 5.7-1.0.2.0
-  * 5.6-2.0.9.0
-  * 5.6-1.0.3.3
-  * 5.4-3.5.8.0 LTS
-  * 5.4-3.4.0.0 LTS
-  * 5.1-2.6.2.0
-  * 5.1-2.5.8.0
+*   **Supported Mellanox OFED versions for the Ethernet NICs:**
+
+    * 23.04-1.1.3.0
+    * 5.9-0.5.6.0
+    * 5.8-1.1.2.1 LTS
+    * 5.7-1.0.2.0
+    * 5.6-2.0.9.0
+    * 5.6-1.0.3.3
+    * 5.4-3.5.8.0 LTS
+    * 5.4-3.4.0.0 LTS
+    * 5.1-2.6.2.0
+    * 5.1-2.5.8.0
+
+    **Note:** Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
 * **Supported ENA drivers:**
   * 1.0.2 - 2.0.2
   * A current driver from an official OS repository is recommended
@@ -233,6 +236,8 @@ WEKA supports the following Mellanox OFED versions for the InfiniBand adapters:
 * 5.4-3.4.0.0 LTS
 * 5.1-2.6.2.0
 * 5.1-2.5.8.0
+
+**Note:** Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
 {% endtab %}
 
 {% tab title="InfiniBand configurations" %}
@@ -347,3 +352,5 @@ For additional information and how-to articles, search the WEKA Knowledge Base i
 * [KMIP](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html)-compliant KMS (protocol version 1.2 and up)
   * The KMS should support encryption-as-a-service (KMIP encrypt/decrypt APIs)
   * KMIP certification has been conducted with [Equinix SmartKey](https://www.equinix.com/services/edge-services/smartkey/) (powered by [Fortanix KMS](https://fortanix.com/products/sdkms/))
+
+[^1]: 
