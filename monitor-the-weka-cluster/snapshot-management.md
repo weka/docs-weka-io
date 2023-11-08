@@ -57,7 +57,7 @@ Create the directory `~/.weka` in the management server.
 Generate the `auth-token.json` file and save it in the `~/.weka` directory. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
 
 {% hint style="info" %}
-It is highly recommended to create a local user with ReadOnly privilege just for the Weka-mon package and use it for cluster communications.\
+It is highly recommended to create a unique local username dedicated to SnapTool with ClusterAdmin or OrgAdmin privileges. A unique username is displayed in the event logs, making identifying and troubleshooting issues easier.\
 See the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
 {% endhint %}
 

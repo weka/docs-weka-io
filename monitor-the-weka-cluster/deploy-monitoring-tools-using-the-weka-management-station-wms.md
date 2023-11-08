@@ -50,6 +50,7 @@ Before deploying the WMS, adhere to the following:
 * To get a command prompt from the Installation GUI, do one of the following:
   * On macOS, type **ctrl+option+f2**&#x20;
   * On Windows, type **ctrl+alt+f2**.
+* It is highly recommended to create a unique local username dedicated to WMS with ClusterAdmin or OrgAdmin privileges. A unique username is displayed in the event logs, making identifying and troubleshooting issues easier.
 
 ## &#x20;WMS deployment workflow
 
@@ -126,7 +127,7 @@ Change the port from 9090 to 8501, which is the WMS Admin port.
 
 <figure><img src="../.gitbook/assets/WMS_login (1).png" alt=""><figcaption><p>WMS Admin UI: Login Page</p></figcaption></figure>
 
-3. Enter username and password (default: _admin_/_admin_), and select **Login**.\
+3. If you have created a local username dedicated to WMS, as recommended, enter its credentials. Otherwise, enter the default username and password _admin_/_admin_. Then, select **Login**.\
    The Landing Page appears.
 
 <figure><img src="../.gitbook/assets/WMS_landing_page (1).png" alt="" width="375"><figcaption><p>WMS Landing Page</p></figcaption></figure>

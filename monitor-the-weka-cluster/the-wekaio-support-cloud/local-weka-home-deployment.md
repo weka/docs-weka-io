@@ -32,7 +32,7 @@ If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-u
 Verify that the following requirement are met:
 
 * A dedicated management server (or VM) for the installation.
-* The user account used for the installation has root privileges. Ensure that the `sudoers` file includes the root user.
+* It is highly recommended to create a unique local username dedicated to LWH with ClusterAdmin or OrgAdmin privileges. A unique username is displayed in the event logs, making identifying and troubleshooting issues easier. The user account must have root privileges. Ensure that the `sudoers` file includes the root user.
 * Server minimum CPU and RAM requirements:
   * Minimum 8 CPUs and 20 GiB RAM for up to 1000 total processes.
     * Total processes are equal to the cores used on the cluster **backends** for Management/Frontend/Compute/Drives roles and the cores used on **clients** for Management/Frontend roles.

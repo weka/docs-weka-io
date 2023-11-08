@@ -52,7 +52,7 @@ To enable communication between the management server and the Weka cluster, the 
 2. Generate the `auth-token.json` file and save it in the `~/.weka` directory you created. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
 
 {% hint style="info" %}
-It is highly recommended to create a local user with ReadOnly privilege just for the WEKAmon package and use it for cluster communications.\
+It is highly recommended to create a unique local username dedicated to WEKAmon with ClusterAdmin or OrgAdmin privileges. A unique username is displayed in the event logs, making identifying and troubleshooting issues easier.\
 To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
 {% endhint %}
 
