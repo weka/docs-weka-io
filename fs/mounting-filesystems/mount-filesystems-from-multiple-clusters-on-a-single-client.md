@@ -85,6 +85,26 @@ If the cluster does not listen to the default port, add `WEKA_PORT=<port number>
 WEKA_PORT=<port number> mount -t wekafs <fs-name> <mount-point> -o container_name=<container-name>
 ```
 
+## Run commands from a multi-client containers server
+
+When running WEKA CLI commands against one of the connected WEKA clusters from a server with multiple client containers, it's necessary to specify the client container port in the command. Here's an example of a server with two client containers:
+
+```plaintext
+weka local ps
+CONTAINER  STATE    DISABLED  UPTIME    MONITORING  PERSISTENT  PORT   PID    STATUS  VERSION                                    LAST FAILURE
+client     Running  False     3:15:57h  True        False       14000  58318  Ready   4.2.6.36-663f57024276b0b6aa17036a39835d1d
+client2    Running  False     3:14:35h  True        False       14101  59529  Ready   4.2.6.36-663f57024276b0b6aa17036a39835d1d
+
+```
+
+To run a WEKA CLI command against the second cluster (client2 in this case), specify the port for that client container, like this:
+
+```plaintext
+weka status -P 14101
+```
+
+This ensures that your WEKA CLI command is directed to the correct WEKA cluster associated with the specified client container.
+
 #### Related topics
 
 [adding-clients-bare-metal.md](../../install/bare-metal/adding-clients-bare-metal.md "mention")
