@@ -28,6 +28,10 @@ This portal contains all the documentation necessary for understanding and worki
 
 **WEKA support:** Getting support for the WEKA system and diagnostics management.
 
+## Conventions
+
+Throughout the documentation, the CLI mandatory parameters are marked with an asterisk (\*).
+
 ## Documentation feedback
 
 We strive to produce the highest-quality documentation products and welcome your feedback. If you have comments or suggestions about our documentation, email us.
