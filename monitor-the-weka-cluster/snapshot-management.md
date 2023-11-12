@@ -57,8 +57,8 @@ Create the directory `~/.weka` in the management server.
 Generate the `auth-token.json` file and save it in the `~/.weka` directory. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
 
 {% hint style="info" %}
-It is highly recommended to create a unique local username dedicated to SnapTool with ClusterAdmin or OrgAdmin privileges. A unique username is displayed in the event logs, making identifying and troubleshooting issues easier.\
-See the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
+Creating a unique local username dedicated to SnapTool with a ClusterAdmin or OrgAdmin role is highly recommended. The unique username is displayed in the event logs, making the identification and troubleshooting of issues easier.\
+To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
 {% endhint %}
 
 ## Option 1: Install the SnapTool package with the systemd service

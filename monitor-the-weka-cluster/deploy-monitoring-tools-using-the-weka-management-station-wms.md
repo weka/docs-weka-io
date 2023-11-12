@@ -50,7 +50,8 @@ Before deploying the WMS, adhere to the following:
 * To get a command prompt from the Installation GUI, do one of the following:
   * On macOS, type **ctrl+option+f2**&#x20;
   * On Windows, type **ctrl+alt+f2**.
-* It is highly recommended to create a unique local username dedicated to WMS with ClusterAdmin or OrgAdmin privileges. A unique username is displayed in the event logs, making identifying and troubleshooting issues easier.
+* Creating a unique local username dedicated to WMS with a ClusterAdmin or OrgAdmin role is highly recommended. The unique username is displayed in the event logs, making the identification and troubleshooting of issues easier.\
+  To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
 
 ## &#x20;WMS deployment workflow
 
