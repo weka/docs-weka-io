@@ -78,9 +78,9 @@ If a failure occurs and it is required to recover from a backup, spin up a clust
 
 See the [Data protection against cloud availability zone failures](../../fs/snap-to-obj/#data-protection-against-cloud-availability-zone-failures) section.&#x20;
 
-#### Region failure
+#### **Mitigate region failures**
 
-Using Weka snapshots uploaded to S3 combined with S3 cross-region replication enables protection from an AWS region failure.
+To address the potential impact of an AWS region failure on data integrity, we recommend a targeted configuration strategy. Configure the local object stores to the region hosting the WEKA cluster, and set the remote object store to a designated failover region. This configuration ensures WEKA's awareness of data replication status, providing robust protection against regional disruptions and enhancing overall data reliability.
 
 ### SSH keys rotation
 
