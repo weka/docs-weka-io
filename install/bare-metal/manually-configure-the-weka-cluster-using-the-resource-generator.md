@@ -101,7 +101,7 @@ Contact Professional Services for the recommended resource allocation settings f
 
 For each server in the cluster, create the drive containers using the resource generator output file `drives0.json`.
 
-The drives JSON file includes all the required values for creating the drive containers. Therefore, it is not required to set all the options of the `weka local setup container` command. Only the path to the JSON resource file is required.
+The drives JSON file includes all the required values for creating the drive containers. Only the path to the JSON resource file is required (before cluster creation, the optional parameter `join-ips`  is not relevant).&#x20;
 
 ```
 weka local setup container --resources-path <resources-path>/drives0.json
@@ -109,9 +109,9 @@ weka local setup container --resources-path <resources-path>/drives0.json
 
 **Parameters**
 
-| Name               | Value                          |
-| ------------------ | ------------------------------ |
-| `resources-path`\* | The path to the resource file. |
+| Name               | Value                              |
+| ------------------ | ---------------------------------- |
+| `resources-path`\* | A valid path to the resource file. |
 
 ### 4. Create a cluster
 
@@ -158,15 +158,13 @@ weka cluster drive add <container-id> <device-paths>
 
 For each server in the cluster, create the compute containers using the resource generator output file `compute0.json`.
 
-The compute JSON file includes all the required values for creating the compute containers. Therefore, it is not required to set all the options of the `weka local setup container` command. Only the path to the JSON resource file is required.
-
 ```
 weka local setup container --join-ips <IP addresses> --resources-path <resources-path>/compute0.json
 ```
 
 **Parameters**
 
-<table><thead><tr><th width="291">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>The path to the resource file.</td></tr><tr><td><code>join-ip</code></td><td>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port. <br>Format: space-separated IP addresses.<br>Example: <code>--join-ips 10.10.10.23:15000</code></td></tr></tbody></table>
+<table><thead><tr><th width="217">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td>IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.<br>Format: comma-separated IP addresses.<br>Example: <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></td></tr></tbody></table>
 
 ### 7.  Create frontend containers
 
@@ -174,15 +172,13 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 For each server in the cluster, create the frontend containers using the resource generator output file `frontend0.json`.
 
-The compute JSON file includes all the required values for creating the frontend containers. Therefore, it is not required to set all the options of the `weka local setup container` command. Only the path to the JSON resource file is required.
-
 ```
 weka local setup container --join-ips <IP addresses> --resources-path <resources-path>/frontend0.json
 ```
 
 **Parameters**
 
-<table><thead><tr><th width="277">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>The valid path to the resource file.</td></tr><tr><td><code>join-ip</code>*</td><td>IP addresses of the cluster servers to join the container.<br>If the cluster does not use the default port 14000, specify the actual port.<br>Format: space-separated IP addresses.<br>Example: <code>--join-ips 10.10.10.23:15000</code></td></tr></tbody></table>
+<table><thead><tr><th width="209">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td>IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.<br>Format: comma-separated IP addresses.<br>Example:  <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></td></tr></tbody></table>
 
 ### 8. Name the cluster
 
