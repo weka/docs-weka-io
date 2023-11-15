@@ -76,6 +76,14 @@ The term host is deprecated. See [#container](glossary.md#container "mention").
 
 Frequently used data (as opposed to warm data), usually residing on SSDs.
 
+## L
+
+### Leader
+
+In distributed systems, a leader is a process that assumes a special role, often responsible for coordination, synchronization, and making decisions on behalf of the cluster. The leader plays a crucial role in maintaining consistency and order among the distributed processes or nodes in the system. If the leader fails or is replaced, a new leader is typically elected to ensure the continued operation of the distributed system.
+
+Within the context of WEKA, at the cluster's core resides the cluster leader, serving as the singular WEKA management process within the cluster. This unique role grants the cluster leader the exclusive capability to initiate and disseminate configuration changes throughout the entire cluster.
+
 ## M
 
 ### Machine
