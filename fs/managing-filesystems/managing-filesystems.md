@@ -42,7 +42,7 @@ When creating a WEKA system in AWS using the cloud formation, the WEKA system co
 ![Create filesystem](../../.gitbook/assets/wmng\_create\_fs\_button.png)
 
 3. In the **Create Filesystem** dialog, set the following:
-   * **Name**: Enter a meaningful name for the filesystem.
+   * **Name**: Enter a descriptive label for the filesystem, limited to 32 characters and excluding slashes (`/`) or backslashes (`\`).
    * **Group**: Select the filesystem group that fits your filesystem.
    * **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.
 
