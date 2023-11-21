@@ -130,7 +130,7 @@ For clients equipped with DPDK-supporting the other NICs, the following conditio
 
 #### Clients in UDP mode
 
-The UDP mode is available for legacy clients lacking SR-IOV or DPDK support or where there is no requirement for low latency, high throughput IO.
+UDP mode is available for clients lacking SR-IOV or DPDK support or when there is no requirement for low-latency, high-throughput I/O.
 
 For clients in the UDP mode, the following conditions must be met:
 
@@ -145,7 +145,7 @@ HA for servers is achieved either through implementing two network interfaces on
 
 HA performs failover and failback for reliability and load balancing on both interfaces and is operational for Ethernet and InfiniBand. Not using LACP requires doubling the number of IPs on both the backend containers and the IO processes.
 
-When working with HA networking, it is helpful to label the system to send data between servers through the same switch rather than using the ISL or other paths in the fabric. This can reduce the overall traffic in the network. To label the system for identifying the switch and network port, use the `label` parameter in the `weka cluster container net add` command.&#x20;
+When working with HA networking, labeling the system to send data between servers through the same switch is helpful rather than using the ISL or other paths in the fabric. This can reduce the overall traffic in the network. To label the system for identifying the switch and network port, use the `label` parameter in the `weka cluster container net add` command.&#x20;
 
 {% hint style="info" %}
 LACP (link aggregation, also known as  bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using VFs (virtual functions).
