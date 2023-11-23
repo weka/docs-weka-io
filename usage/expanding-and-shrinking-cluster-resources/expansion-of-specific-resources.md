@@ -25,6 +25,12 @@ To dynamically change the memory configuration, use the steps described for the 
 `weka cluster host apply 0`
 {% endhint %}
 
+After reducing the memory allocation for a container, follow these steps to release hugepages on each container:
+
+1. Stop the container locally. Run `weka local stop`
+2. Release hugepages. Run `weka local run release_hugepages`
+3. Restart the container locally. Run `weka local start`
+
 ### Network Modifications
 
 To dynamically change the network configuration, use the steps described for the [Configuration of Networking](../../install/bare-metal/using-cli.md#stage-6-configuration-of-networking) on an active host, followed by the`weka cluster host apply` command.
