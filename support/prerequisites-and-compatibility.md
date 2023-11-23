@@ -202,17 +202,25 @@ Right-scroll the table to view all columns.
 {% endtab %}
 
 {% tab title="Ethernet configurations" %}
-* Ethernet speeds: 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
-* NICs bonding: Can bond dual ports on the same NIC (modes 1 and 4). Only supported on NVIDIA Mellanox NICs.
-* VLAN: Not supported.
-* Shared IP supported NICs (DPDK):
-  * One IP address for management and data plane.
-* Non-shared IP supported NICs (DPDK):
-  * IP address for management: One IP address per NIC (configured before WEKA installation).
-  * IP address for data plane: One IP address per [WEKA core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (WEKA applies these IPs during the cluster initialization).
-  * [Virtual Functions](https://en.wikipedia.org/wiki/Network\_function\_virtualization) (VFs): Ensure that the device supports a maximum number of VFs greater than the number of physical cores on the server. Set the number of VFs to match the cores you intend to dedicate to WEKA, and note that some BIOS configurations may be necessary.
+* **Ethernet speeds:**
+  * 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
+* **NICs bonding:**
+  * Can bond dual ports on the same NIC (modes 1 and 4). Only supported on NVIDIA Mellanox NICs.
+* **VLAN:**
+  * Not supported.
+* **DPDK backends and clients using NICs supporting shared IP:**
+  * Require one IP address per client for both management and data plane.
+  * SR-IOV enabled is not required.
+* **DPDK backends clients using NICs supporting non-shared IP:**
+  * IP address for management: One per NIC (configured before WEKA installation).
+  * IP address for data plane: One per [WEKA core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (applied during cluster initialization).
+  * [Virtual Functions](https://en.wikipedia.org/wiki/Network\_function\_virtualization) (VFs):
+    * Ensure the device supports a maximum number of VFs greater than the number of physical cores on the server.
+    * Set the number of VFs to match the cores you intend to dedicate to WEKA.
+    * Note that some BIOS configurations may be necessary.
   * SR-IOV: Enabled in BIOS.
-* For UDP, one IP address is used for all purposes.
+* **UDP clients:**
+  * Use a single IP address for all purposes.
 
 {% hint style="info" %}
 When assigning a network device to the WEKA system, no other application can create VFs on that device.

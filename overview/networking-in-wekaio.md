@@ -8,8 +8,8 @@ description: This page reviews the theory of operation for WEKA networking.
 
 The WEKA system supports the following types of networking technologies:
 
-1. ‌InfiniBand (IB)
-2. Ethernet
+* ‌InfiniBand (IB)
+* Ethernet
 
 ‌The networking infrastructure dictates the choice between the two. If a WEKA cluster is connected to both infrastructures, it is possible to connect WEKA clients from both networks to the same cluster.&#x20;
 
@@ -22,15 +22,15 @@ For performance-optimized networking, the WEKA system does not use standard kern
 * Use [DPDK](networking-in-wekaio.md#dpdk) to map the network device in the user space and use the network device without any context switches and with zero-copy access. This bypassing of the kernel stack eliminates the consumption of kernel resources for networking operations. It applies to backends and clients and lets the WEKA system saturate 200 GB links.
 * Implementing a proprietary WEKA protocol over UDP, i.e., the underlying network, may involve routing between subnets or any other networking infrastructure that supports UDP.
 
-The use of DPDK delivers operations with extremely low-latency and high throughput. Low latency is achieved by bypassing the kernel and sending and receiving packages directly from the NIC. High throughput is achieved because multiple cores in the same server can work in parallel without a common bottleneck.
+The use of DPDK delivers operations with extremely low latency and high throughput. Low latency is achieved by bypassing the kernel and sending and receiving packages directly from the NIC. High throughput is achieved because multiple cores in the same server can work in parallel without a common bottleneck.
 
-Before proceeding, it is important to understand several key terms used in this section, namely DPDK, and SR-IOV.
+Before proceeding, it is important to understand several key terms used in this section, namely DPDK and SR-IOV.
 
 #### DPDK
 
 ‌[Data Plane Development Kit (DPDK)](http://dpdk.org/) is a set of libraries and network drivers for highly efficient, low-latency packet processing. This is achieved through several techniques, such as kernel TCP/IP bypass, NUMA locality, multi-core processing, and device access via polling to eliminate the performance overhead of interrupt processing. In addition, DPDK ensures transmission reliability, handles retransmission, and controls congestion.
 
-DPDK implementations are available from several sources. OS vendors such as [Red Hat](https://access.redhat.com/documentation/en-us/red\_hat\_enterprise\_linux/7/html/virtualization\_deployment\_and\_administration\_guide/sect-pci\_devices-pci\_passthrough) and [Ubuntu](https://help.ubuntu.com/lts/serverguide/DPDK.html) provide their DPDK implementations through their distribution channels. [Mellanox OpenFabrics Enterprise Distribution for Linux](https://www.mellanox.com/page/products\_dyn?product\_family=26) (Mellanox OFED), a suite of libraries, tools, and drivers supporting Mellanox NICs, offers its own DPDK implementation.
+DPDK implementations are available from several sources. OS vendors like [Red Hat](https://access.redhat.com/documentation/en-us/red\_hat\_enterprise\_linux/7/html/virtualization\_deployment\_and\_administration\_guide/sect-pci\_devices-pci\_passthrough) and [Ubuntu](https://help.ubuntu.com/lts/serverguide/DPDK.html) provide DPDK implementations through distribution channels. [Mellanox OpenFabrics Enterprise Distribution for Linux](https://www.mellanox.com/page/products\_dyn?product\_family=26) (Mellanox OFED), a suite of libraries, tools, and drivers supporting Mellanox NICs, offers its own DPDK implementation.
 
 The WEKA system relies on the DPDK implementation provided by Mellanox OFED on servers equipped with Mellanox NICs. For servers equipped with Intel NICs, DPDK support is through the Intel driver for the card.‌
 
@@ -45,7 +45,7 @@ There are two function categories:
 
 Typically, there are many VFs, but only one PF per physical PCIe device. Once a new VF is created, it can be mapped by an object such as a virtual machine, container, or, in the WEKA system, by a 'compute' process.
 
-SR-IOV technology must be supported by software and hardware to take advantage of it. The Linux kernel provides SR-IOV software support. The computer BIOS and the network adapter provide hardware support (by default, SR-IOV is disabled and must be enabled before installing WEKA).
+To take advantage of SR-IOV technology, the software and hardware must be supported. The Linux kernel provides SR-IOV software support. The computer BIOS and the network adapter provide hardware support (by default, SR-IOV is disabled and must be enabled before installing WEKA).
 
 ### CPU-optimized networking
 
@@ -53,19 +53,19 @@ For CPU-optimized networking, WEKA can yield CPU resources to other applications
 
 #### DPDK without the core dedication
 
-For CPU-optimized networking, when [mounting filesystems using stateless clients](../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients), it is possible to use DPDK networking without dedicating cores. This mode is recommended when available and supported by the NIC drivers. In this mode, the DPDK networking uses RX interrupts instead of dedicating the cores.&#x20;
+For CPU-optimized networking, when [mounting filesystems using stateless clients](../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients), it is possible to use DPDK networking without dedicating cores. This mode is recommended when available and supported by the NIC drivers. The DPDK networking uses RX interrupts instead of dedicating the cores in this mode.&#x20;
 
 {% hint style="info" %}
 This mode is supported in most NIC drivers. Consult [https://doc.dpdk.org/guides/nics/overview.html](https://doc.dpdk.org/guides-18.11/nics/overview.html) for compatibility.
 
-AWS (ENA drivers) does not support this mode, hence, in CPU-optimized networking in AWS, use the [UDP Mode](networking-in-wekaio.md#udp-mode).
+AWS (ENA drivers) does not support this mode. Hence, in CPU-optimized networking in AWS, use the [UDP mode](networking-in-wekaio.md#udp-mode).
 {% endhint %}
 
 #### UDP mode
 
 WEKA can also use in-kernel processing and UDP as the transport protocol. This operation mode is commonly referred to as _UDP mode_.
 
-Because the UDP mode uses in-kernel processing, it is compatible with older platforms lacking the support of kernel offloading technologies (DPDK) or virtualization (SR-IOV), as legacy hardware such as the Mellanox CX3 family of NICs.
+UDP mode is compatible with older platforms that lack support for kernel offloading technologies (DPDK) or virtualization (SR-IOV) due to its use of in-kernel processing. This includes legacy hardware, such as the Mellanox CX3 family of NICs.
 
 ## Typical WEKA configuration
 
@@ -73,69 +73,36 @@ Because the UDP mode uses in-kernel processing, it is compatible with older plat
 
 In a typical WEKA system configuration, the WEKA backend servers access the network function in two different methods:
 
-1. Standard TCP/UDP network for management and control operations.
-2. High-performance network for data-path traffic.
+* Standard TCP/UDP network for management and control operations.
+* High-performance network for data-path traffic.
 
 {% hint style="info" %}
-To run both functions on the same physical interface, contact the Customer Success Team.
+To run both functions on the same physical interface, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
-The high-performance network used to connect all the backend servers must be DPDK-based. This internal WEKA network also requires a separate IP address space (see [Network planning](../install/bare-metal/planning-a-weka-system-installation.md#network-planning) and Configuration of Networking). The WEKA system maintains a separate ARP database for its IP addresses and virtual functions and does not use the kernel or operating system ARP services.
+The high-performance network used to connect all the backend servers must be DPDK-based. This internal WEKA network also requires a separate IP address space. For details, see [Network planning](../install/bare-metal/planning-a-weka-system-installation.md#network-planning) and [Configure the networking](../install/bare-metal/setting-up-the-hosts/#configure-the-networking).
 
-#### Backend servers with DPDK-supporting Mellanox NICs
-
-‌For backend servers equipped with DPDK-supporting Mellanox (CX-4 or newer) NICs, the following conditions must be met:
-
-* Mellanox OFED is installed and loaded.
-* SR-IOV enabled is not required.
-* The number of IPs allocated to the backend servers on the internal network must be the total number of backend servers. For example, 8 IPs for 8 backend servers.&#x20;
-
-#### Backend servers with DPDK-supporting Intel E810 NIC
-
-‌For backend servers equipped with DPDK-supporting Intel E810 NIC using a single IP, the following condition must be met:
-
-* SR-IOV is enabled in the hardware (BIOS + NIC).
-
-#### Backend servers with DPDK-supporting the other NICs
-
-For backend servers equipped with DPDK-supporting the other NICs, the following conditions must be met:
-
-* SR-IOV is enabled in the hardware (BIOS + NIC).
-* The number of IPs allocated to the backend servers on the internal network must equal the total number of WEKA software processes plus the total number of backend servers. For example, a cluster of 8 backend servers running 10 WEKA processes each requires 88 (80 + 8) IPs on the internal network. The IP requirements for the WEKA clients are outlined below in the Clients section.
+The WEKA system maintains a separate ARP database for its IP addresses and virtual functions and does not use the kernel or operating system ARP services.
 
 ### Clients
 
-Unlike WEKA backend servers that must be DPDK/SR-IOV based, the WEKA clients (application servers) can use either DPDK-based or UDP modes. The DPDK mode is the natural choice for the newer, high-performing platforms that support it.
+While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in application servers have the flexibility to use either DPDK or UDP modes. DPDK mode is the preferred choice for newer, high-performing platforms that support it. UDP mode is available for clients without SR-IOV or DPDK support or when there is no need for low-latency and high-throughput I/O.
 
-#### Clients with DPDK-supporting Mellanox NICs
+### Configuration guidelines
 
-‌For clients equipped with DPDK-supporting Mellanox (CX-4 or newer) NICs, the following conditions must be met:
-
-* Mellanox OFED is installed and loaded.
-* SR-IOV enabled is not required.
-* The number of IPs allocated to the clients on the internal network must equal the total number of clients. For example, 10 IPs for 10 clients.
-
-#### Clients with DPDK-supporting Intel E810 NIC
-
-‌For clients equipped with DPDK-supporting Intel E810 NIC using a single IP, the following condition must be met:
-
-* SR-IOV is enabled in the hardware (BIOS + NIC).
-
-#### Clients with DPDK supporting the other NICs
-
-For clients equipped with DPDK-supporting the other NICs, the following conditions must be met to use the DPDK mode:
-
-* SR-IOV is enabled in the hardware (BIOS + NIC).
-* The number of IPs allocated to the Intel clients on the internal network must equal the total number of WEKA system FrontEnd (FE) processes (typically no more than 2 per server) plus the total number of clients. For example, 10 clients with 1 FE process per client require 20 IPs (10 FE IPs + 10 IPs). ‌
-
-#### Clients in UDP mode
-
-UDP mode is available for clients lacking SR-IOV or DPDK support or when there is no requirement for low-latency, high-throughput I/O.
-
-For clients in the UDP mode, the following conditions must be met:
-
-* The native driver is installed and loaded.
-* The number of IPs allocated to the clients on the internal network must equal the total number of clients. For example, 10 clients in the UDP mode require 10 IPs on the internal network.
+* **DPDK backends and clients using NICs supporting shared IP:**
+  * Require one IP address per client for both management and data plane.
+  * SR-IOV enabled is not required.
+* **DPDK backends clients using NICs supporting non-shared IP:**
+  * IP address for management: One per NIC (configured before WEKA installation).
+  * IP address for data plane: One per [WEKA core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (applied during cluster initialization).
+  * [Virtual Functions](https://en.wikipedia.org/wiki/Network\_function\_virtualization) (VFs):
+    * Ensure the device supports a maximum number of VFs greater than the number of physical cores on the server.
+    * Set the number of VFs to match the cores you intend to dedicate to WEKA.
+    * Note that some BIOS configurations may be necessary.
+  * SR-IOV: Enabled in BIOS.
+* **UDP clients:**
+  * Use a single IP address for all purposes.
 
 ## High Availability (HA)
 
@@ -148,16 +115,16 @@ HA performs failover and failback for reliability and load balancing on both int
 When working with HA networking, labeling the system to send data between servers through the same switch is helpful rather than using the ISL or other paths in the fabric. This can reduce the overall traffic in the network. To label the system for identifying the switch and network port, use the `label` parameter in the `weka cluster container net add` command.&#x20;
 
 {% hint style="info" %}
-LACP (link aggregation, also known as  bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using VFs (virtual functions).
+LACP (link aggregation, also known as bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using VFs (virtual functions).
 {% endhint %}
 
 ## RDMA and GPUDirect storage
 
 GPUDirect Storage enables a direct data path between storage and GPU memory. GPUDirect Storage avoids extra copies through a bounce buffer in the CPU’s memory. It allows a direct memory access (DMA) engine near the NIC or storage to move data directly into or out of GPU memory without burdening the CPU or GPU.
 
-When enabled, the WEKA system automatically utilizes the RDMA data path and GPUDirect Storage in supported environments. When the system identifies it can use RDMA, both in UDP and DPDK modes, it employs the use for workload it can benefit from RDMA (with regards to IO size: 32K+ for reads and 256K+ for writes).
+When RDMA and GPUDirect storage are enabled, the WEKA system automatically uses the RDMA data path and GPUDirect Storage in supported environments. When the system identifies it can use RDMA, both in UDP and DPDK modes, it employs the use for workload it can benefit from RDMA (with regards to IO size: 32K+ for reads and 256K+ for writes).
 
-Using RDMA/GPUDirect Storage, it is thus possible to get a performance gain. You can get much higher performance from a UDP client (which does not require dedicating a core to the WEKA system), get an extra boost for a DPDK client, or assign fewer cores for the WEKA system in the DPDK mode to get the same performance.
+By leveraging RDMA/GPUDirect Storage, you can achieve enhanced performance. A UDP client, which doesn't necessitate dedicating a core to the WEKA system, can yield significantly higher performance. Additionally, a DPDK client can receive an extra performance boost. Alternatively, in DPDK mode, you can assign fewer cores to the WEKA system while maintaining the same level of performance.
 
 ### Limitations
 
@@ -167,7 +134,7 @@ For the RDMA/GPUDirect Storage technology to take effect, the following requirem
 * For a client:
   * GPUDirect Storage: The IB interfaces added to the Nvidia GPUDirect configuration should support RDMA.
   * RDMA: All the Infiniband Host Channel Adapters (HCA) used by WEKA must support RDMA networking.
-* Encrypted filesystems: The framework will not be used for encrypted filesystems and will fall back to work without RDMA/GPUDirect for IOs to encrypted filesystems.
+* Encrypted filesystems: The framework is not used for encrypted filesystems and falls back to work without RDMA/GPUDirect for IOs to encrypted filesystems.
 * An HCA is considered to support RDMA networking if the following requirements are met:
   * For GPUDirect Storage only: InfiniBand network.
   * Mellanox ConnectX5 or ConnectX6.
@@ -179,7 +146,7 @@ GPUDirect Storage bypasses the kernel and does not use the page cache. Standard 
 {% endhint %}
 
 {% hint style="warning" %}
-RDMA/GPUDirect Storage technology is not supported when working with a mixed IB and Ethernet networking cluster.
+RDMA/GPUDirect Storage technology is unsupported when working with a mixed IB and Ethernet networking cluster.
 {% endhint %}
 
 Running `weka cluster processes` indicates if the RDMA is used.
@@ -217,5 +184,5 @@ PROCESS ID  HOSTNAME  CONTAINER   IPS         STATUS  ROLES       NETWORK      C
 ```
 
 {% hint style="info" %}
-GPUDirect Storage is auto-enabled and detected by the system. Contact the Customer Success Team to enable or disable RDMA networking on the cluster or a specific client.
+GPUDirect Storage is auto-enabled and detected by the system. Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to enable or disable RDMA networking on the cluster or a specific client.
 {% endhint %}
