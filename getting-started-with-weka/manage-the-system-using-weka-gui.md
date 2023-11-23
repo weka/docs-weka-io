@@ -62,9 +62,9 @@ Make sure that port 14000 is open in the firewall of your organization.
 
 ![Sign in to the WEKA GUI](<../.gitbook/assets/wmng\_sign\_in (1).png>)
 
-2\. Sign in with the username and password of an account with cluster administration or\
-organization administration privileges. For details about the account types, see\
-_User management_ in the related topics.
+2. Sign in with the username and password of an account with cluster administration or\
+   organization administration privileges. For details about the account types, see\
+   _User management_ in the related topics.
 
 The system dashboard opens.
 
