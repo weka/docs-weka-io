@@ -43,6 +43,12 @@ To change the memory of `container-id 0` to 1.5 GB, run the following commands:
 
 </details>
 
+After reducing the memory allocation for a container, follow these steps to release hugepages on each container:
+
+1. Stop the container locally. Run `weka local stop`
+2. Release hugepages. Run `weka local run release_hugepages`
+3. Restart the container locally. Run `weka local start`
+
 For more details and options, see [#9.-configure-the-memory-optional](../../install/bare-metal/using-cli.md#9.-configure-the-memory-optional "mention").
 
 ## Modify the network configuration
