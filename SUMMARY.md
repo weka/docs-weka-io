@@ -207,6 +207,10 @@
     * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
   * [Diagnostics data management](support/diagnostics-management/diagnostics-utility.md)
 
+## Best Practice Guides
+
+* [WEKA and Slurm integration](best-practice-guides/weka-and-slurm-integration.md)
+
 ## Appendix
 
 * [WEKA CSI Plugin](appendix/weka-csi-plugin/README.md)

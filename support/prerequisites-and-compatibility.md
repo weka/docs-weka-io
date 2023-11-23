@@ -337,7 +337,7 @@ Virtual Machines (VMs) can be used as **clients** only. Ensure the following pre
 {% endtab %}
 
 {% tab title="DPDK clients" %}
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the Weka process by reserving the CPU in the virtual platform and dedicating a core to the WEKA client.
+* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the WEKA process by reserving the CPU in the virtual platform and dedicating a core to the WEKA client.
 * The root filesystem must handle a 3K IOPS load by the WEKA client.
 * The virtual platform interoperability, such as a hypervisor, NICs, CPUs, and different versions, must support DPDK and virtual network driver.
 {% endtab %}
