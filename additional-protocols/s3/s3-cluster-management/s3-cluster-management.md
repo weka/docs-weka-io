@@ -53,7 +53,7 @@ You can update the port and the servers to participate in the S3 cluster.
 4. Update the properties as required. Do not set port 9001.
 
 {% hint style="warning" %}
-Modifying the domain triggers an automatic restart of all S3 containers, resulting in I/O disruption.
+Modifying the **Virtual-hosted-style Domains** parameter automatically triggers a restart of all S3 containers all S3 containers, resulting in I/O disruption.
 {% endhint %}
 
 5. Select **Save**.
