@@ -16,7 +16,7 @@ Traditional high-performance computing (HPC) clusters consist of login processes
 * Compute processes are used for the primary execution of user jobs.
 * File servers typically host home, group, and scratch directories to ensure user files are accessible across the cluster’s login and compute processes.
 
-In HPC, parallel file systems like Lustre[^1] or GPFS[^2] are traditionally used to provide users high bandwidth file IO for scratch storage, while NFS is often used for home directories, where performance is not critical. This design requires users to be aware of the locations where they execute their applications on HPC clusters. Simultaneously, system administrators are tasked with managing various file system types.
+In HPC, parallel file systems like Lustre[^1] or GPFS[^2] are traditionally used to provide users with high bandwidth file IO for scratch storage. In contrast, NFS is often used for home directories, where performance is not critical. This design requires users to be aware of the locations where they execute their applications on HPC clusters. Simultaneously, system administrators are tasked with managing various file system types.
 
 Alternatively, due to the WEKA Data Platform being one of the most performant HPC solutions that accelerates IO regardless of the data profile, all network-attached storage can be managed by WEKA. This simplifies file system management and ensures consistent performance, regardless of the location where users run HPC applications (click [here](https://www.weka.io/company/weka-newsroom/press-releases/wekaio-places-first-on-io-500-challenge/) for more details).
 
@@ -51,13 +51,13 @@ WEKA can be configured to run with dedicated backend servers and independent cli
 
 In a dedicated backend configuration, user applications run on the WEKA clients, which interact with the operating system’s Virtual File System (VFS) layer.
 
-The VFS uses the WEKA POSIX driver to issue requests to the Client’s Frontend process. The Client Frontend process communicates with the Frontend on the WEKA servers. The WEKA server Frontend, Compute, and Drive processes work together to move data in parallel between the servers and clients.
+The VFS uses the WEKA POSIX driver to issue requests to the Client’s Frontend process. The Client Frontend process communicates with the Frontend on the WEKA servers. The WEKA server Frontend, Compute, and Drive processes work together to move data between the servers and clients in parallel.
 
 <figure><img src="../.gitbook/assets/slurm_weka_standard_1 (1).png" alt=""><figcaption><p>Figure 1: WEKA deployed with dedicated backend servers and independent clients (conceptual diagram)</p></figcaption></figure>
 
 #### Converged configuration
 
-In a converged configuration, each server participating in the cluster hosts user applications alongside Frontend (POSIX + NAS; Client and Server), Drive, Compute, and Management processes.
+In a converged configuration, each server participating in the cluster hosts user applications alongside the frontend (POSIX + NAS; client and server), drive, compute, and management processes.
 
 WEKA processes are allocated to designated cores on each server in the WEKA cluster through control groups. This demands careful consideration to guarantee sufficient CPUs and memory for both WEKA and user applications. For an in-depth understanding of WEKA architecture, see the [WEKA Architecture Technical Brief](https://www.weka.io/resources/technical-brief/weka-architecture-key-concepts/).
 
@@ -69,7 +69,7 @@ WEKA clients can be configured to mount in DPDK or UPD mode.
 
 **DPDK mode** is optimized for single-process performance and must be used when possible. When using DPDK mode, specific requirements must be met by the client host system.
 
-The Frontend process on clients uses CPU cores and memory while the mount is active. This implies that sufficient compute cores and memory resources must be available to run the WEKA Frontend process and any other user applications. Additionally, NIC hardware must have a [Poll Mode Driver](#user-content-fn-3)[^3] (PMD) and be supported by WEKA. See [Prerequisites and compatibility](../support/prerequisites-and-compatibility.md#networking-ethernet) for more information on supported NIC hardware for bare-metal and cloud-native systems.
+The Frontend process on clients uses CPU cores and memory while the mount is active. This implies that sufficient compute cores and memory resources must be available to run the WEKA Frontend process and other user applications. Additionally, NIC hardware must have a [Poll Mode Driver](#user-content-fn-3)[^3] (PMD) and be supported by WEKA. See [Prerequisites and compatibility](../support/prerequisites-and-compatibility.md#networking-ethernet) for more information on supported NIC hardware for bare-metal and cloud-native systems.
 
 **UDP mode** is generally supported on all systems and NIC types. UDP mode is ideal for CPU-intensive applications and can aggregate IO performance across hundreds to thousands of clients.
 
@@ -87,7 +87,7 @@ Slurm[^4] is a robust open-source cluster management and job scheduling system t
 
 <figure><img src="../.gitbook/assets/slurm_login_3 (1).png" alt=""><figcaption><p>Figure 3: Typical Slurm cluster consisting of a login server, controller, and several compute servers (conceptual diagram)</p></figcaption></figure>
 
-Typically, a Slurm cluster consists of one or more controller hosts that run the Slurm controller and Slurm database daemons. These are set of compute processes where users run their workloads and one or more login processes that are used to access the cluster.
+Typically, a Slurm cluster consists of one or more controller hosts that run the Slurm controller and Slurm database daemons. These are a set of compute processes where users run their workloads and one or more login processes that are used to access the cluster.
 
 #### **Slurm cluster operation**
 
@@ -95,7 +95,7 @@ The Slurm controller daemon (`slurmctld`) is a centralized workload manager that
 
 The Slurm database daemon (`slurmdbd`) is optional but a recommended service to deploy in Slurm clusters. The Slurm database is used to store job history, which can provide visibility to cluster usage and can be helpful in debugging issues with user workloads or cluster resources. The `slurmctld` and `slurmdbd` services are often deployed on the controller host.
 
-The `slurmd` service runs on compute processes, where user workloads are executed. It functions similar to a remote shell, receiving work requests from the `slurmctld`, executing the tasks, and reporting back the task status.
+The `slurmd` service runs on compute processes, where user workloads are executed. It functions similarly to a remote shell, receiving work requests from the `slurmctld`, performing the tasks, and reporting back the task status.
 
 Users typically access HPC clusters through one or more login processes. The purpose of the login processes is for users to access shared files across the compute processes and to schedule workloads using Slurm command line tools such as **sbatch**, **salloc**, and **srun**. Often, these tools are sufficient for lightweight text editing and code compilation and are sometimes used for transferring data between local workstations and the HPC cluster.
 
@@ -113,7 +113,7 @@ The [**proctrack/cgroup**](#user-content-fn-6)[^6] process tracker uses the **fr
 
 ## WEKA and Slurm integration <a href="#_heading-h.tyjcwt" id="_heading-h.tyjcwt"></a>
 
-Having covered the fundamentals of WEKA and Slurm architectures, we can now explore the integration of these two systems to establish an HPC cluster. This cluster uses the Slurm workload manager for job scheduling and leverages WEKA as the high-performance data platform. Both dedicated backend and converged configurations are considered.
+Having covered the fundamentals of WEKA and Slurm architectures, we can now explore the integration of these two systems to establish an HPC cluster. This cluster uses the Slurm workload manager for job scheduling and leverages WEKA as the high-performance data platform. Both the dedicated backend and converged configurations are considered.
 
 In either scenario, the Slurm login and compute processes function as WEKA clients. The controller does not participate in the WEKA filesystem, serving neither as a backend server nor client.
 
@@ -132,10 +132,10 @@ In UDP mount mode, the WEKA Frontend processes can run on any available core on 
 In DPDK mode, at least one CPU (physical) core must be reserved for the WEKA frontend process. This can be done by one of the following options:
 
 * Specify a dedicated core in the mount options: `mount -o core=X …`\
-  where `X` is the specific core ID to reserve
+  Where `X` is the specific core ID to reserve
 * Use non-dedicated cores: `mount -o num_cores=1 …` &#x20;
 
-Mounting using a dedicated core is recommended to provide better file IO performance in comparison to using non-dedicated cores.
+Mounting using a dedicated core is recommended for better file IO performance than non-dedicated cores.
 
 ### WEKA and Slurm integration in converged architecture <a href="#_heading-h.tyjcwt" id="_heading-h.tyjcwt"></a>
 
@@ -157,17 +157,15 @@ Moreover, due to Slurm's typical configuration of control groups for allocating 
 
 The following sections detail the required Slurm configurations for dedicated and converged backend setups, considering UDP and DPDK mount modes.
 
-The following section describes the configurations for Slurm when deploying in converged and dedicated backend configurations and with UDP and DPDK mount modes.
-
 ## Implementation <a href="#_heading-h.3dy6vkm" id="_heading-h.3dy6vkm"></a>
 
-When using a job scheduler such as Slurm with WEKA, it is essential to ensure WEKA is allocated (bound/pinned) to certain cores and ensure the job scheduler does not allocate work to the cores used by WEKA on the WEKA clients.
+When using a job scheduler such as Slurm with WEKA, it is essential to ensure WEKA is allocated (bound/pinned) to specific cores and ensure the job scheduler does not allocate work to the cores used by WEKA on the WEKA clients.
 
 To prevent user jobs from running on the same cores as the WEKA agent, Slurm must be configured so that the user jobs, Slurm daemon (slurmd), and Slurm step daemon (slurmstepd) only run on specific cores.
 
-Additionally, available memory for jobs on each compute process must be reduced from the total available to provide sufficient memory for the server operating system and WEKA client processes.
+Additionally, the available memory for jobs on each compute process must be reduced from the total available to provide sufficient memory for the server operating system and WEKA client processes.
 
-In the following sections, the description covers the installation process and relevant configurations for Slurm. The focus shifts to the necessary configurations for pinning WEKA processes to specific cores. Finally, examples of WEKA and Slurm configurations are provided to cover both dedicated backend and converged cluster architectures.
+In the following sections, the description covers the installation process and relevant configurations for Slurm. The focus shifts to the necessary configurations for pinning WEKA processes to specific cores. Finally, examples of WEKA and Slurm configurations cover both dedicated backend and converged cluster architectures.
 
 ### Slurm installation and configuration <a href="#_heading-h.1t3h5sf" id="_heading-h.1t3h5sf"></a>
 
@@ -175,7 +173,7 @@ While presuming your familiarity with Slurm installation and configuration, this
 
 #### **1. Install the munge** package on all instances participating in the Slurm cluster
 
-Slurm depends on munge[^8] for authentication between Slurm services. When installing munge from a package manager, the necessary systemd service files are installed and the munge service is enabled.
+Slurm depends on munge[^8] for authentication between Slurm services. When installing munge from a package manager, the necessary systemd service files are installed, and the munge service is enabled.
 
 By default, this service looks for a munge key under `/etc/munge/munge.key`.
 
@@ -188,7 +186,7 @@ sudo /usr/sbin/create-munge-key -r -f
 Typically, you create this key on one of the hosts (for example, the controller) and copy it to all the other instances in the cluster. Alternatively, you can mount (using NFS) `/etc/munge` from the controller to the login and compute processes.
 
 {% hint style="info" %}
-The munge authentication requires consistency between the clocks on all instances in the Slurm cluster to function properly.
+The munge authentication requires consistency between the clocks on all instances in the Slurm cluster to function correctly.
 {% endhint %}
 
 #### 2. Install Slurm
@@ -204,22 +202,22 @@ Ensuring that the necessary packages are installed on both the controller and lo
 
 Consider the following guidelines:
 
-* If you plan to use a configless deployment, ensure the `slurmd` package runs the `slurmd` service on the login process. When installing Slurm packages from a package manager, it creates the slurm user and installs the necessary `systemd` service files.
-* If you plan to use slurmdbd (recommended), a SQL database hosting the Slurm database is required. Typically, MariaDB[^9] is used. `Slurmdbd` is typically deployed on the Slurm controller host. You can host the MariaDB server on the Slurm controller host or a separate host accessible to the `slurmdbd` service.
-* If you require a specific version of Slurm or integrations with specific flavors of the Message Passing Interface (MPI), it is best to [build Slurm](#user-content-fn-10)[^10] from the source. In this approach, install munge and a service like MariaDB. Additionally, create the **slurm** user on each instance in your cluster and set up systemd service files.
+* If you plan to use a configless deployment, ensure the `slurmd` package runs the `slurmd` service on the login process. When installing Slurm packages from a package manager, it creates the Slurm user and installs the necessary `systemd` service files.
+* If you plan to use slurmdbd (recommended), a SQL database hosting the Slurm database is required. Typically, MariaDB[^9] is used. `Slurmdbd` is generally deployed on the Slurm controller host. You can host the MariaDB server on the Slurm controller host or a separate host accessible to the `slurmdbd` service.
+* If you require a specific version of Slurm or integrations with particular flavors of the Message Passing Interface (MPI), it is best to [build Slurm](#user-content-fn-10)[^10] from the source. In this approach, install munge and a service like MariaDB. Additionally, create the **Slurm** user on each instance in your cluster and set up systemd service files.
 
 {% hint style="info" %}
-The uid for the slurm user must be consistent between all instances in your Slurm cluster.
+The uid for the Slurm user must be consistent between all instances in your Slurm cluster.
 {% endhint %}
 
-When deploying Slurm clusters, a common set of configuration files is required to determine the scheduler behavior, accounting behavior, and available resources. There are four commonly used configuration files in Slurm clusters:
+When deploying Slurm clusters, a standard set of configuration files is required to determine the scheduler behavior, accounting behavior, and available resources. There are four commonly used configuration files in Slurm clusters:
 
 * **slurm.conf** describes general Slurm configuration information, the processes to be managed, information about how those processes are grouped into partitions, and various scheduling parameters associated with those partitions. This file needs to be consistent across all hosts in the Slurm cluster.
 * **slurmdbd.conf** describes the configuration for the Slurm database daemon, including the database host address, username, and password. This file should be protected as it contains sensitive information (database password) and must only exist on the host running the slurmdbd service.
 * **cgroup.conf** describes the configurations for Slurm’s Linux cgroup plugin. This file needs to be consistent across all hosts in the Slurm cluster.
 * **gres.conf** describes the Generic RESource(s) (GRES) configuration on each compute process, such as GPUs. This file needs to be consistent across all hosts in the Slurm cluster.
 
-Most of these configuration files must be consistent across all hosts (Controller, Login, and Compute) participating in the Slurm cluster. The following three commonly employed strategies ensure consistency of the Slurm configuration across all hosts:
+Most configuration files must be consistent across all hosts (Controller, Login, and Compute) participating in the Slurm cluster. The following three commonly employed strategies ensure consistency of the Slurm configuration across all hosts:
 
 * Synchronize the Slurm configuration files across your cluster using tools such as `parallel-scp`.
 * Host your Slurm configuration files on the Controller and NFS mount the directory containing these files on the Login and Compute processes.
@@ -233,13 +231,13 @@ The main difference between the configless deployment and the NFS mount configur
 
 We recommend using a configless Slurm deployment, when possible, for ease of use. This setup installs a single set of Slurm configuration files on the Slurm controller instance.
 
-The compute and login processes obtain their configuration through communications between the slurmd service, hosted on the compute and login processes, and the slurmctld service, which is hosted on the Slurm controller.
+The compute and login processes obtain their configuration through communications between the slurmd service, hosted on the compute and login processes, and the slurmctld service, hosted on the Slurm controller.
 
 To enable a configless Slurm deployment, set `SlurmctldParameters=enable_configless` in the **slurm.conf** file.
 
 Additionally, start the slurmd services with the `--conf-server host[:port]` flag to obtain Slurm configurations from slurmctld at `host[:port]`.
 
-In all strategies, the configuration files are stored in the same directory. A common choice is to use `/usr/local/etc/slurm`. but it can While this location can vary between systems,&#x20;
+In all strategies, the configuration files are stored in the same directory. A common choice is to use `/usr/local/etc/slurm` (this location can vary between systems).&#x20;
 
 For non-standard locations, the slurmctld slurmd services can be launched with the `-f` flag to indicate the path to the slurm.conf file. Alternatively, if you build Slurm from the source, you can use the  [`--sysconfdir=DIR`](#user-content-fn-12)[^12]  option during the configuration stage of the build to set the default directory for the Slurm configuration files.
 
@@ -260,7 +258,7 @@ To ensure that Slurm daemons (slurmd and slurmstepd) do not run on cores designa
 Set the following in the **slurm.conf** file:
 
 * Set the `SelectType` option to `select/cons_tres` to indicate that cores, memory, and GPUs are consumable by user jobs.
-* Set the `SelectTypeParameters` option to `CR_Core_Memory` to indicate that cores and memory are specifically used for scheduling workloads.
+* Set the `SelectTypeParameters` option to `CR_Core_Memory` to indicate that cores and memory are used explicitly for scheduling workloads.
 * Set the `PrologFlags` option to `Contain` to use cgroups to contain all user processes on their allocated resources.
 
 The following code snippet summarizes the required settings for a **slurm.conf** file.
