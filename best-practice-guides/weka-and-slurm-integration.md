@@ -386,7 +386,7 @@ sudo systemctl restart weka-agent
 
 [^3]: See [DPDK Poll Mode Driver](https://doc.dpdk.org/guides-16.04/prog\_guide/poll\_mode\_drv.html)
 
-[^4]: For more details, see the official [Slarm Workload Manager Documentation](https://slurm.schedmd.com/).
+[^4]: For more details, see the official [Slurm Workload Manager Documentation](https://slurm.schedmd.com/).
 
 [^5]: A "data mover" typically refers to a specialized process or tool designed to efficiently transfer or move large volumes of data between storage systems or computing resources.
 
