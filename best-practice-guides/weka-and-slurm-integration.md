@@ -51,9 +51,9 @@ WEKA can be configured to run with dedicated backend servers and independent cli
 
 In a dedicated backend configuration, user applications run on the WEKA clients, which interact with the operating system’s Virtual File System (VFS) layer.
 
-The VFS uses the WEKA POSIX driver to issue requests to the Client’s Frontend process. The Client Frontend process communicates with the Frontend on the WEKA servers. The WEKA server Frontend, Compute, and Drive processes work together to move data between the servers and clients in parallel.
+The VFS uses the WEKA POSIX driver to issue requests to the Client’s WEKA client. The client communicates with the WEKA backend servers. The WEKA server Frontend, Compute, and Drive processes work together to move data between the servers and clients in parallel.
 
-<figure><img src="../.gitbook/assets/slurm_weka_standard_1 (1).png" alt=""><figcaption><p>Figure 1: WEKA deployed with dedicated backend servers and independent clients (conceptual diagram)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/slurm_weka_standard_1 (2).png" alt=""><figcaption><p>Figure 1: WEKA deployed with dedicated backend servers and independent clients (conceptual diagram)</p></figcaption></figure>
 
 #### Converged configuration
 
@@ -121,7 +121,7 @@ In either scenario, the Slurm login and compute processes function as WEKA clien
 
 In the dedicated backend architecture, the WEKA filesystem is mounted on the login and compute servers, requiring a WEKA frontend process on login and compute processes for file access (Figure 4).
 
-<figure><img src="../.gitbook/assets/slurm_weka_dedicated_backend_4.png" alt=""><figcaption><p>Figure 4: Dedicated backend architecture for WEKA on a Slurm cluster (conceptual diagram)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/slurm_weka_dedicated_backend_4 (1).png" alt=""><figcaption><p>Figure 4: Dedicated backend architecture for WEKA on a Slurm cluster (conceptual diagram)</p></figcaption></figure>
 
 Servers are provisioned to provide servers with compute, network, and storage resources to run the WEKA data platform.
 
