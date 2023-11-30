@@ -39,7 +39,7 @@ The Weka system supports the following snapshot operations:
 ## Managing Snapshots
 
 {% hint style="info" %}
-**Note:** To schedule snapshots automatically, refer to the [Snapshot Management](../appendix/snapshot-management.md) **** section of the Appendix.
+**Note:** To schedule snapshots automatically, refer to the [Snapshot Management](../appendix/snapshot-management.md) section of the Appendix.
 {% endhint %}
 
 ### Viewing Snapshots

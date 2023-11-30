@@ -34,9 +34,7 @@ weka cluster host add <backend-hostname>
 
 **Parameters:**
 
-| **Name**           | **Type** | **Value**                                  | **Limitations**            | **Mandatory** | **Default** |
-| ------------------ | -------- | ------------------------------------------ | -------------------------- | ------------- | ----------- |
-| `backend-hostname` | String   | IP/hostname of the new backend host to add | Valid hostname (DNS or IP) | Yes           |             |
+<table data-header-hidden><thead><tr><th width="267">Name</th><th>Type</th><th width="156">Value</th><th width="123">Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>backend-hostname</code></td><td>String</td><td>IP/hostname of the new backend host to add</td><td>Valid hostname (DNS or IP)</td><td>Yes</td><td></td></tr></tbody></table>
 
 {% hint style="info" %}
 **Note:** On completion of this stage, the host-ID of the newly added host appears in response to the command. Make a note of it to use in the following steps.

@@ -25,11 +25,19 @@ To dynamically change the memory configuration, use the steps described for the 
 `weka cluster host apply 0`
 {% endhint %}
 
-After reducing the memory allocation for a container, follow these steps to release hugepages on each container:
+#### Release hugepages on each container
 
-1. Stop the container locally. Run `weka local stop`
-2. Release hugepages. Run `weka local run release_hugepages`
-3. Restart the container locally. Run `weka local start`
+After reducing the memory allocation for a container, it is required to release the hugepages on each container.
+
+Perform the following steps for each container:
+
+1. Obtain the `release_hugepages.sh` script below and copy it to the `/opt/weka/` folder.
+2. Change the script mode: Run `chmod a+x release_hugepages.sh`
+3. Stop the container locally: Run `weka local stop`
+4. Release hugepages: Run `weka local run /opt/weka/release_hugepages.sh`
+5. Restart the container locally: Run `weka local start`
+
+{% file src="../../.gitbook/assets/release_hugepages.sh" %}
 
 ### Network Modifications
 

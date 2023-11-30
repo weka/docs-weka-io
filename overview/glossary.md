@@ -82,7 +82,7 @@ A software instance that Weka uses to run and manage WekaFS. Nodes are dedicated
 
 ### **POSIX**
 
-The Portable Operating System Interface (POSIX) is a family of **** standards specified by the [I](https://en.wikipedia.org/wiki/IEEE\_Computer\_Society)EEE Computer Society for maintaining compatibility between operating systems. The WekaFS client is POSIX compliant, which means that it presents data to the OS on which it is installed in a manner that conforms to the POSIX standard. The WekaFS client is sometimes informally referred to as the POSIX client or POSIX driver when describing the overall storage system architecture.
+The Portable Operating System Interface (POSIX) is a family of standards specified by the [I](https://en.wikipedia.org/wiki/IEEE\_Computer\_Society)EEE Computer Society for maintaining compatibility between operating systems. The WekaFS client is POSIX compliant, which means that it presents data to the OS on which it is installed in a manner that conforms to the POSIX standard. The WekaFS client is sometimes informally referred to as the POSIX client or POSIX driver when describing the overall storage system architecture.
 
 ### Provisioned Capacity
 
