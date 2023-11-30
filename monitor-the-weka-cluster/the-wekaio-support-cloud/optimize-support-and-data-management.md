@@ -2,15 +2,15 @@
 
 ## Cloud forwarding
 
-This feature is aimed at customers that want to send events, usage, and analytics data from the Local WEKA Home to the cloud WEKA Home for supportability and monitoring by the Customer Success Team. The forwarded data is not anonymized.
+This feature is aimed at customers who want to send events, usage, and analytics data from the Local WEKA Home to the cloud WEKA Home for supportability and monitoring by the Customer Success Team. The forwarded data is not anonymized.
 
 **Related topic**
 
-[#5.-install-and-configure-local-weka-home](local-weka-home-deployment.md#5.-install-and-configure-local-weka-home "mention") (See _Forward data from the Local WEKA Home to the Cloud WEKA Home)_
+&#x20;[Forward data from the Local WEKA Home to the Cloud WEKA Home](local-weka-home-deployment.md#forward-data-from-the-local-weka-home-to-the-cloud-weka-home)
 
 ## API Documentation
 
-The Local WEKA Home supports a RESTful API. This is useful when automating the interaction with the Local WEKA Home and when integrating it into your workflows or monitoring systems.
+The Local WEKA Home supports a RESTful API. This is useful when automating the interaction with the Local WEKA Home and integrating it into your workflows or monitoring systems.
 
 To access the API documentation:
 
