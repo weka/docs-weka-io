@@ -26,7 +26,7 @@ Customers running WEKA clusters on AWS with **auto-scaling groups** must contact
 
 ## What is a non-disruptive upgrade (NDU)
 
-In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore it is possible to upgrade one container at a time (rolling upgrade) while the remaining containers continue serving the clients.
+In MCB architecture, each container serves a single type of process, drive, frontend, or compute function. Therefore, upgrading one container at a time (rolling upgrade) is possible while the remaining containers continue serving the clients.
 
 {% hint style="info" %}
 Some background tasks, such as snapshot uploads or downloads, must be postponed or aborted. See the [prerequisites](upgrading-weka-versions.md#1.-verify-prerequisites-for-the-upgrade) in the upgrade workflow for details.
@@ -57,8 +57,10 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 6. [Check the status after the upgrade](upgrading-weka-versions.md#6.-check-the-status-after-the-upgrade)
 
 {% hint style="warning" %}
-Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation.\
-Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
+Adhere to the following considerations:
+
+* Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation. Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
+* If you intend to create an S3 cluster, ensure the upgrade process is complete and all containers are up before initiating the S3 cluster creation.
 {% endhint %}
 
 ### 1. Verify prerequisites for the upgrade
@@ -166,7 +168,7 @@ Example:
 
 `weka local run --container drives0 --in 4.2.3 upgrade`
 
-**Adhere to the following:**
+**Consider the following guidelines:**
 
 * Before switching the cluster to the new software release, the upgrade command distributes the new release to all cluster servers. It makes the necessary preparations, such as compiling the new `wekafs` driver.
 * If a failure occurs during the preparation, such as a disconnection of a server or failure to build a driver, the upgrade process stops, and a summary message indicates the problematic server.
