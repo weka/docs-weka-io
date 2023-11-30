@@ -206,8 +206,10 @@ Right-scroll the table to view all columns.
   * 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **NICs bonding:**
   * Can bond dual ports on the same NIC (modes 1 and 4). Only supported on NVIDIA Mellanox NICs.
-* **VLAN:**
-  * Not supported.
+* **IEEE 802.1Q VLAN encapsulation:**
+  * Tagged VLANs are not supported.
+* **VXLAN:**
+  * Virtual Extensible LANs are not supported.
 * **DPDK backends and clients using NICs supporting shared IP:**
   * Require one IP address per client for both management and data plane.
   * SR-IOV enabled is not required.
