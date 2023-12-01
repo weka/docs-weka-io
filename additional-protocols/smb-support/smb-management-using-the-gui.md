@@ -101,7 +101,7 @@ Enable the WEKA storage nodes to join the AD domain. On all backend servers used
 <figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button.png" alt=""><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
 
 2. In the Join to Active Directory dialog, set the following properties:
-   * **Username** and **Password**: A username and password of an account that has access privileges to the Active Directory. WEKA does not save the user password. A computer account is created on behalf of the user for the SMB cluster.
+   * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory. WEKA does not save these credentials, instead a computer account is created on behalf of the user for the SMB cluster.
    * **Server**: (Optional) WEKA identifies the AD server automatically based on the AD name. You do not need to set the server name. In some cases, if required, specify the AD server.
    * **Computers Org. Unit**: The default organization unit is the Computers directory. You can define any other directory to connect to in Active Directory, such as SMB servers or Corporate computers.
 
