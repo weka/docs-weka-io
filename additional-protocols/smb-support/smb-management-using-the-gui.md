@@ -92,7 +92,7 @@ To enable the organizational Active Directory to resolve the access of users and
 
 **Before you begin**
 
-Enable the WEKA storage nodes to join the AD domain. On all backend servers used for SMB, set the AD servers as DNS servers in the  /`etc/resolv.conf` file.
+Ensure the AD servers are resolvable to all WEKA servers. This resolution enables the WEKA servers to join the AD domain.
 
 **Procedure**
 

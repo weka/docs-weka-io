@@ -104,6 +104,10 @@ Use the following command line to join an SMB domain in an Active Directory:
 
 `weka smb domain join <username> <password> [--server server] [--create-computer create-computer]`
 
+{% hint style="info" %}
+Ensure the AD servers are resolvable to all WEKA servers. This resolution enables the WEKA servers to join the AD domain.
+{% endhint %}
+
 **Parameters**
 
 <table><thead><tr><th width="207">Name</th><th width="332">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of an AD user with permission to add a server to the domain.</td><td></td></tr><tr><td><code>password</code>*</td><td>The password of the AD user.  This password is not retained or cached.</td><td></td></tr><tr><td><code>server</code></td><td>Weka identifies the AD server automatically based on the AD name. You do not need to set the server name. In some cases, if required, specify the AD server.<br>Not applicable for SMB-W yet.</td><td>The AD server is automatically identified based on the AD name. </td></tr><tr><td><code>create-computer</code></td><td>The default organization unit is the Computers directory. You can define any other directory to connect to in Active Directory, such as SMB servers or Corporate computers.<br>Not applicable for SMB-W yet.</td><td>The computer's directory</td></tr></tbody></table>
