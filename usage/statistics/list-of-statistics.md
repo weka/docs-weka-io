@@ -1,10 +1,3 @@
----
-description: >-
-  This page lists all the statistics the WEKA system generates according to
-  their category.
----
-
-# List of statistics
 
 ## Assert failures
 
@@ -45,7 +38,6 @@ BUCKET_REGISTRY_L2_BLOCKS_NUM|Bucket number of registry L2 blocks|Blocks
 -|-|-
 BLOCK_FULL_WRITES|Number of full block writes|Writes
 BLOCK_PARTIAL_WRITES|Number of partial block writes|Writes
-POISON_WRITE_DETECTED|Number of writes of poison to extent detected|Occurrences
 
 ## Bucket
 
@@ -134,6 +126,7 @@ AVERAGE_CHANGES_IN_GENERATION|The average number of changes in generation|Change
 BACKEND_NODE_REJOIN_TIME|The number of backend rejoin attempts per completion time range|Number of rejoins
 CHANGESET_COMMIT_LATENCY|The average latency of committing a configuration changeset|Microseconds
 CLIENT_NODE_REJOIN_TIME|The number of client rejoin attempts per completion time range|Number of rejoins
+CONFIG_PROPAGATION_LATENCY|The latencies of propagation of a configuration generation|Generation
 GENERATION_COMMIT_LATENCY|The average latency of committing a configuration generation|Microseconds
 HEARTBEAT_PROCESSING_TIME_OLD|The number of non-leader heartbeats per processing time range (OLD)|Number of heartbeats
 HEARTBEAT_PROCESSING_TIME|The number of non-leader heartbeats per processing time range|Number of heartbeats
@@ -152,21 +145,31 @@ TOTAL_GENERATIONS_COMMITTED|The number of committed generations per second|Gener
 **Type** | **Description** | **Units**
 -|-|-
 AVG_DELTAS|Average deltas per reference during ingestion (excluding history)|deltas/ref
+CLUSTERIZE_CALLS|Clusterize Calls|Calls/Sec
+CLUSTERIZE_TIME|Average time to clusterize|Milliseconds
+COMPRESS_TASK_CALLS|Compress Task Calls|Calls/Sec
+COMPRESS_TASK_TIME|Average time to complete compress task|Milliseconds
 DELTAS_COMPLETE_RELOCS|Number of delta blocks notified about a relocation of both delta and ref segments at the same time|Blocks/Sec
 DELTAS_GC|Number of delta blocks removed by GC|Blocks/Sec
 DELTAS_REF_RELOCS|Number of delta blocks notified about reference relocations|Blocks/Sec
 DELTA_BACKPTR_COLLISIONS|Number of times delta blocks with the same backptr were encountered during GC|Blocks/Sec
+DELTA_PROMOTES|Number of delta blocks promoted by GC|Blocks/Sec
 DELTA_RELOCS|Number of delta blocks relocated by GC|Blocks/Sec
 DELTA_REMOVAL_BACKPTR_COLLISIONS|Number of times delta blocks with the same backptr were encountered during deletions flush|Blocks/Sec
 GC_PROMOTIONS|Number of times data was rewritten to a next GC tree level|Blocks/Sec
 HISTORY_MATCHES|Number of new delta blocks matched with references from history|Blocks/Sec
+INGEST_START_CALLS|Ingest Start Calls|Calls/Sec
+INGEST_START_TIME|Average time to start ingest|Milliseconds
 NEW_DELTAS|Number of new delta blocks created|Blocks/Sec
 NEW_INGESTED|Ingested Blocks|Blocks
 NEW_REFERENCES|Number of new reference blocks created|Blocks/Sec
 NEW_SINGLES|Number of new reference blocks created|Blocks/Sec
 REFERENCE_GC|Number of reference blocks removed by GC|Blocks/Sec
+REFERENCE_PROMOTES|Number of reference blocks promoted by GC|Blocks/Sec
 REFERENCE_RELOCS|Number of reference blocks relocated by GC|Blocks/Sec
 REF_BACKPTR_COLLISIONS|Number of times blocks with the same reference-backptr were encountered during GC|Blocks/Sec
+SEGMENT_PROMOTES|Promoted Compressed Blocks|Blocks
+SEGMENT_RELOCS|Relocated Compressed Blocks|Blocks
 SINGLES_MARKED_AS_REFS|Number of single blocks marked as references due to new matches|Blocks/Sec
 
 ## Filesystem OBS
@@ -299,12 +302,21 @@ GOODPUT_TX_RATIO|Percentage of goodput TX packets out of total data packets sent
 GW_MAC_RESOLVE_FAILURES|Number of times we failed to ARP resolve the gateway IP|Failures
 GW_MAC_RESOLVE_SUCCESSES|Number of times we succeeded to ARP resolve the gateway IP|Successes
 INVALID_FIRST_FRAGMENT|Number of times we got an invalid first fragment|Packets/Sec
+MBUF_DUP_COUNT|Numer of Duplicate mbufs found|Occurences
+MBUF_DUP_ITER|Duplicate mbuf check completions|Occurences
 NODE_RECONNECTED|Number of reconnections|Reconnects/Sec
 PACKETS_PUMPED|Number of packets received in each call to recvPackets|Batches
 PEER_RTT|RTT per peer node|Microseconds
+POISON_DETECTED_EXPECTED|Expected number of poisoned netbufs detected|Occurrences
+POISON_DETECTED_UNEXPECTED|Unexpected number of poisoned netbufs detected|Occurrences
+PORT_EXT_RX_PACKETS|Number of external packets received|Packets/Sec
 PORT_RX_BYTES|Number of bytes received|Bytes/Sec
+PORT_RX_ERRORS|Number of packet RX errors|Packets/Sec
+PORT_RX_MISSED|Number of packets lost due to RX queue full|Packets/Sec
+PORT_RX_NO_MBUFS|Number of packets lost due to no mbufs|Packets/Sec
 PORT_RX_PACKETS|Number of packets received|Packets/Sec
 PORT_TX_BYTES|Number of bytes transmitted|Bytes/Sec
+PORT_TX_ERRORS|Number of packet TX errors|Packets/Sec
 PORT_TX_PACKETS|Number of packets transmitted|Packets/Sec
 PUMPS_TXQ_FULL|Number of times we couldn't send any new packets to the NIC queue|Pumps/Sec
 PUMPS_TXQ_PARTIAL|Number of times we only sent some of our queued packets to the NIC queue|Pumps/Sec
@@ -755,6 +767,7 @@ READS_NO_LEASE|Number of direct reads while we have no lease|Ops/Sec
 READS|Number of read operations per second|Ops/Sec
 READ_BYTES|Number of bytes read per second|Bytes/Sec
 READ_CHECKSUM_ERRORS|The number of times the driver's checksum validation failed upon the read's content|Ops
+READ_CORRUPTIONS_DETECTED_IN_1HOP|The number of corrupt data blocks encountered during 1-hop read|Ops
 READ_DURATION|The number of reads per each time duration|Reads
 READ_LATENCY_NO_QOS|Average latency of READ operations without QoS delay|Microseconds
 READ_LATENCY|Average latency of READ operations|Microseconds
@@ -869,6 +882,7 @@ WRITE_LATENCY|Average latency of WRITE operations|Microseconds
 **Type** | **Description** | **Units**
 -|-|-
 ABRUPT_EXITS|How many abrupt exits of a process (node) occured|Abrupt process exits
+PEER_CONFIGURE_FAILURES|How many times the node failed to configure peers in order to sync with them|Peer configure failures
 
 ## RAFT
 
@@ -897,13 +911,17 @@ RAID_BLOCKS_IN_PREPARED_STRIPE|Free blocks in prepared stripe|Blocks
 RAID_CHUNKS_CLEANED_BY_SHIFT|Dirty chunks cleaned by being shifted out|Occurences
 RAID_CHUNKS_SHIFTED|Dirty chunks that shifted out|Occurences
 RAID_COMMITTED_STRIPES|Number of stripes written|Stripes
+RAID_COMPRESSED_BLOCKS_WRITTEN|Physical blocks written containing compressed data|Blocks/Sec
+RAID_CORRUPTION_RECOVERY_FAILURE|Corrupt data could not be recovered|Occurences
 RAID_PLACEMENT_SWITCHES|Number of placement switches|Switches
 RAID_READ_BATCHES_PER_REQUEST_HISTOGRAM|Histogram of the number of batches of stripes read in a single request|Request
 RAID_READ_BLOCKS_STRIPE_HISTOGRAM|Histogram of the number of blocks read from a single stripe|Reads
 RAID_READ_BLOCKS|Number of blocks read by the RAID|Blocks/Sec
 RAID_READ_DEGRADED|Degraded mode reads|Blocks/Sec
+RAID_READ_FREE|Read Free|Occurences
 RAID_READ_IOS|Raw read blocks performed by the RAID|Blocks/Sec
 RAID_STALE_WRITES_DETECTED|Stale write detected in read|Occurences
+RAID_STALE_WRITES_REPROTECTIONS|Stale write reprotections in read|Occurences
 WRONG_DRIVE_DELTAS|Delta segments written to wrong drive|Blocks/Sec
 WRONG_DRIVE_REFS|Reference segments written to wrong drive|Blocks/Sec
 
@@ -921,6 +939,7 @@ CLIENT_RECEIVED_TIMEOUTS|Number of timeouts experienced by the client|Calls/Sec
 CLIENT_ROUNDTRIP_AVG_LOW|Roundtrip average of client low-priority RPC calls|Microseconds
 CLIENT_ROUNDTRIP_AVG_NORM|Roundtrip average of client normal priority RPC calls|Microseconds
 CLIENT_ROUNDTRIP_AVG|Roundtrip average of client normal and low priority RPC calls|Microseconds
+CLIENT_RPC_CALLS_DOWNGRADED|Number of client-downgraded RPC calls|RPC/Sec
 CLIENT_RPC_CALLS_LOW|Number of low priority RPC calls|RPC/Sec
 CLIENT_RPC_CALLS_NORM|Number of normal priority RPC calls|RPC/Sec
 CLIENT_RPC_CALLS|Number of all priorities of RPC calls|RPC/Sec
@@ -936,6 +955,7 @@ SERVER_MISSING_ENCRYPTION_KEY|Number of requests missing encryption key at the s
 SERVER_PROCESSING_AVG|Average time to process server RPC calls|Microseconds
 SERVER_PROCESSING_TIME|Histogram of the time it took the server to process a request|RPCs
 SERVER_REJECTS|Number of times the server rejected a request|Calls/Sec
+SERVER_RPC_CALLS_UPGRADED|Number of server-upgraded RPC calls|RPC/Sec
 SERVER_RPC_CALLS|Number of server RPC calls|RPC/Sec
 SERVER_SENT_EXCEPTIONS|Number of exceptions sent by the server as a response|Calls/Sec
 SERVER_SENT_RESPONSES|Number of responses the server sent|Calls/Sec
@@ -980,7 +1000,13 @@ HOGGED_TIME|Histogram of time used by hogger fibers (only in debug builds)|Hogs
 IDLE_CALLBACK_INVOCATIONS|Number of background work invocations|Invocations/Sec
 IDLE_CYCLES|Number of cycles spent in idle|Cycles/Sec
 IDLE_TIME|The percentage of the CPU time not used for handling I/Os|%
+NODE_CONTEXT_SWITCHES|Number of context switches.|Switches
 NODE_HANG|The number of process (node) hangs per hang time range.|Number of hangs
+NODE_POLL_TIME|Time of scheduler stats polling.|usecs
+NODE_RUN_PERCENTAGE|Percentage of time process is running|percentage
+NODE_RUN_TIME|Time process is running.|usecs
+NODE_WAIT_PERCENTAGE|Percentage of time process is waiting on waitqueue|percentage
+NODE_WAIT_TIME|Time process is waiting on waitqueue.|usecs
 OUTRAGEOUS_HOGGERS|Number of hoggers taking excessive amount of time to run|Invocations
 ObsBucketManagement_CAPACITY|Number of data structures allocated to the ObsBucketManagement pool|Structs
 ObsBucketManagement_STRUCT_SIZE|Number of bytes in each struct of the ObsBucketManagement pool|Bytes
@@ -1019,7 +1045,10 @@ rdmaNetworkBuffers_USED|Number of structs in the rdmaNetworkBuffers pool which a
 
 **Type** | **Description** | **Units**
 -|-|-
+CLEAN_CHUNK_SKIPPED|# clean chunk skips|Chunks
 DRIVE_ACTIVE_IOS|The number of in-flight IO against the SSD during sampling|IOs
+DRIVE_AER_RECEIVED|Number of AER reports|reports
+DRIVE_COMPLETED_OVER_COUNT|Drive completed count > 1 detected|Occurrences
 DRIVE_FORFEITS|Number of IOs forfeited due to lack of memory buffers|Operations/Sec
 DRIVE_IDLE_CYCLES|Number of cycles spent in idle|Cycles/Sec
 DRIVE_IDLE_TIME|Percentage of the CPU time not used for handling I/Os|%
@@ -1047,17 +1076,26 @@ DRIVE_UTILIZATION|Percentage of time the drive had an active IO submitted to it|
 DRIVE_WRITE_LATENCY|Drive Write Execution Latency|Microseconds
 DRIVE_WRITE_OPS|Drive Write Operations|IO/Sec
 DRIVE_WRITE_RATIO_PER_SSD_WRITE|Drive Write OPS Per SSD Request|Ratio
+NVKV_CHUNK_OUT_OF_SPACE|Number of failed attempts to allocate a stripe in an NVKV chunk|Attempts/Sec
+NVKV_OUT_OF_CHUNKS|Number of failed attempts to allocate an NVKV chunk|Attempts/Sec
+NVKV_OUT_OF_SUPERBLOCK_ENTRIES|Number of failed attempts to allocate a superblock NVKV entry|Attempts/Sec
 SSDS_IOS|IOs performed on the SSD service|IO/Sec
 SSDS_IO_ERRORS|IO errors on the SSD service|Blocks/Sec
 SSD_BLOCKS_READ|Number of blocks read from the SSD service|Blocks/Sec
 SSD_BLOCKS_WRITTEN|Number of blocks written to the SSD service|Blocks/Sec
-SSD_CHUNK_ALLOCS|Rate of chunk allocations|Chunks/Sec
-SSD_CHUNK_FREES|Rate of chunk frees|Chunks/Sec
+SSD_CHUNK_ALLOCS_TRIMMED|# of chunk allocations from the trimmed queue|Chunks
+SSD_CHUNK_ALLOCS_UNTRIMMED|# of chunk allocations from the untrimmed queue|Chunks
+SSD_CHUNK_ALLOCS|# of chunk allocations|Chunks
+SSD_CHUNK_FREES|# of chunk frees|Chunks
+SSD_CHUNK_FREE_TRIMMED|Number of free trimmed chunks|Chunks
+SSD_CHUNK_FREE_UNTRIMMED|Number of free untrimmed chunks|Chunks
+SSD_CHUNK_TRIMS|# of trims performed|Chunks
 SSD_E2E_BAD_CSUM|End-to-End checksum failures|IO/Sec
 SSD_READ_ERRORS|Errors in reading blocks from the SSD service|Blocks/Sec
 SSD_READ_LATENCY|Avg. latency of read requests from the SSD service|Microseconds
 SSD_READ_REQS_LARGE_NORMAL|Number of large normal read requests from the SSD service|IO/Sec
 SSD_READ_REQS|Number of read requests from the SSD service|IO/Sec
+SSD_SCRATCH_BUFFERS_USED|Number of scratch blocks used|Blocks
 SSD_WRITES_REQS_LARGE_NORMAL|Number of large normal priority write requests to the SSD service|IO/Sec
 SSD_WRITES|Number of write requests to the SSD service|IO/Sec
 SSD_WRITE_ERRORS|Errors in writing blocks to the SSD service|Blocks/Sec
@@ -1097,6 +1135,7 @@ SCRUB_FALSE_USED_FAILED_READS|Number of blocks that we failed to read for scrub-
 SCRUB_FALSE_USED_FAILED|Number of placements we failed to fully scrub-false-used|Occurences/Sec
 SCRUB_FALSE_USED_PLACEMENTS|Number of placements we finished scrub-false-used|Occurences/Sec
 SCRUB_FALSE_USED_WAS_UNPROTECTED|Number of blocks that were false marked used and unprotected|Blocks/Sec
+SCRUB_IN_FLIGHT_CORRUPTION_DETECTED|Number of in-flight corruptions detected when scrubbing|Occurences
 SCRUB_PREPARATION_FAILED|Number of times we failed to prepare() a task and aborted scrub of placement|Occurences/Sec
 SFU_CHECKS|Number of blocks that were scrubbed-false-used|Blocks/Sec
 SFU_CHECK_FREE|Number of blocks that were detected as false-used and freed|Blocks/Sec
@@ -1158,3 +1197,10 @@ GATHER_FROM_NODE_LATENCY|Time spent responding to a stats-gathering request (not
 GATHER_FROM_NODE_SLEEP|Time spent in-between responding to a stats-gathering request (not including metadata)|Seconds/Sec
 TIMES_QUERIED_STATS|Number of times the process queried other processes for stats|Times
 TIMES_QUERIED|Number of times the process was queried for stats (not including metadata)|Times
+
+## _
+
+**Type** | **Description** | **Units**
+-|-|-
+TEST_STAT_ABSOLUTE|Absolute stat used in the tests|Undefined
+TEST_STAT_MOMENTARY|Momentary stat used in the tests|Undefined
