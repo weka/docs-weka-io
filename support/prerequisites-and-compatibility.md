@@ -177,6 +177,7 @@ Right-scroll the table to view all columns.
 {% tab title="Ethernet drivers" %}
 *   **Supported Mellanox OFED versions for the Ethernet NICs:**
 
+    * 23.10-0.5.5.0
     * 23.04-1.1.3.0
     * 5.9-0.5.6.0
     * 5.8-1.1.2.1 LTS
@@ -237,6 +238,7 @@ When assigning a network device to the WEKA system, no other application can cre
 {% tab title="InfiniBand drivers" %}
 WEKA supports the following Mellanox OFED versions for the InfiniBand adapters:
 
+* 23.10-0.5.5.0
 * 23.04-1.1.3.0
 * 5.9-0.5.6.0
 * 5.8-1.1.2.1 LTS
