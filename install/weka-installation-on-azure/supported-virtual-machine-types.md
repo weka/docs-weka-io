@@ -48,6 +48,10 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 <table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>Lsv3</td><td>Standard_L8s_v3, Standard_L16s_v3, Standard_L32s_v3, Standard_L48s_v3, Standard_L64s_v3</td></tr></tbody></table>
 
+#### High performance optimized
+
+<table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>HBv4</td><td>Standard_HB176rs_v4, Standard_HB176-24rs_v4, Standard_HB176-96rs_v4</td></tr><tr><td>HBv3</td><td>Standard_HB120rs_v3</td></tr></tbody></table>
+
 
 
 **Related information**
