@@ -1,32 +1,32 @@
 # WEKA v4.2 documentation
 
-Welcome to the WEKA documentation portal. It displays the documentation for the latest WEKA version. If you have a different WEKA version, select it from the top menu.
+Welcome to the WEKA Documentation Portal, your guide to the latest WEKA version. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies. Choose your WEKA version from the top menu for version-specific documentation.
 
 <figure><img src=".gitbook/assets/selector_animation.gif" alt=""><figcaption><p>WEKA version selector</p></figcaption></figure>
 
 ## About WEKA documentation
 
-This portal contains all the documentation necessary for understanding and working with the WEKA system. It covers the following topics:
+This portal encompasses all documentation essential for comprehending and operating the WEKA system. It covers a range of topics:
 
-**WEKA system overview:** Introduction of the primary components, principles, and entities that form the WEKA system.
+**WEKA system overview:** Delve into the fundamental components, principles, and entities constituting the WEKA system.
 
-**Planning and installation:** Prerequisites and compatibility details, WEKA cluster installation on bare metal, AWS, GCP, and Azure environments.
+**Planning and installation:** Discover prerequisites, compatibility details, and installation procedures for WEKA clusters on bare metal, AWS, GCP, and Azure environments.
 
-**Getting started with WEKA:** The first steps to managing a WEKA filesystem using the GUI and CLI, running the first IOs with the WEKA filesystem and getting started with the WEKA REST API.
+**Getting started with WEKA:** Initiate your WEKA journey by learning the basics of managing a WEKA filesystem through the GUI and CLI, executing initial IOs, and exploring the WEKA REST API.
 
-**Performance:** Results of the FIO performance tests on the WEKA filesystem.
+**Performance:** Explore the results of FIO performance tests on the WEKA filesystem, ensuring optimal system performance.
 
-**WEKA filesystems & object stores:** Role and management of filesystems, object stores, filesystem groups, and key-management systems in Weka system configurations.
+**WEKA filesystems & object stores:** Understand the role and management of filesystems, object stores, filesystem groups, and key-management systems within WEKA configurations.
 
-**Additional protocols:** The supported protocols NFS, SMB, and S3 for accessing data stored in a WEKA filesystem.
+**Additional protocols:** Learn about the supported protocols—NFS, SMB, and S3—for accessing data stored in a WEKA filesystem.
 
-**Operation guide:** WEKA system's various operations, such as events, statistics, user management, upgrades, expansion, and more.
+**Operation guide:** Navigate through various WEKA system operations, including events, statistics, user management, upgrades, expansion, and more.
 
-**Billing & licensing:** WEKA system licensing and billing alternatives.
+**Billing & licensing:** Gain insights into WEKA system licensing options and alternative billing approaches.
 
-**Monitor the WEKA cluster:** Deploy the WEKA Management Server (WMS) with Local WEKA Home, WEKAmon, and SnapTool monitoring tools.
+**Monitor the WEKA cluster:** Effectively monitor your WEKA cluster by deploying the WEKA Management Server (WMS) alongside tools like Local WEKA Home, WEKAmon, and SnapTool.
 
-**WEKA support:** Getting support for the WEKA system and diagnostics management.
+**WEKA support:** Find guidance on obtaining support for the WEKA system and effectively managing diagnostics.
 
 **Best practice guides:** Explore our carefully selected best practice guides, starting with WEKA and Slurm integration, to discover expert-recommended strategies and insights for optimizing your WEKA system and achieving peak performance in various scenarios.
 
@@ -40,13 +40,4 @@ The CLI mandatory parameters are marked with an asterisk (\*) throughout the doc
 
 ## Documentation feedback
 
-We strive to produce the highest-quality documentation products and welcome your feedback. If you have comments or suggestions about our documentation, email us.
-
-With your feedback, include the following information:
-
-* Document version and title of the topic
-* Your suggestion for correcting or improving the documentation
-
-Send your messages to [documentation@weka.io](mailto:documentation@weka.io).
-
-The email address is only for documentation feedback. If you have a technical question, contact the [Customer Success Team](support/getting-support-for-your-weka-system.md).
+We are committed to delivering top-notch documentation and value your feedback. If you have comments or suggestions, please email us at [documentation@weka.io](mailto:documentation@weka.io). When providing feedback, include the document version, topic title, and your suggestions for improvement. For technical questions, please reach out to our [Customer Success Team](support/getting-support-for-your-weka-system.md).
