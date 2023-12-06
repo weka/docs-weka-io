@@ -14,7 +14,7 @@ description: >-
   * Only IMDSv1 is supported if using the Instance Metadata service.
 
 {% hint style="warning" %}
-It is possible to set clients with IMDSv2, but they would not benefit from seamless cloud configuration and should be manually managed similarly to [Adding Clients](../bare-metal/adding-clients-bare-metal.md) in bare-metal installations.
+It is possible to set clients with IMDSv2, but they would not benefit from seamless cloud configuration and should be manually managed similarly to [Adding Clients](../../bare-metal/adding-clients-bare-metal.md) in bare-metal installations.
 {% endhint %}
 
 * When deploying in AWS not using the CloudFormation template or when additional capabilities are added after deployment (e.g., tiering), it is required to provide permissions to several AWS APIs. For details, see the [IAM role created in the template](cloudformation.md#iam-role-created-in-the-template) section.

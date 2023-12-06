@@ -1,7 +1,7 @@
 ---
 description: >-
-  This section is for system engineers experienced with GCP concepts and
-  Terraform for deploying the WEKA system on GCP.
+  This section aims at a system engineer familiar with the GCP concepts and
+  experienced in using Terraform to deploy a system on GCP.
 ---
 
 # WEKA installation on GCP

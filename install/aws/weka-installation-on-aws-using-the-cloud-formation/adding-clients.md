@@ -38,7 +38,7 @@ These permissions are automatically created in an instance profile as part of th
 
 The network interface permissions are required to create and attach a network interface to the new client. A separate NIC is required to allow the WEKA client to preallocate the network resource for the fastest performance.
 
-If the client is not provided with these permissions, it can only provide `ec2:*` and create an additional NIC in the same security group and subnet described above when mounting a second cluster from a single client (see [Mount filesystems from multiple clusters on a single client](../../fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)).
+If the client is not provided with these permissions, it can only provide `ec2:*` and create an additional NIC in the same security group and subnet described above when mounting a second cluster from a single client (see [Mount filesystems from multiple clusters on a single client](../../../fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)).
 
 #### Root volume
 
@@ -65,9 +65,9 @@ mkdir -p /mnt/weka
 mount -t wekafs Backend-1/my_fs /mnt/weka
 ```
 
-For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, see the [Mount filesystems using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients) section.
+For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, see the [Mount filesystems using the stateless clients feature](../../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients) section.
 
-It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, see the [Mount filesystems using fstab](../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs) sections.
+It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, see the [Mount filesystems using fstab](../../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mount filesystems using autofs](../../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs) sections.
 
 ## Add clients that are always part of the cluster
 
@@ -125,7 +125,7 @@ Client has joined the cluster
 {% hint style="info" %}
 **Dedicated client resources**
 
-Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the WEKA system on the client instance. This is performed as part of the WEKA system preallocating resources, ensuring that variance in client activity does not result in allocating resources that may affect the programs running on the client. For more information, see [Memory resource planning](../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
+Once the `aws-add-client` command is complete, one core and 6.3 GB of RAM are allocated for the WEKA system on the client instance. This is performed as part of the WEKA system preallocating resources, ensuring that variance in client activity does not result in allocating resources that may affect the programs running on the client. For more information, see [Memory resource planning](../../bare-metal/planning-a-weka-system-installation.md#memory-resource-planning).
 {% endhint %}
 
 ### Step 4: Mount filesystems on the clients <a href="#step-4-mount-filesystem-on-clients" id="step-4-mount-filesystem-on-clients"></a>
@@ -139,5 +139,5 @@ Using the `mkdir -p /mnt/weka && mount -t wekafs default /mnt/weka` command will
 {% endhint %}
 
 {% hint style="info" %}
-For more information about available mount options, see [Mounting filesystems](../../fs/mounting-filesystems.md).
+For more information about available mount options, see [Mounting filesystems](../../../fs/mounting-filesystems.md).
 {% endhint %}

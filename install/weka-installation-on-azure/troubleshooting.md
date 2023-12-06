@@ -26,7 +26,7 @@ Creating a storage account name must be unique across the Azure environment.
 
 In the Terraform variables file, ensure the `prefix` and `cluster_name` variables are unique.&#x20;
 
-### Resource Group \<rg\_name> was not found
+
 
 The specified resource group in the Terraform variables file was not found because it was not created (as part of the prerequisites).
 

@@ -71,7 +71,7 @@ To ensure the resilience of the service if a server fails, all IP addresses asso
 
 ## NFS service deployment high-level workflow
 
-<figure><img src="../../.gitbook/assets/NFS_deploy_workflow.png" alt=""><figcaption><p>NFS service deployment workflow</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/NFS_deploy_workflow (2).png" alt=""><figcaption><p>NFS service deployment workflow</p></figcaption></figure>
 
 For detailed procedures, see the related topics.
 

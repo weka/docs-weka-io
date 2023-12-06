@@ -1,13 +1,12 @@
 ---
 description: >-
-  This section aims at a system engineer who is familiar with the Azure
-  fundamentals and is experienced with using Terraform to deploy a system on
-  Azure.
+  This section aims at a system engineer familiar with the Azure fundamentals
+  and experienced in using Terraform to deploy a system on Azure.
 ---
 
 # WEKA installation on Azure
 
-The WEKA® Data Platform on Microsoft Azure provides a fast and scalable platform to run, for example, performance-intensive applications and hybrid cloud workflows. It can also be used for object stores, tiering, and snapshots using the Azure Blob service, for example, to create backups and DR copies.
+The WEKA® Data Platform on Microsoft Azure provides a fast and scalable platform for running performance-intensive applications and hybrid cloud workflows. It can also be used for object stores, tiering, and snapshots using the Azure Blob service, for example, to create backups and DR copies.
 
 WEKA provides a ready-to-deploy Terraform package that you can customize for installing the WEKA cluster on Azure. The WEKA cluster is deployed with a multiple containers architecture, in which each container serves a single process type: Compute, Drives, or Frontend.
 
@@ -54,7 +53,7 @@ A deployment with Terraform involves three phases:
 
 **Related information**
 
-[Terraform Tutorials](https://learn.hashicorp.com/terraform?track=gcp)
+[Terraform Tutorials](https://developer.hashicorp.com/terraform/tutorials/azure-get-started)
 
 [Terraform Installation](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 

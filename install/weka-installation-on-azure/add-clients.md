@@ -4,7 +4,7 @@ When deploying a WEKA cluster, it is possible to create clients using Terraform.
 
 ## Before you begin
 
-* Create a client VM in one of the following methods:
+* Create a client VM using one of the following methods:
   * **Using the Azure Console:**  Create the client VM that meets the following requirements:
     * The _Accelerated Networking_ feature must be enabled in _t_he NICs.
     * The NICs must be configured with at least MTU 3900.

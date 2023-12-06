@@ -81,7 +81,7 @@ If the service account has the required permissions granted by the IAM role, the
 
 If the WEKA cluster is not running in GCP then the Access Key and Secret Key are required.
 
-<figure><img src="../../.gitbook/assets/wmng_obs_on_gcp.png" alt=""><figcaption><p>Create object store bucket on GCP</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_obs_on_gcp (1).png" alt=""><figcaption><p>Create object store bucket on GCP</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Azure" %}

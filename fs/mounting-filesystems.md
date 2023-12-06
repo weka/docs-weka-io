@@ -10,7 +10,7 @@ description: >-
 
 There are two methods available for mounting a filesystem in one of the cluster servers:
 
-1. Using the traditional method (stateful): See below and also refer to [Add clients](../install/bare-metal/adding-clients-bare-metal.md) (in Bare Metal Installation) or [Add clients](../install/aws/adding-clients.md) (in AWS Installation), where first a client is configured and joins a cluster, after which you run the mount command.
+1. Using the traditional method (stateful): See below and also refer to [Add clients](../install/bare-metal/adding-clients-bare-metal.md) (in Bare Metal Installation) or [Add clients](../install/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md) (in AWS Installation), where first a client is configured and joins a cluster, after which you run the mount command.
 2. Using the Stateless Clients feature: See [Mount filesystems using the stateless clients feature](mounting-filesystems.md#mounting-filesystems-using-stateless-clients) below, which simplifies and improves the management of clients in the cluster and eliminates the Adding Clients process.
 
 If you need to mount a single client to multiple clusters, refer to the [Mount filesystems from multiple clusters on a single client](mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md) topic.
@@ -124,7 +124,7 @@ It is now possible to access Weka filesystems via the mount-point, e.g., by `cd 
 After the execution of an`umount` command, which unmounts the last Weka filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores, and networking parameters again.
 
 {% hint style="info" %}
-When running in AWS, the instance IAM role must provide permissions to several AWS APIs (see the [IAM role created in template](../install/aws/cloudformation.md#iam-role-created-in-the-template) section).
+When running in AWS, the instance IAM role must provide permissions to several AWS APIs (see the [IAM role created in template](../install/aws/weka-installation-on-aws-using-the-cloud-formation/cloudformation.md#iam-role-created-in-the-template) section).
 {% endhint %}
 
 {% hint style="info" %}

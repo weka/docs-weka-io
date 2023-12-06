@@ -9,7 +9,7 @@ The planning of a WEKA system is essential before the actual installation proces
 5. Network
 
 {% hint style="info" %}
-When implementing an AWS configuration, it is possible to go to the [Self-Service Portal in start.weka.io](../aws/self-service-portal.md) to map capacity and performance requirements into various configurations automatically.
+When implementing an AWS configuration, it is possible to go to the [Self-Service Portal in start.weka.io](../aws/weka-installation-on-aws-using-the-cloud-formation/self-service-portal.md) to map capacity and performance requirements into various configurations automatically.
 {% endhint %}
 
 ## Total SSD net capacity and performance planning

@@ -1,93 +1,129 @@
 ---
 description: >-
-  This section provides detailed instructions on installing a WEKA system on
-  AWS.
+  This section aims at anyone familiar with the AWS fundamentals and experienced
+  in using Terraform or AWS CloudFormation to deploy a system on AWS.
 ---
 
 # WEKA installation on AWS
 
-If you already have an AWS account and are familiar with AWS's basic concepts and services, you can skip this section.
+The WEKA® Data Platform on AWS provides a fast and scalable platform for running performance-intensive applications and hybrid cloud workflows.
 
-To install a WEKA system in AWS, you need to [create an AWS account](https://aws.amazon.com/account/).
+WEKA provides a ready-to-deploy Terraform package that you can customize for installing the WEKA cluster on AWS. Optionally, you can install the WEKA cluster using the AWS CloudFormation.
 
-Make sure you are familiar with the following concepts and services that are used as part of the WEKA system deployment:
+Ensure you are familiar with the following concepts and services that are used for the WEKA installation on AWS:
 
-* [IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) - Identity and access management
-* [VPCs](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html), [subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC\_Subnets.html), and [security groups](https://docs.aws.amazon.com/vpc/latest/userguide/VPC\_SecurityGroups.html)
-* [EC2](https://aws.amazon.com/documentation/ec2/) instances and [ssh keys](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
-* [S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html) - Object store (to be used for tiering data)
-* [Cloud Formation](https://aws.amazon.com/documentation/cloudformation/)
+<details>
 
-During the deployment of the WEKA system, the EC2 instances require access to the internet to download the WEKA software. For this reason, you need to deploy the WEKA system in one of the following deployment types in AWS:
+<summary>AWS IAM - Identity and access management</summary>
 
-* **Public subnet:** Use a public subnet within your VPC with an internet gateway, and allow public IP addresses for your instances.
-* **Private subnet with NAT Gateway:** Create a private subnet with a route to a NAT gateway with an elastic IP in the public subnet.
-* **Private subnet using WEKA VPC endpoint:** Requires the creation of a [Cluster CloudFormation stack](self-service-portal.md#cluster-cloudformation-stack) (once per VPC) that creates the necessary resources.
-* **Private subnet using custom proxy:** Requires the creation of a [Cluster CloudFormation stack](self-service-portal.md#cluster-cloudformation-stack) (once per VPC) that creates the necessary resources.
+AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. With IAM, you can centrally manage permissions that control which AWS resources users can access. You use IAM to control who is authenticated (signed in) and authorized (has permissions) to use resources.
 
-The following diagrams illustrate the components of the _public subnet_ and _private subnet with NAT gateway deployment_ types in AWS:
+**Related information**
 
-![AWS subnet options for WEKA deployment](../../.gitbook/assets/aws\_vpc\_layout1.png)
+[What is IAM?](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html)
 
-## Update the number of vCPU limits in EC2
+</details>
 
-By default, AWS does not provide enough vCPUs to install a WEKA system. Use the Limits Calculator for your region from the AWS EC2 dashboard.
+<details>
 
-**Procedure**
+<summary>Amazon VPCs, subnets, and security groups</summary>
 
-1. On the AWS EC2 dashboard, select the **Limits** option from the left menu.
+A _virtual private cloud_ (VPC) is a virtual network dedicated to your AWS account. It is logically isolated from other virtual networks in the AWS Cloud. You can specify an IP address range for the VPC, add subnets and gateways, and associate security groups.
 
-![EC2 Limits location](../../.gitbook/assets/wmng\_ec2\_limits.png)
+A _subnet_ is a range of IP addresses in your VPC. You launch AWS resources, such as Amazon EC2 instances, into your subnets. Using route tables, you can connect a subnet to the internet, other VPCs, and your data centers and route traffic to and from your subnets.
 
-2\. In the Limits Calculator, do the following:
+A _security group_ controls the traffic that is allowed to reach and leave the resources that it is associated with. For example, after you associate a security group with an EC2 instance, it controls the inbound and outbound traffic for the instance. You can associate a security group only with resources in the VPC for which it is created.
 
-* In the **Current Limit**, set the number of vCPUs you currently have for a region.
-* In the **vCPUs needed**, set the required number of vCPUs for your specific deployment.
+**Related information**
 
-Select the **Request on-demand limit increase** link to get more vCPUs.
+[What is Amazon VPC?](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)
 
-{% hint style="info" %}
-vCPU increase is not an instant action and can take minutes to days for AWS to evaluate and approve your request.
-{% endhint %}
+[How Amazon VPC works](https://docs.aws.amazon.com/vpc/latest/userguide/how-it-works.html)
 
-The following example shows the required vCPUs for a six servers cluster with two clients of type i3en.2xlarge. This example is the smallest type of instance for a WEKA system deployment.
+[Control traffic to your AWS resources using security groups](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html)
 
-![Limits Calculator](../../.gitbook/assets/wmng\_limit\_calc.png)
+</details>
 
-## After the installation on AWS best practices&#x20;
+<details>
 
-### Backup and recovery
+<summary>Amazon EC2 instances</summary>
 
-#### Resiliency
+Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable computing capacity—literally, servers in Amazon's data centers—that you use to build and host your software systems.&#x20;
 
-The Weka system is a distributed cluster protected from 2 or 4 failure domain failures, providing fast rebuild times. For details, see the [About the WEKA system](../../overview/about.md) section.
+Amazon EC2 provides different instance types to choose the CPU, memory, storage, and networking capacity you need to run your applications.
 
-#### Instance failure
+**Related information**
 
-If an instance failure occurs, the Weka system rebuilds the data. Add a new instance to the cluster to regain the reduced compute and storage due to the instance failure.
+[What is Amazon EC2?](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)
 
-#### Upload snapshots to S3
+</details>
 
-It is advisable to use periodic (incremental) snapshots to back up the data and protect it from multiple EC2 instances failures.
+<details>
 
-The recovery point objective (RPO) is determined by the cadence in which the snapshots are taken and uploaded to S3. The RPO changes between the type of data, regulations, and company policies, but it is advisable to upload at least daily snapshots of the critical filesystems. For details, see the [Snap-To-Object](../../fs/snap-to-obj/) section.
+<summary>Amazon EC2 key pairs for SSH</summary>
 
-If a failure occurs and it is required to recover from a backup, spin up a cluster using the [Self-Service Portal](self-service-portal.md) or [CloudFormation](cloudformation.md), and create filesystems from those snapshots. You do not need to wait for the data to reach the EC2 volumes. It is instantly accessible through S3. The recovery time objective (RTO) for this operation mainly depends on the time it takes to deploy the [Cluster CloudFormation stack](self-service-portal.md#cluster-cloudformation-stack) and is typically below 30 min.
+A key pair, consisting of a public key and a private key, is a set of security credentials you use to prove your identity when connecting to an Amazon EC2 instance. Amazon EC2 stores the public key on your instance, and you store the private key. The private key allows you to SSH into your instance securely for Linux instances.
 
-#### Cross AZ failure
+**Related information**
 
-See the [Data protection against cloud availability zone failures](../../fs/snap-to-obj/#data-protection-against-cloud-availability-zone-failures) section.&#x20;
+[Amazon EC2 key pairs and Linux instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 
-#### **Mitigate region failures**
+</details>
 
-To address the potential impact of an AWS region failure on data integrity, we recommend a targeted configuration strategy. Configure the local object stores to the region hosting the WEKA cluster, and set the remote object store to a designated failover region. This configuration ensures WEKA's awareness of data replication status, providing robust protection against regional disruptions and enhancing overall data reliability.
+<details>
 
-### SSH keys rotation
+<summary>Amazon S3 protocol and object store</summary>
 
-For security reasons, it is advisable to rotate the SSH keys used for the EC2 instances.&#x20;
+Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance. It is used for tiering data from the WEKA cluster to Amazon object store buckets.
 
-To rotate the SSH keys, follow these steps:&#x20;
+**Related information**
 
-* [Adding or replacing a key pair for your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#replacing-key-pair), and
-* [How to use AWS Secrets Manager to securely store and rotate SSH key pairs](https://aws.amazon.com/blogs/security/how-to-use-aws-secrets-manager-securely-store-rotate-ssh-key-pairs/).
+[What is Amazon S3?](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html)
 
+</details>
+
+<details>
+
+<summary>Terraform</summary>
+
+Terraform is an open-source project from Hashicorp. It creates and manages resources on cloud platforms and on-premises clouds. Unlike AWS CloudFormation, it works with many APIs from multiple platforms and services.
+
+<img src="../../.gitbook/assets/Terraform_overview.png" alt="" data-size="original">
+
+### How does Terraform work?
+
+A deployment with Terraform involves three phases:
+
+* **Write:** Define the infrastructure in configuration files and customize the project variables provided in the Terraform package.
+* **Plan:** Review the changes Terraform will make to your infrastructure.
+* **Apply:** Terraform provisions the infrastructure, including the EC2 instances, installs the WEKA software, and creates the cluster. Once completed, the WEKA cluster runs on AWS.
+
+<img src="../../.gitbook/assets/Terraform_how.png" alt="" data-size="original">
+
+**Related information**
+
+[Get Started with Terraform on AWS](https://developer.hashicorp.com/terraform/tutorials/aws-get-started)
+
+</details>
+
+<details>
+
+<summary>AWS Cloud Formation</summary>
+
+AWS CloudFormation enables you to create and provision AWS infrastructure deployments predictably and repeatedly.
+
+**Related information**
+
+[AWS CloudFormation Documentation](https://docs.aws.amazon.com/cloudformation/)
+
+</details>
+
+To install WEKA on AWS, an AWS account is required. Visit the AWS site to create an [AWS account](https://aws.amazon.com/account/).
+
+
+
+**Related topics**
+
+[weka-installation-on-aws-using-terraform](weka-installation-on-aws-using-terraform/ "mention")
+
+[weka-installation-on-aws-using-the-cloud-formation](weka-installation-on-aws-using-the-cloud-formation/ "mention")
