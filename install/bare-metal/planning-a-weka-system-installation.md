@@ -17,7 +17,7 @@ When implementing an AWS configuration, it is possible to go to the [Self-Servic
 A WEKA system cluster runs on a group of servers with local SSDs. To plan these servers, the following information must be clarified and defined:
 
 1. **Capacity:** Plan your net SSD capacity. The data management to object stores can be added after the installation. In the context of the planning stage, only the SSD capacity is required.
-2. **Redundancy scheme:** Define the optimal redundancy scheme required for the WEKA system, as explained in [Selecting a Redundancy Scheme](../../overview/about.md#selecting-a-redundancy-scheme).
+2. **Redundancy scheme:** Define the optimal redundancy scheme required for the WEKA system, as explained in [Selecting a Redundancy Scheme](../../overview/about/#selecting-a-redundancy-scheme).
 3. **Failure domains:** Determine whether to use failure domains (optional), and if yes, determine the number of failure domains and the potential number of servers in each failure domain, as described in [Failure Domains](../../overview/ssd-capacity-management.md#failure-domains-optional), and plan accordingly.
 4. **Hot spare**: Define the required hot spare count described in [Hot Spare](../../overview/ssd-capacity-management.md#hot-spare).
 

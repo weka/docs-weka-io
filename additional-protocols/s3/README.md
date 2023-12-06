@@ -1,3 +1,7 @@
+---
+description: The WEKA configuration of the S3 protocol.
+---
+
 # Manage the S3 protocol
 
 The S3 protocol is integral to numerous cloud-native applications, and within the WEKA system, it offers a range of technical capabilities:

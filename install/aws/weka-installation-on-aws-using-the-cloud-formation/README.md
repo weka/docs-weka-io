@@ -42,7 +42,7 @@ The following example shows the required vCPUs for a six servers cluster with tw
 
 #### Resiliency
 
-The Weka system is a distributed cluster protected from 2 or 4 failure domain failures, providing fast rebuild times. For details, see the [About the WEKA system](../../../overview/about.md) section.
+The Weka system is a distributed cluster protected from 2 or 4 failure domain failures, providing fast rebuild times. For details, see the [About the WEKA system](../../../overview/about/) section.
 
 #### Instance failure
 

@@ -1,7 +1,7 @@
 ---
 description: >-
-  This section aims at anyone familiar with the AWS fundamentals and experienced
-  in using Terraform or AWS CloudFormation to deploy a system on AWS.
+  This section provides detailed instructions on installing a WEKA system on
+  AWS.
 ---
 
 # WEKA installation on AWS

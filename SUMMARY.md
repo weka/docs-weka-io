@@ -4,7 +4,10 @@
 
 ## WEKA System Overview <a href="#overview" id="overview"></a>
 
-* [About the WEKA system](overview/about.md)
+* [Introduction](overview/about/README.md)
+  * [WEKA system functionality features](overview/about/weka-system-functionality-features.md)
+  * [Converged WEKA system deployment](overview/about/converged-weka-system-deployment.md)
+  * [Optimize redundancy in WEKA deployments](overview/about/optimize-redundancy-in-weka-deployments.md)
 * [SSD capacity management](overview/ssd-capacity-management.md)
 * [Filesystems, object stores, and filesystem groups](overview/filesystems.md)
 * [WEKA networking](overview/networking-in-wekaio.md)

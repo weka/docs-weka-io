@@ -1,7 +1,7 @@
 ---
 description: >-
-  Understand the key terminologies relating to WEKA system capacity management
-  and the formula for calculating the WEKA system net data storage capacity.
+  Understand the key terms of WEKA system capacity management and the formula
+  for calculating the net data storage capacity.
 ---
 
 # SSD capacity management
@@ -54,9 +54,9 @@ The higher the hot spare count, the more hardware is required to obtain the same
 **Note:** If not configured, the hot spare is automatically set to 1.
 {% endhint %}
 
-## Weka filesystem overhead
+## WEKA filesystem overhead
 
-After deducting the protection and hot spare capacity, only 90% of the remaining capacity can be used as net user capacity, with the other 10% of capacity reserved for the Weka filesystems. This is a fixed formula that cannot be configured.
+After deducting the protection and hot spare capacity, only 90% of the remaining capacity can be used as net user capacity, with the other 10% of capacity reserved for the WEKA filesystems. This is a fixed formula that cannot be configured.
 
 ## Provisioned capacity
 
@@ -68,11 +68,11 @@ The available capacity is the total capacity used to allocate new filesystems, n
 
 ## Deductions from raw capacity to obtain net storage capacity
 
-The net capacity of the Weka system is obtained after the following three deductions performed during configuration:
+The net capacity of the WEKA system is obtained after the following three deductions performed during configuration:
 
 1. The level of protection required is the storage capacity dedicated to system protection.
 2. The hot spare(s) is the storage capacity set aside for redundancy and to allow for rebuilding following a component failure.
-3. Weka filesystem overhead to improve overall performance.     &#x20;
+3. WEKA filesystem overhead to improve overall performance.     &#x20;
 
 ## SSD net storage capacity calculation
 

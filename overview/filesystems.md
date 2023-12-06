@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes the three types of entities relevant to data storage in
-  the WEKA system: filesystems, object stores and filesystem groups.
+  This page describes the three entity types relevant to data storage in the
+  WEKA system.
 ---
 
 # Filesystems, object stores, and filesystem groups
@@ -36,9 +36,9 @@ Thin provisioning is beneficial in various use cases:
 
 ### Data reduction
 
-WEKA data reduction is a cluster-wide capability that can be enabled per filesystem. It uses block-variable differential compression and advanced de-duplication techniques across all filesystems to reduce the capacity consumed by the user data to provide significant capacity savings to customers.
+WEKA offers a cluster-wide data reduction feature that can be activated for individual filesystems. This capability employs block-variable differential compression and advanced de-duplication techniques across all filesystems to significantly reduce the storage capacity required for user data, resulting in substantial cost savings for customers.
 
-The compression ratio is workload-dependent and is efficient with text-based data, large-scale unstructured datasets, log analysis, databases, code repositories, and sensor data.
+The effectiveness of the compression ratio depends on the specific workload. It is particularly efficient when applied to text-based data, large-scale unstructured datasets, log analysis, databases, code repositories, and sensor data.
 
 The data reduction applies to user data (not metadata) per filesystem. The data reduction can be enabled only on thin-provision, non-tiered, and unencrypted filesystems on a cluster with a valid Data Efficiency Option (DEO) license.
 
