@@ -20,7 +20,7 @@ Always upgrade to the latest minor version in the new major version when upgradi
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** Backend servers with Intel E810 NIC are not supported on MCB architecture, so the cluster remains in the legacy architecture (single container architecture).
+**Note:** Backend servers with Intel E810 NIC are not supported on MCB architecture, so the cluster remains in the legacy architecture (single container architecture). Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for assistance.
 {% endhint %}
 
 ## What is a non-disruptive upgrade (NDU)?

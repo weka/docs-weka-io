@@ -90,14 +90,14 @@ For kernel 5.13 in clients, do not use applications that use 1GB hugepages.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** It is advisable to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
+**Note:** It is advisable to turn off auto kernel updates so it will not get upgraded to an unsupported version.
 {% endhint %}
 
 ## Weka installation directory
 
 * Directory: `/opt/weka`
 * Must be on an SSD or SSD-like performance, for example, M.2.
-  * Cannot be shared remotely, NFS mounted, or on a RAM drive.
+  * It cannot be shared remotely, NFS mounted, or on a RAM drive.
 * If two boot drives are available, it is recommended to dedicate one for the OS and one for the WEKA `/opt/weka` directory (there is no need to set software RAID, and some of its implementations are also known to have issues).
 * At least 26 GB is available for the WEKA system installation, with an additional 10 GB for each core used by WEKA.
 * Use a separate filesystem on a separate partition for /opt/weka.
@@ -105,7 +105,7 @@ For kernel 5.13 in clients, do not use applications that use 1GB hugepages.
 ## Networking
 
 {% hint style="info" %}
-**Note:** At least 4k MTU is advised on WEKA cluster servers NICs and the switches the servers are connected to.
+**Note:** At least 4k MTU is advised on WEKA cluster servers, NICs, and the switches the servers are connected to.
 
 A WEKA system can be configured without jumbo frames for Ethernet and Infiniband configurations. However, it will provide minimal performance and cannot handle high data loads. Consult with the Customer Success Team before running in this mode.
 
@@ -139,14 +139,15 @@ Jumbo Frames are not required for clients. However, performance might be limited
 {% hint style="info" %}
 Intel E810 NIC has specific requirements and certain limitations:
 
-* The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0.
+* The Ice Linux Base Driver version 1.9.11 and firmware version 4.0.0.
 * Working with this NIC is only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 * Only non-routed network is supported with this NIC.
+* This NIC is supported only by clients.
 * [Multiple containers architecture](../overview/weka-containers-architecture-overview.md) is not yet supported with this NIC.
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** LACP (link aggregation, also known as bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using virtual functions (VFs).
+**Note:** Link aggregation (LACP, also known as bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using virtual functions (VFs).
 {% endhint %}
 
 #### NIC drivers
