@@ -12,7 +12,7 @@ This portal contains all the documentation necessary for understanding and worki
 
 **Planning and installation:** Prerequisites and compatibility details, WEKA cluster installation on bare metal, AWS, GCP, and Azure environments.
 
-**Getting started with WEKA:** The first steps to managing a WEKA filesystem using the GUI and CLI, running the first IOs with the WEKA filesystem, and getting started with the WEKA REST API.
+**Getting started with WEKA:** The first steps to managing a WEKA filesystem using the GUI and CLI, running the first IOs with the WEKA filesystem and getting started with the WEKA REST API.
 
 **Performance:** Results of the FIO performance tests on the WEKA filesystem.
 
@@ -27,6 +27,8 @@ This portal contains all the documentation necessary for understanding and worki
 **Monitor the WEKA cluster:** Deploy the WEKA Management Server (WMS) with Local WEKA Home, WEKAmon, and SnapTool monitoring tools.
 
 **WEKA support:** Getting support for the WEKA system and diagnostics management.
+
+**Best practice guides:** Explore our carefully selected best practice guides, starting with WEKA and Slurm integration, to discover expert-recommended strategies and insights for optimizing your WEKA system and achieving peak performance in various scenarios.
 
 {% hint style="info" %}
 For maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/) or contact the [Customer Success Team](support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
