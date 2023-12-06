@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes the prerequisites and compatibility for the installation
-  of the WEKA system.
+  Discover the prerequisites and compatibility criteria essential for installing
+  the WEKA system.
 ---
 
 # Prerequisites and compatibility
@@ -37,11 +37,11 @@ Ensure the BIOS settings meet the following requirements:
 {% tabs %}
 {% tab title="Backends" %}
 * **RHEL:**
-  * 9.1, 9.0
+  * 9.2, 9.1, 9.0
   * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
-  * 9.1, 9.0
+  * 9.2, 9.1, 9.0
   * 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
@@ -86,12 +86,12 @@ Ensure the BIOS settings meet the following requirements:
 {% tab title="Kernel" %}
 The following kernel versions are supported:
 
-* 5.3-5.15
+* 5.3-5.18
 * 4.4.0-1106 to 4.19
 * 3.10
 
 {% hint style="info" %}
-* Kernel 5.15 is not supported with Amazon Linux operating systems.
+* Kernels 5.15 and higher are not supported with Amazon Linux operating systems.
 * It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
 * Confirm that both the kernel version and the operating system version are listed as supported, as these are distinct components with their own compatibility considerations.
 {% endhint %}
