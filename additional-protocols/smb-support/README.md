@@ -4,7 +4,7 @@ description: The WEKA configuration of the SMB protocol for shared Windows clien
 
 # Manage the SMB protocol
 
-SMB (Server Message Block) is a network file-sharing protocol that allows remote systems to connect to shared file and print services. WEKA's implementation is based on a new stack named **SMB-W** in addition to the legacy open-source Samba stack. Both SMB flavors support SMB versions 2 and 3.
+SMB (Server Message Block) is a network file-sharing protocol that allows remote systems to connect to shared file and print services. WEKA's implementation is based on a new SMB-W stack (the legacy open-source Samba stack is still available if needed). Both SMB flavors support SMB versions 2 and 3.
 
 The WEKA implementation of SMB makes storage services available to Windows and macOS clients. WEKA provides shared access from multiple clients, including multi-protocol access to the same files from SMB, NFS, and Weka native filesystem drivers.
 
@@ -32,14 +32,14 @@ When configuring a CIFS client to work with RDMA, the mounting must be on the ho
 
 ## SMB user mapping
 
-The WEKA system SMB supports authentication by a single Active Directory with multiple trusted domains. The POSIX users (uid) and groups (gid) mapping for the SMB access must be resolved by the Active Directory.&#x20;
+The WEKA system SMB supports authentication by a single Active Directory with multiple trusted domains. The Active Directory must resolve the POSIX users (uid) and groups (gid) mapping for the SMB access.&#x20;
 
 The WEKA system pulls users and groups information from the Active Directory automatically and supports two types of id-mapping from the Active Directory:
 
 * **RFC2307:** Where `uidNumber` and `gidNumber` must be defined in the AD user attributes.
 * **rid:** Creates a local mapping with the AD users and groups.
 
-Using **rid** mapping can ease the configuration, where user IDs are tracked automatically. All domain user accounts, and groups are automatically available on the domain member, and no attributes need to be set for domain users and groups. On the other hand, if the **rid** AD range configuration changes, user mapping might change and result in wrong uids/gids resolution.&#x20;
+Using **rid** mapping can ease the configuration, where user IDs are tracked automatically. All domain user accounts and groups are automatically available on the domain member, and no attributes need to be set for domain users and groups. On the other hand, if the **rid** AD range configuration changes, user mapping might change and result in the wrong uids/gids resolution.&#x20;
 
 ### Active Directory attributes
 
@@ -70,7 +70,7 @@ To configure the Weka SMB support, you can use either the Weka system GUI or CLI
 
 **Before you begin**
 
-Verify a persistent cluster-wide configuration filesystem is set (see [Set the global configuration filesystem](../nfs-support/nfs-support-1.md#configure-the-nfs-configuration-filesystem)).
+Verify a persistent cluster-wide configuration filesystem for protocols is set. If the filesystem is not already created, create a filesystem with 100 GB capacity.
 
 **Workflow**
 

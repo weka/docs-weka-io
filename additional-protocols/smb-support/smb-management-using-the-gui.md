@@ -1,14 +1,14 @@
 ---
 description: >-
-  This page provides procedures for setting up an SMB cluster over WEKA
-  filesystems and managing the cluster itself, using the GUI.
+  Explore procedures for configuring an SMB cluster over WEKA filesystems and
+  managing the cluster using the GUI.
 ---
 
 # Manage SMB using the GUI
 
 Using the GUI, you can:
 
-* [Configure the SMB cluster](smb-management-using-the-gui.md#configure-the-smb-cluster) (not applicable for SMB-W)
+* [Configure the SMB cluster](smb-management-using-the-gui.md#configure-the-smb-cluster) (not applicable for legacy SMB)
 * [Edit the SMB cluster](smb-management-using-the-gui.md#edit-the-smb-cluster)
 * [Join the SMB cluster in the Active Directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory)
 * [Add servers to the SMB cluster](smb-management-using-the-gui.md#add-or-remove-smb-cluster-hosts)
@@ -19,10 +19,11 @@ Using the GUI, you can:
 * [Edit an SMB share](smb-management-using-the-gui.md#undefined)
 * [Remove an SMB share](smb-management-using-the-gui.md#remove-an-smb-share)
 
-{% hint style="info" %}
-Using the GUI, you can manage the SMB-W cluster but not configure and delete it. See [Manage SMB using the CLI](smb-management-using-the-cli.md).\
-When managing an SMB-W cluster using the GUI, the limitations related to SMB-W in the CLI commands also apply.
-{% endhint %}
+**Considerations:**
+
+* When configuring the SMB cluster, the default cluster is of the SMB-W type. To create a legacy SMB cluster, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+* When managing an SMB-W cluster using the GUI, the limitations related to SMB-W in the CLI commands also apply.
+* You can manage the legacy SMB cluster using the GUI but not configure or delete it. See [Manage SMB using the CLI](smb-management-using-the-cli.md).
 
 {% hint style="info" %}
 Use ASCII format when configuring name fields, such as domain and shares.
@@ -30,7 +31,11 @@ Use ASCII format when configuring name fields, such as domain and shares.
 
 ## **Configure the SMB cluster** <a href="#configure-the-smb-cluster" id="configure-the-smb-cluster"></a>
 
-Define the WEKA system servers that participate in the SMB cluster (with legacy SMB only)**.**
+The SMB cluster comprises at least three WEKA servers running the SMB-W stack.
+
+**Before you begin**
+
+Verify a persistent cluster-wide configuration filesystem for protocols is set. If the filesystem still needs to be created, create a filesystem with 100 GB capacity.
 
 **Procedure**
 
@@ -45,26 +50,25 @@ Define the WEKA system servers that participate in the SMB cluster (with legacy 
 * **Name**: A NetBIOS name for the SMB cluster.
 * **Domain**: The domain the SMB cluster joins.
 * **Domain NetBIOS Name**: (Optional) The domain NetBIOS name.
-* **Encryption:** Select the in-transit encryption to use in the SMB cluster:\
-  \- enabled: enables encryption negotiation but doesn't turn it on automatically for supported\
-  sessions and share connections.\
-  \- disabled: doesn't support encrypted connections.\
-  \- desired: enables encryption negotiation and turns on data encryption on supported sessions\
-  and share connections.\
-  \- required: enforces data encryption on sessions and share connections. Clients that do not\
-  support encryption will be denied access to the server.
+* **Encryption:** Select the in-transit encryption to use in the SMB cluster:
+  * **enabled**: enables encryption negotiation but doesn't turn it on automatically for supported\
+    sessions and share connections.
+  * **desired**: enables encryption negotiation and turns on data encryption on supported sessions and share connections.
+  * **required**: enforces data encryption on sessions and share connections. Clients that do not\
+    support encryption will be denied access to the server.
 * **Servers**: List 3-8 WEKA system servers to participate in the SMB cluster based on the server IDs in WEKA.
-* **IPs**: (Optional) List of public IPs (comma-separated) used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA (do not assign these IPs to any server on the network). For IP range, use the following format: **a.b.c.x-y**.
+* **IPs**: (Optional) List of public IPs (comma-separated) used as floating IPs for the SMB cluster to serve the SMB over and thereby provide HA (do not assign these IPs to any server on the network). For an IP range, use the following format: **a.b.c.x-y**.
+* **Config Filesystem:** select the filesystem used for persisting cluster-wide protocols' configurations.&#x20;
 
 {% hint style="info" %}
-In all cloud installations, it is not possible to set a list of SMB service addresses. The SMB service must be accessed using the primary addresses of the cluster nodes.
+Setting a list of SMB service addresses in all cloud installations is impossible. The SMB service must be accessed using the primary addresses of the cluster nodes.
 {% endhint %}
 
-5\. Select **Save**.
+5. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog (2).gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.2.6.gif" alt=""><figcaption><p>SMB cluster configuration (TBD: replace image)</p></figcaption></figure>
 
-Once the system completes the configuration process, the server statuses change from not ready (red X icon) to ready (green V icon).
+Once the system completes configuration, the server statuses change from not ready (red X icon) to ready (green V icon).
 
 ![SMB cluster configuration example](../../.gitbook/assets/wmng\_smb\_configure\_result.png)
 
@@ -79,7 +83,7 @@ You can modify the encryption and IPs settings according to your needs.
 <figure><img src="../../.gitbook/assets/wmng_smb_cluster_edit.png" alt=""><figcaption><p>Edit the SMB cluster</p></figcaption></figure>
 
 2. In the Edit SMB Configuration dialog, do the following:
-   * **Encryption:** Select one of the in-transit encryption enforcements: enabled, disabled, desired, or required.
+   * **Encryption:** Select one of the in-transit encryption enforcements: enabled, desired, or required.
    * &#x20;**IPs:** List of public IPs (comma-separated) used as floating IPs for the SMB cluster. (Floating IPs are not supported for cloud installations.)
 
 <figure><img src="../../.gitbook/assets/wmng_edit_smb_configuration.png" alt=""><figcaption><p>Edit SMB configuration</p></figcaption></figure>
@@ -146,7 +150,7 @@ The minimum required number of servers in an SMB cluster is three.&#x20;
 
 ## Delete the SMB cluster <a href="#delete-the-smb-cluster" id="delete-the-smb-cluster"></a>
 
-Deleting the SMB cluster resets its configuration data.
+Deleting the SMB cluster resets its configuration data. Deleting an SMB cluster only applies to SMB-W.
 
 #### **Procedure**
 

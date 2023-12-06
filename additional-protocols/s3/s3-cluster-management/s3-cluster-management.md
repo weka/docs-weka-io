@@ -1,6 +1,6 @@
 ---
 description: >-
-  This page describes how to set up, update, monitor, and delete an S3 cluster
+  Explore the procedures to create, update, monitor, and delete an S3 cluster
   using the GUI.
 ---
 
