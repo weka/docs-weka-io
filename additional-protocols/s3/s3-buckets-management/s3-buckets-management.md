@@ -20,20 +20,15 @@ Using the GUI, you can:
 2. From the Protocols pane, select **S3**.
 3. Select the **Buckets** tab.
 4. Select  **+Create**.
+5. In the Add S3 Bucket dialog, do the following:
+   * **Bucket Name:** Set a bucket name according to the naming conventions.
+   * **Filesystem:** Set the filesystem that will host the bucket.
+   * **Use Existing Directory:** If you want to expose an existing directory, set its path. Make sure that the directory is not below the hierarchy of the already configured S3 bucket.
+   * **Hard Quota:** Set the maximum capacity for the bucket. If you want to remove the hard quota setting, enter 0.
+   * **Bucket Policy:** Select the policy to attach to the bucket: none, download, upload, public, or custom. If you select a custom policy, add it in JSON format.
+6. Select **Save**.
 
-![Buckets tab](../../../.gitbook/assets/wmng\_s3\_create\_bucket.png)
-
-5\. In the Add S3 Bucket dialog, do the following:
-
-* **Bucket Name:** Set a bucket name according to the naming conventions.
-* **Filesystem:** Set the filesystem that will host the bucket.
-* **Use Existing Directory:** If you want to expose an existing directory, set its path. Make sure that the directory is not below the hierarchy of the already configured S3 bucket.
-* **Hard Quota:** Set the maximum capacity for the bucket. If you want to remove the hard quota setting, enter 0.
-* **Bucket Policy:** Select the policy to attach to the bucket: none, download, upload, public, or custom. If you select a custom policy, add it in JSON format.
-
-6\. Select **Save**.
-
-![Add S3 Bucket](../../../.gitbook/assets/wmng\_s3\_create\_bucket\_dialog.png)
+![Create a bucket](../../../.gitbook/assets/Create\_S3\_bucket.gif)
 
 ## View a bucket details <a href="#view-a-bucket-details" id="view-a-bucket-details"></a>
 

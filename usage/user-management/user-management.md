@@ -13,7 +13,7 @@ Using the GUI, you can:
 
 ## Manage local users
 
-Local users are created in the local system as opposed to domain users that are managed by the organization's User Directory. You can create up to 1152 local users to work with a WEKA system cluster.
+Local users are created in the local system instead of domain users that the organization's User Directory manages. You can create up to 1152 local users to work with a WEKA system cluster.
 
 ![User Management: Local Users page](../../.gitbook/assets/wmng\_local\_users.png)
 
@@ -25,12 +25,12 @@ Local users are created in the local system as opposed to domain users that are 
 2. In the Local Users tab, select **+Create**.
 3. In the Create New User dialog, set the following properties:
    * **Username:** Set the user name for the local user.
-   * **Password:** Set a password according to the requirements. The password must contain at least 8 characters, an uppercase letter, a lowercase letter, and a number or a special character.
+   * **Password:** Set a password according to the requirements. The password must contain at least 8 characters: an uppercase letter, a lowercase letter, and a number or a special character.
    * **Confirm Password:** Type the same password again.
-   * **Role:** Select the role for the local user. If you select an S3 user role, you can select the relevant S3 policy, POSIX UID, and POSIX GID.
+   * **Role:** Select the role for the local user. If you select an S3 user role, select the relevant S3 policy and, optionally, the [POSIX UID](#user-content-fn-1)[^1] and [POSIX GID](#user-content-fn-2)[^2]**.**
 4. Select **Save**.
 
-![Create a new user dialog](../../.gitbook/assets/wmng\_local\_users\_add.png)
+![Create a new user dialog](<../../.gitbook/assets/wmng\_local\_users\_add (2).png>)
 
 ### Edit a local user
 
@@ -200,3 +200,9 @@ To use Active Directory for authenticating users, set the property values based 
 ![Configure Active Directory dialog](../../.gitbook/assets/wmng\_configure\_active\_directory.png)
 
 Once the Active Directory configuration is completed, the User Directory tab displays the details. You can disable the Active Directory configuration, update the configuration, or reset the configuration values.
+
+[^1]: POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.\
+    For S3 user roles only.
+
+[^2]: POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.\
+    For S3 user roles only.

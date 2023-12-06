@@ -63,7 +63,7 @@ S3 service accounts are child identities of a single parent S3 user. Each servic
 
 S3 service accounts enable the management of specific object store buckets and S3 APIs (as defined by the IAM policy) without relying on the S3 user administrative action.
 
-As opposed to IAM temporary credentials (STS), the S3 service account is not temporary and does not have an expiration date. Therefore, the S3 service account is used for ongoing management of the object store buckets and S3 APIs.
+Unlike IAM temporary credentials (STS), the S3 service account is not temporary and has no expiration date. It is used for ongoing management of the object store buckets and S3 APIs.
 
 Only an S3 user can manage S3 service accounts (Cluster Admin cannot). An S3 user can create up to 100 S3 service accounts. Managing S3 service accounts is only available through the CLI.
 

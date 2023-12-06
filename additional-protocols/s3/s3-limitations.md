@@ -6,6 +6,16 @@ description: >-
 
 # S3 supported APIs and limitations
 
+## Supported URL styles for API requests to S3 buckets
+
+WEKA supports two URL styles for API requests to S3 buckets: _path-style_ and _virtual-hosted-style_.
+
+<table><thead><tr><th width="212">Style</th><th>URL format</th></tr></thead><tbody><tr><td>Path-style</td><td><code>https://s3.domain-name.com/bucket-name/object-name</code></td></tr><tr><td>Virtual-hosted-style</td><td><code>https://bucket-name.s3.domain-name.com/object-name</code></td></tr></tbody></table>
+
+The difference between the styles is subtle but significant. When using a URL to reference an object, the DNS resolution maps the subdomain name to an IP address. With the path style, the subdomain is always `s3.domain-name.com`. With the virtual-hosted-style, the subdomain is specific to the bucket.
+
+The addressing style used to construct the request is determined by the S3 client sending the request.
+
 ## Supported S3 APIs
 
 The following standard S3 APIs are supported:

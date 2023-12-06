@@ -6,9 +6,9 @@ description: This page provides some examples of using the S3 API.
 
 ## Boto3
 
-[Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) is the official AWS SDK for Python, used to create, configure, and manage AWS services.
+[Boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html), the official AWS SDK for Python, is used to create, configure, and manage AWS services.
 
-The following are examples of defining a resource/client in boto3 for the WEKA S3 service, managing credentials, and pre-signed URLs, generating secure temporary tokens, and using those to run S3 API calls.
+The following are examples of defining a resource/client in boto3 for the WEKA S3 service, managing credentials and pre-signed URLs, generating secure temporary tokens, and using those to run S3 API calls.
 
 ### Installation
 
@@ -20,7 +20,7 @@ There are many ways to set credentials in boto3, as described on the [boto3 cred
 
 ## Resource
 
-Resources represent an object-oriented interface to Amazon Web Services (AWS). They provide a higher-level abstraction than the raw, low-level calls made by service clients. To use resources, invoke the [resource()](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.resource) method of a [Session](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session) and pass in a service name.
+Resources represent an object-oriented interface to Amazon Web Services (AWS). They provide a higher-level abstraction than service clients' raw, low-level calls. To use resources, invoke the [resource()](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session.resource) method of a [Session](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/core/session.html#boto3.session.Session) and pass in a service name.
 
 ```python
 s3 = boto3.resource('s3',
@@ -32,7 +32,7 @@ s3 = boto3.resource('s3',
 
 ## Client
 
-[Clients](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/clients.html) provide a low-level interface to AWS whose methods map close to 1:1 with service APIs. All service operations are supported by clients (in our case, `s3` and `sts`).
+[Clients](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/clients.html) provide a low-level interface to AWS, whose methods map close to 1:1 with service APIs. All service operations are supported by clients (in our case, `s3` and `sts`).
 
 ```python
 s3_client = boto3.client('sts',
@@ -181,13 +181,13 @@ try:
   # upload a file from local file system 'myfile' to bucket 'mybucket' with 'my_uploaded_object' as the object name.
   s3.Bucket('mybucket').upload_file('myfile','my_uploaded_object')
 
-  # download the object 'piano.mp3' from the bucket 'songs' and save it to local FS as /tmp/classical.mp3
+  # download the object 'myfile' from the bucket 'mybucket' and save it to local FS as /tmp/classical.mp3
   s3.Bucket('mybucket').download_file('my_uploaded_object', 'my_downloaded_object')
 
 except ClientError as e:
         logging.error(e)
 
-print "Downloaded 'my_downloaded_object' as 'my_uploaded_object'. "
+print ("Downloaded 'my_downloaded_object' as 'my_uploaded_object'. a")
 
 ```
 

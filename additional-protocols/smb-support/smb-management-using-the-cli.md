@@ -1,7 +1,7 @@
 ---
 description: >-
-  Explore procedures for configuring an SMB cluster over WEKA filesystems and
-  managing the cluster using the CLI.
+  This page provides procedures for setting up an SMB cluster over WEKA
+  filesystems and managing the cluster itself, using the CLI.
 ---
 
 # Manage SMB using the CLI
