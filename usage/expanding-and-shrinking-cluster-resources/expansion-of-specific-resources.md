@@ -64,6 +64,12 @@ weka cluster container apply 0
 
 </details>
 
+After reducing the memory allocation for a container, follow these steps to release hugepages on each container:
+
+1. Stop the container locally. Run `weka local stop`
+2. Release hugepages. Run `weka local run release_hugepages`
+3. Restart the container locally. Run `weka local start`
+
 ### Modify the network configuration
 
 Run the following command lines on the active container:
