@@ -229,6 +229,7 @@
   * [Upgrade legacy persistent volumes for capacity enforcement](appendix/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
   * [Troubleshooting](appendix/weka-csi-plugin/troubleshooting.md)
 * [Convert the cluster architecture from a single-container backend to a multi-container backend](appendix/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
+* [Create a client image](appendix/create-a-client-image.md)
 
 ***
 
