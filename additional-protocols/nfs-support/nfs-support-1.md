@@ -22,7 +22,7 @@ Using the CLI, you can:
 
 ### Set the NFS configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
 
-NFSv4 requires a persistent cluster-wide configuration filesystem for internal operations of the protocol.
+NFSv4 requires a persistent cluster-wide configuration filesystem for the protocol's internal operations.
 
 Use the following command line to set the NFS configuration on the configuration filesystem:
 
@@ -242,27 +242,27 @@ Use the following command lines to delete a rule that causes a client to be part
 
 **Command:** `weka nfs rules`
 
-Use the following command lines to add or delete a rule which causes a client to be part of a client group based on its IP and subnet mask:
+Use the following command lines to add or delete a rule which causes a client to be part of a client group based on its IP and subnet mask (both CIDR and standard subnet mask formats are supported for enhanced flexibility):
 
-`weka nfs rules add ip <name> <ip/subnet mask>`
+`weka nfs rules add ip <name> <ip>`
 
 **Examples**
 
-&#x20;`weka nfs rules add ip client-group1 192.168.114.0/255.255.255.0`\
+&#x20;`weka nfs rules add ip client-group1 192.168.114.0/8`\
 &#x20;`weka nfs rules add ip client-group2 172.16.0.0/255.255.0.0`
 
 #### **Delete IP-based client group rules**
 
-`weka nfs rules delete ip <name> <ip/subnet mask>`
+`weka nfs rules delete ip <name> <ip>`
 
 **Examples**
 
 &#x20;`weka nfs rules delete ip client-group1 192.168.114.0/255.255.255.0`\
-&#x20;`weka nfs rules delete ip client-group2 172.16.0.0/255.255.0.0`
+&#x20;`weka nfs rules delete ip client-group2 172.16.0.0/16`
 
 **Parameters**
 
-<table><thead><tr><th width="167">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid client group name.</td></tr><tr><td><code>ip</code>*</td><td><p>Valid IP address and subnet mask.</p><p>Format: <code>1.1.1.1/255.255.0.0</code></p></td></tr></tbody></table>
+<table><thead><tr><th width="167">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Valid client group name.</td></tr><tr><td><code>ip</code>*</td><td><p>Valid IP address with subnet mask.</p><p>Both CIDR and standard subnet mask formats are supported for enhanced flexibility.</p><p>CIDR format: <code>1.1.1.1/16</code> </p><p>Standard format: <code>1.1.1.1/255.255.0.0</code></p></td></tr></tbody></table>
 
 ### **Manage NFS client permissions**
 
