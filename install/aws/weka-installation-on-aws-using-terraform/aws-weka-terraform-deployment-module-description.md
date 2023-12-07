@@ -44,11 +44,15 @@ provider "aws" {
 
 module "weka_deployment" {
   source             = "weka/weka/aws"
-  version            = "1.0.0"  
+  version            = "1.0.1"  
   prefix             = "weka-tf"
   cluster_name       = "poc"
   availability_zones = ["eu-west-1c"]
   allow_ssh_cidrs    = ["0.0.0.0/0"]
   get_weka_io_token  = "Your get.weka.io token"
+}
+
+output "weka_deployment_output" {
+  value = module.weka_deployment
 }
 ```

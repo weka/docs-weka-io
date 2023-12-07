@@ -6,6 +6,12 @@ Begin by creating a `main.tf` file, tailoring it to your deployment specifics on
 
 ## Create a main.tf file
 
+#### Before you begin
+
+Obtain the latest release of the AWS-WEKA Terraform package from [https://github.com/weka/terraform-aws-weka/releases](https://github.com/weka/terraform-aws-weka/releases) and unpack it in your workstation.
+
+#### Procedure
+
 1. Review the [Terraform example](aws-weka-terraform-deployment-module-description.md#terraform-example) and use it as a reference for creating the `main.tf` according to your deployment specifics on AWS.
 2. Decide whether to use an existing AWS network or create a new one, including a Virtual Private Cloud (VPC) and subnet. Your choice dictates the subsequent network configuration steps:
    * **IAM role setup:** Create IAM roles for essential AWS services, including EC2 Instances, Lambda, Step Functions, and CloudWatch event rules. The Terraform module generates these roles if not explicitly provided.
@@ -14,7 +20,8 @@ Begin by creating a `main.tf` file, tailoring it to your deployment specifics on
      * Configure a secret manager endpoint to safeguard the WEKA password. If not configured, the Terraform module allows you to set it up.
      * In environments without Internet connections, configure EC2, proxy, and S3 gateway endpoints. The Terraform module facilitates this configuration if needed.
 3. Tailor the `main.tf` file to create SMB-W or NFS protocol clusters by adding the relevant code snippet. Adjust parameters like the number of gateways, instance types, domain name, and share naming:
-   * **SMB-W**
+
+* **SMB-W**
 
 ```makefile
 smb_protocol_gateways_number = 3
