@@ -8,11 +8,12 @@ Begin by creating a `main.tf` file, tailoring it to your deployment specifics on
 
 #### Before you begin
 
-Obtain the latest release of the AWS-WEKA Terraform package from [https://github.com/weka/terraform-aws-weka/releases](https://github.com/weka/terraform-aws-weka/releases) and unpack it in your workstation.
+* Obtain the latest release of the ATerraform-AWS-WEKA package from [https://github.com/weka/terraform-aws-weka/releases](https://github.com/weka/terraform-aws-weka/releases) and unpack it in your workstation.
+* The [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) must be installed on the workstation used for the deployment. Check the minimum required Terraform version specified in [https://github.com/weka/terraform-aws-weka](https://github.com/weka/terraform-aws-weka).
 
 #### Procedure
 
-1. Review the [Terraform example](aws-weka-terraform-deployment-module-description.md#terraform-example) and use it as a reference for creating the `main.tf` according to your deployment specifics on AWS.
+1. Review the [Terraform-AWS-WEKA example](aws-weka-terraform-deployment-module-description.md#terraform-aws-weka-example) and use it as a reference for creating the `main.tf` according to your deployment specifics on AWS.
 2. Decide whether to use an existing AWS network or create a new one, including a Virtual Private Cloud (VPC) and subnet. Your choice dictates the subsequent network configuration steps:
    * **IAM role setup:** Create IAM roles for essential AWS services, including EC2 Instances, Lambda, Step Functions, and CloudWatch event rules. The Terraform module generates these roles if not explicitly provided.
    * **Security group:** Optionally, provide the security group ID or let the Terraform module create one for you.

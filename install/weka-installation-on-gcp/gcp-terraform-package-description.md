@@ -1,19 +1,19 @@
-# GCP Terraform package description
+# Terraform-GCP-WEKA module description
 
-WEKA provides a ready-to-deploy [GCP Terraform package](https://github.com/weka/gcp-tf) you can customize for installing the WEKA cluster on GCP.
+WEKA provides a ready-to-deploy Terraform-GCP-WEKA module you can customize for installing the WEKA cluster on GCP.
 
-The GCP Terraform package contains the following modules:
+The module contains the following modules:
 
 * **setup\_network**: includes vpcs, subnets, peering, firewall, and health check.
 * **service\_account**: includes the service account used for deployment with all necessary permissions.
 * **deploy\_weka**: includes the actual WEKA deployment, instance template, cloud functions, workflows, job schedulers, secret manager, buckets, and health check.
 * **shared\_vpcs** (_optional_): includes VPC sharing the WEKA deployment network with another hosting project. For example, when deploying a private network.
 
-See the README files in the GCP-Terraform package for more details about the modules and their properties.
+Refer to the [terraform-gcp-weka](https://github.com/weka/terraform-gcp-weka) module for more details.
 
-## GCP Terraform package supported deployment types
+## GCP Terraform module supported deployment types
 
-The GCP-Terraform package supports the following deployment types:
+The Terraform-GCP-WEKA module supports the following deployment types:
 
 * **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform for downloading the WEKA release from the public [get.weka.io](https://get.weka.io) service. The following examples are provided:
   * Public VPC
@@ -29,28 +29,45 @@ The GCP-Terraform package supports the following deployment types:
   * Private VPC with multiple clusters
   * Private VPC with a shared VPC
 
-## Terraform variables file
+## Terraform-GCP-WEKA example
 
-Each deployment type includes a variables file `terraform.tfvars` that contains only the variables required for the relevant deployment type. The following is an example of the public VPC variables file. See the README files in the GCP-Terraform package for the other variables files.
+The following is a basic example in which you provide the minimum detail of your cluster, and the Terraform module completes the remaining required resources, such as cluster size, machine type, and networking parameters.
 
-### Public VPC terraform file example&#x20;
+You can use this example as a reference to create the `main.tf` file.
 
-The following is the content of the `terraform.tfvars` file for the public VPC example. As part of the **write** phase, you customize the values according to your deployment.
+```hcl
+provider "google" {
+  project = "my_project_name"
+  region  = "europe-west1"
+}
 
+variable "get_weka_io_token" {}
+
+module "weka_deployment" {
+  source                         = "weka/weka/gcp"
+  version                        = "4.0.0"
+  cluster_name                   = "my_cluster_name"
+  project_id                     = "PROJECT_ID"
+  prefix                         = "my_prefix"
+  region                         = "europe-west1"
+  zone                           = "europe-west1-b"
+  cluster_size                   = 6
+  nvmes_number                   = 2
+  get_weka_io_token              = var.get_weka_io_token
+  machine_type                   = "c2-standard-8"
+  subnets_range                  = ["10.222.0.0/24", "10.223.0.0/24", "10.224.0.0/24", "10.225.0.0/24"]
+  allow_ssh_cidrs                = ["0.0.0.0/0"]
+  allow_weka_api_cidrs           = ["0.0.0.0/0"]
+
+}
+output "weka_cluster" {
+  value = module.weka_deployment
+}
 ```
-project_id               = "myProjectID"
-region                   = "europe-west1"
-zone                     = "europe-west1-b"
-subnets_cidr_range       = ["10.0.0.0/24", "10.1.0.0/24", "10.2.0.0/24", "10.3.0.0/24"]
-cluster_size             = 7
-nvmes_number             = 2
-vpc_connector_range      = "10.8.0.0/28"
-cluster_name             = "myClusterName"
-```
 
-**Variable descriptions**
-
-<table><thead><tr><th width="293">Variable</th><th width="259">Description</th><th>Limitations</th></tr></thead><tbody><tr><td><code>project_id</code></td><td>Your GCP project name.</td><td></td></tr><tr><td><code>region</code></td><td>Wide geographic region.<br>See <a href="required-services-and-supported-regions.md">Required services and supported regions</a>.<br></td><td>The region must support the required services.</td></tr><tr><td><code>zone</code></td><td>Specific zone in the region.</td><td></td></tr><tr><td><code>subnets_cidr_range</code></td><td>IP addresses within your range. Provide one IP address per NIC.</td><td></td></tr><tr><td><code>cluster_size</code></td><td>The number of instances to create.</td><td>The minimum cluster size is 7.</td></tr><tr><td><code>nvmes_number</code></td><td><code>1</code>, <code>2</code>, <code>4</code>, or <code>8</code>.<br>Each NVME size is 375 GB.</td><td></td></tr><tr><td><code>vpc_connector_range</code></td><td>It must be within your IP space.</td><td></td></tr><tr><td><code>cluster_name</code></td><td>The name for the cluster as you choose. It must be in lowercase and without special characters.</td><td></td></tr></tbody></table>
+{% hint style="info" %}
+For the parameters' descriptions, refer to the [terraform-gcp-weka](https://github.com/weka/terraform-gcp-weka) module
+{% endhint %}
 
 ## Private network considerations
 
@@ -64,7 +81,7 @@ Depending on the required network topology, the following parameters are optiona
 
 ## Object store integration
 
-The WEKA Terraform package can automate the addition of a Google Cloud Storage bucket for use as object storage.
+The terraform-gcp-weka module can automate the addition of a Google Cloud Storage bucket for use as object storage.
 
 **Procedure**
 
@@ -75,14 +92,14 @@ The WEKA Terraform package can automate the addition of a Google Cloud Storage b
 
 Example:
 
-```
+```hcl
 set_obs_integration=true 
 obs_name="myBucketName"
 tiering_ssd_percent = 20
 ```
 
 {% hint style="info" %}
-If you do not specify the name of an existing bucket using `obs_name`, but specify `set_obs_integration=true` then a new Cloud Storage bucket is created automatically.\
+If you do not specify the name of an existing bucket using `obs_name` but specify `set_obs_integration=true` then a new Cloud Storage bucket is created automatically.\
 The name format of the new bucket is: \
 `<project_id>-<prefix>-<cluster_name>-obs`
 {% endhint %}

@@ -1,8 +1,8 @@
 # Deployment on GCP using Terraform
 
-WEKA provides a GCP-Terraform package that contains Terraform modules and variables file examples that you can customize according to your deployment needs. The installation is based on applying the customized Terraform variables file to a predefined GCP project.&#x20;
+WEKA provides a Terraform-GCP-WEKA module with a `main.tf` file you create according to your deployment needs.&#x20;
 
-Applying the GCP-Terraform variables file performs the following:
+Applying the created `main.tf` file performs the following:
 
 * Creates VPC networks and subnets on the GCP project.
 * Deploys GCP instances.
@@ -14,10 +14,10 @@ Applying the GCP-Terraform variables file performs the following:
 
 Before installing the WEKA software on GCP, the following prerequisites must be met:
 
-* [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install) (it is pre-installed if you use the Cloud Shell).
-* [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (it is pre-installed if you use the Cloud Shell).
-* Obtain the latest release of the WEKA GCP-Terraform package from [https://github.com/weka/terraform-gcp-weka/releases](https://github.com/weka/terraform-gcp-weka/releases) and unpack it in your workstation.&#x20;
-* Initialize the GCP-Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
+* Obtain the latest release of the terraform-gcp-weka module from [https://github.com/weka/terraform-gcp-weka/releases](https://github.com/weka/terraform-gcp-weka/releases) and unpack it in your workstation.&#x20;
+* [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install): It is pre-installed if you use the Cloud Shell.
+* [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli): It is pre-installed if you use the Cloud Shell. Check the minimum required Terraform version specified in the [terraform-gcp-weka](ttps://github.com/weka/terraform-gcp-weka) repository.
+* Initialize the Terraform module using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 *   The **Compute Engine** and **Workflows API** services must be enabled to allow the following services:
 
     ```
@@ -37,7 +37,7 @@ Before installing the WEKA software on GCP, the following prerequisites must be 
     workflows.googleapis.com
     eventarc.googleapis.com
     ```
-* If the customer does not provide the service account email, the user running the Terraform package requires the `iam.serviceAccountAdmin` role.&#x20;
+* If the customer does not provide the service account email, the user running the Terraform module requires the `iam.serviceAccountAdmin` role.&#x20;
 *   The service account used for the deployment must have the following roles:
 
     ```
@@ -75,23 +75,45 @@ Before installing the WEKA software on GCP, the following prerequisites must be 
         "roles/storage.objectAdmin"
         ```
 
-## **Installation**
+## **Create a main.tf file**
 
-1. In the WEKA GCP-Terraform unpacked package, go to the **examples** directory and locate the required deployment type example.
-2. Select the Terraform variables file (`terraform.tfvars`) and customize it (see the related topic below).
+1. Review the [Terraform-GCP-WEKA example](gcp-terraform-package-description.md#terraform-gcp-weka-example) and use it as a reference for creating the `main.tf` according to your deployment specifics on GCP.
+2. Decide whether to use an existing GCP network or create a new one, including a Virtual Private Cloud (VPC) and subnet. Your choice dictates the subsequent network configuration steps:
+   * **IAM role setup:** Create IAM roles for essential GCP services. The Terraform module generates these roles if not explicitly provided.
+   * **Security group:** Optionally, provide the security group ID or let the Terraform module create one for you.
+   * **Endpoint configuration:**
+     * Configure a secret manager endpoint to safeguard the WEKA password. If not configured, the Terraform module allows you to set it up.
+     * In environments without Internet connections, configure the machine, proxy, and S3 gateway endpoints. The Terraform module facilitates this configuration if needed.
+3. Tailor the `main.tf` file to create SMB-W or NFS protocol clusters by adding the relevant code snippet. Adjust parameters like the number of gateways, instance types, domain name, and share naming:
 
-<figure><img src="../../.gitbook/assets/gcp_tfvars_example (1).png" alt=""><figcaption><p>Location of the terraform.tfvars file in one of the provided examples</p></figcaption></figure>
+* **SMB-W**
 
-3. To validate the configuration, run `terraform plan`.
-4. Once the configuration validation is successful, run `terraform apply`.&#x20;
+<pre><code><strong>smb_protocol_gateways_number = 3
+</strong>smb_protocol_gateway_instance_type = c2-standard-8 
+smbw_enabled = true
+smb_domain_name = "CUSTOMER_DOMAIN"
+smb_share_name = "SPECIFY_SMB_SHARE_NAMING"
+smb_setup_protocol = true
+</code></pre>
 
-Terraform applies the configuration on the specified GCP project.
+* **NFS**
 
+```
+nfs_protocol_gateways_number = 1
+nfs_protocol_gateway_instance_type = c2-standard-8
+nfs_setup_protocol = true
+```
 
+4. Add WEKA POSIX clients (optional)**:** If needed, add [WEKA POSIX clients](../../overview/weka-client-and-mount-modes.md) to support your workload by incorporating the specified variables into the `main.tf` file:
 
-**Related topic**
+```makefile
+clients_number = 2
+client_instance_type = c2-standard-8
+```
 
-[gcp-terraform-package-description.md](gcp-terraform-package-description.md "mention")
+## Apply the main.tf file
+
+Once you complete the main.tf settings, apply it: Run `terraform apply`
 
 ## **Upgrade the WEKA version**
 
@@ -104,7 +126,7 @@ Ensure the cluster does not undergo a scale-up or scale-down process before and 
 **Procedure**
 
 1. Perform the upgrade process. See [upgrading-weka-versions.md](../../usage/upgrading-weka-versions.md "mention").
-2. Update the `weka_version` variable in the Terraform deployment file (`terraform.tfvars`).
+2. Update the `weka_version` parameter in the `main.tf` file.
 3. Run `terraform apply`.
 
 ## Rollback
@@ -119,7 +141,7 @@ If you need to preserve your data, create a snapshot using [snap-to-object](../.
 
 To prepare the Weka cluster for termination, run the following command line (replace `Cluster_Name` with the actual cluster name):
 
-```
+```bash
 curl -m 70 -X POST ${google_cloudfunctions_function.terminate_cluster_function.https_trigger_url} \
 -H "Authorization:bearer $(gcloud auth print-identity-token)" \
 -H "Content-Type:application/json" \

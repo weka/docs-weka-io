@@ -8,7 +8,7 @@ description: >-
 
 ## WEKA on GCP overview
 
-Leveraging GCP's advantages, WEKA offers a customizable GCP-Terraform package for deploying the WEKA cluster on GCP. In GCP, WEKA operates on instances, each capable of using up to eight partitions of drives on the connected physical server (without direct drive usage). These drives can be shared among partitions for other clients on the same server.
+Leveraging GCP's advantages, WEKA offers a customizable **terraform-gcp-weka** module for deploying the WEKA cluster on GCP. In GCP, WEKA operates on instances, each capable of using up to eight partitions of drives on the connected physical server (without direct drive usage). These drives can be shared among partitions for other clients on the same server.
 
 WEKA requires a minimum of four VPC networks, each associated with one of the instances. This configuration aligns with the four key WEKA processes: Compute, Drive, Frontend, and Management, with each process requiring a dedicated network interface as follows:
 

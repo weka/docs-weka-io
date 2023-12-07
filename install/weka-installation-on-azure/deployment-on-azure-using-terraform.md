@@ -1,15 +1,15 @@
 # Deployment on Azure using Terraform
 
-The Azure-WEKA Terraform package contains modules and examples to customize according to your deployment needs. The installation is based on applying the customized Terraform variables file to a predefined Azure subscription.&#x20;
+The Terraform-Azure-WEKA module contains modules to customize according to your deployment needs. The installation is based on applying the customized Terraform variables file to a predefined Azure subscription.&#x20;
 
-Applying the Terraform variables file performs the following:
+Applying the Terraform module performs the following:
 
 * Creates resources in a predefined resource group, such as virtual machines, network interfaces, function apps, load balancer, and more.
 * Deploys Azure virtual machines.
 * Installs the WEKA software.
 * Configures the WEKA cluster**.**
 
-The total deployment time is about 30 minutes. Half of that time is for resource deployment, the remainder is for the WEKA cluster installation and configuration.
+The total deployment time is about 30 minutes. Half of that time is for resource deployment. The remainder is for the WEKA cluster installation and configuration.
 
 {% hint style="info" %}
 If you do not require auto-scaling support and require a lower level of privileges, an essential WEKA deployment is available. This deployment option eliminates the need for function apps and load balancer resources.
@@ -21,12 +21,12 @@ For details, see [https://github.com/weka/terraform-azure-weka-essential](https:
 
 Before installing the WEKA software on Azure, the following prerequisites must be met:
 
+* Obtain the latest release of the Azure-WEKA Terraform package from [https://github.com/weka/terraform-azure-weka/releases](https://github.com/weka/terraform-azure-weka/releases) and unpack it in your workstation.
 * The following must be installed on the workstation used for the deployment:
   * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
-  * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+  * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (check the minimum required Terraform version specified in the [Terraform-Azure-WEKA](https://github.com/weka/terraform-azure-weka) module)
 * For an ARM-based MAC workstation (for example, M1 or M2), see specific instructions below.
-* Obtain the latest release of the Azure-WEKA Terraform package from [https://github.com/weka/terraform-azure-weka/releases](https://github.com/weka/terraform-azure-weka/releases) and unpack it in your workstation.
-* Initialize the Azure-WEKA Terraform package using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
+* Initialize the Terraform-Azure-WEKA module using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 * Required permissions on Azure:
   * Privileged Role Administrator
   * Storage Blob Data Owner
@@ -48,28 +48,54 @@ Follow these additional requirements to get Terraform working on an Arm-based Ma
 
 </details>
 
-## Deploy WEKA on Azure using Terraform
+## **Create a main.tf file**
 
-1. You can use one of the provided examples as a template for the required deployment. \
-   Go to the relevant directory in the examples directory and customize the Terraform variables file: `vars.auto.tfvars`.\
-   Ensure the `prefix` and `cluster_name` variables are unique across the Azure environment.    You can optionally also add your Weka token (to download the Weka software) with `get_weka_io_token` and your Microsoft subscription with `subscription_id,` or you can supply them later when running `terraform plan` and `terraform apply`.
+1. Review the [Terraform-Azure-WEKA example](azure-weka-terraform-package-description.md#terraform-azure-weka-example) and use it as a reference for creating the `main.tf` according to your deployment specifics on Azure.
+2. Decide whether to use an existing Azure network or create a new one, including a Virtual Network (VNet) and subnet. Your choice dictates the subsequent network configuration steps:
+   * **IAM role setup:** Create IAM roles for essential Azure services. The Terraform module generates these roles if not explicitly provided.
+   * **Security group:** Optionally, provide the security group ID or let the Terraform module create one for you.
+   * **Endpoint configuration:**
+     * Configure a secret manager endpoint to safeguard the WEKA password. If not configured, the Terraform module allows you to set it up.
+     * In environments without Internet connections, configure the machine, proxy, and S3 gateway endpoints. The Terraform module facilitates this configuration if needed.
+3. Tailor the `main.tf` file to create SMB-W or NFS protocol clusters by adding the relevant code snippet. Adjust parameters like the number of gateways, instance types, domain name, and share naming:
 
-{% hint style="info" %}
-The example templates are simplified and have the minimum variable inputs to customize. For additional variable inputs to customize, you can modify their default values in the main **`variables.tf`** file, or add them to the Terraform variables file. See the README in the Azure-WEKA Terraform package for the complete list of variable inputs.
-{% endhint %}
+* **SMB-W**
 
-2. To validate the configuration, run `terraform plan`. You are prompted for your get.weka.io token and Microsoft subscription ID if these were not added as variables in step one or supplied as variables as part of the terraform command.
-3. Once the configuration validation is successful, run `terraform apply`.\
-   Terraform applies the configuration on the specified Azure subscription and displays the cluster help commands.
+<pre><code><strong>smb_protocol_gateways_number = 3
+</strong>smb_protocol_gateway_instance_type = Standard_L48s_v3 
+smbw_enabled = true
+smb_domain_name = "CUSTOMER_DOMAIN"
+smb_share_name = "SPECIFY_SMB_SHARE_NAMING"
+smb_setup_protocol = true
+</code></pre>
 
-### Cluster help commands
+* **NFS**
+
+```
+nfs_protocol_gateways_number = 1
+nfs_protocol_gateway_instance_type = Standard_L48s_v3
+nfs_setup_protocol = true
+```
+
+4. Add WEKA POSIX clients (optional)**:** If needed, add [WEKA POSIX clients](../../overview/weka-client-and-mount-modes.md) to support your workload by incorporating the specified variables into the `main.tf` file:
+
+```makefile
+clients_number = 2
+client_instance_type = Standard_L48s_v3
+```
+
+## Apply the main.tf file
+
+Once you complete the main.tf settings, apply it: Run `terraform apply`
+
+## Cluster help commands
 
 The system displays the cluster help commands enabling you to perform the following:
 
 * Get the clusterization status
 * Get the cluster status
 * Fetch the WEKA cluster password
-* View the path to ssh keys
+* View the path to SSH keys
 * View the virtual machine IP addresses
 * Resize the cluster
 

@@ -19,20 +19,31 @@ When deploying a WEKA cluster, it is possible to create clients using Terraform.
 
 ## Mount the filesystem
 
-1. Create a mount point (only once):\
-   `mkdir /mnt/weka`
-2. Install the WEKA agent on your client machine (only once):\
-   `curl <backend server IP address>:14000/dist/v1/install | sh`\
-   \
-   Example:\
-   `curl http://10.0.0.7:14000/dist/v1/install | sh`
-3. Detect the existing network configuration. Run the command: `ip a`.
+1. Create a mount point (only once):
+
+```
+mkdir /mnt/weka
+```
+
+1. Install the WEKA agent on your client machine (only once):
+
+```bash
+curl <backend server IP address>:14000/dist/v1/install | sh
+```
+
+Example:
+
+```bash
+curl http://10.0.0.7:14000/dist/v1/install | sh
+```
+
+2. Detect the existing network configuration. Run the command: `ip a`.
 
 <details>
 
 <summary><code>ip a</code> command output example</summary>
 
-<pre class="language-bash"><code class="lang-bash"><strong>root@jack:~# ip a
+<pre class="language-bash" data-overflow="wrap"><code class="lang-bash"><strong>root@jack:~# ip a
 </strong>1: lo: &#x3C;LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -63,12 +74,13 @@ When deploying a WEKA cluster, it is possible to create clients using Terraform.
 
 </details>
 
-4. Once the WEKA cluster runs, you can mount clients to the filesystem using the following command:
+3. Once the WEKA cluster runs, you can mount clients to the filesystem using the following command:
 
-```
+{% code overflow="wrap" %}
+```bash
 mount -t wekafs <backend-server-IP-address>/<filesystem-name> -o net=<VF interface>/<synthetic network interface IP address>/mask -o mgmt_ip=<Management-IP> /mnt/weka
-
 ```
+{% endcode %}
 
 Where:
 
@@ -78,8 +90,8 @@ Where:
 
 Example:
 
-{% code fullWidth="false" %}
-```
+{% code overflow="wrap" fullWidth="false" %}
+```bash
 mount -t wekafs 10.0.0.7/default -o net=enP39539s2np0/10.0.0.31/24 -o mgmt_ip=10.0.0.30 /mnt/weka
 
 ```

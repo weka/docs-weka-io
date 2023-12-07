@@ -1,19 +1,19 @@
-# AWS-WEKA Terraform deployment module description
+# Terraform-AWS-WEKA module description
 
-AWS-WEKA Terraform package is an open-source repository located on [GitHub](https://github.com/weka/terraform-aws-weka/tree/main). It contains modules and examples to customize the WEKA cluster installation on AWS. The default protocol deployed using the Terraform package is POSIX.
+The [Terraform-AWS-WEKA](https://github.com/weka/terraform-aws-weka) module is an open-source repository. It contains modules to customize the WEKA cluster installation on AWS. The default protocol deployed using the module is POSIX.
 
-The AWS-WEKA Terraform package supports public and private cloud deployments. All deployment types require passing the `get.weka.io` token to Terraform for downloading the WEKA release from the public [get.weka.io](https://get.weka.io) service.
+The Terraform-AWS-WEKA module supports public and private cloud deployments. All deployment types require passing the `get.weka.io` token to Terraform for downloading the WEKA release from the public [get.weka.io](https://get.weka.io) service.
 
 {% hint style="info" %}
 The WEKA release can only be downloaded over the internet if the private cloud network has NAT Gateway associated.
 {% endhint %}
 
-## AWS-WEKA Terraform package components
+## Terraform-AWS-WEKA module components
 
-The AWS-WEKA Terraform package consists of the following components:
+The Terraform-AWS-WEKA module consists of the following components:
 
 * **Required module:**
-  * WEKA Root Module located in the main Terraform package.
+  * WEKA Root Module located in the main Terraform module.
 * **Optional sub-modules:**
   * **protocol\_gateways:** Enables creating dedicated WEKA Frontend servers for protocol access (NFS, SMB, or SMB-W).
   * **clients:** Enables creating stateless WEKA clients that automatically join the WEKA cluster during cluster creation. The WEKA clients host applications or workloads.
@@ -22,13 +22,13 @@ The AWS-WEKA Terraform package consists of the following components:
   * **network:** Creates VPC, Internet Gateway/NAT, public/private subnets, and so on if pre-existing network variables are not supplied in advance.
   * **security\_group:** Automatically creates the required security group if not provided in advance.
 
-### Terraform example
+### Terraform-AWS-WEKA example
 
 The following is a basic example in which you provide the minimum detail of your cluster, and the Terraform module completes the remaining required resources, such as VPC, subnets, security group, placement group, DNS zone, and IAM roles.
 
-You can use this example as a reference to set the `main.tf` file.
+You can use this example as a reference to create the `main.tf` file.
 
-```
+```hcl
 terraform {
   required_version = ">= 1.4.6"
   required_providers {
@@ -56,3 +56,7 @@ output "weka_deployment_output" {
   value = module.weka_deployment
 }
 ```
+
+{% hint style="info" %}
+For the parameters' descriptions, refer to the [terraform-aws-weka](https://github.com/weka/terraform-aws-weka) module.
+{% endhint %}
