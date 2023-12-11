@@ -105,7 +105,7 @@ Use the following command line to add an S3 IAM policy:
 
 **Parameters**
 
-<table><thead><tr><th width="237">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy-name</code>*</td><td>Name of the IAM policy to add.</td></tr><tr><td><code>policy-file</code>*</td><td>Path to the custom JSON file representing an IAM policy for anonymous access. <br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</td></tr></tbody></table>
+<table><thead><tr><th width="237">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy-name</code>*</td><td>Name of the IAM policy to add.</td></tr><tr><td><code>policy-file</code>*</td><td>Path to the custom JSON file representing an IAM policy for anonymous access. <br>See  <a data-mention href="../s3-limitations.md#supported-s3-policy-actions">#supported-s3-policy-actions</a>.</td></tr></tbody></table>
 
 ## Delete an IAM policy <a href="#creating-a-new-iam-policies" id="creating-a-new-iam-policies"></a>
 
