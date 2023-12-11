@@ -100,12 +100,10 @@ If you forward data from the Local WEKA Home to the Cloud WEKA Home, ensure the 
 
 ### 3. Download the Local WEKA Home and Minikube packages
 
-Download the latest _wekahome-vm-docker-images_ and _weka\_minikube_  packages to the dedicated management server.
+Download the latest packages of the following to the dedicated management server:
 
-* Minikube for Local WEKA Home download current location and version:\
-  `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/weka_minikube.tar.gz`
-* Local WEKA Home download current location and version:\
-  `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/wekahome-vm-docker-images.tar.gz`
+* **Local WEKA Home:** [https://get.weka.io/ui/lwh/download](https://get.weka.io/ui/lwh/download).
+* **Minikube for Local WEKA Home:** `curl -OL https://home-weka-io-offline-packages-dev.s3.eu-west-1.amazonaws.com/weka_minikube.tar.gz`
 
 ### 4. Install the Minikube
 
