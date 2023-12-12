@@ -62,14 +62,14 @@ Before installing the WEKA software on GCP, the following prerequisites must be 
         ```
 
 
-    *   To create a new bucket (state and obs):
+    *   To create a new bucket (for Terraform state and WEKA OBS):
 
         ```jsx
         "roles/storage.admin"
         ```
 
 
-    *   To use an existing bucket (state and obs):
+    *   To use an existing bucket (for Terraform state and WEKA OBS):
 
         ```jsx
         "roles/storage.objectAdmin"
@@ -131,15 +131,15 @@ Ensure the cluster does not undergo a scale-up or scale-down process before and 
 
 ## Rollback
 
-If a rollback is required or the Weka cluster is no longer required on GCP, you must prepare the Weka cluster for termination first and only then use the `terraform destroy` action.
+If a rollback is required or the WEKA cluster is no longer required on GCP, you must prepare the WEKA cluster for termination first and only then use the `terraform destroy` action.
 
-The preparation for the Weka cluster for termination can also be used if you need to retain the GCP resources (to save time) and deploy a new Weka cluster. &#x20;
+The preparation for the WEKA cluster for termination can also be used if you need to retain the GCP resources (to save time) and deploy a new WEKA cluster. &#x20;
 
 {% hint style="info" %}
 If you need to preserve your data, create a snapshot using [snap-to-object](../../fs/snap-to-obj/).
 {% endhint %}
 
-To prepare the Weka cluster for termination, run the following command line (replace `Cluster_Name` with the actual cluster name):
+To prepare the WEKA cluster for termination, run the following command line (replace `Cluster_Name` with the actual cluster name):
 
 ```bash
 curl -m 70 -X POST ${google_cloudfunctions_function.terminate_cluster_function.https_trigger_url} \
@@ -148,4 +148,4 @@ curl -m 70 -X POST ${google_cloudfunctions_function.terminate_cluster_function.h
 -d '{"name":"Cluster_Name"}'
 ```
 
-Once the Weka cluster is prepared for termination, you can deploy a new Weka cluster or run the `terraform destroy` action.
+Once the WEKA cluster is prepared for termination, you can deploy a new WEKA cluster or run the `terraform destroy` action.

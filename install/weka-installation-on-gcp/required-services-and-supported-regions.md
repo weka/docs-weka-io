@@ -29,7 +29,7 @@ Other services used or enabled:
 To ensure support for a specific region, it must meet the requirements listed [above](required-services-and-supported-regions.md#required-services-used-in-weka-on-gcp).
 
 {% hint style="info" %}
-If the region you're interested in is not on the supported list, verify the availability of these services in that region. If they are available and your region is not listed, contact the WEKA [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for validation.
+If the region you want to deploy in is not on the supported list, verify the availability of these services in that region. If they are available and your region is not listed, contact the WEKA [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for validation.
 {% endhint %}
 
 ### Americas

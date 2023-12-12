@@ -2,7 +2,7 @@
 
 WEKA supports client instances with at least two NICs, one for management and one for the frontend data. It is possible to add more NICs for redundancy and higher performance.
 
-A client with the same VPC network and subnet as the GCP can use the cluster. If a client is on another VPC network, peering is required between the VPC networks.
+A client with the same VPC networks and subnets as the cluster can connect without additional configuration. If a client is on another VPC network, peering is required between the VPC networks.
 
 The client instance must be in the same region as the WEKA cluster on GCP.
 
@@ -14,7 +14,7 @@ The client instance must be in the same region as the WEKA cluster on GCP.
 mkdir /mnt/weka
 ```
 
-2. Install the Weka agent (only once):
+2. Install the WEKA agent (only once):
 
 ```bash
 curl <backend server http address>:14000/dist/v1/install | sh
