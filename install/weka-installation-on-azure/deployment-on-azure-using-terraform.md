@@ -21,7 +21,6 @@ For details, see [https://github.com/weka/terraform-azure-weka-essential](https:
 
 Before installing the WEKA software on Azure, the following prerequisites must be met:
 
-* Obtain the latest release of the Azure-WEKA Terraform package from [https://github.com/weka/terraform-azure-weka/releases](https://github.com/weka/terraform-azure-weka/releases) and unpack it in your workstation.
 * The following must be installed on the workstation used for the deployment:
   * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
   * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (check the minimum required Terraform version specified in the [Terraform-Azure-WEKA](https://github.com/weka/terraform-azure-weka) module)
