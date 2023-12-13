@@ -129,17 +129,17 @@ Ensure the cluster does not undergo a scale-up or scale-down process before and 
 2. Update the `weka_version` parameter in the `main.tf` file.
 3. Run `terraform apply`.
 
-## Rollback
+## Removal or rollback of the WEKA cluster
 
-If a rollback is required or the WEKA cluster is no longer required on GCP, you must prepare the WEKA cluster for termination first and only then use the `terraform destroy` action.
+If a rollback is required or the WEKA cluster is no longer required on GCP, first terminate the WEKA cluster and then use the `terraform destroy` action.
 
-The preparation for the WEKA cluster for termination can also be used if you need to retain the GCP resources (to save time) and deploy a new WEKA cluster. &#x20;
+The termination of the WEKA cluster can also be used if you need to retain the GCP resources (such as VPCs and cloud functions to save time on the next deployment) and then deploy a new WEKA cluster when you are ready. &#x20;
 
 {% hint style="info" %}
-If you need to preserve your data, create a snapshot using [snap-to-object](../../fs/snap-to-obj/).
+If you need to preserve your data, first create a snapshot using [snap-to-object](../../fs/snap-to-obj/).
 {% endhint %}
 
-To prepare the WEKA cluster for termination, run the following command line (replace `Cluster_Name` with the actual cluster name):
+To terminate the WEKA cluster, run the following command (replace the `trigger_url` with the actual trigger URL and `Cluster_Name` with the actual cluster name):
 
 ```bash
 curl -m 70 -X POST ${google_cloudfunctions_function.terminate_cluster_function.https_trigger_url} \
@@ -148,4 +148,6 @@ curl -m 70 -X POST ${google_cloudfunctions_function.terminate_cluster_function.h
 -d '{"name":"Cluster_Name"}'
 ```
 
-Once the WEKA cluster is prepared for termination, you can deploy a new WEKA cluster or run the `terraform destroy` action.
+If you do not know the trigger URL or cluster name, run the `terraform output`command to display them.
+
+Once the WEKA cluster is terminated, you can deploy a new WEKA cluster or run the `terraform destroy` action.

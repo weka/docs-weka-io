@@ -8,7 +8,7 @@ Begin by creating a `main.tf` file, tailoring it to your deployment specifics on
 
 #### Before you begin
 
-* Obtain the latest release of the ATerraform-AWS-WEKA package from [https://github.com/weka/terraform-aws-weka/releases](https://github.com/weka/terraform-aws-weka/releases) and unpack it in your workstation.
+* Obtain the latest release of the Terraform-AWS-WEKA package from [https://github.com/weka/terraform-aws-weka/releases](https://github.com/weka/terraform-aws-weka/releases) and unpack it in your workstation.
 * The [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) must be installed on the workstation used for the deployment. Check the minimum required Terraform version specified in [https://github.com/weka/terraform-aws-weka](https://github.com/weka/terraform-aws-weka).
 
 #### Procedure

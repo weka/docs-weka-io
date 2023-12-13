@@ -37,7 +37,6 @@ You can use this example as a reference to create the `main.tf` file.
 
 ```hcl
 provider "google" {
-  project = "my_project_name"
   region  = "europe-west1"
 }
 
@@ -51,7 +50,7 @@ module "weka_deployment" {
   prefix                         = "my_prefix"
   region                         = "europe-west1"
   zone                           = "europe-west1-b"
-  cluster_size                   = 6
+  cluster_size                   = 7
   nvmes_number                   = 2
   get_weka_io_token              = var.get_weka_io_token
   machine_type                   = "c2-standard-8"
