@@ -8,9 +8,9 @@ description: >-
 
 NFS (Network File System) is a protocol that enables clients to access the WEKA filesystem without requiring WEKA's client software. This leverages the standard NFS implementation of the client's operating system.
 
-WEKA supports an advanced NFS implementation, NFS-W, designed to overcome inherent limitations in the NFS protocol. NFS-W is compatible with NFSv3 and NFSv4[^1] protocols, offering enhanced capabilities, including support for more than 16 security groups for users.
+WEKA supports an advanced NFS implementation, NFS-W, designed to overcome inherent limitations in the NFS protocol. NFS-W is compatible with NFSv3 and NFSv4[^1] protocols, offering enhanced capabilities, including support for more than 16 user security groups.
 
-For backward compatibility, the legacy NFS stack is also available, supporting only the NFSv3 protocol and a maximum of 16 security groups for users.
+For backward compatibility, the legacy NFS stack is also available, supporting only the NFSv3 protocol and a maximum of 16 user security groups.
 
 ## NFS service deployment guidelines and requirements
 
@@ -22,11 +22,17 @@ NFSv4 requires a persistent cluster-wide configuration filesystem for internal o
 
 ### **Interface groups**
 
-Interface groups define the servers and ports that provide the NFS service. The NFS service requires one or more interface groups. An interface group consists of the following:
+An interface group is a configuration framework designed to optimize resiliency among NFS servers. It enables the seamless migration of IP addresses, known as floating IPs, from an unhealthy server to a healthy one, ensuring continuous and uninterrupted service availability.
 
-* A collection of WEKA servers with a network port for each server, where all the ports must be associated with the same subnets.
+An interface group consists of the following:
+
+* A collection of WEKA servers with a network port for each server, where all the ports must be associated with the same subnets. For resiliency, a minimum of two NFS servers are required.
 * A collection of floating IPs that serve the NFS protocol on the servers and ports. All IP addresses must be associated with the same subnet.
 * A routing configuration for the IPs. The IP addresses must comply with the IP network configuration.
+
+{% hint style="info" %}
+Floating IPs are not supported in cloud environments.
+{% endhint %}
 
 An interface group can have only a single port. Therefore, two interface groups are required to support High Availability (HA) in NFS. Consider the network topology when assigning the other server ports to these interface groups to ensure no single point of failure exists in the switch.
 

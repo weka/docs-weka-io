@@ -102,10 +102,6 @@ The following command line adds IPs in the range `10.0.1.101` to `10.0.1.118` to
 
 <table><thead><tr><th width="222">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Interface group name</td></tr><tr><td><code>ips</code>*</td><td>Valid IP range</td></tr></tbody></table>
 
-{% hint style="info" %}
-Cloud environments do not support interface group IPs.
-{% endhint %}
-
 ### Configure the service mountd port
 
 The mountd service receives requests from clients to mount to the NFS server. In NFS-W, it is possible to set it explicitly rather than have it randomly selected on each server startup. This allows an easier setup of the firewalls to allow that port.
