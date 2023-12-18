@@ -27,22 +27,16 @@ You can upload a snapshot to a local, remote, or both object store buckets.
 
 ![Upload a snapshot to the object store](../../.gitbook/assets/wmng\_upload\_snapshot\_menu.png)
 
-3\. A relevant message appears if a local or remote object store bucket is not attached to the\
-&#x20;   filesystem. It enables opening a dialog to select an object store bucket and attach it to the\
-&#x20;   filesystem. To add an object store, select **Yes**.
-
-4\. In the Attach Object Store to Filesystem dialog, select the object store bucket to attach the\
-&#x20;   snapshot.
+3. A relevant message appears if a local or remote object store bucket is not attached to the filesystem. It enables opening a dialog to select an object store bucket and attach it to the filesystem. To add an object store, select **Yes**.
+4. In the Attach Object Store to Filesystem dialog, select the object store bucket to attach the snapshot.
 
 ![Upload a snapshot](../../.gitbook/assets/wmng\_upload\_snapshot.png)
 
-4\. Select **Save**.\
-The snapshot is uploaded to the target object store bucket.
-
-6\. **Copy the snapshot locator:**
-
-* Select the three dots on the right of the required snapshot, and select **Copy Locator to Clipboard**.&#x20;
-* Save the locator in a dedicated file so later you can use it for creating a filesystem from the uploaded snapshot.
+5. Select **Save**.\
+   The snapshot is uploaded to the target object store bucket.
+6. **Copy the snapshot locator:**
+   * Select the three dots on the right of the required snapshot, and select **Copy Locator to Clipboard**.
+   * Save the locator in a dedicated file so later you can use it for creating a filesystem from the uploaded snapshot.
 
 ![Copy snapshot locator](../../.gitbook/assets/wmng\_copy\_snapshot\_locator.gif)
 
