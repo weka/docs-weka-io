@@ -111,23 +111,21 @@ Once the SMB cluster is created, you can set SMB shares. Each share must have a 
 
 If the share is declared without providing a sub-directory, the WekaFS root is used, and it is not required to create a root folder (it already exists). If you need to create sub-directories, you can create the sub-directory in the shell using either a WekaFS mount or an NFS mount. Adjust the permissions of the sub-directory accordingly.&#x20;
 
-### Filesystem permissions and access rights
+### Filesystem permissions and access rights configuration
 
-Once the SMB cluster is connected to the Active Directory, it can assign permissions and access rights of SMB cluster filesystems to specific users or user groups. This is performed according to POSIX permissions (Windows permissions are stored in the POSIX permissions system). Any change in the Windows permissions is adapted to the POSIX permissions.
+When integrating the SMB cluster with Active Directory, administrators can allocate permissions and access rights for SMB cluster filesystems to specific users or user groups. This allocation follows the guidelines of POSIX permissions, as Windows permissions are stored within the POSIX permissions system. Any modifications to Windows permissions are automatically reflected in the POSIX permissions.
 
-{% hint style="info" %}
-The user does the initial set of POSIX permissions through the driver/NFS.&#x20;
-{% endhint %}
+To effectively manage these permissions, adhere to the following guidelines:
 
-{% hint style="info" %}
-To obtain root access to the SMB shares, assign an Active Directory user with a `uidNumber` and `gidNumber` of 0.
-{% endhint %}
+* **Initial POSIX permissions setup:** The user is responsible for the initial configuration of POSIX permissions facilitated through the driver/NFS.
+* **Root access to SMB shares:** Grant root access to SMB shares by assigning an Active Directory user with a `uidNumber` and `gidNumber` set to `0`.
+* **Windows permissions configuration:** When specifying Windows permissions for shares, folders, and files, it is imperative to either enable or disable Full Control, Modify, and Write collectively. This ensures a seamless translation into POSIX permissions.
 
 ### Integration with Windows previous versions feature
 
 Creating snapshots of the Weka filesystem and naming the access point in the `@GMT_%Y.%m.%d-%H.%M.%S` format exposes those to the Windows previous versions mechanism.
 
-To view a list of available previous versions corresponding to the filesystem snapshots, right-click a file or a folder in the Weka SMB share in the Windows client, and select **Properties** -> **Previous Versions**.
+To view a list of available previous versions corresponding to the filesystem snapshots, right-click a file or a folder in the Weka SMB share in the Windows client and select **Properties** -> **Previous Versions**.
 
 **Example**: creating a snapshot using the CLI with the required access point syntax:
 
