@@ -33,14 +33,13 @@ The Terraform-GCP-WEKA module supports the following deployment types:
 
 The following is a basic example in which you provide the minimum detail of your cluster, and the Terraform module completes the remaining required resources, such as cluster size, machine type, and networking parameters.
 
-You can use this example as a reference to create the `main.tf` file.
+You can use this example as a reference to create the `main.tf` file. &#x20;
 
 ```hcl
 provider "google" {
   region  = "europe-west1"
+  project = "PROJECT_ID"
 }
-
-variable "get_weka_io_token" {}
 
 module "weka_deployment" {
   source                         = "weka/weka/gcp"
@@ -52,7 +51,7 @@ module "weka_deployment" {
   zone                           = "europe-west1-b"
   cluster_size                   = 7
   nvmes_number                   = 2
-  get_weka_io_token              = var.get_weka_io_token
+  get_weka_io_token              = "getwekatoken"
   machine_type                   = "c2-standard-8"
   subnets_range                  = ["10.222.0.0/24", "10.223.0.0/24", "10.224.0.0/24", "10.225.0.0/24"]
   allow_ssh_cidrs                = ["0.0.0.0/0"]
