@@ -86,14 +86,16 @@ Ensure the BIOS settings meet the following requirements:
 {% tab title="Kernel" %}
 The following kernel versions are supported:
 
-* 5.3 through 5.18
-* 4.4.0-1106 through 4.19
+* 6.0 to 6.2
+* 5.3 to 5.18
+* 4.4.0-1106 to 4.19
 * 3.10
 
 {% hint style="info" %}
 * Kernels 5.15 and higher are not supported with Amazon Linux operating systems.
 * It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
 * Confirm that both the kernel version and the operating system version are listed as supported, as these are distinct components with their own compatibility considerations.
+* For clarity, the range of supported versions is inclusive.
 {% endhint %}
 {% endtab %}
 
