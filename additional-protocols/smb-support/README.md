@@ -74,15 +74,15 @@ Verify a persistent cluster-wide configuration filesystem for protocols is set. 
 
 **Workflow**
 
-1. **Configure SMB cluster**: Set the Weka system servers participating in the SMB cluster.
-2. **Join the SMB cluster in the Active Directory**: Connect and define the Weka system in the Active Directory.
+1.
+2.
 3. Create shares and folders, and set permissions. By default, the filesystem permissions are root/root/755 and initially can only be set by a WekaFS/NFS mount.
 
 Once these steps are done, it is possible to connect as an administrator and define permissions through the Windows operating system.
 
 ### Establish an SMB cluster
 
-Each Weka cluster only supports a single SMB cluster.
+
 
 **Before you begin**
 
@@ -90,7 +90,7 @@ Verify that the DNS "nameserver" of the servers participating in the SMB cluster
 
 **Procedure**
 
-1. Select the Weka servers participating in the SMB cluster and set the domain name.
+1. Select the  servers participating in the SMB cluster and set the domain name.
 2. In on-premises deployments, it is possible to configure a list of public IP addresses distributed across the SMB cluster. If a server fails, the IP addresses from that server are reassigned to another server.
 
 ### Round-robin DNS server configuration
@@ -123,15 +123,17 @@ To effectively manage these permissions, adhere to the following guidelines:
 
 ### Integration with Windows previous versions feature
 
-Creating snapshots of the Weka filesystem and naming the access point in the `@GMT_%Y.%m.%d-%H.%M.%S` format exposes those to the Windows previous versions mechanism.
 
-To view a list of available previous versions corresponding to the filesystem snapshots, right-click a file or a folder in the Weka SMB share in the Windows client and select **Properties** -> **Previous Versions**.
+
+
 
 **Example**: creating a snapshot using the CLI with the required access point syntax:
 
-```
+{% code overflow="wrap" %}
+```bash
 $ weka fs snapshot create fs_name snapshot_name --access-point `TZ=GMT date +@GMT-%Y.%m.%d-%H.%M.%S` 
 ```
+{% endcode %}
 
 
 
