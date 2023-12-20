@@ -50,13 +50,7 @@ Follow these additional requirements to get Terraform working on an Arm-based Ma
 ## **Create a main.tf file**
 
 1. Review the [Terraform-Azure-WEKA example](azure-weka-terraform-package-description.md#terraform-azure-weka-example) and use it as a reference for creating the `main.tf` according to your deployment specifics on Azure.
-2. Decide whether to use an existing Azure network or create a new one, including a Virtual Network (VNet) and subnet. Your choice dictates the subsequent network configuration steps:
-   * **IAM role setup:** Create IAM roles for essential Azure services. The Terraform module generates these roles if not explicitly provided.
-   * **Security group:** Optionally, provide the security group ID or let the Terraform module create one for you.
-   * **Endpoint configuration:**
-     * Configure a secret manager endpoint to safeguard the WEKA password. If not configured, the Terraform module allows you to set it up.
-     * In environments without Internet connections, configure the machine, proxy, and S3 gateway endpoints. The Terraform module facilitates this configuration if needed.
-3. Tailor the `main.tf` file to create SMB-W or NFS protocol clusters by adding the relevant code snippet. Adjust parameters like the number of gateways, instance types, domain name, and share naming:
+2. Tailor the `main.tf` file to create SMB-W or NFS protocol clusters by adding the relevant code snippet. Adjust parameters like the number of gateways, instance types, domain name, and share naming:
 
 * **SMB-W**
 
