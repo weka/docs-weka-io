@@ -1,7 +1,7 @@
 ---
 description: >-
-  Explore the prerequisites and compatibility details for the WEKA system
-  installation.
+  This page describes the prerequisites and compatibility for the installation
+  of the WEKA system.
 ---
 
 # Prerequisites and compatibility

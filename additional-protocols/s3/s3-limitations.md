@@ -38,19 +38,20 @@ The following standard S3 APIs are supported:
 ### Buckets
 
 * Bucket names must be between 3 and 63 characters long.
-* Bucket names can consist only of lowercase letters, numbers, dots (.), and hyphens (-).
+* Bucket names can consist only of lowercase letters, numbers, dots ("`.`"), and hyphens ("`-`").
 * Bucket names must begin and end with a letter or number.
-* Bucket names must not be formatted as IP addresses (for example, 192.168.5.4).
+* Bucket names must not be formatted as IP addresses (for example, `192.168.5.4`).
 * Bucket names must be unique across the cluster.
 
 ### Objects
 
 * Object key names may be up to 1024 characters long.
-* The prefix `/` of an object is interpreted as a directory, and such directory segments are limited to 255 characters.
-* See [Amazon S3 object name limitations](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html). Match them to limitations in other protocols.
+* An object prefix cannot begin with a forward slash ("`/`").
+* Adding a forward slash ("`/`") in the object's prefix after the first character is interpreted as a directory. Such directory segments are limited to 255 characters.
 
 {% hint style="info" %}
-It is recommended to avoid special characters that might be unsupported using protocols other than S3.&#x20;
+* For naming convention details, see [Creating object key names](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html) (AWS portal).
+* Ensure the object key name is also compatible with protocols other than S3. Specifically, avoid special characters that might be unsupported in the other protocols.&#x20;
 {% endhint %}
 
 ## Policy limitations
