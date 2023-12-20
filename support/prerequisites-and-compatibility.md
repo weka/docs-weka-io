@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes the prerequisites and compatibility for the installation
-  of the WEKA system.
+  Explore the prerequisites and compatibility details for the WEKA system
+  installation.
 ---
 
 # Prerequisites and compatibility
@@ -152,7 +152,7 @@ Adhere to the following considerations when choosing the adapters:
 * [**Jumbo Frames**](#user-content-fn-3)[^3]**:** While it is possible to configure the WEKA cluster without enabling jumbo frames for both Ethernet and InfiniBand, doing so may lead to suboptimal performance and an inability to efficiently handle high data loads. Before implementing this mode, it is recommended to consult with the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team). For clients, jumbo frames are not essential, but it may impact performance.
 * [**IOMMU**](#user-content-fn-4)[^4] **support:** When working with Mellanox NICs, all cluster servers must have the same IOMMU (enabled/disabled) settings. For the IOMMU configuration steps, consult with the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 * **Mixed networks:** It refers to a setup where the system is connected to both InfiniBand and Ethernet networks. If both types of connections exist, the system prioritizes the InfiniBand links for traffic but will use the Ethernet links if any issues arise with the InfiniBand network.
-* **IP Addressing for Dataplane NICs:** Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
+* **IP Addressing for dataplane NICs:** Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
 
 ### Supported network adapters <a href="#networking-ethernet" id="networking-ethernet"></a>
 
