@@ -134,12 +134,14 @@ If you need to preserve your data, first create a snapshot using [snap-to-object
 
 To terminate the WEKA cluster, run the following command (replace the `trigger_url` with the actual trigger URL and `Cluster_Name` with the actual cluster name):
 
+{% code overflow="wrap" %}
 ```bash
 curl -m 70 -X POST ${google_cloudfunctions_function.terminate_cluster_function.https_trigger_url} \
 -H "Authorization:bearer $(gcloud auth print-identity-token)" \
 -H "Content-Type:application/json" \
 -d '{"name":"Cluster_Name"}'
 ```
+{% endcode %}
 
 If you do not know the trigger URL or cluster name, run the `terraform output`command to display them.
 

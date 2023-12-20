@@ -35,9 +35,9 @@ Your request for access to [get.weka.io](http://get.weka.io) is sent to WEKA for
 
 Download the required WEKA installation packages according to the workflow path.
 
-* Path A (automated with WMS and WSA): Download the WMS package from [get.weka.io](https://get.weka.io/ui/dashboard) and WSA from  [https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso](https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso).
-* Path B (automated with WSA): Download the WSA package from [https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso](https://weka-repo.s3.amazonaws.com/weka-4.2.1-1.0.1.iso).
-* Path C (manual installation and configuration): Download the WEKA software tarball from [get.weka.io](https://get.weka.io/ui/dashboard).
+* Path A (automated with WMS and WSA): Download the WMS and WSA ISOs from [get.weka.io](https://get.weka.io/ui/dashboard). The WMS is downloaded from a dedicated dropdown.  The WSA is found in the relevant release page.
+* Path B (automated with WSA): Download the WSA package from [get.weka.io](https://get.weka.io/ui/dashboard) The WSA is found in the relevant release page.
+* Path C (manual installation and configuration): Download the WEKA software tarball from [get.weka.io](https://get.weka.io/ui/dashboard). The tarball is found in the relevant release page.
 
 You can only sign in and download the packages if you are a registered user.
 
@@ -45,18 +45,18 @@ You can only sign in and download the packages if you are a registered user.
 
 1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and sign in with your registered account.
 
-![Sign in to download and get your Weka license](../../.gitbook/assets/sign-in-for-download.png)
+![Sign in to download and get your WEKA license](../../.gitbook/assets/sign-in-for-download.png)
 
 [get.weka.io](http://get.weka.io) page opens.
 
-![get.weka.io: Dashboard tab](../../.gitbook/assets/Get\_Weka\_dashboard.png)
+<figure><img src="../../.gitbook/assets/2023-12-20_09-17-44 (2).jpg" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure>
 
 2. Do one of the following:
    * Select the required package from the dashboard.
    * Select the **Releases** tab, select the required release, and follow the download instructions.\
      (The token in the download link is purposely blurred.)
 
-![get.weka.io: Releases tab](../../.gitbook/assets/Get\_Weka\_download\_tab.png)
+<figure><img src="../../.gitbook/assets/2023-12-20_09-18-13.jpg" alt=""><figcaption><p>Releases download page: tar file, WSA, and WMS (in a separate tab)</p></figcaption></figure>
 
 ## What to do next?
 

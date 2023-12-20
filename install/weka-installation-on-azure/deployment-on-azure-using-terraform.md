@@ -144,7 +144,11 @@ Once Terraform applies the configuration and deploys all the required resources,
 
 The following is the command syntax for checking the cluster status during the deployment progress:
 
-`curl --fail https://<prefix>-<cluster name>-function-app.azurewebsites.net/api/status?code=$function_key`
+{% code overflow="wrap" %}
+```bash
+curl --fail https://<prefix>-<cluster name>-function-app.azurewebsites.net/api/status?code=$function_key
+```
+{% endcode %}
 
 ### Example
 
