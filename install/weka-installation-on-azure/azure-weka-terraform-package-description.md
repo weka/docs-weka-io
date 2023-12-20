@@ -44,7 +44,7 @@ variable "subscription_id" {}
 
 module "weka_deployment" {
   source                         = "weka/weka/azure"
-  source                         = "4.0.1"
+  version                         = "4.0.1"
   prefix                         = "my_prefix"
   rg_name                        = "example"
 
