@@ -196,7 +196,7 @@ Avoid using the Intel X550-T1 adapter in a single client connected to multiple c
     * 5.1-2.6.2.0
     * 5.1-2.5.8.0
 
-    **Note:** Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
+    **Note:** Subsequent OFED minor versions are expected to be compatible with NVIDIA hardware due to NVIDIA's commitment to backwards compatibility.
 * **Supported ENA drivers:**
   * 1.0.2 - 2.0.2
   * A current driver from an official OS repository is recommended
@@ -257,7 +257,7 @@ WEKA supports the following Mellanox OFED versions for the InfiniBand adapters:
 * 5.1-2.6.2.0
 * 5.1-2.5.8.0
 
-**Note:** Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
+**Note:** Subsequent OFED minor versions are expected to be compatible with NVIDIA hardware due to NVIDIA's commitment to backwards compatibility.
 {% endtab %}
 
 {% tab title="InfiniBand configurations" %}
