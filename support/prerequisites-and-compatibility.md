@@ -86,7 +86,6 @@ Ensure the BIOS settings meet the following requirements:
 {% tab title="Kernel" %}
 The following kernel versions are supported:
 
-* 6.0 to 6.2
 * 5.3 to 5.18
 * 4.4.0-1106 to 4.19
 * 3.10
