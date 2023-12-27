@@ -84,20 +84,20 @@ The terraform-gcp-weka module can automate the addition of a Google Cloud Storag
 **Procedure**
 
 1. In the `main.tf` file, add the following fields:
-   * `set_obs_integration`: Set the value to `true`.
-   * `obs_name`:  Match the value to an existing bucket in Google Cloud Storage.
+   * `tiering_enable_obs_integration:` Set the value to `true`.
+   * `tiering_obs_name:` Match the value to an existing bucket in Google Cloud Storage.
    * `tiering_ssd_percent:` Set the percentage to your desired value.
 
 Example:
 
 ```hcl
-set_obs_integration=true 
-obs_name="myBucketName"
-tiering_ssd_percent = 20
+tiering_enable_obs_integration=true 
+tiering_obs_name="myBucketName"
+tiering_ssd_percent=20
 ```
 
 {% hint style="info" %}
-If you do not specify the name of an existing bucket using `obs_name` but specify `set_obs_integration=true` then a new Cloud Storage bucket is created automatically.\
+If you do not specify the name of an existing bucket using `tiering_obs_name` but specify `tiering_enable_obs_integration=true` then a new Cloud Storage bucket is created automatically.\
 The name format of the new bucket is: \
 `<project_id>-<prefix>-<cluster_name>-obs`
 {% endhint %}
