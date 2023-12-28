@@ -20,59 +20,40 @@ Before installing the WEKA software on GCP, the following prerequisites must be 
 *   The **Compute Engine** and **Workflows API** services must be enabled to allow the following services:
 
     ```
-    cloudfunctions.googleapis.com
-    cloudbuild.googleapis.com
     artifactregistry.googleapis.com
-    serviceusage.googleapis.com
+    cloudbuild.googleapis.com
+    cloudfunctions.googleapis.com
+    cloudresourcemanager.googleapis.com
     cloudscheduler.googleapis.com
     compute.googleapis.com
+    dns.googleapis.com
+    eventarc.googleapis.com
+    iam.googleapis.com
     secretmanager.googleapis.com
     servicenetworking.googleapis.com
+    serviceusage.googleapis.com
     vpcaccess.googleapis.com
-    cloudresourcemanager.googleapis.com
-    vpcaccess.googleapis.com
-    iam.googleapis.com
-    dns.googleapis.com
     workflows.googleapis.com
-    eventarc.googleapis.com
     ```
-* If the customer does not provide the service account email, the user running the Terraform module requires the `iam.serviceAccountAdmin` role.&#x20;
-*   The service account used for the deployment must have the following roles:
+*   The user running the Terraform module requires the following roles to run the `terraform apply`:
 
     ```
-    "roles/secretmanager.secretAccessor",
-    "roles/compute.serviceAgent",
-    "roles/cloudfunctions.developer",
-    "roles/workflows.invoker",
-    "roles/vpcaccess.serviceAgent",
-    "roles/pubsub.subscriber"
+    roles/cloudfunctions.admin
+    roles/cloudscheduler.admin
+    roles/compute.admin
+    roles/compute.networkAdmin
+    roles/compute.serviceAgent
+    roles/dns.admin
+    roles/iam.serviceAccountAdmin
+    roles/iam.serviceAccountUser
+    roles/pubsub.editor
+    roles/resourcemanager.projectIamAdmin 
+    roles/secretmanager.admin
+    roles/servicenetworking.networksAdmin
+    roles/storage.admin 
+    roles/vpcaccess.admin
+    roles/workflows.admin
     ```
-
-
-
-    The Terraform adds the following roles to the services accounts per to the following resources:
-
-    *   Worker pool roles:
-
-        ```
-        "roles/compute.networkAdmin"
-        "roles/servicenetworking.networksAdmin"
-        "roles/cloudbuild.workerPoolOwner"
-        ```
-
-
-    *   To create a new bucket (for Terraform state and WEKA OBS):
-
-        ```jsx
-        "roles/storage.admin"
-        ```
-
-
-    *   To use an existing bucket (for Terraform state and WEKA OBS):
-
-        ```jsx
-        "roles/storage.objectAdmin"
-        ```
 
 ## **Create a main.tf file**
 
@@ -92,7 +73,7 @@ smb_setup_protocol = true
 * **NFS**
 
 ```
-nfs_protocol_gateways_number = 1
+nfs_protocol_gateways_number = 2
 nfs_protocol_gateway_instance_type = c2-standard-8
 nfs_setup_protocol = true
 ```
@@ -106,7 +87,45 @@ client_instance_type = c2-standard-8
 
 ## Apply the main.tf file
 
-Once you complete the main.tf settings, apply it: Run `terraform apply`
+Once you complete the `main.tf` settings, apply it: Run `terraform apply`.
+
+### **Additional configuration post** Terraform apply
+
+After applying  the `main.tf`, the Terraform module updates the configuration as follows:
+
+1. **Service account creation:**\
+   Format of the Service Account name:: `<prefix>-deployment@<project name>.iam.gserviceaccount.com`\
+   Roles that will be assigned:
+
+```
+roles/cloudfunctions.developer
+roles/compute.serviceAgent
+roles/compute.loadBalancerServiceUser
+roles/pubsub.subscriber
+roles/secretmanager.secretAccessor
+roles/vpcaccess.serviceAgent
+roles/workflows.invoker
+```
+
+2. **Additional roles may be assigned to the created service account (if working with relevant resources):**
+
+*   To create a worker pool:
+
+    ```
+    roles/compute.networkAdmin
+    roles/servicenetworking.networksAdmin
+    roles/cloudbuild.workerPoolOwner
+    ```
+*   To create a new bucket (for Terraform state and WEKA OBS):
+
+    ```jsx
+    roles/storage.admin
+    ```
+*   To use an existing bucket (for Terraform state and WEKA OBS):
+
+    ```jsx
+    roles/storage.objectAdmin
+    ```
 
 ## **Upgrade the WEKA version**
 
