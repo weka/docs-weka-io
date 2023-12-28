@@ -94,8 +94,8 @@ Once you complete the `main.tf` settings, apply it: Run `terraform apply`.
 After applying  the `main.tf`, the Terraform module updates the configuration as follows:
 
 1. **Service account creation:**\
-   Format of the Service Account name:: `<prefix>-deployment@<project name>.iam.gserviceaccount.com`\
-   Roles that will be assigned:
+   Format of the service account name: `<prefix>-deployment@<project name>.iam.gserviceaccount.com`\
+   Assigned roles:
 
 ```
 roles/cloudfunctions.developer
@@ -107,7 +107,7 @@ roles/vpcaccess.serviceAgent
 roles/workflows.invoker
 ```
 
-2. **Additional roles may be assigned to the created service account (if working with relevant resources):**
+2. **Additional roles can be assigned to the created service account (if working with relevant resources):**
 
 *   To create a worker pool:
 
