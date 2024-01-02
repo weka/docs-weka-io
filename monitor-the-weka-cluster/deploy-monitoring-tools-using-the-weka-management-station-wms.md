@@ -183,8 +183,14 @@ Set up email notifications by configuring the SMTP server (email relay) to enabl
 **Procedure**
 
 1. From the left pane, select **Configure Local WEKA Home**.
-2. If required, customize the LWH settings.    \
-   The forward data to the Cloud WEKA Home is enabled by default.
+2. Set the required details:&#x20;
+   * **Listen Address/Domain:** Specify the address or hostname on which LWH will listen. Leave it blank or use 0.0.0.0 to listen on all interfaces. Alternatively, input an IP address, hostname, or FQDN as the TLS certificate requires.
+   * **Email Alert Domain Name (REQUIRED):** Enter a domain name (or IP address) for Alert Email URL links. For instance, if you input _sample.com_, the links appear as _https://sample.com/something_. Typically, this is the domain you use to access WMS (this server's name).
+   * **Enable Ingress TLS:** Toggle to enable TLS for all connections.
+   * **TLS Cert:** Specify the TLS certificate to be used.
+   * **TLS Key:** Enter the TLS key corresponding to the specified certificate above.
+   * **Enable email notifications (configure in the Email Notification Setting page):** Activate email notifications and set up your email server configurations in the Email Notification Settings page.
+   * **Enable forwarding data to Cloud WEKA Home:** Activate this feature to send data to Cloud WEKA Home. Internet connectivity to api.home.weka.io is required for this functionality. The default setting is activated.
 
 <figure><img src="../.gitbook/assets/wms_5_configure_lwh.png" alt=""><figcaption><p>Local WEKA Home configuration (post Installation example)</p></figcaption></figure>
 
@@ -261,11 +267,7 @@ If DNS does not have the hostnames of the cluster, do one of the following:
 * Use the Cockpit Web Interface on port 9090 to change the DNS settings. See Cockpit Web Interface in [Configure the WMS](deploy-monitoring-tools-using-the-weka-management-station-wms.md#configure-the-wms).
 {% endhint %}
 
-Once the WMS successfully logs in to the cluster, the WEKAmon installation begins.
-
-<figure><img src="../.gitbook/assets/wms_6_configurae_wekamon.png" alt=""><figcaption><p>WEKAmon Services Configuration</p></figcaption></figure>
-
-When the WEKAmon installation is completed, you can open it from the WMS Landing Page.
+Once the WMS successfully logs in to the cluster, the WEKAmon installation begins. When the WEKAmon installation is completed, you can open it from the WMS Landing Page.
 
 <figure><img src="../.gitbook/assets/WMS_WEKAmon_install_completes.png" alt="" width="375"><figcaption><p>WEKAmon installation completes</p></figcaption></figure>
 
