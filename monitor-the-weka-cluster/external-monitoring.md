@@ -10,17 +10,17 @@ WEKA provides an external monitoring package named **WEKAmon**. The package impl
 
 The package also includes the following components:
 
-* **Exporter**: The Exporter gets the data from the Weka cluster and sends the data to Prometheus.
+* **Exporter**: The Exporter gets the data from the WEKA cluster and sends the data to Prometheus.
 * **Quota Export**:  The Quota Export manages the quotas and sends the data to Prometheus.
 * **Alert Manager**:  The Alert Manger alerts users through an SMTP server when they reach their soft quota limits.
 
-You can set up the Weka-mon package regardless of the data monitoring provided by the Weka GUI.
+You can set up the WEKA-mon package regardless of the data monitoring provided by the Weka GUI.
 
 <figure><img src="../.gitbook/assets/weka-mon_setup.png" alt=""><figcaption><p>WEKAmon setup</p></figcaption></figure>
 
 One of the advantages of setting up the WEKAmon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with WEKA to correlate and display monitoring information from all your products on the same dashboard.
 
-![Weka enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (25).png>)
+![WEKA enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (25).png>)
 
 {% hint style="info" %}
 If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.
@@ -46,7 +46,7 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 
 ### Authentication token requirement
 
-To enable communication between the management server and the Weka cluster, the security token is required in the **auth-token.json** file.
+To enable communication between the management server and the WEKA cluster, the security token is required in the **auth-token.json** file.
 
 1. Create the directory `~/.weka` in the WEKAmon installation directory.
 2. Generate the `auth-token.json` file and save it in the `~/.weka` directory you created. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
@@ -60,8 +60,8 @@ To create a local user, see the [Create local users](../usage/user-management/us
 
 1. [Obtain the WEKAmon package](external-monitoring.md#1.-obtain-the-weka-mon-package): Obtain the WEKAmon package from the GitHub repository by downloading or cloning.
 2. [Run the install.sh script](external-monitoring.md#2.-run-the-install.sh-script): The script creates a few directories and sets their permissions.
-3. [Edit the export.yml file](external-monitoring.md#3.-edit-the-export.yml-file): The `export.yml` file contains the WEKAmon and the exporter configuration. Customize the file according to your actual Weka deployment.
-4. [Edit the quota-export.yml file](external-monitoring.md#4.-edit-the-quota-export.yml-file): The `quota-export.yml` file contains the configuration of the quota-export container. Customize the file according to your actual Weka deployment.
+3. [Edit the export.yml file](external-monitoring.md#3.-edit-the-export.yml-file): The `export.yml` file contains the WEKAmon and the exporter configuration. Customize the file according to your actual WEKA deployment.
+4. [Edit the quota-export.yml file](external-monitoring.md#4.-edit-the-quota-export.yml-file): The `quota-export.yml` file contains the configuration of the quota-export container. Customize the file according to your actual WEKA deployment.
 5. [Start the docker-compose containers](external-monitoring.md#4.-start-the-docker-compose-containers): Once done, you can connect to Grafana on port 3000 of the management server running the docker containers.&#x20;
 
 ### 1. Obtain the WEKAmon package
@@ -98,7 +98,7 @@ Run the following command:
 
 ### 3. Edit the export.yml file
 
-The WEKAmon and the exporter configuration are defined in the `export.yml` file.
+The WEKAmon and exporter configuration are defined in the `export.yml` file.
 
 1. Change the directory to `weka-mon` and open the `export.yml` file.
 2. In the **cluster** section under the **hosts** list, replace the hostnames with the actual hostnames/IP addresses of the Weka containers (up to three would be sufficient). Ensure the hostnames are mapped to the IP addresses in /etc/hosts.
@@ -110,10 +110,8 @@ hosts:
  - hostname03
 ```
 
-3\. Optional. In the **exporter** section, customize the values according to your preferences.\
-&#x20;   For details, see the [Exporter configuration options](external-monitoring.md#exporter-configuration-options-in-the-export.yml-file) topic below.
-
-4\. Optional. Add custom panels to Grafana containing other metrics.
+3. Optional. In the **exporter** section, customize the values according to your preferences. For details, see the [Exporter configuration options](external-monitoring.md#exporter-configuration-options-in-the-export.yml-file) topic below.
+4. Optional. Add custom panels to Grafana containing other metrics.
 
 All other settings in the `export.yml` file have pre-defined defaults that do not need modification to work with WEKAmon. All the configurable items are defined but marked as comments by an asterisk (#).
 
@@ -152,7 +150,7 @@ The configuration of the Alert Manager is defined in the `alertmanager.yml` file
 docker-compose up -d
 ```
 
-2\. Verify that the containers are running using the following command:
+2. Verify that the containers are running using the following command:
 
 ```
 docker ps
