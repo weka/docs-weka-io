@@ -183,12 +183,38 @@ For higher performance, the usage of multiple Frontends may be required. When us
 
 To assign the VF IP addresses or when the client resides in a different subnet and routing is needed in the data network, use`net=<netdev>/[ip]/[bits]/[gateway]`.
 
-`ip, bits, gateway` are optional. If these options are not provided, the Weka system performs one of the following depending on the environment:
+`ip, bits, gateway` are optional. If these options are not provided, the WEKA system performs one of the following depending on the environment:
 
-* **Cloud environment:** the Weka system deduces the values of these options.
-* **On-premises environment:** the Weka system allocates values of these options from the cluster default network (the `weka cluster default-net` must be set before running the mount command). Otherwise, the Weka cluster does not allocate the IP for the client. For more details, see [Optional: Configure default data networking](broken-reference).
+* **Cloud environment:** The WEKA system deduces the values of the `ip, bits, gateway` options.
+*   **On-premises environment:** The WEKA system allocates values to the `ip, bits, gateway` options based on the cluster default network. Failure to set the default network may result in the WEKA cluster failing to allocate an IP address for the client.
 
-For example, the following command allocates two cores and a single physical network device (intel0). It will configure two VFs for the device and assign each one of them to one of the frontend processes. The first container will receive a 192.168.1.100 IP address, and the second will use a 192.168.1.101 IP address. Both IPs have 24 network mask bits and a default gateway of 192.168.1.254.
+    Ensure that the WEKA cluster default data networking is configured prior to running the mount command.
+
+#### Configure default data networking
+
+**Command:** `weka cluster default-net set`
+
+Dynamic IP address allocation: Instead of individually configuring IP addresses for each network device, WEKA supports dynamic IP address allocation. Users can define a range of IP addresses to create a dynamic pool, and these addresses can be automatically allocated on demand.
+
+Mixed approach for Ethernet networking: For Ethernet networking, a mixed approach is supported. Administrators can explicitly assign IP addresses for specific network devices, while others in the cluster can receive automatic allocations from the specified IP range. This feature is particularly useful in environments with automated client spawning.
+
+Use the following command to configure default data networking:
+
+`weka cluster default-net set --range <range> [--gateway=<gateway>] [--netmask-bits=<netmask-bits>]`
+
+**Parameters**
+
+<table><thead><tr><th width="195">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>range</code>*</td><td><p>A range of IP addresses reserved for dynamic allocation across the entire cluster..<br>Format: <code>A.B.C.D-E</code> </p><p>Example: <code>10.10.0.1-100</code></p></td></tr><tr><td><code>netmask-bits</code>*</td><td>Number of bits in the netmask that define a network ID in CIDR notation.</td></tr><tr><td><code>gateway</code></td><td>The IP address assigned to the default routing gateway. It is imperative that the gateway resides within the same IP network as defined by the specified range and netmask-bits.<br>This parameter is not applicable to InfiniBand (IB) or Layer 2 (L2) non-routable networks.</td></tr></tbody></table>
+
+**View current settings:** To view the current default data networking settings, use the command: \
+`weka cluster default-net`
+
+**Remove default data networking:** If a default data networking configuration was previously set up on a cluster and is no longer needed, you can remove it using the command:\
+`weka cluster default-net reset`
+
+#### Example: allocate two cores and a single physical network device (intel0)
+
+The following command configures two VFs for the device and assign each one of them to one of the frontend processes. The first container receives a 192.168.1.100 IP address, and the second uses a 192.168.1.101 IP address. Both IPs have 24 network mask bits and a default gateway of 192.168.1.254.
 
 ```
 mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.168.1.254 backend1/my_fs /mnt/weka
