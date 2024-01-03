@@ -157,7 +157,7 @@ The default password is _admin_. It is recommended to change it for security rea
 
 ### Configure the email notifications
 
-Set up email notifications by configuring the SMTP server (email relay) to enable WMS for sending notifications related to:
+Set up email notifications by configuring the SMTP Relay to enable WMS for sending notifications related to:
 
 * **LWH alerts and events:** The LWH sends email alerts and events notifications.
 * **WEKAmon quota notifications:** The WEKAmon Alert Manager sends email alerts when a user reaches the soft quota limit.
@@ -168,12 +168,12 @@ Set up email notifications by configuring the SMTP server (email relay) to enabl
 2. Set the required details:
    * **Email From Name:** The designated name for the sender of WMS emails.
    * **Email From Address:** The email address used for outgoing emails from WMS.
-   * **Email Relay Host:** The smart host or upstream SMTP server address WMS uses for sending emails.
-   * **Email Relay Port:** The port number used on the SMTP server. Typically set to 25, 465, 587, or 2525.
-   * **SMTP Relay allows/requires TLS:** Select if the SMTP server uses TLS encryption.
-   * **Email Relay Username:** Enter the username for logging into the SMTP server, if necessary.
-   * **Email Relay Password:** Enter the password for logging into the SMTP server, if necessary.
-   * **Allow Insecure TLS with SMTP Relay:** Enable TLS for an SMTP server with a self-signed certificate.
+   * **Email Relay Host:** The smart host or upstream SMTP Relay address WMS uses for sending emails.
+   * **Email Relay Port:** The port number used on the SMTP Relay. Typically set to 25, 465, 587, or 2525.
+   * **SMTP Relay allows/requires TLS:** Select if the SMTP Relay uses TLS encryption.
+   * **Email Relay Username:** Enter the username for logging into the SMTP Relay, if necessary.
+   * **Email Relay Password:** Enter the password for logging into the SMTP Relay, if necessary.
+   * **Allow Insecure TLS with SMTP Relay:** Enable TLS for an SMTP Relay with a self-signed certificate.
 3. Select **Save**.
 
 <figure><img src="../.gitbook/assets/wms_3_email_notification_settings.png" alt=""><figcaption><p>WMS Email Notification Settings</p></figcaption></figure>
