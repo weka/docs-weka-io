@@ -189,7 +189,7 @@ Set up email notifications by configuring the SMTP Relay to enable WMS for sendi
    * **Enable Ingress TLS:** Toggle to enable TLS for all connections.
    * **TLS Cert:** Specify the TLS certificate to be used.
    * **TLS Key:** Enter the TLS key corresponding to the specified certificate above.
-   * **Enable email notifications (configure in the Email Notification Setting page):** Activate email notifications and set up your email server configurations in the Email Notification Settings page.
+   * **Enable email notifications (configure in the Email Notification Setting page):** Activate email notifications and set up your SMTP Relay configurations in the Email Notification Settings page.
    * **Enable forwarding data to Cloud WEKA Home:** Activate this feature to send data to Cloud WEKA Home. Internet connectivity to api.home.weka.io is required for this functionality. The default setting is activated.
 
 <figure><img src="../.gitbook/assets/wms_5_configure_lwh.png" alt=""><figcaption><p>Local WEKA Home configuration (post Installation example)</p></figcaption></figure>
