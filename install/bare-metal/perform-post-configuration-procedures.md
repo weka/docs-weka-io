@@ -7,6 +7,7 @@ Once the WEKA cluster is installed and configured, perform the following:
 3. [Start the cluster IO service](perform-post-configuration-procedures.md#3.-start-the-cluster-io-service)
 4. [Check the cluster configuration](perform-post-configuration-procedures.md#4.-check-the-cluster-configuration)
 5. [Bypass the proxy server (optional)](perform-post-configuration-procedures.md#5.-bypass-the-proxy-server-optional)
+6. [Configure default data networking (optional)](perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional)
 
 ## 1. Enable event notifications to the cloud (optional)
 
@@ -268,7 +269,29 @@ no_proxy=<comma-separated list of IPs or domains>
 
 4. Restart the agent service.
 
+## 6. Configure default data networking (optional)
 
+**Command:** `weka cluster default-net set`
+
+Instead of individually configuring IP addresses for each network device, WEKA supports dynamic IP address allocation. Users can define a range of IP addresses to create a dynamic pool, and these addresses can be automatically allocated on demand.
+
+{% hint style="info" %}
+**Mixed approach for Ethernet networking:** For Ethernet networking, a mixed approach is supported. Administrators can explicitly assign IP addresses for specific network devices, while others in the cluster can receive automatic allocations from the specified IP range. This feature is particularly useful in environments with automated client spawning.
+{% endhint %}
+
+Use the following command to configure default data networking:
+
+`weka cluster default-net set --range <range> [--gateway=<gateway>] [--netmask-bits=<netmask-bits>]`
+
+**Parameters**
+
+<table><thead><tr><th width="195">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>range</code>*</td><td><p>A range of IP addresses reserved for dynamic allocation across the entire cluster..<br>Format: <code>A.B.C.D-E</code> </p><p>Example: <code>10.10.0.1-100</code></p></td></tr><tr><td><code>netmask-bits</code>*</td><td>Number of bits in the netmask that define a network ID in CIDR notation.</td></tr><tr><td><code>gateway</code></td><td>The IP address assigned to the default routing gateway. It is imperative that the gateway resides within the same IP network as defined by the specified range and netmask-bits.<br>This parameter is not applicable to InfiniBand (IB) or Layer 2 (L2) non-routable networks.</td></tr></tbody></table>
+
+**View current settings:** To view the current default data networking settings, use the command: \
+`weka cluster default-net`
+
+**Remove default data networking:** If a default data networking configuration was previously set up on a cluster and is no longer needed, you can remove it using the command:\
+`weka cluster default-net reset`
 
 **End of the installation and configuration for all workflow paths**
 
