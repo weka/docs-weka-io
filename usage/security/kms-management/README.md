@@ -1,39 +1,39 @@
 ---
 description: >-
-  This page describes the management of a Key Management System (KMS) within the
-  WEKA system.
+  Efficiently manage and safeguard WEKA system keys through strategic KMS
+  configurations and best practices. Optimize security and operational
+  resilience.
 ---
 
 # KMS management
 
-When creating an encrypted filesystem, a KMS must be used to secure the encryption keys properly.
+When establishing an encrypted filesystem within the WEKA system, the usage of a Key Management System (KMS) is imperative to ensure the secure management of encryption keys. The WEKA system relies on the KMS for encrypting filesystem keys, and during system startup, it employs the KMS to decrypt these keys, leveraging its in-memory capabilities for data encryption and decryption operations.
 
-The WEKA system uses the KMS to encrypt filesystem keys. When the WEKA system comes up, it uses the KMS to decrypt the filesystem keys and its in-memory capabilities for data encrypting/decrypting operations.
+The Snap-To-Object feature, employed for taking snapshots, includes the storage of the encrypted filesystem key along with the encrypted data. Subsequently, when promoting such a snapshot to a different filesystem or recovering from a disaster within the WEKA cluster, the KMS decrypts the filesystem key. Therefore, the presence of the same KMS data is crucial for these operations.\
+\
+To enhance security, the WEKA system refrains from saving any information that could reconstruct KMS encryption keys, relying solely on the KMS configuration. This necessitates careful consideration of the following:
 
-When a snapshot is taken using the Snap-To-Object feature, the encrypted filesystem key is saved along with the encrypted data. When promoting this snapshot to a different filesystem (or when recovering from a disaster to the same filesystem in the WEKA cluster), the KMS decrypts the filesystem key. Consequently, the same KMS data must be present when performing such operations.
-
-For increased security, the WEKA system does not save any information that can reconstruct the KMS encryption keys, performed by the KMS configuration alone. Therefore, the following should be considered:
-
-1. If the KMS configuration is lost, the encrypted data may also be lost. Therefore, a proper DR strategy should be set when deploying the KMS in a production environment.
-2. The KMS must be available when the WEKA system comes up when a new filesystem is created and from time to time when key rotations must be performed. Therefore, it is recommended that the KMS be highly available.
+* **Disaster recovery strategy:** Loss of the KMS configuration may result in the loss of encrypted data. It is imperative to establish a robust Disaster Recovery (DR) strategy when deploying the KMS in a production environment.
+* **High availability:** The KMS must be available during system startup, when creating a new filesystem, and periodically during key rotations. Therefore, maintaining high availability for the KMS is strongly recommended.
 
 The WEKA system supports the following KMS types:
 
 * [KMIP-compliant](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) KMS (protocol version 1.2 and up).
-* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) version 1.1.5 up to 1.14.x (not limited to the KMIP-compliant version). For setting up Vault to work with the WEKA system, refer to [Setting Up Vault Configuration](kms-management-1.md#set-up-vault-configuration)&#x20;
+* [HashiCorp Vault](https://www.hashicorp.com/products/vault/) version 1.1.5 up to 1.14.x (not limited to the KMIP-compliant version). For setup instructions, see [Set up vault configuration](kms-management-1.md#set-up-vault-configuration).
 
-## KMS best practices
+## **KMS integration best practices**
 
-The KMS is the only source holding the key to decrypt WEKA system filesystem keys. For non-disruptive operations, it is highly recommended to follow these guidelines:
+The KMS is the sole entity holding the key to decrypt WEKA system filesystem keys. Adhering to the following best practices is crucial for non-disruptive operations:
 
-* Set up DR for the KMS (backup/replication) to avoid data loss.
-* Ensure that the KMS is highly available. A single URL in the WEKA system represents the KMS.
-* Provide access to the KMS from the WEKA backend servers.
-* Verify the methods used by the KMS being implemented (each KMS has different methods for securing, unsealing, and reconstructing lost keys, for example, [Vault unsealing methods](https://www.vaultproject.io/docs/concepts/seal.html), which enable the configuration of [auto unsealing using a trusted service](https://learn.hashicorp.com/vault/operations/ops-autounseal-aws-kms)).
-* Refer to [Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) for additional best practices suggested by HashiCorp when using Vault.
+* **DR setup for KMS:** Implement backup/replication for the KMS to mitigate data loss risks.
+* **High availability for KMS:** Maintain high availability for the KMS, represented by a single address in the WEKA system.
+* **Access to KMS:** Provide access to the KMS from the WEKA backend servers.
+* **Verification of KMS methods:** Verify and understand the methods employed by the KMS for securing, unsealing, and reconstructing lost keys. Different KMS solutions have distinct methods; for instance, [Vault unsealing methods](https://www.vaultproject.io/docs/concepts/seal.html) can enable [auto unsealing using a trusted service](https://learn.hashicorp.com/vault/operations/ops-autounseal-aws-kms).
+
+For additional best practices recommended by HashiCorp when using Vault, refer to the [Production Hardening](https://learn.hashicorp.com/vault/operations/production-hardening) documentation.
 
 {% hint style="info" %}
-Taking a Snap-To-Object ensures that the (encrypted) filesystems keys are backed up to the object store. This is essential if a total corruption of the WEKA system configuration occurs.
+**Snapshot considerations:** Taking a Snap-To-Object ensures that the (encrypted) filesystem keys are backed up to the object store, serving as a crucial safeguard in the event of total corruption of the WEKA system configuration.
 {% endhint %}
 
 

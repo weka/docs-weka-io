@@ -57,11 +57,13 @@ If the bucket point to a directory shared with other protocols, changing the quo
 
 **Command:** `weka s3 bucket destroy`
 
-Use this command to delete an existing bucket.
+Use this command to delete an existing bucket from the filesystem only if the bucket is empty. If the bucket is not empty, you can keep the data on the filesystem and remove the bucket from the S3 configuration.
 
-{% hint style="info" %}
-You can only delete a bucket if it is empty (all its objects are deleted).
-{% endhint %}
+`weka s3 bucket destroy <name> [--unlink]`
+
+**Parameters**
+
+<table><thead><tr><th width="215">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The name of an existing S3 bucket.</td></tr><tr><td><code>unlink</code></td><td><p>Detaches the bucket from the S3 configuration and keeps the data and metadata in place. Consequently, you can recreate the bucket while preserving the data and metadata (see <code>weka s3 bucket create</code> using the  <code>existing-path</code> option).</p><p>Note: If the intent is to keep the data files for use outside of the S3 configuration and delete only the S3 metadata, contact the Customer Success Team for assistance.</p></td></tr></tbody></table>
 
 ## Manage bucket policies
 

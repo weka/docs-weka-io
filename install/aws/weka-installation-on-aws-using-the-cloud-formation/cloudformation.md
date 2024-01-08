@@ -94,7 +94,7 @@ When `ami_id` is not specified, the client instances are launched with the lates
 Note the following when using a custom AMI-ID:
 
 * AMIs are stored per region. Make sure to specify an AMI-ID that matches the region in which the CloudFormation template is deployed.
-* The AMI operating system must be one of the supported operating systems listed in the [Prerequisites and compatibility](../../../support/prerequisites-and-compatibility.md#operating-system) section of the version installed. If the AMI defined is not supported or has an unsupported operating system, the installation may fail, and the CloudFormation stack will not be created successfully.
+* The AMI operating system must be one of the supported operating systems listed in the [Prerequisites and compatibility](../../prerequisites-and-compatibility.md#operating-system) section of the version installed. If the AMI defined is not supported or has an unsupported operating system, the installation may fail, and the CloudFormation stack will not be created successfully.
 
 ### Dedicated vs. shared client networking
 
@@ -130,7 +130,7 @@ The  CloudFormation stack parameters are described in the [Cluster CloudFormatio
 
 ## IAM role created in the template
 
-The CloudFormation template contains an instance role that allows the Weka system instances to call the following AWS APIs:
+The CloudFormation template contains an instance role that allows the WEKA cluster instances to call the following AWS APIs:
 
 * `ec2:DescribeInstances`
 * `ec2:DescribeNetworkInterfaces`
@@ -150,12 +150,12 @@ In case tiering is configured, additional AWS APIs permissions are given:
 
 Once a CloudFormation template has been generated, it is possible to create a stack using the AWS console or the AWS CLI.
 
-When the deployment is complete, the stack status will update to `CREATE_COMPLETE,` and it is possible to access the Weka system cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link.
+When the deployment is complete, the stack status updates to `CREATE_COMPLETE,` and it is possible to access the WEKA cluster GUI by going to the Outputs tab of the CloudFormation stack and clicking the GUI link.
 
 {% hint style="info" %}
-If there is a valid entitlement or PAYG plan in [get.weka.io](https://get.weka.io), the stack attempts to create a license, deploy it to the cluster, and start IO automatically.&#x20;
+If there is a valid license in [get.weka.io](https://get.weka.io), the stack attempts to create a license, deploy it to the cluster, and start IO automatically.&#x20;
 
 With that, a filesystem is created and mounted on all instances. This shared filesystem is mounted on `/mnt/weka` in each cluster instance.
 {% endhint %}
 
-If the deployment was unsuccessful, see [Troubleshooting](troubleshooting.md) for the resolution of common deployment issues.
+If the deployment is unsuccessful, see [Troubleshooting](troubleshooting.md) for the resolution of common deployment issues.

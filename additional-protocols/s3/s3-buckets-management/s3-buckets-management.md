@@ -10,7 +10,7 @@ Using the GUI, you can:
 * [View a bucket details](s3-buckets-management.md#view-a-bucket-details)
 * [Edit a bucket hard quota](s3-buckets-management.md#edit-a-bucket-hard-quota)
 * [Edit a bucket policy](s3-buckets-management.md#edit-a-bucket-policy)
-* [Remove a bucket](s3-buckets-management.md#remove-a-bucket)
+* [Delete a bucket](s3-buckets-management.md#remove-a-bucket)
 
 ## Create a bucket <a href="#create-a-bucket" id="create-a-bucket"></a>
 
@@ -22,7 +22,7 @@ Using the GUI, you can:
 4. Select  **+Create**.
 5. In the Add S3 Bucket dialog, do the following:
    * **Bucket Name:** Set a bucket name according to the naming conventions.
-   * **Filesystem:** Set the filesystem that will host the bucket.
+   * **Filesystem:** Set the filesystem to host the bucket.
    * **Use Existing Directory:** If you want to expose an existing directory, set its path. Make sure that the directory is not below the hierarchy of the already configured S3 bucket.
    * **Hard Quota:** Set the maximum capacity for the bucket. If you want to remove the hard quota setting, enter 0.
    * **Bucket Policy:** Select the policy to attach to the bucket: none, download, upload, public, or custom. If you select a custom policy, add it in JSON format.
@@ -73,18 +73,22 @@ You can edit the bucket policy according to your needs.
 
 <figure><img src="../../../.gitbook/assets/wmng_edit_s3_bucket_policy.png" alt=""><figcaption><p>Edit S3 Bucket</p></figcaption></figure>
 
-## Remove a bucket <a href="#remove-a-bucket" id="remove-a-bucket"></a>
+## Delete a bucket <a href="#remove-a-bucket" id="remove-a-bucket"></a>
 
-When removing a bucket, it is deleted from the filesystem only if it is empty. If the bucket is not empty, you can keep the data on the filesystem and remove the bucket from the S3 configuration.
+You can delete an existing bucket from the filesystem only if the bucket is empty. If the bucket is not empty, you can detach the bucket from the S3 configuration and keep the data and metadata in place. Consequently, you can recreate the bucket while preserving the data and metadata (see [Create a bucket](s3-buckets-management.md#create-a-bucket) using the Use Existing Directory switch.
+
+{% hint style="info" %}
+If the intent is to keep the data files for use outside of the S3 configuration and delete only the S3 metadata, contact the Customer Success Team for assistance.
+{% endhint %}
 
 **Procedure**
 
 1. From the menu, select **Manage > Protocols**.
 2. From the Protocols pane, select **S3**.
 3. Select the **Buckets** tab.
-4. Select the three dots of the bucket you want to delete, and select **Remove**.
+4. Select the three dots of the bucket you want to delete and select **Remove**.
 
 <figure><img src="../../../.gitbook/assets/wmng_remove_bucket_message.png" alt=""><figcaption><p>Remove Bucket</p></figcaption></figure>
 
-5. In the confirmation message, if the bucket is not empty, switch Keep Data to On.\
+5. In the confirmation message, if the bucket is not empty, switch **Keep Data** to **ON**.\
    Then, select **Remove**.

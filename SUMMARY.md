@@ -18,7 +18,7 @@
 
 ## Planning and Installation <a href="#install" id="install"></a>
 
-* [Prerequisites and compatibility](support/prerequisites-and-compatibility.md)
+* [Prerequisites and compatibility](install/prerequisites-and-compatibility.md)
 * [WEKA cluster installation on bare metal servers](install/bare-metal/README.md)
   * [Plan the WEKA system hardware requirements](install/bare-metal/planning-a-weka-system-installation.md)
   * [Obtain the WEKA installation packages](install/bare-metal/obtaining-the-weka-install-file.md)
@@ -96,7 +96,7 @@
   * [Data management in tiered filesystems](fs/tiering/data-management-in-tiered-filesystems.md)
   * [Transition between tiered and SSD-only filesystems](fs/tiering/transition-between-tiered-and-ssd-only-filesystems.md)
   * [Manual fetch and release of data](fs/tiering/pre-fetching-from-object-store.md)
-* [Mount filesystems](fs/mounting-filesystems.md)
+* [Mount filesystems](fs/mounting-filesystems/README.md)
   * [Mount filesystems from multiple clusters on a single client](fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)
 * [Snapshots](fs/snapshots/README.md)
   * [Manage snapshots using the GUI](fs/snapshots/snapshots.md)
@@ -112,7 +112,7 @@
 
 * [Additional protocols overview](additional-protocols/additional-protocols-overview.md)
 * [Manage the NFS protocol](additional-protocols/nfs-support/README.md)
-  * [Supported NFS client mount options](additional-protocols/nfs-support/supported-nfs-client-mount-options.md)
+  * [Supported NFS client mount parameters](additional-protocols/nfs-support/supported-nfs-client-mount-options.md)
   * [Manage NFS networking using the GUI](additional-protocols/nfs-support/nfs-support.md)
   * [Manage NFS networking using the CLI](additional-protocols/nfs-support/nfs-support-1.md)
 * [Manage the S3 protocol](additional-protocols/s3/README.md)
@@ -221,18 +221,18 @@
 
 * [WEKA and Slurm integration](best-practice-guides/weka-and-slurm-integration.md)
 
-## Appendix
+## Appendices
 
-* [WEKA CSI Plugin](appendix/weka-csi-plugin/README.md)
-  * [Deployment](appendix/weka-csi-plugin/deployment.md)
-  * [Storage class configurations](appendix/weka-csi-plugin/storage-class-configurations.md)
-  * [Dynamic and static provisioning](appendix/weka-csi-plugin/dynamic-and-static-provisioning.md)
-  * [Launch an application using WEKA as the POD's storage](appendix/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage.md)
-  * [Add SELinux support](appendix/weka-csi-plugin/add-selinux-support.md)
-  * [Upgrade legacy persistent volumes for capacity enforcement](appendix/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
-  * [Troubleshooting](appendix/weka-csi-plugin/troubleshooting.md)
-* [Convert the cluster architecture from a single-container backend to a multi-container backend](appendix/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
-* [Create a client image](appendix/create-a-client-image.md)
+* [WEKA CSI Plugin](appendices/weka-csi-plugin/README.md)
+  * [Deployment](appendices/weka-csi-plugin/deployment.md)
+  * [Storage class configurations](appendices/weka-csi-plugin/storage-class-configurations.md)
+  * [Dynamic and static provisioning](appendices/weka-csi-plugin/dynamic-and-static-provisioning.md)
+  * [Launch an application using WEKA as the POD's storage](appendices/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage.md)
+  * [Add SELinux support](appendices/weka-csi-plugin/add-selinux-support.md)
+  * [Upgrade legacy persistent volumes for capacity enforcement](appendices/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
+  * [Troubleshooting](appendices/weka-csi-plugin/troubleshooting.md)
+* [Convert the cluster architecture from a single-container backend to a multi-container backend](appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
+* [Create a client image](appendices/create-a-client-image.md)
 
 ***
 

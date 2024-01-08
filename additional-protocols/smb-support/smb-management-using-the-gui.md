@@ -102,7 +102,7 @@ Ensure the AD servers are resolvable to all WEKA servers. This resolution enable
 
 1. In the SMB Cluster Configuration, select **Join**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button.png" alt=""><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button (2).png" alt=""><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
 
 2. In the Join to Active Directory dialog, set the following properties:
    * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory. WEKA does not save these credentials, instead a computer account is created on behalf of the user for the SMB cluster.

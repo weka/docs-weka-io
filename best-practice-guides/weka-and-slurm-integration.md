@@ -7,7 +7,7 @@ description: >-
 
 # WEKA and Slurm integration
 
-## Overview <a href="#_heading-h.30j0zll" id="_heading-h.30j0zll"></a>
+## Overview <a href="#heading-h.30j0zll" id="heading-h.30j0zll"></a>
 
 Traditional high-performance computing (HPC) clusters consist of login processes, controllers, compute processes, and file servers.
 
@@ -28,9 +28,9 @@ Commencing with exploring two architecture designs for deploying WEKA with Slurm
 This integration guide is intended for system administrators and engineers familiar with the setup, configuration, and management of an HPC cluster equipped with the Slurm workload manager and job scheduler on either bare-metal or cloud-native systems.
 {% endhint %}
 
-## Architecture <a href="#_heading-h.1fob9te" id="_heading-h.1fob9te"></a>
+## Architecture <a href="#heading-h.1fob9te" id="heading-h.1fob9te"></a>
 
-### WEKA <a href="#_heading-h.3znysh7" id="_heading-h.3znysh7"></a>
+### WEKA <a href="#heading-h.3znysh7" id="heading-h.3znysh7"></a>
 
 A WEKA cluster consists of a collection of four process types (nodes):
 
@@ -69,7 +69,7 @@ WEKA clients can be configured to mount in DPDK or UPD mode.
 
 **DPDK mode** is optimized for single-process performance and must be used when possible. When using DPDK mode, specific requirements must be met by the client host system.
 
-The Frontend process on clients uses CPU cores and memory while the mount is active. This implies that sufficient compute cores and memory resources must be available to run the WEKA Frontend process and other user applications. Additionally, NIC hardware must have a [Poll Mode Driver](#user-content-fn-3)[^3] (PMD) and be supported by WEKA. See [Prerequisites and compatibility](../support/prerequisites-and-compatibility.md#networking-ethernet) for more information on supported NIC hardware for bare-metal and cloud-native systems.
+The Frontend process on clients uses CPU cores and memory while the mount is active. This implies that sufficient compute cores and memory resources must be available to run the WEKA Frontend process and other user applications. Additionally, NIC hardware must have a [Poll Mode Driver](#user-content-fn-3)[^3] (PMD) and be supported by WEKA. See [Prerequisites and compatibility](../install/prerequisites-and-compatibility.md#networking-ethernet) for more information on supported NIC hardware for bare-metal and cloud-native systems.
 
 **UDP mode** is generally supported on all systems and NIC types. UDP mode is ideal for CPU-intensive applications and can aggregate IO performance across hundreds to thousands of clients.
 
@@ -77,7 +77,7 @@ In UDP mode, the Frontend process on clients uses CPUs and memory only during IO
 
 For IO-bound applications like those in bioinformatics and AI/ML, WEKA recommends employing the DPDK mount mode.
 
-### Slurm <a href="#_heading-h.2et92p0" id="_heading-h.2et92p0"></a>
+### Slurm <a href="#heading-h.2et92p0" id="heading-h.2et92p0"></a>
 
 Slurm[^4] is a robust open-source cluster management and job scheduling system tailored for Linux clusters of all sizes. Slurm delegates access to resources, provides a framework for executing and monitoring computational workloads, and manages a queue of pending work submitted by system users. Slurm manages these responsibilities through three daemons:
 
@@ -111,13 +111,13 @@ Slurm leverages cgroups to manage and constrain resources for jobs, job steps, a
 
 The [**proctrack/cgroup**](#user-content-fn-6)[^6] process tracker uses the **freezer** controller to keep track of all the process IDs associated with a job in a specific hierarchy in the cgroup tree, which can then be used to signal these process IDs when instructed (for example, when a user cancels a job).
 
-## WEKA and Slurm integration <a href="#_heading-h.tyjcwt" id="_heading-h.tyjcwt"></a>
+## WEKA and Slurm integration <a href="#heading-h.tyjcwt" id="heading-h.tyjcwt"></a>
 
 Having covered the fundamentals of WEKA and Slurm architectures, we can now explore the integration of these two systems to establish an HPC cluster. This cluster uses the Slurm workload manager for job scheduling and leverages WEKA as the high-performance data platform. Both the dedicated backend and converged configurations are considered.
 
 In either scenario, the Slurm login and compute processes function as WEKA clients. The controller does not participate in the WEKA filesystem, serving neither as a backend server nor client.
 
-### WEKA and Slurm integration in dedicated backend architecture <a href="#_heading-h.tyjcwt" id="_heading-h.tyjcwt"></a>
+### WEKA and Slurm integration in dedicated backend architecture <a href="#heading-h.tyjcwt" id="heading-h.tyjcwt"></a>
 
 In the dedicated backend architecture, the WEKA filesystem is mounted on the login and compute servers, requiring a WEKA frontend process on login and compute processes for file access (Figure 4).
 
@@ -137,7 +137,7 @@ In DPDK mode, at least one CPU (physical) core must be reserved for the WEKA fro
 
 Mounting using a dedicated core is recommended for better file IO performance than non-dedicated cores.
 
-### WEKA and Slurm integration in converged architecture <a href="#_heading-h.tyjcwt" id="_heading-h.tyjcwt"></a>
+### WEKA and Slurm integration in converged architecture <a href="#heading-h.tyjcwt" id="heading-h.tyjcwt"></a>
 
 In the converged architecture, the WEKA filesystem is mounted on login and compute processes. The login and compute servers also run the drive and compute processes to participate in hosting the WEKA backend (Figure 5).
 
@@ -157,7 +157,7 @@ Moreover, due to Slurm's typical configuration of control groups for allocating 
 
 The following sections detail the required Slurm configurations for dedicated and converged backend setups, considering UDP and DPDK mount modes.
 
-## Implementation <a href="#_heading-h.3dy6vkm" id="_heading-h.3dy6vkm"></a>
+## Implementation <a href="#heading-h.3dy6vkm" id="heading-h.3dy6vkm"></a>
 
 When using a job scheduler such as Slurm with WEKA, it is essential to ensure WEKA is allocated (bound/pinned) to specific cores and ensure the job scheduler does not allocate work to the cores used by WEKA on the WEKA clients.
 
@@ -167,7 +167,7 @@ Additionally, the available memory for jobs on each compute process must be redu
 
 In the following sections, the description covers the installation process and relevant configurations for Slurm. The focus shifts to the necessary configurations for pinning WEKA processes to specific cores. Finally, examples of WEKA and Slurm configurations cover both dedicated backend and converged cluster architectures.
 
-### Slurm installation and configuration <a href="#_heading-h.1t3h5sf" id="_heading-h.1t3h5sf"></a>
+### Slurm installation and configuration <a href="#heading-h.1t3h5sf" id="heading-h.1t3h5sf"></a>
 
 While presuming your familiarity with Slurm installation and configuration, this section provides an overview of Slurm’s installation process. It also highlights key elements pertinent to the discussion of integrating Slurm with WEKA.
 
@@ -241,7 +241,7 @@ In all strategies, the configuration files are stored in the same directory. A c
 
 For non-standard locations, the slurmctld slurmd services can be launched with the `-f` flag to indicate the path to the slurm.conf file. Alternatively, if you build Slurm from the source, you can use the  [`--sysconfdir=DIR`](#user-content-fn-12)[^12]  option during the configuration stage of the build to set the default directory for the Slurm configuration files.
 
-### Configure Slurm and WEKA <a href="#_heading-h.4d34og8" id="_heading-h.4d34og8"></a>
+### Configure Slurm and WEKA <a href="#heading-h.4d34og8" id="heading-h.4d34og8"></a>
 
 This section covers the following:
 
@@ -294,7 +294,7 @@ ConstrainRamSpace=yes
 ```
 {% endhint %}
 
-### Example: Slurm and WEKA dedicated backend architecture with DPDK mount mode <a href="#_heading-h.2s8eyo1" id="_heading-h.2s8eyo1"></a>
+### Example: Slurm and WEKA dedicated backend architecture with DPDK mount mode <a href="#heading-h.2s8eyo1" id="heading-h.2s8eyo1"></a>
 
 This example uses the a2-ultragpu-8g instances on Google Cloud Platform, which have 1360 GB (1360000 MB) of available memory, 48 physical cores on two sockets with two hyperthreads per core, and 8 A100 GPUs.
 

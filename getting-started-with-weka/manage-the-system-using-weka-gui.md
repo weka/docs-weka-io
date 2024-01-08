@@ -60,7 +60,7 @@ Make sure that port 14000 is open in the firewall of your organization.
 1. In your browser, go to `https://<weka system or server name>:14000`.\
    The sign-in page opens.
 
-![Sign in to the WEKA GUI](<../.gitbook/assets/wmng\_sign\_in (1).png>)
+![Sign in to the WEKA GUI](../.gitbook/assets/wmng\_sign\_in.png)
 
 2. Sign in with the username and password of an account with cluster administration or\
    organization administration privileges. For details about the account types, see\
@@ -144,7 +144,7 @@ The top bar indicates the total capacity provisioned for all filesystems and the
 
 The bottom bar indicates the total SSD capacity available in the system, the provisioned capacity, and the used capacity.
 
-![Capacity widget](<../.gitbook/assets/wmng\_dashboard\_Capacity\_widget (1).png>)
+![Capacity widget](../.gitbook/assets/wmng\_dashboard\_Capacity\_widget.png)
 
 {% hint style="info" %}
 Selecting the Capacity title displays the filesystems page.

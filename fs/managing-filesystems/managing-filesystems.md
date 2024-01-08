@@ -109,7 +109,7 @@ You can modify the filesystem parameters according to your demand changes over t
 
 3. In the **Edit Filesystem** dialog, modify the parameters according to your requirements. (See the parameter descriptions in the [Add a filesystem](managing-filesystems.md#add-a-filesystem) topic.)
 
-<figure><img src="../../.gitbook/assets/wmng_edit_fs (1).png" alt=""><figcaption><p>Edit a filesystem</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_edit_fs.png" alt=""><figcaption><p>Edit a filesystem</p></figcaption></figure>
 
 4. Select **Save**.
 

@@ -1,7 +1,5 @@
 ---
-description: >-
-  Efficiently manage object stores for cost-effective data storage, balancing
-  access frequency and maintaining peak performance.
+description: This page provides an overview about managing object stores.
 ---
 
 # Manage object stores

@@ -27,7 +27,7 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
 * Target servers must be **Dell, HPE** or **Supermicro**. Other servers are not supported.
 * The RedFish interface must be installed, enabled, and licensed for all target servers. (RedFish is a network standard API for managing servers, networks, storage devices, and more.)
 * The WMS must be able to connect over Ethernet to the servers’ IPMI/iDRAC/iLO interface and the management interface.
-* The bare metal servers must conform to the [prerequisites-and-compatibility.md](../../support/prerequisites-and-compatibility.md "mention").
+* The bare metal servers must conform to the [prerequisites-and-compatibility.md](../prerequisites-and-compatibility.md "mention").
 * The bare metal servers must have an OS management network interface for administering the servers using DHCP.
 
 ## Before you begin

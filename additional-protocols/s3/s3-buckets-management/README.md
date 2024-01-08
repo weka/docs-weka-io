@@ -1,18 +1,14 @@
 ---
-description: This page describes how to manage S3 buckets.
+description: Explore how to manage to manage S3 buckets.
 ---
 
 # S3 buckets management
 
-You can manage buckets by either standard S3 API calls or using the WEKA API/CLI.
+Manage your buckets using WEKA, either through standard S3 API calls or the WEKA GUI/API/CLI. Determine bucket permissions by using IAM policies for authorized users or setting bucket policies for anonymous access.
 
-You determine the bucket permissions by the user's IAM policy for authorized access or by setting bucket policies for anonymous access.&#x20;
+Buckets and objects created through the S3 protocol come with default root POSIX permissions. For more precise control, create a user with an S3 role and set specific POSIX permissions for objects generated with their access/secret keys.
 
-Buckets and objects created through the S3 protocol have root POSIX permissions by default. When creating a user with an S3 role, you can set specific POSIX permissions for objects created with this user access/secret keys. Objects created using anonymous access (for buckets with IAM policy allowing that) get the anonymous UID/GID.
-
-By default, all buckets are created within the filesystem specified when creating the S3 cluster configuration. You can create a bucket in a different filesystem by calling the WEKA API/CLI.
-
-
+Objects created through anonymous access (enabled by IAM policy) are assigned the anonymous UID/GID. By default, all buckets are created within the specified filesystem during S3 cluster configuration. To place a bucket in a different filesystem, use a straightforward call to the WEKA GUI/API/CLI.
 
 **Related topics**
 

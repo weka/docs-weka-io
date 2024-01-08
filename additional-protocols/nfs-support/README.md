@@ -31,7 +31,7 @@ An interface group consists of the following:
 * A routing configuration for the IPs. The IP addresses must comply with the IP network configuration.
 
 {% hint style="info" %}
-Floating IPs are not supported in cloud environments.
+Floating IPs are supported on AWS but not on Azure, GCP, and OCI cloud environments.
 {% endhint %}
 
 An interface group can have only a single port. Therefore, two interface groups are required to support High Availability (HA) in NFS. Consider the network topology when assigning the other server ports to these interface groups to ensure no single point of failure exists in the switch.
@@ -77,7 +77,7 @@ To ensure the resilience of the service if a server fails, all IP addresses asso
 
 ## NFS service deployment high-level workflow
 
-<figure><img src="../../.gitbook/assets/NFS_deploy_workflow (2).png" alt=""><figcaption><p>NFS service deployment workflow</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/NFS_deploy_workflow.png" alt=""><figcaption><p>NFS service deployment workflow</p></figcaption></figure>
 
 For detailed procedures, see the related topics.
 

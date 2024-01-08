@@ -39,7 +39,7 @@ The server or VM must meet the following requirements:
   * If not configuring LWH: minimum 4 cores and 16 GiB.
   * If configuring LWH, see the Server minimum CPU and RAM requirements section in [#1.-verify-prerequisites](the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
 * **Network interface:** 1 Gbps.&#x20;
-* **Firewall rules:**   The WMS listens on multiple ports depending on which service you are accessing.  See [#required-ports](../support/prerequisites-and-compatibility.md#required-ports "mention")
+* **Firewall rules:**   The WMS listens on multiple ports depending on which service you are accessing.  See [#required-ports](../install/prerequisites-and-compatibility.md#required-ports "mention")
 
 {% hint style="info" %}
 This workflow only applies to installation on a server or VM. It does not apply to installation on AWS. To install on AWS, contact the Customer Success Team.
@@ -189,7 +189,7 @@ Set up email notifications by configuring the SMTP Relay to enable WMS for sendi
    * **Enable Ingress TLS:** Toggle to enable TLS for all connections.
    * **TLS Cert:** Specify the TLS certificate to be used.
    * **TLS Key:** Enter the TLS key corresponding to the specified certificate above.
-   * **Enable email notifications (configure in the Email Notification Setting page):** Activate email notifications and set up your SMTP Relay configurations in the Email Notification Settings page.
+   * **Enable email notifications (configure in the Email Notification Setting page):** Activate email notifications and set up your email server configurations in the Email Notification Settings page.
    * **Enable forwarding data to Cloud WEKA Home:** Activate this feature to send data to Cloud WEKA Home. Internet connectivity to api.home.weka.io is required for this functionality. The default setting is activated.
 
 <figure><img src="../.gitbook/assets/wms_5_configure_lwh.png" alt=""><figcaption><p>Local WEKA Home configuration (post Installation example)</p></figcaption></figure>
@@ -230,11 +230,12 @@ The WMS can have multiple IP interfaces, such as when installed as a jump host w
 {% endhint %}
 
 5. Log in to the LWH.\
-   On the Landing Page, select **Open Local WEKA Home in new tab**.  \
+   On the Landing Page, select **Open Local WEKA Home**. \
+   If the tab does not appear, check that the browser pop-up blocker does not block it.\
    When prompted for a password, enter the Admin password retrieved in the previous steps.\
-   The **LWH Cluster Overview** page appears.
+   The **LWH Cluster Overview** page opens on a new tab.
 
-<figure><img src="../.gitbook/assets/WMS_Open_LWH (1).png" alt="" width="563"><figcaption><p>Open Local WEKA Home in a new tab</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/WMS_open_LWH.jpg" alt="" width="563"><figcaption><p>Open Local WEKA Home in a new tab</p></figcaption></figure>
 
 {% hint style="info" %}
 **Reconfiguring LWH:** If required, return to the LWH configuration page, update the configuration, and select **Save** again. The LWH configuration will be updated and restarted. &#x20;
@@ -271,10 +272,11 @@ Once the WMS successfully logs in to the cluster, the WEKAmon installation begin
 
 <figure><img src="../.gitbook/assets/WMS_WEKAmon_install_completes.png" alt="" width="375"><figcaption><p>WEKAmon installation completes</p></figcaption></figure>
 
-#### Open Grafana
-
-1. From the Landing Page, select **Grafana**.
-2. For username and password, use `admin/admin` (not the username/password that was retrieved for LWH.)
+4. Log in to **Grafana**.\
+   On the Landing Page, select **Grafana**. \
+   If the tab does not appear, check that the browser pop-up blocker does not block it.\
+   When prompted for a username and password, enter the enter `admin/admin` (not the username/password that was retrieved for LWH).\
+   The **Grafana** page opens on a new tab.
 
 ### Edit the hosts file
 

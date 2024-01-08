@@ -1,45 +1,41 @@
-# Supported NFS client mount options
+# Supported NFS client mount parameters
 
-### Non-coherent mount options
+For optimal NFS client performance with WEKA, adhere to mandatory and recommended parameters. These parameters are tested and supported in various scenarios, reflecting real-world usage.
 
-* `ac`
-* `async`
-* `noatime`
-* `lookupcache=all`
+## **Mandatory** parameters
 
-### Coherent mount options
+It is imperative to include the following parameters with the client's default mount options:
 
-* `noac`
-* `sync`
-* `atime`
-* `lookupcache=none`
+* **NFSv3:**&#x20;
+  * `nolock`
+  * `sec=sys`
+  * `proto=tcp`
+* **NFSv4:**
+  * `sec=sys`
+  * `proto=tcp`
 
-### Common mount options
+## Recommended parameters
 
-{% hint style="info" %}
-You can change the following mount options. These values are commonly used with the WEKA system.
-{% endhint %}
+In addition to the mandatory parameters, consider the following recommendations to enhance performance and stability:
 
-* `rw`
-* `hard`
-* `rsize=524288`
-* `wsize=524288`
-* `namlen=255`
-* `timeo=600`
-* `retrans=2`
-* `nconnect=1` (only supported in NFS-W)&#x20;
+* **NFSv3:**
+  * `hard`
+  * `vers=3`
+* **NFSv4:**
+  * `hard`
+  * `vers=4`
 
-### Fixed-mount options
+## Additional information
 
-{% hint style="danger" %}
-Set these values on the mount command because different values are not supported.
-{% endhint %}
-
-* `nolock`
+* **File locking:** WEKA NFS does not support file locking in 4.2. File lock requests by the client will be ignored or result in an error. For file locking, use the WekaFS client.
+* **NFS client version:** Specify the NFS client version as `vers=3` or `vers=4` to prevent unexpected negotiations during server configuration changes.
+* **Resiliency:** Explicitly set `hard` for resilience to temporary network interruptions.
+* **NFS performance:** For users of the latest WEKA versions, consider setting `nconnect` to a value greater than 1 for potential NFS performance improvement.
 
 {% hint style="info" %}
-The following options must have fixed values but usually are either the NFS mount defaults or are negotiated to these values by the protocol.
+This page discusses client options specifically supported for clients of WEKA NFS. Beyond these, the default NFS client options negotiated at mount time are appropriate for most use cases. For guidance on other NFS client options, consult the client's operating system documentation.
 {% endhint %}
 
-* `sec=sys`
-* `proto=tcp`
+**Related topic**
+
+[mounting-filesystems](../../fs/mounting-filesystems/ "mention")
