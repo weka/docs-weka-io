@@ -72,3 +72,9 @@ To rotate the SSH keys, follow these steps:&#x20;
 
 * [Adding or replacing a key pair for your instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#replacing-key-pair), and
 * [How to use AWS Secrets Manager to securely store and rotate SSH key pairs](https://aws.amazon.com/blogs/security/how-to-use-aws-secrets-manager-securely-store-rotate-ssh-key-pairs/).
+
+
+
+**Related topic**
+
+[supported-ec2-instance-types.md](../supported-ec2-instance-types.md "mention")

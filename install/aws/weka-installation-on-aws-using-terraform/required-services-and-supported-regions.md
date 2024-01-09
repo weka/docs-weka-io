@@ -30,6 +30,14 @@ The AWS region must support the following services used in WEKA on AWS.
 | eu-west-2      | Europe (London)           |
 | sa-east-1      | South America (São Paulo) |
 
+
+
+**Related topic**
+
+[supported-ec2-instance-types.md](../supported-ec2-instance-types.md "mention")
+
+
+
 **Related information**
 
 [Regions and Zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions)
