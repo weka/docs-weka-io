@@ -53,7 +53,7 @@ For CPU-optimized networking, WEKA can yield CPU resources to other applications
 
 #### DPDK without the core dedication
 
-For CPU-optimized networking, when [mounting filesystems using stateless clients](../fs/mounting-filesystems/#mounting-filesystems-using-stateless-clients), it is possible to use DPDK networking without dedicating cores. This mode is recommended when available and supported by the NIC drivers. The DPDK networking uses RX interrupts instead of dedicating the cores in this mode.&#x20;
+For CPU-optimized networking, when [mounting filesystems using stateless clients](../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients), it is possible to use DPDK networking without dedicating cores. This mode is recommended when available and supported by the NIC drivers. The DPDK networking uses RX interrupts instead of dedicating the cores in this mode.&#x20;
 
 {% hint style="info" %}
 This mode is supported in most NIC drivers. Consult [https://doc.dpdk.org/guides/nics/overview.html](https://doc.dpdk.org/guides-18.11/nics/overview.html) for compatibility.
@@ -137,7 +137,7 @@ For the RDMA/GPUDirect Storage technology to take effect, the following requirem
 * Encrypted filesystems: The framework is not used for encrypted filesystems and falls back to work without RDMA/GPUDirect for IOs to encrypted filesystems.
 * An HCA is considered to support RDMA networking if the following requirements are met:
   * For GPUDirect Storage only: InfiniBand network.
-  * The NIC supports RDMA. See [#networking-ethernet](../install/prerequisites-and-compatibility.md#networking-ethernet "mention").
+  * The NIC supports RDMA. See [#networking-ethernet](../support/prerequisites-and-compatibility.md#networking-ethernet "mention").
   * OFED 4.6-1.0.1.1 or higher.
     * For GPUDirect Storage: install with `--upstream-libs` and `--dpdk`.
 

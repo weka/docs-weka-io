@@ -20,7 +20,7 @@ The Cluster Admin can perform the following activities:
 
 {% hint style="info" %}
 * The data at the hardware level is not separated. While the WEKA system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations. The system limits are according to the entire system. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
-* When creating mounts, you can specify the maximum and preferred throughput. See   [Set mount option default values](../../fs/mounting-filesystems/#set-mount-option-default-values).
+* When creating mounts, you can specify the maximum and preferred throughput. See   [Set mount option default values](../../fs/mounting-filesystems.md#set-mount-option-default-values).
 {% endhint %}
 
 ## Organization management use cases&#x20;

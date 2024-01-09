@@ -65,9 +65,9 @@ mkdir -p /mnt/weka
 mount -t wekafs Backend-1/my_fs /mnt/weka
 ```
 
-For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, see the [Mount filesystems using the stateless clients feature](../../../fs/mounting-filesystems/#mounting-filesystems-using-stateless-clients) section.
+For the first mount, this will install the WEKA software and automatically configure the client. For more information on mount and configuration options, see the [Mount filesystems using the stateless clients feature](../../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients) section.
 
-It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, see the [Mount filesystems using fstab](../../../fs/mounting-filesystems/#mounting-filesystems-using-fstab) or [Mount filesystems using autofs](../../../fs/mounting-filesystems/#mounting-filesystems-using-autofs) sections.
+It is possible to configure the client OS to automatically mount the filesystem at boot time. For more information, see the [Mount filesystems using fstab](../../../fs/mounting-filesystems.md#mounting-filesystems-using-fstab) or [Mount filesystems using autofs](../../../fs/mounting-filesystems.md#mounting-filesystems-using-autofs) sections.
 
 ## Add clients that are always part of the cluster
 
@@ -139,5 +139,5 @@ Using the `mkdir -p /mnt/weka && mount -t wekafs default /mnt/weka` command will
 {% endhint %}
 
 {% hint style="info" %}
-For more information about available mount options, see [Mounting filesystems](../../../fs/mounting-filesystems/).
+For more information about available mount options, see [Mounting filesystems](../../../fs/mounting-filesystems.md).
 {% endhint %}

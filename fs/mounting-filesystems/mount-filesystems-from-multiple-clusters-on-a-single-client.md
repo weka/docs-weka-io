@@ -109,4 +109,4 @@ This ensures that your WEKA CLI command is directed to the correct WEKA cluster 
 
 [adding-clients-bare-metal.md](../../install/bare-metal/adding-clients-bare-metal.md "mention")
 
-[.](./ "mention")
+[mounting-filesystems.md](../mounting-filesystems.md "mention")

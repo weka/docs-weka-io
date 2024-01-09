@@ -113,6 +113,6 @@ Using the [Snap-To-Object](../fs/snap-to-obj/) feature causes data to be tiered 
 
 ### Bypassing the time-based policies
 
-Regardless of the time-based policies, it is possible to use a special mount option [`obs_direct`](../fs/mounting-filesystems/#mount-command-options) to bypass the time-based policies. Any creation/writing of files from a mount point with this option will mark it to release as soon as possible before considering other file retention policies.
+Regardless of the time-based policies, it is possible to use a special mount option [`obs_direct`](../fs/mounting-filesystems.md#mount-command-options) to bypass the time-based policies. Any creation/writing of files from a mount point with this option will mark it to release as soon as possible before considering other file retention policies.
 
 For a more in-depth explanation, refer to [Advanced Data Lifecycle Management](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md).
