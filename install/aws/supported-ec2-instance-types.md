@@ -1,6 +1,6 @@
 # Supported EC2 instance types
 
-## Storage EC2 instances
+## Backend EC2 instances
 
 The following EC2 instance models can operate as **backend**, **client,** or **converged** instances. The default EC2 instance model for backends is **i3en.2xlarge**.
 
