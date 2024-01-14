@@ -30,7 +30,7 @@ Use the following command line to set the NFS configuration on the configuration
 
 **Parameters**
 
-<table><thead><tr><th width="220">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>config-fs</code>*</td><td>The predefined filesystem name for maintaining the persisting cluster-wide protocols' configurations.<br>Ensure the filesystem is already created. If not, create it. For details, see  <a data-mention href="../additional-protocols-overview.md">additional-protocols-overview.md</a>(step 5 in the procedure)</td></tr></tbody></table>
+<table><thead><tr><th width="220">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>config-fs</code>*</td><td>The predefined filesystem name for maintaining the persisting cluster-wide protocols' configurations.<br>Ensure the filesystem is already created. If not, create a filesystem with 100 GB capacity.</td></tr></tbody></table>
 
 ### Create interface groups
 

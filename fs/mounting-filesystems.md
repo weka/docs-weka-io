@@ -329,7 +329,7 @@ backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  num_cores=1,net=eth
 
 7. Mount the the filesystem to test the fstab setting by running the command, for example:\
    `mount /mnt/weka/my_fs`
-8. To test the result, reboot the server.\
+8. To test the fstab implementation, reboot the server.\
    WEKA creates the mounts for the next boot.
 
 The filesystem is mounted automatically after server reboot.

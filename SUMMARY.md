@@ -109,7 +109,7 @@
 
 ## Additional Protocols
 
-* [Create dedicated protocol containers in a WEKA cluster](additional-protocols/additional-protocols-overview.md)
+* [Additional protocols overview](additional-protocols/additional-protocols-overview.md)
 * [Manage the NFS protocol](additional-protocols/nfs-support/README.md)
   * [Supported NFS client mount parameters](additional-protocols/nfs-support/supported-nfs-client-mount-options.md)
   * [Manage NFS networking using the GUI](additional-protocols/nfs-support/nfs-support.md)
