@@ -1,8 +1,8 @@
 # WEKA project description
 
-The WEKA project ultimately uses the internal GCP resources. A basic WEKA project includes a cluster with a few VPCs[^1], VMs (instances), a load balancer, DNS, cloud storage, a secret manager, and a few more elements that manage the resize of the cluster. The peering between all the VPCs enables running the functions across all the networks.
+The WEKA project ultimately uses the internal GCP resources. A basic WEKA project includes a cluster with several virtual private clouds (VPCs), VMs (instances), a load balancer, DNS, cloud storage, a secret manager, and a few more elements that manage the resize of the cluster. The peering between all the virtual networks enables running the functions across all the networks.
 
-<figure><img src="../../.gitbook/assets/GCP_puplic_network.png" alt="" width="563"><figcaption><p>WEKA project on the GCP</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/GCP_puplic_network.png" alt="" width="563"><figcaption><p>Weka project on the GCP</p></figcaption></figure>
 
 ### Resize cloud function operation
 
@@ -24,6 +24,4 @@ Depending on the required security level, you can deploy the WEKA project on one
 
 <figure><img src="../../.gitbook/assets/GCP_weka_with_bastion_project.png" alt="" width="563"><figcaption><p>Private subnet shared with a Bastion project </p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/GCP_weka_with_yum_project.png" alt="" width="563"><figcaption><p>Private subnet shared with a Yum project </p></figcaption></figure>
-
-[^1]: Virtual Private Cloud (VPC) provides networking functionality to Compute Engine virtual machine (VM) instances, Google Kubernetes Engine (GKE) clusters, and serverless workloads. VPC provides networking for your cloud-based resources and services that is global, scalable, and flexible. For more details, see [Virtual Private Cloud (VPC) overview](https://cloud.google.com/vpc/docs/overview).
+<figure><img src="../../.gitbook/assets/GCP_weka_with_yum_project.png" alt="" width="563"><figcaption><p>Private subnet shared with a yum project </p></figcaption></figure>
