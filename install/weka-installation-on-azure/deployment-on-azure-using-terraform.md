@@ -55,7 +55,7 @@ Follow these additional requirements to get Terraform working on an Arm-based Ma
 * **SMB-W**
 
 <pre><code><strong>smb_protocol_gateways_number = 3
-</strong>smb_protocol_gateway_instance_type = Standard_L48s_v3 
+</strong>smb_protocol_gateway_instance_type = "Standard_L48s_v3" 
 smbw_enabled = true
 smb_domain_name = "CUSTOMER_DOMAIN"
 smb_share_name = "SPECIFY_SMB_SHARE_NAMING"
@@ -66,7 +66,7 @@ smb_setup_protocol = true
 
 ```
 nfs_protocol_gateways_number = 1
-nfs_protocol_gateway_instance_type = Standard_L48s_v3
+nfs_protocol_gateway_instance_type = "Standard_L48s_v3"
 nfs_setup_protocol = true
 ```
 
@@ -74,7 +74,7 @@ nfs_setup_protocol = true
 
 ```makefile
 clients_number = 2
-client_instance_type = Standard_L48s_v3
+client_instance_type = "Standard_L48s_v3"
 ```
 
 ## Apply the main.tf file
