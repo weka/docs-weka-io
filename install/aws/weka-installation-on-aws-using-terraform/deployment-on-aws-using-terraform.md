@@ -19,7 +19,7 @@ The [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-star
 
 ```makefile
 smb_protocol_gateways_number = 3
-smb_protocol_gateway_instance_type = c5.2xlarge 
+smb_protocol_gateway_instance_type = "c5.2xlarge" 
 smbw_enabled = true
 smb_domain_name = "CUSTOMER_DOMAIN"
 smb_share_name = "SPECIFY_SMB_SHARE_NAMING"
@@ -30,7 +30,7 @@ smb_setup_protocol = true
 
 ```makefile
 nfs_protocol_gateways_number = 1
-nfs_protocol_gateway_instance_type = c5.2xlarge
+nfs_protocol_gateway_instance_type = "c5.2xlarge"
 nfs_setup_protocol = true
 ```
 
@@ -38,7 +38,7 @@ nfs_setup_protocol = true
 
 ```makefile
 clients_number = 2
-client_instance_type = c5.2xlarge
+client_instance_type = "c5.2xlarge"
 ```
 
 ## Apply the main.tf file

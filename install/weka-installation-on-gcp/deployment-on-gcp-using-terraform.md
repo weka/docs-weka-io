@@ -63,7 +63,7 @@ Before installing the WEKA software on GCP, the following prerequisites must be 
 * **SMB-W**
 
 <pre><code><strong>smb_protocol_gateways_number = 3
-</strong>smb_protocol_gateway_instance_type = c2-standard-8 
+</strong>smb_protocol_gateway_instance_type = "c2-standard-8" 
 smbw_enabled = true
 smb_domain_name = "CUSTOMER_DOMAIN"
 smb_share_name = "SPECIFY_SMB_SHARE_NAMING"
@@ -74,7 +74,7 @@ smb_setup_protocol = true
 
 ```
 nfs_protocol_gateways_number = 2
-nfs_protocol_gateway_instance_type = c2-standard-8
+nfs_protocol_gateway_instance_type = "c2-standard-8"
 nfs_setup_protocol = true
 ```
 
@@ -82,14 +82,14 @@ nfs_setup_protocol = true
 
 ```makefile
 clients_number = 2
-client_instance_type = c2-standard-8
+client_instance_type = "c2-standard-8"
 ```
 
 ## Apply the main.tf file
 
 Once you complete the `main.tf` settings, apply it: Run `terraform apply`.
 
-### **Additional configuration post** Terraform apply
+### **Additional configuration post-Terraform** apply
 
 After applying  the `main.tf`, the Terraform module updates the configuration as follows:
 
