@@ -1,12 +1,12 @@
 # WEKA project description
 
-The WEKA project ultimately uses the internal GCP resources. A basic WEKA project includes a cluster with a few virtual networks (vnet), VMs (instances), a load balancer, DNS, cloud storage, a secret manager, and a few more elements that manage the resize of the cluster. The peering between all the virtual networks enables running the functions across all the networks.
+The WEKA project ultimately uses the internal GCP resources. A basic WEKA project includes a cluster with a few VPCs[^1], VMs (instances), a load balancer, DNS, cloud storage, a secret manager, and a few more elements that manage the resize of the cluster. The peering between all the VPCs enables running the functions across all the networks.
 
-<figure><img src="../../.gitbook/assets/GCP_puplic_network.png" alt=""><figcaption><p>Weka project on the GCP</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/GCP_puplic_network.png" alt="" width="563"><figcaption><p>WEKA project on the GCP</p></figcaption></figure>
 
 ### Resize cloud function operation
 
-A resize cloud function in vnet-0 and a workload listener are deployed for auto-scale instances in GCP. Once a user sends a [request for resizing](auto-scale-instances-in-gcp.md) the number of instances in the cluster, the workload listener checks the _cluster state_ file in the cloud storage and triggers the resize cloud function if a resize is required. The cluster state file is an essential part of the resizing decision. It indicates states such as:
+A resize cloud function in vpc-0 and a workload listener are deployed for auto-scale instances in GCP. Once a user sends a [request for resizing](auto-scale-instances-in-gcp.md) the number of instances in the cluster, the workload listener checks the _cluster state_ file in the cloud storage and triggers the resize cloud function if a resize is required. The cluster state file is an essential part of the resizing decision. It indicates states such as:
 
 * Readiness of the cluster.
 * The number of existing instances.
@@ -22,6 +22,8 @@ Depending on the required security level, you can deploy the WEKA project on one
 * **Private subnet shared with a Bastion project:** Create a private subnet with a shared project with a Bastion project, a risk-based security solution used for authenticating communication with a public network, such as downloading the WEKA software from get.weka.io. The Bastion project includes a Bastion VM (host) acting as a network gateway. The relevant ports are open (by the Terraform files).&#x20;
 * **Private subnet shared with a yum project:** If a connection to get.weka.io for downloading the WEKA software is impossible, create a private subnet with a yum repository containing the WEKA software. The relevant ports are open (by the Terraform files).
 
-<figure><img src="../../.gitbook/assets/GCP_weka_with_bastion_project.png" alt=""><figcaption><p>Private subnet shared with a Bastion project </p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/GCP_weka_with_bastion_project.png" alt="" width="563"><figcaption><p>Private subnet shared with a Bastion project </p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/GCP_weka_with_yum_project.png" alt=""><figcaption><p>Private subnet shared with a yum project </p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/GCP_weka_with_yum_project.png" alt="" width="563"><figcaption><p>Private subnet shared with a Yum project </p></figcaption></figure>
+
+[^1]: Virtual Private Cloud (VPC) provides networking functionality to Compute Engine virtual machine (VM) instances, Google Kubernetes Engine (GKE) clusters, and serverless workloads. VPC provides networking for your cloud-based resources and services that is global, scalable, and flexible. For more details, see [Virtual Private Cloud (VPC) overview](https://cloud.google.com/vpc/docs/overview).
