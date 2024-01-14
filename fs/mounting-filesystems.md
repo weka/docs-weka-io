@@ -296,7 +296,7 @@ RequiredBy=remote-fs-pre.target remote-fs.target
 3. Run the following command:
 
 ```
-systemctl daemon-reload; systemctl enable weka-agent.service
+systemctl daemon-reload; systemctl enable --now weka-agent.service
 ```
 
 4. Create a mount point.\
@@ -327,10 +327,10 @@ backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  num_cores=1,net=eth
   * **Systemd mount options:**\
     `x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`
 
-7. Reboot the server.\
-   WEKA creates the mounts for the next boot.
-8. Mount the the filesystem to test the fstab setting by running the command, for example:\
+7. Mount the the filesystem to test the fstab setting by running the command, for example:\
    `mount /mnt/weka/my_fs`
+8. To test the result, reboot the server.\
+   WEKA creates the mounts for the next boot.
 
 The filesystem is mounted automatically after server reboot.
 
