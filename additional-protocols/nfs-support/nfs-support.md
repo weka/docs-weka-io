@@ -154,7 +154,7 @@ If you create an NFS v4 client permission, verify that a global configuration fi
    * **Filesystem**: The filesystem to which the permissions are applied. A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.
    * **Path**: The exported directory path (root share).
    * **Type**: The access type: RO (read-only) or RW (read/write).
-   * **Priority:** The priority of the client's permission. When access is evaluated, the system processes the permissions set with the lower priority number. Setting a number in tens (10, 20, 100, and so on) is recommended (it allows adding priorities in between).
+   * **Priority:** Permissions are processed in ascending priority order during access evaluation, beginning with the lowest number. If a client matches multiple permission entries, the entry with the highest priority number determines the effective permission. Using a numbering system in tens (10, 20, 100) is advisable to facilitate the addition of priorities between existing ones.
    * **Supported Versions:** The supported NFS versions (V3, V4, or both).
    * **Squash Root**: The system enforces squash mode with the client's permission.
    * **Anon. UID**: Anonymous user ID. Only relevant for Root and All user squashing.
