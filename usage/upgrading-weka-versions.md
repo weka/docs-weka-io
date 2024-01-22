@@ -172,6 +172,13 @@ Example:
 
 * Before switching the cluster to the new software release, the upgrade command distributes the new release to all cluster servers. It makes the necessary preparations, such as compiling the new `wekafs` driver.
 * If a failure occurs during the preparation, such as a disconnection of a server or failure to build a driver, the upgrade process stops, and a summary message indicates the problematic server.
+*   If cleanup issues occur during a specific upgrade phase, rerun it with the relevant option:                &#x20;
+
+    ```bash
+    --ndu-drives-phase
+    --ndu-frontends-phase
+    --ndu-computes-phase
+    ```
 * In a successful process, the upgrade stops the cluster IO service, switches all servers to the new release, and then turns the IO service back on. This process takes about 1 minute, depending on the cluster size.
 
 ### 5. Upgrade the clients
