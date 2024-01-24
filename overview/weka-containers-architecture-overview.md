@@ -25,7 +25,3 @@ The benefits of using the MCB architecture include:
   * The maximum number of WEKA cores per server is 64 cores. A server can include more than one container, each for a dedicated process type with up to 19 processes.
 * **Less disruptive maintenance:**
   * Ability to stop the compute and frontend processes while running the drive processes.
-
-{% hint style="info" %}
-Multi-container backend architecture is not supported yet on AWS using CloudFormation.
-{% endhint %}
