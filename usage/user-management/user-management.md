@@ -112,41 +112,45 @@ To use LDAP for authenticating users, set the property values based on your spec
 <summary>LDAP property descriptions</summary>
 
 * **Server URI:** The URI or address of the LDAP server, including the protocol (in this case, LDAP), the server's hostname or IP address, and the port number.\
-  Example value: ldap://ldap.example.com:389
+  Example value: `ldap://ldap.example.com:389`
 * **Protocol Version:** The version of the LDAP protocol being used. Common versions include LDAPv2 and LDAPv3.\
-  Example value: 3
+  Example value: `3`
 * **Start TLS:** When enabled, this option initiates a Transport Layer Security (TLS) connection with the LDAP server. TLS provides encryption and secure communication between the client and server, protecting the confidentiality and integrity of data transmitted over the network.
 *   **Ignore Certificate Failures:** When enabled, this option instructs the LDAP client to ignore certificate validation failures during the TLS/SSL handshake process. Certificate validation failures can include expired, self-signed, or mismatched certificates. Enabling this option allows the client to establish a connection even if the server's certificate cannot be fully validated. Use this option cautiously, as it may expose the connection to potential security risks.
 
     Enabling _Start TLS_ and _Ignore Certificate Failures_ must be done based on your specific security requirements and the configuration of your LDAP server.
 * **Server Timeout Seconds:** The maximum amount of time, in seconds, the client waits for a response from the LDAP server before timing out.\
-  Example value: 30
+  Example value: `30`
 * **Base DN :** The base distinguished name (DN) is the starting point for searching the directory tree. It represents the top-level entry in the LDAP directory.\
-  Example Value: dc=example,dc=com
+  Example Value: `dc=example,dc=com`
 * **Reader Username:** The username or distinguished name (DN) of a dedicated reader user account used for authenticating and reading data from the LDAP server.\
-  Example value: cn=reader,dc=example,dc=com
+  Example value: `cn=reader,dc=example,dc=com`
 * **Reader Password:** The password is associated with the reader user account for authentication purposes.\
-  Example Value: \*\*\*\*\*\*\*\*
+  Example Value: `********`
 * **User ID Attribute:** The attribute in the LDAP schema that represents the unique identifier or username for user entries.\
-  Example value: uid
+  Example value: `uid`
 * **User Object Class:** The object class or object type in the LDAP schema defines the structure and attributes of user entries.\
-  Example value: person
+  Example value: `person`
 * **User Revocation Attribute:** An attribute indicates a user account's revocation status, typically a boolean attribute set to true or false.\
-  Example value: isRevoked
+  Example value: `isRevoked`
 * **Group ID Attribute:** The attribute in the LDAP schema represents the unique identifier or name for group entries.\
-  Example value: cn
+  Example value: `cn`
 * **Group Membership Attribute:** The attribute establishes the membership relationship between users and groups, specifying which users are members of a particular group.\
-  Example value: member
+  Example value: `member`
 * **Group Object Class:** The object class or object type in the LDAP schema defines the structure and attributes of group entries.\
-  Example value: groupOfNames
+  Example value: `groupOfNames`
 * **Cluster Admin Group:** The LDAP group granted administrative privileges for managing the LDAP cluster.\
-  Example value: cn=cluster\_admins,ou=groups,dc=example,dc=com
+  Example value: `cn=cluster_admins,ou=groups,dc=example,dc=com`\
+  sAMAccountName: `cluster_admins`
 * **Organization Admin Role Group:** The LDAP group granted administrative privileges for managing specific organizations or units within the LDAP directory.\
-  Example value: cn=org\_admins,ou=groups,dc=example,dc=com
+  Example value: `cn=org_admins,ou=groups,dc=example,dc=com`\
+  sAMAccountName: `org_admins`
 * **Regular User Role Group:** The group in LDAP represents regular users with standard access privileges.\
-  Example value: cn=regular\_users,ou=groups,dc=example,dc=com
+  Example value: `cn=regular_users,ou=groups,dc=example,dc=com`\
+  sAMAccountName: `regular_users`
 * **Read-only User Role Group:** The group in LDAP represents users with read-only access privileges restricted from making modifications.\
-  Example value: cn=read\_only\_users,ou=groups,dc=example,dc=com
+  Example value: `cn=read_only_users,ou=groups,dc=example,dc=com`\
+  sAMAccountName: `read_only_users`
 
 </details>
 
@@ -171,21 +175,25 @@ To use Active Directory for authenticating users, set the property values based 
 <summary>Active Directory property descriptions</summary>
 
 * **Domain:** The domain name of the Active Directory environment. It represents the network boundary and provides a way to organize and manage resources, users, and groups.\
-  Example value: example.com
+  Example value: `example.com`
 * **Server URI:** The URI or address of the Active Directory server, including the protocol (in this case, LDAP) and the server's hostname or IP address.\
-  Example value: ldap://ad.example.com
+  Example value: `ldap://ad.example.com`
 * **Reader Username:** A dedicated reader user account's username or user principal name (UPN) used for authenticating and reading data from the Active Directory.\
-  Example value: readeruser@example.com
+  Example value: `readeruser@ad.example.com`
 * **Reader Password:** The password associated with the reader user account for authentication purposes.\
-  Example Value: \*\*\*\*\*\*\*\*
+  Example Value: `********`
 * **Cluster Admin Role Group:** The group in Active Directory granted administrative privileges for managing the cluster or server infrastructure.\
-  Example value: CN=ClusterAdmins,CN=Users,DC=example,DC=com
+  Example value: `CN=ClusterAdmins,CN=Users,DC=example,DC=com`\
+  sAMAccountName: `ClusterAdmins`
 * **Organization Admin Role Group:** The group in Active Directory granted administrative privileges for managing specific organizations or units within the Active Directory environment.\
-  Example value: CN=OrgAdmins,CN=Users,DC=example,DC=com
+  Example value: `CN=OrgAdmins,CN=Users,DC=example,DC=com`\
+  sAMAccountName: `OrgAdmins`
 * **Regular User Role Group:** The group in Active Directory represents regular users with standard access privileges.\
-  Example value: CN=RegularUsers,CN=Users,DC=example,DC=com
+  Example value: `CN=RegularUsers,CN=Users,DC=example,DC=com`\
+  sAMAccountName:  `RegularUsers`
 * **Read-only User Role Group:** The group in Active Directory represents users with read-only access privileges, restricted from making modifications.\
-  Example value: CN=ReadOnlyUsers,CN=Users,DC=example,DC=com
+  Example value: `CN=ReadOnlyUsers,CN=Users,DC=example,DC=com`\
+  sAMAccountName:  `ReadOnlyUsers`
 
 </details>
 
