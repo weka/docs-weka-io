@@ -34,7 +34,7 @@ The AWS region must support the following services used in WEKA on AWS.
 
 **Related topic**
 
-[supported-ec2-instance-types.md](../supported-ec2-instance-types.md "mention")
+[supported-ec2-instance-types.md](supported-ec2-instance-types.md "mention")
 
 
 

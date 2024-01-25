@@ -42,10 +42,11 @@
     * [CloudFormation template generator](install/aws/weka-installation-on-aws-using-the-cloud-formation/cloudformation.md)
     * [Deployment types](install/aws/weka-installation-on-aws-using-the-cloud-formation/deployment-types.md)
     * [AWS Outposts deployment](install/aws/weka-installation-on-aws-using-the-cloud-formation/aws-outposts-deployment.md)
+    * [Supported EC2 instance types](install/aws/weka-installation-on-aws-using-the-cloud-formation/supported-ec2-instance-types.md)
     * [Add clients](install/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md)
     * [Auto scaling group](install/aws/weka-installation-on-aws-using-the-cloud-formation/auto-scaling-group.md)
     * [Troubleshooting](install/aws/weka-installation-on-aws-using-the-cloud-formation/troubleshooting.md)
-  * [Supported EC2 instance types](install/aws/supported-ec2-instance-types.md)
+  * [Supported EC2 instance types](install/aws/weka-installation-on-aws-using-terraform/supported-ec2-instance-types.md)
 * [WEKA installation on Azure](install/weka-installation-on-azure/README.md)
   * [Terraform-Azure-WEKA module description](install/weka-installation-on-azure/azure-weka-terraform-package-description.md)
   * [Deployment on Azure using Terraform](install/weka-installation-on-azure/deployment-on-azure-using-terraform.md)
@@ -219,6 +220,7 @@
 ## Best Practice Guides
 
 * [WEKA and Slurm integration](best-practice-guides/weka-and-slurm-integration.md)
+* [Storage expansion best practice](best-practice-guides/storage-expansion-best-practice.md)
 
 ## Appendices
 
