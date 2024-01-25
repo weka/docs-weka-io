@@ -260,76 +260,144 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 
 `-s 8972` is the maximum ICMP packet size that can be transferred with MTU 9000, due to the overhead of ICMP and IP protocols.
 
-## 5. Configure the HA networking <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
+## 5. Configure dual-network links with policy-based routing <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
 
-Bonded interfaces are supported for ethernet can be added to WEKA after setting the bonded device in the server.
+The following steps provide guidance for configuring dual-network links with policy-based routing on Linux systems. Adjust IP addresses and interface names according to your environment.
 
-When there is a need to configure Dual Network (IB or ETH) without LACP, each NIC must have its own IP address and you will need to properly configure the routing of the interfaces involved.
+#### **General Settings in `/etc/sysctl.conf`**
 
-{% tabs %}
-{% tab title="Infiniband" %}
-**Example using CentOS:**
+1. Open the `/etc/sysctl.conf` file using a text editor.
+2.  Add the following lines at the end of the file to set minimal configurations per InfiniBand (IB) or Ethernet (Eth) interface:
 
-Add the following lines at the end of `/etc/sysctl.conf`:
+    ```bash
+    # Minimal configuration, set per IB/Eth interface
+    net.ipv4.conf.ib0.arp_announce = 2
+    net.ipv4.conf.ib1.arp_announce = 2
+    net.ipv4.conf.ib0.arp_filter = 1
+    net.ipv4.conf.ib1.arp_filter = 1
+    net.ipv4.conf.ib0.arp_ignore = 0
+    net.ipv4.conf.ib1.arp_ignore = 0
 
-```
-net.ipv4.conf.ib0.arp_announce =2
-net.ipv4.conf.ib1.arp_announce =2
-net.ipv4.conf.ib0.arp_filter =1
-net.ipv4.conf.ib1.arp_filter =1
-```
+    # As an alternative set for all interfaces by default
+    net.ipv4.conf.all.arp_filter = 1
+    net.ipv4.conf.default.arp_filter = 1
+    net.ipv4.conf.all.arp_announce = 2
+    net.ipv4.conf.default.arp_announce = 2
+    net.ipv4.conf.all.arp_ignore = 0
+    net.ipv4.conf.default.arp_ignore = 0
+    ```
+3. Save the file.
+4.  Apply the new settings by running:
 
-This can be added per interface, as described above, or to all interfaces:
+    ```bash
+    sysctl -p /etc/sysctl.conf
+    ```
 
-```
-net.ipv4.conf.all.arp_filter = 1 
-net.ipv4.conf.default.arp_filter = 1 
-net.ipv4.conf.all.arp_announce = 2 
-net.ipv4.conf.default.arp_announce = 2
-```
+#### **RHEL/CentOS Routing Configuration**
 
-**Routing tables**
+5. Navigate to `/etc/sysconfig/network-scripts/`.
+6.  Create the file `/etc/sysconfig/network-scripts/route-mlnx0` with the following content:
 
-Append the following to `/etc/iproute2/rt_tables`:
+    ```bash
+    10.90.0.0/16 dev mlnx0 src 10.90.0.1 table weka1
+    default via 10.90.2.1 dev mlnx0 table weka1
+    ```
+7.  Create the file `/etc/sysconfig/network-scripts/route-mlnx1` with the following content:
 
-```
-100 weka1
-101 weka2
-```
+    ```bash
+    10.90.0.0/16 dev mlnx1 src 10.90.1.1 table weka2
+    default via 10.90.2.1 dev mlnx1 table weka2
+    ```
+8.  Create the files `/etc/sysconfig/network-scripts/rule-mlnx0` and `/etc/sysconfig/network-scripts/rule-mlnx1` with the following content:
 
-Assuming the interfaces are `mlnx0` and `mlnx1` and assuming that the network is 10.90.0.0/16 with IPs 10.90.0.1 and 10.90.1.1 and a default gw of 10.90.2.1, set the following routing rules:
+    ```bash
+    table weka1 from 10.90.0.1
+    table weka2 from 10.90.1.1
+    ```
+9.  Open `/etc/iproute2/rt_tables` and add the following lines:
 
-**/etc/sysconfig/network-scripts/route-mlnx0**
+    ```bash
+    100 weka1
+    101 weka2
+    ```
+10. Save the changes.
 
-```
-10.90.0.0/16 dev mlnx0 src 10.90.0.1 table weka1
-default via 10.90.2.1 dev mlnx0 table weka1
-```
+#### **Ubuntu Netplan configuration**
 
-**/etc/sysconfig/network-scripts/route-mlnx1**
+11. Open the Netplan configuration file `/etc/netplan/01-netcfg.yaml` and adjust it:
 
-```
-10.90.0.0/16 dev mlnx1 src 10.90.1.1 table weka2
-default via 10.90.2.1 dev mlnx1 table weka2
-```
+    ```yaml
+    network:
+        version: 2
+        renderer: networkd
+        ethernets:
+            enp2s0:
+                dhcp4: true
+                nameservers:
+                        addresses: [8.8.8.8]
+            ib1:
+                addresses:
+                        [10.222.0.10/24]
+                routes:
+                        - to: 10.222.0.0/24
+                          via: 10.222.0.10
+                          table: 100
+                routing-policy:
+                        - from: 10.222.0.10
+                          table: 100
+                          priority: 32764
+            ib2:
+                addresses:
+                        [10.222.0.20/24]
+                routes:
+                        - to: 10.222.0.0/24
+                          via: 10.222.0.20
+                          table: 101
+                routing-policy:
+                        - from: 10.222.0.20
+                          table: 101
+                          priority: 32765
+    ```
+12. After adjusting the Netplan configuration file, run the following commands:
 
-**/etc/sysconfig/network-scripts/rule-mlnx0**
+    ```bash
+    ip route add 10.222.0.0/24 via 10.222.0.10 dev ib1 table 100
+    ip route add 10.222.0.0/24 via 10.222.0.20 dev ib2 table 101
+    ```
 
-```
-table weka1 from 10.90.0.1
-```
+**SLES/SUSE Configuration**
 
-**/etc/sysconfig/network-scripts/rule-mlnx1**
+13. Create `/etc/sysconfig/network/ifrule-eth2` with:
 
-```
-table weka2 from 10.90.1.1
-```
-{% endtab %}
+    ```bash
+    ipv4 from 192.168.11.21 table 100
+    ```
+14. Create `/etc/sysconfig/network/ifrule-eth4` with:
 
-{% tab title="Ethernet" %}
-Refer to this [link](https://access.redhat.com/solutions/30564) to learn how to configure dual Ethernet network in RHEL
-{% endtab %}
-{% endtabs %}
+    ```bash
+    ipv4 from 192.168.11.31 table 101
+    ```
+15. Create `/etc/sysconfig/network/scripts/ifup-route.eth2` with:
+
+    ```bash
+    ip route add 192.168.11.0/24 dev eth2 src 192.168.11.21 table weka1
+    ```
+16. Create `/etc/sysconfig/network/scripts/ifup-route.eth4` with:
+
+    ```bash
+    ip route add 192.168.11.0/24 dev eth4 src 192.168.11.31 table weka2
+    ```
+17. Add the weka lines to `/etc/iproute2/rt_tables`:
+
+    ```bash
+    100 weka1
+    101 weka2
+    ```
+18. Restart the interfaces or reboot the machine:
+
+    ```bash
+    ifdown eth2; ifdown eth4; ifup eth2; ifup eth4
+    ```
 
 **Related topic**
 
