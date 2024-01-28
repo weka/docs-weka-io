@@ -8,14 +8,20 @@ description: >-
 
 ### Set the TLS certificate
 
-You can set your TLS certificates using the CLI command: `weka security tls set`.
+**Command:** `weka security tls set`
 
-The command receives an unencrypted private key.
+Use the following command line to use TLS when accessing UI. If TLS is already set, this command updates the key and certificate.
+
+`weka security tls set [--private-key private-key] [--certificate certificate]`
+
+**Parameters**
+
+<table><thead><tr><th width="179">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>private-key</code></td><td>Path to TLS private unencrypted key pem file.</td></tr><tr><td><code>certificate</code></td><td>Path to TLS certificate pem file.</td></tr></tbody></table>
 
 {% hint style="success" %}
 **Example:**
 
-This command is similar to the OpenSSL command that WEKA uses to generate the self-signed certificate: `openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
+This command is similar to the WEKA's OpenSSL command to generate the self-signed certificate: `openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
 {% endhint %}
 
 ### Replace the TLS certificate
