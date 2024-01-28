@@ -52,10 +52,10 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 <table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>HBv4</td><td>Standard_HB176rs_v4, Standard_HB176-24rs_v4, Standard_HB176-96rs_v4</td></tr><tr><td>HBv3</td><td>Standard_HB120rs_v3</td></tr></tbody></table>
 
-### Premium storage and ultra disks <a href="#nvadsa10-v5-series" id="nvadsa10-v5-series"></a>
+### GPU - accelerated compute
 
 <table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>NVadsA10</td><td>Standard_NVadsA10_v5</td></tr></tbody></table>
 
 **Related information**
 
-[Sizes for virtual machines in Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes) (Azure learning site)
+[Sizes for virtual machines in Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes) (Azure site)
