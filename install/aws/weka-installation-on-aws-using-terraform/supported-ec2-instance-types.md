@@ -38,6 +38,12 @@ Any backend instance can also be a client instance.
 
 <table><thead><tr><th width="235">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>HPc7a</td><td>hpc7a.2xlarge, hpc7a.48xlarge, hpc7a.96xlarge</td></tr></tbody></table>
 
+### Highest performance GPU-based instances <a href="#highest_performance_gpu-based_instances_for_deep_learning_and_hpc_applications" id="highest_performance_gpu-based_instances_for_deep_learning_and_hpc_applications"></a>
+
+<table><thead><tr><th width="235">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>P5</td><td>p5.48xlarge</td></tr></tbody></table>
+
+
+
 **Related information**
 
 [AWS instance types](https://aws.amazon.com/ec2/instance-types/)

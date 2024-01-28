@@ -32,27 +32,29 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 ## Supported VM sizes for clients
 
-#### General purpose virtual machine sizes <a href="#general-purpose-virtual-machine-sizes" id="general-purpose-virtual-machine-sizes"></a>
+### General purpose virtual machine sizes <a href="#general-purpose-virtual-machine-sizes" id="general-purpose-virtual-machine-sizes"></a>
 
 <table><thead><tr><th width="134">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>Dsv3</td><td>Standard_D4s_v3, Standard_D8s_v3, Standard_D16s_v3</td></tr><tr><td>Dasv4</td><td>Standard_D2as_v4, Standard_D4as_v4, Standard_D8as_v4</td></tr><tr><td>Ddsv4</td><td>Standard_D16ds_v4</td></tr><tr><td>Dasv4</td><td>Standard_D4as_v4, Standard_D16as_v4, Standard_D32as_v4, Standard_D96as_v4</td></tr><tr><td>Dv5</td><td>Standard_D8_v5</td></tr><tr><td>Dsv5</td><td>Standard_D4s_v5 ,Standard_D16s_v5, Standard_D48s_v5 , Standard_D64s_v5</td></tr><tr><td>Dadsv5</td><td>Standard_D4ads_v5, Standard_D16ads_v5, Standard_D48ads_v5, Standard_D96ads_v5</td></tr><tr><td>DCsv2</td><td>Standard_DC4s_v2 (UDP only)</td></tr><tr><td>Dasv5</td><td>Standard_D2as_v5, Standard_D8as_v5</td></tr></tbody></table>
 
-#### Memory optimized virtual machine sizes
+### Memory optimized virtual machine sizes
 
 <table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>Edsv4</td><td>Standard_E16ds_v4, Standard_E16-8ds_v4, Standard_E32ds_v4, </td></tr><tr><td>Easv4</td><td>Standard_E32-16as_v4</td></tr><tr><td>Easv5</td><td>Standard_E32-16as_v5</td></tr><tr><td>Edsv4</td><td>Standard_E32-16ds_v4, Standard_E48ds_v4</td></tr><tr><td>Eadsv5</td><td>Standard_E96ads_v5</td></tr><tr><td>Mdmsv2</td><td>Standard_M64dms_v2</td></tr><tr><td>Msv2</td><td>Standard_M208s_v2</td></tr><tr><td>Mmsv2</td><td>Standard_M208ms_v2, Standard_M416ms_v2</td></tr></tbody></table>
 
-#### Compute optimized virtual machine sizes
+### Compute optimized virtual machine sizes
 
 <table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>FXmds</td><td>Standard_FX48mds</td></tr><tr><td>Fsv2</td><td>Standard_F8s_v2, Standard_F32s_v2, Standard_F64s_v2, Standard_F72s_v2</td></tr></tbody></table>
 
-#### Storage optimized virtual machine sizes
+### Storage optimized virtual machine sizes
 
 <table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>Lsv3</td><td>Standard_L8s_v3, Standard_L16s_v3, Standard_L32s_v3, Standard_L48s_v3, Standard_L64s_v3</td></tr></tbody></table>
 
-#### High performance optimized
+### High performance optimized
 
 <table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>HBv4</td><td>Standard_HB176rs_v4, Standard_HB176-24rs_v4, Standard_HB176-96rs_v4</td></tr><tr><td>HBv3</td><td>Standard_HB120rs_v3</td></tr></tbody></table>
 
+### Premium storage and ultra disks <a href="#nvadsa10-v5-series" id="nvadsa10-v5-series"></a>
 
+<table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>NVadsA10</td><td>Standard_NVadsA10_v5</td></tr></tbody></table>
 
 **Related information**
 
