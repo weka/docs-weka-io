@@ -213,7 +213,7 @@ IPMI_IP,Username,Password,OS_Mgmt_IP,Hostname,OS_Netmask,OS_Gateway,MTU,DNS,Host
 
     <figure><img src="../../.gitbook/assets/WSA_step9.png" alt="" width="563"><figcaption></figcaption></figure>
 
-When the ISO preparation completes, the output is displayed. Verify that no errors appear. Then, click **Next**.
+When the ISO preparation is completed, the output is displayed. Verify that no errors appear. Then, click **Next**.
 
 <figure><img src="../../.gitbook/assets/WSA_step9_1.png" alt="" width="563"><figcaption></figcaption></figure>
 
@@ -225,14 +225,39 @@ When the ISO preparation completes, the output is displayed. Verify that no erro
 
     <figure><img src="../../.gitbook/assets/WSA_step10.png" alt="" width="563"><figcaption></figcaption></figure>
 
-    The installation process takes about 30 minutes, depending on several factors, such as network speed.
-11. Check the server’s BMC to see if the servers completed the restart. Once the restart is complete, connect to the WMS using SSH to complete the installation.\
-    `ssh root@<wms ip>`\
-    Password is `WekaService`
-12. Run `cd /opt/ansible-install`
+    The installation process takes about 30 minutes, depending on several factors, such as network speed. Verify that the server’s BMC completed the restart.
+11. In **Step 11 -  Run OS and Dataplane Configuration Scripts**, click **Run post-install scripts**.  This action runs scripts to configure the servers with the specified dataplane IPs and perform additional tasks, such as populating `/etc/hosts`.
+
+<figure><img src="../../.gitbook/assets/WSA_step11.png" alt="" width="563"><figcaption></figcaption></figure>
+
+**Alternative OS and dataplane configuration**
+
+These commands only need to be run if you did not follow step 11 above.
+
+1. Connect to one of the cluster servers to run the post-install scripts. The tools are in the same location:  `/opt/tools/install` on the WSA as they are on the WMS.&#x20;
 
 ```bash
-vin$ ssh root@172.29.5.172
+ssh root@<wms ip>
+```
+
+2. When prompted, enter the password `WekaService`
+3. Change the directory to `/opt/ansible-install` by running the following command:
+
+```bash
+cd /opt/ansible-install
+# ./install_after_wsa_iso.sh
+```
+
+4. Run the post-install script:&#x20;
+
+```bash
+./install_after_wsa_iso.sh
+```
+
+Example:
+
+```bash
+$ ssh root@172.29.5.172
 root@172.29.5.172's password:
 X11 forwarding request failed on channel 0
 Welcome to the Weka Management Station!
@@ -242,21 +267,10 @@ Web console: <https://WekaMgmtServer:9090/> or <https://172.29.5.172:9090/>
 Last login: Sat Jun  3 10:31:28 2023 from ::ffff:10.41.193.86
 [root@WekaMgmtServer ~]# cd /opt/ansible-install/
 [root@WekaMgmtServer ansible-install]#
-```
-
-13. Run the post-install script:
-
-```bash
 # ./install_after_wsa_iso.sh
 ```
 
-This script sets the servers with the specified dataplane IPs and sets additional parameters, such as `/etc/hosts`.
-
-{% hint style="info" %}
-Optionally, ssh to one of the cluster servers to perform this step. The tools are in the same location (/opt/tools/install) on the WSA as they are on the WMS.
-
-Ensure the DNS is operational, or copy the `/etc/hosts` entries from one of the cluster hosts to the WMS.
-{% endhint %}
+4. Ensure the DNS is operational, or copy the `/etc/hosts` entries from one of the cluster servers to the WMS.
 
 ## What to do next?
 
