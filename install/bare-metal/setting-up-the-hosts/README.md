@@ -16,7 +16,7 @@ This preparation consists of the following steps:
 4. [Verify the network configuration](./#verify-the-network-configuration)
 5. [Configure the HA networking](./#configure-the-ha-networking)
 6. [Configure the clock synchronization](./#configure-sync)
-7. [Disable the Numa balancing](./#disable-the-numa-balancing)
+7. [Disable the NUMA balancing](./#disable-the-numa-balancing)
 8. [Validate the system preparation](./#validate-the-system-preparation)
 
 {% hint style="info" %}
@@ -186,7 +186,7 @@ On an InfiniBand network with a non-default partition number, `p-key` must be co
 **Note:** All InfiniBand ports communicating with the Weka cluster must be full members.
 {% endhint %}
 
-Two `ifcfg` scripts must be created for each pkey-ed IPoIB interface. To determine your own pkey-ed IPoIB interface configuration, refer to the following two examples where a `pkey` of `0x8002` is used:
+For each `pkey-ed IPoIB` interface, it's necessary to create two `ifcfg` scripts. To configure your own `pkey-ed IPoIB` interface, refer to the following examples, where a `pkey` of `0x8002` is used. You may need to manually create the child device.
 
 {% code title="/etc/sysconfig/network-scripts/ifcfg-ib1" %}
 ```
