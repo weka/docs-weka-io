@@ -131,7 +131,7 @@ Change the port from 9090 to 8051, which is the WMS Admin port.
 
 The WSA setup page opens.
 
-<figure><img src="../../.gitbook/assets/WSA_Setup_Page.png" alt="" width="563"><figcaption><p>WSA Setup</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/WSA_Setup_Page.png" alt=""><figcaption><p>WSA Setup</p></figcaption></figure>
 
 2. Open **Step 1 - Choose source ISO**, select the WSA package (ISO) you intend to deploy, and click **Next**.
 
