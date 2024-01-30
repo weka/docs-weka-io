@@ -46,4 +46,4 @@ The CLI mandatory parameters are marked with an asterisk (\*) throughout the doc
 
 ## Documentation feedback
 
-We are committed to delivering top-notch documentation and value your feedback. If you have comments or suggestions, please email us at [documentation@weka.io](mailto:documentation@weka.io). When providing feedback, include the document version, topic title, and your suggestions for improvement. For technical questions, please reach out to our [Customer Success Team](support/getting-support-for-your-weka-system.md).
+We are committed to delivering top-notch documentation and value your feedback. If you have comments or suggestions, email us at [documentation@weka.io](mailto:documentation@weka.io). When providing feedback, include the document version, topic title, and your suggestions for improvement. For technical questions, contact our [Customer Success Team](support/getting-support-for-your-weka-system.md).
