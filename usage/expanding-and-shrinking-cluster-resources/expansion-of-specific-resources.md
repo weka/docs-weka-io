@@ -108,7 +108,7 @@ weka cluster container apply <container-id>
 To change the management IPs on `container-id 0`, run the following commands:
 
 ```
-weka cluster container management-ips 192.168.1.10 192.168.1.20
+weka cluster container management-ips 0 192.168.1.10 192.168.1.20
 weka cluster container apply 0
 ```
 
