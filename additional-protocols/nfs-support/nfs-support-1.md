@@ -52,7 +52,7 @@ Do not mount the same filesystem by containers residing in interface groups with
 
 **Parameters**
 
-<table><thead><tr><th width="225">Name</th><th width="325">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Unique interface group name.<br>Supports a maximum of 11 characters.</td><td></td></tr><tr><td><code>type</code>*</td><td>Group type.<br>Can only be  <code>NFS</code>.</td><td></td></tr><tr><td><code>subnet</code></td><td>The valid subnet mask in the 255.255.0.0 format.</td><td><code>255.255.255.255</code></td></tr><tr><td><code>gateway</code></td><td>Gateway valid IP.</td><td><code>255.255.255.255</code></td></tr><tr><td><code>allow-manage-gids</code></td><td><p>Allows the containers within this interface group to use <code>manage-gids</code> when set in exports. </p><p>With <code>manage-gids</code>, the list of group IDs received from the client is replaced by a list of group IDs determined by an appropriate lookup on the server.<br><br>NFS-W: <code>on</code></p><p>Legacy NFS: <code>off</code></p><p></p><p>Each container can be set to be part of interface groups with the same value of <code>allow-manage-gids</code>.</p></td><td><code>on</code></td></tr></tbody></table>
+<table><thead><tr><th width="225">Name</th><th width="325">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Unique interface group name.</td><td></td></tr><tr><td><code>type</code>*</td><td>Group type.<br>Can only be  <code>NFS</code>.</td><td></td></tr><tr><td><code>subnet</code></td><td>The valid subnet mask in the 255.255.0.0 format.</td><td><code>255.255.255.255</code></td></tr><tr><td><code>gateway</code></td><td>Gateway valid IP.</td><td><code>255.255.255.255</code></td></tr><tr><td><code>allow-manage-gids</code></td><td><p>Allows the containers within this interface group to use <code>manage-gids</code> when set in exports. </p><p>With <code>manage-gids</code>, the list of group IDs received from the client is replaced by a list of group IDs determined by an appropriate lookup on the server.<br><br>NFS-W: <code>on</code></p><p>Legacy NFS: <code>off</code></p><p></p><p>Each container can be set to be part of interface groups with the same value of <code>allow-manage-gids</code>.</p></td><td><code>on</code></td></tr></tbody></table>
 
 ### Set interface group ports
 
@@ -76,7 +76,7 @@ The following command line adds the interface `enp2s0` on the Frontend container
 
 **Parameters**
 
-<table><thead><tr><th width="220">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Interface group name.</td></tr><tr><td><code>container-id</code>*</td><td>Valid frontend container ID on which the port resides. You can obtain the container ID by running the <code>weka cluster container</code> command.</td></tr><tr><td><code>port</code>*</td><td>Valid port's device.<br>Example: <code>eth1</code>.</td></tr></tbody></table>
+<table><thead><tr><th width="220">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Interface group name.</td></tr><tr><td><code>container-id</code>*</td><td>Valid frontend container ID on which the port resides. You can obtain the container ID by running the <code>weka cluster container</code> command.</td></tr><tr><td><code>port</code>*</td><td>Valid port's device. Maximum 14 characters.<br>Example: <code>eth1</code>.</td></tr></tbody></table>
 
 ### Set interface group IPs
 
