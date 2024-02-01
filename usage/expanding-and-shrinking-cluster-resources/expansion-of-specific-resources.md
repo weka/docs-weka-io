@@ -24,7 +24,7 @@ Adhere to the following guidelines when expanding specific resources:
 * **The apply command saves the last configuration:** Once the apply command completes, the last local configuration of the container successfully joined the cluster is saved.\
   If a failure occurs with the new configuration, the container automatically remains with the existing stable configuration. \
   Run the `weka cluster container resources <container-id> --stable` command to view the existing configuration.
-* **Expansion on active or deactivated containers:** You can dynamically expand some of the resources on active containers and others only after deactivating the container. For example, you can add CPU cores only on a deactivated container.
+* **Expansion on active or deactivated containers:** You can dynamically expand some of the resources on active containers, and others only after deactivating the container. For example, you can add CPU cores only on a deactivated container.
 
 ## weka cluster container command description
 
@@ -171,7 +171,7 @@ COMPUTE     10       <auto>
 
 ### Expand SSDs only
 
-You can add new SSD drives to a container. Adding SSD drives can alter the ratio between SSDs and drive cores.
+You can add new SSD drives to a container. Adding SSD drives may alter the ratio between SSDs and drive cores, potentially impacting performance. Take note of this adjustment when considering expansion, for optimal system efficiency.
 
 #### Procedure
 
@@ -202,7 +202,7 @@ These local commands have the same semantics as their remote counterpart command
 
 **Options**
 
-<table><thead><tr><th width="194.33333333333331">Option</th><th width="337">Description</th><th>Comment</th></tr></thead><tbody><tr><td><code>--stable</code></td><td>List the resources from the last successful container boot.</td><td></td></tr><tr><td>-C</td><td>The container name.</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="194.33333333333331">Option</th><th width="337">Description</th><th>Comment</th></tr></thead><tbody><tr><td><code>--stable</code></td><td>List the resources from the last successful container boot.</td><td></td></tr><tr><td><code>-C</code></td><td>The container name.</td><td></td></tr></tbody></table>
 
 <details>
 

@@ -1,6 +1,6 @@
 # Shrink a cluster
 
-Shrinking a cluster may be required to save the cluster's costs, and the performance degradation does not affect your business.
+Shrinking a cluster may be required when you need to reduce the cluster's costs, and the performance degradation does not affect your business.
 
 You can shrink the cluster by performing one of the following:
 
