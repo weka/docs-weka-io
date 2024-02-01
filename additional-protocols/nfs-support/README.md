@@ -27,7 +27,7 @@ An interface group is a configuration framework designed to optimize resiliency 
 An interface group consists of the following:
 
 * A collection of WEKA servers with a network port for each server, where all the ports must be associated with the same subnets. For resiliency, a minimum of two NFS servers are required.
-* A collection of floating IPs that serve the NFS protocol on the servers and ports. All IP addresses must be associated with the same subnet.
+* A collection of floating IPs to support the NFS protocol on specified servers and NICs. It's required that all IP addresses are within the same subnet, and the servers must already have static IP addresses on those NICs within that subnet.
 * A routing configuration for the IPs. The IP addresses must comply with the IP network configuration.
 
 {% hint style="info" %}
@@ -41,7 +41,7 @@ You can define up to 10 different Interface groups. Use multiple interface group
 The WEKA system automatically distributes the IP addresses evenly on each server and port. If a  server fails, the WEKA system redistributes the IP addresses associated with the failed server to other servers.
 
 {% hint style="warning" %}
-The WEKA system configures the server IP networking for the NFS service on the server operating system. Do not configure the server IP networking manually.
+The WEKA system automatically configures the floating IP addresses used by the NFS service on the appropriate server. Refrain from manually configuring or using the floating IP.
 {% endhint %}
 
 ### Round-robin DNS server configuration
