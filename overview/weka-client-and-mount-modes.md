@@ -1,7 +1,7 @@
 ---
 description: >-
-  Explore the WEKA client, its mount modes, and how they interact with the Linux
-  Page Cache for optimal operation.
+  Understanding the WEKA system client and possible mount modes of operation in
+  relation to the page cache.
 ---
 
 # WEKA client and mount modes

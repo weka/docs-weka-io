@@ -1,12 +1,12 @@
 ---
 description: >-
-  This page describes the Snap-To-Object feature, which enables the movement of
-  all the data of a specific snapshot to an object store.
+  Explore the Snap-To-Object feature, a capability facilitating the seamless
+  data transfer from a designated snapshot to an object store.
 ---
 
 # Snap-To-Object
 
-The Snap-To-Object feature enables the committing of all the data of a specific snapshot, including file system metadata, every file, and all associated data to an object store. You can use the full snapshot data to restore the data on the WEKA cluster or another cluster.
+The Snap-To-Object feature enables the consolidation of all data from a specific snapshot, including filesystem metadata, every file, and all associated data, into an object store. The complete snapshot data can be used to restore the data on the WEKA cluster or another cluster running the same or a higher WEKA version.
 
 ## Snap-To-Object feature use cases
 
@@ -132,11 +132,11 @@ If required, you can pause or abort a snapshot upload using the commands describ
 
 ## Synchronous snapshots
 
-Synchronous snapshots are point-in-time backups for filesystems. When taken, they consist only of the changes since the last snapshot. When you download and restore a synchronous snapshot to a live filesystem, the system reconstructs the filesystem on-the-fly with the changes since the previous snapshot.
+Synchronous snapshots are point-in-time backups for filesystems. When taken, they consist only of the changes since the last snapshot. When you download and restore a synchronous snapshot to a live filesystem, the system reconstructs the filesystem on the fly with the changes since the previous snapshot.
 
 This capability for filesystem snapshots potentially makes them more cost-effective because you do not have to update the entire filesystem with each snapshot. You update only the changes since the last snapshot.
 
-It is recommended to download the synchronous snapshots in chronological order. Only snapshots uploaded from a 4.0 version or above can be downloaded as increments.
+It is recommended to download the synchronous snapshots in chronological order.
 
 ## Delete snapshots residing on an object store
 
