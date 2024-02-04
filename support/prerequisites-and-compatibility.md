@@ -34,6 +34,10 @@ Ensure the BIOS settings meet the following requirements:
 
 ## Operating system
 
+{% hint style="info" %}
+WEKA will support upcoming releases of the operating systems in the lists within one quarter (three months) of their respective General Availability (GA) dates.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Backends" %}
 * **RHEL:**
