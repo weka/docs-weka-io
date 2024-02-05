@@ -41,7 +41,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 3. Rolling upgrade of the **compute** containers.
 4. Rolling upgrade of the **frontend** and **protocol** containers and the protocol gateways.
 
-<figure><img src="../.gitbook/assets/NDU_process_4.2.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
+<figure><img src="broken-reference" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
 
 **Related topics**
 

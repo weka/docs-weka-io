@@ -26,7 +26,7 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 * Drive: 2
 * Frontend: 1
 
-<figure><img src="../../.gitbook/assets/azure_lvs16.png" alt=""><figcaption><p>Mapped WEKA processes for a standard_L16s_v3</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/azure_lvs16.png" alt="" width="336"><figcaption><p>Mapped WEKA processes for a standard_L16s_v3</p></figcaption></figure>
 
 <table><thead><tr><th>VM size</th><th width="180"># of compute cores</th><th width="161"># of drive cores</th><th># of frontend cores</th></tr></thead><tbody><tr><td>Standard_L8s_v3</td><td>1</td><td>1</td><td>1</td></tr><tr><td>Standard_L16s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L32s_v3</td><td>4</td><td>2</td><td>1</td></tr><tr><td>Standard_L48s_v3</td><td>3</td><td>3</td><td>1</td></tr><tr><td>Standard_L64s_v3</td><td>4</td><td>2</td><td>1</td></tr></tbody></table>
 
