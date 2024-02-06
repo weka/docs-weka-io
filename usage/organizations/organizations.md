@@ -1,5 +1,5 @@
 ---
-description: This page describes how to manage organizations using the GUI.
+description: Explore how to manage organizations using the GUI.
 ---
 
 # Manage organizations using the GUI

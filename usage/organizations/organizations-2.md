@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes how uses that mount the organization filesystems are
-  authenticated.
+  Explore the authentication process for users mounting organization
+  filesystems.
 ---
 
 # Mount authentication for organization filesystems

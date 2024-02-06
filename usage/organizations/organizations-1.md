@@ -1,5 +1,5 @@
 ---
-description: This page describes how to manage organizations using the CLI.
+description: Explore how to manage organizations using the CLI.
 ---
 
 # Manage organizations using the CLI

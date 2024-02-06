@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes the concept of organizations and how different WEKA system
-  features operate within an organizational context.
+  Gain insights into the conceptual framework of organizations and the operation
+  of various WEKA system features within this context.
 ---
 
 # Organizations management
