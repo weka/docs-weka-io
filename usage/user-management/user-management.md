@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes the management of users licensed to work with the WEKA
-  system.
+  Explore the management of users licensed to work with the WEKA system using
+  the GUI.
 ---
 
 # Manage users using the GUI
