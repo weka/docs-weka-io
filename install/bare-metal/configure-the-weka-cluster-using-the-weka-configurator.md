@@ -91,7 +91,6 @@ This page shows the following sections:
 * Host Configuration Reference
 * Bias
 * Cores details
-* Data and parity drives and hotspares
 
 #### Host Configuration Reference
 
@@ -122,15 +121,16 @@ The **Usable Weka Cores** and **Available Weka Cores** read-only fields are upda
 {% tab title="4. Cluster name" %}
 Move to the Cluster Name field and set a unique name for your WEKA cluster.
 
-<figure><img src="../../.gitbook/assets/wekaconfig_3_cores.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wekaconfig_4_cluster_name.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
-{% tab title="5. Stripe setting" %}
-The stripe settings include:
+{% tab title="5. Stripe and other settings" %}
+The stripe and other settings include:
 
 * **Data Drives:** The number of data members in the Stripe Width.
 * **Parity Drives:** The number of parity members.
 * **Hot Spares:** The number of Hot Spare members.
+* **Reserved RAM per Host:** Extra RAM in GB reserved on each host for various purposes, like supporting Protocols or Applications.
 
 These settings are in terms of servers, not SSDs. WEKA stripes over the entire servers, not over individual drives. For more details, see [WEKA cluster installation using the resource generator (for advanced users)](broken-reference).
 
@@ -292,7 +292,7 @@ echo Configuration process complete
 {% hint style="info" %}
 Advanced users can edit the config.sh using `vim` or `nano` (or any text editor) to further customize the configuration. If editing is necessary, consult the Customer Success Team.
 
-Regarding the drive selection, it is not possible to select the data drives (NVMe SSD) to include in the configuration. WEKA clusters are typically dedicated to running WEKA services and homogeneous, therefore `wekaconfig` includes all NVMe drives that are over about 1.5 GB in size (typical). To change the drives used in the cluster, edit the `config.sh` (see the`config.sh`output example above).
+Regarding the drive selection, it is not possible to select the data drives (NVMe SSD) to include in the configuration. WEKA clusters are typically dedicated to running WEKA services and homogeneous, therefore `wekaconfig` includes all NVMe drives that are over about 1.5 GB in size (typical). To change the drives used in the cluster, edit the `config.sh` (see the`config.sh` output example above).
 {% endhint %}
 
 ### 2. Apply the configuration
