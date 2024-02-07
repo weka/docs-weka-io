@@ -19,23 +19,21 @@ In tiered filesystems, the WEKA system optimizes storage efficiency and manages 
 Only data that is not logically freed is considered for licensing purposes.
 {% endhint %}
 
-## Space reclamation in tiered filesystems
+## SSD space reclamation in tiered filesystems
 
-### SSD space reclamation
+For logically freed data that resides on the SSD, the WEKA system immediately deletes the data from the SSD, leaving the physical space reclamation for the SSD erasure technique.
 
-For logically freed data that resides on SSD, the WEKA system immediately deletes the data from the SSD, leaving the physical space reclamation for the SSD erasure technique.
+## Object store space reclamation in tiered filesystems
 
-### Object store space reclamation
-
-Object store space reclamation is an important process that involves efficiently managing data stored on object storage.
+Object store space reclamation is an important process that efficiently manages data stored on object storage.
 
 {% hint style="info" %}
-In the WEKA system, object store space reclamation is only relevant for object store buckets used for tiering (defined as `local`) and not for buckets used for backup-only (defined as `remote`).
+In the WEKA system, object store space reclamation is only relevant for object store buckets used for tiering (`local`) and not for buckets used for backup only (`remote`).
 {% endhint %}
 
 &#x20;WEKA organizes files into 64 MB objects for tiering. Each object can contain data from multiple files. Files smaller than 1 MB are consolidated into a single 64 MB object. For larger files, their parts are distributed across multiple objects. As a result, when a file is deleted (or updated and is not used by any snapshots), the space within one or more objects is marked as available for reclamation. However, the deletion of these objects only occurs under specific conditions.
 
-The deletion of related objects happens when either all associated files are deleted, allowing for complete space reclamation within the object, or during the reclamation process. Reclamation entails reading an eligible object from object storage and packing the active portions (representing data from undeleted files) with sections from other files that need to be written to the object store. The resulting object is then written back to object store, freeing up reclaimed space.
+Deleting related objects happens when all associated files are deleted, allowing for complete space reclamation within the object or during the reclamation process. Reclamation entails reading an eligible object from object storage and packing the active portions (representing data from undeleted files) with sections from other files that must be written to the object store. The resulting object is then written back to the object store, freeing up reclaimed space.
 
 WEKA automates the reclamation process by monitoring the filesystems. When the reclaimable space within a filesystem exceeds 13%, the reclamation process begins. It continues until the total reclaimable space drops below 7%. This mechanism prevents write amplifications, allows time for higher portions of eligible 64 MB objects to become logically free, and prevents unnecessary object storage workload for small space reclamation. It's important to note that reclamation is only executed for objects with reclaimable space exceeding 5% within that object.
 
@@ -45,10 +43,10 @@ To calculate the amount of space that can be reclaimed, consider the following e
 1. If we write 1 TB of data, and 15% of that space can be reclaimed, we have 150 GB of reclaimable space.
 2. If we write 10 TB of data, and 5% of that space can be reclaimed, we have 500 GB of reclaimable space.
 
-The starting point for the reclamation process differs in each example. In example 1, reclamation begins at 130 GB (13%), while in example 2, it doesn't start. This is important to note because even though there is more total reclaimable space in example 2, the process starts at a later point.
+The starting point for the reclamation process differs in each example. In example 1, reclamation begins at 130 GB (13%), while in example 2, it doesn't start. This is important to note because even though there is more total reclaimable space in example 2, the process starts later.
 {% endhint %}
 
-For regular filesystems where files are frequently deleted or updated, this behavior can result in the consumption of 7% to 13% more object store space than initially expected based on the total size of all files written to that filesystem. When planning object storage capacity or configuring usage alerts, it's essential to account for this additional space. Keep in mind that this percentage may increase during periods of high object store usage or when data/snapshots are frequently deleted. Over time, it will return to the normal threshold as the load/burst is reduced.
+For regular filesystems where files are frequently deleted or updated, this behavior can result in the consumption of 7% to 13% more object store space than initially expected based on the total size of all files written to that filesystem. When planning object storage capacity or configuring usage alerts, it's essential to account for this additional space. Remember that this percentage may increase during periods of high object store usage or when data/snapshots are frequently deleted. Over time, it will return to the normal threshold as the load/burst is reduced.
 
 {% hint style="info" %}
 If tuning of the system interaction with the object store is required, such as object size, reclamation threshold numbers, or the object store space reclamation is not fast enough for the workload, contact the Customer Success Team.
@@ -56,22 +54,35 @@ If tuning of the system interaction with the object store is required, such as o
 
 <figure><img src="../../.gitbook/assets/obs_reclaim_space.png" alt=""><figcaption><p>Object store space reclamation</p></figcaption></figure>
 
-{% hint style="success" %}
-You can show the filesystem tired capacity details.&#x20;
+### View filesystem tired capacity details
+
+Run the `weka fs tier capacity` command to retrieve a comprehensive listing of data capacities associated with object stores. The output exclusively presents the data capacity introduced by the current filesystem, with no inclusion of data capacity from the original filesystem that performed the snapshot upload.
 
 Example:
 
 ```
-[root@jack-0 ~] 2023-10-21 10:06:46 $ weka fs tier capacity
-FILESYSTEM  BUCKET  TOTAL CONSUMED CAPACITY  USED CAPACITY  RECLAIMABLE%  RECLAIMABLE THRESHOLD%
-default     prod    13.29 GB                 13.29 GB       0.00          10.00
-fs01        logs    1.05 GB                  1.05 GB        0.00          10.00
+$ weka fs tier capacity
+FILESYSTEM  BUCKET               TOTAL CONSUMED CAPACITY   USED CAPACITY   RECLAIMABLE%   RECLAIMABLE THRESHOLD%
+bmrb        wekalow-bmrb         0 B                       0 B             0.00           10.00
+cam_archive wekalow-archive      20.39 TB                  18.80 TB        7.79           10.00
+nmr_backup  wekalow-nmrbackup    519.07 GB                 518.05 GB       0.19           10.00
+
 ```
-{% endhint %}
+
+To list the data capacities of a specific filesystem, add the option `--filesystem <filesystem name>`.
+
+Example:
+
+```
+$ weka fs tier capacity --filesystem cam_archive
+FILESYSTEM  BUCKET               TOTAL CONSUMED CAPACITY   USED CAPACITY   RECLAIMABLE%   RECLAIMABLE THRESHOLD%
+cam_archive wekalow-archive      20.39 TB                  18.80 TB        7.79           10.00
+
+```
 
 ## Object tagging
 
-When WEKA uploads objects to the object store, it assigns tags to categorize them. These tags serve a crucial purpose because they enable the customer to implement specific lifecycle management rules in the object store based on the assigned tags.
+When WEKA uploads objects to the object store, it assigns tags to categorize them. These tags are crucial because they enable the customer to implement specific lifecycle management rules in the object store based on the assigned tags.
 
 For example, you can transfer objects of a specific filesystem when interacting with [S3 Glacier Deep Archive](https://aws.amazon.com/s3/storage-classes/glacier/instant-retrieval/).
 
