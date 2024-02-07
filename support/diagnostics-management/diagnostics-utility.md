@@ -1,35 +1,31 @@
 ---
 description: >-
-  This page describes the diagnostics CLI commands used for collecting and
-  uploading the diagnostics data.
+  Manage diagnostics data for clusters, servers, and containers with CLI
+  commands.
 ---
 
 # Diagnostics data management
 
-The diagnostics CLI command is used for collecting and uploading diagnostic data about clusters, servers, and containers for analysis by the Customer Success Team to help troubleshoot. There are two relevant commands:
+The diagnostics CLI commands enable managing diagnostics data associated with clusters, servers, and containers. The Customer Success Team then analyzes this diagnostics data to assist in troubleshooting. There are two options available for managing diagnostics:
 
-* `weka diags`: Run this command to get cluster-wide diagnostics from any server in the cluster.  The command includes two options: `upload` and `collect` (described in the following sections).
-* `weka local diags`: Run this command to get diagnostics on a specific server when it cannot connect to the cluster.&#x20;
+* **Cluster-wide diagnostics commands:** Use the command `weka diags` for cluster-wide diagnostics management from any server within the cluster.
+* **Local container diagnostics command:** Use the command `weka local diags` for diagnostics management of a connected local server.
 
-The `weka local diags` command is useful in the following situations:
+## Cluster-wide diagnostics commands
 
-* No functioning management process in the originating backend server or the specified backend servers.
-* No connectivity between the management process and the cluster leader.
-* The cluster has no leader.
-* The local container is down.
-* The server cannot reach the leader, or a remote server fails to respond to the `weka diags` remote command.
+Use the cluster-wide diagnostics commands to oversee diagnostics data on any cluster server. This includes functionalities to upload diagnostics data to WEKA Home, collect diagnostics data, clean up diagnostics files, and list available diagnostics files.
 
-## Upload diagnostics to WEKA Home
+### Upload diagnostics data to WEKA Home
 
 **Command:** `weka diags upload`
 
-Use the following command to collect diagnostics information, save it, and upload it to WEKA Home (the Weka support cloud):
+Use the following command to collect diagnostics information, save it, and upload it to WEKA Home (the WEKA support cloud):
 
-`weka diags upload [--timeout timeout] [--core-limit core-limit] [--dump-id dump-id] [--container-id container-id]... [--clients]`
+`weka diags upload [--core-limit core-limit] [--dump-id dump-id] [--container-id container-id]... [--clients] [--backends]`
 
-The command response provides an access identifier, `Diags collection ID`. Send this access identifier to the Customer Success Team for retrieving the information from the WEKA Home.
+The command response provides an access identifier, `Diags collection ID`. Send this access identifier to the Customer Success Team to retrieve the diagnostics data from the WEKA Home.
 
-When running the command for all servers in the cluster, a local diagnostics file is created in each server in the location `/opt/weka/diags/local`. The local diagnostics file of each server is consolidated in a single diagnostics file in the server where you run the command in the `/opt/weka/diags` directory.
+When running the command for all servers in the cluster, a local diagnostics file (dump) is created in each server in the location `/opt/weka/diags/local`. The local diagnostics file of each server is consolidated in a single diagnostics file in the server where you run the command in the `/opt/weka/diags` directory.
 
 {% hint style="info" %}
 * HTTPS access is required to upload the diagnostics to AWS S3 endpoints.
@@ -38,9 +34,9 @@ When running the command for all servers in the cluster, a local diagnostics fil
 
 <details>
 
-<summary>Example: collect and upload diagnostics from the whole cluster</summary>
+<summary>Example: collect and upload diagnostics from all backend containers</summary>
 
-```
+```bash
 [root@wekaprod-0 ~] 2023-02-20 13:39:25 $ weka diags upload
 Uploading diags from 5 hosts to the cloud
 Cluster GUID: c0aca0f2-0d20-465e-9817-e747be811016
@@ -61,23 +57,23 @@ Uploading to cloud (this could take a while) [■■■■■■■■■■■�
 
 **Parameters**
 
-<table data-header-hidden><thead><tr><th width="163">Name</th><th>Type</th><th width="192">Value</th><th width="134">Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>timeout</code></td><td>String</td><td>The maximum time available for uploading the diagnostics.</td><td><p>Format: 3s, 2h, 4m, 1d, 1d5h, 1w </p><p>0 is infinite</p></td><td>No</td><td>10 minutes</td></tr><tr><td><code>core-limit</code></td><td>Number</td><td>Limit the diagnostics collection process to use the specified core number.</td><td></td><td>No</td><td>1</td></tr><tr><td><code>dump-id</code></td><td>String</td><td>The ID of an existing diagnostics file (dump) to upload.</td><td>This dump ID has to exist on this local server</td><td>No</td><td>If an ID is not specified, a new dump is created</td></tr><tr><td><code>container-id</code></td><td>Comma-separated list of numbers</td><td>The container IDs to collect diagnostics from.</td><td>This flag causes <code>--clients</code> to be ignored</td><td>No</td><td>All containers</td></tr><tr><td><code>clients</code></td><td>Boolean</td><td>Collect the diagnostics also from the clients.</td><td></td><td>No</td><td>No</td></tr></tbody></table>
+<table><thead><tr><th width="182">Name</th><th width="350">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>core-limit</code></td><td>Limit the diagnostics collection process to use the specified core number.</td><td>1</td></tr><tr><td><code>dump-id</code></td><td>Uploads a pre-existing diagnostics file (dump) generated by the <code>weka diags collect</code> command with the specified dump ID.<br>Using this option, the command exclusively uploads data and does not conduct data collection. <br>Do not use this option for data previously generated by a <code>weka diags upload</code> command.<br>The command evaluates the list of containers for dump upload, which may differ from those collected in the specified dump directory. Any container data not found in the collected dump is disregarded.</td><td>If no ID is provided, a new diagnostics file is generated.</td></tr><tr><td><code>container-id</code></td><td>A list of container ID numbers separated by commas for collecting and uploading diagnostics data.<br>If specified, the <code>--backends</code> and <code>--clients</code> options are ignored.</td><td></td></tr><tr><td><code>clients</code></td><td>Collect and upload diagnostics data only from client containers.</td><td>No data is collected for clients</td></tr><tr><td><code>backends</code></td><td>Collect and upload diagnostics data only from backend containers (same as if you are not specifying this option). <br>To collect diagnostics for all client and backend containers, add both options<br> <code>--backends</code> and <code>--clients</code> to the command.</td><td>Backends only</td></tr></tbody></table>
 
-## Collect diagnostics
+### Collect diagnostics data
 
 **Command:** `weka diags collect`
 
 Use the following command to create diagnostics information and save it without uploading it to WEKA Home. This command is useful when there is no connection to WEKA Home, and you want to share the diagnostics file using other options.
 
-`weka diags collect [--id id] [--timeout timeout] [--output-dir output-dir] [--core-limit core-limit] [--container-id container-id] [--clients] [--backends] [--tar]`
+`weka diags collect [--id id] [--output-dir output-dir] [--core-limit core-limit] [--container-id container-id] [--clients] [--backends] [--tar]`
 
 If the command runs with the `local` keyword, information is collected only from the server on which the command is executed. Otherwise, information is collected from the whole cluster.&#x20;
 
 <details>
 
-<summary>Example: collect diagnostics from the whole cluster</summary>
+<summary>Example: collect diagnostics from all backends</summary>
 
-```
+```bash
 [root@wekaprod-0 ~] 2023-02-20 13:38:58 $ weka diags collect
 Downloading cluster diagnostics from 5 hosts to this host
 Diags will be saved to: /opt/weka/diags/ody2uRl8xOfDESd6vkbYH4
@@ -229,43 +225,36 @@ The following errors were found:
 
 **Parameters**
 
-| **Name**       | **Type** | **Value**                                                                      | **Limitations**                                                            | **Mandatory** | **Default**       |
-| -------------- | -------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ------------- | ----------------- |
-| `id`           | String   | Specified ID for this diagnostics file.                                        |                                                                            | No            | Auto-generated    |
-| `timeout`      | String   | The maximum time available for collecting diagnostics from all servers.        | <p>Format: 3s, 2h, 4m, 1d, 1d5h, 1w </p><p>0 is infinite</p>               | No            | 10 minutes        |
-| `output-dir`   | String   | The directory for saving the diagnostics file.                                 |                                                                            | No            | `/opt/weka/diags` |
-| `core-limit`   | Number   | Limit the diagnostics collection process to use the specified core number.     |                                                                            | No            | 1                 |
-| `container-id` | Number   | The container IDs to collect diagnostics from. It can be used multiple times.  | If set, the system ignores the `--clients` value                           | No            |                   |
-| `clients`      | Boolean  | Collect the diagnostics also from the clients.                                 | If `container-id` is set, the system ignores the `clients` value           | No            | No                |
-| `backends`     | Boolean  | Collect the diagnostics from all backend containers and clients.               | Use it combined with `--clients` to collect from all backends and clients. | No            | No                |
-| `tar`          | Boolean  | Package the collected diagnostics in a TAR file.                               |                                                                            | No            | No                |
+<table><thead><tr><th width="179">Name</th><th width="377">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>id</code></td><td>An optional identifier for this diagnostics file. If not specified, a random ID is generated.</td><td>Auto-generated</td></tr><tr><td><code>output-dir</code></td><td>The directory for saving the diagnostics file.</td><td><code>/opt/weka/diags</code></td></tr><tr><td><code>core-limit</code></td><td>Limit the diagnostics collection process to use the specified core number.</td><td>1</td></tr><tr><td><code>container-id</code></td><td>A list of container ID numbers separated by commas for collecting diagnostics data.<br>If specified, the <code>--backends</code> and <code>--clients</code> options are ignored.</td><td></td></tr><tr><td><code>clients</code></td><td>Collect diagnostics data only from client containers.</td><td>No data is collected for clients</td></tr><tr><td><code>backends</code></td><td>Collect diagnostics data only from backend containers (same as if you are not specifying this option). <br>To collect diagnostics for all client and backend containers, add both options<br> <code>--backends</code> and <code>--clients</code> to the command.</td><td>Backends only</td></tr><tr><td><code>tar</code></td><td>Package the collected diagnostics in a TAR file.</td><td>No TAR file is created</td></tr></tbody></table>
 
-## Clean up the diagnostic files
+### Clean up the diagnostics files
 
-When you collect diagnostics data using `weka diags collect`, it creates a separate diagnostic file that consumes disk space. Therefore, the system may end up with many diagnostic files that are no longer required, for example, after uploading the diagnostic file to WEKA Home. You can clean up a specified diagnostic file or a directory with multiple diagnostic files to free up space from the disk.
+The `weka diags collect` command consolidates diagnostics from various containers into a single dump directory. Conversely, `weka diags upload` saves diagnostics data on each container, distributing files across the cluster before uploading to WEKA Home.
 
-First, list the diagnostic files in the system and their IDs, then delete the specific diagnostic file according to its ID.
+Collecting diagnostics data generates individual files, consuming disk space. As a result, the system may accumulate numerous diagnostics files, especially after they have been uploaded to WEKA Home. To optimize disk space usage, perform a cleanup either on a specific diagnostics file or an entire directory containing multiple diagnostics files.
+
+**Cleanup procedure:**
+
+1. [List diagnostics files](diagnostics-utility.md#list-diagnostics-files): List the diagnostics files in the system, including their corresponding IDs. This step provides an overview of the available diagnostic files.
+2. [Delete specific diagnostic files](diagnostics-utility.md#delete-specific-diagnostic-files): Delete specific diagnostics files based on their IDs. This targeted cleanup helps efficiently manage disk space and ensures the removal of unnecessary diagnostic data.
 
 {% hint style="danger" %}
-The diagnostic files are essential for troubleshooting purposes. Only delete these files if you are sure they are already uploaded to WEKA Home and are no longer required. If you need clarification, contact the [Customer Success Team](../getting-support-for-your-weka-system.md#contact-customer-success-team).
+The diagnostics files are essential for troubleshooting purposes. Delete these files only if you are certain they have been successfully uploaded to WEKA Home and are no longer needed. For further clarification, contact the [Customer Success Team](../getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
-### List the diagnostic files
+### List diagnostics files
 
 **Command:** `weka diags list`
 
-Use the following command to list the collected diagnostic files:
+Use the following command to list the collected diagnostics files:
 
 `weka diags list [--verbose] [<id>]...`
 
 **Parameters**
 
-| **Name**  | **Type** | **Value**                                                                                                                                                                            | **Limitations** | **Mandatory** | **Default**   |
-| --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------- | ------------- | ------------- |
-| `id`      | String   | <p>The ID of the diagnostic file (dump) to display or a path to the location of the diagnostic files.<br>A list of all the collected diagnostic files is shown if not specified.</p> |                 | No            | Not specified |
-| `verbose` | Boolean  | Displays the results of all the diagnostic files, including the successful ones.                                                                                                     |                 | No            |               |
+<table><thead><tr><th width="139">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>The diagnostics file's ID or the path to the diagnostics file. If not specified, a list of all collected diagnostics files is displayed.</td></tr><tr><td><code>verbose</code></td><td>Displays the results of all the diagnostics files, including the successful ones.</td></tr></tbody></table>
 
-### Delete a diagnostic file
+### Delete specific diagnostic files
 
 **Command:** `weka diags rm`
 
@@ -275,4 +264,24 @@ Use the following command to stop a running diagnostics instance, cancel its upl
 
 **Parameters**
 
-<table data-header-hidden><thead><tr><th>Name</th><th>Type</th><th width="200">Value</th><th>Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>all</code></td><td>Boolean</td><td>Delete all the diagnostic files.</td><td></td><td>No</td><td></td></tr><tr><td><code>id</code></td><td>String</td><td>The ID of the diagnostic file (dump) to delete or a path to the location of the diagnostic files.<br>A list of all the collected diagnostic files is shown if not specified.</td><td></td><td>Yes, if the option <code>all</code> is not specified.</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="140">Name</th><th>Description</th></tr></thead><tbody><tr><td><code>all</code></td><td>A flag to delete all the diagnostics files.</td></tr><tr><td><code>id</code>*</td><td>The diagnostics file's ID or the path to the diagnostics files. If not specified, a list of all collected diagnostics files is displayed. This string is required unless the <code>all</code> option is specified.</td></tr></tbody></table>
+
+## Local server diagnostics command
+
+Collecting diagnostics data from a connected local server is valuable in various scenarios, such as:
+
+* Lack of a functional management process in the originating backend container or the specified backend containers.
+* Absence of connectivity between the management process and the cluster leader.
+* The cluster lacking a leader.
+* The local container is offline.
+* The server cannot establish communication with the leader or encountering a failure when attempting the `weka diags` command.
+
+**Command:** `weka local diags`
+
+Use the following command to to collect diagnostics from a connected local server:
+
+`weka local diags [--id id] [--output-dir output-dir] [--core-dump-limit core-dump-limit] [--collect-cluster-info] [--tar]`
+
+**Parameters**
+
+<table><thead><tr><th width="208">Name</th><th width="347">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>id</code></td><td>A unique identifier for this diagnostics file.</td><td>Auto-generated</td></tr><tr><td><code>output-dir</code></td><td>The directory for saving the diagnostics file.</td><td><code>/opt/weka/diags</code></td></tr><tr><td><code>core-dump-limit</code></td><td>Limit the diagnostics collection process to use the specified core number.</td><td>1</td></tr><tr><td><code>collect-cluster-info</code></td><td>Collect diagnostics data related to the cluster. To prevent excessive load on the cluster, use this flag for one server at a time.</td><td></td></tr><tr><td><code>tar</code></td><td>Package the collected diagnostics data in a TAR file.</td><td>No TAR file is created</td></tr></tbody></table>
