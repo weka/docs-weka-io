@@ -64,7 +64,7 @@ This workflow provides a concise overview of the essential steps to configure SM
 
 **Before you begin**
 
-* Verify a persistent cluster-wide configuration filesystem for protocols is set. If the filesystem is not already created, create a filesystem with 100 GB capacity.
+* Verify that the dedicated filesystem for persistent protocol configurations is created. If not, create it. For details, see [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
 * Verify that the DNS "nameserver" of each server participating in the SMB cluster is configured to query an Active Directory server.
 
 **Workflow**

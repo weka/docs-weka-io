@@ -7,7 +7,7 @@ description: This page describes how to view and manage filesystems using the GU
 Using the GUI, you can perform the following actions:
 
 * [View filesystems](managing-filesystems.md#view-filesystems)
-* [Create a filesystem](managing-filesystems.md#add-a-filesystem)
+* [Create a filesystem](managing-filesystems.md#create-a-filesystem)
 * [Edit a filesystem](managing-filesystems.md#edit-a-filesystem)
 * [Delete a filesystem](managing-filesystems.md#delete-a-filesystem)
 

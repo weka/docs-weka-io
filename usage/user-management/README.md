@@ -1,5 +1,7 @@
 ---
-description: Explore the management of users licensed to work with the WEKA system.
+description: >-
+  This page describes the management of users licensed to work with the WEKA
+  system.
 ---
 
 # User management

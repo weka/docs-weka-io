@@ -23,7 +23,7 @@ The filesystem groups are displayed on the **Filesystems** page. Each filesystem
 
 ## Add a filesystem group
 
-Adding a filesystem group is required when adding a filesystem. You can create more filesystem groups if you want to apply a different tiering policy on specific filesystems.
+A filesystem group is required when adding a filesystem. You can create more filesystem groups if you want to apply a different tiering policy on specific filesystems.
 
 **Procedure**
 

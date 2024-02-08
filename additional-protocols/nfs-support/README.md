@@ -18,7 +18,7 @@ Adhere to the following guidelines and requirements when deploying the NFS servi
 
 ### **Configuration filesystem**
 
-NFSv4 requires a persistent cluster-wide configuration filesystem for internal operations of the protocol.
+NFSv4 requires a persistent cluster-wide configuration filesystem for internal operations of the protocol. See [#dedicated-filesystem-for-persistent-protocol-configurations-requirement](../additional-protocols-overview.md#dedicated-filesystem-for-persistent-protocol-configurations-requirement "mention").
 
 ### **Interface groups**
 

@@ -35,7 +35,7 @@ An SMB cluster comprises at least three WEKA servers running the SMB-W stack.
 
 **Before you begin**
 
-Verify a persistent cluster-wide configuration filesystem for protocols is set. If the filesystem needs to be created, create a filesystem with 100 GB capacity.
+Verify that the dedicated filesystem for persistent protocol configurations is created. If not, create it. For details, see [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention")
 
 **Procedure**
 
