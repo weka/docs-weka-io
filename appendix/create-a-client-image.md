@@ -33,7 +33,7 @@ This client image creation procedure is effective in on-premises environments, u
 
 <summary>Option 2: Install WEKA client using curl and container preparation commands</summary>
 
-1. Installa a WEKA client: \
+1. Install a WEKA client: \
    `curl http://<backendserverip>:14000/dist/v1/install | sh`
 2. Download and set the current version of WEKA from the backend:\
    `weka version get <current version>`\
