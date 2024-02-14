@@ -44,7 +44,7 @@ variable "subscription_id" {}
 
 module "weka_deployment" {
   source                         = "weka/weka/azure"
-  version                         = "4.0.1"
+  version                         = "4.2.7.64"
   prefix                         = "my_prefix"
   rg_name                        = "example"
 
@@ -56,7 +56,7 @@ module "weka_deployment" {
 
   get_weka_io_token              = var.get_weka_io_token
   subscription_id                = var.subscription_id
-  cluster_name                   = "my_cluser_name"
+  cluster_name                   = "my_cluster_name"
   tiering_enable_obs_integration = true
   cluster_size                   = 6
   allow_ssh_cidrs                = ["0.0.0.0/0"]
