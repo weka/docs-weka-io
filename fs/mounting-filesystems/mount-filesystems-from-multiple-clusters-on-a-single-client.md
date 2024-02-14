@@ -1,15 +1,29 @@
+---
+description: >-
+  Connect a single WEKA client to multiple clusters simultaneously, optimizing
+  data access and workload distribution.
+---
+
 # Mount filesystems from multiple clusters on a single client
 
-You can mount filesystems from multiple clusters simultaneously on a single WEKA client.&#x20;
+## Overview
 
-This feature provides the following benefits:
+Mounting filesystems from multiple clusters on a single WEKA client, known as Single Client Multiple Clusters (SCMC), provides several benefits:
 
-* **Expanded cluster connectivity:** WEKA allows a single client to connect to a **maximum of 7 clusters** simultaneously, increasing storage capacity and enhancing computational capabilities. The maximum number of clusters&#x20;
-* **Streamlined data access:** The enhanced cluster connectivity offers users a unified view of data across multiple clusters, simplifying data access and management. This allows for improved data availability, increased flexibility, and more efficient resource usage.
-* **Efficient workload distribution:** With the ability to connect to multiple clusters, WEKA enables efficient workload distribution across distributed environments. Users can easily scale out their applications, balance workloads across clusters, and optimize performance based on their specific requirements.
-* **Seamless integration:** WEKA ensures a seamless integration process for clients leveraging this feature.
+* **Expanded cluster connectivity:** Connect a single client to a **maximum of 7 clusters** simultaneously, enhancing storage capacity and computational capabilities.&#x20;
+* **Streamlined data access:** Gain a unified view of data across multiple clusters for simplified access and management, improving data availability, flexibility, and efficient resource usage.
+* **Efficient workload distribution:** Distribute workloads efficiently across multiple clusters, enabling scalable applications and optimized performance.
+* **Seamless integration:** WEKA ensures a seamless integration for clients leveraging the SCMC feature.
 
 <figure><img src="../../.gitbook/assets/single_client_multi-clusters.png" alt=""><figcaption><p>Mount filesystems from multiple clusters on a single client</p></figcaption></figure>
+
+### **Bandwidth division considerations in SCMC**
+
+The bandwidth division in SCMC is a universal consideration based on the specific NIC's bandwidth. It applies across various NIC types, including those using DPDK or specific models like the X500-T1.
+
+During SCMC mounts, each active connection can use the bandwidth available on its associated NIC port. This is true during peak usage and idle cases. In scenarios where NICs are dual-ported, each connection operates independently, leveraging its dedicated port.
+
+When working with low-bandwidth NICs such as the X500-T1, a 10Gb/s NIC, consider bandwidth calculations. In the context of SCMC, each container (representing connectivity to a different cluster) uses half of the available bandwidth (5Gb/s) for a shared port. Note that a dual-port NIC has a dedicated port for each container, optimizing bandwidth distribution. Keep these factors in mind for an optimal SCMC setup.
 
 ## Prerequisites
 
@@ -34,7 +48,7 @@ When a stateless client mounts a filesystem in a cluster, it creates a client co
 
 {% hint style="warning" %}
 The client target version must be the same in all clusters. It can be the same as in the cluster or one major version earlier and available in the cluster for download by the client.\
-If you need to upgrade the cluster to a higher version than 1 above the client version, you must update the `client-target-version` first in all clusters, upgrade the clients, and only then upgrade the clusters. &#x20;
+If you need to upgrade the cluster to a higher version than the one above the client version, you must update the `client-target-version` first in all clusters, upgrade the clients, and only then upgrade the clusters. &#x20;
 {% endhint %}
 
 #### Procedure:
@@ -85,7 +99,7 @@ If the cluster does not listen to the default port, add `WEKA_PORT=<port number>
 WEKA_PORT=<port number> mount -t wekafs <fs-name> <mount-point> -o container_name=<container-name>
 ```
 
-## Run commands from a multi-client containers server
+## Run commands from a server with multiple client containers
 
 When running WEKA CLI commands against one of the connected WEKA clusters from a server with multiple client containers, it's necessary to specify the client container port in the command. Here's an example of a server with two client containers:
 
@@ -97,7 +111,7 @@ client2    Running  False     3:14:35h  True        False       14101  59529  Re
 
 ```
 
-To run a WEKA CLI command against the second cluster (client2 in this case), specify the port for that client container, like this:
+To run a WEKA CLI command against the second cluster (client2 in this case), specify the port for that client container like this:
 
 ```plaintext
 weka status -P 14101
