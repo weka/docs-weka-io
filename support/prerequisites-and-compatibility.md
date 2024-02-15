@@ -270,8 +270,8 @@ WEKA supports the following InfiniBand configurations:
 * InfiniBand speeds: FDR / EDR / HDR
 * Subnet manager: Configured to 4092
 * One WEKA system IP address for management and data plane
-* PKEYs: Supported
-* Dual InfiniBand can be used for both HA and higher bandwidth
+* PKEYs: One partition key is supported by WEKA
+* Redundant InfiniBand ports can be used for both HA and higher bandwidth
 
 {% hint style="info" %}
 If it is necessary to change PKEYs, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
