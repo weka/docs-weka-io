@@ -13,7 +13,7 @@ In tiered filesystems, the WEKA system optimizes storage efficiency and manages 
 * Tiering only infrequently accessed portions of files (warm data), keeping hot data on SSDs.
 * Efficiently bundling subsets of different files (to 64 MB objects) and tiering them to object stores, resulting in significant performance enhancements.
 * Retrieving only the necessary data from the object store when accessing it, regardless of the entire object it was originally tiered with.
-* Reclaiming logically freed data, which occurs when data is modified or deleted and is not used by any snapshots. Reclamation is a process of freeing up storage space that was previously allocated to data that is no longer needed.
+* Reclaiming logically freed data occurs when data is modified or deleted and is not used by any snapshots. Reclamation is a process of freeing up storage space that was previously allocated to data that is no longer needed.
 
 {% hint style="info" %}
 Only data that is not logically freed is considered for licensing purposes.
@@ -31,7 +31,7 @@ Object store space reclamation is an important process that efficiently manages 
 In the WEKA system, object store space reclamation is only relevant for object store buckets used for tiering (`local`) and not for buckets used for backup only (`remote`).
 {% endhint %}
 
-&#x20;WEKA organizes files into 64 MB objects for tiering. Each object can contain data from multiple files. Files smaller than 1 MB are consolidated into a single 64 MB object. For larger files, their parts are distributed across multiple objects. As a result, when a file is deleted (or updated and is not used by any snapshots), the space within one or more objects is marked as available for reclamation. However, the deletion of these objects only occurs under specific conditions.
+WEKA organizes files into 64 MB objects for tiering. Each object can contain data from multiple files. Files smaller than 1 MB are consolidated into a single 64 MB object. For larger files, their parts are distributed across multiple objects. As a result, when a file is deleted (or updated and is not used by any snapshots), the space within one or more objects is marked as available for reclamation. However, the deletion of these objects only occurs under specific conditions.
 
 Deleting related objects happens when all associated files are deleted, allowing for complete space reclamation within the object or during the reclamation process. Reclamation entails reading an eligible object from object storage and packing the active portions (representing data from undeleted files) with sections from other files that must be written to the object store. The resulting object is then written back to the object store, freeing up reclaimed space.
 
@@ -48,15 +48,23 @@ The starting point for the reclamation process differs in each example. In examp
 
 For regular filesystems where files are frequently deleted or updated, this behavior can result in the consumption of 7% to 13% more object store space than initially expected based on the total size of all files written to that filesystem. When planning object storage capacity or configuring usage alerts, it's essential to account for this additional space. Remember that this percentage may increase during periods of high object store usage or when data/snapshots are frequently deleted. Over time, it will return to the normal threshold as the load/burst is reduced.
 
+{% hint style="warning" %}
+If the filesystem was created from a snapshot, only the data uploaded to the object store after the new filesystem was created can be reclaimed. Pre-existing data from the original snapshot is unreclaimable. To ensure all data is reclaimable, migrate the restored filesystem to a new bucket. For details, see [attaching-detaching-object-stores-to-from-filesystems](../attaching-detaching-object-stores-to-from-filesystems/ "mention").
+{% endhint %}
+
 {% hint style="info" %}
 If tuning of the system interaction with the object store is required, such as object size, reclamation threshold numbers, or the object store space reclamation is not fast enough for the workload, contact the Customer Success Team.
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/obs_reclaim_space.png" alt=""><figcaption><p>Object store space reclamation</p></figcaption></figure>
 
-### View filesystem tired capacity details
+### View object store bucket capacity details
 
-Run the `weka fs tier capacity` command to retrieve a comprehensive listing of data capacities associated with object stores. The output exclusively presents the data capacity introduced by the current filesystem, with no inclusion of data capacity from the original filesystem that performed the snapshot upload.
+Run the `weka fs tier capacity` command to retrieve a comprehensive listing of data capacities associated with object store buckets per filesystem.
+
+{% hint style="warning" %}
+If the filesystem was created from an uploaded snapshot, data from the original filesystem is not accounted for in the displayed capacity.
+{% endhint %}
 
 Example:
 

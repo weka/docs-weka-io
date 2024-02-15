@@ -6,13 +6,13 @@ description: >-
 
 # Attach or detach object store buckets
 
-### Attachment of a local object store bucket to a filesystem
+## Attachment of a local object store bucket to a filesystem
 
-Two local object store buckets can be attached to a filesystem, but only one of the buckets is writable. A local object store bucket is used for both tiering and snapshots. When attaching a new local object store bucket to an already tiered filesystem, the existing local object-store bucket becomes read-only, and the new object store bucket is read/write. Multiple local object stores allow a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
+Two local object store buckets can be attached to a filesystem, but only one of the buckets is writable. A local object store bucket is used for both tiering and snapshots. When attaching a new local object store bucket to an already tiered filesystem, the existing local object store bucket becomes read-only, and the new object store bucket is read/write. Multiple local object stores allow a range of use cases, including migration to different object stores, scaling of object store capacity, and increasing the total tiering capacity of filesystems.
 
 When attaching a local object store bucket to a non-tiered filesystem, the filesystem becomes tiered.
 
-### Detachment of a local object store bucket from a filesystem
+## Detachment of a local object store bucket from a filesystem
 
 Detaching a local object-store bucket from a filesystem migrates the filesystem data residing in the object store bucket to the writable object store bucket (if one exists) or to the SSD.
 
@@ -22,9 +22,9 @@ When detaching, the background task of detaching the object-store bucket begins.
 Detaching an object store bucket is irreversible. Attaching the same bucket again is considered as re-attaching a new bucket regardless of the data stored in the bucket.
 {% endhint %}
 
-#### Migration to a different object store
+### Migration to a different object store
 
-When detaching from a filesystem tiered to two local object store buckets, only the read-only object-store bucket can be detached. In such cases, the background task copies the relevant data to the writable object store.
+When detaching from a filesystem tiered to two local object store buckets, only the read-only object store bucket can be detached. In such cases, the background task copies the relevant data to the writable object store.
 
 #### Un-tiering a filesystem
 
@@ -44,9 +44,9 @@ Before deleting an object-store bucket, remember to consider data from another f
 Once the migration process is completed, while relevant data is migrated, old snapshots (and old locators) reside on the old object-store bucket. To recreate snapshot locators on the new object store bucket, snapshots should be re-uploaded to the (new) bucket.
 {% endhint %}
 
-### Migration considerations
+## Migration considerations
 
-When migrating data (using the detach operation) copy only the necessary data (to reduce migration time and capacity). However, you may want to keep snapshots in the old object-store bucket.
+When migrating data (using the detach operation), copy only the necessary data (to reduce migration time and capacity). However, you may want to keep snapshots in the old object-store bucket.
 
 **Migration workflow**
 
@@ -62,7 +62,7 @@ If you perform the workflow steps in a different order, the snapshots can be com
 
 ### Attach a remote object store bucket
 
-One remote object-store bucket can be attached to a filesystem. A remote object store bucket is used for backup, and only snapshots are uploaded using **Snap-To-Object**. The snapshot uploads are incremental to the previous one.&#x20;
+One remote object-store bucket can be attached to a filesystem. A remote object store bucket is used for backup. Only snapshots are uploaded using **Snap-To-Object**. The snapshot uploads are incremental to the previous one.&#x20;
 
 ### Detach a remote object store bucket
 
