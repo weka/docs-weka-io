@@ -39,7 +39,7 @@ This client image creation procedure is effective in on-premises environments, u
    `weka version get <current version>`\
    `weka version set <current version>`
 3. Setup the client and prepare the drivers: \
-   `weka local setup client --no-start`\
+   `weka local setup container --name <client name> --no-start`\
    `weka version prepare <current version>`
 
 </details>
