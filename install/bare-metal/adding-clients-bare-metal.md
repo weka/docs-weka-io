@@ -32,7 +32,7 @@ To mount a filesystem in this method, first, install the WEKA agent from one of 
 
 Example:
 
-<pre><code># Agent Installation (one time)
+<pre class="language-bash"><code class="lang-bash"># Agent Installation (one time)
 curl http://Backend-1:14000/dist/v1/install | sh
 
 # Creating a mount point (one time)
@@ -44,10 +44,10 @@ mkdir -p /mnt/weka
 
 For the first mount, this installs the WEKA software and automatically configures the client. For more information on mount and configuration options, refer to [Mount a filesystem using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
 
-Configuring the client OS to automatically mount the filesystem at boot time is possible. For more information, refer to [Mount a filesystem using the traditional method](../../fs/mounting-filesystems.md#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mount-filesystems-using-autofs).
+Configuring the client OS to mount the filesystem at boot time automatically is possible. For more information, refer to [Mount a filesystem using the traditional method](../../fs/mounting-filesystems.md#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../fs/mounting-filesystems.md#mount-filesystems-using-autofs).
 
 {% hint style="info" %}
-Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for WEKA client software and NFS mount for the traces. For more information, contact the Customer Success Team.
+Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for the WEKA client software and NFS mount for the traces. For more information, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 {% hint style="info" %}
@@ -62,7 +62,7 @@ The cgroups setting includes the following modes:
 
 * `auto`: WEKA tries using cgroups V1 (default). If it fails, the cgroups is set to `none` automatically.&#x20;
 * `force`: WEKA always uses cgroups V1. If the OS does not support it, WEKA fails.
-* `none`: WEKA never uses cgroups. Even if it runs on OS with cgroups V1. For example, use this option to prevent a conflict with third-party components, such as the _slurm workload manager_.
+* `none`: WEKA never uses cgroups. Even if it runs on OS with cgroups V1.
 
 ### Set the cgroups usage during the agent installation
 
@@ -70,7 +70,7 @@ In the agent installation command line, specify the required cgroups mode.
 
 Example:
 
-```
+```bash
 curl http://Backend-1:14000/dist/v1/install | WEKA_CGROUPS_MODE=none sh
 ```
 
@@ -85,7 +85,7 @@ curl http://Backend-1:14000/dist/v1/install | WEKA_CGROUPS_MODE=none sh
 
 Example:
 
-```
+```bash
 [root@weka-cluster] #weka local status
 Weka v4.2.0 (CLI build 4.2.0)
 Cgroups: mode=auto, enabled=true
@@ -116,16 +116,15 @@ All clients in a WEKA system cluster must use the same software version as the b
 
 **Command:** `weka cluster container add`
 
-Once the client is in the stem mode (this is the mode defined immediately after running the `install.sh`command), use the following command line on the client to add it to the cluster:
+Once the client is in the stem mode (this is the mode defined immediately after running the `install.sh` command), use the following command line on the client to add it to the cluster:
 
-`weka -H <backend-hostname> cluster container add <client-hostname>`
+```bash
+weka -H <backend-hostname> cluster container add <client-hostname>
+```
 
 **Parameters in the command line**
 
-| **Name**           | **Type** | **Value**                                                           | **Limitations**          | **Mandatory** | **Default** |
-| ------------------ | -------- | ------------------------------------------------------------------- | ------------------------ | ------------- | ----------- |
-| `backend-hostname` | String   | IP/hostname of one of the existing backend instances in the cluster | Existing backend IP/FQDN | Yes           |             |
-| `client-hostname`  | String   | IP/hostname of the client currently being added                     | Unique IP/FQDN           | Yes           |             |
+<table><thead><tr><th width="227">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>backend-hostname</code>*</td><td>An existing hostname (IP or FQDN) of one of the existing backend instances in the cluster.</td></tr><tr><td><code>client-hostname</code>*</td><td>A unique hostname (IP or FQDN) of the client to add.</td></tr></tbody></table>
 
 {% hint style="info" %}
 On completion of this stage, the container-id of the newly added container will be received. Make a note of it for the next steps.
@@ -137,15 +136,15 @@ On completion of this stage, the container-id of the newly added container will 
 
 To configure the new container as a client, run the following command:
 
-`weka cluster container cores <container-id> <cores> --frontend-dedicated-cores=<frontend-dedicated-cores>`
+{% code overflow="wrap" %}
+```bash
+weka cluster container cores <container-id> <cores> --frontend-dedicated-cores=<frontend-dedicated-cores>
+```
+{% endcode %}
 
 **Parameters in the command line**
 
-| **Name**                   | **Type** | **Value**                                                      | **Limitations**                                                                                 | **Mandatory**                             | **Default** |
-| -------------------------- | -------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------- |
-| `container-id`             | String   | Identifier of the container to be added to the cluster         | Must be a valid container identifier                                                            | Yes                                       |             |
-| `cores`                    | Number   | Number of physical cores to be allocated to the WEKA client    | Maximum 19 cores                                                                                | Yes                                       |             |
-| `frontend-dedicated-cores` | Number   | Number of physical cores to be dedicated to FrontEnd processes | <p></p><p>For clients, the number of total cores and frontend-dedicated-cores must be equal</p> | Yes, to configure a container as a client |             |
+<table data-header-hidden><thead><tr><th width="299">Name</th><th>Value</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Value</strong></td></tr><tr><td><code>container-id</code>*</td><td>A valid identifier of the container to add to the cluster.</td></tr><tr><td><code>cores</code>*</td><td>The number of physical cores to allocate to the WEKA client.</td></tr><tr><td><code>frontend-dedicated-cores</code>*</td><td>The number of physical cores to be dedicated to frontend processes.<br>Mandatory to configure a container as a client.<br>Maximum 19 cores.<br>For clients, the number of total cores and <code>frontend-dedicated-cores</code> must be equal.</td></tr></tbody></table>
 
 ### 4. Configure client networking
 
@@ -157,17 +156,15 @@ If the new client is to communicate with the WEKA cluster over the kernel UDP st
 
 If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the WEKA cluster:
 
-`weka cluster container net add <container-id> <device> --ips=<ips> --netmask=<netmask> --gateway=<gateway>`
+{% code overflow="wrap" %}
+```bash
+weka cluster container net add <container-id> <device> --ips=<ips> --netmask=<netmask> --gateway=<gateway>
+```
+{% endcode %}
 
-**Parameters in command line**
+**Parameters**
 
-| **Name**       | **Type**   | **Value**                                                                               | **Limitations**                                                                                                                                                              | **Mandatory** | **Default** |
-| -------------- | ---------- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `container-id` | String     | Identifier of the container to be added to the cluster                                  | Must be a valid container identifier                                                                                                                                         | Yes           |             |
-| `device`       | String     | Network interface device name e.g., `eth1`                                              | Must be a valid network device name                                                                                                                                          | Yes           |             |
-| `ips`          | IP address | The IP address of the new interface                                                     | Must be a valid IP address                                                                                                                                                   | Yes           |             |
-| `gateway`      | IP address | The IP address of the default routing gateway                                           | <p>The gateway must reside within the same IP network of <code>ips</code> (as described by <code>netmask</code>). </p><p>Not relevant for IB / L2 non-routable networks.</p> | No            |             |
-| `netmask`      | Number     | Number of bits in the netmask, e.g., the netmask of `255.255.0.0` has `16` netmask bits | Describes the number of bits that identify a network ID (also known as CIDR).                                                                                                | No            |             |
+<table><thead><tr><th width="189">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-id</code>*</td><td>A valid identifier of the container to add to the cluster.</td></tr><tr><td><code>device</code>*</td><td>A valid network interface device name (for example, <code>eth1</code>).</td></tr><tr><td><code>ips</code>*</td><td>A valid IP address of the new interface.</td></tr><tr><td><code>gateway</code></td><td><p>The IP address of the default routing gateway.<br>The gateway must reside within the same IP network of <code>ips</code> (as described by <code>netmask</code>). </p><p>Not relevant for IB / L2 non-routable networks.</p></td></tr><tr><td><code>netmask</code></td><td>The number of bits that identify a network ID (also known as CIDR). For example, the netmask of <code>255.255.0.0</code> has <code>16</code> netmask bits.</td></tr></tbody></table>
 
 {% hint style="info" %}
 When configuring an InfiniBand client, do not pass the `--ips`, `--netmask` and `--gateway` parameters.
@@ -183,11 +180,10 @@ InfiniBand/Ethernet clients can only join a cluster with the same network techno
 
 After successfully configuring the container and its network device, run the following command to finalize the configuration by activating the container:
 
-`weka cluster container apply <container-id> [--force]`
+```bash
+weka cluster container apply <container-id> [--force]
+```
 
-**Parameters in command line**
+**Parameters**
 
-| **Name**       | **Type**               | **Value**                                              | **Limitations**                      | **Mandatory** | **Default** |
-| -------------- | ---------------------- | ------------------------------------------------------ | ------------------------------------ | ------------- | ----------- |
-| `container-id` | Comma-separated string | Identifier of the container to be added to the cluster | Must be a valid container identifier | Yes           |             |
-| `force`        | Boolean                | Do not prompt for confirmation                         |                                      | No            | Off         |
+<table><thead><tr><th width="188">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-id</code>*</td><td>A comma-separated string of valid identifiers of the containers to add to the cluster.</td></tr><tr><td><code>force</code></td><td>A boolean indicates not to prompt for confirmation.<br>The default is not to force a prompt.</td></tr></tbody></table>
