@@ -6,7 +6,7 @@
 
 Access time, often called "atime," is a file system metadata attribute that tracks the most recent instance when a file was accessed or read. This attribute is essential for monitoring and managing file usage, as it records when a file was last opened or viewed by a user or an application.
 
-In the WEKA filesystem, atime updates occur differently. In WEKA, when a user reads a file, the atime is updated locally on the container where the read operation took place, and this update is subsequently propagated to the cluster after the user closes the file. This update process doesn't occur immediately and may take a few minutes to reflect the actual access time.
+In the WEKA filesystem, atime updates occur differently. In WEKA, when a user reads a file, the atime is updated locally on the container where the read operation took place, and this update is subsequently propagated to the cluster after the user closes the file. This update process doesn't occur immediately and may take up to 60 minutes to reflect the actual access time.
 
 Furthermore, there is a "relatime" mount option available, which can influence the atime update mechanism. When "relatime" is in use, access times are updated only if they are older than the file's modification time or creation time, reducing the frequency of atime updates and minimizing the impact on system performance.
 
