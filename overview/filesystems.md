@@ -101,6 +101,12 @@ Each directory requires two metadata units instead of one for a small file.
 
 [#memory-resource-planning](../install/bare-metal/planning-a-weka-system-installation.md#memory-resource-planning "mention")
 
+### Filesystem Extended Attributes considerations
+
+The maximum size for extended attributes (xattr) of a file or directory is 1024 bytes. This attribute space is used by Access Control Lists (ACLs) and Alternate Data Streams (ADS) within an SMB cluster and when configuring SELinux. Given its finite capacity, exercise caution when using lengthy or complex ACLs and ADS on a WEKA filesystem.
+
+When encountering a message indicating the file size exceeds the limit allowed and cannot be saved, carefully decide which data to retain. Strategic planning and selective use of ACLs and ADS contribute to optimizing performance and stability.
+
 ## **Introduction to** object stores
 
 Within the WEKA system, object stores are an optional external storage medium strategically designed to store warm data. These object stores, employed in tiered WEKA system configurations, can be cloud-based, located in the same location as the WEKA cluster, or at a remote location.

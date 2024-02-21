@@ -1,9 +1,3 @@
----
-description: >-
-  Connect a single WEKA client to multiple clusters simultaneously, optimizing
-  data access and workload distribution.
----
-
 # Mount filesystems from multiple clusters on a single client
 
 ## Overview

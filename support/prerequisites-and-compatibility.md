@@ -117,7 +117,8 @@ The following kernel versions are supported:
   * The `mls` policy is not supported yet.
 
 {% hint style="info" %}
-To set the SELinux security context for files,  use the `-o acl` in the mount command, and define the `wekafs` to use extended attributes in the SELinux policy configuration (`fs_use_xattr`).
+* To set the SELinux security context for files,  use the `-o acl` in the mount command, and define the `wekafs` to use extended attributes in the SELinux policy configuration (`fs_use_xattr`).
+* The maximum size for the Extended Attributes (xattr) is limited to 1024. This attribute is crucial in supporting Access Control Lists (ACL) and Alternate Data Streams (ADS) in SMB. Given its finite capacity, exercise caution when using ACLs and ADS on a filesystem using SELinux.
 {% endhint %}
 
 #### cgroups

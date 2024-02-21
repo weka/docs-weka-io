@@ -50,17 +50,17 @@ For groups of users according to RFC2307:
 
 ### **ID range configuration**
 
-The default configuration for the WEKA system's AD server IDs can be changed, and it serves as the primary AD range (if additional trusted domains are defined).
+The default configuration for the WEKA system's AD server IDs can be changed and serves as the primary AD range (if additional trusted domains are defined).
 
 To avoid ID overlapping and collisions, set the range or ranges for multiple domains.
 
-When joining multiple domains, it is necessary to set the ID range for each, ensuring they do not overlap. Additionally, there is a configurable default mapping range for users not part of any domain.
+When joining multiple domains, it is necessary to set the ID range for each, ensuring they do not overlap. A configurable default mapping range exists for users not part of any domain.
 
 For more details about Active Directory properties, refer to the Microsoft site.
 
 ## Workflow overview: configure SMB support
 
-This workflow provides a concise overview of the essential steps to configure SMB support in the WEKA system. Detailed procedures for both GUI and CLI implementations can be found in the following "How-To" sections.
+This workflow concisely overviews the essential steps to configure SMB support in the WEKA system. Detailed procedures for both GUI and CLI implementations can be found in the following "How-To" sections.
 
 **Before you begin**
 
@@ -69,7 +69,7 @@ This workflow provides a concise overview of the essential steps to configure SM
 
 **Workflow**
 
-1. **Configure SMB cluster**: Set the WEKA system servers participating in the SMB cluster and set the domain name.
+1. **Configure SMB cluster**: Set the WEKA system servers participating in the SMB cluster and the domain name.
    * In on-premises deployments, it is possible to configure a list of public IP addresses distributed across the SMB cluster. If a server fails, the IP addresses from that server are reassigned to another server.
 2. **Join the SMB cluster to the Active Directory domain:** Connect and define the WEKA system in the Active Directory domain.
 3. **Create shares and folders, and set permissions:** By default, the filesystem permissions are root/root/755 and initially can only be set by a WekaFS/NFS mount.
@@ -93,7 +93,7 @@ For more details on round-robin DNS configurations, refer to the relevant docume
 
 After setting up the SMB cluster, you can create SMB shares. Each share must be assigned a name and a shared path to the filesystem, which can be the filesystem's root or a sub-directory.
 
-* If the share is declared without specifying a sub-directory, the WekaFS root is automatically used. In this case, there's no need to create a root folder, as it already exists.
+* If the share is declared without specifying a sub-directory, the WekaFS root is automatically used. In this case, creating a root folder is unnecessary, as it already exists.
 * To create sub-directories, use either a WekaFS mount or an NFS mount in the shell. Adjust the permissions of the sub-directory accordingly.
 
 This approach ensures flexibility and ease of use when defining SMB shares within the WEKA environment.
@@ -106,7 +106,7 @@ To manage these permissions effectively, follow these guidelines:
 
 * **Initial POSIX permissions setup:** Configure initial POSIX permissions through the driver/NFS.
 * **Root access to SMB shares:** Grant root access to SMB shares by assigning an Active Directory user with a `uidNumber` and `gidNumber` set to `0`.
-* **Windows permissions configuration:** Specify Windows permissions for shares, folders, and files by enabling or disabling Full Control, Modify, and Write collectively. This ensures a seamless translation into POSIX permissions.
+* **Windows permissions configuration:** Specify Windows permissions for shares, folders, and files by turning Full Control on or off, Modify, and Write collectively. This ensures a seamless translation into POSIX permissions.
 
 ## WEKA filesystem snapshots integration with Windows' previous versions
 
