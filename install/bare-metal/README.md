@@ -86,13 +86,13 @@ The manual installation workflow requires deep level of knowledge with WEKA arch
    * Yes. During post-install configuration. See [Configure a WEKA cluster with the WEKA Configurator](./#2.-configure-a-weka-cluster-with-the-weka-configurator).
 3. Will the ISO setup mirror RAID on the dual-boot SSDs?
    * Yes, automatically.
-4. Can I set up WEKA with 8 SSD per node even though I have 12 installed?
+4. Can I set up WEKA with 8 SSDs per node even though I have 12 installed?
    * Not automatically. Pull the drives or manually adjust the configuration before running it (edit the `config.sh` output from `wekaconfig`).
 5. What must be done to direct the ISO to set up for High Availability (HA)? How about no HA?
-   * That’s determined in `wekaconfig.`
+   * That’s determined in `wekaconfig`.
 6. If there are multiple NIC cards (for WEKA and Ceph), how to choose the NICs to use for the WEKA backend server?
    * The WSA is not intended for that configuration directly. However, if you make them different subnets or networks, you can select the subnet to use. one, the other, or both.
-7. With the ISO, are there different processes for licensing? Or is it the standard get cluster GUID and storage size and input it into the Weka webpage to get a license key and then input that key on the command prompt?
+7. With the ISO, are there different licensing processes? Or is it the standard to get cluster GUID and storage size and input it into the Weka webpage to get a license key and then input that key on the command prompt?
    * Licensing has not changed.
 8. Does the ISO set up the IP address for Admin or the high-speed WEKA backend network?
    * The WMS will do that when it deploys the WSA.
@@ -100,8 +100,8 @@ The manual installation workflow requires deep level of knowledge with WEKA arch
    * Select the network type from the list in WMS.
 10. Can all the parameters the ISO needs be in the script?
     * No. We use Ansible after installation to make the settings.
-11. How to use the kickstart file in the ISO?
-    * Use the WMS. The kicksdstart file is written to work with WMS.
+11. How do you use the kickstart file in the ISO?
+    * Use the WMS. The `kickstart` file was written to work with WMS.
 12. What additional settings must be configured on WEKA after the ISO installation?
     * There are no required settings that need to be manually set if you use the WMS.
 

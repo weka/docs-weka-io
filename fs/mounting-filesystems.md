@@ -23,7 +23,7 @@ Using the mount command as explained below first requires the installation of th
 
 To mount a filesystem on one of the cluster servers, let’s assume the cluster has a filesystem called `demo`. To add this filesystem to a server, SSH into one of the servers and run the `mount` command as the `root` user, as follows:
 
-```
+```sh
 mkdir -p /mnt/weka/demo
 mount -t wekafs demo /mnt/weka/demo
 ```
@@ -53,7 +53,9 @@ To allow only WEKA authenticated users to mount a filesystem, set the filesystem
 
 Assuming the WEKA cluster is using the backend IP of `1.2.3.4`, running the following command as `root` on a client will install the agent:
 
-`curl http://1.2.3.4:14000/dist/v1/install | sh`
+```sh
+curl http://1.2.3.4:14000/dist/v1/install | sh
+```
 
 On completion, the agent is installed on the client.
 
@@ -63,9 +65,13 @@ On completion, the agent is installed on the client.
 
 Use one of the following command lines to invoke the mount command. The delimiter between the server and filesystem can be either `:/` or `/`:
 
-`mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-point>`
+{% code overflow="wrap" %}
+```bash
+mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]/<fs> <mount-point>
 
-`mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]:/<fs> <mount-point>`
+mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]:/<fs> <mount-point>
+```
+{% endcode %}
 
 **Parameters**
 
@@ -87,7 +93,7 @@ When a mount option has been explicitly changed, you must set it again in the re
 
 ### **Additional mount options using the stateless clients feature**
 
-<table><thead><tr><th width="237">Option</th><th width="314">Description</th><th width="117">Default</th><th>Remount Supported</th></tr></thead><tbody><tr><td><code>memory_mb=&#x3C;memory_mb></code></td><td>The memory size in MiB the client can use for hugepages.</td><td><code>1400</code></td><td>Yes</td></tr><tr><td><code>num_cores=&#x3C;frontend-cores></code></td><td><p>The number of frontend cores to allocate for the client.</p><p>You can specify <code>&#x3C;num_cores></code> or<code>&#x3C;core></code> but not both.</p><p>If none are specified, the client is configured with 1 core. </p><p>If you specify 0 then you must use <code>net=udp</code>.</p></td><td><code>1</code></td><td>No</td></tr><tr><td><code>core=&#x3C;core></code></td><td>Specify explicit cores to be used by the WekaFS client. Multiple cores can be specified.<br>Core 0 is not allowed.</td><td></td><td>No</td></tr><tr><td><code>net=&#x3C;netdev>[/&#x3C;ip>/&#x3C;bits>[/&#x3C;gateway>]]</code></td><td><p>This option must be specified for on-premises installation and <strong>must not be specified for AWS</strong> installations.</p><p>For more details, see <a href="mounting-filesystems.md#advanced-network-configuration-by-mount-options">Advanced network configuration by mount option</a>.</p></td><td></td><td>No</td></tr><tr><td><code>bandwidth_mbps=&#x3C;bandwidth_mbps></code></td><td><p>Maximum network bandwidth in Mb/s, which limits the traffic that the container can send.</p><p>The bandwidth setting is helpful in deployments like AWS, where the bandwidth is limited but allowed to burst.</p></td><td><code>auto-select</code></td><td>Yes</td></tr><tr><td><code>remove_after_secs=&#x3C;secs></code></td><td>The time in seconds without connectivity, after which the client is removed from the cluster. <br>Minimum value: <code>60</code> seconds.<br><code>3600</code> seconds = 1 hour.</td><td><code>3600</code></td><td>Yes</td></tr><tr><td><code>traces_capacity_mb=&#x3C;size-in-mb></code></td><td><p>Traces capacity limit in MB.</p><p>Minimum value: 512 MB.</p></td><td></td><td>No</td></tr><tr><td><code>reserve_1g_hugepages=&#x3C;true or false></code></td><td>Controls the page allocation algorithm to reserve hugepages.<br>Possible values:<br><code>true</code>: reserves 1 GB<br><code>false</code>: reserves 2 MB</td><td><code>true</code></td><td>Yes</td></tr><tr><td><code>readahead_kb=&#x3C;readahead></code></td><td>The readahead size in KB per mount. A higher readahead is better for sequential reads of large files.</td><td><code>32768</code></td><td>Yes</td></tr><tr><td><code>auth_token_path</code></td><td>The path to the mount authentication token (per mount).</td><td><code>~/.weka/auth-token.json</code></td><td>No</td></tr><tr><td><code>dedicated_mode</code></td><td>Determine whether DPDK networking dedicates a core (<code>full</code>) or not (<code>none</code>). none can only be set when the NIC driver supports it. See <a href="../overview/networking-in-wekaio.md#dpdk-without-the-core-dedication">DPDK without the core dedication</a>. <br>This option is relevant when using DPDK networking (<code>net=udp</code> is not set).<br>Possible values: <code>full</code> or <code>none</code></td><td><code>full</code></td><td>No</td></tr><tr><td><code>qos_preferred_throughput_mbps</code></td><td>Preferred requests rate for QoS in megabytes per second.</td><td><code>0</code> (unlimited)<br></td><td>Yes</td></tr><tr><td><code>qos_max_throughput_mbps</code></td><td>Maximum requests rate for QoS in megabytes per second.<br>This option allows bursting above the specified limit but aims to keep this limit on average.<br>The cluster admin can set the default value. See <a href="mounting-filesystems.md#set-mount-option-default-values">Set mount option default values</a>.</td><td><code>0</code> (unlimited)</td><td>Yes</td></tr><tr><td><code>qos_max_ops</code></td><td>Maximum number of IO operations a client can perform per second.<br>Set a limit to a client or clients to prevent starvation from the rest of the clients. (Do not set this option for mounting from a backend.)</td><td><code>0</code> (unlimited)</td><td>Yes</td></tr><tr><td><code>connect_timeout_secs</code></td><td>The timeout, in seconds, for establishing a connection to a single server. </td><td><code>10</code></td><td>Yes</td></tr><tr><td><code>response_timeout_secs</code></td><td>The timeout, in seconds, waiting for the response from a single server.</td><td><code>60</code></td><td>Yes</td></tr><tr><td><code>join_timeout_secs</code></td><td>The timeout, in seconds, for the client container to join the Weka cluster.</td><td><code>360</code></td><td>Yes</td></tr><tr><td><code>dpdk_base_memory_mb</code></td><td>The base memory in MB to allocate for DPDK. Set this option when mounting to a WEKA cluster on GCP.<br>Example: <code>-o dpdk_base_memory_mb=16</code></td><td><code>0</code></td><td>Yes</td></tr><tr><td><code>weka_version</code></td><td>The WEKA client version to run.</td><td>The cluster version</td><td>No</td></tr></tbody></table>
+<table><thead><tr><th width="237">Option</th><th width="314">Description</th><th width="117">Default</th><th>Remount Supported</th></tr></thead><tbody><tr><td><code>memory_mb=&#x3C;memory_mb></code></td><td>The memory size in MiB the client can use for hugepages.</td><td><code>1400</code></td><td>Yes</td></tr><tr><td><code>num_cores=&#x3C;frontend-cores></code></td><td><p>The number of frontend cores to allocate for the client.</p><p>You can specify <code>&#x3C;num_cores></code> or<code>&#x3C;core></code> but not both.</p><p>If none are specified, the client is configured with 1 core. </p><p>If you specify 0 then you must use <code>net=udp</code>.</p></td><td><code>1</code></td><td>No</td></tr><tr><td><code>core=&#x3C;core-id></code></td><td>Specify explicit cores to be used by the WekaFS client. Multiple cores can be specified.<br>Core 0 is not allowed.</td><td></td><td>No</td></tr><tr><td><code>net=&#x3C;netdev>[/&#x3C;ip>/&#x3C;bits>[/&#x3C;gateway>]]</code></td><td><p>This option must be specified for on-premises installation and <strong>must not be specified for AWS</strong> installations.</p><p>For more details, see <a href="mounting-filesystems.md#advanced-network-configuration-by-mount-options">Advanced network configuration by mount option</a>.</p></td><td></td><td>No</td></tr><tr><td><code>bandwidth_mbps=&#x3C;bandwidth_mbps></code></td><td><p>Maximum network bandwidth in Mb/s, which limits the traffic that the container can send.</p><p>The bandwidth setting is helpful in deployments like AWS, where the bandwidth is limited but allowed to burst.</p></td><td><code>auto-select</code></td><td>Yes</td></tr><tr><td><code>remove_after_secs=&#x3C;secs></code></td><td>The time in seconds without connectivity, after which the client is removed from the cluster. <br>Minimum value: <code>60</code> seconds.<br><code>3600</code> seconds = 1 hour.</td><td><code>3600</code></td><td>Yes</td></tr><tr><td><code>traces_capacity_mb=&#x3C;size-in-mb></code></td><td><p>Traces capacity limit in MB.</p><p>Minimum value: 512 MB.</p></td><td></td><td>No</td></tr><tr><td><code>reserve_1g_hugepages=&#x3C;true or false></code></td><td>Controls the page allocation algorithm to reserve hugepages.<br>Possible values:<br><code>true</code>: reserves 1 GB<br><code>false</code>: reserves 2 MB</td><td><code>true</code></td><td>Yes</td></tr><tr><td><code>readahead_kb=&#x3C;readahead></code></td><td>The readahead size in KB per mount. A higher readahead is better for sequential reads of large files.</td><td><code>32768</code></td><td>Yes</td></tr><tr><td><code>auth_token_path</code></td><td>The path to the mount authentication token (per mount).</td><td><code>~/.weka/auth-token.json</code></td><td>No</td></tr><tr><td><code>dedicated_mode</code></td><td>Determine whether DPDK networking dedicates a core (<code>full</code>) or not (<code>none</code>). none can only be set when the NIC driver supports it. See <a href="../overview/networking-in-wekaio.md#dpdk-without-the-core-dedication">DPDK without the core dedication</a>. <br>This option is relevant when using DPDK networking (<code>net=udp</code> is not set).<br>Possible values: <code>full</code> or <code>none</code></td><td><code>full</code></td><td>No</td></tr><tr><td><code>qos_preferred_throughput_mbps</code></td><td>Preferred requests rate for QoS in megabytes per second.</td><td><code>0</code> (unlimited)<br></td><td>Yes</td></tr><tr><td><code>qos_max_throughput_mbps</code></td><td>Maximum requests rate for QoS in megabytes per second.<br>This option allows bursting above the specified limit but aims to keep this limit on average.<br>The cluster admin can set the default value. See <a href="mounting-filesystems.md#set-mount-option-default-values">Set mount option default values</a>.</td><td><code>0</code> (unlimited)</td><td>Yes</td></tr><tr><td><code>qos_max_ops</code></td><td>Maximum number of IO operations a client can perform per second.<br>Set a limit to a client or clients to prevent starvation from the rest of the clients. (Do not set this option for mounting from a backend.)</td><td><code>0</code> (unlimited)</td><td>Yes</td></tr><tr><td><code>connect_timeout_secs</code></td><td>The timeout, in seconds, for establishing a connection to a single server. </td><td><code>10</code></td><td>Yes</td></tr><tr><td><code>response_timeout_secs</code></td><td>The timeout, in seconds, waiting for the response from a single server.</td><td><code>60</code></td><td>Yes</td></tr><tr><td><code>join_timeout_secs</code></td><td>The timeout, in seconds, for the client container to join the Weka cluster.</td><td><code>360</code></td><td>Yes</td></tr><tr><td><code>dpdk_base_memory_mb</code></td><td>The base memory in MB to allocate for DPDK. Set this option when mounting to a WEKA cluster on GCP.<br>Example: <code>-o dpdk_base_memory_mb=16</code></td><td><code>0</code></td><td>Yes</td></tr><tr><td><code>weka_version</code></td><td>The WEKA client version to run.</td><td>The cluster version</td><td>No</td></tr></tbody></table>
 
 {% hint style="info" %}
 These parameters, if not stated otherwise, are only effective on the first mount command for each client.
@@ -153,7 +159,11 @@ The mount option defaults are only relevant for new mounts performed and do not 
 
 To set the mount option default values, run the following command:
 
-`weka cluster mount-defaults set [--qos-max-throughput qos-max-throughput] [--qos-preferred-throughput qos-preferred-throughput]`
+{% code overflow="wrap" %}
+```bash
+weka cluster mount-defaults set [--qos-max-throughput qos-max-throughput] [--qos-preferred-throughput qos-preferred-throughput]
+```
+{% endcode %}
 
 **Parameters**
 
@@ -194,9 +204,11 @@ To assign the VF IP addresses or when the client resides in a different subnet a
 
 The following command configures two VFs for the device and assign each one of them to one of the frontend processes. The first container receives a 192.168.1.100 IP address, and the second uses a 192.168.1.101 IP address. Both IPs have 24 network mask bits and a default gateway of 192.168.1.254.
 
-```
+{% code overflow="wrap" %}
+```bash
 mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.168.1.254 backend1/my_fs /mnt/weka
 ```
+{% endcode %}
 
 ### Multiple physical network devices for performance and HA
 
@@ -208,7 +220,7 @@ It's easy to saturate the bandwidth of a single network interface when using Wek
 
 For example, the following command will allocate two cores and two physical network devices for increased throughput:
 
-```
+```bash
 mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/weka
 ```
 
@@ -218,9 +230,11 @@ Multiple NICs can also be configured to achieve redundancy (for details, see the
 
 For example, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. The modifier `ha` is used here, which stands for using the device on all processes.
 
-```
+{% code overflow="wrap" %}
+```bash
 mount -t wekafs -o num_cores=4 -o net:ha=mlnx0,net:ha=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
 ```
+{% endcode %}
 
 **Advanced mounting options for multiple physical network devices**
 
@@ -230,21 +244,25 @@ Examples of slot notation include `s1`, `s2`, `s2+1`, `s1-2`, `slots1+3`, `slot1
 
 For example, in the following command, `mlnx0` is bound to the second Frontend process while`mlnx1` to the first one for improved performance.
 
-```
+{% code overflow="wrap" %}
+```bash
 mount -t wekafs -o num_cores=2 -o net:s2=mlnx0,net:s1=mlnx1 backend1/my_fs /mnt/weka
 ```
+{% endcode %}
 
 For example**,** in the following HA mounting command, two cores (two Frontend processes) and two physical network devices (`mlnx0`, `mlnx1`) are allocated. By explicitly specifying `s2+1`, `s1-2` modifiers for network devices, both devices will be used by both Frontend processes. Notation `s2+1` stands for the first and second processes, while `s1-2` stands for the range of 1 to 2, and are effectively the same.
 
-```
+{% code overflow="wrap" %}
+```bash
 mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
 ```
+{% endcode %}
 
 ### UDP mode
 
 If DPDK cannot be used, you can use the WEKA filesystem UDP networking mode through the kernel (for details about UDP mode. see the [WEKA networking](../overview/networking-in-wekaio.md) section). Use `net=udp` in the mount command to set the UDP networking mode, for example:
 
-```
+```bash
 mount -t wekafs -o net=udp backend-server-0/my_fs /mnt/weka
 ```
 
@@ -295,7 +313,7 @@ RequiredBy=remote-fs-pre.target remote-fs.target
 
 3. Run the following command:
 
-```
+```bash
 systemctl daemon-reload; systemctl enable --now weka-agent.service
 ```
 
@@ -305,17 +323,21 @@ systemctl daemon-reload; systemctl enable --now weka-agent.service
 
 **fstab structure**
 
-```
+{% code overflow="wrap" %}
+```bash
 <backend servers/my_fs> <mount point> <filesystem type> <mount options> <systemd mount options>  0     0
 
 ```
+{% endcode %}
 
 **fstab example**
 
-```
+{% code overflow="wrap" %}
+```bash
 backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  num_cores=1,net=eth1,x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev   0       0
 
 ```
+{% endcode %}
 
 **fstab structure descriptions**
 
@@ -342,13 +364,13 @@ The filesystem is mounted automatically after server reboot.
 
 * On Red Hat or CentOS:&#x20;
 
-```
+```bash
 yum install -y autofs
 ```
 
 * On Debian or Ubuntu:
 
-```
+```bash
 apt-get install -y autofs
 ```
 
@@ -357,17 +379,21 @@ apt-get install -y autofs
 
 * For a stateless client, run the following commands (specify the backend names as parameters):
 
-```
+{% code overflow="wrap" %}
+```bash
 echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
 echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
 ```
+{% endcode %}
 
 * For a stateful client (traditional), run the following commands:
 
-```
+{% code overflow="wrap" %}
+```bash
 echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
 echo "*   &" > /etc/auto.wekafs
 ```
+{% endcode %}
 
 3\. Restart the `autofs` service:
 

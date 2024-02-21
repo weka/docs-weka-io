@@ -1,3 +1,9 @@
+---
+description: >-
+  Connect a single WEKA client to multiple clusters simultaneously, optimizing
+  data access and workload distribution.
+---
+
 # Mount filesystems from multiple clusters on a single client
 
 ## Overview
@@ -32,7 +38,7 @@ Ensure the following requirements are met:
 &#x20;Mounting a filesystem without these requirements may fail or overload the WEKA client.
 
 {% hint style="info" %}
-* Mounting filesystems from multiple clusters from clients with Intel E810 are only supported using UDP mode.
+* Mounting filesystems from multiple clusters on a single client with Intel E810 are only supported using UDP mode.
 * Mounting a stateful client using **autofs** is only supported on filesystems on a single cluster.
 {% endhint %}
 
@@ -49,7 +55,7 @@ If you need to upgrade the cluster to a higher version than the one above the cl
 
 1. Connect to each cluster and run the following command to set the client target version.&#x20;
 
-```
+```bash
 weka cluster client-target-version set <version-string>
 ```
 
@@ -57,13 +63,13 @@ Where: \<version-string> is the designated client target version, which will be 
 
 2. To display the existing client target version in the cluster, run the following command:
 
-```
+```bash
 weka cluster client-target-version show
 ```
 
 3. To reset the client target version to the cluster version, run the following command:
 
-```
+```bash
 weka cluster client-target-version reset
 ```
 
@@ -71,9 +77,17 @@ weka cluster client-target-version reset
 
 Use the same commands as with a single client.
 
-```
+```bash
 mount -t wekafs <backend-name><fs-name> <mount-point>
 ```
+
+To mount a stateless client using UDP mode, add `-o net=udp -o core=<core-id>` to the command line. For example:
+
+{% code overflow="wrap" %}
+```bash
+mount -t wekafs backend-server-0/my_fs /mnt/weka -o net=udp -o core=2
+```
+{% endcode %}
 
 ## Mount stateful client containers on multiple clusters
 
@@ -81,7 +95,7 @@ For stateful client containers, the `client-target-version` parameter is not rel
 
 To mount a stateful client container to a cluster, specify the container name for that mount.&#x20;
 
-```
+```bash
 mount -t wekafs <fs-name> <mount-point> -o container_name=<container-name>
 ```
 
@@ -89,15 +103,17 @@ mount -t wekafs <fs-name> <mount-point> -o container_name=<container-name>
 
 If the cluster does not listen to the default port, add `WEKA_PORT=<port number>` before the mount command:
 
-```
+{% code overflow="wrap" %}
+```bash
 WEKA_PORT=<port number> mount -t wekafs <fs-name> <mount-point> -o container_name=<container-name>
 ```
+{% endcode %}
 
 ## Run commands from a server with multiple client containers
 
 When running WEKA CLI commands against one of the connected WEKA clusters from a server with multiple client containers, it's necessary to specify the client container port in the command. Here's an example of a server with two client containers:
 
-```plaintext
+```bash
 weka local ps
 CONTAINER  STATE    DISABLED  UPTIME    MONITORING  PERSISTENT  PORT   PID    STATUS  VERSION                                    LAST FAILURE
 client     Running  False     3:15:57h  True        False       14000  58318  Ready   4.2.6.36-663f57024276b0b6aa17036a39835d1d
@@ -107,7 +123,7 @@ client2    Running  False     3:14:35h  True        False       14101  59529  Re
 
 To run a WEKA CLI command against the second cluster (client2 in this case), specify the port for that client container like this:
 
-```plaintext
+```bash
 weka status -P 14101
 ```
 
