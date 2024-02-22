@@ -347,7 +347,8 @@ backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  num_cores=1,net=eth
 * **Mount options:**
   * See [Additional mount options using the stateless clients feature](mounting-filesystems.md#additional-mount-options-using-the-stateless-clients-feature).
   * **Systemd mount options:**\
-    `x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`
+    `x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`\
+    You can set the `mount-timeout` based on your preferences, such as `180` seconds. This flexibility allows you to customize the timeout according to your specific system needs.
 
 7. Mount the the filesystem to test the fstab setting by running the command, for example:\
    `mount /mnt/weka/my_fs`
