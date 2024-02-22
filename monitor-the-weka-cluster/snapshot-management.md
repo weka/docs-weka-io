@@ -52,9 +52,9 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 
 To enable communication between the management server and the WEKA cluster, the security token is required in the **auth-token.json** file.
 
-Create the directory `~/.weka` in the management server.
+1. Create the directory `.weka/` in the management server.
 
-Generate the `auth-token.json` file and save it in the `~/.weka` directory. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
+Generate the `auth-token.json` file and save it in the `.weka/` directory. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
 
 {% hint style="info" %}
 Creating a unique local username dedicated to SnapTool with a ClusterAdmin or OrgAdmin role is highly recommended. The unique username is displayed in the event logs, making the identification and troubleshooting of issues easier.\
