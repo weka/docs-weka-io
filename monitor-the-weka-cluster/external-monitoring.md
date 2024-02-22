@@ -14,7 +14,7 @@ The package also includes the following components:
 * **Quota Export**:  The Quota Export manages the quotas and sends the data to Prometheus.
 * **Alert Manager**:  The Alert Manger alerts users through an SMTP server when they reach their soft quota limits.
 
-You can set up the WEKA-mon package regardless of the data monitoring provided by the Weka GUI.
+You can set up the WEKAmon package regardless of the data monitoring provided by the Weka GUI.
 
 <figure><img src="../.gitbook/assets/weka-mon_setup.png" alt=""><figcaption><p>WEKAmon setup</p></figcaption></figure>
 
@@ -66,7 +66,7 @@ To create a local user, see the [Create local users](../usage/user-management/us
 
 ### 1. Obtain the WEKAmon package
 
-The Weka-mon package resides on the GitHub repository. Obtain the WEKAmon package using one of the following methods:
+The WEKAmon package resides on the GitHub repository. Obtain the WEKAmon package using one of the following methods:
 
 * [Download the WEKAmon source code](external-monitoring.md#download-the-wekamon-source-code)&#x20;
 * [Clone the repository](external-monitoring.md#clone-the-repository)
