@@ -227,6 +227,7 @@
 * [WEKA CSI Plugin](appendix/weka-csi-plugin/README.md)
   * [Deployment](appendix/weka-csi-plugin/deployment.md)
   * [Storage class configurations](appendix/weka-csi-plugin/storage-class-configurations.md)
+  * [Tailor your storage class configuration with mount options](appendices/weka-csi-plugin/tailor-your-storage-class-configuration-with-mount-options.md)
   * [Dynamic and static provisioning](appendix/weka-csi-plugin/dynamic-and-static-provisioning.md)
   * [Launch an application using WEKA as the POD's storage](appendix/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage.md)
   * [Add SELinux support](appendix/weka-csi-plugin/add-selinux-support.md)

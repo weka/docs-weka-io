@@ -148,11 +148,11 @@ spec:
 
 <table><thead><tr><th width="263">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>spec.accessModes</code></td><td>The volume access mode.<br>Possible values: <code>ReadWriteMany</code>, <code>ReadWriteOnce</code>, <code>ReadOnlyMany</code></td></tr><tr><td><code>spec.storageClassName</code></td><td>The storage class to use to create the PVC.<br>It must be the same storage class as the PV requested to bind in <code>spec.volumeName</code>.</td></tr><tr><td><code>spec.resources.requests.storage</code></td><td>The required capacity for the volume.<br>The capacity quota is not enforced but is stored on the filesystem directory extended and attributed for future use.</td></tr><tr><td><code>spec.volumeName</code></td><td>The name of a pre-configured persistent volume.<br>The persistent volume name must exist.</td></tr></tbody></table>
 
-4. Validate the PV resource is created successfully and bounded with the PVC (the status is `Bound`).
+4. Validate that the PVC resource is created and successfully bounded (the status is `Bound`).
 
 <details>
 
-<summary>Validate the PV resource is created</summary>
+<summary>Validate that the PVC resource is created</summary>
 
 ```
 # check the pv resource has been created
