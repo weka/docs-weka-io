@@ -248,7 +248,7 @@ DISK ID  UUID                                  HOSTNAME  NODE ID  SIZE        ST
 
 The `weka status` command displays the overall status of the Weka cluster.
 
-For details, see [#cluster-status](../../getting-started-with-weka/manage-the-system-using-weka-cli.md#cluster-status "mention").
+For details, see [#cluster-status](../../getting-started-with-weka/manage-the-system-using-weka-cli/#cluster-status "mention").
 
 ## 5. Bypass the proxy server (optional)
 

@@ -20,7 +20,7 @@ Each configuration can be immediately deployed as a CloudFormation stack by redi
 
 Once the cluster is deployed:
 
-1. Refer to Getting Started with WEKA section. See [Manage the system using the WEKA GUI](../../../getting-started-with-weka/manage-the-system-using-weka-gui.md) or [Manage the system using the WEKA CLI](../../../getting-started-with-weka/manage-the-system-using-weka-cli.md).
+1. Refer to Getting Started with WEKA section. See [Manage the system using the WEKA GUI](../../../getting-started-with-weka/manage-the-system-using-weka-gui.md) or [Manage the system using the WEKA CLI](../../../getting-started-with-weka/manage-the-system-using-weka-cli/).
 2. Refer to [Run first IOs with WEKA filesystem](../../../getting-started-with-weka/performing-the-first-io.md) to quickly get familiar with creating, mounting, and writing to a WEKA filesystem.
 
 ## Plan a cluster
@@ -132,6 +132,6 @@ Once the deployment is complete, the CloudFormation stack status will be updated
 
 [manage-the-system-using-weka-gui.md](../../../getting-started-with-weka/manage-the-system-using-weka-gui.md "mention")
 
-[manage-the-system-using-weka-cli.md](../../../getting-started-with-weka/manage-the-system-using-weka-cli.md "mention")
+[manage-the-system-using-weka-cli](../../../getting-started-with-weka/manage-the-system-using-weka-cli/ "mention")
 
 [performing-the-first-io.md](../../../getting-started-with-weka/performing-the-first-io.md "mention")
