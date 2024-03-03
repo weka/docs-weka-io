@@ -135,7 +135,17 @@ description: >-
   * download
   * delete
 * tier
+  * location
+  * fetch
+  * release
+  * capacity
+  * s3
+  * ops
+  * obs
 * reserve
+  * status
+  * set
+  * inset
 
 ### **weka local**
 
