@@ -176,6 +176,31 @@ description: >-
 
 ### **weka mount**
 
+### **weka nfs**
+
+* rules
+  * add
+  * delete
+* client-group
+  * add
+  * delete
+* permission
+  * add
+  * update
+  * delete
+* interface-group
+  * add
+  * update
+  * delete
+  * ip-range
+  * port
+* debug-level
+  * show
+  * set
+* global-config
+  * set
+  * show
+
 ### **weka org**
 
 * create
