@@ -140,8 +140,16 @@ description: >-
   * release
   * capacity
   * s3
+    * add
+    * update
+    * delete
+    * attach
+    * detach
+    * snapshot
+      * list
   * ops
   * obs
+    * update
 * reserve
   * status
   * set
