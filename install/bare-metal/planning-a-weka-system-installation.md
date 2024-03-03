@@ -58,7 +58,7 @@ The total per server memory requirements is the sum of the following requirement
 | Drive processes                   | 2 GB x # of Drive processes                                                                                                                        |
 | SSD capacity management           | <p><em>ServerSSDSize/10,000</em><br><em>(ServerSSDSize = Total SSD raw capacity / # of Servers)</em></p>                                           |
 | Operating System                  | The maximum between 8 GB and 2% from the total RAM                                                                                                 |
-| Additional protocols (NFS/SMB/S3) | 8 GB                                                                                                                                               |
+| Additional protocols (NFS/SMB/S3) | 16 GB                                                                                                                                              |
 | RDMA                              | 2 GB                                                                                                                                               |
 | Metadata (pointers)               | <p>20 Bytes x # Metadata units per server<br>See <a href="../../overview/filesystems.md#metadata-calculations">Metadata units calculation</a>.</p> |
 
@@ -87,7 +87,7 @@ Calculations:
 * SSD capacity management: 983 TB / 16 / 10K = \~6.3 GB
 * Metadata: 20 Bytes x 47 million files x 2 units = \~1.9 GB
 
-Total memory requirement per server= 2.8 + 2.2 + 55.7 + 12 + 6.3 + 8 + 2 + 1.9 = \~91 GB
+Total memory requirement per server= 2.8 + 2.2 + 55.7 + 12 + 6.3 + 16 + 2 + 1.9 = \~100 GB
 
 #### Example 2: A system with small files
 
@@ -100,7 +100,7 @@ For an average file size of 64 KB, the number of files is potentially up to:
 
 Required memory for metadata: 20 Bytes x 980 million files x 1 unit = \~19.6 GB
 
-Total memory requirement per server = 2.8 + 2.2 + 55.7 + 12 + 6.3 + 8 + 2 + 19.6 = \~109 GB
+Total memory requirement per server = 2.8 + 2.2 + 55.7 + 12 + 6.3 + 16 + 2 + 19.6 = \~118 GB
 
 {% hint style="info" %}
 The memory requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to receive an estimate for your specific configuration.
