@@ -87,6 +87,10 @@ description: >-
 * default-net
 * license
 * task
+  * pause
+  * resume
+  * abort
+  * limits
 * client-target-version
 
 ### **weka diags**
