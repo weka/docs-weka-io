@@ -158,8 +158,6 @@ description: >-
 ### **weka local**
 
 * install-agent
-  * status
-  * update
 * diags
 * events
 * ps
