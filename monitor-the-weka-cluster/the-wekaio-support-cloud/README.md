@@ -6,7 +6,7 @@ description: Improve the WEKA support process with WEKA Home.
 
 WEKA Home is a central cloud location that collects telemetry data, monitors, and keeps track of WEKA clusters in the field. This information is uploaded from customers' WEKA clusters and clients and is primarily used to improve the support process.
 
-WEKA Home is intended for Customer Success Team and is not accessible to customers directly. WEKA Home enables the Customer Success Team to provide proactive support when recognizing cluster irregularities, improving incident response time, and streamlining the troubleshooting process.
+WEKA Home is intended for the Customer Success Team and is not accessible to customers directly. WEKA Home enables the Customer Success Team to provide proactive support when recognizing cluster irregularities, improving incident response time, and streamlining the troubleshooting process.
 
 It is intended to be the first source of information to investigate a critical event or an issue in the field. Also, it provides insights into customer usage and behaviors to improve the WEKA product further.
 
@@ -18,7 +18,7 @@ WEKA Home provides the following main features:&#x20;
 * Query cluster-wide events and statistics.
 * Trigger events and alerts for a 24x7 support response.
 
-In the WEKA Home portal, the Customer Success Team can view a cluster’s statistics, state of health, consolidated view of events, and diagnostics for various triaging activities. It allows the team to offer a comprehensive 24x7x365 support view of all customer systems sending telemetry data.&#x20;
+In the WEKA Home portal, the Customer Success Team can view the cluster’s statistics, state of health, consolidated view of events, and diagnostics for various triaging activities. The team can offer a comprehensive 24x7x365 support view of all customer systems sending telemetry data.&#x20;
 
 <figure><img src="../../.gitbook/assets/wekahome_overview.png" alt=""><figcaption><p>WEKA clusters and clients connected to WEKA Home</p></figcaption></figure>
 
@@ -32,19 +32,19 @@ The WEKA cluster periodically and on-demand uploads various information types to
 * **Events:** Events contain relevant information for the WEKA cluster and customer environment. Triggered by a customer or an environmental change, events can be informational, indicate an issue with the cluster, or a previously resolved issue. Events are uploaded immediately when a cluster container creates an event.
 * **Statistics:** Statistics help analyze the WEKA system performance and determine the source of any issue. Statistics are uploaded every minute from each container.
 * **Usage reports:**  Usage reports provide metrics for interface groups, containers, processes (nodes), drives, status, version, and filesystems. Usage reports are uploaded every minute.
-* **Analytics:** Analytics provide metrics for the cluster, drives, filesystems settings, containers, network devices, nodes, protocols, and more. Analytics are uploaded every 30 minutes.
+* **Analytics:** Analytics provide metrics for the cluster, drives, filesystem settings, containers, network devices, nodes, protocols, and more. Analytics are uploaded every 30 minutes.
 
 **On-demand uploads:**
 
 * **Diagnostics (support files):** Uploaded on-demand from the container that collected the diagnostics.
 
-## Upload information from the WEKA cluster to WEKA Home
+## Upload information from the WEKA cluster to the WEKA Home
 
-Uploading information to WEKA Home from the WEKA cluster backend servers and clients is essential for the Customer Success Team to provide effective assistance. If client connectivity cannot be configured, enabling upload information from the backend servers is still beneficial.
+Uploading information to WEKA Home from the WEKA cluster backend servers and clients is essential for the Customer Success Team to provide practical assistance. If client connectivity cannot be configured, enabling upload information from the backend servers is still beneficial.
 
 **Before you begin**
 
-* Ensure the required ports for Cloud WEKA Home and Customer Success Team remote access are open. For details, see [#required-ports](../../support/prerequisites-and-compatibility.md#required-ports "mention").
+* Ensure the Cloud WEKA Home and Customer Success Team remote access ports are open. For details, see [#required-ports](../../support/prerequisites-and-compatibility.md#required-ports "mention").
 * If the connection to the cloud WEKA Home is through a proxy, set the proxy by running the command: `weka cloud proxy --set <proxy_url>`.
 
 **Procedure**

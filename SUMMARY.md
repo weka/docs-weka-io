@@ -68,7 +68,7 @@
 ## Getting Started with WEKA
 
 * [Manage the system using the WEKA GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
-* [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli/README.md)
+* [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli.md)
   * [WEKA CLI hierarchy](getting-started-with-weka/manage-the-system-using-weka-cli/weka-cli-hierarchy.md)
 * [Run first IOs with WEKA filesystem](getting-started-with-weka/performing-the-first-io.md)
 * [Getting started with WEKA REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
@@ -198,7 +198,8 @@
 * [Deploy monitoring tools using the WEKA Management Station (WMS)](monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md)
 * [WEKA Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
   * [Local WEKA Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
-  * [Local WEKA Home deployment](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)
+  * [Deploy Local WEKA Home v3.0 or higher](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)
+  * [Deploy Local WEKA Home v2.x](monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v2.x.md)
   * [Explore cluster insights and statistics](monitor-the-weka-cluster/the-wekaio-support-cloud/explore-cluster-insights-and-statistics.md)
   * [Manage alerts and integrations](monitor-the-weka-cluster/the-wekaio-support-cloud/manage-alerts-and-integrations.md)
   * [Enforce security and compliance](monitor-the-weka-cluster/the-wekaio-support-cloud/enforce-security-and-compliance.md)

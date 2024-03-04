@@ -364,7 +364,7 @@ Once the deployment is completed, access the WEKA cluster GUI using the URL: `ht
 
 [manage-the-system-using-weka-gui.md](../../getting-started-with-weka/manage-the-system-using-weka-gui.md "mention")
 
-[manage-the-system-using-weka-cli](../../getting-started-with-weka/manage-the-system-using-weka-cli/ "mention")
+[manage-the-system-using-weka-cli.md](../../getting-started-with-weka/manage-the-system-using-weka-cli.md "mention")
 
 [performing-the-first-io.md](../../getting-started-with-weka/performing-the-first-io.md "mention")
 

@@ -12,7 +12,7 @@ In SCB, the drive, compute, and frontend processes are in the same container. In
 * Effective hardware cores usage
 * Less disruptive maintenance
 
-Conversion to MCB is supported from version 4.0.2 and above.
+Conversion to MCB is supported from version 4.0.2 or higher.
 
 <figure><img src="../.gitbook/assets/scb_to_mcb_convert.png" alt=""><figcaption><p>SCB vs. MCB</p></figcaption></figure>
 
@@ -35,7 +35,7 @@ The conversion runs on one server at a time (rolling). It takes about 4.5 minute
 ### 1. Prepare the source cluster for conversion
 
 1. Ensure the source cluster meets the following requirements:
-   * The source cluster is version 4.0.2 or above.
+   * The source cluster is version 4.0.2 or higher.
    * The cluster must not download a snapshot during the conversion (snapshot upload is allowed).
    * You must have passwordless SSH access to all backend servers. This access can be granted to either the root user or a regular user. If you opt for a non-root user, it must also have passwordless sudo privileges.
 2. Download the latest [Tools Repository](https://github.com/weka/tools/tree/master). It is recommended to pull the latest version before starting the migration.
@@ -277,7 +277,7 @@ sudo weka local enable
 
 ### Clients in a bad state cause new backends to get stuck in SYNCING state
 
-On a large cluster with about 2000 clients and above, the rebuild between each MCB conversion hangs. The reason is that the baseline configuration failed to sync to all the clients at the end of the rebuild.
+On a large cluster with about 2000 clients and higher, the rebuild between each MCB conversion hangs. The reason is that the baseline configuration failed to sync to all the clients at the end of the rebuild.
 
 **Corrective action**
 

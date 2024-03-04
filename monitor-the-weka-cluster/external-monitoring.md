@@ -16,7 +16,7 @@ The package also includes the following components:
 
 You can set up the WEKAmon package regardless of the data monitoring provided by the Weka GUI.
 
-<figure><img src="../.gitbook/assets/weka-mon_setup.png" alt=""><figcaption><p>WEKAmon setup</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/wekamon_deployment.png" alt=""><figcaption><p>WEKAmon setup</p></figcaption></figure>
 
 One of the advantages of setting up the WEKAmon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with WEKA to correlate and display monitoring information from all your products on the same dashboard.
 
@@ -28,7 +28,7 @@ If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-u
 
 ## Before you begin
 
-Setting up a dedicated management server (or VM) for the installation is recommended.
+Setting up a dedicated physical server (or VM) for the installation is recommended.
 
 ### Server minimum requirements
 
@@ -38,7 +38,7 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 * 50 GB /opt/ partition (for WEKAmon installation)
 * 1 Gbps network
 * _Docker_ is the recommended container for the WEKAmon setup.\
-  To use Docker, the following must be installed on the dedicated management server:
+  To use Docker, the following must be installed on the dedicated physical server (or VM):
   * `docker-ce`
   * `docker-compose` or `docker-compose-plugin` depending on the existing operating system.
 
@@ -46,7 +46,7 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 
 ### Authentication token requirement
 
-To enable communication between the management server and the WEKA cluster, the security token is required in the **auth-token.json** file.
+To enable communication between the physical server and the WEKA cluster, the security token is required in the **auth-token.json** file.
 
 1. Create the directory `.weka/` in the WEKAmon installation directory.
 2. Generate the `auth-token.json` file and save it in the `.weka/` directory you created. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
@@ -62,7 +62,7 @@ To create a local user, see the [Create local users](../usage/user-management/us
 2. [Run the install.sh script](external-monitoring.md#2.-run-the-install.sh-script): The script creates a few directories and sets their permissions.
 3. [Edit the export.yml file](external-monitoring.md#3.-edit-the-export.yml-file): The `export.yml` file contains the WEKAmon and the exporter configuration. Customize the file according to your actual WEKA deployment.
 4. [Edit the quota-export.yml file](external-monitoring.md#4.-edit-the-quota-export.yml-file): The `quota-export.yml` file contains the configuration of the quota-export container. Customize the file according to your actual WEKA deployment.
-5. [Start the docker-compose containers](external-monitoring.md#4.-start-the-docker-compose-containers): Once done, you can connect to Grafana on port 3000 of the management server running the docker containers.&#x20;
+5. [Start the docker-compose containers](external-monitoring.md#4.-start-the-docker-compose-containers): Once done, you can connect to Grafana on port 3000 of the physical server running the docker containers.&#x20;
 
 ### 1. Obtain the WEKAmon package
 
@@ -75,7 +75,7 @@ The WEKAmon package resides on the GitHub repository. Obtain the WEKAmon package
 
 1. Go to [https://github.com/weka/weka-mon/releases.](https://github.com/weka/weka-mon/releases)
 2. On the **latest** release section, select the **Source Code** link to download.
-3. Copy the downloaded source code to the dedicated management server or VM and unpack it.
+3. Copy the downloaded source code to the dedicated physical server (or VM) and unpack it.
 
 #### Clone the repository
 
@@ -175,7 +175,7 @@ If the status of the containers is not up, check the logs and troubleshoot accor
 docker logs <container id>
 ```
 
-Once all containers run, you can connect to Grafana on port 3000 of the management server running the docker containers. The default credentials for Grafana are `admin/admin`.
+Once all containers run, you can connect to Grafana on port 3000 of the physical server running the docker containers. The default credentials for Grafana are `admin/admin`.
 
 ## Integrate with an existing Grafana/Prometheus environment
 
@@ -229,7 +229,7 @@ docker run -d --network=host \
 #### Run the exporter as a compiled binary
 
 1. Go to [https://github.com/weka/export/releases](https://github.com/weka/export/releases) and download the tarball from the latest release.
-2. Copy this file to the management server or VM.
+2. Copy this file to the physical server (or VM).
 3. Run the exporter as follows (for the description of the command-line parameters, see the [Exporter section parameters](external-monitoring.md#exporter-section-parameters)):
 
 ```

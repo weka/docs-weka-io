@@ -17,11 +17,11 @@ The SnapTool provides the following features:
 * Upload and delete in the background.
 * Access a Web Status GUI to view the snapshot schedules, upload and download queue, , locator IDs for successfully uploaded snapshots, and logs. The default URL is `http://<snaptool server hostname/IP>:8090`.
 
-The SnapTool runs on any Linux-based management server (or VM). All communication with the WEKA cluster is done by an IP connection only to a WEKA host using the WEKA REST API.
+The SnapTool runs on any Linux-based physical server (or VM). All communication with the WEKA cluster is done by an IP connection only to a WEKA host using the WEKA REST API.
 
 The SnapTool package can be installed with a _systemd_ service or _Docker_ container. In both options, you need to edit the configuration in the `snaptool.yml` file before running the installation.
 
-<figure><img src="../.gitbook/assets/snaptool_setup.png" alt=""><figcaption><p>SnapTool setup</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/snaptool_deployment.png" alt=""><figcaption><p>SnapTool setup</p></figcaption></figure>
 
 {% hint style="info" %}
 If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.&#x20;
@@ -29,11 +29,11 @@ If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-u
 
 ## Before you begin
 
-If a previous SnapTool version exists in the management server, make a copy of your existing `snaptool.yml` file.
+If a previous SnapTool version exists in the physical server, make a copy of your existing `snaptool.yml` file.
 
-If the `snaptool.yml` file is from releases before 1.0.0, it is incompatible with 1.0.0 and above. You need to modify the file to use the new syntax.
+If the `snaptool.yml` file is from releases before 1.0.0, it is incompatible with 1.0.0 or higher. You need to modify the file to use the new syntax.
 
-Setting up a dedicated management server (or VM) for the installation is recommended.
+Setting up a dedicated physical server (or VM) for the installation is recommended.
 
 ### Server minimum requirements
 
@@ -41,7 +41,7 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 * 8 GB RAM
 * 5 GB /opt/ partition (for the SnapTool installation)
 * Network access to the WEKA cluster
-*   To use Docker, the following must be installed on the dedicated management server:
+*   To use Docker, the following must be installed on the dedicated physical server:
 
     * `docker-ce`
     * `docker-compose` or `docker-compose-plugin` depending on the existing operating system.
@@ -50,9 +50,9 @@ Setting up a dedicated management server (or VM) for the installation is recomme
 
 ### Authentication token requirement
 
-To enable communication between the management server and the WEKA cluster, the security token is required in the **auth-token.json** file.
+To enable communication between the physical server and the WEKA cluster, the security token is required in the **auth-token.json** file.
 
-1. Create the directory `.weka/` in the management server.
+1. Create the directory `.weka/` in the physical server.
 
 Generate the `auth-token.json` file and save it in the `.weka/` directory. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
 
@@ -63,7 +63,7 @@ To create a local user, see the [Create local users](../usage/user-management/us
 
 ## Option 1: Install the SnapTool package with the systemd service
 
-1. Download the latest `snaptool.tar` file from [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) and extract it to the management server.\
+1. Download the latest `snaptool.tar` file from [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) and extract it to the physical server.\
    Example:\
    `wget https://github.com/weka/snaptool/releases/snaptool.tar`\
    `tar xvf snaptool.tar`
@@ -84,7 +84,7 @@ The `snaptool` container runs similarly to other WEKA Docker containers.
 
 1. Download the docker image from the docker hub. Run the following command:\
    `docker pull wekasolutions/snaptool:latest`
-2. Download the following files from GitHub [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) to a dedicated directory in the management server:
+2. Download the following files from GitHub [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) to a dedicated directory in the physical server:
    * `snaptool.yml`
    * `docker_run.sh`
 3. Edit the `snaptool.yml` configuration file (default location: /opt/weka/snaptool).\

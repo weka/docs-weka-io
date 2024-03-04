@@ -4,16 +4,16 @@ After deploying the Local WEKA Home, you can configure it to send specific alert
 
 <figure><img src="../../.gitbook/assets/LWH_email_alert.jpg" alt="" width="563"><figcaption><p>WEKA Home email alert example</p></figcaption></figure>
 
-## Setting the Local WEKA Home to send events and alerts
+## Set the Local WEKA Home to send events and alerts
 
 Setting the Local WEKA Home to send events and alerts includes the following procedures:
 
 1. **Create an integration:** Set the destination on the **Integration** page.
-2. **Create rules:** On the **Rules** page, select the rule conditions to trigger specific alerts or events, and assign the rule to the integration.
+2. **Create rules:** On the **Rules** page, select the rule conditions to trigger specific alerts or events and assign the rule to the integration.
 
 ### Create an integration
 
-1. Access the Local WEKA Home portal with an admin account and the password obtained.
+1. Access the Local WEKA Home portal with an admin account and the password (obtained during the LWH deployment. See [#id-5.-access-the-local-weka-home-portal-and-grafana](local-weka-home-deployment.md#id-5.-access-the-local-weka-home-portal-and-grafana "mention")).
 2. From the menu, select **Manage** > **Integrations**.
 3. On the **Integration** page, select **New**.
 

@@ -81,7 +81,7 @@ When recreating a filesystem from a snapshot, adhere to the following guidelines
 You can synchronize a filesystem from a snapshot using the Synchronous Snap feature. Synchronous Snap only downloads changes since the last snapshot from the object store bucket.
 
 {% hint style="info" %}
-Only snapshots uploaded from version 4.0 or above can be downloaded using Synchronous Snap.
+Only snapshots uploaded from version 4.0 or higher can be downloaded using Synchronous Snap.
 {% endhint %}
 
 **Before you begin**
