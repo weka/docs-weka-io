@@ -87,7 +87,7 @@ Calculations:
 * SSD capacity management: 983 TB / 16 / 10K = \~6.3 GB
 * Metadata: 20 Bytes x 47 million files x 2 units = \~1.9 GB
 
-Total memory requirement per server= 2.8 + 2.2 + 55.7 + 12 + 6.3 + 16 + 2 + 1.9 = \~100 GB
+Total memory requirement per server= 2.8 + 2.2 + 50.7 + 12 + 6.3 + 16 + 2 + 1.9 = \~94 GB
 
 #### Example 2: A system with small files
 
@@ -100,7 +100,7 @@ For an average file size of 64 KB, the number of files is potentially up to:
 
 Required memory for metadata: 20 Bytes x 980 million files x 1 unit = \~19.6 GB
 
-Total memory requirement per server = 2.8 + 2.2 + 55.7 + 12 + 6.3 + 16 + 2 + 19.6 = \~118 GB
+Total memory requirement per server = 2.8 + 2.2 + 50.7 + 12 + 6.3 + 16 + 2 + 19.6 = \~112 GB
 
 {% hint style="info" %}
 The memory requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to receive an estimate for your specific configuration.
