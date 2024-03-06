@@ -49,7 +49,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 
 ## Upgrade workflow
 
-1. [Verify prerequisites for the upgrade](upgrading-weka-versions.md#1.-verify-prerequisites-for-the-upgrade)
+1. [Verify system upgrade prerequisites](upgrading-weka-versions.md#id-1.-verify-system-upgrade-prerequisites)
 2. [Prepare the cluster for upgrade](upgrading-weka-versions.md#2.-prepare-the-cluster-for-upgrade)
 3. [Prepare the backend servers for upgrade (optional)](upgrading-weka-versions.md#3.-optional.-prepare-the-backend-servers-for-upgrade)
 4. [Upgrade the backend servers](upgrading-weka-versions.md#4.-upgrade-the-backend-servers)
@@ -63,27 +63,112 @@ Adhere to the following considerations:
 * If you intend to create an S3 cluster, ensure the upgrade process is complete and all containers are up before initiating the S3 cluster creation.
 {% endhint %}
 
-### 1. Verify prerequisites for the upgrade
+### 1. Verify system upgrade prerequisites
 
-Before upgrading the cluster, ensure the following prerequisites:
+Before proceeding with any system upgrade, ensuring that the environment meets the necessary prerequisites is crucial. The **WEKA Upgrade Checker Tool** automates these essential checks, comprehensively assessing the system’s readiness. Whether performing a single-version upgrade or a multi-hop upgrade, following this procedure is mandatory.
 
-1. The backend servers meet the [prerequisites and compatibility](../support/prerequisites-and-compatibility.md) of the target version.
-2. Ensure the source version is configured in an MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the source version from the legacy architecture to MCB.
-3. If the S3 protocol is configured and the target version is 4.2.4, contact the Customer Success Team to confirm the ETCD (internal key-value store) has been upgraded to KWAS.&#x20;
-4. All the backend servers are online.
-5. Ensure you are logged in as a Cluster Admin (using a `weka user login`).
-6. Any rebuild has been completed.
-7. There are no outstanding alerts that still need to be addressed.
-8. There is at least 4 GB of free space in the `/opt/weka` directory.
-9. The NDU process requires the following tasks to be stopped. If these tasks are planned, postpone them. If the tasks are running, perform the required action.
+#### Summary of the WEKA Upgrade Checker Tool results:
 
-<table><thead><tr><th width="208">Task</th><th width="242">Required action</th><th>Backgrounk task name</th></tr></thead><tbody><tr><td>Upload a snapshot  </td><td>Wait for the snapshot upload to complete,  or abort it.</td><td>STOW_UPLOAD</td></tr><tr><td>Create a filesystem from an uploaded snapshot</td><td>Wait for the download to complete or abort it by deleting the downloaded filesystem or snapshot.<br><br>If the task is in the snapshot prefetch of the metadata stage, wait for the prefetch to complete or abort it by. It is not possible to resume the snapshot prefetch after the upgrade.</td><td>STOW_DOWNLOAD_SNAPSHOT<br>STOW_DOWNLOAD_FILESYSTEM<br>FILESYSTEM_SQUASH<br>SNAPSHOT_PREFETCH</td></tr><tr><td>Sync a filesystem from a snapshot</td><td>Wait for the download to complete or abort it by deleting the downloaded filesystem or snapshot.</td><td>STOW_DOWNLOAD_SNAPSHOT</td></tr><tr><td>Detach object store bucket from a filesystem</td><td>Detaching an object store is blocked during the upgrade. If it is running, ignore it. </td><td>OBS_DETACH</td></tr></tbody></table>
+1. **Passed checks (Green)**: The system meets all prerequisites for the upgrade.
+2. **Warnings (Yellow)**: Address promptly to resolve potential issues.
+3. **Failures (Red)**: Do not proceed; they may lead to data loss.
 
-For details on managing the background tasks, see the [Background tasks](background-tasks/) topic.
+<details>
+
+<summary>Sample list of the verification steps performed by the WEKA Upgrade Checker Tool </summary>
+
+* [x] **Backend server Prerequisites and compatibility**:
+  * Confirm that all backend servers meet the [prerequisites and compatibility](../support/prerequisites-and-compatibility.md) requirements of the target version. Address any discrepancies promptly.
+  * **Contact the Customer Success Team** if there are compatibility issues or missing prerequisites.
+* [x] **Source version architecture**:
+  * Verify that the source version is configured in an **MCB (Multi-Cluster Backend)** architecture.
+  * If the source version still uses the legacy architecture, take the necessary steps to **convert it to MCB**.
+  * **Contact the Customer Success Team** for assistance during this conversion process.
+* [x] **S3 protocol configuration and target version 4.2.4**:
+  * If the S3 protocol is configured and the target version is **4.2.4**, the tool performs additional checks.
+  * **Contact the Customer Success Team** to confirm that the internal key-value store (**ETCD**) has been successfully upgraded to **KWAS** (Key-Value WEKA Accelerated Store).
+* [x] **Backend server availability**:
+  * Ensure that all backend servers are **online and operational**.
+  * Address any server availability issues promptly.
+* [x] **User role**:
+  * Log in with a user role that has **Cluster Admin privileges**.
+  * If necessary, adjust user roles to meet this requirement.
+* [x] **Rebuild completion**:
+  * Verify that any ongoing rebuild processes have been successfully completed.
+  * Do not proceed with the upgrade until the rebuilds are finished.
+* [x] **Alerts and outstanding issues**:
+  * Check for any outstanding alerts or unresolved issues.
+  * Resolve any pending alerts before proceeding.
+* [x] **Free space in /opt/weka directory**:
+  * Ensure that there is **at least 4 GB of free space** in the `/opt/weka` directory.
+  * If space is insufficient, address it promptly.
+* [x] **Non-Disruptive Upgrade (NDU) process tasks**:
+  * Before initiating the NDU process, **stop the following tasks** (if applicable):
+    * **Upload a snapshot**:
+      * If applicable, wait for the snapshot upload to complete.
+      * Alternatively, abort the upload process if needed.
+      * Task Name: **STOW\_UPLOAD**
+    * **Create a filesystem from an uploaded snapshot**:
+      * Wait for the download to complete.
+      * If necessary, abort the process by deleting the downloaded filesystem or snapshot.
+      * If the task is in the snapshot prefetch stage of the metadata phase, wait for the prefetch to complete or abort it. Resuming snapshot prefetch after the upgrade is not possible.
+      * Task Names: STOW\_DOWNLOAD\_SNAPSHOT, STOW\_DOWNLOAD\_FILESYSTEM, FILESYSTEM\_SQUASH, and SNAPSHOT\_PREFETCH
+    * **Sync a Filesystem from a Snapshot**:
+      * **Wait for the download to complete**.
+      * If needed, abort the process by deleting the downloaded filesystem or snapshot.
+      * Task Name: STOW\_DOWNLOAD\_SNAPSHOT
+    * **Detach Object Store Bucket from a Filesystem**:
+      * During the upgrade, detaching an object store is blocked.
+      * If the task is currently running, **ignore it**.
+      * Task Name: OBS\_DETACH
+  * **Postpone planned tasks or address running tasks**:
+    * If any planned tasks are scheduled during the upgrade, postpone them until after the NDU process.
+    * If tasks are currently running, take necessary actions based on their status.
+    * Consult the [**Background tasks**](background-tasks/) topic for comprehensive guidance.
+
+</details>
 
 {% hint style="info" %}
-If you plan a multi-hop version upgrade, once an upgrade is done, a background process of converting metadata to a new format may occur (in some versions). This upgrade takes several minutes to complete before another upgrade can start. You can monitor the progress using the `weka status` CLI command and check if a data upgrade task is in a `RUNNING` state.
+**Multi-hop version upgrades:**
+
+After completing an upgrade, a background process initiates the conversion of metadata to a new format (in specific versions). This conversion may take several minutes before another upgrade can commence. To monitor the progress, use the `weka status` CLI command and check if a data upgrade task is RUNNING.
 {% endhint %}
+
+By diligently following this system readiness validation procedure, you can confidently proceed with system upgrades, minimizing risks and ensuring a smooth upgrade.
+
+{% embed url="https://youtu.be/k8sDP3U1zDI" %}
+Demo: WEKA Upgrade Checker
+{% endembed %}
+
+{% hint style="info" %}
+* Prioritize running the WEKA Upgrade Checker **24 hours** before any scheduled upgrades. This step is critical to identify and address any potential issues proactively.
+* Ensure **passwordless SSH access** is set up on all backend hosts. This is crucial for seamless execution of the Python script during running the the WEKA Upgrade Checker.&#x20;
+{% endhint %}
+
+#### **Procedure**
+
+1. **Log in to one of the backend servers as a root user:**
+   * Access the server using the appropriate credentials.
+2. **Obtain the WEKA Upgrade Checker:** \
+   Choose one of the following methods:
+   * **Method 1:** Direct download
+     * Clone the WEKA Upgrade Checker GIT repository with the command: \
+       `git clone https://github.com/weka/tools.git`
+   * **Method 2:** Update from existing tools repository
+     * If you have previously downloaded the tools repository, navigate to the **tools** directory.
+     * Run `git pull` to update the tools repository with the latest enhancements. (The WEKA tools, including the WEKA Upgrade Checker, continuously evolve.)
+3. **Run the WEKA Upgrade Checker:**
+   * Navigate to the weka\_upgrade\_checker directory. It includes a binary version and a Python script of the tool. A minimum of Python 3.8 is required if you run the Python script.
+   *   Run the Python script: `python3.8 ./weka_upgrade_checker.py`
+
+       The tool scans the backend servers and verifies the upgrade prerequisites.
+4. **Review the results:**
+   * Pay attention to the following indicators:
+     * **Green:** Passed checks. Ensure the tool's version is the latest.
+     * **Yellow**: Warnings that require attention and remedy.
+     * **Red**: Failed checks. If any exist, **do not proceed**. Contact the Customer Success Team.
+5. **Send the log file to the Customer Success Team:**
+   * The `weka_upgrade_checker.log` is located in the same directory you ran the tool from. Share the latest log file with the Customer Success Team for further analysis.
 
 ### 2. Prepare the cluster for upgrade&#x20;
 
