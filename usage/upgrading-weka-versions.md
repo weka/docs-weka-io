@@ -142,7 +142,7 @@ Demo: WEKA Upgrade Checker
 
 {% hint style="info" %}
 * Prioritize running the WEKA Upgrade Checker **24 hours** before any scheduled upgrades. This step is critical to identify and address any potential issues proactively.
-* Ensure **passwordless SSH access** is set up on all backend hosts. This is crucial for seamless execution of the Python script during running the the WEKA Upgrade Checker.&#x20;
+* Ensure **passwordless SSH access** is set up on all backend servers. This is crucial for the seamless execution of the Python script while running the WEKA Upgrade Checker.&#x20;
 {% endhint %}
 
 #### **Procedure**
