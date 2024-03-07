@@ -1,5 +1,7 @@
 ---
-description: This page describes how to upgrade to the latest Weka software version.
+description: >-
+  Upgrade your WEKA system within a multi-container backend architecture (MCB).
+  Choose the latest minor version for new major versions.
 ---
 
 # Upgrade WEKA versions
