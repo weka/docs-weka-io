@@ -151,10 +151,10 @@ Demo: WEKA Upgrade Checker
    * Access the server using the appropriate credentials.
 2. **Obtain the WEKA Upgrade Checker:** \
    Choose one of the following methods:
-   * **Method 1:** Direct download
+   * **Method A:** Direct download
      * Clone the WEKA Upgrade Checker GIT repository with the command: \
        `git clone https://github.com/weka/tools.git`
-   * **Method 2:** Update from existing tools repository
+   * **Method B:** Update from existing tools repository
      * If you have previously downloaded the tools repository, navigate to the **tools** directory.
      * Run `git pull` to update the tools repository with the latest enhancements. (The WEKA tools, including the WEKA Upgrade Checker, continuously evolve.)
 3. **Run the WEKA Upgrade Checker:**
