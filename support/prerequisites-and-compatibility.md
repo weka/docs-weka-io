@@ -193,6 +193,7 @@ Avoid using the Intel X550-T1 adapter in a single client connected to multiple c
     * 23.04-1.1.3.0
     * 5.9-0.5.6.0
     * 5.8-1.1.2.1 LTS
+    * 5.8-3.0.7.0
     * 5.7-1.0.2.0
     * 5.6-2.0.9.0
     * 5.6-1.0.3.3
@@ -254,6 +255,7 @@ WEKA supports the following Mellanox OFED versions for the InfiniBand adapters:
 * 23.04-1.1.3.0
 * 5.9-0.5.6.0
 * 5.8-1.1.2.1 LTS
+* 5.8-3.0.7.0
 * 5.7-1.0.2.0
 * 5.6-2.0.9.0
 * 5.6-1.0.3.3
