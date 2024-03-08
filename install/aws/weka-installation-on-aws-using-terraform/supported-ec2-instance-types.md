@@ -28,7 +28,7 @@ Any backend instance can also be a client instance.
 
 ### Accelerated computing <a href="#accelerated_computing" id="accelerated_computing"></a>
 
-<table><thead><tr><th width="235">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>G3</td><td>g3.4xlarge, g3.8xlarge, g3.16xlarge</td></tr><tr><td>G4dn</td><td>g4dn.2xlarge, g4dn.4xlarge, g4dn.8xlarge, g4dn.12xlarge, g4dn.16xlarge</td></tr><tr><td>G5</td><td>g5.xlarge, g5.2xlarge, g5.4xlarge, g5.8xlarge, g5.12xlarge, g5.16xlarge, g5.32xlarge</td></tr><tr><td>Inf1</td><td>inf1.2xlarge, inf1.6xlarge, inf1.24xlarge</td></tr><tr><td>Inf2</td><td>inf2.xlarge, inf2.8xlarge, inf2.24xlarge, inf2.48xlarge</td></tr><tr><td>P2</td><td>p2.xlarge, p2.8xlarge, p2.16xlarge</td></tr><tr><td>P3</td><td>p3.2xlarge, p3.8xlarge, p3.16xlarge</td></tr><tr><td>P4</td><td>p4d.24xlarge, p4de.24xlarge</td></tr><tr><td>P5</td><td>p5.48xlarge</td></tr></tbody></table>
+<table><thead><tr><th width="235">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>G3</td><td>g3.4xlarge, g3.8xlarge, g3.16xlarge</td></tr><tr><td>G4dn</td><td>g4dn.2xlarge, g4dn.4xlarge, g4dn.8xlarge, g4dn.12xlarge, g4dn.16xlarge</td></tr><tr><td>G5</td><td>g5.xlarge, g5.2xlarge, g5.4xlarge, g5.8xlarge, g5.12xlarge, g5.16xlarge, g5.32xlarge</td></tr><tr><td>Inf1</td><td>inf1.2xlarge, inf1.6xlarge, inf1.24xlarge</td></tr><tr><td>Inf2</td><td>inf2.xlarge, inf2.8xlarge, inf2.24xlarge, inf2.48xlarge</td></tr><tr><td>P2</td><td>p2.xlarge, p2.8xlarge, p2.16xlarge</td></tr><tr><td>P3</td><td>p3.2xlarge, p3.8xlarge, p3.16xlarge</td></tr><tr><td>P4</td><td>p4d.24xlarge, p4de.24xlarge</td></tr></tbody></table>
 
 ### Storage optimized
 
