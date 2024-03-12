@@ -32,9 +32,7 @@ When working with quotas, consider the following:
 * When setting a quota, go through a new mount-point. If you use a server with mounts from WEKA versions before 3.10, first unmount all relevant mount points and then mount them again.
 * Quotas can be set within nested directories (up to 4 levels of nested quotas are supported) and over-provisioned under the same directory quota tree. For example, the`/home` directory can have a quota of 1TiB while there are 200 users; each has a user directory under it and can have a quota of 10GiB. This means that over-provisioning is used, in which parent quotas are enforced on all subdirectories, regardless of any remaining capacity in the child quotas.
 * Moving files (or directories) between two directories with quotas, into a directory with a quota, or outside a directory with a quota is not supported. The WEKA filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy and delete but is OS-dependent.
-* Quotas and links:
-  * Files with any type of link count greater than 1 are not included in the quota.
-  * Once a directory has a quota, creating a hardlink to files residing under directories with different (or without) directory quotas is not allowed.
+* Once a directory has a quota, only newly created hardlinks within the quota limits are part of quota calculations.
 * Restoring a filesystem from a snapshot turns the quotas back to the configuration at the time of the snapshot.
 * Creating a new filesystem from a snap-2-obj does not preserve the original quotas.
 * When working with enforcing quotas along with a `writecache` mount-mode, similarly to other POSIX solutions, getting above the quota might not sync all the cache writes to the backend servers. Use `sync`, `syncfs`, or `fsync` to commit the cached changes to the system (or fail due to exceeding the quota).
