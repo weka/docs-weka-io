@@ -45,13 +45,13 @@ Data management represents the media being used for the storage of data. In tier
 These states represent the lifecycle of data and not the lifecycle of a file. When a file is modified, each modification creates a separate data lifecycle for the modified data.
 {% endhint %}
 
-![Data lifecycle flow](../.gitbook/assets/lifecycle.png)
+![Data lifecycle flow](../.gitbook/assets/data\_lifecycle.png)
 
 The Data Lifecycle Diagram represents the transitions of data between the above states. #1 represents the **Tiering** operation, #2 represents the **Releasing** operation, and #3 represents the **Promoting** operation:
 
 1. **Tiering** data from the SSD to create a replicate in the object store. A guideline for data tiering is based on a user-defined, time-based policy ([Tiering Cue](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy)).
 2. **Releasing** data from the SSD, leaving only the object-store copy (based on the demand for more space for data on the SSD). A guideline for releasing data is based on a user-defined, time-based policy ([Retention Period](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#data-retention-period-policy)).
-3. **Promoting** data from the object store to the SSD for the purpose of data access.
+3. **Promoting** data from the object store to the SSD for data access.
 
 To read data residing only on an object store, the data first must be promoted back to the SSD.
 

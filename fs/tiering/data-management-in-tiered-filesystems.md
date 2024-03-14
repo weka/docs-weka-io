@@ -96,8 +96,12 @@ For example, you can transfer objects of a specific filesystem when interacting 
 
 To enable upload tags, set it when adding or updating the object store bucket. For details, see the following:
 
-* Using the GUI: [#add-an-object-store-bucket](../managing-object-stores/managing-object-stores.md#add-an-object-store-bucket "mention") or [#edit-an-object-store-bucket](../managing-object-stores/managing-object-stores.md#edit-an-object-store-bucket "mention") by selecting **Enable Upload Tags** in the Advanced section.
-* Using the CLI: [#add-an-object-store-bucket](../managing-object-stores/managing-object-stores-1.md#add-an-object-store-bucket "mention") or [#edit-an-object-store-bucket](../managing-object-stores/managing-object-stores-1.md#edit-an-object-store-bucket "mention") by setting the `enable-upload-tags` parameter in `weka fs tier s3 add/update` commands.
+* Using the GUI:
+  * [#add-an-object-store-bucket](../managing-object-stores/managing-object-stores.md#add-an-object-store-bucket "mention"), or
+  * [#edit-an-object-store-bucket](../managing-object-stores/managing-object-stores.md#edit-an-object-store-bucket "mention") by selecting **Enable Upload Tags** in the Advanced section.
+* Using the CLI:
+  * [#add-an-object-store-bucket](../managing-object-stores/managing-object-stores-1.md#add-an-object-store-bucket "mention"), or
+  * [#edit-an-object-store-bucket](../managing-object-stores/managing-object-stores-1.md#edit-an-object-store-bucket "mention") by setting the `enable-upload-tags` parameter in `weka fs tier s3 add/update` commands.
 
 The following table indicates the additional tags WEKA adds to the object when using object tagging:
 
