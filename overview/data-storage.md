@@ -51,7 +51,7 @@ Data management represents the media being used for the storage of data. In tier
 These states represent the lifecycle of data and not the lifecycle of a file. When a file is modified, each modification creates a separate data lifecycle for the modified data.
 {% endhint %}
 
-The data lifecycle flow diagram delineates the progression of data through various stages:
+The data lifecycle flow diagram describes the progression of data through various stages:
 
 1. **Tiering**: This process involves data migration from the SSD to the object store, creating a duplicate copy. The criteria for this transition are governed by a user-specified, temporal policy known as the [Tiering Cue](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).
 2. **Releasing**: This stage entails removing data from the SSD and retaining only the copy in the object store. The need for additional SSD storage space typically triggers this action. The guidelines for this data release are dictated by a user-defined time-based policy referred to as the [Retention Period](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#data-retention-period-policy).
