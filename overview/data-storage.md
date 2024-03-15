@@ -23,9 +23,9 @@ In SSD-only configurations, the WEKA system will sometimes use an external objec
 
 In tiered WEKA system configurations, there are various locations for data storage as follows:
 
-1. Metadata is stored only on SSDs.
-2. Writing of new files, adding data to existing files, or modifying the content of files is always terminated on the SSD, irrespective of whether the file is currently stored on the SSD or tiered to an object-store.
-3. When reading the content of a file, data can be accessed from either the SSD (if it is available on the SSD) or promoted from the object store (if it is not available on the SSD). &#x20;
+* Metadata is stored only on SSDs.
+* Writing of new files, adding data to existing files, or modifying the content of files is always terminated on the SSD, irrespective of whether the file is currently stored on the SSD or tiered to an object-store.
+* When reading the content of a file, data can be accessed from either the SSD (if it is available on the SSD) or promoted from the object store (if it is not available on the SSD). &#x20;
 
 This data management approach to data storage on one of two possible media requires system planning to ensure that most commonly-used data (hot data) resides on the SSD to ensure high performance, while less-used data (warm data) is stored on the object store. In the WEKA system, this determination of the data storage media is a completely seamless, automatic, and transparent process, with users and applications unaware of the transfer of data from SSDs to object stores, or from object stores to SSDs. The data is accessible at all times through the same strongly-consistent POSIX filesystem API, irrespective of where it is stored. Only latency, throughput, and IOPS are affected by the actual storage media.
 
@@ -37,25 +37,25 @@ The network resources allocated to the object store connections can be [controll
 
 Data management represents the media being used for the storage of data. In tiered WEKA system configurations, data can exist in one of three possible states:
 
-1. **SSD-only:** When data is created, it exists only on the SSDs.
-2. **SSD-cached:** A tiered copy of the data exists on both the SSD and the object store.
-3. **Object store only:** Data resides only on the object store.
+* **SSD only:** When data is created, it exists only on the SSDs.
+* **SSD-cached:** A tiered copy of the data exists on both the SSD and the object store.
+* **Object store only:** Data resides only on the object store.
 
 {% hint style="info" %}
 These states represent the lifecycle of data and not the lifecycle of a file. When a file is modified, each modification creates a separate data lifecycle for the modified data.
 {% endhint %}
 
-![Data lifecycle flow](../.gitbook/assets/data\_lifecycle.png)
+The data lifecycle flow diagram delineates the progression of data through various stages:
 
-The Data Lifecycle Diagram represents the transitions of data between the above states. #1 represents the **Tiering** operation, #2 represents the **Releasing** operation, and #3 represents the **Promoting** operation:
+1. **Tiering**: This process involves the migration of data from the SSD to the object store, creating a duplicate copy. The criteria for this transition are governed by a user-specified, temporal policy known as the [Tiering Cue](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).
+2. **Releasing**: This stage entails the removal of data from the SSD, retaining only the copy in the object store. The need for additional SSD storage space typically triggers this action. The guidelines for this data release are dictated by a user-defined, time-based policy referred to as the [Retention Period](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#data-retention-period-policy).
+3. **Promoting**: This final stage involves the transfer of data from the object store back to the SSD to facilitate data access.
 
-1. **Tiering** data from the SSD to create a replicate in the object store. A guideline for data tiering is based on a user-defined, time-based policy ([Tiering Cue](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy)).
-2. **Releasing** data from the SSD, leaving only the object-store copy (based on the demand for more space for data on the SSD). A guideline for releasing data is based on a user-defined, time-based policy ([Retention Period](../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#data-retention-period-policy)).
-3. **Promoting** data from the object store to the SSD for data access.
+To access data that resides solely on the object store, it must first be promoted back to the SSD. This ensures that the data is readily accessible for reading.
 
-To read data residing only on an object store, the data first must be promoted back to the SSD.
+Within the WEKA system, modifications to files are not executed as in-place writes. Instead, they are written to a new area on the SSD, and the corresponding metadata is updated accordingly. As a result, write operations are never linked with operations on the object store. This approach ensures data integrity and efficient use of storage resources.
 
-In the WEKA system, file modification is never implemented as an in-place write but rather as a write to a new area located on the SSD and the relevant modification of the meta-data. Consequently, write operations are never associated with object store operations.
+![Data lifecycle flow](../.gitbook/assets/data\_life\_cycle\_flow.png)
 
 ## The role of SSDs in tiered configurations
 
