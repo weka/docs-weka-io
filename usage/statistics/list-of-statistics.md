@@ -1212,10 +1212,3 @@ description: Explore the statistics the WEKA system generates organized by categ
 | GATHER\_FROM\_NODE\_SLEEP        | Time spent in-between responding to a stats-gathering request (not including metadata) | Seconds/Sec |
 | TIMES\_QUERIED\_STATS            | Number of times the process queried other processes for stats                          | Times       |
 | TIMES\_QUERIED                   | Number of times the process was queried for stats (not including metadata)             | Times       |
-
-### \_
-
-| **Type**              | **Description**                  | **Units** |
-| --------------------- | -------------------------------- | --------- |
-| TEST\_STAT\_ABSOLUTE  | Absolute stat used in the tests  | Undefined |
-| TEST\_STAT\_MOMENTARY | Momentary stat used in the tests | Undefined |
