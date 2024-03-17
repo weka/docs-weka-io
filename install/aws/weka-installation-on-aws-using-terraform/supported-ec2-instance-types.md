@@ -11,7 +11,8 @@ The following EC2 instance models can operate as **backend**, **client,** or **c
 The following EC2 instance models can operate as **client** instances. The default EC2 instance model for clients is **c5.2xlarge**.
 
 {% hint style="info" %}
-Any backend instance can also be a client instance.
+* Support for WEKA client over UDP mode is extended to any Intel or AMD CPU-based instance type, provided that the instance type meets the resource requirements specified in the[prerequisites-and-compatibility.md](../../../support/prerequisites-and-compatibility.md "mention") topic.
+* Any backend instance can also be a client instance.
 {% endhint %}
 
 ### General purpose <a href="#general_purpose" id="general_purpose"></a>
