@@ -19,7 +19,7 @@ The WEKA system networking can be configured as _performance-optimized_ or _CPU-
 
 For performance-optimized networking, the WEKA system does not use standard kernel-based TCP/IP services but a proprietary infrastructure based on the following:
 
-* Use [DPDK](networking-in-wekaio.md#dpdk) to map the network device in the user space and use the network device without any context switches and with zero-copy access. This bypassing of the kernel stack eliminates the consumption of kernel resources for networking operations. It applies to backends and clients and lets the WEKA system saturate 200 GB links.
+* Use [DPDK](networking-in-wekaio.md#dpdk) to map the network device in the user space and use the network device without any context switches and with zero-copy access. This bypassing of the kernel stack eliminates the consumption of kernel resources for networking operations. It applies to backends and clients and lets the WEKA system saturate network links (including for example 200 GBps or 400 GBps).
 * Implementing a proprietary WEKA protocol over UDP, i.e., the underlying network, may involve routing between subnets or any other networking infrastructure that supports UDP.
 
 The use of DPDK delivers operations with extremely low latency and high throughput. Low latency is achieved by bypassing the kernel and sending and receiving packages directly from the NIC. High throughput is achieved because multiple cores in the same server can work in parallel without a common bottleneck.
