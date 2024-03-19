@@ -4,7 +4,7 @@ description: Explore the statistics the WEKA system generates organized by categ
 
 # List of statistics
 
-### Assert failures
+### Assert Failures
 
 | **Type**                                          | **Description**                                                       | **Units**          |
 | ------------------------------------------------- | --------------------------------------------------------------------- | ------------------ |
