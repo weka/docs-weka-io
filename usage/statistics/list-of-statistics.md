@@ -13,9 +13,9 @@ description: Explore the statistics the WEKA system generates organized by categ
 | ASSERTION\_FAILURES\_KILL\_FIBER                  | Assertion failures count with "KILL\_FIBER" behavior                  | Assertion failures |
 | ASSERTION\_FAILURES\_KILL\_NODE\_WITH\_CORE\_DUMP | Assertion failures count with "KILL\_NODE\_WITH\_CORE\_DUMP" behavior | Assertion failures |
 | ASSERTION\_FAILURES\_KILL\_NODE                   | Assertion failures count with "KILL\_NODE" behavior                   | Assertion failures |
-| ASSERTION\_FAILURES\_STALL\_AND\_KILL\_NODE       | Assertion failures count with "STALL\_AND\_KILL\_NODE" behaviour      | Assertion failures |
+| ASSERTION\_FAILURES\_STALL\_AND\_KILL\_NODE       | Assertion failures count with "STALL\_AND\_KILL\_NODE" behavior       | Assertion failures |
 | ASSERTION\_FAILURES\_STALL                        | Assertion failures count with "STALL" behavior                        | Assertion failures |
-| ASSERTION\_FAILURES\_THROW\_EXCEPTION             | Assertion failures count with "THROW\_EXCEPTION" behaviour            | Assertion failures |
+| ASSERTION\_FAILURES\_THROW\_EXCEPTION             | Assertion failures count with "THROW\_EXCEPTION" behavior             | Assertion failures |
 | ASSERTION\_FAILURES                               | Assertion failures count of all available types                       | Assertion failures |
 
 ### Attribute Cache
