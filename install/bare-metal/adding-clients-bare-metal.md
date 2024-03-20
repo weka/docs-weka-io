@@ -38,8 +38,8 @@ curl http://Backend-1:14000/dist/v1/install | sh
 # Creating a mount point (one time)
 mkdir -p /mnt/weka
 
-# Mounting a filesystem
-<strong>mount -t wekafs -o net=eth0 backend-1/my_fs /mnt/weka
+# Mounting a filesystem (DPDK mount example):
+<strong>mount -t wekafs -o net=eth1 backend-1/my_fs /mnt/weka
 </strong></code></pre>
 
 For the first mount, this installs the WEKA software and automatically configures the client. For more information on mount and configuration options, refer to [Mount a filesystem using the stateless clients feature](../../fs/mounting-filesystems.md#mounting-filesystems-using-stateless-clients).
@@ -80,7 +80,8 @@ curl http://Backend-1:14000/dist/v1/install | WEKA_CGROUPS_MODE=none sh
    * `cgroups=auto`
    * `cgroups=force`
    * `cgroups=none`
-2. Restart the WEKA agent service.
+2. Restart the WEKA agent service using this command:\
+   `service weka-agent restart`
 3. Verify the cgroups setting by running the `weka local status` command.
 
 Example:
