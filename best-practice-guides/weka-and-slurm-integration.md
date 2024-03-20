@@ -40,7 +40,7 @@ The processes are dedicated to managing different functions as follows:
 * A management process for managing the overall cluster.
 
 {% hint style="info" %}
-For more details, see [weka-containers-architecture-overview.md](../overview/weka-containers-architecture-overview.md "mention").
+For more details, see [weka-containers-architecture-overview.md](../weka-system-overview/weka-containers-architecture-overview.md "mention").
 {% endhint %}
 
 WEKA can be configured to run with dedicated backend servers and independent clients (Figure 1) or in a converged cluster, where each participating server acts as both client and backend server (Figure 2).
@@ -67,7 +67,7 @@ WEKA clients can be configured to mount in DPDK or UPD mode.
 
 **DPDK mode** is optimized for single-process performance and must be used when possible. When using DPDK mode, specific requirements must be met by the client host system.
 
-The Frontend process on clients uses CPU cores and memory while the mount is active. This implies that sufficient compute cores and memory resources must be available to run the WEKA Frontend process and other user applications. Additionally, NIC hardware must have a [Poll Mode Driver](#user-content-fn-1)[^1] (PMD) and be supported by WEKA. See [Prerequisites and compatibility](../support/prerequisites-and-compatibility.md#networking-ethernet) for more information on supported NIC hardware for bare-metal and cloud-native systems.
+The Frontend process on clients uses CPU cores and memory while the mount is active. This implies that sufficient compute cores and memory resources must be available to run the WEKA Frontend process and other user applications. Additionally, NIC hardware must have a [Poll Mode Driver](#user-content-fn-1)[^1] (PMD) and be supported by WEKA. See [Prerequisites and compatibility](../planning-and-installation/prerequisites-and-compatibility.md#networking-ethernet) for more information on supported NIC hardware for bare-metal and cloud-native systems.
 
 **UDP mode** is an option for limited-throughput WekaFS filesystem access when DPDK mode is not feasible due to network, hardware, or operating system limitations. It can serve as an alternative when necessary.
 
@@ -123,7 +123,7 @@ In the dedicated backend architecture, the WEKA filesystem is mounted on the log
 
 Servers are provisioned to provide servers with compute, network, and storage resources to run the WEKA data platform.
 
-The login and compute nodes from the Slurm cluster mount WEKA filesystems and participate in the WEKA cluster as clients. When mounting in UDP or DPDK mode, some memory must be reserved for WEKA. To determine the amount of memory appropriate for your setup, see the [Plan the WEKA system hardware requirements](../install/bare-metal/planning-a-weka-system-installation.md) topic.
+The login and compute nodes from the Slurm cluster mount WEKA filesystems and participate in the WEKA cluster as clients. When mounting in UDP or DPDK mode, some memory must be reserved for WEKA. To determine the amount of memory appropriate for your setup, see the [Plan the WEKA system hardware requirements](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md) topic.
 
 In UDP mount mode, the WEKA Frontend nodes can run on any available core on the login and compute nodes (WEKA clients).
 
@@ -302,7 +302,7 @@ ConstrainRamSpace=yes
 
 This example uses the a2-ultragpu-8g instances on Google Cloud Platform, which have 1360 GB (1360000 MB) of available memory, 48 physical cores on two sockets with two hyperthreads per core, and 8 A100 GPUs.
 
-Following the [Plan the WEKA system hardware requirements](../install/bare-metal/planning-a-weka-system-installation.md) topic, suppose we want to set aside 5 GB of memory and the last core (Core ID 47) for the WEKA Frontend node in a dedicated backend architecture using a DPDK mount mode.
+Following the [Plan the WEKA system hardware requirements](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md) topic, suppose we want to set aside 5 GB of memory and the last core (Core ID 47) for the WEKA Frontend node in a dedicated backend architecture using a DPDK mount mode.
 
 In this example, we set the `RealMemory` to the total memory available and then set the `MemSpecLimit` to 5000 (MB) to set aside that amount of memory for the WEKA agent and the operating system.
 
@@ -382,7 +382,7 @@ sudo sed -i 's/isolate_cpusets=true/isolate_cpusets=false/g' /etc/wekaio/service
 sudo systemctl restart weka-agent
 ```
 
-For more information, see [#modify-the-cgroups-usage](../install/bare-metal/adding-clients-bare-metal.md#modify-the-cgroups-usage "mention")
+For more information, see [#modify-the-cgroups-usage](../planning-and-installation/bare-metal/adding-clients-bare-metal.md#modify-the-cgroups-usage "mention")
 
 [^1]: See [DPDK Poll Mode Driver](https://doc.dpdk.org/guides-16.04/prog\_guide/poll\_mode\_drv.html)
 

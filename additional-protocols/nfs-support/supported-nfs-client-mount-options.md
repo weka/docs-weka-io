@@ -38,4 +38,4 @@ This page discusses client options specifically supported for clients of WEKA NF
 
 **Related topic**
 
-[mounting-filesystems.md](../../fs/mounting-filesystems.md "mention")
+[mounting-filesystems](../../weka-filesystems-and-object-stores/mounting-filesystems/ "mention")

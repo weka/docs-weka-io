@@ -67,8 +67,7 @@ This example procedure demonstrates how to set custom mount options using the WE
     ```bash
     kubectl apply -f storageclass-wekafs-mountoptions.yaml
     ```
-2.  **Create CSI secret:**
-
+2.  **Create CSI secret:**\
     a. Execute the following command to create a CSI secret named `csi-wekafs-api-secret` (located in [../common/csi-wekafs-api-secret.yaml](https://github.com/weka/csi-wekafs/blob/main/examples/common/csi-wekafs-api-secret.yaml)):
 
     ```bash
@@ -127,7 +126,7 @@ This example procedure demonstrates how to set custom mount options using the WE
     ```
 5.  **Attach and validate:**
 
-    a. Attach to the application pod:
+    Attach to the application pod:
 
     ```bash
     kubectl exec csi-app-fs-mountoptions -- mount -t wekafs

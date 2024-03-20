@@ -174,7 +174,11 @@ The Shares tab displays the SMB shares created in the system. You can also custo
 
 ## Add an SMB share <a href="#add-an-smb-share" id="add-an-smb-share"></a>
 
-Once the SMB cluster is created, you can create SMB shares (maximum 1024). Each share must have a name and a shared path to the filesystem. It can be the root of the filesystem or a sub-directory.
+Once the SMB cluster is created and joined to the Active Directory, you can create SMB shares (maximum 1024). Each share must have a name and a shared path to the filesystem. It can be the root of the filesystem or a sub-directory.
+
+**Before you begin**
+
+Ensure the SMB cluster is joined to the Active Directory. For details, see [#join-the-smb-cluster-in-the-active-directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory "mention").
 
 **Procedure**
 

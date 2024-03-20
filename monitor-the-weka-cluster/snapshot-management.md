@@ -41,7 +41,7 @@ Setting up a dedicated physical server (or VM) for the installation is recommend
 * 8 GB RAM
 * 5 GB /opt/ partition (for the SnapTool installation)
 * Network access to the WEKA cluster
-*   To use Docker, the following must be installed on the dedicated physical server:
+*   To use Docker, the following must be installed on the dedicated physical server (or VM):
 
     * `docker-ce`
     * `docker-compose` or `docker-compose-plugin` depending on the existing operating system.
@@ -54,11 +54,11 @@ To enable communication between the physical server and the WEKA cluster, the se
 
 1. Create the directory `.weka/` in the physical server.
 
-Generate the `auth-token.json` file and save it in the `.weka/` directory. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
+Generate the `auth-token.json` file and save it in the `.weka/` directory. See the [Obtain authentication tokens](../operation-guide/security/obtain-authentication-tokens.md) topic.
 
 {% hint style="info" %}
 Creating a unique local username dedicated to SnapTool with a ClusterAdmin or OrgAdmin role is highly recommended. The unique username is displayed in the event logs, making the identification and troubleshooting of issues easier.\
-To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
+To create a local user, see the [Create local users](../operation-guide/user-management/user-management.md#create-a-local-user) topic.
 {% endhint %}
 
 ## Option 1: Install the SnapTool package with the systemd service

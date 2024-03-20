@@ -1,16 +1,27 @@
 ---
 description: >-
   Explore the hierarchical structure of WEKA Command-Line Interface (CLI)
-  commands for convenient reference.
+  commands for easy reference. (Commands marked with asterisks * are new
+  additions in V4.3.)
 ---
 
 # WEKA CLI hierarchy
+
+### weka access-group
+
+```
+weka access-group
+   |--status
+   |--enable
+   |--disable
+```
 
 ### weka agent
 
 ```
 weka agent
    |--install-agent
+   |--update-containers *
    |--uninstall
    |--autocomplete
       |--install
@@ -26,6 +37,13 @@ weka alerts
    |--mute
    |--unmute
    |--describe
+```
+
+### weka audit
+
+```
+weka audit *
+   |--view
 ```
 
 ### **weka cloud**
@@ -172,6 +190,21 @@ weka fs
         |--unset
 ```
 
+### weka interface-group
+
+```
+weka interface-group *
+    |--assignment
+    |--update
+    |--delete
+    |--ip-range
+        |--add
+        |--delete
+    |--port
+        |--add
+        |--delete
+```
+
 ### **weka local**
 
 ```
@@ -231,13 +264,31 @@ weka nfs
         |--update
         |--delete
         |--ip-range
-        |--port        
+            |--add
+            |--delete
+        |--port
+            |--add
+            |--delete
     |--debug-level
         |--show
         |--set
     |--global-config
         |--set
         |--show
+    |--kerberos *
+        |--service
+            |--setup
+            |--show
+        |--registration
+            |--setup-ad
+            |--setup-mit
+            |--show
+        |--reset
+    |--ldap *
+        |--setup-ad
+        |--setup-openldap
+        |--show
+        |--reset
 ```
 
 ### **weka org**
@@ -285,23 +336,23 @@ weka security
 ```
 weka smb
    |--cluster
-   |--containers
-      |--add
-      |--remove
-   |--wait
-   |--update
-   |--create
-   |--debug 
-   |--destroy
-   |--trusted-domains
-      |--add
-      |--remove
-   |--status 
-   |--host-access
-      |--list
-      |--reset
-      |--add
-      |--remove
+      |--containers
+         |--add
+         |--remove
+      |--wait
+      |--update
+      |--create
+      |--debug 
+      |--destroy
+      |--trusted-domains
+         |--add
+         |--remove
+      |--status 
+      |--host-access
+         |--list
+         |--reset
+         |--add
+         |--remove
    |--share
       |--update
       |--lists
@@ -398,7 +449,13 @@ weka s3
       |--destroy
       |--lifecycle-rule
       |--policy
+         |--set
+         |--unset
+         |--get-json
+         |--set-custom
       |--quota
+         |--set
+         |--unset
    |--policy
       |--list
       |--show

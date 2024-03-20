@@ -6,17 +6,17 @@ description: >-
 
 # Deploy Local WEKA Home v2.x
 
-This implementation runs on Minikube (a lightweight Kubernetes implementation) installed on a single Docker container. You specify the configuration parameters in the config.yaml file as part of the deployment workflow.
+This Local WEKA Home v2.x runs on Minikube (a lightweight Kubernetes implementation) installed on a single Docker container. You specify the configuration parameters in the config.yaml file as part of the deployment workflow.
 
 {% hint style="info" %}
-It is possible to install the Local WEKA Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md) to schedule this installation.
+It is possible to install the Local WEKA Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to schedule this installation.
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/LWH_on_Minikube.png" alt=""><figcaption><p>Local WEKA Home v2.x deployment</p></figcaption></figure>
 
 ## Workflow: Local WEKA Home deployment
 
-If you have deployed the WMS, follow the procedure:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](../deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, perform the following workflow:
+If you have deployed the WMS, follow the procedure:. Otherwise, perform the following workflow:
 
 1. [Verify prerequisites](deploy-local-weka-home-v2.x.md#id-1.-verify-prerequisites)
 2. [Prepare the physical server (or VM)](deploy-local-weka-home-v2.x.md#id-2.-prepare-the-physical-server-or-vm)
@@ -27,7 +27,7 @@ If you have deployed the WMS, follow the procedure:[deploy-monitoring-tools-usin
 7. [Enable the Local WEKA cluster to send data to the Cloud WEKA Home](deploy-local-weka-home-v2.x.md#id-7.-enable-the-local-weka-cluster-to-send-data-to-the-cloud-weka-home)
 8. [Test the deployment](deploy-local-weka-home-v2.x.md#id-8.-test-the-deployment)
 
-### 1.  Verify prerequisites
+### 1. Verify prerequisites
 
 Verify that the following requirements are met:
 
@@ -49,7 +49,7 @@ Verify that the following requirements are met:
 * 1 Gbps network
 
 {% hint style="success" %}
-For using other operating systems, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+For using other operating systems, contact the Customer Success Team.
 {% endhint %}
 
 ### 2. Prepare the physical server (or VM)
@@ -58,7 +58,7 @@ For using other operating systems, contact the [Customer Success Team](../../sup
 2. Disable the _iptables_, _UFW_, or _firewalld_.
 3.  Ensure the following ports are open and not used by any other process. Each port is used for the process specified in the brackets.
 
-    `6443`   (kube-apiserver)
+    `6443` (kube-apiserver)
 
     `10259` (kube-scheduler)
 
@@ -66,13 +66,13 @@ For using other operating systems, contact the [Customer Success Team](../../sup
 
     `10250` (kubelet)
 
-    `2379`   (etcd)
+    `2379` (etcd)
 
-    `2380`   (etcd)
+    `2380` (etcd)
 
-    `80`       (Local WEKA Home, WEKA cluster, and web browser)
+    `80` (Local WEKA Home, WEKA cluster, and web browser)
 
-    `443`     (Local WEKA Home, WEKA cluster, and web browser)
+    `443` (Local WEKA Home, WEKA cluster, and web browser)
 
 {% hint style="info" %}
 If you forward data from the Local WEKA Home to the Cloud WEKA Home, ensure the outbound traffic on port 443 is open.
@@ -109,7 +109,7 @@ Download the latest packages of the following to the dedicated physical server (
 
 1. Unpack the Minikube package:\
    `tar xvf <file name>`
-2. From the `minikube_offline` directory, run the install script: \
+2. From the `minikube_offline` directory, run the install script:\
    `./minikube-offline_install.sh`\
    The installation takes about 3 minutes.
 3. Verify the minikube is installed successfully:\
@@ -134,7 +134,7 @@ kubeconfig: Configured
 If the minikube installation fails, do one of the following:
 
 * Go to `/var/log/wekahome` and review the relevant log according to the timestamp (for example, `minikube-install-03-08-2023_16-29.log`).
-* Run the command `minikube logs`. A log file is created in `/tmp` directory. Open the log file and search for the reason.&#x20;
+* Run the command `minikube logs`. A log file is created in `/tmp` directory. Open the log file and search for the reason.
 {% endhint %}
 
 ### 5. Install and configure the Local WEKA Home
@@ -194,7 +194,7 @@ To enable the Local Weka Home to send emails, set the SMTP details in the **smtp
 
 Ensure to enable the SMTP relay service in your SMTP service.
 
-Once the Local Weka Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See the [Set the Local Weka Home to send alerts](broken-reference) topic.
+Once the Local Weka Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See the Set the Local Weka Home to send alerts topic.
 
 </details>
 
@@ -372,22 +372,22 @@ Easy wekahoming!
 * The WEKA Home REST API URL is `https://<your_domain>/api/`
 * The user name for accessing the portals is `admin`.
 * To obtain the password for accessing the Local WEKA Home portal, run the following command:\
-  `kubectl get secret -n home-weka-io weka-home-admin-credentials  -o jsonpath='{.data.admin_password}' | base64 -d`
+  `kubectl get secret -n home-weka-io weka-home-admin-credentials -o jsonpath='{.data.admin_password}' | base64 -d`
 * To obtain the password for accessing the Local Weka Home grafana portal, run the following command:\
-  `kubectl get secret -n home-weka-io weka-home-grafana-credentials  -o jsonpath='{.data.password}' | base64 -d`
+  `kubectl get secret -n home-weka-io weka-home-grafana-credentials -o jsonpath='{.data.password}' | base64 -d`
 * To obtain the secret key of the Local WEKA Home portal, run the following command:\
-  `kubectl get secret -n home-weka-io weka-home-encryption  -o jsonpath='{.data.encryption_secret_key}' | base64 -d`
+  `kubectl get secret -n home-weka-io weka-home-encryption -o jsonpath='{.data.encryption_secret_key}' | base64 -d`
 
 ### 7. Enable the Local WEKA cluster to send data to the Cloud WEKA Home
 
-By default, the WEKA cluster is set to send information to the public instance of WEKA Home. To get the information in the Local WEKA Home, set the URL of the Local WEKA Home in the WEKA cluster.&#x20;
+By default, the WEKA cluster is set to send information to the public instance of WEKA Home. To get the information in the Local WEKA Home, set the URL of the Local WEKA Home in the WEKA cluster.
 
 Connect to the WEKA cluster and run the following command:\
 `weka cloud enable --cloud-url https://<ip or hostname of the Local Weka Home server>`
 
 ### 8. Test the deployment
 
-The WEKA cluster uploads data to the Local WEKA Home periodically and on-demand according to its information type (see the Which information is uploaded to the WEKA Home section).&#x20;
+The WEKA cluster uploads data to the Local WEKA Home periodically and on-demand according to its information type (see the Which information is uploaded to the WEKA Home section).
 
 Access the WEKA Home portal and verify that the test data appears.
 
@@ -466,11 +466,11 @@ kubectl delete pvc -l app.kubernetes.io/name=nats -n home-weka-io
 
 **Procedure**
 
-1. Download the latest Local WEKA Home package (_wekahome-vm-docker-images_). See the location in [Download the Local Weka Home and Minikube packages](deploy-local-weka-home-v2.x.md#2.-download-the-local-weka-home-and-minikube-packages)_._
+1. Download the latest Local WEKA Home package (_wekahome-vm-docker-images_). See the location in Download the Local Weka Home and Minikube packages_._
 2. Unpack the Local Weka Home package to the same directory used for installing the LWH. `tar xvf <file name> -C <path>`
 3. From the `wekahome_offline` sub-directory, run `./update_config.sh`
 4. If you want to modify the existing configuration, open the `/root/.config/wekahome/config.yaml` file and do the following:
-   * Modify the settings. See [Install and configure Local WEKA Home](deploy-local-weka-home-v2.x.md#5.-install-and-configure-local-weka-home).
+   * Modify the settings. See Install and configure Local WEKA Home.
    * If you update the following sections: **TLS certificates**, **admin credentials**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
 
 <details>
@@ -513,7 +513,7 @@ Suppose there is a change in the TLS certificates, SMTP server in your environme
 **Procedure**
 
 1. Open the `/root/.config/wekahome/config.yaml` file and do the following:
-   * Modify the settings. See [Install and configure Local WEKA Home](deploy-local-weka-home-v2.x.md#5.-install-and-configure-local-weka-home).
+   * Modify the settings. See Install and configure Local WEKA Home.
    * If you update the following sections: **TLS certificates**, **admin credentials**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
 
 <details>
@@ -562,7 +562,7 @@ The probable cause can be, for example, a communication problem.
 2. Retrieve the logs and look for the error.\
    `kubectl logs <pod name from previous command> -n ingress-nginx > nginx.out`
 
-### Symptom: when executing any command on the Local WEKA Home, the error “no space left” is displayed&#x20;
+### Symptom: when executing any command on the Local WEKA Home, the error “no space left” is displayed
 
 The probable cause for this issue is that the docker root dir (/var/lib/docker) consumes disk space.
 
@@ -612,4 +612,4 @@ Once you generate the LWH deployment diagnostics archive file, send it to the Cu
 
 **Parameters**
 
-<table><thead><tr><th width="242">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>archive</code>*</td><td>The path and output archive file name. <br>For example: <code>/path/diag/lwh_diagnostics.tar.gz</code></td></tr><tr><td><code>include-sensitive</code></td><td>Include sensitive data in the archive. For example, value overrides.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>full-disk-scan</code></td><td>Perform a higher level of disk scan.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>verbose</code></td><td>Provide a higher verbosity level of the debug information.</td></tr></tbody></table>
+<table><thead><tr><th width="242">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>archive</code>*</td><td>The path and output archive file name.<br>For example: <code>/path/diag/lwh_diagnostics.tar.gz</code></td></tr><tr><td><code>include-sensitive</code></td><td>Include sensitive data in the archive. For example, value overrides.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>full-disk-scan</code></td><td>Perform a higher level of disk scan.<br>Use this parameter only if required by the Customer Success Team.</td></tr><tr><td><code>verbose</code></td><td>Provide a higher verbosity level of the debug information.</td></tr></tbody></table>

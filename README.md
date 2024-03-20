@@ -1,4 +1,4 @@
-# WEKA v4.2 documentation
+# WEKA v4.3 documentation
 
 Welcome to the WEKA Documentation Portal, your guide to the latest WEKA version. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies. Choose your WEKA version from the top menu for version-specific documentation.
 

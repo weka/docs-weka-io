@@ -126,4 +126,4 @@ $ weka fs snapshot create fs_name snapshot_name --access-point `TZ=GMT date +@GM
 
 **Related topics**
 
-[snapshots](../../fs/snapshots/ "mention")
+[snapshots](../../weka-filesystems-and-object-stores/snapshots/ "mention")

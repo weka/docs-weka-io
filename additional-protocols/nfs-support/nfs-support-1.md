@@ -6,19 +6,20 @@ description: This page describes how to configure the NFS networking using the C
 
 Using the CLI, you can:
 
-* **Configure the NFS cluster level**
+* **Manage the NFS cluster level**
   * [Set the global configuration filesystem](nfs-support-1.md#configure-the-nfs-configuration-filesystem)
   * [Create interface groups](nfs-support-1.md#create-interface-groups)
   * [Set interface group ports](nfs-support-1.md#set-interface-group-ports)
   * [Set interface group IPs](nfs-support-1.md#set-interface-group-ips)
   * [Configure the service mountd port](nfs-support-1.md#configure-the-service-mountd-port)
-  * [Configure user groups resolution when using the legacy NFS](nfs-support-1.md#configure-user-groups-resolution-when-using-the-legacy-nfs)
-* **Configure the NFS export level (permissions)**
+  * [Configure user group resolution](nfs-support-1.md#configure-user-group-resolution)
+* **Manage the NFS export level (permissions)**
   * [Define client access groups](nfs-support-1.md#uploading-a-snapshot-using-the-ui)
   * [Manage client access groups](nfs-support-1.md#manage-client-access-groups)
   * [Manage NFS client permissions](nfs-support-1.md#manage-nfs-client-permissions)
+* [View connected NFS clients](nfs-support-1.md#view-connected-nfs-clients)
 
-## **Configure the NFS cluster level**
+## **Manage the NFS cluster level**
 
 ### Set the NFS configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
 
@@ -38,13 +39,7 @@ Use the following command line to set the NFS configuration on the configuration
 
 Use the following command line to add an interface group:
 
-`weka nfs interface-group add <name> <type> [--subnet subnet] [--gateway gateway] [--allow-manage-gids allow-manage-gids]`
-
-The parameter `allow-manage-gids` determines the type of NFS stack. The default value of this parameter is `on`, which sets the NFS-W stack.
-
-{% hint style="warning" %}
-Do not mount the same filesystem by containers residing in interface groups with different values of the `allow-manage-gids.`
-{% endhint %}
+`weka nfs interface-group add <name> <type> [--subnet subnet] [--gateway gateway]`
 
 **Example**
 
@@ -52,7 +47,7 @@ Do not mount the same filesystem by containers residing in interface groups with
 
 **Parameters**
 
-<table><thead><tr><th width="225">Name</th><th width="325">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Unique interface group name.</td><td></td></tr><tr><td><code>type</code>*</td><td>Group type.<br>Can only be  <code>NFS</code>.</td><td></td></tr><tr><td><code>subnet</code></td><td>The valid subnet mask in the 255.255.0.0 format.</td><td><code>255.255.255.255</code></td></tr><tr><td><code>gateway</code></td><td>Gateway valid IP.</td><td><code>255.255.255.255</code></td></tr><tr><td><code>allow-manage-gids</code></td><td><p>Allows the containers within this interface group to use <code>manage-gids</code> when set in exports. </p><p>With <code>manage-gids</code>, the list of group IDs received from the client is replaced by a list of group IDs determined by an appropriate lookup on the server.<br><br>NFS-W: <code>on</code></p><p>Legacy NFS: <code>off</code></p><p></p><p>Each container can be set to be part of interface groups with the same value of <code>allow-manage-gids</code>.</p></td><td><code>on</code></td></tr></tbody></table>
+<table><thead><tr><th width="225">Name</th><th width="325">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Unique interface group name.</td><td></td></tr><tr><td><code>type</code>*</td><td>Group type.<br>Can only be  <code>NFS</code>.</td><td></td></tr><tr><td><code>subnet</code></td><td>The valid subnet mask in the 255.255.0.0 format.</td><td><code>255.255.255.255</code></td></tr><tr><td><code>gateway</code></td><td>Gateway valid IP.</td><td><code>255.255.255.255</code></td></tr></tbody></table>
 
 ### Set interface group ports
 
@@ -104,7 +99,7 @@ The following command line adds IPs in the range `10.0.1.101` to `10.0.1.118` to
 
 ### Configure the service mountd port
 
-The mountd service receives requests from clients to mount to the NFS server. In NFS-W, it is possible to set it explicitly rather than have it randomly selected on each server startup. This allows an easier setup of the firewalls to allow that port.
+The mountd service receives requests from clients to mount to the NFS server. It is possible to set it explicitly rather than have it randomly selected on each server startup. This allows an easier setup of the firewalls to allow that port.
 
 Use the following command lines to set and view the mountd configuration:
 
@@ -112,20 +107,16 @@ Use the following command lines to set and view the mountd configuration:
 
 `weka nfs global-config show`
 
-### Configure user groups resolution
+### Configure user group resolution
 
 NFS-W can authenticate more than 16 user groups, but it requires the external resolution of the user's groups, which means associating users with their respective group-IDs outside of the NFS protocol.
-
-{% hint style="info" %}
-Configuring more than 16 user groups is not supported with the legacy NFS.
-{% endhint %}
 
 **Procedure**
 
 1. **Configure interface groups:**
-   * Ensure that the `allow-manage-gids` option is set to `on` (default value). See [Create interface groups](nfs-support-1.md#create-interface-groups).&#x20;
+   * See [Create interface groups](nfs-support-1.md#create-interface-groups).&#x20;
 2. **Configure NFS client permissions:**
-   * Set the `manage-gids` option to `on` for the NFS client to enable external group-IDs resolution. See [Set the NFS client permissions](nfs-support-1.md#manage-nfs-client-permissions).
+   * See [Set the NFS client permissions](nfs-support-1.md#manage-nfs-client-permissions).
 3. **Set up servers for group-IDs retrieval:**
    * Configure relevant servers to retrieve user group-IDs information.\
      This task is specific to NFS-W and does not involve WEKA management. See the following procedure.
@@ -188,7 +179,7 @@ All users must be present and resolved in the method used in the `sssd` for the 
 
 </details>
 
-## **Configure the NFS export level (permissions)**
+## **Manage the NFS export level (permissions)**
 
 ### Define client access groups <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
 
@@ -278,4 +269,16 @@ Use the following command lines to delete NFS permissions:
 
 **Parameters**
 
-<table><thead><tr><th width="229">Name</th><th width="391">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>filesystem</code>*</td><td>Existing filesystem name.<br>A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.</td><td></td></tr><tr><td> <code>group</code>*</td><td>Existing client group name.</td><td></td></tr><tr><td> <code>path</code></td><td>The root of the valid share path.</td><td>/</td></tr><tr><td><code>permission-type</code></td><td>Permission type.<br>Possible values: <code>ro</code> (read-only), <code>rw</code> (read-write)</td><td><code>rw</code></td></tr><tr><td><code>squash</code></td><td>Squashing type.<br>Possible values: <code>none</code> , <code>root</code>, <code>all</code> <br><br><code>all</code> is only applicable for NFS-W. Otherwise, it is treated as <code>root</code>.</td><td><code>none</code></td></tr><tr><td><code>anon-uid</code>*</td><td>Anonymous user ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>anon-gid</code>*</td><td>Anonymous user group ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>obs-direct</code></td><td>See <a href="../../fs/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a>.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>on</code></td></tr><tr><td><code>manage-gids</code></td><td><p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client is replaced by a list determined by an appropriate lookup on the server.<br>This option is only applicable in NFS-W.<br>Possible values: <code>on</code>, <code>off</code>.</p></td><td><code>off</code></td></tr><tr><td><code>privileged-port</code></td><td>Sets the share only to be mounted via privileged ports (1-1024), usually allowed by the root user.<br>This option is only applicable in NFS-W.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>off</code></td></tr><tr><td><code>supported-versions</code></td><td>A comma-separated list of supported NFS versions.<br>Possible values: <code>v3</code>, <code>v4</code>.<br><code>v4</code> is only applicable in NFS-W.</td><td><code>v3</code></td></tr></tbody></table>
+<table><thead><tr><th width="229">Name</th><th width="391">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>filesystem</code>*</td><td>Existing filesystem name.<br>A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.</td><td></td></tr><tr><td> <code>group</code>*</td><td>Existing client group name.</td><td></td></tr><tr><td> <code>path</code></td><td>The root of the valid share path.</td><td>/</td></tr><tr><td><code>permission-type</code></td><td>Permission type.<br>Possible values: <code>ro</code> (read-only), <code>rw</code> (read-write)</td><td><code>rw</code></td></tr><tr><td><code>squash</code></td><td>Squashing type.<br>Possible values: <code>none</code>, <code>root</code>, <code>all</code> </td><td><code>none</code></td></tr><tr><td><code>anon-uid</code>*</td><td>Anonymous user ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>anon-gid</code>*</td><td>Anonymous user group ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>obs-direct</code></td><td>See <a href="../../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a>.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>on</code></td></tr><tr><td><code>manage-gids</code></td><td><p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client is replaced by a list determined by an appropriate lookup on the server.<br>Possible values: <code>on</code>, <code>off</code>.</p></td><td><code>off</code></td></tr><tr><td><code>privileged-port</code></td><td>Sets the share only to be mounted via privileged ports (1-1024), usually allowed by the root user.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>off</code></td></tr><tr><td><code>supported-versions</code></td><td>A comma-separated list of supported NFS versions.<br>Possible values: <code>v3</code>, <code>v4</code>.</td><td><code>v3</code></td></tr></tbody></table>
+
+## View connected NFS clients
+
+**Command:** `weka nfs clients show`
+
+Use the following command line to view insights of NFS clients connected to the NFS-W cluster in JSON output format.
+
+`weka nfs clients show [--interface-group interface-group] [--container-id container-id] [--fip floating-ip]`
+
+**Parameters**
+
+<table data-full-width="false"><thead><tr><th width="200">Name</th><th width="283">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>interface-group</code></td><td>Interface group name.<br>A filter to show only the clients connected to the containers in the specified group.</td><td>The output shows all clients connected to any container in the NFS-W cluster regardless of the assigned interface group.</td></tr><tr><td><code>container-id</code></td><td><p>NFS-W container ID.</p><p>A filter to show only the clients connected to the specified container ID.</p></td><td>The output shows all clients connected to any container in the NFS-W cluster.</td></tr><tr><td><code>fip</code></td><td>Destination floating IP address.</td><td>The output shows all clients connected to all floating IP addresses.</td></tr></tbody></table>

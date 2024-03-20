@@ -93,7 +93,7 @@ new_fs on /mnt/weka type wekafs (rw,relatime,writecache,inode_bits=64,dentry_max
 In AWS installation via the [self-service portal](https://start.weka.io/), the `default` filesystem is already mounted under `/mnt/weka.`
 {% endhint %}
 
-For more information about mounting filesystems and mount options, refer to [Mounting Filesystems](../fs/mounting-filesystems.md#overview).
+For more information about mounting filesystems and mount options, refer to [Mounting Filesystems](../weka-filesystems-and-object-stores/mounting-filesystems/#overview).
 
 ## Write to the filesystem
 
@@ -134,4 +134,4 @@ If the numbers achieved in your environment significantly vary from those, conta
 
 **Related topic**
 
-[testing-weka-system-performance](../testing-and-troubleshooting/testing-weka-system-performance/ "mention")
+[testing-weka-system-performance](../performance/testing-weka-system-performance/ "mention")

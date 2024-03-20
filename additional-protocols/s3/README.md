@@ -110,9 +110,9 @@ weka s3 policy attach readwrite
 
 **Related topics**
 
-[#create-a-local-user](../../usage/user-management/user-management.md#create-a-local-user "mention") (using the GUI)
+[#create-a-local-user](../../operation-guide/user-management/user-management.md#create-a-local-user "mention") (using the GUI)
 
-[#create-a-local-user](../../usage/user-management/user-management-1.md#create-a-local-user "mention") (using the CLI)
+[#create-a-local-user](../../operation-guide/user-management/user-management-1.md#create-a-local-user "mention") (using the CLI)
 {% endtab %}
 
 {% tab title="4. Obtain the certificate for the client" %}
@@ -130,9 +130,9 @@ weka security tls download
 
 **Related topics**
 
-&#x20;[manage-the-tls-certificate-using-the-gui.md](../../usage/security/tls-certificate-management/manage-the-tls-certificate-using-the-gui.md "mention")
+&#x20;[manage-the-tls-certificate-using-the-gui.md](../../operation-guide/security/tls-certificate-management/manage-the-tls-certificate-using-the-gui.md "mention")
 
-[manage-the-tls-certificate-using-the-cli.md](../../usage/security/tls-certificate-management/manage-the-tls-certificate-using-the-cli.md "mention")
+[manage-the-tls-certificate-using-the-cli.md](../../operation-guide/security/tls-certificate-management/manage-the-tls-certificate-using-the-cli.md "mention")
 {% endtab %}
 
 {% tab title="5. Test the upload and download objects from S3 buckets" %}

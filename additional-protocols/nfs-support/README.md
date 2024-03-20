@@ -10,7 +10,9 @@ NFS (Network File System) is a protocol that enables clients to access the WEKA 
 
 WEKA supports an advanced NFS implementation, NFS-W, designed to overcome inherent limitations in the NFS protocol. NFS-W is compatible with NFSv3 and NFSv4[^1] protocols, offering enhanced capabilities, including support for more than 16 user security groups.
 
-The legacy NFS stack is also available for backward compatibility, supporting only the NFSv3 protocol and a maximum of 16 user security groups.
+{% hint style="info" %}
+The legacy NFS stack is no longer supported.
+{% endhint %}
 
 ## NFS service deployment guidelines and requirements
 
@@ -27,7 +29,7 @@ An interface group is a configuration framework designed to optimize resiliency 
 An interface group consists of the following:
 
 * A collection of WEKA servers with a network port for each server, where all the ports must be associated with the same subnets. For resiliency, a minimum of two NFS servers are required.
-* A collection of floating IPs to support the NFS protocol on specified servers and NICs. All IP addresses are required to be within the same subnet, and the servers must already have static IP addresses on those NICs within that subnet.
+* A collection of floating IPs to support the NFS protocol on specified servers and NICs. It's required that all IP addresses are within the same subnet, and the servers must already have static IP addresses on those NICs within that subnet.
 * A routing configuration for the IPs. The IP addresses must comply with the IP network configuration.
 
 {% hint style="info" %}
@@ -38,7 +40,7 @@ An interface group can have only a single port. Therefore, two interface groups 
 
 You can define up to 10 different Interface groups. Use multiple interface groups if the cluster connects to multiple subnets. You can set up to 50 servers in each interface group.
 
-The WEKA system automatically distributes the IP addresses evenly on each server and port. If a server fails, the WEKA system redistributes the IP addresses associated with the failed server to other servers.
+The WEKA system automatically distributes the IP addresses evenly on each server and port. If a  server fails, the WEKA system redistributes the IP addresses associated with the failed server to other servers.
 
 {% hint style="warning" %}
 The WEKA system automatically configures the floating IP addresses used by the NFS service on the appropriate server. Refrain from manually configuring or using the floating IP.
@@ -71,9 +73,7 @@ The NFS client permission groups are defined to control the access mapping betwe
 
 To allow for performance scalability, add as many servers as possible to the interface group.
 
-Floating IPs facilitate load balancing by evenly distributing them across all interface group servers and ports, given the system has 50 or fewer NFS interfaces. However, with the limitation of 50 floating IPs per cluster, systems with more than 50 NFS interfaces may not have a floating IP for each interface.
-
-When different clients resolve the DNS name into an IP service, each receives a different IP address, ensuring that other clients access different servers. This allows the WEKA system to scale and service thousands of clients.
+To achieve load balancing, implement floating IPs, which are evenly distributed over all the interface group servers and ports by default. When different clients resolve the DNS name into an IP service, each receives a different IP address, ensuring that other clients access different servers. This allows the WEKA system to scale and service thousands of clients.
 
 To ensure the resilience of the service if a server fails, all IP addresses associated with the failed server are reassigned to other servers (using the GARP network messages), and the clients reconnect to the new servers without any reconfiguration or service interruption.
 

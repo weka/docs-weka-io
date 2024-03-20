@@ -13,7 +13,7 @@ Setting the Local WEKA Home to send events and alerts includes the following pro
 
 ### Create an integration
 
-1. Access the Local WEKA Home portal with an admin account and the password (obtained during the LWH deployment. See [#id-5.-access-the-local-weka-home-portal-and-grafana](local-weka-home-deployment.md#id-5.-access-the-local-weka-home-portal-and-grafana "mention")).
+1. Access the Local WEKA Home portal with an admin account and the password (obtained. during the LWH deployment. See [#id-5.-access-the-local-weka-home-portal-and-grafana](local-weka-home-deployment.md#id-5.-access-the-local-weka-home-portal-and-grafana "mention")).
 2. From the menu, select **Manage** > **Integrations**.
 3. On the **Integration** page, select **New**.
 

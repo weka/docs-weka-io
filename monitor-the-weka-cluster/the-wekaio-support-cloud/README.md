@@ -36,7 +36,7 @@ The WEKA cluster periodically and on-demand uploads various information types to
 
 **On-demand uploads:**
 
-* **Diagnostics (support files):** Uploaded on-demand from the container that collected the diagnostics.
+* **Diagnostics (support files):** These are uploaded on-demand from the container that collected the diagnostics.
 
 ## Upload information from the WEKA cluster to the WEKA Home
 
@@ -44,7 +44,7 @@ Uploading information to WEKA Home from the WEKA cluster backend servers and cli
 
 **Before you begin**
 
-* Ensure the Cloud WEKA Home and Customer Success Team remote access ports are open. For details, see [#required-ports](../../support/prerequisites-and-compatibility.md#required-ports "mention").
+* Ensure the Cloud WEKA Home and Customer Success Team remote access ports are open. For details, see [#required-ports](../../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention").
 * If the connection to the cloud WEKA Home is through a proxy, set the proxy by running the command: `weka cloud proxy --set <proxy_url>`.
 
 **Procedure**
@@ -54,10 +54,10 @@ Uploading information to WEKA Home from the WEKA cluster backend servers and cli
 
 **Related topics**
 
-[list-of-alerts.md](../../usage/alerts/list-of-alerts.md "mention")
+[list-of-alerts.md](../../operation-guide/alerts/list-of-alerts.md "mention")
 
-[list-of-events.md](../../usage/events/list-of-events.md "mention")
+[list-of-events.md](../../operation-guide/events/list-of-events.md "mention")
 
-[list-of-statistics.md](../../usage/statistics/list-of-statistics.md "mention")
+[list-of-statistics.md](../../operation-guide/statistics/list-of-statistics.md "mention")
 
 [#upload-diagnostics-to-weka-home](../../support/diagnostics-management/diagnostics-utility.md#upload-diagnostics-to-weka-home "mention")

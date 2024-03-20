@@ -20,7 +20,7 @@ You can set up the WEKAmon package regardless of the data monitoring provided by
 
 One of the advantages of setting up the WEKAmon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with WEKA to correlate and display monitoring information from all your products on the same dashboard.
 
-![WEKA enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (11) (1).png>)
+![WEKA enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (11).png>)
 
 {% hint style="info" %}
 If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.
@@ -49,11 +49,11 @@ Setting up a dedicated physical server (or VM) for the installation is recommend
 To enable communication between the physical server and the WEKA cluster, the security token is required in the **auth-token.json** file.
 
 1. Create the directory `.weka/` in the WEKAmon installation directory.
-2. Generate the `auth-token.json` file and save it in the `.weka/` directory you created. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
+2. Generate the `auth-token.json` file and save it in the `.weka/` directory you created. See the [Obtain authentication tokens](../operation-guide/security/obtain-authentication-tokens.md) topic.
 
 {% hint style="info" %}
 Creating a unique local username dedicated to SnapTool with a ReadOnly role is highly recommended. The unique username is displayed in the event logs, making the identification and troubleshooting of issues easier.\
-To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
+To create a local user, see the [Create local users](../operation-guide/user-management/user-management.md#create-a-local-user) topic.
 {% endhint %}
 
 ## Workflow: Install the WEKAmon package

@@ -22,7 +22,7 @@ See the related topics to learn about the tools installed with the WMS.
 
 [snapshot-management.md](snapshot-management.md "mention")
 
-[bare-metal](../install/bare-metal/ "mention")
+[bare-metal](../planning-and-installation/bare-metal/ "mention")
 
 ## WMS deployment prerequisites
 
@@ -39,7 +39,7 @@ The server or VM must meet the following requirements:
   * If not configuring LWH: minimum 4 cores and 16 GiB.
   * If configuring LWH, see the Server minimum CPU and RAM requirements section in [#1.-verify-prerequisites](the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
 * **Network interface:** 1 Gbps.&#x20;
-* **Firewall rules:**   The WMS listens on multiple ports depending on which service you are accessing.  See [#required-ports](../support/prerequisites-and-compatibility.md#required-ports "mention")
+* **Firewall rules:**   The WMS listens on multiple ports depending on which service you are accessing.  See [#required-ports](../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention")
 
 {% hint style="info" %}
 This workflow only applies to installation on a server or VM. It does not apply to installation on AWS. To install on AWS, contact the Customer Success Team.
@@ -56,7 +56,7 @@ Before deploying the WMS, adhere to the following:
   * On macOS, type **ctrl+option+f2**&#x20;
   * On Windows, type **ctrl+alt+f2**.
 * Creating a unique local username dedicated to WMS with a ClusterAdmin or OrgAdmin role is highly recommended. The unique username is displayed in the event logs, making identifying and troubleshooting issues easier.\
-  To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
+  To create a local user, see the [Create local users](../operation-guide/user-management/user-management.md#create-a-local-user) topic.
 
 ## &#x20;WMS deployment workflow
 
@@ -256,7 +256,7 @@ The WMS can have multiple IP interfaces, such as when installed as a jump host w
    * **Enable WEKAmon Log Storage:** Select this option to enable long-term event storage within WEKAmon.
 
 {% hint style="info" %}
-To set the quota limits, see [quota-management](../fs/quota-management/ "mention").
+To set the quota limits, see [quota-management](../weka-filesystems-and-object-stores/quota-management/ "mention").
 {% endhint %}
 
 3. Set the hostname or public IP address, username, and password of the cluster to monitor (it can be a backend server of the cluster). Then, select **Save**.

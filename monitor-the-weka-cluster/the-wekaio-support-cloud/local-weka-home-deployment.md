@@ -6,7 +6,7 @@ description: >-
 
 # Deploy Local WEKA Home v3.0 or higher
 
-This Local WEKA Home implementation runs on K3s, a lightweight Kubernetes installed on a single node cluster. Customize the deployment by specifying configuration parameters in the `config.json` file.
+This Local WEKA Home v3.0 (or higher) runs on K3s, a lightweight Kubernetes installed on a single node cluster. Customize the deployment by specifying configuration parameters in the `config.json` file.
 
 {% hint style="info" %}
 It is possible to install the Local WEKA Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md) to schedule this installation.
@@ -90,7 +90,7 @@ Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download
 2. To update the environment, do one of the following:
    * Re-login to the server.
    * Run the following command: `source /etc/profile`
-3. To customize the configuration, create the`config.json` file based on the following examples:
+3. To customize the configuration, create the `config.json` file based on the following examples:
 
 <details>
 
@@ -255,7 +255,8 @@ To turn off forwarding metrics to Cloud WEKA Home from Local WEKA Home, set `ena
 
 </details>
 
-4. To initialize the setup, run the following command from the root user: `homecli local setup -c config.json`\
+4. To initialize the setup, run the following command from the root user: \
+   `homecli local setup -c config.json`\
    \
    For a fresh installation, expect approximately 5 minutes for completion.\
    \
@@ -449,8 +450,13 @@ The probable cause can be issues related to the SMTP server, such as wrong crede
 
 1. On the **Integration** page, select **Test Integration**.\
    Wait until an error appears.
-2. Retrieve the logs and search for the error. On the Local WEKA Home terminal, run the following command:\
-   ``for dep in `kubectl get deployment -n home-weka-io -o name`; do echo -----$dep-----; kubectl logs $dep --all-containers=true --timestamps=true --since=5m ; done``
+2. Retrieve the logs and search for the error. On the Local WEKA Home terminal, run the following command:
+
+{% code overflow="wrap" %}
+```bash
+for dep in `kubectl get deployment -n home-weka-io -o name`; do echo -----$dep-----; kubectl logs $dep --all-containers=true --timestamps=true --since=5m ; done
+```
+{% endcode %}
 
 ## Collect LWH deployment diagnostics
 

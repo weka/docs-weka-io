@@ -22,7 +22,7 @@ The S3 user name and password serve as the S3 access key and secret key, respect
 
 **Related topics**
 
-[#create-users](../../../usage/user-management/#create-users "mention")
+[#create-users](../../../operation-guide/user-management/#create-users "mention")
 
 [#creating-a-new-iam-policies-1](s3-users-and-authentication.md#creating-a-new-iam-policies-1 "mention")
 

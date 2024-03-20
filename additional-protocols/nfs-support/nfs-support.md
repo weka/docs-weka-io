@@ -20,10 +20,6 @@ Using the GUI, you can:
 
 Interface Groups define the servers and ports that provide the NFS service.
 
-{% hint style="info" %}
-If you need to create the interface group in the legacy NFS stack, use the CLI. See [Create interface groups](nfs-support-1.md#create-interface-groups) and set the `allow-manage-gids` parameter to `off.`
-{% endhint %}
-
 **Procedure**
 
 1. From the menu, select **Manage > Protocols**.

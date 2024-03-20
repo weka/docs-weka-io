@@ -19,9 +19,9 @@ It is required to have a dedicated filesystem that stores persistent protocol co
 
 **Related topic**
 
-[#create-a-filesystem](../fs/managing-filesystems/managing-filesystems.md#create-a-filesystem "mention") (using the GUI)
+[#create-a-filesystem](../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems.md#create-a-filesystem "mention") (using the GUI)
 
-[#create-a-filesystem](../fs/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention") (using the CLI)
+[#create-a-filesystem](../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention") (using the CLI)
 
 </details>
 
@@ -51,7 +51,7 @@ Dedicated protocol servers offer the following advantages:
 **Procedure**
 
 1. **Install the WEKA software on the dedicated protocol servers:** Do one of the following:
-   * Follow the default method as specified in [manually-install-os-and-weka-on-servers.md](../install/bare-metal/manually-install-os-and-weka-on-servers.md "mention").
+   * Follow the default method as specified in [manually-install-os-and-weka-on-servers.md](../planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers.md "mention").
    *   Use the WEKA agent to install from a working backend. The following commands  demonstrate this method:
 
        ```bash
