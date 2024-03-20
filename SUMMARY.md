@@ -70,10 +70,11 @@
 ## Getting Started with WEKA
 
 * [Manage the system using the WEKA GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
-* [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli/README.md)
+* [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli.md)
   * [WEKA CLI hierarchy](getting-started-with-weka/manage-the-system-using-weka-cli/weka-cli-hierarchy.md)
 * [Run first IOs with WEKA filesystem](getting-started-with-weka/performing-the-first-io.md)
 * [Getting started with WEKA REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
+* [WEKA REST API and equivalent CLI commands](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md)
 
 ## Performance <a href="#testing-and-troubleshooting" id="testing-and-troubleshooting"></a>
 
