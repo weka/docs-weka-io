@@ -123,17 +123,12 @@ In the dedicated backend architecture, the WEKA filesystem is mounted on the log
 
 Servers are provisioned to provide servers with compute, network, and storage resources to run the WEKA data platform.
 
-The login and compute nodes from the Slurm cluster mount WEKA filesystems and participate in the WEKA cluster as clients. When mounting in UDP or DPDK mode, some memory must be reserved for WEKA. To determine the amount of memory appropriate for your setup, see the [Plan the WEKA system hardware requirements](../install/bare-metal/planning-a-weka-system-installation.md) topic.
+The login and compute nodes from the Slurm cluster mount WEKA filesystems and participate in the WEKA cluster as clients. When mounting in UDP or DPDK mode, some memory must be reserved for WEKA. To determine the amount of memory appropriate for your setup, see the [Plan the WEKA system hardware requirements](../install/bare-metal/planning-a-weka-system-installation.md) topic.  &#x20;
 
-In UDP mount mode, the WEKA Frontend nodes can run on any available core on the login and compute nodes (WEKA clients).
+In UDP mount mode, the WEKA Frontend nodes will run on any available core on the login and compute nodes (WEKA clients).
 
-In DPDK mode, at least one CPU (physical) core must be reserved for the WEKA frontend node. This can be done by one of the following options:
-
-* Specify a dedicated core in the mount options: `mount -o core=X …`\
-  Where `X` is the specific core ID to reserve
-* Use non-dedicated cores: `mount -o num_cores=1 …` &#x20;
-
-Mounting using a dedicated core is recommended for better file IO performance than non-dedicated cores.
+In DPDK mode, at least one CPU (physical) core must be reserved for the WEKA frontend node. \
+For syntax example, [#heading-h.2s8eyo1](weka-and-slurm-integration.md#heading-h.2s8eyo1 "mention").
 
 ### WEKA and Slurm integration in converged architecture <a href="#heading-h.tyjcwt" id="heading-h.tyjcwt"></a>
 
@@ -141,7 +136,7 @@ In the converged architecture, the WEKA filesystem is mounted on login and compu
 
 The controller hosts the Slurm job scheduler, while the login and compute nodes all host data as part of the WEKA data platform.
 
-Relative to the dedicated backend architecture, the converged architecture requires additional compute and memory resources on the login and compute processes to support the drive, compute, and management processes. In converged deployments, the WEKA processes are typically allocated to specific cores using cgroups.
+Relative to the dedicated backend architecture, the converged architecture requires additional compute and memory resources for the login and compute processes to support the drive, compute, and management processes. In converged deployments, the WEKA processes are typically allocated to specific cores using cgroups.
 
 <figure><img src="../.gitbook/assets/slurm_converged_5.png" alt=""><figcaption><p>Figure 5: Converged architecture for WEKA on a Slurm cluster (conceptual diagram)</p></figcaption></figure>
 
