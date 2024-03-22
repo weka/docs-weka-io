@@ -103,7 +103,9 @@ Each directory requires two metadata units instead of one for a small file.
 
 ### Filesystem Extended Attributes considerations
 
-The maximum size for extended attributes (xattr) of a file or directory is 1024 bytes. This attribute space is used by Access Control Lists (ACLs) and Alternate Data Streams (ADS) within an SMB cluster and when configuring SELinux. Given its finite capacity, exercise caution when using lengthy or complex ACLs and ADS on a WEKA filesystem.
+The maximum size for extended attributes (xattr) of a file or directory is 1024 bytes. This attribute space is used by Access Control Lists (ACLs) and Alternate Data Streams (ADS) within an SMB cluster and when configuring SELinux. When using Windows clients, named streams in smb-w are saved in the file’s xattr.
+
+Given its finite capacity, exercise caution when using lengthy or complex ACLs and ADS on a WEKA filesystem.
 
 When encountering a message indicating the file size exceeds the limit allowed and cannot be saved, carefully decide which data to retain. Strategic planning and selective use of ACLs and ADS contribute to optimizing performance and stability.
 
