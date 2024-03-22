@@ -55,7 +55,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 2. [Prepare the cluster for upgrade](upgrading-weka-versions.md#2.-prepare-the-cluster-for-upgrade)
 3. [Prepare the backend servers for upgrade (optional)](upgrading-weka-versions.md#3.-optional.-prepare-the-backend-servers-for-upgrade)
 4. [Upgrade the backend servers](upgrading-weka-versions.md#4.-upgrade-the-backend-servers)
-5. [Upgrade the clients](upgrading-weka-versions.md#5.-upgrade-the-clients)
+5. [Upgrade the clients](upgrading-weka-versions.md#id-5.-upgrade-the-clients)
 6. [Check the status after the upgrade](upgrading-weka-versions.md#6.-check-the-status-after-the-upgrade)
 
 {% hint style="warning" %}
