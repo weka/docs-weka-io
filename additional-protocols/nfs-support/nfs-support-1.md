@@ -401,7 +401,7 @@ In a successful operation, the system automatically restarts the NFS containers,
 
 ### Update Kerberos configuration during maintenance mode
 
-Once the Kerberos integration with NFS is configured, there might be instances where the Kerberos parameters such as changing the  supported authentication types. When Kerberos is not configured, the supported authentication types are `none` and `sys`. If Kerberos is configured, the supported authentication types expand to include `krb5`, `krb5p`, and `krb5i`. You can configure one or more of these supported authentication types as needed.
+Once the Kerberos integration with NFS is configured, there might be instances where the Kerberos setup is modified.
 
 {% hint style="warning" %}
 Changes to the Kerberos configuration in a production environment are rare. We recommend making any necessary updates during periods of low load from NFS clients, such as when the system are in maintenance mode. This approach helps to minimize potential disruptions to your operations.
@@ -422,11 +422,11 @@ kdc-secondary-server
 
 **Procedure**
 
-1. Stop IOs from NFS clients.
-2. Run:&#x20;
-   * `weka nfs kerberos reset --no-restart --force`
-   * `weka nfs kerberos service setup <options>`
-   * `weka nfs kerberos registration setup <options> --restart`
+Run the following:
+
+1. `weka nfs kerberos reset --no-restart --force`
+2. `weka nfs kerberos service setup <options>`
+3. `weka nfs kerberos registration setup <options> --restart`
 {% endtab %}
 
 {% tab title="AD" %}
@@ -440,9 +440,9 @@ realm-admin-passwd
 
 **Procedure**
 
-1. Stop IOs from NFS clients.
-2. Run:&#x20;
-   * `weka nfs kerberos registration setup --restart --force`
+Run the following:&#x20;
+
+`weka nfs kerberos registration setup --restart --force`
 {% endtab %}
 
 {% tab title="MIT" %}
@@ -455,9 +455,9 @@ keytab-file
 
 **Procedure**
 
-1. Stop IOs from NFS clients.
-2. Run:&#x20;
-   * `weka nfs kerberos registration setup <options> --restart --force`
+Run the following:&#x20;
+
+`weka nfs kerberos registration setup <options> --restart --force`
 {% endtab %}
 
 {% tab title="OpenLDAP" %}
@@ -472,10 +472,10 @@ reader-user-password
 
 **Procedure**
 
-1. Stop IOs from NFS clients.
-2. Run:&#x20;
-   * `weka nfs ldap reset --no-restart --force`
-   * `weka nfs ldap <setup-openldap> <options/params>`
+Run the following:&#x20;
+
+* `weka nfs ldap reset --no-restart --force`
+* `weka nfs ldap <setup-openldap> <options/params>`
 {% endtab %}
 {% endtabs %}
 
