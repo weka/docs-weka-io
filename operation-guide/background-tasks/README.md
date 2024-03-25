@@ -19,7 +19,7 @@ Adhere to the following considerations:
   * Only a single upload from any filesystem can exist in the same object store bucket to prevent slowing down each other uploads.
   * Object store snapshot download operation cannot be run simultaneously with other snapshot download or upload operations.
   * A paused or aborted task is counted as part of the maximum number of concurrent tasks.
-* **Snapshot metadata prefetch:** After downloading a snapshot from the object store, a new cluster task automatically prefetches its metadata.
+* **Snapshot metadata prefetch:** When a snapshot is downloaded from the object store, the system automatically prefetches its metadata as the initial step.
 * **Up to 16 background tasks can run in parallel:** A paused or aborted task is also counted as a running background task.
 
 {% hint style="info" %}
