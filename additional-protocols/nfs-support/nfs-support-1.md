@@ -6,32 +6,45 @@ description: This page describes how to configure the NFS networking using the C
 
 Using the CLI, you can:
 
-* **Manage the NFS cluster level**
-  * [Set the global configuration filesystem](nfs-support-1.md#configure-the-nfs-configuration-filesystem)
-  * [Create interface groups](nfs-support-1.md#create-interface-groups)
-  * [Set interface group ports](nfs-support-1.md#set-interface-group-ports)
-  * [Set interface group IPs](nfs-support-1.md#set-interface-group-ips)
-  * [Configure the service mountd port](nfs-support-1.md#configure-the-service-mountd-port)
-  * [Configure user group resolution](nfs-support-1.md#configure-user-group-resolution)
-* **Manage the NFS export level (permissions)**
-  * [Define client access groups](nfs-support-1.md#uploading-a-snapshot-using-the-ui)
-  * [Manage client access groups](nfs-support-1.md#manage-client-access-groups)
-  * [Manage NFS client permissions](nfs-support-1.md#manage-nfs-client-permissions)
-* [View connected NFS clients](nfs-support-1.md#view-connected-nfs-clients)
+* [Configure the NFS global settings](nfs-support-1.md#configure-the-nfs-global-settings)
+* [Configure the NFS cluster level](nfs-support-1.md#configure-the-nfs-cluster-level)
+* [Configure the NFS Kerberos service](nfs-support-1.md#configure-the-nfs-kerberos-service)
+* [Configure the NFS export level (permissions)](nfs-support-1.md#configure-the-nfs-export-level-permissions)
 
-## **Manage the NFS cluster level**
+## Configure the NFS global settings
 
-### Set the NFS configuration filesystem <a href="#configure-the-nfs-configuration-filesystem" id="configure-the-nfs-configuration-filesystem"></a>
+NFSv4 and Kerberos require a persistent cluster-wide configuration filesystem for the protocol's internal operations.
 
-NFSv4 requires a persistent cluster-wide configuration filesystem for the protocol's internal operations.
+Use the following command line to set the NFS configuration on the configuration filesystem and mountd port:
 
-Use the following command line to set the NFS configuration on the configuration filesystem:
-
-`weka nfs global-config set --config-fs <config-fs>`&#x20;
+`weka nfs global-config set` \[--mountd`-port mountd-port] [--config-fs config-fs] [--default-supported-versions default-supported-versions][--enable-auth-types enable-auth-types]`
 
 **Parameters**
 
-<table><thead><tr><th width="189">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>config-fs</code>*</td><td>The predefined filesystem name for maintaining the persisting cluster-wide protocols' configurations.<br>Verify that the filesystem is already created. If not, create it. For details, see  <a data-mention href="../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations">#dedicated-filesystem-requirement-for-persistent-protocol-configurations</a></td></tr></tbody></table>
+<table><thead><tr><th width="205">Name</th><th width="329">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>mountd-port</code></td><td>If the existing mountd service is not operating on the default port <code>2049</code>, specify a different port number.</td><td><code>2049</code></td></tr><tr><td><code>config-fs</code>*</td><td>The predefined filesystem name for maintaining the persisting cluster-wide protocols' configurations.<br>Verify that the filesystem is already created. If not, create it. For details, see  <a data-mention href="../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations">#dedicated-filesystem-requirement-for-persistent-protocol-configurations</a></td><td></td></tr><tr><td><code>default-supported-versions</code></td><td><p>Determines the default NFS version.<br>Possible values: <br><code>v3</code></p><p><code>v4</code></p><p> <code>v3,v4</code></p></td><td><code>v3</code></td></tr><tr><td><code>enable-auth-types</code></td><td><p>A comma-separated list of authentication types that can be used when setting the NFS client permissions.</p><p>Possible values: <code>none,sys,krb5,krb5i,krb5p</code><br>Example:<br><code>krb5,krb5i,krb5p</code></p></td><td><p>Depends on Kerberos configuration:</p><ul><li>If not configured: <code>none,sys</code></li><li>If configured: <code>krb5</code></li></ul></td></tr></tbody></table>
+
+#### Show NFS global configuration
+
+**Command:** `weka nfs global-config show`
+
+**Example**
+
+```
+$ weka nfs global-config show
+NFS Global Configuration
+   mountd port: 0
+     Config FS: .config_fs
+Default Supported Versions: V3
+Enabled Auth Types: KRB5, KRB5i, KRB5p
+Default Auth Types: KRB5
+Supported Auth Types: NONE, SYS, KRB5, KRB5i, KRB5p
+```
+
+{% hint style="info" %}
+The parameters `Default Auth Types` and `Supported Auth Types` are determined internally.
+{% endhint %}
+
+## **Configure the NFS cluster level**
 
 ### Create interface groups
 
@@ -179,6 +192,293 @@ All users must be present and resolved in the method used in the `sssd` for the 
 
 </details>
 
+## Configure the NFS Kerberos service
+
+To establish Kerberos authentication, first set the Kerberos service. Following this, register the Kerberos service with your organization’s Active Directory (AD) or with the MIT Kerberos. If necessary, you have the option to clear the configuration to allow you to start the process anew.
+
+**Before you begin**
+
+* Ensure a configuration filesystem is set. See [#configure-the-nfs-global-settings](nfs-support-1.md#configure-the-nfs-global-settings "mention").
+* Ensure the NFS cluster is configured and running. see [#configure-the-nfs-cluster-level](nfs-support-1.md#configure-the-nfs-cluster-level "mention").
+* For Active Directory (AD) integration, obtain the required information from the AD administrator. (WEKA handles the generation of the keytab file.)
+* For MIT integration, ensure the following:
+  * Obtain the required information from the MIT Key Distribution Center (KDC) and OpenLDAP administrators.
+  * A pre-generated keytab file in base64[^1] format stored in an accessible location is required.
+
+### Set the Kerberos service
+
+**Command:** `weka nfs kerberos service setup`
+
+Use the following command to set up the NFS Kerberos Service information:
+
+`weka nfs kerberos service setup <kdc-realm-name> <kdc-primary-server> <kdc-admin-server> [--kdc-secondary-server kdc-secondary-server][--force] [--restart]`
+
+**Example**
+
+{% code overflow="wrap" %}
+```
+weka nfs kerberos service setup WEKA-REALM kdc.primary.weka.io kdc.admin.weka.io --kdc-secondary-server kdc.secondary.weka.io
+```
+{% endcode %}
+
+**Parameters**
+
+<table><thead><tr><th width="262">Name</th><th width="386">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>kdc-realm-name</code>*</td><td>Specifies the realm (domain) used by Kerberos.</td><td></td></tr><tr><td><code>kdc-primary-server</code>*</td><td>Identifies the server hosting the primary Key Distribution Center service.</td><td></td></tr><tr><td><code>kdc-admin-server</code>*</td><td>Identifies the server hosting the administrative Key Distribution Center service.</td><td></td></tr><tr><td><code>kdc-secondary-server</code></td><td>Identifies the server hosting the secondary Key Distribution Center service.</td><td></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
+
+#### Show NFS Kerberos service setup information
+
+**Command:** `weka nfs kerberos service show`
+
+**Example**
+
+{% code fullWidth="true" %}
+```bash
+$ weka nfs kerberos service show
+REALM NAME          PRIMARY SERVER           SECONDARY SERVER   ADMIN SERVER           GENERATION ID     SERVICE STATUS
+TEST.WEKALAB.IO     Zeus.test.wekalab.io                        Zeus.test.wekalab.io   1                 CONFIGURED
+```
+{% endcode %}
+
+### Integrate Kerberos with AD
+
+Integrating Kerberos with AD involves the following:
+
+1. [Register Kerberos with AD](nfs-support-1.md#integrate-kerberos-with-a-d)
+2. [Set up the Kerberos to use AD LDAP](nfs-support-1.md#set-up-kerberos-to-use-a-d-ldap)
+
+#### Register Kerberos with AD
+
+**Command:** `weka nfs kerberos registration setup-ad`
+
+Use the following command to register the Kerberos with Microsoft Active Directory:
+
+`weka nfs kerberos registration setup-ad <nfs-service-name> <realm-admin-name> [realm-admin-passwd] [--force] [--restart]`
+
+**Example**
+
+{% code overflow="wrap" %}
+```
+weka nfs kerberos registration setup-ad myservicename.test.example.com myrealmadmin
+```
+{% endcode %}
+
+**Parameters**
+
+<table><thead><tr><th width="231">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters.</td><td></td></tr><tr><td><code>realm-admin-name</code>*</td><td>The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm.</td><td></td></tr><tr><td><code>realm-admin-passwd</code></td><td>This parameter is for the password of the administrative user who manages the KDC within a realm.<br>It’s not stored in the configuration for security reasons. If it’s not provided during setup, the system asks for it. The entered password isn’t shown on the screen to protect privacy and security.</td><td></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
+
+#### Set up Kerberos to use AD LDAP
+
+**Command:** `weka nfs ldap setup-ad`
+
+Use the following command to set up the NFS configuration to use AD LDAP:
+
+`weka nfs ldap setup-ad [--force] [--no-restart]`
+
+**Example**
+
+{% code overflow="wrap" %}
+```
+weka nfs ldap setup-ad
+```
+{% endcode %}
+
+**Parameters**
+
+<table><thead><tr><th width="189">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td><td>Not used</td></tr><tr><td><code>no-restart</code></td><td>When used, it prevents NFS-W containers from restarting to apply changes.</td><td>Not used</td></tr></tbody></table>
+
+{% hint style="warning" %}
+In a successful operation, the system automatically restarts the NFS containers, leading to a temporary disruption in the IO service for connected NFS clients. However, if you want to avoid restarting the NFS-W containers, add the `--no-restart` option to the command line.
+{% endhint %}
+
+### Integrate Kerberos with MIT
+
+Integrating Kerberos with MIT involves the following:
+
+1. [Register Kerberos with MIT](nfs-support-1.md#register-kerberos-with-mit)
+2. [Set up Kerberos to use OpenLDAP](nfs-support-1.md#set-up-kerberos-to-use-openldap)
+
+#### Register Kerberos with MIT
+
+**Command:** `weka nfs kerberos registration setup-mit`
+
+Use the following command to register the Kerberos with MIT KDC:
+
+`weka nfs kerberos registration setup-mit <nfs-service-name> <keytab-file> [--force] [--restart]`
+
+{% hint style="info" %}
+To register the Kerberos service with MIT, a pre-generated  [keytab file](#user-content-fn-2)[^2] , stored in an accessible location, is required.
+{% endhint %}
+
+**Example**
+
+{% code overflow="wrap" %}
+```
+weka nfs kerberos registration setup-mit myservicename.test.example.com myservicename.keytab
+```
+{% endcode %}
+
+**Parameters**
+
+<table><thead><tr><th width="227">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters.</td><td></td></tr><tr><td><code>keytab-file</code>*</td><td>The path to the pre-generated keytab file containing the keys for the NFS service’s unique identity in <a data-footnote-ref href="#user-content-fn-3">base64</a> format.</td><td></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
+
+#### Set up Kerberos to use OpenLDAP
+
+**Command:** `weka nfs ldap setup-openldap`
+
+Use the following command to set up the set up Kerberos to use OpenLDAP:
+
+`weka nfs ldap setup-openldap  <server-name> <ldap-domain> <reader-user-name>[reader-user-password] [--base-dn base-dn] [--ldap-port-number ldap-port-number][--force] [--no-restart]`
+
+**Example**
+
+{% code overflow="wrap" %}
+```
+weka nfs ldap setup-openldap myldapserver.test.example.com, myldapdomain.example.com, cn=readonly-user,dc=test,dc=example,dc=com
+```
+{% endcode %}
+
+**Parameters**
+
+<table><thead><tr><th width="241">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>server-name</code>*</td><td><p></p><p>Specifies the server hosting the Lightweight Directory Access Protocol service.</p></td><td></td></tr><tr><td><code>ldap-domain</code>*</td><td>Defines the domain the Lightweight Directory Access Protocol service will access.</td><td></td></tr><tr><td><code>reader-user-name</code>*</td><td>The username of an administrative user used to generate the keytab file.</td><td></td></tr><tr><td><code>reader-user-password</code></td><td>The administrative user's password.<br>(It is maintained in a configuration file.)</td><td></td></tr><tr><td><code>base-dn</code></td><td>The base Distinguished Name (DN) for the Lightweight Directory Access Protocol directory tree.</td><td></td></tr><tr><td><code>ldap-port-number</code></td><td>The port number on which the Lightweight Directory Access Protocol server listens.</td><td>389</td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td><td>Not used</td></tr><tr><td><code>no-restart</code></td><td>When used, it prevents NFS-W containers from restarting to apply changes.</td><td>Not used</td></tr></tbody></table>
+
+{% hint style="warning" %}
+In a successful operation, the system automatically restarts the NFS containers, leading to a temporary disruption in the IO service for connected NFS clients. However, if you want to avoid restarting the NFS-W containers, add the `--no-restart` option to the command line.
+{% endhint %}
+
+### Show Kerberos LDAP setup information
+
+**Command:** `weka nfs ldap show`
+
+**Example**
+
+{% code fullWidth="true" %}
+```bash
+$ weka nfs ldap show
+SERVER TYPE      LDAP DOMAIN      SERVER NAME  SERVER PORT  BASE DN  READER NAME  READER PASSWORD  GENERATION ID  SETUP STATUS
+ActiveDirectory  test.wekalab.io               0                                                   1              CONFIGURED
+```
+{% endcode %}
+
+### Clear the Kerberos LDAP configuration
+
+**Command:** `weka nfs ldap reset`
+
+Use the following command to clear the NFS LDAP configuration:
+
+`weka nfs ldap reset [--force] [--no-restart]`
+
+**Parameters**
+
+<table><thead><tr><th width="189">Name</th><th width="438">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured.</td><td>Not used</td></tr><tr><td><code>no-restart</code></td><td>When used, it prevents NFS-W containers from restarting to apply changes.</td><td>Not used</td></tr></tbody></table>
+
+### Show Kerberos registration information
+
+**Command:** `weka nfs kerberos registration show`
+
+**Example**
+
+```bash
+$ weka nfs kerberos registration show
+NFS SERVICE NAME          NFS KDC TYPE        GENERATION ID      REGISTRATION STATUS
+nfs.test.wekalab.io       ActiveDirectory     1                  REGISTERED
+```
+
+### Clear Kerberos configuration
+
+**Command:** `weka nfs kerberos reset`
+
+Use the following command to clear the NFS Kerberos service configuration:
+
+`weka nfs kerberos reset [--force] [--no-restart]`
+
+**Parameters**
+
+<table><thead><tr><th width="189">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.<br>Use this flag only to clear the configuration created by a previous call to <code>weka nfs kerberos service setup</code> succeeded.</td><td>Not used</td></tr><tr><td><code>no-restart</code></td><td>When used, it prevents NFS-W containers from restarting to apply changes.</td><td>Not used</td></tr></tbody></table>
+
+{% hint style="warning" %}
+In a successful operation, the system automatically restarts the NFS containers, leading to a temporary disruption in the IO service for connected NFS clients. However, if you want to avoid restarting the NFS-W containers, add the `--no-restart` option to the command line.
+{% endhint %}
+
+### Update Kerberos configuration during maintenance mode
+
+Once the Kerberos integration with NFS is configured, there might be instances where the Kerberos parameters such as changing the  supported authentication types. When Kerberos is not configured, the supported authentication types are `none` and `sys`. If Kerberos is configured, the supported authentication types expand to include `krb5`, `krb5p`, and `krb5i`. You can configure one or more of these supported authentication types as needed.
+
+{% hint style="warning" %}
+Changes to the Kerberos configuration in a production environment are rare. We recommend making any necessary updates during periods of low load from NFS clients, such as when the system are in maintenance mode. This approach helps to minimize potential disruptions to your operations.
+{% endhint %}
+
+Select the relevant tab to learn what to do for each scenario:
+
+{% tabs %}
+{% tab title="KDC" %}
+Use this procedure if one of the following is changed, or you want to add a secondary KDC server:
+
+```
+kdc-realm-name
+kdc-primary-server
+kdc-admin-server
+kdc-secondary-server
+```
+
+**Procedure**
+
+1. Stop IOs from NFS clients.
+2. Run:&#x20;
+   * `weka nfs kerberos reset --no-restart --force`
+   * `weka nfs kerberos service setup <options>`
+   * `weka nfs kerberos registration setup <options> --restart`
+{% endtab %}
+
+{% tab title="AD" %}
+Use this procedure if one of the following is changed:
+
+```
+nfs-service-name
+realm-admin-name
+realm-admin-passwd
+```
+
+**Procedure**
+
+1. Stop IOs from NFS clients.
+2. Run:&#x20;
+   * `weka nfs kerberos registration setup --restart --force`
+{% endtab %}
+
+{% tab title="MIT" %}
+Use this procedure if one of the following is changed:
+
+```
+nfs-service-name
+keytab-file
+```
+
+**Procedure**
+
+1. Stop IOs from NFS clients.
+2. Run:&#x20;
+   * `weka nfs kerberos registration setup <options> --restart --force`
+{% endtab %}
+
+{% tab title="OpenLDAP" %}
+Use this procedure if one of the following is changed:
+
+```
+server-name
+ldap-domain
+reader-user-name
+reader-user-password
+```
+
+**Procedure**
+
+1. Stop IOs from NFS clients.
+2. Run:&#x20;
+   * `weka nfs ldap reset --no-restart --force`
+   * `weka nfs ldap <setup-openldap> <options/params>`
+{% endtab %}
+{% endtabs %}
+
 ## **Manage the NFS export level (permissions)**
 
 ### Define client access groups <a href="#uploading-a-snapshot-using-the-ui" id="uploading-a-snapshot-using-the-ui"></a>
@@ -257,11 +557,11 @@ Use the following command lines to add or delete a rule which causes a client to
 
 Use the following command lines to add NFS permissions:
 
-`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port] [--supported-versions supported-versions]`
+`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port] [--supported-versions supported-versions] [--enable-auth-types enable-auth-types]`
 
 Use the following command lines to update NFS permissions:
 
-`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port] [--supported-versions supported-versions]`
+`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port] [--supported-versions supported-versions][--enable-auth-types enable-auth-types]`
 
 Use the following command lines to delete NFS permissions:
 
@@ -269,9 +569,9 @@ Use the following command lines to delete NFS permissions:
 
 **Parameters**
 
-<table><thead><tr><th width="229">Name</th><th width="391">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>filesystem</code>*</td><td>Existing filesystem name.<br>A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.</td><td></td></tr><tr><td> <code>group</code>*</td><td>Existing client group name.</td><td></td></tr><tr><td> <code>path</code></td><td>The root of the valid share path.</td><td>/</td></tr><tr><td><code>permission-type</code></td><td>Permission type.<br>Possible values: <code>ro</code> (read-only), <code>rw</code> (read-write)</td><td><code>rw</code></td></tr><tr><td><code>squash</code></td><td>Squashing type.<br>Possible values: <code>none</code>, <code>root</code>, <code>all</code> </td><td><code>none</code></td></tr><tr><td><code>anon-uid</code>*</td><td>Anonymous user ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>anon-gid</code>*</td><td>Anonymous user group ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>obs-direct</code></td><td>See <a href="../../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a>.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>on</code></td></tr><tr><td><code>manage-gids</code></td><td><p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client is replaced by a list determined by an appropriate lookup on the server.<br>Possible values: <code>on</code>, <code>off</code>.</p></td><td><code>off</code></td></tr><tr><td><code>privileged-port</code></td><td>Sets the share only to be mounted via privileged ports (1-1024), usually allowed by the root user.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>off</code></td></tr><tr><td><code>supported-versions</code></td><td>A comma-separated list of supported NFS versions.<br>Possible values: <code>v3</code>, <code>v4</code>.</td><td><code>v3</code></td></tr></tbody></table>
+<table><thead><tr><th width="229">Name</th><th width="320">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>filesystem</code>*</td><td>Existing filesystem name.<br>A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.</td><td></td></tr><tr><td> <code>group</code>*</td><td>Existing client group name.</td><td></td></tr><tr><td> <code>path</code></td><td>The root of the valid share path.</td><td><code>/</code></td></tr><tr><td><code>permission-type</code></td><td>Permission type.<br>Possible values: <code>ro</code> (read-only), <code>rw</code> (read-write)</td><td><code>rw</code></td></tr><tr><td><code>squash</code></td><td>Squashing type.<br>Possible values: <code>none</code>, <code>root</code>, <code>all</code> </td><td><code>none</code></td></tr><tr><td><code>anon-uid</code>*</td><td>Anonymous user ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>anon-gid</code>*</td><td>Anonymous user group ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>obs-direct</code></td><td>See <a href="../../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a>.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>on</code></td></tr><tr><td><code>manage-gids</code></td><td><p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client is replaced by a list determined by an appropriate lookup on the server.<br>Possible values: <code>on</code>, <code>off</code>.</p></td><td><code>off</code></td></tr><tr><td><code>privileged-port</code></td><td>Sets the share only to be mounted via privileged ports (1-1024), usually allowed by the root user.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>off</code></td></tr><tr><td><code>supported-versions</code></td><td>A comma-separated list of supported NFS versions.<br>Possible values: <code>v3</code>, <code>v4</code>.</td><td>The <code>default-supported-versions</code> setting in <a href="nfs-support-1.md#configure-the-nfs-global-settings">NFS global settings</a> determines the default NFS version.</td></tr><tr><td><code>enable-auth-types</code></td><td>A comma-separated list of NFS authentication types.<br>Possible values are determined by the  <code>enable-auth-types</code> in <a href="nfs-support-1.md#configure-the-nfs-global-settings">NFS global settings</a>.</td><td>The <code>default-auth-types</code> in NFS global settings determine the default.</td></tr></tbody></table>
 
-## View connected NFS clients
+### View connected NFS clients
 
 **Command:** `weka nfs clients show`
 
@@ -282,3 +582,9 @@ Use the following command line to view insights of NFS clients connected to the 
 **Parameters**
 
 <table data-full-width="false"><thead><tr><th width="200">Name</th><th width="283">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>interface-group</code></td><td>Interface group name.<br>A filter to show only the clients connected to the containers in the specified group.</td><td>The output shows all clients connected to any container in the NFS-W cluster regardless of the assigned interface group.</td></tr><tr><td><code>container-id</code></td><td><p>NFS-W container ID.</p><p>A filter to show only the clients connected to the specified container ID.</p></td><td>The output shows all clients connected to any container in the NFS-W cluster.</td></tr><tr><td><code>fip</code></td><td>Destination floating IP address.</td><td>The output shows all clients connected to all floating IP addresses.</td></tr></tbody></table>
+
+[^1]: A binary data in an American Standard Code for Information Interchange (ASCII) string format.
+
+[^2]: All Kerberos server machines need a keytab file, called `/etc/krb5.keytab`, to authenticate to the KDC. For details, see [https://web.mit.edu/kerberos/krb5-1.5/krb5-1.5.4/doc/krb5-install/The-Keytab-File.html](https://web.mit.edu/kerberos/krb5-1.5/krb5-1.5.4/doc/krb5-install/The-Keytab-File.html).
+
+[^3]: A binary data in an American Standard Code for Information Interchange (ASCII) string format.

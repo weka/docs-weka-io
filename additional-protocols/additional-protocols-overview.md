@@ -9,7 +9,7 @@ To configure protocol containers, you have two options for creating a cluster fo
 
 ### Dedicated filesystem requirement for cluster-wide persistent protocol configurations
 
-It is required to have a dedicated filesystem that stores persistent protocol configurations. This filesystem is essential for coordinating coherent simultaneous access to files from multiple servers. It is advisable to assign a meaningful name to this configuration filesystem, such as `.config_fs`. Set the total capacity to 100 GB and avoid additional options like tiering and thin-provisioning.
+A dedicated filesystem is required that stores persistent protocol configurations. This filesystem is essential for coordinating coherent simultaneous access to files from multiple servers. It is advisable to assign a meaningful name to this configuration filesystem, such as `.config_fs`. Set the total capacity to 100 GB and avoid additional options like tiering and thin-provisioning.
 
 <details>
 
