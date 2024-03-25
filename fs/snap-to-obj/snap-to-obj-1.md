@@ -37,14 +37,14 @@ When creating a filesystem from a snapshot, a background cluster task automatica
 
 **Parameters**
 
-<table><thead><tr><th width="212">Name</th><th width="317">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem to create.</td><td></td></tr><tr><td><code>group-name</code>*</td><td>Name of the filesystem group in which the new filesystem is placed.</td><td></td></tr><tr><td><code>total-capacity</code>*</td><td>The total capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>ssd-capacity</code>*</td><td>SSD capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>obs-bucket</code>*</td><td>Object store name for tiering.</td><td></td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td><td></td></tr><tr><td><code>additional-obs</code></td><td>An additional object-store name.<br>If the data to recover reside in two object stores (a second object store attached to the filesystem, and the filesystem has not undergone full migration), this object store is attached in a <code>read-only</code> mode.<br>The snapshot locator must be in the primary object store specified in the <code>obs</code> parameter.</td><td></td></tr><tr><td><code>snapshot-name</code></td><td>The downloaded snapshot name.</td><td>The uploaded snapshot name.</td></tr><tr><td><code>access-point</code></td><td>The downloaded snapshot access point. </td><td>The uploaded access point.</td></tr></tbody></table>
+<table><thead><tr><th width="212">Name</th><th width="317">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem to create.</td><td></td></tr><tr><td><code>group-name</code>*</td><td>Name of the filesystem group in which the new filesystem is placed.</td><td></td></tr><tr><td><code>total-capacity</code>*</td><td>The total capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>ssd-capacity</code>*</td><td>SSD capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>obs-bucket</code>*</td><td>Object store name for tiering.</td><td></td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td><td></td></tr><tr><td><code>additional-obs</code></td><td>An additional object store name.<br>If the data to recover resides in two object stores (a second object store attached to the filesystem, and the filesystem has not undergone full migration), this object store is attached in <code>read-only</code> mode.<br>The snapshot locator must be in the primary object store specified in the <code>obs</code> parameter.</td><td></td></tr><tr><td><code>snapshot-name</code></td><td>The downloaded snapshot name.</td><td>The uploaded snapshot name.</td></tr><tr><td><code>access-point</code></td><td>The downloaded snapshot access point. </td><td>The uploaded access point.</td></tr></tbody></table>
 
 The `locator` can be a previously saved locator for disaster scenarios, or you can obtain the `locator` using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
 If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [Manage background tasks](../../usage/background-tasks/#managing-background-tasks).
 
 {% hint style="info" %}
-Due to the bandwidth characteristics and potential costs when interacting with remote object stores it is not allowed to download a filesystem from a remote object-store bucket. If a snapshot on a local object-store bucket exists, it is advisable to use that one. Otherwise, follow the procedure in [Recover from a remote snapshot](./#recover-from-a-remote-snapshot).&#x20;
+Due to the bandwidth characteristics and potential costs when interacting with remote object stores it is not allowed to download a filesystem from a remote object store bucket. If a snapshot on a local object store bucket exists, it is advisable to use that one. Otherwise, follow the procedure in [Recover from a remote snapshot](./#recover-from-a-remote-snapshot).&#x20;
 {% endhint %}
 
 {% hint style="info" %}
@@ -91,8 +91,8 @@ A remote object store has restrictions over the download, and we want to use a d
 
 To recover a snapshot residing on a remote object store, create a new filesystem from this snapshot as follows:
 
-1. Add a new local object-store, using `weka fs tier obs add` CLI command.
-2. Add a local object-store bucket, referring to the bucket containing the snapshot to recover, using `weka fs tier s3 add.`
+1. Add a new local object store, using `weka fs tier obs add` CLI command.
+2. Add a local object store bucket, referring to the bucket containing the snapshot to recover, using `weka fs tier s3 add.`
 3. Download the filesystem, using `weka fs download.`
 4. If the recovered filesystem should also be tiered, add a local object store bucket for tiering using `weka fs tier s3 add.`
 5. Detach the initial object store bucket from the filesystem.
