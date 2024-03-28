@@ -320,22 +320,24 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\
 * Amazon S3
   * S3 Standard
   * S3 Intelligent-Tiering
-  * S3 Standard-IA
-  * S3 One Zone-IA
-  * S3 Glacier Instant Retrieval
+  * The following storage classes are supported but retrieval and minimum object storage periods may apply. Object compaction could cause multiple object edits to stack on each other resulting in unexpected charges. Be sure you understand the billing model and software behavior before selection. If in doubt, use the S3 Intelligent-Tiering storage class.
+    * S3 Standard-IA
+    * S3 One Zone-IA
+    * S3 Glacier Instant Retrieval
 * Azure Blob Storage
 * Google Cloud Storage (GCS)
-* Cloudian HyperStore (version 7.3 and up)
-* Dell EMC ECS v3.5 and up
+* Cloudian HyperStore (version 7.3 and higher)
+* Dell EMC ECS (v3.5 and higher)
 * HCP Classic V9.2 and up (with versioned buckets only)
 * HCP for Cloud-Scale V2.x
-* IBM Cloud Object Storage System (version 3.14.7 and up)
-* Lenovo MagnaScale (version 3.0 and up)
-* Quantum ActiveScale (version 5.5.1 and up)
-* Red Hat Ceph Storage (version 5.0 and up)
-* Scality Ring (version 7.4.4.8 and up)
-* Scality Artesca (version 1.5.2 and up)
-* SwiftStack (version 6.30 and up)
+* IBM Cloud Object Storage System (version 3.14.7 and higher)
+* Lenovo MagnaScale (version 3.0 and higher)
+* Quantum ActiveScale (version 5.5.1 and higher)
+* Red Hat Ceph Storage (version 5.0 and higher)
+* Scality Ring (version 7.4.4.8 and higher)
+* Scality Artesca (version 1.5.2 and higher)
+* SwiftStack (version 6.30 and higher)
+* Spectra Logic BlackPearl with Vail for remote buckets (version 5.7.1 and higher)
 
 ## Virtual Machines
 
