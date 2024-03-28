@@ -172,7 +172,17 @@ Right-scroll the table to view all columns.
 
 #### Supported network adapters for clients-only
 
-<table><thead><tr><th>Adapter</th><th width="173">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>Intel X540</td><td>Ethernet</td><td>SRIOV VF</td></tr><tr><td>Intel X550-T1</td><td>Ethernet</td><td>SRIOV VF</td></tr><tr><td>Intel X710</td><td>Ethernet</td><td>SRIOV VF</td></tr><tr><td>Intel X710-DA2</td><td>Ethernet</td><td>SRIOV VF</td></tr><tr><td>Intel XL710</td><td>Ethernet</td><td>SRIOV VF</td></tr><tr><td>Intel XL710-Q2</td><td>Ethernet</td><td>SRIOV VF</td></tr><tr><td>Intel XXV710</td><td>Ethernet</td><td>SRIOV VF</td></tr><tr><td>Intel 82599ES</td><td>Ethernet</td><td>SRIOV VF</td></tr><tr><td>Intel 82599</td><td>Ethernet</td><td>SRIOV VF</td></tr></tbody></table>
+The following network adapters support Ethernet and SRIOV VF for clients only:
+
+* Intel X540
+* Intel X550-T1
+* Intel X710
+* Intel X710-DA2
+* Intel XL710
+* Intel XL710-Q2
+* Intel XXV710
+* Intel 82599ES
+* Intel 82599
 
 {% hint style="warning" %}
 Avoid using the Intel X550-T1 adapter in a single client connected to multiple clusters.
