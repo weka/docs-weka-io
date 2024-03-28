@@ -77,6 +77,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
   * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
 * **SLES:**
+  * 15 SP5
   * 15 SP4
   * 15 SP2
   * 12 SP5
