@@ -325,9 +325,10 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\
 * Amazon S3
   * S3 Standard
   * S3 Intelligent-Tiering
-  * S3 Standard-IA
-  * S3 One Zone-IA
-  * S3 Glacier Instant Retrieval
+  * The following storage classes are supported but retrieval and minimum object storage periods may apply. Object compaction could cause multiple object edits to stack on each other resulting in unexpected charges. Be sure you understand the billing model and software behavior before selection. If in doubt, use the S3 Intelligent-Tiering storage class.
+    * S3 Standard-IA
+    * S3 One Zone-IA
+    * S3 Glacier Instant Retrieval
 * Azure Blob Storage
 * Google Cloud Storage (GCS)
 * Cloudian HyperStore (version 7.3 and up)
