@@ -332,17 +332,17 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\
       Remember, retrieval times, minimum storage periods, and potential charges due to object compaction may apply. If unsure, use S3 Intelligent-Tiering.
 * Azure Blob Storage
 * Google Cloud Storage (GCS)
-* Cloudian HyperStore (version 7.3 and up)
-* Dell EMC ECS v3.5 and up
+* Cloudian HyperStore (version 7.3 and higher)
+* Dell EMC ECS (version 3.5 and higher)
 * HCP Classic V9.2 and up (with versioned buckets only)
 * HCP for Cloud-Scale V2.x
-* IBM Cloud Object Storage System (version 3.14.7 and up)
-* Lenovo MagnaScale (version 3.0 and up)
-* Quantum ActiveScale (version 5.5.1 and up)
-* Red Hat Ceph Storage (version 5.0 and up)
-* Scality Ring (version 7.4.4.8 and up)
-* Scality Artesca (version 1.5.2 and up)
-* SwiftStack (version 6.30 and up)
+* IBM Cloud Object Storage System (version 3.14.7 and higher)
+* Lenovo MagnaScale (version 3.0 and higher)
+* Quantum ActiveScale (version 5.5.1 and higher)
+* Red Hat Ceph Storage (version 5.0 and higher)
+* Scality Ring (version 7.4.4.8 and higher)
+* Scality Artesca (version 1.5.2 and higher)
+* SwiftStack (version 6.30 and higher)
 
 ## Virtual Machines
 
