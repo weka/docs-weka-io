@@ -6,8 +6,8 @@ description: >-
 
 # List of alerts and corrective actions
 
-| Alert name                                   | Description                                                                          | Corrective actions |
-| :--- | :--- | :--- |
+| Alert name | Description |  Corrective actions |
+| :--- | :--- | :--- |                                                                                                                 
 | AdminDefaultPassword                         | Default admin password in use                                                       | Change the admin user password to ensure only authorized users can access the cluster. |
 | AgentNotRunning                              | The local agent does not run                                                        | Restart the local agent on the specified server using the command ‘service weka-agent start’. |
 | ApproachingClientsUnavailability             | Approaching connected clients limit                                                 | Ensure all backend containers are up or expand the cluster with more backend containers or servers. |
@@ -18,7 +18,7 @@ description: >-
 | BadDisksCapacityRatio                        | Bad ratio between smallest and biggest drive                                        | Replace drives so that there will be no such big difference in drives' sizes. |
 | BlockedJrpcMethod                            | JRPC method is blocked                                                              | Unblock the JRPC method by running the command 'blocked_jrpc_methods_remove' or 'blocked_jrpc_methods_clear' manhole. |
 | BondInterfaceCompromised                     | Network high availability interface compromised                                     | Ensure a proper operation of the network configuration, cables, and NICs. |
-| BucketCapacityExhausting                     | Buckets are nearing exhaustion of their maximum capacity                            | Consider migration to a cluster with a higher number of buckets. |
+| BucketCapacityExhausting                     | Buckets are nearing exhaustion of their maximum capacity                            | Please consider migration to a cluster with a higher number of buckets. |
 | BucketHasNoQuorum                            | Too many compute processes are down                                                 | Ensure the compute processes on the containers {hosts} are up and running and connected. If the issue is not resolved, contact the Customer Success Team. |
 | BucketUnresponsive                           | Compute resource failure                                                            | Check the connectivity and status of the drives of the leader container. and ensure the compute processes are running and connected. If the issue is not resolved, contact the Customer Success Team. |
 | CPUFrequentStarvation                        | CPU frequent starvation detected in the last minute                                 | Check the logs of the relevant containers for potential hardware or core allocation problems. |
@@ -76,7 +76,7 @@ description: >-
 | NotEnoughActiveDrives                        | Reduced data protection                                                             | Check the connectivity and server status. Replace failed drives and expand the cluster with new failure domains. |
 | NotEnoughMemoryForFilesystemOperation        | Insufficient cluster-wide RAM for proper Filesystem's Operation                     | Increase RAM cluster-wide to meet Filesystems(RAID) requirements for RAM or remove drives contributing to SSD capacity |
 | NotEnoughSSDCapacity                         | Some provisioned capacity is unavailable due to failed drives                       | Check for down drives. |
-| PartialConnectivityTrackingDisabled          | Partial connectivity tracking is disabled                                           | To turn on the Grim Reaper, Contact the Weka Support Team. |
+| PartialConnectivityTrackingDisabled          | Partial connectivity tracking is disabled                                           | To turn on the Grim Reaper, please Contact the Weka Support Team. |
 | PartiallyConnectedNode                       | A partially connected process detected                                              | Ensure proper network connectivity in the cluster. If the problem is not resolved, contact the Customer Success Team. |
 | PassedClientsAvailabilityThreshold           | Reached connected clients limit                                                     | Add more backend containers or servers to the cluster, check whether the backends are down, or disconnect some clients. |
 | PathsDegraded                                | Degraded Paths                                                                      | Contact the Customer Success Team to review path connectivity. |
