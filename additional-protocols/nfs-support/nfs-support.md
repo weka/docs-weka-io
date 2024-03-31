@@ -8,7 +8,7 @@ Using the GUI, you can:
 
 * [Configure the NFS global settings](nfs-support.md#configure-the-nfs-global-settings)
 * [Configure the NFS cluster level](nfs-support.md#create-interface-groups)
-* [Configure the NFS Kerberos service](nfs-support.md#integrate-the-nfs-and-kerberos-service)
+* [Integrate the NFS and Kerberos service](nfs-support.md#integrate-the-nfs-and-kerberos-service)
 * [Configure the NFS export level (permissions)](nfs-support.md#configure-the-nfs-export-level-permissions)
 
 ## Configure the NFS global settings

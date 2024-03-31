@@ -8,7 +8,7 @@ Using the CLI, you can:
 
 * [Configure the NFS global settings](nfs-support-1.md#configure-the-nfs-global-settings)
 * [Configure the NFS cluster level](nfs-support-1.md#configure-the-nfs-cluster-level)
-* [Configure the NFS Kerberos service](nfs-support-1.md#configure-the-nfs-kerberos-service)
+* [Integrate the NFS and Kerberos service](nfs-support-1.md#integrate-the-nfs-and-kerberos-service)
 * [Configure the NFS export level (permissions)](nfs-support-1.md#configure-the-nfs-export-level-permissions)
 
 ## Configure the NFS global settings
@@ -192,9 +192,9 @@ All users must be present and resolved in the method used in the `sssd` for the 
 
 </details>
 
-## Configure the NFS Kerberos service
+## Integrate the NFS and Kerberos service
 
-To establish Kerberos authentication, first set the Kerberos service. Following this, register the Kerberos service with your organization’s Active Directory (AD) or with the MIT Kerberos. If necessary, you have the option to clear the configuration to allow you to start the process anew.
+Integrating the NFS and Kerberos service is critical to setting up a secure network communication process. This procedure involves defining the Key Distribution Center (KDC) details, administrative credentials, and other parameters to ensure a robust and secure authentication process.
 
 **Before you begin**
 
