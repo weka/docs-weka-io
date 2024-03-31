@@ -1,50 +1,43 @@
 ---
 description: >-
-  This page describes how to manage quotas to alert or restrict usage of the
-  WEKA filesystem.
+  Implement quota management to monitor and control usage of the WEKA filesystem
+  effectively.
 ---
 
 # Quota management
 
 ## Overview
 
-There are several levels on the WEKA system where capacity usage can be restricted.&#x20;
+The WEKA system offers multiple layers where you can limit capacity usage:
 
-1. On an organization level: Set a different organization to manage its filesystems, where quotas for an organization can be set, as described in the [organization's usage and quota management ](../../operation-guide/organizations/#usage-and-quota-management)section.
-2. On a filesystem level: Set a different filesystem per department/project.
-3. On a directory level: Set a different quota per project directory (useful when users are part of several projects) or per-user home directory.
+* **Organization level**: You can monitor an organization’s usage (SSD and total) and restrict usage with quotas per organization. This feature can be used for charge-backs based on the used or allocated capacity of SSD or object store data. For more details, see [organizations](../../operation-guide/organizations/ "mention").&#x20;
+* **Filesystem level**: Allocate a unique filesystem for each department or project.
+* **Directory level**: Assign a unique quota for each project directory (beneficial when users are involved in multiple projects) or for each user’s home directory.
 
-## Directory quotas
-
-The organization admin can set a quota on a directory. Setting a quota starts the process of counting the current directory usage. Until this process is done, the quota is not considered (for empty directories, this process is instantly done).
+In the context of directory quotas, the organization admin can set a quota on a directory. This action initiates the process of calculating the current directory usage. The quota is considered once this calculation is complete, which is instantaneous for empty directories.
 
 {% hint style="info" %}
-A mount point to the relevant filesystem is required to set a quota on a directory. The quota set command should not be interrupted until the quota accounting is over.
+To set a quota on a directory, a mount point to the relevant filesystem is necessary. The quota set command mustn’t be interrupted until the quota accounting process is finished.
 {% endhint %}
 
-The organization admin sets quotas to inform/restrict users from using too much of the filesystem capacity. For that, only data in the user's control is considered. Hence, the quota doesn't count the overhead of the protection bits and snapshots. It does take into account data and metadata of files in the directory, regardless if tiered or not.&#x20;
+The organization admin’s role in setting quotas is to inform and restrict users from overusing the filesystem capacity. In this regard, only data that the user controls is considered. Therefore, the quota does not include the overhead of protection bits and snapshots. However, it accounts for the data and metadata of files in the directory, irrespective of whether they are tiered.
 
-### Working with quotas
+## Guidelines for quota management
 
-When working with quotas, consider the following:
+When managing quotas, adhere to the following guidelines:
 
-* To set a quota, the relevant filesystem must be mounted on the server where the set quota command is to be run.
-* When setting a quota, go through a new mount-point. If you use a server with mounts from WEKA versions before 3.10, first unmount all relevant mount points and then mount them again.
-* Quotas can be set within nested directories (up to 4 levels of nested quotas are supported) and over-provisioned under the same directory quota tree. For example, the`/home` directory can have a quota of 1TiB while there are 200 users; each has a user directory under it and can have a quota of 10GiB. This means that over-provisioning is used, in which parent quotas are enforced on all subdirectories, regardless of any remaining capacity in the child quotas.
-* Moving files (or directories) between two directories with quotas, into a directory with a quota, or outside a directory with a quota is not supported. The WEKA filesystem returns `EXDEV` in such a case, which is usually converted by the operating system to copy and delete but is OS-dependent.
-* Quotas and links:
-  * AFiles with any type of link count greater than 1 are not included in the quota.
-  * Once a directory has a quota, creating a hardlink to files residing under directories with different (or without) directory quotas is not allowed.
-* Restoring a filesystem from a snapshot turns the quotas back to the configuration at the time of the snapshot.
-* Creating a new filesystem from a snap-to-object does not preserve the original quotas.
-* When working with enforcing quotas along with a `writecache` mount-mode, similarly to other POSIX solutions, getting above the quota might not sync all the cache writes to the backend servers. Use `sync`, `syncfs`, or `fsync` to commit the cached changes to the system (or fail due to exceeding the quota).
+* **Setting quotas**: To establish a quota, ensure the relevant filesystem is mounted on the server where the quota command will be executed.
+* **Nested quotas**: Quotas can be established within nested directories (supporting up to 4 levels of nested quotas) and over-provisioned under the same directory quota tree. For instance, a `/home` directory can have a 1TiB quota with 200 users, each having a user directory under it with a 10GiB quota. This scenario illustrates over-provisioning, where parent quotas are enforced on all subdirectories, irrespective of any remaining capacity in the child quotas.
+* **File movement**: The movement of files (or directories) between two directories with quotas, into a directory with a quota, or outside a directory with a quota is unsupported. In such instances, the WEKA filesystem returns an `EXDEV` error, which is typically converted by the operating system to a copy-and-delete operation, although this is OS-dependent.
+* **Quotas and hard links**: Once a directory has a quota, only newly created hard links within the quota limits are part of quota calculations.
+* **Restoring filesystems**: Restoring a filesystem from a snapshot reverts the quotas to the configuration at the time of the snapshot.
+* **Creating new filesystems**: Creating a new filesystem from a snap-to-object does not retain the original quotas.
+* **Enforcing quotas**: When enforcing quotas in conjunction with a `writecache` mount-mode, exceeding the quota might not sync all the cache writes to the backend servers, similar to other POSIX solutions. Use `sync`, `syncfs`, or `fsync` to commit the cached changes to the system (or fail due to exceeding the quota).
 
-### Integration with the `df` utility
+## Integration with the `df` utility
 
-When a hard quota is set on a directory, running the `df` utility considers the hard quota as the total capacity of the directory and provides the `use%` relative to the quota. This can help users understand their usage and proximity to the hard quota.
+When a hard quota is set on a directory, running the `df` utility treats the hard quota as the total capacity of the directory and displays the usage percentage (`use%`) relative to the quota. This feature aids users in comprehending their usage and how close they are to reaching the hard quota.
 
 {% hint style="info" %}
-The `df` utility behavior with quotas is global to the WEKA system.&#x20;
-
-To change global behavior, contact the Customer Success Team.
+The behavior of the `df` utility with quotas is a global setting in the WEKA system. To modify this global behavior, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}

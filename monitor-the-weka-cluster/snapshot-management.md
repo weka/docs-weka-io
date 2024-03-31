@@ -230,7 +230,7 @@ The name for a group of snapshots is`<schedulegroupname>_<schedulename>.YYMMDDHH
 **Example:** The `default` schedule group with an `hourly` schedule can be named `default_hourly.YYMMDDHHMM`.
 
 {% hint style="warning" %}
-The SnapTool distinguishes between user-created snapshots and scheduled snapshots only by their names.
+The SnapTool distinguishes between user-created snapshots and scheduled snapshots only by their name.
 
 When creating user-created snapshots, avoid name collisions with scheduled snapshot names. The SnapTool might automatically select the user-created snapshots for deletion if the same naming format is used.
 {% endhint %}
