@@ -272,13 +272,15 @@ Example:
 ### 5. Upgrade the clients
 
 Once all backends are upgraded, the clients remain with the existing version and continue working with the upgraded backends. The client's version can only be one major version behind the version of the backends. Therefore, clients must be upgraded before the next cluster software version upgrade.\
-The minimum source version for clients upgrade is 4.1.2.
+The minimum source version for client upgrades is 4.2.X.
 
 #### Stateless client upgrade options
 
 * If a stateless client is mounted on a single cluster, it is automatically upgraded to the backend version after rebooting, or a complete `umount` and `mount` is performed.
 * If a stateless client is mounted on multiple clusters, the client container version is the same as the `client-target-version` in the cluster (see [Mount filesystems from multiple clusters on a single client](../weka-filesystems-and-object-stores/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)).
 * Stateless clients can also be upgraded manually.
+* To ensure downloading only the essential components relevant to the stateless client operation, excluding non-relevant packages, use the `--client-only` flag in the `weka version get` command.
+* To limit the display of versions unless the complete set of components is present, use the `--full` flag with the `weka version` command  This provides you with finer control over version information visibility.
 * You can manually upgrade the clients locally (one by one) or remotely (in batches), usually during a maintenance window.
 
 #### Stateful client upgrade options
