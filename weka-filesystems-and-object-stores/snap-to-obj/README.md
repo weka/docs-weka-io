@@ -90,19 +90,17 @@ Optionally, you may also promote data back to on-premises by doing the following
 1. Take a snapshot of the WEKA filesystem in the cloud on completion of cloud processing.
 2. Upload the cloud snapshot to the on-premises WEKA cluster.
 
-## Uploading a snapshot to an object store requirements
+## &#x20;Snapshots management considerations &#x20;
 
-When uploading a snapshot to an object store, adhere to the following requirements:
-
-* [Simultaneous snapshot uploads](./#simultaneous-snapshot-uploads)
-* [A writeable snapshot cannot be uploaded](./#a-writeable-snapshot-cannot-be-uploaded)
-* [Upload in chronological order to the remote object store](./#upload-in-chronological-order-to-the-remote-object-store)
-* [No deletion in parallel to snapshot upload](./#no-deletion-in-parallel-to-snapshot-upload)
-* [Pause or abort a snapshot upload](./#pause-or-abort-a-snapshot-upload)
+When uploading a snapshot to an object store or downloading snapshots to filesystems, adhere to the following considerations:
 
 ### Simultaneous snapshot uploads
 
 WEKA supports simultaneous uploading multiple snapshots from different filesystems to remote and local object stores.
+
+### Concurrent snapshot uploads and downloads
+
+For faster and more efficient snapshot management, WEKA supports concurrent downloading and uploading multiple snapshots.
 
 ### A writeable snapshot cannot be uploaded
 
@@ -110,19 +108,11 @@ A writeable snapshot is a clone of the live filesystem or other snapshots at a s
 
 ### Upload in chronological order to the remote object store
 
-For space and bandwidth efficiency, it is highly recommended that snapshots be uploaded in chronological order to the remote object store.
-
 Uploading all snapshots or the same snapshots to a local object store is not required. However, once a snapshot is uploaded to the remote object store (a monthly snapshot), uploading a previous snapshot (for example, the daily snapshot before it) to the remote object store could be more efficient.
 
 ### No deletion in parallel to snapshot upload
 
-You cannot delete a snapshot that is parallel to one uploaded to the same filesystem. Because uploading a snapshot to a remote object store can take a while, it is recommended to delete the required snapshots before uploading to the remote object store.
-
 This requirement is critical when uploading snapshots to the local and remote object stores in parallel. Consider the following:
-
-* A remote upload is in progress.
-* A snapshot is deleted.
-* Later, the snapshot is uploaded to the local object store.
 
 In this scenario, the local snapshot upload waits for the pending deletion of the snapshot, which occurs only once the remote snapshot upload is done.
 
