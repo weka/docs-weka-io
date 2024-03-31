@@ -323,9 +323,13 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\
 * Amazon S3
   * S3 Standard
   * S3 Intelligent-Tiering
-  * S3 Standard-IA
-  * S3 One Zone-IA
-  * S3 Glacier Instant Retrieval
+  *   These storage classes are ideal for remote buckets where data is written once and accessed in critical situations, such as during disaster recovery:
+
+      * S3 Standard-IA
+      * S3 One Zone-IA
+      * S3 Glacier Instant Retrieval
+
+      Remember, retrieval times, minimum storage periods, and potential charges due to object compaction may apply. If unsure, use S3 Intelligent-Tiering.
 * Azure Blob Storage
 * Google Cloud Storage (GCS)
 * Cloudian HyperStore (version 7.3 and up)
