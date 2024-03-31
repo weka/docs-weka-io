@@ -61,8 +61,9 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 {% hint style="warning" %}
 Adhere to the following considerations:
 
-* Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not allowed. In such a case, the upgrade does not start and indicates the servers that require protocol separation. Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
-* If you intend to create an S3 cluster, ensure the upgrade process is complete and all containers are up before initiating the S3 cluster creation.
+* **Protocol separation**: Upgrading a WEKA cluster with a server used for more than one of the following protocols: NFS, SMB, or S3, is not permitted. If such a case arises, the upgrade process does not initiate and indicates the servers that require protocol separation. Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
+* **Legacy NFS protocol**: If a legacy NFS protocol is implemented, it’s advised to contact the Customer Success Team. In this case, the upgrade is blocked.
+* **S3 Cluster Creation**: If there is a plan to create an S3 cluster, it’s crucial to ensure the upgrade process is complete and all containers are up before initiating the S3 cluster creation.
 {% endhint %}
 
 ### 1. Verify system upgrade prerequisites
