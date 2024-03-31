@@ -41,12 +41,12 @@ The possible Kerberos authentication types are available only after configuring 
        * KRB5i: Kerberos authentication with data integrity.
        * KRB5p: Kerberos authentication with data integrity and privacy.
 
+       The Kerberos authentication types are visible only if Kerberos is configured.\
        Example: KRB5  KRB5i  KRB5p.\
        The default values depend on Kerberos configuration:
 
        * If not configured: NONE SYS
        * If configured: KRB5
-   * **Mount Port**: Specify the port on which the NFS cluster listens for mount requests from NFS clients.
 5. Select **Save** to apply the settings.
 
 <figure><img src="../../.gitbook/assets/wmng_configure_nfs_global_settings.png" alt="" width="433"><figcaption><p>Configure global NFS settings dialog</p></figcaption></figure>
@@ -136,11 +136,13 @@ Integrating the NFS and Kerberos service is critical to setting up a secure netw
 **Before you begin**
 
 * Ensure a configuration filesystem is set. See [#configure-nfs-global-settings](nfs-support.md#configure-nfs-global-settings "mention").
-* Ensure the NFS cluster is configured and running. see [#create-interface-groups](nfs-support.md#create-interface-groups "mention").
+* Ensure the NFS cluster is configured and running. See [#create-interface-groups](nfs-support.md#create-interface-groups "mention").
 * For Active Directory (AD) integration, obtain the required information from the AD administrator. (WEKA handles the generation of the keytab file.)
-* For MIT integration, ensure the following:
-  * Obtain the required information from the MIT Key Distribution Center (KDC) and OpenLDAP administrators.&#x20;
-  * A pre-generated keytab file stored in an accessible location is required.&#x20;
+* For MIT integration, obtain the required information from the MIT KDC and OpenLDAP administrators, and a pre-generated keytab file stored in an accessible location is required.
+
+{% hint style="info" %}
+In all KDC and LDAP parameters, use the FQDN format. The hostname part of the FQDN is restricted to a maximum of 20 characters.
+{% endhint %}
 
 **Procedure**
 
@@ -164,7 +166,7 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
    * **KDC Secondary Server**: Identifies the server hosting the secondary Key Distribution Center service.
    * **KDC Admin Server**: Identifies the server hosting the administrative Key Distribution Center service.
 3. Set the following parameters to register the Kerberos service:
-   * **NFS Service Name**: Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters..
+   * **NFS Service Name**: This refers to the complete domain name for a specific NFS server.
    * **KDC Realm Admin Name**: The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm.
    * **KDC Realm Admin Password**: The password of the administrative user who manages the KDC within a realm.
 4. Select **Save** to apply the changes.
@@ -180,7 +182,7 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
    3. **KDC Secondary Server**: Identifies the server hosting the secondary Key Distribution Center service.
    4. **KDC Admin Server**: Identifies the server hosting the administrative Key Distribution Center service.
 3. Set the following parameters to register the Kerberos with LDAP service and uploaded keytab file:
-   * **NFS Service Name**: Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters.
+   * **NFS Service Name**: This refers to the complete domain name for a specific NFS server.
    * **Upload keytab file**: Use the **Browse** option to upload the pre-generated keytab file. This file contains the keys for the NFS service’s unique identity, known as a principal, in Kerberos.
    * **LDAP Server**: Specifies the server hosting the Lightweight Directory Access Protocol service.
    * **LDAP Domain**: Defines the domain that the Lightweight Directory Access Protocol service will access.
@@ -194,19 +196,9 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
 {% endtab %}
 {% endtabs %}
 
-6. In the Configure NFS Global Settings, select **Update**, and set the authentication types (levels) you want to enable. See [#configure-the-nfs-global-settings](nfs-support.md#configure-the-nfs-global-settings "mention").
-
 {% hint style="info" %}
-A KRB types can only be disabled only when no existing NFS permission is required to use this authentication type.
+After completing the kerberos integration settings, the enabled authentication type is **KRB5**. If you want to modify the enabled authentication types, in the Configure NFS Global Settings, select **Update**, and set the authentication types. See [#configure-the-nfs-global-settings](nfs-support.md#configure-the-nfs-global-settings "mention").
 {% endhint %}
-
-Select **Save** to apply the changes.
-
-<figure><img src="../../.gitbook/assets/wmng_set_kerberos_auth_types.png" alt="" width="375"><figcaption><p>Select the Kerberos authentication types to enable</p></figcaption></figure>
-
-The following screen shows NFS cluster integration with Kerberos MIT:
-
-<figure><img src="../../.gitbook/assets/wmng_kerberos_is_set.png" alt=""><figcaption><p>NFS cluster integration with Kerberos MIT</p></figcaption></figure>
 
 ### **Reset the** Kerberos configuration <a href="#create-interface-groups" id="create-interface-groups"></a>
 

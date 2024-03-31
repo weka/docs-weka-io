@@ -205,6 +205,10 @@ To establish Kerberos authentication, first set the Kerberos service. Following 
   * Obtain the required information from the MIT Key Distribution Center (KDC) and OpenLDAP administrators.
   * A pre-generated keytab file in base64[^1] format stored in an accessible location is required.
 
+{% hint style="info" %}
+In all KDC and LDAP parameters, use the FQDN format. The hostname part of the FQDN is restricted to a maximum of 20 characters.
+{% endhint %}
+
 ### Set the Kerberos service
 
 **Command:** `weka nfs kerberos service setup`
@@ -264,7 +268,7 @@ weka nfs kerberos registration setup-ad myservicename.test.example.com myrealmad
 
 **Parameters**
 
-<table><thead><tr><th width="231">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters.</td><td></td></tr><tr><td><code>realm-admin-name</code>*</td><td>The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm.</td><td></td></tr><tr><td><code>realm-admin-passwd</code></td><td>This parameter is for the password of the administrative user who manages the KDC within a realm.<br>It’s not stored in the configuration for security reasons. If it’s not provided during setup, the system asks for it. The entered password isn’t shown on the screen to protect privacy and security.</td><td></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
+<table><thead><tr><th width="231">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>This refers to the complete domain name for a specific NFS server.</td><td></td></tr><tr><td><code>realm-admin-name</code>*</td><td>The username of an administrator who has access to the LDAP directory. This user manages the KDC within a realm.</td><td></td></tr><tr><td><code>realm-admin-passwd</code></td><td>This parameter is for the password of the administrative user who manages the KDC within a realm.<br>It’s not stored in the configuration for security reasons. If it’s not provided during setup, the system asks for it. The entered password isn’t shown on the screen to protect privacy and security.</td><td></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
 
 #### Set up Kerberos to use AD LDAP
 
@@ -411,71 +415,64 @@ Select the relevant tab to learn what to do for each scenario:
 
 {% tabs %}
 {% tab title="KDC" %}
-Use this procedure if one of the following is changed, or you want to add a secondary KDC server:
+Use this procedure if you want to add or remove a secondary KDC server:
 
 ```
-kdc-realm-name
-kdc-primary-server
-kdc-admin-server
 kdc-secondary-server
 ```
 
 **Procedure**
 
-Run the following:
-
-1. `weka nfs kerberos reset --no-restart --force`
-2. `weka nfs kerberos service setup <options>`
-3. `weka nfs kerberos registration setup <options> --restart`
+1. Run the command: `weka nfs kerberos reset --no-restart --force`
+2. Run the command: `weka nfs kerberos service setup <options>`
+3. Run one of the following commands:
+   * **For AD implementation:** `weka nfs kerberos registration setup-ad <options> --restart`
+   * **For MIT implementation:** `weka nfs kerberos registration setup-mit <options> --restart`
 {% endtab %}
 
 {% tab title="AD" %}
 Use this procedure if one of the following is changed:
 
 ```
-nfs-service-name
 realm-admin-name
 realm-admin-passwd
 ```
 
 **Procedure**
 
-Run the following:&#x20;
-
-`weka nfs kerberos registration setup --restart --force`
+Run the command: \
+`weka nfs kerberos registration setup-ad --restart --force`
 {% endtab %}
 
 {% tab title="MIT" %}
 Use this procedure if one of the following is changed:
 
 ```
-nfs-service-name
 keytab-file
 ```
 
 **Procedure**
 
-Run the following:&#x20;
-
-`weka nfs kerberos registration setup <options> --restart --force`
+Run the command:\
+`weka nfs kerberos registration setup-mit <options> --restart --force`
 {% endtab %}
 
 {% tab title="OpenLDAP" %}
 Use this procedure if one of the following is changed:
 
 ```
-server-name
-ldap-domain
 reader-user-name
 reader-user-password
 ```
 
 **Procedure**
 
-Run the following:&#x20;
-
-* `weka nfs ldap reset --no-restart --force`
-* `weka nfs ldap <setup-openldap> <options/params>`
+* For AD implementation, run the following:
+  1. `weka nfs ldap reset --no-restart --force`
+  2. `weka nfs ldap <setup-ldap> <options/params>`
+* For MIT implementation, run the following:
+  1. `weka nfs ldap reset --no-restart --force`
+  2. `weka nfs ldap <setup-openldap> <options/params>`
 {% endtab %}
 {% endtabs %}
 
