@@ -213,7 +213,7 @@ In all KDC and LDAP parameters, use the FQDN format. The hostname part of the FQ
 
 **Command:** `weka nfs kerberos service setup`
 
-Use the following command to set up the NFS Kerberos Service information:
+Use the following command to set up NFS Kerberos Service information:
 
 `weka nfs kerberos service setup <kdc-realm-name> <kdc-primary-server> <kdc-admin-server> [--kdc-secondary-server kdc-secondary-server][--force] [--restart]`
 
@@ -248,7 +248,7 @@ TEST.WEKALAB.IO     Zeus.test.wekalab.io                        Zeus.test.wekala
 Integrating Kerberos with AD involves the following:
 
 1. [Register Kerberos with AD](nfs-support-1.md#integrate-kerberos-with-a-d)
-2. [Set up the Kerberos to use AD LDAP](nfs-support-1.md#set-up-kerberos-to-use-a-d-ldap)
+2. [Set up Kerberos to use AD LDAP](nfs-support-1.md#set-up-kerberos-to-use-a-d-ldap)
 
 #### Register Kerberos with AD
 
@@ -274,7 +274,7 @@ weka nfs kerberos registration setup-ad myservicename.test.example.com myrealmad
 
 **Command:** `weka nfs ldap setup-ad`
 
-Use the following command to set up the NFS configuration to use AD LDAP:
+Use the following command to set up NFS configuration to use AD LDAP:
 
 `weka nfs ldap setup-ad [--force] [--no-restart]`
 
@@ -329,7 +329,7 @@ weka nfs kerberos registration setup-mit myservicename.test.example.com myservic
 
 **Command:** `weka nfs ldap setup-openldap`
 
-Use the following command to set up the set up Kerberos to use OpenLDAP:
+Use the following command to set up Kerberos to use OpenLDAP:
 
 `weka nfs ldap setup-openldap  <server-name> <ldap-domain> <reader-user-name>[reader-user-password] [--base-dn base-dn] [--ldap-port-number ldap-port-number][--force] [--no-restart]`
 
