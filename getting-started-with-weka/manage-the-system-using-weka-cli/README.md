@@ -66,6 +66,7 @@ Most WEKA system top-level commands are the default list command for their own c
 
 **Example:** The `weka fs` command displays a list of all filesystems and is also the top-level command for all filesystems, filesystem groups, and snapshot-related operations. It is possible to use the `-h`/`--help` flags or the `help` command to display a list of available commands at each level, as shown below:
 
+{% code fullWidth="false" %}
 ```
 $ weka fs
 | FileSystem | Name    | Group   | SSD Bu | Total  | Is re | Is creat | Is remov 
@@ -73,6 +74,7 @@ $ weka fs
 +------------+---------+---------+--------+--------+-------+----------+----------
 | FSId: 0    | default | default | 57 GiB | 57 GiB | True  | False    | False
 ```
+{% endcode %}
 
 ```
 $ weka fs -h
@@ -149,7 +151,7 @@ To disable the auto-completion script, run `weka agent autocomplete uninstall`
 
 To (re-)install the script on a server, run `weka agent autocomplete install` and re-enter your shell session.
 
-You can also use `weka agent autocomplete export`to get the bash completions script and write it to any desired location.
+You can also use `weka agent autocomplete export` to get the bash completions script and write it to any desired location.
 
 ## Cluster status
 
@@ -159,7 +161,7 @@ The `weka status` command displays the overall status of the Weka system.
 
 ```
 $ weka status
-WekaIO v4.2.0 (CLI build 4.2.0)
+WekaIO v4.3.0 (CLI build 4.3.0)
 
        cluster: wekaprod (a5d41195-a9b2-4668-914a-77c175f4cfb4)
         status: OK (8 backends UP, 48 drives UP)
@@ -182,7 +184,7 @@ WekaIO v4.2.0 (CLI build 4.2.0)
 
 ```
    $ weka status
-WekaIO v4.2.0 (CLI build 4.2.0)
+WekaIO v4.3.0 (CLI build 4.3.0)
 
        cluster: WekaProd (b231e060-c5c1-421d-a68d-1dfa94ff149b)
         status: DEGRADED (7 backends UP, 42 drives UP)

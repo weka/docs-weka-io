@@ -1,25 +1,19 @@
 ---
-description: >-
-  Upgrade your WEKA system within a multi-container backend architecture (MCB).
-  Choose the latest minor version for new major versions.
+description: Upgrade your WEKA system with the latest version.
 ---
 
 # Upgrade WEKA versions
 
 ## Upgrade overview
 
-The WEKA upgrade process supports upgrading to higher minor and major versions of a WEKA system deployed in a multi-container backend architecture (MCB). MCB is supported from version 4.0.2. MCB enables non-disruptive upgrades (NDU).
+The WEKA upgrade process supports upgrading to higher minor and major versions of a WEKA system using a non-disruptive upgrade (NDU). Always upgrade to the latest minor version in the new major version when upgrading to a major version. This may require first upgrading to a specific minor version in the current software version, as follows:
 
-Always upgrade to the latest minor version in the new major version when upgrading to a major version. This may require first upgrading to a specific minor version in the current software version, as follows:
-
-* To upgrade to WEKA software version 4.2.x, the minimum source version must be 4.1.2 in MCB architecture.
-* To upgrade to WEKA software version 4.1.x, the minimum source version must be 4.0.2 in MCB architecture.&#x20;
+* To upgrade to WEKA software version 4.3.x, the minimum source version must be 4.2.0.
+* To upgrade to WEKA software version 4.2.x, the minimum source version must be 4.1.2.&#x20;
 
 {% hint style="warning" %}
-If the source system is not in MCB architecture, it is required to convert the cluster architecture to MCB. \
-See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention"). \
-This workflow is only intended for professional services.\
-Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for assistance.
+The source system must be set up in MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the cluster architecture to MCB. See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention").\
+This workflow is only intended for professional services.
 {% endhint %}
 
 {% hint style="warning" %}
@@ -61,7 +55,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 {% hint style="warning" %}
 Adhere to the following considerations:
 
-* **Protocol separation**: Upgrading a WEKA cluster with a server used for more than one of the following protocols: NFS, SMB, or S3, is not permitted. If such a case arises, the upgrade process does not initiate and indicates the servers that require protocol separation. Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
+* **Protocol separation**: Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not permitted. If such a case arises, the upgrade process does not initiate and indicates the servers that require protocol separation. Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
 * **Legacy NFS protocol**: If a legacy NFS protocol is implemented, it’s advised to contact the Customer Success Team. In this case, the upgrade is blocked.
 * **S3 Cluster Creation**: If there is a plan to create an S3 cluster, it’s crucial to ensure the upgrade process is complete and all containers are up before initiating the S3 cluster creation.
 {% endhint %}
@@ -194,7 +188,7 @@ weka version get <version>
 weka version prepare <version>
 ```
 
-Where: \<version> is the target WEKA version, for example: `4.2.3`.
+Where: \<version> is the target WEKA version, for example: `4.3.0`.
 
 If the distribution server does not contain the target WEKA version, add the option `--from` to the command, and specify the [get.weka.io](https://get.weka.io/ui/releases/) distribution site, along with the token.
 
@@ -238,11 +232,11 @@ Once the new version is downloaded to one of the backend servers, run the follow
 
 Where:
 
-`<new-version>`: Specify the new version. For example,`4.2.3`.
+`<new-version>`: Specify the new version. For example,`4.3.0`.
 
 `<container-name>`: Specify only one container name. For example: `drives0`.
 
-The default upgrade mode to 4.2.x is `ndu`. Therefore, no need to specify it.
+The default upgrade mode to 4.3.x is `ndu`. Therefore, no need to specify it.
 
 ### 4. Upgrade the backend servers
 
@@ -254,7 +248,7 @@ If you already ran the preparation step, the upgrade command skips the download 
 
 Example:
 
-`weka local run --container drives0 --in 4.2.3 upgrade`
+`weka local run --container drives0 --in 4.3.1 upgrade`
 
 **Consider the following guidelines:**
 
@@ -273,7 +267,7 @@ Example:
 ### 5. Upgrade the clients
 
 Once all backends are upgraded, the clients remain with the existing version and continue working with the upgraded backends. The client's version can only be one major version behind the version of the backends. Therefore, clients must be upgraded before the next cluster software version upgrade.\
-The minimum source version for client upgrades is 4.2.X.
+The minimum source version for client upgrades is 4.3.X.
 
 #### Stateless client upgrade options
 
@@ -340,9 +334,9 @@ The following command line upgrade two clients in two batches (each batch has on
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
 {% hint style="success" %}
-**Example:** The following is returned when the system is upgraded to version 4.2.3:
+**Example:** The following is returned when the system is upgraded to version 4.3.0:
 
 `# weka status`  \
-`Weka v4.2.3`   \
+`Weka v4.3.0`   \
 `...`
 {% endhint %}
