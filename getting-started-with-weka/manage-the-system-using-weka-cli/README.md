@@ -157,33 +157,33 @@ You can also use `weka agent autocomplete export` to get the bash completions sc
 
 The `weka status` command displays the overall status of the Weka system.
 
-**Example: status of a healthy system**
+**Example 1: status of a healthy system**
 
 ```
 $ weka status
 WekaIO v4.3.0 (CLI build 4.3.0)
 
-       cluster: wekaprod (a5d41195-a9b2-4668-914a-77c175f4cfb4)
-        status: OK (8 backends UP, 48 drives UP)
-    protection: 6+2
-     hot spare: 1 failure domains (1.23 TiB)
- drive storage: 82.94 TiB total
+       cluster: DataSphere (554d62b9-ab40-4f59-bee6-ccc326bae2df)
+        status: OK (18 backend containers UP, 12 drives UP)
+    protection: 3+2 (Fully protected)
+     hot spare: 1 failure domains (2.45 TiB)
+ drive storage: 12.27 TiB total
          cloud: connected
-       license: OK, valid thru 2022-10-20T06:23:01Z
+       license: OK, valid thru 2024-10-20T06:23:01Z
 
-     io status: STARTED 2 hours ago (8 io-nodes UP, 80 Buckets UP)
+     io status: STARTED 1 hour ago (18 io-nodes UP, 162 Buckets UP)
     link layer: Ethernet
-       clients: 1 connected
+       clients: 0 connected
          reads: 0 B/s (0 IO/s)
         writes: 512 B/s (60 IO/s)
     operations: 9 ops/s
         alerts: none
 ```
 
-**Example: status of a system with one backend failure (DEGRADED)**
+**Example 2: status of a system with one backend failure (DEGRADED)**
 
 ```
-   $ weka status
+$ weka status
 WekaIO v4.3.0 (CLI build 4.3.0)
 
        cluster: WekaProd (b231e060-c5c1-421d-a68d-1dfa94ff149b)
@@ -192,7 +192,7 @@ WekaIO v4.3.0 (CLI build 4.3.0)
      hot spare: 1 failure domains (1.23 TiB)
  drive storage: 82.94 TiB total
          cloud: connected
-       license: OK, valid thru 2022-10-20T06:23:01Z
+       license: OK, valid thru 2024-5-20T06:20:01Z
 
      io status: STARTED 2 hours (8 io-nodes UP, 80 Buckets UP)
                 Rebuild in progress (3%)
@@ -202,4 +202,51 @@ WekaIO v4.3.0 (CLI build 4.3.0)
         writes: 0 B/s (0 IO/s)
     operations: 0 ops/s
         alerts: none
+```
+
+**Example 3: status of a system with partial capacity allocation (unprovisioned capacity)**
+
+```
+$ weka status
+WekaIO v4.3.0 (CLI build 4.3.0)
+
+       cluster: DataSphere (554d62b9-ab40-4f59-bee6-ccc326bae2df)
+        status: OK (18 backend containers UP, 12 drives UP)
+    protection: 3+2 (Fully protected)
+     hot spare: 1 failure domains (2.45 TiB)
+ drive storage: 12.27 TiB total, 2.73 TiB unprovisioned
+         cloud: connected
+       license: OK, valid thru 2024-10-20T06:23:01Z
+
+     io status: STARTED 1 hour ago (18 io-nodes UP, 162 Buckets UP)
+    link layer: Ethernet
+       clients: 0 connected
+         reads: 0 B/s (0 IO/s)
+        writes: 0 B/s (0 IO/s)
+    operations: 0 ops/s
+        alerts: 2 active alerts, use `weka alerts` to list them
+
+```
+
+**Example 4: status of a system with unavailable capacity due to two failed drives**
+
+```
+$ weka status
+WekaIO v4.3.0 (CLI build 4.3.0)
+
+       cluster: DataSphere (554d62b9-ab40-4f59-bee6-ccc326bae2df)
+        status: OK (15/18 backend containers UP, 10/12 drives UP)
+    protection: 3+2 (Fully protected)
+     hot spare: 1 failure domains (2.45 TiB)
+ drive storage: 12.27 TiB total, 2.45 TiB unavailable, 2.73 TiB unprovisioned
+         cloud: connected
+       license: OK, valid thru 2024-10-20T06:23:01Z
+
+     io status: STARTED 1 hour ago (15/18 io-nodes UP, 162 Buckets UP)
+    link layer: Ethernet
+       clients: 0 connected
+         reads: 0 B/s (0 IO/s)
+        writes: 0 B/s (0 IO/s)
+    operations: 0 ops/s
+        alerts: 10 active alerts, use `weka alerts` to list them
 ```
