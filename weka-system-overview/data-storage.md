@@ -119,6 +119,6 @@ Using the [Snap-To-Object](../weka-filesystems-and-object-stores/snap-to-obj/) f
 
 ### Bypassing the time-based policies
 
-Regardless of the time-based policies, using a special mount option, obs\_direct, it is possible to bypass the time-based policies. Any creation/writing of files from a mount point with this option is marked for release as soon as possible before considering other file retention policies.
+Even when time-based policies are in place, you can override them using a unique mount option called `obs_direct`. When this option is used, any files created or written from the associated mount point are prioritized for release immediately without first considering other file retention policies.
 
 For a more in-depth explanation, refer to [Advanced Data Lifecycle Management](../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md).
