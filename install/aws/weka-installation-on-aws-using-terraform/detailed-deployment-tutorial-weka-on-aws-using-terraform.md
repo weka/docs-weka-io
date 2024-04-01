@@ -674,6 +674,7 @@ The following example illustrate the permissions you will need to deploy weka by
             "Action": [
                 "ec2:ImportKeyPair",
                 "ec2:CreateKeyPair",
+                "ec2:DeleteKeyPair",
                 "ec2:DescribeKeyPairs"
             ],
             "Resource": "*"
