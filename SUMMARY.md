@@ -55,6 +55,7 @@
   * [Auto-scale virtual machines in Azure](planning-and-installation/weka-installation-on-azure/auto-scale-virtual-machines-in-azure.md)
   * [Add clients](planning-and-installation/weka-installation-on-azure/add-clients.md)
   * [Troubleshooting](planning-and-installation/weka-installation-on-azure/troubleshooting.md)
+  * [Detailed deployment tutorial: WEKA on Azure using Terraform](planning-and-installation/weka-installation-on-azure/detailed-deployment-tutorial-weka-on-azure-using-terraform.md)
 * [WEKA installation on GCP](planning-and-installation/weka-installation-on-gcp/README.md)
   * [WEKA project description](planning-and-installation/weka-installation-on-gcp/weka-project-description.md)
   * [Terraform-GCP-WEKA module description](planning-and-installation/weka-installation-on-gcp/gcp-terraform-package-description.md)
