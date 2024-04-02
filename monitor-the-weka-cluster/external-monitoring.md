@@ -53,15 +53,15 @@ For the WEKAmon host to communicate with the WEKA cluster, a security token is n
 
 Perform the following steps on an **existing host with access to the WEKA CLI**, for example, on a WEKA backend server.
 
-1. **Create a dedicated user:** Create a unique local username (for example, `wekamon`) for SnapTool. The unique username is displayed in the event logs, making the identification and troubleshooting of issues easier. Then, assign the ClusterAdmin or OrgAdmin role.\
+1. **Create a dedicated user:** Create a unique local username (for example, `wekamon`) for WEKAmon. The unique username is displayed in the event logs, making the identification and troubleshooting of issues easier. Then, assign the ClusterAdmin or OrgAdmin role.\
    Example: `weka user add wekamon clusteradmin`
 2. **Generate an authentication token for the user:** Run the following command:\
-   `weka user login snaptool --path wekamon-authtoken.json`
-3. **Transfer the token:** Copy the `wekamon-authtoken.json` file to the SnapTool management server. It will later be placed in a specific directory on that host.
+   `weka user login wekamon --path wekamon-authtoken.json`
+3. **Transfer the token:** Copy the `wekamon-authtoken.json` file to the WEKAmon management server. It will later be placed in a specific directory on that host.
 4. **Remove the token file:** Delete the `wekamon-authtoken.json` locally.\
    Example: `rm wekamon-authtoken.json`
 
-#### Configure SnapTool host with authentication token
+#### Configure WEKAmon host with authentication token
 
 Perform the following steps on the **WEKAmon host**.
 
