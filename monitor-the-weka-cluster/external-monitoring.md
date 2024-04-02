@@ -37,24 +37,47 @@ Setting up a dedicated physical server (or VM) for the installation is recommend
 * 50 GB / partition (for the root)
 * 50 GB /opt/ partition (for WEKAmon installation)
 * 1 Gbps network
-* _Docker_ is the recommended container for the WEKAmon setup.\
-  To use Docker, the following must be installed on the dedicated physical server (or VM):
-  * `docker-ce`
-  * `docker-compose` or `docker-compose-plugin` depending on the existing operating system.
+*   _Docker_ is the recommended container for the WEKAmon setup.\
+    To use Docker, the following must be installed on the dedicated physical server (or VM):
 
-&#x20;     For the Docker installation instructions, see the [Docker website](https://www.docker.com/get-started).
+    * `docker-ce`
+    * `docker-compose` or `docker-compose-plugin,` depending on the existing operating system.
 
-### Authentication token requirement
+    For instructions on the Docker installation, see the [Docker website](https://www.docker.com/get-started).
 
-To enable communication between the physical server and the WEKA cluster, the security token is required in the **auth-token.json** file.
+### WEKAmon authentication
 
-1. Create the directory `.weka/` in the WEKAmon installation directory.
-2. Generate the `auth-token.json` file and save it in the `.weka/` directory you created. See the [Obtain authentication tokens](../usage/security/obtain-authentication-tokens.md) topic.
+For the WEKAmon host to communicate with the WEKA cluster, a security token is necessary. However, the WEKAmon host is not required to have the WEKA client installed.
 
-{% hint style="info" %}
-Creating a unique local username dedicated to SnapTool with a ReadOnly role is highly recommended. The unique username is displayed in the event logs, making the identification and troubleshooting of issues easier.\
-To create a local user, see the [Create local users](../usage/user-management/user-management.md#create-a-local-user) topic.
-{% endhint %}
+#### Prepare WEKAmon user and token
+
+Perform the following steps on an **existing host with access to the WEKA CLI**, for example, on a WEKA backend server.
+
+1. **Create a dedicated user:** Create a unique local username (for example, `wekamon`) for SnapTool. The unique username is displayed in the event logs, making the identification and troubleshooting of issues easier. Then, assign the ClusterAdmin or OrgAdmin role.\
+   Example: `weka user add wekamon clusteradmin`
+2. **Generate an authentication token for the user:** Run the following command:\
+   `weka user login snaptool --path wekamon-authtoken.json`
+3. **Transfer the token:** Copy the `wekamon-authtoken.json` file to the SnapTool management server. It will later be placed in a specific directory on that host.
+4. **Remove the token file:** Delete the `wekamon-authtoken.json` locally.\
+   Example: `rm wekamon-authtoken.json`
+
+#### Configure SnapTool host with authentication token
+
+Perform the following steps on the **WEKAmon host**.
+
+1.  **Create a directory for the authentication token:** Run the following command:
+
+    `mkdir /root/.weka`
+2. **Move the previously-created authentication token into the new directory: :** Run the following command: `mv ~/wekamon-authtoken.json /root/.weka/auth-token.json`
+3. **Ensure appropriate ownership and permissions are set:** Run the following commands:\
+   `chown root:root /root/.weka/auth-token.json`\
+   `chmod 400 /root/.weka/auth-token.json`
+
+**Related topics**
+
+[#create-a-local-user](../usage/user-management/user-management.md#create-a-local-user "mention")
+
+[obtain-authentication-tokens.md](../usage/security/obtain-authentication-tokens.md "mention")
 
 ## Workflow: Install the WEKAmon package
 
