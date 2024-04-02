@@ -98,10 +98,6 @@ When uploading a snapshot to an object store or downloading snapshots to filesys
 
 WEKA supports simultaneous uploading multiple snapshots from different filesystems to remote and local object stores.
 
-### Concurrent snapshot uploads and downloads
-
-For faster and more efficient snapshot management, WEKA supports concurrent downloading and uploading multiple snapshots.
-
 ### A writeable snapshot cannot be uploaded
 
 A writeable snapshot is a clone of the live filesystem or other snapshots at a specific time, and its data keeps changing. Therefore, its data is tiered according to the tiering policies but cannot be uploaded to the object store as a read-only snapshot.
