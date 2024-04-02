@@ -59,7 +59,7 @@ Select each tab in the specified order to explore the demonstrations.
 {% tab title="1. Create an S3 cluster" %}
 Create an S3 cluster within the WEKA environment, specifying the servers to run the S3 protocol and establishing a logical cluster for exposing the S3 service.&#x20;
 
-A predefined configuration filesystem (`.config.fs` in this demo) must exist to maintain the persisting cluster-wide protocol configurations.
+A predefined configuration filesystem (`.config_fs` in this demo) must exist to maintain the persisting cluster-wide protocol configurations.
 
 <figure><img src="../../.gitbook/assets/wmng_Create_S3_cluster.gif" alt=""><figcaption><p>Create an S3 cluster</p></figcaption></figure>
 
