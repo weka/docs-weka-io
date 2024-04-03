@@ -17,8 +17,8 @@ This preparation consists of the following steps:
 5. [Configure the HA networking](./#configure-the-ha-networking)
 6. [Configure the clock synchronization](./#configure-sync)
 7. [Disable the NUMA balancing](./#disable-the-numa-balancing)
-8. [Disable swap (if any)](./#validate-the-system-preparation)
-9. [Validate the system preparation](./#validate-the-system-preparation-1)
+8. [Disable swap (if any)](./#id-8.-disable-swap-if-any)
+9. [Validate the system preparation](./#id-9.-validate-the-system-preparation)
 
 {% hint style="info" %}
 Some of the examples contain version-specific information. The software is updated frequently, so the package versions available to you may differ from those presented here.
@@ -449,11 +449,11 @@ To disable NUMA balancing, run the following command on the server:
 echo 0 > /proc/sys/kernel/numa_balancing
 ```
 
-## 8. Disable swap (if any) <a href="#validate-the-system-preparation" id="validate-the-system-preparation"></a>
+## 8. Disable swap (if any)
 
 WEKA highly recommends that any servers used as backends have no swap configured. This is distribution-dependent but is often a case of commenting out any swap entries in /etc/fstab and rebooting.
 
-## 9. Validate the system preparation <a href="#validate-the-system-preparation" id="validate-the-system-preparation"></a>
+## 9. Validate the system preparation
 
 The `wekachecker` is a tool that validates the readiness of the servers in the cluster before installing the WEKA software.
 
