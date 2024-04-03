@@ -390,4 +390,4 @@ For additional information and how-to articles, search the WEKA Knowledge Base i
 
 [^4]: The IOMMU (Input/Output Memory Management Unit) is a hardware component that manages and controls data transfers between devices (like graphics cards) and a computer's main memory, enhancing system security and performance.
 
-[^5]: Follow the vendor's guide to configure single port speed to 200Gb/s.
+[^5]: Follow the vendor's guide to configure the single-port speed to 200Gb/s.
