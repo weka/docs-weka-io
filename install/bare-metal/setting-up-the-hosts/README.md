@@ -451,7 +451,7 @@ echo 0 > /proc/sys/kernel/numa_balancing
 
 ## 8. Disable swap (if any)
 
-WEKA highly recommends that any servers used as backends have no swap configured. This is distribution-dependent but is often a case of commenting out any swap entries in /etc/fstab and rebooting.
+WEKA highly recommends that any servers used as backends have no swap configured. This is distribution-dependent but is often a case of commenting out any `swap` entries in `/etc/fstab` and rebooting.
 
 ## 9. Validate the system preparation
 
