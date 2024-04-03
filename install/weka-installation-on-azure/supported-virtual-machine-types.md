@@ -50,11 +50,11 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 ### High performance optimized
 
-<table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>HBv4</td><td>Standard_HB176rs_v4, Standard_HB176-24rs_v4, Standard_HB176-96rs_v4</td></tr><tr><td>HBv3</td><td>Standard_HB120rs_v3</td></tr></tbody></table>
+<table><thead><tr><th width="147">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>HBv4</td><td>Standard_HB176rs_v4, Standard_HB176-24rs_v4, Standard_HB176-96rs_v4</td></tr><tr><td>HBv3</td><td>Standard_HB120rs_v3</td></tr></tbody></table>
 
 ### GPU - accelerated compute
 
-<table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>NVadsA10</td><td>Standard_NVadsA10_v5</td></tr></tbody></table>
+<table><thead><tr><th width="159">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>NVadsA10</td><td>Standard_NVadsA10_v5</td></tr><tr><td>NGads_V620</td><td>Standard_NG8ads_V620_v1, Standard_NG16ads_V620_v1, Standard_NG32ads_V620_v1</td></tr></tbody></table>
 
 **Related information**
 
