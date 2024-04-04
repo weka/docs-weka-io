@@ -90,42 +90,7 @@ Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download
 2. To update the environment, do one of the following:
    * Re-login to the server.
    * Run the following command: `source /etc/profile`
-3. To customize the configuration, create the`config.json` file based on the following examples:
-
-<details>
-
-<summary>config.json template</summary>
-
-```json
-{
- "host": "some.domain.com",
- "smtp":{
-    "sender": "Weka Home",
-    "host": "smtp.gmail.com",
-    "port": 587,
-    "user": "username@your-domain.com",
-    "password": "your_password",
-    "senderEmail": "weka-home-noreply@your-domain.com",
-    "insecure": false
- },
- "retentionDays": {
-   "diagnostics": 10,
-   "events": 20
- },
- "forwarding": {
-    "enabled": false,
-    "url": "https://api.home.weka.io",
-    "enableEvents": true,
-    "enableUsageReports": true,
-    "enableAnalytics": true,
-    "enableDiagnostics": true,
-    "enableStats": true,
-    "enableClusterRegistration": true
- }
-}
-```
-
-</details>
+3. To customize the configuration, create a `config.json` file from the following examples and the template located in `/opt/wekahome/current/config.json.sample`.
 
 <details>
 
@@ -223,7 +188,8 @@ The default number of days to keep events in the Local WEKA Home is 30. To reduc
 {
   "retentionDays": {
    "diagnostics": 10,
-   "events": 20
+   "events": 20,
+   "stats": 30
   }
 }
 ```
@@ -234,15 +200,14 @@ The default number of days to keep events in the Local WEKA Home is 30. To reduc
 
 <summary>Forward data from the Local WEKA Home to the Cloud WEKA Home</summary>
 
-In the **forwarding** section, set the forwarding parameters to **true**, as shown in the following sample. This is the default setting starting in Local WEKA Home v2.10.
+Set the forwarding parameters to `true`, as demonstrated in the sample below. Note that this is the default setting commencing from Local WEKA Home v2.10.
 
-To turn off forwarding metrics to Cloud WEKA Home from Local WEKA Home, set `enabled: false` below.
+To turn off the forwarding of metrics from Local WEKA Home to Cloud WEKA Home, set `enabled: false`.
 
-```json
-{
+<pre class="language-json"><code class="lang-json">{
   "forwarding": {
-    "enabled": true,
-    "url": "https://api.home.weka.io",
+<strong>    "enabled": true,
+</strong>    "url": "https://api.home.weka.io",
     "enableEvents": true,
     "enableUsageReports": true,
     "enableAnalytics": true,
@@ -251,7 +216,26 @@ To turn off forwarding metrics to Cloud WEKA Home from Local WEKA Home, set `ena
     "enableClusterRegistration": true
   }
 }
+</code></pre>
+
+For networks that require a **proxy** to forward requests, incorporate the following lines as shown in the example below:
+
+```json
+{
+  "proxy": {
+    "url": "http://user:pass@server.com:3128",
+    "noProxy": ["server.com"]
+  }
+}
 ```
+
+The supported proxy types include:
+
+* http
+* https
+* socks5
+
+**Note:** You don’t need to set the proxy if you are just debugging.
 
 </details>
 
