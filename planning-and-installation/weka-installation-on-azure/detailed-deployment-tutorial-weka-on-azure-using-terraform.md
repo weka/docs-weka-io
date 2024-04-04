@@ -42,7 +42,7 @@ Follow the steps below to find the correct Azure Subscription.
 
 Navigate to the Microsoft Azure Portal. In the search bar, search for “subscriptions.” Select the “Subscriptions” service.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
 
 On the Subscriptions service page, identify the subscription you wish to use for deploying WEKA.
 
@@ -50,7 +50,7 @@ On the Subscriptions service page, identify the subscription you wish to use for
 Please understand the AWS subscription structure for your environment before deploying.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### User Account Privileges
 
@@ -64,19 +64,19 @@ Follow the steps below to verify user privileges assignment.
 
 Navigate to the Azure Portal. Login using the account which will be used for the entirety of the WEKA deployment. Once in the Portal, search for “users” in the search bar and then select “Users” from the search bar drop down.
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 Search for the intended user by typing part of the username into the search box. Once the desired user appears, select the username.
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 Once on the user page, select “Azure Role Assignments.”
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 Next, view the Role Assignments to ensure the user has the proper permissions / roles. Confirm that the user is an “Owner” or “Contributor” for the Subscription you wish to use for deployment of WEKA in Azure.
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
 
 Now that you’ve confirmed the proper user permissions, it’s time to confirm sufficient resource quotas.
 
@@ -92,27 +92,27 @@ Follow the steps below to ensure sufficient quotas are set.
 
 In the Azure Portal, search for “quotas” in the search bar, and select “Quotas” from the drop down menu.
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 Once on the quotas page, select “Compute.”
 
-<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7) (1).png" alt=""><figcaption></figcaption></figure>
 
 In the search bar, search for the instance family or specific instance for which you’d like to set or check quota. In this example, the instance type `Dsv5` has been used.
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 Check the box next to the desired instance type, then select the dropdown menu labeled “Request quota increase.” Then, select “Enter a new limit.”
 
-<figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (9) (1).png" alt=""><figcaption></figcaption></figure>
 
 In the “Request quota increase” blade, enter the desired number of vCPUs to allocate to the instance type or family in question. In this example, we’ll be asking for a new vCPU quota of 150 for the Standard `Dsv5` family of instances. Click “submit.”
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption></figcaption></figure>
 
 Most quota increase requests are approved in real-time, and there is no interaction with Azure support required. If the requested quota increase is for a particularly expensive or specialized instance, or a large number of vCPUs have been requested, it’s possible the request will be denied and Azure support will need to be contacted. The example below shows a successful request for vCPU increase.
 
-<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 Be sure to set quota for any and all instances that will be used as part of the deployment or POC. As documented in the [docs.weka.io supported virtual machine types](https://docs.weka.io/install/weka-installation-on-azure/supported-virtual-machine-types) page, WEKA backends are deployed on `Lsv3` series instances. Reference the link above for a complete listing of the `Lsv3` instance sizes available for use. Quota will need to be set for the `Lsv3` instance family along with whichever instance family will be used for WEKA clients.
 
@@ -142,11 +142,11 @@ Follow the steps below to create a resource group.
 
 In the Azure Portal, search for “resource group” in the search box. Select “Resource groups.”
 
-<figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 
 On the Resource groups page, select “Create.”
 
-<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (1).png" alt=""><figcaption></figcaption></figure>
 
 On the Create resource group page, enter the relevant details. Be sure to select the correct subscription and region into which you wish to deploy the WEKA resources. When finished, click “Review + create.”
 
@@ -154,15 +154,15 @@ On the Create resource group page, enter the relevant details. Be sure to select
 Once a resource group has been named, it cannot be renamed at a later point in time. Keep this in mind when selecting a naming convention.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (14) (1).png" alt=""><figcaption></figcaption></figure>
 
 Confirm creation by clicking “Create.”
 
-<figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (15) (1).png" alt=""><figcaption></figcaption></figure>
 
 Review the newly created resource group.
 
-<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (16) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### VNets
 
@@ -178,27 +178,27 @@ Follow the instructions below to create an Azure VNet and subnet.
 
 In the Azure Portal, search for “virtual networks” in the search bar. Select “Virtual networks.”
 
-<figure><img src="../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (17) (1).png" alt=""><figcaption></figcaption></figure>
 
 On the Virtual networks page, select “Create.”
 
-<figure><img src="../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (18) (1).png" alt=""><figcaption></figcaption></figure>
 
 On the “Create virtual network” page, enter the desired configuration details for the VNet. Select the proper subscription along with the resource group created in the prior step. Specify a VNet name and region, then select “Next: IP Addresses.”
 
-<figure><img src="../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (19) (1).png" alt=""><figcaption></figcaption></figure>
 
 In the “IP Addresses” section, specify the relevant IP address space information. The wizard pre-populates IP address space, and also pre-populates a “default” subnet configuration. The pre-populated information can be changed to suit organizational preferences or requirements. When finished, select “Review + create.”
 
-<figure><img src="../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (20) (1).png" alt=""><figcaption></figcaption></figure>
 
 Confirm creation by selecting “Create” on the next screen.
 
-<figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (21) (1).png" alt=""><figcaption></figcaption></figure>
 
 When creation is complete, a confirmation page will be presented. Review the newly created VNet.
 
-<figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (22) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Network Security Groups
 
@@ -214,23 +214,23 @@ Follow the instructions below to create a Network Security Group.
 
 In the Azure Portal, type “network security group” in the search bar. Select “Network security groups.”
 
-<figure><img src="../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (23) (1).png" alt=""><figcaption></figcaption></figure>
 
 On the “Network security groups” page, select “Create.”
 
-<figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (24) (1).png" alt=""><figcaption></figcaption></figure>
 
 On the “Create network security group” page, enter the relevant environmental information. Be sure to select the correct subscription, and use the resource group previously created. Keep the region consistent with the other resources that have been created. Select “Review + create” when finished.
 
-<figure><img src="../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (25) (1).png" alt=""><figcaption></figcaption></figure>
 
 Confirm creation by clicking “Create” on the next screen.
 
-<figure><img src="../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (26) (1).png" alt=""><figcaption></figcaption></figure>
 
 When creation is complete, a confirmation page will be presented. Review the newly created Network Security Group.
 
-<figure><img src="../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Associating a Security Group with a Subnet
 
@@ -240,11 +240,11 @@ Follow the instructions below to associate the NSG with a subnet.
 
 Navigate to the “Virtual networks” page by searching for “virtual networks” from the portal search bar.
 
-<figure><img src="../../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (28) (1).png" alt=""><figcaption></figcaption></figure>
 
 Select the relevant virtual network from the list presented.
 
-<figure><img src="../../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (29) (1).png" alt=""><figcaption></figcaption></figure>
 
 From the selected virtual network configuration screen, select “Subnets” in the left-hand column.
 

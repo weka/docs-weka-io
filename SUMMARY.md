@@ -37,6 +37,7 @@
     * [Deployment on AWS using Terraform](planning-and-installation/aws/weka-installation-on-aws-using-terraform/deployment-on-aws-using-terraform.md)
     * [Required services and supported regions](planning-and-installation/aws/weka-installation-on-aws-using-terraform/required-services-and-supported-regions.md)
     * [WEKA cluster auto-scaling in AWS](planning-and-installation/aws/weka-installation-on-aws-using-terraform/weka-cluster-auto-scaling-in-aws.md)
+    * [Detailed deployment tutorial: WEKA on AWS using Terraform](planning-and-installation/aws/weka-installation-on-aws-using-terraform/detailed-deployment-tutorial-weka-on-aws-using-terraform.md)
   * [WEKA installation on AWS using the Cloud Formation](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/README.md)
     * [Self-service portal](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/self-service-portal.md)
     * [CloudFormation template generator](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/cloudformation.md)

@@ -15,7 +15,7 @@ WEKA provides a variety of tools for automating the WEKA software installation p
 
 ### WEKA Management Station (WMS)
 
-WMS can be used to speed the WEKA Software Appliance (WSA) deployment on the supported bare metal servers: Dell, HPE, Lenovo, and Supermicro.
+WMS can be used to speed the WEKA Software Appliance (WSA) deployment on the supported bare metal servers: HPe, Dell, and Supermicro.
 
 This is the preferred installation method, the simplest and fastest method to get from bare metal to a working WEKA cluster. If you cannot meet the prerequisites for deploying WMS, use the WSA package.
 

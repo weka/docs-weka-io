@@ -368,22 +368,9 @@ Once the deployment is completed, access the WEKA cluster GUI using the URL: `ht
 
 [performing-the-first-io.md](../../getting-started-with-weka/performing-the-first-io.md "mention")
 
-## **Update the admin user** password
+## **Update the** Cluster Admin password
 
-When deploying a WEKA cluster on the cloud using Terraform, a default username (admin) is automatically generated, and Terraform creates the password. Only the password is stored in the Key Vault of the Azure console. This user facilitates communication between the cloud and the WEKA cluster, particularly during scale-up and scale-down operations.
-
-As a best practice, it’s recommended to update the admin password in the WEKA cluster and the [Azure Key Vault](#user-content-fn-1)[^1].
-
-**Procedure**
-
-1. In the WEKA cluster, update the admin user's password.
-2. In the **Azure console**, navigate to **Key Vault**.
-3. Update the `weka_password` service with the newly updated password.
-4. Validate the changes by checking the results in the [Azure Logic Apps](#user-content-fn-2)[^2] platform and ensuring they pass successfully.
-
-**Related topic**
-
-[#change-a-local-user-password](../../operation-guide/user-management/user-management.md#change-a-local-user-password "mention")
+If you [update the Cluster admin password](https://docs.weka.io/usage/user-management/user-management#change-a-local-user-password) in the WEKA application, also update the weka-password secret in the key vault in the Azure console or Azure CLI.
 
 ## **Clean up the** deployment
 
@@ -396,9 +383,3 @@ If the Terraform deployment fails for any reason, such as dependencies not being
 {% hint style="info" %}
 If you need to preserve your data, create a snapshot using [snap-to-object](../../weka-filesystems-and-object-stores/snap-to-obj/).
 {% endhint %}
-
-[^1]: Azure Key Vault safeguards cryptographic keys and other secrets used by cloud apps and services.\
-    For details, see [https://azure.microsoft.com/en-us/products/key-vault](https://azure.microsoft.com/en-us/products/key-vault)
-
-[^2]: Azure Logic Apps is a cloud platform where you can create and run automated workflows with little to no code. By using the visual designer and selecting from prebuilt operations, you can quickly build a workflow that integrates and manages your apps, data, services, and systems.\
-    For details, see [https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview](https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview).
