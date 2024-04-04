@@ -6,9 +6,16 @@ description: >-
 
 # Prerequisites and compatibility
 
+
+
+{% hint style="warning" %}
+**Important:** The versions mentioned on the prerequisites and compatibility page are applicable to the WEKA system's **latest minor version** (4.2.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
+
+Check the release notes for details about any updates or changes accompanying the latest releases.
+{% endhint %}
+
 {% hint style="info" %}
-* The versions specified in the prerequisites and compatibility page apply to the latest minor version of the WEKA system. See the relevant release notes in [get.weka.io ](https://get.weka.io/ui/releases/)for more details.
-* In certain instances, WEKA collaborates with Strategic Server Partners to conduct platform qualifications alongside complementary components. Contact your designated WEKA representative with any inquiries.
+In certain instances, WEKA collaborates with Strategic Server Partners to conduct platform qualifications alongside complementary components. Contact your designated WEKA representative with any inquiries.
 {% endhint %}
 
 ## CPU
