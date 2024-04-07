@@ -6,17 +6,17 @@ description: Explore the statistics the WEKA system generates organized by categ
 
 ### Assert failures
 
-| **Type**                                          | **Description**                                                       | **Units**          |
-| ------------------------------------------------- | --------------------------------------------------------------------- | ------------------ |
-| ASSERTION\_FAILURES\_IGNORE                       | Assertion failures count with "IGNORE" behavior                       | Assertion failures |
-| ASSERTION\_FAILURES\_KILL\_BUCKET                 | Assertion failures count with "KILL\_BUCKET" behavior                 | Assertion failures |
-| ASSERTION\_FAILURES\_KILL\_FIBER                  | Assertion failures count with "KILL\_FIBER" behavior                  | Assertion failures |
-| ASSERTION\_FAILURES\_KILL\_NODE\_WITH\_CORE\_DUMP | Assertion failures count with "KILL\_NODE\_WITH\_CORE\_DUMP" behavior | Assertion failures |
-| ASSERTION\_FAILURES\_KILL\_NODE                   | Assertion failures count with "KILL\_NODE" behavior                   | Assertion failures |
-| ASSERTION\_FAILURES\_STALL\_AND\_KILL\_NODE       | Assertion failures count with "STALL\_AND\_KILL\_NODE" behavior       | Assertion failures |
-| ASSERTION\_FAILURES\_STALL                        | Assertion failures count with "STALL" behavior                        | Assertion failures |
-| ASSERTION\_FAILURES\_THROW\_EXCEPTION             | Assertion failures count with "THROW\_EXCEPTION" behavior             | Assertion failures |
-| ASSERTION\_FAILURES                               | Assertion failures count of all available types                       | Assertion failures |
+| **Type**                                          | **Description**                                                           | **Units**          |
+| ------------------------------------------------- | ------------------------------------------------------------------------- | ------------------ |
+| ASSERTION\_FAILURES\_IGNORE                       | Assertion failures count with the "IGNORE" behavior                       | Assertion failures |
+| ASSERTION\_FAILURES\_KILL\_BUCKET                 | Assertion failures count with the "KILL\_BUCKET" behavior                 | Assertion failures |
+| ASSERTION\_FAILURES\_KILL\_FIBER                  | Assertion failures count with the "KILL\_FIBER" behavior                  | Assertion failures |
+| ASSERTION\_FAILURES\_KILL\_NODE\_WITH\_CORE\_DUMP | Assertion failures count with the "KILL\_NODE\_WITH\_CORE\_DUMP" behavior | Assertion failures |
+| ASSERTION\_FAILURES\_KILL\_NODE                   | Assertion failures count with the "KILL\_NODE" behavior                   | Assertion failures |
+| ASSERTION\_FAILURES\_STALL\_AND\_KILL\_NODE       | Assertion failures count with the "STALL\_AND\_KILL\_NODE" behavior       | Assertion failures |
+| ASSERTION\_FAILURES\_STALL                        | Assertion failures count with the "STALL" behavior                        | Assertion failures |
+| ASSERTION\_FAILURES\_THROW\_EXCEPTION             | Assertion failures count with the "THROW\_EXCEPTION" behavior             | Assertion failures |
+| ASSERTION\_FAILURES                               | Assertion failures count of all available types                           | Assertion failures |
 
 ### Attribute Cache
 
@@ -41,7 +41,7 @@ description: Explore the statistics the WEKA system generates organized by categ
 
 | **Type**               | **Description**                | **Units** |
 | ---------------------- | ------------------------------ | --------- |
-| BLOCK\_FULL\_WRITES    | Number of full block writes    | Writes    |
+| BLOCK\_FULL\_WRITES    | Number of entire block writes  | Writes    |
 | BLOCK\_PARTIAL\_WRITES | Number of partial block writes | Writes    |
 
 ### Bucket
@@ -82,6 +82,7 @@ description: Explore the statistics the WEKA system generates organized by categ
 | ODH\_COLLISIONS\_STOW\_DOWNLOAD\_REDISTRIBUTE\_V4\_3              | Number of ODH items created with colliding hash in STOW\_DOWNLOAD\_REDISTRIBUTE\_V4\_3 ODH              | Collisions   |
 | ODH\_COLLISIONS\_STOW\_UPLOAD\_MANIFEST                           | Number of ODH items created with colliding hash in STOW\_UPLOAD\_MANIFEST ODH                           | Collisions   |
 | ODH\_COLLISIONS\_SV\_CAPACITY\_LEADER                             | Number of ODH items created with colliding hash in SV\_CAPACITY\_LEADER ODH                             | Collisions   |
+| ODH\_COLLISIONS\_UNLINKED\_INODES                                 | Number of ODH items created with colliding hash in UNLINKED\_INODES ODH                                 | Collisions   |
 | ODH\_COLLISIONS                                                   | Number of ODH items created with colliding hash in all ODHs                                             | Collisions   |
 | ODL\_BLOCKS\_COUNT                                                | Difference in number of ODL blocks                                                                      | Blocks       |
 | ODL\_PAYLOAD\_BLOCKS\_COUNT                                       | Difference in number of ODL\_PAYLOAD blocks                                                             | Blocks       |
@@ -162,7 +163,7 @@ description: Explore the statistics the WEKA system generates organized by categ
 | HEARTBEAT\_PROCESSING\_TIME              | The number of non-leader heartbeats per processing time range       | Number of heartbeats |
 | LEADER\_HEARTBEAT\_PROCESSING\_TIME\_OLD | The number of leader heartbeats per processing time range (OLD)     | Number of heartbeats |
 | LEADER\_HEARTBEAT\_PROCESSING\_TIME      | The number of leader heartbeats per processing time range           | Number of heartbeats |
-| OVERLAY\_FULL\_SHIFTS                    | The number of full overlay shifts                                   | Changes              |
+| OVERLAY\_FULL\_SHIFTS                    | The number of entire overlay shifts                                 | Changes              |
 | OVERLAY\_INCREMENTAL\_SHIFTS             | The number of incremental overlay shifts                            | Changes              |
 | OVERLAY\_TRACKER\_INCREMENTALS           | The number of incremental OverlayTracker applications               | Changes              |
 | OVERLAY\_TRACKER\_RESYNCS                | The number of OverlayTracker full-resyncs                           | Changes              |
@@ -255,7 +256,7 @@ description: Explore the statistics the WEKA system generates organized by categ
 | OBS\_TRUNCATE                                     | Number of truncates that needed data from the object store per second           | Ops/Sec            |
 | OBS\_UNEXPECTED\_TAG\_ON\_DOWNLOAD                | Number of unexpected tags found when downloading extents                        | Occurrences        |
 | OBS\_WRITE                                        | Number of writes that needed data from the object store per second              | Ops/Sec            |
-| STOW\_COMMIT\_QUEUE\_HANG                         | Number of times metadata download queue was hanging full                        | Occurrences        |
+| STOW\_COMMIT\_QUEUE\_HANG                         | Number of times metadata download queue was hanging total                       | Occurrences        |
 | STOW\_METADATA\_DESERIALIZATION\_LATENCY          | Average latency of metadata blob deserialization                                | Milliseconds       |
 | STOW\_METADATA\_SEED\_DOWNLOADS                   | Number of seed downloads per second                                             | Ops/Sec            |
 | STOW\_SERIALIZED\_EXTENT\_DATA                    | Number of extent descriptors uploaded that contain data                         | Extent Descriptors |
@@ -334,7 +335,7 @@ description: Explore the statistics the WEKA system generates organized by categ
 | GOODPUT\_RX\_RATIO                   | Percentage of goodput RX packets out of total data packets received                                                 | %                 |
 | GOODPUT\_TX\_RATIO                   | Percentage of goodput TX packets out of total data packets sent                                                     | %                 |
 | GW\_MAC\_RESOLVE\_FAILURES           | Number of times we failed to ARP resolve the gateway IP                                                             | Failures          |
-| GW\_MAC\_RESOLVE\_SUCCESSES          | Number of times we succeeded in ARP resolve the gateway IP                                                          | Successes         |
+| GW\_MAC\_RESOLVE\_SUCCESSES          | Number of times we succeeded in ARP resolving the gateway IP                                                        | Successes         |
 | INVALID\_FIRST\_FRAGMENT             | Number of times we got an invalid first fragment                                                                    | Packets/Sec       |
 | MBUF\_DUP\_COUNT                     | Numer of Duplicate mbufs found                                                                                      | Occurences        |
 | MBUF\_DUP\_ITER                      | Duplicate mbuf check completions                                                                                    | Occurences        |
@@ -509,15 +510,15 @@ description: Explore the statistics the WEKA system generates organized by categ
 | RESPONSE\_COUNT\_UNSUPPORTED\_MEDIA\_TYPE            | Number of HTTP UNSUPPORTED\_MEDIA\_TYPE responses per second              | Responses/Sec |
 | RESPONSE\_COUNT\_URI\_TOO\_LONG                      | Number of HTTP URI\_TOO\_LONG responses per second                        | Responses/Sec |
 | RESPONSE\_COUNT\_USE\_PROXY                          | Number of HTTP USE\_PROXY responses per second                            | Responses/Sec |
-| WAITING\_FOR\_BUCKET\_DOWNLOAD\_BANDWIDTH            | Time requests wait for the object store bucket download bandwidth         | Ops           |
+| WAITING\_FOR\_BUCKET\_DOWNLOAD\_BANDWIDTH            | Time requests wait for the object tore bucket download bandwidth          | Ops           |
 | WAITING\_FOR\_BUCKET\_DOWNLOAD\_FLOW                 | Time requests wait for the object store bucket download flow              | Ops           |
-| WAITING\_FOR\_BUCKET\_REMOVE\_BANDWIDTH              | Time requests wait for the object store bucket remove bandwidth           | Ops           |
+| WAITING\_FOR\_BUCKET\_REMOVE\_BANDWIDTH              | Time requests wait for the object store bucket to remove bandwidth        | Ops           |
 | WAITING\_FOR\_BUCKET\_REMOVE\_FLOW                   | Time requests wait for the object store bucket remove flow                | Ops           |
 | WAITING\_FOR\_BUCKET\_UPLOAD\_BANDWIDTH              | Time requests wait for the object store bucket upload bandwidth           | Ops           |
 | WAITING\_FOR\_BUCKET\_UPLOAD\_FLOW                   | Time requests wait for the object store bucket upload flow                | Ops           |
 | WAITING\_FOR\_GROUP\_DOWNLOAD\_BANDWIDTH             | Time requests wait for the object store group download bandwidth          | Ops           |
 | WAITING\_FOR\_GROUP\_DOWNLOAD\_FLOW                  | Time requests wait for the object store group download flow               | Ops           |
-| WAITING\_FOR\_GROUP\_REMOVE\_BANDWIDTH               | Time requests wait for the object store group remove bandwidth            | Ops           |
+| WAITING\_FOR\_GROUP\_REMOVE\_BANDWIDTH               | Time requests wait for the object store group to remove bandwidth         | Ops           |
 | WAITING\_FOR\_GROUP\_REMOVE\_FLOW                    | Time requests wait for the object store group remove flow                 | Ops           |
 | WAITING\_FOR\_GROUP\_UPLOAD\_BANDWIDTH               | Time requests wait for the object store group upload bandwidth            | Ops           |
 | WAITING\_FOR\_GROUP\_UPLOAD\_FLOW                    | Time requests wait for the object store group upload flow                 | Ops           |
@@ -953,8 +954,8 @@ description: Explore the statistics the WEKA system generates organized by categ
 | RAID\_BLOCKS\_IN\_PREPARED\_STRIPE           | Free blocks in prepared stripe                                             | Blocks     |
 | RAID\_CHUNKS\_CLEANED\_BY\_SHIFT             | Dirty chunks cleaned by being shifted out                                  | Occurences |
 | RAID\_CHUNKS\_SHIFTED                        | Dirty chunks that shifted out                                              | Occurences |
-| RAID\_COMMITTED\_STRIPES                     | Written number of stripes                                                  | Stripes    |
-| RAID\_COMPRESSED\_BLOCKS\_WRITTEN            | Written physical blocks containing compressed data                         | Blocks/Sec |
+| RAID\_COMMITTED\_STRIPES                     | Number of stripes written                                                  | Stripes    |
+| RAID\_COMPRESSED\_BLOCKS\_WRITTEN            | Physical blocks are written containing compressed data                     | Blocks/Sec |
 | RAID\_CORRUPTION\_RECOVERY\_FAILURE          | Corrupt data could not be recovered                                        | Occurences |
 | RAID\_PLACEMENT\_SWITCHES                    | Number of placement switches                                               | Switches   |
 | RAID\_READ\_BATCHES\_PER\_REQUEST\_HISTOGRAM | Histogram of the number of batches of stripes read in a single request     | Request    |
@@ -965,7 +966,7 @@ description: Explore the statistics the WEKA system generates organized by categ
 | RAID\_READ\_IOS                              | Raw read blocks performed by the RAID                                      | Blocks/Sec |
 | RAID\_STALE\_WRITES\_DETECTED                | Stale write detected in read                                               | Occurences |
 | RAID\_STALE\_WRITES\_REPROTECTIONS           | Stale write re-protections in read                                         | Occurences |
-| WRONG\_DRIVE\_DELTAS                         | Delta segments are written to the wrong drive                              | Blocks/Sec |
+| WRONG\_DRIVE\_DELTAS                         | Delta segments written to wrong drive                                      | Blocks/Sec |
 | WRONG\_DRIVE\_REFS                           | Reference segments are written to the wrong drive                          | Blocks/Sec |
 
 ### RPC
@@ -1010,200 +1011,176 @@ description: Explore the statistics the WEKA system generates organized by categ
 
 ### Reactor
 
-| **Type**                             | **Description**                                                                                                                                            | **Units**               |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| BACKGROUND\_CYCLES                   | Number of cycles spent in background fibers                                                                                                                | Cycles/Sec              |
-| BACKGROUND\_FIBERS                   | Number of background fibers that are ready to run and eager to get CPU cycles                                                                              | Fibers                  |
-| BACKGROUND\_TIME                     | The percentage of the CPU time used for background operations                                                                                              | %                       |
-| BucketInvocationState\_CAPACITY      | Number of data structures allocated to the BucketInvocationState pool                                                                                      | Structs                 |
-| BucketInvocationState\_STRUCT\_SIZE  | Number of bytes in each struct of the BucketInvocationState pool                                                                                           | Bytes                   |
-| BucketInvocationState\_USED          | Number of structs in the BucketInvocationState pool which are currently being used                                                                         | Structs                 |
-| Bucket\_CAPACITY                     | Number of data structures allocated to the Bucket pool                                                                                                     | Structs                 |
-| Bucket\_STRUCT\_SIZE                 | Number of bytes in each struct of the Bucket pool                                                                                                          | Bytes                   |
-| Bucket\_USED                         | Number of structs in the Bucket pool which are currently being used                                                                                        | Structs                 |
-| CLASS\_BLOB\_RAID\_CAPACITY          | Number of data structures allocated to the CLASS\_BLOB\_RAID pool                                                                                          | Structs                 |
-| CLASS\_BLOB\_RAID\_STRUCT\_SIZE      | Number of bytes in each struct of the CLASS\_BLOB\_RAID pool                                                                                               | Bytes                   |
-| CLASS\_BLOB\_RAID\_USED              | Number of structs in the CLASS\_BLOB\_RAID pool which are currently being used                                                                             | Structs                 |
-| CYCLES\_PER\_SECOND                  | Number of cycles the CPU runs per second                                                                                                                   | Cycles/Sec              |
-| ChainedSpan\_CAPACITY                | Number of data structures allocated to the ChainedSpan pool                                                                                                | Structs                 |
-| ChainedSpan\_STRUCT\_SIZE            | Number of bytes in each struct of the ChainedSpan pool                                                                                                     | Bytes                   |
-| ChainedSpan\_USED                    | Number of structs in the ChainedSpan pool which are currently being used                                                                                   | Structs                 |
-| Charter\_CAPACITY                    | Number of data structures allocated to the Charter pool                                                                                                    | Structs                 |
-| Charter\_STRUCT\_SIZE                | Number of bytes in each struct of the Charter pool                                                                                                         | Bytes                   |
-| Charter\_USED                        | Number of structs in the Charter pool which are currently being used                                                                                       | Structs                 |
-| CrossDestageDesc\_CAPACITY           | Number of data structures allocated to the CrossDestageDesc pool                                                                                           | Structs                 |
-| CrossDestageDesc\_STRUCT\_SIZE       | Number of bytes in each struct of the CrossDestageDesc pool                                                                                                | Bytes                   |
-| CrossDestageDesc\_USED               | Number of structs in the CrossDestageDesc pool which are currently being used                                                                              | Structs                 |
-| DEFUNCT\_FIBERS                      | Number of defunct buffers, which are just memory structures allocated for future fiber needs                                                               | Fibers                  |
-| DeferredTask2\_CAPACITY              | Number of data structures allocated to the DeferredTask2 pool                                                                                              | Structs                 |
-| DeferredTask2\_STRUCT\_SIZE          | Number of bytes in each struct of the DeferredTask2 pool                                                                                                   | Bytes                   |
-| DeferredTask2\_USED                  | Number of structs in the DeferredTask2 pool which are currently being used                                                                                 | Structs                 |
-| EXCEPTIONS                           | Number of exceptions caught by the reactor                                                                                                                 | Exceptions/Sec          |
-| GenericBaseBlock\_CAPACITY           | Number of data structures allocated to the GenericBaseBlock pool                                                                                           | Structs                 |
-| GenericBaseBlock\_STRUCT\_SIZE       | Number of bytes in each struct of the GenericBaseBlock pool                                                                                                | Bytes                   |
-| GenericBaseBlock\_USED               | Number of structs in the GenericBaseBlock pool which are currently being used                                                                              | Structs                 |
-| HOGGED\_TIME                         | Histogram of time used by hogger fibers (only in debug builds)                                                                                             | Hogs                    |
-| IDLE\_CALLBACK\_INVOCATIONS          | Number of background work invocations                                                                                                                      | Invocations/Sec         |
-| IDLE\_CYCLES                         | Number of cycles spent in idle                                                                                                                             | Cycles/Sec              |
-| IDLE\_TIME                           | The percentage of the CPU time not used for handling I/Os                                                                                                  | %                       |
-| LINGERING\_FIBERS                    | Number of LINGERING fibers                                                                                                                                 | Fibers                  |
-| NODE\_CONTEXT\_SWITCHES              | Number of context switches.                                                                                                                                | Switches                |
-| NODE\_HANG                           | The number of process (node) hangs per hang time range.                                                                                                    | Number of hangs         |
-| NODE\_POLL\_TIME                     | Time of scheduler stats polling.                                                                                                                           | usecs                   |
-| NODE\_RUN\_PERCENTAGE                | Percentage of time process is running                                                                                                                      | percentage              |
-| NODE\_RUN\_TIME                      | Time process is running.                                                                                                                                   | usecs                   |
-| NODE\_WAIT\_PERCENTAGE               | Percentage of time process is waiting on waitqueue                                                                                                         | percentage              |
-| NODE\_WAIT\_TIME                     | The Time process is waiting on the wait queue.                                                                                                             | usecs                   |
-| OUTRAGEOUS\_HOGGERS                  | Number of hoggers taking an excessive amount of time to run                                                                                                | Invocations             |
-| ObsBucketManagement\_CAPACITY        | Number of data structures allocated to the ObsBucketManagement pool                                                                                        | Structs                 |
-| ObsBucketManagement\_STRUCT\_SIZE    | Number of bytes in each struct of the ObsBucketManagement pool                                                                                             | Bytes                   |
-| ObsBucketManagement\_USED            | Number of structs in the ObsBucketManagement pool that are currently being used                                                                            | Structs                 |
-| ObsGateway\_CAPACITY                 | Number of data structures allocated to the ObsGateway pool                                                                                                 | Structs                 |
-| ObsGateway\_STRUCT\_SIZE             | Number of bytes in each struct of the ObsGateway pool                                                                                                      | Bytes                   |
-| ObsGateway\_USED                     | Number of structs in the ObsGateway pool which are currently being used                                                                                    | Structs                 |
-| PENDING\_FIBERS                      | Number of fibers pending for external events, such as a network packet or SSD response. Upon such an external event, they change state to scheduled fibers | Fibers                  |
-| QueuedBlock\_CAPACITY                | Number of data structures allocated to the QueuedBlock pool                                                                                                | Structs                 |
-| QueuedBlock\_STRUCT\_SIZE            | Number of bytes in each struct of the QueuedBlock pool                                                                                                     | Bytes                   |
-| QueuedBlock\_USED                    | Number of structs in the QueuedBlock pool which are currently being used                                                                                   | Structs                 |
-| SCHEDULED\_FIBERS                    | Number of current fibers that are ready to run and eager to get CPU cycles                                                                                 | Fibers                  |
-| SLEEPY\_FIBERS                       | Number of SLEEPY fibers                                                                                                                                    | Fibers                  |
-| SLEEPY\_RPC\_SERVER\_FIBERS          | Number of SLEEPY RPC server fibers                                                                                                                         | Sleepy fiber detections |
-| SSD\_CAPACITY                        | Number of data structures allocated to the SSD pool                                                                                                        | Structs                 |
-| SSD\_STRUCT\_SIZE                    | Number of bytes in each struct of the SSD pool                                                                                                             | Bytes                   |
-| SSD\_USED                            | Number of structs in the SSD pool which are currently being used                                                                                           | Structs                 |
-| STEP\_CYCLES                         | Histogram of time spent in a fiber                                                                                                                         | Fiber steps             |
-| TIMER\_CALLBACKS                     | Current number of timer callbacks                                                                                                                          | Callbacks               |
-| TOTAL\_FIBERS\_COUNT                 | Number of fibers                                                                                                                                           | Fibers                  |
-| TimedCallback\_CAPACITY              | Number of data structures allocated to the TimedCallback pool                                                                                              | Structs                 |
-| TimedCallback\_STRUCT\_SIZE          | Number of bytes in each struct of the TimedCallback pool                                                                                                   | Bytes                   |
-| TimedCallback\_USED                  | Number of structs in the TimedCallback pool which are currently being used                                                                                 | Structs                 |
-| UploadFileInfo\_CAPACITY             | Number of data structures allocated to the UploadFileInfo pool                                                                                             | Structs                 |
-| UploadFileInfo\_STRUCT\_SIZE         | Number of bytes in each struct of the UploadFileInfo pool                                                                                                  | Bytes                   |
-| UploadFileInfo\_USED                 | Number of structs in the UploadFileInfo pool which are currently being used                                                                                | Structs                 |
-| \_ReadBlocksImpl\_RAID\_CAPACITY     | Number of data structures allocated to the \_ReadBlocksImpl\_RAID pool                                                                                     | Structs                 |
-| \_ReadBlocksImpl\_RAID\_STRUCT\_SIZE | Number of bytes in each struct of the \_ReadBlocksImpl\_RAID pool                                                                                          | Bytes                   |
-| \_ReadBlocksImpl\_RAID\_USED         | Number of structs in the \_ReadBlocksImpl\_RAID pool which are currently being used                                                                        | Structs                 |
-| networkBuffers\_CAPACITY             | Number of data structures allocated to the networkBuffers pool                                                                                             | Structs                 |
-| networkBuffers\_USED                 | Number of structs in the networkBuffers pool which are currently being used                                                                                | Structs                 |
-| rdmaNetworkBuffers\_CAPACITY         | Number of data structures allocated to the rdmaNetworkBuffers pool                                                                                         | Structs                 |
-| rdmaNetworkBuffers\_USED             | Number of structs in the rdmaNetworkBuffers pool which are currently being used                                                                            | Structs                 |
+| **Type**                            | **Description**                                                                                                                                            | **Units**               |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| BACKGROUND\_CYCLES                  | Number of cycles spent in background fibers                                                                                                                | Cycles/Sec              |
+| BACKGROUND\_FIBERS                  | Number of background fibers that are ready to run and eager to get CPU cycles                                                                              | Fibers                  |
+| BACKGROUND\_TIME                    | The percentage of the CPU time used for background operations                                                                                              | %                       |
+| BucketInvocationState\_CAPACITY     | Number of data structures allocated to the BucketInvocationState pool                                                                                      | Structs                 |
+| BucketInvocationState\_STRUCT\_SIZE | Number of bytes in each struct of the BucketInvocationState pool                                                                                           | Bytes                   |
+| BucketInvocationState\_USED         | Number of structs in the BucketInvocationState pool which are currently being used                                                                         | Structs                 |
+| CYCLES\_PER\_SECOND                 | Number of cycles the CPU runs per second                                                                                                                   | Cycles/Sec              |
+| DEFUNCT\_FIBERS                     | Number of defunct buffers, which are just memory structures allocated for future fiber needs                                                               | Fibers                  |
+| DeferredTask2\_CAPACITY             | Number of data structures allocated to the DeferredTask2 pool                                                                                              | Structs                 |
+| DeferredTask2\_STRUCT\_SIZE         | Number of bytes in each struct of the DeferredTask2 pool                                                                                                   | Bytes                   |
+| DeferredTask2\_USED                 | Number of structs in the DeferredTask2 pool which are currently being used                                                                                 | Structs                 |
+| EXCEPTIONS                          | Number of exceptions caught by the reactor                                                                                                                 | Exceptions/Sec          |
+| HOGGED\_TIME                        | Histogram of time used by hogger fibers (only in debug builds)                                                                                             | Hogs                    |
+| IDLE\_CALLBACK\_INVOCATIONS         | Number of background work invocations                                                                                                                      | Invocations/Sec         |
+| IDLE\_CYCLES                        | Number of cycles spent in idle                                                                                                                             | Cycles/Sec              |
+| IDLE\_TIME                          | The percentage of the CPU time not used for handling I/Os                                                                                                  | %                       |
+| LINGERING\_FIBERS                   | Number of LINGERING fibers                                                                                                                                 | Fibers                  |
+| NODE\_CONTEXT\_SWITCHES             | Number of context switches.                                                                                                                                | Switches                |
+| NODE\_HANG                          | The number of process (node) hangs per hang time range.                                                                                                    | Number of hangs         |
+| NODE\_POLL\_TIME                    | Time of scheduler stats polling.                                                                                                                           | usecs                   |
+| NODE\_RUN\_PERCENTAGE               | Percentage of time process is running                                                                                                                      | percentage              |
+| NODE\_RUN\_TIME                     | Time process is running.                                                                                                                                   | usecs                   |
+| NODE\_WAIT\_PERCENTAGE              | Percentage of time process is waiting on waitqueue                                                                                                         | percentage              |
+| NODE\_WAIT\_TIME                    | The time process is waiting on the wait queue.                                                                                                             | usecs                   |
+| OUTRAGEOUS\_HOGGERS                 | Number of hoggers taking an excessive amount of time to run                                                                                                | Invocations             |
+| ObsBucketManagement\_CAPACITY       | Number of data structures allocated to the ObsBucketManagement pool                                                                                        | Structs                 |
+| ObsBucketManagement\_STRUCT\_SIZE   | Number of bytes in each struct of the ObsBucketManagement pool                                                                                             | Bytes                   |
+| ObsBucketManagement\_USED           | Number of structs in the ObsBucketManagement pool that are currently being used                                                                            | Structs                 |
+| ObsGateway\_CAPACITY                | Number of data structures allocated to the ObsGateway pool                                                                                                 | Structs                 |
+| ObsGateway\_STRUCT\_SIZE            | Number of bytes in each struct of the ObsGateway pool                                                                                                      | Bytes                   |
+| ObsGateway\_USED                    | Number of structs in the ObsGateway pool which are currently being used                                                                                    | Structs                 |
+| PENDING\_FIBERS                     | Number of fibers pending for external events, such as a network packet or SSD response. Upon such an external event, they change state to scheduled fibers | Fibers                  |
+| SCHEDULED\_FIBERS                   | Number of current fibers that are ready to run and eager to get CPU cycles                                                                                 | Fibers                  |
+| SLEEPY\_FIBERS                      | Number of SLEEPY fibers                                                                                                                                    | Fibers                  |
+| SLEEPY\_RPC\_SERVER\_FIBERS         | Number of SLEEPY RPC server fibers                                                                                                                         | Sleepy fiber detections |
+| SSD\_CAPACITY                       | Number of data structures allocated to the SSD pool                                                                                                        | Structs                 |
+| SSD\_STRUCT\_SIZE                   | Number of bytes in each struct of the SSD pool                                                                                                             | Bytes                   |
+| SSD\_USED                           | Number of structs in the SSD pool which are currently being used                                                                                           | Structs                 |
+| STEP\_CYCLES                        | Histogram of time spent in a fiber                                                                                                                         | Fiber steps             |
+| TIMER\_CALLBACKS                    | Current number of timer callbacks                                                                                                                          | Callbacks               |
+| TOTAL\_FIBERS\_COUNT                | Number of fibers                                                                                                                                           | Fibers                  |
+| TimedCallback\_CAPACITY             | Number of data structures allocated to the TimedCallback pool                                                                                              | Structs                 |
+| TimedCallback\_STRUCT\_SIZE         | Number of bytes in each struct of the TimedCallback pool                                                                                                   | Bytes                   |
+| TimedCallback\_USED                 | Number of structs in the TimedCallback pool which are currently being used                                                                                 | Structs                 |
+| UploadFileInfo\_CAPACITY            | Number of data structures allocated to the UploadFileInfo pool                                                                                             | Structs                 |
+| UploadFileInfo\_STRUCT\_SIZE        | Number of bytes in each struct of the UploadFileInfo pool                                                                                                  | Bytes                   |
+| UploadFileInfo\_USED                | Number of structs in the UploadFileInfo pool which are currently being used                                                                                | Structs                 |
+| networkBuffers\_CAPACITY            | Number of data structures allocated to the networkBuffers pool                                                                                             | Structs                 |
+| networkBuffers\_USED                | Number of structs in the networkBuffers pool which are currently being used                                                                                | Structs                 |
+| rdmaNetworkBuffers\_CAPACITY        | Number of data structures allocated to the rdmaNetworkBuffers pool                                                                                         | Structs                 |
+| rdmaNetworkBuffers\_USED            | Number of structs in the rdmaNetworkBuffers pool which are currently being used                                                                            | Structs                 |
 
 ### SSD
 
-| **Type**                             | **Description**                                                    | **Units**      |
-| ------------------------------------ | ------------------------------------------------------------------ | -------------- |
-| CLEAN\_CHUNK\_SKIPPED                | Number of clean chunks skips                                       | Chunks         |
-| DRIVE\_ACTIVE\_IOS                   | The number of in-flight IO against the SSD during sampling         | IOs            |
-| DRIVE\_AER\_RECEIVED                 | Number of AER reports                                              | reports        |
-| DRIVE\_COMPLETED\_OVER\_COUNT        | Drive completed count > 1 detected                                 | Occurrences    |
-| DRIVE\_FORFEITS                      | Number of IOs forfeited due to lack of memory buffers              | Operations/Sec |
-| DRIVE\_IDLE\_CYCLES                  | Number of cycles spent in idle                                     | Cycles/Sec     |
-| DRIVE\_IDLE\_TIME                    | Percentage of the CPU time not used for handling I/Os              | %              |
-| DRIVE\_IO\_OVERLAPPED                | Number of overlapping IOs                                          | Operations     |
-| DRIVE\_IO\_TOO\_LONG                 | Number of IOs that took longer than expected                       | Operations/Sec |
-| DRIVE\_LATENCY                       | Measure the latencies up to 5ms (higher latencies are grouped)     | Requests       |
-| DRIVE\_LOAD                          | Drive Load at sampling time                                        | Load           |
-| DRIVE\_MEDIA\_BLOCKS\_READ           | Blocks read from the SSD media                                     | Blocks/Sec     |
-| DRIVE\_MEDIA\_BLOCKS\_WRITE          | Blocks are written to the SSD media                                | Blocks/Sec     |
-| DRIVE\_MEDIA\_ERRORS                 | SSD Media Errors                                                   | IO/Sec         |
-| DRIVE\_NON\_MEDIA\_ERRORS            | SSD Non-Media Errors                                               | IO/Sec         |
-| DRIVE\_PENDING\_IOS                  | The number of IOs waiting to start executing during sampling       | IOs            |
-| DRIVE\_PUMPED\_IOS                   | Number of requests returned in a pump                              | Pumps          |
-| DRIVE\_PUMPS\_DELAYED                | Number of Drive pumps that got delayed                             | Operations/Sec |
-| DRIVE\_PUMPS\_SEVERELY\_DELAYED      | Number of Drive pumps that got severely delayed                    | Operations/Sec |
-| DRIVE\_PUMP\_LATENCY                 | Latency between SSD pumps                                          | Microseconds   |
-| DRIVE\_READ\_LATENCY                 | Drive Read Execution Latency                                       | Microseconds   |
-| DRIVE\_READ\_OPS                     | Drive Read Operations                                              | IO/Sec         |
-| DRIVE\_READ\_RATIO\_PER\_SSD\_READ   | Drive Read OPS Per SSD Request                                     | Ratio          |
-| DRIVE\_REMAINING\_IOS                | Number of requests still in the drive after a pump                 | Pumps          |
-| DRIVE\_REQUEST\_BLOCKS               | Measure drive request size distribution                            | Requests       |
-| DRIVE\_SSD\_PUMPS                    | Number of drive pumps that resulted in the data flow from/to drive | Pump/Sec       |
-| DRIVE\_UTILIZATION                   | Percentage of time the drive had an active IO submitted to it      | %              |
-| DRIVE\_WRITE\_LATENCY                | Drive Write Execution Latency                                      | Microseconds   |
-| DRIVE\_WRITE\_OPS                    | Drive Write Operations                                             | IO/Sec         |
-| DRIVE\_WRITE\_RATIO\_PER\_SSD\_WRITE | Drive Write OPS Per SSD Request                                    | Ratio          |
-| NVKV\_CHUNK\_OUT\_OF\_SPACE          | Number of failed attempts to allocate a stripe in an NVKV chunk    | Attempts/Sec   |
-| NVKV\_OUT\_OF\_CHUNKS                | Number of failed attempts to allocate an NVKV chunk                | Attempts/Sec   |
-| NVKV\_OUT\_OF\_SUPERBLOCK\_ENTRIES   | Number of failed attempts to allocate a superblock NVKV entry      | Attempts/Sec   |
-| SSDS\_IOS                            | IOs performed on the SSD service                                   | IO/Sec         |
-| SSDS\_IO\_ERRORS                     | IO errors on the SSD service                                       | Blocks/Sec     |
-| SSD\_BLOCKS\_READ                    | Number of blocks read from the SSD service                         | Blocks/Sec     |
-| SSD\_BLOCKS\_WRITTEN                 | Number of blocks written to the SSD service                        | Blocks/Sec     |
-| SSD\_CHUNK\_ALLOCS\_TRIMMED          | Number of chunk allocations from the trimmed queue                 | Chunks         |
-| SSD\_CHUNK\_ALLOCS\_UNTRIMMED        | Number of chunk allocations from the untrimmed queue               | Chunks         |
-| SSD\_CHUNK\_ALLOCS                   | Number of chunk allocations                                        | Chunks         |
-| SSD\_CHUNK\_FREES                    | Number of chunk frees                                              | Chunks         |
-| SSD\_CHUNK\_FREE\_TRIMMED            | Number of free trimmed chunks                                      | Chunks         |
-| SSD\_CHUNK\_FREE\_UNTRIMMED          | Number of free untrimmed chunks                                    | Chunks         |
-| SSD\_CHUNK\_TRIMS                    | Number of trims performed                                          | Chunks         |
-| SSD\_E2E\_BAD\_CSUM                  | End-to-End checksum failures                                       | IO/Sec         |
-| SSD\_READ\_ERRORS                    | Errors in reading blocks from the SSD service                      | Blocks/Sec     |
-| SSD\_READ\_LATENCY                   | Avg. latency of read requests from the SSD service                 | Microseconds   |
-| SSD\_READ\_REQS\_LARGE\_NORMAL       | Number of large normal read requests from the SSD service          | IO/Sec         |
-| SSD\_READ\_REQS                      | Number of read requests from the SSD service                       | IO/Sec         |
-| SSD\_SCRATCH\_BUFFERS\_USED          | Number of scratch blocks used                                      | Blocks         |
-| SSD\_TRIM\_TIMEOUTS                  | Number of trim timeouts                                            | Timeouts       |
-| SSD\_WRITES\_REQS\_LARGE\_NORMAL     | Number of large normal priority write requests to the SSD service  | IO/Sec         |
-| SSD\_WRITES                          | Number of write requests to the SSD service                        | IO/Sec         |
-| SSD\_WRITE\_ERRORS                   | Errors in writing blocks to the SSD service                        | Blocks/Sec     |
-| SSD\_WRITE\_LATENCY                  | Latency of writes to the SSD service                               | Microseconds   |
+| **Type**                             | **Description**                                                         | **Units**      |
+| ------------------------------------ | ----------------------------------------------------------------------- | -------------- |
+| CLEAN\_CHUNK\_SKIPPED                | Number of clean chunks skips                                            | Chunks         |
+| DRIVE\_ACTIVE\_IOS                   | The number of in-flight IO against the SSD during sampling              | IOs            |
+| DRIVE\_AER\_RECEIVED                 | Number of AER reports                                                   | reports        |
+| DRIVE\_COMPLETED\_OVER\_COUNT        | Drive completed count > 1 detected                                      | Occurrences    |
+| DRIVE\_FORFEITS                      | Number of IOs forfeited due to lack of memory buffers                   | Operations/Sec |
+| DRIVE\_IDLE\_CYCLES                  | Number of cycles spent in idle                                          | Cycles/Sec     |
+| DRIVE\_IDLE\_TIME                    | Percentage of the CPU time not used for handling I/Os                   | %              |
+| DRIVE\_IO\_OVERLAPPED                | Number of overlapping IOs                                               | Operations     |
+| DRIVE\_IO\_TOO\_LONG                 | Number of IOs that took longer than expected                            | Operations/Sec |
+| DRIVE\_LATENCY                       | Measure the latencies up to 5ms (higher latencies are grouped)          | Requests       |
+| DRIVE\_LOAD                          | Drive Load at sampling time                                             | Load           |
+| DRIVE\_MEDIA\_BLOCKS\_READ           | Blocks read from the SSD media                                          | Blocks/Sec     |
+| DRIVE\_MEDIA\_BLOCKS\_WRITE          | Blocks are written to the SSD media                                     | Blocks/Sec     |
+| DRIVE\_MEDIA\_ERRORS                 | SSD Media Errors                                                        | IO/Sec         |
+| DRIVE\_NON\_MEDIA\_ERRORS            | SSD Non-Media Errors                                                    | IO/Sec         |
+| DRIVE\_PENDING\_IOS                  | The number of IOs waiting to start executing during sampling            | IOs            |
+| DRIVE\_PUMPED\_IOS                   | Number of requests returned in a pump                                   | Pumps          |
+| DRIVE\_PUMPS\_DELAYED                | Number of Drive pumps that got delayed                                  | Operations/Sec |
+| DRIVE\_PUMPS\_SEVERELY\_DELAYED      | Number of Drive pumps that got severely delayed                         | Operations/Sec |
+| DRIVE\_PUMP\_LATENCY                 | Latency between SSD pumps                                               | Microseconds   |
+| DRIVE\_READ\_LATENCY                 | Drive Read Execution Latency                                            | Microseconds   |
+| DRIVE\_READ\_OPS                     | Drive Read Operations                                                   | IO/Sec         |
+| DRIVE\_READ\_RATIO\_PER\_SSD\_READ   | Drive Read OPS Per SSD Request                                          | Ratio          |
+| DRIVE\_REMAINING\_IOS                | Number of requests still in the drive after a pump                      | Pumps          |
+| DRIVE\_REQUEST\_BLOCKS               | Measure drive request size distribution                                 | Requests       |
+| DRIVE\_SSD\_PUMPS                    | Number of drive pumps that resulted in the data flow from/to drive      | Pump/Sec       |
+| DRIVE\_UTILIZATION                   | Percentage of time the drive had an active IO submitted to it           | %              |
+| DRIVE\_WRITE\_LATENCY                | Drive Write Execution Latency                                           | Microseconds   |
+| DRIVE\_WRITE\_OPS                    | Drive Write Operations                                                  | IO/Sec         |
+| DRIVE\_WRITE\_RATIO\_PER\_SSD\_WRITE | Drive Write OPS Per SSD Request                                         | Ratio          |
+| NVKV\_CHUNK\_OUT\_OF\_SPACE          | Number of failed attempts to allocate a stripe in an NVKV chunk         | Attempts/Sec   |
+| NVKV\_OUT\_OF\_CHUNKS                | Number of failed attempts to allocate an NVKV chunk                     | Attempts/Sec   |
+| NVKV\_OUT\_OF\_SUPERBLOCK\_ENTRIES   | Number of failed attempts to allocate a superblock NVKV entry           | Attempts/Sec   |
+| SSDS\_IOS                            | IOs performed on the SSD service                                        | IO/Sec         |
+| SSDS\_IO\_ERRORS                     | IO errors on the SSD service                                            | Blocks/Sec     |
+| SSD\_BLOCKS\_READ                    | Number of blocks read from the SSD service                              | Blocks/Sec     |
+| SSD\_BLOCKS\_WRITTEN                 | Number of blocks written to the SSD service                             | Blocks/Sec     |
+| SSD\_CHUNK\_ALLOCS\_TRIMMED          | Number of chunk allocations from the trimmed queue                      | Chunks         |
+| SSD\_CHUNK\_ALLOCS\_UNTRIMMED        | Number of chunk allocations from the untrimmed queue                    | Chunks         |
+| SSD\_CHUNK\_ALLOCS                   | Number of chunk allocations                                             | Chunks         |
+| SSD\_CHUNK\_FREES                    | Number of chunk frees                                                   | Chunks         |
+| SSD\_CHUNK\_FREE\_TRIMMED            | Number of free trimmed chunks                                           | Chunks         |
+| SSD\_CHUNK\_FREE\_UNTRIMMED          | Number of free untrimmed chunks                                         | Chunks         |
+| SSD\_CHUNK\_TRIMS                    | Number of trims performed                                               | Chunks         |
+| SSD\_E2E\_BAD\_CSUM                  | End-to-End checksum failures                                            | IO/Sec         |
+| SSD\_READ\_ERRORS                    | Errors in reading blocks from the SSD service                           | Blocks/Sec     |
+| SSD\_READ\_LATENCY                   | Avg. latency of read requests from the SSD service                      | Microseconds   |
+| SSD\_READ\_REQS\_LARGE\_NORMAL       | Number of large regular read requests from the SSD service              | IO/Sec         |
+| SSD\_READ\_REQS                      | Number of read requests from the SSD service                            | IO/Sec         |
+| SSD\_SCRATCH\_BUFFERS\_USED          | Number of scratch blocks used                                           | Blocks         |
+| SSD\_TRIM\_TIMEOUTS                  | Number of trim timeouts                                                 | Timeouts       |
+| SSD\_WRITES\_REQS\_LARGE\_NORMAL     | Number of significant normal priority write requests to the SSD service | IO/Sec         |
+| SSD\_WRITES                          | Number of write requests to the SSD service                             | IO/Sec         |
+| SSD\_WRITE\_ERRORS                   | Errors in writing blocks to the SSD service                             | Blocks/Sec     |
+| SSD\_WRITE\_LATENCY                  | Latency of writes to the SSD service                                    | Microseconds   |
 
 ### Scrubber
 
-| **Type**                                | **Description**                                                                                                      | **Units**       |
-| --------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | --------------- |
-| BLOCK\_CONSISTENCY\_CHECKS              | Number of blocks that were checked for consistency against their block-used-state                                    | Blocks/Sec      |
-| BLOCK\_CONSISTENCY\_CHECK\_LATENCY      | Average latency of checking block consistency                                                                        | Micros          |
-| CLEANED\_CHUNKS                         | Number of chunks that were cleaned by the scrubber                                                                   | Chunks/Sec      |
-| DEGRADED\_READS                         | Number of degraded reads for scrubbing                                                                               | Requests/Sec    |
-| FALSE\_USED\_CHECK\_LATENCY             | Average latency of checking false used per block                                                                     | Micros          |
-| FALSE\_USED\_EXTRA\_NOTIFIED            | Number of blocks that were notified as used by the mark-extra-used mechanism                                         | Blocks/Sec      |
-| INTERRUPTS                              | Number of scrubs that were interrupted                                                                               | Occurrences/Sec |
-| NETWORK\_BUDGET\_WAIT\_LATENCY          | Average latency of waiting for our network budget                                                                    | Micros          |
-| NOT\_REALLY\_DIRTY\_BLOCKS              | Number of marked dirty blocks that ScrubMissingWrites found were clean                                               | Blocks/Sec      |
-| NUM\_COPY\_DISCARDED\_BLOCKS            | Number of copied blocks that were discarded                                                                          | Blocks/Sec      |
-| NUM\_COPY\_DISCARDS                     | Number of times we discarded scrubber copy work                                                                      | Occurrences/Sec |
-| NUM\_INVENTED\_STRIPES\_DISCARDS        | Number of times we discarded all scrubber work due to invented stripes                                               | Occurrences/Sec |
-| NUM\_INVENTED\_STRIPES\_DISCARD\_BLOCKS | Number of blocks that were discarded due to invented stripes                                                         | Blocks/Sec      |
-| NUM\_SCRUBBER\_DISCARD\_INTERMEDIATES   | Number of times we discarded all intermediate scrubber work                                                          | Occurrences/Sec |
-| NUM\_SMW\_DISCARDED\_BLOCKS             | Number of SMW'd blocks that were discarded                                                                           | Blocks/Sec      |
-| NUM\_SMW\_DISCARDS                      | Number of times we discarded scrubber SMW work                                                                       | Occurrences/Sec |
-| PLACEMENT\_SELECTION\_LATENCY           | Average latency of scrubbed placement selection                                                                      | Micros          |
-| READS\_CALLED                           | Number of blocks that were read                                                                                      | Blocks/Sec      |
-| READ\_BATCH\_SOURCE\_BLOCKS             | Number of source blocks read per batch                                                                               | Batches         |
-| READ\_BLOCKS\_LATENCY                   | Average latency of read blocks                                                                                       | Micros          |
-| RELOCATED\_BLOCKS                       | Number of blocks that were relocated for eviction                                                                    | Blocks/Sec      |
-| RELOCATE\_BLOCKS\_LATENCY               | Average latency of relocating blocks                                                                                 | MicroSec        |
-| RETRUSTED\_UNPROTECTED\_DIRTY\_BLOCKS   | Number of dirty blocks that ScrubMissingWrites re-trusted because they were unprotected                              | Blocks/Sec      |
-| REWRITTEN\_DIRTY\_BLOCKS                | Number of dirty blocks that ScrubMissingWrites rewrote to clean them                                                 | Blocks/Sec      |
-| SCAN\_LIKELY\_LEAKED\_BLOCKS            | Number of free blocks encountered during the scan that were marked as KnownUsed in the RAID                          | Occurrences     |
-| SCRUB\_BATCHES\_LATENCY                 | Average latency of scrub batches                                                                                     | Milliseconds    |
-| SCRUB\_FALSE\_USED\_FAILED\_READS       | Number of blocks that we failed to read for scrub-false-used                                                         | Blocks/Sec      |
-| SCRUB\_FALSE\_USED\_FAILED              | Number of placements we failed to fully scrub-false-used                                                             | Occurences/Sec  |
-| SCRUB\_FALSE\_USED\_PLACEMENTS          | Number of placements we finished scrub-false-used                                                                    | Occurences/Sec  |
-| SCRUB\_FALSE\_USED\_WAS\_UNPROTECTED    | Number of blocks that were falsely marked used and unprotected                                                       | Blocks/Sec      |
-| SCRUB\_IN\_FLIGHT\_CORRUPTION\_DETECTED | Number of in-flight corruptions detected when scrubbing                                                              | Occurences      |
-| SCRUB\_PREPARATION\_FAILED              | Number of times we failed to prepare() a task and aborted scrub of placement                                         | Occurences/Sec  |
-| SFU\_CHECKS                             | Number of blocks that were scrubbed-false-used                                                                       | Blocks/Sec      |
-| SFU\_CHECK\_FREE                        | Number of blocks that were detected as false-used and freed                                                          | Blocks/Sec      |
-| SFU\_CHECK\_SECONDARY                   | Number of blocks that were detected as secondary                                                                     | Blocks/Sec      |
-| SFU\_CHECK\_USED\_CKSUM\_ERR            | Number of blocks that were detected as used with checksum error                                                      | Blocks/Sec      |
-| SFU\_CHECK\_USED                        | Number of blocks that were detected as used                                                                          | Blocks/Sec      |
-| SFU\_FREE\_STRIPES                      | Number of free stripes that were scrubbed-false-used                                                                 | Stripes/Sec     |
-| SFU\_FREE\_STRIPE\_LATENCY              | Average latency of handling a read of a free stripe                                                                  | Micros          |
-| SFU\_USED\_STRIPES                      | Number of used stripes that were scrubbed-false-used                                                                 | Stripes/Sec     |
-| SFU\_USED\_STRIPE\_LATENCY              | Average latency of handling a read of a used stripe                                                                  | Micros          |
-| SOURCE\_READS                           | Number of source/committed superset blocks directly read by the scrubber                                             | Blocks/Sec      |
-| STRIPE\_DATA\_IS\_BLOCK\_USED\_LATENCY  | Average latency of isBlockUsed during stripe verification                                                            | Micros          |
-| STRIPE\_DATA\_IS\_BLOCK\_USED           | Number of isBlockUsed during stripe verification                                                                     | Blocks/Sec      |
-| TARGET\_COPIED\_CHUNKS                  | Number of chunks that were copied to target by the scrubber                                                          | Chunks/Sec      |
-| UPDATE\_PLACEMENT\_INFO\_LATENCY        | Average latency of updating the placement info quorum                                                                | Micros          |
-| UPDATE\_PLACEMENT\_INFO                 | Number of times we ran updatePlacementInfo                                                                           | Occurrences/Sec |
-| WONT\_CLEAN\_COPYING                    | Number of actually dirty blocks that ScrubMissingWrites refused to clean because they will be moved to target anyway | Blocks/Sec      |
-| WRITES\_CALLED                          | Number of blocks that were written                                                                                   | Blocks/Sec      |
-| WRITE\_BATCH\_SOURCE\_BLOCKS            | Number of source blocks to write in batch                                                                            | Batches         |
-| WRITE\_BATCH\_TARGET\_BLOCKS            | Number of target blocks to write in batch                                                                            | Batches         |
-| WRITE\_BLOCKS\_LATENCY                  | Average latency of writing blocks                                                                                    | Micros          |
+| **Type**                                | **Description**                                                                                                      | **Units**      |
+| --------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------- |
+| BLOCK\_CONSISTENCY\_CHECKS              | Number of blocks that were checked for consistency against their block-used-state                                    | Blocks/Sec     |
+| BLOCK\_CONSISTENCY\_CHECK\_LATENCY      | Average latency of checking block consistency                                                                        | Micros         |
+| CLEANED\_CHUNKS                         | Number of chunks that were cleaned by the scrubber                                                                   | Chunks/Sec     |
+| DEGRADED\_READS                         | Number of degraded reads for scrubbing                                                                               | Requests/Sec   |
+| FALSE\_USED\_CHECK\_LATENCY             | Average latency of checking false used per block                                                                     | Micros         |
+| FALSE\_USED\_EXTRA\_NOTIFIED            | Number of blocks that were notified as used by the mark-extra-used mechanism                                         | Blocks/Sec     |
+| INTERRUPTS                              | Number of scrubs that were interrupted                                                                               | Occurences/Sec |
+| NETWORK\_BUDGET\_WAIT\_LATENCY          | Average latency of waiting for our network budget                                                                    | Micros         |
+| NOT\_REALLY\_DIRTY\_BLOCKS              | Number of marked dirty blocks that ScrubMissingWrites found were clean                                               | Blocks/Sec     |
+| NUM\_COPY\_DISCARDED\_BLOCKS            | Number of copied blocks that were discarded                                                                          | Blocks/Sec     |
+| NUM\_COPY\_DISCARDS                     | Number of times we discarded scrubber copy work                                                                      | Occurences/Sec |
+| NUM\_INVENTED\_STRIPES\_DISCARDS        | Number of times we discarded all scrubber work due to invented stripes                                               | Occurences/Sec |
+| NUM\_INVENTED\_STRIPES\_DISCARD\_BLOCKS | Number of blocks that were discarded due to invented stripes                                                         | Blocks/Sec     |
+| NUM\_SCRUBBER\_DISCARD\_INTERMEDIATES   | Number of times we discarded all intermediate scrubber work                                                          | Occurences/Sec |
+| NUM\_SMW\_DISCARDED\_BLOCKS             | Number of SMW'd blocks that were discarded                                                                           | Blocks/Sec     |
+| NUM\_SMW\_DISCARDS                      | Number of times we discarded scrubber SMW work                                                                       | Occurences/Sec |
+| PLACEMENT\_SELECTION\_LATENCY           | Average latency of scrubbed placement selection                                                                      | Micros         |
+| READS\_CALLED                           | Number of blocks that were read                                                                                      | Blocks/Sec     |
+| READ\_BATCH\_SOURCE\_BLOCKS             | Number of source blocks read per batch                                                                               | Batches        |
+| READ\_BLOCKS\_LATENCY                   | Average latency of read blocks                                                                                       | Micros         |
+| RELOCATED\_BLOCKS                       | Number of blocks that were relocated for eviction                                                                    | Blocks/Sec     |
+| RELOCATE\_BLOCKS\_LATENCY               | Average latency of relocating blocks                                                                                 | Micros         |
+| RETRUSTED\_UNPROTECTED\_DIRTY\_BLOCKS   | Number of dirty blocks that ScrubMissingWrites re-trusted because they were unprotected                              | Blocks/Sec     |
+| REWRITTEN\_DIRTY\_BLOCKS                | Number of dirty blocks that ScrubMissingWrites rewrote to clean them                                                 | Blocks/Sec     |
+| SCAN\_LIKELY\_LEAKED\_BLOCKS            | Number of free blocks encountered during a scan that were marked as KnownUsed in the RAID                            | Occurences     |
+| SCRUB\_BATCHES\_LATENCY                 | Average latency of scrub batches                                                                                     | Millis         |
+| SCRUB\_FALSE\_USED\_FAILED\_READS       | Number of blocks that we failed to read for scrub-false-used                                                         | Blocks/Sec     |
+| SCRUB\_FALSE\_USED\_FAILED              | Number of placements we failed to fully scrub-false-used                                                             | Occurences/Sec |
+| SCRUB\_FALSE\_USED\_PLACEMENTS          | Number of placements we finished scrub-false-used                                                                    | Occurences/Sec |
+| SCRUB\_FALSE\_USED\_WAS\_UNPROTECTED    | Number of blocks that were falsely marked used and unprotected                                                       | Blocks/Sec     |
+| SCRUB\_IN\_FLIGHT\_CORRUPTION\_DETECTED | Number of in-flight corruptions detected when scrubbing                                                              | Occurences     |
+| SCRUB\_PREPARATION\_FAILED              | Number of times we failed to prepare() a task and aborted scrub of placement                                         | Occurences/Sec |
+| SFU\_CHECKS                             | Number of blocks that were scrubbed-false-used                                                                       | Blocks/Sec     |
+| SFU\_CHECK\_FREE                        | Number of blocks that were detected as false-used and freed                                                          | Blocks/Sec     |
+| SFU\_CHECK\_SECONDARY                   | Number of blocks that were detected as secondary                                                                     | Blocks/Sec     |
+| SFU\_CHECK\_USED\_CKSUM\_ERR            | Number of blocks that were detected as used with checksum error                                                      | Blocks/Sec     |
+| SFU\_CHECK\_USED                        | Number of blocks that were detected as used                                                                          | Blocks/Sec     |
+| SFU\_FREE\_STRIPES                      | Number of free stripes that were scrubbed-false-used                                                                 | Stripes/Sec    |
+| SFU\_FREE\_STRIPE\_LATENCY              | Average latency of handling a read of a free stripe                                                                  | Micros         |
+| SFU\_USED\_STRIPES                      | Number of used stripes that were scrubbed-false-used                                                                 | Stripes/Sec    |
+| SFU\_USED\_STRIPE\_LATENCY              | Average latency of handling a read of a used stripe                                                                  | Micros         |
+| SOURCE\_READS                           | Number of source/committed superset blocks directly read by the scrubber                                             | Blocks/Sec     |
+| STRIPE\_DATA\_IS\_BLOCK\_USED\_LATENCY  | Average latency of isBlockUsed during stripe verification                                                            | Micros         |
+| STRIPE\_DATA\_IS\_BLOCK\_USED           | Number of isBlockUsed during stripe verification                                                                     | Blocks/Sec     |
+| TARGET\_COPIED\_CHUNKS                  | Number of chunks that were copied to target by the scrubber                                                          | Chunks/Sec     |
+| UPDATE\_PLACEMENT\_INFO\_LATENCY        | Average latency of updating the placement info quorum                                                                | Micros         |
+| UPDATE\_PLACEMENT\_INFO                 | Number of times we ran updatePlacementInfo                                                                           | Occurences/Sec |
+| WONT\_CLEAN\_COPYING                    | Number of actually dirty blocks that ScrubMissingWrites refused to clean because they will be moved to target anyway | Blocks/Sec     |
+| WRITES\_CALLED                          | Number of blocks that were written                                                                                   | Blocks/Sec     |
+| WRITE\_BATCH\_SOURCE\_BLOCKS            | Number of source blocks to write in batch                                                                            | Batches        |
+| WRITE\_BATCH\_TARGET\_BLOCKS            | Number of target blocks to write in batch                                                                            | Batches        |
+| WRITE\_BLOCKS\_LATENCY                  | Average latency of writing blocks                                                                                    | Micros         |
 
 ### Squelch
 
@@ -1241,6 +1218,9 @@ description: Explore the statistics the WEKA system generates organized by categ
 | -------------------------------- | -------------------------------------------------------------------------------------- | ----------- |
 | GATHER\_FROM\_NODE\_LATENCY\_NET | Time spent on responding to a stats-gathering request (not including metadata)         | Seconds/Sec |
 | GATHER\_FROM\_NODE\_LATENCY      | Time spent responding to a stats-gathering request (not including metadata)            | Seconds/Sec |
-| GATHER\_FROM\_NODE\_SLEEP        | Time spent in-between responding to a stats-gathering request (not including metadata) | Seconds/Sec |
+| GATHER\_FROM\_NODE\_SLEEP        | Time spent in between responding to a stats-gathering request (not including metadata) | Seconds/Sec |
+| TIMES\_QUERIED\_STATS            | Number of times the process queried other processes for stats                          | Times       |
+| TIMES\_QUERIED                   | Number of times the process was queried for stats (not including metadata)             | Times       |
+| GATHER\_FROM\_NODE\_SLEEP        | Time spent in between responding to a stats-gathering request (not including metadata) | Seconds/Sec |
 | TIMES\_QUERIED\_STATS            | Number of times the process queried other processes for stats                          | Times       |
 | TIMES\_QUERIED                   | Number of times the process was queried for stats (not including metadata)             | Times       |
