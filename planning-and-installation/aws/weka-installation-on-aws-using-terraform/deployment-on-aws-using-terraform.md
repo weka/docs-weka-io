@@ -8,11 +8,11 @@ Begin by creating a `main.tf` file, tailoring it to your deployment specifics on
 
 #### Before you begin
 
-The [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) must be installed on the workstation used for the deployment. Check the minimum required Terraform version specified in the [Terraform-AWS-WEKA](https://github.com/weka/terraform-aws-weka) module under the **Requirements** section).
+The [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) must be installed on the workstation used for the deployment. Check the minimum required Terraform version specified in the [Terraform-AWS-WEKA](https://registry.terraform.io/modules/weka/weka/aws/latest?tab=dependencies) module under the **Requirements** section).
 
 #### Procedure
 
-1. Review the [Terraform-AWS-WEKA example](aws-weka-terraform-deployment-module-description.md#terraform-aws-weka-example) and use it as a reference for creating the `main.tf` according to your deployment specifics on AWS.
+1. Review the [Terraform-AWS-WEKA example](https://registry.terraform.io/modules/weka/weka/aws/latest/examples/public\_network) and use it as a reference for creating the `main.tf` according to your deployment specifics on AWS.
 2. Tailor the `main.tf` file to create SMB-W or NFS protocol clusters by adding the relevant code snippet. Adjust parameters like the number of gateways, instance types, domain name, and share naming:
 
 * **SMB-W**
