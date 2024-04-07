@@ -1,4 +1,5 @@
 
+
 ## Assert failures
 
 **Type** | **Description** | **Units**
@@ -8,8 +9,8 @@ ASSERTION_FAILURES_KILL_BUCKET|Assertion failures count with "KILL_BUCKET" behav
 ASSERTION_FAILURES_KILL_FIBER|Assertion failures count with "KILL_FIBER" behavior|Assertion failures
 ASSERTION_FAILURES_KILL_NODE_WITH_CORE_DUMP|Assertion failures count with "KILL_NODE_WITH_CORE_DUMP" behavior|Assertion failures
 ASSERTION_FAILURES_KILL_NODE|Assertion failures count with "KILL_NODE" behavior|Assertion failures
-ASSERTION_FAILURES_STALL_AND_KILL_NODE|Assertion failures count with "STALL_AND_KILL_NODE" behavior|Assertion failures
-ASSERTION_FAILURES_STALL|Assertion failures count with "STALL" behavior |Assertion failures
+ASSERTION_FAILURES_STALL_AND_KILL_NODE|Assertion failures count with "STALL_AND_KILL_NODE" behaviour|Assertion failures
+ASSERTION_FAILURES_STALL|Assertion failures count with "STALL" behavior|Assertion failures
 ASSERTION_FAILURES_THROW_EXCEPTION|Assertion failures count with "THROW_EXCEPTION" behavior|Assertion failures
 ASSERTION_FAILURES|Assertion failures count of all available types|Assertion failures
 
@@ -36,7 +37,7 @@ BUCKET_REGISTRY_L2_BLOCKS_NUM|Bucket number of registry L2 blocks|Blocks
 
 **Type** | **Description** | **Units**
 -|-|-
-BLOCK_FULL_WRITES|Number of full block writes|Writes
+BLOCK_FULL_WRITES|Number of entire block writes|Writes
 BLOCK_PARTIAL_WRITES|Number of partial block writes|Writes
 
 ## Bucket
@@ -77,6 +78,7 @@ ODH_COLLISIONS_STOW_DOWNLOAD_REDISTRIBUTE_PULL_STATE_V4_3|Number of ODH items cr
 ODH_COLLISIONS_STOW_DOWNLOAD_REDISTRIBUTE_V4_3|Number of ODH items created with colliding hash in STOW_DOWNLOAD_REDISTRIBUTE_V4_3 ODH|Collisions
 ODH_COLLISIONS_STOW_UPLOAD_MANIFEST|Number of ODH items created with colliding hash in STOW_UPLOAD_MANIFEST ODH|Collisions
 ODH_COLLISIONS_SV_CAPACITY_LEADER|Number of ODH items created with colliding hash in SV_CAPACITY_LEADER ODH|Collisions
+ODH_COLLISIONS_UNLINKED_INODES|Number of ODH items created with colliding hash in UNLINKED_INODES ODH|Collisions
 ODH_COLLISIONS|Number of ODH items created with colliding hash in all ODHs|Collisions
 ODL_BLOCKS_COUNT|Difference in number of ODL blocks|Blocks
 ODL_PAYLOAD_BLOCKS_COUNT|Difference in number of ODL_PAYLOAD blocks|Blocks
@@ -157,7 +159,7 @@ HEARTBEAT_PROCESSING_TIME_OLD|The number of non-leader heartbeats per processing
 HEARTBEAT_PROCESSING_TIME|The number of non-leader heartbeats per processing time range|Number of heartbeats
 LEADER_HEARTBEAT_PROCESSING_TIME_OLD|The number of leader heartbeats per processing time range (OLD)|Number of heartbeats
 LEADER_HEARTBEAT_PROCESSING_TIME|The number of leader heartbeats per processing time range|Number of heartbeats
-OVERLAY_FULL_SHIFTS|The number of full overlay shifts|Changes
+OVERLAY_FULL_SHIFTS|The number of entire overlay shifts|Changes
 OVERLAY_INCREMENTAL_SHIFTS|The number of incremental overlay shifts|Changes
 OVERLAY_TRACKER_INCREMENTALS|The number of incremental OverlayTracker applications|Changes
 OVERLAY_TRACKER_RESYNCS|The number of OverlayTracker full-resyncs|Changes
@@ -250,7 +252,7 @@ OBS_SHARED_DOWNLOADS|Number of shared downloads from object store per second|Ops
 OBS_TRUNCATE|Number of truncates that needed data from the object store per second|Ops/Sec
 OBS_UNEXPECTED_TAG_ON_DOWNLOAD|Number of unexpected tags found when downloading extents|Occurrences
 OBS_WRITE|Number of writes that needed data from the object store per second|Ops/Sec
-STOW_COMMIT_QUEUE_HANG|Number of times metadata download queue was hanging full|Occurrences
+STOW_COMMIT_QUEUE_HANG|Number of times metadata download queue was hanging total |Occurrences
 STOW_METADATA_DESERIALIZATION_LATENCY|Average latency of metadata blob deserialization|Milliseconds
 STOW_METADATA_SEED_DOWNLOADS|Number of seed downloads per second|Ops/Sec
 STOW_SERIALIZED_EXTENT_DATA|Number of extent descriptors uploaded that contain data|Extent Descriptors
@@ -329,7 +331,7 @@ FAULT_SENT_DROPPED_PACKETS|Number of sent packets dropped due to a fault injecti
 GOODPUT_RX_RATIO|Percentage of goodput RX packets out of total data packets received|%
 GOODPUT_TX_RATIO|Percentage of goodput TX packets out of total data packets sent|%
 GW_MAC_RESOLVE_FAILURES|Number of times we failed to ARP resolve the gateway IP|Failures
-GW_MAC_RESOLVE_SUCCESSES|Number of times we succeeded in ARP resolve the gateway IP|Successes
+GW_MAC_RESOLVE_SUCCESSES|Number of times we succeeded in ARP resolving the gateway IP|Successes
 INVALID_FIRST_FRAGMENT|Number of times we got an invalid first fragment|Packets/Sec
 MBUF_DUP_COUNT|Numer of Duplicate mbufs found|Occurences
 MBUF_DUP_ITER|Duplicate mbuf check completions|Occurences
@@ -504,15 +506,15 @@ RESPONSE_COUNT_UNPROCESSABLE_ENTITY|Number of HTTP UNPROCESSABLE_ENTITY response
 RESPONSE_COUNT_UNSUPPORTED_MEDIA_TYPE|Number of HTTP UNSUPPORTED_MEDIA_TYPE responses per second|Responses/Sec
 RESPONSE_COUNT_URI_TOO_LONG|Number of HTTP URI_TOO_LONG responses per second|Responses/Sec
 RESPONSE_COUNT_USE_PROXY|Number of HTTP USE_PROXY responses per second|Responses/Sec
-WAITING_FOR_BUCKET_DOWNLOAD_BANDWIDTH|Time requests wait for the object store bucket download bandwidth|Ops
+WAITING_FOR_BUCKET_DOWNLOAD_BANDWIDTH|Time requests wait for the object tore bucket download bandwidth|Ops
 WAITING_FOR_BUCKET_DOWNLOAD_FLOW|Time requests wait for the object store bucket download flow|Ops
-WAITING_FOR_BUCKET_REMOVE_BANDWIDTH|Time requests wait for the object store bucket remove bandwidth|Ops
+WAITING_FOR_BUCKET_REMOVE_BANDWIDTH|Time requests wait for the object store bucket to remove bandwidth|Ops
 WAITING_FOR_BUCKET_REMOVE_FLOW|Time requests wait for the object store bucket remove flow|Ops
 WAITING_FOR_BUCKET_UPLOAD_BANDWIDTH|Time requests wait for the object store bucket upload bandwidth|Ops
 WAITING_FOR_BUCKET_UPLOAD_FLOW|Time requests wait for the object store bucket upload flow|Ops
 WAITING_FOR_GROUP_DOWNLOAD_BANDWIDTH|Time requests wait for the object store group download bandwidth|Ops
 WAITING_FOR_GROUP_DOWNLOAD_FLOW|Time requests wait for the object store group download flow|Ops
-WAITING_FOR_GROUP_REMOVE_BANDWIDTH|Time requests wait for the object store group remove bandwidth|Ops
+WAITING_FOR_GROUP_REMOVE_BANDWIDTH|Time requests wait for the object store group to remove bandwidth|Ops
 WAITING_FOR_GROUP_REMOVE_FLOW|Time requests wait for the object store group remove flow|Ops
 WAITING_FOR_GROUP_UPLOAD_BANDWIDTH|Time requests wait for the object store group upload bandwidth|Ops
 WAITING_FOR_GROUP_UPLOAD_FLOW|Time requests wait for the object store group upload flow|Ops
@@ -919,7 +921,7 @@ WRITE_LATENCY|Average latency of WRITE operations|Microseconds
 
 **Type** | **Description** | **Units**
 -|-|-
-ABRUPT_EXITS|How many abrupt exits of a process (node) occurred |Abrupt process exits
+ABRUPT_EXITS|How many abrupt exits of a process (node) occurred|Abrupt process exits
 PEER_CONFIGURE_FAILURES|How many times the node failed to configure peers to sync with them|Peer configure failures
 
 ## RAFT
@@ -948,8 +950,8 @@ NVKV_RECOVERY_NETBUF_REREAD_UNEQUAL|Number of unequal netbufs encountered that c
 RAID_BLOCKS_IN_PREPARED_STRIPE|Free blocks in prepared stripe|Blocks
 RAID_CHUNKS_CLEANED_BY_SHIFT|Dirty chunks cleaned by being shifted out|Occurences
 RAID_CHUNKS_SHIFTED|Dirty chunks that shifted out|Occurences
-RAID_COMMITTED_STRIPES|Written number of stripes|Stripes
-RAID_COMPRESSED_BLOCKS_WRITTEN|Written physical blocks containing compressed data|Blocks/Sec
+RAID_COMMITTED_STRIPES|Number of stripes written|Stripes
+RAID_COMPRESSED_BLOCKS_WRITTEN|Physical blocks are written containing compressed data|Blocks/Sec
 RAID_CORRUPTION_RECOVERY_FAILURE|Corrupt data could not be recovered|Occurences
 RAID_PLACEMENT_SWITCHES|Number of placement switches|Switches
 RAID_READ_BATCHES_PER_REQUEST_HISTOGRAM|Histogram of the number of batches of stripes read in a single request|Request
@@ -960,7 +962,7 @@ RAID_READ_FREE|Read Free|Occurences
 RAID_READ_IOS|Raw read blocks performed by the RAID|Blocks/Sec
 RAID_STALE_WRITES_DETECTED|Stale write detected in read|Occurences
 RAID_STALE_WRITES_REPROTECTIONS|Stale write re-protections in read|Occurences
-WRONG_DRIVE_DELTAS|Delta segments are written to the wrong drive|Blocks/Sec
+WRONG_DRIVE_DELTAS|Delta segments written to wrong drive|Blocks/Sec
 WRONG_DRIVE_REFS|Reference segments are written to the wrong drive|Blocks/Sec
 
 ## RPC
@@ -1013,30 +1015,12 @@ BACKGROUND_TIME|The percentage of the CPU time used for background operations|%
 BucketInvocationState_CAPACITY|Number of data structures allocated to the BucketInvocationState pool|Structs
 BucketInvocationState_STRUCT_SIZE|Number of bytes in each struct of the BucketInvocationState pool|Bytes
 BucketInvocationState_USED|Number of structs in the BucketInvocationState pool which are currently being used|Structs
-Bucket_CAPACITY|Number of data structures allocated to the Bucket pool|Structs
-Bucket_STRUCT_SIZE|Number of bytes in each struct of the Bucket pool|Bytes
-Bucket_USED|Number of structs in the Bucket pool which are currently being used|Structs
-CLASS_BLOB_RAID_CAPACITY|Number of data structures allocated to the CLASS_BLOB_RAID pool|Structs
-CLASS_BLOB_RAID_STRUCT_SIZE|Number of bytes in each struct of the CLASS_BLOB_RAID pool|Bytes
-CLASS_BLOB_RAID_USED|Number of structs in the CLASS_BLOB_RAID pool which are currently being used|Structs
 CYCLES_PER_SECOND|Number of cycles the CPU runs per second|Cycles/Sec
-ChainedSpan_CAPACITY|Number of data structures allocated to the ChainedSpan pool|Structs
-ChainedSpan_STRUCT_SIZE|Number of bytes in each struct of the ChainedSpan pool|Bytes
-ChainedSpan_USED|Number of structs in the ChainedSpan pool which are currently being used|Structs
-Charter_CAPACITY|Number of data structures allocated to the Charter pool|Structs
-Charter_STRUCT_SIZE|Number of bytes in each struct of the Charter pool|Bytes
-Charter_USED|Number of structs in the Charter pool which are currently being used|Structs
-CrossDestageDesc_CAPACITY|Number of data structures allocated to the CrossDestageDesc pool|Structs
-CrossDestageDesc_STRUCT_SIZE|Number of bytes in each struct of the CrossDestageDesc pool|Bytes
-CrossDestageDesc_USED|Number of structs in the CrossDestageDesc pool which are currently being used|Structs
 DEFUNCT_FIBERS|Number of defunct buffers, which are just memory structures allocated for future fiber needs|Fibers
 DeferredTask2_CAPACITY|Number of data structures allocated to the DeferredTask2 pool|Structs
 DeferredTask2_STRUCT_SIZE|Number of bytes in each struct of the DeferredTask2 pool|Bytes
 DeferredTask2_USED|Number of structs in the DeferredTask2 pool which are currently being used|Structs
 EXCEPTIONS|Number of exceptions caught by the reactor|Exceptions/Sec
-GenericBaseBlock_CAPACITY|Number of data structures allocated to the GenericBaseBlock pool|Structs
-GenericBaseBlock_STRUCT_SIZE|Number of bytes in each struct of the GenericBaseBlock pool|Bytes
-GenericBaseBlock_USED|Number of structs in the GenericBaseBlock pool which are currently being used|Structs
 HOGGED_TIME|Histogram of time used by hogger fibers (only in debug builds)|Hogs
 IDLE_CALLBACK_INVOCATIONS|Number of background work invocations|Invocations/Sec
 IDLE_CYCLES|Number of cycles spent in idle|Cycles/Sec
@@ -1048,7 +1032,7 @@ NODE_POLL_TIME|Time of scheduler stats polling.|usecs
 NODE_RUN_PERCENTAGE|Percentage of time process is running|percentage
 NODE_RUN_TIME|Time process is running.|usecs
 NODE_WAIT_PERCENTAGE|Percentage of time process is waiting on waitqueue|percentage
-NODE_WAIT_TIME| The Time process is waiting on the wait queue.|usecs
+NODE_WAIT_TIME| The time process is waiting on the wait queue.|usecs
 OUTRAGEOUS_HOGGERS|Number of hoggers taking an excessive amount of time to run|Invocations
 ObsBucketManagement_CAPACITY|Number of data structures allocated to the ObsBucketManagement pool|Structs
 ObsBucketManagement_STRUCT_SIZE|Number of bytes in each struct of the ObsBucketManagement pool|Bytes
@@ -1057,9 +1041,6 @@ ObsGateway_CAPACITY|Number of data structures allocated to the ObsGateway pool|S
 ObsGateway_STRUCT_SIZE|Number of bytes in each struct of the ObsGateway pool|Bytes
 ObsGateway_USED|Number of structs in the ObsGateway pool which are currently being used|Structs
 PENDING_FIBERS|Number of fibers pending for external events, such as a network packet or SSD response. Upon such an external event, they change state to scheduled fibers|Fibers
-QueuedBlock_CAPACITY|Number of data structures allocated to the QueuedBlock pool|Structs
-QueuedBlock_STRUCT_SIZE|Number of bytes in each struct of the QueuedBlock pool|Bytes
-QueuedBlock_USED|Number of structs in the QueuedBlock pool which are currently being used|Structs
 SCHEDULED_FIBERS|Number of current fibers that are ready to run and eager to get CPU cycles|Fibers
 SLEEPY_FIBERS|Number of SLEEPY fibers|Fibers
 SLEEPY_RPC_SERVER_FIBERS|Number of SLEEPY RPC server fibers|Sleepy fiber detections
@@ -1075,9 +1056,6 @@ TimedCallback_USED|Number of structs in the TimedCallback pool which are current
 UploadFileInfo_CAPACITY|Number of data structures allocated to the UploadFileInfo pool|Structs
 UploadFileInfo_STRUCT_SIZE|Number of bytes in each struct of the UploadFileInfo pool|Bytes
 UploadFileInfo_USED|Number of structs in the UploadFileInfo pool which are currently being used|Structs
-_ReadBlocksImpl_RAID_CAPACITY|Number of data structures allocated to the _ReadBlocksImpl_RAID pool|Structs
-_ReadBlocksImpl_RAID_STRUCT_SIZE|Number of bytes in each struct of the _ReadBlocksImpl_RAID pool|Bytes
-_ReadBlocksImpl_RAID_USED|Number of structs in the _ReadBlocksImpl_RAID pool which are currently being used|Structs
 networkBuffers_CAPACITY|Number of data structures allocated to the networkBuffers pool|Structs
 networkBuffers_USED|Number of structs in the networkBuffers pool which are currently being used|Structs
 rdmaNetworkBuffers_CAPACITY|Number of data structures allocated to the rdmaNetworkBuffers pool|Structs
@@ -1134,11 +1112,11 @@ SSD_CHUNK_TRIMS|Number of trims performed|Chunks
 SSD_E2E_BAD_CSUM|End-to-End checksum failures|IO/Sec
 SSD_READ_ERRORS|Errors in reading blocks from the SSD service|Blocks/Sec
 SSD_READ_LATENCY|Avg. latency of read requests from the SSD service|Microseconds
-SSD_READ_REQS_LARGE_NORMAL|Number of large normal read requests from the SSD service|IO/Sec
+SSD_READ_REQS_LARGE_NORMAL|Number of large regular read requests from the SSD service|IO/Sec
 SSD_READ_REQS|Number of read requests from the SSD service|IO/Sec
 SSD_SCRATCH_BUFFERS_USED|Number of scratch blocks used|Blocks
 SSD_TRIM_TIMEOUTS|Number of trim timeouts|Timeouts
-SSD_WRITES_REQS_LARGE_NORMAL|Number of large normal priority write requests to the SSD service|IO/Sec
+SSD_WRITES_REQS_LARGE_NORMAL|Number of significant normal priority write requests to the SSD service|IO/Sec
 SSD_WRITES|Number of write requests to the SSD service|IO/Sec
 SSD_WRITE_ERRORS|Errors in writing blocks to the SSD service|Blocks/Sec
 SSD_WRITE_LATENCY|Latency of writes to the SSD service|Microseconds
@@ -1171,7 +1149,7 @@ RELOCATED_BLOCKS|Number of blocks that were relocated for eviction|Blocks/Sec
 RELOCATE_BLOCKS_LATENCY|Average latency of relocating blocks|Micros
 RETRUSTED_UNPROTECTED_DIRTY_BLOCKS|Number of dirty blocks that ScrubMissingWrites re-trusted because they were unprotected|Blocks/Sec
 REWRITTEN_DIRTY_BLOCKS|Number of dirty blocks that ScrubMissingWrites rewrote to clean them|Blocks/Sec
-SCAN_LIKELY_LEAKED_BLOCKS|Number of free blocks encountered during the scan that were marked as KnownUsed in the RAID|Occurences
+SCAN_LIKELY_LEAKED_BLOCKS|Number of free blocks encountered during a scan that were marked as KnownUsed in the RAID|Occurences
 SCRUB_BATCHES_LATENCY|Average latency of scrub batches|Millis
 SCRUB_FALSE_USED_FAILED_READS|Number of blocks that we failed to read for scrub-false-used|Blocks/Sec
 SCRUB_FALSE_USED_FAILED|Number of placements we failed to fully scrub-false-used|Occurences/Sec
@@ -1236,6 +1214,9 @@ TEMPORAL_SQUELCH_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 -|-|-
 GATHER_FROM_NODE_LATENCY_NET|Time spent on responding to a stats-gathering request (not including metadata)|Seconds/Sec
 GATHER_FROM_NODE_LATENCY|Time spent responding to a stats-gathering request (not including metadata)|Seconds/Sec
+GATHER_FROM_NODE_SLEEP|Time spent in-between responding to a stats-gathering request (not including metadata)|Seconds/Sec
+TIMES_QUERIED_STATS|Number of times the process queried other processes for stats|Times
+TIMES_QUERIED|Number of times the process was queried for stats (not including metadata)|Times
 GATHER_FROM_NODE_SLEEP|Time spent in-between responding to a stats-gathering request (not including metadata)|Seconds/Sec
 TIMES_QUERIED_STATS|Number of times the process queried other processes for stats|Times
 TIMES_QUERIED|Number of times the process was queried for stats (not including metadata)|Times
