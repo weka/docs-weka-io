@@ -6,7 +6,7 @@ This guide outlines the customization process for Terraform configurations to de
 If you are new to Azure and Terraform, refer to the [detailed-deployment-tutorial-weka-on-azure-using-terraform.md](detailed-deployment-tutorial-weka-on-azure-using-terraform.md "mention").
 {% endhint %}
 
-The Terraform-Azure-WEKA module contains modules to customize according to your deployment needs. The installation is based on applying the customized Terraform variables file to a predefined Azure subscription.&#x20;
+The Terraform-Azure-WEKA module contains submodules that can be tailored to suit your specific deployment requirements. The installation is based on applying the customized Terraform variables file to a predefined Azure subscription.
 
 Applying the Terraform module performs the following:
 
@@ -390,6 +390,28 @@ As a best practice, it’s recommended to update the admin password in the WEKA 
 **Related topic**
 
 [#change-a-local-user-password](../../usage/user-management/user-management.md#change-a-local-user-password "mention")
+
+## Set up the WEKA cluster to work with your Azure Blob storage
+
+If you create an Azure Blob storage without using Terraform, you can set up the WEKA cluster to work with it.
+
+**Procedure**
+
+1. Gather the following details from your Azure account (refer to the Azure documentation for guidance):
+   * Storage account name
+   * Storage account container name
+   * Storage account access key
+2. Connect to one of the instances in your WEKA cluster and run the following command line, replacing the placeholders with your storage account details:
+
+{% code overflow="wrap" %}
+```bash
+weka fs tier s3 add azure-obs --site local --obs-name default-local --obs-type AZURE --hostname <Storage account name>.blob.core.windows.net --port 443 --bucket <Storage account container name> --access-key-id <Storage account name> --secret-key <Storage account access key> --protocol https --auth-method AWSSignature4
+```
+{% endcode %}
+
+**Related information**
+
+[Official Azure documentation](https://learn.microsoft.com/en-us/azure/storage/blobs/blob-containers-portal)
 
 ## **Clean up the** deployment
 
