@@ -36,7 +36,7 @@ Proceed with the following steps to locate the appropriate AWS Account.
 
 Navigate to the AWS Management Console. In the top right corner, search for “Account ID.”
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 If deploying into a WEKA customer environment, the customer should understand their subscription structure. If deploying internally at WEKA and you do not see an Account ID or have not been added to the correct Account, please reach out to the customer appropriate cloud teams for assistance.
@@ -56,7 +56,7 @@ Follow the steps below to verify IAM user privileges.
 * Log in using the account that will be used for the entirety of the WEKA deployment.
 * In the AWS Management Console, go to the Services menu and select “IAM” to access the Identity and Access Management dashboard.
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 * Within the IAM dashboard, search for the IAM user in question or navigate to the “Users” section.
 

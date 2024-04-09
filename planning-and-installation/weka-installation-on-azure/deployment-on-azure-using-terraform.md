@@ -1,6 +1,12 @@
 # Deployment on Azure using Terraform
 
-The Terraform-Azure-WEKA module contains modules to customize according to your deployment needs. The installation is based on applying the customized Terraform variables file to a predefined Azure subscription.&#x20;
+This guide outlines the customization process for Terraform configurations to deploy the WEKA cluster on Azure. It is designed for system engineers with expertise in Azure and Terraform.
+
+{% hint style="info" %}
+If you are new to Azure and Terraform, refer to the [detailed-deployment-tutorial-weka-on-azure-using-terraform.md](detailed-deployment-tutorial-weka-on-azure-using-terraform.md "mention")
+{% endhint %}
+
+The Terraform-Azure-WEKA module contains submodules that can be tailored to suit your specific deployment requirements. The installation is based on applying the customized Terraform variables file to a predefined Azure subscription.
 
 Applying the Terraform module performs the following:
 
@@ -372,12 +378,34 @@ Once the deployment is completed, access the WEKA cluster GUI using the URL: `ht
 
 If you [update the Cluster admin password](https://docs.weka.io/usage/user-management/user-management#change-a-local-user-password) in the WEKA application, also update the weka-password secret in the key vault in the Azure console or Azure CLI.
 
+## Set up the WEKA cluster to work with your Azure Blob storage
+
+If you create an Azure Blob storage without using Terraform, you can set up the WEKA cluster to work with it.
+
+**Procedure**
+
+1. Gather the following details from your Azure account (refer to the Azure documentation for guidance):
+   * Storage account name
+   * Storage account container name
+   * Storage account access key
+2. Connect to one of the instances in your WEKA cluster and run the following command line, replacing the placeholders with your storage account details:
+
+{% code overflow="wrap" %}
+```bash
+weka fs tier s3 add azure-obs --site local --obs-name default-local --obs-type AZURE --hostname <Storage account name>.blob.core.windows.net --port 443 --bucket <Storage account container name> --access-key-id <Storage account name> --secret-key <Storage account access key> --protocol https --auth-method AWSSignature4
+```
+{% endcode %}
+
+**Related information**
+
+[Official Azure documentation](https://learn.microsoft.com/en-us/azure/storage/blobs/blob-containers-portal)
+
 ## **Clean up the** deployment
 
 If the WEKA cluster is no longer required on Azure or you need to clean up the deployment, use the `terraform destroy` action (a token from [get.weka.io](https://get.weka.io/) is required). The object storage and storage account are not deleted.
 
 {% hint style="warning" %}
-If the Terraform deployment fails for any reason, such as dependencies not being present and Azure resource starvation, the `destroy` command does not work properly. Manually remove any resources created at the beginning of the Terraform script using the Azure console or Azure CLI before re-running the Terraform script.&#x20;
+The destroy command does not work properly if the Terraform deployment fails for any reason, such as dependencies not being present and Azure resource starvation. Manually remove any resources created at the beginning of the Terraform script using the Azure console or Azure CLI before re-running the Terraform script.&#x20;
 {% endhint %}
 
 {% hint style="info" %}

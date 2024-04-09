@@ -50,7 +50,7 @@ On the Subscriptions service page, identify the subscription you wish to use for
 Please understand the AWS subscription structure for your environment before deploying.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### User Account Privileges
 
