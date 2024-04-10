@@ -27,10 +27,10 @@ The following standard S3 APIs are supported:
 * Bucket Tagging (GET/PUT/DEL)
 * Object (GET/PUT/DEL)
 * Object Tagging (GET/PUT/DEL)
-* Object Multiparts (POST Create/Complete, GET/DEL/PUT, GET Parts)
+* Object Multipart (POST Create/Complete, GET/DEL/PUT, GET Parts)
 
 {% hint style="warning" %}
-For multipart object upload, the free capacity of the bucket must be double the object's size until the upload is complete.
+For a multipart object upload, the bucket’s free capacity must be at least twice the size of the object until the upload is complete.
 {% endhint %}
 
 ## General limits
