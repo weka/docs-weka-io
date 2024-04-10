@@ -10,14 +10,20 @@ Using the CLI, you can:
 * [Delete a snapshot](snapshots-1.md#delete-a-snapshot)
 * [Restore a snapshot to a filesystem or another snapshot](snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot)
 * [Update a snapshot](snapshots-1.md#update-a-snapshot)
+* [Access the `.snapshots` directory](snapshots-1.md#access-the-.snapshots-directory)
 
 ## Create a snapshot
 
 **Command:** `weka fs snapshot create`
 
-Use the following command line to add a snapshot:
+Use the following command line to create a snapshot:
 
 `weka fs snapshot create <file-system> <name> [--access-point access-point] [--source-snap=<source-snap>] [--is-writable]`
+
+{% hint style="info" %}
+The newly created snapshot is saved in the `.snapshot` directory. \
+See [#access-the-.snapshots-directory](snapshots-1.md#access-the-.snapshots-directory "mention").
+{% endhint %}
 
 **Parameters**
 
@@ -81,3 +87,28 @@ This command changes the snapshot attributes. Use the following command line to 
 **Parameters**
 
 <table><thead><tr><th width="278">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>A valid filesystem identifier</td></tr><tr><td><code>name</code>*</td><td>Unique name for the updated snapshot</td></tr><tr><td><code>new-name</code></td><td>New name for the updated snapshot</td></tr><tr><td><code>access-point</code></td><td>Name of a directory for the snapshot that serves as the access point for the snapshot</td></tr></tbody></table>
+
+## Access the `.snapshots` directory
+
+The `.snapshots` directory is located in the root directory of each mounted filesystem. It is not displayed with the `ls -la` command. You can access this directory using the `cd .snapshots` command from the root directory.
+
+#### Example
+
+The following example shows a filesystem named `default` mounted to `/mnt/weka`.&#x20;
+
+To confirm you are in the root directory of the mounted filesystem, change into the `.snapshots` directory, and then display any snapshots in that directory:
+
+```
+[root@ip-172-31-23-177 weka]# pwd 
+/mnt/weka 
+[root@ip-172-31-23-177 weka]# ls -la 
+total 0 
+drwxrwxr-x 1 root root   0 Sep 19 04:56 . 
+drwxr-xr-x 4 root root  33 Sep 20 06:48 .. 
+drwx------ 1 user1 user1 0 Sep 20 09:26 user1 
+[root@ip-172-31-23-177 weka]# cd .snapshots 
+[root@ip-172-31-23-177 .snapshots]# ls -l 
+total 0 
+drwxrwxr-x 1 root root 0 Sep 21 02:44 @GMT-2023.09.21-02.44.38 
+[root@ip-172-31-23-177 .snapshots]#
+```
