@@ -240,7 +240,3 @@
   * [Troubleshooting](appendix/weka-csi-plugin/troubleshooting.md)
 * [Convert the cluster architecture from a single-container backend to a multi-container backend](appendix/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
 * [Create a client image](appendix/create-a-client-image.md)
-
-***
-
-* [REST API Reference Guide](https://api.docs.weka.io)
