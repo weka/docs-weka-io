@@ -36,7 +36,7 @@ For the **HashiCorp Vault** type, set the following:
 * **Address**: The KMS address.
 * **Key Identifier**: Key name to secure the filesystem keys (encryption-as-a-service).
 * **Token**: The authentication API token you obtain from the vault to access the KMS.
-* [**Namespace**](#user-content-fn-1)[^1]**:** The namespace name that identifies the logical partition within the vault. It is used to organize and isolate data, policies, and configurations. Namespace names must not end with "/", avoid spaces, and refrain from using reserved names like `root`, `sys`, `audit`, `auth`, `cubbyhole`, and `identity`.
+* **Namespace:** The namespace name that identifies the logical partition within the vault. It is used to organize and isolate data, policies, and configurations. Namespace names must not end with "/", avoid spaces, and refrain from using reserved names like `root`, `sys`, `audit`, `auth`, `cubbyhole`, and `identity`. This feature is available starting with v4.2.7.
 
 <div align="left">
 
@@ -101,5 +101,3 @@ Removing a KMS configuration is possible only if no encrypted filesystems exist.
 3. The **Security** page displays the configured KMS.
 4. Select **Reset KMS.**
 5. In the message that appears, select **Yes** to confirm the KMS configuration reset.
-
-[^1]: Available from 4.2.7
