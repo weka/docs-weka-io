@@ -21,7 +21,7 @@ Use the following command line to use TLS when accessing UI. If TLS is already s
 {% hint style="success" %}
 **Example:**
 
-This command is similar to the WEKA's OpenSSL command to generate the self-signed certificate: `openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
+This command is similar to the WEKA's OpenSSL command to generate the self-signed certificate: `openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days <days> -nodes`
 {% endhint %}
 
 ### Replace the TLS certificate
