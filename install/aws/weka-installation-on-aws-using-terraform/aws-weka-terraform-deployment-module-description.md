@@ -45,7 +45,7 @@ provider "aws" {
 module "weka_deployment" {
   source             = "weka/weka/aws"
   version            = "1.0.1"  
-  prefix             = "weka-tf"c589071147c2f5bb0c2550893738c85ebcf3b0d9
+  prefix             = "weka-tf"
   cluster_name       = "poc"
   availability_zones = ["eu-west-1c"]
   allow_ssh_cidrs    = ["0.0.0.0/0"]
