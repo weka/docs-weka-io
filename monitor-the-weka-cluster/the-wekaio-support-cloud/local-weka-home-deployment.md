@@ -174,7 +174,7 @@ Example of passing TLS settings in JSON:
 To use an IP address as a hostname and to have a valid certificate, make sure you pass SAN during creation. A SAN or subject alternative name is a structured way to indicate all domain names and IP addresses secured by the certificate.
 
 You can generate a self-signed certificate using the following example:\
-`openssl req -x509 -newkey rsa:1024 -keyout key.pem -out cert.pem -days <days> -nodes`
+`openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days <days> -nodes`
 
 </details>
 
