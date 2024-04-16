@@ -48,14 +48,14 @@ Verify that the dedicated filesystem for persistent protocol configurations is c
 4\. In the SMB Cluster Configuration dialog, set the following properties:
 
 * **Name**: A name for the SMB cluster. This will be the name of the Active Directory computer object and the hostname part of the FQDN.
-* **Domain**: The Active Directory domain to join the SMB cluster to.
+* **Domain**: The Active Directory domain to join the SMB cluster.
 * **Domain NetBIOS Name**: (Optional) The domain NetBIOS name.
 * **Encryption:** Select the in-transit encryption mode to use in the SMB cluster:
-  * **enabled**: enables encryption negotiation but doesn't turn it on automatically for supported sessions and share connections.
-  * **desired**: enables encryption negotiation and turns on data encryption on supported sessions and share connections.
-  * **required**: enforces data encryption on sessions and share connections. Clients that do not support encryption will be denied access to the server.
-* **Servers**: List 3-8 WEKA system servers to participate in the SMB cluster, based on the server IDs in WEKA.
-* **IPs**: (Optional) List of virtual IPs (comma-separated), used as floating IPs for the SMB cluster to provide HA to clients. These IPs must be unique; do not assign these IPs to any host on the network.\
+  * **enabled: Enables encryption negotiation but doesn't turn it on automatically for supported sessions and shared** connections.
+  * **desired**: Enables encryption negotiation and turns on data encryption for supported sessions and shared connections.
+  * **required**: Enforces data encryption on sessions and shared connections. Clients that do not support encryption will be denied access to the server.
+* **Servers**: List 3-8 WEKA system servers to participate in the SMB cluster based on the server IDs in WEKA.
+* **IPs**: (Optional) List of virtual IPs (comma-separated) used as floating IPs for the SMB cluster to provide HA to clients. These IPs must be unique; do not assign these IPs to any host on the network.\
   For an IP range, use the following format: **a.b.c.x-y**.
 * **Config Filesystem:** select the filesystem used for persisting cluster-wide protocol configurations.
 
@@ -65,7 +65,7 @@ Setting a list of SMB floating IPs in all-cloud installations is impossible due 
 
 5. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.2.6.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.3.2.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
 
 Once the system completes configuration, the server statuses change from not ready (❌) to ready (✅).
 
@@ -79,7 +79,7 @@ You can modify the encryption and IPs settings according to your needs.
 
 1. In the SMB Cluster Configuration, select the **pencil** icon.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_cluster_edit.png" alt=""><figcaption><p>Edit the SMB cluster</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_cluster_edit.png" alt="" width="338"><figcaption><p>Edit the SMB cluster</p></figcaption></figure>
 
 2. In the Edit SMB Configuration dialog, do the following:
    * **Encryption:** Select one of the in-transit encryption enforcements: enabled, desired, or required.
@@ -101,12 +101,12 @@ Ensure the AD Domain Controllers are reachable by all WEKA servers participating
 
 1. In the SMB Cluster Configuration, select **Join**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button (2).png" alt=""><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button (1).png" alt="" width="338"><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
 
 2. In the Join to Active Directory dialog, set the following properties:
-   * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials: instead, a computer account is created for use by the SMB cluster.
+   * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials. Instead, the SMB cluster creates a computer account for use.
    * **Server**: (Optional) WEKA identifies an AD Domain Controller server automatically based on the AD domain name. You do not need to set the server name. In some cases, if required, specify the AD server.
-   * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account in - that the joining account has permissions to - such as SMB Servers or Corporate Computers.
+   * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account that the joining account has permission to, such as SMB servers or corporate computers.
 
 ![Join Active Directory dialog](../../.gitbook/assets/wmng\_smb\_join\_ad\_dialog.png)
 
@@ -120,7 +120,10 @@ To join an existing SMB cluster to a different Active Directory domain, select *
 
 Adding servers to the SMB cluster can provide several benefits and address various requirements, such as scalability, load balancing, high availability, and improved fault tolerance.
 
-You can add servers to an SMB cluster that is already joined to an Active Directory domain.
+**Before you begin**
+
+Ensure the SMB cluster is joined to an Active Directory domain.\
+See [#join-the-smb-cluster-in-the-active-directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory "mention").
 
 #### Procedure
 
@@ -128,7 +131,7 @@ You can add servers to an SMB cluster that is already joined to an Active Direct
 2. In the Add SMB Cluster Servers dialog, select an available server or more from the list (maximum eight servers).
 3. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_add_server_to_smb_cluser.gif" alt=""><figcaption><p>Add servers to the SMB cluster</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_add_server_to_smb_cluser.png" alt=""><figcaption><p>Add servers to the SMB cluster</p></figcaption></figure>
 
 ## Remove servers from the SMB cluster <a href="#delete-the-smb-cluster" id="delete-the-smb-cluster"></a>
 
@@ -138,12 +141,11 @@ The minimum required number of servers in an SMB cluster is three.&#x20;
 
 #### Procedure
 
-1. On the Servers pane, select Remove.
-2. To remove one server, select the three dots next to the server to remove and select **Remove**.
+1. To remove one server, select the three dots next to the server to remove and select **Remove**.
 
 <figure><img src="../../.gitbook/assets/wmng_remove_one_server.png" alt=""><figcaption><p>Remove one server from the SMB cluster</p></figcaption></figure>
 
-3. To remove more than one server, from the Remove SMB Cluster Servers dialog, select the servers to remove (click the **X**), and select **Save**.
+2. To remove more than one server, from the Remove SMB Cluster Servers dialog, select the servers to remove (click the **X**), and select **Save**.
 
 <figure><img src="../../.gitbook/assets/wmng_remove_few_servers.png" alt=""><figcaption><p>Remove more than one server from the SMB cluster</p></figcaption></figure>
 
