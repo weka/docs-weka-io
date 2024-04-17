@@ -1,6 +1,6 @@
 # Deployment on GCP using Terraform
 
-WEKA provides a Terraform-GCP-WEKA module with a `main.tf` file you create according to your deployment needs.&#x20;
+The Terraform package includes a `main.tf` file you create according to your deployment needs.&#x20;
 
 Applying the created `main.tf` file performs the following:
 
@@ -15,7 +15,7 @@ Applying the created `main.tf` file performs the following:
 Before installing the WEKA software on GCP, the following prerequisites must be met:
 
 * [Install the gcloud CLI](https://cloud.google.com/sdk/docs/install): It is pre-installed if you use the Cloud Shell.
-* [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli): It is pre-installed if you use the Cloud Shell. Ensure the Terraform version meets the minimum required version specified in the [Terraform-GCP-WEKA](https://github.com/weka/terraform-gcp-weka) module under the **Requirements** section.
+* [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli): It is pre-installed if you use the Cloud Shell. Ensure the Terraform version meets the minimum required version specified in the [**Requirements**](https://registry.terraform.io/modules/weka/weka/gcp/latest#requirements) section of the GCP-WEKA deployment Terraform package.
 * Initialize the Terraform module using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 *   The **Compute Engine** and **Workflows API** services must be enabled to allow the following services:
 

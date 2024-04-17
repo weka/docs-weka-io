@@ -6,7 +6,7 @@ This guide outlines the customization process for Terraform configurations to de
 If you are new to Azure and Terraform, refer to the [detailed-deployment-tutorial-weka-on-azure-using-terraform.md](detailed-deployment-tutorial-weka-on-azure-using-terraform.md "mention").
 {% endhint %}
 
-The Terraform-Azure-WEKA module contains submodules that can be tailored to suit your specific deployment requirements. The installation is based on applying the customized Terraform variables file to a predefined Azure subscription.
+The Terraform package contains modules that can be tailored to suit your specific deployment requirements. The installation is based on applying the customized Terraform variables file to a predefined Azure subscription.
 
 Applying the Terraform module performs the following:
 
@@ -29,7 +29,7 @@ Before installing the WEKA software on Azure, the following prerequisites must b
 
 * The following must be installed on the workstation used for the deployment:
   * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
-  * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (check the minimum required Terraform version specified in the **Requirements** section of [Azure-WEKA deployment Terraform package](https://registry.terraform.io/modules/weka/weka/azure/latest).
+  * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (check the minimum required Terraform version specified in the [**Requirements**](https://registry.terraform.io/modules/weka/weka/azure/latest#requirements) section of Azure-WEKA deployment Terraform package.
 * For an ARM-based MAC workstation (for example, M1 or M2), see specific instructions below.
 * Initialize the Terraform-Azure-WEKA module using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 * Required permissions on Azure:

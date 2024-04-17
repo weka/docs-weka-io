@@ -10,7 +10,7 @@ If you are new to AWS and Terraform, refer to the[detailed-deployment-tutorial-w
 
 #### Before you begin
 
-The [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) must be installed on the workstation used for the deployment. Check the minimum required Terraform version specified in the [Terraform-AWS-WEKA](https://registry.terraform.io/modules/weka/weka/aws/latest?tab=dependencies) module under the **Requirements** section).
+The [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) must be installed on the workstation used for the deployment. Check the minimum required Terraform version specified in the [**Requirements**](https://registry.terraform.io/modules/weka/weka/aws/latest#requirements) section of the Terraform-AWS-WEKA module.
 
 #### Procedure
 
