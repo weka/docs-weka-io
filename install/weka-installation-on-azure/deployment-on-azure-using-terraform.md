@@ -20,7 +20,7 @@ The total deployment time is about 30 minutes. Half of that time is for resource
 {% hint style="info" %}
 If you do not require auto-scaling support and require a lower level of privileges, an essential WEKA deployment is available. This deployment option eliminates the need for function apps and load balancer resources.
 
-For details, see [https://github.com/weka/terraform-azure-weka-essential](https://github.com/weka/terraform-azure-weka-essential).
+For details, see [weka-essential](https://registry.terraform.io/modules/weka/weka-essential/azure/latest).
 {% endhint %}
 
 ## Prerequisites
@@ -29,7 +29,7 @@ Before installing the WEKA software on Azure, the following prerequisites must b
 
 * The following must be installed on the workstation used for the deployment:
   * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
-  * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (check the minimum required Terraform version specified in the [Terraform-Azure-WEKA](https://github.com/weka/terraform-azure-weka) module under the **Requirements** section).
+  * [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) (check the minimum required Terraform version specified in the **Requirements** section of [Azure-WEKA deployment Terraform package](https://registry.terraform.io/modules/weka/weka/azure/latest).
 * For an ARM-based MAC workstation (for example, M1 or M2), see specific instructions below.
 * Initialize the Terraform-Azure-WEKA module using `terraform init` from the local directory. This command initializes a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, and more.
 * Required permissions on Azure:

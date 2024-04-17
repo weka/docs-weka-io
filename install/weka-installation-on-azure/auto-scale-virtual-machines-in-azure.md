@@ -24,4 +24,4 @@ curl --fail https://<cluster name prefix>-function-app.azurewebsites.net/api/res
 
 ```
 
-3. Use the commands described in the [Check the deployment progress](deployment-on-azure-using-terraform.md#check-the-deployment-progress) section to track the resize progress.
+3. Track the resize progress using the commands provided in the [Check the deployment progress](deployment-on-azure-using-terraform.md#check-the-deployment-progress) section.
