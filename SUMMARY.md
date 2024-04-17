@@ -49,7 +49,7 @@
     * [Troubleshooting](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/troubleshooting.md)
   * [Supported EC2 instance types](planning-and-installation/aws/supported-ec2-instance-types.md)
 * [WEKA installation on Azure](planning-and-installation/weka-installation-on-azure/README.md)
-  * [Terraform-Azure-WEKA module description](planning-and-installation/weka-installation-on-azure/azure-weka-terraform-package-description.md)
+  * [Azure-WEKA deployment Terraform package description](planning-and-installation/weka-installation-on-azure/azure-weka-terraform-package-description.md)
   * [Deployment on Azure using Terraform](planning-and-installation/weka-installation-on-azure/deployment-on-azure-using-terraform.md)
   * [Required services and supported regions](planning-and-installation/weka-installation-on-azure/required-services-and-supported-regions.md)
   * [Supported virtual machine types](planning-and-installation/weka-installation-on-azure/supported-virtual-machine-types.md)
