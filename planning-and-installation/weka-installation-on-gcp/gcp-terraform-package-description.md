@@ -1,8 +1,8 @@
-# Terraform-GCP-WEKA module description
+# GCP-WEKA deployment Terraform package description
 
-WEKA provides a ready-to-deploy Terraform-GCP-WEKA module you can customize for installing the WEKA cluster on GCP.
+WEKA provides a ready-to-deploy [GCP-WEKA deployment Terraform package](https://registry.terraform.io/modules/weka/weka/gcp/latest) you can customize to install the WEKA cluster on GCP.
 
-The module contains the following modules:
+The Terraform package contains the following modules:
 
 * **setup\_network**: includes vpcs, subnets, peering, firewall, and health check.
 * **service\_account**: includes the service account used for deployment with all necessary permissions.
@@ -11,9 +11,9 @@ The module contains the following modules:
 
 Refer to the [terraform-gcp-weka](https://github.com/weka/terraform-gcp-weka) module for more details.
 
-## GCP Terraform module supported deployment types
+## GCP-WEKA deployment Terraform package supported types
 
-The Terraform-GCP-WEKA module supports the following deployment types:
+The Terraform package supports the following deployment types:
 
 * **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform for downloading the WEKA release from the public [get.weka.io](https://get.weka.io) service. The following examples are provided:
   * Public VPC
@@ -29,7 +29,7 @@ The Terraform-GCP-WEKA module supports the following deployment types:
   * Private VPC with multiple clusters
   * Private VPC with a shared VPC
 
-## Terraform-GCP-WEKA example
+## Terraform example
 
 The following is a basic example in which you provide the minimum detail of your cluster, and the Terraform module completes the remaining required resources, such as cluster size, machine type, and networking parameters.
 
@@ -64,7 +64,7 @@ output "weka_cluster" {
 ```
 
 {% hint style="info" %}
-For the parameters' descriptions, refer to the [terraform-gcp-weka](https://github.com/weka/terraform-gcp-weka) module
+For the descriptions of the parameters, refer to the [GCP-WEKA deployment Terraform package](https://registry.terraform.io/modules/weka/weka/gcp/latest).
 {% endhint %}
 
 ## Private network considerations
@@ -79,7 +79,7 @@ Depending on the required network topology, the following parameters are optiona
 
 ## Object store integration
 
-The terraform-gcp-weka module can automate the addition of a Google Cloud Storage bucket for use as object storage.
+The Terraform package can automate the addition of a Google Cloud Storage bucket for use as object storage.
 
 **Procedure**
 

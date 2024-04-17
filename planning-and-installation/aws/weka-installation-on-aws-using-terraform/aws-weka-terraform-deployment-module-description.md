@@ -2,7 +2,7 @@
 
 The [Terraform-AWS-WEKA](https://registry.terraform.io/modules/weka/weka/aws/latest?tab=inputs) module is an open-source repository. It contains modules to customize the WEKA cluster installation on AWS. The default protocol deployed using the module is POSIX.
 
-The Terraform-AWS-WEKA module supports public and private cloud deployments. All deployment types require passing the `get.weka.io` token to Terraform for downloading the WEKA release from the public [get.weka.io](https://get.weka.io) service.
+The Terraform-AWS-WEKA module supports public and private cloud deployments. All deployment types require passing the `get.weka.io` token to Terraform to download the WEKA release from the public [get.weka.io](https://get.weka.io) service.
 
 {% hint style="info" %}
 The WEKA release can only be downloaded over the internet if the private cloud network has NAT Gateway associated.
@@ -13,7 +13,7 @@ The WEKA release can only be downloaded over the internet if the private cloud n
 The Terraform-AWS-WEKA module consists of the following components:
 
 * **Required module:**
-  * WEKA Root Module located in the main Terraform module.
+  * WEKA Root Module is located in the main Terraform module.
 * **Optional sub-modules:**
   * **protocol\_gateways:** Enables creating dedicated WEKA Frontend servers for protocol access (NFS, SMB, or SMB-W).
   * **clients:** Enables creating stateless WEKA clients that automatically join the WEKA cluster during cluster creation. The WEKA clients host applications or workloads.

@@ -59,7 +59,7 @@
   * [Detailed deployment tutorial: WEKA on Azure using Terraform](planning-and-installation/weka-installation-on-azure/detailed-deployment-tutorial-weka-on-azure-using-terraform.md)
 * [WEKA installation on GCP](planning-and-installation/weka-installation-on-gcp/README.md)
   * [WEKA project description](planning-and-installation/weka-installation-on-gcp/weka-project-description.md)
-  * [Terraform-GCP-WEKA module description](planning-and-installation/weka-installation-on-gcp/gcp-terraform-package-description.md)
+  * [GCP-WEKA deployment Terraform package description](planning-and-installation/weka-installation-on-gcp/gcp-terraform-package-description.md)
   * [Deployment on GCP using Terraform](planning-and-installation/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md)
   * [Required services and supported regions](planning-and-installation/weka-installation-on-gcp/required-services-and-supported-regions.md)
   * [Supported machine types and storage](planning-and-installation/weka-installation-on-gcp/supported-machine-types-and-storage.md)
