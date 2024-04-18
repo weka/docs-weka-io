@@ -44,7 +44,7 @@ pdsh -R ssh -w "weka0-[0-7]" 'chmod +x /tmp/resources_generator.py'
 1. [Remove the default container](manually-configure-the-weka-cluster-using-the-resource-generator.md#1.-remove-the-default-container)
 2. [Generate the resource files](manually-configure-the-weka-cluster-using-the-resource-generator.md#2.-generate-the-resource-files)
 3. [Create drive containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#3.-create-drive-containers)
-4. [Create a cluster](manually-configure-the-weka-cluster-using-the-resource-generator.md#4.-create-a-cluster)
+4. [Create a cluster](manually-configure-the-weka-cluster-using-the-resource-generator.md#id-4.-create-a-cluster)
 5. [Configure the SSD drives](manually-configure-the-weka-cluster-using-the-resource-generator.md#5.-configure-the-ssd-drives)
 6. [Create compute containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#6.-create-compute-containers)
 7. [Create frontend containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#7.-create-frontend-containers)
@@ -131,7 +131,7 @@ weka cluster create <hostnames> [--host-ips <ips | ip+ip+ip+ip>]
 **Notes:**
 
 * It is possible to use a hostname or an IP address. This string serves as the container's identifier in subsequent commands.
-* If a hostname is used, ensure the hostname to IP resolution mechanism is reliable. A failure of this mechanism causes a loss of service in the cluster. It is recommended to add the hostnames to `/etc/hosts`.
+* If a hostname is used, ensure the hostname to IP resolution mechanism is reliable.
 * Once the cluster creation is successfully completed, the cluster is in the initialization phase, and some commands can only run in this phase.
 * To configure high availability (HA), at least two cards must be defined for each container.
 * On successful completion of the formation of the cluster, every container receives a container-ID. To display the list of the containers and IDs, run `weka cluster container`.
