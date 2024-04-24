@@ -1,7 +1,7 @@
 ---
 description: >-
   Explore the hierarchical structure of WEKA Command-Line Interface (CLI)
-  commands for easy reference. (Commands marked with asterisks * are new
+  commands for easy reference. (Commands marked with asterisks ** are new
   additions in V4.3.)
 ---
 
@@ -21,7 +21,7 @@ weka access-group
 ```
 weka agent
    |--install-agent
-   |--update-containers *
+   |--update-containers **
    |--uninstall
    |--autocomplete
       |--install
@@ -42,7 +42,7 @@ weka alerts
 ### weka audit
 
 ```
-weka audit *
+weka audit **
    |--view
 ```
 
@@ -193,7 +193,7 @@ weka fs
 ### weka interface-group
 
 ```
-weka interface-group *
+weka interface-group **
     |--assignment
     |--update
     |--delete
@@ -275,7 +275,7 @@ weka nfs
     |--global-config
         |--set
         |--show
-    |--kerberos *
+    |--kerberos **
         |--service
             |--setup
             |--show
@@ -284,7 +284,7 @@ weka nfs
             |--setup-mit
             |--show
         |--reset
-    |--ldap *
+    |--ldap **
         |--setup-ad
         |--setup-openldap
         |--show

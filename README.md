@@ -42,7 +42,8 @@ For maintenance and troubleshooting articles, search the WEKA Knowledge Base in 
 
 ## Conventions
 
-The CLI mandatory parameters are marked with an asterisk (\*) throughout the documentation.
+* The CLI mandatory parameters are marked with an asterisk (\*) throughout the documentation.
+* New additions in V4.3 are marked with two asterisks (\*\*) in the [REST API and equivalent CLI commands](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md) and [CLI hierarchy](getting-started-with-weka/manage-the-system-using-weka-cli/weka-cli-hierarchy.md) topics.
 
 ## Documentation feedback
 
