@@ -92,12 +92,12 @@ weka cluster container apply 0
 
 </details>
 
-### Modify the container IP addresses
+### Modify the container management IP addresses
 
 Run the following command lines on the active container:
 
 ```
-weka cluster container management-ips <container-id> <device>
+weka cluster container management-ips <container-id> <management-ips>
 weka cluster container apply <container-id>
 ```
 
