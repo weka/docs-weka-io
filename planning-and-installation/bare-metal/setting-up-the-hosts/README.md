@@ -441,13 +441,12 @@ Configure the clock synchronization software on the backends and clients accordi
 
 ## **7. Disable the NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
 
-The WEKA system manages the NUMA balancing by itself and makes the best possible decisions. Therefore, we recommend disabling the NUMA balancing feature of the Linux kernel to avoid additional latencies in the operations.
+The WEKA system autonomously manages NUMA balancing, making optimal decisions. Therefore, turning off the Linux kernel’s NUMA balancing feature is a **mandatory requirement** to prevent extra latencies in operations. It’s crucial that the disabled NUMA balancing remains consistent and isn’t altered by a server reboot.
 
-To disable NUMA balancing, run the following command on the server:
+To persistently disable NUMA balancing, follow these steps:
 
-```
-echo 0 > /proc/sys/kernel/numa_balancing
-```
+1. Open the file located at: `/etc/sysctl.conf`
+2. Append the following line: `kernel.numa_balancing=disable`
 
 ## 8. Disable swap (if any)
 
