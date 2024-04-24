@@ -1,6 +1,10 @@
 # Perform post-configuration procedures
 
-Once the WEKA cluster is installed and configured, perform the following:
+$ weka cluster container resources 1 ROLES NODE ID CORE ID MANAGEMENT 0 DRIVES 1 4
+
+NET DEVICE IDENTIFIER DEFAULT GATEWAY IPS NETMASK NETWORK LABEL 0000:00:06.0 0000:00:06.0 10.108.0.1 10.108.115.194 UP 16
+
+Allow Protocols false Bandwidth Base Port 14000 Dedicate Memory true Disable NUMA Balancing true Failure Domain DOM-001 Hardware Watchdog false Management IPs 10.108.238.217 Mask Interrupts true Memory Mode BACKEND Non-Weka Reserved Memory 20 Set CPU Governors PERFORMANCEOnce the WEKA cluster is installed and configured, perform the following:
 
 1. [Enable event notifications to the cloud (optional)](perform-post-configuration-procedures.md#1.-enable-event-notifications-to-the-cloud-optional)
 2. [Set the license](perform-post-configuration-procedures.md#2.-set-the-license)
@@ -112,38 +116,27 @@ Use this command to check the resources of each container in the cluster.
 <summary>Example for a drive container resources output</summary>
 
 ```bash
-$ weka cluster container
-HOST ID  HOSTNAME  CONTAINER  IPS             STATUS  RELEASE   FAILURE DOMAIN  CORES  MEMORY    LAST FAILURE  UPTIME
-0        av299-0   drives0    10.108.79.121   UP      4.3.0     DOM-000         7      10.45 GB                1:08:30h
-1        av299-1   drives0    10.108.115.194  UP      4.3.0     DOM-001         7      10.45 GB                1:08:30h
-2        av299-2   drives0    10.108.2.136    UP      4.3.0     DOM-002         7      10.45 GB                1:08:29h
-3        av299-3   drives0    10.108.165.185  UP      4.3.0     DOM-003         7      10.45 GB                1:08:30h
-4        av299-4   drives0    10.108.116.49   UP      4.3.0     DOM-004         7      10.45 GB                1:08:29h
-5        av299-5   drives0    10.108.7.63     UP      4.3.0     DOM-005         7      10.45 GB                1:08:30h
-6        av299-6   drives0    10.108.80.75    UP      4.3.0     DOM-006         7      10.45 GB                1:08:29h
-7        av299-7   drives0    10.108.173.56   UP      4.3.0     DOM-007         7      10.45 GB                1:08:30h
-8        av299-8   drives0    10.108.253.194  UP      4.3.0     DOM-008         7      10.45 GB                1:08:29h
-9        av299-9   drives0    10.108.220.115  UP      4.3.0     DOM-009         7      10.45 GB                1:08:29h
-10       av299-0   compute0   10.108.79.121   UP      4.3.0     DOM-000         6      20.22 GB                1:08:08h
-11       av299-1   compute0   10.108.115.194  UP      4.3.0     DOM-001         6      20.22 GB                1:08:08h
-12       av299-2   compute0   10.108.2.136    UP      4.3.0     DOM-002         6      20.22 GB                1:08:09h
-13       av299-3   compute0   10.108.165.185  UP      4.3.0     DOM-003         6      20.22 GB                1:08:09h
-14       av299-4   compute0   10.108.116.49   UP      4.3.0     DOM-004         6      20.22 GB                1:08:09h
-15       av299-5   compute0   10.108.7.63     UP      4.3.0     DOM-005         6      20.22 GB                1:08:08h
-16       av299-6   compute0   10.108.80.75    UP      4.3.0     DOM-006         6      20.22 GB                1:08:09h
-17       av299-7   compute0   10.108.173.56   UP      4.3.0     DOM-007         6      20.22 GB                1:08:08h
-18       av299-8   compute0   10.108.253.194  UP      4.3.0     DOM-008         6      20.22 GB                1:08:09h
-19       av299-9   compute0   10.108.220.115  UP      4.3.0     DOM-009         6      20.22 GB                1:08:08h
-20       av299-0   frontend0  10.108.79.121   UP      4.3.0     DOM-000         1      1.47 GB                 1:06:57h
-21       av299-1   frontend0  10.108.115.194  UP      4.3.0     DOM-001         1      1.47 GB                 1:06:57h
-22       av299-2   frontend0  10.108.2.136    UP      4.3.0     DOM-002         1      1.47 GB                 1:06:57h
-23       av299-3   frontend0  10.108.165.185  UP      4.3.0     DOM-003         1      1.47 GB                 1:06:56h
-24       av299-4   frontend0  10.108.116.49   UP      4.3.0     DOM-004         1      1.47 GB                 1:06:57h
-25       av299-5   frontend0  10.108.7.63     UP      4.3.0     DOM-005         1      1.47 GB                 1:06:56h
-26       av299-6   frontend0  10.108.80.75    UP      4.3.0     DOM-006         1      1.47 GB                 1:06:57h
-27       av299-7   frontend0  10.108.173.56   UP      4.3.0     DOM-007         1      1.47 GB                 1:06:56h
-28       av299-8   frontend0  10.108.253.194  UP      4.3.0     DOM-008         1      1.47 GB                 1:06:57h
-29       av299-9   frontend0  10.108.220.115  UP      4.3.0     DOM-009         1      1.47 GB                 1:06:56h
+$ weka cluster container resources 1
+ROLES       NODE ID  CORE ID
+MANAGEMENT  0        <auto>
+DRIVES      1        4
+
+NET DEVICE    IDENTIFIER    DEFAULT GATEWAY  IPS             NETMASK  NETWORK LABEL
+0000:00:06.0  0000:00:06.0  10.108.0.1       10.108.115.194  UP  16
+
+Allow Protocols           false
+Bandwidth                 <auto>
+Base Port                 14000
+Dedicate Memory           true
+Disable NUMA Balancing    true
+Failure Domain            DOM-001
+Hardware Watchdog         false
+Management IPs            10.108.238.217
+Mask Interrupts           true
+Memory                    <dedicated>
+Mode                      BACKEND
+Non-Weka Reserved Memory  20
+Set CPU Governors         PERFORMANCE
 ```
 
 </details>
