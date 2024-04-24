@@ -27,7 +27,7 @@ In addition to the mandatory parameters, consider the following recommendations 
 
 ## Additional information
 
-* **File locking:** WEKA NFS does not support file locking in 4.2. File lock requests by the client will be ignored or result in an error. For file locking, use the WekaFS client.
+* **File locking:** WEKA NFS does not support file locking in version 4.2 or higher. File lock requests by the client will be ignored or result in an error. For file locking, use the WekaFS client.
 * **NFS client version:** Specify the NFS client version as `vers=3` or `vers=4` to prevent unexpected negotiations during server configuration changes.
 * **Resiliency:** Explicitly set `hard` for resilience to temporary network interruptions.
 * **NFS performance:** For users of the latest WEKA versions, consider setting `nconnect` to a value greater than 1 for potential NFS performance improvement.

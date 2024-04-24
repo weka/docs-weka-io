@@ -30,7 +30,7 @@ When working with low-bandwidth NICs such as the X500-T1, a 10Gb/s NIC, consider
 Ensure the following requirements are met:
 
 * All clusters that run in this configuration must be at least version 4.2.
-* All client containers in the WEKA client must run the same minor version, at least version 4.2. The client version must be the same as the cluster or one version earlier at most.
+* All client containers in the WEKA client must run the same minor version, at least version 4.2. The client version must be the same as the cluster or, at most, one version earlier.
 * All client containers must be of the same type, stateful or stateless clients. Mixing different client types in a single WEKA client is not allowed.
 * Each client container must run on its port. The default ports are 14000, 14101, 14201, 14301, 14401, 14501, and 14601. Ensure these ports allow egress on the client and ingress on the cluster.
 * For DPDK, each client container must have 5 GB of free RAM, and it is recommended to have a dedicated CPU core to get optimal performance.

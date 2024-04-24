@@ -2,7 +2,7 @@
 
 Welcome to the WEKA Documentation Portal, your guide to the latest WEKA version. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies. Choose your WEKA version from the top menu for version-specific documentation.
 
-<figure><img src=".gitbook/assets/selector_animation.gif" alt=""><figcaption><p>WEKA version selector</p></figcaption></figure>
+<figure><img src=".gitbook/assets/4.3_version_selector.gif" alt=""><figcaption><p>WEKA version selector</p></figcaption></figure>
 
 {% hint style="warning" %}
 **Important:** This documentation applies to the WEKA system's **latest minor version** (4.3.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
