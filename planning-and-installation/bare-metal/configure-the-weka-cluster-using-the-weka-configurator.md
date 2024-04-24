@@ -34,8 +34,8 @@ Adhere to the following concepts:
 
 ## Workflow
 
-1. [Configure a WEKA cluster with the WEKA Configurator](configure-the-weka-cluster-using-the-weka-configurator.md#1.-configure-a-weka-cluster-with-the-weka-configurator)
-2. [Apply the configuration (`config.sh`)](configure-the-weka-cluster-using-the-weka-configurator.md#2.-apply-the-configuration)
+1. [Configure a WEKA cluster with the WEKA Configurator](configure-the-weka-cluster-using-the-weka-configurator.md#id-1.-configure-a-weka-cluster-with-the-weka-configurator)
+2. [Apply the configuration](configure-the-weka-cluster-using-the-weka-configurator.md#id-2.-apply-the-configuration) (`config.sh`)
 
 ### 1. Configure a WEKA cluster with the WEKA Configurator
 
