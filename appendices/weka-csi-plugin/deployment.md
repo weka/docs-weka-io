@@ -17,7 +17,32 @@ Ensure the following prerequisites are met:
 
 ## Installation
 
-1. On your workstation, add the `csi-wekafs` repository:
+### CSI external-snapshotter
+
+If you plan on taking Kubernetes-controlled snapshots, install the [CSI external-snapshotter](#user-content-fn-1)[^1].
+
+1. On the workstation you manage Kubernetes from, clone the CSI external-snapshotter from its GitHub repository.
+
+```
+git clone https://github.com/kubernetes-csi/external-snapshotter  
+```
+
+2. Switch to the directory created by the Git clone.
+
+```
+cd external-snapshotter 
+```
+
+3. Create and deploy the proper Custom Resource Definitions for the CSI external-snapshotter.
+
+```
+kubectl -n kube-system kustomize deploy/kubernetes/snapshot-controller | kubectl create -f -
+kubectl kustomize client/config/crd | kubectl create -f -
+```
+
+### WEKAFS CSI
+
+1. On the workstation you manage Kubernetes from, add the `csi-wekafs` repository:
 
 ```
 helm repo add csi-wekafs https://weka.github.io/csi-wekafs
@@ -192,3 +217,5 @@ Run the following command lines:
 kubectl delete pod -n csi-wekafs -lapp=csi-wekafs-controller
 kubectl delete pod -n csi-wekafs -lapp=csi-wekafs-node
 ```
+
+[^1]: The **CSI external-snapshotter** is a sidecar container in Kubernetes. It monitors for `VolumeSnapshot` and `VolumeSnapshotContent` objects and triggers snapshot operations against a CSI endpoint. It’s part of the Kubernetes’ CSI implementation.
