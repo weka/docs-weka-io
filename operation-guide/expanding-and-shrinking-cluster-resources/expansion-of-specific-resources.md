@@ -97,7 +97,7 @@ weka cluster container apply 0
 Run the following command lines on the active container:
 
 ```
-weka cluster container management-ips <container-id> <device>
+weka cluster container management-ips <container-id> <management-ips>
 weka cluster container apply <container-id>
 ```
 
