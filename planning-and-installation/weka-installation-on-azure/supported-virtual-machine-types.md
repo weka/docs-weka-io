@@ -38,7 +38,7 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 ### Memory optimized virtual machine sizes
 
-<table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>Edsv4</td><td>Standard_E16ds_v4, Standard_E16-8ds_v4, Standard_E32ds_v4, </td></tr><tr><td>Easv4</td><td>Standard_E32-16as_v4</td></tr><tr><td>Easv5</td><td>Standard_E32-16as_v5</td></tr><tr><td>Edsv4</td><td>Standard_E32-16ds_v4, Standard_E48ds_v4</td></tr><tr><td>Eadsv5</td><td>Standard_E96ads_v5</td></tr><tr><td>Mdmsv2</td><td>Standard_M64dms_v2</td></tr><tr><td>Msv2</td><td>Standard_M208s_v2</td></tr><tr><td>Mmsv2</td><td>Standard_M208ms_v2, Standard_M416ms_v2</td></tr></tbody></table>
+<table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>Edsv4</td><td>Standard_E16ds_v4, Standard_E16-8ds_v4, Standard_E32ds_v4, </td></tr><tr><td>Easv4</td><td>Standard_E32-16as_v4</td></tr><tr><td>Easv5</td><td>Standard_E32-16as_v5</td></tr><tr><td>Edsv4</td><td>Standard_E32-16ds_v4, Standard_E48ds_v4</td></tr><tr><td>Eadsv5</td><td>Standard_E96ads_v5</td></tr><tr><td>Mdmsv2</td><td>Standard_M64dms_v2</td></tr><tr><td>Msv2</td><td>Standard_M208s_v2</td></tr><tr><td>Mmsv2</td><td>Standard_M208ms_v2, Standard_M416ms_v2</td></tr><tr><td>Epsv5</td><td>Standard_E4ps_v5, Standard_E8ps_v5, Standard_E16ps_v5, Standard_E20ps_v5, Standard_E32ps_v5</td></tr></tbody></table>
 
 ### Compute optimized virtual machine sizes
 
