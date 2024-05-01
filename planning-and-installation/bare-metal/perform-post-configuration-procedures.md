@@ -1,10 +1,6 @@
 # Perform post-configuration procedures
 
-$ weka cluster container resources 1 ROLES NODE ID CORE ID MANAGEMENT 0 DRIVES 1 4
-
-NET DEVICE IDENTIFIER DEFAULT GATEWAY IPS NETMASK NETWORK LABEL 0000:00:06.0 0000:00:06.0 10.108.0.1 10.108.115.194 UP 16
-
-Allow Protocols false Bandwidth Base Port 14000 Dedicate Memory true Disable NUMA Balancing true Failure Domain DOM-001 Hardware Watchdog false Management IPs 10.108.238.217 Mask Interrupts true Memory Mode BACKEND Non-Weka Reserved Memory 20 Set CPU Governors PERFORMANCEOnce the WEKA cluster is installed and configured, perform the following:
+Once the WEKA cluster is installed and configured, perform the following:
 
 1. [Enable event notifications to the cloud (optional)](perform-post-configuration-procedures.md#1.-enable-event-notifications-to-the-cloud-optional)
 2. [Set the license](perform-post-configuration-procedures.md#2.-set-the-license)
