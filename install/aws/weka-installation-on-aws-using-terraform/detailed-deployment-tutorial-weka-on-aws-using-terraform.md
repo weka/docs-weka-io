@@ -550,9 +550,17 @@ Decommissioning an old instance and allowing the Auto Scaling Group (ASG) to lau
 
 See [#required-ports](../../../support/prerequisites-and-compatibility.md#required-ports "mention")
 
-### Appendix B - Required permissions that are needed by Terraform
+### Appendix B - **Terraform’s r**equired permissions
 
-The following example illustrate the permissions you will need to deploy weka by using terraform.
+This section provides examples of the permissions required to deploy WEKA using Terraform.
+
+The minimum IAM policies needed are based on the assumption that the network, including VPC, subnets, VPC Endpoints, and Security Groups, is created by the end user. If IAM roles or policies are pre-established, some permissions may be omitted.
+
+{% hint style="info" %}
+The policy exceeds the 6144 character limit for IAM policies, necessitating its division into two separate policies.
+{% endhint %}
+
+In each policy, replace the placeholders, such as `account-number`, `prefix`, and `cluster-name`, with the corresponding actual values.
 
 <details>
 
