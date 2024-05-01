@@ -164,7 +164,7 @@ Adhere to the following considerations when choosing the adapters:
   * Only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, consult with the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
   * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0 are required.
 * [**MTU**](#user-content-fn-2)[^2]**:** It is recommended to set the MTU to at least 4k on the NICs of WEKA cluster servers and the connected switches.
-* [**Jumbo Frames**](#user-content-fn-3)[^3]**:** While it is possible to configure the WEKA cluster without enabling jumbo frames for both Ethernet and InfiniBand, doing so may lead to suboptimal performance and an inability to efficiently handle high data loads. Before implementing this mode, it is recommended to consult with the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team). For clients, jumbo frames are not essential, but it may impact performance.
+* [**Jumbo Frames**](#user-content-fn-3)[^3]**:** If any network connection, irrespective of whether it’s InfiniBand or Ethernet, on a given backend possess the capability to transmit frames exceeding 4 KB in size, it is mandatory for all network connections used directly by WEKA on that same backend to have the ability to transmit frames of at least 4 KB.
 * [**IOMMU**](#user-content-fn-4)[^4] **support:** WEKA automatically detects and enable IOMMU for the server and PCI devices. Manual enablement is not required.
 * **Mixed networks:** This term denotes a configuration in which a WEKA cluster is interfaced with both InfiniBand and Ethernet networks. In the event of dual connections, the system gives precedence to the InfiniBand links for managing WEKA traffic, resorting to the Ethernet links only when complications occur with the InfiniBand network. It’s important to note that in a mixed network cluster, the activation of RDMA (Remote Direct Memory Access) is not possible.
 * **IP Addressing for dataplane NICs:** Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
@@ -284,11 +284,11 @@ WEKA supports the following Mellanox OFED versions for the InfiniBand adapters:
 {% tab title="InfiniBand configurations" %}
 WEKA supports the following InfiniBand configurations:
 
-* InfiniBand speeds: FDR / EDR / HDR
-* Subnet manager: Configured to 4092
-* One WEKA system IP address for management and data plane
-* PKEYs: One partition key is supported by WEKA
-* Redundant InfiniBand ports can be used for both HA and higher bandwidth
+* InfiniBand speeds: Determined by the InfiniBand adapter supported speeds (FDR / EDR / HDR / NDR).
+* Subnet manager: Configured to 4092.
+* One WEKA system IP address for management and data plane.
+* PKEYs: One partition key is supported by WEKA.
+* Redundant InfiniBand ports can be used for both HA and higher bandwidth.
 
 {% hint style="info" %}
 If it is necessary to change PKEYs, contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
