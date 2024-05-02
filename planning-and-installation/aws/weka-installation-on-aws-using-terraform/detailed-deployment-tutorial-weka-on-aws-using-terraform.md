@@ -829,7 +829,7 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
                 "secretsmanager:PutSecretValue"
             ],
             "Resource": [
-                "arn:aws:secretsmanager:*:7account-number:secret:weka/prefix-cluster-name/*"
+                "arn:aws:secretsmanager:*:account-number:secret:weka/prefix-cluster-name/*"
             ]
         },
         {
@@ -840,7 +840,7 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
                 "dynamodb:GetItem",
                 "dynamodb:UpdateItem"
             ],
-            "Resource": "arn:aws:dynamodb:*:7account-number:table/prefix-cluster-name*"
+            "Resource": "arn:aws:dynamodb:*:account-number:table/prefix-cluster-name*"
         },
         {
             "Effect": "Allow",
@@ -861,8 +861,8 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
                 "iam:ListAttachedUserPolicies"
             ],
             "Resource": [
-                "arn:aws:iam::7account-number:policy/prefix-cluster-name-*",
-                "arn:aws:iam::7account-number:role/prefix-cluster-name-*"
+                "arn:aws:iam::account-number:policy/prefix-cluster-name-*",
+                "arn:aws:iam::account-number:role/prefix-cluster-name-*"
             ]
         },
         {
@@ -876,9 +876,9 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
                 "iam:DetachUserPolicy"
             ],
             "Resource": [
-                "arn:aws:iam::7account-number:policy/prefix-cluster-name-*",
-                "arn:aws:iam::7account-number:role/prefix-cluster-name-*",
-                "arn:aws:iam::7account-number:role/ck-cluster-name-weka-iam-role"
+                "arn:aws:iam::account-number:policy/prefix-cluster-name-*",
+                "arn:aws:iam::account-number:role/prefix-cluster-name-*",
+                "arn:aws:iam::account-number:role/ck-cluster-name-weka-iam-role"
             ]
         },
         {
@@ -908,8 +908,8 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
                 "logs:DeleteLogGroup"
             ],
             "Resource": [
-                "arn:aws:logs:us-east-1:7account-number:log-group:/aws/lambda/prefix-cluster-name*",
-                "arn:aws:logs:us-east-1:7account-number:log-group:/aws/vendedlogs/states/prefix-cluster-name*"
+                "arn:aws:logs:us-east-1:account-number:log-group:/aws/lambda/prefix-cluster-name*",
+                "arn:aws:logs:us-east-1:account-number:log-group:/aws/vendedlogs/states/prefix-cluster-name*"
             ]
         },
         {
@@ -925,7 +925,7 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
                 "events:RemoveTargets"
             ],
             "Resource": [
-                "arn:aws:events:us-east-1:7account-number:rule/prefix-cluster-name*"
+                "arn:aws:events:us-east-1:account-number:rule/prefix-cluster-name*"
             ]
         },
         {
@@ -939,7 +939,7 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
                 "dynamodb:DeleteTable"
             ],
             "Resource": [
-                "arn:aws:dynamodb:us-east-1:7account-number:table/prefix-cluster-name*"
+                "arn:aws:dynamodb:us-east-1:account-number:table/prefix-cluster-name*"
             ]
         },
         {
