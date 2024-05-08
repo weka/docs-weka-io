@@ -54,7 +54,7 @@ In each virtual machine size, the cores are mapped to a specific number of the c
 
 ### GPU - accelerated compute
 
-<table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>NVadsA10</td><td>Standard_NVadsA10_v5</td></tr></tbody></table>
+<table><thead><tr><th width="143">VM series</th><th>VM size</th></tr></thead><tbody><tr><td>NGads V620</td><td>Standard_NG8ads_V620_v1, Standard_NG16ads_V620_v1, Standard_NG32ads_V620_v1</td></tr><tr><td>NVadsA10</td><td>Standard_NVadsA10_v5</td></tr></tbody></table>
 
 **Related information**
 
