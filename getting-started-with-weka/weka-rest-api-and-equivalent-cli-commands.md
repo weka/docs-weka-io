@@ -62,7 +62,7 @@ Related information: [bare-metal](../planning-and-installation/bare-metal/ "ment
 | --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------- |
 | **Create a cluster:** Start a new cluster with chosen configurations.             | [POST ​/cluster](https://api.docs.weka.io/?urls.primaryName=4.3#/Cluster/createCluster)   | `weka cluster create <host-hostnames>` |
 | **Update cluster configuration:** Modify settings for an existing cluster.        | [PUT ​/cluster](https://api.docs.weka.io/?urls.primaryName=4.3#/Cluster/updateCluster)    | `weka cluster update`                  |
-| **View cluster status:** Check the overall health and performance of the cluster. | [GET ​/cluster](https://api.docs.weka.io/?urls.primaryName=4.3#/Cluster/getClusterStatus) | `weka status --jason`                  |
+| **View cluster status:** Check the overall health and performance of the cluster. | [GET ​/cluster](https://api.docs.weka.io/?urls.primaryName=4.3#/Cluster/getClusterStatus) | `weka status --json`                   |
 
 ## Containers
 
