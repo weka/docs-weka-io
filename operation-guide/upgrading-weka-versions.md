@@ -6,10 +6,17 @@ description: Upgrade your WEKA system with the latest version.
 
 ## Upgrade overview
 
-The WEKA upgrade process supports upgrading to higher minor and major versions of a WEKA system using a non-disruptive upgrade (NDU). Always upgrade to the latest minor version in the new major version when upgrading to a major version. This may require first upgrading to a specific minor version in the current software version, as follows:
+The WEKA upgrade process supports upgrades of a WEKA system using a non-disruptive upgrade (NDU).
 
-* To upgrade to WEKA software version 4.3.x, the minimum source version must be 4.2.0.
-* To upgrade to WEKA software version 4.2.x, the minimum source version must be 4.1.2.&#x20;
+When considering an upgrade, adhere to the following guidelines:
+
+* To upgrade to 4.3.Y, the minimum source version allowed is 4.2.0.
+* The upgrade must always be from an older version to a newer one. For instance, an upgrade from 4.2.X to 4.3.Y is permissible only if 4.3.Y was released after 4.2.X.
+* Stay within the same major version or upgrade from an older major version to its successor.
+
+For instance, an upgrade from version 4.2.10 (released on April 12, 2024) to version 4.3.0 (released on April 23, 2024) is possible. However, for future LTS releases, like 4.2.11, it is not allowed to upgrade to 4.3.0. For information on the release dates, visit [get.weka.io](https://get.weka.io/ui/releases).
+
+<figure><img src="../.gitbook/assets/get-weka-io-versions.png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
 
 {% hint style="warning" %}
 The source system must be set up in MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the cluster architecture to MCB. See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention").\
