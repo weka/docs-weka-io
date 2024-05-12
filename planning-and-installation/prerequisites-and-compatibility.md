@@ -130,6 +130,7 @@ The following kernel versions are supported:
 ## WEKA installation directory
 
 * **WEKA installation directory**: `/opt/weka`
+  * `/opt/weka` must be a direct path. Do not use a symbolic link (symlink).
 * **Boot drive minimum requirements**:
   * Capacity: NVMe SSD with 960 GB capacity
   * Durability: 1 DWPD (Drive Writes Per Day)
