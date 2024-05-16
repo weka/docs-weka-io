@@ -48,25 +48,13 @@ Furthermore, it unifies all security aspects in the mount command, eliminating t
 To use the stateless client feature, a WEKA agent must be installed. Once complete, you can create and configure mounts with the mount command. You can remove existing mounts from the cluster using the unmount command.
 
 {% hint style="info" %}
-To allow only WEKA authenticated users to mount a filesystem, set the filesystem `--auth-required` flag to `yes`. For more information, refer to the [Mount authentication for organization filesystems](../../operation-guide/organizations/organizations-2.md) topic.
+To allow only WEKA authenticated users to mount a filesystem, set the filesystem `--auth-required` flag to `yes`.  For more information, refer to the [Mount authentication for organization filesystems](../../operation-guide/organizations/organizations-2.md) topic.
 {% endhint %}
 
-**Isolated port for restricted stateless client operations**
-
-If you want to restrict a stateless client’s operations to only the essential APIs for mounting and unmounting operations, connect to WEKA clusters through TCP base port + 3 (for example, 14003). This enables operational segregation between client control plane requests and backend control plane requests.
-
-To install a WEKA agent on a client, run one of the following commands as `root` on the client:
-
-* For a non-restricted client:
+Assuming the WEKA cluster is using the backend IP of `1.2.3.4`, running the following command as `root` on a client will install the agent:
 
 ```sh
-curl http://hostname:14000/dist/v1/install | sh
-```
-
-* For a restricted client:
-
-```bash
-curl http://hostname:14003/dist/v1/install | sh
+curl http://1.2.3.4:14000/dist/v1/install | sh
 ```
 
 On completion, the agent is installed on the client.

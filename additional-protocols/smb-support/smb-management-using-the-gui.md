@@ -203,7 +203,11 @@ Ensure the SMB cluster is joined to the Active Directory. For details, see [#joi
 
 ## Edit an SMB share <a href="#edit-an-smb-share" id="edit-an-smb-share"></a>
 
-You can update some of the SMB share settings. These include encryption, hiding the share, allowing guest access, and setting the share as read only or not.
+You can update some of the SMB share settings. These include encryption, hiding the share, allowing guest access, and setting the share as read-only or not.
+
+{% hint style="info" %}
+SMB-W does not yet support share updates.
+{% endhint %}
 
 **Procedure**
 

@@ -219,7 +219,7 @@ Use the following command line to update an existing share:
 `weka smb share update <share-id> [--encryption encryption] [--read-only read-only] [--allow-guest-access allow-guest-access] [--hidden hidden]`
 
 {% hint style="info" %}
-SMB-W does not yet support share update.
+SMB-W does not yet support share updates.
 {% endhint %}
 
 **Parameters**
