@@ -21,11 +21,11 @@ To attach an object store to a filesystem, use the following command:
 
 **Parameters**
 
-| **Name**   | **Type** | **Value**                                                 | **Limitations**                                                                                         | **Mandatory** | **Default** |
-| ---------- | -------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `fs-name`  | String   | Name of the filesystem to be attached to the object store | Must be a valid name                                                                                    | Yes           | ​           |
-| `obs-name` | String   | Name of the object store to be  attached                  | Must be a valid name                                                                                    | Yes           |             |
-| `mode`     | String   | `local` or `remote`                                       | A `local` bucket can only be attached as `local` and a `remote` bucket can only be attached as `remote` | No            | `local`     |
+| **Name**   | **Type** | **Value**                                                 | **Limitations**                                                                                                                             | **Mandatory** | **Default** |
+| ---------- | -------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
+| `fs-name`  | String   | Name of the filesystem to be attached to the object store | Must be a valid name                                                                                                                        | Yes           | ​           |
+| `obs-name` | String   | Name of the object store to be  attached                  | Must be a valid name                                                                                                                        | Yes           |             |
+| `mode`     | String   | `writable` or `remote`                                    | <p><code>writable</code>: Local access for read/write operations.</p><p><code>remote</code>: Read-only access for remote object stores.</p> | No            | `writable`  |
 
 ## **Detach an object store bucket** from a filesystem
 
