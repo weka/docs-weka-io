@@ -21,7 +21,7 @@ To attach an object store to a filesystem, use the following command:
 
 **Parameters**
 
-<table><thead><tr><th>Name</th><th width="367.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>fs-name</code>*</td><td>Name of the filesystem to attach with the object store.</td><td>​</td></tr><tr><td><code>obs-name</code>*</td><td>Name of the object store to attach.</td><td></td></tr><tr><td><code>mode</code></td><td><p>The type of the object store bucket.<br>Possible values: <code>local</code> or <code>remote</code>.<br><br>A <code>local</code> bucket can only be attached as <code>local</code> .</p><p>A <code>remote</code> bucket can only be attached as <code>remote</code>.</p></td><td><code>local</code></td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="367.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>fs-name</code>*</td><td>Name of the filesystem to attach with the object store.</td><td>​</td></tr><tr><td><code>obs-name</code>*</td><td>Name of the object store to attach.</td><td></td></tr><tr><td><code>mode</code></td><td><p>The operational mode for the object store bucket.<br>The possible values are:</p><ul><li><code>writable</code>: Local access for read/write operations.</li><li><code>remote</code>: Read-only access for remote object stores.</li></ul></td><td><code>writable</code></td></tr></tbody></table>
 
 ## **Detach an object store bucket** from a filesystem
 
