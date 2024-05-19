@@ -25,10 +25,17 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
 ### Prerequisites for the target bare metal servers&#x20;
 
 * Target servers must be **Dell, HPE,** **Supermicro,** or **Lenovo**. Other servers are not supported.
-* The RedFish interface must be installed, enabled, and licensed for all target servers. (RedFish is a network standard API for managing servers, networks, storage devices, and more.)
-* The WMS must be able to connect over Ethernet to the servers’ IPMI/iDRAC/iLO interface and the management interface.
+* The RedFish[^1] interface must be installed, enabled, and licensed for all target servers.
+* The WMS must be able to connect over Ethernet to the following servers’ interfaces:
+  * OS management interface, typically 1 Gbps. It must be connected to a switch.
+  * Base Management Controller (BMC), such as IPMI[^2], iDRAC[^3], or iLO[^4] interfaces. The BMC interface must be configured with an IP address.&#x20;
+* All the servers' dataplane[^5] interfaces must be connected to the switches.
 * The bare metal servers must conform to the [prerequisites-and-compatibility.md](../prerequisites-and-compatibility.md "mention").
-* The bare metal servers must have an OS management network interface for administering the servers using DHCP.
+* The bare metal servers must have an OS management network interface for administering the servers.
+
+{% hint style="success" %}
+For cluster configurations exceeding 25 servers, it’s advisable to equip the WMS with an ETH interface of superior speed, such as 10/25/50 Gbps, during the installation phase. As an alternative, you could bond two or more 1 Gbps interfaces to increase the bandwidth. Once the installation phase is completed, a bandwidth of 1 Gbps is sufficient.
+{% endhint %}
 
 ## Before you begin
 
@@ -275,3 +282,13 @@ Last login: Sat Jun  3 10:31:28 2023 from ::ffff:10.41.193.86
 ## What to do next?
 
 [configure-the-weka-cluster-using-the-weka-configurator.md](configure-the-weka-cluster-using-the-weka-configurator.md "mention")
+
+[^1]: RedFish is a standardized API used for the administration of servers, networks, storage devices, among other components.
+
+[^2]: **IPMI (Intelligent Platform Management Interface)**: A set of specifications for monitoring and managing computer systems independently of the host system. Key features include out-of-band management, monitoring and supervision, inventory management, and remote installation.
+
+[^3]: **iDRAC (Integrated Dell Remote Access Controller)**: A Dell feature for secure local and remote server management. Key features include telemetry streaming, scalable automation, secure management, and streamlined support. It also offers a virtual console for remote system control.
+
+[^4]: **iLO (Integrated Lights-Out)**: A proprietary technology by HPE for remote control access to ProLiant servers. Key features include out-of-band management, monitoring and supervision, inventory management, and remote installation.
+
+[^5]: In the context of WEKA, the dataplane refers to the high-speed network infrastructure that facilitates I/O operations.
