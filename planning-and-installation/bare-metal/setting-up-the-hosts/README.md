@@ -92,7 +92,7 @@ This concludes the Mellanox OFED installation procedure.
 Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following cases:
 
 * The servers are equipped with Intel NICs.&#x20;
-* When working with client VMs where it is required to expose the virtual functions (VFs) of a physical NIC to the virtual NICs.
+* When working with client VMs, the virtual functions (VFs) of a physical NIC must be exposed to the virtual NICs.
 
 **Related topic**
 
@@ -240,6 +240,29 @@ Verify the connection is up with all the non-default partition attributes set:
 ```
 {% endtab %}
 {% endtabs %}
+
+### Define the NICs with `ignore-carrier`
+
+`ignore-carrier` is a NetworkManager configuration option. When set, it keeps the network interface up even if the physical link is down. It’s useful when services need to bind to the interface address at boot.
+
+{% hint style="info" %}
+The following is an example of how to configure `ignore-carrier` on systems that use NetworkManager on Rocky Linux 8. The exact steps may vary depending on your operating system and its specific network configuration tools. Always refer to your system’s official documentation for accurate information.
+{% endhint %}
+
+1. Open the  `/etc/NetworkManager/NetworkManager.conf` file to edit it.
+2. Under the `[main]` section, add the line `ignore-carrier=<device-name1>,<device-name2>`. \
+   Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
+
+Example:
+
+{% code title="/etc/NetworkManager/NetworkManager.conf" %}
+```
+[main]
+ignore-carrier=ib0,ib1
+```
+{% endcode %}
+
+3. Restart the NetworkManager service for the changes to take effect.
 
 ## 4. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
 
