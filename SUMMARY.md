@@ -1,7 +1,7 @@
 # Table of contents
 
 * [WEKA v4.3 documentation](README.md)
-  * [Document revision history](readme/document-revision-history.md)
+  * [Documentation revision history](readme/documentation-revision-history.md)
 
 ## WEKA System Overview
 
