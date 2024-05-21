@@ -241,6 +241,29 @@ Verify the connection is up with all the non-default partition attributes set:
 {% endtab %}
 {% endtabs %}
 
+### Define the NICs with `ignore-carrier`
+
+`ignore-carrier` is a NetworkManager configuration option. When set, it keeps the network interface up even if the physical link is down. It’s useful when services need to bind to the interface address at boot.
+
+{% hint style="info" %}
+The following is an example of configuring `ignore-carrier` on systems that use NetworkManager on Rocky Linux 8. The exact steps may vary depending on your operating system and its specific network configuration tools. Always refer to your system’s official documentation for accurate information.
+{% endhint %}
+
+1. Open the  `/etc/NetworkManager/NetworkManager.conf` file to edit it.
+2. Under the `[main]` section, add the line `ignore-carrier=<device-name1>,<device-name2>`. \
+   Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
+
+Example:
+
+{% code title="/etc/NetworkManager/NetworkManager.conf" %}
+```
+[main]
+ignore-carrier=ib0,ib1
+```
+{% endcode %}
+
+3. Restart the NetworkManager service for the changes to take effect.
+
 ## 4. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
 
 Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the servers:
@@ -352,29 +375,6 @@ nmcli connection modify ib1 ipv4.routing-rules "priority 102 from 10.10.10.101 t
 
 The route's first IP address in the above commands signifies the network's subnet associated with the respective NIC. The last address in the routing rules corresponds to the IP address of the NIC being configured, where `ib0` is set to `10.10.10.1`.
 
-### Define the NICs with `ignore-carrier`
-
-`ignore-carrier` is a NetworkManager configuration option. When set, it keeps the network interface up even if the physical link is down. It’s useful when services need to bind to the interface address at boot.
-
-{% hint style="info" %}
-The following is an example of configuring `ignore-carrier` on systems that use NetworkManager on Rocky Linux 8. The exact steps may vary depending on your operating system and its specific network configuration tools. Always refer to your system’s official documentation for accurate information.
-{% endhint %}
-
-1. Open the  `/etc/NetworkManager/NetworkManager.conf` file to edit it.
-2. Under the `[main]` section, add the line `ignore-carrier=<device-name1>,<device-name2>`. \
-   Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
-
-Example:
-
-{% code title="/etc/NetworkManager/NetworkManager.conf" %}
-```
-[main]
-ignore-carrier=ib0,ib1
-```
-{% endcode %}
-
-3. Restart the NetworkManager service for the changes to take effect.
-
 ### **Ubuntu Netplan configuration**
 
 11. Open the Netplan configuration file `/etc/netplan/01-netcfg.yaml` and adjust it:
@@ -399,6 +399,8 @@ ignore-carrier=ib0,ib1
                         - from: 10.222.0.10
                           table: 100
                           priority: 32764
+                ignore-carrier: true
+                
             ib2:
                 addresses:
                         [10.222.0.20/24]
@@ -410,6 +412,7 @@ ignore-carrier=ib0,ib1
                         - from: 10.222.0.20
                           table: 101
                           priority: 32765
+                ignore-carrier: true
     ```
 12. After adjusting the Netplan configuration file, run the following commands:
 
