@@ -281,14 +281,14 @@ The minimum source version for client upgrades is 4.3.X.
 * If a stateless client is mounted on a single cluster, it is automatically upgraded to the backend version after rebooting, or a complete `umount` and `mount` is performed.
 * If a stateless client is mounted on multiple clusters, the client container version is the same as the `client-target-version` in the cluster (see [Mount filesystems from multiple clusters on a single client](../weka-filesystems-and-object-stores/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)).
 * Stateless clients can also be upgraded manually.
-* To ensure downloading only the essential components relevant to the stateless client operation, excluding non-relevant packages, use the `--client-only` flag in the `weka version get` command.
+* Use the `--client-only` flag in the `weka version get` command to ensure that only the essential components relevant to the stateless client operation are downloaded, excluding non-relevant packages.
 * To limit the display of versions unless the complete set of components is present, use the `--full` flag with the `weka version` command  This provides you with finer control over version information visibility.
 * You can manually upgrade the clients locally (one by one) or remotely (in batches), usually during a maintenance window.
 
 #### Stateful client upgrade options
 
-* You can manually upgrade the clients locally (one by one) or remotely (in batches), usually during a maintenance window.
-* A gateway, which is a stateful client running a protocol, is upgraded with the backend servers.
+* Clients can be upgraded manually. This can be done either locally on each client individually or remotely in batches. This process typically occurs during a scheduled maintenance window.
+* An upgrade is performed on a gateway, which is a stateful client that runs a specific protocol. This gateway is associated with containers with the `allow_protocols` parameter set to true. The upgrade process involves interaction with backend servers.
 
 #### Client upgrade procedures
 
