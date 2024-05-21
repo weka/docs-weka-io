@@ -31,22 +31,22 @@ Some of the examples contain version-specific information. The software is updat
 ## 1. Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
 {% hint style="info" %}
-The steps describing the installation of NIC drivers are provided as a courtesy. Refer to your NIC vendor documentation for the latest information and updates.
+The steps for installing NIC drivers are provided as a courtesy. For the latest information and updates, refer to your NIC vendor documentation.
 {% endhint %}
 
 ### Mellanox OFED installation
 
-This section describes an OFED installation procedure that has proven to be successful. However, Mellanox supports a number of other installation methods, any of which can be used to install OFED. For more information about other installation procedures, refer to the Mellanox documentation.
+This section describes an OFED installation procedure that has proven to be successful. However, Mellanox supports several other installation methods, any of which can be used to install OFED. For more information about other installation procedures, refer to the Mellanox documentation.
 
 #### Meeting Mellanox OFED prerequisites
 
-The Mellanox OFED installation has a number of dependencies. The following example shows the installation of OFED dependencies in RHEL/CentOS 7.x using yum's \[base] and \[update] repositories, which are supported and preconfigured in RHEL and CentOS.
+The Mellanox OFED installation has several dependencies. The following example shows how to install OFED dependencies in RHEL/CentOS 7.x using yum's \[base] and \[update] repositories, which are supported and preconfigured in RHEL and CentOS.
 
 ```
 yum install perl libnl lsof tcl libxml2-python tk
 ```
 
-This example assumes that the server was provisioned using the "Minimal installation" option and that it has access to yum repositories, either locally or over the Internet. This method can trigger updates to existing packages already installed on the server.
+This example assumes that the server was provisioned using the "Minimal installation" option and has access to yum repositories, locally or over the Internet. This method can trigger updates to existing packages already installed on the server.
 
 Alternatively, it is possible to install OFED dependencies without triggering updates to already-installed packages, as shown in the following example:
 
@@ -54,11 +54,11 @@ Alternatively, it is possible to install OFED dependencies without triggering up
 yum --disablerepo=* --enablerepo=base install perl libnl lsof tcl libxml2-python tk
 ```
 
-Once the dependencies have been satisfied, it is possible to perform the OFED installation procedure.
+Once the dependencies have been satisfied, the OFED installation procedure can be performed.
 
 #### Mellanox OFED installation
 
-The Mellanox OFED installation involves decompressing the distribution archive, which you obtain from the Mellanox website, and running the installation script. Refer to the following to begin the installation:
+The Mellanox OFED installation involves decompressing the distribution archive you obtain from the Mellanox website and running the installation script. Refer to the following to begin the installation:
 
 ```
 # tar xf MLNX_OFED_LINUX-4.5-1.0.1.0-rhel7.6-x86_64.tgz
@@ -73,13 +73,13 @@ drwxr-xr-x   6 root root       4096 Nov 28  2018 MLNX_OFED_LINUX-4.5-1.0.1.0-rhe
 General log file: /tmp/MLNX_OFED_LINUX.414403.logs/general.log
 Verifying KMP rpms compatibility with target kernel...
 This program will install the MLNX_OFED_LINUX package on your machine.
-Note that all other Mellanox, OEM, OFED, RDMA or Distribution IB packages will be removed.
+All other Mellanox, OEM, OFED, RDMA, or Distribution IB packages will be removed.
 Those packages are removed due to conflicts with MLNX_OFED_LINUX, do not reinstall them.
 
 Do you want to continue?[y/N]:y
 ```
 
-On completion of the OFED installation, the NIC firmware may be updated to match the firmware requirements of the Mellanox OFED software. If an update was performed, reboot the server at the end of the installation for the new firmware to become effective. Otherwise, restart the driver by running the following:
+On completion of the OFED installation, the NIC firmware may be updated to match the firmware requirements of the Mellanox OFED software. If an update is performed, reboot the server at the end of the installation so the new firmware becomes effective. Otherwise, restart the driver by running the following:
 
 ```
 # /etc/init.d/openibd restart
@@ -92,7 +92,7 @@ This concludes the Mellanox OFED installation procedure.
 Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following cases:
 
 * The servers are equipped with Intel NICs.&#x20;
-* When working with client VMs, the virtual functions (VFs) of a physical NIC must be exposed to the virtual NICs.
+* When working with client VMs, a physical NIC's virtual functions (VFs) must be exposed to the virtual NICs.
 
 **Related topic**
 
@@ -102,7 +102,7 @@ Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following
 
 ### Ethernet configuration
 
-The following example of `ifcfg` script is provided as a reference for configuring the Ethernet interface.
+The following example of the `ifcfg` script is a reference for configuring the Ethernet interface.
 
 {% code title="/etc/sysconfig/network-scripts/ifcfg-enp24s0" %}
 ```
@@ -241,29 +241,6 @@ Verify the connection is up with all the non-default partition attributes set:
 {% endtab %}
 {% endtabs %}
 
-### Define the NICs with `ignore-carrier`
-
-`ignore-carrier` is a NetworkManager configuration option. When set, it keeps the network interface up even if the physical link is down. It’s useful when services need to bind to the interface address at boot.
-
-{% hint style="info" %}
-The following is an example of how to configure `ignore-carrier` on systems that use NetworkManager on Rocky Linux 8. The exact steps may vary depending on your operating system and its specific network configuration tools. Always refer to your system’s official documentation for accurate information.
-{% endhint %}
-
-1. Open the  `/etc/NetworkManager/NetworkManager.conf` file to edit it.
-2. Under the `[main]` section, add the line `ignore-carrier=<device-name1>,<device-name2>`. \
-   Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
-
-Example:
-
-{% code title="/etc/NetworkManager/NetworkManager.conf" %}
-```
-[main]
-ignore-carrier=ib0,ib1
-```
-{% endcode %}
-
-3. Restart the NetworkManager service for the changes to take effect.
-
 ## 4. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
 
 Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the servers:
@@ -288,7 +265,7 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 
 The following steps provide guidance for configuring dual-network links with policy-based routing on Linux systems. Adjust IP addresses and interface names according to your environment.
 
-#### **General Settings in `/etc/sysctl.conf`**
+### **General Settings in `/etc/sysctl.conf`**
 
 1. Open the `/etc/sysctl.conf` file using a text editor.
 2.  Add the following lines at the end of the file to set minimal configurations per InfiniBand (IB) or Ethernet (Eth) interface:
@@ -317,7 +294,7 @@ The following steps provide guidance for configuring dual-network links with pol
     sysctl -p /etc/sysctl.conf
     ```
 
-#### **RHEL/Rocky/CentOS routing configuration using the Network Scripts**
+### **RHEL/Rocky/CentOS routing configuration using the Network Scripts**
 
 {% hint style="info" %}
 Network scripts are deprecated in RHEL/Rocky 8. For RHEL/Rocky 9, use the Network Manager.
@@ -350,7 +327,7 @@ Network scripts are deprecated in RHEL/Rocky 8. For RHEL/Rocky 9, use the Networ
     ```
 10. Save the changes.
 
-#### RHEL/Rocky 9 routing configuration using the Network Manager
+### RHEL/Rocky 9 routing configuration using the Network Manager
 
 * **For Ethernet (ETH):** To set up routing for Ethernet connections, use the following commands:
 
@@ -375,7 +352,30 @@ nmcli connection modify ib1 ipv4.routing-rules "priority 102 from 10.10.10.101 t
 
 The route's first IP address in the above commands signifies the network's subnet associated with the respective NIC. The last address in the routing rules corresponds to the IP address of the NIC being configured, where `ib0` is set to `10.10.10.1`.
 
-#### **Ubuntu Netplan configuration**
+### Define the NICs with `ignore-carrier`
+
+`ignore-carrier` is a NetworkManager configuration option. When set, it keeps the network interface up even if the physical link is down. It’s useful when services need to bind to the interface address at boot.
+
+{% hint style="info" %}
+The following is an example of configuring `ignore-carrier` on systems that use NetworkManager on Rocky Linux 8. The exact steps may vary depending on your operating system and its specific network configuration tools. Always refer to your system’s official documentation for accurate information.
+{% endhint %}
+
+1. Open the  `/etc/NetworkManager/NetworkManager.conf` file to edit it.
+2. Under the `[main]` section, add the line `ignore-carrier=<device-name1>,<device-name2>`. \
+   Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
+
+Example:
+
+{% code title="/etc/NetworkManager/NetworkManager.conf" %}
+```
+[main]
+ignore-carrier=ib0,ib1
+```
+{% endcode %}
+
+3. Restart the NetworkManager service for the changes to take effect.
+
+### **Ubuntu Netplan configuration**
 
 11. Open the Netplan configuration file `/etc/netplan/01-netcfg.yaml` and adjust it:
 
@@ -418,7 +418,7 @@ The route's first IP address in the above commands signifies the network's subne
     ip route add 10.222.0.0/24 via 10.222.0.20 dev ib2 table 101
     ```
 
-**SLES/SUSE Configuration**
+### **SLES/SUSE configuration**
 
 13. Create `/etc/sysconfig/network/ifrule-eth2` with:
 
