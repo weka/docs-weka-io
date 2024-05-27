@@ -176,7 +176,7 @@ The Shares tab displays the SMB shares created in the system. You can also custo
 
 ## Add an SMB share <a href="#add-an-smb-share" id="add-an-smb-share"></a>
 
-a maximum of 1024). Each share must have a name and a shared path to the filesystem, which can be the root of the filesystem or a subdirectory
+Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Each share must have a name and a shared path to the filesystem, which can be the root of the filesystem or a subdirectory
 
 **Before you begin**
 
