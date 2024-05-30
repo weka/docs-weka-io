@@ -7,15 +7,6 @@ description: >-
 
 # WEKA CLI hierarchy
 
-### weka access-group
-
-```
-weka access-group
-   |status
-   |enable
-   |disable
-```
-
 ### weka agent
 
 ```

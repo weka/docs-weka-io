@@ -9,16 +9,6 @@ description: >-
 
 To maximize your success with the REST API, it's essential to familiarize yourself with the comprehensive documentation. This valuable resource provides in-depth insights into the subject matter. Moreover, each REST API method corresponds to a CLI command. Additionally, many parameters accessible through the CLI are equally accessible when using the REST API. Run the CLI command help for details. This ensures a smooth and consistent experience across both interfaces.
 
-## Access Groups
-
-Related information: [#nfs-access-control-client-access-groups](../additional-protocols/nfs-support/#nfs-access-control-client-access-groups "mention")
-
-| Task                                                                                                                | REST API                                                                                                               | CLI                         |
-| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| **Show access group status:** This shows the NFS client permission group status, whether it is enabled or disabled. | [GET​/accessGroups](https://api.docs.weka.io/?urls.primaryName=4.3#/Access%20Groups/getAccessGroupStatus)\*\*          | `weka access-group status`  |
-| **Enable access group**                                                                                             | [POST​/accessGroups​/enable](https://api.docs.weka.io/?urls.primaryName=4.3#/Access%20Groups/enableAccessGroups)\*\*   | `weka access-group enable`  |
-| **Disable access group**                                                                                            | [POST​/accessGroups​/disable](https://api.docs.weka.io/?urls.primaryName=4.3#/Access%20Groups/disableAccessGroups)\*\* | `weka access-group disable` |
-
 ## Active Directory
 
 Related information: [user-management](../operation-guide/user-management/ "mention")
