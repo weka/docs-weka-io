@@ -13,8 +13,9 @@ When considering an upgrade, adhere to the following guidelines:
 * To upgrade to 4.3.Y, the minimum source version allowed is 4.2.0.
 * The upgrade must always be from an older version to a newer one. For instance, an upgrade from 4.2.X to 4.3.Y is permissible only if 4.3.Y was released after 4.2.X.
 * Stay within the same major version or upgrade from an older major version to its successor.
+* There might be exceptions, so always check the minimum and maximum versions supported for the upgrade. For information on the release dates and applicable versions for the upgrade, visit [get.weka.io](https://get.weka.io/ui/releases).
 
-For instance, an upgrade from version 4.2.10 (released on April 12, 2024) to version 4.3.0 (released on April 23, 2024) is possible. However, for future LTS releases, like 4.2.11, it is not allowed to upgrade to 4.3.0. For information on the release dates, visit [get.weka.io](https://get.weka.io/ui/releases).
+For example, upgrading from version 4.2.10 (released on April 12, 2024) to version 4.3.0 (released on April 23, 2024) is allowed. However, future LTS releases do not permit upgrading to version 4.3.0. In the following example, even though version 4.2.11 is older than version 4.3.1, the maximum version allowed for the upgrade is 4.2.10.&#x20;
 
 <figure><img src="../.gitbook/assets/get-weka-io-versions.png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
 
