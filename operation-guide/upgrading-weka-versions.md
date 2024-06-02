@@ -10,7 +10,7 @@ The WEKA upgrade process supports upgrades of a WEKA system using a non-disrupti
 
 When considering an upgrade, adhere to the following guidelines:
 
-* To upgrade to 4.3.Y, the minimum source version allowed is 4.2.0.
+* To upgrade to 4.3.Y, the minimum source version allowed is 4.2.1.
 * The upgrade must always be from an older version to a newer one. For instance, an upgrade from 4.2.X to 4.3.Y is permissible only if 4.3.Y was released after 4.2.X.
 * Stay within the same major version or upgrade from an older major version to its successor.
 * There might be exceptions, so always check the minimum and maximum versions supported for the upgrade. For information on the release dates and applicable versions for the upgrade, visit [get.weka.io](https://get.weka.io/ui/releases).
