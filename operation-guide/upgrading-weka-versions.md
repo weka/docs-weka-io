@@ -15,7 +15,7 @@ When considering an upgrade, adhere to the following guidelines:
 * Stay within the same major version or upgrade from an older major version to its successor.
 * There might be exceptions, so always check the minimum and maximum versions supported for the upgrade. For information on the release dates and applicable versions for the upgrade, visit [get.weka.io](https://get.weka.io/ui/releases).
 
-For example, upgrading from version 4.2.10 (released on April 12, 2024) to version 4.3.0 (released on April 23, 2024) is allowed. However, future LTS releases do not permit upgrading to version 4.3.0. In the following example, even though version 4.3.1 (released on May 20, 2024) is older than version 4.2.11 (released on May 10, 2024), the maximum version allowed for the upgrade is 4.2.10.&#x20;
+For example, upgrading from version 4.2.10 (released on April 12, 2024) to version 4.3.0 (released on April 23, 2024) is allowed. However, future LTS releases do not permit upgrading to version 4.3.0. In the following example, even though version 4.3.1 (released on May 20, 2024) is older than version 4.2.11 (released on May 10, 2024), the maximum version allowed for the upgrade is 4.2.10 or 4.3.0.&#x20;
 
 <figure><img src="../.gitbook/assets/get-weka-io-versions.png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
 
