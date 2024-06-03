@@ -548,7 +548,7 @@ Decommissioning an old instance and allowing the Auto Scaling Group (ASG) to lau
 
 ### Appendix A – Security Groups / Network ACL Ports
 
-See [#required-ports](../../prerequisites-and-compatibility.md#required-ports "mention")
+See [#required-ports](../../prerequisites.md#required-ports "mention")
 
 ### Appendix B - **Terraform’s r**equired permissions
 

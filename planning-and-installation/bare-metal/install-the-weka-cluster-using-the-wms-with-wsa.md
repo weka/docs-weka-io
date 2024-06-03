@@ -30,7 +30,7 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
   * OS management interface, typically 1 Gbps. It must be connected to a switch.
   * Base Management Controller (BMC), such as IPMI[^2], iDRAC[^3], or iLO[^4] interfaces. The BMC interface must be configured with an IP address.&#x20;
 * All the servers' dataplane[^5] interfaces must be connected to the switches.
-* The bare metal servers must conform to the [prerequisites-and-compatibility.md](../prerequisites-and-compatibility.md "mention").
+* The bare metal servers must conform to the [prerequisites.md](../prerequisites.md "mention").
 * The bare metal servers must have an OS management network interface for administering the servers.
 
 {% hint style="success" %}
