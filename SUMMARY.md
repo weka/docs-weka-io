@@ -67,6 +67,7 @@
   * [Auto-scale instances in GCP](planning-and-installation/weka-installation-on-gcp/auto-scale-instances-in-gcp.md)
   * [Add clients](planning-and-installation/weka-installation-on-gcp/add-clients.md)
   * [Troubleshooting](planning-and-installation/weka-installation-on-gcp/troubleshooting.md)
+  * [Detailed deployment tutorial: WEKA on GCP using Terraform](planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform.md)
 
 ## Getting Started with WEKA
 
