@@ -19,7 +19,7 @@
 
 ## Planning and Installation
 
-* [Prerequisites and compatibility](planning-and-installation/prerequisites.md)
+* [Prerequisites and compatibility](planning-and-installation/prerequisites-and-compatibility.md)
 * [WEKA cluster installation on bare metal servers](planning-and-installation/bare-metal/README.md)
   * [Plan the WEKA system hardware requirements](planning-and-installation/bare-metal/planning-a-weka-system-installation.md)
   * [Obtain the WEKA installation packages](planning-and-installation/bare-metal/obtaining-the-weka-install-file.md)
