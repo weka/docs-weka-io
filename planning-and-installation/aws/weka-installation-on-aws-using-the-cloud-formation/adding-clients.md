@@ -19,7 +19,7 @@ It is advisable to turn off auto kernel updates so it will not get upgraded to a
 ### Step 1: Launch the new instances <a href="#step-1-launch-new-instances" id="step-1-launch-new-instances"></a>
 
 {% hint style="info" %}
-New client instances must be one of the types specified in the [Supported EC2 instance types](../supported-ec2-instance-types.md) section.
+New client instances must be one of the types specified in the [Supported EC2 instance types](../weka-installation-on-aws-using-terraform/supported-ec2-instance-types.md) section.
 {% endhint %}
 
 When launching new clients, ensure the following concerning networking and root volume:

@@ -77,4 +77,4 @@ To rotate the SSH keys, follow these steps:&#x20;
 
 **Related topic**
 
-[supported-ec2-instance-types.md](../supported-ec2-instance-types.md "mention")
+[supported-ec2-instance-types.md](../weka-installation-on-aws-using-terraform/supported-ec2-instance-types.md "mention")
