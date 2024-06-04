@@ -8,10 +8,6 @@ description: >-
 
 This Local WEKA Home v3.0 (or higher) runs on K3s, a lightweight Kubernetes installed on a single node cluster. Customize the deployment by specifying configuration parameters in the `config.json` file.
 
-{% hint style="info" %}
-It is possible to install the Local WEKA Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md) to schedule this installation.
-{% endhint %}
-
 <figure><img src="../../.gitbook/assets/LWH_on_K3s.png" alt=""><figcaption><p>Local WEKA Home v3.0 or higher deployment</p></figcaption></figure>
 
 ## Workflow: Local WEKA Home deployment
