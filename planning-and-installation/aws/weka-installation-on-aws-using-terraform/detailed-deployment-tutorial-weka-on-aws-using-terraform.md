@@ -515,7 +515,7 @@ Additionally, the auto-scaling provides the following advantages:
 1. **Integration with ALB:**
    * Auto Scaling Groups seamlessly integrate with an Application Load Balancer (ALB) for efficient traffic distribution among multiple instances.
    * The ALB automatically identifies and routes traffic exclusively to healthy instances, relying on health check results from the associated Auto Scaling Group.
-2. **Replacing Unhealthy Instances:**
+2. **Replacing Unhealthy Instances (Auto-heal):**
    * In the event of an instance failing a health check, Auto Scaling promptly initiates the replacement process by launching a new instance to the WEKA cluster.
    * The new instance is incorporated into the service and added to the ALB's target group only after successfully passing health checks.
    * This systematic approach ensures uninterrupted availability and responsiveness of WEKA, mitigating the impact of instance failures.
