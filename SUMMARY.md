@@ -44,7 +44,6 @@
     * [CloudFormation template generator](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/cloudformation.md)
     * [Deployment types](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/deployment-types.md)
     * [AWS Outposts deployment](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/aws-outposts-deployment.md)
-    * [Supported EC2 instance types](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/supported-ec2-instance-types.md)
     * [Add clients](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md)
     * [Auto scaling group](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/auto-scaling-group.md)
     * [Troubleshooting](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/troubleshooting.md)
