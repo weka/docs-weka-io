@@ -12,15 +12,16 @@ In the WEKA user login process (sign-in), the following steps outline the authen
 
 * **Local user login:** When users log in, the system initially searches for them within the list of local users (internal users), specifically those created using the `weka user add` command.
 * **LDAP integration: i**n cases where a user isn't internally registered but exists in an LDAP directory, there's an option to integrate the LDAP user directory with the WEKA system. This integration allows the system to search for the user in the directory and perform password verification.
-* **Login events:** Successful logins trigger a `UserLoggedIn` event, providing essential details such as the username, role, and user type (internal or LDAP). On the other hand, unsuccessful logins prompt an "Invalid username or password" message and trigger a `UserLoginFailed`event containing the username and the reason for the failure.
+* **Login events:** Successful logins trigger a `UserLoggedIn` event, which provides essential details such as the username, role, and user type (internal or LDAP). On the other hand, unsuccessful logins prompt an "Invalid username or password" message and trigger a `UserLoginFailedevent`, which contains the username and the reason for the failure.
 * **GUI login:** The GUI login process requires users to input their username and password. Users can leverage the WEKA\_USERNAME and WEKA\_PASSWORD environment variables to pass this information to the CLI.
-* **CLI login:** Users can log in with a specific identity using the `weka user login <username> <password>` command for CLI access. This establishes the user context for each subsequent CLI command. Upon logging in, a token file is generated for authentication, with the default path set to `~/.weka/auth-token.json` (adjustable using the `--path` attribute). You can use the `weka user whoami` command to check the currently logged-in CLI user.
-* **Persistence and defaults:** The persistence of the `weka user login` command applies only to the server where it is set. If `WEKA_USERNAME` and `WEKA_PASSWORD` environment variables are unspecified, the CLI defaults to the token file. In cases where no CLI user is explicitly logged in, and no token file is present, the CLI resorts to the default 'admin/admin' credentials.
+* **CLI login:** Users can log in with a specific identity using the `weka user login <username> <password>` command for CLI access. This establishes the user context for each subsequent CLI command. Upon logging in, a token file is generated for authentication, with the default path set to `~/.weka/auth-token.json` (adjustable using the `--path` attribute). You can use the `weka user whoami` command to check the CLI user who is currently logged in.
+* **Persistence and defaults:** The `weka user login` command's persistence applies only to the server where it is set. If the WEKA\_USERNAME and WEKA\_PASSWORD environment variables are unspecified, the CLI defaults to the token file. In cases where no CLI user is explicitly logged in, and no token file is present, the CLI resorts to the default 'admin/admin' credentials.
 * **Custom token file path:** Users who prefer a non-default path for the token file can use the `WEKA_TOKEN` environment variable.
 
 To perform various operations through the CLI, you can:
 
 * [Create a local user](user-management-1.md#create-a-local-user)
+* [Log-in to the WEKA cluster](user-management-1.md#log-in-to-the-weka-cluster)
 * [Change a local user password](user-management-1.md#change-a-local-user-password)
 * [Revoke user access](user-management-1.md#revoke-user-access)
 * [Update a local user](user-management-1.md#update-a-local-user)
@@ -66,11 +67,51 @@ Username    | Source   | Role
 my_new_user | Internal | Regular
 ```
 
+## Log-in to the WEKA cluster
+
+**Command:** `weka user login`
+
+Use the following command to log a user into the WEKA cluster. If login is successful, the user credentials are saved to the user's home directory.
+
+`weka user login [username] [password] [--org org] [--path path]`
+
+**Parameters**
+
+<table><thead><tr><th width="175">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>User's username</td></tr><tr><td><code>password</code>*</td><td>User's password</td></tr><tr><td><code>org</code></td><td>Organization name or ID</td></tr><tr><td><code>path</code></td><td><p>The path where the login token will be saved (default: ~/.weka/auth-token.json). This path can also be specified using the WEKA_TOKEN environment variable.</p><p>After logging-in, use the WEKA_TOKEN environment variable to specify where the login token is located.</p></td></tr></tbody></table>
+
+{% hint style="success" %}
+#### Manage authentication tokens in WEKA
+
+The `--path` parameter is used to control the directory and file where the authentication token is written. The specified path, which includes the filename, can then be assigned to the `WEKA_TOKEN` environment variable.
+
+**Example 1: Using the `--path` parameter**
+
+The following example demonstrates how to log in and specify the path for the authentication token. After logging in, the path is set to the `WEKA_TOKEN` environment variable.
+
+```sh
+weka user login user1 password1 --path /home/user1/.weka/user1-token.json
+export WEKA_TOKEN=/home/user1/.weka/user1-token.json
+```
+
+**Example 2: Using the `WEKA_TOKEN` environment variable**
+
+Alternatively, you can set the `WEKA_TOKEN` environment variable first, which removes the need to use the `--path` parameter during the login process.
+
+```sh
+export WEKA_TOKEN=/home/user1/.weka/user1-token.json
+weka user login user1 password1
+```
+{% endhint %}
+
+**Related topic**
+
+[obtain-authentication-tokens.md](../security/obtain-authentication-tokens.md "mention")
+
 ## Change a local user password
 
 **Command:** `weka user passwd`
 
-Use the following command line to change a local user password:
+Use the following command to change a local user password:
 
 `weka user passwd <password> [--username username]`
 

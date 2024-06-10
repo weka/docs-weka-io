@@ -2,20 +2,20 @@
 
 The authentication tokens include two types: an access token and a refresh token.
 
-* **Access token:** The access token is a short-lived token (five minutes) used for accessing the WEKA system API and to allow the mounting of secure filesystems.
+* **Access token:** The access token is a short-lived token (five minutes) used to access the WEKA system API and to allow the mounting of secure filesystems.
 * **Refresh token:** The refresh token is a long-lived token for obtaining an additional access token.
 
 **Procedure**
 
 Do one of the following:
 
-*   To obtain the refresh token and access token, through the **CLI**, log in to the system using the command: `weka user login`.
+*   To obtain the refresh token and access token through the **CLI**, log in to the system using the command: `weka user login`. For details, see [#log-in-to-the-weka-cluster](../user-management/user-management-1.md#log-in-to-the-weka-cluster "mention").
 
-    The system creates an authentication token file and saves it in: `~/.weka/auth-token.json`. The token file contains both the access token and refresh token.
+    The system creates an authentication token file and saves it in `~/.weka/auth-token.json`. The token file contains both the access token and the refresh token.
 
 ![Auth-token file content example](../../.gitbook/assets/wmng\_auth\_token\_example.png)
 
-* To obtain the refresh token and access token, through the **REST API,** use the `POST /login`. The API returns the token in the response body.
+* To obtain the refresh token and access token through the **REST API,** use the `POST /login`. The API returns the token in the response body.
 
 ![REST API login response example](../../.gitbook/assets/wmng\_auth\_token\_api\_example.png)
 
