@@ -42,11 +42,11 @@ The WEKA system automatically pulls user and group information from the Active D
 
 For RFC2307, the following Active Directory attributes are relevant for users:
 
-<table data-header-hidden><thead><tr><th width="265">AD Attribute</th><th>Description</th></tr></thead><tbody><tr><td><strong>AD attribute</strong></td><td><strong>Description</strong></td></tr><tr><td><code>uidNumber</code></td><td>0-4290000000</td></tr><tr><td><code>gidNumber</code></td><td>0-4290000000; must correlate with a real group</td></tr></tbody></table>
+<table><thead><tr><th width="265">AD Attribute</th><th>Values</th></tr></thead><tbody><tr><td><code>uidNumber</code></td><td>0-4290000000</td></tr><tr><td><code>gidNumber</code></td><td>0-4290000000; must correlate with a real group</td></tr></tbody></table>
 
 For groups of users according to RFC2307:
 
-<table data-header-hidden><thead><tr><th width="266">AD Attribute</th><th>Description</th></tr></thead><tbody><tr><td><strong>AD attribute</strong></td><td><strong>Description</strong></td></tr><tr><td><code>gidNumber</code></td><td>0-4290000000</td></tr></tbody></table>
+<table><thead><tr><th width="266">AD Attribute</th><th>Values</th></tr></thead><tbody><tr><td><code>gidNumber</code></td><td>0-4290000000</td></tr></tbody></table>
 
 ### **ID range configuration**
 
@@ -54,27 +54,26 @@ The default configuration for the WEKA system's AD server IDs can be changed and
 
 To avoid ID overlapping and collisions, set the range or ranges for multiple domains.
 
-When joining multiple domains, it is necessary to set the ID range for each, ensuring they do not overlap. A configurable default mapping range exists for users not part of any domain.
+When joining multiple domains, the ID range must be set for each, ensuring they do not overlap. A configurable default mapping range exists for users not part of any domain.
 
 For more details about Active Directory properties, refer to the Microsoft site.
 
 ## Workflow overview: configure SMB support
 
-This workflow concisely overviews the essential steps to configure SMB support in the WEKA system. Detailed procedures for both GUI and CLI implementations can be found in the following "How-To" sections.
+This workflow concisely overviews the essential steps to configure SMB support in the WEKA system. Detailed procedures for both [GUI](smb-management-using-the-gui.md) and [CLI](smb-management-using-the-cli.md) implementations can be found in the following "How-To" sections.
 
 **Before you begin**
 
-* Verify that the dedicated filesystem for persistent protocol configurations is created. If not, create it. For details, see [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
-* Verify that the DNS "nameserver" of each server participating in the SMB cluster is configured to query an Active Directory server.
+Verify that the dedicated filesystem for persistent protocol configurations is created. If not, create it. For details, see [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
 
 **Workflow**
 
 1. **Configure SMB cluster**: Set the WEKA system servers participating in the SMB cluster and the domain name.
    * In on-premises deployments, it is possible to configure a list of public IP addresses distributed across the SMB cluster. If a server fails, the IP addresses from that server are reassigned to another server.
-2. **Join the SMB cluster to the Active Directory domain:** Connect and define the WEKA system in the Active Directory domain.
-3. **Create shares and folders, and set permissions:** By default, the filesystem permissions are root/root/755 and initially can only be set by a WekaFS/NFS mount.
+2. **Join the SMB cluster to the Active Directory (AD) domain:** Connect and define the WEKA system in the AD domain. This process includes pre-configuration in the and post-configuration in the DNS Manager and Active Directory.
+3. **Create shares and folders and set permissions:** By default, the filesystem permissions are root/root/755 and can initially only be set by a WekaFS/NFS mount.
 
-Once these steps are done, it is possible to connect as an administrator and define permissions through the Windows operating system.
+Once these steps are completed, you can connect as an administrator and define permissions through the Windows operating system.
 
 ## **Round-robin DNS server configuration for SMB load balancing**
 

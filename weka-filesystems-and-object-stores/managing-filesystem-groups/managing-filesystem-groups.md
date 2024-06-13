@@ -31,7 +31,7 @@ A filesystem group is required when adding a filesystem. You can create more fil
 2. Select the + sign right to the Filesystem Groups title.
 3. In the **Create Filesystem Group** dialog, set the following:
    * **Name:** Enter a meaningful name for the filesystem group.
-   * **Drive Retention Period**: Set the period to keep the data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.
+   * **Drive Retention Period**: Set the period for keeping data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.
    * **Tiering Cue**: Set the time to wait after the last update before the data is copied from the SSD and sent to the object store.
 
 ![Add a filesystem group](../../.gitbook/assets/wmng\_add\_fsg.gif)

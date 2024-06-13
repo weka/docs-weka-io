@@ -95,7 +95,26 @@ To enable the SMB cluster to use Active Directory to resolve the access of users
 
 **Before you begin**
 
-Ensure the AD Domain Controllers are reachable by all WEKA servers participating in the SMB cluster. This resolution enables the WEKA servers to join the AD domain.
+<details>
+
+<summary>Add the AD DNS configuration to every SMB protocol backend </summary>
+
+To ensure proper AD DNS configuration for all SMB protocol backends, follow these steps:
+
+1. Access the CLI.
+2. Edit the `/etc/resolv.conf` file to include the DNS settings specific to your domain.
+
+For example, your configuration might look like this:
+
+```bash
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+search example.com
+```
+
+Replace `8.8.8.8` and `8.8.4.4` with the appropriate nameserver IP addresses for your domain and `example.com` with your actual domain name.
+
+</details>
 
 **Procedure**
 
@@ -105,8 +124,8 @@ Ensure the AD Domain Controllers are reachable by all WEKA servers participating
 
 2. In the Join to Active Directory dialog, set the following properties:
    * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials. Instead, the SMB cluster creates a computer account for use.
-   * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server based on the AD domain name. You do not need to set the server name. In some cases, specify the AD server if required.
-   * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account that the joining account has permission to, such as SMB servers or corporate computers.
+   * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server based on the AD domain name. You do not need to set the server name. In some cases, specify the AD server if required. (This is not applicable for SMB-W yet.)
+   * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account that the joining account has permission to, such as SMB servers or corporate computers. (This is not applicable for SMB-W yet.)
 
 ![Join Active Directory dialog](../../.gitbook/assets/wmng\_smb\_join\_ad\_dialog.png)
 
@@ -116,14 +135,68 @@ Once the SMB cluster joins the Active Directory domain, the join status next to 
 To join an existing SMB cluster to a different Active Directory domain, select **Leave**. To confirm the action, enter the username and password used to join the Active Directory domain.
 {% endhint %}
 
+### Post-configuration in the DNS Manager and Active Directory
+
+{% hint style="info" %}
+The following procedures are provided for reference purposes. For specific steps related to your environment, contact your IT administrator.
+{% endhint %}
+
+<details>
+
+<summary>Add an <strong>A</strong> record for SMB protocol backends</summary>
+
+1. **Open DNS Manager:** Navigate to **Start > Programs > Administrative Tools > DNS**.
+2. **Access DNS zones:** In the DNS Manager console, double-click the DNS server name to display the list of zones.
+3. Open **Forward Lookup Zones.**
+4. **Create a new A record:** Right-click on the relevant domain and select **New Record**.
+5. **Enter record details:**
+   * Specify the name (for example, TAZ) and the IP address of the backend server.
+   * Select the record type as **A**.
+6. **Configure record options:**
+   * Select the **Create Associated PTR record** option.
+   * Select the **Allow any authenticated user to update DNS record with the same owner name** option.
+7. **Finalize the Record:** Select **OK** to add the new A record.
+
+</details>
+
+<details>
+
+<summary>Set UID and GID for SMB protocol backends</summary>
+
+Repeat the following steps for every backend participating in the SMB protocol.
+
+1. Navigate to **Start > Programs > Administrative Tools > Active Directory Users and Computers**.
+2. In the **Computers** section, right-click on an SMB protocol backend and select **Properties**.
+3. Go to the **Attribute Editor** tab and modify the following:
+   * Locate the **uidNumber** attribute and set its value to **0**.
+   * Locate the **gidNumber** attribute and set its value to **0**.
+4. Select **OK** to save the changes.
+
+</details>
+
+<details>
+
+<summary>Set UID and GID for SMB users</summary>
+
+Repeat the following steps for every user consuming WEKA services over the SMB protocol.
+
+1. Navigate to **Start > Programs > Administrative Tools > Active Directory Users and Computers**.
+2. In the **Users** section, right-click on a user consuming WEKA services over the SMB protocol and select **Properties**.
+3. Go to the **Attribute Editor** tab and modify the following:
+   * Locate the **uidNumber** attribute and set its value to an appropriate number or, if unknown, any numeric value between 0 and 4290000000.
+   * Locate the **gidNumber** attribute and set its value to an appropriate number or, if unknown, any numeric value between 0 and 4290000000.
+4. Select **OK** to save the changes.
+
+</details>
+
 ## Add servers to the SMB cluster <a href="#add-or-remove-smb-cluster-hosts" id="add-or-remove-smb-cluster-hosts"></a>
 
 Adding servers to the SMB cluster can provide several benefits and address various requirements, such as scalability, load balancing, high availability, and improved fault tolerance.
 
 **Before you begin**
 
-Ensure the SMB cluster is joined to an Active Directory domain.\
-See [#join-the-smb-cluster-in-the-active-directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory "mention").
+* Ensure the SMB cluster is joined to an Active Directory domain.\
+  See [#join-the-smb-cluster-in-the-active-directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory "mention").
 
 #### Procedure
 
@@ -180,7 +253,8 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
 
 **Before you begin**
 
-Ensure the SMB cluster is joined to the Active Directory. For details, see [#join-the-smb-cluster-in-the-active-directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory "mention").
+* Ensure the SMB cluster is joined to the Active Directory. For details, see [#join-the-smb-cluster-in-the-active-directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory "mention").
+* Ensure the filesystem is already mounted and the directory you want to share is created in the filesystem. For details, see [mounting-filesystems](../../weka-filesystems-and-object-stores/mounting-filesystems/ "mention"); &#x20;
 
 **Procedure**
 
@@ -200,6 +274,17 @@ Ensure the SMB cluster is joined to the Active Directory. For details, see [#joi
 3. Select **Save**.
 
 ![Add SMB Share dialog](<../../.gitbook/assets/wmng\_smb\_share\_add\_dialog (1).png>)
+
+<details>
+
+<summary>Access the share from Windows</summary>
+
+1. Right-click on **This PC**.
+2. Select **Map network drive**.
+3. In the **Folder** field, enter the path to the share, for example, `\\wekasmb\mynewshare`.
+4. If prompted, enter the required credentials.
+
+</details>
 
 ## Edit an SMB share <a href="#edit-an-smb-share" id="edit-an-smb-share"></a>
 

@@ -13,7 +13,7 @@ Using the CLI, you can manage both SMB-W and legacy SMB:
 * [Create the SMB cluster](smb-management-using-the-cli.md#create-smb-cluster)
 * [Update the SMB cluster](smb-management-using-the-cli.md#update-smb-cluster)
 * [Check the status of SMB cluster readiness](smb-management-using-the-cli.md#check-status-smb-host-readiness)
-* [Join an SMB cluster in Active Directory](smb-management-using-the-cli.md#join-smb-cluster-in-ad)
+* [Join an SMB cluster in Active Directory](smb-management-using-the-cli.md#join-smb-cluster-in-a-d)
 * [Delete an SMB cluster](smb-management-using-the-cli.md#delete-an-smb-cluster)
 * [Add or remove SMB cluster containers](smb-management-using-the-cli.md#add-or-remove-smb-cluster-hosts)
 * [Configure trusted domains](smb-management-using-the-cli.md#configure-trusted-domains)
@@ -73,7 +73,7 @@ If setting the global options to the SMB library is required, contact the [Custo
 
 `weka smb cluster create wekaSMB mydomain --container-ids 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5`
 
-In this example of a full command, an SMB cluster is configured over the WEKA system containers 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`and is directed to use virtual IPs 1.1.1.1 to 1.1.1.5.
+In this example of a full command, an SMB cluster is configured over the WEKA system containers 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`, and is directed to use virtual IPs `1.1.1.1` to `1.1.1.5`.
 {% endhint %}
 
 ## Update the SMB cluster <a href="#update-smb-cluster" id="update-smb-cluster"></a>
@@ -87,8 +87,6 @@ Use the following command line to update an existing SMB cluster:
 **Parameters**
 
 <table><thead><tr><th width="247">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>encryption</code></td><td><p>The global encryption policy to use:</p><ul><li><code>enabled</code>: enables encryption negotiation but doesn't turn it on automatically for supported sessions and share connections.</li><li><code>disabled</code>: doesn't support encrypted connections.</li><li><code>desired</code>: enables encryption negotiation and turns on data encryption on supported sessions and share connections.</li><li><code>required</code>: enforces data encryption on sessions and share connections. Clients that do not support encryption are denied access to the server.,</li></ul><p>Possible values in SMB-W: <code>enabled</code>, <code>desired</code>, <code>required</code><br><br>Possible values in legacy SMB: <code>enabled</code>, <code>disabled</code>, <code>desired</code>, <code>required</code></p></td></tr><tr><td><code>smb-ips-pool</code></td><td><p>A pool of virtual IPs, used as floating IPs for the SMB cluster to provide HA to clients.</p><p>These IPs must be unique; do not assign these IPs to any host on the network.<br>Format: comma-separated IP addresses.</p></td></tr><tr><td><code>smb-ips-range</code></td><td>A range of public IPs is used as floating IPs to provide high availability for the SMB cluster to serve the SMB clients.<br>These IPs must be unique; do not assign these IPs to any host on the network.<br>Format: <code>A.B.C.D-E</code><br>Example: <code>10.10.0.1-100</code></td></tr></tbody></table>
-
-***
 
 ## Check the status of SMB cluster readiness <a href="#check-status-smb-host-readiness" id="check-status-smb-host-readiness"></a>
 
@@ -110,7 +108,7 @@ Ensure the AD servers are resolvable to all WEKA servers. This resolution enable
 
 **Parameters**
 
-<table><thead><tr><th width="207">Name</th><th width="332">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of an AD user with permission to add a server to the domain.</td><td></td></tr><tr><td><code>password</code>*</td><td>The password of the AD user.  This password is not retained or cached.</td><td></td></tr><tr><td><code>server</code></td><td>Weka identifies the AD server automatically based on the AD name. You do not need to set the server name. In some cases, if required, specify the AD server.<br>Not applicable for SMB-W yet.</td><td>The AD server is automatically identified based on the AD name. </td></tr><tr><td><code>create-computer</code></td><td>The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account in - that the joining account has permissions to - such as SMB Servers or Corporate Computers.<br>Not applicable for SMB-W yet.</td><td>The Computers directory.</td></tr></tbody></table>
+<table><thead><tr><th width="207">Name</th><th width="332">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of an AD user with permission to add a server to the domain.</td><td></td></tr><tr><td><code>password</code>*</td><td>The password of the AD user.  This password is not retained or cached.</td><td></td></tr><tr><td><code>server</code></td><td>WEKA identifies the AD server automatically based on the AD name. You do not need to set the server name. In some cases, if required, specify the AD server.<br>Not applicable for SMB-W yet.</td><td>The AD server is automatically identified based on the AD name. </td></tr><tr><td><code>create-computer</code></td><td>The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account in - that the joining account has permissions to - such as SMB Servers or Corporate Computers.<br>Not applicable for SMB-W yet.</td><td>The Computers directory.</td></tr></tbody></table>
 
 To join an existing SMB cluster to another Active Directory domain, leave the current Active Directory using the following command line:
 

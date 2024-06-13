@@ -15,6 +15,10 @@ Using the GUI, you can perform the following actions:
 
 The filesystems are displayed on the **Filesystems** page. Each filesystem indicates the status, tiering, remote backup, encryption, SDD capacity, total capacity, filesystem group, and data reduction details.
 
+**Before you begin**
+
+Ensure a filesystem group is set with the required tiering policy. See [#add-a-filesystem-group](../managing-filesystem-groups/managing-filesystem-groups.md#add-a-filesystem-group "mention").
+
 **Procedure**
 
 1. From the menu, select **Manage > Filesystems**.
@@ -25,7 +29,7 @@ The filesystems are displayed on the **Filesystems** page. Each filesystem indic
 
 When creating a WEKA system on-premises, it does not contain any filesystem. You must create it and set its properties, such as capacity, group, tiering, thin provisioning, encryption, and required authentication during mount.
 
-When creating a WEKA system in AWS using the cloud formation, the WEKA system contains a default filesystem, which is provisioned with the maximum capacity. If your deployment requires more filesystems with different settings, reduce the default filesystem's provisioned capacity and then add a filesystem with the properties that meet your specific needs.
+When creating a WEKA system in AWS using cloud formation, the WEKA system contains a default filesystem with the maximum capacity. If your deployment requires more filesystems with different settings, reduce the default filesystem's provisioned capacity and add a filesystem with the properties that meet your specific needs.
 
 **Before you begin**
 

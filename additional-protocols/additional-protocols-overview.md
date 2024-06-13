@@ -17,7 +17,9 @@ A dedicated filesystem is required that stores persistent protocol configuration
 
 ![](../.gitbook/assets/wmng\_config\_fs.png)
 
-**Related topic**
+**Related topics**
+
+[#add-a-filesystem-group](../weka-filesystems-and-object-stores/managing-filesystem-groups/managing-filesystem-groups.md#add-a-filesystem-group "mention") (a prerequisite for creating a filesystem using the GUI)
 
 [#create-a-filesystem](../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems.md#create-a-filesystem "mention") (using the GUI)
 
