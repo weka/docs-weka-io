@@ -26,10 +26,11 @@ Thin provisioning proves beneficial in diverse scenarios:
 
 * **Tiered filesystems:** On tiered filesystems, available SSD capacity is used for enhanced performance and can be released to the object store when needed by other filesystems.
 * **Auto-scaling groups:** Thin provisioning facilitates automatic expansion and reduction (shrinking) of the filesystem's SSD capacity when using auto-scaling groups, ensuring optimal performance.
-* **Filesystems separation per project:** Creating separate filesystems for each project becomes efficient with thin provisioning, especially when administrators don't anticipate full simultaneous usage of all filesystems. Each filesystem is allocated a minimum capacity but can consume more based on the actual available SSD capacity, offering flexibility and resource optimization.
+* **Filesystems separation per project:** Thin provisioning makes creating separate filesystems for each project efficient, especially when administrators don't anticipate full simultaneous usage of all filesystems. Each filesystem is allocated a minimum capacity but can consume more based on the actual available SSD capacity, offering flexibility and resource optimization.
 
 ### WEKA filesystem limits
 
+* **Number of filesystems:** up to 1024
 * **Number of files or directories:** Up to 6.4 trillion (6.4 \* 10^12)
 * **Number of files in a single directory:** Up to 6.4 billion (6.4 \* 10^9)
 * **Total capacity with object store:** Up to 14 EB&#x20;
@@ -40,7 +41,7 @@ Thin provisioning proves beneficial in diverse scenarios:
 
 WEKA introduces a cluster-wide data reduction feature that can be activated for individual filesystems. This capability incorporates block-variable differential compression and advanced de-duplication techniques across all filesystems, significantly reducing the required storage capacity for user data and delivering substantial cost savings.
 
-The effectiveness of the compression ratio hinges on the specific workload, proving particularly efficient for text-based data, large-scale unstructured datasets, log analysis, databases, code repositories, and sensor data.
+The effectiveness of the compression ratio hinges on the specific workload. It is particularly efficient for text-based data, large-scale unstructured datasets, log analysis, databases, code repositories, and sensor data.
 
 The data reduction applies exclusively to user data (not metadata) per filesystem. The data reduction can be enabled only on thin-provision, non-tiered, and unencrypted filesystems within a cluster holding a valid Data Efficiency Option (DEO) license.
 
