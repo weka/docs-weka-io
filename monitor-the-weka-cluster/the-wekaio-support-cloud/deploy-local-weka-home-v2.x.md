@@ -383,7 +383,7 @@ Connect to the WEKA cluster and run the following command:\
 
 ### 8. Test the deployment
 
-The WEKA cluster uploads data to the Local WEKA Home periodically and on-demand according to its information type (see [#which-information-is-uploaded-to-weka-home](./#which-information-is-uploaded-to-weka-home "mention"))).
+The WEKA cluster uploads data to the Local WEKA Home periodically and on-demand according to its information type (see [#which-information-is-uploaded-to-weka-home](./#which-information-is-uploaded-to-weka-home "mention")).
 
 Access the WEKA Home portal and verify that the test data appears.
 

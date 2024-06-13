@@ -345,7 +345,7 @@ weka cloud enable --cloud-url https://<ip or hostname of the Local WEKA Home ser
 
 ### 7. Test the deployment
 
-The WEKA cluster periodically and on-demand uploads data to the Local WEKA Home according to its information type (see the [#which-information-is-uploaded-to-weka-home](./#which-information-is-uploaded-to-weka-home "mention")).&#x20;
+The WEKA cluster periodically and on-demand uploads data to the Local WEKA Home according to its information type (see [#which-information-is-uploaded-to-weka-home](./#which-information-is-uploaded-to-weka-home "mention")).&#x20;
 
 Access the WEKA Home portal and verify that the test data appears.
 
