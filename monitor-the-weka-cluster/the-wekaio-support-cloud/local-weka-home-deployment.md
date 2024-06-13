@@ -345,13 +345,13 @@ weka cloud enable --cloud-url https://<ip or hostname of the Local WEKA Home ser
 
 ### 7. Test the deployment
 
-The WEKA cluster uploads data to the Local WEKA Home periodically and on-demand according to its information type (see the Which information is uploaded to the WEKA Home section).&#x20;
+The WEKA cluster periodically and on-demand uploads data to the Local WEKA Home according to its information type (see the Which information is uploaded to the WEKA Home section).&#x20;
 
 Access the WEKA Home portal and verify that the test data appears.
 
 To trigger a test event, run `weka events trigger-event test` and verify the test event is received in the Local WEKA Home portal under the **Events** section.
 
-If required, go to `/var/log/wekahome` and review the relevant log according to the timestamp (for example, `wekahome-install-03-08-2023_16-29.log`).
+If required, go to `/var/log/pods` and review the relevant log according to the timestamp (for example, `wekahome-install-03-08-2023_16-29.log`).
 
 ## Upgrade the Local WEKA Home
 
