@@ -68,6 +68,7 @@
   * [Add clients](planning-and-installation/weka-installation-on-gcp/add-clients.md)
   * [Troubleshooting](planning-and-installation/weka-installation-on-gcp/troubleshooting.md)
   * [Detailed deployment tutorial: WEKA on GCP using Terraform](planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform.md)
+  * [Google Kubernetes Engine and WEKA over POSIX deployment](planning-and-installation/weka-installation-on-gcp/google-kubernetes-engine-and-weka-over-posix-deployment.md)
 
 ## Getting Started with WEKA
 
