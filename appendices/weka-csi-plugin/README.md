@@ -35,7 +35,7 @@ The WEKA CSI Plugin provides the following features:
 ## Interoperability
 
 * CSI protocol: 1.0 - 1.2.
-* Kubernetes: 1.18 - 1.2x.
+* Kubernetes: 1.18 - 1.3x.
 * WEKA: V3.14 and up. WEKA V4.2 and up and WEKA CSI Plugin V2.0 are required to get all features.
 * SELinux is supported (AppArmor for Ubuntu is not supported).
 
