@@ -97,9 +97,11 @@ To enable the SMB cluster to use Active Directory to resolve the access of users
 
 <details>
 
-<summary>Add the AD DNS configuration to every SMB protocol backend </summary>
+<summary>Resolve the AD domain controllers</summary>
 
-To ensure proper AD DNS configuration for all SMB protocol backends, follow these steps:
+Add the AD DNS configuration to every SMB protocol backend.&#x20;
+
+Follow these steps:
 
 1. Access the CLI.
 2. Edit the `/etc/resolv.conf` file to include the DNS settings specific to your domain.
