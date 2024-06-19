@@ -47,16 +47,16 @@ The data reduction applies exclusively to user data (not metadata) per filesyste
 
 #### How data reduction operates
 
-Data reduction is a post-process activity. New data written to the cluster is written uncompressed. The data reduction process runs as a background task with lower priority than tasks serving user IO requests. The data reduction starts when enough data is written to the filesystems.
+Data reduction is a post-process activity. New data written to the cluster is uncompressed. The data reduction process runs as a background task with lower priority than tasks serving user IO requests. It starts when enough data is written to the filesystems.
 
 **Data reduction tasks:**
 
-1. **Ingestion:**
-   * _Clusterization_**:** Applied on data blocks at the 4K block level. The system identifies similarity across uncompressed data in all filesystems enabled for data reduction.
-   * _Compression_: The system reads similar and unique blocks, compressing each type separately. Compressed data is then written to the filesystem.
-2. **Defragmentation**:&#x20;
-   * Uncompressed data related to successful compression is marked for deletion.
-   * The defrag process waits for sufficient blocks to be invalidated and then permanently deletes them.
+* **Ingestion:**
+  * _Clusterization_**:** This technique is applied to data blocks at the 4K block level. The system identifies similarity across uncompressed data in all filesystems enabled for data reduction.
+  * _Compression_: The system reads similar and unique blocks, compressing each type separately. Compressed data is then written to the filesystem.
+* **Defragmentation**:&#x20;
+  * Uncompressed data related to successful compression is marked for deletion.
+  * The defrag process waits for sufficient blocks to be invalidated and then permanently deletes them.
 
 <figure><img src="../.gitbook/assets/DataReduction.gif" alt=""><figcaption><p>Data reduction process at a glance</p></figcaption></figure>
 
