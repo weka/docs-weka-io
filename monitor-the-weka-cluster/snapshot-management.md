@@ -84,7 +84,7 @@ Perform the following steps on the **SnapTool host**.
 
 ## Option 1: Install the SnapTool package with the systemd service
 
-1. Download the latest `snaptool.tar` file from [https://github.com/weka/snaptool/releases](https://github.com/weka/snaptool/releases) and extract it to the physical server.
+1. Download the latest `snaptool.tar` file from this [link](https://github.com/weka/snaptool/releases/latest/download/snaptool.tar) and extract it to the physical server.
 2. Edit the `snaptool.yml` configuration file (default location: /opt/weka/snaptool).\
    See [Edit the configuration in snaptool.yml](snapshot-management.md#edit-the-configuration-in-snaptool.yml).\
    This is a mandatory step before running the installer. Otherwise, the installation fails.
