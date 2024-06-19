@@ -18,7 +18,7 @@ If you need to mount a single client to multiple clusters, refer to the [Mount f
 ## Mount a filesystem using the traditional method&#x20;
 
 {% hint style="info" %}
-Using the mount command as explained below first requires the installation of the WEKA client, configuring the client, and joining it to a WEKA cluster.
+Using the mount command, as explained below, first requires installing the WEKA client, configuring it, and joining it to a WEKA cluster.
 {% endhint %}
 
 To mount a filesystem on one of the cluster servers, let’s assume the cluster has a filesystem called `demo`. To add this filesystem to a server, SSH into one of the servers and run the `mount` command as the `root` user, as follows:
@@ -34,18 +34,18 @@ The general structure of the `mount` command for a WEKA filesystem is as follows
 mount -t wekafs [-o option[,option]...]] <fs-name> <mount-point>
 ```
 
-Two options for mounting a filesystem on a cluster client are read cache and write cache. Refer to the descriptions in the links below to understand the differences between these modes:
+Two options for mounting a filesystem on a cluster client are read and write cache. Refer to the descriptions in the links below to understand the differences between these modes:
 
 * [Read cache mount mode](../../weka-system-overview/weka-client-and-mount-modes.md#read-cache-mount-mode-default)
 * [Write cache mount mode](../../weka-system-overview/weka-client-and-mount-modes.md#write-cache-mount-mode)
 
 ## Mount a filesystem using the stateless client feature <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
 
-The stateless client feature defers the process of joining the cluster until the mount is performed. They are simplifying and improving the management of clients in the cluster. It removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave at high frequency.
+The stateless client feature defers joining the cluster until the mount is performed. This simplifies and improves client management in the cluster. It removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave frequently.
 
 Furthermore, it unifies all security aspects in the mount command, eliminating the search for separate credentials at cluster join and mount.
 
-To use the stateless client feature, a WEKA agent must be installed. Once complete, you can create and configure mounts with the mount command. You can remove existing mounts from the cluster using the unmount command.
+A WEKA agent must be installed to use the stateless client feature. Once installed, you can create and configure mounts with the mount command. You can also remove existing mounts from the cluster using the unmount command.
 
 {% hint style="info" %}
 To allow only WEKA authenticated users to mount a filesystem, set the filesystem `--auth-required` flag to `yes`. For more information, refer to the [Mount authentication for organization filesystems](../../operation-guide/organizations/organizations-2.md) topic.
@@ -53,21 +53,23 @@ To allow only WEKA authenticated users to mount a filesystem, set the filesystem
 
 **Isolated port for restricted stateless client operations**
 
-If you want to restrict a stateless client’s operations to only the essential APIs for mounting and unmounting operations, connect to WEKA clusters through TCP base port + 3 (for example, 14003). This enables operational segregation between client control plane requests and backend control plane requests.
+If you want to restrict a stateless client’s operations to only the essential APIs for mounting and unmounting operations, connect to WEKA clusters through TCP base port + 3 (for example, 14003). This enables operational segregation between client and backend control plane requests.
 
 To install a WEKA agent on a client, run one of the following commands as `root` on the client:
 
 * For a non-restricted client:
 
 ```sh
-curl http://hostname:14000/dist/v1/install | sh
+curl -k https://hostname:14000/dist/v1/install | sh
 ```
 
 * For a restricted client:
 
 ```bash
-curl http://hostname:14003/dist/v1/install | sh
+curl -k https://hostname:14003/dist/v1/install | sh
 ```
+
+(The `-k` flag instructs the `curl` command to bypass SSL certificate verification.)
 
 On completion, the agent is installed on the client.
 
