@@ -37,7 +37,7 @@ The following EC2 instance models can operate as **client** instances. The defau
 
 ### HPC optimized <a href="#hpc_optimized" id="hpc_optimized"></a>
 
-<table><thead><tr><th width="235">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>HPc7a</td><td>hpc7a.2xlarge, hpc7a.48xlarge, hpc7a.96xlarge</td></tr></tbody></table>
+<table><thead><tr><th width="235">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>HPc7a</td><td>hpc7a.12xlarge, hpc7a.48xlarge, hpc7a.96xlarge</td></tr></tbody></table>
 
 
 
