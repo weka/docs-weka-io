@@ -354,24 +354,28 @@ Network scripts are deprecated in RHEL/Rocky 8. For RHEL/Rocky 9, use the Networ
 
 * **For Ethernet (ETH):** To set up routing for Ethernet connections, use the following commands:
 
+{% code overflow="wrap" %}
 ```bash
-nmcli connection modify eth1 ipv4.routes "10.10.10.0/24 table=100" ipv4.routing-rules "priority 101 from 10.10.10.1 table 100"
-nmcli connection modify eth2 ipv4.routes "10.10.10.0/24 table=200" ipv4.routing-rules "priority 102 from 10.10.10.101 table 200"
+nmcli connection modify eth1 ipv4.routes "10.10.10.0/24 src=10.10.10.1 table=100" ipv4.routing-rules "priority 101 from 10.10.10.1 table 100"
+nmcli connection modify eth2 ipv4.routes "10.10.10.0/24 src=10.10.10.101 table=200" ipv4.routing-rules "priority 102 from 10.10.10.101 table 200"
 ```
+{% endcode %}
 
 The route's first IP address in the provided commands represents the network's subnet to which the NIC is connected. The last address in the routing rules corresponds to the IP address of the NIC being configured, where `eth1` is set to `10.10.10.1`.
 
 * **For InfiniBand (IB):** To configure routing for InfiniBand connections, use the following commands:
 
+{% code overflow="wrap" %}
 ```bash
 nmcli connection modify ib0 ipv4.route-metric 100
 nmcli connection modify ib1 ipv4.route-metric 101
 
-nmcli connection modify ib0 ipv4.routes "10.10.10.0/24 table=100" 
+nmcli connection modify ib0 ipv4.routes "10.10.10.0/24 src=10.10.10.1 table=100" 
 nmcli connection modify ib0 ipv4.routing-rules "priority 101 from 10.10.10.1 table 100"
-nmcli connection modify ib1 ipv4.routes "10.10.10.0/24 table=200" 
+nmcli connection modify ib1 ipv4.routes "10.10.10.0/24 src=10.10.10.101 table=200" 
 nmcli connection modify ib1 ipv4.routing-rules "priority 102 from 10.10.10.101 table 200"
 ```
+{% endcode %}
 
 The route's first IP address in the above commands signifies the network's subnet associated with the respective NIC. The last address in the routing rules corresponds to the IP address of the NIC being configured, where `ib0` is set to `10.10.10.1`.
 
