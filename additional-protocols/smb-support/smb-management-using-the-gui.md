@@ -145,12 +145,18 @@ The Shares tab displays the list of SMB shares that are already created in the s
 
 2\. In the Add SMB Share dialog, set the following properties:
 
-* **Name**: A meaningful name for the SMB share.
+*   **Name**: A meaningful and valid name for the SMB share.&#x20;
+
+    The name must meet the following requirements:
+
+    * The share name must be no more than 80 characters in length.
+    * The share name must not include the following characters: backslash (\\), slash (/), colon (:), and semicolon (;).
+    * Control characters in the range 0x00 through 0x1F (inclusive) are prohibited.
 * **Filesystem**: The filesystem name that includes the directory to share. Select one from the list. A filesystem set with required authentication cannot be used for SMB share.
 * **Description**: A description or purpose of the SMB share.
 * **Path**: A valid internal path, relative to the root, within the filesystem to expose for the SMB share.
 * **Encryption:** Select in-transit encryption enforcement of the share. The cluster global encryption settings can affect the actual encryption.
-* **Read Only:** Select if you want to set the share as read only.
+* **Read Only:** Select if you want to set the share as read-only.
 * **Hidden:** Select if you want to hide the share, so it is not visible when viewing the list of system shares.
 * **Allow Guest Access:** Select if you want to allow guests to access without authentication.
 * **Access Permissions:** Define the share access permissions. If you select ON, select the access type, and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix).
