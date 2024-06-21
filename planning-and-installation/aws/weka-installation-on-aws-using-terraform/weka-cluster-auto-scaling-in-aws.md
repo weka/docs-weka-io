@@ -8,7 +8,7 @@ Scale-out is essential to ensure a system can meet growing demands, maintain per
 
 **Action**
 
-* Increase the desired size of the Auto-Scaling Group (ASG) associated with your WEKA cluster. You can do this through the AWS Console, AWS CLI, or other compatible methods.
+* Increase the desired size of the Auto-Scaling Group (ASG) associated with your WEKA cluster. You can do this through the AWS Console or AWS CLI.
 
 **Result**
 
