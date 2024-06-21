@@ -45,7 +45,7 @@ In addition, you can create a client code using the OpenAPI client generator and
 To use the WEKA REST API, provide an access or refresh token.
 
 You can generate an access or refresh for the REST API usage through the CLI or the GUI.\
-See[obtain-authentication-tokens.md](../operation-guide/security/obtain-authentication-tokens.md "mention").
+See [obtain-authentication-tokens.md](../operation-guide/security/obtain-authentication-tokens.md "mention").
 
 You can also call the login API to obtain access or refresh tokens through the API, providing it with a `username` and `password`.&#x20;
 
