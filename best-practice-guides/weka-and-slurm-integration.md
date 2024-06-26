@@ -63,7 +63,7 @@ WEKA processes are allocated to designated cores on each server in the WEKA clus
 
 #### WEKA client mount modes
 
-WEKA clients can be configured to mount in DPDK or UPD mode.
+WEKA clients can be configured to mount in DPDK or UDP mode.
 
 **DPDK mode** is optimized for single-process performance and must be used when possible. When using DPDK mode, specific requirements must be met by the client host system.
 
