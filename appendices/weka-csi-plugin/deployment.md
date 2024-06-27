@@ -52,9 +52,13 @@ helm repo add csi-wekafs https://weka.github.io/csi-wekafs
 2. Install the WEKA CSI Plugin. Run the following command:
 
 ```
-helm install csi-wekafs csi-wekafs/csi-wekafsplugin --namespace csi-wekafs --create-namespace [--set selinuxSupport=<off | mixed | enforced>]
+helm install csi-wekafs csi-wekafs/csi-wekafsplugin --namespace csi-wekafs --create-namespace
 
 ```
+
+{% hint style="info" %}
+If you need SELinux support, see the [SELinux support](add-selinux-support.md) section.
+{% endhint %}
 
 <details>
 
