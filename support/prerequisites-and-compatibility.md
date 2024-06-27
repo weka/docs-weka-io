@@ -234,8 +234,8 @@ Supported Mellanox OFED versions:
 
 * Support PLP (Power Loss Protection)
 * Dedicated for Weka system storage (partition not supported)
-* Supported drive capacity: Up to 17 TiB
-* IOMMU mode for SSD drives is not supported; When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the Weka support team.
+* Supported drive capacity: Up to 16 TB
+* IOMMU mode for SSD drives is not supported. When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the Weka support team.
 
 {% hint style="info" %}
 **Note:** To get the best performance, make sure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
@@ -250,8 +250,8 @@ Supported Mellanox OFED versions:
     * Supports any byte size of up to 65 MiB
   * DELETE
 * Data Consistency: [AWS S3 consistency guarantee](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel):
-  * GET after single PUT should be fully consistent
-  * Multiple PUTs should be eventually consistent
+  * GET after a single PUT should be fully consistent
+  * Multiple PUTs should eventually be consistent
 
 Certified object stores:
 
