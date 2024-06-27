@@ -32,6 +32,7 @@
   * [Manually configure the WEKA cluster using the resource generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator.md)
   * [Perform post-configuration procedures](planning-and-installation/bare-metal/perform-post-configuration-procedures.md)
   * [Add clients](planning-and-installation/bare-metal/adding-clients-bare-metal.md)
+* [WEKA Cloud Deployment Manager (CDM) User Guide](planning-and-installation/weka-cloud-deployment-manager-cdm-user-guide.md)
 * [WEKA installation on AWS](planning-and-installation/aws/README.md)
   * [WEKA installation on AWS using Terraform](planning-and-installation/aws/weka-installation-on-aws-using-terraform/README.md)
     * [Terraform-AWS-WEKA module description](planning-and-installation/aws/weka-installation-on-aws-using-terraform/aws-weka-terraform-deployment-module-description.md)

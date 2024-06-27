@@ -57,6 +57,10 @@ Before installing the WEKA software on GCP, the following prerequisites must be 
 
 ## **Create a main.tf file**
 
+The main Terraform configuration settings are included in the `main.tf` file. You can create it by following this procedure or using the WEKA Cloud Deployment Manager. See [weka-cloud-deployment-manager-cdm-user-guide.md](../weka-cloud-deployment-manager-cdm-user-guide.md "mention").
+
+**Procedure**
+
 1. Review the [Terraform-GCP-WEKA example](gcp-terraform-package-description.md#terraform-gcp-weka-example) and use it as a reference for creating the `main.tf` according to your deployment specifics on GCP.
 2. Tailor the `main.tf` file to create SMB-W or NFS protocol clusters by adding the relevant code snippet. Adjust parameters like the number of gateways, instance types, domain name, and share naming:
 

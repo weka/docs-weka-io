@@ -1,14 +1,12 @@
 # Deployment on AWS using Terraform
 
-This step-by-step procedure ensures a seamless configuration of your network, customization of Terraform configurations, and successful deployment of the WEKA cluster on AWS.
-
-Begin by creating a `main.tf` file, tailoring it to your deployment specifics on AWS. Once the `main.tf` is configured to your satisfaction, apply the changes.
-
 ## Create a main.tf file
+
+The main Terraform configuration settings are included in the `main.tf` file. You can create it by following this procedure or using the WEKA Cloud Deployment Manager. See [weka-cloud-deployment-manager-cdm-user-guide.md](../../weka-cloud-deployment-manager-cdm-user-guide.md "mention").
 
 #### Before you begin
 
-The [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) must be installed on the workstation used for the deployment. Check the minimum required Terraform version specified the [**Requirements**](https://registry.terraform.io/modules/weka/weka/aws/latest#requirements) section of the Terraform-AWS-WEKA module.
+The [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) must be installed on the workstation used for the deployment. Check the minimum required Terraform version specified in the [**Requirements**](https://registry.terraform.io/modules/weka/weka/aws/latest#requirements) section of the Terraform-AWS-WEKA module.
 
 #### Procedure
 

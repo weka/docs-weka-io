@@ -38,7 +38,7 @@ Before installing the WEKA software on Azure, the following prerequisites must b
   * Storage Account Contributor
   * Key Vault Administrator
 * To login to the Azure account using Azure CLI, use the **az login** command.
-* An Azure resource group needs to be created within your subscription. The resource group also includes the Azure region.
+* You need to create an Azure resource group within your subscription, which includes the Azure region.
 
 <details>
 
@@ -55,7 +55,11 @@ Follow these additional requirements to get Terraform working on an Arm-based Ma
 
 ## **Create a main.tf file**
 
-1. Review the [Terraform-Azure-WEKA example](azure-weka-terraform-package-description.md#terraform-azure-weka-example) and use it as a reference for creating the `main.tf` according to your deployment specifics on Azure.
+The main Terraform configuration settings are included in the `main.tf` file. You can create it by following this procedure or using the WEKA Cloud Deployment Manager. See [weka-cloud-deployment-manager-cdm-user-guide.md](../weka-cloud-deployment-manager-cdm-user-guide.md "mention").
+
+**Procedure**
+
+1. Review the [Terraform-Azure-WEKA example](azure-weka-terraform-package-description.md#terraform-azure-weka-example) and use it as a reference for creating the `main.tf` according to your Azure deployment specifics.
 2. Tailor the `main.tf` file to create SMB-W or NFS protocol clusters by adding the relevant code snippet. Adjust parameters like the number of gateways, instance types, domain name, and share naming:
 
 * **SMB-W**
