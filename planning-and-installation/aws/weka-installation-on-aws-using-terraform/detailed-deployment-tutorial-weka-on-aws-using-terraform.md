@@ -779,8 +779,8 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
             "Sid": "Statement1",
             "Effect": "Allow",
             "Action": [
-                "states:Creacluster-nameateMachine",
-                "states:Delecluster-nameateMachine",
+                "states:Createcluster-nameMachine",
+                "states:Deletecluster-nameMachine",
                 "states:TagResource",
                 "states:DescribeStateMachine",
                 "states:ListStateMachineVersions",
