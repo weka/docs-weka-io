@@ -64,7 +64,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% tab title="Clients" %}
 * **RHEL:**
   * 9.2, 9.1, 9.0
-  * 8.8. 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
   * 9.2, 9.1, 9.0
@@ -303,7 +303,7 @@ See [#high-availability-ha](../weka-system-overview/networking-in-wekaio.md#high
 
 * The SSDs must support PLP (Power Loss Protection).
 * WEKA system storage must be dedicated, and partitioning is not supported.
-* The supported drive capacity is up to 30 TiB.
+* The supported drive capacity is up to 30 TB.
 * IOMMU mode is not supported for SSD drives.\
   If you need to configure IOMMU on WEKA cluster servers, for instance, due to specific applications when running the WEKA cluster in converged mode, contact our [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team) for assistance.
 * The ratio between the cluster's smallest and the largest SSD capacity must not exceed 8:1.
