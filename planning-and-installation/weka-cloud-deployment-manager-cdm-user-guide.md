@@ -8,7 +8,7 @@ Key features of the CDM:
 
 * **Streamlined deployment:** The CDM streamlines the deployment of WEKA clusters, making it easier for users to set up their infrastructure.
 * **Web-hosted solution:** The CDM is fully web-hosted, eliminating the need for downloads or installations. Users can quickly begin configuring their WEKA clusters.
-* **Terraform configuration file:** The CDM process results in the main Terraform configuration file (`main.tf`), which can be directly applied when deploying WEKA.
+* **Terraform configuration file:** The CDM process results in the main Terraform configuration file `(main.tf)`, which can be directly applied when deploying WEKA.
 
 ## Access the CDM
 
