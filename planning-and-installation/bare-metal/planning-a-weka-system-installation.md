@@ -46,7 +46,7 @@ For on-premises planning, it is possible to consult with the Customer Success Te
 
 ## Memory resource planning <a href="#memory-resource-planning" id="memory-resource-planning"></a>
 
-### Backend servers memory requirements
+### Backend servers' memory requirements
 
 The total per server memory requirements is the sum of the following requirements:
 
@@ -63,7 +63,8 @@ The total per server memory requirements is the sum of the following requirement
 | Metadata (pointers)               | <p>20 Bytes x # Metadata units per server<br>See <a href="../../weka-system-overview/filesystems.md#metadata-calculations">Metadata units calculation</a>.</p> |
 
 {% hint style="warning" %}
-The maximum memory per **container** is 384 GB.
+* The total memory allocated for compute processes in the cluster must be at least 0.05% (1/2000) of the total NVMe capacity in the cluster.
+* The maximum memory per **container** is 384 GB.
 {% endhint %}
 
 #### Example 1: A system with large files
