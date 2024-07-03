@@ -39,7 +39,7 @@ The server or VM must meet the following requirements:
   * If not configuring LWH: minimum 4 cores and 16 GiB.
   * If configuring LWH, see the Server minimum CPU and RAM requirements section in [#1.-verify-prerequisites](the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
 * **Network interface:** 1 Gbps.&#x20;
-* **Firewall rules:**   The WMS listens on multiple ports depending on which service you are accessing.  See [#required-ports](../support/prerequisites-and-compatibility.md#required-ports "mention")
+* **Firewall rules:**   The WMS listens on multiple ports depending on which service you are accessing.  See [#required-ports](../install/prerequisites-and-compatibility.md#required-ports "mention")
 
 {% hint style="info" %}
 This workflow only applies to installation on a server or VM. It does not apply to installation on AWS. To install on AWS, contact the Customer Success Team.

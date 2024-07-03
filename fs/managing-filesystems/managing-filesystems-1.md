@@ -7,7 +7,7 @@ description: This page describes how to view and manage filesystems using the CL
 Using the CLI, you can perform the following actions:
 
 * [View filesystems](managing-filesystems-1.md#view-filesystems)
-* [Create a filesystem](managing-filesystems-1.md#add-a-filesystem)
+* [Create a filesystem](managing-filesystems-1.md#create-a-filesystem)
 * [Add a filesystem when thin-provisioning is used](managing-filesystems-1.md#add-a-filesystem-when-thin-provisioning-is-used)
 * [Edit a filesystem](managing-filesystems-1.md#edit-a-filesystem)
 * [Delete a filesystem](managing-filesystems-1.md#delete-a-filesystem)
@@ -58,16 +58,16 @@ Use the following command line to edit an existing filesystem:
 
 **Parameters**
 
-| Name                     | Value                                                                                                                                                                                                                             |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                 | Name of the filesystem to edit.                                                                                                                                                                                                   |
-| `new-name`               | New name for the filesystem                                                                                                                                                                                                       |
-| `total-capacity`         | Total capacity of the edited filesystem                                                                                                                                                                                           |
-| `ssd-capacity`           | <p>SSD capacity of the edited filesystem.<br>Minimum value: 1GiB.</p>                                                                                                                                                             |
-| `thin-provision-min-ssd` | <p>For <a href="../../overview/filesystems.md#thin-provisioning">thin-provisioned</a> filesystems, this is the minimum SSD capacity that is ensured to be always available to this filesystem.<br>Minimum value: 1GiB.</p>        |
-| `thin-provision-max-ssd` | <p>For <a href="../../overview/filesystems.md#thin-provisioning">thin-proviosined</a> filesystem, this is the maximum SSD capacity the filesystem can consume.<br>The value can cannot exceed the <code>total-capacity</code></p> |
-| `max-files`              | Metadata limit for the filesystem                                                                                                                                                                                                 |
-| `auth-required`          | <p>Determines if mounting the filesystem requires being authenticated to Weka (<a href="../../usage/user-management/#user-log-in">weka user login</a>).<br>Possible values: <code>yes</code> or <code>no</code></p>               |
+| Name                     | Value                                                                                                                                                                                                                            |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                 | Name of the filesystem to edit.                                                                                                                                                                                                  |
+| `new-name`               | New name for the filesystem.                                                                                                                                                                                                     |
+| `total-capacity`         | Total capacity of the edited filesystem.                                                                                                                                                                                         |
+| `ssd-capacity`           | <p>SSD capacity of the edited filesystem.<br>Minimum value: 1GiB.</p>                                                                                                                                                            |
+| `thin-provision-min-ssd` | <p>For <a href="../../overview/filesystems.md#thin-provisioning">thin-provisioned</a> filesystems, this is the minimum SSD capacity that is ensured to be always available to this filesystem.<br>Minimum value: 1GiB.</p>       |
+| `thin-provision-max-ssd` | <p>For <a href="../../overview/filesystems.md#thin-provisioning">thin-proviosined</a> filesystem, this is the maximum SSD capacity the filesystem can consume.<br>The value must not exceed the <code>total-capacity</code>.</p> |
+| `max-files`              | Metadata limit for the filesystem.                                                                                                                                                                                               |
+| `auth-required`          | <p>Determines if mounting the filesystem requires being authenticated to WEKAka (<a href="../../usage/user-management/#user-log-in">weka user login</a>).<br>Possible values: <code>yes</code> or <code>no</code>.</p>           |
 
 ## Delete a filesystem
 

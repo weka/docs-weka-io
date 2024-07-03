@@ -64,4 +64,4 @@ Unlike file data, file metadata is managed in the Linux operating system through
 
 **Related topic**
 
-[#mount-command-options](../fs/mounting-filesystems.md#mount-command-options "mention")
+[#mount-command-options](../fs/mounting-filesystems/#mount-command-options "mention")

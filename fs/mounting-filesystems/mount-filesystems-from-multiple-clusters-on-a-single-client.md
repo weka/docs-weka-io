@@ -111,26 +111,34 @@ WEKA_PORT=<port number> mount -t wekafs <fs-name> <mount-point> -o container_nam
 
 ## Run commands from a server with multiple client containers
 
-When running WEKA CLI commands against one of the connected WEKA clusters from a server with multiple client containers, it's necessary to specify the client container port in the command. Here's an example of a server with two client containers:
+When running WEKA CLI commands from a server hosting multiple client containers, each connected to a different WEKA cluster, it’s required to specify the client container port or the backend IP address/name of the cluster (linked to that client) in the command.
+
+Consider a server with two client containers:
 
 ```bash
 weka local ps
-CONTAINER  STATE    DISABLED  UPTIME    MONITORING  PERSISTENT  PORT   PID    STATUS  VERSION                                    LAST FAILURE
-client     Running  False     3:15:57h  True        False       14000  58318  Ready   4.2.6.36-663f57024276b0b6aa17036a39835d1d
-client2    Running  False     3:14:35h  True        False       14101  59529  Ready   4.2.6.36-663f57024276b0b6aa17036a39835d1d
-
+CONTAINER  STATE    DISABLED  UPTIME    MONITORING  PERSISTENT  PORT   PID    STATUS  VERSION LAST FAILURE
+client1    Running  False     3:15:57h  True        False       14000  58318  Ready   4.2.10
+client2    Running  False     3:14:35h  True        False       14101  59529  Ready   4.2.10
 ```
 
-To run a WEKA CLI command against the second cluster (client2 in this case), specify the port for that client container like this:
+To run a WEKA CLI command on the second cluster (associated with `client2`), use either of the following methods:
 
-```bash
-weka status -P 14101
-```
+*   By specifying the backend IP address or name linked to that client container (assuming the backend name is `DataSphere2-1`):
 
-This ensures that your WEKA CLI command is directed to the correct WEKA cluster associated with the specified client container.
+    ```
+    weka status -H DataSphere2-1
+    ```
+*   By specifying the client container port:
+
+    ```
+    weka status -P 14101
+    ```
+
+This approach ensures that your WEKA CLI command targets the correct WEKA cluster associated with the specified client container.
 
 #### Related topics
 
 [adding-clients-bare-metal.md](../../install/bare-metal/adding-clients-bare-metal.md "mention")
 
-[mounting-filesystems.md](../mounting-filesystems.md "mention")
+[.](./ "mention")

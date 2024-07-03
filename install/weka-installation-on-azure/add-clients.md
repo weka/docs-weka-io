@@ -105,4 +105,4 @@ Using the Azure Console, the client instances are provisioned separately from th
 
 **Related topics**
 
-[mounting-filesystems.md](../../fs/mounting-filesystems.md "mention")
+[mounting-filesystems](../../fs/mounting-filesystems/ "mention")

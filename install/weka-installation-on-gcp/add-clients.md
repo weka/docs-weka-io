@@ -62,4 +62,4 @@ mount -t wekafs -o net=udp -o num_cores=0 -o mgmt_ip=10.20.30.100 10.20.30.40/fs
 
 **Related topics**
 
-[mounting-filesystems.md](../../fs/mounting-filesystems.md "mention")
+[mounting-filesystems](../../fs/mounting-filesystems/ "mention")

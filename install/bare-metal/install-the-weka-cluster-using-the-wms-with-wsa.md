@@ -27,7 +27,7 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
 * Target servers must be **Dell, HPE,** **Lenovo** or **Supermicro**. Other servers are not supported.
 * The RedFish interface must be installed, enabled, and licensed for all target servers. (RedFish is a network standard API for managing servers, networks, storage devices, and more.)
 * The WMS must be able to connect over Ethernet to the servers’ IPMI/iDRAC/iLO interface and the management interface.
-* The bare metal servers must conform to the [prerequisites-and-compatibility.md](../../support/prerequisites-and-compatibility.md "mention").
+* The bare metal servers must conform to the [prerequisites-and-compatibility.md](../prerequisites-and-compatibility.md "mention").
 * The bare metal servers must have an OS management network interface for administering the servers using DHCP.
 
 ## Before you begin
@@ -131,7 +131,7 @@ Change the port from 9090 to 8051, which is the WMS Admin port.
 
 The WSA setup page opens.
 
-<figure><img src="../../.gitbook/assets/WSA_Setup_Page.png" alt=""><figcaption><p>WSA Setup</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/WSA_Setup_Page (1).png" alt=""><figcaption><p>WSA Setup</p></figcaption></figure>
 
 2. Open **Step 1 - Choose source ISO**, select the WSA package (ISO) you intend to deploy, and click **Next**.
 

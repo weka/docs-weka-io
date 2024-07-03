@@ -15,7 +15,7 @@ Always upgrade to the latest minor version in the new major version when upgradi
 
 {% hint style="warning" %}
 If the source system is not in MCB architecture, it is required to convert the cluster architecture to MCB. \
-See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendix/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention")\
+See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention")\
 This workflow is only intended for professional services.\
 Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for assistance.
 {% endhint %}
@@ -78,7 +78,7 @@ Before proceeding with any system upgrade, ensuring that the environment meets t
 <summary>Sample list of the verification steps performed by the WEKA Upgrade Checker Tool </summary>
 
 * [x] **Backend server Prerequisites and compatibility**:
-  * Confirm that all backend servers meet the [prerequisites and compatibility](../support/prerequisites-and-compatibility.md) requirements of the target version. Address any discrepancies promptly.
+  * Confirm that all backend servers meet the [prerequisites and compatibility](../install/prerequisites-and-compatibility.md) requirements of the target version. Address any discrepancies promptly.
   * **Contact the Customer Success Team** if there are compatibility issues or missing prerequisites.
 * [x] **Source version architecture**:
   * Verify that the source version is configured in an **MCB (Multi-Cluster Backend)** architecture.
@@ -281,8 +281,8 @@ The minimum source version for clients upgrade is 4.1.2.
 
 #### Stateful client upgrade options
 
-* You can manually upgrade the clients locally (one by one) or remotely (in batches), usually during a maintenance window.
-* A gateway, which is a stateful client running a protocol, is upgraded with the backend servers.
+* Clients can be upgraded manually. This can be done either locally on each client individually or remotely in batches. This process typically occurs during a scheduled maintenance window.
+* An upgrade is performed on a gateway, which is a stateful client that runs a specific protocol. This gateway is associated with containers with the `allow_protocols` parameter set to true. The upgrade process involves interaction with backend servers.
 
 #### Client upgrade procedures
 

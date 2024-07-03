@@ -16,12 +16,12 @@ Using the GUI, you can:
 * [Delete the SMB cluster](smb-management-using-the-gui.md#delete-the-smb-cluster)
 * [Display the SMB shares list](smb-management-using-the-gui.md#display-the-smb-shares-list)
 * [Add an SMB share](smb-management-using-the-gui.md#add-an-smb-share)
-* [Edit an SMB share](smb-management-using-the-gui.md#undefined)
+* [Edit an SMB share](smb-management-using-the-gui.md#edit-an-smb-share)
 * [Remove an SMB share](smb-management-using-the-gui.md#remove-an-smb-share)
 
 **Considerations:**
 
-* When configuring the SMB cluster, the default is SMB-W. To create a legacy SMB cluster, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+* The default SMB cluster configuration is SMB-W. Contact the Customer Success Team to create a legacy SMB cluster.
 * When managing an SMB-W cluster using the GUI, the limitations related to SMB-W in the CLI commands also apply.
 * You can manage the legacy SMB cluster using the GUI but not configure or delete it. See [Manage SMB using the CLI](smb-management-using-the-cli.md).
 
@@ -48,19 +48,19 @@ Verify that the dedicated filesystem for persistent protocol configurations is c
 4\. In the SMB Cluster Configuration dialog, set the following properties:
 
 * **Name**: A name for the SMB cluster. This will be the name of the Active Directory computer object and the hostname part of the FQDN.
-* **Domain**: The Active Directory domain to join the SMB cluster to.
+* **Domain**: The Active Directory domain to join the SMB cluster.
 * **Domain NetBIOS Name**: (Optional) The domain NetBIOS name.
 * **Encryption:** Select the in-transit encryption mode to use in the SMB cluster:
-  * **enabled**: enables encryption negotiation but doesn't turn it on automatically for supported sessions and share connections.
-  * **desired**: enables encryption negotiation and turns on data encryption on supported sessions and share connections.
-  * **required**: enforces data encryption on sessions and share connections. Clients that do not support encryption will be denied access to the server.
-* **Servers**: List 3-8 WEKA system servers to participate in the SMB cluster, based on the server IDs in WEKA.
-* **IPs**: (Optional) List of virtual IPs (comma-separated), used as floating IPs for the SMB cluster to provide HA to clients. These IPs must be unique; do not assign these IPs to any host on the network.\
+  * **enabled**: Enables encryption negotiation but doesn't turn it on automatically for supported sessions and sharing connections.
+  * **desired**: Enables encryption negotiation and turns on data encryption for supported sessions and sharing connections.
+  * **required**: Enforces data encryption on sessions and sharing connections. Clients that do not support encryption will be denied access to the server.
+* **Servers**: List 3-8 WEKA system servers to participate in the SMB cluster based on the server IDs in WEKA.
+* **IPs**: (Optional) List of virtual IPs (comma-separated) used as floating IPs for the SMB cluster to provide HA to clients. These IPs must be unique; do not assign these IPs to any host on the network.\
   For an IP range, use the following format: **a.b.c.x-y**.
 * **Config Filesystem:** select the filesystem used for persisting cluster-wide protocol configurations.
 
 {% hint style="info" %}
-Setting a list of SMB floating IPs in all-cloud installations is impossible due to cloud provider network limitations. In this case, the SMB service must be accessed by using the primary addresses of the cluster nodes.
+Due to cloud provider network limitations, setting a list of SMB floating IPs in all cloud installations is impossible. In this case, the SMB service must be accessed using the cluster nodes' primary addresses.
 {% endhint %}
 
 5. Select **Save**.
@@ -73,7 +73,7 @@ Once the system completes configuration, the server statuses change from not rea
 
 ## Edit the SMB cluster <a href="#edit-the-smb-cluster" id="edit-the-smb-cluster"></a>
 
-You can modify the encryption and IPs settings according to your needs.
+You can modify the encryption and IP settings according to your needs.
 
 **Procedure**
 
@@ -104,28 +104,28 @@ Ensure the AD Domain Controllers are reachable by all WEKA servers participating
 <figure><img src="../../.gitbook/assets/wmng_smb_join_ad_button (2).png" alt=""><figcaption><p>Join the SMB cluster in the Active Directory</p></figcaption></figure>
 
 2. In the Join to Active Directory dialog, set the following properties:
-   * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials: instead, a computer account is created for use by the SMB cluster.
-   * **Server**: (Optional) WEKA identifies an AD Domain Controller server automatically based on the AD domain name. You do not need to set the server name. In some cases, if required, specify the AD server.
-   * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account in - that the joining account has permissions to - such as SMB Servers or Corporate Computers.
+   * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials; instead, a computer account is created for use by the SMB cluster.
+   * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server based on the domain name. You do not need to set the server name. In some cases, specify the AD server if required.
+   * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU in which to create the computer account that the joining account has permissions, such as SMB Servers or Corporate Computers.
 
 ![Join Active Directory dialog](../../.gitbook/assets/wmng\_smb\_join\_ad\_dialog.png)
 
 Once the SMB cluster joins the Active Directory domain, the join status next to the domain changes to **Joined**.
 
 {% hint style="info" %}
-To join an existing SMB cluster to a different Active Directory domain, select **Leave**. To confirm the action, enter the username and password used to join the Active Directory domain.
+To join an existing SMB cluster to a different Active Directory domain, select **Leave**. To confirm the action, enter the username and password to join the Active Directory domain.
 {% endhint %}
 
 ## Add servers to the SMB cluster <a href="#add-or-remove-smb-cluster-hosts" id="add-or-remove-smb-cluster-hosts"></a>
 
 Adding servers to the SMB cluster can provide several benefits and address various requirements, such as scalability, load balancing, high availability, and improved fault tolerance.
 
-You can add servers to an SMB cluster that is already joined to an Active Directory domain.
+You can add servers to an SMB cluster already joined to an Active Directory domain.
 
 #### Procedure
 
 1. On the Servers pane, select **Add**.
-2. In the Add SMB Cluster Servers dialog, select an available server or more from the list (maximum eight servers).
+2. In the Add SMB Cluster Servers dialog, select one or more available servers (a maximum of eight servers) from the list.
 3. Select **Save**.
 
 <figure><img src="../../.gitbook/assets/wmng_add_server_to_smb_cluser.gif" alt=""><figcaption><p>Add servers to the SMB cluster</p></figcaption></figure>
@@ -180,7 +180,13 @@ Once the SMB cluster is created, you can create SMB shares (maximum 1024). Each 
 
 1. In the Shares tab, select **+Create**.
 2. In the Add SMB Share dialog, set the following properties:
-   * **Name**: A meaningful name for the SMB share.
+   *   **Name**: A meaningful and valid name for the SMB share.&#x20;
+
+       The name must meet the following requirements:
+
+       * The share name must be no more than 80 characters in length.
+       * The share name must not include the following characters: backslash (\\), slash (/), colon (:), and semicolon (;).
+       * Control characters in the range 0x00 through 0x1F (inclusive) are prohibited.
    * **Filesystem**: The filesystem name that includes the directory to share. Select one from the list. A filesystem with Required Authentication set to ON cannot be used for SMB share.
    * **Description**: A description or purpose of the SMB share.
    * **Path**: A valid internal path, relative to the root, within the filesystem to expose the SMB share.
@@ -197,7 +203,11 @@ Once the SMB cluster is created, you can create SMB shares (maximum 1024). Each 
 
 ## Edit an SMB share <a href="#edit-an-smb-share" id="edit-an-smb-share"></a>
 
-You can update some of the SMB share settings. These include encryption, hiding the share, allowing guest access, and setting the share as read only or not.
+You can update some of the SMB share settings. These include encryption, hiding the share, allowing guest access, and setting the share as read-only or not.
+
+{% hint style="info" %}
+SMB-W does not yet support share updates.
+{% endhint %}
 
 **Procedure**
 

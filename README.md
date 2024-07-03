@@ -10,6 +10,20 @@ Welcome to the WEKA Documentation Portal, your guide to the latest WEKA version.
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
 
+### Meet Sevii, your AI chat companion!
+
+Navigating through extensive documentation can sometimes feel like a maze, right? Well, not anymore! We’re thrilled to introduce Sevii, your AI-powered chat companion, designed to help you explore the WEKA documentation easily.
+
+Sevii is always at your service, just a click away. Type your question and click ![](.gitbook/assets/sevii\_submit.png) to embark on your knowledge journey.
+
+To ensure you have a seamless experience with Sevii, here are some handy tips:
+
+* **Clarity is key**: The more specific your question is, the better Sevii can assist you with the most relevant answer.
+* **Concept power**: Need help figuring out how to frame your question? Start with concepts related to your query, and let Sevii guide you in refining your search.
+* **Explore and discover**: Sevii may suggest multiple answers or ask follow-up questions during your chat. Using information from previous Sevii responses, more accurate follow-up questions can be made.
+
+{% @sevii-ai/sevii-gitbook-test %}
+
 ## About WEKA documentation
 
 This portal encompasses all documentation essential for comprehending and operating the WEKA system. It covers a range of topics:
@@ -34,7 +48,7 @@ This portal encompasses all documentation essential for comprehending and operat
 
 **WEKA support:** Find guidance on obtaining support for the WEKA system and effectively managing diagnostics.
 
-**Best practice guides:** Explore our carefully selected best practice guides, starting with WEKA and Slurm integration, to discover expert-recommended strategies and insights for optimizing your WEKA system and achieving peak performance in various scenarios.
+**Best practice guides:** Explore our carefully selected guides, starting with WEKA and Slurm integration, to discover expert-recommended strategies and insights for optimizing your WEKA system and achieving peak performance in various scenarios.
 
 {% hint style="info" %}
 For maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/) or contact the [Customer Success Team](support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
@@ -42,7 +56,7 @@ For maintenance and troubleshooting articles, search the WEKA Knowledge Base in 
 
 ## Conventions
 
-The CLI mandatory parameters are marked with an asterisk (\*) throughout the documentation.
+The documentation marks the CLI mandatory parameters with an asterisk (\*).
 
 ## Documentation feedback
 

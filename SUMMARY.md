@@ -1,6 +1,7 @@
 # Table of contents
 
 * [WEKA v4.2 documentation](README.md)
+  * [Documentation revision history](readme/documentation-revision-history.md)
 
 ## WEKA System Overview <a href="#overview" id="overview"></a>
 
@@ -18,7 +19,7 @@
 
 ## Planning and Installation <a href="#install" id="install"></a>
 
-* [Prerequisites and compatibility](support/prerequisites-and-compatibility.md)
+* [Prerequisites and compatibility](install/prerequisites-and-compatibility.md)
 * [WEKA cluster installation on bare metal servers](install/bare-metal/README.md)
   * [Plan the WEKA system hardware requirements](install/bare-metal/planning-a-weka-system-installation.md)
   * [Obtain the WEKA installation packages](install/bare-metal/obtaining-the-weka-install-file.md)
@@ -36,6 +37,7 @@
     * [Terraform-AWS-WEKA module description](install/aws/weka-installation-on-aws-using-terraform/aws-weka-terraform-deployment-module-description.md)
     * [Deployment on AWS using Terraform](install/aws/weka-installation-on-aws-using-terraform/deployment-on-aws-using-terraform.md)
     * [Required services and supported regions](install/aws/weka-installation-on-aws-using-terraform/required-services-and-supported-regions.md)
+    * [Supported EC2 instance types using Terraform](install/aws/weka-installation-on-aws-using-terraform/supported-ec2-instance-types.md)
     * [WEKA cluster auto-scaling in AWS](install/aws/weka-installation-on-aws-using-terraform/weka-cluster-auto-scaling-in-aws.md)
     * [Detailed deployment tutorial: WEKA on AWS using Terraform](install/aws/weka-installation-on-aws-using-terraform/detailed-deployment-tutorial-weka-on-aws-using-terraform.md)
   * [WEKA installation on AWS using the Cloud Formation](install/aws/weka-installation-on-aws-using-the-cloud-formation/README.md)
@@ -43,11 +45,10 @@
     * [CloudFormation template generator](install/aws/weka-installation-on-aws-using-the-cloud-formation/cloudformation.md)
     * [Deployment types](install/aws/weka-installation-on-aws-using-the-cloud-formation/deployment-types.md)
     * [AWS Outposts deployment](install/aws/weka-installation-on-aws-using-the-cloud-formation/aws-outposts-deployment.md)
-    * [Supported EC2 instance types](install/aws/weka-installation-on-aws-using-the-cloud-formation/supported-ec2-instance-types.md)
+    * [Supported EC2 instance types using Cloud Formation](install/aws/weka-installation-on-aws-using-the-cloud-formation/supported-ec2-instance-types-using-cloud-formation.md)
     * [Add clients](install/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md)
     * [Auto scaling group](install/aws/weka-installation-on-aws-using-the-cloud-formation/auto-scaling-group.md)
     * [Troubleshooting](install/aws/weka-installation-on-aws-using-the-cloud-formation/troubleshooting.md)
-  * [Supported EC2 instance types](install/aws/weka-installation-on-aws-using-terraform/supported-ec2-instance-types.md)
 * [WEKA installation on Azure](install/weka-installation-on-azure/README.md)
   * [Azure-WEKA deployment Terraform package description](install/weka-installation-on-azure/azure-weka-terraform-package-description.md)
   * [Deployment on Azure using Terraform](install/weka-installation-on-azure/deployment-on-azure-using-terraform.md)
@@ -70,7 +71,7 @@
 ## Getting Started with WEKA
 
 * [Manage the system using the WEKA GUI](getting-started-with-weka/manage-the-system-using-weka-gui.md)
-* [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli.md)
+* [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli/README.md)
   * [WEKA CLI hierarchy](getting-started-with-weka/manage-the-system-using-weka-cli/weka-cli-hierarchy.md)
 * [Run first IOs with WEKA filesystem](getting-started-with-weka/performing-the-first-io.md)
 * [Getting started with WEKA REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
@@ -100,7 +101,7 @@
   * [Data management in tiered filesystems](fs/tiering/data-management-in-tiered-filesystems.md)
   * [Transition between tiered and SSD-only filesystems](fs/tiering/transition-between-tiered-and-ssd-only-filesystems.md)
   * [Manual fetch and release of data](fs/tiering/pre-fetching-from-object-store.md)
-* [Mount filesystems](fs/mounting-filesystems.md)
+* [Mount filesystems](fs/mounting-filesystems/README.md)
   * [Mount filesystems from multiple clusters on a single client](fs/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)
 * [Snapshots](fs/snapshots/README.md)
   * [Manage snapshots using the GUI](fs/snapshots/snapshots.md)
@@ -229,14 +230,14 @@
 
 ## Appendices
 
-* [WEKA CSI Plugin](appendix/weka-csi-plugin/README.md)
-  * [Deployment](appendix/weka-csi-plugin/deployment.md)
-  * [Storage class configurations](appendix/weka-csi-plugin/storage-class-configurations.md)
+* [WEKA CSI Plugin](appendices/weka-csi-plugin/README.md)
+  * [Deployment](appendices/weka-csi-plugin/deployment.md)
+  * [Storage class configurations](appendices/weka-csi-plugin/storage-class-configurations.md)
   * [Tailor your storage class configuration with mount options](appendices/weka-csi-plugin/tailor-your-storage-class-configuration-with-mount-options.md)
-  * [Dynamic and static provisioning](appendix/weka-csi-plugin/dynamic-and-static-provisioning.md)
-  * [Launch an application using WEKA as the POD's storage](appendix/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage.md)
-  * [Add SELinux support](appendix/weka-csi-plugin/add-selinux-support.md)
-  * [Upgrade legacy persistent volumes for capacity enforcement](appendix/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
-  * [Troubleshooting](appendix/weka-csi-plugin/troubleshooting.md)
-* [Convert the cluster architecture from a single-container backend to a multi-container backend](appendix/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
-* [Create a client image](appendix/create-a-client-image.md)
+  * [Dynamic and static provisioning](appendices/weka-csi-plugin/dynamic-and-static-provisioning.md)
+  * [Launch an application using WEKA as the POD's storage](appendices/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage.md)
+  * [Add SELinux support](appendices/weka-csi-plugin/add-selinux-support.md)
+  * [Upgrade legacy persistent volumes for capacity enforcement](appendices/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
+  * [Troubleshooting](appendices/weka-csi-plugin/troubleshooting.md)
+* [Convert the cluster architecture from a single-container backend to a multi-container backend](appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
+* [Create a client image](appendices/create-a-client-image.md)

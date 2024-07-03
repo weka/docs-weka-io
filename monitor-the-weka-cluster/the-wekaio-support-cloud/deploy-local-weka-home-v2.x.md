@@ -8,10 +8,6 @@ description: >-
 
 This implementation runs on Minikube (a lightweight Kubernetes implementation) installed on a single Docker container. You specify the configuration parameters in the config.yaml file as part of the deployment workflow.
 
-{% hint style="info" %}
-It is possible to install the Local WEKA Home within the customer's Kubernetes infrastructure using Helm Charts. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md) to schedule this installation.
-{% endhint %}
-
 <figure><img src="../../.gitbook/assets/LWH_on_Minikube.png" alt=""><figcaption><p>Local WEKA Home v2.x deployment</p></figcaption></figure>
 
 ## Workflow: Local WEKA Home deployment
@@ -387,7 +383,7 @@ Connect to the WEKA cluster and run the following command:\
 
 ### 8. Test the deployment
 
-The WEKA cluster uploads data to the Local WEKA Home periodically and on-demand according to its information type (see the Which information is uploaded to the WEKA Home section).&#x20;
+The WEKA cluster uploads data to the Local WEKA Home periodically and on-demand according to its information type  (see [#which-information-is-uploaded-to-weka-home](./#which-information-is-uploaded-to-weka-home "mention")).
 
 Access the WEKA Home portal and verify that the test data appears.
 

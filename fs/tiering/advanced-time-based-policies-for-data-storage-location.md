@@ -138,7 +138,7 @@ If it is impossible to maintain the defined Retention Period or Tiering Cue poli
 
 ## Object store direct-mount option
 
-Regardless of the time-based policies, it is possible to use a special mount option [`obs_direct`](../mounting-filesystems.md#mount-command-options) to bypass the time-based policies. Any creation or writing of files from a mount point with this option marks it to release as soon as possible before considering other file retention policies. The data extents of the files are still first written to the SSD but get precedence on releasing to the object store.
+Regardless of the time-based policies, it is possible to use a special mount option [`obs_direct`](../mounting-filesystems/#mount-command-options) to bypass the time-based policies. Any creation or writing of files from a mount point with this option marks it to release as soon as possible before considering other file retention policies. The data extents of the files are still first written to the SSD but get precedence on releasing to the object store.
 
 In addition, any read done through such a mount point reads the extent from the object store and is not kept persistently on the SSD (it still goes through the SSD but is released immediately before any other interval).
 
