@@ -204,14 +204,14 @@ Example: For a bucket named `mybucket`, the following are the pre-defined policy
 
 Use the following command line to set a pre-defined bucket policy:
 
-`weka s3 bucket policy set <bucket-policy> <bucket-name>`
+`weka s3 bucket policy set <bucket-name> <bucket-policy>`
 
 **Parameters**
 
 | **Name**        | **Type** | **Value**                                                      | **Limitations**                                | **Mandatory** | **Default** |
 | --------------- | -------- | -------------------------------------------------------------- | ---------------------------------------------- | ------------- | ----------- |
-| `bucket-policy` | String   | The name of a pre-defined bucket policy for anonymous access.  | One of: `none`, `download`, `upload`, `public` | Yes           |             |
 | `bucket-name`   | String   | The name of an existing S3 bucket.                             |                                                | Yes           |             |
+| `bucket-policy` | String   | The name of a pre-defined bucket policy for anonymous access.  | One of: `none`, `download`, `upload`, `public` | Yes           |             |
 
 ### Set a custom bucket policy
 
