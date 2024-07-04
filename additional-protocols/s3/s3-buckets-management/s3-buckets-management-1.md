@@ -255,14 +255,14 @@ For example, to set a custom policy for `mybucket` to allow read-only access for
 
 Use the following command line to set a custom bucket policy:
 
-`weka s3 bucket policy set-custom <policy-file> <bucket-name>`
+`weka s3 bucket policy set-custom <bucket-name> <policy-file>`
 
 **Parameters**
 
 | **Name**      | **Type** | **Value**                                                  | **Limitations**                                                                                                                                                                                                                                                                                         | **Mandatory** | **Default** |
 | ------------- | -------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ----------- |
-| `policy-file` | String   | A path to a custom policy JSON file for anonymous access.  | <p>A JSON file representing an S3 bucket policy. </p><p>Wildcards  (e.g., <code>s3:*</code>) are not allowed as an <code>Action</code> in the custom policy file. For supported actions, refer to the <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a> section.</p> | Yes           |             |
 | `bucket-name` | String   | The name of an existing S3 bucket.                         |                                                                                                                                                                                                                                                                                                         | Yes           |             |
+| `policy-file` | String   | A path to a custom policy JSON file for anonymous access.  | <p>A JSON file representing an S3 bucket policy. </p><p>Wildcards  (e.g., <code>s3:*</code>) are not allowed as an <code>Action</code> in the custom policy file. For supported actions, refer to the <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a> section.</p> | Yes           |             |
 
 ### View a bucket policy
 
