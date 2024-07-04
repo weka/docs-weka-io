@@ -6,7 +6,7 @@ description: >-
 
 # Expand specific resources of a container
 
-Expanding resources within a container involves dynamically adjusting the allocation of CPU, memory, storage, and other system resources to meet the changing demands of applications. By effectively managing these resources, organizations can optimize performance, enhance scalability, and ensure the smooth operation of their containerized applications.
+Expanding resources within a container involves dynamically adjusting the allocation of CPU, memory, storage, and other system resources to meet applications' changing demands. By effectively managing these resources, organizations can optimize performance, enhance scalability, and ensure the smooth operation of their containerized applications.
 
 ## Expansion guidelines
 
@@ -21,10 +21,10 @@ Adhere to the following guidelines when expanding specific resources:
 * **View existing resources:** To view the non-applied configuration, run the `weka cluster container resources <container-id>`command.
 * **Apply changes on a specific container:** To apply changes on a specific container in the cluster, run the `weka cluster container apply <container-id>` command.  It is possible to accumulate several changes on a container and apply only once on completion.
 * **Apply changes on a local server:** To apply changes in the local container, run the `weka local resources apply` command.
-* **The apply command saves the last configuration:** Once the apply command completes, the last local configuration of the container successfully joined the cluster is saved.\
+* **The apply command saves the last configuration:** Once the apply command is complete, the last local configuration of the container that successfully joined the cluster is saved.\
   If a failure occurs with the new configuration, the container automatically remains with the existing stable configuration. \
   Run the `weka cluster container resources <container-id> --stable` command to view the existing configuration.
-* **Expansion on active or deactivated containers:** You can dynamically expand some of the resources on active containers, and others only after deactivating the container. For example, you can add CPU cores only on a deactivated container.
+* **Expansion on active or deactivated containers:** You can dynamically expand some of the resources on active containers and others only after deactivating the container. For example, you can add CPU cores only on a deactivated container.
 
 ## weka cluster container command description
 
@@ -171,7 +171,7 @@ COMPUTE     10       <auto>
 
 ### Expand SSDs only
 
-You can add new SSD drives to a container. Adding SSD drives may alter the ratio between SSDs and drive cores, potentially impacting performance. Take note of this adjustment when considering expansion, for optimal system efficiency.
+You can add new SSD drives to a container. However, adding SSD drives may alter the ratio between SSDs and drive cores, potentially impacting performance. For optimal system efficiency, take note of this adjustment when considering expansion.
 
 #### Procedure
 
@@ -192,7 +192,7 @@ You can add new SSD drives to a container. Adding SSD drives may alter the ratio
 
 You can also modify the resources on a local container by connecting to it and running the `weka local resources` command equivalent to its `weka cluster` remote counterpart command.
 
-These local commands have the same semantics as their remote counterpart commands. You do not specify the `container-id` as the first parameter. All actions are done on the local container.
+These local commands have the same semantics as their remote counterpart. You do not specify the `container-id` as the first parameter. All actions are done on the local container.
 
 **Command**: `weka local resources`
 
@@ -234,3 +234,29 @@ COMPUTE     10       <auto>
 ```
 
 </details>
+
+## Graceful container management: ensuring safe actions
+
+When running the commands `weka local stop`, `weka local restart`, and `weka local resources apply`, it is crucial to perform these actions safely to minimize the risk of unexpected issues or disruptions. To achieve this, use the `--graceful` option. This practice is particularly important during cluster maintenance.
+
+By using the `--graceful` option with these commands, the system prioritizes safety before executing any action.&#x20;
+
+{% hint style="info" %}
+The `--graceful` option applies exclusively to cluster containers and not to protocol containers.
+{% endhint %}
+
+How `--graceful` works:
+
+1. **Action initiation:** Sends a request to the container specifying the desired action (STOP, RESTART, or APPLY\_RESOURCES).
+2. **Safety check:** Evaluates feasibility based on current state and safety constraints (for example, sufficient resources post-action).
+3. **Draining and execution:** If safe, the container transitions to the DRAINING state to complete ongoing operations. Once DRAINED, the action is executed.
+
+**Example: prioritizing stability**
+
+If stopping a container would violate minimum failure domain requirements, `--graceful` prevents the stop to maintain system health.
+
+<pre class="language-bash" data-title="Example: prioritizing stability" data-full-width="true"><code class="lang-bash"><strong>CONTAINER ID  HOSTNAME  CONTAINER  IPS             STATUS          REQUESTED ACTION  REQUESTED ACTION FAILURE
+</strong>0             Host-0    drives0    10.108.206.201  UP              STOP              Upon completion of this operation, there are 4 reliable containers available for cluster leadership, while the requirement is for 5.                 
+6             Host-0    compute0   10.108.206.201  DRAINED (DOWN)  STOP                                 
+12            Host-0    frontend0  10.108.206.201  DRAINING        RESTART     
+</code></pre>

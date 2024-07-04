@@ -17,17 +17,17 @@ To access the CDM, follow these steps:
 1. Navigate to [cloud.weka.io](http://cloud.weka.io).
 2. On the welcome page, select the cloud environment (AWS, Azure, or GCP) for your WEKA cluster deployment. (This guide uses Azure as an example, but the deployment workflow is similar across all supported cloud platforms.)
 
-<figure><img src="../.gitbook/assets/image (215).png" alt=""><figcaption><p>CDM welcome</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (163).png" alt=""><figcaption><p>CDM welcome</p></figcaption></figure>
 
 3. After selecting a public cloud, you are redirected to a login screen. Log in using your [get.weka.io](http://get.weka.io/) credentials. Internal WEKA users can use their Google SSO login to access CDM. Adhere to the following guidelines:
    * Ensure you have a get.weka.io token provisioned and available for a successful deployment.
    * If you are an internal WEKA user deploying a WEKA cluster for a customer, log in using the customer’s get.weka.io credentials. The signed-in user’s get.weka.io token automatically populates into the CDM configuration workflow.
 
-<figure><img src="../.gitbook/assets/image (216).png" alt=""><figcaption><p>CDM Login</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (164).png" alt=""><figcaption><p>CDM Login</p></figcaption></figure>
 
 Once logged in, you are presented with the main configuration dashboard of the Cloud Deployment Manager.
 
-<figure><img src="../.gitbook/assets/image (217).png" alt=""><figcaption><p>CDM main configuration</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (165).png" alt=""><figcaption><p>CDM main configuration</p></figcaption></figure>
 
 ## CDM Interface
 
@@ -39,7 +39,7 @@ The CDM interface consists of three main components:
 * The configuration input panel (outlined in orange)
 * The dynamic content sidebar (outlined in teal)
 
-<figure><img src="../.gitbook/assets/image (219).png" alt=""><figcaption><p>CDM interface main areas</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (167).png" alt=""><figcaption><p>CDM interface main areas</p></figcaption></figure>
 
 ### Workflow navigation stack
 
@@ -62,7 +62,7 @@ The workflow navigation stack visually indicates the completeness of the configu
 
 You can navigate between different workflow pages and view associated configuration input panels by clicking the **Next** button or selecting the desired tab from the workflow navigation stack.
 
-<figure><img src="../.gitbook/assets/image (221).png" alt=""><figcaption><p>Basic configuration page</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (169).png" alt=""><figcaption><p>Basic configuration page</p></figcaption></figure>
 
 ### Configuration input panel
 
@@ -72,17 +72,17 @@ The configuration input panel provides a user-friendly interface for customizing
 * Required fields are marked with a red asterisk.
 * The following example illustrates the Basic Configuration workflow tab, where some required fields are populated, while others remain empty. Fields lacking input are highlighted in bright red, and the red outline disappears once the user provides the necessary information.
 
-<figure><img src="../.gitbook/assets/image (222).png" alt="" width="375"><figcaption><p>Basic configuration required fields</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (170).png" alt="" width="375"><figcaption><p>Basic configuration required fields</p></figcaption></figure>
 
 Certain fields within the configuration input panel require manual user input. Other fields, such as Instance Type, WEKA Version, and Region, are provided as selectable dropdown menus.
 
 {% tabs %}
 {% tab title="Instance Type" %}
-<figure><img src="../.gitbook/assets/image (223).png" alt="" width="290"><figcaption><p>Instance Type</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (171).png" alt="" width="290"><figcaption><p>Instance Type</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Region" %}
-<figure><img src="../.gitbook/assets/image (224).png" alt="" width="290"><figcaption><p>Region</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (172).png" alt="" width="290"><figcaption><p>Region</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="WEKA Version" %}
@@ -90,7 +90,7 @@ The WEKA software release dropdown menu is designed to auto-populate with the mo
 
 If users need to enter a WEKA software release that is not listed in the dropdown, they can click directly in the WEKA Version input field and type the desired release. This feature is particularly useful when deploying a WEKA cluster with a customer-specific software release.
 
-<figure><img src="../.gitbook/assets/image (225).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (173).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
@@ -120,7 +120,7 @@ The dynamic content sidebar enhances user experience by displaying contextually 
 * **Purpose:** Enables users to download the completed configuration file for local use.
 * **Functionality:** A **Download** button allows you to save the file locally, manually execute the relevant Terraform `plan`, and `apply` commands for WEKA cluster deployment.
 
-<figure><img src="../.gitbook/assets/image (227).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (175).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="success" %}
 All tabs in the workflow navigation stack display green status bubbles with check marks, indicating the configuration is complete and ready for a minimally viable WEKA deployment based on the user's selected parameters. Once all status bubbles are green, the dynamic content sidebar will only show the **TF File Preview** tab, **File Format** toggle, and **Download** button.
