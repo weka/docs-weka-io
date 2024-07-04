@@ -44,11 +44,11 @@ This portal encompasses all documentation essential for comprehending and operat
 
 **Billing & licensing:** Gain insights into WEKA system licensing options and alternative billing approaches.
 
-**Monitor the WEKA cluster:** Effectively monitor your WEKA cluster by deploying the WEKA Management Server (WMS) alongside tools like Local WEKA Home, WEKAmon, and SnapTool.
+**Monitor the WEKA cluster:** Deploy the WEKA Management Server (WMS) alongside tools like Local WEKA Home, WEKAmon, and SnapTool to effectively monitor your WEKA cluster.
 
 **WEKA support:** Find guidance on obtaining support for the WEKA system and effectively managing diagnostics.
 
-**Best practice guides:** Explore our carefully selected best practice guides, starting with WEKA and Slurm integration, to discover expert-recommended strategies and insights for optimizing your WEKA system and achieving peak performance in various scenarios.
+**Best practice guides:** Explore our carefully selected guides, starting with WEKA and Slurm integration, to discover expert-recommended strategies and insights for optimizing your WEKA system and achieving peak performance in various scenarios.
 
 {% hint style="info" %}
 For maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/) or contact the [Customer Success Team](support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
@@ -56,8 +56,8 @@ For maintenance and troubleshooting articles, search the WEKA Knowledge Base in 
 
 ## Conventions
 
-* The CLI mandatory parameters are marked with an asterisk (\*) throughout the documentation.
-* New additions in V4.3 are marked with two asterisks (\*\*) in the [REST API and equivalent CLI commands](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md) and [CLI hierarchy](getting-started-with-weka/manage-the-system-using-weka-cli/weka-cli-hierarchy.md) topics.
+* The documentation marks the CLI mandatory parameters with an asterisk (\*).
+* In the REST API, equivalent CLI commands, and CLI hierarchy topics, new additions in V4.3 are marked with two asterisks (\*\*).
 
 ## Documentation feedback
 
