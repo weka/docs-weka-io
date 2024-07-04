@@ -254,11 +254,11 @@ For example, to set a custom policy for `mybucket` to allow read-only access for
 
 Use the following command line to set a custom bucket policy:
 
-`weka s3 bucket policy set-custom <policy-file> <bucket-name>`
+`weka s3 bucket policy set-custom <bucket-name> <policy-file>`
 
 **Parameters**
 
-<table data-header-hidden><thead><tr><th width="256">Name</th><th>Value</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Value</strong></td></tr><tr><td><code>policy-file</code>*</td><td>A path to a custom JSON file representing an S3 bucket policy for anonymous access.<br>Wildcards (such as <code>s3:*</code>) are not allowed as an <code>Action</code> in the custom policy file.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</td></tr><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr></tbody></table>
+<table><thead><tr><th width="256">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr><tr><td><code>policy-file</code>*</td><td>A path to a custom JSON file representing an S3 bucket policy for anonymous access.<br>Wildcards (such as <code>s3:*</code>) are not allowed as an <code>Action</code> in the custom policy file.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>.</td></tr></tbody></table>
 
 ### View a bucket policy
 
