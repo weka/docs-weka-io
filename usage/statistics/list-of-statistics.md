@@ -1,17 +1,21 @@
+---
+description: Explore the statistics the WEKA system generates organized by categories.
+---
 
+# List of statistics
 
 ## Assert failures
 
 **Type** | **Description** | **Units**
 -|-|-
 ASSERTION_FAILURES_IGNORE|Assertion failures count with "IGNORE" behavior |Assertion failures
-ASSERTION_FAILURES_KILL_BUCKET|Assertion failures count with "KILL_BUCKET" behavior|Assertion failures
-ASSERTION_FAILURES_KILL_FIBER|Assertion failures count with "KILL_FIBER" behavior|Assertion failures
-ASSERTION_FAILURES_KILL_NODE_WITH_CORE_DUMP|Assertion failures count with "KILL_NODE_WITH_CORE_DUMP" behavior|Assertion failures
-ASSERTION_FAILURES_KILL_NODE|Assertion failures count with "KILL_NODE" behavior|Assertion failures
+ASSERTION_FAILURES_KILL_BUCKET|Assertion failures count with "KILL_BUCKET" behaviour|Assertion failures
+ASSERTION_FAILURES_KILL_FIBER|Assertion failures count with "KILL_FIBER" behaviour|Assertion failures
+ASSERTION_FAILURES_KILL_NODE_WITH_CORE_DUMP|Assertion failures count with "KILL_NODE_WITH_CORE_DUMP" behaviour|Assertion failures
+ASSERTION_FAILURES_KILL_NODE|Assertion failures count with "KILL_NODE" behaviour|Assertion failures
 ASSERTION_FAILURES_STALL_AND_KILL_NODE|Assertion failures count with "STALL_AND_KILL_NODE" behaviour|Assertion failures
-ASSERTION_FAILURES_STALL|Assertion failures count with "STALL" behavior|Assertion failures
-ASSERTION_FAILURES_THROW_EXCEPTION|Assertion failures count with "THROW_EXCEPTION" behavior|Assertion failures
+ASSERTION_FAILURES_STALL|Assertion failures count with "STALL" behavior |Assertion failures
+ASSERTION_FAILURES_THROW_EXCEPTION|Assertion failures count with "THROW_EXCEPTION" behaviour|Assertion failures
 ASSERTION_FAILURES|Assertion failures count of all available types|Assertion failures
 
 ## Attribute Cache
@@ -47,11 +51,13 @@ BLOCK_PARTIAL_WRITES|Number of partial block writes|Writes
 BUCKET_START_TIME|Duration of bucket activation on step up|Startups
 CHOKING_LEVEL_ALL|Throttling level applied on all types of IOs|%
 CHOKING_LEVEL_NON_MUTATING|Throttling level applied on non-mutating only types of IOs|%
+COALESCED_MAY_CREATE_EXTENT|Number of mayCreateExtent calls coalesced|Calls
 DESTAGED_BLOCKS_COUNT|Number of destaged blocks per second|Blocks/Sec
 DESTAGE_COUNT|Number of destages per second|Destages/Sec
 DIR_MOVE_TIME|Time to complete a directory move|Ops
 EXTENT_BLOCKS_COUNT|Difference in number of EXTENT blocks|Blocks
 EXTENT_BLOCK_SEQUENCES|Histogram of the number of consecutive sequences of blocks in a single extent|Extents
+FAIRNESS_DELAYED_MAY_CREATE_EXTENT|Number of mayCreateExtent calls not coalesced to prevent starvation|Calls
 FREEABLE_LRU_BUFFERS|Number of unused blocks in LRU cache|Buffers
 HASH_BLOCKS_COUNT|Difference in number of HASH blocks|Blocks
 INODE_BLOCKS_COUNT|Difference in number of INODE blocks|Blocks
@@ -150,9 +156,9 @@ CLIENTS_REMOVED|The number of clients removed|Clients/Sec
 -|-|-
 AVERAGE_CHANGES_IN_CHANGESET|The average number of changes in a changeset|Changes/Sec
 AVERAGE_CHANGES_IN_GENERATION|The average number of changes in generation|Changes/Sec
-BACKEND_NODE_REJOIN_TIME|The number of backend rejoin attempts per completion time range|Number of rejoins
+BACKEND_NODE_REJOIN_TIME|The number of backends rejoin attempts per completion time range|Number of rejoins
 CHANGESET_COMMIT_LATENCY|The average latency of committing a configuration changeset|Microseconds
-CLIENT_NODE_REJOIN_TIME|The number of client rejoin attempts per completion time range|Number of rejoins
+CLIENT_NODE_REJOIN_TIME|The number of clients rejoin attempts per completion time range|Number of rejoins
 CONFIG_PROPAGATION_LATENCY|The latencies of propagation of a configuration generation|Generation
 GENERATION_COMMIT_LATENCY|The average latency of committing a configuration generation|Microseconds
 HEARTBEAT_PROCESSING_TIME_OLD|The number of non-leader heartbeats per processing time range (OLD)|Number of heartbeats
@@ -175,6 +181,10 @@ ACCEPTED_SEGMENTS|Number of blocks accepted for clusterization|Blocks/Sec
 AVG_DELTAS|Average deltas per reference during ingestion (excluding history)|deltas/ref
 CLUSTERIZE_CALLS|Clusterize Calls|Calls/Sec
 CLUSTERIZE_TIME|Average time to clusterize|Milliseconds
+COMPRESSED_DELTA_SIZE|Average size of new compressed delta segments|Bytes
+COMPRESSED_NON_DELTA_SIZE|Average size of new compressed non-delta segments|Bytes
+COMPRESSED_SELF_DELTA_SIZE|Average self-compress size of new delta segments|Bytes
+COMPRESSED_SIZE|Average size of new compressed segments|Bytes
 COMPRESS_TASK_CALLS|Compress Task Calls|Calls/Sec
 COMPRESS_TASK_TIME|Average time to complete compress task|Milliseconds
 DELTAS_COMPLETE_RELOCS|Number of delta blocks notified about relocation of both delta and ref segments at the same time|Blocks/Sec
@@ -186,13 +196,18 @@ DELTA_RELOCS|Number of delta blocks relocated by GC|Blocks/Sec
 DELTA_REMOVAL_BACKPTR_COLLISIONS|Number of times delta blocks with the same backptr were encountered during deletions flush|Blocks/Sec
 DROPPED_SEGMENTS|Number of blocks dropped during clusterization|Blocks/Sec
 GC_PROMOTIONS|Number of times data was rewritten to the next GC tree level|Blocks/Sec
-HISTORY_MATCHES|Number of new delta blocks matched with references from history|Blocks/Sec
 INGEST_START_CALLS|Ingest Start Calls|Calls/Sec
 INGEST_START_TIME|Average time to start ingest|Milliseconds
-NEW_DELTAS|Number of new delta blocks created|Blocks/Sec
+NEW_DELTAS_FROM_HISTORY|Number of new delta blocks created with references from history|Blocks/Sec
+NEW_DELTAS_FROM_INGEST|Number of new delta blocks created with references from same ingest batch|Blocks/Sec
+NEW_DELTAS|Number of new delta blocks created|Blocks
+NEW_ETERNAL_SINGLES|Number of new eternal single blocks created|Blocks/Sec
+NEW_INCOMPRESSIBLE_DELTAS|Number of new incompressible delta segments ingested|Blocks/Sec
+NEW_INCOMPRESSIBLE_NON_DELTAS|Number of new incompressible non-delta segments ingested|Blocks/Sec
 NEW_INGESTED|Ingested Blocks|Blocks
+NEW_NON_DELTAS|Number of new non-delta blocks created|Blocks
 NEW_REFERENCES|Number of new reference blocks created|Blocks/Sec
-NEW_SINGLES|Number of new reference blocks created|Blocks/Sec
+NEW_SINGLES|Number of new (non-eternal) single blocks created|Blocks/Sec
 REFERENCE_GC|Number of reference blocks removed by GC|Blocks/Sec
 REFERENCE_PROMOTES|Number of reference blocks promoted by GC|Blocks/Sec
 REFERENCE_RELOCS|Number of reference blocks relocated by GC|Blocks/Sec
@@ -230,16 +245,16 @@ OBS_BLOB_TIERING_DURATION|Duration of tiering blobs to object-store|Ops
 OBS_COMPLETELY_ALIVE_BLOBS|Percentage of blobs with only live extents linked to them|%
 OBS_COMPLETELY_DEAD_BLOBS|Percentage of blobs with no live extent linked to them|%
 OBS_EXTENTS_PREFETCH|Number of extents prefetched from object-store per second|Extents/Sec
-OBS_FREED|Number of bytes freed from disk because they are in the object store per second|Bytes/Sec
+OBS_FREED|Number of bytes freed from disk because they are in the object-store per second|Bytes/Sec
 OBS_IMMEDIATE_RELEASE_FREED|Number of bytes freed from disk due to immediate release per second|Bytes/Sec
-OBS_INODES_PREFETCH|Number of files prefetched from object store per second|Ops/Sec
-OBS_INODES_RELEASE|Number of files released to object store per second|Ops/Sec
+OBS_INODES_PREFETCH|Number of files prefetched from object-store per second|Ops/Sec
+OBS_INODES_RELEASE|Number of files released to object-store per second|Ops/Sec
 OBS_ONGOING_RECLAMATIONS|Number of ongoing reclamations|Ops
 OBS_POLICY_FREED|Number of bytes freed from disk due to policy per second|Bytes/Sec
 OBS_PROMOTE_EXTENT_WRITE_LATENCY|Average latency of extent promote writes|Microseconds
 OBS_PROMOTE_EXTENT_WRITE|Number of extents promoted from object-store per second|Extents/Sec
-OBS_PROMOTE_WRITE|Number of bytes promoted from object store per second|Bytes/Sec
-OBS_READ|Number of reads that needed data from the object store per second|Ops/Sec
+OBS_PROMOTE_WRITE|Number of bytes promoted from object-store per second|Bytes/Sec
+OBS_READ|Number of reads that needed data from the object-store per second|Ops/Sec
 OBS_RECLAMATION_PURGED_BYTES|Number of bytes purged per second|Bytes/Sec
 OBS_RECLAMATION_SCAVENGED_BLOBS|Number of blobs scavenged per second|Ops/Sec
 OBS_RECLAMATION_SCAVENGED_BYTES|Number of bytes scavenged per second|Bytes/Sec
@@ -248,11 +263,11 @@ OBS_RELOC_DOWNLOAD|Number of relocation blobs downloaded per second|Ops/Sec
 OBS_RELOC_UPLOAD|Number of relocation blobs uploaded per second|Ops/Sec
 OBS_SCAVENGED_BLOB_WASTE_LEVEL|Waste level found in blobs|Blobs
 OBS_SHARED_DOWNLOADS_LATENCY|Average latency of shared downloads from object-store|Microseconds
-OBS_SHARED_DOWNLOADS|Number of shared downloads from object store per second|Ops/Sec
-OBS_TRUNCATE|Number of truncates that needed data from the object store per second|Ops/Sec
+OBS_SHARED_DOWNLOADS|Number of shared downloads from object-store per second|Ops/Sec
+OBS_TRUNCATE|Number of truncates that needed data from the object-store per second|Ops/Sec
 OBS_UNEXPECTED_TAG_ON_DOWNLOAD|Number of unexpected tags found when downloading extents|Occurrences
-OBS_WRITE|Number of writes that needed data from the object store per second|Ops/Sec
-STOW_COMMIT_QUEUE_HANG|Number of times metadata download queue was hanging total |Occurrences
+OBS_WRITE|Number of writes that needed data from the object-store per second|Ops/Sec
+STOW_COMMIT_QUEUE_HANG|Number of times metadata download queue was hanging full|Occurrences
 STOW_METADATA_DESERIALIZATION_LATENCY|Average latency of metadata blob deserialization|Milliseconds
 STOW_METADATA_SEED_DOWNLOADS|Number of seed downloads per second|Ops/Sec
 STOW_SERIALIZED_EXTENT_DATA|Number of extent descriptors uploaded that contain data|Extent Descriptors
@@ -331,7 +346,7 @@ FAULT_SENT_DROPPED_PACKETS|Number of sent packets dropped due to a fault injecti
 GOODPUT_RX_RATIO|Percentage of goodput RX packets out of total data packets received|%
 GOODPUT_TX_RATIO|Percentage of goodput TX packets out of total data packets sent|%
 GW_MAC_RESOLVE_FAILURES|Number of times we failed to ARP resolve the gateway IP|Failures
-GW_MAC_RESOLVE_SUCCESSES|Number of times we succeeded in ARP resolving the gateway IP|Successes
+GW_MAC_RESOLVE_SUCCESSES|Number of times we succeeded in ARP resolve the gateway IP|Successes
 INVALID_FIRST_FRAGMENT|Number of times we got an invalid first fragment|Packets/Sec
 MBUF_DUP_COUNT|Numer of Duplicate mbufs found|Occurences
 MBUF_DUP_ITER|Duplicate mbuf check completions|Occurences
@@ -525,6 +540,26 @@ WAITING_IN_GROUP_DOWNLOAD_QUEUE|Time requests wait in the object store group dow
 WAITING_IN_GROUP_REMOVE_QUEUE|Time requests wait in the object store group remove queue|Ops
 WAITING_IN_GROUP_UPLOAD_QUEUE|Time requests wait in object-store group upload queue|Ops
 WRITE_BYTES|Number of bytes sent to object storage|Bytes/Sec
+
+## Operations (Envoy)
+
+**Type** | **Description** | **Units**
+-|-|-
+AVG_1xx_RQ|Average 1xx replies per second|Ops/Sec
+AVG_2xx_RQ|Average 2xx replies per second|Ops/Sec
+AVG_3xx_RQ|Average 3xx replies per second|Ops/Sec
+AVG_4xx_RQ|Average 4xx replies per second|Ops/Sec
+AVG_5xx_RQ|Average 5xx replies per second|Ops/Sec
+TOTAL_1xx_RQ|Total 1xx replies|Ops
+TOTAL_2xx_RQ|Total 2xx replies|Ops
+TOTAL_3xx_RQ|Total 3xx replies|Ops
+TOTAL_4xx_RQ|Total 4xx replies|Ops
+TOTAL_5xx_RQ|Total 5xx replies|Ops
+TOTAL_max_duration_RQ|Total Max Duration Reached replies|Ops
+TOTAL_rejected_via_ip_detection_RQ|Total Rejected by IP Detection replies|Ops
+TOTAL_response_before_complete_RQ|Total S3 Responses before Complete replies|Ops
+TOTAL_rx_reset_RQ|Total User RX Reset Connection replies|Ops
+TOTAL_tx_reset_RQ|Total Envoy TX Reset Connection replies|Ops
 
 ## Operations (NFS)
 
@@ -847,7 +882,7 @@ UNLINK_QOS_DELAY|Average QoS delay for UNLINK operations|Microseconds
 WRITES_NO_LEASE|Number of direct writes while we have no lease|Ops/Sec
 WRITES|Number of write operations per second|Ops/Sec
 WRITE_BYTES|Number of byte writes per second|Bytes/Sec
-WRITE_DURATION|The number of writes per time duration|Writes
+WRITE_DURATION|The number of writes per each time duration|Writes
 WRITE_LATENCY_NO_QOS|Average latency of WRITE operations without QoS delay|Microseconds
 WRITE_LATENCY|Average latency of WRITE operations|Microseconds
 WRITE_QOS_DELAY|Average QoS delay for WRITE operations|Microseconds
@@ -921,7 +956,7 @@ WRITE_LATENCY|Average latency of WRITE operations|Microseconds
 
 **Type** | **Description** | **Units**
 -|-|-
-ABRUPT_EXITS|How many abrupt exits of a process (node) occurred|Abrupt process exits
+ABRUPT_EXITS|How many abrupt exits of a process (node) occurred |Abrupt process exits
 PEER_CONFIGURE_FAILURES|How many times the node failed to configure peers to sync with them|Peer configure failures
 
 ## RAFT
@@ -961,7 +996,7 @@ RAID_READ_DEGRADED|Degraded mode reads|Blocks/Sec
 RAID_READ_FREE|Read Free|Occurences
 RAID_READ_IOS|Raw read blocks performed by the RAID|Blocks/Sec
 RAID_STALE_WRITES_DETECTED|Stale write detected in read|Occurences
-RAID_STALE_WRITES_REPROTECTIONS|Stale write re-protections in read|Occurences
+RAID_STALE_WRITES_REPROTECTIONS|Stale write protections in read|Occurences
 WRONG_DRIVE_DELTAS|Delta segments written to wrong drive|Blocks/Sec
 WRONG_DRIVE_REFS|Reference segments are written to the wrong drive|Blocks/Sec
 
@@ -978,7 +1013,7 @@ CLIENT_RECEIVED_RESPONSES|Number of responses received by the client|Calls/Sec
 CLIENT_RECEIVED_TIMEOUTS|Number of timeouts experienced by the client|Calls/Sec
 CLIENT_ROUNDTRIP_AVG_LOW|Roundtrip average of client low-priority RPC calls|Microseconds
 CLIENT_ROUNDTRIP_AVG_NORM|Roundtrip average of client normal priority RPC calls|Microseconds
-CLIENT_ROUNDTRIP_AVG|Roundtrip average of client regular and low priority RPC calls|Microseconds
+CLIENT_ROUNDTRIP_AVG|Roundtrip average of client normal and low priority RPC calls|Microseconds
 CLIENT_RPC_CALLS_DOWNGRADED|Number of client-downgraded RPC calls|RPC/Sec
 CLIENT_RPC_CALLS_LOW|Number of low-priority RPC calls|RPC/Sec
 CLIENT_RPC_CALLS_NORM|Number of normal priority RPC calls|RPC/Sec
@@ -1021,7 +1056,6 @@ DeferredTask2_CAPACITY|Number of data structures allocated to the DeferredTask2 
 DeferredTask2_STRUCT_SIZE|Number of bytes in each struct of the DeferredTask2 pool|Bytes
 DeferredTask2_USED|Number of structs in the DeferredTask2 pool which are currently being used|Structs
 EXCEPTIONS|Number of exceptions caught by the reactor|Exceptions/Sec
-HOGGED_TIME|Histogram of time used by hogger fibers (only in debug builds)|Hogs
 IDLE_CALLBACK_INVOCATIONS|Number of background work invocations|Invocations/Sec
 IDLE_CYCLES|Number of cycles spent in idle|Cycles/Sec
 IDLE_TIME|The percentage of the CPU time not used for handling I/Os|%
@@ -1032,7 +1066,7 @@ NODE_POLL_TIME|Time of scheduler stats polling.|usecs
 NODE_RUN_PERCENTAGE|Percentage of time process is running|percentage
 NODE_RUN_TIME|Time process is running.|usecs
 NODE_WAIT_PERCENTAGE|Percentage of time process is waiting on waitqueue|percentage
-NODE_WAIT_TIME| The time process is waiting on the wait queue.|usecs
+NODE_WAIT_TIME| The Time process is waiting on the wait queue.|usecs
 OUTRAGEOUS_HOGGERS|Number of hoggers taking an excessive amount of time to run|Invocations
 ObsBucketManagement_CAPACITY|Number of data structures allocated to the ObsBucketManagement pool|Structs
 ObsBucketManagement_STRUCT_SIZE|Number of bytes in each struct of the ObsBucketManagement pool|Bytes
@@ -1112,7 +1146,7 @@ SSD_CHUNK_TRIMS|Number of trims performed|Chunks
 SSD_E2E_BAD_CSUM|End-to-End checksum failures|IO/Sec
 SSD_READ_ERRORS|Errors in reading blocks from the SSD service|Blocks/Sec
 SSD_READ_LATENCY|Avg. latency of read requests from the SSD service|Microseconds
-SSD_READ_REQS_LARGE_NORMAL|Number of large regular read requests from the SSD service|IO/Sec
+SSD_READ_REQS_LARGE_NORMAL|Number of large normal read requests from the SSD service|IO/Sec
 SSD_READ_REQS|Number of read requests from the SSD service|IO/Sec
 SSD_SCRATCH_BUFFERS_USED|Number of scratch blocks used|Blocks
 SSD_TRIM_TIMEOUTS|Number of trim timeouts|Timeouts
@@ -1133,7 +1167,7 @@ FALSE_USED_CHECK_LATENCY|Average latency of checking false used per block|Micros
 FALSE_USED_EXTRA_NOTIFIED|Number of blocks that were notified as used by the mark-extra-used mechanism|Blocks/Sec
 INTERRUPTS|Number of scrubs that were interrupted|Occurences/Sec
 NETWORK_BUDGET_WAIT_LATENCY|Average latency of waiting for our network budget|Micros
-NOT_REALLY_DIRTY_BLOCKS|Number of marked dirty blocks that ScrubMissingWrites found were clean|Blocks/Sec
+NOT_REALLY_DIRTY_BLOCKS|Number of marked dirty blocks that ScrubMissingWrites found were actually clean|Blocks/Sec
 NUM_COPY_DISCARDED_BLOCKS|Number of copied blocks that were discarded|Blocks/Sec
 NUM_COPY_DISCARDS|Number of times we discarded scrubber copy work|Occurences/Sec
 NUM_INVENTED_STRIPES_DISCARDS|Number of times we discarded all scrubber work due to invented stripes|Occurences/Sec
@@ -1144,12 +1178,12 @@ NUM_SMW_DISCARDS|Number of times we discarded scrubber SMW work|Occurences/Sec
 PLACEMENT_SELECTION_LATENCY|Average latency of scrubbed placement selection|Micros
 READS_CALLED|Number of blocks that were read|Blocks/Sec
 READ_BATCH_SOURCE_BLOCKS|Number of source blocks read per batch|Batches
-READ_BLOCKS_LATENCY|Average latency of read blocks|Micros
+READ_BLOCKS_LATENCY|Average latency of reading blocks|Micros
 RELOCATED_BLOCKS|Number of blocks that were relocated for eviction|Blocks/Sec
 RELOCATE_BLOCKS_LATENCY|Average latency of relocating blocks|Micros
-RETRUSTED_UNPROTECTED_DIRTY_BLOCKS|Number of dirty blocks that ScrubMissingWrites re-trusted because they were unprotected|Blocks/Sec
+RETRUSTED_UNPROTECTED_DIRTY_BLOCKS|Number of dirty blocks that ScrubMissingWrites retrusted because they were unprotected|Blocks/Sec
 REWRITTEN_DIRTY_BLOCKS|Number of dirty blocks that ScrubMissingWrites rewrote to clean them|Blocks/Sec
-SCAN_LIKELY_LEAKED_BLOCKS|Number of free blocks encountered during a scan that were marked as KnownUsed in the RAID|Occurences
+SCAN_LIKELY_LEAKED_BLOCKS|Number of free blocks encountered during the scan that was marked as KnownUsed in the RAID|Occurences
 SCRUB_BATCHES_LATENCY|Average latency of scrub batches|Millis
 SCRUB_FALSE_USED_FAILED_READS|Number of blocks that we failed to read for scrub-false-used|Blocks/Sec
 SCRUB_FALSE_USED_FAILED|Number of placements we failed to fully scrub-false-used|Occurences/Sec
@@ -1214,9 +1248,6 @@ TEMPORAL_SQUELCH_SQUELCH_BLOCKS_READ|Number of squelch blocks desquelched|Blocks
 -|-|-
 GATHER_FROM_NODE_LATENCY_NET|Time spent on responding to a stats-gathering request (not including metadata)|Seconds/Sec
 GATHER_FROM_NODE_LATENCY|Time spent responding to a stats-gathering request (not including metadata)|Seconds/Sec
-GATHER_FROM_NODE_SLEEP|Time spent in-between responding to a stats-gathering request (not including metadata)|Seconds/Sec
-TIMES_QUERIED_STATS|Number of times the process queried other processes for stats|Times
-TIMES_QUERIED|Number of times the process was queried for stats (not including metadata)|Times
 GATHER_FROM_NODE_SLEEP|Time spent in-between responding to a stats-gathering request (not including metadata)|Seconds/Sec
 TIMES_QUERIED_STATS|Number of times the process queried other processes for stats|Times
 TIMES_QUERIED|Number of times the process was queried for stats (not including metadata)|Times
