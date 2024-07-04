@@ -52,7 +52,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
-  * 9.2, 9.1, 9.0
+  * 9.3, 9.2, 9.1, 9.0
   * 8.9, 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
@@ -74,7 +74,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
-  * 9.2, 9.1, 9.0
+  * 9.3, 9.2, 9.1, 9.0
   * 8.9, 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
@@ -98,7 +98,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% tab title="Kernel" %}
 The following kernel versions are supported:
 
-* 6.0 to 6.2
+* 6.0 to 6.5
 * 5.3 to 5.19
 * 4.4.0-1106 to 4.19
 * 3.10
