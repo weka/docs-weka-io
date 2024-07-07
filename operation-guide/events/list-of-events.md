@@ -10,11 +10,11 @@ description: >-
 
 | **Type**                          | **Severity** | **Description**                          |
 | --------------------------------- | ------------ | ---------------------------------------- |
-| ContainerStateEvent               | INFO         | Container State.                         |
-| WCGroupInvalidResourceConfigEvent | WARNING      | Container CGroup Resource Configuration. |
-| WCGroupStateDisabledEvent         | MAJOR        | Container CGroup State.                  |
-| WCGroupStateEnabledEvent          | INFO         | Container CGroup State.                  |
-| WCGroupValidResourceConfigEvent   | INFO         | Container CGroup Resource Configuration. |
+| ContainerStateEvent               | INFO         | Container state.                         |
+| WCGroupInvalidResourceConfigEvent | WARNING      | Container CGroup resource configuration. |
+| WCGroupStateDisabledEvent         | MAJOR        | Container CGroup state.                  |
+| WCGroupStateEnabledEvent          | INFO         | Container CGroup state.                  |
+| WCGroupValidResourceConfigEvent   | INFO         | Container CGroup resource configuration. |
 
 ### Alerts
 
@@ -51,10 +51,10 @@ description: >-
 | ClientRemoved                       | INFO         | Start removing a disconnected client from the cluster.                                         |
 | ClientsUnavailable                  | CRITICAL     | Some clients are unavailable because too many backends are down.                               |
 | ClockSkewedHostJoin                 | MINOR        | The container (host) cannot join because of a clock skew.                                      |
-| ClusterInitializationFailed         | MAJOR        | The cluster initialization is failed.                                                          |
+| ClusterInitializationFailed         | MAJOR        | The cluster initialization has failed.                                                         |
 | ClusterInitialized                  | INFO         | The cluster is successfully initialized.                                                       |
-| ClusteringFailure                   | MINOR        | Conainer clustering failed.                                                                    |
-| ConfigChangeSetsSliderFull          | MINOR        | Configuration changeset slider is full while the process (node) pulls the configuration.       |
+| ClusteringFailure                   | MINOR        | Container clustering failed.                                                                   |
+| ConfigChangeSetsSliderFull          | MINOR        | Configuration change-set slider is full while the process (node) pulls the configuration.      |
 | ConfigGenerationHasNoFirstChunk     | MINOR        | Applying a partial configuration generation is prohibited.                                     |
 | ConfigSnapshotPulled                | MINOR        | Configuration snapshot is pulled.                                                              |
 | DoubleUnmatchingMachineIdentifier   | MAJOR        | There is a container with the same Agent-Machine-ID but a different SMBIOS UID.                |
@@ -64,6 +64,8 @@ description: >-
 | HostAdding                          | INFO         | Host configuration change.                                                                     |
 | HostDeactivated                     | INFO         | Host configuration change.                                                                     |
 | HostDeactivating                    | INFO         | Host configuration change.                                                                     |
+| HostDrained                         | INFO         | Host configuration change.                                                                     |
+| HostDraining                        | INFO         | Host configuration change.                                                                     |
 | HostRemoved                         | INFO         | Host configuration change.                                                                     |
 | HostRemovingFailed                  | INFO         | Host configuration change.                                                                     |
 | HostRemoving                        | INFO         | Host configuration change.                                                                     |
@@ -100,10 +102,10 @@ description: >-
 | DirectoryQuotasEnabled                                       | INFO         | Directory Quotas were enabled.                                          |
 | IOStatusChanged                                              | INFO         | IO status changed.                                                      |
 | LeaderIterationTooSlow                                       | MAJOR        | Leader iteration took too long between iterations.                      |
-| LoginBannerCleared                                           | INFO         | The login banner is cleared.                                            |
-| LoginBannerDisabled                                          | INFO         | Login banner is disabled.                                               |
-| LoginBannerEnabled                                           | INFO         | The login banner is enabled.                                            |
-| LoginBannerSet                                               | INFO         | The login banner is set.                                                |
+| LoginBannerCleared                                           | INFO         | Login banner has been cleared.                                          |
+| LoginBannerDisabled                                          | INFO         | Login banner disabled.                                                  |
+| LoginBannerEnabled                                           | INFO         | Login banner enabled.                                                   |
+| LoginBannerSet                                               | INFO         | The login banner has been set.                                          |
 | ProcessBlacklistToggle                                       | MAJOR        | A process is blacklisted/removedFromBlacklist.                          |
 | UpgradeBlockTaskStartInvoked                                 | DEBUG        | Block task upgrade task start invoked.                                  |
 | WrongVersionForRaftSnapshot                                  | MINOR        | Tried to load an RAFT snapshot with an unsupported version.             |
@@ -129,7 +131,7 @@ description: >-
 | DriveInitFailed           | MAJOR        | A drive failed to initialize.                                                                                 |
 | DriveIoErrorBMS           | MAJOR        | A drive found an IO error in a background media scan.                                                         |
 | DriveIoError              | MAJOR        | A drive has an IO error.                                                                                      |
-| DriveLimitExceeded        | WARNING      | An attempt to add more drives than supported.                                                                 |
+| DriveLimitExceeded        | WARNING      | An attempt was made to add more drives than were supported.                                                   |
 | DriveMediumError          | MINOR        | A drive has a medium error.                                                                                   |
 | DriveNotUnderIOMMU        | MAJOR        | The drive is not under IOMMU, but the host IOMMU is enabled. Contact the Customer Success Team.               |
 | DriveNvmeErrorLog         | WARNING      | An NVMe drive error log entry.                                                                                |
@@ -137,7 +139,7 @@ description: >-
 | DriveOutOfNvkvChunks      | MAJOR        | A drive is out of NVKV chunks.                                                                                |
 | DriveRemoved              | INFO         | Drive removed.                                                                                                |
 | DriveSignatureUnknown     | MINOR        | A drive has an unknown signature.                                                                             |
-| DriveSmartCriticalWarning | MINOR        | The drive SMART reports a critical warning and fails it immediately.                                          |
+| DriveSmartCriticalWarning | MINOR        | The drive SMART reports a critical warning and fails immediately.                                             |
 | DriveStateChangesReport   | MINOR        | Drive state changes.                                                                                          |
 | DriveTrimAborted          | WARNING      | The drive TRIM commands timed out and aborted at the initialization. Potentially degrading write performance. |
 | DriveUnresponsive         | MAJOR        | The drive is unresponsive and fails to return IOs for an extended period.                                     |
@@ -159,70 +161,70 @@ description: >-
 
 ### Filesystem
 
-| **Type**                                   | **Severity** | **Description**                                                                                                                                               |
-| ------------------------------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| BlockReadFailure                           | CRITICAL     | Failed to read a block.                                                                                                                                       |
-| BlockSeekFinished                          | MAJOR        | Block seek finished.                                                                                                                                          |
-| BlockSeekStarted                           | MAJOR        | Block seek started for a secondary metadata block that could not be read.                                                                                     |
-| BrokenFile                                 | MAJOR        | File metadata corruption.                                                                                                                                     |
-| CWTaskTemplateFinished                     | INFO         | A cluster-wide task (CWTask) template finished.                                                                                                               |
-| CacheFlushHanging                          | MAJOR        | Host hangs while trying to sync a file's write cache to the cluster.                                                                                          |
-| ChecksumErrorInBackgroundWrite             | MAJOR        | Checksum error detected by SSD node in a committing block.                                                                                                    |
-| ChecksumErrorInCommit                      | MAJOR        | Checksum error detected by SSD node in a committing block.                                                                                                    |
-| ChecksumErrorInWrite                       | CRITICAL     | Checksum error detected by COMPUTE node in a write.                                                                                                           |
-| DefaultDirectoryQuotaSet                   | INFO         | A default directory quota was set.                                                                                                                            |
-| DefaultDirectoryQuotaUnset                 | INFO         | A default directory quota was unset.                                                                                                                          |
-| DestageBlocked                             | CRITICAL     | Destage of a bucket cannot start.                                                                                                                             |
-| DestageHanging                             | CRITICAL     | Destage of a bucket is hanging.                                                                                                                               |
-| DirectoryQuotaSet                          | INFO         | The directory quota was set.                                                                                                                                  |
-| DirectoryQuotaUnset                        | INFO         | The directory quota was unset.                                                                                                                                |
-| DumpSnapHashCompleted                      | INFO         | Finished a snap hash manifest scan.                                                                                                                           |
-| ExtentDescsPointsToFreedBlocks             | WARNING      | Extent points to freed child blocks.                                                                                                                          |
-| FailedToSplitSliceNoRetry                  | CRITICAL     | Failed to split a directory slice. I will not retry.                                                                                                          |
-| FilesystemAdded                            | INFO         | Filesystem configuration change.                                                                                                                              |
-| FilesystemDeleted                          | INFO         | Filesystem configuration change.                                                                                                                              |
-| FilesystemDownloadStarted                  | INFO         | Filesystem download started.                                                                                                                                  |
-| FilesystemGroupAdded                       | INFO         | Filesystem group configuration change.                                                                                                                        |
-| FilesystemGroupDeleted                     | INFO         | Filesystem group configuration change.                                                                                                                        |
-| FilesystemGroupUpdated                     | INFO         | Filesystem group configuration change                                                                                                                         |
-| FilesystemRemoved                          | INFO         | Filesystem configuration change.                                                                                                                              |
-| FilesystemUpdated                          | INFO         | Filesystem configuration change.                                                                                                                              |
-| ForcedBucketStepdown                       | MINOR        | Bucket forced to step down.                                                                                                                                   |
-| FreeBlockStillUsed                         | CRITICAL     | Found a block falsely marked as free.                                                                                                                         |
-| FsCapacityLimitReached                     | WARNING      | Filesystem capacity limit has been reached.                                                                                                                   |
-| HangingBackendIosDetected                  | CRITICAL     | Some IOs are hanging.                                                                                                                                         |
-| HangingBackendIosNoLongerDetected          | INFO         | IOs are no longer hanging.                                                                                                                                    |
-| HangingBucketStepDown                      | WARNING      | Bucket step-down is hanging.                                                                                                                                  |
-| HangingDirectorySplit                      | MAJOR        | Directory split hasn't progressed for a long time.                                                                                                            |
-| HangingDriverFrontendIosDetected           | CRITICAL     | Some IOs are hanging.                                                                                                                                         |
-| HangingDriverFrontendIosNoLongerDetected   | INFO         | IOs are no longer hanging.                                                                                                                                    |
-| HangingNFSFrontendIosDetected              | CRITICAL     | Some IOs are hanging.                                                                                                                                         |
-| HangingNFSFrontendIosNoLongerDetected      | INFO         | IOs are no longer hanging.                                                                                                                                    |
-| IntegrityCheckFinished                     | DEBUG        | Integrity check has finished.                                                                                                                                 |
-| IntegrityCheckIssue                        | CRITICAL     | Found a data integrity issue                                                                                                                                  |
-| IntegrityCheckStarted                      | DEBUG        | Integrity check has started.                                                                                                                                  |
-| IntegrityCheckTransientIssue               | DEBUG        | Found a transient state that is expected to be encountered. It can be ignored unless it persists. In this case, a non-transient issue event will be produced. |
-| ManualOverrideStall                        | WARNING      | A service has been manually overridden and stalled.                                                                                                           |
-| MetadataCommitQueueHang                    | MINOR        | Bucket step down due to hanging metadata commit queue                                                                                                         |
-| ObjectStoreAttachedToFilesystem            | INFO         | The object store is attached to the filesystem.                                                                                                               |
-| ObjectStoreFinishedDetachingFromFilesystem | INFO         | The object store finished detaching from the filesystem.                                                                                                      |
-| ObjectStoreStartedDetachingFromFilesystem  | INFO         | The object store started detaching from the filesystem.                                                                                                       |
-| QuotaGraceExpired                          | WARNING      | Directory soft capacity quota has been reached, and the grace period has expired.                                                                             |
-| QuotaHardLimitReached                      | WARNING      | Directory hard capacity quota has been reached.                                                                                                               |
-| RAIDDataBlockReadFailureInSnaphashDump     | WARNING      | Failed to read data block from RAID when dumping the snapshot manifest.                                                                                       |
-| RAIDMDReadFailureInSnaphashDump            | WARNING      | Failed to read metadata block from RAID when dumping the snapshot manifest.                                                                                   |
-| SnapshotContentCopied                      | INFO         | Snapshot content copied.                                                                                                                                      |
-| SnapshotCreated                            | INFO         | Snapshot created.                                                                                                                                             |
-| SnapshotDeleted                            | INFO         | Snapshot deleted.                                                                                                                                             |
-| SnapshotDownloadStarted                    | INFO         | Snapshot download started.                                                                                                                                    |
-| SnapshotFilesystemRestored                 | INFO         | Filesystem restored from a snapshot.                                                                                                                          |
-| SnapshotParamsUpdated                      | INFO         | Snapshot updated.                                                                                                                                             |
-| SnapshotUploadFinished                     | INFO         | Snapshot upload finished.                                                                                                                                     |
-| SnapshotUploadStarted                      | INFO         | Snapshot upload started.                                                                                                                                      |
-| SquelchBlockIdSetAbortedFlushed            | DEBUG        | While setting a squelch block's block ID for the upgrade, it was already changed to invalid.                                                                  |
-| SquelchBlockIdSetAbortedRewritten          | WARNING      | While setting a squelch block's block ID for the upgrade, it was already rewritten to something else.                                                         |
-| SuperblockUnreadable                       | CRITICAL     | The superblock of a bucket could not be loaded.                                                                                                               |
-| UnflushedOpOnDeletingSnapview              | MAJOR        | Unflushed IO on a deleting snapshot.                                                                                                                          |
+| **Type**                                   | **Severity** | **Description**                                                                                                                                          |
+| ------------------------------------------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BlockReadFailure                           | CRITICAL     | Failed to read a block.                                                                                                                                  |
+| BlockSeekFinished                          | MAJOR        | Block seek finished.                                                                                                                                     |
+| BlockSeekStarted                           | MAJOR        | Block seek started for a secondary metadata block that could not be read.                                                                                |
+| BrokenFile                                 | MAJOR        | File metadata corruption.                                                                                                                                |
+| CWTaskTemplateFinished                     | INFO         | A cluster-wide task (CWTask) template finished.                                                                                                          |
+| CacheFlushHanging                          | MAJOR        | Host hangs while trying to sync a file's write cache to the cluster.                                                                                     |
+| ChecksumErrorInBackgroundWrite             | MAJOR        | Checksum error detected by SSD node in a committing block.                                                                                               |
+| ChecksumErrorInCommit                      | MAJOR        | Checksum error detected by SSD node in a committing block.                                                                                               |
+| ChecksumErrorInWrite                       | CRITICAL     | Checksum error detected by COMPUTE node in a write.                                                                                                      |
+| DefaultDirectoryQuotaSet                   | INFO         | A default directory quota was set.                                                                                                                       |
+| DefaultDirectoryQuotaUnset                 | INFO         | A default directory quota was unset.                                                                                                                     |
+| DestageBlocked                             | CRITICAL     | Destage of a bucket cannot start.                                                                                                                        |
+| DestageHanging                             | CRITICAL     | Destage of a bucket is hanging.                                                                                                                          |
+| DirectoryQuotaSet                          | INFO         | The directory quota was set.                                                                                                                             |
+| DirectoryQuotaUnset                        | INFO         | The directory quota was unset.                                                                                                                           |
+| DumpSnapHashCompleted                      | INFO         | Finished a snap hash manifest scan.                                                                                                                      |
+| ExtentDescsPointsToFreedBlocks             | WARNING      | Extent points to freed child blocks.                                                                                                                     |
+| FailedToSplitSliceNoRetry                  | CRITICAL     | Failed to split a directory slice. Further attempts have been disabled.                                                                                  |
+| FilesystemAdded                            | INFO         | Filesystem configuration change.                                                                                                                         |
+| FilesystemDeleted                          | INFO         | Filesystem configuration change.                                                                                                                         |
+| FilesystemDownloadStarted                  | INFO         | Filesystem download started.                                                                                                                             |
+| FilesystemGroupAdded                       | INFO         | Filesystem group configuration change.                                                                                                                   |
+| FilesystemGroupDeleted                     | INFO         | Filesystem group configuration change.                                                                                                                   |
+| FilesystemGroupUpdated                     | INFO         | Filesystem group configuration change.                                                                                                                   |
+| FilesystemRemoved                          | INFO         | Filesystem configuration change.                                                                                                                         |
+| FilesystemUpdated                          | INFO         | Filesystem configuration change.                                                                                                                         |
+| ForcedBucketStepdown                       | MINOR        | Bucket forced to step down.                                                                                                                              |
+| FreeBlockStillUsed                         | CRITICAL     | Found a block falsely marked as free.                                                                                                                    |
+| FsCapacityLimitReached                     | WARNING      | Filesystem capacity limit has been reached.                                                                                                              |
+| HangingBackendIosDetected                  | CRITICAL     | Some IOs are hanging.                                                                                                                                    |
+| HangingBackendIosNoLongerDetected          | INFO         | IOs are no longer hanging.                                                                                                                               |
+| HangingBucketStepDown                      | WARNING      | Bucket step-down is hanging.                                                                                                                             |
+| HangingDirectorySplit                      | MAJOR        | Directory split hasn't progressed for a long time.                                                                                                       |
+| HangingDriverFrontendIosDetected           | CRITICAL     | Some IOs are hanging.                                                                                                                                    |
+| HangingDriverFrontendIosNoLongerDetected   | INFO         | IOs are no longer hanging.                                                                                                                               |
+| HangingNFSFrontendIosDetected              | CRITICAL     | Some IOs are hanging.                                                                                                                                    |
+| HangingNFSFrontendIosNoLongerDetected      | INFO         | IOs are no longer hanging.                                                                                                                               |
+| IntegrityCheckFinished                     | DEBUG        | Integrity check has finished.                                                                                                                            |
+| IntegrityCheckIssue                        | CRITICAL     | Found a data integrity issue                                                                                                                             |
+| IntegrityCheckStarted                      | DEBUG        | Integrity check has started.                                                                                                                             |
+| IntegrityCheckTransientIssue               | DEBUG        | Found a transient state that is expected to be encountered. It can be ignored unless it persists. In this case, a non-transient issue event is produced. |
+| ManualOverrideStall                        | WARNING      | A service has been manually overridden and stalled.                                                                                                      |
+| MetadataCommitQueueHang                    | MINOR        | Bucket step down due to hanging metadata commit queue                                                                                                    |
+| ObjectStoreAttachedToFilesystem            | INFO         | The object store is attached to the filesystem.                                                                                                          |
+| ObjectStoreFinishedDetachingFromFilesystem | INFO         | The object store finished detaching from the filesystem.                                                                                                 |
+| ObjectStoreStartedDetachingFromFilesystem  | INFO         | The object store started detaching from the filesystem.                                                                                                  |
+| QuotaGraceExpired                          | WARNING      | Directory soft capacity quota has been reached, and the grace period has expired.                                                                        |
+| QuotaHardLimitReached                      | WARNING      | Directory hard capacity quota has been reached.                                                                                                          |
+| RAIDDataBlockReadFailureInSnaphashDump     | WARNING      | Failed to read data block from RAID when dumping the snapshot manifest.                                                                                  |
+| RAIDMDReadFailureInSnaphashDump            | WARNING      | Failed to read metadata block from RAID when dumping the snapshot manifest.                                                                              |
+| SnapshotContentCopied                      | INFO         | Snapshot content copied.                                                                                                                                 |
+| SnapshotCreated                            | INFO         | Snapshot created.                                                                                                                                        |
+| SnapshotDeleted                            | INFO         | Snapshot deleted.                                                                                                                                        |
+| SnapshotDownloadStarted                    | INFO         | Snapshot download started.                                                                                                                               |
+| SnapshotFilesystemRestored                 | INFO         | Filesystem restored from a snapshot.                                                                                                                     |
+| SnapshotParamsUpdated                      | INFO         | Snapshot updated.                                                                                                                                        |
+| SnapshotUploadFinished                     | INFO         | Snapshot upload finished.                                                                                                                                |
+| SnapshotUploadStarted                      | INFO         | Snapshot upload started.                                                                                                                                 |
+| SquelchBlockIdSetAbortedFlushed            | DEBUG        | While setting a squelch block's block ID for the upgrade, it was already changed to invalid.                                                             |
+| SquelchBlockIdSetAbortedRewritten          | WARNING      | While setting a squelch block's block ID for the upgrade, it was already rewritten to something else.                                                    |
+| SuperblockUnreadable                       | CRITICAL     | The superblock of a bucket could not be loaded.                                                                                                          |
+| UnflushedOpOnDeletingSnapview              | MAJOR        | Unflushed IO on a deleting snapshot.                                                                                                                     |
 
 ### IO
 
@@ -232,23 +234,24 @@ description: >-
 
 ### InterfaceGroup
 
-| **Type**                  | **Severity** | **Description**                                   |
-| ------------------------- | ------------ | ------------------------------------------------- |
-| FloatingIpAcquired        | INFO         | A floating IP was acquired by the process (node). |
-| FloatingIpReleased        | INFO         | A floating IP was released by the process (node). |
-| InterfaceGroupAdded       | INFO         | Interface group configuration change.             |
-| InterfaceGroupDeleted     | INFO         | Interface group configuration change.             |
-| InterfaceGroupIpsAdded    | INFO         | Interface group IPs configuration change.         |
-| InterfaceGroupIpsDeleted  | INFO         | Interface group IPs configuration change.         |
-| InterfaceGroupPortAdded   | INFO         | Interface group port configuration change.        |
-| InterfaceGroupPortDeleted | INFO         | Interface group port configuration change.        |
-| InterfaceGroupUpdated     | INFO         | Interface group configuration change.             |
+| **Type**                      | **Severity** | **Description**                                   |
+| ----------------------------- | ------------ | ------------------------------------------------- |
+| FloatingIpAcquired            | INFO         | A floating IP was acquired by the process (node). |
+| FloatingIpReleased            | INFO         | A floating IP was released by the process (node). |
+| FloatingIpRemoveStateTimedout | WARNING      | Timeout occurred during floating IP removal.      |
+| InterfaceGroupAdded           | INFO         | Interface group configuration change.             |
+| InterfaceGroupDeleted         | INFO         | Interface group configuration change.             |
+| InterfaceGroupIpsAdded        | INFO         | Interface group IPs configuration change.         |
+| InterfaceGroupIpsDeleted      | INFO         | Interface group IPs configuration change.         |
+| InterfaceGroupPortAdded       | INFO         | Interface group port configuration change.        |
+| InterfaceGroupPortDeleted     | INFO         | Interface group port configuration change.        |
+| InterfaceGroupUpdated         | INFO         | Interface group configuration change.             |
 
-### Driver
+### KDriver
 
 | **Type**    | **Severity** | **Description** |
 | ----------- | ------------ | --------------- |
-| DriverAlert | MAJOR        | Driver Alert    |
+| DriverAlert | MAJOR        | Driver Alert.   |
 
 ### Kms
 
@@ -275,58 +278,59 @@ description: >-
 
 ### NFS
 
-| **Type**                      | **Severity** | **Description**                                    |
-| ----------------------------- | ------------ | -------------------------------------------------- |
-| NfsAuthTypeChangeEvent        | INFO         | NFS Authentication Types Configuration.            |
-| NfsClientGroupAdded           | INFO         | NFS client group configuration change.             |
-| NfsClientGroupDeleted         | INFO         | NFS client group configuration change.             |
-| NfsClientGroupRuleAdded       | INFO         | NFS client group rule configuration change.        |
-| NfsClientGroupRuleDeleted     | INFO         | NFS client group rule configuration change.        |
-| NfsClusterStatusActiveEvent   | INFO         | NFS Cluster is active.                             |
-| NfsClusterStatusInactiveEvent | CRITICAL     | NFS Cluster is inactive.                           |
-| NfsCustomOptionsUpdated       | INFO         | NFS custom options configuration change.           |
-| NfsExportsPermissionsAdded    | INFO         | NFS export permissions for a configuration change. |
-| NfsExportsPermissionsDeleted  | INFO         | NFS export permissions for a configuration change. |
-| NfsExportsPermissionsUpdated  | INFO         | NFS export permissions for a configuration change. |
-| NfsKerberosSetupEvent         | INFO         | NFS Kerberos Service.                              |
-| NfsLdapSetupEvent             | INFO         | NFS LDAP Setup.                                    |
-| NfsMountFail                  | WARNING      | NFS mount request failed.                          |
-| NfsPortmapFail                | MAJOR        | The NFS server failed to register in the portmap.  |
-| NfsServiceDown                | CRITICAL     | Nfs Service Down.                                  |
+| **Type**                         | **Severity** | **Description**                                    |
+| -------------------------------- | ------------ | -------------------------------------------------- |
+| NfsAuthTypeChangeEvent           | INFO         | NFS Authentication Types Configuration.            |
+| NfsClientGroupAdded              | INFO         | NFS client group configuration change.             |
+| NfsClientGroupDeleted            | INFO         | NFS client group configuration change.             |
+| NfsClientGroupRuleAdded          | INFO         | NFS client group rule configuration change.        |
+| NfsClientGroupRuleDeleted        | INFO         | NFS client group rule configuration change.        |
+| NfsClusterStatusActiveEvent      | INFO         | NFS Cluster is active.                             |
+| NfsClusterStatusInactiveEvent    | CRITICAL     | NFS Cluster is inactive.                           |
+| NfsCustomOptionsUpdated          | INFO         | NFS custom options configuration change.           |
+| NfsExportsPermissionsAdded       | INFO         | NFS export permissions for a configuration change. |
+| NfsExportsPermissionsDeleted     | INFO         | NFS export permissions for configuration change.   |
+| NfsExportsPermissionsUpdated     | INFO         | NFS export permissions for a configuration change. |
+| NfsKerberosSetupEvent            | INFO         | NFS Kerberos Service setup is done.                |
+| NfsLdapSetupEvent                | INFO         | NFS LDAP setup is done.                            |
+| NfsLocksConfigurationChangeEvent | INFO         | NFS locks configuration changed.                   |
+| NfsMountFail                     | WARNING      | NFS mount request failed.                          |
+| NfsPortmapFail                   | MAJOR        | The NFS server failed to register in the portmap.  |
+| NfsServiceDown                   | CRITICAL     | Nfs Service Down.                                  |
 
 ### Network
 
-| **Type**                    | **Severity** | **Description**                                                                                    |
-| --------------------------- | ------------ | -------------------------------------------------------------------------------------------------- |
-| ClientNodeDisconnected      | INFO         | A client disconnected from the cluster.                                                            |
-| CloudMoveIpFail             | MINOR        | Move IP on cloud failed.                                                                           |
-| DefaultDataNetworkingChange | INFO         | The default data networking configuration has changed.                                             |
-| DpdkIBQkeyMismatch          | MAJOR        | DPDK IB qkey Mismatch.                                                                             |
-| DpdkInitFailed              | MINOR        | DPDK initialization failed.                                                                        |
-| DpdkPoolSummary             | DEBUG        | Summary of DPDK pool status.                                                                       |
-| FipIsNoLongerOnDevice       | MAJOR        | IP is no longer on the device.                                                                     |
-| HangingRPCs                 | MAJOR        | Some RPCs are hanging too long.                                                                    |
-| HugepagesAllocationFailure  | MINOR        | Hugepages allocation failure.                                                                      |
-| IONodeCannotFetchConfig     | WARNING      | The IO node cannot join the cluster for too long.                                                  |
-| MemoryMigratedAfterPin      | MAJOR        | Hugepage mapping migrated after it was pinned.                                                     |
-| MemoryMigratedBeforePin     | MINOR        | Hugepage mapping migrated before it was pinned.                                                    |
-| MemoryPinningIoctlFailed    | MINOR        | Memory pinning ioctl failed.                                                                       |
-| MgmtNodeCannotFetchConfig   | WARNING      | The management process (node) cannot join the cluster for too long.                                |
-| NICNotFound                 | INFO         | NIC not found when initializing.                                                                   |
-| NetDeviceLinkDown           | MINOR        | Network interface DOWN.                                                                            |
-| NetDeviceLinkUp             | MINOR        | Network interface UP.                                                                              |
-| NetSlaveDeviceLinkDown      | MINOR        | Network slave interface DOWN.                                                                      |
-| NetSlaveDeviceLinkUp        | MINOR        | Network slave interface UP.                                                                        |
-| NetworkPortConfigFail       | MINOR        | Network port configuration failed.                                                                 |
-| NetworkPortDead             | MAJOR        | The network port hasn't passed packets for an extended period. The port is likely not functioning. |
-| NoConnectivityToLivingNode  | MAJOR        | A process (node) is disconnected from living peers.                                                |
-| NoHardwareWatchdog          | MAJOR        | No hardware watchdog found.                                                                        |
-| NoJumboFrames               | MINOR        | The network does not allow jumbo packets through.                                                  |
-| NodeCannotJoinCluster       | WARNING      | The process (node) cannot join the cluster for too long.                                           |
-| NodeCannotSendJumboFrames   | MINOR        | A process (node) cannot send jumbo packets.                                                        |
-| NodeDisconnected            | MINOR        | A process (node) disconnected from the cluster.                                                    |
-| RDMAClientDisabled          | MINOR        | RDMA optimization disabled.                                                                        |
-| RDMAClientEnabled           | MINOR        | RDMA optimization enabled.                                                                         |
+| **Type**                    | **Severity** | **Description**                                                                               |
+| --------------------------- | ------------ | --------------------------------------------------------------------------------------------- |
+| ClientNodeDisconnected      | INFO         | A client disconnected from the cluster.                                                       |
+| CloudMoveIpFail             | MINOR        | Move IP on cloud failed.                                                                      |
+| DefaultDataNetworkingChange | INFO         | The default data networking configuration has changed.                                        |
+| DpdkIBQkeyMismatch          | MAJOR        | DPDK IB qkey Mismatch.                                                                        |
+| DpdkInitFailed              | MINOR        | DPDK initialization failed.                                                                   |
+| DpdkPoolSummary             | DEBUG        | Summary of DPDK pool status.                                                                  |
+| FipIsNoLongerOnDevice       | MAJOR        | IP is no longer on the device.                                                                |
+| HangingRPCs                 | MAJOR        | Some RPCs are hanging too long.                                                               |
+| HugepagesAllocationFailure  | MINOR        | Hugepages allocation failure.                                                                 |
+| IONodeCannotFetchConfig     | WARNING      | The IO node cannot join the cluster for too long.                                             |
+| MemoryMigratedAfterPin      | MAJOR        | Hugepage mapping migrated after it was pinned.                                                |
+| MemoryMigratedBeforePin     | MINOR        | Hugepage mapping migrated before it was pinned.                                               |
+| MemoryPinningIoctlFailed    | MINOR        | Memory pinning ioctl failed.                                                                  |
+| MgmtNodeCannotFetchConfig   | WARNING      | The management process (node) cannot join the cluster for too long.                           |
+| NICNotFound                 | INFO         | NIC not found when initializing.                                                              |
+| NetDeviceLinkDown           | MINOR        | Network interface DOWN.                                                                       |
+| NetDeviceLinkUp             | MINOR        | Network interface UP.                                                                         |
+| NetSlaveDeviceLinkDown      | MINOR        | Network slave interface DOWN.                                                                 |
+| NetSlaveDeviceLinkUp        | MINOR        | Network slave interface UP.                                                                   |
+| NetworkPortConfigFail       | MINOR        | Network port configuration failed.                                                            |
+| NetworkPortDead             | MAJOR        | The Network Port has not passed packets for an extended period and is likely not operational. |
+| NoConnectivityToLivingNode  | MAJOR        | A process (node) is disconnected from living peers.                                           |
+| NoHardwareWatchdog          | MAJOR        | No hardware watchdog found.                                                                   |
+| NoJumboFrames               | MINOR        | The network does not allow jumbo packets through.                                             |
+| NodeCannotJoinCluster       | WARNING      | The process (node) cannot join the cluster for too long.                                      |
+| NodeCannotSendJumboFrames   | MINOR        | A process (node) cannot send jumbo packets.                                                   |
+| NodeDisconnected            | MINOR        | A process (node) disconnected from the cluster.                                               |
+| RDMAClientDisabled          | MINOR        | RDMA optimization disabled.                                                                   |
+| RDMAClientEnabled           | MINOR        | RDMA optimization enabled.                                                                    |
 
 ### Node
 
@@ -336,19 +340,19 @@ description: >-
 | GCCrashReport        | MINOR        | Node has crashed in GC on the previous run. |
 | NodeAbruptExitReport | MINOR        | Node has crashed on the previous run.       |
 | NodeExceptionExit    | MAJOR        | A process (node) exited with an exception.  |
-| NodeKernelStack      | WARNING      | Kernel stack of node before reset           |
+| NodeKernelStack      | WARNING      | Kernel stack of node before reset.          |
 | NodeStarted          | INFO         | A process (node) started.                   |
 | NodeStopped          | INFO         | A process (node) stopped.                   |
 | NodeTraceback        | WARNING      | Traceback of the node before reset.         |
 
-### Object Store
+### ObjectStorage
 
 | **Type**                                             | **Severity** | **Description**                                                                                                                |
 | ---------------------------------------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | ChecksumErrorInDownloadedObject                      | MINOR        | Checksum error detected by COMPUTE node in a downloaded OBS data block.                                                        |
 | ChecksumErrorOnObjectUpload                          | MAJOR        | Checksum error detected by COMPUTE node when uploading an OBS data block (corrupted after verifying data read from the drive). |
 | DataBlobDownloadFailed                               | WARNING      | Failed downloading data blob header.                                                                                           |
-| DownloadedExtentHasInvalidBlobId                     | MAJOR        | Downloaded extent has invalid blob id.                                                                                         |
+| DownloadedExtentHasInvalidBlobId                     | MAJOR        | Downloaded extent has an invalid blob ID.                                                                                      |
 | DownloadedExtentMissingExpectedBlock                 | MAJOR        | Downloaded extent missing expected block.                                                                                      |
 | ExtentHasFakeRetentionTag                            | MAJOR        | Extent has a non-local tag but has disk-only blocks.                                                                           |
 | InvalidDataBlobHeader                                | MAJOR        | Invalid header detected by COMPUTE node in a downloaded OBS data blob.                                                         |
@@ -364,59 +368,57 @@ description: >-
 | ObjectStoreStatusDown                                | MAJOR        | The object store status is down.                                                                                               |
 | ObjectStoreStatusUp                                  | INFO         | The object store status is UP.                                                                                                 |
 | ObsIsMissingObject                                   | MAJOR        | Permanently failed to download an object from object storage - The object was not found.                                       |
-| PersistentChecksumErrorInDownloadedObject            | MAJOR        | A checksum error was detected by the COMPUTE node in a downloaded OBS data block.                                              |
+| PersistentChecksumErrorInDownloadedObject            | MAJOR        | Checksum error detected by COMPUTE node in a downloaded OBS data block.                                                        |
 
-### Organization
+### Org
 
-| **Type**             | **Severity** | **Description**                          |
-| -------------------- | ------------ | ---------------------------------------- |
-| OrgCreated           | INFO         | The organization is created.             |
-| OrgDeleted           | INFO         | The organization is deleted.             |
-| OrgRenamed           | INFO         | The organization is renamed.             |
-| OrgSsdQuotaChanged   | INFO         | The organization SSD quota is changed.   |
-| OrgTotalQuotaChanged | INFO         | The organization total quota is changed. |
+| **Type**             | **Severity** | **Description**                            |
+| -------------------- | ------------ | ------------------------------------------ |
+| OrgCreated           | INFO         | The organization is created.               |
+| OrgDeleted           | INFO         | The organization is deleted.               |
+| OrgRenamed           | INFO         | The organization is renamed.               |
+| OrgSsdQuotaChanged   | INFO         | The organization SSD quota is changed.     |
+| OrgTotalQuotaChanged | INFO         | The organization's total quota is changed. |
 
-### RAFT
-
-
+### Raft
 
 | **Type**                | **Severity** | **Description**                                                   |
 | ----------------------- | ------------ | ----------------------------------------------------------------- |
 | IndexChangeDuringStream | INFO         | The RAFT index changed during the streaming of the raft snapshot. |
 
-### RAID
+### Raid
 
-| **Type**                             | **Severity** | **Description**                                                                                                                    |
-| ------------------------------------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| BitmapChecksumMismatch               | MINOR        | Bitmap checksum mismatch detected.                                                                                                 |
-| DataGenerationNumberBug              | WARNING      | An issue with advancing the applied data generation number report from a bucket.                                                   |
-| DataProtectionLevelDecreased         | MINOR        | The data protection level decreased.                                                                                               |
-| DataProtectionLevelIncreased         | INFO         | The data protection level increased.                                                                                               |
-| DiskNvkvHighUtilization              | WARNING      | Disk's internal resource (NVKV) is highly utilized.                                                                                |
-| DiskWritableStateChange              | INFO         | The disk's writable state changed.                                                                                                 |
-| DrivesProcessConnectionLost          | MINOR        | The disk connection was lost.                                                                                                      |
-| DrivesProcessConnectionRecovered     | INFO         | Disks quick recovery from lost connection detected.                                                                                |
-| EnoughActiveFailureDomains           | MINOR        | Sufficient active failure domains.                                                                                                 |
-| EvictionOfPlacementFailed            | MAJOR        | Eviction of placement encountered a potentially corrupt block marked as used.                                                      |
-| FailedRecoveringData                 | MINOR        | Detected unexpected data. Not enough redundant copies are available to recover it.                                                 |
-| FoundCorruptedBlockInStripe          | CRITICAL     | Detected corrupt block in a RAID stripe.                                                                                           |
-| HotSpareFailureDomainsUpdated        | INFO         | Hot spare failure domains updated.                                                                                                 |
-| InFlightCorruptionDetectedByScrubber | MINOR        | Detected in-flight corrupt read result from the drive.                                                                             |
-| IncorrectScannedBlockChecksum        | CRITICAL     | Detected used block with a mismatching checksum.                                                                                   |
-| NoDataProtection                     | CRITICAL     | No data protection.                                                                                                                |
-| PersistentTooManyFailures            | CRITICAL     | Cluster has been experiencing too many failures when accessing drives for a significant time. The problem is likely not transient. |
-| QuorumGenerationNumberBug            | WARNING      | An issue with advancing the applied quorum generation number report from a bucket.                                                 |
-| RaidReadFreeBlock                    | MAJOR        | RAID had read a block marked as free.                                                                                              |
-| RaidScrubbingRateUpdated             | INFO         | RAID scrubber limit updated.                                                                                                       |
-| RaidsStarted                         | INFO         | RAIDs started.                                                                                                                     |
-| RepairedCorruptDataFromDrive         | CRITICAL     | Detected corrupt data from drive\[s]. The system will rewrite with the correct data.                                               |
-| SingleHopReadCorruptionDetected      | MINOR        | Single-hop read corruption detected.                                                                                               |
-| SwitchPlacementHanging               | MINOR        | An active placement to write to is unavailable because of capacity constraints or disk failures.                                   |
-| TooFewActiveFailureDomains           | MAJOR        | Too few active failure domains.                                                                                                    |
-| TooManyFailures                      | CRITICAL     | Too many failures and some data are unavailable.                                                                                   |
-| UsedSSDCapacityCriticalOverflow      | CRITICAL     | SSD capacity usage is overflowing, and the internal spares are running out. The cluster may soon become unavailable for writing.   |
-| UsedSSDCapacityNoLongerOverflows     | INFO         | SSD capacity usage is no longer overflowing.                                                                                       |
-| UsedSSDCapacityOverflow              | MAJOR        | SSD capacity usage is overflowing, and the internal capacity spares are used.                                                      |
+| **Type**                             | **Severity** | **Description**                                                                                                                                      |
+| ------------------------------------ | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| BitmapChecksumMismatch               | MINOR        | Bitmap checksum mismatch detected.                                                                                                                   |
+| DataGenerationNumberBug              | WARNING      | An issue with advancing the applied data generation number report from a bucket.                                                                     |
+| DataProtectionLevelDecreased         | MINOR        | The data protection level decreased.                                                                                                                 |
+| DataProtectionLevelIncreased         | INFO         | The data protection level increased.                                                                                                                 |
+| DiskNvkvHighUtilization              | WARNING      | Disk's internal resource (NVKV) is highly utilized.                                                                                                  |
+| DiskWritableStateChange              | INFO         | Disk's writable state changed.                                                                                                                       |
+| DrivesProcessConnectionLost          | MINOR        | Disk connection lost.                                                                                                                                |
+| DrivesProcessConnectionRecovered     | INFO         | Disks quick recovery from lost connection detected.                                                                                                  |
+| EnoughActiveFailureDomains           | MINOR        | Sufficient active failure domains.                                                                                                                   |
+| EvictionOfPlacementFailed            | MAJOR        | Eviction of placement encountered a potentially corrupt block marked as used.                                                                        |
+| FailedRecoveringData                 | MINOR        | Detected unexpected data; insufficient redundant copies are available to recover it.                                                                 |
+| FoundCorruptedBlockInStripe          | CRITICAL     | Detected corrupt block in a RAID stripe.                                                                                                             |
+| HotSpareFailureDomainsUpdated        | INFO         | Hot spare failure domains updated.                                                                                                                   |
+| InFlightCorruptionDetectedByScrubber | MINOR        | Detected in-flight corrupt read result from the drive.                                                                                               |
+| IncorrectScannedBlockChecksum        | CRITICAL     | Detected used block with a mismatching checksum.                                                                                                     |
+| NoDataProtection                     | CRITICAL     | No data protection.                                                                                                                                  |
+| PersistentTooManyFailures            | CRITICAL     | The Cluster has been experiencing too many failures when accessing drives for a significant period of time, and the problem is likely not ephemeral. |
+| QuorumGenerationNumberBug            | WARNING      | An issue with advancing the applied quorum generation number report from a bucket.                                                                   |
+| RaidReadFreeBlock                    | MAJOR        | RAID had read a block marked as free.                                                                                                                |
+| RaidScrubbingRateUpdated             | INFO         | RAID scrubber limit updated.                                                                                                                         |
+| RaidsStarted                         | INFO         | RAIDs started.                                                                                                                                       |
+| RepairedCorruptDataFromDrive         | CRITICAL     | Detected corrupt data from drive\[s]. The system will rewrite with the correct data.                                                                 |
+| SingleHopReadCorruptionDetected      | MINOR        | Single-hop read corruption detected.                                                                                                                 |
+| SwitchPlacementHanging               | MINOR        | An active placement to write to is unavailable because of capacity constraints or disk failures.                                                     |
+| TooFewActiveFailureDomains           | MAJOR        | Too few active failure domains.                                                                                                                      |
+| TooManyFailures                      | CRITICAL     | Too many failures and some data are unavailable.                                                                                                     |
+| UsedSSDCapacityCriticalOverflow      | CRITICAL     | SSD capacity usage is overflowing, and the internal spares are running out. The cluster may soon become unavailable for writing.                     |
+| UsedSSDCapacityNoLongerOverflows     | INFO         | SSD capacity usage is no longer overflowing.                                                                                                         |
+| UsedSSDCapacityOverflow              | MAJOR        | SSD capacity usage is overflowing, and the internal capacity spares are used.                                                                        |
 
 ### Resources
 
@@ -445,9 +447,9 @@ description: >-
 | NoIPsConfiguredForHostJoinWithNoDefaultNet | WARNING      | No IP configured for the process (node) {nid} with no default-net. |
 | RevertToStableResources                    | INFO         | Reverted to stable resources.                                      |
 | UnlimitedBandwidthSelected                 | INFO         | Bandwidth set to unlimited.                                        |
-| WCGroupContainerEvent                      | MAJOR        | Container Status.                                                  |
-| WCGroupUsageMajorEvent                     | MAJOR        | Container {resource} Status.                                       |
-| WCGroupUsageWarningEvent                   | WARNING      | Container {resource} Status.                                       |
+| WCGroupContainerEvent                      | MAJOR        | Container status.                                                  |
+| WCGroupUsageMajorEvent                     | MAJOR        | Container {resource} status.                                       |
+| WCGroupUsageWarningEvent                   | WARNING      | Container {resource} status.                                       |
 
 ### S3
 
@@ -461,22 +463,22 @@ description: >-
 | S3BucketDestroyedEvent                  | INFO         | The S3 bucket destroyed.             |
 | S3ClusterCreated                        | INFO         | An S3 cluster created.               |
 | S3ClusterDestroyFailed                  | MAJOR        | Failed to destroy the S3 cluster.    |
-| S3ClusterDestroyed                      | INFO         | The S3 cluster was destroyed.        |
+| S3ClusterDestroyed                      | INFO         | The S3 cluster destroyed.            |
 | S3ClusterStatusActiveEvent              | INFO         | S3 Cluster is active.                |
 | S3ClusterStatusInactiveEvent            | CRITICAL     | S3 Cluster is inactive.              |
 | S3ClusterUpdated                        | INFO         | The S3 cluster updated.              |
 | S3ContainerStateChangesEvent            | INFO         | S3 container status change.          |
 | S3ContainerStatusActiveEvent            | INFO         | S3 container active.                 |
 | S3ContainerStatusInactiveEvent          | MAJOR        | S3 container inactive.               |
-| S3CreateBucketEvent                     | INFO         | The S3 bucket is created.            |
+| S3CreateBucketEvent                     | INFO         | The S3 bucket created.               |
 | S3CreateIAMPolicyEvent                  | INFO         | The S3 created an IAM policy.        |
 | S3CreateServiceAccountEvent             | INFO         | S3 created a service account.        |
 | S3DestroyBucketEvent                    | INFO         | The S3 bucket destroyed.             |
 | S3DetachIAMPolicyEvent                  | INFO         | S3 detach IAM policy.                |
 | S3DrainEvent                            | INFO         | S3 container drain.                  |
-| S3ETCDDisabledEvent                     | INFO         | S3 cluster etcd disabled.            |
-| S3ETCDEnabledEvent                      | INFO         | S3 cluster etcd enabled.             |
-| S3HealthyEtcdEndpointEvent              | MAJOR        | S3 etcd endpoint healthy.            |
+| S3ETCDDisabledEvent                     | INFO         | S3 cluster ETCD disabled.            |
+| S3ETCDEnabledEvent                      | INFO         | S3 cluster ETCD enabled.             |
+| S3HealthyEtcdEndpointEvent              | MAJOR        | S3 ETCD endpoint healthy.            |
 | S3KVAddedEvent                          | INFO         | S3 Config Add Key.                   |
 | S3KVRemovedEvent                        | INFO         | S3 configuration remove key.         |
 | S3KVResetEvent                          | INFO         | S3 KV store configuration reset.     |
@@ -487,7 +489,7 @@ description: >-
 | S3ResetBucketILMRuleEvent               | INFO         | S3 reset bucket ILM rules.           |
 | S3SetBucketPolicyEvent                  | INFO         | S3 set bucket policy.                |
 | S3UnDrainEvent                          | INFO         | S3 container undrain.                |
-| S3UnhealthyEtcdEndpointEvent            | MAJOR        | S3 etcd endpoint is unhealthy.       |
+| S3UnhealthyEtcdEndpointEvent            | MAJOR        | The S3 ETCD endpoint is unhealthy.   |
 
 ### Security
 
@@ -498,7 +500,7 @@ description: >-
 | TLSSet      | INFO         | TLS was set.                                 |
 | TLSUnset    | INFO         | TLS was unset.                               |
 
-### SMB
+### Smb
 
 | **Type**                          | **Severity** | **Description**                        |
 | --------------------------------- | ------------ | -------------------------------------- |
@@ -524,28 +526,42 @@ description: >-
 
 ### System
 
-| **Type**                    | **Severity** | **Description**                                                      |
-| --------------------------- | ------------ | -------------------------------------------------------------------- |
-| BlockTaskAborted            | INFO         | The bucket task was aborted successfully.                            |
-| BlockTaskComplete           | INFO         | A bucket task was completed successfully.                            |
-| BucketsCreated              | INFO         | The system has created buckets.                                      |
-| ClusterTaskAborted          | INFO         | Cluster task aborted.                                                |
-| ClusterTaskAborting         | INFO         | Cluster task started aborting.                                       |
-| ClusterTaskPaused           | INFO         | Cluster task paused.                                                 |
-| ClusterTaskResumed          | INFO         | Cluster task resumed.                                                |
-| ClusterTasksCpuLimitUpdated | INFO         | Cluster tasks CPU limit set.                                         |
-| ClusterwideTaskChanged      | DEBUG        | The cluster-wide task has changed.                                   |
-| HaveEnoughSSDCapacity       | MINOR        | Sufficient SSD capacity exists for all the provisioned filesystems.  |
-| IOStarted                   | INFO         | The system has started.                                              |
-| IOStopped                   | INFO         | The system has stopped.                                              |
-| NotEnoughSSDCapacity        | CRITICAL     | WEKA requires more SSD capacity for all the provisioned filesystems. |
-| QOSConfigReset              | INFO         | QoS configuration reset.                                             |
-| QOSConfigSet                | INFO         | QoS configuration set.                                               |
-| StartIORequested            | INFO         | The user has requested to start the IO.                              |
-| StopIORequested             | INFO         | The user has requested to stop the IO.                               |
-| SystemInfoReport            | INFO         | The management process (node) started, reporting OS info.            |
-| ThreadPoolCanNotStartThread | MINOR        | The reactor's thread pool failed to start a thread.                  |
-| TooManyFibers               | MINOR        | Too many fiber allocations.                                          |
+| **Type**                       | **Severity** | **Description**                                                            |
+| ------------------------------ | ------------ | -------------------------------------------------------------------------- |
+| BlockTaskAborted               | INFO         | The bucket task was aborted successfully.                                  |
+| BlockTaskComplete              | INFO         | A bucket task was completed successfully.                                  |
+| BucketsCreated                 | INFO         | The system has created buckets.                                            |
+| ClusterTaskAborted             | INFO         | Cluster task aborted.                                                      |
+| ClusterTaskAborting            | INFO         | Cluster task started aborting.                                             |
+| ClusterTaskPaused              | INFO         | Cluster task paused.                                                       |
+| ClusterTaskResumed             | INFO         | Cluster task resumed.                                                      |
+| ClusterTasksCpuLimitUpdated    | INFO         | Cluster tasks CPU limit set.                                               |
+| ClusterwideTaskChanged         | DEBUG        | The cluster-wide task has changed.                                         |
+| DataServiceTaskFailedWithError | MINOR        | Data service task failure.                                                 |
+| DsShardViewChanged             | INFO         | There is a change in the data service shard view.                          |
+| HaveEnoughSSDCapacity          | MINOR        | Sufficient SSD capacity exists for all the provisioned filesystems.        |
+| IOStarted                      | INFO         | The system has started.                                                    |
+| IOStopped                      | INFO         | The system has stopped.                                                    |
+| NotEnoughSSDCapacity           | CRITICAL     | The system requires more SSD capacity for all the provisioned filesystems. |
+| QOSConfigReset                 | INFO         | QoS configuration reset.                                                   |
+| QOSConfigSet                   | INFO         | QoS configuration set.                                                     |
+| StartIORequested               | INFO         | The user has requested to start the IO.                                    |
+| StopIORequested                | INFO         | The user has requested to stop the IO.                                     |
+| SystemInfoReport               | INFO         | The management process (node) started, reporting OS info.                  |
+| ThreadPoolCanNotStartThread    | MINOR        | The reactor's thread pool failed to start a thread.                        |
+| TooManyFibers                  | MINOR        | Too many fiber allocations.                                                |
+
+### Telemetry
+
+| **Type**                           | **Severity** | **Description**                               |
+| ---------------------------------- | ------------ | --------------------------------------------- |
+| TelemetryExportAdded               | INFO         | Telemetry Export configuration change.        |
+| TelemetryExportDisabled            | INFO         | Telemetry export disabled.                    |
+| TelemetryExportEnabled             | INFO         | Telemetry export enabled.                     |
+| TelemetryExportRemoved             | INFO         | Telemetry export configuration change.        |
+| TelemetryExportUpdated             | INFO         | Telemetry export configuration change.        |
+| TelemetrySourcesAttachetToExport   | INFO         | Telemetry sources are attached to the export. |
+| TelemetrySourcesDetachedFromExport | INFO         | Telemetry sources detached From export.       |
 
 ### Traces
 
@@ -567,9 +583,11 @@ description: >-
 | ComputeUpgradeFinished      | INFO         | The compute containers upgrade has finished.      |
 | ComputeUpgradeInvoked       | INFO         | The compute containers upgrade has started.       |
 | ComputeUpgradeStarted       | INFO         | The compute containers upgrade has started.       |
+| DataservUpgradeFinished     | INFO         | The dataserv containers upgrade has finished.     |
+| DataservUpgradeStarted      | INFO         | The dataserv containers upgrade has started.      |
 | DrivesUpgradeFinished       | INFO         | The drives containers upgrade has finished.       |
 | DrivesUpgradeStarted        | INFO         | The drives containers upgrade has started.        |
-| ExternalUpgradeCancelled    | INFO         | The external upgrade has been cancelled.          |
+| ExternalUpgradeCancelled    | INFO         | The external upgrade has been canceled.           |
 | ExternalUpgradeFinished     | INFO         | The external upgrade has finished.                |
 | ExternalUpgradeStarting     | INFO         | An external upgrade has started.                  |
 | FinishedExternalHostUpgrade | INFO         | The external server (host) upgrade has finished.  |
@@ -584,16 +602,16 @@ description: >-
 
 | **Type**                         | **Severity** | **Description**                              |
 | -------------------------------- | ------------ | -------------------------------------------- |
-| AccessGroupsDisabled             | INFO         | Access groups are disabled.                  |
-| AccessGroupsEnabled              | INFO         | Access groups are enabled.                   |
-| LDAPAuthDisabled                 | INFO         | LDAP authentication is disabled.             |
-| LDAPAuthEnabled                  | INFO         | LDAP authentication is enabled.              |
-| LDAPConfigUpdated                | INFO         | LDAP configuration is updated.               |
+| AccessGroupsDisabled             | INFO         | Access groups disabled.                      |
+| AccessGroupsEnabled              | INFO         | Access groups enabled.                       |
+| LDAPAuthDisabled                 | INFO         | LDAP authentication disabled.                |
+| LDAPAuthEnabled                  | INFO         | LDAP authentication enabled.                 |
+| LDAPConfigUpdated                | INFO         | LDAP configuration updated.                  |
 | UserCreated                      | INFO         | The user is created.                         |
 | UserDeleted                      | INFO         | The user is deleted.                         |
-| UserLoggedIn                     | INFO         | The user is logged in.                       |
-| UserLoginFailed                  | INFO         | The user login is failed.                    |
-| UserLoginLocked                  | MINOR        | The user login is locked.                    |
+| UserLoggedIn                     | INFO         | User logged in.                              |
+| UserLoginFailed                  | INFO         | User login failed.                           |
+| UserLoginLocked                  | MINOR        | User login lockedl                           |
 | UserPasswordChangedByAnotherUser | INFO         | The administrator changed the user password. |
 | UserPasswordChanged              | INFO         | The user changed the password.               |
 | UserRoleChanged                  | INFO         | The user role is changed.                    |
