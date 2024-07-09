@@ -15,6 +15,10 @@ The WSA generally works like any OS install disk (Linux/Windows).
 
 <figure><img src="../../.gitbook/assets/WSA_overview.png" alt=""><figcaption><p>WEKA cluster installation using the WSA</p></figcaption></figure>
 
+{% hint style="warning" %}
+Do not attempt to install the WSA using PXE boot. The WSA has a specific kickstart methodology only compatible with WMS or manual boot from ISO.&#x20;
+{% endhint %}
+
 ## WSA deployment prerequisites
 
 A physical server that meets the following requirements:

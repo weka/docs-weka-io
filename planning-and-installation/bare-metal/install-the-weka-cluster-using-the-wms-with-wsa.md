@@ -16,7 +16,7 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
 * **Minimum boot drive capacity:**
   * If not configuring LWH: SSD 125 GiB.
   * If configuring LWH: See the SSD-backed storage requirements section in [#1.-verify-prerequisites](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
-* **Boot type:** UEFI boot.
+* **Boot type:** UEFI boot.&#x20;
 * **Cores and RAM:**
   * If not configuring LWH: minimum 4 cores and 16 GiB.
   * If configuring LWH, see the Server minimum CPU and RAM requirements section in [#1.-verify-prerequisites](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
@@ -32,6 +32,7 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
 * All the servers' dataplane[^5] interfaces must be connected to the switches.
 * The bare metal servers must conform to the [prerequisites-and-compatibility.md](../prerequisites-and-compatibility.md "mention").
 * The bare metal servers must have an OS management network interface for administering the servers.
+* The boot type must be set to UEFI boot.
 
 {% hint style="success" %}
 For cluster configurations exceeding 25 servers, it’s advisable to equip the WMS with an ETH interface of superior speed, such as 10/25/50 Gbps, during the installation phase. As an alternative, you could bond two or more 1 Gbps interfaces to increase the bandwidth. Once the installation phase is completed, a bandwidth of 1 Gbps is sufficient.
@@ -54,7 +55,7 @@ Before deploying the WMS, adhere to the following:
 1. [Install the WMS](install-the-weka-cluster-using-the-wms-with-wsa.md#1.-install-the-wms)
 2. [Configure the WMS](install-the-weka-cluster-using-the-wms-with-wsa.md#2.-configure-the-wms)
 3. [Add the WSA package to the WMS](install-the-weka-cluster-using-the-wms-with-wsa.md#3.-add-the-wsa-package-to-the-wms)
-4. [Install a WEKA Cluster](install-the-weka-cluster-using-the-wms-with-wsa.md#4.-install-a-weka-cluster)
+4. [Install a WEKA Cluster](install-the-weka-cluster-using-the-wms-with-wsa.md#id-4.-install-a-weka-cluster)
 
 ### 1. Install the WMS
 
@@ -154,8 +155,6 @@ The WSA packages that appear in the list are taken from `/home/weka`. You can ha
 
        Drag or click to upload the CSV file, and click **Next**.
 
-       The WMS skips to **Step 9 - Prepare ISO for installation**.
-
 <figure><img src="../../.gitbook/assets/WSA_step3.png" alt="" width="563"><figcaption></figcaption></figure>
 
 **CSV template example**
@@ -177,6 +176,8 @@ IPMI_IP,Username,Password,OS_Mgmt_IP,Hostname,OS_Netmask,OS_Gateway,MTU,DNS,Host
 4. In **Step 4 - Number of servers to display**, enter a Server Count (default is 8), and click **Next**.
 
 <figure><img src="../../.gitbook/assets/WSA_step4.png" alt="" width="563"><figcaption></figcaption></figure>
+
+In the following steps, if you uploaded a CSV file, the data is pre-populated. You can review the data and if no editing is necessary, select **Next**.
 
 5. In **Step 5 - IPMI information**, do the following:
    * In the **IPMI First IP**, enter the IPMI IP address of the first server. It requires a consecutive set of IP addresses for the servers (typical).
