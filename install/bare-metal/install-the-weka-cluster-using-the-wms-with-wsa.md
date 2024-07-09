@@ -22,13 +22,21 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
   * If configuring LWH, see the Server minimum CPU and RAM requirements section in [#1.-verify-prerequisites](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
 * **Network interface:** 1 Gbps.
 
-### Prerequisites for the target bare metal servers&#x20;
+### Prerequisites for the target bare metal servers
 
-* Target servers must be **Dell, HPE,** **Lenovo** or **Supermicro**. Other servers are not supported.
-* The RedFish interface must be installed, enabled, and licensed for all target servers. (RedFish is a network standard API for managing servers, networks, storage devices, and more.)
-* The WMS must be able to connect over Ethernet to the servers’ IPMI/iDRAC/iLO interface and the management interface.
+* Target servers must be **Dell, HPE,** **Supermicro,** or **Lenovo**. Other servers are not supported.
+* The RedFish[^1] interface must be installed, enabled, and licensed for all target servers.
+* The WMS must be able to connect over Ethernet to the following servers’ interfaces:
+  * OS management interface, typically 1 Gbps. It must be connected to a switch.
+  * Base Management Controller (BMC), such as IPMI[^2], iDRAC[^3], or iLO[^4] interfaces. The BMC interface must be configured with an IP address.&#x20;
+* All the servers' dataplane[^5] interfaces must be connected to the switches.
 * The bare metal servers must conform to the [prerequisites-and-compatibility.md](../prerequisites-and-compatibility.md "mention").
-* The bare metal servers must have an OS management network interface for administering the servers using DHCP.
+* The bare metal servers must have an OS management network interface for administering the servers.
+* The boot type must be set to UEFI boot.
+
+{% hint style="success" %}
+For cluster configurations exceeding 25 servers, it’s advisable to equip the WMS with an ETH interface of superior speed, such as 10/25/50 Gbps, during the installation phase. As an alternative, you could bond two or more 1 Gbps interfaces to increase the bandwidth. Once the installation phase is completed, a bandwidth of 1 Gbps is sufficient.
+{% endhint %}
 
 ## Before you begin
 
@@ -147,8 +155,6 @@ The WSA packages that appear in the list are taken from `/home/weka`. You can ha
 
        Drag or click to upload the CSV file, and click **Next**.
 
-       The WMS skips to **Step 9 - Prepare ISO for installation**.
-
 <figure><img src="../../.gitbook/assets/WSA_step3.png" alt="" width="563"><figcaption></figcaption></figure>
 
 **CSV template example**
@@ -170,6 +176,8 @@ IPMI_IP,Username,Password,OS_Mgmt_IP,Hostname,OS_Netmask,OS_Gateway,MTU,DNS,Host
 4. In **Step 4 - Number of servers to display**, enter a Server Count (default is 8), and click **Next**.
 
 <figure><img src="../../.gitbook/assets/WSA_step4.png" alt="" width="563"><figcaption></figcaption></figure>
+
+In the following steps, if you uploaded a CSV file, the data is pre-populated. You can review the data and if no editing is necessary, select **Next**.
 
 5. In **Step 5 - IPMI information**, do the following:
    * In the **IPMI First IP**, enter the IPMI IP address of the first server. It requires a consecutive set of IP addresses for the servers (typical).
@@ -275,3 +283,13 @@ Last login: Sat Jun  3 10:31:28 2023 from ::ffff:10.41.193.86
 ## What to do next?
 
 [configure-the-weka-cluster-using-the-weka-configurator.md](configure-the-weka-cluster-using-the-weka-configurator.md "mention")
+
+[^1]: RedFish is a standardized API used for the administration of servers, networks, storage devices, among other components.
+
+[^2]: **IPMI (Intelligent Platform Management Interface)**: A set of specifications for monitoring and managing computer systems independently of the host system. Key features include out-of-band management, monitoring and supervision, inventory management, and remote installation.
+
+[^3]: **iDRAC (Integrated Dell Remote Access Controller)**: A Dell feature for secure local and remote server management. Key features include telemetry streaming, scalable automation, secure management, and streamlined support. It also offers a virtual console for remote system control.
+
+[^4]: **iLO (Integrated Lights-Out)**: A proprietary technology by HPE for remote control access to ProLiant servers. Key features include out-of-band management, monitoring and supervision, inventory management, and remote installation.
+
+[^5]: In the context of WEKA, the dataplane refers to the high-speed network infrastructure that facilitates I/O operations.

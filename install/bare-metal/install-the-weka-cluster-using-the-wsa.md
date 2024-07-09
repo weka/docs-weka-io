@@ -15,6 +15,10 @@ The WSA generally works like any OS install disk (Linux/Windows).
 
 <figure><img src="../../.gitbook/assets/WSA_overview.png" alt=""><figcaption><p>WEKA cluster installation using the WSA</p></figcaption></figure>
 
+{% hint style="warning" %}
+Do not attempt to install the WSA using PXE boot. The WSA has a specific kickstart methodology only compatible with WMS or manual boot from ISO.&#x20;
+{% endhint %}
+
 ## WSA deployment prerequisites
 
 A physical server that meets the following requirements:
@@ -40,9 +44,9 @@ Before deploying the WSA, adhere to the following:
 ## WSA deployment workflow
 
 1. [Install the WSA](install-the-weka-cluster-using-the-wsa.md#1.-install-the-wsa)
-2. [Configure the WSA](install-the-weka-cluster-using-the-wsa.md#2.-configure-the-wsa)
-3. [Test the environment](install-the-weka-cluster-using-the-wsa.md#3.-test-the-environment)
-4. [Validate the WEKA software installation](install-the-weka-cluster-using-the-wsa.md#4.-validate-the-weka-software-installation)
+2. [Configure the WSA](install-the-weka-cluster-using-the-wsa.md#id-2.-configure-the-wsa)
+3. [Test the environment](install-the-weka-cluster-using-the-wsa.md#id-3.-test-the-environment)
+4. [Validate the WEKA software installation](install-the-weka-cluster-using-the-wsa.md#id-4.-validate-the-weka-software-installation)
 
 ### 1. Install the WSA
 
