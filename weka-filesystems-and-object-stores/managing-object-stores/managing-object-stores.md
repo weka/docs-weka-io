@@ -17,7 +17,7 @@ Using the GUI, you can perform the following actions:
 
 Object store buckets can reside in different physical object stores. To achieve good QoS between the buckets, WEKA requires mapping the buckets to the physical object store.
 
-You can edit the default local and remote object stores to meet your connection demands. When you add an object store bucket, you apply the relevant object store on the bucket.
+You can edit the default local and remote object stores to meet your connection demands. When you add an object store bucket, you apply the relevant object store to it.
 
 Editing the default object store provides you with the following additional advantages:
 
@@ -30,7 +30,7 @@ Editing the default object store provides you with the following additional adva
 
 1. From the menu, select **Manage > Object Stores**.
 2. On the left, select the pencil icon near the default object store you want to edit.
-3. On the **Edit Object Store** dialog, select the type of object store and update the relevant parameters. Select one of the following tabs according to the object store type you choose.\
+3. On the **Edit Object Store** dialog, select the type of object store, and update the relevant parameters. Select one of the following tabs according to the object store type you choose.\
    For details, see the parameter descriptions in the [Add an object store bucket](managing-object-stores.md#add-an-object-store-bucket) topic.
 
 {% tabs %}
@@ -128,7 +128,7 @@ Set the following:
 4. **Auth Method:** Select the authentication method to connect to the bucket.
 5. **Access Key and Secret Key:** Set the the Access Key and Secret Key of the user granted with read/write access to the bucket.
 
-<figure><img src="../../.gitbook/assets/wmng_obs_on_azure (3).png" alt=""><figcaption><p>Azure S3 bucket creation</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_obs_on_azure (1).png" alt=""><figcaption><p>Azure S3 bucket creation</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
