@@ -42,7 +42,7 @@ Follow the steps below to find the correct Azure Subscription.
 
 Navigate to the Microsoft Azure Portal. In the search bar, search for “subscriptions.” Select the “Subscriptions” service.
 
-<figure><img src="../../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
 On the Subscriptions service page, identify the subscription you wish to use for deploying WEKA.
 
@@ -50,7 +50,7 @@ On the Subscriptions service page, identify the subscription you wish to use for
 Please understand the AWS subscription structure for your environment before deploying.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
 
 ### User Account Privileges
 
@@ -64,19 +64,19 @@ Follow the steps below to verify user privileges assignment.
 
 Navigate to the Azure Portal. Login using the account which will be used for the entirety of the WEKA deployment. Once in the Portal, search for “users” in the search bar and then select “Users” from the search bar drop down.
 
-<figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
 
 Search for the intended user by typing part of the username into the search box. Once the desired user appears, select the username.
 
-<figure><img src="../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
 
 Once on the user page, select “Azure Role Assignments.”
 
-<figure><img src="../../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
 
 Next, view the Role Assignments to ensure the user has the proper permissions / roles. Confirm that the user is an “Owner” or “Contributor” for the Subscription you wish to use for deployment of WEKA in Azure.
 
-<figure><img src="../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
 
 Now that you’ve confirmed the proper user permissions, it’s time to confirm sufficient resource quotas.
 
@@ -92,27 +92,27 @@ Follow the steps below to ensure sufficient quotas are set.
 
 In the Azure Portal, search for “quotas” in the search bar, and select “Quotas” from the drop down menu.
 
-<figure><img src="../../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
 
 Once on the quotas page, select “Compute.”
 
-<figure><img src="../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
 
 In the search bar, search for the instance family or specific instance for which you’d like to set or check quota. In this example, the instance type `Dsv5` has been used.
 
-<figure><img src="../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
 
 Check the box next to the desired instance type, then select the dropdown menu labeled “Request quota increase.” Then, select “Enter a new limit.”
 
-<figure><img src="../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
 
 In the “Request quota increase” blade, enter the desired number of vCPUs to allocate to the instance type or family in question. In this example, we’ll be asking for a new vCPU quota of 150 for the Standard `Dsv5` family of instances. Click “submit.”
 
-<figure><img src="../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
 
 Most quota increase requests are approved in real-time, and there is no interaction with Azure support required. If the requested quota increase is for a particularly expensive or specialized instance, or a large number of vCPUs have been requested, it’s possible the request will be denied and Azure support will need to be contacted. The example below shows a successful request for vCPU increase.
 
-<figure><img src="../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
 
 Be sure to set quota for any and all instances that will be used as part of the deployment or POC. As documented in the [docs.weka.io supported virtual machine types](https://docs.weka.io/install/weka-installation-on-azure/supported-virtual-machine-types) page, WEKA backends are deployed on `Lsv3` series instances. Reference the link above for a complete listing of the `Lsv3` instance sizes available for use. Quota will need to be set for the `Lsv3` instance family along with whichever instance family will be used for WEKA clients.
 
@@ -142,11 +142,11 @@ Follow the steps below to create a resource group.
 
 In the Azure Portal, search for “resource group” in the search box. Select “Resource groups.”
 
-<figure><img src="../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
 
 On the Resource groups page, select “Create.”
 
-<figure><img src="../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
 
 On the Create resource group page, enter the relevant details. Be sure to select the correct subscription and region into which you wish to deploy the WEKA resources. When finished, click “Review + create.”
 
@@ -154,15 +154,15 @@ On the Create resource group page, enter the relevant details. Be sure to select
 Once a resource group has been named, it cannot be renamed at a later point in time. Keep this in mind when selecting a naming convention.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (45).png" alt=""><figcaption></figcaption></figure>
 
 Confirm creation by clicking “Create.”
 
-<figure><img src="../../.gitbook/assets/image (45).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure>
 
 Review the newly created resource group.
 
-<figure><img src="../../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
 
 ### VNets
 
@@ -178,27 +178,27 @@ Follow the instructions below to create an Azure VNet and subnet.
 
 In the Azure Portal, search for “virtual networks” in the search bar. Select “Virtual networks.”
 
-<figure><img src="../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
 
 On the Virtual networks page, select “Create.”
 
-<figure><img src="../../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
 
 On the “Create virtual network” page, enter the desired configuration details for the VNet. Select the proper subscription along with the resource group created in the prior step. Specify a VNet name and region, then select “Next: IP Addresses.”
 
-<figure><img src="../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
 
 In the “IP Addresses” section, specify the relevant IP address space information. The wizard pre-populates IP address space, and also pre-populates a “default” subnet configuration. The pre-populated information can be changed to suit organizational preferences or requirements. When finished, select “Review + create.”
 
-<figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
 
 Confirm creation by selecting “Create” on the next screen.
 
-<figure><img src="../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
 
 When creation is complete, a confirmation page will be presented. Review the newly created VNet.
 
-<figure><img src="../../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (53).png" alt=""><figcaption></figcaption></figure>
 
 ### Network Security Groups
 
@@ -214,23 +214,23 @@ Follow the instructions below to create a Network Security Group.
 
 In the Azure Portal, type “network security group” in the search bar. Select “Network security groups.”
 
-<figure><img src="../../.gitbook/assets/image (53).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
 
 On the “Network security groups” page, select “Create.”
 
-<figure><img src="../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
 
 On the “Create network security group” page, enter the relevant environmental information. Be sure to select the correct subscription, and use the resource group previously created. Keep the region consistent with the other resources that have been created. Select “Review + create” when finished.
 
-<figure><img src="../../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (56).png" alt=""><figcaption></figcaption></figure>
 
 Confirm creation by clicking “Create” on the next screen.
 
-<figure><img src="../../.gitbook/assets/image (56).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
 
 When creation is complete, a confirmation page will be presented. Review the newly created Network Security Group.
 
-<figure><img src="../../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
 
 #### Associating a Security Group with a Subnet
 
@@ -240,27 +240,27 @@ Follow the instructions below to associate the NSG with a subnet.
 
 Navigate to the “Virtual networks” page by searching for “virtual networks” from the portal search bar.
 
-<figure><img src="../../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
 
 Select the relevant virtual network from the list presented.
 
-<figure><img src="../../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
 
 From the selected virtual network configuration screen, select “Subnets” in the left-hand column.
 
-<figure><img src="../../.gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (61).png" alt=""><figcaption></figcaption></figure>
 
 Select the relevant subnet - in this example, the default subnet will be selected.
 
-<figure><img src="../../.gitbook/assets/image (61).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
 
 From the subnet configuration screen, locate the “Network security group” drop down. Select the previously created network security group.
 
-<figure><img src="../../.gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
 
 Confirm the proper NSG selection, then select “Save.”
 
-<figure><img src="../../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
 
 ### NAT Gateways
 
@@ -282,35 +282,35 @@ Follow the instructions below to create and associate a NAT Gateway.
 
 In the Azure Portal, search for “nat” in the search bar. Select “NAT gateways.”
 
-<figure><img src="../../.gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>
 
 On the “NAT gateways” page, select “Create.”
 
-<figure><img src="../../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (66).png" alt=""><figcaption></figcaption></figure>
 
 On the “Create network address translation (NAT) gateway” page, enter the relevant environmental variables. Use the correct subscription and select the resource group created earlier in this document. Specify a name and region, and select “Next: Outbound IP.”
 
-<figure><img src="../../.gitbook/assets/image (66).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (67).png" alt=""><figcaption></figcaption></figure>
 
 In the “Outbound IP” section, select “Create a new public IP address.” In the resulting “Add a public IP” entry box, enter a name for the public IP address and select “OK.”
 
-<figure><img src="../../.gitbook/assets/image (67).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (68).png" alt=""><figcaption></figcaption></figure>
 
 Confirm the “Public IP address” dropdown reflects the name just provided. Select “Next: Subnet.”
 
-<figure><img src="../../.gitbook/assets/image (68).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
 
 In the “Subnet” section, select the VNet and subnet previously created in this guide. Select “Review + create.”
 
-<figure><img src="../../.gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
 
 Confirm creation by clicking “Create.”
 
-<figure><img src="../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (71).png" alt=""><figcaption></figcaption></figure>
 
 When creation is complete, a confirmation page will be presented. Review the newly created NAT Gateway.
 
-<figure><img src="../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
 
 ## Terraform Preparation and Installation
 
@@ -336,23 +336,23 @@ In a web browser, visit [https://brew.sh](http://www.brew.sh) and copy the bash 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-<figure><img src="../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (74).png" alt=""><figcaption></figcaption></figure>
 
 Open a terminal window, and paste the the Homebrew installation bash script at the terminal prompt.
 
-<figure><img src="../../.gitbook/assets/image (74).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
 
 The bash script downloads the Homebrew packages and requests permission to install. Press “return” to install.
 
-<figure><img src="../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (76).png" alt=""><figcaption></figcaption></figure>
 
 The installation completes. Take note of the information pertaining to adding Homebrew to your PATH. Without Homebrew in your PATH, it won’t be possible to run Homebrew in directories outside of Homebrew’s install directory.
 
-<figure><img src="../../.gitbook/assets/image (76).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
 
 Copy the command supplied under “Next steps” and run it. The screenshot below shows two outcomes when running `brew --version`. The red box shows the outcome when running `brew` commands outside the Homebrew install directory when Homebrew has not been added to your PATH. The purple box shows the outcome when running `brew` commands outside the install directory after adding Homebrew to your PATH using the provided command. Only after adding Homebrew to the PATH did `brew --version` execute correctly.
 
-<figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
 
 Homebrew has now been successfully installed.
 
@@ -362,15 +362,15 @@ Terraform leverages Go during its operation. The minimum required version of Go 
 
 Navigate to [https://go.dev/dl](https://go.dev/dl) and select the correct Mac download package for your machine. If your machine is Intel-based, select “x86-64.” If your machine is Apple Silicon based (M1, M2), select “ARM64.”
 
-<figure><img src="../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (79).png" alt=""><figcaption></figcaption></figure>
 
 The installation package downloads as a standard Mac `.pkg` file. Execute the file once downloaded, and proceed through the install wizard.
 
-<figure><img src="../../.gitbook/assets/image (79).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (80).png" alt=""><figcaption></figcaption></figure>
 
 Confirm the successful install of Go by opening a terminal window and executing `go version` at the prompt. If Go has been installed correctly, the version of Go installed should be returned.
 
-<figure><img src="../../.gitbook/assets/image (80).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (81).png" alt=""><figcaption></figcaption></figure>
 
 The package installs the Go distribution to /usr/local/go. The package should put the /usr/local/go/bin directory in your PATH environment variable and therefore, unlike Homebrew, you should not have to add it to your PATH manually. You may need to restart any open Terminal sessions for the change to take effect.
 
@@ -380,15 +380,15 @@ Terraform passes commands to Azure by leveraging the AzureCLI. It is recommended
 
 Open a terminal window, and use Homebrew to install AzureCLI by typing `brew update && brew install azure-cli` at the prompt.
 
-<figure><img src="../../.gitbook/assets/image (81).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
 AzureCLI will now install.
 
-<figure><img src="../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
 
 Successful installation can be confirmed by running `az version` at the prompt. A value similar to below should be returned.
 
-<figure><img src="../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
 
 ### Installing Terraform on Mac
 
@@ -396,15 +396,15 @@ At a minimum, version 1.3.7 needs to be used when using Terraform to deploy WEKA
 
 Begin by opening a terminal window and executing `brew tap hashicorp/tap` at the prompt. This adds the HashiCorp repository to Homebrew.
 
-<figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (85).png" alt=""><figcaption></figcaption></figure>
 
 Install Terraform via Homebrew by executing `brew install hashicorp/tap/terraform` at the prompt.
 
-<figure><img src="../../.gitbook/assets/image (85).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
 
 Confirm successful installation of Terraform by running `terraform --version`. If the installation has completed successfully, it should look similar to the output below. If your Mac is Intel-based, it will reflect darwin\_amd64.
 
-<figure><img src="../../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
 
 ## Running Terraform and Deploying WEKA in Azure
 
@@ -424,19 +424,19 @@ Perform the following steps to authenticate the user.
 
 Open a terminal session and issue the command `az login`.
 
-<figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
 
 A web browser will automatically be opened, and the user will be instructed to select an account for authentication. Select the user or enter the user’s credentials.
 
-<figure><img src="../../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
 
 Upon successful authentication, the user will be informed that the login was successful. The user can now return to the terminal session.
 
-<figure><img src="../../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (90).png" alt=""><figcaption></figcaption></figure>
 
 Upon returning to the terminal, the user will see an output reflecting the authentication status of AzureCLI.
 
-<figure><img src="../../.gitbook/assets/image (90).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (91).png" alt=""><figcaption></figcaption></figure>
 
 ### Locate the User’s get.weka.io Token
 
@@ -446,11 +446,11 @@ To find the user’s get.weka.io token, follow the instructions below.
 
 In a web browser, navigate to get.weka.io and select the user’s name in the upper righthand corner of the page.
 
-<figure><img src="../../.gitbook/assets/image (91).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (92).png" alt=""><figcaption></figcaption></figure>
 
 From the column on the lefthand side of the page, select “API Tokens.” The user’s API token is presented on the screen. The API token will be used later in the install process.
 
-<figure><img src="../../.gitbook/assets/image (92).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (93).png" alt=""><figcaption></figcaption></figure>
 
 ### Obtaining the Terraform Essentials Package
 
@@ -460,7 +460,7 @@ Follow the instructions below to obtain the `terraform-azure-weka-essential` ter
 
 Navigate to the `terraform-azure-weka-essential` GitHub repo, which can be found at [https://github.com/weka/terraform-azure-weka-essential](https://github.com/weka/terraform-azure-weka-essential). On the righthand side of the page, the latest GA code release is shown. Click the current release (v1.0.3 as of this writing) to review download options.
 
-<figure><img src="../../.gitbook/assets/image (93).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (94).png" alt=""><figcaption></figcaption></figure>
 
 The tagged release page shows the release version, the features / changes added since the previous release, and the assets the release contains. The terraform package can be downloaded in either zip or tar format. Select zip to download the code.
 
@@ -468,11 +468,11 @@ The tagged release page shows the release version, the features / changes added 
 In the upper lefthand corner of the page, there’s a link to “releases.” Clicking on “releases” will load the full tagged release history for viewing and download, though it is recommended to always use the most recent release.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (94).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (95).png" alt=""><figcaption></figcaption></figure>
 
 Once downloaded, extract the terraform code into your preferred working directory.
 
-<figure><img src="../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (97).png" alt=""><figcaption></figcaption></figure>
 
 ### Deploying WEKA in Azure with Terraform - existing\_network example
 
@@ -492,15 +492,15 @@ Follow the instructions below to deploy WEKA.
 
 In the newly unzipped parent `terraform-azure-weka-essential` directory, navigate to `examples`.
 
-<figure><img src="../../.gitbook/assets/image (97).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
 
 Navigate to `existing_network`.
 
-<figure><img src="../../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
 
 Locate the `main.tf` file.
 
-<figure><img src="../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (100).png" alt=""><figcaption></figcaption></figure>
 
 Open the `[main.tf](http://main.tf)` using your choice of code editor. Some code editors, such as PyCharm or Microsoft VS Code, have terraform plugins that highlight the syntax in a helpful manner which is useful when editing. Review the input variables contained in `main.tf` by default.
 
@@ -518,7 +518,7 @@ The default input variables are broken down below.
   subnet            = "essential-subnet" #azure subnet name (to be pre-created in Azure by the user, Terraform will use it for placement of networking resources.)
 ```
 
-<figure><img src="../../.gitbook/assets/image (100).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (101).png" alt=""><figcaption></figcaption></figure>
 
 Populate the `main.tf` in accordance with the objectives of the deployment. In the `main.tf` shown below, the default input variable values have been changed to reflect the Azure resources (resource group, vnet, subnet) created earlier in this document. Additionally, three optional input variables have been added to customize this deployment to maintain the objective of simulating a customer POC deployment. The light purple bracket shows the added variables. The dark purple bracket shows the variables that should be customized prior to deployment. Save the file after modifying.
 
@@ -539,7 +539,7 @@ Remember, the complete list of input variables and usage instructions can be fou
 The \`subscription\_id\` is tied to the same subscription identified in the section.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (101).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (102).png" alt=""><figcaption></figcaption></figure>
 
 #### Terraform Init, Plan, and Apply
 
@@ -551,19 +551,19 @@ In this phase of the deployment, terraform will begin deploying resources. Three
 
 In a terminal window, navigate to the same `existing_network` directory containing the `main.tf` file modified in the steps above.
 
-<figure><img src="../../.gitbook/assets/image (102).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (103).png" alt=""><figcaption></figcaption></figure>
 
 Verify the changes made to the `main.tf` file in the previous step were saved correctly, but running `cat main.tf`. Review the contents of the printed file for any errors.
 
-<figure><img src="../../.gitbook/assets/image (103).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (104).png" alt=""><figcaption></figcaption></figure>
 
 Initialize terraform by running `terraform init`. The required providers will be downloaded and configured.
 
-<figure><img src="../../.gitbook/assets/image (104).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (105).png" alt=""><figcaption></figcaption></figure>
 
 Run `terraform plan` to perform a quick “dry run” of the deployment. `plan` usually catches most configuration issues before running the final `apply` command, and is generally a good idea to run. If there are no errors presented by `terraform plan`, the user can have a high level of confidence that `terraform apply` will run successfully. A successful `plan` run is indicated by a lack of red error outputs and the presence of green “+” symbols next to the resources being created. Look for an output similar to below for confirmation of a successful `plan`.
 
-<figure><img src="../../.gitbook/assets/image (105).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (106).png" alt=""><figcaption></figcaption></figure>
 
 Finally, initiate the deployment of Weka in Azure by running `terraform apply`. `apply` executes the creation of Azure resources necessary to run WEKA. Confirm deployment of resources by typing `yes` at the prompt.
 
@@ -571,15 +571,15 @@ Finally, initiate the deployment of Weka in Azure by running `terraform apply`. 
 Take note of the local directory where Terraform will store the SSH private key associated with the created resources. It will be required for accessing the deployed resources via SSH. Also take note of the SSH username.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (106).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
 
 The terraform deployment process begins. Text similar to the output shown below will begin to scroll up the terminal window.
 
-<figure><img src="../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (108).png" alt=""><figcaption></figcaption></figure>
 
 When the terraform Azure resource deployment process successfully completes, an output similar to below will be shown. Take note of the deployed WEKA backend IPs as well as the deployed client IPs, if clients were configured as part of the initial terraform `main.tf` file. As a reminder, again take note of the SSH private key path and the SSH user name.
 
-<figure><img src="../../.gitbook/assets/image (108).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (109).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 It is important to note that once Terraform has finished deploying Azure resources, WEKA has not finished deploying. Terraform deploys the Azure infrastructure resources necessary to run WEKA, but that is not the final step in a WEKA in Azure deployment. Once Terraform completes resource deployment, \`cloud init\` scripts kick off the installation of WEKA software and finalize clusterization.
@@ -597,7 +597,7 @@ Follow the instructions below to locate the SSH private key and SCP it to the Az
 
 Navigate to the `/tmp/` directory.
 
-<figure><img src="../../.gitbook/assets/image (109).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
 
 Locate both the public (.pub) and private (.pem) key files.
 
@@ -605,7 +605,7 @@ Use SCP to transfer the private key (.pem) file from the local machine’s `/tmp
 
 `azureuser` is the default user account created when creating a new virtual machine instance in Azure. It is recommended to keep this default. The first path highlighted in green is the path to the private key for your Azure jump box. The second path is for the private key for the newly created WEKA cluster you’d like to transfer to the Azure jump box. The IP address should be changed to the Azure public IP of your jump box. The WEKA cluster private key should be transferred to the `.ssh` directory in the default azureuser’s home directory on the jump box.
 
-<figure><img src="../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (111).png" alt=""><figcaption></figcaption></figure>
 
 If the command has been configured correctly, an output similar to below should be printed to the terminal upon completion of private key transfer.
 
@@ -621,7 +621,7 @@ Navigate to Virtual Machines in the Azure portal. Locate the virtual machine ins
 
 Identify the local network IP address of the `clusterizing` instance’s management interface. Take note of the IP address, as it will be used in the next step.
 
-<figure><img src="../../.gitbook/assets/image (111).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (112).png" alt=""><figcaption></figcaption></figure>
 
 SSH to the Azure linux jump box using the applicable private key and public IP address. This private key is **not** the WEKA cluster SSH private key saved to the `/tmp/` directory by terraform. The jump box private key would’ve been specified or created and downloaded at the time the jump box was manually created in the Azure portal.
 
@@ -631,23 +631,23 @@ Once connected to the jump box, use the local IP address of the `clusterizing` i
 The \`clusterizing\` instance will always be the last node of the cluster. For instance, if a 6 node cluster is deployed, the instances will have suffixes \`0-5\`. Instance \`5\` will be the \`clusterizing\` instance. If an 18 node cluster is deployed, the instances will have suffixes \`0-17\`. Instance \`17\` will be the \`clusterizing\` instance.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (112).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (113).png" alt=""><figcaption></figcaption></figure>
 
 Once connected to the `clusterizing` instance, navigate to the `/var/log` directory. Locate the `cloud-init-output.log` file highlighted in purple. Run the command `tail -f cloud-init-output.log` to tail the logfile to check the status of the deployment. In the example below, the `tail` command was run while WEKA binaries were being downloaded from `get.weka.io`.
 
-<figure><img src="../../.gitbook/assets/image (113).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (114).png" alt=""><figcaption></figcaption></figure>
 
 The WEKA containers are being configured as the WEKA installation continues.
 
-<figure><img src="../../.gitbook/assets/image (114).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (115).png" alt=""><figcaption></figcaption></figure>
 
 The install script will start-io. At this point, i-nodes and WEKA buckets will begin coming online.
 
-<figure><img src="../../.gitbook/assets/image (115).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (116).png" alt=""><figcaption></figcaption></figure>
 
 Finally, the file system group `default` and file system `default` will be created. The date and time of cluster creation completion will be printed in UTC. The number of seconds required to perform clusterization is printed. This signifies that the WEKA installation and clusterization processes are complete.
 
-<figure><img src="../../.gitbook/assets/image (116).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (117).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Stay logged into \`backend-5\` for the next section.
@@ -663,11 +663,11 @@ Note the \`status\`, \`protection\`, and \`io status\`.
 
 When the terraform `main.tf` file was configured for this deployment, two clients were specified for deployment in addition to the WEKA cluster backend members. Note that when `weka status` is initially run immediately following `cloud-init` script completion, those clients aren’t acknowledged. Note the entry for `clients: 0 connected`. **This is expected behavior**, as the clients are the last components to initialize. Depending on the number of clients deployed, 15 minutes can elapse before all clients are registered.
 
-<figure><img src="../../.gitbook/assets/image (117).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (118).png" alt=""><figcaption></figcaption></figure>
 
 Below, it can be seen that the two clients are successfully connected to the cluster three minutes after cluster io starts.
 
-<figure><img src="../../.gitbook/assets/image (118).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (119).png" alt=""><figcaption></figcaption></figure>
 
 #### WEKA GUI Login and Review
 
@@ -677,27 +677,27 @@ In the examples below, a Windows 10 instance with a public IP address was deploy
 
 Open a browser in the Windows 10 jump box and visit `https://<cluster-backend-ip>:14000`. The WEKA GUI login screen should appear. After changing the default password, login.
 
-<figure><img src="../../.gitbook/assets/image (119).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (120).png" alt=""><figcaption></figcaption></figure>
 
 View the cluster GUI home screen.
 
-<figure><img src="../../.gitbook/assets/image (120).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
 
 Review the cluster backends.
 
-<figure><img src="../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (122).png" alt=""><figcaption></figcaption></figure>
 
 Review the clients attached to the cluster as part of the terraform deployment process.
 
-<figure><img src="../../.gitbook/assets/image (122).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (123).png" alt=""><figcaption></figcaption></figure>
 
 Review the file system `default` created as part of the terraform deployment process.
 
-<figure><img src="../../.gitbook/assets/image (125).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
 
 In the Azure portal Virtual Machines page, view the WEKA cluster instance resources.
 
-<figure><img src="../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (125).png" alt=""><figcaption></figcaption></figure>
 
 ## Running Terraform and Deploying WEKA in Azure using Terraform Advanced
 
@@ -738,7 +738,7 @@ Deploying WEKA using the Terraform Registry makes it easy to stay up to date wit
 
 After arriving at the WEKA Namespace page on the Terraform Registry, select the “weka / weka” module.
 
-<figure><img src="../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (127).png" alt=""><figcaption></figcaption></figure>
 
 The “weka / weka” module page contains a wealth of resources and information, some of which will be covered in this guide. There are several sections to the module page, as shown below.
 
@@ -752,13 +752,13 @@ The `Dependencies` tab outlines the provider dependencies that will be installed
 
 The `Resources` tab outlines all of the Azure resources that the module may or may not create, depending upon user input variable selection.
 
-<figure><img src="../../.gitbook/assets/image (127).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
 
 To download the `main.tf` file and get started, click the “Examples” drop down and select the deployment type relevant to the situation. For this guide, the `public_network` example will be used as a starting point, though we’ll modify it to demonstrate deployment of WEKA into an existing public network rather than having Terraform Advanced create the vnet and subnet.
 
 On the following page, select the GitHub source code link.
 
-<figure><img src="../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
 
 On the GitHub page, click the `main.tf` link to open the `public_network` example.
 
@@ -766,7 +766,7 @@ On the GitHub page, click the `main.tf` link to open the `public_network` exampl
 Keep in mind that an example is just that - an example. It provides a starting place to begin assembling the variables specific to your deployment and environment. Examples should not be used “as is” with the expectation that it will have the expected outcome.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (130).png" alt=""><figcaption></figcaption></figure>
 
 Click the “download” button to download the `main.tf` example file.
 
@@ -800,11 +800,11 @@ Several of the default example variables will be altered and others will be adde
 Important to note: Many of the Terraform Advanced variables listed and described on the \[Terraform Registry page for the Azure Weka / Weka module]\(https://registry.terraform.io/modules/weka/weka/azure/latest) under \[Inputs]\(https://registry.terraform.io/modules/weka/weka/azure/latest?tab=inputs) have been assigned “default variable values.” This means that unless a variable is explicitly included in the \`main.tf\` deployment file, a default value which has been specified in the \`variables.tf\` file will be used and applied. Therefore, it is good practice to review the input variables on the Terraform Registry Azure Weka / Weka module page to determine whether the defaults are acceptable or if the variable should be included and customized in the \`main.tf\` deployment file.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (130).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (131).png" alt=""><figcaption></figcaption></figure>
 
 Shown below is the customized `main.tf` deployment file that will be used to deploy a WEKA cluster as part of this guide. Below the screenshot, all changes have been described in detail.
 
-<figure><img src="../../.gitbook/assets/image (131).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (132).png" alt=""><figcaption></figcaption></figure>
 
 ```jsx
 //Under provider "azurerm"
@@ -839,15 +839,15 @@ Review the variables available for use on the [**Terraform Registry page for the
 
 Open a terminal window on your local machine (or on whichever machine Terraform will be run from) and navigate to the directory containing the newly edited `main.tf` file. Once in the directory, execute the `terraform init` command. As shown below, the WEKA Azure Terraform Advanced modules will download followed by the necessary provider plugins.
 
-<figure><img src="../../.gitbook/assets/image (132).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (133).png" alt=""><figcaption></figcaption></figure>
 
 Once Terraform is successfully initialized, proceed to running `terraform plan` . As with Terraform Essentials, covered earlier in this guide, `terraform plan` performs a dry run of the deployment to detect any configuration issues. That said, it cannot account for certain circumstances which can only be validated during an `apply` , such as whether or not there is sufficient quota for the instance type selected, or if there’s a naming conflict with the Azure KeyVault. If no errors appear after `terraform plan` successfully runs as shown below, it can be reasonably assumed that a `terraform apply` will succeed.
 
-<figure><img src="../../.gitbook/assets/image (133).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (134).png" alt=""><figcaption></figcaption></figure>
 
 After a successful `terraform plan` , proceed to executing a `terraform apply` as shown below. If the `apply` completes successfully, an output similar to below will be shown. Also note the `get-cluster-helpers-commands` output.
 
-<figure><img src="../../.gitbook/assets/image (134).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
 
 #### Using the Outputted Cluster Helper Commands
 
@@ -855,41 +855,41 @@ Using the outputted helper commands is straightforward and is done using the ter
 
 To begin, clusterization status will be retrieved. Under the “Get Clusterization Status” heading, copy the first line of code, enter it at the terminal prompt and execute as shown below. No output will result after command execution - this is expected behavior and not an error.
 
-<figure><img src="../../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (136).png" alt=""><figcaption></figcaption></figure>
 
 Paste the command at the terminal prompt. Note the command executed and no output was returned.
 
-<figure><img src="../../.gitbook/assets/image (136).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (137).png" alt=""><figcaption></figcaption></figure>
 
 Next, copy the line of code immediately following the first line of code under the “Get Clusterization Status” header, paste it at the terminal prompt, and execute.
 
-<figure><img src="../../.gitbook/assets/image (137).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
 
 Paste at the terminal prompt and execute. This time, an error will be returned followed by a URL. This is expected behavior - the curl command is intended to fail and return only the URL to be used for checking clusterization status by copying and pasting into a web browser.
 
-<figure><img src="../../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
 
 Copy the outputted URL and paste it into the address bar of a web browser. The URL will return the clusterization status of the newly deployed WEKA cluster as shown below. Review the returned data to determine if the cluster has been deployed correctly as anticipated.
 
-<figure><img src="../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
 
 Checking cluster status follows the same process, and will return the same information as “Get Clusterization Status” once the clusterization has completed.
 
 Next, the WEKA cluster password will be fetched. Prior to running the helper command, jq must be installed on the machine running the commands. jq is a lightweight and flexible command-line JSON processor. It is widely used in programming and system administration for parsing and manipulating JSON. To install jq on a Mac, Brew can be used. Simply run `brew install jq` to install jq.
 
-<figure><img src="../../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
 
 The process of installing jq will begin. Installation will be complete once a command prompt is returned.
 
-<figure><img src="../../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (142).png" alt=""><figcaption></figcaption></figure>
 
 With jq installed, the WEKA cluster password can now be successfully fetched. Under the helper heading “Fetch Weka Cluster Password” copy the function command, paste it at the terminal prompt, and execute.
 
-<figure><img src="../../.gitbook/assets/image (142).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (143).png" alt=""><figcaption></figcaption></figure>
 
 Paste at the terminal prompt and execute. The WEKA cluster password will be returned.
 
-<figure><img src="../../.gitbook/assets/image (143).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (144).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Before accessing the WEKA web interface, the WEKA backend IP addresses must be retrieved. Since the deployment used in this guide was deployed as a \`public\_network\` deployment, and public endpoints were assigned to each WEKA backend instance, the IP addresses retrieved will be WAN IP addresses. Had the cluster been deployed as a \`private\_network\` , LAN IP addresses would be returned.
@@ -897,14 +897,14 @@ Before accessing the WEKA web interface, the WEKA backend IP addresses must be r
 
 To obtain the WEKA cluster backend IP addresses, the helper command to list the IP addresses of the VMSS (virtual machine scale set) containing the WEKA backend instances will be used. Copy the command and paste it at the terminal prompt as shown below.
 
-<figure><img src="../../.gitbook/assets/image (144).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
 
 Paste the command at the prompt and execute to return the public IP addresses.
 
-<figure><img src="../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (146).png" alt=""><figcaption></figcaption></figure>
 
 Once the IP addresses have been retrieved, they can be used to access the WEKA web interface using a web browser. Select one of the returned WEKA cluster backend IP addresses, paste it into the address bar of a web browser, append port 14000, and execute. The WEKA web interface will appear.
 
-<figure><img src="../../.gitbook/assets/image (146).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (147).png" alt=""><figcaption></figcaption></figure>
 
 Login using the default user `admin` and the password retrieved using the function app command in an earlier step.

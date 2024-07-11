@@ -49,18 +49,18 @@ If the current IAM user lacks the permissions detailed in [Appendix A](https://a
 2. Log in using the account intended for the WEKA deployment.
 3. In the GCP Console, go to the Services menu and select **IAM** to access the Identity and Access Management dashboard.
 
-<figure><img src="../../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (177).png" alt=""><figcaption></figcaption></figure>
 
 4. Within the IAM dashboard, locate the relevant IAM user by searching for their account.
 
-<figure><img src="../../.gitbook/assets/image (177).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (178).png" alt=""><figcaption></figcaption></figure>
 
 5. Click on the user's **Security insights** to review their permissions.
 6. Ensure that the user possesses the permissions listed in [Appendix A](https://app.gitbook.com/o/-L7Tp-Uy9BMSCSCx0MlK/s/lGKb8DZItQx3Jy6unw5f/\~/changes/193/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs), which are necessary for managing GCP resources through Terraform.
 
-<figure><img src="../../.gitbook/assets/image (178).png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/image (179).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 While this user has full administrative access to enable Terraform to deploy WEKA, it is recommended to follow the principle of [applying the least-privilege permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege). Grant only the specific permissions outlined in Appendix A to ensure security best practices.
@@ -78,15 +78,15 @@ The required minimum quota is the total CPU count for all instances (for example
 
 1. Navigate to the [GCP Console](https://console.cloud.google.com/) and search for the service **Quotas & System Limits**.
 
-<figure><img src="../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (181).png" alt=""><figcaption></figcaption></figure>
 
 2. On the Quotas page, search for **CPU** and select the compute instance type family, in this case, **c2**.
 
-<figure><img src="../../.gitbook/assets/image (181).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (182).png" alt=""><figcaption></figcaption></figure>
 
 3. Locate the region where you intend to deploy WEKA and confirm that there are sufficient available CPUs of the specified family type. If not, adjust the quota accordingly.
 
-<figure><img src="../../.gitbook/assets/image (182).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (183).png" alt=""><figcaption></figcaption></figure>
 
 ## GCP Resource Prerequisites
 
@@ -100,7 +100,7 @@ The Terraform deployment can automatically establish VPC peering connections fro
 
 This guide assumes an already deployed VPC and the necessity of adding four WEKA-specific VPCs. This requirement arises from GCP networking constraints, where each VM instance can only have one vNIC per VPC. However, WEKA mandates a minimum of four vNICs per instance. Ensure that you have the CIDR information for the four subnets created in the new VPCs to prevent conflicts.
 
-<figure><img src="../../.gitbook/assets/image (183).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
 
 ## Deploy WEKA in GCP using Terraform
 
@@ -108,11 +108,11 @@ The WEKA Terraform modules establish peering connections between the newly creat
 
 **VPC**
 
-<figure><img src="../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (185).png" alt=""><figcaption></figcaption></figure>
 
 **Subnet (in VPC)**
 
-<figure><img src="../../.gitbook/assets/image (185).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (186).png" alt=""><figcaption></figcaption></figure>
 
 ### Locate the WEKA user token
 
@@ -121,11 +121,11 @@ The WEKA user token provides access to the WEKA binaries and is used to access g
 1. In a web browser, navigate to [get.weka.io](https://get.weka.io/).
 2. Select the user's name located in the upper right-hand corner of the page.
 
-<figure><img src="../../.gitbook/assets/image (186).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (187).png" alt=""><figcaption></figcaption></figure>
 
 2. From the column on the left-hand side of the page, select **API Tokens**. The user’s API token is displayed. Note it for using it later in the installation process.
 
-<figure><img src="../../.gitbook/assets/image (187).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (188).png" alt=""><figcaption></figcaption></figure>
 
 ### Deploy WEKA in GCP with Terraform: private VPCs example
 
@@ -147,11 +147,11 @@ The [Terraform module package](https://registry.terraform.io/modules/weka/weka/g
 
 1. Sign in to Google Cloud Platform and access the **Cloud Shell**.
 
-<figure><img src="../../.gitbook/assets/image (188).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (189).png" alt=""><figcaption></figcaption></figure>
 
 2. If the Terminal is not associated with the project intended for WEKA deployment, close it, switch to the correct project, and reopen it.
 
-<figure><img src="../../.gitbook/assets/image (189).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (190).png" alt=""><figcaption></figcaption></figure>
 
 #### Organize the structure of the Terraform configuration files
 
@@ -404,11 +404,11 @@ To obtain the IP addresses of your WEKA cluster, follow these steps:
 
 1. Visit the GCP Compute Engine VM instances dashboard.
 
-<figure><img src="../../.gitbook/assets/image (190).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (191).png" alt=""><figcaption></figcaption></figure>
 
 2. Identify the WEKA backend servers. The instance names follow the format: `<cluster_name>-<Timestamp>`, where `<cluster_name>` corresponds to the value specified in the `main.tf` file.
 
-<figure><img src="../../.gitbook/assets/image (191).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (192).png" alt=""><figcaption></figcaption></figure>
 
 3. Select any WEKA backend instance and note the IP address of `nic0`.
 
@@ -420,20 +420,20 @@ The WEKA cluster password is securely stored in the Google Cloud Platform (GCP) 
 
 1. Open the GCP console and search for **Secret Manager**.
 
-<figure><img src="../../.gitbook/assets/image (192).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (193).png" alt=""><figcaption></figcaption></figure>
 
 2. Navigate to the **Secrets** section within the Secret Manager.
 
-<figure><img src="../../.gitbook/assets/image (193).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (194).png" alt=""><figcaption></figcaption></figure>
 
 3. Locate and select the secret named `weka_<cluster_name>_password` corresponding to your deployment.
 4. Select the Actions option and select **View secret value**.
 
-<figure><img src="../../.gitbook/assets/image (194).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (195).png" alt=""><figcaption></figcaption></figure>
 
 The system displays the randomly generated password assigned to the WEKA user admin.
 
-<figure><img src="../../.gitbook/assets/image (195).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (196).png" alt=""><figcaption></figcaption></figure>
 
 ### Access the WEKA cluster backends
 
@@ -446,7 +446,7 @@ Follow these steps to connect to the backend instances:
 3. Select the instance you wish to access.
 4. Select the SSH button to open a browser-based SSH session.
 
-<figure><img src="../../.gitbook/assets/image (196).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (197).png" alt=""><figcaption></figcaption></figure>
 
 ## Access and review the WEKA GUI
 
@@ -464,25 +464,25 @@ In the following examples, a Windows 10 instance with a public IP address is dep
 The provided examples are for reference. The values shown below may differ from those of your cluster.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (197).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (198).png" alt=""><figcaption></figcaption></figure>
 
 ### Review the WEKA GUI
 
 1. View the cluster GUI home screen.
 
-<figure><img src="../../.gitbook/assets/image (198).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (199).png" alt=""><figcaption></figcaption></figure>
 
 2. Review the cluster backends. Check the status and details of the backend instances.
 
-<figure><img src="../../.gitbook/assets/image (199).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (200).png" alt=""><figcaption></figcaption></figure>
 
 3. Review the clients, if any, attached to the cluster.
 
-<figure><img src="../../.gitbook/assets/image (200).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (201).png" alt=""><figcaption></figcaption></figure>
 
 4. Review the filesystems.
 
-<figure><img src="../../.gitbook/assets/image (201).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (202).png" alt=""><figcaption></figcaption></figure>
 
 ## Automated scale-out and scale-in of the WEKA backend cluster
 
@@ -492,7 +492,7 @@ The WEKA backend cluster can be dynamically scaled out and scaled in using API c
 
 To scale out from the initial deployment, use the CLI command provided in the Terraform output.
 
-<figure><img src="../../.gitbook/assets/image (202).png" alt=""><figcaption><p>Example: Scale-out from 7 backends to 8</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (203).png" alt=""><figcaption><p>Example: Scale-out from 7 backends to 8</p></figcaption></figure>
 
 ### Benefits of auto-scaling
 

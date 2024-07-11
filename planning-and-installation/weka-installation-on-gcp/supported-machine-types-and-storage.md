@@ -4,7 +4,7 @@
 
 The following table provides the supported machine types (VM instance) for backends (and clients) applied by the Terraform package:
 
-<table><thead><tr><th width="183">Machine series</th><th>Machine types</th></tr></thead><tbody><tr><td>C2</td><td>c2-standard-8, c2-standard-16</td></tr></tbody></table>
+<table><thead><tr><th width="183">Machine series</th><th>Machine types</th></tr></thead><tbody><tr><td>C2</td><td>c2-standard-8, c2-standard-16</td></tr><tr><td>N2</td><td>n2-standard-8, n2-standard-16</td></tr></tbody></table>
 
 {% hint style="info" %}
 * Each machine type supports 1, 2, 4, or 8 local SSD drives. Each drive has 375 GB (maximum 3 TB per instance). These drives are not individual SSDs but partitions locally to the physical server.
