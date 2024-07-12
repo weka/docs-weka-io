@@ -15,14 +15,14 @@ Refer to the [terraform-gcp-weka](https://github.com/weka/terraform-gcp-weka) mo
 
 The Terraform package supports the following deployment types:
 
-* **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform for downloading the WEKA release from the public [get.weka.io](https://get.weka.io) service. The following examples are provided:
+* **Public cloud deployments:** Require passing the `get.weka.io` token to Terraform to download the WEKA release from the public [get.weka.io](https://get.weka.io/) service. The following examples are provided:
   * Public VPC
   * Public VPC with creating a worker pool
   * Public VPC with an existing public network
   * Public VPC with multiple clusters
   * Public VPC with a shared VPC
   * Public VPC with an existing worker pool and VPC
-* **Private cloud deployments:** Require uploading the WEKA release tar file into the yum repository (instances can download the WEKA release from this yum repository). The following examples are provided:
+* **Private cloud deployments:** Require placing the WEKA release tar file in a URL-accessible location for internal access (instances can download the WEKA release from this location). The following examples are provided:
   * Private VPC with creating a worker pool
   * Private VPC with an existing network
   * Private VPC with an existing worker pool and VPC
@@ -31,9 +31,9 @@ The Terraform package supports the following deployment types:
 
 ## Terraform example
 
-The following is a basic example in which you provide the minimum detail of your cluster, and the Terraform module completes the remaining required resources, such as cluster size, machine type, and networking parameters.
+The following is a basic example where you provide minimal details about your cluster, and the Terraform module completes the remaining required resources, such as cluster size, machine type, and networking parameters.
 
-You can use this example as a reference to create the `main.tf` file. &#x20;
+This example can be used as a reference when creating the main.tf file for a c2-standard-8 with 4 VPCs.
 
 ```hcl
 provider "google" {
@@ -43,7 +43,7 @@ provider "google" {
 
 module "weka_deployment" {
   source                         = "weka/weka/gcp"
-  version                        = "4.0.0"
+  version                        = "4.0.9"
   cluster_name                   = "my_cluster_name"
   project_id                     = "PROJECT_ID"
   prefix                         = "my_prefix"
@@ -67,15 +67,45 @@ output "weka_cluster" {
 For the descriptions of the parameters, refer to the [GCP-WEKA deployment Terraform package](https://registry.terraform.io/modules/weka/weka/gcp/latest).
 {% endhint %}
 
+This example can be used as a reference when creating the `main.tf` file for a c2-standard-16 with 7 VPCs.&#x20;
+
+```
+provider "google" {
+  region  = "europe-west1"
+  project = "PROJECT_ID"
+}
+
+module "weka_deployment" {
+  source                         = "weka/weka/gcp"
+  version                        = "4.0.9"
+  cluster_name                   = "my_cluster_name"
+  project_id                     = "PROJECT_ID"
+  prefix                         = "my_prefix"
+  region                         = "europe-west1"
+  zone                           = "europe-west1-b"
+  cluster_size                   = 7
+  nvmes_number                   = 2
+  get_weka_io_token              = "getwekatoken"
+  machine_type                   = "c2-standard-16"
+  subnets_range                  = ["10.222.0.0/24", "10.223.0.0/24", "10.224.0.0/24", "10.225.0.0/24", "10.226.0.0/24", "10.227.0.0/24", "10.228.0.0/24"]
+  allow_ssh_cidrs                = ["0.0.0.0/0"]
+  allow_weka_api_cidrs           = ["0.0.0.0/0"]
+
+}
+output "weka_cluster" {
+  value = module.weka_deployment
+}
+```
+
 ## Private network considerations
 
 To deploy a private network, the parameter `private_network = true` on the `setup_network` and `deploy_weka` modules level.
 
 Depending on the required network topology, the following parameters are optional for private networking:
 
-* To download the WEKA release from a local bucket, set the local bucket location in the  `install_url` parameter on the `deploy_weka` module level.&#x20;
+* To download the WEKA release from a local bucket, set the local bucket location in the  `install_weka_url` parameter on the `deploy_weka` module level.&#x20;
 * For Centos7 only, a distributive repository is required to download kernel headers and additional build software. To auto-configure yum to use a distributive repository, run `yum_repo_server`.&#x20;
-* If a custom image is required, use `weka_image_id`.
+* If a custom image is required, use `source_image_id`.
 
 ## Object store integration
 
@@ -86,14 +116,14 @@ The Terraform package can automate the addition of a Google Cloud Storage bucket
 1. In the `main.tf` file, add the following fields:
    * `tiering_enable_obs_integration:` Set the value to `true`.
    * `tiering_obs_name:` Match the value to an existing bucket in Google Cloud Storage.
-   * `tiering_ssd_percent:` Set the percentage to your desired value.
+   * `tiering_enable_ssd_percent:` Set the percentage to your desired value.
 
 Example:
 
 ```hcl
 tiering_enable_obs_integration=true 
 tiering_obs_name="myBucketName"
-tiering_ssd_percent=20
+tiering_enable_ssd_percent=20
 ```
 
 {% hint style="info" %}

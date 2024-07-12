@@ -10,14 +10,26 @@ description: >-
 
 Leveraging GCP's advantages, WEKA offers a customizable **terraform-gcp-weka** module for deploying the WEKA cluster on GCP. In GCP, WEKA operates on instances, each capable of using up to eight partitions of drives on the connected physical server (without direct drive usage). These drives can be shared among partitions for other clients on the same server.
 
-WEKA requires a minimum of four VPC networks, each associated with one of the instances. This configuration aligns with the four key WEKA processes: Compute, Drive, Frontend, and Management, with each process requiring a dedicated network interface as follows:
+WEKA requires either four or seven VPC networks, depending on which instance type is being used for the WEKA backends. This configuration aligns with the four key WEKA processes: Management, Drive, Compute and optionally Frontend, with each process requiring a dedicated network interface as follows:
 
-* eth0: Management VPC
-* eth1: Compute VPC
-* eth2: Frontend VPC
-* eth3: Drive VPC
+* eth0: Management vpc-0
+* eth1: Drive vpc-1
+* eth2: Compute vpc-2
+* eth3: Frontend vpc-3
 
-VPC peering facilitates communication between the WEKA processes, each using its NIC. The maximum allowable number of peers within a VPC is limited to 25 by GCP (you can try to increase the quota, but it depends on the GCP resources availability).
+For a WEKA instance using seven NICs, the alignment is as follows:
+
+* eth0: Management vpc-0
+* eth1: Drive vpc-1
+* eth2: Compute vpc-2
+* eth3: Compute vpc-3
+* eth4: Compute vpc-4
+* eth5: Compute vpc-5
+* eth6: Frontend vpc-6
+
+If the frontend container is not deployed, then its core is instead used by the compute process.&#x20;
+
+VPC peering facilitates communication between the WEKA processes, each using its NIC. The maximum allowable number of peers within a VPC is limited to 25 by GCP (you can request GCP to increase the quota, but it depends on the GCP resources availability).
 
 <figure><img src="../../.gitbook/assets/GCP_overview.png" alt=""><figcaption><p>Server infrastructure in GCP</p></figcaption></figure>
 
