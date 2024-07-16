@@ -48,14 +48,18 @@ You can modify the role of a local user but not your role (the signed-in user). 
 
 As a Cluster Admin or Organization Admin, you can change the password of a local user and revoke the user's tokens.
 
+{% hint style="info" %}
+To regain access to the system after changing the password, the user must re-authenticate using the new password.
+{% endhint %}
+
 **Procedure**
 
-1. In the Local Users tab, select the three dots of the local user you want to change the password for, then select **Change Password**.
+1. In the Local Users tab, select the three dots of the local user whose password you want to change, then select **Change Password**.
 2. In the Change Password for a user dialog, set the following properties:
    * **Old password:** Set the old password.
    * **Password:** Set a new password according to the requirements.
    * **Confirm Password:** Type the same new password again.
-   * **Revoke Tokens:** If the user's existing tokens are compromised, you can revoke all the user's tokens and change the user's password. To re-access the system, the user re-authenticates with the new password, or the user needs to obtain new tokens using the API.
+   * **Revoke Tokens:** If the user's existing tokens are compromised, you can revoke all of the user's tokens and change their password. To regain access to the system, the user must re-authenticate with the new password or obtain new tokens through the API.
 3. Select **Save**.
 
 ![Change the password for a local user](../../.gitbook/assets/wmng\_local\_users\_change\_psw.png)
