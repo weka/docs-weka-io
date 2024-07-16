@@ -83,7 +83,7 @@ Before proceeding with any system upgrade, ensuring that the environment meets t
 <summary>Sample list of the verification steps performed by the WEKA Upgrade Checker Tool </summary>
 
 * [x] **Backend server Prerequisites and compatibility**:
-  * Confirm that all backend servers meet the [prerequisites and compatibility](../planning-and-installation/prerequisites-and-compatibility.md) requirements of the target version. Address any discrepancies promptly.
+  * Confirm that all backend servers meet the [prerequisites and compatibility](../planning-and-installation/prerequisites-and-compatibility/) requirements of the target version. Address any discrepancies promptly.
   * **Contact the Customer Success Team** if there are compatibility issues or missing prerequisites.
 * [x] **Source version architecture**:
   * Verify that the source version is configured in an **MCB (Multi-Cluster Backend)** architecture.

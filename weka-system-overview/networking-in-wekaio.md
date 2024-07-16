@@ -137,7 +137,7 @@ For the RDMA/GPUDirect Storage technology to take effect, the following requirem
 * Encrypted filesystems: The framework is not used for encrypted filesystems and falls back to work without RDMA/GPUDirect for IOs to encrypted filesystems.
 * An HCA is considered to support RDMA networking if the following requirements are met:
   * For GPUDirect Storage only: InfiniBand network.
-  * The NIC supports RDMA. See [#networking-ethernet](../planning-and-installation/prerequisites-and-compatibility.md#networking-ethernet "mention").
+  * The NIC supports RDMA. See [#networking-ethernet](../planning-and-installation/prerequisites-and-compatibility/#networking-ethernet "mention").
   * OFED 4.6-1.0.1.1 or higher.
     * For GPUDirect Storage: install with `--upstream-libs` and `--dpdk`.
 
