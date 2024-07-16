@@ -79,7 +79,8 @@ Use the following command line to change a local user password:
 <table><thead><tr><th>Name</th><th width="389.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>password</code>*</td><td>New password</td><td></td></tr><tr><td><code>username</code></td><td>Name of the user to change the password for.<br>It must be a valid local user.</td><td>The current logged-in user</td></tr></tbody></table>
 
 {% hint style="info" %}
-If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
+* If necessary, provide or set`WEKA_USERNAME` or `WEKA_PASSWORD.`
+* To regain access to the system after changing the password, the user must re-authenticate using the new password.
 {% endhint %}
 
 ## Revoke user access
