@@ -40,7 +40,7 @@ Scrutiny NIC CLI v227.0.130.0 - Broadcom Inc. (c) 2023 (Bld-61.52.25.90.16.0)
 # niccli -dev 1 install BCM957508-P2100G.pkg
 ```
 
-4. **Confirm and complete the installation**: Follow the prompts to confirm and complete the firmware update.
+3. **Confirm and complete the installation**: Follow the prompts to confirm and complete the firmware update.
 
 {% code overflow="wrap" %}
 ```shell
@@ -56,7 +56,7 @@ A system reboot is needed for the firmware update to take effect.
 ```
 {% endcode %}
 
-5. **Reboot the server**: Reboot the server to apply the firmware update.
+4. **Reboot the server**: Reboot the server to apply the firmware update.
 
 ## **Update NVM settings**
 
