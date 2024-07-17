@@ -154,7 +154,7 @@ token/       token       token based credentials
 $ vault auth enable token
 ```
 
-* Log into the KMS system using any of the identity methods supported by Vault. The identity should have permission to use the previously-set master key.&#x20;
+* Log into the KMS system using any of the identity methods Vault supports. The identity should have permission to use the previously set master key.&#x20;
 * Create a token role for the identity using the following command:
 
 {% code overflow="wrap" %}
@@ -164,7 +164,7 @@ $ vault write auth/token/roles/weka allowed_policies="weka" period="768h"
 {% endcode %}
 
 {% hint style="info" %}
-The `period` is the time set for a renewal request. If no renewal is requested during this time period, the token will be revoked and a new token must be retrieved from Vault and set in the WEKA system.
+The `period` is the designated timeframe for a renewal request. If a renewal is not requested within this period, the token is revoked, necessitating the retrieval of a new token from the Vault and its configuration in the WEKA system.
 {% endhint %}
 
 * Generate a token for the logged-in identity using the following command:
@@ -191,7 +191,7 @@ The WEKA system does not automatically renew the API token lease. It can be rene
 
 ## Obtain a certificate for a KMIP-based KMS
 
-The method for obtaining a client certificate and key and set it via the KMS is different for each KMS. The certificate itself is generated using OpenSSL, with a UID obtained from the KMS.
+Each KMS employs a unique process for obtaining a client certificate and key and configuring it through the KMS. The certificate is generated using OpenSSL and utilizes a UID obtained from the KMS.
 
 **Example**:
 
@@ -201,6 +201,4 @@ openssl req -x509 -newkey rsa:4096 -keyout client-key.pem -out client-cert.pem -
 ```
 {% endcode %}
 
-See the specific KMS documentation to create a certificate and link it to the Weka cluster in the  KMS with sufficient privileges (encrypt/decrypt).
-
-For example, for SmartKey KMS, follow similar instructions as suggested [here](https://docs.equinix.com/en-us/Content/Edge-Services/SmartKey/kb/SK-mongodb.htm) to create a client certificate and key, and assign a certificate for Weka within SmartKey.
+Refer to the specific KMS documentation to create a certificate and associate it with the WEKA cluster within the KMS, ensuring it has the necessary privileges for encryption and decryption.
