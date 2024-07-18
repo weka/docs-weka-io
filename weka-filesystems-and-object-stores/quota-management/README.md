@@ -14,10 +14,10 @@ The WEKA system offers multiple layers where you can limit capacity usage:
 * **Filesystem level**: Allocate a unique filesystem for each department or project.
 * **Directory level**: Assign a unique quota for each project directory (beneficial when users are involved in multiple projects) or for each user’s home directory.
 
-In the context of directory quotas, the organization admin can set a quota on a directory. This action initiates the process of calculating the current directory usage. The quota is considered once this calculation is complete, which is instantaneous for empty directories.
+In the context of directory quotas, the organization admin can set a quota on a directory. This action initiates the calculation of the current directory usage, which is instantaneous for empty directories. The quota is considered once this calculation is complete.
 
 {% hint style="info" %}
-To set a quota on a directory, a mount point to the relevant filesystem is necessary. The quota set command mustn’t be interrupted until the quota accounting process is finished.
+To set a quota on a directory, a native POSIX mount to the relevant filesystem is necessary. The quota set command must not be interrupted until the quota accounting process is finished.
 {% endhint %}
 
 The organization admin’s role in setting quotas is to inform and restrict users from overusing the filesystem capacity. In this regard, only data that the user controls is considered. Therefore, the quota does not include the overhead of protection bits and snapshots. However, it accounts for the data and metadata of files in the directory, irrespective of whether they are tiered.
