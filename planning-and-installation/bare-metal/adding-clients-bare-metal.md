@@ -1,8 +1,4 @@
----
-description: This page describes how to add clients to a bare-metal cluster.
----
-
-# Add clients
+# Add clients to an on-premises WEKA cluster
 
 Clients are used to run applications that need to access the WEKA filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
 

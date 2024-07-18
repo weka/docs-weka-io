@@ -1,10 +1,4 @@
----
-description: >-
-  This page describes the process for adding clients to an already-installed
-  WEKA system cluster.
----
-
-# Add clients
+# Add clients to a WEKA cluster on AWS
 
 ## Introduction
 
