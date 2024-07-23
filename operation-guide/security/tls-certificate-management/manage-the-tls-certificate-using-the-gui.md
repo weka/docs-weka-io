@@ -1,14 +1,10 @@
 ---
-description: >-
-  This page describes how to deploy and replace the TLS certificate using the
-  GUI.
+description: Set and download the TLS certificate using the GUI.
 ---
 
 # Manage the TLS certificate using the GUI
 
-Once the system installation is completed, the cluster TLS certificate is enabled with an auto-generated self-signed certificate to access the GUI, CLI, and API through HTTPS. If you have a custom TLS certificate, you can set it instead of the auto-generated self-signed certificate.
-
-You can also download the existing TLS certificate for later use if you want to use the self-signed certificate.
+Upon system installation, the cluster's TLS certificate is activated with an auto-generated self-signed certificate, enabling access to the GUI, CLI, and API via HTTPS. If you have a custom TLS certificate, you may replace the auto-generated self-signed certificate with your own. Additionally, you can download the existing TLS certificate for integration with other applications that require communication with the cluster, such as Local WEKA Home.
 
 
 
@@ -29,3 +25,9 @@ You can also download the existing TLS certificate for later use if you want to 
    &#x20;In the dialog, set a name for the certificate and select **Download**.
 
 ![Download a TLS certificate](../../../.gitbook/assets/wmng\_download\_tls\_certificate.png)
+
+**Related topic**
+
+[local-weka-home-deployment.md](../../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md "mention")
+
+[deploy-local-weka-home-v2.x.md](../../../monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v2.x.md "mention")

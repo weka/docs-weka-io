@@ -154,7 +154,10 @@ Once the Local Weka Home is deployed, you can set it to send alerts by email, SN
 
 <summary>TLS certificates</summary>
 
-To enforce HTTPS connection, you can pass TLS certificates to `config.json` or use CLI arguments with a certificate and key filenames `--tls-cert cert.pem --tls-key key.pem` during the next setup step.
+To enforce an HTTPS connection, you can pass the TLS certificate and private key to config.json or use CLI arguments with certificate and key filenames `--tls-cert cert.pem --tls-key key.pem` during the next setup step.
+
+You can generate a self-signed certificate and a private key using the following example:\
+`openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days <days> -nodes`
 
 Example of passing TLS settings in JSON:
 
@@ -169,8 +172,9 @@ Example of passing TLS settings in JSON:
 
 To use an IP address as a hostname and to have a valid certificate, make sure you pass SAN during creation. A SAN or subject alternative name is a structured way to indicate all domain names and IP addresses secured by the certificate.
 
-You can generate a self-signed certificate using the following example:\
-`openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days <days> -nodes`
+**Related topic**
+
+[tls-certificate-management](../../operation-guide/security/tls-certificate-management/ "mention")
 
 </details>
 

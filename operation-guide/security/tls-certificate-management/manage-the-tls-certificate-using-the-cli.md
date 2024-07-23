@@ -1,7 +1,5 @@
 ---
-description: >-
-  This page describes how to deploy and replace the TLS certificate using the
-  CLI.
+description: Set and download the TLS certificate using the CLI.
 ---
 
 # Manage the TLS certificate using the CLI

@@ -224,6 +224,10 @@ nginx:
 You can generate a self-signed certificate using the following example:\
 `openssl req -x509 -newkey rsa:2048 -keyout key.pem -out cert.pem -days <days> -nodes`
 
+**Related topic**
+
+[tls-certificate-management](../../operation-guide/security/tls-certificate-management/ "mention")
+
 </details>
 
 <details>
