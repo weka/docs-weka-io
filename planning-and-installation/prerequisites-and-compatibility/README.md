@@ -121,9 +121,10 @@ The following kernel versions are supported:
 * The maximum size for the Extended Attributes (xattr) is limited to 1024. This attribute is crucial in supporting Access Control Lists (ACL) and Alternate Data Streams (ADS) in SMB. Given its finite capacity, exercise caution when using ACLs and ADS on a filesystem using SELinux.
 {% endhint %}
 
-#### cgroups
+#### Cgroups
 
-* WEKA backends and clients that serve protocols must be deployed on a supported OS with **cgroups V1** (legacy).
+* WEKA backends and clients that serve protocols must be deployed on a supported OS with **CgroupsV1**.
+* **CgroupsV2** is supported on backends and clients, but not in deployments with protocol clusters.
 {% endtab %}
 {% endtabs %}
 
