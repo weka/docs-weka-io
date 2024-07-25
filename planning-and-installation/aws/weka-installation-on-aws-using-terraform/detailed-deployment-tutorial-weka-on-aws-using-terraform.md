@@ -203,89 +203,11 @@ output "weka_deployment_output" {
 
 Save the file.
 
-A [main.tf](http://main.tf) file is needed to define the Terraform options. Create the main.tf file with your prefered editor
+A **main.tf** file is required to define the Terraform options. Create the main.tf file using the WEKA Cloud Deployment Manager. See [weka-cloud-deployment-manager-cdm-user-guide.md](../../weka-cloud-deployment-manager-cdm-user-guide.md "mention").
 
-Open the **main.tf** in your preferred editor.
+Authentication is handled using the AWS CLI utility.
 
-Create the contents of the [main.tf](http://main.tf) with the following:
-
-```json
-# Terraform configuration for deploying resources in AWS
-terraform {
-  required_version = ">= 1.4.6"  # Minimum Terraform version required
-
-  # Define required providers and their versions
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"  # AWS provider source
-      version = ">= 5.5.0"       # Minimum AWS provider version required
-    }
-  }
-}
-
-# AWS provider configuration
-provider "aws" {
-  region     = "us-east-1"       # Desired AWS region
-  access_key = "xxxxxxxxxxxx"    # AWS CLI access key
-  secret_key = "xxxxxxxxx"       # AWS CLI secret key
-}
-
-# Module for WEKA deployment
-module "weka_deployment" {
-  source             = "weka/weka/aws"               # Source registry for the module
-  version            = "1.0.1"                       # Version of registry to use
-  prefix             = "WEKA"                        # Prefix used for naming all AWS elements
-  cluster_name       = "Prod"                        # Name of the cluster
-  availability_zones = ["us-east-1a"]                # Availability zones for deployment
-  allow_ssh_cidrs    = ["0.0.0.0/0"]                 # CIDR blocks allowed for SSH access
-  get_weka_io_token  = "<Your WEKA IO token>"        # Token for WEKA IO authentication
-  clients_number     = 2                             # Number of client instances to deploy
-  # Required environment variables for deploying in an existing environment.  Comment out if you want Terraform to create everything
-  vpc_id                      = "YOUR_VPC_ID"                     # ID of the VPC to be used
-  subnet_ids                  = ["YOUR_SUBNET_ID"]                # List of subnet IDs (primary subnet to deploy WEKA into)
-  create_alb                  = "false"                           # Flag to determine ALB creation
-  alb_additional_subnet_id    = "YOUR_ADDITIONAL_ALB_SUBNET_ID"   # Additional subnet ID for ALB (Secondary subnet in second AZ)
-
-  # Uncomment the following to manually specify additional options for the existing enviornment (optional)
-  # sg_ids                   = ["YOUR_SECURITY_GROUP_ID"]        # Existing security group IDs
-  # instance_iam_profile_arn = "YOUR_INSTANCE_IAM_PROFILE_ARN"   # IAM role for EC2 instances
-  # lambda_iam_role_arn      = "YOUR_LAMBDA_IAM_ROLE_ARN"        # IAM role for Lambda functions
-  # sfn_iam_role_arn         = "YOUR_STATE_MACHINE_IAM_ROLE_ARN" # IAM role for state machines
-  # event_iam_role_arn       = "YOUR_EVENT_IAM_ROLE_ARN"         # IAM role for event management
-}
-```
-
-Authentication is handled in the “provider” section. You will need either the “**Access key ID**” and the “**Secret access key**” for the AWS account’s IAM user that will be authenticated in AWS for WEKA deployment or have AWS CLI configured which still requires the Access key ID and the Secret access key, but only to authenticate once. If the AWS IAM user doesn’t already have both the “Access key ID” and “Secret access key”, instructions on how to create both can be found here. [https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_credentials\_access-keys.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_credentials\_access-keys.html)
-
-Authentication can be accomplished by editing the provider section to one of the following.
-
-{% hint style="info" %}
-Be sure to update the region with the region WEKA will be deployed to.
-{% endhint %}
-
-Option 1 is to hard code your access and secret key as seen here.
-
-```json
-...
-provider "aws" {
-  region	= "us-east-1"
-  access_key	= "<your access key ID here>"
-  secret_key	= "<your access secret key here>"
-}
-...
-```
-
-Option 2 is to only have to provide the region you will authenticate into and use the AWS CLI for authentication
-
-```json
-...
-provider "aws" {
-        region = "us-east-1"
-}
-...
-```
-
-To authenticate AWS CLI you use the following command
+To authenticate AWS CLI , use the following command:
 
 ```bash
 aws configure
@@ -295,15 +217,9 @@ Fill in the required information and hit enter.
 
 <figure><img src="../../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
 
-Once the authentication method is decided uncomment and fill in any extra information you will use.
-
-{% hint style="info" %}
-Make sure to replace placeholders like \*\*YOUR\_WEKA\_IO\_TOKEN.\*\* Also replace all other variables like, \*\*YOUR\_SECURITY\_GROUP\_ID\*\*, etc., with the actual values for your environment if you don’t want those resources created by the process.
-{% endhint %}
-
 **Initialize the Terraform directory**:
 
-After creating and saving the [**main.tf**](http://main.tf) file, in the same directory as the main.tf file run the following command.
+After creating and saving the **main.tf** file, in the same directory as the main.tf file run the following command.
 
 ```json
 terraform init
