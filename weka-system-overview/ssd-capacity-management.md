@@ -8,24 +8,23 @@ description: >-
 
 ## Raw capacity
 
-Raw capacity is the total capacity on all the SSDs assigned to a WEKA system cluster. For example, 10 SSDs of one terabyte each have a total raw capacity of 10 terabytes. This is the total capacity available for the WEKA system. This will change automatically if more servers or SSDs are added.
+Raw capacity is the total capacity of all SSDs assigned to a WEKA system cluster. For example, 10 SSDs of one terabyte each provide a total raw capacity of 10 terabytes. This represents the total capacity available for the WEKA system. This capacity automatically adjusts when more servers or SSDs are added.
 
 ## Net capacity
 
-Net capacity is the space for user data on the SSDs in a configured WEKA system. It is based on the raw capacity minus the WEKA filesystem overheads for redundancy protection and other needs. This will change automatically if more servers or SSDs are added.
+Net capacity is the space available for user data on the SSDs in a configured WEKA system. It is derived from the raw capacity minus the WEKA filesystem overheads for redundancy protection and other requirements. This capacity automatically adjusts when more servers or SSDs are added.
 
 ## Stripe width
 
-The stripe width is the number of blocks with a common protection set, ranging from 3 to 16. The WEKA system has distributed any-to-any protection. Consequently, in a system with a stripe width of 8, many groups of 8 data units spread on various servers protect each other (rather than a group of 8 servers forming a protection group). The stripe width is set during the cluster formation and cannot be changed. Stripe width choice impacts performance and space.
+The stripe width is the number of blocks within a common protection set, ranging from 3 to 16. The WEKA system employs distributed any-to-any protection. In a system with a stripe width of 8, many groups of 8 data units spread across various servers protect each other, rather than a fixed group of 8 servers forming a protection group.
 
-{% hint style="info" %}
-If not configured, the stripe width is set automatically to:\
-`#Failure Domains - Protection Level -1`.
-{% endhint %}
+The stripe width is set during cluster formation and cannot be changed. The choice of stripe width impacts performance and net capacity.
+
+If not configured, the stripe width is automatically set to: #Failure Domains - Protection Level -1.
 
 ## Protection level
 
-Protection Level refers to the number of extra protection blocks added to each data stripe in your storage system. These blocks help protect your data against hardware failures. The protection levels available are:
+Protection level refers to the number of extra protection blocks added to each data stripe in your storage system. These blocks help protect your data against hardware failures. The protection levels available are:
 
 * **Protection level 2**: Can survive 2 concurrent disk or server failures.
 * **Protection level 4**: Can survive 4 concurrent disk failures or 2 concurrent server failures.
@@ -47,48 +46,94 @@ A higher protection level means better data durability and availability but requ
   * The protection level is set during cluster formation and cannot be changed later.
   * If not configured, the system defaults to protection level 2.
 
+### Resilience to serial failures
+
+Beyond the +2 or +4 concurrent failure protection, a WEKA cluster is also resilient[^1] to [serial failures](#user-content-fn-2)[^2] of additional failure domains. Providing that each data rebuild completes successfully, a cluster is resilient to an additional server failure, even if the failure would reduce the number of available servers beyond what is expected by the concurrent protection level.
+
+#### **Example of failure resilience after rebuild completion**
+
+Consider a cluster of 20 servers with a stripe width of 18 (16+2). After rebuilding from a concurrent failure of 2 servers, this 18-server cluster is healthy and still resilient to two additional concurrent server failures.
+
+In the event of subsequent server failures, the cluster rebuilds with the remaining healthy servers to support a stripe width of 18. When the number of active servers drops below 18, the system remains resilient to a single server failure until only 9 servers are left. Failures beyond this point result in the filesystem going offline.
+
+#### **Benefits for customers**
+
+* **Continued operation**: Despite multiple failures, your data remains protected, allowing for continued operation.
+* **Data integrity**: Ensures data integrity through sequential rebuilds, maintaining data availability even in degraded states.
+
+#### **Action plan in the event of serial failures**
+
+1. **Monitor cluster health**: Regularly monitor the cluster's health to preemptively identify potential failures.
+2. **Ensure free capacity**: Maintain sufficient free capacity to allow for complete rebuilds without impacting performance.
+3. **Avoid overloading maintenance windows**: Remove only one server from a running cluster at a time. Begin maintenance on the next server once the cluster returns to an OK status.
+
+#### Resilience level and minimum required protection groups
+
+In a storage system, data protection is achieved using protection groups, which include both data and parity. The formula to determine the number of minimum required protection groups is:
+
+$$
+H = Ceil(D+P)/P
+$$
+
+Where:
+
+* D is the data amount.
+* P is the parity amount.
+* H is the number of minimum required protection groups.
+
+This formula ensures that all data is adequately protected by rounding up the total number of protection groups to the nearest whole number.
+
+The following are a few examples:
+
+| Resilience level (D+P) | Minimum required protection groups (H) |
+| ---------------------- | -------------------------------------- |
+| 3+2                    | 3                                      |
+| 16+2                   | 9                                      |
+| 5+4                    | 3                                      |
+| 16+4                   | 5                                      |
+
 ## Failure domains (optional)
 
-A failure domain is a group of WEKA servers that can fail concurrently due to a single root cause, such as a power circuit or network switch failure.
+A failure domain is a set of WEKA servers susceptible to simultaneous failure due to a single root cause, such as a power circuit or network switch malfunction.
 
-A cluster can be configured with explicit or implicit failure domains:
+A cluster can be configured with either explicit or implicit failure domains:
 
-* In a cluster with explicit failure domains, each group of blocks that protect each other is spread on different failure domains.
-* In a cluster with implicit failure domains, the group of blocks is spread on different servers, and each server is a failure domain. Additional failure domains can be added, and new servers can be added to any existing or new failure domain.
+* **Explicit failure domains:** In this setup, blocks that offer mutual protection are distributed across distinct failure domains.
+* **Implicit failure domains:** Here, blocks are distributed across multiple servers, with each server considered a separate failure domain. Additional failure domains and servers can be integrated into existing or new failure domains.
 
 {% hint style="info" %}
-This documentation relates to a homogeneous WEKA system deployment. That is, the same number of servers per failure domain (if any) and the same SSD capacity per server. For information about heterogeneous WEKA system configurations, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+This documentation assumes a homogeneous WEKA system deployment, meaning an equal number of servers and identical SSD capacities per server in each failure domain. For guidance on heterogeneous configurations, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 ## Hot spare
 
-A hot spare is the number of failure domains that the system can lose, undergo a complete rebuild of data, and still maintain the same net capacity. All failure domains are constantly participating in storing the data, and the hot spare capacity is evenly spread within all failure domains.
+A hot spare is reserved capacity designed to handle data rebuilds while maintaining the system’s net capacity, even in the event of failure domains being lost. It represents the number of failure domains the system can afford to lose and still perform a complete data rebuild successfully.
 
-The higher the hot spare count, the more hardware is required to obtain the same net capacity. On the other hand, the higher the hot spare count, the more relaxed the IT maintenance schedule for replacements. The hot spare is defined during cluster formation and can be reconfigured anytime.
+All failure domains actively contribute to data storage, and the hot spare capacity is evenly distributed among them. While a higher hot spare count requires additional hardware to maintain the same net capacity, it provides greater flexibility for IT maintenance and hardware replacements.
 
 {% hint style="info" %}
-**Note:** If not configured, the hot spare is automatically set to 1.
+The default hot spare setting in a WEKA cluster is 1 for 6 failure domains and 2 for more⁠⁠. The hot spare can be configured during cluster formation and reconfigured anytime.
 {% endhint %}
 
 ## WEKA filesystem overhead
 
-After deducting the protection and hot spare capacity, only 90% of the remaining capacity can be used as net user capacity, with the other 10% of capacity reserved for the WEKA filesystems. This is a fixed formula that cannot be configured.
+After accounting for protection and hot spare capacity, only 90% of the remaining capacity is available as net user capacity, with the other 10% reserved for the WEKA filesystems. This is a fixed formula and cannot be configured.
 
 ## Provisioned capacity
 
-The provisioned capacity is the total capacity assigned to filesystems. This includes both SSD and object store capacity.
+Provisioned capacity is the total capacity assigned to filesystems, including both SSD and object store capacity.
 
 ## Available capacity
 
-The available capacity is the total capacity used to allocate new filesystems, net capacity minus provisioned capacity.
+Available capacity is the total capacity used to allocate new filesystems, calculated as net capacity minus provisioned capacity.
 
 ## Deductions from raw capacity to obtain net storage capacity
 
-The net capacity of the WEKA system is obtained after the following three deductions performed during configuration:
+The net capacity of the WEKA system is determined by making the following three deductions during configuration:
 
-1. The level of protection required is the storage capacity dedicated to system protection.
-2. The hot spare(s) is the storage capacity set aside for redundancy and to allow for rebuilding following a component failure.
-3. WEKA filesystem overhead to improve overall performance.     &#x20;
+* **Protection level:** Storage capacity dedicated to system protection.
+* **Hot spare(s):** Storage capacity reserved for redundancy and rebuilding following component failures.
+* **WEKA filesystem overhead:** Storage capacity allocated to enhance overall performance.&#x20;
 
 ## SSD net storage capacity calculation
 
@@ -111,3 +156,7 @@ $$
 $$
 SSD Net Capacity = 20 TB * (20-2) / 20 * 16/(16+2) * 0.9 = 14.4 TB
 $$
+
+[^1]: **Cluster resiliency**: A WEKA cluster with more hosts than the total protection stripe width returns to full redundancy once the rebuild completes.
+
+[^2]: **Serial failures:** Refers to a sequence where each data rebuild finishes before another server fails, ensuring one-at-a-time failure handling.
