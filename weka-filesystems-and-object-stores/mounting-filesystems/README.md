@@ -8,18 +8,32 @@ description: >-
 
 ## Overview
 
-There are two modes available for mounting a filesystem in one of the cluster servers:
+There are two modes available for mounting a filesystem in a cluster server:
 
-1. Using the persistent mount mode (stateful): See below and also refer to [Add clients](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md) (in Bare Metal Installation) or [Add clients](../../planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md) (in AWS Installation), where first a client is configured and joins a cluster, after which you run the mount command.
-2. Using the stateless mount mode: See [Mount filesystems using the stateless clients feature](./#mounting-filesystems-using-stateless-clients) below, which simplifies and improves the management of clients in the cluster and eliminates the Adding Clients process.
+1. **Persistent mount mode (stateful):** This mode involves configuring a client to join the cluster before running the mount command.
+2. **Stateless mount mode:** This mode simplifies and improves client management by eliminating the need for the Adding Clients process.
 
-If you need to mount a single client to multiple clusters, refer to the [Mount filesystems from multiple clusters on a single client](mount-filesystems-from-multiple-clusters-on-a-single-client.md) topic.
+If you need to mount filesystems from multiple clusters on a single client, refer to the relevant topic for detailed instructions.
+
+In addition, you can mount a filesystem using **fstab** or **autofs**.
+
+**Related topics**
+
+[#mount-a-filesystem-using-the-persistent-mount-mode](./#mount-a-filesystem-using-the-persistent-mount-mode "mention")
+
+[#mounting-filesystems-using-stateless-clients](./#mounting-filesystems-using-stateless-clients "mention")
+
+[#mount-a-filesystem-using-fstab](./#mount-a-filesystem-using-fstab "mention")
+
+[#mount-a-filesystem-using-autofs](./#mount-a-filesystem-using-autofs "mention")
+
+[mount-filesystems-from-multiple-clusters-on-a-single-client.md](mount-filesystems-from-multiple-clusters-on-a-single-client.md "mention")
 
 ## Mount a filesystem using the persistent mount mode
 
 To mount a WEKA filesystem persistently, follow these steps:
 
-1. **Install the WEKA client**: Ensure the WEKA client is installed, configured, and connected to your WEKA cluster.
+1. **Install the WEKA client**: Ensure the WEKA client is installed, configured, and connected to your WEKA cluster. See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
 2. **Identify the filesystem**: Determine the name of the filesystem you want to mount. For this example, we use a filesystem named `demo`.
 3.  **Create a mount point**: SSH into one of your cluster servers and create a directory to serve as the mount point for the filesystem:
 
@@ -56,7 +70,7 @@ The stateless mount mode simplifies client management by deferring the joining o
 
 **Prerequisites**
 
-* **WEKA Agent**: Ensure the WEKA agent is installed on your client to utilize the stateless mount mode.
+* **WEKA Agent**: Ensure the WEKA agent is installed on your client to utilize the stateless mount mode. See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
 
 **Mount a filesystem**
 
