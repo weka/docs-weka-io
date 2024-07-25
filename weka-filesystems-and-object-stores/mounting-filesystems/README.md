@@ -1,7 +1,8 @@
 ---
 description: >-
-  Learn about the two available modes for mounting a filesystem in a cluster
-  server: the persistent mount mode (stateful) and the stateless mount mode.
+  Discover the two modes for mounting a filesystem on a cluster server:
+  persistent mount mode (stateful) and stateless mount mode. You can also use
+  fstab or autofs for mounting.
 ---
 
 # Mount filesystems
