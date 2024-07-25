@@ -19,7 +19,7 @@ Cgroups (Control Groups) is a Linux kernel feature that allows you to limit, pri
 
 **WEKA requirements:**
 
-* **Backends and clients serving protocols:** Must run on an OS with CgroupsV1 (legacy) support. CgroupsV2 is supported on backends and clients but is incompatible with protocol cluster deployments.
+* **Backends and clients serving protocols:** Must run on an OS with CgroupsV1 support. CgroupsV2 is supported on backends and clients but is incompatible with protocol cluster deployments.
 * **Cgroups mode compatibility:** When setting up Cgroups on clients or backends, ensure that the Cgroups configuration (whether using CgroupsV1 or CgroupsV2) aligns with the operating system's capabilities and configuration.
 
 ### Cgroups configuration and compatibility
@@ -99,7 +99,7 @@ Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Disk
 Each client must have a unique IP and FQDN.
 {% endhint %}
 
-## Add stateful clients, which are always part of the cluster
+## Add persistent clients, which are always part of the cluster
 
 {% hint style="info" %}
 Adding instances that do not contribute resources to the cluster but are used for mounting filesystems is possible. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases, adding them to the cluster permanently is helpful. For example, use these instances as NFS/SMB servers, which are always expected to be up.

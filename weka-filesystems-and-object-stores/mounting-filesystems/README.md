@@ -10,46 +10,66 @@ description: >-
 
 There are two methods available for mounting a filesystem in one of the cluster servers:
 
-1. Using the traditional method (stateful): See below and also refer to [Add clients](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md) (in Bare Metal Installation) or [Add clients](../../planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md) (in AWS Installation), where first a client is configured and joins a cluster, after which you run the mount command.
-2. Using the Stateless Clients feature: See [Mount filesystems using the stateless clients feature](./#mounting-filesystems-using-stateless-clients) below, which simplifies and improves the management of clients in the cluster and eliminates the Adding Clients process.
+1. Using the persistent mount mode (stateful): See below and also refer to [Add clients](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md) (in Bare Metal Installation) or [Add clients](../../planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md) (in AWS Installation), where first a client is configured and joins a cluster, after which you run the mount command.
+2. Using the stateless mount mode: See [Mount filesystems using the stateless clients feature](./#mounting-filesystems-using-stateless-clients) below, which simplifies and improves the management of clients in the cluster and eliminates the Adding Clients process.
 
 If you need to mount a single client to multiple clusters, refer to the [Mount filesystems from multiple clusters on a single client](mount-filesystems-from-multiple-clusters-on-a-single-client.md) topic.
 
-## Mount a filesystem using the traditional method&#x20;
+## Mount a filesystem using the persistent mount method
 
-{% hint style="info" %}
-Using the mount command, as explained below, first requires installing the WEKA client, configuring it, and joining it to a WEKA cluster.
-{% endhint %}
+To mount a WEKA filesystem persistently, follow these steps:
 
-To mount a filesystem on one of the cluster servers, let’s assume the cluster has a filesystem called `demo`. To add this filesystem to a server, SSH into one of the servers and run the `mount` command as the `root` user, as follows:
+1. **Install the WEKA client**: Ensure the WEKA client is installed, configured, and connected to your WEKA cluster.
+2. **Identify the filesystem**: Determine the name of the filesystem you want to mount. For this example, we use a filesystem named `demo`.
+3.  **Create a mount point**: SSH into one of your cluster servers and create a directory to serve as the mount point for the filesystem:
 
-```sh
-mkdir -p /mnt/weka/demo
-mount -t wekafs demo /mnt/weka/demo
+    ```bash
+    mkdir -p /mnt/weka/demo
+    ```
+4.  **Mount the filesystem**: As the root user, run the following command to mount the filesystem:
+
+    ```bash
+    mount -t wekafs demo /mnt/weka/demo
+    ```
+
+**General command structure**: The general syntax for mounting a WEKA filesystem is:
+
+```bash
+mount -t wekafs [-o option[,option]...] <fs-name> <mount-point>
 ```
 
-The general structure of the `mount` command for a WEKA filesystem is as follows:
+Replace `<fs-name>` with the name of your filesystem and `<mount-point>` with the directory you created for mounting.
 
-```
-mount -t wekafs [-o option[,option]...]] <fs-name> <mount-point>
-```
+#### Read an write cache modes
 
-Two options for mounting a filesystem on a cluster client are read and write cache. Refer to the descriptions in the links below to understand the differences between these modes:
+When mounting a filesystem, you can choose between two cache modes: read cache and write cache. Each mode offers distinct advantages depending on your use case. For detailed descriptions of these modes, refer to the following links:
 
 * [Read cache mount mode](../../weka-system-overview/weka-client-and-mount-modes.md#read-cache-mount-mode-default)
 * [Write cache mount mode](../../weka-system-overview/weka-client-and-mount-modes.md#write-cache-mount-mode)
 
-## Mount a filesystem using the stateless client feature <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
+## Mount a filesystem using the stateless mount mode <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
 
-The stateless client feature defers joining the cluster until the mount is performed. This simplifies and improves client management in the cluster. It removes tedious client management procedures, which is particularly beneficial in AWS installations where clients may join and leave frequently.
+The stateless mount mode simplifies client management by deferring the joining of the cluster until the mount operation is performed. This approach is particularly beneficial in environments like AWS, where clients frequently join and leave the cluster.
 
-Furthermore, it unifies all security aspects in the mount command, eliminating the search for separate credentials at cluster join and mount.
+**Key benefits**
 
-A WEKA agent must be installed to use the stateless client feature. Once installed, you can create and configure mounts with the mount command. You can also remove existing mounts from the cluster using the unmount command.
+* **Simplified client management**: Eliminates the need for tedious client management procedures.
+* **Unified security**: Consolidates all security aspects within the mount command, removing the need to manage separate credentials for cluster join and mount.
 
-{% hint style="info" %}
-To allow only WEKA authenticated users to mount a filesystem, set the filesystem `--auth-required` flag to `yes`. For more information, refer to the [Mount authentication for organization filesystems](../../operation-guide/organizations/organizations-2.md) topic.
-{% endhint %}
+**Prerequisites**
+
+* **WEKA Agent**: Ensure the WEKA agent is installed on your client to utilize the stateless mount mode.
+
+**Mount a filesystem**
+
+Once the WEKA agent is installed, you can create and configure mounts using the mount command. To mount a filesystem:
+
+* **Create and configure mounts**: Use the `mount` command to create and configure the mounts. See [#mount-command-options](./#mount-command-options "mention").
+* **Unmounting**: Remove existing mounts from the cluster using the `unmount` command.
+
+**Authentication**
+
+To restrict mounting to only WEKA authenticated users, set the `--auth-required` flag to `yes` for the filesystem. For more information, refer to [organizations-2.md](../../operation-guide/organizations/organizations-2.md "mention").
 
 **Isolated port for restricted stateless client operations**
 
@@ -137,7 +157,7 @@ Running this command uses [UDP mode ](../../weka-system-overview/networking-in-w
 Running this command on an AWS EC2 instance allocates two cores (multiple-frontends), attaches and configures two ENIs on the new client. The client attempts to rejoin the cluster through all three backends specified in the command line.
 {% endhint %}
 
-For stateless clients, the first `mount` command installs the weka client software and joins the cluster). Any subsequent `mount` command, can either use the same syntax or just the traditional/per-mount parameters as defined in [Mounting Filesystems](./#mount-mode-command-options) since it is not necessary to join a cluster.
+For stateless clients, the first `mount` command installs the weka client software and joins the cluster). Any subsequent `mount` command, can either use the same syntax or just the persistent/per-mount parameters as defined in [Mounting Filesystems](./#mount-mode-command-options) since it is not necessary to join a cluster.
 
 It is now possible to access Weka filesystems via the mount-point, e.g., by `cd /mnt/weka/` command.
 
@@ -401,7 +421,7 @@ echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
 ```
 {% endcode %}
 
-* For a stateful client (traditional), run the following commands:
+* For a persistent client, run the following commands:
 
 {% code overflow="wrap" %}
 ```bash

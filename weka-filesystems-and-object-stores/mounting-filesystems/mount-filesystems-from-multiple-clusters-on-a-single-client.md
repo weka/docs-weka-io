@@ -31,7 +31,7 @@ Ensure the following requirements are met:
 
 * All clusters that run in this configuration must be at least version 4.2.
 * All client containers in the WEKA client must run the same minor version, at least version 4.2. The client version must be the same as the cluster or, at most, one version earlier.
-* All client containers must be of the same type, stateful or stateless clients. Mixing different client types in a single WEKA client is not allowed.
+* All client containers must be of the same type, persistent or stateless clients. Mixing different client types in a single WEKA client is not allowed.
 * Each client container must run on its port. The default ports are 14000, 14101, 14201, 14301, 14401, 14501, and 14601. Ensure these ports allow egress on the client and ingress on the cluster.
 * For DPDK, each client container must have 5 GB of free RAM, and it is recommended to have a dedicated CPU core to get optimal performance.
 
@@ -39,7 +39,7 @@ Ensure the following requirements are met:
 
 {% hint style="info" %}
 * Mounting filesystems from multiple clusters on a single client with Intel E810 are only supported using UDP mode.
-* Mounting a stateful client using **autofs** is only supported on filesystems on a single cluster.
+* Mounting a persistent client using **autofs** is only supported on filesystems on a single cluster.
 {% endhint %}
 
 ## Set the client target version in the clusters
@@ -89,11 +89,11 @@ mount -t wekafs backend-server-0/my_fs /mnt/weka -o net=udp -o core=2
 ```
 {% endcode %}
 
-## Mount stateful client containers on multiple clusters
+## Mount persistent client containers on multiple clusters
 
-For stateful client containers, the `client-target-version` parameter is not relevant. The version of the client container is determined when creating the container in the WEKA client using the `weka local setup container` command. Therefore, ensure that all client containers in the WEKA client have the same minor version as in the clusters.
+For persistent client containers, the `client-target-version` parameter is not relevant. The version of the client container is determined when creating the container in the WEKA client using the `weka local setup container` command. Therefore, ensure that all client containers in the WEKA client have the same minor version as in the clusters.
 
-To mount a stateful client container to a cluster, specify the container name for that mount.&#x20;
+To mount a persistent client container to a cluster, specify the container name for that mount.&#x20;
 
 ```bash
 mount -t wekafs <fs-name> <mount-point> -o container_name=<container-name>

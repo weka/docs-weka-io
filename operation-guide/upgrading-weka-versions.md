@@ -286,16 +286,16 @@ The minimum source version for client upgrades is 4.3.X.
 * To limit the display of versions unless the complete set of components is present, use the `--full` flag with the `weka version` command  This provides you with finer control over version information visibility.
 * You can manually upgrade the clients locally (one by one) or remotely (in batches), usually during a maintenance window.
 
-#### Stateful client upgrade options
+#### Persistent client upgrade options
 
 * Clients can be upgraded manually. This can be done either locally on each client individually or remotely in batches. This process typically occurs during a scheduled maintenance window.
-* An upgrade is performed on a gateway, which is a stateful client that runs a specific protocol. This gateway is associated with containers with the `allow_protocols` parameter set to true. The upgrade process involves interaction with backend servers.
+* An upgrade is performed on a gateway, which is a persistent client that runs a specific protocol. This gateway is associated with containers with the `allow_protocols` parameter set to true. The upgrade process involves interaction with backend servers.
 
 #### Client upgrade procedures
 
 {% tabs %}
 {% tab title="Upgrade a client locally" %}
-To upgrade a stateless or stateful client locally, connect to the client and run the following command line:
+To upgrade a stateless or persistent client locally, connect to the client and run the following command line:
 
 1. Run: `weka version get <target-version> --from <backend name or IP>:<port>`
 2. Upgrade the agent by running the following:\
