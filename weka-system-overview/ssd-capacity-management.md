@@ -79,18 +79,13 @@ Where:
 
 * D is the data amount.
 * P is the parity amount.
-* H is the number of minimum required protection groups.
+* H is the minimum number of healthy failure domains.
 
-This formula ensures that all data is adequately protected by rounding up the total number of protection groups to the nearest whole number.
+This formula ensures that all data is adequately protected by rounding up the total number of healthy failure domains to the nearest whole number.
 
 The following are a few examples:
 
-| Resilience level (D+P) | Minimum required protection groups (H) |
-| ---------------------- | -------------------------------------- |
-| 3+2                    | 3                                      |
-| 16+2                   | 9                                      |
-| 5+4                    | 3                                      |
-| 16+4                   | 5                                      |
+<table><thead><tr><th width="282">Resilience level (D+P)</th><th>Minimum required healthy failure domains (H)</th></tr></thead><tbody><tr><td>3+2</td><td>3</td></tr><tr><td>16+2</td><td>9</td></tr><tr><td>5+4</td><td>3</td></tr><tr><td>16+4</td><td>5</td></tr></tbody></table>
 
 ## Failure domains (optional)
 
