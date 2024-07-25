@@ -1,21 +1,21 @@
 ---
 description: >-
-  To use a filesystem via the WEKA filesystem driver, it has to be mounted on
-  one of the cluster servers. This page describes how this is performed.
+  Learn about the two available modes for mounting a filesystem in a cluster
+  server: the persistent mount mode (stateful) and the stateless mount mode.
 ---
 
 # Mount filesystems
 
 ## Overview
 
-There are two methods available for mounting a filesystem in one of the cluster servers:
+There are two modes available for mounting a filesystem in one of the cluster servers:
 
 1. Using the persistent mount mode (stateful): See below and also refer to [Add clients](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md) (in Bare Metal Installation) or [Add clients](../../planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md) (in AWS Installation), where first a client is configured and joins a cluster, after which you run the mount command.
 2. Using the stateless mount mode: See [Mount filesystems using the stateless clients feature](./#mounting-filesystems-using-stateless-clients) below, which simplifies and improves the management of clients in the cluster and eliminates the Adding Clients process.
 
 If you need to mount a single client to multiple clusters, refer to the [Mount filesystems from multiple clusters on a single client](mount-filesystems-from-multiple-clusters-on-a-single-client.md) topic.
 
-## Mount a filesystem using the persistent mount method
+## Mount a filesystem using the persistent mount mode
 
 To mount a WEKA filesystem persistently, follow these steps:
 
@@ -40,9 +40,7 @@ mount -t wekafs [-o option[,option]...] <fs-name> <mount-point>
 
 Replace `<fs-name>` with the name of your filesystem and `<mount-point>` with the directory you created for mounting.
 
-#### Read and write cache modes
-
-When mounting a filesystem, you can choose between two cache modes: read cache and write cache. Each mode offers distinct advantages depending on your use case. For detailed descriptions of these modes, refer to the following links:
+**Read and write cache modes:** When mounting a filesystem, you can choose between two cache modes: read cache and write cache. Each mode offers distinct advantages depending on your use case. For detailed descriptions of these modes, refer to the following links:
 
 * [Read cache mount mode](../../weka-system-overview/weka-client-and-mount-modes.md#read-cache-mount-mode-default)
 * [Write cache mount mode](../../weka-system-overview/weka-client-and-mount-modes.md#write-cache-mount-mode)
