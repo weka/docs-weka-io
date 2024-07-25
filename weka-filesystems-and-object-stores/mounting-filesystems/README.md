@@ -10,8 +10,8 @@ description: >-
 
 There are two modes available for mounting a filesystem in a cluster server:
 
-1. **Persistent mount mode (stateful):** This mode involves configuring a client to join the cluster before running the mount command.
-2. **Stateless mount mode:** This mode simplifies and improves client management by eliminating the need for the Adding Clients process.
+* **Persistent mount mode (stateful):** This mode involves configuring a client to join the cluster before running the mount command.
+* **Stateless mount mode:** This mode simplifies and improves client management by eliminating the need for the Adding Clients process.
 
 If you need to mount filesystems from multiple clusters on a single client, refer to the relevant topic for detailed instructions.
 
