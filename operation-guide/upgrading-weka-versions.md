@@ -310,7 +310,7 @@ Add the `--from <backend name or IP>` option to download the client package only
 {% endtab %}
 
 {% tab title="Upgrade remote clients in batches" %}
-To upgrade stateless or stateful clients remotely in batches, add the following options to the  `weka local upgrade` command:
+To upgrade stateless or persistent clients remotely in batches, add the following options to the  `weka local upgrade` command:
 
 * `--mode=clients-upgrade`: This option activates the remote upgrade.
 * `--client-rolling-batch-size`: This option determines the number of clients to upgrade in each batch.  For example, if there are 100 clients, you can set this option to 10 and the upgrade will run 10 batches of 10 clients each.

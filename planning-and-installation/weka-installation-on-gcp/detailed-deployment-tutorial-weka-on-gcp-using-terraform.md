@@ -29,7 +29,7 @@ Images embedded in this document can be enlarged with a single click for ease of
 
 HashiCorp Terraform is a powerful tool that allows you to define, provision, and manage infrastructure as code. You can specify your infrastructure setup in a configuration file using a declarative configuration language, HashiCorp Configuration Language (HCL), or JSON. Terraform then uses this file to automatically create, modify, or delete resources, ensuring consistent and predictable deployment of your infrastructure components such as servers, databases, and networks.
 
-This document outlines the process for automating the deployment of the WEKA Data Platform on Google Cloud Platform (GCP) using Terraform. Terraform's widespread adoption and prominence in the Infrastructure as Code (IaC) domain drive its choice. Organizations of all sizes globally leverage Terraform to deploy stateful infrastructure both on-premises and across public clouds like AWS, Azure, and Google Cloud Platform.
+This document outlines the process for automating the deployment of the WEKA Data Platform on Google Cloud Platform (GCP) using Terraform. Terraform's widespread adoption and prominence in the Infrastructure as Code (IaC) domain drive its choice. Organizations of all sizes globally leverage Terraform to deploy persistent infrastructure both on-premises and across public clouds like AWS, Azure, and Google Cloud Platform.
 
 To install Terraform, we recommend following the [official installation guides](https://developer.hashicorp.com/terraform/install) provided by HashiCorp. Additionally, Terraform can be run directly from the GCP Cloud Terminal, which comes with Terraform pre-installed, as illustrated in this guide.
 

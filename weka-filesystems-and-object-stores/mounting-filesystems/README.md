@@ -40,7 +40,7 @@ mount -t wekafs [-o option[,option]...] <fs-name> <mount-point>
 
 Replace `<fs-name>` with the name of your filesystem and `<mount-point>` with the directory you created for mounting.
 
-#### Read an write cache modes
+#### Read and write cache modes
 
 When mounting a filesystem, you can choose between two cache modes: read cache and write cache. Each mode offers distinct advantages depending on your use case. For detailed descriptions of these modes, refer to the following links:
 

@@ -12,7 +12,7 @@ Ensure the following prerequisites are met:
 * For snapshot and directory backing, filesystems must be pre-defined on the WEKA cluster.
 * Your workstation has a valid connection to the Kubernetes worker nodes.
 * The WEKA client is installed on the Kubernetes worker nodes and the control plane. Adhere to the following:
-  * A WEKA client part of the cluster (stateful client) is recommended rather than a stateless client. See [Add clients](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md).
+  * A WEKA persistent client (a client part of the cluster) is recommended rather than a stateless client. See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
   * If the Kubernetes worker nodes run on the WEKA cluster backends (converged mode), ensure the WEKA processes are up before the `kubelet` process.
 
 ## Installation
