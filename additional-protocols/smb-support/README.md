@@ -81,7 +81,7 @@ For effective load balancing across multiple WEKA servers serving SMB, it is rec
 
 Follow these steps to optimize the DNS configuration:
 
-1. **Configure round-robin DNS entry:** Set up a round-robin DNS entry to distribute the load evenly among the different WEKA servers. This entry must resolve to the list of floating IPs associated with the SMB servers.
+1. **Configure round-robin DNS entry:** Set the round-robin entry to distribute the load evenly among the WEKA servers. This entry must resolve to the list of floating IPs associated with the SMB servers. Ensure the cluster name matches the DNS name, with a maximum length of 15 characters.
 2. **Adjust TTL (Time to Live):** To prevent caching of IP addresses by clients or DNS servers, set the TTL for all records assigned to the SMB servers to 0 (Zero). This ensures dynamic and real-time resolution of IPs for efficient load balancing.
 
 **Related information**
