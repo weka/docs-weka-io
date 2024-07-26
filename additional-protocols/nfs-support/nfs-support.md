@@ -13,13 +13,17 @@ Using the GUI, you can:
 
 ## Configure the NFS global settings
 
-NFS global settings consist of parameters that enable you to customize various aspects of the NFS service, including the support of the NFS protocol versions, the types of Kerberos authentication to use, and the port for mount requests.
+NFS global settings consist of parameters that enable you to customize various aspects of the NFS service, including the support of the NFS protocol versions, the types of Kerberos authentication to use, and the port for mount requests and NFS locking.
 
 By tailoring these settings, you can ensure that the NFS service meets your needs and requirements, such as supporting NFS V3 and V4 for compatibility with different client systems.
 
 {% hint style="info" %}
 The possible Kerberos authentication types are available only after configuring the Kerberos integration.&#x20;
 {% endhint %}
+
+**Before you begin**
+
+To support NFS file-locking, ensure the system meets the prerequisites outlined in [#nfs-file-locking-support](./#nfs-file-locking-support "mention").
 
 **Procedure**
 
@@ -31,7 +35,7 @@ The possible Kerberos authentication types are available only after configuring 
 
 4. In the Global Settings section, select **Update**, and do the following:
    * **Config FS**: Select the cluster-wide configuration filesystem that maintains the NFS and Kerberos configurations.
-   * **Supported Versions**: Select the NFS versions you wish to support based on your needs. Options include V3, V4, or both.
+   * **Supported Versions**: Select the NFS versions you want to support based on your needs. Options include V3, V4, or both.
    *   **Authentication Type**: Enable the authentication types that can be used when setting the NFS client permissions. \
        Possible values:
 
@@ -47,9 +51,18 @@ The possible Kerberos authentication types are available only after configuring 
 
        * If not configured: NONE SYS
        * If configured: KRB5
+   * **Mount Port:** Set the port that the mountd service binds to.
+   * **Lock Manager Port**: Set the port for the network lock manager’s registration.
+   * **Status Monitor Port:** Set the port for the network status monitor’s registration.
+   * **Notification Port:** Set the port for the notification’s registration.
+
+{% hint style="success" %}
+These ports are only relevant for NFSv3. The default value of 0 indicates using the default published ports.
+{% endhint %}
+
 5. Select **Save** to apply the settings.
 
-<figure><img src="../../.gitbook/assets/wmng_configure_nfs_global_settings.png" alt="" width="433"><figcaption><p>Configure global NFS settings dialog</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_configure_default_global_settings.png" alt="" width="433"><figcaption><p>Configure global NFS settings dialog</p></figcaption></figure>
 
 ## **Configure the NFS cluster level** <a href="#create-interface-groups" id="create-interface-groups"></a>
 

@@ -8,7 +8,7 @@ description: >-
 
 NFS (Network File System) is a protocol that enables clients to access the WEKA filesystem without requiring WEKA's client software. This leverages the standard NFS implementation of the client's operating system.
 
-WEKA supports an advanced NFS implementation, NFS-W, designed to overcome inherent limitations in the NFS protocol. NFS-W is compatible with NFSv3 or NFSv4[^1] protocols, offering enhanced capabilities, including support for more than 16 user security groups.
+WEKA supports an advanced NFS implementation, NFS-W, designed to overcome inherent limitations in the NFS protocol. NFS-W is compatible with NFSv3 or NFSv4[^1] protocols and offers enhanced capabilities, including support for more than 16 user security groups and NFS file-locking.
 
 {% hint style="info" %}
 The legacy NFS stack is no longer supported.
@@ -36,7 +36,7 @@ An interface group consists of the following:
 Floating IPs are supported on AWS but not on Azure, GCP, and OCI cloud environments.
 {% endhint %}
 
-An interface group can have only a single port. Therefore, two interface groups are required to support High Availability (HA) in NFS. Consider the network topology when assigning the other server ports to these interface groups to ensure no single point of failure exists in the switch.
+An interface group can have only a single port. Therefore, two interface groups are required to support High Availability (HA) in NFS. When assigning the other server ports to these interface groups, consider the network topology to ensure no single point of failure exists in the switch.
 
 You can define up to 10 different Interface groups. Use multiple interface groups if the cluster connects to multiple subnets. You can set up to 50 servers in each interface group.
 
@@ -48,7 +48,7 @@ The WEKA system automatically configures the floating IP addresses used by the N
 
 ### Round-robin DNS server configuration
 
-To ensure load balancing between the NFS clients on the different WEKA servers serving NFS, it is recommended to configure a round-robin DNS entry that resolves to the list of floating IPs.
+To ensure load balancing between the NFS clients on the different WEKA servers serving NFS, it is recommended that a round-robin DNS entry be resolved to the list of floating IPs.
 
 {% hint style="info" %}
 Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zero). This action ensures that the client or the DNS server does not cache the IP.
@@ -80,7 +80,7 @@ The Kerberos security levels are:
 * **krb5p:** Integrates Kerberos authentication with data integrity and privacy measures.
 
 {% hint style="info" %}
-NFS exports created before configuring Kerberos are not updated automatically when using Kerberos. To leverage the Kerberos advantages, the Authenticator Type must be modified to one of the Kerberos types.
+NFS exports created before configuring Kerberos are not updated automatically when using Kerberos. The Authenticator Type must be modified to one of the Kerberos types to leverage the Kerberos advantages.
 {% endhint %}
 
 #### Kerberos LDAP configurations
@@ -88,15 +88,15 @@ NFS exports created before configuring Kerberos are not updated automatically wh
 WEKA supports Kerberos authentication for NFS using AD and Kerberos MIT:
 
 * **Active Directory (AD):** NFS integrates with Active Directory (AD), which includes built-in Kerberos services. WEKA interacts with the AD using the Kerberos protocol to authenticate service requests among trusted devices.
-* **Kerberos MIT:** NFS integrates with Kerberos MIT, implementing the Kerberos protocol using secret-key cryptography for authentication across insecure networks. This protocol is widely standardized and utilized.
+* **Kerberos MIT:** NFS integrates with Kerberos MIT, implementing the Kerberos protocol, which uses secret-key cryptography for authentication across insecure networks. This protocol is widely standardized and utilized.
 
 #### Kerberos service interactions basic outline
 
 The following Kerberos service interactions ensure secure communication between the client and the WEKA NFS server:
 
-1. **Client authentication & ticket request:** The client sends a request, including encrypted credentials, to the Authentication Server for a Ticket Granting Ticket (TGT).
-2. **Ticket generation & delivery:** The Authentication Server verifies the client’s identity, generates a session key, forms a TGT, and sends these to the client.
-3. **Ticket extraction & service request:** The client decrypts the received message, extracts the session key and the TGT, and sends a service request to the Ticket Granting Server.
+1. **Client authentication and ticket request:** The client sends a request, including encrypted credentials, to the Authentication Server for a Ticket Granting Ticket (TGT).
+2. **Ticket generation and delivery:** The Authentication Server verifies the client’s identity, generates a session key, forms a TGT, and sends these to the client.
+3. **Ticket extraction and service request:** The client decrypts the received message, extracts the session key and the TGT, and sends a service request to the Ticket Granting Server.
 4. **Service session key generation & ticket formation:** The Ticket Granting Server verifies the TGT, generates a Service Session Key, and forms a Service Ticket.
 5. **Service ticket delivery & extraction:** The Ticket Granting Server sends the Service Ticket and the Service Session Key to the client, who then decrypts the response and extracts these for later use.
 6. **Service access & verification:** The client generates an authenticator for the network service and sends it along with the Service Ticket to the network service, which then verifies the Service Ticket and the authenticator.
@@ -109,13 +109,54 @@ This diagram illustrates the Kerberos service interactions in a simplified manne
 
 ### Scalability, load balancing, and resiliency&#x20;
 
-Add as many servers as possible to the interface group to allow for performance scalability.
+Add as many servers as possible to the interface group for performance scalability.
 
 [Floating IPs](#user-content-fn-2)[^2] facilitate load balancing by evenly distributing them across all interface group servers and ports, given the system has 50 or fewer NFS interfaces. However, with the limitation of 50 floating IPs per cluster, systems with more than 50 NFS interfaces may not have a floating IP for each interface.
 
 When different clients resolve the DNS name into an IP service, each receives a different IP address, ensuring that other clients access different servers. This allows the WEKA system to scale and service thousands of clients.
 
 To ensure the resilience of the service if a server fails, the system reassigns all IP addresses associated with the failed server to other servers (using the GARP[^3] network messages), and the clients reconnect to the new servers without any reconfiguration or service interruption.
+
+### NFS file-locking support
+
+NFS file-locking is a mechanism that ensures synchronized access to files by multiple processes in a networked environment. It maintains data integrity and consistency by preventing simultaneous access to the same file, thereby preventing potential data corruption.
+
+#### NFS file-locking prerequisites for NFSv3
+
+* **Port prerequisites:** Ports used by the `nlockmgr` and `status` services must be open on the clients and WEKA servers. Use **one** of the following methods to meet this requirement:
+  *   Disable and stop `firewalld` using the commands:
+
+      ```
+      systemctl stop firewalld.service
+      systemctl disable firewalld.service
+      ```
+  *   Define the ports in `/etc/services` and restart the `rpc.statd` (ensure the port numbers are open). For example:
+
+      ```
+      status		46999/tcp		# rpc status
+      status		46999/ucp		# rpc status
+      nlockmgr 	47000/tcp		# nlockmgr
+      nlockmgr 	47000/ucp		# nlockmgr
+      ```
+* **NFS client prerequisite:** To use NFSv3 with locking on an NFS client, ensure the `rpc.statd` service runs in the NFS client. This enables clients to mount NFSv3 shares.
+
+#### View file locks
+
+To inspect the active locks on a specific file, use the following command:
+
+```bash
+weka debug flock list <inode-id>
+                      [--snap-view-id snap-view-id]
+                      [--verbose]
+```
+
+* `<inode-id>`: The unique identifier of the file’s inode.
+* `--snap-view-id snap-view-id`: (Optional) Specifies the snapshot view ID for listing locks on a file within a particular snapshot.
+* `--verbose`: (Optional) Provides detailed lock information, including the lock owner and type.
+
+This command outputs a list of all current locks on the specified file, enabling administrators to monitor and manage file access effectively.
+
+
 
 ## NFS service deployment high-level workflow
 

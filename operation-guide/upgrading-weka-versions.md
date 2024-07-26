@@ -54,7 +54,7 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 ## Upgrade workflow
 
 1. [Verify system upgrade prerequisites](upgrading-weka-versions.md#id-1.-verify-system-upgrade-prerequisites)
-2. [Prepare the cluster for upgrade](upgrading-weka-versions.md#2.-prepare-the-cluster-for-upgrade)
+2. [Prepare the cluster for upgrade](upgrading-weka-versions.md#id-2.-prepare-the-cluster-for-upgrade)
 3. [Prepare the backend servers for upgrade (optional)](upgrading-weka-versions.md#3.-optional.-prepare-the-backend-servers-for-upgrade)
 4. [Upgrade the backend servers](upgrading-weka-versions.md#4.-upgrade-the-backend-servers)
 5. [Upgrade the clients](upgrading-weka-versions.md#id-5.-upgrade-the-clients)
@@ -64,13 +64,16 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 Adhere to the following considerations:
 
 * **Protocol separation**: Upgrading a WEKA cluster with a server used for more than one of the following protocols, NFS, SMB, or S3, is not permitted. If such a case arises, the upgrade process does not initiate and indicates the servers that require protocol separation. Contact the Customer Success Team to ensure only one additional protocol is installed on each server.
-* **Legacy NFS protocol**: If a legacy NFS protocol is implemented, it’s advised to contact the Customer Success Team. In this case, the upgrade is blocked.
-* **S3 Cluster Creation**: If there is a plan to create an S3 cluster, it’s crucial to ensure the upgrade process is complete and all containers are up before initiating the S3 cluster creation.
+* **Legacy NFS protocol**: If a legacy NFS protocol is implemented, contact the Customer Success Team. In this case, the upgrade is blocked.
+* **NFS file-locking prerequisite before upgrade:** Ensure the `rpc.statd` and `rpc-statd-notifiy` services are stopped on the WEKA servers. If not, run the following commands:\
+  `systemctl disable rpc-statd.service`\
+  `systemctl disable srpc-statd-notify-service`
+* **S3 Cluster Creation**: If you plan to create an S3 cluster, it’s crucial to ensure the upgrade process is complete and all containers are up before initiating the creation.
 {% endhint %}
 
 ### 1. Verify system upgrade prerequisites
 
-Before proceeding with any system upgrade, ensuring that the environment meets the necessary prerequisites is crucial. The **WEKA Upgrade Checker Tool** automates these essential checks, comprehensively assessing the system’s readiness. Whether performing a single-version upgrade or a multi-hop upgrade, following this procedure is mandatory.
+Ensure the environment meets the necessary prerequisites before proceeding with any system upgrade. The **WEKA Upgrade Checker Tool** automates these essential checks, comprehensively assessing the system’s readiness. Whether performing a single-version upgrade or a multi-hop upgrade, following this procedure is mandatory.
 
 #### Summary of the WEKA Upgrade Checker Tool results:
 
@@ -163,7 +166,7 @@ Demo: WEKA Upgrade Checker
      * If you have previously downloaded the tools repository, navigate to the **tools** directory.
      * Run `git pull` to update the tools repository with the latest enhancements. (The WEKA tools, including the WEKA Upgrade Checker, continuously evolve.)
 3. **Run the WEKA Upgrade Checker:**
-   * Navigate to the weka\_upgrade\_checker directory. It includes a binary version and a Python script of the tool. A minimum of Python 3.8 is required if you run the Python script.
+   * Navigate to the weka\_upgrade\_checker directory. It includes a binary version and a Python script of the tool. To run the Python script, you need a minimum of Python 3.8.
    *   Run the Python script: `python3.8 ./weka_upgrade_checker.py`
 
        The tool scans the backend servers and verifies the upgrade prerequisites.
@@ -173,7 +176,7 @@ Demo: WEKA Upgrade Checker
      * **Yellow**: Warnings that require attention and remedy.
      * **Red**: Failed checks. If any exist, **do not proceed**. Contact the Customer Success Team.
 5. **Send the log file to the Customer Success Team:**
-   * The `weka_upgrade_checker.log` is located in the same directory you ran the tool from. Share the latest log file with the Customer Success Team for further analysis.
+   * The `weka_upgrade_checker.log` is located in the same directory where you ran the tool. Share the latest log file with the Customer Success Team for further analysis.
 
 ### 2. Prepare the cluster for upgrade&#x20;
 

@@ -17,8 +17,9 @@ This preparation consists of the following steps:
 5. [Configure the HA networking](./#configure-the-ha-networking)
 6. [Configure the clock synchronization](./#configure-sync)
 7. [Disable the NUMA balancing](./#disable-the-numa-balancing)
-8. [Disable swap (if any)](./#id-8.-disable-swap-if-any)
-9. [Validate the system preparation](./#id-9.-validate-the-system-preparation)
+8. [Enable kdump and set kernel panic reboot timer](./#id-8.-enable-kdump-and-set-kernel-panic-reboot-timer)
+9. [Disable swap (if any)](./#id-9.-disable-swap-if-any)
+10. [Validate the system preparation](./#id-10.-validate-the-system-preparation)
 
 {% hint style="info" %}
 Some of the examples contain version-specific information. The software is updated frequently, so the package versions available to you may differ from those presented here.
@@ -478,11 +479,45 @@ To persistently disable NUMA balancing, follow these steps:
 1. Open the file located at: `/etc/sysctl.conf`
 2. Append the following line: `kernel.numa_balancing=disable`
 
-## 8. Disable swap (if any)
+## 8. **Enable kdump and set kernel panic reboot timer**
+
+Enabling kdump and configuring the kernel panic reboot timer ensures system crashes leave log files for analysis and automate system reboot after a kernel panic to minimize downtime.
+
+<details>
+
+<summary><strong>Enable kdump</strong></summary>
+
+Enabling kdump ensures crash diagnostic data is captured (`/var/crash`).
+
+1. Install kdump tools (if not exist): `sudo yum install kexec-tools crash`.
+2. Enable the kdump service: `sudo systemctl enable kdump.service`.
+3. Open the file located at: `/etc/kdump.conf`.
+4. Set the crash dump path and size. Example:
+
+```plaintext
+path /var/crash
+core_collector makedumpfile -c --message-level 1 -d 31
+```
+
+</details>
+
+<details>
+
+<summary><strong>Set kernel panic reboot timer</strong></summary>
+
+Setting `kernel.panic` to reboot after 300 seconds automates recovery from kernel panics, reducing server downtime and aiding in faster issue resolution.
+
+1. Open the file located at: `/etc/sysctl.conf`
+2. Append the following line: `kernel.panic = 300`
+3. Apply changes: `sudo sysctl -p`
+
+</details>
+
+## 9. Disable swap (if any)
 
 WEKA highly recommends that any servers used as backends have no swap configured. This is distribution-dependent but is often a case of commenting out any `swap` entries in `/etc/fstab` and rebooting.
 
-## 9. Validate the system preparation
+## 10. Validate the system preparation
 
 The `wekachecker` is a tool that validates the readiness of the servers in the cluster before installing the WEKA software.
 

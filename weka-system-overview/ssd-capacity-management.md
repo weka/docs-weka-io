@@ -48,44 +48,31 @@ A higher protection level means better data durability and availability but requ
 
 ### Resilience to serial failures
 
-Beyond the +2 or +4 concurrent failure protection, a WEKA cluster is also resilient[^1] to [serial failures](#user-content-fn-2)[^2] of additional failure domains. Providing that each data rebuild completes successfully, a cluster is resilient to an additional server failure, even if the failure would reduce the number of available servers beyond what is expected by the concurrent protection level.
+Beyond the +2 or +4 concurrent failure protection, a WEKA cluster is also resilient[^1] to [serial failures](#user-content-fn-2)[^2] of additional servers. Providing that there is enough free SSD capacity to complete each rebuild successfully, a cluster is resilient to an additional server failure, even if the failure would reduce the number of available servers below the stripe width.
 
 #### **Example of failure resilience after rebuild completion**
 
-Consider a cluster of 20 servers with a stripe width of 18 (16+2). After rebuilding from a concurrent failure of 2 servers, this 18-server cluster is healthy and still resilient to two additional concurrent server failures.
+Consider a cluster of 20 servers with a stripe width of 18 (16+2). After rebuilding from a concurrent failure of 2 servers, the cluster still resilient to two additional concurrent server failures.
 
-In the event of subsequent server failures, the cluster rebuilds with the remaining healthy servers to support a stripe width of 18. When the number of active servers drops below 18, the system remains resilient to a single server failure until only 9 servers are left. Failures beyond this point result in the filesystem going offline.
+In the event of subsequent server failures, the cluster rebuilds with the remaining healthy servers to support the stripe width of 18. Even if the number of healthy servers drops below 18, the system remains resilient to a single server failure until only 9 servers are left, as long as there is sufficient free SSD capacity and the rebuild completes between each server failure. Failures beyond this point result in the filesystem going offline.
 
-#### **Benefits for customers**
+#### Resilience level and minimum required healthy servers
 
-* **Continued operation**: Despite multiple failures, your data remains protected, allowing for continued operation.
-* **Data integrity**: Ensures data integrity through sequential rebuilds, maintaining data availability even in degraded states.
-
-#### **Action plan in the event of serial failures**
-
-1. **Monitor cluster health**: Regularly monitor the cluster's health to preemptively identify potential failures.
-2. **Ensure free capacity**: Maintain sufficient free capacity to allow for complete rebuilds without impacting performance.
-3. **Avoid overloading maintenance windows**: Remove only one server from a running cluster at a time. Begin maintenance on the next server once the cluster returns to an OK status.
-
-#### Resilience level and minimum required protection groups
-
-In a storage system, data protection is achieved using protection groups, which include both data and parity. The formula to determine the number of minimum required protection groups is:
+The stripe width and protection level determine the minimum number of required healthy servers. This can be represented by the following formula:
 
 $$
-H = Ceil(D+P)/P
+H = Roundup((D+P)/P)
 $$
 
 Where:
 
-* D is the data amount.
-* P is the parity amount.
-* H is the minimum number of healthy failure domains.
-
-This formula ensures that all data is adequately protected by rounding up the total number of healthy failure domains to the nearest whole number.
+* _D_ is the data blocks in the stripe.
+* _P_ is the protection blocks in the stripe.
+* _H_ is the minimum number of healthy servers.
 
 The following are a few examples:
 
-<table><thead><tr><th width="282">Resilience level (D+P)</th><th>Minimum required healthy failure domains (H)</th></tr></thead><tbody><tr><td>3+2</td><td>3</td></tr><tr><td>16+2</td><td>9</td></tr><tr><td>5+4</td><td>3</td></tr><tr><td>16+4</td><td>5</td></tr></tbody></table>
+<table><thead><tr><th width="282">Stripe width (D+P)</th><th>Minimum required healthy servers (H)</th></tr></thead><tbody><tr><td>5+2</td><td>4</td></tr><tr><td>16+2</td><td>9</td></tr><tr><td>5+4</td><td>3</td></tr><tr><td>16+4</td><td>5</td></tr></tbody></table>
 
 ## Failure domains (optional)
 

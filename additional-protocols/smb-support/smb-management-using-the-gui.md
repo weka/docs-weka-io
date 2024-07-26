@@ -269,8 +269,8 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
    * **Encryption:** Select in-transit encryption enforcement of the share. The global cluster encryption settings can affect the actual encryption.
    * **Read Only:** Select to set the share as read-only.
    * **Hidden:** Select if you want to hide the share so it is not visible when viewing the list of system shares.
-   * **Allow Guest Access:** Select if you want guests to access without authentication.
-   * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix).
+   * **Allow Guest Access:** Select if you want guests to access without authentication. Not supported in SMB-W.
+   * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix). Not supported in SMB-W.
    * **Files/Directories POSIX Mode Mask**: Set the new default file and directory permissions in a numeric (octal) format created through the share.
    * **ACLs Enabled**: Determines whether to enable the Windows Access-Control Lists (ACLs) on the share. Weka translates the ACLs to POSIX.
 3. Select **Save**.

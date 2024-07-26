@@ -1,3 +1,7 @@
+---
+description: This page describes how to add clients to a bare-metal cluster.
+---
+
 # Add clients to an on-premises WEKA cluster
 
 ## Cgroups configuration

@@ -164,7 +164,7 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 **Parameters**
 
-<table><thead><tr><th width="217">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td>IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.<br>Format: comma-separated IP addresses.<br>Example: <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></td></tr></tbody></table>
+<table><thead><tr><th width="217">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td><p><code>IP:port</code> pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.</p><p>To restrict the client’s operations to only the essential APIs for mounting and unmounting operations, connect to WEKA clusters through TCP base port + 3 (for example, 14003).</p><p>The <code>IP:port</code> value must match the value used to create the container.<br>Format: comma-separated IP addresses.<br>Example: <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></p></td></tr></tbody></table>
 
 ### 7.  Create frontend containers
 
@@ -172,13 +172,23 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 For each server in the cluster, create the frontend containers using the resource generator output file `frontend0.json`.
 
-```
+{% code overflow="wrap" %}
+```bash
 weka local setup container --join-ips <IP addresses> --resources-path <resources-path>/frontend0.json
 ```
+{% endcode %}
+
+**Command example for installing a stateful client with restricted privileges**
+
+{% code overflow="wrap" %}
+```bash
+weka local setup container --client --restricted --join-ips <IP addresses> --resources-path <resources-path>/frontend0.json
+```
+{% endcode %}
 
 **Parameters**
 
-<table><thead><tr><th width="209">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td>IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.<br>Format: comma-separated IP addresses.<br>Example:  <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></td></tr></tbody></table>
+<table><thead><tr><th width="209">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td>IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.<br>Format: comma-separated IP addresses.<br>Example:  <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></td></tr><tr><td><code>client</code></td><td>Set the container as a client.</td></tr><tr><td><code>restricted</code></td><td>Set a client container with restricted privileges as a regular user regardless of the logged-in role.</td></tr></tbody></table>
 
 ### 8. Name the cluster
 
