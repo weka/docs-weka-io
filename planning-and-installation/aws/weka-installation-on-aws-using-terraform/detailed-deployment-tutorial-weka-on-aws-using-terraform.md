@@ -191,18 +191,6 @@ Navigate to the directory.
 cd deploy
 ```
 
-Including an [output.tf](http://output.tf) file in the deploy directory will allow the easy output to screen of data generated during the process.
-
-Create a `[output.tf](http://output.tf)` file and paste the following as its contents
-
-```json
-output "weka_deployment_output" {
-  value = module.weka_deployment
-}
-```
-
-Save the file.
-
 A **main.tf** file is required to define the Terraform options. Create the main.tf file using the WEKA Cloud Deployment Manager. See [weka-cloud-deployment-manager-cdm-user-guide.md](../../weka-cloud-deployment-manager-cdm-user-guide.md "mention").
 
 Authentication is handled using the AWS CLI utility.
