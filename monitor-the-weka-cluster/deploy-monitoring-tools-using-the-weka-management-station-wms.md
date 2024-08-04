@@ -50,7 +50,7 @@ This workflow only applies to installation on a server or VM. It does not apply 
 Before deploying the WMS, adhere to the following:
 
 * The root password is `WekaService`
-* The WEKA user password is `weka.io123`
+* The weka user password is `weka.io123`
 * If errors occur during installation and the installation halts (no error messages appear), use the system console to review the logs in `/tmp`. The primary log is `/tmp/ks-pre.log`.
 * To get a command prompt from the Installation GUI, do one of the following:
   * On macOS, type **ctrl+option+f2**&#x20;
