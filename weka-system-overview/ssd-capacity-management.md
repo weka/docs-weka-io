@@ -48,13 +48,15 @@ A higher protection level means better data durability and availability but requ
 
 ### Resilience to serial failures
 
-Beyond the +2 or +4 concurrent failure protection, a WEKA cluster is also resilient[^1] to [serial failures](#user-content-fn-2)[^2] of additional servers. Providing that there is enough free SSD capacity to complete each rebuild successfully, a cluster is resilient to an additional server failure, even if the failure would reduce the number of available servers below the stripe width.
+Beyond the +2 or +4 concurrent failure protection, a WEKA cluster is also resilient[^1] to [serial failures](#user-content-fn-2)[^2] of additional failure domains. Providing that each data rebuild completes successfully, and there is sufficient free NVMe capacity in the cluster. A cluster is resilient to an additional server failure, even if the failure would reduce the number of available servers beyond what is expected by the concurrent protection level.
 
 #### **Example of failure resilience after rebuild completion**
 
 Consider a cluster of 20 servers with a stripe width of 18 (16+2). After rebuilding from a concurrent failure of 2 servers, the cluster still resilient to two additional concurrent server failures.
 
-In the event of subsequent server failures, the cluster rebuilds with the remaining healthy servers to support the stripe width of 18. Even if the number of healthy servers drops below 18, the system remains resilient to a single server failure until only 9 servers are left, as long as there is sufficient free SSD capacity and the rebuild completes between each server failure. Failures beyond this point result in the filesystem going offline.
+In the event of subsequent server failures, the cluster rebuilds with the remaining healthy servers to support a stripe width of 18. If further serial server failures occur, the system rebuilds its data stripes as those individual servers fail, subject to sufficient NVMe space, until the lower limit of 9 servers is reached (in this case). Failures beyond this point result in the filesystem going offline.
+
+In the event of serial server failures and insufficient NVMe capacity, the cluster attempts to tier data that currently resides in NVMe out to its object stores if configured. In contrast to the usual age-related orderly tiering that occurs in normal usage, this [backpressure mode](#user-content-fn-3)[^3] does not consider data's age when making tiering decisions, and instead will tier data in an approximately random fashion. This is not the desired mode of operation, but it ensures data integrity in the event of continually-decreasing NVMe capacity by offloading data to an object store.
 
 #### Resilience level and minimum required healthy servers
 
@@ -142,3 +144,5 @@ $$
 [^1]: **Cluster resiliency**: A WEKA cluster with more hosts than the total protection stripe width returns to full redundancy once the rebuild completes.
 
 [^2]: **Serial failures:** Refers to a sequence where each data rebuild finishes before another server fails, ensuring one-at-a-time failure handling.
+
+[^3]: Backpressure mode is an emergency response that helps a system continue functioning by offloading data to secondary storage when primary storage is insufficient.
