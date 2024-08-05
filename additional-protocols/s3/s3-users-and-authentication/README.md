@@ -18,8 +18,6 @@ Use `--posix-uid` and `--posix-gid` flags for a local user with an S3 user role.
 The S3 user name and password serve as the S3 access key and secret key, respectively.&#x20;
 {% endhint %}
 
-
-
 **Related topics**
 
 [#create-users](../../../operation-guide/user-management/#create-users "mention")
@@ -41,20 +39,22 @@ To create a custom policy, you can use _AWS Policy Generator_ and select `IAM Po
 The IAM policy size is limited to 2KB. If a larger policy is required, contact the [Customer Success Team](../../../support/getting-support-for-your-weka-system.md).
 {% endhint %}
 
-
-
 **Related information**
 
 [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
 
 ## IAM temporary credentials (STS)
 
-Once an S3 user is created and an IAM policy is attached, it is possible to gain temporary credentials to access the S3 API by calling the Assume Role command.
+Once an S3 user is created and an IAM policy is attached, the Assume Role command can be used to obtain temporary credentials to access the S3 API.
 
-The result of calling the API is an access key, secret key, and session token tuple that can be used to access S3 APIs. The permissions for the temporary credentials are the permissions induced by the user's IAM policy. Furthermore, it is possible to supply a different (with reduced capabilities only) IAM policy for the temporary credentials request.
+The result of calling the API is an access key, secret key, and session token that can be used to access S3 APIs. The permissions for the temporary credentials are the permissions induced by the user's IAM policy. Furthermore, it is possible to supply a different IAM policy (with reduced capabilities only) for the temporary credentials request.
+
+{% hint style="warning" %}
+If the STS credentials are compromised, revoke them by deleting the associated S3 user. This action will invalidate all STS credentials linked to that user.
+{% endhint %}
 
 {% hint style="info" %}
-Some S3 clients and SDKs (such as [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)), when provided with an access key and secret key pair, support the AssumeRole API automatically. They use STS credentials and automatically regenerate a new STS when the previous one expires.
+Some S3 clients and SDKs (such as [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)), when provided with an access key and secret key pair, automatically support the AssumeRole API. They use STS credentials and automatically regenerate a new STS when the previous one expires.
 {% endhint %}
 
 ## S3 service accounts
@@ -63,11 +63,9 @@ S3 service accounts are child identities of a single parent S3 user. Each servic
 
 S3 service accounts enable the management of specific object store buckets and S3 APIs (as defined by the IAM policy) without relying on the S3 user administrative action.
 
-Unlike IAM temporary credentials (STS), the S3 service account is not temporary and has no expiration date. It is used for ongoing management of the object store buckets and S3 APIs.
+Unlike IAM temporary credentials (STS), the S3 service account is not temporary and has no expiration date. It is used to manage the object store buckets and S3 APIs.
 
 Only an S3 user can manage S3 service accounts (Cluster Admin cannot). An S3 user can create up to 100 S3 service accounts. Managing S3 service accounts is only available through the CLI.
-
-
 
 **Related topics**
 

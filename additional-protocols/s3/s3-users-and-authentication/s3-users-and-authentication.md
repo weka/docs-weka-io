@@ -21,13 +21,13 @@ With the CLI, you can:
 
 Use this command to list the existing IAM policies.
 
-The command lists both the pre-defined policies and custom policies that the Cluster Admin has added.
+The command lists the pre-defined and custom policies the Cluster Admin has added.
 
 **Command:** `weka s3 policy show <policy-name>`
 
 Use this command to see the JSON definition of the selected IAM policy.
 
-The pre-defined policies value are:
+The pre-defined policy values are:
 
 {% tabs %}
 {% tab title="readonly" %}
