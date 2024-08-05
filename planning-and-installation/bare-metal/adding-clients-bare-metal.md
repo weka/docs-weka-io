@@ -54,10 +54,10 @@ curl http://Backend-1:14000/dist/v1/install | WEKA_CGROUPS_MODE=none sh
 You can set the Cgroups mode in the service configuration file for clients and backends.
 
 1. Open the service configuration file `/etc/wekaio/service.conf` and add one of the following:
-   * `cgroup_mode=auto`
-   * `cgroup_mode=force`
-   * `cgroup_mode=force_v2`
-   * `cgroup_mode=none`
+   * `cgroups_mode=auto`
+   * `cgroups_mode=force`
+   * `cgroups_mode=force_v2`
+   * `cgroups_mode=none`
 2. Restart the WEKA agent service.
 3. Verify the Cgroups setting by running the `weka local status` command.
 
