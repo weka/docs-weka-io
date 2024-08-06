@@ -54,7 +54,7 @@ If the STS credentials are compromised, revoke them by deleting the associated S
 {% endhint %}
 
 {% hint style="info" %}
-Some S3 clients and SDKs (such as [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)), when provided with an access key and secret key pair, automatically support the AssumeRole API. They use STS credentials and automatically regenerate a new STS when the previous one expires.
+Some S3 clients and SDKs, when provided with an access key and secret key pair, automatically support the AssumeRole API. They use STS credentials and automatically regenerate a new STS when the previous one expires.
 {% endhint %}
 
 ## S3 service accounts
