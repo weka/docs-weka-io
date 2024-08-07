@@ -24,7 +24,7 @@ In summary, the WEKA system's distributed network scheme transforms data recover
 
 In the WEKA system, a hot spare is configured within the cluster to provide the additional capacity needed for a full recovery after a rebuild across the entire cluster. This differs from traditional approaches, where specific physical components are designated hot spares. For instance, in a 100-backend cluster, sufficient capacity is allocated to rebuild the data and restore full redundancy even after two failures. The system can withstand two additional failures depending on the protection policy and cluster size.
 
-This strategy for replacing failed components does not compromise system vulnerability. In the event of a system failure, there's no immediate need to physically replace a failed component with a functional one to recreate the data. Instead, data is promptly regenerated, while replacing the failed component with a working one is a background process.
+This strategy for replacing failed components does not compromise system reliability. In the event of a system failure, there's no immediate need to physically replace a failed component with a functional one to recreate the data. Instead, data is promptly regenerated, while replacing the failed component with a working one is a background process.
 
 ## **Enhanced fault tolerance with failure domains**
 
