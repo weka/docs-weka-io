@@ -51,6 +51,7 @@
     * [Add clients to a WEKA cluster on AWS](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md)
     * [Auto scaling group](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/auto-scaling-group.md)
     * [Troubleshooting](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/troubleshooting.md)
+  * [Install SMB on AWS](planning-and-installation/aws/install-smb-on-aws.md)
 * [WEKA installation on Azure](planning-and-installation/weka-installation-on-azure/README.md)
   * [Azure-WEKA deployment Terraform package description](planning-and-installation/weka-installation-on-azure/azure-weka-terraform-package-description.md)
   * [Deployment on Azure using Terraform](planning-and-installation/weka-installation-on-azure/deployment-on-azure-using-terraform.md)
