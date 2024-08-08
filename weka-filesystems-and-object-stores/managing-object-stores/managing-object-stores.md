@@ -128,7 +128,7 @@ Set the following:
 4. **Auth Method:** Select the authentication method to connect to the bucket.
 5. **Access Key and Secret Key:** Set the the Access Key and Secret Key of the user granted with read/write access to the bucket.
 
-<figure><img src="../../.gitbook/assets/wmng_obs_on_azure (1).png" alt=""><figcaption><p>Azure S3 bucket creation</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_create_obs_azure (1).png" alt=""><figcaption><p>Azure S3 bucket creation</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
