@@ -12,17 +12,12 @@ Set up SMB in AWS for secure and efficient file sharing and access control, inte
 
 **Workflow**
 
-[#install-aws-managed-microsoft-a-d](install-smb-on-aws.md#install-aws-managed-microsoft-a-d "mention")
-
-[#configure-amazon-route-53-resolver](install-smb-on-aws.md#configure-amazon-route-53-resolver "mention")
-
-[#deploy-weka-cluster-using-terraform](install-smb-on-aws.md#deploy-weka-cluster-using-terraform "mention")
-
-[#deploy-windows-client-on-ec2](install-smb-on-aws.md#deploy-windows-client-on-ec2 "mention")
-
-[#configure-smb](install-smb-on-aws.md#configure-smb "mention")
-
-[#clean-up](install-smb-on-aws.md#clean-up "mention")
+1. Install AWS Managed Microsoft AD
+2. Configure Amazon Route 53 Resolver
+3. Deploy WEKA cluster using Terraform
+4. Deploy Windows client on EC2
+5. Configure SMB
+6. Clean up
 
 ## 1. Install AWS Managed Microsoft AD
 
