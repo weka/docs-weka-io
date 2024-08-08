@@ -1,8 +1,10 @@
 ---
-description: Professional services workflow
+description: >-
+  Professional services workflow for converting the cluster architecture from a
+  single-container backend to a multi-container backend.
 ---
 
-# Convert the cluster architecture from a single-container backend to a multi-container backend
+# Convert cluster to multi-container backend
 
 Since WEKA introduced the multi-container backend (MCB or MBC) architecture, it is required to convert existing single-container backend (SCB) architecture to MCB.
 

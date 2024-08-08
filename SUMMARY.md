@@ -243,5 +243,5 @@
   * [Add SELinux support](appendices/weka-csi-plugin/add-selinux-support.md)
   * [Upgrade legacy persistent volumes for capacity enforcement](appendices/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
   * [Troubleshooting](appendices/weka-csi-plugin/troubleshooting.md)
-* [Convert the cluster architecture from a single-container backend to a multi-container backend](appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
+* [Convert cluster to multi-container backend](appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
 * [Create a client image](appendices/create-a-client-image.md)
