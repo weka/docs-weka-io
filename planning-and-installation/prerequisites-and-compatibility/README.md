@@ -43,13 +43,11 @@ WEKA will support upcoming releases of the operating systems in the lists within
 * **RHEL:**
   * 9.2, 9.1, 9.0
   * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2 (support have reached EOL status)
 * **Rocky Linux:**
   * 9.2, 9.1, 9.0
   * 8.9, 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-  * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2 (support have reached EOL status)
 * **Ubuntu:**
   * 22.04
   * 20.04
@@ -59,6 +57,10 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * AMI 2017.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
   * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
+
+{% hint style="warning" %}
+As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to their end-of-life status. If you need assistance upgrading your operating system, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for guidance.
+{% endhint %}
 {% endtab %}
 
 {% tab title="Clients" %}
