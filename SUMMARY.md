@@ -230,7 +230,8 @@
 
 ## Best Practice Guides
 
-* [WEKA and Slurm integration](best-practice-guides/weka-and-slurm-integration.md)
+* [WEKA and Slurm integration](best-practice-guides/weka-and-slurm-integration/README.md)
+  * [Avoid conflicting CPU allocations](best-practice-guides/weka-and-slurm-integration/avoid-conflicting-cpu-allocations.md)
 * [Storage expansion best practice](best-practice-guides/storage-expansion-best-practice.md)
 
 ## Appendices
