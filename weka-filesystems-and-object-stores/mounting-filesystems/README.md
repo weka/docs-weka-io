@@ -343,7 +343,7 @@ Providing multiple IPs in the \<mgmt-ip> in UDP mode uses their network interfac
 
 ## Mount a filesystem using fstab
 
-Using the _fstab_ (filesystem table) enables automatic remount after reboot. It applies to **stateless clients** running on an OS that supports `systemd`, such as RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, and Amazon Linux 2 LTS.
+Using the _fstab_ (filesystem table) enables automatic remount after reboot. It applies to **stateless clients** running on an OS that supports `systemd`, such as RHEL/CentOS 8.0 and up, Ubuntu 18.04 and up, and Amazon Linux 2 LTS.
 
 **Before you begin**
 
