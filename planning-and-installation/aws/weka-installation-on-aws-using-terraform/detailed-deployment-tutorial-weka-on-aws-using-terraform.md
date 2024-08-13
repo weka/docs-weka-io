@@ -364,7 +364,7 @@ The randomly generated password assigned to WEKA user ‘admin’ is displayed.
 
 Access the WEKA cluster backend instances using SSH. If the instances do not have public IP addresses, use a system that can reach the subnet they are on.
 
-To access an instance from the system that ran the Terraform deployment, use the IP address from step 4.5 and the SSH key path from the output of step 4.4. If your system is not on the AWS network, use a J[ump Host](#user-content-fn-1)[^1] or [Bastion Host](#user-content-fn-2)[^2] to connect.
+To access an instance from the system that ran the Terraform deployment, use the IP address from step 4.5 and the SSH key path from the output of step 4.4. If your system is not on the AWS network, use a [Jump Host](#user-content-fn-1)[^1] or [Bastion Host](#user-content-fn-2)[^2] to connect.
 
 ```json
 ssh -l ec2-user -i /tmp/WEKA-Prod-private-key.pem 10.0.153.66
