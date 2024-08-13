@@ -1090,6 +1090,54 @@ The policies below are required for all the components to function on AWS. Terra
 
 </details>
 
+<details>
+
+<summary><strong>Client Instnaces IAM Policy</strong></summary>
+
+```
+{
+    "Statement": [
+        {
+            "Action": [
+                "autoscaling:DescribeAutoScalingGroups"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        },
+      {
+        "Action": [
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:AttachNetworkInterface",
+          "ec2:CreateNetworkInterface",
+          "ec2:ModifyNetworkInterfaceAttribute",
+          "ec2:DeleteNetworkInterface",
+          "ec2:DescribeInstances"
+        ],
+        "Effect": "Allow",
+        "Resource": "*"
+      },
+      {
+        "Action": [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents",
+          "logs:DescribeLogStreams",
+          "logs:PutRetentionPolicy"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:logs:*:*:log-group:/wekaio/clients/prefix-cluster_name-client*"
+        ]
+      }
+    ],
+    "Version": "2012-10-17"
+}
+```
+
+</details>
+
 [^1]: **Jump Host:** A secure intermediary server used to manage access to devices within a protected network zone, ensuring controlled and authenticated connections.
 
 [^2]: **Bastion Host:** A hardened server positioned to manage external access to an internal network, offering secure gateway services with enhanced security measures.
