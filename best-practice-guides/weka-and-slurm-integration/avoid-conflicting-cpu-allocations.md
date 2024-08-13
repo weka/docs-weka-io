@@ -7,13 +7,13 @@ In a WEKA and Slurm integration, efficient CPU allocation is crucial to prevent 
 Ensure that WEKA's default CPUset isolation is disabled to avoid conflicts with Slurm.
 
 ```bash
-[root@example01 ~]# grep -i 'isolate_cpusets ' /etc/wekaio/service.conf
+[root@example01 ~]# grep 'isolate_cpusets=' /etc/wekaio/service.conf
 isolate_cpusets = false
 ```
 
 ### 2. Verify hyperthreading and NUMA configuration
 
-Verify your system's hyperthreading and NUMA configuration. Typically, hyperthreading is disabled in most Slurm-managed environments.  In this example, hyperthreading is disabled, and there are four NUMA nodes.
+Verify your system's hyperthreading and NUMA configuration. Typically, hyperthreading is disabled in most Slurm-managed environments. In this example, hyperthreading is disabled, and there are four NUMA nodes.
 
 ```bash
 [root@example01 ~]# lscpu | egrep 'Thread|NUMA'
