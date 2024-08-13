@@ -197,10 +197,10 @@
   * [Manage background tasks using the CLI](operation-guide/background-tasks/manage-background-tasks-using-the-cli.md)
 * [Upgrade WEKA versions](operation-guide/upgrading-weka-versions.md)
 
-## Billing & Licensing
+## Licensing
 
-* [License overview](billing-and-licensing/overview.md)
-* [Classic license](billing-and-licensing/classic-licensing.md)
+* [License overview](licensing/overview.md)
+* [Classic license](licensing/classic-licensing.md)
 
 ## Monitor the WEKA Cluster
 

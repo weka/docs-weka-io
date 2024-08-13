@@ -225,7 +225,7 @@ Related information: [user-management](../operation-guide/user-management/ "ment
 
 ## License
 
-Related information: [overview.md](../billing-and-licensing/overview.md "mention")
+Related information: [overview.md](../licensing/overview.md "mention")
 
 | Task                                                                                                                   | REST API                                                                                 | CLI                                  |
 | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------ |

@@ -12,7 +12,7 @@ A classic license is a text element you create in **get.weka.io** for your speci
 
 **Before you begin**
 
-* To create a classic license in get.weka.io, you need a WEKA account. If you already have a WEKA account, skip this step. If not, see instructions in [Register to get.weka.io](../install/bare-metal/obtaining-the-weka-install-file.md#register-to-get.weka.io).
+* To create a classic license in get.weka.io, you need a WEKA account. If you already have a WEKA account, skip this step. If not, see instructions in [Register to get.weka.io](../planning-and-installation/bare-metal/obtaining-the-weka-install-file.md#register-to-get.weka.io).
 * Obtain the cluster GUID and capacity from your system and keep it for later use.\
   Run the command `weka cluster license`.\
   The command provides an output of all the information required for creating your license.\

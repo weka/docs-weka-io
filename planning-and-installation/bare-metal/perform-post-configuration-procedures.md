@@ -40,7 +40,7 @@ For details, see [local-weka-home-overview.md](../../monitor-the-weka-cluster/th
 
 **Command:** `weka cluster license set / payg`
 
-To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the Weka cluster. For details, see [overview.md](../../billing-and-licensing/overview.md "mention").&#x20;
+To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the Weka cluster. For details, see [overview.md](../../licensing/overview.md "mention").&#x20;
 
 ## 3. Start the cluster IO service
 

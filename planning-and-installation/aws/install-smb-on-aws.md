@@ -30,37 +30,37 @@ Set up AWS Managed Microsoft AD for centralized user and resource management in 
     * Navigate to the **Directory Service** page.
     * Click **Set up directory**.
 
-    <figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (238).png" alt=""><figcaption></figcaption></figure>
 2.  **Select directory type:**
 
     * Ensure AWS Managed Microsoft AD is selected.
     * Click **Next**.
 
-    <figure><img src="../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (239).png" alt=""><figcaption></figcaption></figure>
 3.  **Configure directory:**
 
     * Choose **Standard Edition**.
     * Enter the **Directory DNS Name** and **Admin password**.
     * Click **Next**.
 
-    <figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (240).png" alt=""><figcaption></figcaption></figure>
 4.  **Choose VPC and subnets:**
 
     * Choose the appropriate **VPC** and **Subnets**.
     * Click **Next**.
 
-    <figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (241).png" alt=""><figcaption></figcaption></figure>
 5.  **Create directory:**
 
     * Click **Create directory**.\
       The AD environment creation process takes approximately 20 to 40 minutes.
 
-    <figure><img src="../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (242).png" alt=""><figcaption></figcaption></figure>
 6.  **Record the IP addresses:**
 
     * Once the directory creation is completed, record the IP addresses of the domain controllers for later use in configuring the Route 53 Resolver.
 
-    <figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (243).png" alt=""><figcaption></figcaption></figure>
 
 ## 2. Configure Amazon Route 53 Resolver
 
@@ -73,17 +73,17 @@ Amazon Route 53 Resolver responds recursively to DNS queries from AWS resources 
     * In the AWS Console, navigate to the **Route 53 Resolver** page.
     * Click **Configure endpoints**.
 
-    <figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (244).png" alt=""><figcaption></figcaption></figure>
 2.  **Set up outbound endpoint:**
 
     * Choose **Outbound only**.
 
-    <figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (245).png" alt=""><figcaption></figcaption></figure>
 3.  **Create a security group:**
 
     * Open a new browser tab and go to the **VPC** service page.
 
-    <figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (232).png" alt=""><figcaption></figcaption></figure>
 
     * Select **Security Groups** and click **Create security group**.
     * Provide a **Security group name** and **description**. Choose the appropriate **VPC**.
@@ -93,7 +93,7 @@ Amazon Route 53 Resolver responds recursively to DNS queries from AWS resources 
     * Set the **CIDR of the VPC** as the custom source for both rules.
     * Click **Create security group**.
 
-    <figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (234).png" alt=""><figcaption></figcaption></figure>
 4.  **Configure endpoint settings:**
 
     * Return to the **Route 53 Resolver** tab.
@@ -101,12 +101,12 @@ Amazon Route 53 Resolver responds recursively to DNS queries from AWS resources 
     * Select the appropriate **VPC** and **Security group** (click the arrow to refresh if needed).
     * Set **Endpoint Type** to **IPv4** and **Protocols** to **Do53**.
 
-    <figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (235).png" alt=""><figcaption></figcaption></figure>
 
     * Choose the **Availability Zone** and **Subnet**. Opt for **Use an IPv4 address that is selected automatically**.
     * Click **Next**.
 
-    <figure><img src="../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (236).png" alt=""><figcaption></figcaption></figure>
 5.  **Create forwarding rule:**
 
     * Click **Create rule**.
@@ -116,7 +116,7 @@ Amazon Route 53 Resolver responds recursively to DNS queries from AWS resources 
     * Select the **VPC** and specify the **Target IP addresses** of both domain controllers.
     * Click **Next**.
 
-    <figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (237).png" alt=""><figcaption></figcaption></figure>
 6. **Review and submit:**
    * Review the entries.
    * Click **Submit** to finalize the configuration.
@@ -172,7 +172,7 @@ output "deploy_weka_output" {
 
 2. Note the cluster's placement group name from the Terraform output.
 
-<figure><img src="../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (246).png" alt=""><figcaption></figcaption></figure>
 
 ## 4. Deploy Windows client on EC2
 
@@ -196,26 +196,26 @@ By setting up a Windows client in your AWS environment, you can manage and inter
     * Expand **Advanced Details** and select the **Placement Group** that matches the WEKA cluster.
     * Click **Launch Instance**.
 
-    <figure><img src="../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (247).png" alt=""><figcaption></figcaption></figure>
 
-    <figure><img src="../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (248).png" alt=""><figcaption></figcaption></figure>
 2.  **Connect to the Windows instance:**
 
     * On the **Instances** page, click on the link for your newly created instance.
 
-    <figure><img src="../../.gitbook/assets/image (19).png" alt="" width="375"><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (249).png" alt="" width="375"><figcaption></figcaption></figure>
 
     * Select the checkbox next to the instance and click **Connect**.
 
-    <figure><img src="../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (250).png" alt=""><figcaption></figcaption></figure>
 
     * Navigate to the **RDP** tab and click **Get Password**.
 
-    <figure><img src="../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (252).png" alt=""><figcaption></figcaption></figure>
 
     * Upload or paste your private key into the provided text box, then click **Decrypt Password**. The instance password will be displayed.
 
-    <figure><img src="../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (251).png" alt=""><figcaption></figcaption></figure>
 3. **Log in to the Windows client:**
    * Use the RDP credentials to log in to the Windows instance.
 4. **Install required features:**
@@ -230,29 +230,29 @@ By setting up a Windows client in your AWS environment, you can manage and inter
     * Go to the **Start** menu and open **Control Panel**.
     * Navigate to **System and Security** > **System** > **See the name of this computer**.
 
-    <figure><img src="../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (253).png" alt=""><figcaption></figcaption></figure>
 
     * Click **Change Settings**.
 
-    <figure><img src="../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (254).png" alt=""><figcaption></figcaption></figure>
 
     * In the **Computer Name** tab, click **Change…**.
 
-    <figure><img src="../../.gitbook/assets/image (25).png" alt="" width="375"><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (255).png" alt="" width="375"><figcaption></figcaption></figure>
 
     * Under **Member of**, select **Domain** and enter `weka.local`.
 
-    <figure><img src="../../.gitbook/assets/image (26).png" alt="" width="320"><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (256).png" alt="" width="320"><figcaption></figcaption></figure>
 
     *   Click **OK** and enter the domain credentials:
 
         * **Username**: `Admin`
         * **Password**: The password used during the creation of the AWS Managed AD.
 
-        <figure><img src="../../.gitbook/assets/image (27).png" alt="" width="375"><figcaption></figcaption></figure>
+        <figure><img src="../../.gitbook/assets/image (257).png" alt="" width="375"><figcaption></figcaption></figure>
     * Click **OK** to join the domain.
 
-    <figure><img src="../../.gitbook/assets/image (28).png" alt="" width="375"><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/image (258).png" alt="" width="375"><figcaption></figcaption></figure>
 6. **Restart the instance:**
    * Go to the **Start** menu and select **Restart** to apply the changes.
 

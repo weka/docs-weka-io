@@ -20,7 +20,7 @@ You can set up the WEKAmon package regardless of the data monitoring provided by
 
 One of the advantages of setting up the WEKAmon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with WEKA to correlate and display monitoring information from all your products on the same dashboard.
 
-![WEKA enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (187).png>)
+![WEKA enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (158).png>)
 
 {% hint style="info" %}
 If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.

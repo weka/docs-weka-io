@@ -94,7 +94,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 
 [kms-management](../../operation-guide/security/kms-management/ "mention")
 
-[overview.md](../../billing-and-licensing/overview.md "mention")
+[overview.md](../../licensing/overview.md "mention")
 
 [#data-reduction](../../weka-system-overview/filesystems.md#data-reduction "mention")
 
