@@ -4,7 +4,7 @@
 
 #### Document Purpose
 
-To guide customers, partners, WEKA teams (sales, customer success, etc.) through the step by step process of deploying the WEKA data platform in AWS using Terraform.
+To guide customers, partners, and WEKA teams (sales, customer success, etc.) through the step-by-step process of deploying the WEKA data platform in AWS using Terraform.
 
 #### Document Premise
 
@@ -358,16 +358,16 @@ Click on the secret that contains the **prefix** and **cluster\_name** of the de
 
 Click on “Retrieve secret value”.
 
-The randomly generated password that was assigned to WEKA user ‘admin’ will be displayed.
+The randomly generated password assigned to WEKA user ‘admin’ is displayed.
 
-### Accessing the WEKA cluster backends.
+### Access the WEKA cluster backends
 
-The WEKA cluster backend instances can be accessed via SSH. If the WEKA backend instances do not have public IP addresses, a system that can reach the subnet they are in will be needed.
+Access the WEKA cluster backend instances using SSH. If the instances do not have public IP addresses, use a system that can reach the subnet they are on.
 
-To access an instance from the system that ran the terraform deployment, use the IP address collected in step 4.5 and the ssh key path in the output of step 4.4.
+To access an instance from the system that ran the Terraform deployment, use the IP address from step 4.5 and the SSH key path from the output of step 4.4. If your system is not on the AWS network, use a J[ump Host](#user-content-fn-1)[^1] or [Bastion Host](#user-content-fn-2)[^2] to connect.
 
 ```json
-ssh -l ec2-user -i /tmp/WEKA-Prod-private-key.pem 3.91.150.250
+ssh -l ec2-user -i /tmp/WEKA-Prod-private-key.pem 10.0.153.66
 ```
 
 ## **WEKA GUI Login and Review**
@@ -376,7 +376,7 @@ Using a jump box with a GUI deployed into the same VPC and subnet as the WEKA cl
 
 In the examples below, a Windows 10 instance with a public IP address was deployed in the same VPC, subnet, and security group as the WEKA cluster. Network security group rules were added to allow RDP access explicitly to the Windows 10 system.
 
-Open a browser in the Windows 10 jump box and visit https://:14000. The WEKA GUI login screen should appear. Login as user ‘admin’ and the password gathered in 4.5.
+Open a browser in the Windows 10 jump box and visit https://\<IP>:14000. In this example https://10.5.0.11.  The WEKA GUI login screen should appear. Login as user ‘admin’ and the password gathered in 4.5.
 
 <figure><img src="../../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
@@ -1089,3 +1089,7 @@ The policies below are required for all the components to function on AWS. Terra
 ```
 
 </details>
+
+[^1]: **Jump Host:** A secure intermediary server used to manage access to devices within a protected network zone, ensuring controlled and authenticated connections.
+
+[^2]: **Bastion Host:** A hardened server positioned to manage external access to an internal network, offering secure gateway services with enhanced security measures.
