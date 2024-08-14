@@ -29,6 +29,10 @@ Manage trace settings using the CLI commands:
 
 <table><thead><tr><th width="240">Parameter</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><code>server-max</code></td><td>Maximum capacity to retain per server.</td><td>50GB per IO-node with a minimum of 100GB</td></tr><tr><td><code>client-max</code></td><td>Maximum capacity to retain per client.</td><td>50GB per IO-node with a minimum of 100GB</td></tr><tr><td><code>server-ensure-free</code></td><td>Always maintain at least this much capacity to remain free on servers.</td><td>50GB per IO-node with a minimum of 100GB</td></tr><tr><td><code>client-ensure-free</code></td><td>Always maintain at least this much capacity to remain free on clients.</td><td>50GB per IO-node with a minimum of 100GB</td></tr></tbody></table>
 
+{% hint style="info" %}
+To modify the trace retention setting of a single client, you can use the `traces_capacity_mb` mount command. See [#additional-mount-options-using-the-stateless-clients-feature](../../../weka-filesystems-and-object-stores/mounting-filesystems/#additional-mount-options-using-the-stateless-clients-feature "mention").
+{% endhint %}
+
 ### Restore default traces retention values
 
 **Command:** `weka debug traces retention restore-default`
