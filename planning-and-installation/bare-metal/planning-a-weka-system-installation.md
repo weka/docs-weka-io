@@ -131,7 +131,7 @@ Plan the number of physical cores dedicated to the WEKA software according to th
   * A backend server can have as many cores as possible. However, a container within a backend server can have a maximum of 19 physical cores.
   * Leave enough cores for the container serving the protocol if it runs on the same server.
 * Allocate enough cores to support performance targets.
-  * Generally, use 1 drive process per SSD for up to 6 SSDs and 1 drive process per 2 SSDs for more, with a ratio of 2 compute processes per SSD process.
+  * Generally, use 1 drive process per SSD for up to 6 SSDs and 1 drive process per 2 SSDs for more, with a ratio of 2 compute processes per drive process.
   * For finer tuning, please contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 * Allocate enough memory to match core allocation, as discussed above.
 * Running other applications on the same server (converged WEKA system deployment) is supported. For details, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
@@ -146,7 +146,7 @@ If the client networking is defined as UDP, dedicated CPU core resources are not
 
 ### Backend servers
 
-WEKA backend servers can be connected to both InfiniBand or Ethernet networks. For each network technology used, all backends must be connected by this technology. If backends are connected through Infiniband and Ethernet, the WEKA system favors the Infiniband links for traffic unless there are connectivity issues with the Infiniband network. In that case, the system uses the Ethernet links (clients connecting to the system can connect by Infiniband or Ethernet).
+WEKA backend servers can be connected to both InfiniBand or Ethernet networks. For each network technology used, all backends must be connected by this technology. If backends are connected through InfiniBand and Ethernet, the WEKA system favors the InfiniBand links for traffic unless there are connectivity issues with the InfiniBand network. In that case, the system uses the Ethernet links (clients connecting to the system can connect by InfiniBand or Ethernet).
 
 {% hint style="info" %}
 A network port can either be dedicated to the WEKA system or run the WEKA system with other applications.
