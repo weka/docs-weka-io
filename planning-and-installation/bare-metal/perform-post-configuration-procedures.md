@@ -245,18 +245,21 @@ If the WEKA cluster is deployed in an environment with a proxy server, a WEKA cl
 
 #### Procedure
 
-1. Connect to one of the WEKA backend servers.
+1. Connect to one of the WEKA backend servers (configuration changes made on this server are synchronized with all other servers in the cluster).
 2. Open the `/etc/wekaio/service.conf` file.
-3. In the `[downloads_proxy]` section, add to the `no_proxy` parameter a comma-separated list of IP addresses or qualified domain names of your WEKA clients and cluster backend servers. Do not use wildcards (\*).
+3.  In the `[downloads_proxy]` section, add to the `no_proxy` parameter a comma-separated list of IP addresses or qualified domain names of your WEKA clients and cluster backend servers. Do not use wildcards (\*).
 
-```
-[downloads_proxy]
-force_no_proxy=true
-proxy=
-no_proxy=<comma-separated list of IPs or domains>
-```
+    ```makefile
+    [downloads_proxy]
+    force_no_proxy=true
+    proxy=
+    no_proxy=<comma-separated list of IPs or domains>
+    ```
+4.  Restart the agent service using the command:
 
-4. Restart the agent service.
+    ```bash
+    service weka-agent restart
+    ```
 
 ## 6. Configure default data networking (optional)
 

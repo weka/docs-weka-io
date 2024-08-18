@@ -106,7 +106,7 @@ tmate
 
 2. Install the WEKA software.
    * Once the WEKA software tarball is downloaded from [get.weka.io](https://get.weka.io), run the untar command.
-   * Run the `install.sh` command on each server, according to the instructions in the **Install** tab.
+   * Run the `install.sh` command on each server, following the instructions in the **Install** tab of [get.weka.io](https://get.weka.io/ui/dashboard).
 
 Once completed, the WEKA software is installed on all the allocated servers and runs in stem mode (no cluster is attached).
 
