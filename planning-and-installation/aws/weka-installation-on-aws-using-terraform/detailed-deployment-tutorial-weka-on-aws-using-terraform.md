@@ -191,7 +191,7 @@ Navigate to the directory.
 cd deploy
 ```
 
-A **main.tf** file is required to define the Terraform options. Create the main.tf file using the WEKA Cloud Deployment Manager. See [weka-cloud-deployment-manager-cdm-user-guide.md](../../weka-cloud-deployment-manager-cdm-user-guide.md "mention").
+A **main.tf** file is required to define the Terraform options. Create the main.tf file using the [WEKA Cloud Deployment Manager](https://cloud.weka.io). See [weka-cloud-deployment-manager-cdm-user-guide.md](../../weka-cloud-deployment-manager-cdm-user-guide.md "mention") for help with CDM.
 
 Authentication is handled using the AWS CLI utility.
 
