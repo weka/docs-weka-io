@@ -31,7 +31,7 @@ Object store space reclamation is an important process that efficiently manages 
 In the WEKA system, object store space reclamation is only relevant for object store buckets used for tiering (`local`) and not for buckets used for backup only (`remote`).
 {% endhint %}
 
-WEKA organizes files into 64 MB objects for tiering. Each object can contain data from multiple files. Files smaller than 1 MB are consolidated into a single 64 MB object. For larger files, their parts are distributed across multiple objects. As a result, when a file is deleted (or updated and is not used by any snapshots), the space within one or more objects is marked as available for reclamation. However, the deletion of these objects only occurs under specific conditions.
+WEKA organizes sections of files into objects for tiering, with the default maximum object size capped at 64 MB. Each object can contain data from multiple files. Files smaller than 1 MB are consolidated into a single object, while larger files are distributed across multiple objects. When a file is deleted (or updated and is not used by any snapshots), the space within one or more objects is marked as available for reclamation. However, these objects are only deleted under specific conditions.
 
 Deleting related objects happens when all associated files are deleted, allowing for complete space reclamation within the object or during the reclamation process. Reclamation entails reading an eligible object from object storage and packing the active portions (representing data from undeleted files) with sections from other files that must be written to the object store. The resulting object is then written back to the object store, freeing up reclaimed space.
 
