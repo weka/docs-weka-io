@@ -27,30 +27,28 @@ Symbolic links are consistently cached in all modes.
 
 ## **R**ead cache mount mode
 
-When mounting in the Read Cache mode, the Linux Page Cache uses a write-through mechanism, acknowledging write operations to the customer application only after securely storing them on resilient storage. This applies to both data and metadata writes.
+In Read Cache mode, the Linux Page Cache operates in _write-through_ mode, meaning that write operations are acknowledged only after being securely stored on resilient storage. This applies to both data and metadata.
 
-The default behavior in the WEKA system dictates that data read or written by customer applications resides in a local server read Linux Page Cache. The WEKA system actively monitors whether another server attempts to read or write the same data, invalidating the cache entry if necessary. Such invalidation may occur in two cases:
+By default, data read or written by customer applications is stored in the local server's Linux Page Cache. The WEKA system monitors access to this data and invalidates the cache if another server attempts to read or write the same data. Cache invalidation occurs in the following scenarios:
 
-* If one client is currently writing to a file that another client is reading or writing.
-* If one server is currently writing to a file that another server is reading.
+* When one client writes to a file that another client is reading or writing.
+* When one server writes to a file that another server is reading.
 
-This mechanism ensures coherence, allowing full Linux Page Cache usage when either a single server or multiple servers access a file solely for read-only purposes. However, if multiple servers access a file, and at least one performs a write operation, the Linux Page Cache bypasses, and all I/O operations are managed by the backend servers.
-
-Conversely, when either a single server or multiple servers open a file for read-only purposes, the WEKA client fully uses the Linux Page Cache, facilitating read operations directly from memory without accessing the backend servers.
-
-Consider a server as "writing" to a file after the actual first write operation, irrespective of the read/write flags of the open system call.
+This approach ensures data coherence. The Linux Page Cache is fully used when a file is accessed by a single server or multiple servers in read-only mode. However, if multiple servers access a file and at least one server writes to it, the system bypasses the Linux Page Cache, and all I/O operations are handled by the backend servers.
 
 {% hint style="info" %}
-In scenarios involving random reads of small blocks from large files, enabling the read cache, particularly the Linux prefetch mechanism, may not enhance performance and can be counterproductive. Assess the workload to determine if enabling read-ahead for truly random access patterns aligns with performance expectations.
+A server is considered to be "writing" to a file after the first write operation occurs, regardless of the read/write flags set by the open system call.
+
+For workloads involving random reads of small blocks from large files, enabling the read cache and Linux prefetch mechanisms may not improve performance and could even be counterproductive. Assess whether enabling read-ahead aligns with your performance goals for truly random access patterns.
 {% endhint %}
 
 ## Write cache mount mode (default)
 
-In this mount mode, the Linux operating system operates in a _write-back_ mode rather than a _write-through_. When a write operation occurs, it is promptly acknowledged by the WEKA client and temporarily stored in the kernel memory cache. The actual persistence of this data in resilient storage happens as a background operation at a later time.
+In Write Cache mode, the Linux Page Cache operates in _write-back_ mode rather than _write-through_. When a write operation occurs, it is immediately acknowledged by the WEKA client and temporarily stored in the kernel memory cache. The data is then written to resilient storage in the background.
 
-This mode enhances performance, especially in reducing write latency, while ensuring data coherency. For instance, if a file is accessed through another server, the local cache is invalidated, and the data is synchronized to maintain a consistent view of the file.
+This mode improves performance by reducing write latency while maintaining data coherence. If the same file is accessed by another server, the local cache is invalidated, ensuring a consistent view of the data.
 
-To synchronize the filesystem and commit all changes in the write cache—useful, for example, when ensuring synchronization before taking a snapshot—you can employ the following system calls: `sync`, `syncfs`, and `fsync`.
+To ensure all changes in the write cache are committed to storage, particularly before taking a snapshot, you can use system calls like `sync`, `syncfs`, and `fsync`. These commands force the filesystem to flush the write cache and synchronize data to resilient storage.
 
 ## Multiple mounts on a single server
 

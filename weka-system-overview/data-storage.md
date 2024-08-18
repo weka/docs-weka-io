@@ -10,8 +10,8 @@ description: >-
 
 In the WEKA system, data can be stored on two forms of media:
 
-* On locally-attached SSDs, which are an integral part of the WEKA system configuration.
-* On object-store systems external to the WEKA system are third-party solutions, cloud services, or part of the WEKA system.
+* On locally-attached SSDs, which are an integral and required part of the WEKA system configuration.
+* On optional object-store systems external to the WEKA system. Object stores are provided either as cloud services or as part of an on-premises installation using a number of third-party solutions.
 
 The WEKA system can be configured as an SSD-only or data management system consisting of SSDs and object stores. By nature, SSDs provide high performance and low latency storage, while object stores compromise performance and latency but are the most cost-effective solution available for storage.
 
@@ -26,7 +26,7 @@ In SSD-only configurations, the WEKA system sometimes uses an external object st
 In tiered WEKA system configurations, there are various locations for data storage as follows:
 
 * Metadata is stored only on SSDs.
-* Writing new files, adding data to existing files, or modifying the content of files is permanently terminated on the SSD, irrespective of whether the file is stored on the SSD or tiered to an object store.
+* Writing new files, adding data to existing files, or modifying the content of files is performed on the SSDs, irrespective of whether the file is stored on the SSD or tiered to an object store.
 * When reading the content of a file, data can be accessed from either the SSD (if it is available on the SSD) or promoted from the object store (if it is not available on the SSD). &#x20;
 
 This data management approach to data storage on one of two possible media requires system planning to ensure that the most commonly used data (hot data) resides on the SSD to ensure high performance. In contrast, less-used data (warm data) is stored on the object store.
@@ -57,7 +57,7 @@ The data lifecycle flow diagram delineates the progression of data through vario
 2. **Releasing**: This stage entails removing data from the SSD and retaining only the copy in the object store. The need for additional SSD storage space typically triggers this action. The guidelines for this data release are dictated by a user-defined time-based policy referred to as the [Retention Period](../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#data-retention-period-policy).
 3. **Promoting**: This final stage involves transferring data from the object store to the SSD to facilitate data access.
 
-Accessing data solely on the object store must first be promoted back to the SSD. This ensures that the data is readily accessible for reading.
+When accessing data which is solely on the object store, the data must first be promoted back to the SSD.
 
 Within the WEKA system, file modifications are not executed as in-place writes. Instead, they are written to a new area on the SSD, and the corresponding metadata is updated accordingly. As a result, write operations are never linked with operations on the object store. This approach ensures data integrity and efficient use of storage resources.
 
@@ -73,17 +73,15 @@ Since filesystem metadata is, by nature, a large number of update operations, ea
 
 ### SSD as a staging area
 
-Since writing directly to an object store demands high latency levels while waiting for approval for the data to be written, with the WEKA system, there is no writing directly to object stores. Much faster writing is performed directly to the SSDs, with very low latency and much better performance. Consequently, in the WEKA system, the SSDs serve as a staging area, providing a buffer that is big enough for writing until the later data tiering to the object store. Upon completion of writing, the WEKA system is responsible for tiering the data to the object store and releasing it from the SSD.
+Direct writing to an object store involves high latency. To mitigate this, the WEKA system avoids direct writes to object stores. Instead, all data is initially written to SSDs, which offer low latency and high performance. In this setup, SSDs act as a staging area, temporarily holding data until it is later tiered to the object store. Once the writing process is complete, the WEKA system manages the tiering of data to the object store and subsequently frees up space on the SSD.
 
 ### SSD as a cache
 
 Recently accessed or modified data is stored on SSDs, and most read operations are of such data and served from SSDs. This is based on a single, significant LRU clearing policy for the cache that ensures optimal read performance.
 
-{% hint style="info" %}
-On a tiered filesystem, the total capacity determines the maximum capacity that can be used to store data. It could be that all data reside in the object store due to the SSD uses above and the time-based policies below.
+In a tiered filesystem, the total capacity refers to the maximum amount of data that can be stored. However, the way data is managed across different storage tiers (such as SSDs and object storage) can affect how this capacity is used.
 
-For instance, consider a 100 TB filesystem (total capacity) with a 10 TB SSD capacity for this filesystem. All the data reside in the object store; no new writing is allowed. However, the SSD space is only partially used (until files are deleted or the filesystem's total size is increased), leaving the SSD for metadata and cache only.
-{% endhint %}
+For example, consider a filesystem with a total capacity of 100 TB, where 10 TB is allocated to SSD storage. In this scenario, it’s possible that all data resides in the object store, especially if SSD space is prioritized for metadata and caching. This situation could arise due to policies that manage data placement over time or based on SSD usage patterns. As a result, even though the SSD space isn't fully used for data storage, it remains reserved for essential functions like metadata management and caching. New data writes may be restricted until either some files are deleted or the filesystem’s total capacity is increased.
 
 ## Time-based policies for the control of data storage location
 

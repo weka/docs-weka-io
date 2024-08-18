@@ -6,7 +6,7 @@ The WEKA system offers a range of powerful functionalities designed to enhance d
 
 ## Protection
 
-The WEKA system employs N+2 or N+4 protection, ensuring data protection even in the face of concurrent drive or backend failures and maintaining the WEKA system up and running to provide continuous services. This complex protection scheme is determined during cluster formation and can vary, offering configurations starting from 3+2 up to 16+2 for larger clusters.
+The WEKA system employs N+2 or N+4 protection, ensuring data protection even in the face of concurrent drive or backend failures. This complex protection scheme is determined during cluster formation and can vary, offering configurations starting from 3+2 up to 16+2 for larger clusters.
 
 ## Distributed network scheme
 
@@ -54,7 +54,7 @@ When a WEKA client attempts to access a particular file or offset in a file, a c
 
 For instance, when new backends are added to double the cluster's size, the system instantly redistributes part of the filesystem data between the backends, resulting in an immediate double performance increase. Complete data redistribution is unnecessary even in modest cluster growths, such as moving from 100 to 110 backends. Only a fraction (10% in this example) of the existing data is copied to the new backends, ensuring a balanced distribution and active participation of all backends in read operations.
 
-The speed of these seamless operations depends on the capacity of the root backends and network bandwidth. Importantly, ongoing operations remain unaffected, and the system's performance improves as data redistribution occurs. The finalization of the redistribution process optimizes both capacity and performance, making the WEKA system an ideal choice for scalable and high-performance storage solutions.
+The speed of these seamless operations depends on the capacity of the backends and network bandwidth. Importantly, ongoing operations remain unaffected, and the system's performance improves as data redistribution occurs. The finalization of the redistribution process optimizes both capacity and performance, making the WEKA system an ideal choice for scalable and high-performance storage solutions.
 
 ## **Efficient data reduction**
 

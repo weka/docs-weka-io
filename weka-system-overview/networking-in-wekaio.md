@@ -19,7 +19,7 @@ The WEKA system networking can be configured as _performance-optimized_ or _CPU-
 
 For performance-optimized networking, the WEKA system does not use standard kernel-based TCP/IP services but a proprietary infrastructure based on the following:
 
-* Use [DPDK](networking-in-wekaio.md#dpdk) to map the network device in the user space and use the network device without any context switches and with zero-copy access. This bypassing of the kernel stack eliminates the consumption of kernel resources for networking operations. It applies to backends and clients and lets the WEKA system saturate network links (including, for example, 200 Gbps or 400 Gbps).
+* Use [DPDK](networking-in-wekaio.md#dpdk) to map the network device in the user space and use it without any context switches and with zero-copy access. This bypassing of the kernel stack eliminates the consumption of kernel resources for networking operations. It applies to backends and clients and lets the WEKA system saturate network links (including, for example, 200 Gbps or 400 Gbps).
 * Implementing a proprietary WEKA protocol over UDP, i.e., the underlying network, may involve routing between subnets or any other networking infrastructure that supports UDP.
 
 The use of DPDK delivers operations with extremely low latency and high throughput. Low latency is achieved by bypassing the kernel and sending and receiving packages directly from the NIC. High throughput is achieved because multiple cores in the same server can work in parallel without a common bottleneck.
@@ -122,7 +122,7 @@ LACP (link aggregation, also known as bond interfaces) is currently supported be
 
 GPUDirect Storage enables a direct data path between storage and GPU memory. GPUDirect Storage avoids extra copies through a bounce buffer in the CPU’s memory. It allows a direct memory access (DMA) engine near the NIC or storage to move data directly into or out of GPU memory without burdening the CPU or GPU.
 
-When RDMA and GPUDirect storage are enabled, the WEKA system automatically uses the RDMA data path and GPUDirect Storage in supported environments. When the system identifies it can use RDMA, both in UDP and DPDK modes, it employs the use for workload it can benefit from RDMA (with regards to IO size: 32K+ for reads and 256K+ for writes).
+When RDMA and GPUDirect storage are enabled, the WEKA system automatically uses the RDMA data path and GPUDirect Storage in supported environments. When the system identifies it can use RDMA, both in UDP and DPDK modes, it employs the use for workloads, which can benefit from RDMA (with regards to IO size: 32K+ for reads and 256K+ for writes).
 
 By leveraging RDMA/GPUDirect Storage, you can achieve enhanced performance. A UDP client, which doesn't necessitate dedicating a core to the WEKA system, can yield significantly higher performance. Additionally, a DPDK client can receive an extra performance boost. Alternatively, in DPDK mode, you can assign fewer cores to the WEKA system while maintaining the same level of performance.
 

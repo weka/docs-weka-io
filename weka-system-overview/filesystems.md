@@ -82,7 +82,7 @@ WEKA carefully tracks metadata units in RAM. If the metadata units approach the 
 
 By default, the metadata limit linked to a filesystem correlates with the filesystem's SSD size. However, users have the flexibility to override this default by defining a filesystem-specific `max-files` parameter. This logical limit empowers administrators to regulate filesystem usage, providing the flexibility to update it as needed.
 
-The cumulative metadata limits across all filesystems can surpass the system's entire metadata information that fits in RAM. In potential impact scenarios, the system optimizes by paging the least recently used units to disk, ensuring operational continuity with minimal disruption.
+The cumulative metadata memory requirements across all filesystems can surpass the server’s RAM capacity. In potential impact scenarios, the system optimizes by paging the least recently used units to disk, ensuring operational continuity with minimal disruption.
 
 #### Metadata units calculation <a href="#metadata-calculations" id="metadata-calculations"></a>
 
