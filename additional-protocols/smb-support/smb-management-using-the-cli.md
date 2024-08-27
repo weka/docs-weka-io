@@ -292,7 +292,7 @@ Use the following command line to remove a share exposed to SMB:
 
 ## Control SMB access based on hosts' IP/name <a href="#control-smb-access-based-on-hosts" id="control-smb-access-based-on-hosts"></a>
 
-It is possible to control which hosts are permitted to access the SMB share.
+You can control which hosts are permitted to access the SMB share. The maximum number of share host access definitions across all shares is 1024.
 
 {% hint style="info" %}
 SMB-W supports access based on the host IP addresses (but not host names).

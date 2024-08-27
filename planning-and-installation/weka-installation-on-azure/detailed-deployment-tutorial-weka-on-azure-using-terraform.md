@@ -4,7 +4,7 @@
 
 **Document Purpose**
 
-To guide WEKA field, CS, and support technical resources through the process of deploying the WEKA data fabric in Microsoft Azure.
+To guide technical resources through the process of deploying the WEKA in Microsoft Azure.
 
 **Document Premise**
 
@@ -414,8 +414,6 @@ In most real world situations, the `existing_network` example will be used since
 
 For demos in a sanboxed environment and familiarizing yourself with WEKA in Azure, the `no_existing_network` example reduces overall friction and minimizes deployment time, especially when the WEKA backends are configured **with** public endpoints to allow for ease of connectivity without the need for jump box servers.
 
-To proceed with deploying WEKA in Azure with [Terraform Essentials](https://github.com/weka/terraform-azure-weka-essential), please follow the instructions in this section.
-
 ### Logging In to AzureCLI
 
 As mentioned earlier in this document, Terraform leverages AzureCLI to perform operations within an Azure subscription. Prior to using Terraform, the Azure user identified earlier in section 1.2 must be authenticated to Azure from the AzureCLI.
@@ -452,28 +450,6 @@ From the column on the lefthand side of the page, select “API Tokens.” The u
 
 <figure><img src="../../.gitbook/assets/image (92).png" alt=""><figcaption></figcaption></figure>
 
-### Obtaining the Terraform Essentials Package
-
-Terraform resources for deploying WEKA in Azure are stored, updated, and managed on GitHub. Updates are committed on a regular basis, and Terraform GA code releases are tagged as a release. The `terraform-azure-weka-essential` [GitHub page](https://github.com/weka/terraform-azure-weka-essential) is a wealth of information, and hosts the README file that explains the Terraform modules and input variables that can be used as part of a WEKA in Azure deployment using Terraform. The key variables necessary to facilitate a deployment will be covered in the next several sections, while others are more elective in nature and are used to fit certain environmental or customer requirements.
-
-Follow the instructions below to obtain the `terraform-azure-weka-essential` terraform package.
-
-Navigate to the `terraform-azure-weka-essential` GitHub repo, which can be found at [https://github.com/weka/terraform-azure-weka-essential](https://github.com/weka/terraform-azure-weka-essential). On the righthand side of the page, the latest GA code release is shown. Click the current release (v1.0.3 as of this writing) to review download options.
-
-<figure><img src="../../.gitbook/assets/image (93).png" alt=""><figcaption></figcaption></figure>
-
-The tagged release page shows the release version, the features / changes added since the previous release, and the assets the release contains. The terraform package can be downloaded in either zip or tar format. Select zip to download the code.
-
-{% hint style="info" %}
-In the upper lefthand corner of the page, there’s a link to “releases.” Clicking on “releases” will load the full tagged release history for viewing and download, though it is recommended to always use the most recent release.
-{% endhint %}
-
-<figure><img src="../../.gitbook/assets/image (94).png" alt=""><figcaption></figcaption></figure>
-
-Once downloaded, extract the terraform code into your preferred working directory.
-
-<figure><img src="../../.gitbook/assets/image (96).png" alt=""><figcaption></figcaption></figure>
-
 ### Deploying WEKA in Azure with Terraform - existing\_network example
 
 In the context of a Terraform module or package, the **`examples`** directory is a common convention used by terraform module developers to provide consumers of the module with the following:
@@ -490,7 +466,7 @@ Follow the instructions below to deploy WEKA.
 
 #### Preparing the main.tf File
 
-In the newly unzipped parent `terraform-azure-weka-essential` directory, navigate to `examples`.
+In the newly unzipped parent directory, navigate to `examples`.
 
 <figure><img src="../../.gitbook/assets/image (97).png" alt=""><figcaption></figcaption></figure>
 
@@ -699,17 +675,15 @@ In the Azure portal Virtual Machines page, view the WEKA cluster instance resour
 
 <figure><img src="../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
 
-## Running Terraform and Deploying WEKA in Azure using Terraform Advanced
+## Deploying WEKA in Azure using Terraform&#x20;
 
-Like Azure Terraform Essentials, Azure Terraform Advanced has a number of prerequisites that need fulfillment prior to running Terraform. The prerequisites are dependent upon the desired type of deployment - for instance, whether an existing network with existing Azure resources will be used, or if the WEKA Terraform package will be permitted to auto-create the required environmental resources.
+WEKA Azure Terraform has a number of prerequisites that need fulfillment prior to running Terraform. The prerequisites are dependent upon the desired type of deployment - for instance, whether an existing network with existing Azure resources will be used, or if the WEKA Terraform package will be permitted to auto-create the required environmental resources.
 
-It is important to note that, due to the increased functionality provided by Terraform Advanced, more Azure resource dependencies will be required for a successful WEKA deployment than with Terraform Essentials.
+In the section below, the required Azure dependencies for Terraform will be listed, described, and explained in the context of WEKA and WEKA deployment.
 
-In the section below, the required Azure dependencies for Terraform Advanced will be listed, described, and explained in the context of WEKA and WEKA deployment.
+### Terraform Dependencies and Constructs
 
-### Terraform Advanced Dependencies and Constructs
-
-When invoked, the Terraform Advanced package will deploy (or will require their creation in advance, depending on deployment method used) the following Azure environmental resources:
+When invoked, the Terraform package will deploy (or will require their creation in advance, depending on deployment method used) the following Azure environmental resources:
 
 * **VMSS (Virtual Machine Scale Set):** A Microsoft Azure Virtual Machine Scale Set (VMSS) is a service in Azure, which allows for the deployment and management of a set of identical virtual machine instances intended to scale depending on user, application, or infrastructure needs. VMSS is designed for applications that need to quickly scale in or out, based on demand. In the context of WEKA, the VMSS logically contains all of the WEKA backend instances and additionally makes use of Placement Groups.
 * **Placement Groups:** Placement groups are used to control the distribution and placement of the VM instances within a scale set. They are designed to optimize network traffic among VM instances and to provide fault tolerance. In the context of WEKA, currently only single-placement groups are supported which allows for WEKA backend clusters consisting of up to 100 VM instances.
@@ -720,15 +694,13 @@ When invoked, the Terraform Advanced package will deploy (or will require their 
 * **Network Security Group (NSG):** An Azure Network Security Group (NSG) is a networking filter (or firewall) used in Microsoft Azure that contains a list of security rules. These rules are used to filter network traffic to and from Azure resources within a Virtual Network (VNet). Each rule in an NSG defines whether to allow or deny traffic based on several parameters, such as source/destination IP addresses, ports, and protocols. In most instances, it is ideal to have a self-referencing rule in place - a self-referencing rule in an NSG is a security rule that references the NSG itself as the source or destination of the traffic.
 * **Private DNS Zone:** A Private DNS zone in Azure is a type of DNS zone that is used to host DNS records for a domain within a private network. Unlike public DNS zones, which resolve domain names on the public internet, private DNS zones are used within Azure Virtual Networks (VNets) to resolve domain names in a private network environment. In the context of WEKA, the private DNS zones are used within Azure VNets. They provide name resolution for VMs, application services, WEKA components and other resources that are connected to these VNets.
 
-### Deploying Terraform Advanced from the Terraform Registry
+### Deploying Terraform from the Terraform Registry
 
 #### Deployment Prerequisites
 
-Prior to deploying WEKA via Terraform Advanced, it is important to pre-create some of the dependencies if it has been decided that Terraform will not be creating all prerequisites. For instance - if using an existing Vnet, it is necessary to pre-create that Vnet. In a customer’s environment, it is likely that all pre-existing resources will already be created.
+Prior to deploying WEKA via Terraform, it is important to pre-create some of the dependencies if it has been decided that Terraform will not be creating all prerequisites. For instance - if using an existing Vnet, it is necessary to pre-create that Vnet. In a customer’s environment, it is likely that all pre-existing resources will already be created.
 
-The need to create resources as part of this guide is purely educational. The instructions provided earlier in this document for creating Azure pre-requisites are not exclusively applicable to Terraform Essentials - they are general guidelines for creating Azure resources and can also be used for Terraform Advanced. Therefore, the instructions in sections [1. Administrative Prerequisites](https://www.notion.so/1cf5acb8c7f2470b850b20741d3f508d?pvs=21) and [2. Azure Resource Prerequisites](https://www.notion.so/1cf5acb8c7f2470b850b20741d3f508d?pvs=21) still apply for general Azure cloud resource creation.
-
-Additionally, the instructions for installing Terraform and its prerequisites from section [3. Terraform Preparation and Installation](https://www.notion.so/1cf5acb8c7f2470b850b20741d3f508d?pvs=21) also apply to this Terraform Advanced section.
+The need to create resources as part of this guide is purely educational. The instructions provided earlier in this document for creating Azure pre-requisites are general guidelines for creating Azure resources.
 
 #### Navigating the Terraform Registry and Obtaining the Files
 
@@ -754,7 +726,7 @@ The `Resources` tab outlines all of the Azure resources that the module may or m
 
 <figure><img src="../../.gitbook/assets/image (127).png" alt=""><figcaption></figcaption></figure>
 
-To download the `main.tf` file and get started, click the “Examples” drop down and select the deployment type relevant to the situation. For this guide, the `public_network` example will be used as a starting point, though we’ll modify it to demonstrate deployment of WEKA into an existing public network rather than having Terraform Advanced create the vnet and subnet.
+To download the `main.tf` file and get started, click the “Examples” drop down and select the deployment type relevant to the situation. For this guide, the `public_network` example will be used as a starting point, though we’ll modify it to demonstrate deployment of WEKA into an existing public network rather than having Terraform create the vnet and subnet.
 
 On the following page, select the GitHub source code link.
 
@@ -797,7 +769,7 @@ allow_weka_api_cidrs = ["0.0.0.0/0"] //since this is a public network example, a
 Several of the default example variables will be altered and others will be added to customize the deployment for the purposes of this guide. The deployment will be to an existing public network.
 
 {% hint style="info" %}
-Important to note: Many of the Terraform Advanced variables listed and described on the \[Terraform Registry page for the Azure Weka / Weka module]\(https://registry.terraform.io/modules/weka/weka/azure/latest) under \[Inputs]\(https://registry.terraform.io/modules/weka/weka/azure/latest?tab=inputs) have been assigned “default variable values.” This means that unless a variable is explicitly included in the \`main.tf\` deployment file, a default value which has been specified in the \`variables.tf\` file will be used and applied. Therefore, it is good practice to review the input variables on the Terraform Registry Azure Weka / Weka module page to determine whether the defaults are acceptable or if the variable should be included and customized in the \`main.tf\` deployment file.
+Important to note: Many of the Terraform variables listed and described on the \[Terraform Registry page for the Azure Weka / Weka module]\(https://registry.terraform.io/modules/weka/weka/azure/latest) under \[Inputs]\(https://registry.terraform.io/modules/weka/weka/azure/latest?tab=inputs) have been assigned “default variable values.” This means that unless a variable is explicitly included in the \`main.tf\` deployment file, a default value which has been specified in the \`variables.tf\` file will be used and applied. Therefore, it is good practice to review the input variables on the Terraform Registry Azure Weka / Weka module page to determine whether the defaults are acceptable or if the variable should be included and customized in the \`main.tf\` deployment file.
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/image (130).png" alt=""><figcaption></figcaption></figure>
@@ -812,7 +784,7 @@ subscription_id = //Has been filled out with the Azure subscription associated w
 
 //Under module "weka_deployment"
 source = "weka/weka/azure" //This value points Terraform to the Terraform Registry - specifically, the Weka Namespace and Weka Module for Azure.
-version = "4.0.5" //Specifies the Weka Terraform module release version for Azure Terraform Advanced.
+version = "4.0.5" //Specifies the Weka Terraform module release version for Azure Terraform.
 prefix = "weka" //Prefixes created Azure resources with "weka" - this value can be customized per customer requirements.
 rg_name = "bgcadv" //References the existing Azure resource group for deployment of WEKA resources.
 vnet_name = "bgcadv" //References the existing Azure vnet where deployment of WEKA resources should occur.
@@ -837,11 +809,11 @@ output "get-cluster-helpers-commands" {
 
 Review the variables available for use on the [**Terraform Registry page for the Azure Weka / Weka module**](https://registry.terraform.io/modules/weka/weka/azure/latest) to determine the variables required for your specific deployment needs. Once the `main.tf` file is configured for the deployment, proceed to initializing and running Terraform to deploy WEKA resourcesRunning Terraform init, plan, and apply to Deploy WEKA Cluster Resources
 
-Open a terminal window on your local machine (or on whichever machine Terraform will be run from) and navigate to the directory containing the newly edited `main.tf` file. Once in the directory, execute the `terraform init` command. As shown below, the WEKA Azure Terraform Advanced modules will download followed by the necessary provider plugins.
+Open a terminal window on your local machine (or on whichever machine Terraform will be run from) and navigate to the directory containing the newly edited `main.tf` file. Once in the directory, execute the `terraform init` command. As shown below, the WEKA Azure Terraform  modules will download followed by the necessary provider plugins.
 
 <figure><img src="../../.gitbook/assets/image (132).png" alt=""><figcaption></figcaption></figure>
 
-Once Terraform is successfully initialized, proceed to running `terraform plan` . As with Terraform Essentials, covered earlier in this guide, `terraform plan` performs a dry run of the deployment to detect any configuration issues. That said, it cannot account for certain circumstances which can only be validated during an `apply` , such as whether or not there is sufficient quota for the instance type selected, or if there’s a naming conflict with the Azure KeyVault. If no errors appear after `terraform plan` successfully runs as shown below, it can be reasonably assumed that a `terraform apply` will succeed.
+Once Terraform is successfully initialized, proceed to running `terraform plan` which performs a dry run of the deployment to detect any configuration issues. That said, it cannot account for certain circumstances which can only be validated during an `apply` , such as whether or not there is sufficient quota for the instance type selected, or if there’s a naming conflict with the Azure KeyVault. If no errors appear after `terraform plan` successfully runs as shown below, it can be reasonably assumed that a `terraform apply` will succeed.
 
 <figure><img src="../../.gitbook/assets/image (133).png" alt=""><figcaption></figcaption></figure>
 

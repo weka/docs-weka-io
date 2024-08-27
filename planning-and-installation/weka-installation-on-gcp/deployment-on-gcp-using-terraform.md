@@ -131,6 +131,10 @@ roles/workflows.invoker
     roles/storage.objectAdmin
     ```
 
+## Set the license
+
+To run IOs against the cluster, a valid license must be applied. Obtain a valid license and apply it to the WEKA cluster. For details, see [overview.md](../../licensing/overview.md "mention").&#x20;
+
 ## **Upgrade the WEKA version**
 
 Upgrading the WEKA version on the cloud is similar to the standard WEKA upgrade process. However, in a cloud configured with auto-scaling, the new instances created by the scale-up must be configured with the new WEKA version.

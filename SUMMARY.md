@@ -19,8 +19,7 @@
 
 ## Planning and Installation
 
-* [Prerequisites and compatibility](planning-and-installation/prerequisites-and-compatibility/README.md)
-  * [Broadcom adapter setup for WEKA system](planning-and-installation/prerequisites-and-compatibility/broadcom-adapter-setup-for-weka-system.md)
+* [Prerequisites and compatibility](planning-and-installation/prerequisites-and-compatibility.md)
 * [WEKA cluster installation on bare metal servers](planning-and-installation/bare-metal/README.md)
   * [Plan the WEKA system hardware requirements](planning-and-installation/bare-metal/planning-a-weka-system-installation.md)
   * [Obtain the WEKA installation packages](planning-and-installation/bare-metal/obtaining-the-weka-install-file.md)
@@ -28,6 +27,7 @@
   * [Install the WEKA cluster using the WSA](planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wsa.md)
   * [Manually install OS and WEKA on servers](planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers.md)
   * [Manually prepare the system for WEKA configuration](planning-and-installation/bare-metal/setting-up-the-hosts/README.md)
+    * [Broadcom adapter setup for WEKA system](planning-and-installation/bare-metal/setting-up-the-hosts/broadcom-adapter-setup-for-weka-system.md)
     * [Enable the SR-IOV](planning-and-installation/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Configure the WEKA cluster using the WEKA Configurator](planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md)
   * [Manually configure the WEKA cluster using the resource generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator.md)
@@ -51,7 +51,6 @@
     * [Add clients to a WEKA cluster on AWS](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md)
     * [Auto scaling group](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/auto-scaling-group.md)
     * [Troubleshooting](planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/troubleshooting.md)
-  * [Install SMB on AWS](planning-and-installation/aws/install-smb-on-aws.md)
 * [WEKA installation on Azure](planning-and-installation/weka-installation-on-azure/README.md)
   * [Azure-WEKA deployment Terraform package description](planning-and-installation/weka-installation-on-azure/azure-weka-terraform-package-description.md)
   * [Deployment on Azure using Terraform](planning-and-installation/weka-installation-on-azure/deployment-on-azure-using-terraform.md)

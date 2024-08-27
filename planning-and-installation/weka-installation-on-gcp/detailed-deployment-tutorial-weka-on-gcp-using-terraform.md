@@ -16,10 +16,10 @@ This document specifically addresses the deployment of WEKA in a GCP environment
 
 The reader is guided through:
 
-1. General GCP requirements.
-2. Networking requirements to support WEKA.
-3. Deployment of WEKA using Terraform.
-4. Verification of a successful WEKA deployment.
+* General GCP requirements.
+* Networking requirements to support WEKA.
+* Deployment of WEKA using Terraform.
+* Verification of a successful WEKA deployment.
 
 {% hint style="info" %}
 Images embedded in this document can be enlarged with a single click for ease of viewing and a clearer and more detailed examination.
@@ -550,4 +550,4 @@ The user running the Terraform module requires the following roles to run the `t
 * roles/storage.admin
 * roles/vpcaccess.adminroles/workflows.admin
 
-[^1]: Terraform is an infrastructure-as-code tool for provisioning and managing cloud infrastructure
+[^1]: Terraform is an infrastructure-as-code tool for provisioning manager.

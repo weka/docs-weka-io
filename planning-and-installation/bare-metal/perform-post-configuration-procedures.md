@@ -2,11 +2,11 @@
 
 Once the WEKA cluster is installed and configured, perform the following:
 
-1. [Enable event notifications to the cloud (optional)](perform-post-configuration-procedures.md#1.-enable-event-notifications-to-the-cloud-optional)
-2. [Set the license](perform-post-configuration-procedures.md#2.-set-the-license)
-3. [Start the cluster IO service](perform-post-configuration-procedures.md#3.-start-the-cluster-io-service)
-4. [Check the cluster configuration](perform-post-configuration-procedures.md#4.-check-the-cluster-configuration)
-5. [Bypass the proxy server (optional)](perform-post-configuration-procedures.md#5.-bypass-the-proxy-server-optional)
+1. [Enable event notifications to the cloud (optional)](perform-post-configuration-procedures.md#id-1.-enable-event-notifications-to-the-cloud-optional)
+2. [Set the license](perform-post-configuration-procedures.md#id-2.-set-the-license)
+3. [Start the cluster IO service](perform-post-configuration-procedures.md#id-3.-start-the-cluster-io-service)
+4. [Check the cluster configuration](perform-post-configuration-procedures.md#id-4.-check-the-cluster-configuration)
+5. [Bypass the proxy server (optional)](perform-post-configuration-procedures.md#id-5.-bypass-the-proxy-server-optional)
 6. [Configure default data networking (optional)](perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional)
 
 ## 1. Enable event notifications to the cloud (optional)
@@ -20,17 +20,17 @@ Enable event notifications to the cloud for support purposes using one of the fo
 
 **Command:** `weka cloud enable`
 
-This command enables cloud event notification (via Weka Home), which increases the ability of the Weka Support Team to resolve any issues that may occur.
+This command enables cloud event notification (via Weka Home), which allows the WEKA Customer Success Team to resolve any issues that may occur.
 
 To learn more about this and how to enable cloud event notification, see [the-wekaio-support-cloud](../../monitor-the-weka-cluster/the-wekaio-support-cloud/ "mention").
 
 ### **Enable support through** Local Weka Home
 
-In closed environments, such as dark sites and private VPCs, it is possible to install Local Weka Home, which is a private instance of Weka Home.
+In closed environments, such as dark sites and private VPCs, it is possible to install Local WEKA Home, which is a private instance of WEKA Home.
 
 **Command:** `weka cloud enable --cloud-url=http://<weka-home-ip>:<weka-home-port>`
 
-This command enables the WEKA cluster to send event notifications to the Local Weka Home.
+This command enables the WEKA cluster to send event notifications to the Local WEKA Home.
 
 {% hint style="info" %}
 For details, see [local-weka-home-overview.md](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md "mention").
@@ -38,9 +38,9 @@ For details, see [local-weka-home-overview.md](../../monitor-the-weka-cluster/th
 
 ## 2. Set the license
 
-**Command:** `weka cluster license set / payg`
+**Command:** `weka cluster license set`
 
-To run IOs against the cluster, a valid license must be set. Obtain a valid license, classic or PAYG, and set it to the Weka cluster. For details, see [overview.md](../../licensing/overview.md "mention").&#x20;
+To run IOs against the cluster, a valid license must be applied. Obtain a valid license and apply it to the WEKA cluster. For details, see [overview.md](../../licensing/overview.md "mention").&#x20;
 
 ## 3. Start the cluster IO service
 
@@ -235,7 +235,7 @@ DISK ID  UUID                                  HOSTNAME  NODE ID  SIZE        ST
 
 **Command:** `weka status`
 
-The `weka status` command displays the overall status of the Weka cluster.
+The `weka status` command displays the overall status of the WEKA cluster.
 
 For details, see [#cluster-status](../../getting-started-with-weka/manage-the-system-using-weka-cli/#cluster-status "mention").
 

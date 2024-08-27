@@ -1,237 +1,316 @@
+---
+description: >-
+  This guide provides step-by-step instructions for deploying the WEKA Data
+  Platform on AWS using Terraform, tailored for customers, partners, and WEKA
+  teams.
+---
+
 # Detailed deployment tutorial: WEKA on AWS using Terraform
 
 ## Introduction
 
-#### Document Purpose
+Deploying WEKA in AWS requires knowledge of several technologies, including AWS, Terraform[^1], basic Linux operations, and the WEKA software. Recognizing that not all individuals responsible for this deployment are experts in each of these areas, this document aims to provide comprehensive, end-to-end instructions. This ensures that readers with minimal prior knowledge can successfully deploy a functional WEKA cluster on AWS.
 
-To guide customers, partners, and WEKA teams (sales, customer success, etc.) through the step-by-step process of deploying the WEKA data platform in AWS using Terraform.
+#### Document scope
 
-#### Document Premise
+This document provides a guide for deploying WEKA in an AWS environment using Terraform. It is applicable for both POC and production setups. While no pre-existing AWS elements are required beyond an appropriate user account, the guide includes examples with some pre-created resources.
 
-Deploying WEKA in AWS requires knowledge of several technologies, specifically AWS, Terraform (infrastructure-as-code provisioning manager), basic Linux operations, and WEKA software. Understanding that not everyone tasked with deploying WEKA in AWS will have experience in each required domain, this document seeks to provide an end-to-end instruction set that allows its reader to successfully deploy a working WEKA cluster in AWS with minimal knowledge or prerequisites.
+This document guides you through:
 
-#### Document Scope
-
-This document focuses on deploying WEKA in an AWS environment using Terraform for a POC or Production environment. While no pre-created AWS elements are needed beyond an appropriate user account, this guide will showcase using some pre-created elements in the deployment.
-
-The reader will be guided through general AWS requirements, the AWS networking requirements needed to support WEKA, using Terraform to deploy WEKA, and verifying a successful WEKA deployment.
+* General AWS requirements.
+* Networking requirements to support WEKA.
+* Deployment of WEKA using Terraform.
+* Verification of a successful WEKA deployment.
 
 {% hint style="info" %}
-The images embedded in this document can appear small when viewed in-line with the document. Clicking on the image will enlarge it to its original size for easier viewing.
+Images embedded in this document can be enlarged with a single click for ease of viewing and a clearer and more detailed examination.
 {% endhint %}
 
-## Terraform Preparation and Installation
+## Terraform preparation and installation
 
-HashiCorp Terraform is a tool that allows you to define, provision, and manage infrastructure as code. Instead of manually setting up servers, databases, networks, and other infrastructure components, you describe what you want in a configuration file using a declarative configuration language, HashiCorp Configuration Language (HCL), or optionally JSON. Once the desired infrastructure configuration is described in this file, Terraform can automatically create, modify, or delete resources to match the file specifications. This ensures that the infrastructure is consistently and predictably deployed.
+HashiCorp Terraform is a tool that enables you to define, provision, and manage infrastructure as code. It simplifies infrastructure setup by using a configuration file instead of manual processes.
 
-This document describes the WEKA Data Platform automated deployment in AWS using Terraform. Our choice of Terraform was influenced by its widespread consumer adoption and ubiquity in the Infrastructure as Code (IaC) space. It is commonly embraced by organizations globally, large and small, to deploy stateful infrastructure on-premises and in public clouds such as AWS, Azure, or Google Cloud Platform.
+You describe your desired infrastructure in a configuration file using HashiCorp Configuration Language (HCL) or optionally JSON. Terraform then automates the creation, modification, or deletion of resources.
 
-_Please note that_ [_WEKA can also be deployed in AWS using AWS CloudFormation_](https://start.weka.io/)_, allowing customers to select their preferred deployment method._
+This automation ensures that your infrastructure is consistently and predictably deployed, aligning with the specifications in your configuration file. Terraform helps maintain a reliable and repeatable infrastructure environment.
 
-To install Terraform, we recommend following the [official guides](https://developer.hashicorp.com/terraform/install) published by HashiCorp.
+Organizations worldwide use Terraform to deploy stateful infrastructure both on-premises and across public clouds like AWS, Azure, and Google Cloud Platform.
 
-#### AWS Account
+{% hint style="info" %}
+You can deploy WEKA in AWS using [AWS CloudFormation](https://start.weka.io/), allowing them to choose their preferred deployment method.
+{% endhint %}
 
-Proceed with the following steps to locate the appropriate AWS Account.
+To install Terraform, we recommend following the [official installation guides](https://developer.hashicorp.com/terraform/install) provided by HashiCorp.
 
-Navigate to the AWS Management Console. In the top right corner, search for “Account ID.”
+### Locate the AWS Account
+
+1. Access the AWS Management Console**.**
+2. In the top-right corner, search for **Account ID**.
 
 <figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-If deploying into a WEKA customer environment, the customer should understand their subscription structure. If deploying internally at WEKA and you do not see an Account ID or have not been added to the correct Account, please reach out to the customer appropriate cloud teams for assistance.
+* If deploying into a WEKA customer environment, ensure the customer understands their subscription structure.
+* If deploying internally at WEKA and you don't see the Account ID or haven't been added to the correct account, contact the appropriate cloud team for assistance.
 {% endhint %}
 
-### User Account Privileges
+### Confirm user account permissions
 
-To carry out the necessary operations for a successful WEKA deployment in AWS using Terraform, you must ensure that an [AWS IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_users.html) has the appropriate permissions listed in **Appendix B** below (i.e., the Appendices section). The IAM user must be permitted to create, modify, and delete AWS resources as dictated by Terraform Configuration Files used for WEKA deployment.
+To ensure a successful WEKA deployment in AWS using Terraform, verify that the [AWS IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_users.html) has the required permissions listed in [#appendix-b-terraforms-required-permissions](detailed-deployment-tutorial-weka-on-aws-using-terraform.md#appendix-b-terraforms-required-permissions "mention"). The user must have permissions to create, modify, and delete AWS resources as specified by the Terraform configuration files.
 
-If the current IAM user does not have these permissions, it is advisable to either update the permissions or create a new IAM user with the required privileges.
+If the IAM user lacks these permissions, update their permissions or create a new IAM user with the necessary permissions.
 
-Follow the steps below to verify IAM user privileges.
+**Procedure**
 
-#### Confirming AWS IAM User Permissions
-
-* Navigate to the AWS Management Console.
-* Log in using the account that will be used for the entirety of the WEKA deployment.
-* In the AWS Management Console, go to the Services menu and select “IAM” to access the Identity and Access Management dashboard.
+1. **Access the AWS Management Console:** Log in using the account intended for the WEKA deployment.
+2. **Navigate to the IAM dashboard:** From the Services menu, select **IAM** to open the Identity and Access Management dashboard.
 
 <figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
-* Within the IAM dashboard, search for the IAM user in question or navigate to the “Users” section.
+3. **Locate the IAM user:** Search for the IAM user or go to the **Users** section.
 
 <figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
-Click on the user's name to view their permissions. You will need to verify that the user has policies attached that grant the necessary permissions for managing AWS resources via Terraform.
+4. **Verify permissions.** Click on the user’s name to review their permissions. Ensure they have policies that grant the necessary permissions for managing AWS resources through Terraform.
 
 <figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-This user has full administrative access to allow Terraform to deploy WEKA. However, it is recommended to grant the \[least privileged permission]\(https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) by using the information from Appendix B below.
+The user shown in the screenshot above has full administrative access to allow Terraform to deploy WEKA. However, it is recommended to follow the [principle of least privilege](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html#grant-least-privilege) by granting only the necessary permissions listed in [#appendix-b-terraforms-required-permissions](detailed-deployment-tutorial-weka-on-aws-using-terraform.md#appendix-b-terraforms-required-permissions "mention").
 {% endhint %}
 
-### AWS Quotas
+### Set AWS Service Quotas
 
-For successful WEKA deployment in AWS using Terraform, it is essential to ensure your AWS account has the appropriate quotas for the needed AWS resources. Specifically, when setting up EC2 instances like the i3en for the WEKA backend cluster, AWS requires you to manage quotas based on the vCPU count for each EC2 instance type or family.
+Before deploying WEKA on AWS using Terraform, ensure your AWS account has sufficient quotas for the necessary resources. Specifically, when deploying EC2 instances like the i3en for the WEKA backend cluster, manage quotas based on the vCPU count for each instance type or family.
 
-Before WEKA deployment, please confirm if your EC2 VM’s vCPU sizing requirements can be met within the limits of existing quota. If not, please increase the quotas in your AWS account before executing Terraform commands (outlined later in the document). The required minimum quota is the cumulative vCPU count for all instances (for example, 10 i3en.6xlarge are each 24 vCPUs, so 240 vCPU count would be needed just for the cluster alone.) that will be deployed. This will prevent failures during the execution of terraform commands, which are discussed in subsequent sections.
+**Requirements:**
 
-#### Setting Service Quotas
+* **EC2 Instance vCPU quotas:** Verify that your vCPU requirements are within your current quota limits. If not, adjust the quotas before running the Terraform commands (details are provided later in this document).
+* **Cumulative vCPU count:** Ensure your quotas cover the total vCPU count needed for all instances. For example, deploying 10 i3en.6xlarge instances (each with 24 vCPUs) requires 240 vCPUs in total. Meeting these quotas is essential to avoid execution failures during the Terraform process, as detailed in the following sections.
 
-Navigate to the AWS Management Console ([https://us-east-1.console.aws.amazon.com/servicequotas/home/dashboard](https://us-east-1.console.aws.amazon.com/servicequotas/home/dashboard)) and use the search bar to find the AWS Service called "Service Quotas."
+**Procedure**
+
+1. **Access Service Quotas:** Open the AWS Management Console at [AWS Service Quotas](https://us-east-1.console.aws.amazon.com/servicequotas/home/dashboard). Use the search bar to locate the **Service Quotas** service.
 
 <figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
-Once on the Service Quotas page, choose "Amazon EC2."
+2. **Select Amazon EC2:** On the Service Quotas page, select **Amazon EC2**.
 
 <figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
-WEKA currently only supports i3en instance types for backend cluster nodes. There are instance types of Spot, OnDemand, and Dedicated. Be sure you are adjusting the proper one.
+3. **Identify instance type:** WEKA supports only i3en instance types for backend cluster nodes. Ensure you adjust the quota for the appropriate instance type (Spot, On-Demand, or Dedicated).
 
 <figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
 
-Select the “Standard (A,C,D,H,I,M,R,T,Z)” instance type, then click on "Request quota increase."
+4. **Request quota increase:** Choose the relevant instance type from the Standard categories (A, C, D, H, I, M, R, T, Z), then click **Request increase at account-level**.
 
 <figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
-Fill out the form in the "Request quota increase" section by specifying the number of vCPUs you require. For example, if you need 150 vCPUs for the i3en instance family, enter this number and submit your request.
+5. **Specify  number of vCPUs:** In the Request quota increase form, specify the number of vCPUs you need. For example, if 150 vCPUs are required for the i3en instance family, enter this number and submit your request.
 
-Quota increase requests are often processed immediately. If the request involves a substantial number of vCPUs or a specialized instance type, manual review by AWS support may be required.
+{% hint style="info" %}
+Quota increase requests are typically processed immediately. However, requests for a large number of vCPUs or specialized instance types may require manual review by AWS support. \
+Confirm that you have requested and obtained the necessary quotas for all instance types used for WEKA backend servers and any associated application servers running WEKA client software. WEKA supports i3en series instances for backend servers.
+{% endhint %}
 
-Ensure that you have requested and confirmed the necessary quotas for all instance types that will be used for the WEKA backend servers deployment, and any associated application servers running the WEKA client software. As indicated in the [WEKA documentation](https://docs.weka.io/install/aws/supported-ec2-instance-types), WEKA supports the i3en series instances for WEKA backend servers. Check the documentation for details on the available sizes, and corresponding vCPU requirements for these instances found here - [https://docs.weka.io/install/aws/supported-ec2-instance-types](https://docs.weka.io/install/aws/supported-ec2-instance-types).
+**Related topic**
 
-## AWS Resource Prerequisites
+[supported-ec2-instance-types.md](supported-ec2-instance-types.md "mention")
 
-The WEKA deployment uses various aspects of AWS, including, but not limited to, VPCs, Subnets, Security Groups, End Points, and more. These items can either be created by the Terraform process or can be pre-existing if creating elements to use manually. The minimum will be a VPC(Virtual Private Cloud), two Subnets each in a different AZ(Availability Zone), and a Security Group.
+## AWS resource prerequisites
+
+The WEKA deployment requires several AWS components, including VPCs, Subnets, Security Groups, and Endpoints. These components can either be created during the Terraform process or be pre-existing if manually configured.
+
+Minimum requirements:
+
+* A Virtual Private Cloud (VPC)
+* Two Subnets in different Availability Zones (AZs)
+* A Security Group
 
 ### Networking requirements
 
-If you don’t have the Terraform deployment auto-create networking components, The recommended VPC will have two subnets (either private or public) in separate AZs with the subnet for WEKA to have access to the internet, either via an IGW with an EIP, NAT, proxy or an egress VPC. While WEKA deployment is not multi-AZ, it is still required to spin up a minimum of two subnets in different AZs for the ALB.
+If you choose not to have Terraform auto-create networking components, ensure your VPC configuration includes:
 
-#### Network Access Lists
+* Two subnets (either private or public) in separate AZs.
+* A subnet that allows WEKA to access the internet, either through an Internet Gateway (IGW) with an Elastic IP (EIP), NAT gateway, proxy, or egress VPC.
 
-An AWS Network Access Lists (ACL’s) function as basic firewalls, governing inbound and outbound network traffic based on security rules. They apply to network interfaces (NICs), EC2 instances, and subnets.
+Although the WEKA deployment is not multi-AZ, a minimum of two subnets in different AZs is required for the Application Load Balancer (ALB).
 
-Every ACL starts with default rules that ensure basic connectivity. For example, there's a default rule that allows outbound communication from all AWS resources and another default rule that denies all inbound traffic from the internet. These rules have high priority numbers, so custom rules can easily override them. Most restrictions and allowances are handled by Security Groups, which will be set up in the next step.
+### **View AWS Network Access Control Lists (ACLs)**
 
-You can see your Network Access Lists for the VPC by selecting the “Main network ACL” from the VPC details page for your VPC.
+AWS Network Access Control Lists (ACLs) enable basic firewalls that control inbound and outbound network traffic based on security rules. They apply to network interfaces (NICs), EC2 instances, and subnets.
+
+By default, ACLs include rules that ensure basic connectivity, such as allowing outbound communication from all AWS resources and denying all inbound traffic from the internet. These default rules have high priority numbers, so custom rules can override them. The security groups created by `main.tf` handle most traffic restrictions and allowances.
+
+**Procedure**
+
+1. Go to the VPC details page and select **Main network AC**L.
 
 <figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption></figcaption></figure>
 
-From the ACL page you can view the Inbound and Outbound rules.
+2. From the Network ACLs page, select the **Inbound rules** and **Outbound rules**.
 
+{% tabs %}
+{% tab title="Inbound rules" %}
 <figure><img src="../../../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+{% endtab %}
 
+{% tab title="Outbound rules" %}
 <figure><img src="../../../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+{% endtab %}
+{% endtabs %}
 
-#### Creating a Security Group
+**Related topic**
 
-To manually create security groups, please refer to **Appendix A – Security Groups / Network ACL** Ports on the Appendices section and ensure you have defined all the relevant ports.
+[#appendix-a-security-groups-network-acl-ports](detailed-deployment-tutorial-weka-on-aws-using-terraform.md#appendix-a-security-groups-network-acl-ports "mention") (ensure you have defined all the relevant ports before manually creating ACLs ).&#x20;
 
-## Deploying WEKA in AWS using Terraform
+## Deploy WEKA on AWS using Terraform
 
-If using existing elements gather their AWS IDs as exampled below.
+If using existing resources, collect their AWS IDs as shown in the following examples:
 
+{% tabs %}
+{% tab title="VPC" %}
 <figure><img src="../../../.gitbook/assets/image (12).png" alt=""><figcaption><p>VPC</p></figcaption></figure>
+{% endtab %}
 
-<figure><img src="../../../.gitbook/assets/image (13).png" alt=""><figcaption><p><strong>Subnet (in VPC)</strong></p></figcaption></figure>
+{% tab title="Subnet in VPC" %}
+<figure><img src="../../../.gitbook/assets/image (13).png" alt=""><figcaption><p>Subnet in VPC</p></figcaption></figure>
+{% endtab %}
 
-<figure><img src="../../../.gitbook/assets/image (14).png" alt=""><figcaption><p><strong>Security Group (in EC2)</strong></p></figcaption></figure>
+{% tab title="Security Group in EC2" %}
+<figure><img src="../../../.gitbook/assets/image (14).png" alt=""><figcaption><p>Security Group in EC2</p></figcaption></figure>
+{% endtab %}
+{% endtabs %}
 
-### Modules
+### Modules overview
 
-These are modules for creating IAM roles, networks, and security groups necessary for Weka deployment. If you don't provide specific IDs for security groups or subnets, the modules will create them for you. The **availability\_zones** variable is required when creating a network and is currently limited to a single subnet. The following will be auto created if not supplied.
+This section covers modules for creating IAM roles, networks, and security groups necessary for WEKA deployment. If you do not provide specific IDs for security groups or subnets, the modules automatically create them.
 
-1. **Private Network Deployment**: To deploy a private network with NAT, you need to set certain variables, such as **subnet\_autocreate\_as\_private** to **true** and provide a private CIDR range. To ensure instances do not get public IPs, set **assign\_public\_ip** to **false**.
-2. **SSH Keys**: For SSH access, use the username **ec2-user**. You can either provide an existing key pair name or a public SSH key. If you don't provide either, the system will create a key pair and store the private key locally.
-3. **Application Load Balancer (ALB)**: If you want to create an ALB for the backend UI and WEKA client connections, you must set **create\_alb** to **true** and provide additional required variables. To integrate the ALB DNS with your DNS zone, additional variables for Route 53 zone ID and alias name are required.
-4. **Object Storage (OBS)**: To integrate with S3 for tiered storage, set **tiering\_enable\_obs\_integration** to **true** and provide the name of the S3 bucket. You can also specify the SSD cache percentage.
-5. **Clients (optional)**: For automatically mounting clients to the WEKA cluster, provide the number of clients you want to create. Optional variables include instance type, number of network interfaces (NICs), and AMI ID.
-6. **NFS Protocol Gateways (optional)**: Similar to clients, specify the number of NFS protocol gateways you want. You can also provide additional configuration details like instance type and disk size.
-7. **SMB Protocol Gateways (optional)**: For SMB protocol gateways, you must create at least three instances. Additional configuration details are similar to NFS gateways.
-8. **Secret Manager**: This is used to store sensitive information like usernames and passwords. If you cannot provide a secret manager endpoint, you can disable it by setting **secretmanager\_use\_vpc\_endpoint** to **false**.
-9. **VPC Endpoints**: If you need VPC endpoints for services like EC2, S3, or a proxy, you can enable them by setting the respective variables to **true**.
-10. **Terraform Output**: The output from running the Terraform module will include details such as the SSH username and WEKA password secret ID. It will also provide helper commands to learn about the clusterization process.
+#### **Network configuration**
 
-### Locate the User’s [get.weka.io](http://get.weka.io/) Token
+* **Availability zones:** The `availability_zones` variable is required when creating a network and is currently limited to a single subnet. If no specific subnet is provided, it is automatically created.
+* **Private network deployment:** To deploy a private network with NAT, set the `subnet_autocreate_as_private` variable to `true` and provide a private CIDR range. To prevent instances from receiving public IPs, set `assign_public_ip` to `false`.
 
-The WEKA user token provides access to the WEKA binaries, and is used to access https://[get.weka.io](http://get.weka.io/) during the installation process.
+#### **SSH access**
 
-To find the user’s [get.weka.io](http://get.weka.io/) token, follow the instructions below.
+For SSH access, use the username `ec2-user`. You can either:
 
-In a web browser, navigate to [get.weka.io](http://get.weka.io/) and select the user’s name in the upper righthand corner of the page.
+* Provide an existing key pair name, or
+* Provide a public SSH key.
+
+If neither is provided, the system creates a key pair and store the private key locally.
+
+#### **Application Load Balancer (ALB)**
+
+To create an ALB for backend UI and WEKA client connections:
+
+* Set `create_alb` to `true`.
+* Provide additional required variables.
+* To integrate ALB DNS with your DNS zone, provide variables for the Route 53 zone ID and alias name.
+
+#### **Object Storage (OBS)**
+
+For S3 integration for tiered storage:
+
+* Set `tiering_enable_obs_integration` to `true`.
+* Provide the name of the S3 bucket.
+* Optionally, specify the SSD cache percentage.
+
+#### **Optional configurations**
+
+* **Clients:** For automatically mounting clients to the WEKA cluster, specify the number of clients to create. Optional variables include instance type, number of network interfaces (NICs), and AMI ID.
+* **NFS protocol gateways:** Specify the number of NFS protocol gateways required. Additional configurations include instance type and disk size.
+* **SMB protocol gateways:** Create at least three SMB protocol gateways. Configuration options are similar to NFS gateways.
+
+#### **Secret Manager**
+
+Use the Secret Manager to store sensitive information, such as usernames and passwords. If you do not provide a secret manager endpoint, disable it by setting `secretmanager_use_vpc_endpoint` to `false`.
+
+#### **VPC Endpoints**
+
+Enable VPC endpoints for services like EC2, S3, or a proxy by setting the respective variables to `true`.
+
+#### **Terraform output**
+
+The Terraform module output includes:
+
+* SSH username.
+* WEKA password secret ID.
+* Helper commands for learning about the clusterization process.
+
+### Locate the user’s token on get.weka.io
+
+The WEKA user token grants access to WEKA binaries and is required for accessing [https://get.weka.io](https://get.weka.io) during installation.
+
+**Procedure**
+
+1. Open a web browser and navigate to [get.weka.io](https://get.weka.io).
+2. In the upper right-hand corner, click the user’s name.
 
 <figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
-From the column on the lefthand side of the page, select “API Tokens.” The user’s API token is presented on the screen. The API token will be used later in the install process.
+3. From the left-hand menu, select **API Tokens**.&#x20;
+4. The user’s API token displays on the screen. Use this token later in the installation process.
 
 <figure><img src="../../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
 
-### Deploying WEKA in AWS with Terraform - public\_network example
+### Deploy WEKA in AWS with Terraform
 
-The module is for deploying various AWS resources, including EC2 instances, DynamoDB tables, Lambda functions, State Machines, etc., for WEKA deployment on AWS.
+The Terraform module facilitates the deployment of various AWS resources, including EC2 instances, DynamoDB tables, Lambda functions, and State Machines, to support WEKA deployment.
 
-#### Preparing the main.tf file
+#### Procedure
 
-Here's how you would structure the Terraform files:
-
-Create a directory for the Terraform configuration files.
-
-{% hint style="info" %}
-All Terraform deployments have to be separated into their own directories in order to save state information. By creating a directory specific for this deployment, other deployments can be done by duplicating these instructions and simply naming the directory deploy1 or something else unique.
-{% endhint %}
+1. Create a directory for the Terraform configuration files.
 
 ```bash
 mkdir deploy
 ```
 
-Navigate to the directory.
+{% hint style="info" %}
+All Terraform deployments must be separated into their own directories to manage state information effectively. By creating a specific directory for this deployment, you can duplicate these instructions for future deployments by naming the directory uniquely, such as `deploy1`.
+{% endhint %}
+
+2. Navigate to the directory.
 
 ```bash
 cd deploy
 ```
 
-A **main.tf** file is required to define the Terraform options. Create the main.tf file using the [WEKA Cloud Deployment Manager](https://cloud.weka.io). See [weka-cloud-deployment-manager-cdm-user-guide.md](../../weka-cloud-deployment-manager-cdm-user-guide.md "mention") for help with CDM.
-
-Authentication is handled using the AWS CLI utility.
-
-To authenticate AWS CLI , use the following command:
+3. Create the `main.tf` file.\
+   The `main.tf` file defines the Terraform options. Create this file using the WEKA Cloud Deployment Manager (CDM). See [weka-cloud-deployment-manager-cdm-user-guide.md](../../weka-cloud-deployment-manager-cdm-user-guide.md "mention") for assistance.
+4. Authenticate the AWS CLI.
 
 ```bash
 aws configure
 ```
 
-Fill in the required information and hit enter.
+* Fill in the required information and press **Enter**.
 
-<figure><img src="../../../.gitbook/assets/image (17).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/aws_configure.png" alt="" width="563"><figcaption></figcaption></figure>
 
-**Initialize the Terraform directory**:
-
-After creating and saving the **main.tf** file, in the same directory as the main.tf file run the following command.
+5. After creating and saving the `main.tf` file, initialize the Terraform directory to ensure the proper AWS resource files are available.
 
 ```json
 terraform init
 ```
 
-This will ensure that the proper Terraform resource files for AWS are downloaded and available for the system.
-
-**Run Terraform Plan & Apply**:
-
-Best practice before applying or destroying a Terraform configuration file is to run a plan using following command.
+7. As a best practice, run the terraform plan to preview the changes.
 
 ```json
 terraform plan
 ```
 
-Initiate the deployment of WEKA in AWS by running the following command.
+8. Execute the creation of AWS resources necessary to run WEKA.
 
 ```json
 terraform apply
 ```
 
-This command executes the creation of AWS resources necessary to run WEKA. Confirm deployment of resources by typing **yes** at the prompt.
+9. When prompt, type `yes` to confirm the deployment.
 
-When the Terraform AWS resource deployment process successfully completes, an output similar to below will be shown. If it is unsuccessful a failed error message would instead be shown.
+**Deployment output**
+
+Upon successful completion, Terraform displays output similar to the following. If the deployment fails, an error message appears.
 
 ```json
 Outputs:
@@ -278,197 +357,227 @@ weka_deployment_output = {
 }
 ```
 
-Please take note of “alb\_dns\_name”, “local\_ssh\_private\_key” and “ssh\_user” so that you would be able to use it later while connecting through SSH to the machine.
+9. Take note of the `alb_dns_name`, `local_ssh_private_key`, and `ssh_user` values. You need these details for SSH access to the deployed instances.\
+   The output includes a `cluster_helper_commands` section, offering three AWS CLI commands to retrieve essential information.
 
-There are also three AWS CLI commands that can return useful information.
+**Core resources created:**
 
-### Core Resources Created:
+* **Database (DynamoDB):** Stores the state of the WEKA cluster.
+* **EC2:** Launch templates for auto-scaling groups and individual instances.
+* **Networking:** Includes a Placement Group, Auto Scaling Group, and an optional ALB for the UI and backends.
+* **CloudWatch:** Triggers the state machine every minute.
+* **IAM:** Roles and policies for various WEKA components.
+* **Secret Manager:** Securely stores WEKA credentials and tokens.
 
-* **Database**: DynamoDB table for storing Weka cluster state.
-* **EC2**: Launch templates for auto-scaling groups and individual instances.
-* **Networking**: Placement Group, Auto Scaling Group, and optional ALB for UI and Backends.
-* **CloudWatch**: Triggering the state machine every minute.
-* **IAM**: Roles and policies required for various WEKA components.
-* **Secret Manager**: Safely stores Weka credentials and tokens.
-
-#### Lambda Functions:
+**Lambda functions created:**
 
 * **deploy:** Provides installation scripts for new machines.
-* **clusterize:** Provides the script for clusterization.
-* **clusterize-finalization:** Updates the cluster state upon the completion of clusterization.
-* **report:** Updates the state on clusterization and machine installation progress.
-* **status:** Offers information on cluster progress status.
-* **State Machine Functions:** Manages various stages like fetching cluster information, scaling down, terminating, etc.
-* **fetch:** Retrieves cluster or autoscaling group details and forwards them to the subsequent stage.
-* **scale-down:** Utilizes the information fetched to operate on the Weka cluster, such as deactivating drives or hosts. The function will error out if a non-supported target is provided, like scaling down to only two backend instances.
-* **terminate:** Ends the operations of the deactivated hosts.
-* **transient:** Manages and reports transient errors. For instance, it might report if certain hosts couldn't be deactivated, yet some were, and the entire operation continued.
+* **clusterize:** Executes the script for cluster formation.
+* **clusterize-finalization:** Updates the cluster state after cluster formation is completed.
+* **report:** Reports the progress of cluster formation and machine installation.
+* **status:** Displays the current status of cluster formation.
 
-### Deploying Protocol Nodes
+**State machine functions:**
 
-The Terraform deployment also makes it easy to deploy additional instances to act as protocol nodes for NFS or SMB. These instances are in addition to the number of instances defined for the the WEKA backend cluster count. e
+* **fetch:** Retrieves cluster or autoscaling group details and passes them to the next stage.
+* **scale-down:** Uses the retrieved information to manage the WEKA cluster, including deactivating drives or hosts. An error is triggered if an unsupported target, like scaling down to two backend instances, is provided.
+* **terminate:** Shuts down deactivated hosts.
+* **transient:** Handles and reports transient errors, such as if some hosts couldn't be deactivated, while others were, allowing the operation to continue.
 
-To deploy protocol nodes, additional information needs to be added to the main.tf
+### Deploy protocol servers
 
-The simplest method is to just define how many protocol nodes of each type to deploy and allow the defaults to be used for everything else.
+The Terraform deployment process allows for the easy addition of instances to serve as protocol servers for NFS or SMB. These protocol servers are separate from the instances specified for the WEKA backend cluster.
 
-Add the following to the before the last ‘}’ of the [main.tf](http://main.tf) file.
+**Procedure**
 
-```bash
-## Protocol Nodes ##
+1. Open the `main.tf` file for editing.
+2.  Add the required configurations to define the number of protocol servers for each type (NFS or SMB). Use the default settings for all other parameters.\
+    Insert the configuration lines before the last closing brace (`}`) in the `main.tf` file.
 
-## For deploying NFS protocol nodes ##
-nfs_protocol_gateways_number = 2 # A minimum of two is required
+    Example configurations:
 
-## For deploying SMB protocol nodes ##
-smb_protocol_gateways_number = 3 # A minimum of three is required 
-```
+    ```bash
+    ## Deploying NFS Protocol Servers ##
+    nfs_protocol_gateways_number = 2  # Minimum of two required
 
-## Gather access information about WEKA cluster
+    ## Deploying SMB Protocol Servers ##
+    smb_protocol_gateways_number = 3  # Minimum of three required
+    ```
+3. Save and close the file.
 
-### **Determine WEKA cluster IP address(es)**
+## Obtain access information about WEKA cluster
 
-To gather your WEKA cluster IPs, go to the EC2 page in AWS and select “Instances (running)”
+### **Determine the WEKA cluster IP address(es)**
+
+1. Navigate to the EC2 Dashboard page in AWS and select **Instances (running)**.
 
 <figure><img src="../../../.gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
 
-The instances for the WEKA backend servers will be called -\<cluster\_name>-instance-backend.
+2. Locate the instances for the WEKA backend servers, named `<prefix>-<cluster_name>-instance-backend`.
 
 <figure><img src="../../../.gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-“prefix” and “cluster\_name” here are the \*\*prefix\*\* and \*\*cluster\_name\*\* values filled out in the main.tf file.
+The `prefix` and `cluster_name` correspond to the values specified in the `main.tf` file.
 {% endhint %}
 
-<figure><img src="../../../.gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
-
-To access and manage WEKA cluster, select any of the WEKA backend instance and note the IP address as shown below.
+3. To access and manage the WEKA cluster, select any of the WEKA backend instances and note the IP address.
 
 <figure><img src="../../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
 
-If your subnet provided a public IP address for the instance (If the EC2 was configured as so), that will be listed. All the interface IP addresses that WEKA will use for communication will all be “private IPv4 addresses”. You can get the primary private address by looking at the “Hostname type” and noting the IP address from there.
+4. If your subnet provides a public IP address (configured in EC2), it is listed. WEKA primarily uses private IPv4 addresses for communication. To find the primary private address, check the **Hostname type** and note the **IP address** listed.
 
-#### **Obtain WEKA cluster access password**
+### **Obtain WEKA cluster access password**
 
-The password for the WEKA cluster will be in the AWS Secret Manager. You can either run the AWS Secretmanager command from the Terraform output to gather the cluster password, or use the AWS console.
+The password for your WEKA cluster is securely stored in AWS Secrets Manager. This password is crucial for managing your WEKA cluster.
 
-From the AWS console search for “secret manager” and then select “Secrets” from the “Secrets Manager” section.
+You can retrieve the password using one of the following options:
 
-Click on the secret that contains the **prefix** and **cluster\_name** of the deployment along with the word **password**.
+* Run the `aws secretsmanager get-secret-value` command and include the arguments provided in the Terraform output. See the deployment output above.
+* Use the AWS Management Console. See the following procedure.
 
-Click on “Retrieve secret value”.
+**Procedure**
 
-The randomly generated password assigned to WEKA user ‘admin’ is displayed.
+1. Navigate to the AWS Management Console.
+2. In the search bar, type **Secrets Manager** and select it from the search results.
+3. In the Secrets Manager, select **Secrets** from the left-hand menu.
+4. Find the secret corresponding to your deployment by looking for a name that includes your deployment’s `prefix` and `cluster_name`, along with the word **password**.
+5. Retrieve the password: Click the identified secret to open its details, and select the **Retrieve secret value** button. \
+   The console displays the randomly generated password assigned to the WEKA user `admin`.\
+   Store it securely and use it according to your organization's security policies.
 
-### Access the WEKA cluster backends
+### Access the WEKA cluster backend servers
 
-Access the WEKA cluster backend instances using SSH. If the instances do not have public IP addresses, use a system that can reach the subnet they are on.
+To manage your WEKA cluster, you need to access the backend servers. This is typically done using SSH from a system that can communicate with the AWS subnet where the instances are located. If the backend instances lack public IP addresses, ensure that you connect from a system within the same network or use a [Jump Host](#user-content-fn-2)[^2] or [Bastion Host](#user-content-fn-3)[^3].
 
-To access an instance from the system that ran the Terraform deployment, use the IP address from step 4.5 and the SSH key path from the output of step 4.4. If your system is not on the AWS network, use a [Jump Host](#user-content-fn-1)[^1] or [Bastion Host](#user-content-fn-2)[^2] to connect.
+**Procedure**
 
-```json
-ssh -l ec2-user -i /tmp/WEKA-Prod-private-key.pem 10.0.153.66
-```
+1. **Prepare for SSH access**:
+   * Identify the IP address of the WEKA backend server (obtained during the Terraform deployment).
+   * Locate the SSH private key file used during the deployment. The key path is provided in the Terraform output.
+2. **Connect to the backend server**:
+   * If your system is within the AWS network or has direct access to the relevant subnet, proceed with the SSH connection.
+   * If your system is outside the AWS network, set up a Jump Host or Bastion Host that can access the subnet.
+3.  **Execute the SSH command**:
+
+    * Use the following SSH command to access the backend server:
+
+    ```bash
+    ssh -l ec2-user -i /path/to/private-key.pem <server-ip-address>
+    ```
+
+    * Replace `/path/to/private-key.pem` with the actual path to your SSH private key file.
+    * Replace `<server-ip-address>` with the IP address of the WEKA backend server.
 
 ## **WEKA GUI Login and Review**
 
-Using a jump box with a GUI deployed into the same VPC and subnet as the WEKA cluster, the WEKA GUI can be accessed via a web browser.
+To manage your WEKA cluster through the GUI) you'll need access to a jump box (a system with a GUI) that is deployed in the same VPC and subnet as your WEKA cluster. This allows you to securely access the WEKA GUI through a web browser.
 
-In the examples below, a Windows 10 instance with a public IP address was deployed in the same VPC, subnet, and security group as the WEKA cluster. Network security group rules were added to allow RDP access explicitly to the Windows 10 system.
+The following procedure provides an example of using a Windows 10 instance.
 
-Open a browser in the Windows 10 jump box and visit https://\<IP>:14000. In this example https://10.5.0.11.  The WEKA GUI login screen should appear. Login as user ‘admin’ and the password gathered in 4.5.
+**Procedure**
+
+1. **Set up the jump box**:
+   * Deploy a Windows 10 instance in the same VPC, subnet, and security group as your WEKA cluster.
+   * Assign a public IP address to the Windows 10 instance.
+   * Modify the network security group rules to allow Remote Desktop Protocol (RDP) access to the Windows 10 system.
+2. **Access the WEKA GUI**:
+   * Open a web browser on the Windows 10 jump box.
+   *   Navigate to the WEKA GUI by entering the following URL:
+
+       ```arduino
+       https://<IP>:14000
+       ```
+
+       * Replace `<IP>` with the IP address of your WEKA cluster. For example: `https://10.5.0.11`.
+   * The WEKA GUI login screen appears.
+3. **Log In to the WEKA GUI**:
+   * Log in using the username `admin` and the password obtained from AWS Secrets Manager (as described in the earlier steps).
 
 <figure><img src="../../../.gitbook/assets/image (22).png" alt=""><figcaption></figcaption></figure>
 
-View the cluster GUI home screen.
+4. **Review the WEKA Cluster**:
+
+* **Cluster home screen**: View the cluster home screen for an overview of the system status.
 
 <figure><img src="../../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
 
-Review the cluster backends.
+* **Cluster Backends**: Review the status and details of the backend servers within the cluster (the server names may differ from those shown in examples).
 
 <figure><img src="../../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
 
-{% hint style="info" %}
-The Server names on the deployed environment will differ from this example.
-{% endhint %}
-
-Review the clients, if any, attached to the cluster.
+* **Clients**: If there are any clients attached to the cluster, review their details and status.
 
 <figure><img src="../../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
 
-Review the file systems.
+* **Filesystems**: Review the filesystems associated with the cluster for their status and configuration.
 
 <figure><img src="../../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
 
-## **Scaling (out and in) of a WEKA backend cluster with automated workflows**
+## Scaling WEKA clusters with automated workflows
 
-Scaling (both out and in) the WEKA backend cluster can be easily done through the AWS AutoScaling Group Policy created by Terraform.
+Scaling your WEKA cluster, whether scale-out (expanding) or scale-in (contracting), is streamlined using the AWS AutoScaling Group Policy set up by Terraform. This process leverages Terraform-created Lambda functions to manage automation tasks, ensuring that additional computing resources (new backend instances) are efficiently integrated or removed from the cluster as needed.
 
-The Terraform-created lambda functions will be activated when a new instance is initiated or retired. These functions will then execute the required automation processes to add more computing resources (i.e., a new backend) to the cluster.
+**Advantages of auto-scaling**
 
-To scale out from the minimum of 6 nodes, go to the AutoScaling Group page in the AWS console and change the desired capacity from its current number to the desired cluster size (e.g. 10 servers) by choosing “Edit”:
+* **Integration with ALB:**
+  * **Traffic distribution:** Auto Scaling Groups work seamlessly with an Application Load Balancer (ALB) to distribute traffic efficiently among instances.
+  * **Health checks:** The ALB directs traffic only to healthy instances, based on results from the associated Auto Scaling Group's health checks.
+* **Auto-healing:**
+  * **Instance replacement:** If an instance fails a health check, auto-scaling automatically replaces it by launching a new instance.
+  * **Health verification:** The new instance is only added to the ALB’s target group after passing health checks, ensuring continuous availability and responsiveness.
+* **Graceful scaling:**
+  * **Controlled adjustments:** Auto-scaling configurations can be customized to execute scaling actions gradually.
+  * **Demand adaptation:** This approach prevents sudden traffic spikes and maintains stability while adapting to changing demand.
+
+**Procedure**
+
+1. Navigate to the AutoScaling Group page in the AWS Management Console.
+2. Select **Edit** to adjust the desired capacity.
 
 <figure><img src="../../../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
 
-And changing the desired capacity (in our example below, we’ve set it to “10”):
+3. Set the capacity to your preferred cluster size (for example, increase from 6 to 10 servers).
 
-<figure><img src="../../../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (29).png" alt="" width="375"><figcaption></figcaption></figure>
 
-Additionally, the auto-scaling provides the following advantages:
+4. Select **Update** to save the updated settings to initiate scaling operations.
 
-1. **Integration with ALB:**
-   * Auto Scaling Groups seamlessly integrate with an Application Load Balancer (ALB) for efficient traffic distribution among multiple instances.
-   * The ALB automatically identifies and routes traffic exclusively to healthy instances, relying on health check results from the associated Auto Scaling Group.
-2. **Replacing Unhealthy Instances (Auto-heal):**
-   * In the event of an instance failing a health check, Auto Scaling promptly initiates the replacement process by launching a new instance to the WEKA cluster.
-   * The new instance is incorporated into the service and added to the ALB's target group only after successfully passing health checks.
-   * This systematic approach ensures uninterrupted availability and responsiveness of WEKA, mitigating the impact of instance failures.
-3. **Graceful Scaling:**
-   * Auto Scaling configurations can be fine-tuned to execute scaling actions gradually, preventing abrupt spikes in traffic or disruptions to the application.
-   * This measured scaling approach aims to maintain a balanced and stable environment while effectively adapting to fluctuations in demand.
+## Test WEKA cluster self-healing functionality
 
-## **Testing WEKA cluster self-healing functionality by terminating an existing instance running WEKA (Optional)**
+Testing the self-healing functionality of a WEKA cluster involves decommissioning an existing instance and observing whether the Auto Scaling Group (ASG) automatically replaces it with a new instance. This process verifies the cluster’s ability to maintain capacity and performance despite instance failures or terminations.
 
-Decommissioning an old instance and allowing the Auto Scaling Group (ASG) to launch a new one involves terminating the existing instance and letting the ASG automatically replace it. Here's a brief guide:
+**Procedure**
 
-1. **Identify the Old Instance:**
-   * Identify the EC2 instance that you want to decommission. This could be based on age, outdated configurations, or other criteria.
-2. **Verify Auto Scaling Configuration:**
-   * Ensure your Auto Scaling Group is configured with at least 7 instances or more. Confirm that the desired capacity of the ASG is set to maintain the desired number of instances in the cluster.
-3. **Terminate the Old Instance:**
-   * Manually terminate the old EC2 instance using the AWS Management Console, AWS CLI, or SDKs. This action triggers the Auto Scaling Group to take corrective measures.
-4. **Monitor Auto Scaling Activities:**
-   * Observe the Auto Scaling Group's activities in the AWS Console or use AWS CloudWatch to monitor events. Verify that the ASG detects the terminated instance and initiates the launch of a new instance.
-5. **Verify New Instance:**
-   * Once the new instance is launched, ensure that it passes the health checks and successfully joins the cluster. Confirm that the overall capacity of the cluster is maintained.
-6. **Check Load Balancer:**
-   * If your setup involves a load balancer, ensure it detects and registers the new instance. This step is crucial for maintaining proper load distribution across the cluster.
-7. **Review Auto Scaling Logs:**
-   * Check CloudWatch logs or Auto Scaling events for any issues or error messages related to the termination of the old instance and the launch of the new one.
-8. **Document and Monitor:**
-   * Document the decommissioning process and monitor the cluster to ensure it continues to operate smoothly with the new instance.
+1. **Identify the old instance:** Determine the EC2 instance you want to decommission. Selection criteria may include age, outdated configurations, or specific maintenance requirements.
+2. **Verify auto-scaling configuration:** Ensure your Auto Scaling Group is configured with a minimum of 7 instances (or more) and that the desired capacity is set to maintain the appropriate number of instances in the cluster.
+3. **Terminate the old instance:** Use the AWS Management Console, AWS CLI, or SDKs to manually terminate the selected EC2 instance. This action prompts the ASG to initiate the replacement process.
+4. **Monitor auto-scaling activities:** Track the ASG’s activities through the AWS Console or AWS CloudWatch. Confirm that the ASG recognizes the terminated instance and begins launching a new instance.
+5. **Verify the new instance:** After it is launched, ensure it passes all health checks and integrates successfully into the cluster, maintaining overall cluster capacity.
+6. **Check load balancer:**
+   * If a load balancer is part of your setup, verify that it detects and registers the new instance to ensure proper load distribution across the cluster.
+7. **Review auto-scaling logs:** Examine CloudWatch logs or auto-scaling events for any issues or errors related to terminating the old instance and introducing the new one.
+8. **Document and monitor:** Record the decommissioning process and continuously monitor the cluster to confirm that it operates smoothly with the new instance.
 
 ## APPENDICES
 
-### Appendix A – Security Groups / Network ACL Ports
+### Appendix A: Security Groups / network ACL ports
 
-See [#required-ports](../../prerequisites-and-compatibility/#required-ports "mention")
+See [#required-ports](../../prerequisites-and-compatibility.md#required-ports "mention")
 
-### Appendix B - **Terraform’s r**equired permissions
+### Appendix B: **Terraform’s r**equired permissions examples <a href="#appendix-b-terraforms-required-permissions" id="appendix-b-terraforms-required-permissions"></a>
 
-This section provides examples of the permissions required to deploy WEKA using Terraform.
-
-The minimum IAM policies needed are based on the assumption that the network, including VPC, subnets, VPC Endpoints, and Security Groups, is created by the end user. If IAM roles or policies are pre-established, some permissions may be omitted.
+The minimum IAM Policies needed are based on the assumption that the network, including VPC, subnets, VPC Endpoints, and Security Groups, is created by the end user. If IAM roles or policies are pre-established, some permissions may be omitted.
 
 {% hint style="info" %}
-The policy exceeds the 6144 character limit for IAM policies, necessitating its division into two separate policies.
+The policy exceeds the 6144 character limit for IAM Policies, necessitating its division into two separate policies.
 {% endhint %}
 
 In each policy, replace the placeholders, such as `account-number`, `prefix`, and `cluster-name`, with the corresponding actual values.
 
 <details>
 
-<summary>IAM Policy 1</summary>
+<summary>IAM policy 1</summary>
 
 ```
 {
@@ -713,7 +822,7 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
 
 <details>
 
-<summary>IAM Policy 2</summary>
+<summary>IAM policy 2</summary>
 
 ```json
 {
@@ -892,21 +1001,23 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
 * **IAM**: **`PassRole`** and **`GetRole`** are essential for allowing resources to assume specific roles.
 * **KMS**: Permissions for Key Management Service, assuming you use KMS for encryption.
 
-Customization:
+**Customization:**
 
 1. **Resource Names and ARNs**: Replace **`"Resource": "*"`** with specific ARNs for your resources to tighten security. Use specific ARNs for KMS keys as well.
 2. **Region and Account ID**: Replace **`region`** and **`account-id`** with your AWS region and account ID.
 3. **Key ID**: Replace **`key-id`** with the ID of the KMS key used in your setup.
 
-**Important Notes:**
+{% hint style="info" %}
+**Important notes:**
 
 * This is a broad policy for demonstration. It's recommended to refine it based on your actual resource usage and access patterns.
 * You may need to add or remove permissions based on specific requirements of your Terraform module and AWS environment.
 * Testing the policy in a controlled environment before applying it to production is advisable to ensure it meets your needs without overly restricting or exposing your resources.
+{% endhint %}
 
-### Appendix C - IAM Policies required by WEKA
+### Appendix C: IAM Policies required by WEKA
 
-The policies below are required for all the components to function on AWS. Terraform will create these policies as part of the automation. However, it is also important to note that you could create them by yourself and define them in your Terraform modules.
+The following policies are essential for all components to function on AWS. Terraform automatically creates these policies as part of the automation process. However, you also have the option to create and define them manually within your Terraform modules.
 
 <details>
 
@@ -969,7 +1080,7 @@ The policies below are required for all the components to function on AWS. Terra
 
 <details>
 
-<summary><strong>Lambda IAM Policy</strong></summary>
+<summary><strong>Lambda IAM policy</strong></summary>
 
 ```json
 {
@@ -1047,7 +1158,7 @@ The policies below are required for all the components to function on AWS. Terra
 
 <details>
 
-<summary><strong>State Machine IAM Policy</strong></summary>
+<summary><strong>State machine IAM policy</strong></summary>
 
 ```json
 {
@@ -1087,7 +1198,7 @@ The policies below are required for all the components to function on AWS. Terra
 
 <details>
 
-<summary><strong>CloudWatch IAM Policy</strong></summary>
+<summary><strong>CloudWatch IAM policy</strong></summary>
 
 ```
 {
@@ -1110,7 +1221,7 @@ The policies below are required for all the components to function on AWS. Terra
 
 <details>
 
-<summary><strong>Client Instnaces IAM Policy</strong></summary>
+<summary><strong>Client instances IAM policy</strong></summary>
 
 ```
 {
@@ -1156,6 +1267,8 @@ The policies below are required for all the components to function on AWS. Terra
 
 </details>
 
-[^1]: **Jump Host:** A secure intermediary server used to manage access to devices within a protected network zone, ensuring controlled and authenticated connections.
+[^1]: Terraform is an infrastructure-as-code tool for provisioning manager.
 
-[^2]: **Bastion Host:** A hardened server positioned to manage external access to an internal network, offering secure gateway services with enhanced security measures.
+[^2]: **Jump Host:** A secure intermediary server used to manage access to devices within a protected network zone, ensuring controlled and authenticated connections.
+
+[^3]: **Bastion Host:** A hardened server positioned to manage external access to an internal network, offering secure gateway services with enhanced security measures.

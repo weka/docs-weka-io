@@ -395,6 +395,10 @@ As a best practice, it’s recommended to update the admin password in the WEKA 
 
 [#change-a-local-user-password](../../operation-guide/user-management/user-management.md#change-a-local-user-password "mention")
 
+## Set the license
+
+To run IOs against the cluster, a valid license must be applied. Obtain a valid license and apply it to the WEKA cluster. For details, see [overview.md](../../licensing/overview.md "mention").&#x20;
+
 ## Set up the WEKA cluster to work with your Azure Blob storage
 
 If you create an Azure Blob storage without using Terraform, you can set up the WEKA cluster to work with it.

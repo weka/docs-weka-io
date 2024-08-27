@@ -21,7 +21,7 @@ Use the following command line to set the NFS configuration on the configuration
 
 {% hint style="info" %}
 * To support NFS file-locking, ensure the system meets the prerequisites outlined in [#nfs-file-locking-support](./#nfs-file-locking-support "mention").
-* For the default published ports, see the [#required-ports](../../planning-and-installation/prerequisites-and-compatibility/#required-ports "mention").
+* For the default published ports, see the [#required-ports](../../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention").
 {% endhint %}
 
 **Parameters**

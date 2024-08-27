@@ -39,7 +39,7 @@ With this option, you configure the existing cluster to provide the required pro
 
 ## **Prepare dedicated protocol servers**
 
-Using dedicated protocol servers enhances the cluster's capabilities and addresses diverse use cases. Each dedicated protocol server in the cluster can host one of these additional protocol containers alongside the existing frontend container.
+Dedicated protocol servers enhance the cluster's capabilities and address diverse use cases. Each dedicated protocol server in the cluster can host one of these additional protocol containers alongside the existing frontend container.
 
 These dedicated protocol servers function as complete and permanent members of the WEKA cluster. They run essential processes to access WEKA filesystems and incorporate switches supporting the protocols.
 

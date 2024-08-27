@@ -67,7 +67,7 @@ WEKA clients can be configured to mount in DPDK or UDP mode.
 
 **DPDK mode** is optimized for single-process performance and must be used when possible. When using DPDK mode, specific requirements must be met by the client host system.
 
-The Frontend process on clients uses CPU cores and memory while the mount is active. This implies that sufficient compute cores and memory resources must be available to run the WEKA Frontend process and other user applications. Additionally, NIC hardware must have a [Poll Mode Driver](#user-content-fn-1)[^1] (PMD) and be supported by WEKA. See [Prerequisites and compatibility](../../planning-and-installation/prerequisites-and-compatibility/#networking-ethernet) for more information on supported NIC hardware for bare-metal and cloud-native systems.
+The Frontend process on clients uses CPU cores and memory while the mount is active. This implies that sufficient compute cores and memory resources must be available to run the WEKA Frontend process and other user applications. Additionally, NIC hardware must have a [Poll Mode Driver](#user-content-fn-1)[^1] (PMD) and be supported by WEKA. See [Prerequisites and compatibility](../../planning-and-installation/prerequisites-and-compatibility.md#networking-ethernet) for more information on supported NIC hardware for bare-metal and cloud-native systems.
 
 **UDP mode** is an option for limited-throughput WekaFS filesystem access when DPDK mode is not feasible due to network, hardware, or operating system limitations. It can serve as an alternative when necessary.
 

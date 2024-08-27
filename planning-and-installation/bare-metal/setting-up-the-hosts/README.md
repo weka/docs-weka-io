@@ -27,11 +27,13 @@ Some of the examples contain version-specific information. The software is updat
 
 **Related topics**
 
-[prerequisites-and-compatibility](../../prerequisites-and-compatibility/ "mention")
+[prerequisites-and-compatibility.md](../../prerequisites-and-compatibility.md "mention")
 
 ## 1. Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
-To install Mellanox OFED on your NICs, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
+* To install Mellanox OFED, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
+* To install Broadcom driver, see [broadcom-adapter-setup-for-weka-system.md](broadcom-adapter-setup-for-weka-system.md "mention").
+* To install Intel driver, see [Latest Drivers & Software downloads](https://www.intel.com/content/www/us/en/products/sku/210969/intel-ethernet-network-adapter-e8102cqda2/downloads.html).
 
 ## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 

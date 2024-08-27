@@ -60,6 +60,10 @@ As a best practice, it’s recommended to create a dedicated local user in the W
 If you change the password for the default username in the WEKA cluster, ensure to update the password in the `weka_password` service within AWS Secrets Manager.
 {% endhint %}
 
+## Set the license
+
+To run IOs against the cluster, a valid license must be applied. Obtain a valid license and apply it to the WEKA cluster. For details, see [overview.md](../../../licensing/overview.md "mention").&#x20;
+
 **Related topic**
 
 [user-management.md](../../../operation-guide/user-management/user-management.md "mention")
