@@ -180,13 +180,13 @@ parameters:
 
 ```
 # apply the storageclass .yaml file
-$ kubectl apply -f storageclass-wekafs-dir.yaml
-storageclass.storage.k8s.io/storageclass-wekafs-dir created
+$ kubectl apply -f storageclass-wekafs-dir-api.yaml
+storageclass.storage.k8s.io/storageclass-wekafs-dir-api created
 
 # check the storageclass resource has been created successfully 
 $ kubectl get sc
 NAME                           PROVISIONER         RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
-storageclass-wekafs-dir        csi.weka.io         Delete          Immediate           true                   75s
+storageclass-wekafs-dir-api    csi.weka.io         Delete          Immediate           true                   75s
 ```
 
 </details>
