@@ -1,6 +1,6 @@
 # Broadcom adapter setup for WEKA system
 
-Before a WEKA system can use a Broadcom BCM57508-P2100G, BCM57608-P2200G, or their single port equivalents, the server must have the necessary drivers and firmware from Broadcom's download center.
+Before a WEKA system can use a Broadcom adapters, the server must have the necessary drivers and firmware from Broadcom's download center.
 
 ## **Set up the drivers and software**
 
@@ -18,7 +18,7 @@ Before a WEKA system can use a Broadcom BCM57508-P2100G, BCM57608-P2200G, or the
 
 ## **Install the firmware**
 
-After installing Broadcom drivers and software, install the firmware included in the download bundle. Firmware files are typically named after the adapter they are intended for, such as `BCM957508-P2100G.pkg` or `BCM957608-P2200G.pkg`.
+After installing Broadcom drivers and software, install the firmware included in the download bundle. Firmware files are typically named after the adapter they are intended for, such as `BCM957508-P2100G.pkg`.
 
 **Procedure:**
 
