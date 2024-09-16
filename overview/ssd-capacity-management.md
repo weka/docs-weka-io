@@ -25,11 +25,27 @@ If not configured, the stripe width is set automatically to:\
 
 ## Protection level
 
-The protection level is the number of additional protection blocks added to each stripe, which can be either 2 or 4. A system with a protection level of 2 can survive 2 concurrent failures. In comparison, system data with a protection level of 4 is protected against any concurrent 4 server/disk failures, and its availability is protected against any 4 concurrent disk failures or 2 concurrent server failures. A high protection level has space and performance implications. The protection level is set during the cluster formation and cannot be changed.
+Protection Level refers to the number of extra protection blocks added to each data stripe in your storage system. These blocks help protect your data against hardware failures. The protection levels available are:
 
-{% hint style="info" %}
-If not configured, the data protection drives in the cluster stripes are automatically set to 2.
-{% endhint %}
+* **Protection level 2**: Can survive 2 concurrent disk or server failures.
+* **Protection level 4**: Can survive 4 concurrent disk failures or 2 concurrent server failures.
+
+A higher protection level means better data durability and availability but requires more storage space and can affect performance.
+
+**Key points:**
+
+* **Durability**:
+  * Higher protection levels offer better data protection.
+  * Level 4 is more durable than level 2.
+* **Availability**:
+  * Ensures system availability during hardware failures.
+  * Level 4 maintains availability through more extensive failures compared to level 2.
+* **Space and performance**:
+  * Higher protection levels use more storage space.
+  * They can also slow down the system due to additional processing.
+* **Configuration**:
+  * The protection level is set during cluster formation and cannot be changed later.
+  * If not configured, the system defaults to protection level 2.
 
 ## Failure domains (optional)
 

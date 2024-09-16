@@ -63,7 +63,7 @@ The total per server memory requirements is the sum of the following requirement
 | Metadata (pointers)               | <p>20 Bytes x # Metadata units per server<br>See <a href="../../overview/filesystems.md#metadata-calculations">Metadata units calculation</a>.</p> |
 
 {% hint style="warning" %}
-The maximum memory per **container** is 384 GB.
+The maximum memory per **server** is 384 GB.
 {% endhint %}
 
 #### Example 1: A system with large files

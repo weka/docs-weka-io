@@ -191,23 +191,11 @@ Navigate to the directory.
 cd deploy
 ```
 
-Including an [output.tf](http://output.tf) file in the deploy directory will allow the easy output to screen of data generated during the process.
-
-Create a `[output.tf](http://output.tf)` file and paste the following as its contents
-
-```json
-output "weka_deployment_output" {
-  value = module.weka_deployment
-}
-```
-
-Save the file.
-
-A [main.tf](http://main.tf) file is needed to define the Terraform options. Create the main.tf file with your prefered editor
+A main.tf file is needed to define the Terraform options. Create the main.tf file with your prefered editor
 
 Open the **main.tf** in your preferred editor.
 
-Create the contents of the [main.tf](http://main.tf) with the following:
+Create the contents of the main.tf with the following:
 
 ```json
 # Terraform configuration for deploying resources in AWS

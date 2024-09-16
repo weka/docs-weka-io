@@ -19,10 +19,10 @@ There are several levels on the WEKA system where capacity usage can be restrict
 The organization admin can set a quota on a directory. Setting a quota starts the process of counting the current directory usage. Until this process is done, the quota is not considered (for empty directories, this process is instantly done).
 
 {% hint style="info" %}
-A mount point to the relevant filesystem is required to set a quota on a directory. The quota set command should not be interrupted until the quota accounting is over.
+To set a quota on a directory, a native POSIX mount to the relevant filesystem is necessary. The quota set command must not be interrupted until the quota accounting process is finished.
 {% endhint %}
 
-The organization admin sets quotas to inform/restrict users from using too much of the filesystem capacity. For that, only data in the user's control is considered. Hence, the quota doesn't count the overhead of the protection bits and snapshots. It does take into account data and metadata of files in the directory, regardless if tiered or not.&#x20;
+The organization admin sets quotas to inform/restrict users from using too much of the filesystem capacity. For that, only data in the user's control is considered. Hence, the quota doesn't count the overhead of the protection bits and snapshots. It does take into account the data and metadata of files in the directory, regardless of whether they are tiered or not.&#x20;
 
 ### Working with quotas
 

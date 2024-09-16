@@ -28,11 +28,11 @@ The WEKA cluster periodically and on-demand uploads various information types to
 
 **Periodic uploads:**
 
-* **Alerts:** Alerts indicate problematic ongoing states that are impacting the cluster. Alerts are uploaded immediately when a cluster container (host) creates an alert.
+* **Alerts:** Alerts indicate problematic ongoing states impacting the cluster. They are uploaded immediately when a cluster container (host) creates an alert.
 * **Events:** Events contain relevant information for the WEKA cluster and customer environment. Triggered by a customer or an environmental change, events can be informational, indicate an issue with the cluster, or a previously resolved issue. Events are uploaded immediately when a cluster container creates an event.
 * **Statistics:** Statistics help analyze the WEKA system performance and determine the source of any issue. Statistics are uploaded every minute from each container.
 * **Usage reports:**  Usage reports provide metrics for interface groups, containers, processes (nodes), drives, status, version, and filesystems. Usage reports are uploaded every minute.
-* **Analytics:** Analytics provide metrics for the cluster, drives, filesystem settings, containers, network devices, nodes, protocols, and more. Analytics are uploaded every 30 minutes.
+* **Analytics:** Analytics provide metrics for the cluster, drives, filesystem settings, containers, network devices, nodes, protocols, object store types, and more. Analytics are uploaded every 30 minutes.
 
 **On-demand uploads:**
 

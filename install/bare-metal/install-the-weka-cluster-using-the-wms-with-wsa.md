@@ -173,7 +173,7 @@ IPMI_IP,Username,Password,OS_Mgmt_IP,Hostname,OS_Netmask,OS_Gateway,MTU,DNS,Host
 
 ```
 
-4. In **Step 4 - Number of servers to display**, enter a Server Count (default is 8), and click **Next**.
+4. In **Step 4 - Number of servers to deploy**, enter a Server Count (default is 8), and click **Next**.
 
 <figure><img src="../../.gitbook/assets/WSA_step4.png" alt="" width="563"><figcaption></figcaption></figure>
 

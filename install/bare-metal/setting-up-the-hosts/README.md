@@ -30,62 +30,9 @@ Some of the examples contain version-specific information. The software is updat
 
 ## 1. Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
-{% hint style="info" %}
-The steps for installing NIC drivers are provided as a courtesy. For the latest information and updates, refer to your NIC vendor documentation.
-{% endhint %}
-
-### Mellanox OFED installation
-
-This section describes an OFED installation procedure that has proven to be successful. However, Mellanox supports several other installation methods, any of which can be used to install OFED. For more information about other installation procedures, refer to the Mellanox documentation.
-
-#### Meeting Mellanox OFED prerequisites
-
-The Mellanox OFED installation has several dependencies. The following example shows how to install OFED dependencies in RHEL/CentOS 7.x using yum's \[base] and \[update] repositories, which are supported and preconfigured in RHEL and CentOS.
-
-```
-yum install perl libnl lsof tcl libxml2-python tk
-```
-
-This example assumes that the server was provisioned using the "Minimal installation" option and has access to yum repositories, locally or over the Internet. This method can trigger updates to existing packages already installed on the server.
-
-Alternatively, it is possible to install OFED dependencies without triggering updates to already-installed packages, as shown in the following example:
-
-```
-yum --disablerepo=* --enablerepo=base install perl libnl lsof tcl libxml2-python tk
-```
-
-Once the dependencies have been satisfied, performing the OFED installation procedure is possible.
-
-#### Mellanox OFED installation
-
-The Mellanox OFED installation involves decompressing the distribution archive you obtain from the Mellanox website and running the installation script. Refer to the following to begin the installation:
-
-```
-# tar xf MLNX_OFED_LINUX-4.5-1.0.1.0-rhel7.6-x86_64.tgz
-# ls -lF
-drwxr-xr-x   6 root root       4096 Nov 28  2018 MLNX_OFED_LINUX-4.5-1.0.1.0-rhel7.6-x86_64/
--rw-r--r--   1 root root  239624023 Dec  2  2018 MLNX_OFED_LINUX-4.5-1.0.1.0-rhel7.5-x86_64.tgz
-
-# cd MLNX_OFED_LINUX-4.5-1.0.1.0-rhel7.6-x86_64/
-
-# ./mlnxofedinstall
-/tmp/MLNX_OFED_LINUX.414403.logs
-General log file: /tmp/MLNX_OFED_LINUX.414403.logs/general.log
-Verifying KMP rpms compatibility with target kernel...
-This program will install the MLNX_OFED_LINUX package on your machine.
-All other Mellanox, OEM, OFED, RDMA, or Distribution IB packages will be removed.
-Those packages are removed due to conflicts with MLNX_OFED_LINUX, do not reinstall them.
-
-Do you want to continue?[y/N]:y
-```
-
-On completion of the OFED installation, the NIC firmware may be updated to match the firmware requirements of the Mellanox OFED software. If an update is performed, reboot the server at the end of the installation so the new firmware becomes effective. Otherwise, restart the driver by running the following:
-
-```
-# /etc/init.d/openibd restart
-```
-
-This concludes the Mellanox OFED installation procedure.
+* To install Mellanox OFED, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
+* To install Broadcom driver, see [broadcom-adapter-setup-for-weka-system.md](broadcom-adapter-setup-for-weka-system.md "mention").
+* To install Intel driver, see [Latest Drivers & Software downloads](https://www.intel.com/content/www/us/en/products/sku/210969/intel-ethernet-network-adapter-e8102cqda2/downloads.html).
 
 ## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 

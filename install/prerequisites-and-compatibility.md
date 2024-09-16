@@ -48,11 +48,11 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% tabs %}
 {% tab title="Backends" %}
 * **RHEL:**
-  * 9.2, 9.1, 9.0
+  * 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
-  * 9.3, 9.2, 9.1, 9.0
+  * 9.4 9.3, 9.2, 9.1, 9.0
   * 8.9, 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
@@ -70,11 +70,11 @@ WEKA will support upcoming releases of the operating systems in the lists within
 
 {% tab title="Clients" %}
 * **RHEL:**
-  * 9.2, 9.1, 9.0
+  * 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Rocky Linux:**
-  * 9.3, 9.2, 9.1, 9.0
+  * 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.9, 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
@@ -93,6 +93,13 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 15 SP4
   * 15 SP2
   * 12 SP5
+* **Oracle Linux:**
+  * 9
+* **Debian:**
+  * 12
+* **AlmaLinux OS:**
+  * 9.4
+  * 8.10
 {% endtab %}
 
 {% tab title="Kernel" %}
@@ -235,7 +242,7 @@ Avoid using the Intel X550-T1 adapter in a single client connected to multiple c
 * **Ethernet speeds:**
   * 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **NICs bonding:**
-  * Can bond dual ports on the same NIC (modes 1 and 4). Only supported on NVIDIA Mellanox NICs.
+  * Supports bonding dual ports on the same NVIDIA Mellanox NIC using mode 4 (LACP) to enhance redundancy and performance.
 * **IEEE 802.1Q VLAN encapsulation:**
   * Tagged VLANs are not supported.
 * **VXLAN:**

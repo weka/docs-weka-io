@@ -108,7 +108,7 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 
 To support HA, the WEKA system must be configured with no single component representing a single point of failure. Multiple switches are required, and servers must have one leg on each.
 
-HA for servers is achieved either through implementing two network interfaces on the same server or by LACP (ethernet only, modes 1 and 4). A non-LACP approach sets a redundancy that enables the WEKA software to use two interfaces for HA and bandwidth.&#x20;
+HA for servers is achieved either through implementing two network interfaces on the same server or by LACP (ethernet only, mode 4). A non-LACP approach sets a redundancy that enables the WEKA software to use two interfaces for HA and bandwidth.&#x20;
 
 HA performs failover and failback for reliability and load balancing on both interfaces and is operational for Ethernet and InfiniBand. Not using LACP requires doubling the number of IPs on both the backend containers and the IO processes.
 

@@ -145,9 +145,9 @@ If the minikube installation fails, do one of the following:
 
 <summary>Domain</summary>
 
-Set the domain for URL accessing the Local Weka Home portal either by the organization domain FQDN (DNS-based) or IP address (IP-based).
+Set the domain for URL accessing the Local WEKA Home portal either by the organization domain FQDN (DNS-based) or IP address (IP-based).
 
-The URL to access the Local Weka Home does not accept aliases of the DNS name. Only the name configured in the `config.yaml` can be used for accessing the Local Weka Home.
+The URL to access the Local WEKA Home does not accept aliases of the DNS name. Only the name configured in the `config.yaml` can be used for accessing the Local WEKA Home.
 
 DNS-based domain setting:\
 In the **domain** section at the top of the file, set the domain FQDN after **@DOMAIN** as shown in the following example:
@@ -190,7 +190,7 @@ To enable the Local Weka Home to send emails, set the SMTP details in the **smtp
 
 Ensure to enable the SMTP relay service in your SMTP service.
 
-Once the Local Weka Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See the [Set the Local Weka Home to send alerts](broken-reference) topic.
+Once the Local WEKA Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See [manage-alerts-and-integrations.md](manage-alerts-and-integrations.md "mention").
 
 </details>
 
@@ -462,11 +462,11 @@ kubectl delete pvc -l app.kubernetes.io/name=nats -n home-weka-io
 
 **Procedure**
 
-1. Download the latest Local WEKA Home package (_wekahome-vm-docker-images_). See the location in [Download the Local Weka Home and Minikube packages](deploy-local-weka-home-v2.x.md#2.-download-the-local-weka-home-and-minikube-packages)_._
+1. Download the latest Local WEKA Home package (_wekahome-vm-docker-images_). See the location in [#id-3.-download-the-local-weka-home-and-minikube-packages](deploy-local-weka-home-v2.x.md#id-3.-download-the-local-weka-home-and-minikube-packages "mention")_._
 2. Unpack the Local Weka Home package to the same directory used for installing the LWH. `tar xvf <file name> -C <path>`
 3. From the `wekahome_offline` sub-directory, run `./update_config.sh`
 4. If you want to modify the existing configuration, open the `/root/.config/wekahome/config.yaml` file and do the following:
-   * Modify the settings. See [Install and configure Local WEKA Home](deploy-local-weka-home-v2.x.md#5.-install-and-configure-local-weka-home).
+   * Modify the settings. See [#id-5.-install-and-configure-the-local-weka-home](deploy-local-weka-home-v2.x.md#id-5.-install-and-configure-the-local-weka-home "mention").
    * If you update the following sections: **TLS certificates**, **admin credentials**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
 
 <details>
@@ -509,7 +509,7 @@ Suppose there is a change in the TLS certificates, SMTP server in your environme
 **Procedure**
 
 1. Open the `/root/.config/wekahome/config.yaml` file and do the following:
-   * Modify the settings. See [Install and configure Local WEKA Home](deploy-local-weka-home-v2.x.md#5.-install-and-configure-local-weka-home).
+   * Modify the settings. See [#id-5.-install-and-configure-the-local-weka-home](deploy-local-weka-home-v2.x.md#id-5.-install-and-configure-the-local-weka-home "mention").
    * If you update the following sections: **TLS certificates**, **admin credentials**, and **Grafana**, add the line `force_update: true` to the end of the updated section in the `config.yaml` file. For example:
 
 <details>

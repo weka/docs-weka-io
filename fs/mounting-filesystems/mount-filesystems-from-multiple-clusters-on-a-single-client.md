@@ -139,6 +139,8 @@ This approach ensures that your WEKA CLI command targets the correct WEKA cluste
 
 #### Related topics
 
+[manage-authentication-across-multiple-clusters-with-connection-profiles.md](manage-authentication-across-multiple-clusters-with-connection-profiles.md "mention")
+
 [adding-clients-bare-metal.md](../../install/bare-metal/adding-clients-bare-metal.md "mention")
 
 [.](./ "mention")

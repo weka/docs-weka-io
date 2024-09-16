@@ -4,8 +4,18 @@ In a WEKA cluster, the frontend container provides the default POSIX protocol, s
 
 To configure protocol containers, you have two options for creating a cluster for the specified protocol:
 
-* Set up protocol services on existing backend servers.
-* Prepare additional dedicated servers for the protocol containers.
+1. Set up protocol services on existing backend servers.
+2. Prepare additional dedicated servers for the protocol containers.
+
+{% hint style="info" %}
+In cloud environments, setting up protocol services on existing backend servers (option 1) is not supported. Instead, use option 2 and prepare additional dedicated servers (protocol gateways) when creating the `main.tf` file.
+
+For more details, refer to the relevant deployment section:
+
+* [deployment-on-aws-using-terraform.md](../install/aws/weka-installation-on-aws-using-terraform/deployment-on-aws-using-terraform.md "mention")
+* [deployment-on-azure-using-terraform.md](../install/weka-installation-on-azure/deployment-on-azure-using-terraform.md "mention")
+* [deployment-on-gcp-using-terraform.md](../install/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md "mention")
+{% endhint %}
 
 ### Dedicated filesystem requirement for cluster-wide persistent protocol configurations
 

@@ -4,25 +4,74 @@ description: This page describes how to add clients to a bare-metal cluster.
 
 # Add clients
 
-Clients are used to run applications that need to access the WEKA filesystems. They do not contribute CPUs or drives to the cluster and only connect to the cluster to use its filesystems.
+## Cgroups configuration
 
-A default WEKA installation uses the cgroups functionality to limit or isolate resources for WEKA sole usage. For example, using specific CPUs.
+Clients run applications that access the WEKA filesystem but do not contribute CPUs or drives to the cluster. They connect solely to use the filesystems.
 
-WEKA backends and clients that serve protocols can run on a supported OS with **cgroups V1** (legacy).
+By default, WEKA uses Cgroups to limit or isolate resources for its exclusive use, such as assigning specific CPUs.
 
-Customers using a supported OS with cgroups V2 (hierarchy) or want to modify the cgroups usage can either set it during the agent installation or edit the service configuration file (see [Modify the cgroups usage](adding-clients-bare-metal.md#modify-the-cgroups-usage)).
+Cgroups (Control Groups) is a Linux kernel feature that allows you to limit, prioritize, and isolate the resource usage (CPU, memory, disk I/O, network) of a collection of processes. It helps allocate resources among user-defined groups of tasks and manage their performance effectively.
 
-If the OS is configured with cgroups hybrid mode, which operates with cgroups V1 and V2, WEKA uses V1 by default.
+**Versions of Cgroups:**
 
-<details>
+* **CgroupsV1**: Uses multiple hierarchies for different resource controllers, offering fine-grained control but with increased complexity.
+* **CgroupsV2**: Combines all resource controllers into a single unified hierarchy, simplifying management and providing better resource isolation and a more consistent interface.
 
-<summary>What is the cgroups feature?</summary>
+{% hint style="info" %}
+**Hybrid mode**: If the OS is configured with hybrid mode (CgroupsV1 and CgroupsV2), WEKA defaults to using CgroupsV1.
+{% endhint %}
 
-cgroups, short for control groups, is a feature in the Linux kernel that allows for fine-grained resource allocation and management of system resources such as CPU, memory, and I/O. It enables administrators to create hierarchies of processes and allocate system resources based on defined rules.
+**WEKA requirements:**
 
-With cgroups, processes can be organized into groups, and each group can be allocated specific amounts of resources such as CPU time, memory, or network bandwidth. This allows for more efficient use of system resources and can help prevent individual processes from monopolizing system resources.
+* **Backends and clients serving protocols:** Must run on an OS with CgroupsV1 (legacy) support. CgroupsV2 is supported on backends and clients but is incompatible with protocol cluster deployments.
+* **Cgroups mode compatibility:** When setting up Cgroups on clients or backends, ensure that the Cgroups configuration (whether using CgroupsV1 or CgroupsV2) aligns with the operating system's capabilities and configuration.
 
-</details>
+### Cgroups configuration and compatibility
+
+The configuration of Cgroups depends on the installed operating system, and it is important that the cluster server settings match the OS configuration to ensure proper resource management and compatibility.
+
+Customers using a supported OS with CgroupsV2 or wanting to modify the Cgroups usage can set the cgroups usage during the agent installation or by editing the service configuration file. The specified mode must match the existing Cgroups configuration in the OS.
+
+The Cgroups setting includes the following modes:
+
+* `auto`: WEKA tries using CgroupsV1 (default). If it fails, the Cgroups is set to none automatically.
+* `force`: WEKA uses CgroupsV1. If the OS does not support it, WEKA fails.
+* `force_v2`: WEKA uses CgroupsV2. If the OS does not support it, WEKA fails. This mode is not supported in protocol cluster deployments.
+* `none`: WEKA never uses Cgroups, even if it runs on an OS with CgroupsV1.
+
+### Set the Cgroups mode during the client or backend installation
+
+In the installation command line, specify the required Cgroups mode (`WEKA_CGROUPS_MODE`).
+
+Example:
+
+```bash
+curl http://Backend-1:14000/dist/v1/install | WEKA_CGROUPS_MODE=none sh
+```
+
+### Set the Cgroups mode in the service configuration file
+
+You can set the Cgroups mode in the service configuration file for clients and backends.
+
+1. Open the service configuration file `/etc/wekaio/service.conf` and add one of the following:
+   * `cgroups_mode=auto`
+   * `cgroups_mode=force`
+   * `cgroups_mode=force_v2`
+   * `cgroups_mode=none`
+2. Restart the WEKA agent service.
+3. Verify the Cgroups setting by running the `weka local status` command.
+
+Example:
+
+```bash
+[root@weka-cluster] #weka local status
+Weka v4.2.0 (CLI build 4.2.0)
+Cgroups: mode=auto, enabled=true
+
+Containers: 1/1 running (1 weka)
+Nodes: 2/2 running (2 READY)
+Mounts: 1
+```
 
 ## Add stateless clients
 
@@ -53,48 +102,6 @@ Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Disk
 {% hint style="info" %}
 Each client must have a unique IP and FQDN.
 {% endhint %}
-
-## Modify the cgroups usage
-
-Customers using a supported OS with cgroups V2 (hierarchy ) or want to modify the cgroups usage can set the cgroups usage during the agent installation or edit the service configuration file.
-
-The cgroups setting includes the following modes:
-
-* `auto`: WEKA tries using cgroups V1 (default). If it fails, the cgroups is set to `none` automatically.&#x20;
-* `force`: WEKA always uses cgroups V1. If the OS does not support it, WEKA fails.
-* `none`: WEKA never uses cgroups. Even if it runs on OS with cgroups V1.
-
-### Set the cgroups usage during the agent installation
-
-In the agent installation command line, specify the required cgroups mode.
-
-Example:
-
-```bash
-curl http://Backend-1:14000/dist/v1/install | WEKA_CGROUPS_MODE=none sh
-```
-
-### Edit the service configuration file
-
-1. Open the service configuration file `/etc/wekaio/service.conf` and add one of the following:
-   * `cgroups=auto`
-   * `cgroups=force`
-   * `cgroups=none`
-2. Restart the WEKA agent service using this command:\
-   `service weka-agent restart`
-3. Verify the cgroups setting by running the `weka local status` command.
-
-Example:
-
-```bash
-[root@weka-cluster] #weka local status
-Weka v4.2.0 (CLI build 4.2.0)
-Cgroups: mode=auto, enabled=true
-
-Containers: 1/1 running (1 weka)
-Nodes: 2/2 running (2 READY)
-Mounts: 1
-```
 
 ## Add stateful clients, which are always part of the cluster
 

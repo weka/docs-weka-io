@@ -135,7 +135,7 @@ Change the port from 9090 to 8501, which is the WMS Admin port.
 {% endtabs %}
 
 2. Browse to the WMS Admin UI using the following URL:\
-   `https://<WMS-hostname-or-ip>:8501`
+   `http://<WMS-hostname-or-ip>:8501`
 
 <figure><img src="../.gitbook/assets/wms_0_login.png" alt="" width="529"><figcaption><p>WMS Landing Page: Login</p></figcaption></figure>
 
