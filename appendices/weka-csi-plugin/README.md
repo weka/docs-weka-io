@@ -42,3 +42,11 @@ The WEKA CSI Plugin provides the following features:
 {% hint style="info" %}
 The WEKA CSI Plugin replaces plugins developed earlier in the Kubernetes evolution. It replaces the `hostPath` method to expose WEKA mounts as Kubernetes volumes.
 {% endhint %}
+
+## Advanced container deployment using the WEKA CSI 2.0 Plugin
+
+This demo showcases the process of deploying advanced containerized applications using the WEKA CSI 2.0 Plugin. It highlights key features and configurations that can optimize your container environment.
+
+{% embed url="https://www.youtube.com/watch?v=qtKHoYehuMI" %}
+Advanced container deployment using the WEKA CSI 2.0 Plugin
+{% endembed %}

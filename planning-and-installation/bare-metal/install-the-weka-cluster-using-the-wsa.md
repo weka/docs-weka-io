@@ -19,6 +19,12 @@ The WSA generally works like any OS install disk (Linux/Windows).
 Do not attempt to install the WSA using PXE boot. The WSA has a specific kickstart methodology only compatible with WMS or manual boot from ISO.&#x20;
 {% endhint %}
 
+{% hint style="info" %}
+WEKA releases WSA updates addressing critical security issues found in the underlying Linux distribution within five days of discovery and availability. Customers can update their WSA instance from the repository where these updates are provided. WEKA notifies customers when updates are available, enabling timely updates to minimize potential risks. For any questions, contact the Customer Success Team.
+
+For the update procedure, see [update-wms-and-wsa.md](../../appendices/update-wms-and-wsa.md "mention").
+{% endhint %}
+
 ## WSA deployment prerequisites
 
 A physical server that meets the following requirements:

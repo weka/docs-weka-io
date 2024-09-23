@@ -41,23 +41,23 @@ When creating a filesystem from a snapshot, a background cluster task automatica
 
 The `locator` can be a previously saved locator for disaster scenarios, or you can obtain the `locator` using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [Manage background tasks](../../operation-guide/background-tasks/#managing-background-tasks).
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded filesystem directly. For details, see [background-tasks](../../operation-guide/background-tasks/ "mention").
 
 {% hint style="info" %}
-Due to the bandwidth characteristics and potential costs when interacting with remote object stores it is not allowed to download a filesystem from a remote object-store bucket. If a snapshot on a local object-store bucket exists, it is advisable to use that one. Otherwise, follow the procedure in [Recover from a remote snapshot](./#recover-from-a-remote-snapshot).&#x20;
+Due to the bandwidth characteristics and potential costs when interacting with remote object stores it is not allowed to download a filesystem from a remote object-store bucket. If a snapshot on a local object-store bucket exists, it is advisable to use that one. Otherwise, follow the procedure in[#recover-from-a-remote-snapshot](snap-to-obj-1.md#recover-from-a-remote-snapshot "mention").
 {% endhint %}
 
 {% hint style="info" %}
-For encrypted filesystem, when downloading, you must use the same KMS master key to decrypt the snapshot data. For more information, see the [KMS Management](../../operation-guide/security/kms-management/#overview) section.
+For encrypted filesystem, when downloading, you must use the same KMS master key to decrypt the snapshot data. For more information, see [kms-management](../../operation-guide/security/kms-management/ "mention").
 {% endhint %}
 
 ## Manage synchronous snapshots
 
 The workflow to manage the synchronous snapshots includes:
 
-1. Upload snapshots using, for example, the snapshots scheduler. See [Snapshot management](broken-reference).
+1. Upload snapshots using, for example, the snapshots scheduler. See [snapshots](../snapshots/ "mention").
 2. Download the synchronous snapshot (described below).
-3. Restore a specific snapshot to a filesystem. See [Restore a snapshot to a filesystem or another snapshot](../snapshots/snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot).
+3. Restore a specific snapshot to a filesystem. See [#restore-a-snapshot-to-a-filesystem-or-another-snapshot](../snapshots/snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot "mention").
 
 ### Download a synchronous snapshot
 
@@ -77,7 +77,7 @@ If you need to download a snapshot earlier than the latest downloaded one, for e
 
 <table><thead><tr><th width="304">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Name of the filesystem.</td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td></tr></tbody></table>
 
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly. For details, see [Manage background tasks](../../operation-guide/background-tasks/#managing-background-tasks).
+If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly. For details, see [background-tasks](../../operation-guide/background-tasks/ "mention").
 
 **Related topics**
 

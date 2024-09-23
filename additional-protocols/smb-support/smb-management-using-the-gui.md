@@ -42,22 +42,26 @@ Verify that the dedicated filesystem for persistent protocol configurations is c
 1. From the menu, select **Manage > Protocols**.
 2. From the Protocols pane, select **SMB**.
 3. On the Configuration tab, select **Configure**.
+4. In the SMB Cluster Configuration dialog, set the following properties:
+   * **Name**: NetBIOS name for the SMB cluster must be 1-15 characters long, using only alphanumeric characters (A-Z, 0-9) and hyphens (-). Names are case-insensitive, cannot start with a hyphen, and must be unique within the network. Spaces and special characters are not allowed.\
+     This will be the name of the Active Directory computer object and the hostname part of the FQDN.
+   * **Domain**: The Active Directory domain to join the SMB cluster.
+   * **Domain NetBIOS Name**: (Optional) The domain NetBIOS name.
+   * **Encryption:** Select the in-transit encryption mode to use in the SMB cluster:
+     * **enabled:** Enables encryption negotiation but doesn't turn it on automatically for supported sessions and shared connections.
+     * **desired**: Enables encryption negotiation and turns on data encryption for supported sessions and shared connections.
+     * **required**: Enforces data encryption on sessions and shared connections. Clients that do not support encryption will be denied access to the server.
+   * **Servers**: List 3-8 WEKA system servers to participate in the SMB cluster based on the server IDs in WEKA.
+   * **IPs**: (Optional) List of virtual IPs (comma-separated) used as floating IPs for the SMB cluster to provide HA to clients. These IPs must be unique; do not assign these IPs to any host on the network.\
+     For an IP range, use the following format: **a.b.c.x-y**.
+   * **Config Filesystem:** select the filesystem used for persisting cluster-wide protocol configurations.
+   * **Symbolic Link:** Determines if symbolic links are allowed in the SMB cluster:
+     * **ON:** Enables symbolic links. Use with caution, as it can introduce security risks by exposing data across shares.
+     * **OFF:** Disables symbolic links, enhancing security by preventing link-based vulnerabilities.
 
-![SMB cluster configuration tab](../../.gitbook/assets/wmng\_smb\_configure\_button.png)
-
-4\. In the SMB Cluster Configuration dialog, set the following properties:
-
-* **Name**: A name for the SMB cluster. This will be the name of the Active Directory computer object and the hostname part of the FQDN.
-* **Domain**: The Active Directory domain to join the SMB cluster.
-* **Domain NetBIOS Name**: (Optional) The domain NetBIOS name.
-* **Encryption:** Select the in-transit encryption mode to use in the SMB cluster:
-  * **enabled:** Enables encryption negotiation but doesn't turn it on automatically for supported sessions and shared connections.
-  * **desired**: Enables encryption negotiation and turns on data encryption for supported sessions and shared connections.
-  * **required**: Enforces data encryption on sessions and shared connections. Clients that do not support encryption will be denied access to the server.
-* **Servers**: List 3-8 WEKA system servers to participate in the SMB cluster based on the server IDs in WEKA.
-* **IPs**: (Optional) List of virtual IPs (comma-separated) used as floating IPs for the SMB cluster to provide HA to clients. These IPs must be unique; do not assign these IPs to any host on the network.\
-  For an IP range, use the following format: **a.b.c.x-y**.
-* **Config Filesystem:** select the filesystem used for persisting cluster-wide protocol configurations.
+{% hint style="warning" %}
+**Important**: If a symbolic link in one share points to a file system in another share, users in the first share can access the data in the second share. Ensure you understand the security implications before enabling this option.
+{% endhint %}
 
 {% hint style="info" %}
 Due to cloud provider network limitations, setting a list of SMB floating IPs in all cloud installations is impossible. In this case, the SMB service must be accessed using the cluster nodes' primary addresses.
@@ -65,7 +69,7 @@ Due to cloud provider network limitations, setting a list of SMB floating IPs in
 
 5. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.3.2.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_smb_configure_dialog_4.3.5.gif" alt=""><figcaption><p>SMB cluster configuration</p></figcaption></figure>
 
 Once the system completes configuration, the server statuses change from not ready (❌) to ready (✅).
 
@@ -273,9 +277,10 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
    * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix). Not supported in SMB-W.
    * **Files/Directories POSIX Mode Mask**: Set the new default file and directory permissions in a numeric (octal) format created through the share.
    * **ACLs Enabled**: Determines whether to enable the Windows Access-Control Lists (ACLs) on the share. Weka translates the ACLs to POSIX.
+   * **Case Sensitivity**: Enables or disables case sensitivity for the specified SMB share. When enabled, the share distinguishes between files with the same name but different capitalization. This option applies exclusively to the SMB-W cluster.
 3. Select **Save**.
 
-![Add SMB Share dialog](<../../.gitbook/assets/wmng\_smb\_share\_add\_dialog (1).png>)
+<figure><img src="../../.gitbook/assets/wmng_smb_share_add_dialog (2).png" alt=""><figcaption></figcaption></figure>
 
 <details>
 
@@ -291,10 +296,6 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
 ## Edit an SMB share <a href="#edit-an-smb-share" id="edit-an-smb-share"></a>
 
 You can update some of the SMB share settings. These include encryption, hiding the share, allowing guest access, and setting the share as read-only.
-
-{% hint style="info" %}
-SMB-W does not yet support share updates.
-{% endhint %}
 
 **Procedure**
 

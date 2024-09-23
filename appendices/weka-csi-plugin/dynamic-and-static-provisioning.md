@@ -21,7 +21,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: storageclass-wekafs-dir
+  storageClassName: storageclass-wekafs-dir-api
   volumeMode: Filesystem
   resources:
     requests:
@@ -44,8 +44,8 @@ persistentvolumeclaim/pvc-wekafs-dir created
 
 # check the pvc resource has been created
 $ kubectl get pvc
-NAME                  STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                   AGE
-pvc-wekafs-dir        Bound    pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380   1Gi        RWX            storageclass-wekafs-dir        2m10s
+NAME                  STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                       AGE
+pvc-wekafs-dir        Bound    pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380   1Gi        RWX            storageclass-wekafs-dir-api        2m10s
 ```
 
 </details>
@@ -77,7 +77,7 @@ kind: PersistentVolume
 metadata:
   name: pv-wekafs-dir-static
 spec:
-  storageClassName: storageclass-wekafs-dir
+  storageClassName: storageclass-wekafs-dir-api
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
@@ -108,8 +108,8 @@ persistentvolume/pv-wekafs-dir-static created
 
 # check the pv resource has been created
 $ kubectl get pv
-NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                         STORAGECLASS                   REASON   AGE
-pv-wekafs-dir-static                       1Gi        RWX            Retain           Available                                 storageclass-wekafs-dir                 3m33s
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                         STORAGECLASS                       REASON   AGE
+pv-wekafs-dir-static                       1Gi        RWX            Retain           Available                                 storageclass-wekafs-dir=api                 3m33s
 ```
 
 </details>
@@ -133,7 +133,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: storageclass-wekafs-dir
+  storageClassName: storageclass-wekafs-dir-api
   volumeName: pv-wekafs-dir-static
   volumeMode: Filesystem
   resources:
@@ -157,8 +157,8 @@ spec:
 ```
 # check the pv resource has been created
 $ kubectl get pv
-NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                           STORAGECLASS                   REASON   AGE
-pv-wekafs-dir-static                       1Gi        RWX            Retain           Bound       default/pvc-wekafs-dir-static   storageclass-wekafs-dir                 6m30s
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM                           STORAGECLASS                       REASON   AGE
+pv-wekafs-dir-static                       1Gi        RWX            Retain           Bound       default/pvc-wekafs-dir-static   storageclass-wekafs-dir-api                 6m30s
 ```
 
 </details>

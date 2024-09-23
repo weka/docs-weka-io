@@ -238,8 +238,8 @@ Creating additional client groups helps in better organization, customization of
 
 ![Add a client group](../../.gitbook/assets/wmng\_add\_nfs\_client\_group\_add.png)
 
-3. In the Create Client Group dialog, set the client group name.
-4. Select **Save**.&#x20;
+2. In the Create Client Group dialog, set the client group name.
+3. Select **Save**.&#x20;
 
 ![Create client group dialog](../../.gitbook/assets/wmng\_add\_nfs\_client\_group\_dialog.png)
 
@@ -254,12 +254,12 @@ Assigning a DNS and IP to a client group facilitates network communication and r
 
 ![Manage client access groups](../../.gitbook/assets/wmng\_add\_nfs\_client\_group\_dns-ip-buttons.png)
 
-2. In the Create Client Group DNS Rule dialog, set the DNS server name. Then, select **Save**.
+3. In the Create Client Group DNS Rule dialog, set the DNS server name. Then, select **Save**.
 
 ![Create client group DNS rule dialog](../../.gitbook/assets/wmng\_add\_nfs\_client\_group\_dns\_rule.png)
 
-3. In the Permissions tab, select **Add IP** for the relevant Client Group.
-4. In the Create Client Group IP Rule dialog, set the IP address and bitmask. Then, select **Save**.
+4. In the Permissions tab, select **Add IP** for the relevant Client Group.
+5. In the Create Client Group IP Rule dialog, set the IP address and bitmask. Then, select **Save**.
 
 ![Create client group IP rule dialog](../../.gitbook/assets/wmng\_add\_nfs\_client\_group\_ip\_rule.png)
 

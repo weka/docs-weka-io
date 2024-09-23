@@ -63,3 +63,7 @@ Use the following command line to set the statistics retention period.\
 <table><thead><tr><th width="207">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>days</code>*</td><td>Number of days to keep the statistics.<br>Ensure sufficient free disk space per server and the specified number of days.</td></tr><tr><td><code>dry-run</code></td><td>Only tests the required capacity per the retention period.</td></tr></tbody></table>
 
 Use `weka stats retention status` to view the current retention and `weka stats retention restore-default` to restore the default retention settings.
+
+**Related topic**
+
+[list-of-statistics.md](list-of-statistics.md "mention")

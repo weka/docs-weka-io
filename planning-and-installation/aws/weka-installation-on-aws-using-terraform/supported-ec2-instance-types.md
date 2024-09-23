@@ -33,7 +33,7 @@ The following EC2 instance models can operate as **client** instances. The defau
 
 ### Storage optimized
 
-<table><thead><tr><th width="235">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>I3</td><td>i3.xlarge, i3.2xlarge, i3.4xlarge, i3.8xlarge, i3.16xlarge</td></tr><tr><td>I3en</td><td>i3en.xlarge, i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge</td></tr></tbody></table>
+<table><thead><tr><th width="235">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>I3en</td><td>i3en.xlarge, i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge</td></tr></tbody></table>
 
 ### HPC optimized <a href="#hpc_optimized" id="hpc_optimized"></a>
 

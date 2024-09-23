@@ -6,6 +6,12 @@ The WMS is also used for installing the monitoring tools: Local WEKA Home (LWH),
 
 <figure><img src="../../.gitbook/assets/WMS_and_WSA_install_cluster.png" alt=""><figcaption><p>Install the WEKA cluster using the WMS with WSA</p></figcaption></figure>
 
+{% hint style="info" %}
+WEKA releases WMS and WSA updates addressing critical security issues found in the underlying Linux distribution within five days of discovery and availability. Customers can update their WMS/WSA instance from the repository where these updates are provided. WEKA notifies customers when updates are available, enabling timely updates to minimize potential risks. For any questions, contact the Customer Success Team.
+
+For the update procedure, see [update-wms-and-wsa.md](../../appendices/update-wms-and-wsa.md "mention").
+{% endhint %}
+
 ## WMS deployment prerequisites
 
 Using the WMS with WSA to install a WEKA cluster requires a physical server (or VM) that meets the following requirements:

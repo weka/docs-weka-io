@@ -51,8 +51,8 @@ The tabs within the stack correspond to primary configurable aspects for a WEKA 
 * Cloud networking configuration
 * Cloud security configuration
 * Optional object storage (OBS) configuration
-* Optional deployment of NFS protocol nodes
-* Optional deployment of SMB protocol nodes
+* Optional deployment of NFS protocol gateways
+* Optional deployment of SMB protocol gateways
 * Optional deployment of WEKA clients
 * Optional advanced configuration (granular cluster-level adjustments)
 

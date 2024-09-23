@@ -4,12 +4,24 @@ In a WEKA cluster, the frontend container provides the default POSIX protocol, s
 
 To configure protocol containers, you have two options for creating a cluster for the specified protocol:
 
-* Set up protocol services on existing backend servers.
-* Prepare additional dedicated servers for the protocol containers.
+1. Set up protocol services on existing backend servers.
+2. Prepare additional dedicated servers for the protocol containers.
+
+{% hint style="info" %}
+In cloud environments, setting up protocol services on existing backend servers (option 1) is not supported. Instead, use option 2 and prepare additional dedicated servers (protocol gateways) when creating the `main.tf` file.
+
+For more details, refer to the relevant deployment section:
+
+* [deployment-on-aws-using-terraform.md](../planning-and-installation/aws/weka-installation-on-aws-using-terraform/deployment-on-aws-using-terraform.md "mention")
+* [deployment-on-azure-using-terraform.md](../planning-and-installation/weka-installation-on-azure/deployment-on-azure-using-terraform.md "mention")
+* [deployment-on-gcp-using-terraform.md](../planning-and-installation/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md "mention")
+{% endhint %}
 
 ### Dedicated filesystem requirement for cluster-wide persistent protocol configurations
 
-A dedicated filesystem is required that stores persistent protocol configurations. This filesystem is essential for coordinating coherent simultaneous access to files from multiple servers. It is advisable to assign a meaningful name to this configuration filesystem, such as `.config_fs`. Set the total capacity to 100 GB and avoid additional options like tiering and thin-provisioning.
+A dedicated filesystem is required to maintain persistent protocol configurations across a cluster. This filesystem is pivotal in orchestrating coherent, synchronized access to files from multiple servers. It is recommended that this configuration filesystem be named with a significant name, for instance, `.config_fs`. The total capacity must be **100 GB** while refraining from employing additional features such as tiering and thin-provisioning.
+
+When establishing a Data Services container for background tasks, it is recommended to increase the `.config_fs` size to **122 GB** (an additional 22 GB on top of the initial 100 GB). For further details, see [set-up-a-data-services-container-for-background-tasks.md](../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
 
 <details>
 

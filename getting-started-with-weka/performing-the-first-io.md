@@ -69,7 +69,7 @@ Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | 
 ```
 {% endhint %}
 
-For more information about filesystems and filesystem groups, see [Managing Filesystems, Object Stores & Filesystem Groups](broken-reference).
+For more information about filesystems and filesystem groups, see [filesystems.md](../weka-system-overview/filesystems.md "mention").
 
 ## Mount the filesystem
 
@@ -93,7 +93,7 @@ new_fs on /mnt/weka type wekafs (rw,relatime,writecache,inode_bits=64,dentry_max
 In AWS installation via the [self-service portal](https://start.weka.io/), the `default` filesystem is already mounted under `/mnt/weka.`
 {% endhint %}
 
-For more information about mounting filesystems and mount options, refer to [Mounting Filesystems](../weka-filesystems-and-object-stores/mounting-filesystems/#overview).
+For more information about mounting filesystems and mount options, refer to [mounting-filesystems](../weka-filesystems-and-object-stores/mounting-filesystems/ "mention").
 
 ## Write to the filesystem
 

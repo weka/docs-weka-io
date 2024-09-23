@@ -239,27 +239,19 @@ The preparation phase prepares all the connected backend servers for the upgrade
 
 Once the new version is downloaded to one of the backend servers, run the following CLI command:
 
-`weka local run --container <container-name> --in <new-version> upgrade --prepare-only`
+`weka local run --container drives0 --in <new-version> upgrade --prepare-only`
 
 Where:
 
-`<new-version>`: Specify the new version. For example,`4.3.0`.
-
-`<container-name>`: Specify only one container name. For example: `drives0`.
-
-The default upgrade mode to 4.3.x is `ndu`. Therefore, no need to specify it.
+`<new-version>`: Specify the new version. For example,`4.3.4`.
 
 ### 4. Upgrade the backend servers
 
-Once a new software version is installed on one of the backend servers, upgrade the cluster to the new version by running the following command on the backend server.
+Once a new software version is installed on one of the backend servers, upgrade the entire cluster backend servers to the new version by running the following command on the backend server.
 
 If you already ran the preparation step, the upgrade command skips the download and preparation operations.
 
-`weka local run --container <container-name> --in <new-version> upgrade`
-
-Example:
-
-`weka local run --container drives0 --in 4.3.1 upgrade`
+`weka local run --container drives0 --in <new-version> upgrade`
 
 **Consider the following guidelines:**
 
@@ -278,7 +270,7 @@ Example:
 ### 5. Upgrade the clients
 
 Once all backends are upgraded, the clients remain with the existing version and continue working with the upgraded backends. The client's version can only be one major version behind the version of the backends. Therefore, clients must be upgraded before the next cluster software version upgrade.\
-The minimum source version for client upgrades is 4.3.X.
+The minimum source version for client upgrades is 4.2.X.
 
 #### Stateless client upgrade options
 
@@ -301,8 +293,8 @@ The minimum source version for client upgrades is 4.3.X.
 To upgrade a stateless or persistent client locally, connect to the client and run the following command line:
 
 1. Run: `weka version get <target-version> --from <backend name or IP>:<port>`
-2. Upgrade the agent by running the following:\
-   `/opt/weka/dist/cli/<target_client> agent install-agent --no-update`
+2. Upgrade the agent by running the following (replace the x with the latest minor version):\
+   `weka version set --agent-only 4.3.x`
 3. Upgrade the client containers. Do one the following following:
    * For clients connected to a single cluster, run `weka local upgrade`
    * For clients connected to a multiple  clusters, upgrade all containers simultaneously by running  `weka local upgrade --all`

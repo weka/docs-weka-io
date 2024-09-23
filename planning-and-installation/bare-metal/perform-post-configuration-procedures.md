@@ -2,12 +2,12 @@
 
 Once the WEKA cluster is installed and configured, perform the following:
 
-1. [Enable event notifications to the cloud (optional)](perform-post-configuration-procedures.md#id-1.-enable-event-notifications-to-the-cloud-optional)
-2. [Set the license](perform-post-configuration-procedures.md#id-2.-set-the-license)
-3. [Start the cluster IO service](perform-post-configuration-procedures.md#id-3.-start-the-cluster-io-service)
-4. [Check the cluster configuration](perform-post-configuration-procedures.md#id-4.-check-the-cluster-configuration)
-5. [Bypass the proxy server (optional)](perform-post-configuration-procedures.md#id-5.-bypass-the-proxy-server-optional)
-6. [Configure default data networking (optional)](perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional)
+1. [Enable event notifications to the cloud (optional)](perform-post-configuration-procedures.md#id-1.-enable-event-notifications-to-the-cloud-optional).
+2. [Set the license](perform-post-configuration-procedures.md#id-2.-set-the-license).
+3. [Start the cluster IO service](perform-post-configuration-procedures.md#id-3.-start-the-cluster-io-service).
+4. [Check the cluster configuration](perform-post-configuration-procedures.md#id-4.-check-the-cluster-configuration).
+5. [Bypass the proxy server (optional)](perform-post-configuration-procedures.md#id-5.-bypass-the-proxy-server-optional).
+6. [Configure default data networking (optional)](perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional).
 
 ## 1. Enable event notifications to the cloud (optional)
 

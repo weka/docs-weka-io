@@ -1,12 +1,13 @@
+---
+description: >-
+  This guide provides step-by-step instructions for deploying the WEKA Data
+  Platform on GCP using Terraform, tailored for customers, partners, and WEKA
+  teams.
+---
+
 # Detailed deployment tutorial: WEKA on GCP using Terraform
 
 ## Introduction
-
-### **Purpose**
-
-This guide is designed to assist customers, partners, and WEKA teams with the step-by-step deployment of the WEKA data platform on the Google Cloud Platform (GCP) using Terraform.
-
-### **Document premise**
 
 Deploying WEKA on GCP requires proficiency in several technologies, including GCP, Terraform[^1], basic Linux operations, and the WEKA software itself. Recognizing that not all individuals responsible for this deployment are experts in each of these areas, this document aims to provide comprehensive, end-to-end instructions. This ensures that readers with minimal prior knowledge can successfully deploy a functional WEKA cluster on GCP.
 
@@ -39,9 +40,9 @@ It is essential for the customer to understand their subscription structure for 
 
 ### User account privileges
 
-Ensure that the GCP IAM user has the permissions outlined in [Appendix A](detailed-deployment-tutorial-weka-on-gcp-using-terraform.md#appendix-a-required-permissions-that-terraform-needs) to perform the necessary operations for a successful WEKA deployment on GCP using Terraform. The IAM user must be able to create, modify, and delete GCP resources as specified by the Terraform configuration files used in the WEKA deployment.
+Ensure that the GCP IAM user has the permissions outlined in [Appendix A](https://app.gitbook.com/o/-L7Tp-Uy9BMSCSCx0MlK/s/lGKb8DZItQx3Jy6unw5f/\~/changes/193/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs) to perform the necessary operations for a successful WEKA deployment on GCP using Terraform. The IAM user must be able to create, modify, and delete GCP resources as specified by the Terraform configuration files used in the WEKA deployment.
 
-If the current IAM user lacks the permissions detailed in [Appendix A](detailed-deployment-tutorial-weka-on-gcp-using-terraform.md#appendix-a-required-permissions-that-terraform-needs), either update the user's permissions or create a new IAM user with the required privileges.
+If the current IAM user lacks the permissions detailed in [Appendix A](https://app.gitbook.com/o/-L7Tp-Uy9BMSCSCx0MlK/s/lGKb8DZItQx3Jy6unw5f/\~/changes/193/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs), either update the user's permissions or create a new IAM user with the required privileges.
 
 **Verify GCP IAM user permissions**
 
@@ -56,7 +57,7 @@ If the current IAM user lacks the permissions detailed in [Appendix A](detailed-
 <figure><img src="../../.gitbook/assets/image (221).png" alt=""><figcaption></figcaption></figure>
 
 5. Click on the user's **Security insights** to review their permissions.
-6. Ensure that the user possesses the permissions listed in [Appendix A](detailed-deployment-tutorial-weka-on-gcp-using-terraform.md#appendix-a-required-permissions-that-terraform-needs), which are necessary for managing GCP resources through Terraform.
+6. Ensure that the user possesses the permissions listed in [Appendix A](https://app.gitbook.com/o/-L7Tp-Uy9BMSCSCx0MlK/s/lGKb8DZItQx3Jy6unw5f/\~/changes/193/planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform#appendix-a-required-permissions-that-terraform-needs), which are necessary for managing GCP resources through Terraform.
 
 <figure><img src="../../.gitbook/assets/image (222).png" alt=""><figcaption></figcaption></figure>
 
@@ -155,7 +156,7 @@ The [Terraform module package](https://registry.terraform.io/modules/weka/weka/g
 
 #### Organize the structure of the Terraform configuration files
 
-1. Create a directory specifically for the Terraform configuration files.\
+1. Create a directory specifically for the Terraform configuration files. \
    To maintain state information, it's essential to keep each Terraform deployment separate.\
    Other deployments can be executed by duplicating these instructions and naming the directory appropriately, such as **deploy1** or another unique identifier.
 
@@ -376,23 +377,23 @@ Here is the output from the example
 
 The section **`"io_status":"STARTED"`** shows that the cluster is fully up and running and ready for access.
 
-### Deploy protocol nodes (NFS and SMB)
+### Deploy protocol servers (NFS and SMB)
 
-The Terraform deployment simplifies the process of deploying additional compute instances to serve as protocol nodes for NFS or SMB. These protocol nodes are separate from the instances designated for the WEKA backend cluster.
+The Terraform deployment simplifies the process of deploying additional compute instances to serve as protocol servers (protocol gateways) for NFS or SMB. These protocol gateways are separate from the instances designated for the WEKA backend cluster.
 
-To deploy protocol nodes, add more information to the `main.tf` file.
+To deploy protocol gateways, add more information to the `main.tf` file.
 
-The simplest approach is to specify the number of protocol nodes for each type (NFS and SMB) and use default settings for the other parameters. If you plan to distribute your NFS or SMB connections across multiple protocol nodes manually, you can adjust these numbers according to your needs. For instance, if you have three projects, each requiring its own bandwidth for NFS, you can deploy three protocol gateways. Assign each project the IP address or DNS entry of its respective gateway to use as the NFS server.
+The simplest approach is to specify the number of protocol gateways for each type (NFS and SMB) and use default settings for the other parameters. If you plan to distribute your NFS or SMB connections across multiple protocol servers manually, you can adjust these numbers according to your needs. For instance, if you have three projects, each requiring its own bandwidth for NFS, you can deploy three protocol gateways. Assign each project the IP address or DNS entry of its respective gateway to use as the NFS server.
 
 Add the following before the last `‘}’` of the main.tf file.
 
 ```bash
-## Protocol Nodes ##
+## Protocol gateways ##
 
-## For deploying NFS protocol nodes ##
+## For deploying NFS protocol gateways ##
 nfs_protocol_gateways_number = 2 # A minimum of two is required
 
-## For deploying SMB protocol nodes ##
+## For deploying SMB protocol gateways ##
 smb_protocol_gateways_number = 3 # A minimum of three is required 
 ```
 

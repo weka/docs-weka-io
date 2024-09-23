@@ -1,10 +1,3 @@
----
-description: >-
-  This guide provides step-by-step instructions for deploying the WEKA Data
-  Platform on AWS using Terraform, tailored for customers, partners, and WEKA
-  teams.
----
-
 # Detailed deployment tutorial: WEKA on AWS using Terraform
 
 ## Introduction

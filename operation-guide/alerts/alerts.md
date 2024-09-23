@@ -51,4 +51,3 @@ Muted alerts appear under the Muted Alerts area. You can unmute an alert manuall
 
 **Related topics**
 
-[list-of-alerts.md](list-of-alerts.md "mention")

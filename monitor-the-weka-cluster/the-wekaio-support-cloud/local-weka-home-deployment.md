@@ -14,13 +14,13 @@ This Local WEKA Home v3.0 (or higher) runs on K3s, a lightweight Kubernetes inst
 
 If you have deployed the WMS, follow the procedure:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](../deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, perform the following workflow:
 
-1. [Verify prerequisites](local-weka-home-deployment.md#id-1.-verify-prerequisites)
-2. [Prepare the physical server (or VM)](local-weka-home-deployment.md#id-2.-prepare-the-physical-server-or-vm)
-3. [Download the Local WEKA Home bundle](local-weka-home-deployment.md#id-3.-download-the-local-weka-home-bundle)
-4. [Install and configure the Local WEKA Home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home)
-5. [Access the Local WEKA Home portal and Grafana](local-weka-home-deployment.md#id-5.-access-the-local-weka-home-portal-and-grafana)
-6. [Enable the WEKA cluster to send data to the Local WEKA Home](local-weka-home-deployment.md#id-6.-enable-the-weka-cluster-to-send-information-to-the-local-weka-home)
-7. [Test the deployment](local-weka-home-deployment.md#id-7.-test-the-deployment)
+1. [Verify prerequisites](local-weka-home-deployment.md#id-1.-verify-prerequisites).
+2. [Prepare the physical server (or VM)](local-weka-home-deployment.md#id-2.-prepare-the-physical-server-or-vm).
+3. [Download the Local WEKA Home bundle](local-weka-home-deployment.md#id-3.-download-the-local-weka-home-bundle).
+4. [Install and configure the Local WEKA Home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home).
+5. [Access the Local WEKA Home portal and Grafana](local-weka-home-deployment.md#id-5.-access-the-local-weka-home-portal-and-grafana).
+6. [Enable the WEKA cluster to send data to the Local WEKA Home](local-weka-home-deployment.md#id-6.-enable-the-weka-cluster-to-send-information-to-the-local-weka-home).
+7. [Test the deployment](local-weka-home-deployment.md#id-7.-test-the-deployment).
 
 ### 1.  Verify prerequisites
 
@@ -92,11 +92,11 @@ Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download
 
 <summary>Domain</summary>
 
-Set the domain for URL accessing the Local Weka Home portal either by the organization domain FQDN (DNS-based) or IP address (IP-based).
+Set the domain for URL accessing the Local WEKA Home portal either by the organization domain FQDN (DNS-based) or IP address (IP-based).
 
-The URL to access the Local Weka Home does not accept aliases of the DNS name.&#x20;
+The URL to access the Local WEKA Home does not accept aliases of the DNS name.&#x20;
 
-Only the name configured in the `config.json` or passed via CLI argument `--host some.domain.com` during setup can be used for accessing the Local Weka Home.
+Only the name configured in the `config.json` or passed via CLI argument `--host some.domain.com` during setup can be used for accessing the Local WEKA Home.
 
 DNS-based domain setting:\
 In the **host** section at the top of the file, set the domain FQDN as shown in the following example:
@@ -124,7 +124,7 @@ If the host section is not set - the first IP address from the provided network 
 
 <summary>SMTP</summary>
 
-To enable the Local Weka Home to send emails, set the SMTP details in the **smtp** section as shown in the following example:
+To enable the Local WEKA Home to send emails, set the SMTP details in the **smtp** section as shown in the following example:
 
 ```json
 {
@@ -146,7 +146,7 @@ Ensure to enable the SMTP relay service in your SMTP service.&#x20;
 
 The Google SMTP server requires an [app password](https://support.google.com/mail/answer/185833?hl=en).
 
-Once the Local Weka Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See the [Set the Local Weka Home to send alerts](broken-reference) topic.
+Once the Local WEKA Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See [manage-alerts-and-integrations.md](manage-alerts-and-integrations.md "mention").
 
 </details>
 
@@ -369,7 +369,7 @@ Upgrading from `minikube` or WMS to the new Local WEKA Home 3.0 bundle (based on
 
 1. Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download) to the dedicated physical server (or VM).
 2. Run `bash wekahome-*.bundle`
-3. To modify the existing configuration, open the `/opt/wekahome/config/config.json` file and modify the settings. See [Install and configure Local WEKA Home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home).
+3. To modify the existing configuration, open the `/opt/wekahome/config/config.json` file and modify the settings. See[#id-4.-install-and-configure-local-weka-home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home "mention").
 4. Run `homecli local upgrade`. For an upgrade, it takes about 2 minutes.
 5. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods' statuses, run `watch kubectl get pods`.)
 6. Verify the Local WEKA Home is upgraded successfully. Run the following command line:\
@@ -381,7 +381,7 @@ If there is a change in the TLS certificates, SMTP server in your environment, o
 
 **Procedure**
 
-1. Open the `/opt/wekahome/config/config.json` file and modify the settings. See [Install and configure Local WEKA Home](local-weka-home-deployment.md#5.-install-and-configure-local-weka-home).
+1. Open the `/opt/wekahome/config/config.json` file and modify the settings. See [#id-4.-install-and-configure-local-weka-home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home "mention").
 2. Run `homecli local upgrade`
 3. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods' statuses, run `watch kubectl get pods`.)
 4. Verify the Local WEKA Home is updated successfully. Run the following command line:\
@@ -467,7 +467,7 @@ homecli local collect-debug-info [archive] [--include-sensitive] [--full-disk-sc
 ```
 {% endcode %}
 
-2. Once you generate the LWH deployment diagnostics archive file, send it to the Customer Success Team for analysis.
+2. Once you generate the LWH deployment diagnostics archive file, send it to the [Customer Success Team](../../support/getting-support-for-your-weka-system.md) for analysis.
 
 **Parameters**
 

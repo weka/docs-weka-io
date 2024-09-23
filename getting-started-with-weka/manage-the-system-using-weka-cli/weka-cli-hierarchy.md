@@ -320,6 +320,11 @@ weka security
       |status
       |download
       |unset
+   |cors-trusted-sites
+      |list
+      |add
+      |remove
+      |remove-all
 ```
 
 ### **weka smb**

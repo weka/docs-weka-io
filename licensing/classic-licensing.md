@@ -41,7 +41,7 @@ If you already have a license, please enter it by running
 **Procedure**
 
 1. Sign in to [get.weka.io](http://get.weka.io).
-2. **Obtain an entitlement:** Once you have a WEKA account, the Customer Success Team applies an entitlement to the account. You can view the outstanding entitlements on the account dashboard.
+2. **Obtain an entitlement:** Once you have a WEKA account, Sales Operations applies an entitlement to the account. You can view the outstanding entitlements on the account dashboard.
 
 ![Outstanding Entitlements pane](../.gitbook/assets/getwekaio\_1\_outstanding\_entitlements.png)
 

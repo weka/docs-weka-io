@@ -145,16 +145,18 @@ To use LDAP for authenticating users, set the property values based on your spec
   Example value: `groupOfNames`
 * **Cluster Admin Group:** The LDAP group granted administrative privileges for managing the LDAP cluster.\
   Example value: `cn=cluster_admins,ou=groups,dc=example,dc=com`\
-  sAMAccountName: `cluster_admins`
+  `sAMAccountName: cluster_admins`
 * **Organization Admin Role Group:** The LDAP group granted administrative privileges for managing specific organizations or units within the LDAP directory.\
   Example value: `cn=org_admins,ou=groups,dc=example,dc=com`\
-  sAMAccountName: `org_admins`
+  `sAMAccountName: org_admins`
 * **Regular User Role Group:** The group in LDAP represents regular users with standard access privileges.\
   Example value: `cn=regular_users,ou=groups,dc=example,dc=com`\
-  sAMAccountName: `regular_users`
+  `sAMAccountName: regular_users`
 * **Read-only User Role Group:** The group in LDAP represents users with read-only access privileges restricted from making modifications.\
   Example value: `cn=read_only_users,ou=groups,dc=example,dc=com`\
-  sAMAccountName: `read_only_users`
+  `sAMAccountName: read_only_users`
+
+**Note:** The `sAMAccountName` (user logon name) in the Cluster Admin, Organization Admin, Regular User, and Read-only User Role Groups can be up to 20 characters long.
 
 </details>
 
@@ -188,16 +190,18 @@ To use Active Directory for authenticating users, set the property values based 
   Example Value: `********`
 * **Cluster Admin Role Group:** The group in Active Directory granted administrative privileges for managing the cluster or server infrastructure.\
   Example value: `CN=ClusterAdmins,CN=Users,DC=example,DC=com`\
-  sAMAccountName: `ClusterAdmins`
+  `sAMAccountName: ClusterAdmins`
 * **Organization Admin Role Group:** The group in Active Directory granted administrative privileges for managing specific organizations or units within the Active Directory environment.\
   Example value: `CN=OrgAdmins,CN=Users,DC=example,DC=com`\
-  sAMAccountName: `OrgAdmins`
+  `sAMAccountName: OrgAdmins`
 * **Regular User Role Group:** The group in Active Directory represents regular users with standard access privileges.\
   Example value: `CN=RegularUsers,CN=Users,DC=example,DC=com`\
-  sAMAccountName:  `RegularUsers`
+  `sAMAccountName:  RegularUsers`
 * **Read-only User Role Group:** The group in Active Directory represents users with read-only access privileges, restricted from making modifications.\
   Example value: `CN=ReadOnlyUsers,CN=Users,DC=example,DC=com`\
-  sAMAccountName:  `ReadOnlyUsers`
+  `sAMAccountName:  ReadOnlyUsers`
+
+**Note:** The `sAMAccountName` (user logon name) in the Cluster Admin, Organization Admin, Regular User, and Read-only User Role Groups can be up to 20 characters long.
 
 </details>
 

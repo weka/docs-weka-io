@@ -14,35 +14,33 @@ If you are not using the WMS or WSA automated tools for installing a WEKA cluste
 
 **Required packages**
 
-| RHEL and derivatives                           | Ubuntu                              |
-| ---------------------------------------------- | ----------------------------------- |
+| RHEL and derivatives                                                                                                 | Ubuntu                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | <pre><code>elfutils-libelf-devel
-</code></pre> |                                     |
-| gcc                                            |                                     |
-| glibc-headers                                  |                                     |
-| glibc-devel                                    |                                     |
-| make                                           |                                     |
-| perl                                           |                                     |
-| rpcbind                                        |                                     |
-| xfsprogs                                       |                                     |
-| kernel-devel                                   |                                     |
-|                                                | <pre><code>libelf-dev
-</code></pre> |
-| linux-headers-$(uname -r)                      |                                     |
-| gcc                                            |                                     |
-| make                                           |                                     |
-| perl                                           |                                     |
-| python2-minimal                                |                                     |
-| rpcbind                                        |                                     |
-| xfsprogs                                       |                                     |
+gcc
+glibc-headers
+glibc-devel
+make
+perl
+rpcbind
+xfsprogs
+kernel-devel
+</code></pre> | <pre><code>libelf-dev
+linux-headers-$(uname -r)
+gcc
+make
+perl
+python2-minimal
+rpcbind
+xfsprogs
 
-|
+</code></pre> |
 
 <details>
 
 <summary>Recommended packages for remote support and maintenance</summary>
 
-**RHEL and derivatives**
+#### RHEL and derivatives
 
 ```
 @network-tools
@@ -78,7 +76,7 @@ screen
 ice
 ```
 
-**Ubuntu**
+#### Ubuntu
 
 ```
 elfutils
@@ -119,6 +117,8 @@ If a failure occurs during the WEKA software installation process, an error mess
 **Related topic**
 
 [#operating-system](../prerequisites-and-compatibility.md#operating-system "mention") (on the Prerequisites and compatibility topic)
+
+
 
 ## What to do next?
 

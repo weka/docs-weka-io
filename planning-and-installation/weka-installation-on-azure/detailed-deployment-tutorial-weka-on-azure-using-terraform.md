@@ -2,15 +2,9 @@
 
 ## Introduction
 
-**Document Purpose**
-
-To guide technical resources through the process of deploying the WEKA in Microsoft Azure.
-
-**Document Premise**
-
 Deploying WEKA in Azure requires knowledge of several technologies, specifically Microsoft Azure Cloud, Terraform (infrastructure-as-code provisioning manager), basic Linux operations, and WEKA software. Understanding that not everyone tasked with deploying WEKA in Azure will have experience in each required domain, this document seeks to provide an end-to-end instruction set that allows its reader to successfully deploy a working WEKA cluster in Azure with minimal knowledge prerequisites.
 
-**Document Scope**
+**Document scope**
 
 This document focuses on deploying WEKA in an Azure environment which has an existing networking configuration. For instance, deploying WEKA for a POC or production purposes necessitates using an Azure customer’s existing VNet, subnet, and Network Security Group.
 
@@ -448,8 +442,6 @@ In a web browser, navigate to get.weka.io and select the user’s name in the up
 
 From the column on the lefthand side of the page, select “API Tokens.” The user’s API token is presented on the screen. The API token will be used later in the install process.
 
-<figure><img src="../../.gitbook/assets/image (92).png" alt=""><figcaption></figcaption></figure>
-
 ### Deploying WEKA in Azure with Terraform - existing\_network example
 
 In the context of a Terraform module or package, the **`examples`** directory is a common convention used by terraform module developers to provide consumers of the module with the following:
@@ -478,25 +470,25 @@ Locate the `main.tf` file.
 
 <figure><img src="../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
 
-Open the `[main.tf](http://main.tf)` using your choice of code editor. Some code editors, such as PyCharm or Microsoft VS Code, have terraform plugins that highlight the syntax in a helpful manner which is useful when editing. Review the input variables contained in `main.tf` by default.
+Open the `main.tf` using your choice of code editor. Some code editors, such as PyCharm or Microsoft VS Code, have terraform plugins that highlight the syntax in a helpful manner which is useful when editing. Review the input variables contained in `main.tf` by default.
 
 The default input variables are broken down below.
 
 ```json
   source            = "../.."  #terraform module location (local)
-  prefix            = "essential" #desired cluster naming convention prefix (specified by user, to be used by Terraform when creating resources.)
-  rg_name           = "example" #azure resource group name (to be pre-created in Azure by the user, Terraform will use it for placement of created resources.)
-  cluster_name      = "test" #cluster naming convention suffix (specified by user, to be used by Terraform when creating resources.)
+  prefix            = "demo" #desired cluster naming convention prefix (specified by user, to be used by Terraform when creating resources.)
+  rg_name           = "bgcweka" #azure resource group name (to be pre-created in Azure by the user, Terraform will use it for placement of created resources.)
+  cluster_name      = "bgc" #cluster naming convention suffix (specified by user, to be used by Terraform when creating resources.)
   instance_type     = "Standard_L8s_v3" #azure vm instance type, size
   cluster_size      = 6 #number of WEKA backends in the cluster
   get_weka_io_token = ".." #get.weka.io token
-  vnet_name         = "essential-vnet" #azure vnet name (to be pre-created in Azure by the user, Terraform will use it for placement of resources.)
-  subnet            = "essential-subnet" #azure subnet name (to be pre-created in Azure by the user, Terraform will use it for placement of networking resources.)
+  vnet_name         = "bgcweka-vnet" #azure vnet name (to be pre-created in Azure by the user, Terraform will use it for placement of resources.)
+  subnet            = "default" #azure subnet name (to be pre-created in Azure by the user, Terraform will use it for placement of networking resources.)
 ```
 
-<figure><img src="../../.gitbook/assets/image (100).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/replacement screenshot weka install.jpg" alt=""><figcaption></figcaption></figure>
 
-Populate the `main.tf` in accordance with the objectives of the deployment. In the `main.tf` shown below, the default input variable values have been changed to reflect the Azure resources (resource group, vnet, subnet) created earlier in this document. Additionally, three optional input variables have been added to customize this deployment to maintain the objective of simulating a customer POC deployment. The light purple bracket shows the added variables. The dark purple bracket shows the variables that should be customized prior to deployment. Save the file after modifying.
+Populate the `main.tf` in accordance with the objectives of the deployment. In the `main.tf` shown below, the default input variable values have been changed to reflect the Azure resources (resource group, vnet, subnet) created earlier in this document. Additionally, three optional input variables have been added to customize this deployment to maintain the objective of simulating a customer POC deployment. The light purple bracket shows the added variables. The light purple bracket shows the variables that should be customized prior to deployment. Save the file after modifying.
 
 The added input variables are summarized below.
 
@@ -507,17 +499,20 @@ The added input variables are summarized below.
 ```
 
 {% hint style="info" %}
-Remember, the complete list of input variables and usage instructions can be found on GitHub in the README section.\
-[https://github.com/weka/terraform-azure-weka-essential](https://github.com/weka/terraform-azure-weka-essential)
+The complete list of input variables and usage instructions can be found on the Terraform Registry under the "Readme" section.
+
+[https://registry.terraform.io/modules/weka/weka/azure/latest](https://registry.terraform.io/modules/weka/weka/azure/latest)
 {% endhint %}
 
 {% hint style="info" %}
-The \`subscription\_id\` is tied to the same subscription identified in the section.
+The `subscription_id` is tied to the same subscription identified in the section.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (101).png" alt=""><figcaption></figcaption></figure>
 
-#### Terraform Init, Plan, and Apply
+
+<figure><img src="../../.gitbook/assets/essentials tf correction.jpg" alt=""><figcaption></figcaption></figure>
+
+Terraform Init, Plan, and Apply
 
 In this phase of the deployment, terraform will begin deploying resources. Three primary commands will be used to initiate resource deployment:
 
@@ -807,7 +802,7 @@ output "get-cluster-helpers-commands" {
 }
 ```
 
-Review the variables available for use on the [**Terraform Registry page for the Azure Weka / Weka module**](https://registry.terraform.io/modules/weka/weka/azure/latest) to determine the variables required for your specific deployment needs. Once the `main.tf` file is configured for the deployment, proceed to initializing and running Terraform to deploy WEKA resourcesRunning Terraform init, plan, and apply to Deploy WEKA Cluster Resources
+Review the variables available for use on the [**Terraform Registry page for the Azure Weka / Weka module**](https://registry.terraform.io/modules/weka/weka/azure/latest) to determine the variables required for your specific deployment needs. Once the `main.tf` file is configured for the deployment, proceed to initializing and running Terraform to deploy WEKA resources Running Terraform init, plan, and apply to Deploy WEKA Cluster Resources
 
 Open a terminal window on your local machine (or on whichever machine Terraform will be run from) and navigate to the directory containing the newly edited `main.tf` file. Once in the directory, execute the `terraform init` command. As shown below, the WEKA Azure Terraform  modules will download followed by the necessary provider plugins.
 

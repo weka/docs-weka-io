@@ -1,5 +1,8 @@
 ---
-description: This page reviews the theory of operation for WEKA networking.
+description: >-
+  Explore network technologies in WEKA, including DPDK, SR-IOV, CPU-optimized
+  networking, UDP mode, high availability, and RDMA/GPUDirect Storage, with
+  configuration guidelines.
 ---
 
 # WEKA networking
@@ -108,7 +111,7 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 
 To support HA, the WEKA system must be configured with no single component representing a single point of failure. Multiple switches are required, and servers must have one leg on each.
 
-HA for servers is achieved either through implementing two network interfaces on the same server or by LACP (ethernet only, modes 1 and 4). A non-LACP approach sets a redundancy that enables the WEKA software to use two interfaces for HA and bandwidth.&#x20;
+HA for servers is achieved either through implementing two network interfaces on the same server or by LACP (ethernet only, mode 4). A non-LACP approach sets a redundancy that enables the WEKA software to use two interfaces for HA and bandwidth.&#x20;
 
 HA performs failover and failback for reliability and load balancing on both interfaces and is operational for Ethernet and InfiniBand. Not using LACP requires doubling the number of IPs on both the backend containers and the IO processes.
 
@@ -118,42 +121,46 @@ When working with HA networking, labeling the system to send data between server
 LACP (link aggregation, also known as bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using VFs (virtual functions).
 {% endhint %}
 
-## RDMA and GPUDirect storage
+## RDMA and GPUDirect Storage
 
-GPUDirect Storage enables a direct data path between storage and GPU memory. GPUDirect Storage avoids extra copies through a bounce buffer in the CPU’s memory. It allows a direct memory access (DMA) engine near the NIC or storage to move data directly into or out of GPU memory without burdening the CPU or GPU.
+GPUDirect Storage establishes a direct data path between storage and GPU memory, bypassing unnecessary data copies through the CPU's memory. This approach allows a Direct Memory Access (DMA) engine near the NIC or storage to transfer data directly to or from GPU memory without involving the CPU or GPU.
 
-When RDMA and GPUDirect storage are enabled, the WEKA system automatically uses the RDMA data path and GPUDirect Storage in supported environments. When the system identifies it can use RDMA, both in UDP and DPDK modes, it employs the use for workloads, which can benefit from RDMA (with regards to IO size: 32K+ for reads and 256K+ for writes).
+When RDMA and GPUDirect Storage are enabled, the WEKA system automatically uses the RDMA data path and GPUDirect Storage in supported environments. The system dynamically detects when RDMA is available, both in UDP and DPDK modes, and applies it to workloads that can benefit from RDMA (typically for I/O sizes of 32KB or larger for reads and 256KB or larger for writes).
 
-By leveraging RDMA/GPUDirect Storage, you can achieve enhanced performance. A UDP client, which doesn't necessitate dedicating a core to the WEKA system, can yield significantly higher performance. Additionally, a DPDK client can receive an extra performance boost. Alternatively, in DPDK mode, you can assign fewer cores to the WEKA system while maintaining the same level of performance.
+By leveraging RDMA and GPUDirect Storage, you can achieve enhanced performance. A UDP client, which doesn't require dedicating a core to the WEKA system, can deliver significantly higher performance. Additionally, a DPDK client can experience an extra performance boost, or you can assign fewer cores to the WEKA system while maintaining the same level of performance in DPDK mode.
 
-### Limitations
+### Requirements and considerations for enabling RDMA and GPUDirect Storage
 
-For the RDMA/GPUDirect Storage technology to take effect, the following requirements must be met:
+To enable RDMA and GPUDirect Storage technology, ensure the following requirements are met:
 
-* All the cluster servers support RDMA networking.
-* For a client:
-  * GPUDirect Storage: The IB interfaces added to the Nvidia GPUDirect configuration should support RDMA.
-  * RDMA: All the Infiniband Host Channel Adapters (HCA) used by WEKA must support RDMA networking.
-* Encrypted filesystems: The framework is not used for encrypted filesystems and falls back to work without RDMA/GPUDirect for IOs to encrypted filesystems.
-* An HCA is considered to support RDMA networking if the following requirements are met:
-  * For GPUDirect Storage only: InfiniBand network.
-  * The NIC supports RDMA. See [#networking-ethernet](../planning-and-installation/prerequisites-and-compatibility.md#networking-ethernet "mention").
-  * OFED 4.6-1.0.1.1 or higher.
-    * For GPUDirect Storage: install with `--upstream-libs` and `--dpdk`.
+* **Cluster requirements**
+  * **RDMA networking:** All servers in the cluster must support RDMA networking.
+* **Client requirements**
+  * **GPUDirect Storage:** The InfiniBand (IB) interfaces added to the NVIDIA GPUDirect configuration must support RDMA.
+  * **RDMA:** All InfiniBand Host Channel Adapters (HCAs) used by WEKA must support RDMA networking.
+* **Encrypted filesystems**
+  * RDMA and GPUDirect Storage are not utilized for encrypted filesystems. In these cases, the system reverts to standard I/O operations without RDMA or GPUDirect Storage.
+* **HCA requirements for RDMA networking**\
+  An HCA is considered to support RDMA networking if the following conditions are met:
+  * **For GPUDirect Storage:** The network must be InfiniBand.
+  * **NIC compatibility:** The Network Interface Card (NIC) must support RDMA. Ensure the appropriate OFED version is installed. For more information, see [#networking-infiniband](../planning-and-installation/prerequisites-and-compatibility.md#networking-infiniband "mention").
 
-{% hint style="info" %}
-GPUDirect Storage bypasses the kernel and does not use the page cache. Standard RDMA clients still use the page cache.
-{% endhint %}
+#### Installation notes
 
-{% hint style="warning" %}
-RDMA/GPUDirect Storage technology is unsupported when working with a mixed IB and Ethernet networking cluster.
-{% endhint %}
+* **GPUDirect Storage:** Install the OFED with the `--upstream-libs` and `--dpdk` options.
+* **Kernel bypass:** GPUDirect Storage bypasses the kernel and does not use the page cache. However, standard RDMA clients still use the page cache.
 
-Running `weka cluster processes` indicates if the RDMA is used.
+#### Unsupported configuration
+
+* **Mixed networking clusters:** RDMA and GPUDirect Storage are not supported in clusters using a mix of InfiniBand and Ethernet networking.
+
+#### Verification
+
+* To verify if RDMA is used, run the `weka cluster processes` command.
 
 Example:
 
-```
+```bash
 # weka cluster processes
 PROCESS ID  HOSTNAME  CONTAINER   IPS         STATUS  ROLES       NETWORK      CPU  MEMORY   UPTIME
 0           weka146   default     10.0.1.146  UP      MANAGEMENT  UDP                        16d 20:07:42h
@@ -184,5 +191,5 @@ PROCESS ID  HOSTNAME  CONTAINER   IPS         STATUS  ROLES       NETWORK      C
 ```
 
 {% hint style="info" %}
-GPUDirect Storage is auto-enabled and detected by the system. Contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to enable or disable RDMA networking on the cluster or a specific client.
+GPUDirect Storage is automatically enabled and detected by the system. To enable or disable RDMA networking for the cluster or a specific client, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}

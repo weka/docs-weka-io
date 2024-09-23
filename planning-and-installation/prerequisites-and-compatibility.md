@@ -21,10 +21,11 @@ In certain instances, WEKA collaborates with Strategic Server Partners to conduc
 <table><thead><tr><th width="338">CPU family/architecture</th><th width="210">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>2013 Intel® Core™ processor family and later</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome), 3rd (Milan-X), and 4th (Genoa) Generations</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span> <br>Single-socket and dual-socket</td></tr></tbody></table>
 
 {% hint style="info" %}
-Ensure the BIOS settings meet the following requirements:
+The following requirements must be met:
 
-* AES must be enabled.
-* Secure Boot must be disabled.
+* AES[^1] is enabled.
+* [Secure Boot](#user-content-fn-2)[^2] is disabled.
+* AVX2[^3] is enabled.
 {% endhint %}
 
 ## Memory
@@ -41,10 +42,10 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% tabs %}
 {% tab title="Backends" %}
 * **RHEL:**
-  * 9.2, 9.1, 9.0
-  * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 9.4, 9.3, 9.2, 9.1, 9.0
+  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux:**
-  * 9.2, 9.1, 9.0
+  * 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
@@ -61,10 +62,10 @@ WEKA will support upcoming releases of the operating systems in the lists within
 
 {% tab title="Clients" %}
 * **RHEL:**
-  * 9.2, 9.1, 9.0
-  * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 9.4, 9.3, 9.2, 9.1, 9.0
+  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux:**
-  * 9.3, 9.2, 9.1, 9.0
+  * 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
@@ -83,6 +84,11 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 12 SP5
 * **Oracle Linux:**
   * 9
+* **Debian:**
+  * 12
+* **AlmaLinux OS:**
+  * 9.4
+  * 8.10
 {% endtab %}
 
 {% tab title="Kernel" %}
@@ -155,15 +161,32 @@ As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to thei
 
 Adhere to the following considerations when choosing the adapters:
 
-* [**LACP**](#user-content-fn-1)[^1]**:**  LACP is supported when connecting ports on a single Mellanox NIC but is not compatible when using Virtual Functions (VFs).
+* [**LACP**](#user-content-fn-4)[^4]**:**  LACP is supported when connecting ports on a single Mellanox NIC but is not compatible when using Virtual Functions (VFs).
 * **Intel E810:**
   * Only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, consult with the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
   * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0 are required.
-* [**MTU**](#user-content-fn-2)[^2]**:** It is recommended to set the MTU to at least 4k on the NICs of WEKA cluster servers and the connected switches.
-* [**Jumbo Frames**](#user-content-fn-3)[^3]**:** If any network connection, irrespective of whether it’s InfiniBand or Ethernet, on a given backend possess the capability to transmit frames exceeding 4 KB in size, it is mandatory for all network connections used directly by WEKA on that same backend to have the ability to transmit frames of at least 4 KB.
-* [**IOMMU**](#user-content-fn-4)[^4] **support:** WEKA automatically detects and enable IOMMU for the server and PCI devices. Manual enablement is not required.
-* **Mixed networks:** This term denotes a configuration in which a WEKA cluster is interfaced with both InfiniBand and Ethernet networks. In the event of dual connections, the system gives precedence to the InfiniBand links for managing WEKA traffic, resorting to the Ethernet links only when complications occur with the InfiniBand network. It’s important to note that in a mixed network cluster, the activation of RDMA (Remote Direct Memory Access) is not possible.
-* **IP Addressing for dataplane NICs:** Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
+* [**MTU**](#user-content-fn-5)[^5]\
+  It is recommended to set the MTU to at least 4k on the NICs of WEKA cluster servers and the connected switches.
+* [**Jumbo Frames**](#user-content-fn-6)[^6]\
+  If any network connection, irrespective of whether it’s InfiniBand or Ethernet, on a given backend possess the capability to transmit frames exceeding 4 KB in size, it is mandatory for all network connections used directly by WEKA on that same backend to have the ability to transmit frames of at least 4 KB.
+* [**IOMMU**](#user-content-fn-7)[^7] **support**\
+  WEKA automatically detects and enable IOMMU for the server and PCI devices. Manual enablement is not required.
+*   **Mixed networks**\
+    A mixed network configuration refers to a setup where a WEKA cluster connects to both InfiniBand and Ethernet networks. In such configurations, WEKA prioritizes InfiniBand for traffic management, switching to Ethernet only if issues arise with the InfiniBand network.
+
+    RDMA (Remote Direct Memory Access) is not supported in mixed network clusters.\
+
+
+    **Supported mixed connectivity MTU settings**
+
+    * Ethernet (9000) + InfiniBand (4K)
+
+    **Non-supported mixed connectivity MTU settings**
+
+    * Ethernet (1500) + InfiniBand (4K)
+    * Ethernet (9000) + InfiniBand (2K)
+* **IP addressing for dataplane NICs**\
+  Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
 
 ### Supported network adapters <a href="#networking-ethernet" id="networking-ethernet"></a>
 
@@ -173,7 +196,7 @@ For more information about the supported features, see [networking-in-wekaio.md]
 
 #### Supported network adapters for backends and clients
 
-<table><thead><tr><th>Adapter</th><th width="126">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td><ul><li>SRIOV VF</li></ul></td></tr><tr><td><p>Broadcom BCM957508-P2100G</p><ul><li>Dual-port (2x100Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-5">Single-port (1x200Gb/s</a>)</li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SRIOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>Intel E810 2CQDA2</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><ul><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>HA</li><li>Routed network  (ETH only)</li><li> IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>RDMA (IB only)</li><li> HA</li><li>PKEY (IB only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><ul><li>Mixed networks</li><li>LACP</li><li> HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>rx interrupts</li><li>RDMA (IB only)</li><li>HA</li><li>PKEY (IB only)</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4 LX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><ul><li>HA</li><li>Routed network</li></ul></td></tr></tbody></table>
+<table><thead><tr><th>Adapter</th><th width="126">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td><ul><li>SRIOV VF</li></ul></td></tr><tr><td><p>Broadcom BCM957508-P2100G</p><ul><li>Dual-port (2x100Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-8">Single-port (1x200Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SRIOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td><p>Broadcom BCM957608-P2200G</p><ul><li>Dual-port (2x200Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-9">Single-port (1x400Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SRIOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>Intel E810 2CQDA2</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><ul><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>HA</li><li>Routed network  (ETH only)</li><li> IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>RDMA (IB only)</li><li> HA</li><li>PKEY (IB only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><ul><li>Mixed networks</li><li>LACP</li><li> HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>rx interrupts</li><li>RDMA (IB only)</li><li>HA</li><li>PKEY (IB only)</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4 LX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><ul><li>HA</li><li>Routed network</li></ul></td></tr></tbody></table>
 
 #### Supported network adapters for clients-only
 
@@ -226,7 +249,7 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
 * **Ethernet speeds:**
   * 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **NICs bonding:**
-  * Can bond dual ports on the same NIC (modes 1 and 4). Only supported on NVIDIA Mellanox NICs.
+  * Supports bonding dual ports on the same NVIDIA Mellanox NIC using mode 4 (LACP) to enhance redundancy and performance.
 * **IEEE 802.1Q VLAN encapsulation:**
   * Tagged VLANs are not supported.
 * **VXLAN:**
@@ -246,7 +269,7 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
   * Use a single IP address for all purposes.
 
 {% hint style="info" %}
-When assigning a network device to the WEKA system, no other application can create VFs on that device.
+When assigning a network device to the WEKA system, no other application can create VFs on that device.Ethernet configurations
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -391,12 +414,20 @@ For additional information and how-to articles, search the WEKA Knowledge Base i
   * The KMS must support encryption-as-a-service (KMIP encrypt/decrypt APIs)
   * KMIP certification has been conducted with Equinix SmartKey (powered by [Fortanix KMS](https://fortanix.com/products/sdkms/))
 
-[^1]: LACP stands for "Link Aggregation Control Protocol." It is a networking protocol that enables the bundling of multiple network connections in parallel to increase bandwidth and provide redundancy.
+[^1]: **AES (Advanced Encryption Standard)** in BIOS settings refers to hardware acceleration for AES encryption. Enabled by default, it speeds up encryption tasks using AES-NI. Disabling it may affect performance in encryption-heavy applications.
 
-[^2]: MTU (Maximum Transmission Unit) represents the maximum size of a data packet that can be transmitted over a network.
+[^2]: **Secure Boot** is a BIOS/UEFI feature that ensures only trusted software is loaded during startup. If Secure Boot is disabled, the system allows any software to run.
 
-[^3]: Jumbo Frames refer to network frames that exceed the standard Maximum Transmission Unit (MTU) size, allowing for larger data packets to be transmitted over a network.
+[^3]: **AVX2 (Advanced Vector Extensions 2)** is a CPU instruction set that enhances performance on floating-point and integer operations. It is enabled by default on supported hardware, but can be disabled in virtual machines, depending on the hypervisor configuration. Ensure your VM settings allow AVX2.
 
-[^4]: The IOMMU (Input/Output Memory Management Unit) is a hardware component that manages and controls data transfers between devices (like graphics cards) and a computer's main memory, enhancing system security and performance.
+[^4]: LACP stands for "Link Aggregation Control Protocol." It is a networking protocol that enables the bundling of multiple network connections in parallel to increase bandwidth and provide redundancy.
 
-[^5]: Follow the vendor's guide to configure the single-port speed to 200Gb/s.
+[^5]: MTU (Maximum Transmission Unit) represents the maximum size of a data packet that can be transmitted over a network.
+
+[^6]: Jumbo Frames refer to network frames that exceed the standard Maximum Transmission Unit (MTU) size, allowing for larger data packets to be transmitted over a network.
+
+[^7]: The IOMMU (Input/Output Memory Management Unit) is a hardware component that manages and controls data transfers between devices (like graphics cards) and a computer's main memory, enhancing system security and performance.
+
+[^8]: Follow the vendor's guide to configure the single-port speed to 200Gb/s.
+
+[^9]: Follow the vendor's guide to configure the single-port speed to 200Gb/s.

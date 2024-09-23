@@ -286,7 +286,7 @@ On a large cluster with about 2000 clients and above, the rebuild between each M
 1. Deactivate and remove the clients that were down or degraded.
 2. Wait for the sync to finish.
 3. If the issue persists, look at the WEKA cluster events and search for `NoConnectivityToLivingNode` events where the event is a `peer`.
-4. Translate the node ID to a HostID and blacklist the host.
+4. Translate the node ID to a HostID and add the host to the denylist.
 
 ### Drives are not activated correctly during phase-out
 

@@ -14,14 +14,14 @@ This Local WEKA Home v2.x runs on Minikube (a lightweight Kubernetes implementat
 
 If you have deployed the WMS, follow the procedure:. Otherwise, perform the following workflow:
 
-1. [Verify prerequisites](deploy-local-weka-home-v2.x.md#id-1.-verify-prerequisites)
-2. [Prepare the physical server (or VM)](deploy-local-weka-home-v2.x.md#id-2.-prepare-the-physical-server-or-vm)
-3. [Download the Local WEKA Home and Minikube packages](deploy-local-weka-home-v2.x.md#id-3.-download-the-local-weka-home-and-minikube-packages)
-4. [Install the Minikube](deploy-local-weka-home-v2.x.md#id-4.-install-the-minikube)
-5. [Install and configure the Local WEKA Home](deploy-local-weka-home-v2.x.md#id-5.-install-and-configure-the-local-weka-home)
-6. [Access the Local WEKA Home portal and Grafana](deploy-local-weka-home-v2.x.md#id-6.-access-the-local-weka-home-portal-and-grafana)
-7. [Enable the Local WEKA cluster to send data to the Cloud WEKA Home](deploy-local-weka-home-v2.x.md#id-7.-enable-the-local-weka-cluster-to-send-data-to-the-cloud-weka-home)
-8. [Test the deployment](deploy-local-weka-home-v2.x.md#id-8.-test-the-deployment)
+1. [Verify prerequisites](deploy-local-weka-home-v2.x.md#id-1.-verify-prerequisites).
+2. [Prepare the physical server (or VM)](deploy-local-weka-home-v2.x.md#id-2.-prepare-the-physical-server-or-vm).
+3. [Download the Local WEKA Home and Minikube packages](deploy-local-weka-home-v2.x.md#id-3.-download-the-local-weka-home-and-minikube-packages).
+4. [Install the Minikube](deploy-local-weka-home-v2.x.md#id-4.-install-the-minikube).
+5. [Install and configure the Local WEKA Home](deploy-local-weka-home-v2.x.md#id-5.-install-and-configure-the-local-weka-home).
+6. [Access the Local WEKA Home portal and Grafana](deploy-local-weka-home-v2.x.md#id-6.-access-the-local-weka-home-portal-and-grafana).
+7. [Enable the Local WEKA cluster to send data to the Cloud WEKA Home](deploy-local-weka-home-v2.x.md#id-7.-enable-the-local-weka-cluster-to-send-data-to-the-cloud-weka-home).
+8. [Test the deployment](deploy-local-weka-home-v2.x.md#id-8.-test-the-deployment).
 
 ### 1. Verify prerequisites
 

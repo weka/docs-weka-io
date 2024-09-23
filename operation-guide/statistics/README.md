@@ -55,3 +55,5 @@ The WEKA cluster does not hold historical statistics data. For historical statis
 [statistics.md](statistics.md "mention")
 
 [statistics-1.md](statistics-1.md "mention")
+
+[list-of-statistics.md](list-of-statistics.md "mention")

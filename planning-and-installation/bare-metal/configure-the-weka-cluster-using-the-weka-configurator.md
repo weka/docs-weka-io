@@ -1,12 +1,12 @@
 ---
 description: >-
   Detailed workflow for WEKA cluster installation in a multi-container backend
-  architecture using the Weka Configurator.
+  architecture using the WEKA Configurator.
 ---
 
 # Configure the WEKA cluster using the WEKA Configurator
 
-The Weka Configurator tool facilitates cluster configuration. It performs the following:
+The WEKA Configurator tool facilitates cluster configuration. It performs the following:
 
 * Scans your environment to detect the network, verifies various attributes such as hostnames, and discovers components such as gateway routers.
 * Selects the servers that can be included in the cluster and verifies that all servers run the same WEKA version.
@@ -29,13 +29,13 @@ Adhere to the following concepts:
 
 ## Prerequisites
 
-* **System preparation is validated:** Ensure the system preparation is validated using the `wekachecker`. See [Validate the system preparation](setting-up-the-hosts/#id-10.-validate-the-system-preparation).&#x20;
+* **System preparation is validated:** Ensure the system preparation is validated using the `wekachecker`. See [#id-10.-validate-the-system-preparation](setting-up-the-hosts/#id-10.-validate-the-system-preparation "mention").
 * **The WEKA software is installed on all cluster servers**: If not installed using the WSA, follow the instructions in the **Install** tab of [get.weka.io](https://get.weka.io/ui/dashboard). Once completed, the WEKA software is installed on all the allocated servers and runs in STEM mode.
 
 ## Workflow
 
-1. [Configure a WEKA cluster with the WEKA Configurator](configure-the-weka-cluster-using-the-weka-configurator.md#id-1.-configure-a-weka-cluster-with-the-weka-configurator)
-2. [Apply the configuration](configure-the-weka-cluster-using-the-weka-configurator.md#id-2.-apply-the-configuration) (`config.sh`)
+1. Configure a WEKA cluster with the WEKA Configurator.
+2. Apply the configuration (`config.sh`).
 
 ### 1. Configure a WEKA cluster with the WEKA Configurator
 

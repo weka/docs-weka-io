@@ -77,3 +77,7 @@ If events occur during the period of the displayed charts, a purple box indicate
 2. From the popup box, select **Show All**.
 
 ![Example: Display events from a chart](../../.gitbook/assets/wmng\_statistics\_display\_events.gif)
+
+**Related topic**
+
+[list-of-statistics.md](list-of-statistics.md "mention")
