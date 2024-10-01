@@ -27,6 +27,15 @@ In addition to legacy SMB features, SMB-W introduces the following capabilities:
   * For Windows clients, configure the SMB client as multichannel.
   * When configuring a CIFS client to work with RDMA, perform the mounting on the host IP (not the floating IP).
 
+## **SMB usage considerations**
+
+When working with SMB clusters, it's important to understand the following points to ensure smooth management and configuration:
+
+* The default SMB cluster configuration is SMB-W. Contact the Customer Success Team if you need to create a legacy SMB cluster.
+* When managing an SMB-W cluster through the GUI, any limitations in the CLI for SMB-W also apply.
+* You can manage, but not configure or delete, legacy SMB clusters through the GUI. For configuration and deletion, refer to [smb-management-using-the-cli.md](smb-management-using-the-cli.md "mention").
+* Use ASCII format when configuring name fields, such as domain and shares.
+
 ## SMB user mapping in the WEKA system
 
 Authentication in the WEKA SMB system is supported by a single Active Directory with multiple trusted domains. To enable SMB access, the Active Directory must resolve POSIX users (uid) and groups (gid) mapping.

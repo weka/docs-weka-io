@@ -19,16 +19,6 @@ Using the GUI, you can:
 * [Edit an SMB share](smb-management-using-the-gui.md#edit-an-smb-share)
 * [Remove an SMB share](smb-management-using-the-gui.md#remove-an-smb-share)
 
-**Considerations:**
-
-* The default SMB cluster configuration is SMB-W. Contact the Customer Success Team to create a legacy SMB cluster.
-* When managing an SMB-W cluster using the GUI, the limitations related to SMB-W in the CLI commands also apply.
-* You can manage the legacy SMB cluster using the GUI but not configure or delete it. See [Manage SMB using the CLI](smb-management-using-the-cli.md).
-
-{% hint style="info" %}
-Use ASCII format when configuring name fields, such as domain and shares.
-{% endhint %}
-
 ## **Configure the SMB cluster** <a href="#configure-the-smb-cluster" id="configure-the-smb-cluster"></a>
 
 An SMB cluster comprises at least three WEKA servers running the SMB-W stack.
