@@ -376,7 +376,7 @@ If there is a change in the TLS certificates, SMTP server in your environment, o
 
 **Procedure**
 
-1. Open the `/opt/wekahome/config/config.json` file and modify the settings. See [Install and configure Local WEKA Home](local-weka-home-deployment.md#5.-install-and-configure-local-weka-home).
+1. Open the `/opt/wekahome/config/config.json` file and modify the settings. See [#id-4.-install-and-configure-local-weka-home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home "mention").
 2. Run `homecli local upgrade`
 3. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods' statuses, run `watch kubectl get pods`.)
 4. Verify the Local WEKA Home is updated successfully. Run the following command line:\

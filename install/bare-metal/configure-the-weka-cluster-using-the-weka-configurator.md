@@ -6,7 +6,7 @@ description: >-
 
 # Configure the WEKA cluster using the WEKA Configurator
 
-The Weka Configurator tool facilitates cluster configuration. It performs the following:
+The WEKA Configurator tool facilitates cluster configuration. It performs the following:
 
 * Scans your environment to detect the network, verifies various attributes such as hostnames, and discovers components such as gateway routers.
 * Selects the servers that can be included in the cluster and verifies that all servers run the same WEKA version.
@@ -34,8 +34,8 @@ Adhere to the following concepts:
 
 ## Workflow
 
-1. [Configure a WEKA cluster with the WEKA Configurator](configure-the-weka-cluster-using-the-weka-configurator.md#1.-configure-a-weka-cluster-with-the-weka-configurator)
-2. [Apply the configuration (`config.sh`)](configure-the-weka-cluster-using-the-weka-configurator.md#2.-apply-the-configuration)
+1. Configure a WEKA cluster with the WEKA Configurator.
+2. Apply the configuration (`config.sh`).
 
 ### 1. Configure a WEKA cluster with the WEKA Configurator
 

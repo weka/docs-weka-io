@@ -206,11 +206,11 @@ Example: For a bucket named `mybucket`, the following are the pre-defined policy
 
 Use the following command line to set a pre-defined bucket policy:
 
-`weka s3 bucket policy set <bucket-policy> <bucket-name>`
+`weka s3 bucket policy set <bucket-name> <bucket-policy>`
 
 **Parameters**
 
-<table data-header-hidden><thead><tr><th width="249">Name</th><th>Value</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Value</strong></td></tr><tr><td><code>bucket-policy</code>*</td><td>Name of a pre-defined bucket policy for anonymous access.<br>Possible values: <code>none</code>, <code>download</code>, <code>upload</code>, <code>public</code>.</td></tr><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr></tbody></table>
+<table><thead><tr><th width="249">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>Name of an existing S3 bucket.</td></tr><tr><td><code>bucket-policy</code>*</td><td>Name of a pre-defined bucket policy for anonymous access.<br>Possible values: <code>none</code>, <code>download</code>, <code>upload</code>, <code>public</code>.</td></tr></tbody></table>
 
 ### Set a custom bucket policy
 

@@ -197,17 +197,26 @@ The following is an example of configuring `ignore-carrier` on systems that use 
 {% endhint %}
 
 1. Open the  `/etc/NetworkManager/NetworkManager.conf` file to edit it.
-2. Under the `[main]` section, add the line `ignore-carrier=<device-name1>,<device-name2>`. \
-   Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
+2. Under the `[main]` section, add one of the following lines depending on the operating system:
+   * For some versions of Rocky Linux, RHEL, and CentOS: `ignore-carrier=*`
+   * For some other versions:  `ignore-carrier=<device-name1>,<device-name2>`. \
+     Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
 
-Example:
+Example for RockyLinux and RHEL 8.7:
 
 {% code title="/etc/NetworkManager/NetworkManager.conf" %}
 ```
 [main]
-ignore-carrier=ib0,ib1
+ignore-carrier=*
 ```
 {% endcode %}
+
+Example for some other versions:
+
+```
+[main]
+ignore-carrier=ib0,ib1
+```
 
 3. Restart the NetworkManager service for the changes to take effect.
 

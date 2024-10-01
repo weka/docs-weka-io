@@ -20,14 +20,39 @@ The addressing style used to construct the request is determined by the S3 clien
 
 The following standard S3 APIs are supported:
 
-* Bucket (HEAD/GET/PUT/DEL)\
-  Including ListObjects and ListObjectsV2
-* Bucket Lifecycle (GET/PUT/DEL)
-* Bucket Policy (GET/PUT/DEL)
-* Bucket Tagging (GET/PUT/DEL)
-* Object (GET/PUT/DEL)
-* Object Tagging (GET/PUT/DEL)
-* Object Multipart (POST Create/Complete, GET/DEL/PUT, GET Parts)
+* **Bucket APIs:**&#x20;
+  * [HEAD Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_HeadBucket.html)
+  * [GET Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetBucket.html)
+  * [PUT Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_CreateBucket.html)
+  * [DELETE Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteBucket.html)
+  * [List Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_ListObjects.html)
+  * [List Objects V2](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_ListObjectsV2.html)
+* **Bucket Lifecycle APIs:**
+  * [GET Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetBucketLifecycleConfiguration.html)
+  * [PUT Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_PutBucketLifecycleConfiguration.html)
+  * [DELETE Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteBucketLifecycle.html)
+* **Bucket Policy APIs:**
+  * [GET Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetBucketPolicy.html)
+  * [PUT Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_PutBucketPolicy.html)
+  * [DELETE Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteBucketPolicy.html)
+* **Bucket Tagging APIs:**
+  * [GET Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetBucketTagging.html)
+  * [PUT Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_PutBucketTagging.html)
+  * [DELETE Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteBucketTagging.html)
+* **Object APIs:**
+  * [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetObject.html)
+  * [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_PutObject.html)
+  * [DELETE Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteObject.html)
+* **Object Tagging APIs:**
+  * [GET Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetObjectTagging.html)
+  * [PUT Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_PutObjectTagging.html)
+  * [DELETE Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteObjectTagging.html)
+* **Object Multipart APIs:**
+  * [POST Create Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_CreateMultipartUpload.html)
+  * [POST Complete Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_CompleteMultipartUpload.html)
+  * [GET Object Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_ListParts.html)
+  * [PUT Part](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_UploadPart.html)
+  * [DELETE Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_AbortMultipartUpload.html)
 
 {% hint style="warning" %}
 For a multipart object upload, the bucket’s free capacity must be at least twice the size of the object until the upload is complete.
