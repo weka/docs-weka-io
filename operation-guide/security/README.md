@@ -31,8 +31,6 @@ The security controls include the following:
 
 [ca-certificate-management](ca-certificate-management/ "mention")
 
-[account-lockout-threshold-policy-management](account-lockout-threshold-policy-management/ "mention")
-
 [organizations](../organizations/ "mention")\
 &#x20;   (security topics related to mounting and separation of organizations)
 

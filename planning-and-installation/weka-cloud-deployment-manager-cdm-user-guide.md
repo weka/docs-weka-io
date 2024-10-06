@@ -1,51 +1,51 @@
-# WEKA Cloud Deployment Manager (CDM) User Guide
+# WEKA Cloud Deployment Manager Web (CDM Web) User Guide
 
 ## Overview
 
-The WEKA Cloud Deployment Manager (CDM) simplifies the deployment of WEKA clusters in public cloud environments (including AWS, Azure, and GCP). Leveraging WEKA’s validated Terraform deployment modules, the CDM provides a user-friendly interface to guide users through the initial configuration process.
+The WEKA Cloud Deployment Manager Web (CDM Web) simplifies the deployment of WEKA clusters in the AWS, Azure, and GCP public cloud environments. Leveraging WEKA’s validated Terraform deployment modules, the CDM provides a user-friendly interface to guide users through the initial configuration process.
 
-Key features of the CDM:
+Key features of the CDM Web:
 
 * **Streamlined deployment:** The CDM streamlines the deployment of WEKA clusters, making it easier for users to set up their infrastructure.
 * **Web-hosted solution:** The CDM is fully web-hosted, eliminating the need for downloads or installations. Users can quickly begin configuring their WEKA clusters.
 * **Terraform configuration file:** The CDM process results in the main Terraform configuration file `(main.tf)`, which can be directly applied when deploying WEKA.
 
-## Access the CDM
+## Access the CDM Web
 
-To access the CDM, follow these steps:
+To access the CDM Web, follow these steps:
 
 1. Navigate to [cloud.weka.io](http://cloud.weka.io).
 2. On the welcome page, select the cloud environment (AWS, Azure, or GCP) for your WEKA cluster deployment. (This guide uses Azure as an example, but the deployment workflow is similar across all supported cloud platforms.)
 
-<figure><img src="../.gitbook/assets/image (251).png" alt=""><figcaption><p>CDM welcome</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (251).png" alt=""><figcaption><p>CDM Web welcome</p></figcaption></figure>
 
 3. After selecting a public cloud, you are redirected to a login screen. Log in using your [get.weka.io](http://get.weka.io/) credentials. Internal WEKA users can use their Google SSO login to access CDM. Adhere to the following guidelines:
    * Ensure you have a get.weka.io token provisioned and available for a successful deployment.
    * If you are an internal WEKA user deploying a WEKA cluster for a customer, log in using the customer’s get.weka.io credentials. The signed-in user’s get.weka.io token automatically populates into the CDM configuration workflow.
 
-<figure><img src="../.gitbook/assets/image (252).png" alt=""><figcaption><p>CDM Login</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (252).png" alt=""><figcaption><p>CDM Web Login</p></figcaption></figure>
 
 Once logged in, you are presented with the main configuration dashboard of the Cloud Deployment Manager.
 
-<figure><img src="../.gitbook/assets/image (253).png" alt=""><figcaption><p>CDM main configuration</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (253).png" alt=""><figcaption><p>CDM Web main dashboard</p></figcaption></figure>
 
-## CDM Interface
+## CDM Web dashboard overview
 
-The CDM features a simple and clean configuration interface, offering the power and flexibility of our Terraform deployment modules. Below, each part of the interface is detailed for better understanding and usage.
+The CDM Web features a simple and clean configuration interface, offering the power and flexibility of our Terraform deployment modules. Below, each part of the interface is detailed for better understanding and usage.
 
-The CDM interface consists of three main components:
+The CDM dashboard consists of three main components:
 
-* The workflow navigation stack (outlined in green)
+* The workflow navigation panel (outlined in green)
 * The configuration input panel (outlined in orange)
 * The dynamic content sidebar (outlined in teal)
 
-<figure><img src="../.gitbook/assets/image (255).png" alt=""><figcaption><p>CDM interface main areas</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (255).png" alt=""><figcaption><p>CDM Web dashboard main sections</p></figcaption></figure>
 
-### Workflow navigation stack
+### Workflow navigation panel
 
-The workflow navigation stack provides convenient access to various WEKA cluster configuration variables. You can switch between different aspects of cluster configuration and adjust settings according to their deployment needs.
+The workflow navigation panel provides convenient access to various WEKA cluster configuration variables. You can switch between different aspects of cluster configuration and adjust settings according to their deployment needs.
 
-The tabs within the stack correspond to primary configurable aspects for a WEKA cluster:
+The tabs within the panel correspond to primary configurable aspects for a WEKA cluster:
 
 * Basic WEKA cluster configuration
 * Cloud networking configuration
@@ -58,9 +58,9 @@ The tabs within the stack correspond to primary configurable aspects for a WEKA 
 
 To ensure completeness from a basic requirements perspective, specific fields within the configuration input panel are marked as mandatory based on the selected configuration options.
 
-The workflow navigation stack visually indicates the completeness of the configuration. A green check or a red **x** appears next to each tab, helping users identify areas that require additional attention. For example, if both Basic Configuration and Security Configuration have fields that need attention, the stack reflects this.
+The workflow navigation panel visually indicates the completeness of the configuration. A green check or a red **x** appears next to each tab, helping users identify areas that require additional attention. For example, if both Basic Configuration and Security Configuration have fields that need attention, the panel reflects this.
 
-You can navigate between different workflow pages and view associated configuration input panels by clicking the **Next** button or selecting the desired tab from the workflow navigation stack.
+You can navigate between different workflow pages and view associated configuration input panels by clicking the **Next** button or selecting the desired tab from the workflow navigation panel.
 
 <figure><img src="../.gitbook/assets/image (257).png" alt=""><figcaption><p>Basic configuration page</p></figcaption></figure>
 
@@ -88,13 +88,13 @@ Certain fields within the configuration input panel require manual user input. O
 {% tab title="WEKA Version" %}
 The WEKA software release dropdown menu is designed to auto-populate with the most recent Long-Term Support (LTS) version by default. You can select the previous software release by opening the dropdown menu and choosing from the list. The top two entries in the dropdown are always LTS releases, while the bottom two are innovation releases.
 
-If users need to enter a WEKA software release that is not listed in the dropdown, they can click directly in the WEKA Version input field and type the desired release. This feature is particularly useful when deploying a WEKA cluster with a customer-specific software release.
+To enter a WEKA software release that is not listed in the dropdown, click directly in the WEKA Version input field and type the desired release. This feature is particularly useful when deploying a WEKA cluster with a customer-specific software release.
 
 <figure><img src="../.gitbook/assets/image (261).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
-### Dynamic content sidebar overview
+### Dynamic content sidebar
 
 The dynamic content sidebar enhances user experience by displaying contextually relevant information during various activities within CDM. Its primary functions include:
 
@@ -123,7 +123,7 @@ The dynamic content sidebar enhances user experience by displaying contextually 
 <figure><img src="../.gitbook/assets/image (263).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="success" %}
-All tabs in the workflow navigation stack display green status bubbles with check marks, indicating the configuration is complete and ready for a minimally viable WEKA deployment based on the user's selected parameters. Once all status bubbles are green, the dynamic content sidebar will only show the **TF File Preview** tab, **File Format** toggle, and **Download** button.
+All tabs in the workflow navigation panel display green status bubbles with check marks, indicating the configuration is complete and ready for a minimally viable WEKA deployment based on the user's selected parameters. Once all status bubbles are green, the dynamic content sidebar will only show the **TF File Preview** tab, **File Format** toggle, and **Download** button.
 {% endhint %}
 
 ### Finalize the WEKA deployment

@@ -19,7 +19,7 @@ To further help describe this section, let us use an example where the [Tiering 
 Consequently, the drive Retention Period policy determines the resolution of the WEKA system release decisions. If it is set to 1 month and the SSD capacity is sufficient for 10 months of writing, then the first month will be kept on the SSDs.
 
 {% hint style="info" %}
-If the WEKA system cannot comply with the defined Retention Period, for example, the SSD is full, and data is not released to the object store, a Break-In Policy occurs. In such a situation, an event is received in the WEKA system event log, advising that the system has not complied with the policy and that data has been automatically released from the SSD to the object store before the completion of the defined Retention Period. No data will be lost (since the data has been transferred to the object store), but slower performance may be experienced.
+If the WEKA system cannot comply with the defined Retention Period, for example, the SSD is full, and data is not released to the object store, a Break In Policy event occurs. In such a situation, an event is received in the WEKA system event log, advising that the system has not complied with the policy and that data has been automatically released from the SSD to the object store before the completion of the defined Retention Period. No data will be lost (since the data has been transferred to the object store), but slower performance may be experienced.
 {% endhint %}
 
 {% hint style="info" %}

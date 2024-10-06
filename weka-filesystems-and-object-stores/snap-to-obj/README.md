@@ -15,7 +15,7 @@ The Snap-To-Object feature is helpful for a range of use cases, as follows:
 * **On-premises and cloud use cases**
   * [External backup of data](./#external-backup-of-data)
   * [Archiving data](./#archiving-data)
-  * [Asynchronous data replication](./#asynchronous-data-replication)
+  * [Data replication](./#data-replication)
 * **Cloud-only use cases**
   * [Cloud pause/restart](./#cloud-pause-restart)
   * [Data protection against cloud availability zone failures](./#data-protection-against-cloud-availability-zone-failures)
@@ -49,7 +49,7 @@ The periodic creation and uploading of snapshots to an object store generate an 
 
 When any compliance or application requirement occurs, it is possible to make the relevant snapshot available on a WEKA cluster and view the content of past versions of data.
 
-### Asynchronous data replication
+### Data replication
 
 Combining a local cluster with a replicated object store in another data center allows for the following use cases:
 
@@ -90,7 +90,7 @@ Optionally, you may also promote data back to on-premises by doing the following
 1. Take a snapshot of the WEKA filesystem in the cloud on completion of cloud processing.
 2. Upload the cloud snapshot to the on-premises WEKA cluster.
 
-## &#x20;Snapshots management considerations &#x20;
+## Snapshots management considerations
 
 When uploading a snapshot to an object store or downloading snapshots to filesystems, adhere to the following considerations:
 
@@ -118,11 +118,11 @@ You can pause or abort a snapshot upload using the commands described in the bac
 
 ## Synchronous snapshots
 
-Synchronous snapshots are point-in-time backups for filesystems. When taken, they consist only of the changes since the last snapshot. When you download and restore a synchronous snapshot to a live filesystem, the system reconstructs the filesystem on the fly with the changes since the previous snapshot.
+Synchronous snapshots are point-in-time backups for filesystems. When taken, they consist only of the changes since the last snapshot (incremental snapshots). When you download and restore a snapshot to a live filesystem, the system reconstructs the filesystem on the fly with the changes since the previous snapshot.
 
 This capability for filesystem snapshots makes them more cost-effective because you do not have to update the entire filesystem with each snapshot. You only update the changes since the last snapshot.
 
-It is recommended that the synchronous snapshots be downloaded in chronological order.
+It is recommended that the synchronous snapshots be applied in chronological order.
 
 ## Delete snapshots residing on an object store
 

@@ -462,7 +462,30 @@ To manage your WEKA cluster, you need to access the backend servers. This is typ
     * Replace `/path/to/private-key.pem` with the actual path to your SSH private key file.
     * Replace `<server-ip-address>` with the IP address of the WEKA backend server.
 
-## **WEKA GUI Login and Review**
+## Access and review the **WEKA GUI**
+
+To manage your WEKA cluster through the GUI) you'll need access to a jump box (a system with a GUI) that is deployed in the same VPC and subnet as your WEKA cluster. This allows you to securely access the WEKA GUI through a web browser.
+
+The following procedure provides an example of using a Windows 10 instance.
+
+**Procedure**
+
+1. **Set up the jump box**:
+   * Deploy a Windows 10 instance in the same VPC, subnet, and security group as your WEKA cluster.
+   * Assign a public IP address to the Windows 10 instance.
+   * Modify the network security group rules to allow Remote Desktop Protocol (RDP) access to the Windows 10 system.
+2. **Access the WEKA GUI**:
+   * Open a web browser on the Windows 10 jump box.
+   *   Navigate to the WEKA GUI by entering the following URL:
+
+       ```arduino
+       https://<IP>:14000
+       ```
+
+       * Replace `<IP>` with the IP address of your WEKA cluster. For example: `https://10.5.0.11`.
+   * The WEKA GUI login screen appears.
+3. **Log In to the WEKA GUI**:
+   * Log in using the username `admin` and the password obtained from AWS Secrets Manager (as described in the earlier steps).
 
 To manage your WEKA cluster through the GUI) you'll need access to a jump box (a system with a GUI) that is deployed in the same VPC and subnet as your WEKA cluster. This allows you to securely access the WEKA GUI through a web browser.
 
@@ -493,16 +516,23 @@ The following procedure provides an example of using a Windows 10 instance.
 
 * **Cluster home screen**: View the cluster home screen for an overview of the system status.
 
+4. **Review the WEKA Cluster**:
+
+* **Cluster home screen**: View the cluster home screen for an overview of the system status.
+
 <figure><img src="../../../.gitbook/assets/image (23).png" alt=""><figcaption></figcaption></figure>
 
+* **Cluster Backends**: Review the status and details of the backend servers within the cluster (the server names may differ from those shown in examples).
 * **Cluster Backends**: Review the status and details of the backend servers within the cluster (the server names may differ from those shown in examples).
 
 <figure><img src="../../../.gitbook/assets/image (24).png" alt=""><figcaption></figcaption></figure>
 
 * **Clients**: If there are any clients attached to the cluster, review their details and status.
+* **Clients**: If there are any clients attached to the cluster, review their details and status.
 
 <figure><img src="../../../.gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
 
+* **Filesystems**: Review the filesystems associated with the cluster for their status and configuration.
 * **Filesystems**: Review the filesystems associated with the cluster for their status and configuration.
 
 <figure><img src="../../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
@@ -528,13 +558,55 @@ Scaling your WEKA cluster, whether scale-out (expanding) or scale-in (contractin
 1. Navigate to the AutoScaling Group page in the AWS Management Console.
 2. Select **Edit** to adjust the desired capacity.
 
+## Scaling WEKA clusters with automated workflows
+
+Scaling your WEKA cluster, whether scale-out (expanding) or scale-in (contracting), is streamlined using the AWS AutoScaling Group Policy set up by Terraform. This process leverages Terraform-created Lambda functions to manage automation tasks, ensuring that additional computing resources (new backend instances) are efficiently integrated or removed from the cluster as needed.
+
+**Advantages of auto-scaling**
+
+* **Integration with ALB:**
+  * **Traffic distribution:** Auto Scaling Groups work seamlessly with an Application Load Balancer (ALB) to distribute traffic efficiently among instances.
+  * **Health checks:** The ALB directs traffic only to healthy instances, based on results from the associated Auto Scaling Group's health checks.
+* **Auto-healing:**
+  * **Instance replacement:** If an instance fails a health check, auto-scaling automatically replaces it by launching a new instance.
+  * **Health verification:** The new instance is only added to the ALB’s target group after passing health checks, ensuring continuous availability and responsiveness.
+* **Graceful scaling:**
+  * **Controlled adjustments:** Auto-scaling configurations can be customized to execute scaling actions gradually.
+  * **Demand adaptation:** This approach prevents sudden traffic spikes and maintains stability while adapting to changing demand.
+
+**Procedure**
+
+1. Navigate to the AutoScaling Group page in the AWS Management Console.
+2. Select **Edit** to adjust the desired capacity.
+
 <figure><img src="../../../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
 
 3. Set the capacity to your preferred cluster size (for example, increase from 6 to 10 servers).
+4. Set the capacity to your preferred cluster size (for example, increase from 6 to 10 servers).
 
 <figure><img src="../../../.gitbook/assets/image (29).png" alt="" width="375"><figcaption></figcaption></figure>
 
 4. Select **Update** to save the updated settings to initiate scaling operations.
+
+## Test WEKA cluster self-healing functionality
+
+Testing the self-healing functionality of a WEKA cluster involves decommissioning an existing instance and observing whether the Auto Scaling Group (ASG) automatically replaces it with a new instance. This process verifies the cluster’s ability to maintain capacity and performance despite instance failures or terminations.
+
+**Procedure**
+
+1. **Identify the old instance:** Determine the EC2 instance you want to decommission. Selection criteria may include age, outdated configurations, or specific maintenance requirements.
+2. **Verify auto-scaling configuration:** Ensure your Auto Scaling Group is configured with a minimum of 7 instances (or more) and that the desired capacity is set to maintain the appropriate number of instances in the cluster.
+3. **Terminate the old instance:** Use the AWS Management Console, AWS CLI, or SDKs to manually terminate the selected EC2 instance. This action prompts the ASG to initiate the replacement process.
+4. **Monitor auto-scaling activities:** Track the ASG’s activities through the AWS Console or AWS CloudWatch. Confirm that the ASG recognizes the terminated instance and begins launching a new instance.
+5. **Verify the new instance:** After it is launched, ensure it passes all health checks and integrates successfully into the cluster, maintaining overall cluster capacity.
+6. **Check load balancer:**
+   * If a load balancer is part of your setup, verify that it detects and registers the new instance to ensure proper load distribution across the cluster.
+7. **Review auto-scaling logs:** Examine CloudWatch logs or auto-scaling events for any issues or errors related to terminating the old instance and introducing the new one.
+8. **Document and monitor:** Record the decommissioning process and continuously monitor the cluster to confirm that it operates smoothly with the new instance.
+
+
+
+3. Select **Update** to save the updated settings to initiate scaling operations.
 
 ## Test WEKA cluster self-healing functionality
 
@@ -558,7 +630,7 @@ Testing the self-healing functionality of a WEKA cluster involves decommissionin
 
 See [#required-ports](../../prerequisites-and-compatibility.md#required-ports "mention")
 
-### Appendix B: **Terraform’s r**equired permissions examples <a href="#appendix-b-terraforms-required-permissions" id="appendix-b-terraforms-required-permissions"></a>
+### Appendix B: **Terraform’s r**equired permissions
 
 The minimum IAM Policies needed are based on the assumption that the network, including VPC, subnets, VPC Endpoints, and Security Groups, is created by the end user. If IAM roles or policies are pre-established, some permissions may be omitted.
 
@@ -1000,6 +1072,8 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
 2. **Region and Account ID**: Replace **`region`** and **`account-id`** with your AWS region and account ID.
 3. **Key ID**: Replace **`key-id`** with the ID of the KMS key used in your setup.
 
+**Important notes:**
+
 {% hint style="info" %}
 **Important notes:**
 
@@ -1009,6 +1083,8 @@ In each policy, replace the placeholders, such as `account-number`, `prefix`, an
 {% endhint %}
 
 ### Appendix C: IAM Policies required by WEKA
+
+The following policies are essential for all components to function on AWS. Terraform automatically creates these policies as part of the automation process. However, you also have the option to create and define them manually within your Terraform modules.
 
 The following policies are essential for all components to function on AWS. Terraform automatically creates these policies as part of the automation process. However, you also have the option to create and define them manually within your Terraform modules.
 
@@ -1214,7 +1290,7 @@ The following policies are essential for all components to function on AWS. Terr
 
 <details>
 
-<summary><strong>Client instances IAM policy</strong></summary>
+<summary><strong>Client Instances IAM policy</strong></summary>
 
 ```
 {

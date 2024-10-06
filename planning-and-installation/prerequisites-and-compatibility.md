@@ -161,7 +161,7 @@ As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to thei
 
 Adhere to the following considerations when choosing the adapters:
 
-* [**LACP**](#user-content-fn-4)[^4]**:**  LACP is supported when connecting ports on a single Mellanox NIC but is not compatible when using Virtual Functions (VFs).
+* [**LACP**](#user-content-fn-4)[^4]**:**  LACP is supported when bonding ports from dual-port Mellanox NICs into a single Mellanox device but is not compatible when using Virtual Functions (VFs).
 * **Intel E810:**
   * Only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, consult with the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
   * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0 are required.
@@ -378,32 +378,45 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\
 
 ## Virtual Machines
 
-Virtual Machines (VMs) can be used as **clients** only. Ensure the following prerequisites are met for the relevant client type:
+This section outlines the use of virtual machines (VMs) with WEKA, covering backends, clients, VMware platforms, and cloud environments. While VMs can be used in certain configurations, there are specific limitations and best practices to follow.
 
-{% tabs %}
-{% tab title="UDP clients" %}
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the WEKA process by reserving the CPU in the virtual platform and dedicating a core to the WEKA client.
-* The root filesystem must handle a 3K IOPS load by the WEKA client.
+### Backends
+
+Virtual machines may be used as backends for internal training purposes only and are not recommended for production environments.
+
+WEKA provides best-effort support for backends deployed on virtual machines, but full support is not guaranteed. Additionally, WEKA does not guarantee support for components or configurations outside of our documented and supported cloud environments, and performance may vary.
+
+### Clients
+
+Virtual Machines (VMs) can be used as clients. Ensure the following prerequisites are met for each client type:
+
+* **UDP clients**:
+  * Reserve CPU resources and dedicate a core to the client to prevent CPU starvation of the WEKA process.
+  * Ensure the root filesystem supports a 3K IOPS load for the WEKA client.
+* **DPDK clients**:
+  * Meet all the requirements for UDP clients.
+  * Additionally, verify that the virtual platform (hypervisor, NICs, CPUs, and their respective versions) fully supports DPDK and the required virtual network drivers.
+
+### **VMware platform**
+
+When using **vmxnet3** devices, do not enable the SR-IOV feature, because it disables the vMotion functionality. Each frontend process requires a dedicated **vmxnet3** device and IP address, with an additional device and IP for each client VM to support the management process.
+
+Core dedication is required when using **vmxnet3** devices.
+
+### VMs and instances on cloud environments
+
+Refer to the cloud deployment sections for the most up-to-date list of supported virtual machines and instances in various cloud environments.
+
+**Related topics**
+
+AWS: [supported-ec2-instance-types.md](aws/weka-installation-on-aws-using-terraform/supported-ec2-instance-types.md "mention")
+
+Azure: [supported-virtual-machine-types.md](weka-installation-on-azure/supported-virtual-machine-types.md "mention")
+
+GCP: [supported-machine-types-and-storage.md](weka-installation-on-gcp/supported-machine-types-and-storage.md "mention")
 
 \
-
-{% endtab %}
-
-{% tab title="DPDK clients" %}
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the WEKA process by reserving the CPU in the virtual platform and dedicating a core to the WEKA client.
-* The root filesystem must handle a 3K IOPS load by the WEKA client.
-* The virtual platform interoperability, such as a hypervisor, NICs, CPUs, and different versions, must support DPDK and virtual network driver.
-{% endtab %}
-{% endtabs %}
-
-<details>
-
-<summary>Special note for a VMware platform</summary>
-
-* If using `vmxnet3` devices, do not enable the SR-IOV feature (which prevents the `vMotion` feature). Each frontend process requires a `vmxnet3` device and IP, with an additional device and IP per client VM (for the management process).
-* Using `vmxnet3` is only supported with core dedication.
-
-</details>
+**Related information**
 
 For additional information and how-to articles, search the WEKA Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 

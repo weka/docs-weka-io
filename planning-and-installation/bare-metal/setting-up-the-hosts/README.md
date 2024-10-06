@@ -10,16 +10,17 @@ Once the hardware and software prerequisites are met, prepare the backend server
 
 This preparation consists of the following steps:
 
-1. [Install NIC drivers](./#install-nic-drivers)
-2. [Enable SR-IOV](./#enable-sr-iov) (when required)
-3. [Configure the networking](./#configure-the-networking)
-4. [Verify the network configuration](./#verify-the-network-configuration)
-5. [Configure the HA networking](./#configure-the-ha-networking)
-6. [Configure the clock synchronization](./#configure-sync)
-7. [Disable the NUMA balancing](./#disable-the-numa-balancing)
-8. [Enable kdump and set kernel panic reboot timer](./#id-8.-enable-kdump-and-set-kernel-panic-reboot-timer)
-9. [Disable swap (if any)](./#id-9.-disable-swap-if-any)
-10. [Validate the system preparation](./#id-10.-validate-the-system-preparation)
+1. Install NIC drivers
+2. Enable SR-IOV (when required)
+3. Set up ConnectX cards
+4. Configure the networking
+5. Configure the HA networking
+6. Verify the network configuration
+7. Configure the clock synchronization
+8. Disable the NUMA balancing
+9. Enable kdump and set kernel panic reboot timer
+10. Disable swap (if any)
+11. Validate the system preparation
 
 {% hint style="info" %}
 Some of the examples contain version-specific information. The software is updated frequently, so the package versions available to you may differ from those presented here.
@@ -46,7 +47,35 @@ Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following
 
 [sr-iov-enablement.md](sr-iov-enablement.md "mention")
 
-## 3. Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
+## 3. Set up ConnectX cards
+
+1.  **Configure firmware parameters:** All ConnectX ports used directly with WEKA  servers and clients require specific firmware settings for optimal performance. Set the following non-default parameters:
+
+    * `ADVANCED_PCI_SETTINGS=1`
+    * `PCI_WR_ORDERING=1`
+
+    Use the following command to apply these settings to all MLX devices:
+
+    {% code overflow="wrap" %}
+    ```
+    mst start && for MLXDEV in /dev/mst/* ; do mlxconfig -d ${MLXDEV} -y set ADVANCED_PCI_SETTINGS=1 PCI_WR_ORDERING=1; done
+    ```
+    {% endcode %}
+2. **Set link type:** Certain ConnectX VPI cards require modification of the link type, to specifically set the port to use InfiniBand or Ethernet networking.\
+   \
+   If applicable, set the port mode with the following command, where 1=InfiniBand and 2=Ethernet:\
+   `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P<1,2>=<1,2>`\
+   \
+   For example, the following command sets port 2 to InfiniBand:\
+   `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`\
+
+3. **Reboot the system:** A reboot is required after applying the firmware settings to ensure the changes take effect.
+
+**Related information**
+
+For additional details, refer to the NVIDIA ConnectX documentation.
+
+## 4. Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
 
 ### Ethernet configuration
 
@@ -198,39 +227,28 @@ The following is an example of configuring `ignore-carrier` on systems that use 
 {% endhint %}
 
 1. Open the  `/etc/NetworkManager/NetworkManager.conf` file to edit it.
-2. Under the `[main]` section, add the line `ignore-carrier=<device-name1>,<device-name2>`. \
-   Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
+2. Under the `[main]` section, add one of the following lines depending on the operating system:
+   * For some versions of Rocky Linux, RHEL, and CentOS: `ignore-carrier=*`
+   * For some other versions:  `ignore-carrier=<device-name1>,<device-name2>`. \
+     Replace `<device-name1>,<device-name2>` with the actual device names you want to apply this setting to.
 
-Example:
+Example for RockyLinux and RHEL 8.7:
 
 {% code title="/etc/NetworkManager/NetworkManager.conf" %}
 ```
 [main]
-ignore-carrier=ib0,ib1
+ignore-carrier=*
 ```
 {% endcode %}
 
+Example for some other versions:
+
+```
+[main]
+ignore-carrier=ib0,ib1
+```
+
 3. Restart the NetworkManager service for the changes to take effect.
-
-## 4. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
-
-Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the servers:
-
-```
-# ping -M do -s 8972 -c 3 192.168.1.2
-PING 192.168.1.2 (192.168.1.2) 8972(9000) bytes of data.
-8980 bytes from 192.168.1.2: icmp_seq=1 ttl=64 time=0.063 ms
-8980 bytes from 192.168.1.2: icmp_seq=2 ttl=64 time=0.087 ms
-8980 bytes from 192.168.1.2: icmp_seq=3 ttl=64 time=0.075 ms
-
---- 192.168.2.0 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 1999ms
-rtt min/avg/max/mdev = 0.063/0.075/0.087/0.009 ms
-```
-
-The`-M do` flag prohibits packet fragmentation, which allows verification of correct MTU configuration between the two endpoints.
-
-`-s 8972` is the maximum ICMP packet size that can be transferred with MTU 9000, due to the overhead of ICMP and IP protocols.
 
 ## 5. Configure dual-network links with policy-based routing <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
 
@@ -411,13 +429,37 @@ The route's first IP address in the above commands signifies the network's subne
 
 [#high-availability-ha](../../../weka-system-overview/networking-in-wekaio.md#high-availability-ha "mention")
 
-## 6. Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
+## 6. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
+
+Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the servers:
+
+```
+# ping -M do -s 8972 -c 3 192.168.1.2
+PING 192.168.1.2 (192.168.1.2) 8972(9000) bytes of data.
+8980 bytes from 192.168.1.2: icmp_seq=1 ttl=64 time=0.063 ms
+8980 bytes from 192.168.1.2: icmp_seq=2 ttl=64 time=0.087 ms
+8980 bytes from 192.168.1.2: icmp_seq=3 ttl=64 time=0.075 ms
+
+--- 192.168.2.0 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 1999ms
+rtt min/avg/max/mdev = 0.063/0.075/0.087/0.009 ms
+```
+
+The`-M do` flag prohibits packet fragmentation, which allows verification of correct MTU configuration between the two endpoints.
+
+`-s 8972` is the maximum ICMP packet size that can be transferred with MTU 9000, due to the overhead of ICMP and IP protocols.
+
+{% hint style="info" %}
+All WEKA server interfaces within the same subnet must have connectivity and be able to ping each other.
+{% endhint %}
+
+## 7. Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
 
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the WEKA system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
 Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the WEKA software.
 
-## **7. Disable the NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
+## **8. Disable the NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
 
 The WEKA system autonomously manages NUMA balancing, making optimal decisions. Therefore, turning off the Linux kernel’s NUMA balancing feature is a **mandatory requirement** to prevent extra latencies in operations. It’s crucial that the disabled NUMA balancing remains consistent and isn’t altered by a server reboot.
 
@@ -426,7 +468,7 @@ To persistently disable NUMA balancing, follow these steps:
 1. Open the file located at: `/etc/sysctl.conf`
 2. Append the following line: `kernel.numa_balancing=disable`
 
-## 8. **Enable kdump and set kernel panic reboot timer**
+## **9. Enable kdump and set kernel panic reboot timer**
 
 Enabling kdump and configuring the kernel panic reboot timer ensures system crashes leave log files for analysis and automate system reboot after a kernel panic to minimize downtime.
 
@@ -460,11 +502,11 @@ Setting `kernel.panic` to reboot after 300 seconds automates recovery from kerne
 
 </details>
 
-## 9. Disable swap (if any)
+## 10. Disable swap (if any)
 
 WEKA highly recommends that any servers used as backends have no swap configured. This is distribution-dependent but is often a case of commenting out any `swap` entries in `/etc/fstab` and rebooting.
 
-## 10. Validate the system preparation
+## 11. Validate the system preparation
 
 The `wekachecker` is a tool that validates the readiness of the servers in the cluster before installing the WEKA software.
 

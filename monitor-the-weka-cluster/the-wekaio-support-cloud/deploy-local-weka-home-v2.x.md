@@ -30,14 +30,14 @@ Verify that the following requirements are met:
 * A dedicated physical server (or VM) for the installation.
 * The user account for installing the LWH must have root privileges.
 * Server minimum CPU and RAM requirements:
-  * Minimum 8 CPUs and 20 GiB RAM for up to 1000 total processes.
+  * Minimum 8 CPU cores and 20 GiB RAM for up to 1000 total processes.
     * Total processes are equal to the cores used on the cluster **backends** for Management/Frontend/Compute/Drives roles and the cores used on **clients** for Management/Frontend roles.
   *   Sizing for additional processes:
 
       * The total number of processes determines the number of CPU and RAM required.
-      * For every additional 1000 processes or less, add 1 CPU and 8 GiB RAM.
+      * For every additional 1000 processes or less, add 1 CPU core and 8 GiB RAM.
 
-      Example: 20 backends with 10 processes each = 200 processes; 500 clients with 2 processes each = 1000 processes. The total is 1200 processes. This deployment requires 9 CPUs and 28 GiB.
+      Example: 20 backends with 10 processes each = 200 processes; 500 clients with 2 processes each = 1000 processes. The total is 1200 processes. This deployment requires 9 CPU cores and 28 GiB.
 * SSD-backed storage requirements:
   * Minimum 500 GiB for locally collected data in `/opt/local-path-provisioner`
   * Minimum 10 GiB for `/tmp/host-path-provisioner`.

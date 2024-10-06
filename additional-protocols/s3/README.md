@@ -118,7 +118,7 @@ weka s3 policy attach readwrite
 {% tab title="4. Obtain the certificate for the client" %}
 You can implement either the self-signed certificate or a custom certificate. The cluster TLS certificate is enabled using an auto-generated self-signed certificate, providing access to the GUI, CLI, and API through HTTPS. If a custom TLS certificate is preferred, you can set in place of the auto-generated self-signed certificate.
 
-To apply your chosen certificate, download it to your client and place it in the designated folder for seamless integration.
+To apply your chosen certificate, download it to your client and place it in the designated folder for seamless integration. For example, in RHEL OS, the designated folder is `/etc/pki/tls/certs`.
 
 <figure><img src="../../.gitbook/assets/wmng_download_cert.gif" alt=""><figcaption></figcaption></figure>
 

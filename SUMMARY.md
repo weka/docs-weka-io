@@ -5,7 +5,7 @@
 
 ## WEKA System Overview
 
-* [Introduction](weka-system-overview/about/README.md)
+* [WEKA Data Platform introduction](weka-system-overview/about/README.md)
   * [WEKA system functionality features](weka-system-overview/about/weka-system-functionality-features.md)
   * [Converged WEKA system deployment](weka-system-overview/about/converged-weka-system-deployment.md)
   * [Optimize redundancy in WEKA deployments](weka-system-overview/about/optimize-redundancy-in-weka-deployments.md)
@@ -33,7 +33,8 @@
   * [Manually configure the WEKA cluster using the resource generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator.md)
   * [Perform post-configuration procedures](planning-and-installation/bare-metal/perform-post-configuration-procedures.md)
   * [Add clients to an on-premises WEKA cluster](planning-and-installation/bare-metal/adding-clients-bare-metal.md)
-* [WEKA Cloud Deployment Manager (CDM) User Guide](planning-and-installation/weka-cloud-deployment-manager-cdm-user-guide.md)
+* [WEKA Cloud Deployment Manager Web (CDM Web) User Guide](planning-and-installation/weka-cloud-deployment-manager-cdm-user-guide.md)
+* [WEKA Cloud Deployment Manager Local (CDM Local) User Guide](planning-and-installation/weka-cdm-local-user-manager.md)
 * [WEKA installation on AWS](planning-and-installation/aws/README.md)
   * [WEKA installation on AWS using Terraform](planning-and-installation/aws/weka-installation-on-aws-using-terraform/README.md)
     * [Terraform-AWS-WEKA module description](planning-and-installation/aws/weka-installation-on-aws-using-terraform/aws-weka-terraform-deployment-module-description.md)
@@ -235,6 +236,14 @@
   * [Avoid conflicting CPU allocations](best-practice-guides/weka-and-slurm-integration/avoid-conflicting-cpu-allocations.md)
 * [Storage expansion best practice](best-practice-guides/storage-expansion-best-practice.md)
 
+## WEKApod
+
+* [WEKApod Data Platform Appliance overview](wekapod/overview.md)
+* [WEKApod servers overview](wekapod/server-overview.md)
+* [Rack installation](wekapod/rack-installation.md)
+* [WEKApod initial system setup and configuration](wekapod/setup.md)
+* [WEKApod support process](wekapod/support.md)
+
 ## Appendices
 
 * [WEKA CSI Plugin](appendices/weka-csi-plugin/README.md)
@@ -249,3 +258,4 @@
 * [Convert cluster to multi-container backend](appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
 * [Create a client image](appendices/create-a-client-image.md)
 * [Update WMS and WSA](appendices/update-wms-and-wsa.md)
+* [BIOS tool](appendices/bios-tool.md)

@@ -8,6 +8,12 @@ description: >-
 
 If you are not using the WMS or WSA automated tools for installing a WEKA cluster, manually install a supported OS and the WEKA software on the bare metal server.
 
+{% hint style="success" %}
+For optimal server performance and configuration, it is recommended to use the `bios_tool` to set BIOS settings on your servers.
+
+Refer to the Appendix: [bios-tool.md](../../appendices/bios-tool.md "mention") for detailed instructions on using `bios_tool` to ensure that your servers meet the recommended BIOS configurations. Using this tool can significantly streamline the setup process and save time.
+{% endhint %}
+
 **Procedure**
 
 1. Follow the relevant Linux documentation to install the operating system, including the required packages.

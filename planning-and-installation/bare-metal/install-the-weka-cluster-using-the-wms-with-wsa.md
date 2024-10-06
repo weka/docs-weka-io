@@ -20,9 +20,9 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
   * A system with two identical boot drives has the OS installed on mirrored partitions (LVM).
   * A system with one drive has a simple partition.
 * **Minimum boot drive capacity:**
-  * If not configuring LWH: SSD 125 GiB.
+  * If not configuring LWH: SSD 150 GiB.
   * If configuring LWH: See the SSD-backed storage requirements section in [#1.-verify-prerequisites](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
-* **Boot type:** UEFI boot.&#x20;
+* **Boot type:** UEFI boot.
 * **Cores and RAM:**
   * If not configuring LWH: minimum 4 cores and 16 GiB.
   * If configuring LWH, see the Server minimum CPU and RAM requirements section in [#1.-verify-prerequisites](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
@@ -185,7 +185,7 @@ IPMI_IP,Username,Password,OS_Mgmt_IP,Hostname,OS_Netmask,OS_Gateway,MTU,DNS,Host
 
 In the following steps, if you uploaded a CSV file, the data is pre-populated. You can review the data and if no editing is necessary, select **Next**.
 
-5. In **Step 5 - IPMI information**, do the following:
+5.
    * In the **IPMI First IP**, enter the IPMI IP address of the first server. It requires a consecutive set of IP addresses for the servers (typical).
    * In the **IPMI user** and **IPMI password**, modify the login credentials for the IPMI, iLO, or iDRAC according to your choice.
    * Click **Fill IPMI IPs** to calculate the IP addresses for the number of servers specified in Step 4.

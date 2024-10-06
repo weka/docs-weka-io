@@ -78,7 +78,7 @@ When recreating a filesystem from a snapshot, adhere to the following guidelines
 
 ## Sync a filesystem from a snapshot <a href="#sync-a-filesystem-from-a-snapshot" id="sync-a-filesystem-from-a-snapshot"></a>
 
-You can synchronize a filesystem from a snapshot using the Synchronous Snap feature. Synchronous Snap only downloads changes since the last snapshot from the object store bucket.
+You can synchronize a filesystem from a snapshot using the Synchronous Snap feature (incremental snapshot). Synchronous Snap only downloads changes since the last snapshot from the object store bucket.
 
 {% hint style="info" %}
 Only snapshots uploaded from version 4.0 or higher can be downloaded using Synchronous Snap.
@@ -99,7 +99,7 @@ Copy the locator of the snapshot you want to sync with the filesystem.
 4. Select **Start**.\
    The filesystem starts syncing with the snapshot.
 
-<figure><img src="../../.gitbook/assets/wmng_run_synchronous_snap.png" alt=""><figcaption><p>Run synchronous snap to an existing filesystem</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_run_synchronous_snap.png" alt="" width="375"><figcaption><p>Run synchronous snap to an existing filesystem</p></figcaption></figure>
 
 5. Once the sync is completed, restore the snapshot to update the production filesystem.
 

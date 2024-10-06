@@ -45,7 +45,41 @@ Setting up a dedicated physical server (or VM) for the installation is recommend
 
     For instructions on the Docker installation, see the [Docker website](https://www.docker.com/get-started).
 
-### WEKAmon authentication
+## Workflow: Install the WEKAmon package
+
+1. [Obtain the WEKAmon package](external-monitoring.md#1.-obtain-the-weka-mon-package): Obtain the WEKAmon package from the GitHub repository by downloading or cloning.
+2. [Set the WEKAmon authentication](external-monitoring.md#id-2.-set-the-wekamon-authentication): Prepare WEKAmon user and token and configure WEKAmon host with authentication token.
+3. [Run the install.sh script](external-monitoring.md#id-3.-run-the-install.sh-script): The script creates a few directories and sets their permissions.
+4. [Edit the export.yml file:](external-monitoring.md#id-4.-edit-the-export.yml-file) The `export.yml` file contains the WEKAmon and the exporter configuration. Customize the file according to your actual WEKA deployment.
+5. [Edit the quota-export.yml file](external-monitoring.md#id-5.-edit-the-quota-export.yml-file): The `quota-export.yml` file contains the configuration of the quota-export container. Customize the file according to your actual WEKA deployment.
+6. [Start the docker-compose containers](external-monitoring.md#id-6.-start-the-docker-compose-containers): Once done, you can connect to Grafana on port 3000 of the physical server running the docker containers.&#x20;
+
+### 1. Obtain the WEKAmon package
+
+The WEKAmon package resides on the GitHub repository. Obtain the WEKAmon package using one of the following methods:
+
+* [Download the WEKAmon source code](external-monitoring.md#download-the-wekamon-source-code)&#x20;
+* [Clone the repository](external-monitoring.md#clone-the-repository)
+
+#### Download the WEKAmon source code
+
+It is recommended installing weka-mon in the `/opt` partition of the host server. If you choose a different location, make a note of the location and adjust the instructions accordingly.
+
+1. Go to [https://github.com/weka/weka-mon/releases.](https://github.com/weka/weka-mon/releases)
+2. On the **latest** release section, select the **Source Code** link to download.
+3. Copy the downloaded source code to the host server and unpack it into `/opt`.
+
+#### Clone the repository
+
+1. Run the following commands to clone the WEKAmon package from GitHub:
+
+```
+cd /opt
+git clone https://github.com/weka/weka-mon
+cd /opt/weka-mon
+```
+
+### 2.  Set the WEKAmon authentication
 
 For the WEKAmon host to communicate with the WEKA cluster, a security token is necessary. However, the WEKAmon host is not required to have the WEKA client installed.
 
@@ -67,11 +101,11 @@ Perform the following steps on the **WEKAmon host**.
 
 *   **Create a directory for the authentication token:** Run the following command:
 
-    `mkdir /root/.weka`
-* **Move the previously-created authentication token into the new directory: :** Run the following command: `mv ~/wekamon-authtoken.json /root/.weka/auth-token.json`
+    `mkdir /opt/weka-mon/.weka`
+* **Move the previously-created authentication token into the new directory: :** Run the following command: `mv ~/wekamon-authtoken.json /opt/weka-mon/.weka/auth-token.json`
 * **Ensure appropriate ownership and permissions are set:** Run the following commands:\
-  `chown root:root /root/.weka/auth-token.json`\
-  `chmod 400 /root/.weka/auth-token.json`
+  `chown root:root /opt/weka-mon/.weka/auth-token.json`\
+  `chmod 400 /opt/weka-mon/.weka/auth-token.json`
 
 **Related topics**
 
@@ -79,37 +113,7 @@ Perform the following steps on the **WEKAmon host**.
 
 [obtain-authentication-tokens.md](../operation-guide/security/obtain-authentication-tokens.md "mention")
 
-## Workflow: Install the WEKAmon package
-
-1. [Obtain the WEKAmon package](external-monitoring.md#1.-obtain-the-weka-mon-package): Obtain the WEKAmon package from the GitHub repository by downloading or cloning.
-2. [Run the install.sh script](external-monitoring.md#2.-run-the-install.sh-script): The script creates a few directories and sets their permissions.
-3. [Edit the export.yml file](external-monitoring.md#3.-edit-the-export.yml-file): The `export.yml` file contains the WEKAmon and the exporter configuration. Customize the file according to your actual WEKA deployment.
-4. [Edit the quota-export.yml file](external-monitoring.md#4.-edit-the-quota-export.yml-file): The `quota-export.yml` file contains the configuration of the quota-export container. Customize the file according to your actual WEKA deployment.
-5. [Start the docker-compose containers](external-monitoring.md#4.-start-the-docker-compose-containers): Once done, you can connect to Grafana on port 3000 of the physical server running the docker containers.&#x20;
-
-### 1. Obtain the WEKAmon package
-
-The WEKAmon package resides on the GitHub repository. Obtain the WEKAmon package using one of the following methods:
-
-* [Download the WEKAmon source code](external-monitoring.md#download-the-wekamon-source-code)&#x20;
-* [Clone the repository](external-monitoring.md#clone-the-repository)
-
-#### Download the WEKAmon source code
-
-1. Go to [https://github.com/weka/weka-mon/releases.](https://github.com/weka/weka-mon/releases)
-2. On the **latest** release section, select the **Source Code** link to download.
-3. Copy the downloaded source code to the dedicated physical server (or VM) and unpack it.
-
-#### Clone the repository
-
-Run the following commands to clone the WEKAmon package from GitHub:
-
-```
-git clone https://github.com/weka/weka-mon
-cd weka-mon
-```
-
-### 2. Run the install.sh script
+### 3. Run the install.sh script
 
 The `install.sh` script creates a few directories and sets their permissions.
 
@@ -119,11 +123,11 @@ Run the following command:
 ./install.sh
 ```
 
-### 3. Edit the export.yml file
+### 4. Edit the export.yml file
 
 The WEKAmon and exporter configuration are defined in the `export.yml` file.
 
-1. Change the directory to `weka-mon` and open the `export.yml` file.
+1. Change directory to `/opt/weka-mon` and open the `export.yml` file.
 2. In the **cluster** section under the **hosts** list, replace the hostnames with the actual hostnames/IP addresses of the Weka containers (up to three would be sufficient). Ensure the hostnames are mapped to the IP addresses in /etc/hosts.
 
 ```
@@ -152,7 +156,7 @@ If the statistic you want to get is in a Category that is commented out, also un
 #   'FILEATOMICOPEN_OPS':  'ops'
 ```
 
-### 4. Edit the quota-export.yml file
+### 5. Edit the quota-export.yml file
 
 The WEKAmon deployment includes a dedicated container named **quota-export**. The container includes an Alert Manager that emails users when they reach their soft quota.
 
@@ -165,13 +169,17 @@ The configuration of the quota-export container is defined in the `quota-export.
 The configuration of the Alert Manager is defined in the `alertmanager.yml` file found in the `etc_alertmanager` directory. It contains details about the SMTP server, user email addresses, quotas, and alert rules. To set this file, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
-### 5. Start the docker-compose containers
+### 6. Start the docker-compose containers
 
 1. Run the following command:
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
+
+{% hint style="info" %}
+Some older docker versions require `docker-compose up -d` (note the dash between `docker` and `compose).`
+{% endhint %}
 
 2. Verify that the containers are running using the following command:
 
