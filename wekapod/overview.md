@@ -27,7 +27,7 @@ It also enables various hybrid cloud workflows, including bursting into the clou
 
 This guide provides detailed instructions for setting up and managing the WEKApod Data Platform Appliance. It covers the following sections:
 
-1. **WEKApod Data Platform Appliance Overview** (this page)\
+1. **WEKApod Data Platform Appliance overview** (this page)\
    An introduction to the WEKApod solution, highlighting its key features and benefits.
 2. [server-overview.md](server-overview.md "mention")\
    A breakdown of the core WEKApod server components, including descriptions of the front and back panels.
@@ -36,7 +36,7 @@ This guide provides detailed instructions for setting up and managing the WEKApo
 4. [setup.md](setup.md "mention")\
    An outline of the initial setup tasks and configuration, which will be carried out by the WEKA support team.
 5. [support.md](support.md "mention")\
-   A description of the WEKApod multi-tiered support system, designed to provide comprehensive customer assistance.
+   A description of the WEKApod multi-tiered support system, providing customer assistance.
 
 Each section guides you through key processes to ensure a smooth setup and operation of the WEKApod system. For detailed information, click on the relevant section link above.
 
