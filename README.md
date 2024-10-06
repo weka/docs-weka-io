@@ -42,13 +42,17 @@ This portal encompasses all documentation essential for comprehending and operat
 
 **Operation guide:** Navigate through various WEKA system operations, including events, statistics, user management, upgrades, expansion, and more.
 
-**Billing & licensing:** Gain insights into WEKA system licensing options and alternative billing approaches.
+**Licensing:** Gain insights into WEKA system licensing options. How to obtain a classic WEKA license and apply it to the WEKA cluster.
 
 **Monitor the WEKA cluster:** Deploy the WEKA Management Server (WMS) alongside tools like Local WEKA Home, WEKAmon, and SnapTool to effectively monitor your WEKA cluster.
 
 **WEKA support:** Find guidance on obtaining support for the WEKA system and effectively managing diagnostics.
 
 **Best practice guides:** Explore our carefully selected guides, starting with WEKA and Slurm integration, to discover expert-recommended strategies and insights for optimizing your WEKA system and achieving peak performance in various scenarios.
+
+**WEKApod:** Explore the WEKApod Data Platform Appliance Guide for step-by-step instructions on setting up and configuring the WEKApod™. This turnkey solution, designed for NVIDIA DGX SuperPOD, features pre-configured storage and software for quick deployment and faster value.
+
+**Appendices:** Explore the Appendices for various topics, including the WEKA CSI Plugin, which connects Kubernetes worker nodes to the WEKA data platform, and other tools and procedures that can enhance your work with WEKA.
 
 {% hint style="info" %}
 For maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/) or contact the [Customer Success Team](support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
