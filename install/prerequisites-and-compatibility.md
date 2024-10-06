@@ -167,7 +167,7 @@ The following kernel versions are supported:
 
 Adhere to the following considerations when choosing the adapters:
 
-* [**LACP**](#user-content-fn-1)[^1]**:**  LACP is supported when connecting ports on a single Mellanox NIC but is not compatible when using Virtual Functions (VFs).
+* [**LACP**](#user-content-fn-1)[^1]**:**  LACP is supported when bonding ports from dual-port Mellanox NICs into a single Mellanox device but is not compatible when using Virtual Functions (VFs).
 * **Intel E810:**
   * Only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, consult with the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
   * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0 are required.
