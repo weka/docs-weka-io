@@ -53,8 +53,9 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 2. [Prepare the cluster for upgrade](upgrading-weka-versions.md#2.-prepare-the-cluster-for-upgrade)
 3. [Prepare the backend servers for upgrade (optional)](upgrading-weka-versions.md#3.-optional.-prepare-the-backend-servers-for-upgrade)
 4. [Upgrade the backend servers](upgrading-weka-versions.md#4.-upgrade-the-backend-servers)
-5. [Upgrade the clients](upgrading-weka-versions.md#id-5.-upgrade-the-clients)
-6. [Check the status after the upgrade](upgrading-weka-versions.md#6.-check-the-status-after-the-upgrade)
+5. [Verify LLQ and WC are enabled in AWS](upgrading-weka-versions.md#id-5.-verify-llq-and-wc-are-enabled-in-aws)
+6. [Upgrade the clients](upgrading-weka-versions.md#id-6.-upgrade-the-clients)
+7. [Check the status after the upgrade](upgrading-weka-versions.md#id-7.-check-the-status-after-the-upgrade)
 
 {% hint style="warning" %}
 Adhere to the following considerations:
@@ -267,7 +268,29 @@ Example:
 * In a successful process, the upgrade stops the cluster IO service, switches all servers to the new release, and then turns the IO service back on. This process takes about 1 minute, depending on the cluster size.
 * If the container running the upgrade process uses a port other than the default (14000), include the option `--mgmt-port <existing-port>` to the command.
 
-### 5. Upgrade the clients
+### 5. Verify LLQ and WC are enabled in AWS
+
+Enabling the Low Latency Queue (LLQ) improves data processing efficiency in AWS by reducing I/O operation delays. LLQ is enabled by default after an upgrade, but if Write Combining (WC) is not activated in the `igb_uio` driver, the LLQ driver option does not function. After upgrading the backends, verify that WC is enabled.
+
+**Procedure**
+
+1. **Check for upgrade events:**
+   * Review the upgrade events on the backends.
+   *   If `NetDevDriverReloadFailed` appears, restart the WEKA service by running the following commands on each backend server:
+
+       ```
+       weka local stop
+       weka local start
+       ```
+2. **Verify WC activation:**
+   *   Check if WC is activated by running:
+
+       ```
+       cat /sys/module/igb_uio/parameters/wc_activate
+       ```
+   * If the output is `#1`, WC is activated, which enables the LLQ driver option.
+
+### 6. Upgrade the clients
 
 Once all backends are upgraded, the clients remain with the existing version and continue working with the upgraded backends. The client's version can only be one major version behind the version of the backends. Therefore, clients must be upgraded before the next cluster software version upgrade.\
 The minimum source version for clients upgrade is 4.1.2.
@@ -330,7 +353,7 @@ The following command line upgrade two clients in two batches (each batch has on
 {% endtab %}
 {% endtabs %}
 
-### 6. Check the status after the upgrade
+### 7. Check the status after the upgrade
 
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
