@@ -1,12 +1,12 @@
 ---
 description: >-
-  This page describes how to obtain a classic WEKA license (payment for a
-  predetermined period of time) and apply it to the WEKA cluster.
+  Learn how to obtain and apply a classic WEKA license, a time-based license
+  purchased for a predetermined period, to your WEKA cluster.
 ---
 
 # Classic license
 
-A classic license is a text element you create in **get.weka.io** for your specific WEKA cluster and then apply the license text to your WEKA cluster.
+A classic license is a text-based element generated in get.weka.io for a specific WEKA cluster, which you then apply to that cluster. Only users with the **Account Owner** role can manage licenses.
 
 ## Obtain a classic license from get.weka.io
 
@@ -56,7 +56,7 @@ If you already have a license, please enter it by running
 &#x20;   (as part of the Before you begin section above) and select **Create License**.
 
 {% hint style="info" %}
-If you plan a cluster expansion for the future, you can fill in capacities larger than those appearing in the Weka cluster license.
+If you plan a cluster expansion for the future, you can fill in capacities larger than those appearing in the WEKA cluster license.
 
 The licenses' capacities represent the limits to which it is possible to expand the cluster and do not have to match the actual usage.
 {% endhint %}
@@ -71,7 +71,7 @@ After creating the license, apply the license to the cluster.
 
 1. In the Licenses tab in get.weka.io, select the three dots to the right of the license details and then select **Show License Text**.
 
-![Show license text](../.gitbook/assets/getwekaio\_4\_show\_classic\_license\_text.png)
+![Show license text](../.gitbook/assets/license\_menu\_show.png)
 
 2\. In the License Text dialog that opens, select **copy to clipboard**.
 
@@ -95,10 +95,27 @@ When installing a new cluster, it is assigned with a new GUID. You can reuse an 
 
 1. In the Licenses tab in get.weka.io, select the three dots to the right of the license details and then select **Change Cluster GUID**.
 
-![Show license text](../.gitbook/assets/getwekaio\_4\_show\_classic\_license\_text.png)
+![Show license text](../.gitbook/assets/license\_menu\_change\_guid.png)
 
 2\. Set the new cluster GUID and select **Save Changes**.
 
 ![Change cluster GUID](../.gitbook/assets/getwekaio\_change\_cluster\_guid.png)
 
 3\. Apply the license with the updated GUID. See [Apply the license to the cluster](classic-licensing.md#apply-the-license-to-the-cluster).
+
+## Deactivate your license
+
+Deactivating a license allows you to reclaim capacity back to your linked entitlement, which is useful when rebuilding clusters or correcting licenses issued with incorrect capacity. By deactivating a license, you can redeploy the correct capacity without needing to contact support, streamlining your workflow.
+
+This feature is especially helpful in scenarios where licenses were issued by mistake or clusters are being rebuilt with different configurations.
+
+**Procedure:**
+
+1. **Locate the license:** Log in to [get.weka.io](https://get.weka.io) and navigate to the list of licenses. Find the license you want to deactivate.
+2. **Deactivate the license:** Select the three dots (more options) next to the license, and select **Deactivate License**.
+
+<figure><img src="../.gitbook/assets/license_menu_deactivate.png" alt="" width="563"><figcaption><p>License options menu</p></figcaption></figure>
+
+3. **Confirm deactivation:** In the Deactivate License dialog, review the details to ensure this is the correct license. When you're ready, select **Deactivate License** to proceed.
+
+<figure><img src="../.gitbook/assets/deactivate_license.png" alt="" width="460"><figcaption><p><strong>Deactivate License</strong></p></figcaption></figure>
