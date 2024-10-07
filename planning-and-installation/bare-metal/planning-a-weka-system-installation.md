@@ -50,7 +50,7 @@ For on-premises planning, it is possible to consult with the Customer Success Te
 
 The total per server memory requirements is the sum of the following requirements:
 
-<table><thead><tr><th width="342">Purpose</th><th>Per-server memory</th></tr></thead><tbody><tr><td>Fixed</td><td>2.8 GB</td></tr><tr><td>Frontend processes</td><td>2.2 GB x # of Frontend processes</td></tr><tr><td>Compute processes</td><td>3.9 GB x # of Compute processes</td></tr><tr><td>Drive processes</td><td>2 GB x # of Drive processes</td></tr><tr><td>SSD capacity management</td><td><em>ServerSSDSize/10,000</em><br><em>(ServerSSDSize = Total SSD raw capacity / # of Servers)</em></td></tr><tr><td>Operating System</td><td>The maximum between 8 GB and 2% from the total RAM</td></tr><tr><td>Additional protocols (NFS/SMB/S3)</td><td>16 GB</td></tr><tr><td>RDMA</td><td>2 GB</td></tr><tr><td>Metadata (pointers)</td><td>20 Bytes x # Metadata units per server<br>See <a href="../../weka-system-overview/filesystems.md#metadata-calculations">Metadata units calculation</a>.</td></tr><tr><td>Dedicated Data Services container</td><td>If you intend to add a <a data-footnote-ref href="#user-content-fn-1">Data Services container for background tasks</a>, it requires additional memory of 5.5 GB.</td></tr></tbody></table>
+<table><thead><tr><th width="314">Purpose</th><th>Per-server memory</th></tr></thead><tbody><tr><td>Fixed</td><td>2.8 GB</td></tr><tr><td>Frontend processes</td><td>2.2 GB x # of Frontend processes</td></tr><tr><td>Compute processes</td><td>3.9 GB x # of Compute processes</td></tr><tr><td>Drive processes</td><td>2 GB x # of Drive processes</td></tr><tr><td>SSD capacity management</td><td>ServerSSDSize/2,000 + number of cores x 3 GB <br>(ServerSSDSize = Total SSD raw capacity / # of Servers)</td></tr><tr><td>Operating System</td><td>The maximum between 8 GB and 2% from the total RAM</td></tr><tr><td>Additional protocols (NFS/SMB/S3)</td><td>16 GB</td></tr><tr><td>RDMA</td><td>2 GB</td></tr><tr><td>Metadata (pointers)</td><td>20 Bytes x # Metadata units per server<br>See <a href="../../weka-system-overview/filesystems.md#metadata-calculations">Metadata units calculation</a>.</td></tr><tr><td>Dedicated Data Services container</td><td>If you intend to add a <a data-footnote-ref href="#user-content-fn-1">Data Services container for background tasks</a>, it requires additional memory of 5.5 GB.</td></tr></tbody></table>
 
 {% hint style="warning" %}
 Contact the Customer Success Team to explore options for configurations requiring more than 384 GB of memory per server.
@@ -74,10 +74,10 @@ Calculations:
 * Frontend processes: 1 x 2.2 = 2.2 GB
 * Compute processes: 13 x 3.9 = 50.7 GB
 * Drive processes: 6 x 2 = 12 GB
-* SSD capacity management: 983 TB / 16 / 10K = \~6.3 GB
+* SSD capacity management: 983 TB / 16 / 2K + 18 x 3 GB = \~85.5 GB
 * Metadata: 20 Bytes x 47 million files x 2 units = \~1.9 GB
 
-Total memory requirement per server= 2.8 + 2.2 + 50.7 + 12 + 6.3 + 18 + 2 + 1.9 = \~96 GB
+Total memory requirement per server= 2.8 + 2.2 + 50.7 + 12 + 85.5 + 18 + 2 + 1.9 = \~175 GB
 
 #### Example 2: A system with small files
 
@@ -90,7 +90,7 @@ For an average file size of 64 KB, the number of files is potentially up to:
 
 Required memory for metadata: 20 Bytes x 980 million files x 1 unit = \~19.6 GB
 
-Total memory requirement per server = 2.8 + 2.2 + 50.7 + 12 + 6.3 + 16 + 2 + 19.6 = \~112 GB
+Total memory requirement per server = 2.8 + 2.2 + 50.7 + 12 + 85.5 + 16 + 2 + 19.6 = \~191 GB
 
 {% hint style="info" %}
 The memory requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to receive an estimate for your specific configuration.
