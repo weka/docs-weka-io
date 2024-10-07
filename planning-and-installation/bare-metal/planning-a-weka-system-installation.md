@@ -53,7 +53,7 @@ The total per server memory requirements is the sum of the following requirement
 <table><thead><tr><th width="342">Purpose</th><th>Per-server memory</th></tr></thead><tbody><tr><td>Fixed</td><td>2.8 GB</td></tr><tr><td>Frontend processes</td><td>2.2 GB x # of Frontend processes</td></tr><tr><td>Compute processes</td><td>3.9 GB x # of Compute processes</td></tr><tr><td>Drive processes</td><td>2 GB x # of Drive processes</td></tr><tr><td>SSD capacity management</td><td><em>ServerSSDSize/10,000</em><br><em>(ServerSSDSize = Total SSD raw capacity / # of Servers)</em></td></tr><tr><td>Operating System</td><td>The maximum between 8 GB and 2% from the total RAM</td></tr><tr><td>Additional protocols (NFS/SMB/S3)</td><td>16 GB</td></tr><tr><td>RDMA</td><td>2 GB</td></tr><tr><td>Metadata (pointers)</td><td>20 Bytes x # Metadata units per server<br>See <a href="../../weka-system-overview/filesystems.md#metadata-calculations">Metadata units calculation</a>.</td></tr><tr><td>Dedicated Data Services container</td><td>If you intend to add a <a data-footnote-ref href="#user-content-fn-1">Data Services container for background tasks</a>, it requires additional memory of 5.5 GB.</td></tr></tbody></table>
 
 {% hint style="warning" %}
-The maximum memory per **server** is 384 GB.
+Contact the Customer Success Team to explore options for configurations requiring more than 384 GB of memory per server.
 {% endhint %}
 
 #### Example 1: A system with large files
