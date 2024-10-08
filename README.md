@@ -2,7 +2,7 @@
 
 Welcome to the WEKA Documentation Portal, your guide to the latest WEKA version. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies. Choose your WEKA version from the top menu for version-specific documentation.
 
-<figure><img src=".gitbook/assets/Version_selector_4.3.gif" alt=""><figcaption><p>WEKA version selector</p></figcaption></figure>
+<figure><img src=".gitbook/assets/4.4_version_selector.gif" alt=""><figcaption><p>WEKA version selector</p></figcaption></figure>
 
 {% hint style="warning" %}
 **Important:** This documentation applies to the WEKA system's **latest minor version** (4.4.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
@@ -61,7 +61,7 @@ For maintenance and troubleshooting articles, search the WEKA Knowledge Base in 
 ## Conventions
 
 * The documentation marks the CLI mandatory parameters with an asterisk (\*).
-* New additions in V4.3 are marked with two asterisks (\*\*) in the [weka-rest-api-and-equivalent-cli-commands.md](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md "mention") and  [weka-cli-hierarchy.md](getting-started-with-weka/manage-the-system-using-weka-cli/weka-cli-hierarchy.md "mention") topics.
+* New additions in V4.3 are marked with two asterisks (\*\*) in the [weka-rest-api-and-equivalent-cli-commands.md](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md "mention") and [weka-cli-hierarchy.md](getting-started-with-weka/manage-the-system-using-weka-cli/weka-cli-hierarchy.md "mention") topics.
 
 ## Documentation feedback
 

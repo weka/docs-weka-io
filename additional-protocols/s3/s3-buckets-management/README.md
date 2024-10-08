@@ -1,5 +1,7 @@
 ---
-description: Explore how to manage to manage S3 buckets.
+description: >-
+  Explore managing your buckets in WEKA using S3 API, GUI, CLI, or API, with
+  flexible permissions through IAM or bucket policies for anonymous access.
 ---
 
 # S3 buckets management
