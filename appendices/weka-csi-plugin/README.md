@@ -38,6 +38,7 @@ The WEKA CSI Plugin provides the following features:
 * Kubernetes: 1.18 - 1.3x.
 * WEKA: V3.14 and up. WEKA V4.2 and up and WEKA CSI Plugin V2.0 are required to get all features.
 * SELinux is supported (AppArmor for Ubuntu is not supported).
+* Starting with WEKA CSI Plugin version 2.5.0, NFS transport is available as a lower-performing alternative to WekaFS. This option is intended for non-performance-critical scenarios or environments where installing the WEKA client is not feasible.
 
 {% hint style="info" %}
 The WEKA CSI Plugin replaces plugins developed earlier in the Kubernetes evolution. It replaces the `hostPath` method to expose WEKA mounts as Kubernetes volumes.

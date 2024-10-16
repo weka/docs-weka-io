@@ -239,6 +239,7 @@
   * [Dynamic and static provisioning](appendices/weka-csi-plugin/dynamic-and-static-provisioning.md)
   * [Launch an application using WEKA as the POD's storage](appendices/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage.md)
   * [Add SELinux support](appendices/weka-csi-plugin/add-selinux-support.md)
+  * [NFS transport failback](appendices/weka-csi-plugin/nfs-transport-failback.md)
   * [Upgrade legacy persistent volumes for capacity enforcement](appendices/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)
   * [Troubleshooting](appendices/weka-csi-plugin/troubleshooting.md)
 * [Convert cluster to multi-container backend](appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md)
