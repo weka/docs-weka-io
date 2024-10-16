@@ -63,21 +63,24 @@ A system with 16 servers with the following details:
 * Number of Frontend processes: 1
 * Number of Compute processes: 13
 * Number of Drive processes: 6
-* Total raw capacity: 983 TB
-* Total net capacity: 725 TB
+* Total raw capacity: 983,000 GB
+* Total net capacity: 725,000 GB
 * NFS/SMB services
 * RDMA
 * Average file size: 1 MB (potentially up to 755 million files for all servers; \~47 million files per server)
 
 Calculations:
 
+* Fixed: 2.8 GB
 * Frontend processes: 1 x 2.2 = 2.2 GB
 * Compute processes: 13 x 3.9 = 50.7 GB
 * Drive processes: 6 x 2 = 12 GB
-* SSD capacity management: 983 TB / 16 / 2K + 18 x 3 GB = \~85.5 GB
+* SSD capacity management: 983,000 GB / 16 / 2K + 20 x 3 GB = \~91 GB
+* Additional protocols = 16 GB
+* RDMA = 2 GB
 * Metadata: 20 Bytes x 47 million files x 2 units = \~1.9 GB
 
-Total memory requirement per server= 2.8 + 2.2 + 50.7 + 12 + 85.5 + 18 + 2 + 1.9 = \~175 GB
+Total memory requirement per server = 2.8 + 2.2 + 50.7 + 12 + 91 + 16 + 2 + 1.9 = \~179 GB
 
 #### Example 2: A system with small files
 
@@ -90,7 +93,7 @@ For an average file size of 64 KB, the number of files is potentially up to:
 
 Required memory for metadata: 20 Bytes x 980 million files x 1 unit = \~19.6 GB
 
-Total memory requirement per server = 2.8 + 2.2 + 50.7 + 12 + 85.5 + 16 + 2 + 19.6 = \~191 GB
+Total memory requirement per server = 2.8 + 2.2 + 50.7 + 12 + 91 + 16 + 2 + 19.6 = \~196 GB
 
 {% hint style="info" %}
 The memory requirements are conservative and can be reduced in some situations, such as in systems with mostly large files or a system with files 4 KB in size. Contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to receive an estimate for your specific configuration.

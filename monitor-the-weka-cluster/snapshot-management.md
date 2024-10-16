@@ -252,3 +252,7 @@ The SnapTool distinguishes between user-created snapshots and scheduled snapshot
 
 When creating user-created snapshots, avoid name collisions with scheduled snapshot names. The SnapTool might automatically select the user-created snapshots for deletion if the same naming format is used.
 {% endhint %}
+
+**Related topic**
+
+[snapshots](../fs/snapshots/ "mention")
