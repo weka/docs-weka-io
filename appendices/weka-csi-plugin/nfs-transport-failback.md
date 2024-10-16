@@ -24,7 +24,6 @@ While using the native WekaFS driver as the storage connectivity layer is the re
 As of version 2.5.0 and until further notice, publishing snapshot-backed volumes via NFS transport is not recommended. This is an open issue currently under investigation.
 {% endhint %}
 
-* **Performance**: NFS transport does not offer the same performance levels as the native WekaFS driver and is not recommended for high-performance workloads.
 * **Feature parity**: Certain features and capabilities available with the native WekaFS driver may be absent when using the WEKA CSI Plugin with NFS transport.
 * **Complexity**: NFS transport necessitates additional configuration on the WEKA cluster and may require further networking setup on the Kubernetes cluster.
 * **Interoperability**: A single Kubernetes node cannot use both NFS and WekaFS transport simultaneously.
