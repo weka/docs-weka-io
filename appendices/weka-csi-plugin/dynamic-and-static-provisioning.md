@@ -52,7 +52,7 @@ pvc-wekafs-dir        Bound    pvc-d00ba0fe-04a0-4916-8fea-ddbbc8f43380   1Gi   
 
 #### Persistent volume claim **parameters**
 
-<table><thead><tr><th width="288">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>spec.accessModes</code></td><td>The volume access mode.<br>Possible values: <code>ReadWriteMany</code>, <code>ReadWriteOnce</code>, <code>ReadOnlyMany</code></td></tr><tr><td><code>spec.storageClassName</code></td><td>The storage class to use to create the PVC.<br>The storage class must exist.</td></tr><tr><td><code>spec.resources.requests.storage</code></td><td>The required capacity for the volume.<br>The capacity quota is not enforced but is stored on the filesystem directory extended and attributed for future use.</td></tr></tbody></table>
+<table><thead><tr><th width="288">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>spec.accessModes</code></td><td>Defines the access mode for the volume. Possible values include:<br><code>ReadWriteMany</code>, <code>ReadWriteOnce</code>, <code>ReadOnlyMany</code></td></tr><tr><td><code>spec.storageClassName</code></td><td>Storage class for PV creation. <br>Specifies the storage class to be used when creating the Persistent Volume (PV). The storage class must already exist.</td></tr><tr><td><code>spec.resources.requests.storage</code></td><td>Required capacity for the volume.<br>The specified capacity is not enforced but is recorded as a quota within the filesystem directory's extended attributes for future reference.</td></tr></tbody></table>
 
 The directory is created in the filesystem under the `csi-volumes` directory starting with the volume name.
 
