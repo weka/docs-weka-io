@@ -1,0 +1,42 @@
+name: Generate and Upload PDFs to Google Drive
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: sudo apt-get install -y pandoc texlive-latex-recommended texlive-xetex texlive-fonts-recommended
+
+    - name: Find and Convert Markdown Files to PDFs
+      run: |
+        # Find all .md files and convert each to a PDF in the same directory
+        find . -name "*.md" | while read md_file; do
+          pdf_file="${md_file%.md}.pdf"
+          pandoc "$md_file" -o "$pdf_file"
+        done
+
+    - name: Install Rclone
+      run: |
+        curl https://rclone.org/install.sh | sudo bash
+
+    - name: Configure Rclone
+      run: |
+        mkdir -p ~/.config/rclone
+        echo "${{ secrets.RCLONE_CONFIG }}" > ~/.config/rclone/rclone.conf
+
+    - name: Upload PDFs to Google Drive
+      run: |
+        # Upload all PDFs maintaining the directory structure
+        rclone copy . gdrive:https://drive.google.com/drive/folders/1dZx8ckW3kJzpLzshCNQ8erSJLXMnRuqE?usp=drive_link --include "*.pdf" --drive-chunk-size=64M
+
+    - name: Send Notification
+      run: echo "All PDFs Generated and Uploaded to Google Drive!"
