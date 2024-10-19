@@ -96,7 +96,6 @@ weka cluster
         |clear-failure
         |add
         |remove
-        |factory-reset
         |net
             |add
             |remove

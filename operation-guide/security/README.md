@@ -10,7 +10,7 @@ The WEKA system is a secure environment. It deploys a combination of security co
 
 The security controls include the following:
 
-* **HTTPS access:** To access the WEKA GUI, you connect only to one of the system servers using HTTPS through port 14000.
+* **HTTPS access:** To access the WEKA GUI, you connect only to one of the system servers using HTTPS through port 14000.  If insecure connections are required, contact the Customer Success Team.
 * **Authentication tokens:** The authentication tokens are used for accessing the WEKA system API and to allow the mounting of secure filesystems.
 * **KMS:** When creating an encrypted filesystem, a KMS must be used to properly secure the encryption keys. The KMS encrypts and decrypts filesystem keys.
 * **TLS certificates:** By default, the system deploys a self-signed certificate to access the GUI, CLI, and API through HTTPS. You can deploy your certificate with an unencrypted private key and certificate PEM files.

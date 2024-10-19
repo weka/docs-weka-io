@@ -21,6 +21,10 @@ Before deploying CDM Local, ensure the following components are installed on the
   * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
   * [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 
+**Required permissions:**
+
+* **AWS:** To run cluster validation in CDM Local, the user logged into the AWS CLI must have the permission `iam:SimulatePrincipalPolicy`. Ensure this permission is granted by attaching an AWS IAM policy that includes the action to the user's account.
+
 {% hint style="info" %}
 Ensure that the Cloud CLI is configured and logged in using the same user account that is used to deploy the WEKA cluster. This ensures the necessary permissions are applied to the logged-in user.
 {% endhint %}
