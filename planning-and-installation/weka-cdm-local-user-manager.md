@@ -213,9 +213,9 @@ Clicking on a cluster opens its configuration, allowing you to make changes. Use
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 12.22.13 PM.png" alt=""><figcaption><p>The UPDATE button applies changes to the configured WEKA cluster</p></figcaption></figure>
 
-### Get the status of a deployed WEKA cluster
+### Retrieve Information on deployed WEKA clusters
 
-When clusters appear in the CDM Local inventory list, you can gather the following information about the deployments:
+When clusters are listed in the CDM Local inventory, you can gather the following details about each deployment:
 
 * [#clusterization-progress](weka-cdm-local-user-manager.md#clusterization-progress "mention")
 * [#weka-cluster-status](weka-cdm-local-user-manager.md#weka-cluster-status "mention")
