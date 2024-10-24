@@ -38,14 +38,19 @@ Use the following command line to create a local user:
 
 **Parameters**
 
-<table><thead><tr><th width="193.33333333333331">Name</th><th width="426">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name for the new user</td><td></td></tr><tr><td><code>role</code></td><td>Role of the new created user.<br>Possible values: <code>regular</code>,  <code>s3</code>,<code>readonly</code>, <code>orgadmin</code> or <code>clusteradmin</code></td><td></td></tr><tr><td><code>password</code></td><td>New user password.<br>If not supplied, the command prompts to supply the password.</td><td></td></tr><tr><td><code>posix-uid</code></td><td>POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td><td>0</td></tr><tr><td><code>posix-gid</code></td><td>POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td><td>0</td></tr></tbody></table>
+<table><thead><tr><th width="193.33333333333331">Name</th><th width="426">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name for the new user</td><td></td></tr><tr><td><code>role</code></td><td>Role of the new created user.<br>Possible values: <code>regular</code>, <code>s3</code>,<code>readonly</code>, <code>orgadmin</code> or <code>clusteradmin</code></td><td></td></tr><tr><td><code>password</code></td><td>New user password.<br>If not supplied, the command prompts to supply the password.</td><td></td></tr><tr><td><code>posix-uid</code></td><td>POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td><td>0</td></tr><tr><td><code>posix-gid</code></td><td>POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td><td>0</td></tr></tbody></table>
 
 {% hint style="success" %}
 **Example:**
 
 `$ weka user add my_new_user regular S3cret`
 
-This command line creates a user with a username of `my_new_user`, a password of `S3cret` and a role of a Regular user. It is then possible to display a list of users and verify that the user was created:
+This command line creates a user with a username of `my_new_user`, a password of `S3cret` and a role of a Regular user.&#x20;
+{% endhint %}
+
+### Display list of users
+
+Run the `weka user` command to display the list of users defined in WEKA.
 
 ```
 $ weka user
@@ -54,9 +59,10 @@ Username    | Source   | Role
 my_new_user | Internal | Regular
 admin       | Internal | Admin
 ```
-{% endhint %}
 
-Using the `weka user whoami` command, it is possible to receive information about the current user running the command.
+### Display current user information
+
+Run the `weka user whoami` command to receive information about the current user running the command.
 
 To use the new user credentials, use the`WEKA_USERNAME` and `WEKA_PASSWORD`environment variables:
 
@@ -80,7 +86,7 @@ Use the following command to log a user into the WEKA cluster. If login is succe
 <table><thead><tr><th width="175">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>User's username</td></tr><tr><td><code>password</code>*</td><td>User's password</td></tr><tr><td><code>org</code></td><td>Organization name or ID</td></tr><tr><td><code>path</code></td><td><p>The path where the login token will be saved (default: ~/.weka/auth-token.json). This path can also be specified using the WEKA_TOKEN environment variable.</p><p>After logging-in, use the WEKA_TOKEN environment variable to specify where the login token is located.</p></td></tr></tbody></table>
 
 {% hint style="success" %}
-#### Manage authentication tokens in WEKA
+**Manage authentication tokens in WEKA**
 
 The `--path` parameter is used to control the directory and file where the authentication token is written. The specified path, which includes the filename, can then be assigned to the `WEKA_TOKEN` environment variable.
 
@@ -152,7 +158,7 @@ Use the following command line to update a local user:
 
 **Parameters**
 
-<table><thead><tr><th width="181">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of an existing user.<br>It must be a valid local user.</td></tr><tr><td><code>role</code></td><td>Updated user role.<br>Possible values: <code>regular</code>,  <code>s3</code>,<code>readonly</code>, <code>orgadmin</code> or <code>clusteradmin</code></td></tr><tr><td><code>posix-uid</code></td><td>POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr><tr><td><code>posix-gid</code></td><td>POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr></tbody></table>
+<table><thead><tr><th width="181">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of an existing user.<br>It must be a valid local user.</td></tr><tr><td><code>role</code></td><td>Updated user role.<br>Possible values: <code>regular</code>, <code>s3</code>,<code>readonly</code>, <code>orgadmin</code> or <code>clusteradmin</code></td></tr><tr><td><code>posix-uid</code></td><td>POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr><tr><td><code>posix-gid</code></td><td>POSIX GID of underlying files representing objects created by this S3 user access/keys credentials.<br>For S3 user roles only.</td></tr></tbody></table>
 
 ## Delete a local user
 
@@ -188,7 +194,7 @@ To authenticate users from an LDAP user directory, the LDAP directory must first
 ### Configure an LDAP user directory
 
 **Command:**\
-`weka user ldap setup`  \
+`weka user ldap setup`\
 `weka user ldap setup-ad`
 
 One of two CLI commands is used to configure an LDAP user directory for user authentication. The first is for configuring a general LDAP server and the second is for configuring an Active Directory server.
@@ -203,7 +209,7 @@ To configure an Active Directory server, use the following command line:
 
 **Parameters**
 
-<table><thead><tr><th width="281">Name</th><th width="333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>server-uri</code>*</td><td>Either the LDAP server hostname/IP or a URI.<br>Format: <code>ldap://hostname:port</code> or <code>ldaps://hostname:port</code></td><td></td></tr><tr><td><code>base-dn</code>*</td><td>Base DN under which users are stored.<br>It must be a valid name.</td><td></td></tr><tr><td><code>user-id-attribute</code>*</td><td>Attribute storing user IDs.<br>It must be a valid name.</td><td></td></tr><tr><td><code>user-object-class</code>*</td><td>Object class of users.<br>It must be a valid name.</td><td></td></tr><tr><td><code>group-object-class</code>*</td><td>Object class of groups.<br>It must be a valid name.</td><td></td></tr><tr><td><code>group-membership-attribute</code>*</td><td>Attribute of group containing the DN of a user membership in the group.<br>It must be a valid name.</td><td></td></tr><tr><td><code>group-id-attribute</code>*</td><td>Attribute storing the group name.<br>The name must match the names used in the <code>&#x3C;admin-group></code>, <code>&#x3C;regular group></code> and <code>&#x3C;readonly group></code></td><td></td></tr><tr><td><code>reader-username</code> and <code>reader-password</code>*</td><td>Credentials of a user with read access to the directory.<br>The password is kept in the Weka cluster configuration in plain text, as it is used to authenticate against the directory during user authentication.</td><td></td></tr><tr><td><code>cluster-admin-group</code>*</td><td>Name of group containing users defined with cluster admin role.<br>It must be a valid name.</td><td></td></tr><tr><td><code>org-admin-group</code>*</td><td>Name of group containing users defined with organization admin role.<br>It must be a valid name.</td><td></td></tr><tr><td><code>regular-group</code>*</td><td>Name of group containing users defined with regular privileges.<br>It must be a valid name.</td><td></td></tr><tr><td><code>readonly-group</code>*</td><td>Name of group containing users defined with read only privileges.<br>It must be a valid name.</td><td></td></tr><tr><td><code>server-timeout-secs</code></td><td>Server connection timeout in seconds.</td><td></td></tr><tr><td><code>protocol-version</code></td><td>Selection of LDAP version.<br>Possible values: <code>LDAP v2</code> or <code>LDAP v3</code></td><td><code>LDAP v3</code></td></tr><tr><td><code>user-revocation-attribute</code></td><td>The LDAP attribute; when its value  changes in the LDAP directory, user access and mount tokens are revoked.<br>The user must re-login after a change is detected.</td><td></td></tr><tr><td><code>start-tls</code></td><td>Issue StartTLS after connecting.<br>Possible values: <code>yes</code> or <code>no</code><br>Do not use with <code>ldaps://</code> </td><td><code>no</code></td></tr><tr><td><code>ignore-start-tls-failure</code></td><td>Ignore start TLS failure.<br>Possible values: <code>yes</code> or <code>no</code></td><td><code>no</code></td></tr></tbody></table>
+<table><thead><tr><th width="281">Name</th><th width="333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>server-uri</code>*</td><td>Either the LDAP server hostname/IP or a URI.<br>Format: <code>ldap://hostname:port</code> or <code>ldaps://hostname:port</code></td><td></td></tr><tr><td><code>base-dn</code>*</td><td>Base DN under which users are stored.<br>It must be a valid name.</td><td></td></tr><tr><td><code>user-id-attribute</code>*</td><td>Attribute storing user IDs.<br>It must be a valid name.</td><td></td></tr><tr><td><code>user-object-class</code>*</td><td>Object class of users.<br>It must be a valid name.</td><td></td></tr><tr><td><code>group-object-class</code>*</td><td>Object class of groups.<br>It must be a valid name.</td><td></td></tr><tr><td><code>group-membership-attribute</code>*</td><td>Attribute of group containing the DN of a user membership in the group.<br>It must be a valid name.</td><td></td></tr><tr><td><code>group-id-attribute</code>*</td><td>Attribute storing the group name.<br>The name must match the names used in the <code>&#x3C;admin-group></code>, <code>&#x3C;regular group></code> and <code>&#x3C;readonly group></code></td><td></td></tr><tr><td><code>reader-username</code> and <code>reader-password</code>*</td><td>Credentials of a user with read access to the directory.<br>The password is kept in the Weka cluster configuration in plain text, as it is used to authenticate against the directory during user authentication.</td><td></td></tr><tr><td><code>cluster-admin-group</code>*</td><td>Name of group containing users defined with cluster admin role.<br>It must be a valid name.</td><td></td></tr><tr><td><code>org-admin-group</code>*</td><td>Name of group containing users defined with organization admin role.<br>It must be a valid name.</td><td></td></tr><tr><td><code>regular-group</code>*</td><td>Name of group containing users defined with regular privileges.<br>It must be a valid name.</td><td></td></tr><tr><td><code>readonly-group</code>*</td><td>Name of group containing users defined with read only privileges.<br>It must be a valid name.</td><td></td></tr><tr><td><code>server-timeout-secs</code></td><td>Server connection timeout in seconds.</td><td></td></tr><tr><td><code>protocol-version</code></td><td>Selection of LDAP version.<br>Possible values: <code>LDAP v2</code> or <code>LDAP v3</code></td><td><code>LDAP v3</code></td></tr><tr><td><code>user-revocation-attribute</code></td><td>The LDAP attribute; when its value changes in the LDAP directory, user access and mount tokens are revoked.<br>The user must re-login after a change is detected.</td><td></td></tr><tr><td><code>start-tls</code></td><td>Issue StartTLS after connecting.<br>Possible values: <code>yes</code> or <code>no</code><br>Do not use with <code>ldaps://</code></td><td><code>no</code></td></tr><tr><td><code>ignore-start-tls-failure</code></td><td>Ignore start TLS failure.<br>Possible values: <code>yes</code> or <code>no</code></td><td><code>no</code></td></tr></tbody></table>
 
 {% hint style="info" %}
 The `sAMAccountName` (user logon name) in the Cluster Admin, Organization Admin, Regular User, and Read-only User Role Groups can be up to 20 characters long.
@@ -214,12 +220,12 @@ The `sAMAccountName` (user logon name) in the Cluster Admin, Organization Admin,
 **Command:**\
 `weka user ldap`
 
-This command is used for viewing the current LDAP configuration used for authenticating users.&#x20;
+This command is used for viewing the current LDAP configuration used for authenticating users.
 
 ### Disable or enable a configured LDAP user directory
 
 **Command:**\
-`weka user ldap disable`  \
+`weka user ldap disable`\
 `weka user ldap enable`
 
 These commands are used for disabling or enabling user authentication through a configured LDAP user directory.

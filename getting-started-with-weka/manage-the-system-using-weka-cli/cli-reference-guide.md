@@ -2248,35 +2248,6 @@ weka cluster license [--color color]
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
 
-**weka cluster license payg**
-
-Enable pay-as-you-go for the cluster
-
-```sh
-weka cluster license payg <plan-id>
-                          <secret-key>
-                          [--color color]
-                          [--HOST HOST]
-                          [--PORT PORT]
-                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                          [--TIMEOUT TIMEOUT]
-                          [--profile profile]
-                          [--help]
-
-```
-
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `plan-id`\*               | Plan ID connected to a payment method                                                                          |
-| `secret-key`\*            | Secret key of the payment plan                                                                                 |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-
 **weka cluster license reset**
 
 Removes existing license information, returning the cluster to an unlicensed mode

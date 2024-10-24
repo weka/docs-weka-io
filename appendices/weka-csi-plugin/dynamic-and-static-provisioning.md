@@ -1,10 +1,12 @@
 # Dynamic and static provisioning
 
-The section provides some examples of dynamic and static provisioning. For more examples, see  [https://github.com/weka/csi-wekafs/tree/main/examples](https://github.com/weka/csi-wekafs/tree/main/examples).
+The section provides some examples of dynamic and static provisioning. For more examples, see [https://github.com/weka/csi-wekafs/tree/main/examples](https://github.com/weka/csi-wekafs/tree/main/examples).
 
 ## Dynamic provisioning
 
 Dynamic provisioning means defining a persistent volume claim (PVC) for the pods using a storage class similar to the storage class described in the [Storage class configuration](storage-class-configurations.md) section.
+
+**Procedure**
 
 1. Create a PVC yaml file (see the following example).
 
@@ -64,11 +66,17 @@ The persistent volume can be a directory previously provisioned by the CSI or a 
 
 To expose an existing directory in the WEKA filesystem through the CSI, define a persistent volume, and bind the persistent volume claim to this persistent volume.
 
+{% hint style="info" %}
+You can use an existing storage class from dynamic provisioning for static provisioning. However, the Persistent Volume parameters (`filesystemName`, `filesystemGroupName`, and `volumeType`) will override those in the storage class.
+{% endhint %}
+
+**Procedure**
+
 1. Create a PV yaml file (see the following example).
 
 <details>
 
-<summary>Example:  PV yaml file</summary>
+<summary>Example: PV yaml file</summary>
 
 {% code title="csi-wekafs/examples/static/pv-wekafs-dir-static.yaml" %}
 ```yaml
@@ -116,7 +124,7 @@ pv-wekafs-dir-static                       1Gi        RWX            Retain     
 
 #### Persistent volume **parameters**
 
-<table><thead><tr><th width="263.3333333333333">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>spec.accessModes</code></td><td>The volume access mode.<br>Possible values: <code>ReadWriteMany</code>, <code>ReadWriteOnce</code>, <code>ReadOnlyMany</code></td></tr><tr><td><code>spec.storageClassName</code></td><td>The storage class to use to create the PV.<br>The storage class must exist.</td></tr><tr><td><code>spec.capacity.storage</code></td><td>A required capacity for the volume.<br>The capacity quota is not enforced but is stored on the filesystem directory extended and attributed for future use. </td></tr><tr><td><code>spec.csi.volumeHandle</code></td><td><p>The path previously created.<br>A string containing the <code>volumeType</code> (<code>dir/v1</code>) filesystem name, and the directory path. <br>Example: <code>dir/v1/podsFilesystem/my-dir</code></p><p>The filesystem and path must exist in the WEKA cluster.</p></td></tr></tbody></table>
+<table><thead><tr><th width="263.3333333333333">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>spec.accessModes</code></td><td>The volume access mode.<br>Possible values: <code>ReadWriteMany</code>, <code>ReadWriteOnce</code>, <code>ReadOnlyMany</code></td></tr><tr><td><code>spec.storageClassName</code></td><td>The storage class to use to create the PV.<br>The storage class must exist.</td></tr><tr><td><code>spec.capacity.storage</code></td><td>A required capacity for the volume.<br>The capacity quota is not enforced but is stored on the filesystem directory extended and attributed for future use.</td></tr><tr><td><code>spec.csi.volumeHandle</code></td><td><p>The path previously created.<br>A string containing the <code>volumeType</code> (<code>dir/v1</code>) filesystem name, and the directory path.<br>Example: <code>dir/v1/podsFilesystem/my-dir</code></p><p>The filesystem and path must exist in the WEKA cluster.</p></td></tr></tbody></table>
 
 3. Bind a PVC to this specific PV using the `volumeName` parameter under the PVC `spec` and provide it with the specific PV name.
 

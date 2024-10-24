@@ -9,17 +9,42 @@ Ensure the following prerequisites are met:
 * The privileged mode must be allowed on the Kubernetes cluster.
 * The following Kubernetes feature gates must be enabled: DevicePlugins, CSINodeInfo, CSIDriverRegistry, and ExpandCSIVolumes (all these gates are enabled by default).
 * A WEKA cluster is installed.
-* For snapshot and directory backing, filesystems must be pre-defined on the WEKA cluster.
+* For snapshot and directory backing, a filesystem must be pre-defined on the WEKA cluster.
+* For filesystem backing, a filesystem group must be pre-defined on the WEKA cluster.
 * Your workstation has a valid connection to the Kubernetes worker nodes.
-* The WEKA client is installed on the Kubernetes worker nodes. Adhere to the following:
-  * A WEKA persistent client (a client part of the cluster) is recommended rather than a stateless client. See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
-  * If the Kubernetes worker nodes run on the WEKA cluster backends (converged mode), ensure the WEKA processes are up before the `kubelet` process.
+
+### Prerequisites for using WekaFS transport
+
+The WEKA client must be installed on the Kubernetes worker nodes. Follow these guidelines:
+
+* It is recommended to use a WEKA persistent client (a client that is part of the cluster) rather than a stateless client. See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
+* If the Kubernetes worker nodes are running on WEKA cluster backends (converged mode), ensure the WEKA processes are running before the `kubelet` process starts.
+
+### **Prerequisites for Using NFS transport**
+
+* The WEKA cluster must be installed and properly configured.
+* The NFS protocol must be enabled on the WEKA cluster.
+* An NFS interface group must be created on the WEKA cluster with at least one floating IP address. For optimal performance and load sharing, it's recommended to assign at least one IP address per protocol node in the cluster.
+* NFS interface group IP addresses must be accessible from the Kubernetes cluster nodes.
+
+### Guidelines for NFS Interface Groups and configuration
+
+* **Setting the NFS Interface Group**\
+  When defining multiple NFS interface groups on WEKA clusters, set the `pluginConfig.mountProtocol.interfaceGroupName` parameter in the `values.yaml` file to specify the desired NFS interface group name. Failure to do so will result in the use of an arbitrary NFS interface group, which may lead to performance or networking issues.
+* **Configuring the NFS Client Group**\
+  The WEKA CSI Plugin automatically creates an NFS Client group named `WekaCSIPluginClients`. During volume creation or publishing, the Kubernetes node IP address is added to this group. For larger deployments, instead of adding node IP addresses individually (which is more secure), consider defining a CIDR network range for the NFS Client group in the WEKA cluster. Use the `pluginConfig.mountProtocol.nfsClientGroupName` parameter in the `values.yaml` file to specify this group.
+* **Manual IP Address Specification**\
+  In cloud or on-premises deployments where virtual IP addresses cannot be assigned to the interface group, the WEKA CSI Plugin can still be used with NFS transport. In this case, manually specify the IP addresses of the NFS protocol nodes as NFS target IP addresses (using API secret). Note that automatic failover for NFS connections will not be available, and the failure of a protocol node may disrupt NFS connections.
 
 ## Installation
 
-### CSI external-snapshotter
+### Install CSI Snapshot Controller and Snapshot CRDs
 
-If you plan on taking Kubernetes-controlled snapshots, install the [CSI external-snapshotter](#user-content-fn-1)[^1].
+To enable Kubernetes-controlled snapshots, install the CSI Snapshot Controller and the [CSI external-snapshotter](#user-content-fn-1)[^1] CRD manifests.
+
+{% hint style="info" %}
+On RedHat OpenShift Container Platform (OCP) those definitions might be preinstalled.
+{% endhint %}
 
 1. On the workstation you manage Kubernetes from, clone the CSI external-snapshotter from its GitHub repository.
 
@@ -106,7 +131,7 @@ https://github.com/weka/csi-wekafs/tree/master/examples
 
 </details>
 
-## Upgrade from any previous version to WEKA CSI Plugin v2.0&#x20;
+## Upgrade from any previous version to WEKA CSI Plugin v2.0
 
 In WEKA CSI Plugin v2.0, the CSIDriver object has undergone changes. Specifically, CSIDriver objects are now immutable. Consequently, the upgrade process involves uninstalling the previous CSI version using Helm and subsequently installing the new version. It is important to note that the uninstall operation does not delete any existing secrets, StorageClasses, or PVC configurations.
 

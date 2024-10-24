@@ -136,12 +136,12 @@ The Tiering Cue default is 10 seconds and cannot exceed 1/3 of the Drive Retenti
 
 If it is impossible to maintain the defined Retention Period or Tiering Cue policies, a TieredFilesystemBreakingPolicy event will occur, and old data will be released to free space on the SSDs. Users are alerted to such a situation through an ObjectStoragePossibleBottleneck event, enabling them to consider either raising the bandwidth or upgrading the object store performance.
 
-## Object store direct-mount option
+## Direct object store mount option
 
-Regardless of the time-based policies, it is possible to use a special mount option [`obs_direct`](../mounting-filesystems/#mount-command-options) to bypass the time-based policies. Any creation or writing of files from a mount point with this option marks it to release as soon as possible before considering other file retention policies. The data extents of the files are still first written to the SSD but get precedence on releasing to the object store.
+The [`obs_direct`](../mounting-filesystems/#mount-command-options) mount option allows you to bypass time-based file retention policies. When files are created or written to a mount point with this option enabled, they are prioritized for release to the object store as soon as possible, regardless of other policies. Although data is first written to the SSD, it is released to the object store with precedence.
 
-In addition, any read done through such a mount point reads the extent from the object store and is not kept persistently on the SSD (it still goes through the SSD but is released immediately before any other interval).
+Additionally, any file read through this mount point retrieves data from the object store. While the data temporarily passes through the SSD, it is immediately released and not retained.
 
 {% hint style="warning" %}
-In AWS, this mode should only be used for importing data. It should **not** be used for general access to the filesystem as any data read via this mount point would be immediately released from the SSD tier again. This can lead to excessive S3 charges.
+In AWS, use this mode only for data import. Avoid using it for general filesystem access, as any data read through this mount point is immediately released from the SSD tier, potentially resulting in excessive S3 charges.
 {% endhint %}
