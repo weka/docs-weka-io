@@ -6,6 +6,8 @@ The section provides some examples of dynamic and static provisioning. For more 
 
 Dynamic provisioning means defining a persistent volume claim (PVC) for the pods using a storage class similar to the storage class described in the [Storage class configuration](storage-class-configurations.md) section.
 
+**Procedure**
+
 1. Create a PVC yaml file (see the following example).
 
 <details>
@@ -63,6 +65,12 @@ The Kubernetes admin can prepare persistent volumes in advance to be used by pod
 The persistent volume can be a directory previously provisioned by the CSI or a an existing directory in the WEKA filesystem.
 
 To expose an existing directory in the WEKA filesystem through the CSI, define a persistent volume, and bind the persistent volume claim to this persistent volume.
+
+{% hint style="info" %}
+You can use an existing storage class from dynamic provisioning for static provisioning. However, the Persistent Volume parameters (`filesystemName`, `filesystemGroupName`, and `volumeType`) will override those in the storage class.
+{% endhint %}
+
+**Procedure**
 
 1. Create a PV yaml file (see the following example).
 

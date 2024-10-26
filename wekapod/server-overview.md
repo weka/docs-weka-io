@@ -8,13 +8,13 @@ The WEKApod's core component is a 1U server that includes:
 * **Memory:** 12 DDR5 DIMM slots with 384 GB.
 * **Power supply:** Two redundant AC power units.
 * **NVMe drive options:** (order-dependent)
-  * 10 x 2.5-inch NVMe drives (WEKApod PRIME)
-  * 14 x E3.S NVMe drives (WEKApod NITRO)
+  * 10 x 2.5-inch NVMe drives (WEKApod Prime)
+  * 14 x E3.S NVMe drives (WEKApod Nitro)
   * 8 x 2.5-inch NVMe drives (WMS)
 * **High-speed storage connectivity:** InfiniBand cards (order-dependent):
-  * NVIDIA CX-6 MCX653105A-HDAT (WEKApod PRIME)
-  * NVIDIA CX-7 MCX75310AAS-NEAT (WEKApod NITRO)
-  * NVIDIA CX-7 MCX75210AAS-NEAT (WEKApod NITRO)
+  * NVIDIA CX-6 MCX653105A-HDAT (WEKApod Prime)
+  * NVIDIA CX-7 MCX75310AAS-NEAT (WEKApod Nitro)
+  * NVIDIA CX-7 MCX75210AAS-NEAT (WEKApod Nitro)
 * **Networking:** Network Interface Card (NIC) for general-purpose networking.
 
 {% hint style="info" %}
@@ -27,13 +27,13 @@ A WEKApod server installed with WMS is referred to as a **WMS server**.
 
 The front view of the WEKApod server configuration is order-dependent:
 
-* WEKApod PRIME: A WSA server equipped with 10 X 2.5-inch NVMe drives.
-* WEKApod NITRO: A WSA server equipped with 14 X E3.S NVMe drives.
+* WEKApod Prime: A WSA server equipped with 10 X 2.5-inch NVMe drives.
+* WEKApod Nitro: A WSA server equipped with 14 X E3.S NVMe drives.
 * WMS: A WMS server equipped with 8 X 2.5-inch NVMe drives.
 
-<figure><img src="../.gitbook/assets/wekapod_front_view_10-2.5.png" alt=""><figcaption><p>Front view of the WSA server PRIME (10 X 2.5-inch NVMe drives)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/wekapod_front_view_10-2.5.png" alt=""><figcaption><p>Front view of the WSA server Prime (10 X 2.5-inch NVMe drives)</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/wekapod_front_view_E3S.png" alt=""><figcaption><p>Front view of the WSA server NITRO (14 E3.S NVMe drives)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/wekapod_front_view_E3S.png" alt=""><figcaption><p>Front view of the WSA server Nitro (14 E3.S NVMe drives)</p></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/wekapod_front_view_8-2.5.png" alt=""><figcaption><p>Front view of the WMS server (8 X 2.5-inch NVMe drives)</p></figcaption></figure>
 

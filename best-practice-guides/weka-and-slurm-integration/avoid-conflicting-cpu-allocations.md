@@ -127,7 +127,10 @@ NUMA node0 CPU(s):   0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,4
 NUMA node1 CPU(s):   1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63
 ```
 
-To address this, use `hwloc-ls` to map the logical index (L#) to the physical/OS index (P#) for the CPUs assigned to WEKA. If the logical and physical indexes don’t match, use the logical index numbers in Slurm’s `CPUSpecList` parameter.
+To address this, do the following:
+
+1. Ensure that the WEKA agent's `isolate_cpuset=false` setting is applied (see [Step 1](avoid-conflicting-cpu-allocations.md#id-1.-disable-weka-cpuset-isolation)), and that the agent has been restarted.
+2. Use `hwloc-ls` to map the logical index (L#) to the physical/OS index (P#) for the CPUs assigned to WEKA. If the logical and physical indexes don’t match, use the logical index numbers in Slurm’s `CPUSpecList` parameter.
 
 In this example, the output indicates a mismatch between the L# and P#:
 
