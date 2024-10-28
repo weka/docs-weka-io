@@ -4,7 +4,7 @@ description: This page describes how licensing works in a WEKA cluster.
 
 # License overview
 
-A license is a legal instrument governing the usage terms of the WEKA cluster. When a license is applied to a WEKA cluster, the cluster verifies the license validity by comparing the license properties and the actual cluster usage.
+A license is a legal instrument that defines the usage terms of the WEKA cluster. When applied, the cluster verifies the license’s validity by comparing its terms with actual cluster usage. Only one license can be active on a cluster at a time; applying a new license replaces the existing one.
 
 The license terms include the following properties:
 
@@ -19,7 +19,7 @@ The license terms include the following properties:
 The WEKA cluster license page displays the license properties: license mode, expiry date, raw or usable drive capacity, and object store capacity.
 
 {% hint style="info" %}
-The following example shows a classic license mode. The Pay As You Go (PAYG) license is deprecated and is no longer available to new customers.
+The Pay As You Go (PAYG) license was deprecated in version 4.1 and is no longer available to new customers. However, the term _Classic License_ remains for backward compatibility.
 {% endhint %}
 
 **Procedure**
@@ -27,7 +27,7 @@ The following example shows a classic license mode. The Pay As You Go (PAYG) lic
 1. From the menu, select **Configure > Cluster Settings**.
 2. From the Cluster Settings pane, select **License**.
 
-![Weka cluster license status](../.gitbook/assets/wmng\_license.png)
+![WEKA cluster license status](../.gitbook/assets/wmng\_cluster\_license.png)
 
 ## Display the license status using the CLI
 
@@ -81,9 +81,11 @@ Weka v4.2.0 (CLI build 4.2.0)
 
 **Example: License status using the `weka alerts` command for a cluster without an assigned license**
 
+{% code overflow="wrap" %}
 ```
 # weka alerts
 ...
 No License Assigned
 This cluster does not have a license assigned, please go to https://get.weka.io to obtain your license
 ```
+{% endcode %}

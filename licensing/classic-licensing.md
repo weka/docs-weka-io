@@ -19,12 +19,12 @@ A classic license is a text-based element generated in get.weka.io for a specifi
   \
   **Output example**
 
+{% code overflow="wrap" %}
 ```
 # weka cluster license 
 Licensing status: Unlicensed
 
-Your cluster is currently unlicensed. Please go to https://get.weka.io/ to get a license
-or enroll in a subscription.
+Your cluster is currently unlicensed. Please go to https://get.weka.io/ to get a license or enroll in a subscription.
 
 When asked, you'll need the following details to create your license:
 
@@ -37,6 +37,7 @@ If you already have a license, please enter it by running
 
     weka cluster license set <license-key>
 ```
+{% endcode %}
 
 **Procedure**
 
@@ -63,9 +64,9 @@ The licenses' capacities represent the limits to which it is possible to expand 
 
 ![Create license dialog](../.gitbook/assets/getwekaio\_3\_create\_license\_dialog.png)
 
-## Apply the license to the cluster
+## Apply or update a license to the cluster
 
-After creating the license, apply the license to the cluster.
+After creating a license, apply it to the cluster. Only one license can be active at a time; applying a new license replaces the existing one.
 
 **Procedure**
 
@@ -73,19 +74,19 @@ After creating the license, apply the license to the cluster.
 
 ![Show license text](../.gitbook/assets/license\_menu\_show.png)
 
-2\. In the License Text dialog that opens, select **copy to clipboard**.
+2. In the License Text dialog that opens, select **copy to clipboard**.
 
 ![License text dialog](../.gitbook/assets/getwekaio\_5\_classic\_license\_text.png)
 
-3\. On the Weka cluster, run the following command:
+3. If you use the CLI to apply the license, run the following command:\
+   `weka cluster license set <license-key>`\
+   Where the \<license-key> is the license copied to the clipboard.
+4. If you use the GUI to apply the license, do the following:
+   * From the menu, select **Configure > Cluster Settings.**
+   * From the Cluster Settings pane, select **License**.
+   * Paste the license copied to the clipboard, and select **Save**.
 
-```
-weka cluster license set <license-key>
-```
-
-Instead of the \<license-key> in the command line, paste the license copied to the clipboard.
-
-The license is assigned to the cluster.
+<figure><img src="../.gitbook/assets/wmng_set_license.png" alt="" width="434"><figcaption></figcaption></figure>
 
 ## Reuse an existing license on a new cluster
 
