@@ -8,6 +8,10 @@ SMB (Server Message Block) is a network file-sharing protocol facilitating conne
 
 WEKA's SMB implementation enables seamless access to storage services for both Windows and macOS clients. It facilitates shared access from multiple clients, supporting a multi-protocol approach that allows files to be accessed simultaneously through SMB, NFS, and WEKA native filesystem drivers.
 
+{% hint style="info" %}
+The legacy open-source Samba stack is deprecated and will not be supported starting from version 4.4.5 LTS.
+{% endhint %}
+
 ## Key features of SMB implementation in WEKA
 
 The implementation of SMB in the WEKA system is characterized by scalability, resilience, and distribution.
