@@ -221,16 +221,18 @@ Official Weka CSI Plugin documentation can be found here: https://docs.weka.io/a
 
 #### 3. Elevate the OpenShift privileges
 
-If the Kubernetes worker nodes run on RHEL and use OpenShift, elevate the OpenShift privileges for the WEKA CSI Plugin. (RHCoreOS on Kubernetes worker nodes is not supported.)
+If the Kubernetes worker nodes run on RHEL and use OpenShift, elevate the OpenShift privileges for the WEKA CSI Plugin. (RHCoreOS on Kubernetes worker nodes supports NFS connections.)
 
 To elevate the OpenShift privileges, run the following command lines:
 
+{% code overflow="wrap" %}
 ```
 oc create namespace csi-wekafs
 oc adm policy add-scc-to-user privileged system:serviceaccount:csi-wekafs:csi-wekafs-node
 oc adm policy add-scc-to-user privileged system:serviceaccount:csi-wekafs:csi-wekafs-controller
 
 ```
+{% endcode %}
 
 #### 4. Delete the CSI Plugin pods
 
