@@ -217,7 +217,7 @@ Official Weka CSI Plugin documentation can be found here: https://docs.weka.io/a
 
 #### 3. Elevate the OpenShift privileges
 
-If the Kubernetes worker nodes run on RHEL and use OpenShift, elevate the OpenShift privileges for the WEKA CSI Plugin. (RHCoreOS on Kubernetes worker nodes is not supported.)
+If the Kubernetes worker nodes run on RHEL and use OpenShift, elevate the OpenShift privileges for the WEKA CSI Plugin. (RHCoreOS on Kubernetes worker nodes supports NFS connections.)
 
 To elevate the OpenShift privileges, run the following command lines:
 
