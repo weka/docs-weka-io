@@ -221,7 +221,7 @@ Official Weka CSI Plugin documentation can be found here: https://docs.weka.io/a
 
 #### 3. Elevate the OpenShift privileges
 
-If the Kubernetes worker nodes run on RHEL and use OpenShift, elevate the OpenShift privileges for the WEKA CSI Plugin. (RHCoreOS on Kubernetes worker nodes is not supported.)
+If the Kubernetes worker nodes run on RHEL and use OpenShift, elevate the OpenShift privileges for the WEKA CSI Plugin. (RHCoreOS on Kubernetes worker nodes supports NFS connections.)
 
 To elevate the OpenShift privileges, run the following command lines:
 
@@ -238,7 +238,7 @@ The CSI Plugin fetches the WEKA filesystem cluster capabilities during the first
 
 However, the WEKA filesystem cluster upgrade might be unnoticed if performed during this time window, continuing to provision new volumes in the legacy mode.
 
-To expedite the update of the Weka cluster capabilities, it is recommended to delete all the CSI Plugin pods to invalidate the cache. The pods are then restarted.
+To expedite the update of the WEKA cluster capabilities, it is recommended to delete all the CSI Plugin pods to invalidate the cache. The pods are then restarted.
 
 Run the following command lines:
 
