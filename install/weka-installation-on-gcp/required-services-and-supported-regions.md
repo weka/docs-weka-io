@@ -60,18 +60,20 @@ If the region you want to deploy in is not on the supported list, verify the ava
 | asia-south1          | Mumbai, India            |
 | asia-south2          | Delhi, India             |
 | asia-southeast1      | Jurong West, Singapore   |
+| asia-southeast2      | Jakarta, Indonesia       |
 | australia-southeast1 | Sydney, Australia        |
 
 ### Europe
 
-| Region Name   | Region Description     |
-| ------------- | ---------------------- |
-| europe-north1 | Hamina, Finland        |
-| europe-west1  | St. Ghislain, Belgium  |
-| europe-west2  | London, England        |
-| europe-west3  | Frankfurt, Germany     |
-| europe-west4  | Eemshaven, Netherlands |
-| europe-west6  | Zurich, Switzerland    |
+| Region Name     | Region Description     |
+| --------------- | ---------------------- |
+| europe-north1   | Hamina, Finland        |
+| europe-west1    | St. Ghislain, Belgium  |
+| europe-west2    | London, England        |
+| europe-west3    | Frankfurt, Germany     |
+| europe-west4    | Eemshaven, Netherlands |
+| europe-west6    | Zurich, Switzerland    |
+| europe-central2 | Warsaw, Poland         |
 
 **Related information**
 
