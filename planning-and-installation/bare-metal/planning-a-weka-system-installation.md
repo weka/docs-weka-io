@@ -60,10 +60,11 @@ Contact the Customer Success Team to explore options for configurations requirin
 
 A system with 16 servers with the following details:
 
-* Number of Frontend processes: 1
+* Fixed: 2.8 GB\
+  Number of Frontend processes: 1
 * Number of Compute processes: 13
 * Number of Drive processes: 6
-* Total raw capacity: 983 TB
+* Total raw capacity: 983 TB (983,000 GB)
 * Total net capacity: 725 TB
 * NFS/SMB services
 * RDMA
@@ -74,10 +75,12 @@ Calculations:
 * Frontend processes: 1 x 2.2 = 2.2 GB
 * Compute processes: 13 x 3.9 = 50.7 GB
 * Drive processes: 6 x 2 = 12 GB
-* SSD capacity management: 983 TB / 16 / 2K + 20 x 3 GB = \~90.7 GB
+* SSD capacity management: 983,000 GB / 16 / 2K + 20 x 3 GB = \~90.7 GB
+* Additional protocols = 16 GB
+* RDMA = 2 GB
 * Metadata: 20 Bytes x 47 million files x 2 units = \~1.9 GB
 
-Total memory requirement per server = 2.8 + 2.2 + 50.7 + 12 + 90.7 + 18 + 2 + 1.9 = \~180 GB
+Total memory requirement per server = 2.8 + 2.2 + 50.7 + 12 + 90.7 + 16 + 2 + 1.9 = \~178.3 GB
 
 #### Example 2: A system with small files
 
