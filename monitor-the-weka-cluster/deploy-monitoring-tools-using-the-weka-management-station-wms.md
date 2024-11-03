@@ -38,8 +38,8 @@ The server or VM must meet the following requirements:
 * **Cores and RAM:**
   * If not configuring LWH: minimum 4 cores and 16 GiB.
   * If configuring LWH, see the Server minimum CPU and RAM requirements section in [#1.-verify-prerequisites](the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
-* **Network interface:** 1 Gbps.&#x20;
-* **Firewall rules:**   The WMS listens on multiple ports depending on which service you are accessing.  See [#required-ports](../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention")
+* **Network interface:** 1 Gbps.
+* **Firewall rules:** The WMS listens on multiple ports depending on which service you are accessing. See [#required-ports](../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention")
 
 {% hint style="info" %}
 This workflow only applies to installation on a server or VM. It does not apply to installation on AWS. To install on AWS, contact the Customer Success Team.
@@ -53,12 +53,12 @@ Before deploying the WMS, adhere to the following:
 * The weka user password is `weka.io123`
 * If errors occur during installation and the installation halts (no error messages appear), use the system console to review the logs in `/tmp`. The primary log is `/tmp/ks-pre.log`.
 * To get a command prompt from the Installation GUI, do one of the following:
-  * On macOS, type **ctrl+option+f2**&#x20;
+  * On macOS, type **ctrl+option+f2**
   * On Windows, type **ctrl+alt+f2**.
 * Creating a unique local username dedicated to WMS with a ClusterAdmin or OrgAdmin role is highly recommended. The unique username is displayed in the event logs, making identifying and troubleshooting issues easier.\
   To create a local user, see the [Create local users](../operation-guide/user-management/user-management.md#create-a-local-user) topic.
 
-## &#x20;WMS deployment workflow
+## WMS deployment workflow
 
 1. [Install the WMS](deploy-monitoring-tools-using-the-weka-management-station-wms.md#install-the-wms).
 2. [Configure the WMS](deploy-monitoring-tools-using-the-weka-management-station-wms.md#configure-the-wms).
@@ -75,7 +75,7 @@ Before deploying the WMS, adhere to the following:
 **Procedure**
 
 1. Download the latest WMS image from [get.weka.io](https://get.weka.io/) (requires sign-in).
-2. Boot the server from the WMS image. \
+2. Boot the server from the WMS image.\
    The following are some options to do that:
 
 {% tabs %}
@@ -87,8 +87,8 @@ Copy the WEKA Management Station ISO image to an appropriate location so the ser
 Depending on the server manufacturer, consult the documentation for the server’s BMC (for example, iLO, iDRAC, and IPMI) for detailed instructions on mounting and booting from a bootable ISO image, such as:
 
 * A workstation or laptop sent to the BMC through the web browser.
-* Ann SMB share in a Windows server or a Samba server.
-* An NFS share.&#x20;
+* An SMB share in a Windows server or a Samba server.
+* An NFS share.
 {% endtab %}
 
 {% tab title="Use PXE boot" %}
@@ -183,7 +183,7 @@ Set up email notifications by configuring the SMTP Relay to enable WMS for sendi
 **Procedure**
 
 1. From the left pane, select **Configure Local WEKA Home**.
-2. Set the required details:&#x20;
+2. Set the required details:
    * **Listen Address/Domain:** Specify the address or hostname on which LWH will listen. Leave it blank or use 0.0.0.0 to listen on all interfaces. Alternatively, input an IP address, hostname, or FQDN as the TLS certificate requires.
    * **Email Alert Domain Name (REQUIRED):** Enter a domain name (or IP address) for Alert Email URL links. For instance, if you input _sample.com_, the links appear as _https://sample.com/something_. Typically, this is the domain you use to access WMS (this server's name).
    * **Enable Ingress TLS:** Toggle to enable TLS for all connections.
@@ -207,30 +207,42 @@ Set up email notifications by configuring the SMTP Relay to enable WMS for sendi
 
 4. Register the cluster with the LWH.
    * Choose one of the backend servers in your cluster to run the command.
-   *   Run the appropriate command based on your TLS configuration. If TLS is configured, use the following command with the WMS server IP or hostname:
+   * Run the appropriate command based on your TLS configuration. If TLS is configured, use the following command with the WMS server IP or hostname:
 
-       {% code overflow="wrap" %}
-       ```bash
-       weka cloud enable --cloud-url https://<WMS server IP or hostname>
-       ```
-       {% endcode %}
+{% code overflow="wrap" %}
+````
+   ```bash
+   weka cloud enable --cloud-url https://<WMS server IP or hostname>
+   ```
+   
+````
+{% endcode %}
 
-       If TLS is not configured, use the following command with the WMS server IP or hostname:
+```
+   If TLS is not configured, use the following command with the WMS server IP or hostname:
 
-       {% code overflow="wrap" %}
-       ```bash
-       weka cloud enable --cloud-url http://<WMS server IP or hostname>
-       ```
-       {% endcode %}
+   
+```
 
-       Ensure that the provided WMS server IP or hostname matches the WMS instance information.
+{% code overflow="wrap" %}
+````
+   ```bash
+   weka cloud enable --cloud-url http://<WMS server IP or hostname>
+   ```
+   
+````
+{% endcode %}
+
+```
+   Ensure that the provided WMS server IP or hostname matches the WMS instance information.
+```
 
 {% hint style="info" %}
-The WMS can have multiple IP interfaces, such as when installed as a jump host with distinct interfaces for the corporate network and the cluster network. In scenarios where the cluster is isolated from the corporate network, it is essential to specify the IP address of the WMS associated with the cluster network. &#x20;
+The WMS can have multiple IP interfaces, such as when installed as a jump host with distinct interfaces for the corporate network and the cluster network. In scenarios where the cluster is isolated from the corporate network, it is essential to specify the IP address of the WMS associated with the cluster network.
 {% endhint %}
 
 5. Log in to the LWH.\
-   On the Landing Page, select **Open Local WEKA Home**. \
+   On the Landing Page, select **Open Local WEKA Home**.\
    If the tab does not appear, check that the browser pop-up blocker does not block it.\
    When prompted for a password, enter the Admin password retrieved in the previous steps.\
    The **LWH Cluster Overview** page opens on a new tab.
@@ -238,7 +250,7 @@ The WMS can have multiple IP interfaces, such as when installed as a jump host w
 <figure><img src="../.gitbook/assets/WMS_open_LWH.jpg" alt="" width="563"><figcaption><p>Open Local WEKA Home in a new tab</p></figcaption></figure>
 
 {% hint style="info" %}
-**Reconfiguring LWH:** If required, return to the LWH configuration page, update the configuration, and select **Save** again. The LWH configuration will be updated and restarted. &#x20;
+**Reconfiguring LWH:** If required, return to the LWH configuration page, update the configuration, and select **Save** again. The LWH configuration will be updated and restarted.
 {% endhint %}
 
 ### Configure the WEKAmon
@@ -273,7 +285,7 @@ Once the WMS successfully logs in to the cluster, the WEKAmon installation begin
 <figure><img src="../.gitbook/assets/WMS_WEKAmon_install_completes.png" alt="" width="375"><figcaption><p>WEKAmon installation completes</p></figcaption></figure>
 
 4. Log in to **Grafana**.\
-   On the Landing Page, select **Grafana**. \
+   On the Landing Page, select **Grafana**.\
    If the tab does not appear, check that the browser pop-up blocker does not block it.\
    When prompted for a username and password, enter the enter `admin/admin` (not the username/password that was retrieved for LWH).\
    The **Grafana** page opens on a new tab.
@@ -289,7 +301,7 @@ The WMS provides a simple text editor to facilitate editing the `/etc/hosts` fil
 **Procedure**
 
 1. From the left pane, select **Edit Hosts File**.
-2. Add the IP addresses of the cluster servers. Type, copy, and paste as in any other simple text editor.&#x20;
+2. Add the IP addresses of the cluster servers. Type, copy, and paste as in any other simple text editor.
 3. Select **Save**.
 
 ### Configure the Snaptool
@@ -301,7 +313,7 @@ Snaptool is pre-installed in the `/opt/snaptool` directory and includes all the 
 1. From the left pane, select **Snaptool Configuration**.
 2. In the Snaptool Configuration Editor, if required, you can update the configuration. For details, see [#edit-the-configuration-in-the-snaptool.yml-file](snapshot-management.md#edit-the-configuration-in-the-snaptool.yml-file "mention").\
    Snaptool shares the same cluster login information as WEKAmon and automatically detects and re-loads its configuration when any changes are made.
-3. Select **Save**.&#x20;
+3. Select **Save**.
 
 <figure><img src="../.gitbook/assets/wms_7_snaptool_configuration.png" alt=""><figcaption><p>Snaptool Configuration</p></figcaption></figure>
 
