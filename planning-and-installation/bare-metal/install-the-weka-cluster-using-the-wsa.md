@@ -65,7 +65,7 @@ Copy the WSA image to an appropriate location so that the server’s BMC can mou
 Depending on the server manufacturer, consult the documentation for the server’s BMC (for example, iLO, iDRAC, and IPMI) for detailed instructions on mounting and booting from a bootable WSA image, such as:
 
 * A workstation or laptop sent to the BMC through the web browser.
-* Ann SMB share in a Windows server or a Samba server.
+* An SMB share in a Windows server or a Samba server.
 * An NFS share.&#x20;
 {% endtab %}
 
