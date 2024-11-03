@@ -87,7 +87,7 @@ Copy the WEKA Management Station ISO image to an appropriate location so the ser
 Depending on the server manufacturer, consult the documentation for the server’s BMC (for example, iLO, iDRAC, and IPMI) for detailed instructions on mounting and booting from a bootable ISO image, such as:
 
 * A workstation or laptop sent to the BMC through the web browser.
-* Ann SMB share in a Windows server or a Samba server.
+* An SMB share in a Windows server or a Samba server.
 * An NFS share.&#x20;
 {% endtab %}
 
