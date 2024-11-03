@@ -10,17 +10,11 @@ Welcome to the WEKA Documentation Portal, your guide to the latest WEKA version.
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
 
-### Meet Sevii, your AI chat companion!
+## Find answers in WEKA documentation with Sevii
 
-Navigating through extensive documentation can sometimes feel like a maze, right? Well, not anymore! We’re thrilled to introduce Sevii, your AI-powered chat companion, designed to help you explore the WEKA documentation easily.
+Sevii, your AI chat companion, makes finding answers in WEKA documentation fast and easy. Just type your question and click  ![](.gitbook/assets/sevii\_submit.png) to get started. Sevii is ready to help—whether you're exploring a topic or need a specific answer.
 
-Sevii is always at your service, just a click away. Type your question and click ![](.gitbook/assets/sevii\_submit.png) to embark on your knowledge journey.
-
-To ensure you have a seamless experience with Sevii, here are some handy tips:
-
-* **Clarity is key**: The more specific your question is, the better Sevii can assist you with the most relevant answer.
-* **Concept power**: Need help figuring out how to frame your question? Start with concepts related to your query, and let Sevii guide you in refining your search.
-* **Explore and discover**: Sevii may suggest multiple answers or ask follow-up questions during your chat. Using information from previous Sevii responses, more accurate follow-up questions can be made.
+For the best results, ask clear, context-rich questions. If unsure, start with related keywords, and Sevii will guide you.
 
 {% @sevii-ai/sevii-gitbook-test %}
 
