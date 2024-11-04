@@ -75,7 +75,7 @@ Calculations:
 * Frontend processes: 1 x 2.2 = 2.2 GB
 * Compute processes: 13 x 3.9 = 50.7 GB
 * Drive processes: 6 x 2 = 12 GB
-* SSD capacity management: 983,000 GB / 16 / 2K + 20 x 3 GB = \~90.7 GB
+* SSD capacity management: 983,000 GB / 16 / 2000 + 20 x 3 GB = \~90.7 GB
 * Additional protocols = 16 GB
 * RDMA = 2 GB
 * Metadata: 20 Bytes x 47 million files x 2 units = \~1.9 GB
