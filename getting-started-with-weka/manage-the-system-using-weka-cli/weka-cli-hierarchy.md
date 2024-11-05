@@ -1,20 +1,14 @@
 ---
 description: >-
   Explore the hierarchical structure of WEKA Command-Line Interface (CLI)
-  commands for easy reference. (Commands marked with asterisks ** are new
-  additions in V4.4.)
+  commands for easy reference.
 ---
 
 # WEKA CLI hierarchy
 
-### weka access-group
-
-```
-weka access-group **
-   |status
-   |enable
-   |disable
-```
+{% hint style="info" %}
+New commands the V4.4.X CLI, compared to V4.3.5, are marked with \*\*.
+{% endhint %}
 
 ### weka agent
 
@@ -91,6 +85,7 @@ weka cluster
         |apply
         |activate
         |deactivate
+        |requested-action **
         |clear-failure
         |add
         |remove
@@ -99,13 +94,22 @@ weka cluster
             |add
             |remove
     |default-net
+        |set
+        |update
+        |reset
     |license
-    |task
+        |reset
+        |set
+        |task
         |pause
         |resume
         |abort
         |limits
-    |client-target-version
+            |set
+        |client-target-version
+            |show
+            |set
+            |reset
 ```
 
 ### **weka diags**
@@ -134,6 +138,7 @@ weka fs
     |create
     |download
     |update
+    |kms-rewrap **
     |delete
     |restore
     |quota
@@ -172,11 +177,18 @@ weka fs
                 |list
         |ops
         |obs
-        |update
+            |update
     |reserve
         |status
         |set
         |unset
+    |security **
+        |policy
+            |list
+            |set
+            |reset
+            |attach
+            |detach        
 ```
 
 ### weka dataservice
@@ -193,6 +205,7 @@ weka dataservice
 ```
 weka interface-group **
     |assignment
+    |add
     |update
     |delete
     |ip-range
@@ -233,14 +246,24 @@ weka local
         |bandwidth
         |management-ips
         |join-ips
+        |fqdn **
         |failure-domain
         |net
             |add
             |remove
     |setup
+        |services **
+        |envoy **
         |weka
         |container
+        |client **
     |upgrade
+```
+
+### **weka mount**
+
+```
+weka mount
 ```
 
 ### **weka nfs**
@@ -249,6 +272,7 @@ weka local
 weka nfs 
     |rules
         |add
+           |dns
         |delete
     |client-group
         |add
@@ -286,7 +310,10 @@ weka nfs
         |reset
     |ldap
         |setup-ad
+        |setup-ad-nokrb **
         |setup-openldap
+        |import-openldap **
+        |export-openldap **
         |show
         |reset
 ```
@@ -318,13 +345,24 @@ weka s3
       |destroy
       |status
       |audit-webhook
+         |enable
+         |disable
+         |show
       |containers
+         |add
+         |remove
+         |list
    |bucket
       |create
       |list
       |destroy
       |lifecycle-rule
+         |add
+         |remove
+         |reset
+         |list
       |policy
+         |get
          |set
          |unset
          |get-json
@@ -392,6 +430,10 @@ weka security
       |update
       |test
       |join
+          |set
+          |attach
+          |detach
+          |reset
 ```
 
 ### **weka smb**
@@ -427,13 +469,7 @@ weka smb
          |remove
    |domain
       |join
-         |cluster
-         |share
-         |domain
       |leave
-         |cluster
-         |share
-         |domain
 ```
 
 ### **weka stats**
@@ -453,6 +489,21 @@ weka stats
 ```
 weka status
    |rebuild
+```
+
+### weka umount
+
+```
+weka unmount
+```
+
+### **weka upgrade**
+
+```
+weka upgrade **
+   |pause
+   |resume
+   |supported-features
 ```
 
 ### **weka user**
@@ -488,4 +539,19 @@ weka version
    |current
    |rm
    |prepare
+```
+
+### weka driver
+
+```
+weka driver **
+   |download
+   |install
+   |build
+   |pack
+   |sign
+   |export
+   |import
+   |kernel
+   |ready
 ```

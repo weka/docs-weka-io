@@ -55,16 +55,16 @@ weka access-group status [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka access-group enable
 
@@ -82,16 +82,16 @@ weka access-group enable [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka access-group disable
 
@@ -109,16 +109,16 @@ weka access-group disable [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 ### weka agent
 
@@ -179,7 +179,7 @@ weka agent uninstall [--color color] [--force] [--ignore-wekafs-mounts] [--keep-
 | `--color`                | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `--force`                | Force the action to actually happen                                              |
 | `--ignore-wekafs-mounts` | Proceed even with active wekafs mounts                                           |
-| `--keep-files`           | Do not remove Weka version images and keep them in installation directory        |
+| `--keep-files`           | Do not remove Weka version images and keep in installation directory             |
 | `-h`, `--help`           | Show help message                                                                |
 
 #### weka agent autocomplete
@@ -265,8 +265,8 @@ weka alerts [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: muted,type,count,title,description,action (may be repeated or comma-separated)                                       |
@@ -293,16 +293,16 @@ weka alerts types [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka alerts mute
 
@@ -321,17 +321,17 @@ weka alerts mute <alert-type>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `alert-type`\*            | An alert-type to mute, use `weka alerts types` to list types                                                   |
-| `duration`\*              | How long to mute this alert type for (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `alert-type`\*            | An alert-type to mute, use `weka alerts types` to list types                                               |
+| `duration`\*              | How long to mute this alert type for (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka alerts unmute
 
@@ -349,16 +349,16 @@ weka alerts unmute <alert-type>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `alert-type`\*            | An alert-type to unmute, use `weka alerts types` to list types                                                 |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `alert-type`\*            | An alert-type to unmute, use `weka alerts types` to list types                                             |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka alerts describe
 
@@ -386,8 +386,8 @@ weka alerts describe [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: type,title,action (may be repeated or comma-separated)                                                               |
@@ -437,8 +437,8 @@ weka cloud status [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: host,health (may be repeated or comma-separated)                                                                     |
@@ -465,17 +465,17 @@ weka cloud enable [--cloud-url cloud]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--cloud-url`             | The base url of the cloud service                                                                              |
-| `--cloud-stats`           | Enable or disable uploading stats to the cloud (format: 'on' or 'off')                                         |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--cloud-url`             | The base url of the cloud service                                                                          |
+| `--cloud-stats`           | Enable or disable uploading stats to the cloud (format: 'on' or 'off')                                     |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka cloud disable
 
@@ -492,15 +492,15 @@ weka cloud disable [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka cloud proxy
 
@@ -520,18 +520,18 @@ weka cloud proxy [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-s`, `--set`             | Set a new proxy setting                                                                                        |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
-| `-u`, `--unset`           | Remove the HTTP proxy setting                                                                                  |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-s`, `--set`             | Set a new proxy setting                                                                                    |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+| `-u`, `--unset`           | Remove the HTTP proxy setting                                                                              |
 
 #### weka cloud update
 
@@ -556,23 +556,23 @@ weka cloud update <bucket-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `bucket-name`\*           | AWS bucket name                                                                                                |
-| `region`\*                | AWS region                                                                                                     |
-| `access-key-id`\*         | AWS access key                                                                                                 |
-| `secret-key`\*            | AWS secret                                                                                                     |
-| `--session-token`         | S3 session token                                                                                               |
-| `--bucket-prefix`         | S3 bucket prefix                                                                                               |
-| `--proxy`                 | HTTP(S) proxy to connect to the cloud through                                                                  |
-| `--bytes-per-second`      | Maximum uploaded bytes per second                                                                              |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket-name`\*           | AWS bucket name                                                                                            |
+| `region`\*                | AWS region                                                                                                 |
+| `access-key-id`\*         | AWS access key                                                                                             |
+| `secret-key`\*            | AWS secret                                                                                                 |
+| `--session-token`         | S3 session token                                                                                           |
+| `--bucket-prefix`         | S3 bucket prefix                                                                                           |
+| `--proxy`                 | HTTP(S) proxy to connect to the cloud through                                                              |
+| `--bytes-per-second`      | Maximum uploaded bytes per second                                                                          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka cloud upload-rate
 
@@ -590,16 +590,16 @@ weka cloud upload-rate [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka cloud upload-rate set**
 
@@ -617,16 +617,16 @@ weka cloud upload-rate set [--bytes-per-second bps]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--bytes-per-second`      | Maximum uploaded bytes per second                                                                              |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--bytes-per-second`      | Maximum uploaded bytes per second                                                                          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 ### weka cluster
 
@@ -668,8 +668,8 @@ weka cluster create [--admin-password admin-password]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                  |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                      |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                        |
 | `--host-ips`...           | Management IP addresses; If empty, the hostnames will be resolved; If hosts are highly-available or mixed-networking, use IP set '++...+'; (may be repeated or comma-separated) |
 | `-h`, `--help`            | Show help message                                                                                                                                                               |
@@ -703,8 +703,8 @@ weka cluster update [--cluster-name cluster-name]
 | `--color`                  | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                               |
 | `-H`, `--HOST`             | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                               |
 | `-P`, `--PORT`             | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                               |
-| `-C`, `--CONNECT-TIMEOUT`  | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                 |
-| `-T`, `--TIMEOUT`          | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                       |
+| `-C`, `--CONNECT-TIMEOUT`  | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                     |
+| `-T`, `--TIMEOUT`          | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                         |
 | `--profile`                | Name of the connection and authentication profile to use                                                                                                       |
 | `-h`, `--help`             | Show help message                                                                                                                                              |
 
@@ -745,8 +745,8 @@ weka cluster process [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                   |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                   |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                   |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                     |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                         |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                             |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                           |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                               |
 | `--container`...          | Only return the processes of these container IDs, if not specified the weka-processes for all the containers will be returned (may be repeated or comma-separated)                                                                                                                                                                                 |
@@ -795,8 +795,8 @@ weka cluster bucket [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                   |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                   |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                   |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                     |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                         |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                             |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                           |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                               |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: id,leader,term,lastActiveTerm,state,council,uptime,leaderVersionSig,electableMode,sourceMembers,nonSourceMembers,fillLevel (may be repeated or comma-separated) |
@@ -837,8 +837,8 @@ weka cluster failure-domain [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                           |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                           |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                             |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                   |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                 |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                     |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                   |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                       |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,fd,active\_drives,failed\_drives,total\_drives,removed\_drives,containers,total\_containers,drive\_proces,total\_drive\_proces,compute\_proces,total\_compute\_proces,capacity (may be repeated or comma-separated) |
@@ -877,8 +877,8 @@ weka cluster hot-spare [--color color]
 | `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`                  | Name of the connection and authentication profile to use                                                                          |
 | `--skip-resource-validation` | Skip verifying that the cluster has enough RAM and SSD resources allocated for the hot-spare                                      |
 | `-h`, `--help`               | Show help message                                                                                                                 |
@@ -901,15 +901,15 @@ weka cluster start-io [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka cluster stop-io
 
@@ -934,8 +934,8 @@ weka cluster stop-io [--color color]
 | `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                            |
 | `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                            |
 | `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                            |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                    |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                      |
 | `--profile`                  | Name of the connection and authentication profile to use                                                                                                                                    |
 | `--brutal-no-flush`          | Force stopping IO services immediately without graceful flushing of ongoing operations. Using this flag may cause data-loss if used without explicit guidance from WekaIO customer support. |
 | `--keep-external-containers` | Keep external containers(S3, SMB, NFS) running                                                                                                                                              |
@@ -974,8 +974,8 @@ weka cluster drive [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                     |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                     |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                     |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                       |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                             |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                           |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                               |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                             |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                 |
 | `--container`...          | Only return the drives of these container IDs, if not specified, all drives are listed (may be repeated or comma-separated)                                                                                                                                                                          |
@@ -1013,8 +1013,8 @@ weka cluster drive scan [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
@@ -1044,8 +1044,8 @@ weka cluster drive activate [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
@@ -1075,8 +1075,8 @@ weka cluster drive deactivate [--color color]
 | `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                   |
 | `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                   |
 | `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                   |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)           |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)         |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)             |
 | `--profile`                  | Name of the connection and authentication profile to use                                                           |
 | `--skip-resource-validation` | Skip verifying that the configured hot spare capacity will remain available after deactivating the drives          |
 | `-f`, `--force`              | Force this action without further confirmation. This action may impact performance while the drive is phasing out. |
@@ -1116,8 +1116,8 @@ weka cluster drive add <container-id>
 | `--color`                          | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`                     | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`                     | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT`          | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`                  | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT`          | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`                  | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`                        | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`                   | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...                | Specify which columns to output. May include any of the following: path,uuid (may be repeated or comma-separated)                                                                       |
@@ -1154,8 +1154,8 @@ weka cluster drive remove [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                               |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                               |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                 |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                       |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                     |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                         |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                       |
 | `-f`, `--force`           | Force this action without further confirmation. To undo the removal, add the drive back and re-scan the drives on the host local to the drive. |
 | `-h`, `--help`            | Show help message                                                                                                                              |
@@ -1192,18 +1192,18 @@ weka cluster mount-defaults set [--qos-max-throughput qos-max-throughput]
 
 ```
 
-| Parameter                    | Description                                                                                                    |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--qos-max-throughput`       | qos-max-throughput is the maximum throughput allowed for the client for either receive or transmit traffic.    |
-| `--qos-preferred-throughput` | qos-preferred-throughput is the throughput that gets preferred state (NORMAL instead of LOW) in QoS.           |
-| `--qos-max-ops`              | qos-max-ops is the maximum number of operations of any kind for the client                                     |
-| `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`                  | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`               | Show help message                                                                                              |
+| Parameter                    | Description                                                                                                 |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `--qos-max-throughput`       | qos-max-throughput is the maximum throughput allowed for the client for either receive or transmit traffic. |
+| `--qos-preferred-throughput` | qos-preferred-throughput is the throughput that gets preferred state (NORMAL instead of LOW) in QoS.        |
+| `--qos-max-ops`              | qos-max-ops is the maximum number of operations of any kind for the client                                  |
+| `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                            |
+| `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                            |
+| `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                            |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)  |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)      |
+| `--profile`                  | Name of the connection and authentication profile to use                                                    |
+| `-h`, `--help`               | Show help message                                                                                           |
 
 **weka cluster mount-defaults show**
 
@@ -1221,16 +1221,16 @@ weka cluster mount-defaults show [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster mount-defaults reset**
 
@@ -1250,18 +1250,18 @@ weka cluster mount-defaults reset [--color color]
 
 ```
 
-| Parameter                    | Description                                                                                                    |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`                  | Name of the connection and authentication profile to use                                                       |
-| `--qos-max-throughput`       | qos-max-throughput is the maximum throughput allowed for the client for either receive or transmit traffic.    |
-| `--qos-preferred-throughput` | qos-preferred-throughput is the throughput that gets preferred state (NORMAL instead of LOW) in QoS.           |
-| `--qos-max-ops`              | qos-max-ops is the maximum number of operations of any kind for the client                                     |
-| `-h`, `--help`               | Show help message                                                                                              |
+| Parameter                    | Description                                                                                                 |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                            |
+| `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                            |
+| `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                            |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)  |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)      |
+| `--profile`                  | Name of the connection and authentication profile to use                                                    |
+| `--qos-max-throughput`       | qos-max-throughput is the maximum throughput allowed for the client for either receive or transmit traffic. |
+| `--qos-preferred-throughput` | qos-preferred-throughput is the throughput that gets preferred state (NORMAL instead of LOW) in QoS.        |
+| `--qos-max-ops`              | qos-max-ops is the maximum number of operations of any kind for the client                                  |
+| `-h`, `--help`               | Show help message                                                                                           |
 
 #### weka cluster servers
 
@@ -1304,8 +1304,8 @@ weka cluster servers list [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                    |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                    |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                    |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                      |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                            |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                          |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                              |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                            |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                |
 | `--role`...               | Only list machines with specified roles. Possible roles: (format: 'backend', 'client', 'nfs', 'smb' or 's3', may be repeated or comma-separated)                                                    |
@@ -1333,17 +1333,17 @@ weka cluster servers show <uid>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `uid`\*                   | The Server UID                                                                                                 |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `uid`\*                   | The Server UID                                                                                             |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka cluster container
 
@@ -1380,8 +1380,8 @@ weka cluster container [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,hostname,container,machineIdentifier,ips,status,RequestedAction,software,release,mode,fd,fdName,fdType,fdId,cores,feCores,driveCores,coreIds,memory,bw,scrubberLimit,dedicated,autoRemove,leadership,uptime,failureText,failure,failureTime,failureCode,requestedActionFailureText,requestedActionFailure,requestedActionFailureTime,requestedActionFailureCode,added,cloudProvider,availabilityZone,instanceType,instanceId,kernelName,kernelRelease,kernelVersion,platform (may be repeated or comma-separated) |
@@ -1424,8 +1424,8 @@ weka cluster container info-hw [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `--info-type`...          | Specify what information to query: version                                                                                        |
 | `-h`, `--help`            | Show help message                                                                                                                 |
@@ -1451,18 +1451,18 @@ weka cluster container failure-domain <container-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `container-id`\*          | Container ID as shown in `weka cluster container`                                                              |
-| `--name`                  | Add this container to a named failure-domain. A failure-domain will be created if it doesn't exist yet.        |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--auto`                  | Set this container to be a failure-domain of its own                                                           |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-id`\*          | Container ID as shown in `weka cluster container`                                                          |
+| `--name`                  | Add this container to a named failure-domain. A failure-domain will be created if it doesn't exist yet.    |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--auto`                  | Set this container to be a failure-domain of its own                                                       |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster container dedicate**
 
@@ -1481,17 +1481,17 @@ weka cluster container dedicate <container-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `container-id`\*          | Container ID as shown in `weka cluster container`                                                              |
-| `on`\*                    | Set the container as weka dedicated, off unsets container as weka dedicated (format: 'on' or 'off')            |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-id`\*          | Container ID as shown in `weka cluster container`                                                          |
+| `on`\*                    | Set the container as weka dedicated, off unsets container as weka dedicated (format: 'on' or 'off')        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster container bandwidth**
 
@@ -1517,8 +1517,8 @@ weka cluster container bandwidth <container-id>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                           |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                           |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                             |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                   |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                 |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                     |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                   |
 | `-h`, `--help`            | Show help message                                                                                                                                                                          |
 
@@ -1558,8 +1558,8 @@ weka cluster container cores <container-id>
 | `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                |
 | `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                |
 | `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)  |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)      |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)          |
 | `--profile`                  | Name of the connection and authentication profile to use                                                        |
 | `--core-ids`...              | Specify the ids of weka dedicated cores. (may be repeated or comma-separated)                                   |
 | `--no-frontends`             | Do not create any processes with a frontend role                                                                |
@@ -1593,8 +1593,8 @@ weka cluster container memory <container-id>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                         |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                         |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                 |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                               |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                   |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                 |
 | `-h`, `--help`            | Show help message                                                                                                                                                                        |
 
@@ -1615,17 +1615,17 @@ weka cluster container auto-remove-timeout <container-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `container-id`\*          | Container ID as shown in `weka cluster container`                                                              |
-| `auto-remove-timeout`\*   | Minimum value is 60, use 0 to disable automatic removal                                                        |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-id`\*          | Container ID as shown in `weka cluster container`                                                          |
+| `auto-remove-timeout`\*   | Minimum value is 60, use 0 to disable automatic removal                                                    |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster container management-ips**
 
@@ -1644,17 +1644,17 @@ weka cluster container management-ips <container-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `container-id`\*          | Container ID as shown in `weka cluster container`                                                              |
-| `management-ips`...       | New IPs for the management processes                                                                           |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-id`\*          | Container ID as shown in `weka cluster container`                                                          |
+| `management-ips`...       | New IPs for the management processes                                                                       |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster container resources**
 
@@ -1682,8 +1682,8 @@ weka cluster container resources <container-id>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `--stable`                | List the resources from the last successfull container boot                                                                       |
 | `-h`, `--help`            | Show help message                                                                                                                 |
@@ -1714,8 +1714,8 @@ weka cluster container restore [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                             |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                             |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                             |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                               |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                     |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                   |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                       |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                     |
 | `--all`                   | Apply resources on all the containers in the cluster. This will cause all backend containers in the entire cluter to restart simultaneously! |
 | `-h`, `--help`            | Show help message                                                                                                                            |
@@ -1745,8 +1745,8 @@ weka cluster container apply [--color color]
 | `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                             |
 | `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                             |
 | `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                             |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                               |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                     |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                   |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                       |
 | `--profile`                  | Name of the connection and authentication profile to use                                                                                     |
 | `--skip-resource-validation` | Skip verifying that the cluster will still have enough RAM and SSD resources after deactivating the containers                               |
 | `--all`                      | Apply resources on all the containers in the cluster. This will cause all backend containers in the entire cluter to restart simultaneously! |
@@ -1778,8 +1778,8 @@ weka cluster container activate [--color color]
 | `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
 | `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
 | `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)         |
 | `--profile`                  | Name of the connection and authentication profile to use                                                       |
 | `--no-wait`                  |                                                                                                                |
 | `--skip-resource-validation` | Skip verifying that the cluster will still have enough RAM and SSD resources after deactivating the containers |
@@ -1811,8 +1811,8 @@ weka cluster container deactivate [--color color]
 | `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
 | `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
 | `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)         |
 | `--profile`                  | Name of the connection and authentication profile to use                                                       |
 | `--no-wait`                  |                                                                                                                |
 | `--skip-resource-validation` | Skip verifying that the cluster will still have enough RAM and SSD resources after deactivating the containers |
@@ -1836,17 +1836,17 @@ weka cluster container requested-action <requested_action>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `requested_action`\*      | The requested action to set the containers to (format: 'none', 'stop', 'restart' or 'apply\_resources')        |
-| `container-ids`...        | A list of container ids for which to set flow                                                                  |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                        |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `requested_action`\*      | The requested action to set the containers to (format: 'none', 'stop', 'restart', 'apply\_resources' or 'upgrade') |
+| `container-ids`...        | A list of container ids for which to set flow                                                                      |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                   |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                   |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                   |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)         |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)             |
+| `--profile`               | Name of the connection and authentication profile to use                                                           |
+| `-h`, `--help`            | Show help message                                                                                                  |
 
 **weka cluster container clear-failure**
 
@@ -1864,16 +1864,16 @@ weka cluster container clear-failure [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `container-ids`...        | A list of container ids for which to clear the last failure                                                    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-ids`...        | A list of container ids for which to clear the last failure                                                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster container add**
 
@@ -1903,8 +1903,8 @@ weka cluster container add <hostname>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `--no-wait`               | Skip waiting for the container to be added to the cluster                                                                         |
 | `-h`, `--help`            | Show help message                                                                                                                 |
@@ -1930,18 +1930,18 @@ weka cluster container remove <container-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `container-id`\*          | The container ID of the container to be removed                                                                |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--no-wait`               | Don't wait for the container removal to complete, return immediately                                           |
-| `--no-unimprint`          | Don't remotely unimprint the container, just remove it from the cluster configuration                          |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-id`\*          | The container ID of the container to be removed                                                            |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--no-wait`               | Don't wait for the container removal to complete, return immediately                                       |
+| `--no-unimprint`          | Don't remotely unimprint the container, just remove it from the cluster configuration                      |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster container factory-reset**
 
@@ -1971,8 +1971,8 @@ weka cluster container factory-reset <guid>
 | `--color`                   | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`              | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`              | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT`   | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`           | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT`   | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`           | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`                 | Name of the connection and authentication profile to use                                                                          |
 | `--force`                   | When set, broute force reset                                                                                                      |
 | `-h`, `--help`              | Show help message                                                                                                                 |
@@ -2010,8 +2010,8 @@ weka cluster container net [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,name,id,host,hostname,device,ips,netmask,gateway,cores,owner,vlan,netlabel (may be repeated or comma-separated)  |
@@ -2061,8 +2061,8 @@ weka cluster container net add <container-id>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                             |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                             |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                             |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                               |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                     |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                   |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                       |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                     |
 | `--ips`...                | IPs to be allocated to cores using the device. If not given - IPs may be set automatically according the interface's IPs, or taken from the default networking IPs pool (may be repeated or comma-separated) |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                            |
@@ -2087,17 +2087,17 @@ weka cluster container net remove <container-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `container-id`\*          | The container's id                                                                                             |
-| `name`\*                  | Net device name, e.g. container0net0                                                                           |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-id`\*          | The container's id                                                                                         |
+| `name`\*                  | Net device name, e.g. container0net0                                                                       |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka cluster default-net
 
@@ -2122,8 +2122,8 @@ weka cluster default-net [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
@@ -2148,18 +2148,18 @@ weka cluster default-net set [--range range]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--range`                 | IP range                                                                                                       |
-| `--gateway`               | Default gateway IP                                                                                             |
-| `--netmask-bits`          | Subnet mask bits (0..32)                                                                                       |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--range`                 | IP range                                                                                                   |
+| `--gateway`               | Default gateway IP                                                                                         |
+| `--netmask-bits`          | Subnet mask bits (0..32)                                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster default-net update**
 
@@ -2179,18 +2179,18 @@ weka cluster default-net update [--range range]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--range`                 | IP range                                                                                                       |
-| `--gateway`               | Default gateway IP                                                                                             |
-| `--netmask-bits`          | Subnet mask bits (0..32)                                                                                       |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--range`                 | IP range                                                                                                   |
+| `--gateway`               | Default gateway IP                                                                                         |
+| `--netmask-bits`          | Subnet mask bits (0..32)                                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster default-net reset**
 
@@ -2207,15 +2207,15 @@ weka cluster default-net reset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka cluster license
 
@@ -2240,13 +2240,42 @@ weka cluster license [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
+
+**weka cluster license payg**
+
+Enable pay-as-you-go for the cluster
+
+```sh
+weka cluster license payg <plan-id>
+                          <secret-key>
+                          [--color color]
+                          [--HOST HOST]
+                          [--PORT PORT]
+                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                          [--TIMEOUT TIMEOUT]
+                          [--profile profile]
+                          [--help]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `plan-id`\*               | Plan ID connected to a payment method                                                                      |
+| `secret-key`\*            | Secret key of the payment plan                                                                             |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster license reset**
 
@@ -2263,15 +2292,15 @@ weka cluster license reset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster license set**
 
@@ -2289,16 +2318,16 @@ weka cluster license set <license>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `license`\*               | The new license to set to the system                                                                           |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `license`\*               | The new license to set to the system                                                                       |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka cluster task
 
@@ -2328,8 +2357,8 @@ weka cluster task [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,type,state,phase,progress,paused,desc,time (may be repeated or comma-separated)                               |
@@ -2357,16 +2386,16 @@ weka cluster task pause <task-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `task-id`\*               | Id of the task to pause                                                                                        |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `task-id`\*               | Id of the task to pause                                                                                    |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster task resume**
 
@@ -2384,16 +2413,16 @@ weka cluster task resume <task-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `task-id`\*               | Id of the task to resume                                                                                       |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `task-id`\*               | Id of the task to resume                                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster task abort**
 
@@ -2411,16 +2440,16 @@ weka cluster task abort <task-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `task-id`\*               | Id of the task to abort                                                                                        |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `task-id`\*               | Id of the task to abort                                                                                    |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster task limits**
 
@@ -2438,16 +2467,16 @@ weka cluster task limits [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka cluster task limits set**
 
@@ -2465,16 +2494,16 @@ weka cluster task limits set [--cpu-limit cpu-limit]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--cpu-limit`             | Percent of the CPU resources to dedicate to background tasks                                                   |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--cpu-limit`             | Percent of the CPU resources to dedicate to background tasks                                               |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka cluster client-target-version
 
@@ -2505,15 +2534,15 @@ weka cluster client-target-version show [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster client-target-version set**
 
@@ -2531,16 +2560,16 @@ weka cluster client-target-version set <version-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `version-name`\*          | The version to set                                                                                             |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `version-name`\*          | The version to set                                                                                         |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka cluster client-target-version reset**
 
@@ -2557,15 +2586,15 @@ weka cluster client-target-version reset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 ### weka diags
 
@@ -2616,8 +2645,8 @@ weka diags collect [--id id]
 | `-c`, `--core-limit`      | Limit to processing this number of core dumps, if found (default: 1)                                                                                     |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                         |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                 |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                               |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                   |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                 |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                         |
 | `--container-id`...       | Container IDs to collect diags from, can be used multiple times. This flag causes --clients to be ignored. (may be repeated or comma-separated)          |
@@ -2663,17 +2692,17 @@ weka diags rm [--HOST HOST]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `id`...                   | ID of the diags to cancel. Must be specified unless the all option is set.                                     |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `--all`                   | Delete all.                                                                                                    |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `id`...                   | ID of the diags to cancel. Must be specified unless the all option is set.                                 |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `--all`                   | Delete all.                                                                                                |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka diags upload
 
@@ -2704,8 +2733,8 @@ weka diags upload [--timeout timeout]
 | `--dump-id`               | ID of an existing dump to upload. This dump ID has to exist on this local server. If an ID is not specified, a new dump is created.             |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                  |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                      |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                          |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                        |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                |
 | `--container-id`...       | Container IDs to collect diags from, can be used multiple times. This flag causes --clients to be ignored. (may be repeated or comma-separated) |
@@ -2755,8 +2784,8 @@ weka events [--num-results num-results]
 | `--color`                      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                     |
 | `-H`, `--HOST`                 | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                     |
 | `-P`, `--PORT`                 | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                     |
-| `-C`, `--CONNECT-TIMEOUT`      | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                       |
-| `-T`, `--TIMEOUT`              | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                             |
+| `-C`, `--CONNECT-TIMEOUT`      | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                           |
+| `-T`, `--TIMEOUT`              | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                               |
 | `--profile`                    | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                             |
 | `-f`, `--format`               | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                 |
 | `-t`, `--type-list`...         | Filter events by type, can be used multiple times (use 'weka events list-types' to see available types) (may be repeated or comma-separated)                                                                                                                                                                                                         |
@@ -2807,8 +2836,8 @@ weka events list-local [--start-time <start>]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                    |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                    |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                    |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                      |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                            |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                          |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                              |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                            |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: time,category,severity,permission,type,entity,node,hash (may be repeated or comma-separated)                                                     |
@@ -2851,8 +2880,8 @@ weka events list-types [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                    |
 | `-c`, `--category`...     | List only the events that fall under one of the following categories: Events, Node, Raid, Drive, ObjectStorage, System, Resources, Clustering, Network, Filesystem, Upgrade, NFS, Config, Cloud, InterfaceGroup, Org, User, Alerts, Licensing, Custom, Kms, Smb, Telemetry, Traces, S3, Security, Agent or KDriver (may be repeated or comma-separated) |
@@ -2881,16 +2910,16 @@ weka events trigger-event <message>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `message`\*               | User defined text to trigger as the events parameter                                                           |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `message`\*               | User defined text to trigger as the events parameter                                                       |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 ### weka fs
 
@@ -2918,26 +2947,26 @@ weka fs [--name name]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--name`                  | Filesystem name                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                                         |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                                         |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                 |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                                     |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,name,group,usedSSD,usedSSDD,usedSSDM,freeSSD,availableSSDM,availableSSD,usedTotal,usedTotalD,freeTotal,availableTotal,maxFiles,status,encrypted,stores,auth,thinProvisioned,thinProvisioningMinSSDBudget,thinProvisioningMaxSSDBudget,usedSSDWD,usedSSDRD,reductionFactor,pendingReduction,dataReduction,reducedProcessedSize,reducedSize (may be repeated or comma-separated) |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                                                                  |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                    |
-| `--capacities`            | Display all capacity columns                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `--force-fresh`           | Refresh the capacities to make sure they are most updated                                                                                                                                                                                                                                                                                                                                                                                                |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                                                                        |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                                                                    |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--name`                  | Filesystem name                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                           |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                               |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                                                                 |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,name,group,usedSSD,usedSSDD,usedSSDM,freeSSD,availableSSDM,availableSSD,usedTotal,usedTotalD,freeTotal,availableTotal,maxFiles,status,encrypted,stores,auth,thinProvisioned,thinProvisioningMinSSDBudget,thinProvisioningMaxSSDBudget,usedSSDWD,usedSSDRD,reductionFactor,pendingReduction,dataReduction,reducedProcessedSize,reducedSize,kmsKey,kmsNamespace,kmsRole (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                                                                                              |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                                |
+| `--capacities`            | Display all capacity columns                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `--force-fresh`           | Refresh the capacities to make sure they are most updated                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                                                                                                    |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                                                                                                |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 #### weka fs create
 
@@ -2951,6 +2980,10 @@ weka fs create <name>
                [--ssd-capacity ssd-capacity]
                [--thin-provision-min-ssd thin-provision-min-ssd]
                [--thin-provision-max-ssd thin-provision-max-ssd]
+               [--kms-key-identifier kms-key-identifier]
+               [--kms-namespace kms-namespace]
+               [--kms-role-id kms-role-id]
+               [--kms-secret-id kms-secret-id]
                [--auth-required auth-required]
                [--color color]
                [--HOST HOST]
@@ -2977,12 +3010,16 @@ weka fs create <name>
 | `--ssd-capacity`           | SSD capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                                              |
 | `--thin-provision-min-ssd` | Thin provisioned minimum SSD capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                     |
 | `--thin-provision-max-ssd` | Thin provisioned maximum SSD capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                     |
+| `--kms-key-identifier`     | Customize KMS key identifier for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                         |
+| `--kms-namespace`          | Customize KMS namespace for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                              |
+| `--kms-role-id`            | Customize KMS role-id for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                                |
+| `--kms-secret-id`          | Customize KMS secret-id for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                              |
 | `--auth-required`          | Require the mounting user to be authenticated for mounting this filesystem. This flag is only effective in the root organization, users in non-root organizations must be authenticated to perform a mount operation. (format: 'yes' or 'no') |
 | `--color`                  | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                              |
 | `-H`, `--HOST`             | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                              |
 | `-P`, `--PORT`             | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                              |
-| `-C`, `--CONNECT-TIMEOUT`  | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                |
-| `-T`, `--TIMEOUT`          | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                      |
+| `-C`, `--CONNECT-TIMEOUT`  | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                    |
+| `-T`, `--TIMEOUT`          | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                        |
 | `--profile`                | Name of the connection and authentication profile to use                                                                                                                                                                                      |
 | `--encrypted`              | Creates an encrypted filesystem                                                                                                                                                                                                               |
 | `--allow-no-kms`           | Allow (insecurely) creating an encrypted filesystem without a KMS configured                                                                                                                                                                  |
@@ -3007,6 +3044,10 @@ weka fs download <name>
                  [--additional-obs-bucket additional-obs-bucket]
                  [--snapshot-name snapshot-name]
                  [--access-point access-point]
+                 [--kms-key-identifier kms-key-identifier]
+                 [--kms-namespace kms-namespace]
+                 [--kms-role-id kms-role-id]
+                 [--kms-secret-id kms-secret-id]
                  [--color color]
                  [--HOST HOST]
                  [--PORT PORT]
@@ -3033,11 +3074,15 @@ weka fs download <name>
 | `--additional-obs-bucket`    | Additional Object Store bucket                                                                                                                                                                                                                |
 | `--snapshot-name`            | Downloaded snapshot name (default: uploaded name)                                                                                                                                                                                             |
 | `--access-point`             | Downloaded snapshot access point (default: uploaded access-point)                                                                                                                                                                             |
+| `--kms-key-identifier`       | Customize KMS key name for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                               |
+| `--kms-namespace`            | Customize KMS namespace for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                              |
+| `--kms-role-id`              | Customize KMS role-id for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                                |
+| `--kms-secret-id`            | Customize KMS secret-id for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                              |
 | `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                              |
 | `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                              |
 | `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                              |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                      |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                    |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                        |
 | `--profile`                  | Name of the connection and authentication profile to use                                                                                                                                                                                      |
 | `--skip-resource-validation` | Skip verifying that the cluster has enough RAM and SSD resources allocated for the downloaded filesystem                                                                                                                                      |
 | `-h`, `--help`               | Show help message                                                                                                                                                                                                                             |
@@ -3058,33 +3103,70 @@ weka fs update <name>
                [--thin-provision-max-ssd thin-provision-max-ssd]
                [--data-reduction data-reduction]
                [--auth-required auth-required]
+               [--kms-key-identifier kms-key-identifier]
+               [--kms-namespace kms-namespace]
+               [--kms-role-id kms-role-id]
+               [--kms-secret-id kms-secret-id]
                [--color color]
                [--HOST HOST]
                [--PORT PORT]
                [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
                [--TIMEOUT TIMEOUT]
                [--profile profile]
+               [--use-cluster-kms-key-identifier]
                [--help]
 
 ```
 
-| Parameter                  | Description                                                                                                                                                                                                                                   |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`\*                   | Filesystem name                                                                                                                                                                                                                               |
-| `--new-name`               | New name                                                                                                                                                                                                                                      |
-| `--total-capacity`         | Total capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                                            |
-| `--ssd-capacity`           | SSD capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                                              |
-| `--thin-provision-min-ssd` | Thin provision minimum SSD capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                       |
-| `--thin-provision-max-ssd` | Thin provision maximum SSD capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                       |
-| `--data-reduction`         | Enable data reduction                                                                                                                                                                                                                         |
-| `--auth-required`          | Require the mounting user to be authenticated for mounting this filesystem. This flag is only effective in the root organization, users in non-root organizations must be authenticated to perform a mount operation. (format: 'yes' or 'no') |
-| `--color`                  | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                              |
-| `-H`, `--HOST`             | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                              |
-| `-P`, `--PORT`             | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                              |
-| `-C`, `--CONNECT-TIMEOUT`  | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                |
-| `-T`, `--TIMEOUT`          | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                      |
-| `--profile`                | Name of the connection and authentication profile to use                                                                                                                                                                                      |
-| `-h`, `--help`             | Show help message                                                                                                                                                                                                                             |
+| Parameter                          | Description                                                                                                                                                                                                                                   |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                           | Filesystem name                                                                                                                                                                                                                               |
+| `--new-name`                       | New name                                                                                                                                                                                                                                      |
+| `--total-capacity`                 | Total capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                                            |
+| `--ssd-capacity`                   | SSD capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                                              |
+| `--thin-provision-min-ssd`         | Thin provision minimum SSD capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                       |
+| `--thin-provision-max-ssd`         | Thin provision maximum SSD capacity (format: capacity in decimal or binary units: 1B, 1KB, 1MB, 1GB, 1TB, 1PB, 1EB, 1KiB, 1MiB, 1GiB, 1TiB, 1PiB, 1EiB)                                                                                       |
+| `--data-reduction`                 | Enable data reduction                                                                                                                                                                                                                         |
+| `--auth-required`                  | Require the mounting user to be authenticated for mounting this filesystem. This flag is only effective in the root organization, users in non-root organizations must be authenticated to perform a mount operation. (format: 'yes' or 'no') |
+| `--kms-key-identifier`             | Customize KMS key identifier for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                         |
+| `--kms-namespace`                  | Customize KMS namespace for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                              |
+| `--kms-role-id`                    | Customize KMS role-id for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                                |
+| `--kms-secret-id`                  | Customize KMS secret-id for this filesystem (currently only for HashiCorp Vault)                                                                                                                                                              |
+| `--color`                          | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                              |
+| `-H`, `--HOST`                     | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                              |
+| `-P`, `--PORT`                     | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                              |
+| `-C`, `--CONNECT-TIMEOUT`          | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                    |
+| `-T`, `--TIMEOUT`                  | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                        |
+| `--profile`                        | Name of the connection and authentication profile to use                                                                                                                                                                                      |
+| `--use-cluster-kms-key-identifier` | Use cluster KMS configuration for this filesystem, removes the custom KMS configuration for this filesystem                                                                                                                                   |
+| `-h`, `--help`                     | Show help message                                                                                                                                                                                                                             |
+
+#### weka fs kms-rewrap
+
+Rewrap the key of Filesystem
+
+```sh
+weka fs kms-rewrap <name>
+                   [--color color]
+                   [--HOST HOST]
+                   [--PORT PORT]
+                   [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                   [--TIMEOUT TIMEOUT]
+                   [--profile profile]
+                   [--help]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Filesystem name                                                                                            |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka fs delete
 
@@ -3110,8 +3192,8 @@ weka fs delete <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                     |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                     |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                     |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)             |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)           |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)               |
 | `--profile`               | Name of the connection and authentication profile to use                                                             |
 | `--purge-from-obs`        | Delete filesystem's objects from the local writable Object Store, making all locally uploaded snapshots unusable     |
 | `-f`, `--force`           | Force this action without further confirmation. This action DELETES ALL DATA in the filesystem and cannot be undone. |
@@ -3147,8 +3229,8 @@ weka fs restore <file-system>
 | `--color`                                       | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                       |
 | `-H`, `--HOST`                                  | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                       |
 | `-P`, `--PORT`                                  | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                       |
-| `-C`, `--CONNECT-TIMEOUT`                       | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                         |
-| `-T`, `--TIMEOUT`                               | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                               |
+| `-C`, `--CONNECT-TIMEOUT`                       | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                             |
+| `-T`, `--TIMEOUT`                               | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                 |
 | `--profile`                                     | Name of the connection and authentication profile to use                                                                                               |
 | `-f`, `--force`                                 | Force this action without further confirmation. This action replaces all data in the filesystem with the content of the snapshot and cannot be undone. |
 | `-h`, `--help`                                  | Show help message                                                                                                                                      |
@@ -3203,8 +3285,8 @@ weka fs quota set <path>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                     |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                     |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                     |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                       |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                             |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                           |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                               |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                             |
 | `-h`, `--help`            | Show help message                                                                                                                                                    |
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                |
@@ -3239,8 +3321,8 @@ weka fs quota set-default <path>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                 |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                 |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                 |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                   |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                         |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                       |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                           |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                         |
 | `-h`, `--help`            | Show help message                                                                                                                                |
 
@@ -3264,20 +3346,20 @@ weka fs quota unset <path>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `path`\*                  | Path in the filesystem                                                                                         |
-| `--generation`            | Remove a specific generation of quota                                                                          |
-| `--file-system`           | Filesystem name                                                                                                |
-| `--snap-name`             | Name of the writable snapshot                                                                                  |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `path`\*                  | Path in the filesystem                                                                                     |
+| `--generation`            | Remove a specific generation of quota                                                                      |
+| `--file-system`           | Filesystem name                                                                                            |
+| `--snap-name`             | Name of the writable snapshot                                                                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka fs quota unset-default**
 
@@ -3295,16 +3377,16 @@ weka fs quota unset-default <path>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `path`\*                  | Path in the filesystem                                                                                         |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `path`\*                  | Path in the filesystem                                                                                     |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka fs quota list**
 
@@ -3346,8 +3428,8 @@ weka fs quota list [fs-name]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: quotaId,path,used,dblk,mblk,soft,hard,usage,owner,grace\_seconds,time\_over\_soft\_limit,status (may be repeated or comma-separated) |
@@ -3395,8 +3477,8 @@ weka fs quota list-default [fs-name]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: inodeId,path,soft,hard,owner,grace (may be repeated or comma-separated)                                              |
@@ -3436,8 +3518,8 @@ weka fs group [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,group,name,retention,demote (may be repeated or comma-separated)                                                 |
@@ -3478,8 +3560,8 @@ weka fs group create <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
@@ -3505,19 +3587,19 @@ weka fs group update <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | The filesystem group name to be created                                                                        |
-| `--new-name`              | Updated name of the specified filesystem group                                                                 |
-| `--target-ssd-retention`  | Period of time to keep an SSD copy of the data (format: 3s, 2h, 4m, 1d, 1d5h, 1w)                              |
-| `--start-demote`          | Period of time to wait before copying data to the Object Store (format: 3s, 2h, 4m, 1d, 1d5h, 1w)              |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | The filesystem group name to be created                                                                    |
+| `--new-name`              | Updated name of the specified filesystem group                                                             |
+| `--target-ssd-retention`  | Period of time to keep an SSD copy of the data (format: 3s, 2h, 4m, 1d, 1d5h, 1w)                          |
+| `--start-demote`          | Period of time to wait before copying data to the Object Store (format: 3s, 2h, 4m, 1d, 1d5h, 1w)          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka fs group delete**
 
@@ -3535,16 +3617,16 @@ weka fs group delete <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | The name of the filesystem group to be deleted                                                                 |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | The name of the filesystem group to be deleted                                                             |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka fs snapshot
 
@@ -3571,25 +3653,25 @@ weka fs snapshot [--file-system file-system]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                       |
-| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--file-system`           | Filesystem name                                                                                                                                                                                                                                                                                                                                                   |
-| `--name`                  | Snapshot name                                                                                                                                                                                                                                                                                                                                                     |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                  |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                  |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                          |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                          |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                              |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,filesystem,name,access,writeable,created,local\_upload\_size,remote\_upload\_size,local\_object\_status,local\_object\_progress,local\_object\_locator,remote\_object\_status,remote\_object\_progress,remote\_object\_locator,removing,prefetched (may be repeated or comma-separated) |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                           |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                             |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                 |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                 |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                             |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                        |
+| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--file-system`           | Filesystem name                                                                                                                                                                                                                                                                                                                                                                                         |
+| `--name`                  | Snapshot name                                                                                                                                                                                                                                                                                                                                                                                           |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                        |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                        |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                  |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                    |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,filesystem,name,access,writeable,created,local\_upload\_size,remote\_upload\_size,local\_object\_status,local\_object\_progress,local\_object\_locator,remote\_object\_status,remote\_object\_progress,remote\_object\_locator,removing,prefetched,est\_reclaimable\_size,metadata\_size (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                 |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                   |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                       |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                       |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                   |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                      |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                              |
 
 **weka fs snapshot create**
 
@@ -3628,8 +3710,8 @@ weka fs snapshot create <file-system>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: id,name,access,writeable,created (may be repeated or comma-separated)                                                |
@@ -3675,8 +3757,8 @@ weka fs snapshot copy <file-system>
 | `--color`                                       | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`                                  | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`                                  | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT`                       | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`                               | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT`                       | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`                               | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`                                     | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`                                  | Show help message                                                                                                                 |
 | `-J`, `--json`                                  | Format output as JSON                                                                                                             |
@@ -3714,8 +3796,8 @@ weka fs snapshot update <file-system>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
@@ -3759,8 +3841,8 @@ weka fs snapshot access-point-naming-convention status [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
@@ -3783,16 +3865,16 @@ weka fs snapshot access-point-naming-convention update <access-point-naming-conv
 
 ```
 
-| Parameter                          | Description                                                                                                    |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `access-point-naming-convention`\* | access point naming configuration (format: 'date' or 'name')                                                   |
-| `--color`                          | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`                     | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`                     | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT`          | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`                  | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`                        | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`                     | Show help message                                                                                              |
+| Parameter                          | Description                                                                                                |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `access-point-naming-convention`\* | access point naming configuration (format: 'date' or 'name')                                               |
+| `--color`                          | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`                     | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`                     | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT`          | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`                  | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`                        | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`                     | Show help message                                                                                          |
 
 **weka fs snapshot upload**
 
@@ -3824,8 +3906,8 @@ weka fs snapshot upload <file-system>
 | `--color`                   | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                           |
 | `-H`, `--HOST`              | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                           |
 | `-P`, `--PORT`              | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                           |
-| `-C`, `--CONNECT-TIMEOUT`   | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                             |
-| `-T`, `--TIMEOUT`           | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                   |
+| `-C`, `--CONNECT-TIMEOUT`   | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                 |
+| `-T`, `--TIMEOUT`           | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                     |
 | `--profile`                 | Name of the connection and authentication profile to use                                                                                   |
 | `--allow-non-chronological` | Allow uploading snapshots to remote object-store in non-chronological order. This is not recommended, as it will incur high data overhead. |
 | `-h`, `--help`              | Show help message                                                                                                                          |
@@ -3866,8 +3948,8 @@ weka fs snapshot download <file-system>
 | `--color`                   | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`              | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`              | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT`   | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`           | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT`   | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`           | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`                 | Name of the connection and authentication profile to use                                                                          |
 | `--allow-non-chronological` | Allow downloading snapshots in non-chronological order. This is not recommended, as it will incur high data overhead.             |
 | `--allow-divergence`        | Allow downloading snapshots which are not descendants of the last downloaded snapshot.                                            |
@@ -3901,8 +3983,8 @@ weka fs snapshot delete <file-system>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                          |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                          |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                          |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)            |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                  |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
 | `--profile`               | Name of the connection and authentication profile to use                                                                  |
 | `-f`, `--force`           | Force this action without further confirmation. This action deletes all data stored by the snapshot and cannot be undone. |
 | `-h`, `--help`            | Show help message                                                                                                         |
@@ -3935,8 +4017,8 @@ weka fs tier [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: obsBucket,statusUpload,statusDownload,statusRemove,nodesDown,errors (may be repeated or comma-separated)             |
@@ -3980,8 +4062,8 @@ weka fs tier location <path>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: path,type,size,ssdWrite,ssdRead,obsBytes,remoteBytes (may be repeated or comma-separated)                            |
@@ -4020,8 +4102,8 @@ weka fs tier fetch [--non-existing non-existing]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-v`, `--verbose`         | Verbose output, showing fetch requests as they are submitted                                                                      |
 | `-h`, `--help`            | Show help message                                                                                                                 |
@@ -4055,8 +4137,8 @@ weka fs tier release [--non-existing non-existing]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-v`, `--verbose`         | Verbose output, showing release requests as they are submitted                                                                    |
 | `-h`, `--help`            | Show help message                                                                                                                 |
@@ -4094,8 +4176,8 @@ weka fs tier capacity [--filesystem filesystem]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                               |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                               |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                 |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                       |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                     |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                         |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                       |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                           |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: fsUid,fsName,bucketUid,bucketName,totalConsumedCapacity,UsedCapacity,reclaimable,reclaimableThreshold,reclaimableLowThreshold,reclaimableHighThreshold (may be repeated or comma-separated) |
@@ -4140,8 +4222,8 @@ weka fs tier s3 [--obs-name obs-name]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,obsId,obsName,id,name,site,statusUpload,statusDownload,statusRemove,nodesUpForUpload,nodesUpForDownload,nodesUpForRemove,nodesDownForUpload,nodesDownForDownload,nodesDownForRemove,nodesUnknownForUpload,nodesUnknownForDownload,nodesUnknownForRemove,errors,protocol,hostname,port,bucket,auth,region,access,secret,status,up,downloadBandwidth,uploadBandwidth,removeBandwidth,errorsTimeout,prefetch,downloads,uploads,removals,maxUploadExtents,maxUploadSize,enableUploadTags,stsOperationType,stsRoleArn,stsRoleSessionName,stsDuration (may be repeated or comma-separated) |
@@ -4332,16 +4414,16 @@ weka fs tier s3 delete <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Name of the Object Store bucket                                                                                |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Name of the Object Store bucket                                                                            |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka fs tier s3 attach**
 
@@ -4371,8 +4453,8 @@ weka fs tier s3 attach <fs-name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
@@ -4403,8 +4485,8 @@ weka fs tier s3 detach <fs-name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                 |
 | `-f`, `--force`           | Force this action without further confirmation. This process might take a while to complete and it cannot be aborted. The data will remain intact on the object store, and you can still use the uploaded snapshots for recovery. |
@@ -4455,8 +4537,8 @@ weka fs tier s3 snapshot list <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                    |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                    |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                    |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                      |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                            |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                          |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                              |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                            |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: guid,fsId,snapId,origFsId,fsName,snapName,accessPoint,totalMetaData,totalSize,ssdCapacity,totalCapacity,maxFiles,numGuids,compatibleVersion (may be repeated or comma-separated) |
@@ -4498,8 +4580,8 @@ weka fs tier ops [name]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                              |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                              |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                              |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                      |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                    |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                        |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                      |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                          |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: node,obsBucket,key,type,execution,phase,previous,start,size,results,errors,lastHTTP,concurrency,inode (may be repeated or comma-separated) |
@@ -4541,8 +4623,8 @@ weka fs tier obs [--name name]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                               |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                               |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                 |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                       |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                     |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                         |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                       |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                           |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,name,site,bucketsCount,uploadBucketsUp,downloadBucketsUp,removeBucketsUp,protocol,hostname,port,auth,region,access,secret,downloadBandwidth,uploadBandwidth,remove3Bandwidth,downloads,uploads,removals,maxUploadExtents,maxUploadSize,enableUploadTags,maxUploadRam,stsOperationType,stsRoleArn,stsRoleSessionName,stsDuration (may be repeated or comma-separated) |
@@ -4664,8 +4746,8 @@ weka fs reserve status [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: id,name,ssdReserve (may be repeated or comma-separated)                                                              |
@@ -4704,8 +4786,8 @@ weka fs reserve set <ssd-capacity>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                            |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                            |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                    |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                      |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                    |
 | `-h`, `--help`            | Show help message                                                                                                                           |
 | `-J`, `--json`            | Format output as JSON                                                                                                                       |
@@ -4737,13 +4819,206 @@ weka fs reserve unset [--org org]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
+
+#### weka fs security
+
+Manage filesystem security
+
+```sh
+weka fs security [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+**weka fs security policy**
+
+Manages filesystem security policies.
+
+```sh
+weka fs security policy [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+**weka fs security policy list**
+
+Lists filesystem security policies.
+
+```sh
+weka fs security policy list <fs-name>
+                             [--color color]
+                             [--HOST HOST]
+                             [--PORT PORT]
+                             [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                             [--TIMEOUT TIMEOUT]
+                             [--profile profile]
+                             [--format format]
+                             [--output output]...
+                             [--sort sort]...
+                             [--filter filter]...
+                             [--help]
+                             [--raw-units]
+                             [--UTC]
+                             [--no-header]
+                             [--verbose]
+
+```
+
+| Parameter                 | Description                                                                                                                                                                             |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `fs-name`\*               | Filesystem name.                                                                                                                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: position,id,name (may be repeated or comma-separated)                                                                |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
+| `-h`, `--help`            | Show help message                                                                                                                                                                       |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                       |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                   |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
+
+**weka fs security policy set**
+
+Sets security policies for a filesystem, replacing the existing list of policies.
+
+```sh
+weka fs security policy set <fs-name>
+                            [--color color]
+                            [--HOST HOST]
+                            [--PORT PORT]
+                            [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                            [--TIMEOUT TIMEOUT]
+                            [--profile profile]
+                            [--help]
+                            [--json]
+                            [<policies>]...
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `fs-name`\*               | Filesystem name.                                                                                           |
+| `policies`...             | Security Policies to set for filesystem.                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka fs security policy reset**
+
+Removes all security policies from a filesystem.
+
+```sh
+weka fs security policy reset <fs-name>
+                              [--color color]
+                              [--HOST HOST]
+                              [--PORT PORT]
+                              [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                              [--TIMEOUT TIMEOUT]
+                              [--profile profile]
+                              [--help]
+                              [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `fs-name`\*               | Filesystem name.                                                                                           |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka fs security policy attach**
+
+Attaches new security policies to a filesystem, adding them to the existing policies.
+
+```sh
+weka fs security policy attach <fs-name>
+                               [--color color]
+                               [--HOST HOST]
+                               [--PORT PORT]
+                               [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                               [--TIMEOUT TIMEOUT]
+                               [--profile profile]
+                               [--help]
+                               [--json]
+                               [<policies>]...
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `fs-name`\*               | Filesystem name.                                                                                           |
+| `policies`...             | Security policies to add for filesystem.                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka fs security policy detach**
+
+Removes security policies from a filesystem.
+
+```sh
+weka fs security policy detach <fs-name>
+                               [--color color]
+                               [--HOST HOST]
+                               [--PORT PORT]
+                               [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                               [--TIMEOUT TIMEOUT]
+                               [--profile profile]
+                               [--help]
+                               [--json]
+                               [<policies>]...
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `fs-name`\*               | Filesystem name.                                                                                           |
+| `policies`...             | Security policies to remove from filesystem.                                                               |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 ### weka dataservice
 
@@ -4789,16 +5064,16 @@ weka dataservice global-config set [--config-fs config-fs]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--config-fs`             | config filesystem name, use "" to invalidate                                                                   |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--config-fs`             | config filesystem name, use "" to invalidate                                                               |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka dataservice global-config show**
 
@@ -4816,16 +5091,16 @@ weka dataservice global-config show [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 ### weka interface-group
 
@@ -4855,8 +5130,8 @@ weka interface-group [--name name]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,name,mask,gateway,type,status,ips,ports,allowManageGids (may be repeated or comma-separated)                     |
@@ -4894,8 +5169,8 @@ weka interface-group assignment [--name name]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: ip,host,port,group (may be repeated or comma-separated)                                                              |
@@ -4941,8 +5216,8 @@ weka interface-group add <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: name,mask,gateway,type,status,ips,ports,allowManageGids (may be repeated or comma-separated)                                                         |
@@ -4970,18 +5245,18 @@ weka interface-group update <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Interface group name                                                                                           |
-| `--subnet`                | subnet mask in the 255.255.0.0 format                                                                          |
-| `--gateway`               | gateway ip                                                                                                     |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Interface group name                                                                                       |
+| `--subnet`                | subnet mask in the 255.255.0.0 format                                                                      |
+| `--gateway`               | gateway ip                                                                                                 |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka interface-group delete
 
@@ -5006,8 +5281,8 @@ weka interface-group delete <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                               |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                               |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                 |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                       |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                     |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                         |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                       |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected clients and can be undone by re-creating the interface group. |
 | `-h`, `--help`            | Show help message                                                                                                                                              |
@@ -5043,17 +5318,17 @@ weka interface-group ip-range add <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Interface group name                                                                                           |
-| `ips`\*                   | IP range                                                                                                       |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Interface group name                                                                                       |
+| `ips`\*                   | IP range                                                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka interface-group ip-range delete**
 
@@ -5080,8 +5355,8 @@ weka interface-group ip-range delete <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected clients and can be undone by re-creating the IP range. |
 | `-h`, `--help`            | Show help message                                                                                                                                       |
@@ -5118,18 +5393,18 @@ weka interface-group port add <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Interface group name                                                                                           |
-| `server-id`\*             | Server ID on which the port resides                                                                            |
-| `port`\*                  | Port's device. (e.g. eth1)                                                                                     |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Interface group name                                                                                       |
+| `server-id`\*             | Server ID on which the port resides                                                                        |
+| `port`\*                  | Port's device. (e.g. eth1)                                                                                 |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka interface-group port delete**
 
@@ -5158,8 +5433,8 @@ weka interface-group port delete <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                          |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected clients and can be undone by re-adding the port. |
 | `-h`, `--help`            | Show help message                                                                                                                                 |
@@ -5223,8 +5498,8 @@ weka local diags [--id id]
 | `--color`                      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                  |
 | `-H`, `--HOST`                 | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                  |
 | `-P`, `--PORT`                 | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                  |
-| `-C`, `--CONNECT-TIMEOUT`      | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)    |
-| `-T`, `--TIMEOUT`              | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)          |
+| `-C`, `--CONNECT-TIMEOUT`      | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
+| `-T`, `--TIMEOUT`              | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)            |
 | `--profile`                    | Name of the connection and authentication profile to use                                                          |
 | `-s`, `--collect-cluster-info` | Collect cluster-related information. Warning: Use this flag on one host at a time to avoid straining the cluster. |
 | `-t`, `--tar`                  | Create a TAR of all collected diags                                                                               |
@@ -5322,20 +5597,20 @@ Start a Weka container
 weka local start [--wait-time wait-time]
                  [--color color]
                  [--type type]...
-                 [--start-and-enable-dependent]
+                 [--skip-start-and-enable-dependent]
                  [--help]
                  [<container>]...
 
 ```
 
-| Parameter                            | Description                                                                                                       |
-| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| `container`...                       | The container to start                                                                                            |
-| `-w`, `--wait-time`                  | How long to wait for the container to start (default: 15m) (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `--color`                            | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                  |
-| `-t`, `--type`...                    | The container types to start (may be repeated or comma-separated)                                                 |
-| `-d`, `--start-and-enable-dependent` | Start and enable dependent containers even if we state container by name                                          |
-| `-h`, `--help`                       | Show help message                                                                                                 |
+| Parameter                           | Description                                                                                                       |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `container`...                      | The container to start                                                                                            |
+| `-w`, `--wait-time`                 | How long to wait for the container to start (default: 15m) (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `--color`                           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                  |
+| `-t`, `--type`...                   | The container types to start (may be repeated or comma-separated)                                                 |
+| `--skip-start-and-enable-dependent` | Skip starting and enabling dependent containers when starting containers by name                                  |
+| `-h`, `--help`                      | Show help message                                                                                                 |
 
 #### weka local stop
 
@@ -5345,24 +5620,22 @@ Stop a Weka container
 weka local stop [--reason reason]
                 [--color color]
                 [--type type]...
-                [--graceful]
-                [--stop-and-disable-dependent]
+                [--skip-stop-and-disable-dependent]
                 [--force]
                 [--help]
                 [<container>]...
 
 ```
 
-| Parameter                            | Description                                                                        |
-| ------------------------------------ | ---------------------------------------------------------------------------------- |
-| `container`...                       | The container to stop                                                              |
-| `--reason`                           | The reason weka was stopped, will be presented to the user during 'weka status'    |
-| `--color`                            | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')   |
-| `-t`, `--type`...                    | The container types to stop (may be repeated or comma-separated)                   |
-| `-g`, `--graceful`                   | Stop the container gracefully                                                      |
-| `-d`, `--stop-and-disable-dependent` | Implictly stop and disable dependent containers even if we state container by name |
-| `-f`, `--force`                      | Skip the check for active mounts                                                   |
-| `-h`, `--help`                       | Show help message                                                                  |
+| Parameter                           | Description                                                                      |
+| ----------------------------------- | -------------------------------------------------------------------------------- |
+| `container`...                      | The container to stop                                                            |
+| `--reason`                          | The reason weka was stopped, will be presented to the user during 'weka status'  |
+| `--color`                           | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-t`, `--type`...                   | The container types to stop (may be repeated or comma-separated)                 |
+| `--skip-stop-and-disable-dependent` | Skip stopping and disabling dependent containers                                 |
+| `-f`, `--force`                     | Skip the check for active mounts and perform an ungraceful stop                  |
+| `-h`, `--help`                      | Show help message                                                                |
 
 #### weka local restart
 
@@ -5372,8 +5645,8 @@ Restart a Weka container
 weka local restart [--wait-time wait-time]
                    [--color color]
                    [--type type]...
-                   [--graceful]
                    [--dont-restart-dependent-containers]
+                   [--force]
                    [--help]
                    [<container>]...
 
@@ -5385,8 +5658,8 @@ weka local restart [--wait-time wait-time]
 | `-w`, `--wait-time`                   | How long to wait for the container to start (default: 15m) (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
 | `--color`                             | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                  |
 | `-t`, `--type`...                     | The container types to restart (may be repeated or comma-separated)                                               |
-| `-g`, `--graceful`                    | Restart the container gracefully                                                                                  |
 | `--dont-restart-dependent-containers` | Do not restart dependent containers                                                                               |
+| `-f`, `--force`                       | Skip the check for active mounts and perform an ungraceful restart                                                |
 | `-h`, `--help`                        | Show help message                                                                                                 |
 
 #### weka local status
@@ -6128,18 +6401,18 @@ weka nfs rules add dns <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Group name                                                                                                     |
-| `dns`\*                   | DNS rule with \*?\[] wildcards rule                                                                            |
-| `--ip`                    | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format                                  |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Group name                                                                                                 |
+| `dns`\*                   | DNS rule with \*?\[] wildcards rule                                                                        |
+| `--ip`                    | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs rules add ip**
 
@@ -6158,17 +6431,17 @@ weka nfs rules add ip <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Group name                                                                                                     |
-| `ip`\*                    | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format                                  |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Group name                                                                                                 |
+| `ip`\*                    | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs rules delete**
 
@@ -6201,17 +6474,17 @@ weka nfs rules delete dns <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Group name                                                                                                     |
-| `dns`\*                   | DNS rule with \*?\[] wildcards rule                                                                            |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Group name                                                                                                 |
+| `dns`\*                   | DNS rule with \*?\[] wildcards rule                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs rules delete ip**
 
@@ -6230,17 +6503,17 @@ weka nfs rules delete ip <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Group name                                                                                                     |
-| `ip`\*                    | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format                                  |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Group name                                                                                                 |
+| `ip`\*                    | IP with netmask or CIDR rule, in the 1.1.1.1/255.255.0.0 or 1.1.1.1/16 format                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka nfs client-group
 
@@ -6270,8 +6543,8 @@ weka nfs client-group [--name name]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,name,rules (may be repeated or comma-separated)                                                                  |
@@ -6309,8 +6582,8 @@ weka nfs client-group add <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: name,rules (may be repeated or comma-separated)                                                                      |
@@ -6343,8 +6616,8 @@ weka nfs client-group delete <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                  |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                      |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                          |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                        |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected NFS clients and can be undone by re-creating the client group. |
 | `-h`, `--help`            | Show help message                                                                                                                                               |
@@ -6377,8 +6650,8 @@ weka nfs permission [--filesystem filesystem]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                      |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                      |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                      |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                        |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                            |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                              |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                  |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,filesystem,group,path,type,squash,auid,agid,obsdirect,manageGids,options,customOptions,privilegedPort,priority,supportedVersions,enabledAuthTypes,aclType (may be repeated or comma-separated) |
@@ -6404,6 +6677,8 @@ weka nfs permission add <filesystem>
                         [--obs-direct obs-direct]
                         [--manage-gids manage-gids]
                         [--privileged-port privileged-port]
+                        [--acl-type acl-type]
+                        [--force-acl-type force-acl-type]
                         [--color color]
                         [--HOST HOST]
                         [--PORT PORT]
@@ -6412,6 +6687,7 @@ weka nfs permission add <filesystem>
                         [--profile profile]
                         [--supported-versions supported-versions]...
                         [--enable-auth-types enable-auth-types]...
+                        [--no-restart]
                         [--force]
                         [--help]
 
@@ -6430,14 +6706,17 @@ weka nfs permission add <filesystem>
 | `--obs-direct`            | Obs direct (format: 'on' or 'off')                                                                                                                                                                                                       |
 | `--manage-gids`           | the list of group ids received from the client will be replaced by a list of group ids determined by an appropriate lookup on the server. NOTE - this only works with a interface group which allows manage-gids (format: 'on' or 'off') |
 | `--privileged-port`       | Privileged port (format: 'on' or 'off')                                                                                                                                                                                                  |
+| `--acl-type`              | Specifies the ACL type. Options include none, posix, nfsv4, and hybrid. Default is determined by the NFS global configuration (format: 'none', 'posix', 'nfsv4' or 'hybrid')                                                             |
+| `--force-acl-type`        | Forces a change to the ACL type for existing permissions on the same filesystem (format: 'on' or 'off')                                                                                                                                  |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                         |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                         |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                 |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                               |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                   |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                 |
 | `--supported-versions`... | A comma-separated list of supported NFS versions (format: 'v3' or 'v4', may be repeated or comma-separated)                                                                                                                              |
 | `--enable-auth-types`...  | A comma-separated list of NFS authentication types -- none, sys, krb5, krb5i, krb5p (format: 'none', 'sys', 'krb5', 'krb5i' or 'krb5p', may be repeated or comma-separated)                                                              |
+| `--no-restart`            | Prevents the restart of NFS-W containers when applying changes (default: false), null, No.HideFromUsage                                                                                                                                  |
 | `-f`, `--force`           | Force this action without further confirmation. This action will affect all NFS users of this permission/export, Use it with caution and consult the Weka Customer Success team at need.                                                 |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                        |
 
@@ -6458,6 +6737,8 @@ weka nfs permission update <filesystem>
                            [--manage-gids manage-gids]
                            [--custom-options custom-options]
                            [--privileged-port privileged-port]
+                           [--acl-type acl-type]
+                           [--force-acl-type force-acl-type]
                            [--color color]
                            [--HOST HOST]
                            [--PORT PORT]
@@ -6486,16 +6767,18 @@ weka nfs permission update <filesystem>
 | `--manage-gids`           | the list of group ids received from the client will be replaced by a list of group ids determined by an appropriate lookup on the server. NOTE - this only works with a interface group which allows manage-gids (format: 'on' or 'off') |
 | `--custom-options`        | Custom export options                                                                                                                                                                                                                    |
 | `--privileged-port`       | Privileged port (format: 'on' or 'off')                                                                                                                                                                                                  |
+| `--acl-type`              | Specifies the ACL type. Options include none, posix, nfsv4, and hybrid. Default is determined by the NFS global configuration (format: 'none', 'posix', 'nfsv4' or 'hybrid')                                                             |
+| `--force-acl-type`        | Forces a change to the ACL type for existing permissions on the same filesystem (format: 'on' or 'off')                                                                                                                                  |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                         |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                         |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                 |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                               |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                   |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                 |
 | `--supported-versions`... | A comma-separated list of supported NFS versions (format: 'v3' or 'v4', may be repeated or comma-separated)                                                                                                                              |
 | `--enable-auth-types`...  | A comma-separated list of NFS authentication types -- none, sys, krb5, krb5i, krb5p (format: 'none', 'sys', 'krb5', 'krb5i' or 'krb5p', may be repeated or comma-separated)                                                              |
 | `--force`                 | Force this action without further confirmation                                                                                                                                                                                           |
-| `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false), null, Yes.HideFromUsage                                                                                                                                            |
+| `--no-restart`            | Prevents the restart of NFS-W containers when applying changes (default: false), null, No.HideFromUsage                                                                                                                                  |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                        |
 
 **weka nfs permission delete**
@@ -6525,8 +6808,8 @@ weka nfs permission delete <filesystem>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                         |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                         |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                 |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                               |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                   |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                 |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected NFS clients and can be undone by re-creating the filesystem permission. |
 | `-h`, `--help`            | Show help message                                                                                                                                                        |
@@ -6559,8 +6842,8 @@ weka nfs interface-group [--name name]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,name,mask,gateway,type,status,ips,ports,allowManageGids (may be repeated or comma-separated)                     |
@@ -6598,8 +6881,8 @@ weka nfs interface-group assignment [--name name]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: ip,host,port,group (may be repeated or comma-separated)                                                              |
@@ -6643,8 +6926,8 @@ weka nfs interface-group add <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: name,mask,gateway,type,status,ips,ports,allowManageGids (may be repeated or comma-separated)                         |
@@ -6672,18 +6955,18 @@ weka nfs interface-group update <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Interface group name                                                                                           |
-| `--subnet`                | subnet mask in the 255.255.0.0 format                                                                          |
-| `--gateway`               | gateway ip                                                                                                     |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Interface group name                                                                                       |
+| `--subnet`                | subnet mask in the 255.255.0.0 format                                                                      |
+| `--gateway`               | gateway ip                                                                                                 |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs interface-group delete**
 
@@ -6708,8 +6991,8 @@ weka nfs interface-group delete <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                   |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                   |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                   |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                     |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                         |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                             |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                           |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected NFS clients and can be undone by re-creating the interface group. |
 | `-h`, `--help`            | Show help message                                                                                                                                                  |
@@ -6745,17 +7028,17 @@ weka nfs interface-group ip-range add <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Interface group name                                                                                           |
-| `ips`\*                   | IP range                                                                                                       |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Interface group name                                                                                       |
+| `ips`\*                   | IP range                                                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs interface-group ip-range delete**
 
@@ -6782,8 +7065,8 @@ weka nfs interface-group ip-range delete <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                            |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                            |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                    |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                      |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                    |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected NFS clients and can be undone by re-creating the IP range. |
 | `-h`, `--help`            | Show help message                                                                                                                                           |
@@ -6820,18 +7103,18 @@ weka nfs interface-group port add <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | Interface group name                                                                                           |
-| `server-id`\*             | Server ID on which the port resides                                                                            |
-| `port`\*                  | Port's device. (e.g. eth1)                                                                                     |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Interface group name                                                                                       |
+| `server-id`\*             | Server ID on which the port resides                                                                        |
+| `port`\*                  | Port's device. (e.g. eth1)                                                                                 |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs interface-group port delete**
 
@@ -6860,8 +7143,8 @@ weka nfs interface-group port delete <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                      |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                      |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                      |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                        |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                            |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                              |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected NFS clients and can be undone by re-adding the port. |
 | `-h`, `--help`            | Show help message                                                                                                                                     |
@@ -6907,8 +7190,8 @@ weka nfs debug-level show [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `--nfs-hosts`...          | Only return these host IDs (pass weka's host id as a number). All hosts as default (may be repeated or comma-separated)                                                                 |
@@ -6942,8 +7225,8 @@ weka nfs debug-level set <level>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                      |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                      |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                      |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)            |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                |
 | `--profile`               | Name of the connection and authentication profile to use                                                              |
 | `--nfs-hosts`...          | Hosts to set debug level (pass weka's host id as a number). All hosts as default (may be repeated or comma-separated) |
 | `-h`, `--help`            | Show help message                                                                                                     |
@@ -6972,6 +7255,8 @@ weka nfs global-config set [--mountd-port mountd-port]
                            [--lockmgr-port lockmgr-port]
                            [--statmon-port statmon-port]
                            [--notify-port notify-port]
+                           [--acl acl]
+                           [--default-acl-type default-acl-type]
                            [--color color]
                            [--HOST HOST]
                            [--PORT PORT]
@@ -6993,15 +7278,17 @@ weka nfs global-config set [--mountd-port mountd-port]
 | `--lockmgr-port`                  | The alternate port for the nfs lock manager (default: 0 means any available port)                                                                                                           |
 | `--statmon-port`                  | The alternate port for the nfs status monitor (default: 0 means any available port)                                                                                                         |
 | `--notify-port`                   | The alternate port for notification used in NFSv3 (default: 0 means any available port)                                                                                                     |
+| `--acl`                           | Enables or disables NFSv4 ACL support (default: On) (format: 'on' or 'off')                                                                                                                 |
+| `--default-acl-type`              | Specifies the default ACL type. Options are none, posix, nfsv4, or hybrid (default: posix) (format: 'none', 'posix', 'nfsv4' or 'hybrid')                                                   |
 | `--color`                         | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                            |
 | `-H`, `--HOST`                    | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                            |
 | `-P`, `--PORT`                    | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                            |
-| `-C`, `--CONNECT-TIMEOUT`         | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
-| `-T`, `--TIMEOUT`                 | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                    |
+| `-C`, `--CONNECT-TIMEOUT`         | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
+| `-T`, `--TIMEOUT`                 | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                      |
 | `--profile`                       | Name of the connection and authentication profile to use                                                                                                                                    |
 | `--default-supported-versions`... | A comma-separated list of the default supported NFS versions for new permissions (format: 'v3' or 'v4', may be repeated or comma-separated)                                                 |
 | `--enable-auth-types`...          | A comma-separated list of NFS authentication types -- none, sys, krb5, krb5i, krb5p for permissions (format: 'none', 'sys', 'krb5', 'krb5i' or 'krb5p', may be repeated or comma-separated) |
-| `--no-restart`                    | Don't restart the NFS-W containers to apply changes (default: false), null, Yes.HideFromUsage                                                                                               |
+| `--no-restart`                    | Prevents the restart of NFS-W containers when applying changes (default: false)                                                                                                             |
 | `-h`, `--help`                    | Show help message                                                                                                                                                                           |
 | `-f`, `--force`                   | Force this action without further confirmation. This may cause a temporary disruption in the NFS service.                                                                                   |
 
@@ -7016,23 +7303,21 @@ weka nfs global-config show [--color color]
                             [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
                             [--TIMEOUT TIMEOUT]
                             [--profile profile]
-                            [--verbose]
                             [--help]
                             [--json]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--verbose`               | Show all values                                                                                                |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka nfs clients
 
@@ -7080,8 +7365,8 @@ weka nfs clients show [--interface-group interface-group]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                      |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                      |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                      |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                        |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                            |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                              |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                  |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: hostid,client\_ip,idle\_time,num\_v3\_ops,num\_v4\_ops,num\_v4\_open\_ops,num\_v4\_close\_ops (may be repeated or comma-separated) |
@@ -7140,21 +7425,21 @@ weka nfs kerberos service setup <kdc-realm-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `kdc-realm-name`\*        | KDC Realm Name                                                                                                 |
-| `kdc-primary-server`\*    | KDC Primary Server                                                                                             |
-| `kdc-admin-server`\*      | KDC Admin Server                                                                                               |
-| `--kdc-secondary-server`  | KDC Secondary Server                                                                                           |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--force`                 | Force this action when the service is already configured (default: false)                                      |
-| `--restart`               | Restart the NFS-W containers to apply changes (default: false)                                                 |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `kdc-realm-name`\*        | KDC Realm Name                                                                                             |
+| `kdc-primary-server`\*    | KDC Primary Server                                                                                         |
+| `kdc-admin-server`\*      | KDC Admin Server                                                                                           |
+| `--kdc-secondary-server`  | KDC Secondary Server                                                                                       |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--force`                 | Force this action when the service is already configured (default: false)                                  |
+| `--restart`               | Restart the NFS-W containers to apply changes (default: false)                                             |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs kerberos service show**
 
@@ -7182,8 +7467,8 @@ weka nfs kerberos service show [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                   |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                   |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                   |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                     |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                         |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                             |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                           |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                               |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: realm\_name,primary\_server,secondary\_server,admin\_server,generation\_id,service\_status (may be repeated or comma-separated) |
@@ -7227,20 +7512,20 @@ weka nfs kerberos registration setup-ad <nfs-service-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `nfs-service-name`\*      | NFS FQDN Service Name (Maximum 20 characters for hostname in FQDN                                              |
-| `realm-admin-name`\*      | KDC Realm Admin Name                                                                                           |
-| `realm-admin-passwd`      | KDC Realm Admin password                                                                                       |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--force`                 | Force this action when the service is already registered (default: false)                                      |
-| `--restart`               | Don't restart the NFS-W containers to apply changes (default: false)                                           |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `nfs-service-name`\*      | NFS FQDN Service Name (Maximum 20 characters for hostname in FQDN                                          |
+| `realm-admin-name`\*      | KDC Realm Admin Name                                                                                       |
+| `realm-admin-passwd`      | KDC Realm Admin password                                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--force`                 | Force this action when the service is already registered (default: false)                                  |
+| `--restart`               | Don't restart the NFS-W containers to apply changes (default: false)                                       |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs kerberos registration setup-mit**
 
@@ -7261,19 +7546,19 @@ weka nfs kerberos registration setup-mit <nfs-service-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `nfs-service-name`\*      | NFS FQDN Service Name                                                                                          |
-| `keytab-file`\*           | Path to keytab file                                                                                            |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--force`                 | Force this action when the service is already registered (default: false)                                      |
-| `--restart`               | Don't restart the NFS-W containers to apply changes (default: false)                                           |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `nfs-service-name`\*      | NFS FQDN Service Name                                                                                      |
+| `keytab-file`\*           | Path to keytab file                                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--force`                 | Force this action when the service is already registered (default: false)                                  |
+| `--restart`               | Don't restart the NFS-W containers to apply changes (default: false)                                       |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs kerberos registration show**
 
@@ -7301,8 +7586,8 @@ weka nfs kerberos registration show [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: nfs\_service\_name,kdc\_type,generation\_id,registration\_status (may be repeated or comma-separated)                |
@@ -7329,17 +7614,17 @@ weka nfs kerberos reset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--force`                 | Force this action without further confirmation (default: false)                                                |
-| `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                           |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--force`                 | Force this action without further confirmation (default: false)                                            |
+| `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                       |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka nfs ldap
 
@@ -7372,17 +7657,17 @@ weka nfs ldap setup-ad [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--force`                 | Force this action when Active Directory LDAP client is already setup (default: false)                          |
-| `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                           |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--force`                 | Force this action when Active Directory LDAP client is already setup (default: false)                      |
+| `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                       |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs ldap setup-ad-nokrb**
 
@@ -7406,22 +7691,22 @@ weka nfs ldap setup-ad-nokrb <server-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `server-name`\*           | AD Server Name                                                                                                 |
-| `ldap-domain`\*           | AD Domain                                                                                                      |
-| `nfs-service-name`\*      | NFS FQDN Service Name (Maximum 20 characters for hostname in FQDN                                              |
-| `admin-user-name`\*       | AD Admin Name                                                                                                  |
-| `admin-user-password`     | AD Admin password                                                                                              |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--force`                 | Force this action when Active Directory LDAP client is already setup (default: false)                          |
-| `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                           |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `server-name`\*           | AD Server Name                                                                                             |
+| `ldap-domain`\*           | AD Domain                                                                                                  |
+| `nfs-service-name`\*      | NFS FQDN Service Name (Maximum 20 characters for hostname in FQDN                                          |
+| `admin-user-name`\*       | AD Admin Name                                                                                              |
+| `admin-user-password`     | AD Admin password                                                                                          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--force`                 | Force this action when Active Directory LDAP client is already setup (default: false)                      |
+| `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                       |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs ldap setup-openldap**
 
@@ -7487,22 +7772,22 @@ weka nfs ldap import-openldap <server-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `server-name`\*           | OpenLDAP Server Name                                                                                           |
-| `ldap-domain`\*           | OpenLDAP Domain                                                                                                |
-| `sssd-conf-file`\*        | Path to sssd configuration file                                                                                |
-| `idmapd-conf-file`\*      | Path to idmapd configuration file                                                                              |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--verify`                | verify connectivity with the OpenLDAP server (default: false)                                                  |
-| `--force`                 | Force this action when OpenLDAP client is already setup (default: false)                                       |
-| `--no-restart`            | Don't restart NFS-W containers to apply changes (default: false)                                               |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `server-name`\*           | OpenLDAP Server Name                                                                                       |
+| `ldap-domain`\*           | OpenLDAP Domain                                                                                            |
+| `sssd-conf-file`\*        | Path to sssd configuration file                                                                            |
+| `idmapd-conf-file`\*      | Path to idmapd configuration file                                                                          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--verify`                | verify connectivity with the OpenLDAP server (default: false)                                              |
+| `--force`                 | Force this action when OpenLDAP client is already setup (default: false)                                   |
+| `--no-restart`            | Don't restart NFS-W containers to apply changes (default: false)                                           |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs ldap export-openldap**
 
@@ -7523,19 +7808,19 @@ weka nfs ldap export-openldap <server-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `server-name`\*           | OpenLDAP Server Name                                                                                           |
-| `ldap-domain`\*           | OpenLDAP Domain                                                                                                |
-| `sssd-conf-file`\*        | Path to sssd configuration file                                                                                |
-| `idmapd-conf-file`\*      | Path to idmapd configuration file                                                                              |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `server-name`\*           | OpenLDAP Server Name                                                                                       |
+| `ldap-domain`\*           | OpenLDAP Domain                                                                                            |
+| `sssd-conf-file`\*        | Path to sssd configuration file                                                                            |
+| `idmapd-conf-file`\*      | Path to idmapd configuration file                                                                          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka nfs ldap show**
 
@@ -7563,8 +7848,8 @@ weka nfs ldap show [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                          |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                          |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                          |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                            |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                  |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                    |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                  |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                      |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: server\_type,domain,server\_name,server\_port,base\_dn,reader\_name,reader\_password,generation\_id,setup\_status (may be repeated or comma-separated) |
@@ -7591,17 +7876,17 @@ weka nfs ldap reset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--force`                 | Force this action without further confirmation (default: false)                                                |
-| `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                           |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--force`                 | Force this action without further confirmation (default: false)                                            |
+| `--no-restart`            | Don't restart the NFS-W containers to apply changes (default: false)                                       |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 ### weka org
 
@@ -7631,8 +7916,8 @@ weka org [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,name,allocSSD,quotaSSD,allocTotal,quotaTotal,policyNames,policyIds (may be repeated or comma-separated)       |
@@ -7675,8 +7960,8 @@ weka org create <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                  |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                      |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
 | `--profile`               | Name of the connection and authentication profile to use                                                                        |
 | `-h`, `--help`            | Show help message                                                                                                               |
 | `-J`, `--json`            | Format output as JSON                                                                                                           |
@@ -7699,18 +7984,18 @@ weka org rename <org>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `org`\*                   | Current organization name or ID                                                                                |
-| `new-name`\*              | New organization name                                                                                          |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `org`\*                   | Current organization name or ID                                                                            |
+| `new-name`\*              | New organization name                                                                                      |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka org set-quota
 
@@ -7739,8 +8024,8 @@ weka org set-quota <org>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                  |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                      |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
 | `--profile`               | Name of the connection and authentication profile to use                                                                        |
 | `-h`, `--help`            | Show help message                                                                                                               |
 | `-J`, `--json`            | Format output as JSON                                                                                                           |
@@ -7769,8 +8054,8 @@ weka org delete <org>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                 |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                 |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                 |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                   |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                         |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                       |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                           |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                         |
 | `-f`, `--force`           | Force this action without further confirmation. This action will DELETE ALL DATA stored in this organization's filesystems and cannot be undone. |
 | `-h`, `--help`            | Show help message                                                                                                                                |
@@ -7834,8 +8119,8 @@ weka org security policy list <org>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: position,id,name (may be repeated or comma-separated)                                                                |
@@ -7865,18 +8150,18 @@ weka org security policy set <org>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `org`\*                   | Organization name or ID.                                                                                       |
-| `policies`...             | Security policy names or IDs to assign to the organization.                                                    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `org`\*                   | Organization name or ID.                                                                                   |
+| `policies`...             | Security policy names or IDs to assign to the organization.                                                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka org security policy reset**
 
@@ -7895,17 +8180,17 @@ weka org security policy reset <org>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `org`\*                   | Organization name or ID.                                                                                       |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `org`\*                   | Organization name or ID.                                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka org security policy attach**
 
@@ -7925,18 +8210,18 @@ weka org security policy attach <org>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `org`\*                   | Organization name or ID.                                                                                       |
-| `policies`...             | Security policy names or IDs to attach to the organization.                                                    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `org`\*                   | Organization name or ID.                                                                                   |
+| `policies`...             | Security policy names or IDs to attach to the organization.                                                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka org security policy detach**
 
@@ -7956,18 +8241,18 @@ weka org security policy detach <org>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `org`\*                   | Organization name or ID.                                                                                       |
-| `policies`...             | Security policy names or IDs to remove from the organization.                                                  |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `org`\*                   | Organization name or ID.                                                                                   |
+| `policies`...             | Security policy names or IDs to remove from the organization.                                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 ### weka s3
 
@@ -8000,17 +8285,17 @@ weka s3 cluster [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-v`, `--verbose`         | Verbose mode                                                                                                   |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-v`, `--verbose`         | Verbose mode                                                                                               |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 cluster create**
 
@@ -8053,8 +8338,8 @@ weka s3 cluster create <default-fs-name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                            |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                            |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                    |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                      |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                    |
 | `--container`...          | The containers that will serve via the S3 protocol (pass weka's container ID as a number) (may be repeated or comma-separated)                                                                              |
 | `--all-servers`           | Install S3 on all servers                                                                                                                                                                                   |
@@ -8096,8 +8381,8 @@ weka s3 cluster update [--key key]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                            |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                            |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                    |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                      |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                    |
 | `--container`...          | The containers that will serve via the S3 protocol (may be repeated or comma-separated)                                                                                                                     |
 | `--all-servers`           | Install S3 on all servers                                                                                                                                                                                   |
@@ -8125,8 +8410,8 @@ weka s3 cluster destroy [--color color]
 | `--color`                    | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                        |
 | `-H`, `--HOST`               | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                        |
 | `-P`, `--PORT`               | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                          |
-| `-T`, `--TIMEOUT`            | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                |
+| `-C`, `--CONNECT-TIMEOUT`    | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                              |
+| `-T`, `--TIMEOUT`            | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                  |
 | `--profile`                  | Name of the connection and authentication profile to use                                                                                                |
 | `-f`, `--force`              | Force this action without further confirmation.                                                                                                         |
 | `troying the S3 cluster r`   | emoves the S3 service and its associated configuration, including IAM policies, buckets, and ILM rules. access will no longer be available for clients. |
@@ -8160,8 +8445,8 @@ weka s3 cluster status [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                         |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                         |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                 |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                               |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                   |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                 |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                     |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: id,hostname,serviceStatus,ip,port,versions,uptime,requests,lastError,failureTime (may be repeated or comma-separated) |
@@ -8203,18 +8488,18 @@ weka s3 cluster audit-webhook enable [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--endpoint`              | The webhook endpoint                                                                                           |
-| `--auth-token`            | The webhook authentication token                                                                               |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `--verify`                | verification to apply configuration                                                                            |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--endpoint`              | The webhook endpoint                                                                                       |
+| `--auth-token`            | The webhook authentication token                                                                           |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `--verify`                | verification to apply configuration                                                                        |
 
 **weka s3 cluster audit-webhook disable**
 
@@ -8231,15 +8516,15 @@ weka s3 cluster audit-webhook disable [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka s3 cluster audit-webhook show**
 
@@ -8257,16 +8542,16 @@ weka s3 cluster audit-webhook show [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 cluster containers**
 
@@ -8298,16 +8583,16 @@ weka s3 cluster containers add [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `container-ids`...        | The containers to add to the S3 cluster                                                                        |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-ids`...        | The containers to add to the S3 cluster                                                                    |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka s3 cluster containers remove**
 
@@ -8325,16 +8610,16 @@ weka s3 cluster containers remove [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `container-ids`...        | The containers to remove from the S3 cluster                                                                   |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-ids`...        | The containers to remove from the S3 cluster                                                               |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka s3 cluster containers list**
 
@@ -8352,16 +8637,16 @@ weka s3 cluster containers list [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka s3 bucket
 
@@ -8413,8 +8698,8 @@ weka s3 bucket create <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                 |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                 |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                 |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                   |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                         |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                       |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                           |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                         |
 | `-f`, `--force`           | Force when existing-path has quota                                                                                                               |
 | `-h`, `--help`            | Show help message                                                                                                                                |
@@ -8448,8 +8733,8 @@ weka s3 bucket list [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: name,hard,used,path,fs (may be repeated or comma-separated)                                                          |
@@ -8480,19 +8765,19 @@ weka s3 bucket destroy <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | bucket name to destroy                                                                                         |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--unlink`                | unlinks the bucket, but leave the data directory in place                                                      |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
-| `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected S3 clients..  |
+| Parameter                 | Description                                                                                                   |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | bucket name to destroy                                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                              |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                              |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)    |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
+| `--profile`               | Name of the connection and authentication profile to use                                                      |
+| `--unlink`                | unlinks the bucket, but leave the data directory in place                                                     |
+| `-h`, `--help`            | Show help message                                                                                             |
+| `-J`, `--json`            | Format output as JSON                                                                                         |
+| `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected S3 clients.. |
 
 **weka s3 bucket lifecycle-rule**
 
@@ -8528,20 +8813,20 @@ weka s3 bucket lifecycle-rule add <bucket>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `bucket`\*                | S3 Bucket Name                                                                                                 |
-| `expiry-days`\*           | expiry days                                                                                                    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--prefix`                | prefix                                                                                                         |
-| `--tags`                  | object tags                                                                                                    |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket`\*                | S3 Bucket Name                                                                                             |
+| `expiry-days`\*           | expiry days                                                                                                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--prefix`                | prefix                                                                                                     |
+| `--tags`                  | object tags                                                                                                |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 bucket lifecycle-rule remove**
 
@@ -8561,18 +8846,18 @@ weka s3 bucket lifecycle-rule remove <bucket>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `bucket`\*                | S3 Bucket Name                                                                                                 |
-| `name`\*                  | rule name                                                                                                      |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket`\*                | S3 Bucket Name                                                                                             |
+| `name`\*                  | rule name                                                                                                  |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 bucket lifecycle-rule reset**
 
@@ -8592,18 +8877,18 @@ weka s3 bucket lifecycle-rule reset <bucket>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `bucket`\*                | S3 Bucket Name                                                                                                 |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
-| `-f`, `--force`           | Force this action without further confirmation. This action will delete the existing S3 bucket rules.          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket`\*                | S3 Bucket Name                                                                                             |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+| `-f`, `--force`           | Force this action without further confirmation. This action will delete the existing S3 bucket rules.      |
 
 **weka s3 bucket lifecycle-rule list**
 
@@ -8633,8 +8918,8 @@ weka s3 bucket lifecycle-rule list <bucket>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,expiry\_days,prefix,tags (may be repeated or comma-separated)                                                 |
@@ -8675,17 +8960,17 @@ weka s3 bucket policy get <bucket-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `bucket-name`\*           | full path to bucket to get policy for                                                                          |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket-name`\*           | full path to bucket to get policy for                                                                      |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 bucket policy set**
 
@@ -8705,18 +8990,18 @@ weka s3 bucket policy set <bucket-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `bucket-name`\*           | full path to bucket to set policy for                                                                          |
-| `bucket-policy`\*         | Set an existing S3 policy. Available predefined options are: none                                              |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket-name`\*           | full path to bucket to set policy for                                                                      |
+| `bucket-policy`\*         | Set an existing S3 policy. Available predefined options are: none                                          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 bucket policy unset**
 
@@ -8735,17 +9020,17 @@ weka s3 bucket policy unset <bucket-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `bucket-name`\*           | full path to bucket to unset the policy for                                                                    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket-name`\*           | full path to bucket to unset the policy for                                                                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 bucket policy get-json**
 
@@ -8764,17 +9049,17 @@ weka s3 bucket policy get-json <bucket-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `bucket-name`\*           | full path to bucket to get policy for                                                                          |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket-name`\*           | full path to bucket to get policy for                                                                      |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 bucket policy set-custom**
 
@@ -8794,18 +9079,18 @@ weka s3 bucket policy set-custom <bucket-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `bucket-name`\*           | Full path to bucket to set policy for                                                                          |
-| `policy-file`\*           | Path of the file containing the policy rules                                                                   |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `bucket-name`\*           | Full path to bucket to set policy for                                                                      |
+| `policy-file`\*           | Path of the file containing the policy rules                                                               |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 bucket quota**
 
@@ -8845,8 +9130,8 @@ weka s3 bucket quota set <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                 |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                 |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                 |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                   |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                         |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                       |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                           |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                         |
 | `-h`, `--help`            | Show help message                                                                                                                                |
 
@@ -8866,16 +9151,16 @@ weka s3 bucket quota unset <name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `name`\*                  | bucket name                                                                                                    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | bucket name                                                                                                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka s3 policy
 
@@ -8917,8 +9202,8 @@ weka s3 policy list [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: name (may be repeated or comma-separated)                                                                            |
@@ -8945,17 +9230,17 @@ weka s3 policy show <policy-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `policy-name`\*           | Policy name to show                                                                                            |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `policy-name`\*           | Policy name to show                                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 policy add**
 
@@ -8975,18 +9260,18 @@ weka s3 policy add <policy-name>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `policy-name`\*           | The policy name                                                                                                |
-| `policy-file`\*           | Path of the file containing the policy rules                                                                   |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `policy-name`\*           | The policy name                                                                                            |
+| `policy-file`\*           | Path of the file containing the policy rules                                                               |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 policy remove**
 
@@ -9005,17 +9290,17 @@ weka s3 policy remove <policy>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `policy`\*                | Policy name to remove                                                                                          |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `policy`\*                | Policy name to remove                                                                                      |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 policy attach**
 
@@ -9035,18 +9320,18 @@ weka s3 policy attach <policy>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `policy`\*                | Policy name to attach                                                                                          |
-| `user`\*                  | User name                                                                                                      |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `policy`\*                | Policy name to attach                                                                                      |
+| `user`\*                  | User name                                                                                                  |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 policy detach**
 
@@ -9065,17 +9350,17 @@ weka s3 policy detach <user>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `user`\*                  | User name                                                                                                      |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `user`\*                  | User name                                                                                                  |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka s3 service-account
 
@@ -9117,8 +9402,8 @@ weka s3 service-account list [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: accessKey (may be repeated or comma-separated)                                                                       |
@@ -9145,17 +9430,17 @@ weka s3 service-account show <access_key>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `access_key`\*            | Access key of the service account to show                                                                      |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `access_key`\*            | Access key of the service account to show                                                                  |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 service-account add**
 
@@ -9174,17 +9459,17 @@ weka s3 service-account add [--policy-file policy-file]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--policy-file`           | Policy file path                                                                                               |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--policy-file`           | Policy file path                                                                                           |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka s3 service-account remove**
 
@@ -9203,17 +9488,17 @@ weka s3 service-account remove <access_key>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `access_key`\*            | Access key of the service account to remove                                                                    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `access_key`\*            | Access key of the service account to remove                                                                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka s3 sts
 
@@ -9249,20 +9534,20 @@ weka s3 sts assume-role [--access-key access-key]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--access-key`            | Access key                                                                                                     |
-| `--secret-key`            | Secret key                                                                                                     |
-| `--policy-file`           | Policy file path                                                                                               |
-| `--duration`              | Duration, valid values: 15 minutes to 52 weeks and 1 day (format: 3s, 2h, 4m, 1d, 1d5h, 1w)                    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--access-key`            | Access key                                                                                                 |
+| `--secret-key`            | Secret key                                                                                                 |
+| `--policy-file`           | Policy file path                                                                                           |
+| `--duration`              | Duration, valid values: 15 minutes to 52 weeks and 1 day (format: 3s, 2h, 4m, 1d, 1d5h, 1w)                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka s3 log-level
 
@@ -9305,8 +9590,8 @@ weka s3 log-level get [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `--container`...          | The containers that will change their log level severity (may be repeated or comma-separated)                                                                                           |
@@ -9347,16 +9632,16 @@ weka security kms [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka security kms set**
 
@@ -9371,33 +9656,39 @@ weka security kms set <type>
                       [--client-cert client-cert]
                       [--client-key client-key]
                       [--ca-cert ca-cert]
+                      [--role-id role-id]
+                      [--secret-id secret-id]
                       [--color color]
                       [--HOST HOST]
                       [--PORT PORT]
                       [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
                       [--TIMEOUT TIMEOUT]
                       [--profile profile]
+                      [--convert-to-cluster-key-on-fs]
                       [--help]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `type`\*                  | KMS type, one of \["vault", "kmip"]                                                                            |
-| `address`\*               | Server address, usually a hostname:port or a URL                                                               |
-| `key-identifier`\*        | Key to secure the filesystem keys with, e.g a key name (for Vault) or a key uid (for KMIP)                     |
-| `--token`                 | auth: API token to access the KMS                                                                              |
-| `--namespace`             | Namespace (Vault, optional)                                                                                    |
-| `--client-cert`           | auth: Path to the client certificate PEM file                                                                  |
-| `--client-key`            | auth: Path to the client key PEM file                                                                          |
-| `--ca-cert`               | auth: Path to the CA certificate PEM file                                                                      |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                        | Description                                                                                                |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `type`\*                         | KMS type, one of \["vault", "kmip"]                                                                        |
+| `address`\*                      | Server address, usually a hostname:port or a URL                                                           |
+| `key-identifier`\*               | Key to secure the filesystem keys with, e.g a key name (for Vault) or a key uid (for KMIP)                 |
+| `--token`                        | API token to access the KMS                                                                                |
+| `--namespace`                    | Namespace (Vault, optional)                                                                                |
+| `--client-cert`                  | Path to the client certificate PEM file                                                                    |
+| `--client-key`                   | Path to the client key PEM file                                                                            |
+| `--ca-cert`                      | Path to the CA certificate PEM file                                                                        |
+| `--role-id`                      | Role Id to access the KMS                                                                                  |
+| `--secret-id`                    | Secret Id to access the KMS                                                                                |
+| `--color`                        | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`                   | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`                   | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT`        | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`                | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`                      | Name of the connection and authentication profile to use                                                   |
+| `--convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use cluster key                                                       |
+| `-h`, `--help`                   | Show help message                                                                                          |
 
 **weka security kms unset**
 
@@ -9415,16 +9706,16 @@ weka security kms unset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--allow-downgrade`       | Allows downgrading existing encrypted filesystems to local encryption instead of a KMS                         |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--allow-downgrade`       | Allows downgrading existing encrypted filesystems to local encryption instead of a KMS                     |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security kms rewrap**
 
@@ -9438,20 +9729,24 @@ weka security kms rewrap [--new-key-uid new-key-uid]
                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
                          [--TIMEOUT TIMEOUT]
                          [--profile profile]
+                         [--all]
+                         [--convert-to-cluster-key-on-fs]
                          [--help]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--new-key-uid`           | (KMIP-only) Unique identifier for the new key to be used to wrap filesystem keys                               |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                        | Description                                                                                                |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--new-key-uid`                  | (KMIP-only) Unique identifier for the new key to be used to wrap filesystem keys                           |
+| `--color`                        | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`                   | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`                   | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT`        | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`                | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`                      | Name of the connection and authentication profile to use                                                   |
+| `--all`                          | rewrap all the filesystem keys                                                                             |
+| `--convert-to-cluster-key-on-fs` | Convert all encrypted filesystems to use cluster key                                                       |
+| `-h`, `--help`                   | Show help message                                                                                          |
 
 #### weka security tls
 
@@ -9483,16 +9778,16 @@ weka security tls status [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka security tls download**
 
@@ -9510,16 +9805,16 @@ weka security tls download <path>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `path`\*                  | Path to output file                                                                                            |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `path`\*                  | Path to output file                                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security tls set**
 
@@ -9538,17 +9833,17 @@ weka security tls set [--private-key private-key]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--private-key`           | Path to TLS private key pem file                                                                               |
-| `--certificate`           | Path to TLS certificate pem file                                                                               |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--private-key`           | Path to TLS private key pem file                                                                           |
+| `--certificate`           | Path to TLS certificate pem file                                                                           |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security tls unset**
 
@@ -9565,15 +9860,15 @@ weka security tls unset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka security lockout-config
 
@@ -9613,8 +9908,8 @@ weka security lockout-config set [--failed-attempts failed-attempts]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                         |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                         |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                 |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)               |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                   |
 | `--profile`               | Name of the connection and authentication profile to use                                                                 |
 | `-h`, `--help`            | Show help message                                                                                                        |
 
@@ -9633,15 +9928,15 @@ weka security lockout-config reset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security lockout-config show**
 
@@ -9659,16 +9954,16 @@ weka security lockout-config show [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka security login-banner
 
@@ -9700,16 +9995,16 @@ weka security login-banner set <login-banner>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `login-banner`\*          | Text banner to be displayed before the user logs into the web UI                                               |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `login-banner`\*          | Text banner to be displayed before the user logs into the web UI                                           |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security login-banner reset**
 
@@ -9726,15 +10021,15 @@ weka security login-banner reset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security login-banner enable**
 
@@ -9752,16 +10047,16 @@ weka security login-banner enable [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka security login-banner disable**
 
@@ -9779,16 +10074,16 @@ weka security login-banner disable [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka security login-banner show**
 
@@ -9806,16 +10101,16 @@ weka security login-banner show [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka security ca-cert
 
@@ -9847,16 +10142,16 @@ weka security ca-cert set [--cert-file cert-file]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--cert-file`             | Path to certificate file                                                                                       |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--cert-file`             | Path to certificate file                                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security ca-cert status**
 
@@ -9874,16 +10169,16 @@ weka security ca-cert status [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka security ca-cert download**
 
@@ -9901,16 +10196,16 @@ weka security ca-cert download <path>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `path`\*                  | Path to output file                                                                                            |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `path`\*                  | Path to output file                                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security ca-cert unset**
 
@@ -9927,15 +10222,15 @@ weka security ca-cert unset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka security cors-trusted-sites
 
@@ -9967,16 +10262,16 @@ weka security cors-trusted-sites list [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka security cors-trusted-sites add**
 
@@ -9994,16 +10289,16 @@ weka security cors-trusted-sites add <site>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `site`\*                  | Trusted site                                                                                                   |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `site`\*                  | Trusted site                                                                                               |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security cors-trusted-sites remove**
 
@@ -10021,16 +10316,16 @@ weka security cors-trusted-sites remove <site>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `site`\*                  | Site to remove from the trusted list                                                                           |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `site`\*                  | Site to remove from the trusted list                                                                       |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security cors-trusted-sites remove-all**
 
@@ -10047,15 +10342,15 @@ weka security cors-trusted-sites remove-all [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka security policy
 
@@ -10103,8 +10398,8 @@ weka security policy list [--action action]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                    |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                    |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                    |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                      |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                            |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                          |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                              |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                            |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                |
 | `--roles`...              | Lists security policies that include specific roles. (format: 'clusteradmin', 'orgadmin', 'regular', 'readonly' or 's3', may be repeated or comma-separated)                                        |
@@ -10135,17 +10430,17 @@ weka security policy show <policy>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `policy`\*                | Name or ID of security policy.                                                                                 |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `policy`\*                | Name or ID of security policy.                                                                             |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka security policy create**
 
@@ -10176,8 +10471,8 @@ weka security policy create <name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                         |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                         |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                 |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                               |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                   |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                 |
 | `--ips`...                | IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)              |
 | `--roles`...              | User roles to which the security policy applies. (format: 'clusteradmin', 'orgadmin', 'regular', 'readonly' or 's3', may be repeated or comma-separated) |
@@ -10207,8 +10502,8 @@ weka security policy delete <policy>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)            |
 | `--profile`               | Name of the connection and authentication profile to use                                                          |
 | `-h`, `--help`            | Show help message                                                                                                 |
 | `-f`, `--force`           | Force this action without further confirmation. Security policy details will be lost with no chance for recovery. |
@@ -10237,8 +10532,8 @@ weka security policy duplicate <policy>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                            |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                            |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                    |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                      |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                    |
 | `-h`, `--help`            | Show help message                                                                                                                           |
 
@@ -10277,8 +10572,8 @@ weka security policy update <policy>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                         |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                         |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                         |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                 |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                               |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                   |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                 |
 | `--roles`...              | User roles to which the security policy applies. (format: 'clusteradmin', 'orgadmin', 'regular', 'readonly' or 's3', may be repeated or comma-separated) |
 | `--add-roles`...          | User roles to append to the security policy. (format: 'clusteradmin', 'orgadmin', 'regular', 'readonly' or 's3', may be repeated or comma-separated)     |
@@ -10317,8 +10612,8 @@ weka security policy test [--role role]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                |
 | `--join`                  | Simulate effect of policies when joining the cluster.                                                                                   |
 | `-h`, `--help`            | Show help message                                                                                                                       |
@@ -10368,8 +10663,8 @@ weka security policy join list [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: mode,policyNames,policyIds (may be repeated or comma-separated)                                                      |
@@ -10403,20 +10698,20 @@ weka security policy join set [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `policies`...             | Security policy names or IDs applied to cluster join process.                                                  |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-c`, `--client`          | Apply policies to clients.                                                                                     |
-| `-b`, `--backend`         | Apply policies to backends.                                                                                    |
-| `-f`, `--force`           | Force update, bypassing safeguards (may disrupt cluster members!)                                              |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `policies`...             | Security policy names or IDs applied to cluster join process.                                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-c`, `--client`          | Apply policies to clients.                                                                                 |
+| `-b`, `--backend`         | Apply policies to backends.                                                                                |
+| `-f`, `--force`           | Force update, bypassing safeguards (may disrupt cluster members!)                                          |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka security policy join attach**
 
@@ -10438,20 +10733,20 @@ weka security policy join attach [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `policies`...             | Security policy names or IDs to attach to cluster join process.                                                |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-c`, `--client`          | Apply policies to clients.                                                                                     |
-| `-b`, `--backend`         | Apply policies to backends.                                                                                    |
-| `-f`, `--force`           | Force update, bypassing safeguards (may disrupt cluster members!)                                              |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `policies`...             | Security policy names or IDs to attach to cluster join process.                                            |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-c`, `--client`          | Apply policies to clients.                                                                                 |
+| `-b`, `--backend`         | Apply policies to backends.                                                                                |
+| `-f`, `--force`           | Force update, bypassing safeguards (may disrupt cluster members!)                                          |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka security policy join detach**
 
@@ -10473,20 +10768,20 @@ weka security policy join detach [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `policies`...             | Security policy names or IDs to remove from cluster join process.                                              |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-c`, `--client`          | Apply policies to clients.                                                                                     |
-| `-b`, `--backend`         | Apply policies to backends.                                                                                    |
-| `-f`, `--force`           | Force update, bypassing safeguards (may disrupt cluster members!)                                              |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `policies`...             | Security policy names or IDs to remove from cluster join process.                                          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-c`, `--client`          | Apply policies to clients.                                                                                 |
+| `-b`, `--backend`         | Apply policies to backends.                                                                                |
+| `-f`, `--force`           | Force update, bypassing safeguards (may disrupt cluster members!)                                          |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka security policy join reset**
 
@@ -10506,18 +10801,18 @@ weka security policy join reset [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-c`, `--client`          | Reset policies applied to clients.                                                                             |
-| `-b`, `--backend`         | Reset policies applied to backends.                                                                            |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-c`, `--client`          | Reset policies applied to clients.                                                                         |
+| `-b`, `--backend`         | Reset policies applied to backends.                                                                        |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 ### weka smb
 
@@ -10549,16 +10844,16 @@ weka smb cluster [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka smb cluster containers**
 
@@ -10591,17 +10886,17 @@ weka smb cluster containers add [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--container-ids`...      | The SMB containers being added (pass weka's host id as a number) (may be repeated or comma-separated)          |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients.  |
+| Parameter                 | Description                                                                                                   |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                              |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                              |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)    |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
+| `--profile`               | Name of the connection and authentication profile to use                                                      |
+| `--container-ids`...      | The SMB containers being added (pass weka's host id as a number) (may be repeated or comma-separated)         |
+| `-h`, `--help`            | Show help message                                                                                             |
+| `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients. |
 
 **weka smb cluster containers remove**
 
@@ -10620,17 +10915,17 @@ weka smb cluster containers remove [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--container-ids`...      | The SMB containers being removed (pass weka's container id as a number) (may be repeated or comma-separated)   |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients.  |
+| Parameter                 | Description                                                                                                   |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                              |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                              |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)    |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
+| `--profile`               | Name of the connection and authentication profile to use                                                      |
+| `--container-ids`...      | The SMB containers being removed (pass weka's container id as a number) (may be repeated or comma-separated)  |
+| `-h`, `--help`            | Show help message                                                                                             |
+| `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients. |
 
 **weka smb cluster wait**
 
@@ -10648,16 +10943,16 @@ weka smb cluster wait [--timeout timeout]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `-t`, `--timeout`         | Timeout (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                 |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `-t`, `--timeout`         | Timeout (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                             |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka smb cluster update**
 
@@ -10682,8 +10977,8 @@ weka smb cluster update [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                      |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                      |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                      |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                        |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                            |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                              |
 | `--encryption`            | Encryption (format: 'enabled', 'disabled', 'desired' or 'required')                                                                                   |
 | `--smb-ips-pool`...       | IPs used as floating IPs for SMB to serve in a HA manner. Then should not be assigned to any host on the network (may be repeated or comma-separated) |
@@ -10740,8 +11035,8 @@ weka smb cluster create <netbios-name>
 | `--color`                          | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                            |
 | `-H`, `--HOST`                     | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                            |
 | `-P`, `--PORT`                     | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                            |
-| `-C`, `--CONNECT-TIMEOUT`          | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                              |
-| `-T`, `--TIMEOUT`                  | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                    |
+| `-C`, `--CONNECT-TIMEOUT`          | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                  |
+| `-T`, `--TIMEOUT`                  | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                      |
 | `--profile`                        | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                    |
 | `--container-ids`...               | The containers that will serve via the SMB protocol (pass weka's container id as a number) (may be repeated or comma-separated)                                                                                                                                                                                                                             |
 | `--smb-ips-pool`...                | IPs used as floating IPs for samba to server SMB in a HA manner. Then should not be assigned to any container on the network (may be repeated or comma-separated)                                                                                                                                                                                           |
@@ -10773,8 +11068,8 @@ weka smb cluster debug <level>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                      |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                      |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                      |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)            |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                |
 | `--profile`               | Name of the connection and authentication profile to use                                                              |
 | `--container-ids`...      | Hosts to set debug level (pass weka's host id as a number). All hosts as default (may be repeated or comma-separated) |
 | `-h`, `--help`            | Show help message                                                                                                     |
@@ -10796,16 +11091,16 @@ weka smb cluster destroy [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients.  |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                   |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                              |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                              |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)    |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
+| `--profile`               | Name of the connection and authentication profile to use                                                      |
+| `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients. |
+| `-h`, `--help`            | Show help message                                                                                             |
 
 **weka smb cluster trusted-domains**
 
@@ -10833,8 +11128,8 @@ weka smb cluster trusted-domains [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: id,domain,idmap,from,to (may be repeated or comma-separated)                                                         |
@@ -10872,8 +11167,8 @@ weka smb cluster trusted-domains add <domain-name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                            |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                            |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                    |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                      |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                    |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients and modify existing uids/gids. |
 | `-h`, `--help`            | Show help message                                                                                                                           |
@@ -10902,8 +11197,8 @@ weka smb cluster trusted-domains remove <trusteddomain-id>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                            |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                            |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                    |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                      |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                    |
 | `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients and modify existing uids/gids. |
 | `-h`, `--help`            | Show help message                                                                                                                           |
@@ -10924,16 +11219,16 @@ weka smb cluster status [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka smb share
 
@@ -10961,8 +11256,8 @@ weka smb share [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                       |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                       |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                       |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                         |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                               |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                             |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                 |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                               |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                   |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: id,share,filesystem,description,path,fmask,dmask,acls,options,additional,direct,Sensitivity,encryption,validUsers,invalidUsers,readonlyUsers,readwriteUsers,readonlyShare,allowGuestAccess,hidden,vfsZerocopyRead,namedStreams (may be repeated or comma-separated) |
@@ -10992,20 +11287,20 @@ weka smb share update <share-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `share-id`\*              | The id of the share to update                                                                                  |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--encryption`            | Encryption (format: 'cluster\_default', 'desired' or 'required')                                               |
-| `--read-only`             | Mount as read-only (format: 'on' or 'off')                                                                     |
-| `--allow-guest-access`    | Allow Guest Access (format: 'on' or 'off')                                                                     |
-| `--hidden`                | Hidden (format: 'on' or 'off')                                                                                 |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `share-id`\*              | The id of the share to update                                                                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--encryption`            | Encryption (format: 'cluster\_default', 'desired' or 'required')                                           |
+| `--read-only`             | Mount as read-only (format: 'on' or 'off')                                                                 |
+| `--allow-guest-access`    | Allow Guest Access (format: 'on' or 'off')                                                                 |
+| `--hidden`                | Hidden (format: 'on' or 'off')                                                                             |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 **weka smb share lists**
 
@@ -11047,8 +11342,8 @@ weka smb share lists show [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,share,readonly,validusers,invalidusers,readonlyusers,readwriteusers (may be repeated or comma-separated)      |
@@ -11076,18 +11371,18 @@ weka smb share lists reset <share-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `share-id`\*              | The id of the share                                                                                            |
-| `user-list-type`\*        | The list type (format: 'read\_only', 'read\_write', 'valid' or 'invalid')                                      |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `share-id`\*              | The id of the share                                                                                        |
+| `user-list-type`\*        | The list type (format: 'read\_only', 'read\_write', 'valid' or 'invalid')                                  |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka smb share lists add**
 
@@ -11108,19 +11403,19 @@ weka smb share lists add <share-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `share-id`\*              | The id of the share                                                                                            |
-| `user-list-type`\*        | The list type (format: 'read\_only', 'read\_write', 'valid' or 'invalid')                                      |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--users`...              | Users to add (may be repeated or comma-separated)                                                              |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `share-id`\*              | The id of the share                                                                                        |
+| `user-list-type`\*        | The list type (format: 'read\_only', 'read\_write', 'valid' or 'invalid')                                  |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--users`...              | Users to add (may be repeated or comma-separated)                                                          |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka smb share lists remove**
 
@@ -11141,19 +11436,19 @@ weka smb share lists remove <share_id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `share_id`\*              | The id of the share being removed from                                                                         |
-| `user-list-type`\*        | The list type from which users are removed from (format: 'read\_only', 'read\_write', 'valid' or 'invalid')    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--users`...              | Users to remove (may be repeated or comma-separated)                                                           |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                 |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `share_id`\*              | The id of the share being removed from                                                                      |
+| `user-list-type`\*        | The list type from which users are removed from (format: 'read\_only', 'read\_write', 'valid' or 'invalid') |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                            |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                            |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                            |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)      |
+| `--profile`               | Name of the connection and authentication profile to use                                                    |
+| `--users`...              | Users to remove (may be repeated or comma-separated)                                                        |
+| `-h`, `--help`            | Show help message                                                                                           |
+| `-J`, `--json`            | Format output as JSON                                                                                       |
 
 **weka smb share add**
 
@@ -11212,8 +11507,8 @@ weka smb share add <share-name>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                               |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                               |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                 |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                       |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                     |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                         |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                       |
 | `--users`...              | Users to add (may be repeated or comma-separated)                                                                                                                                                                                              |
 | `-f`, `--force`           | Force this action without further confirmation. This action will affect all SMB users of this share, Use it with caution and consult the Weka Customer Success team at need.                                                                   |
@@ -11237,17 +11532,17 @@ weka smb share remove <share-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `share-id`\*              | The id of the share to remove                                                                                  |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients.  |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                   |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `share-id`\*              | The id of the share to remove                                                                                 |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                              |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                              |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)    |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
+| `--profile`               | Name of the connection and authentication profile to use                                                      |
+| `-f`, `--force`           | Force this action without further confirmation. This action may disrupt IO service for connected SMB clients. |
+| `-h`, `--help`            | Show help message                                                                                             |
 
 **weka smb share host-access**
 
@@ -11289,8 +11584,8 @@ weka smb share host-access list [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,share,mode,IP (may be repeated or comma-separated)                                                            |
@@ -11319,19 +11614,19 @@ weka smb share host-access reset <share-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `share-id`\*              | The id of the share                                                                                            |
-| `mode`\*                  | allow/deny host access (format: 'allow' or 'deny')                                                             |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-f`, `--force`           | Force this action without further confirmation. This action will delete all host access ips.                   |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `share-id`\*              | The id of the share                                                                                        |
+| `mode`\*                  | allow/deny host access (format: 'allow' or 'deny')                                                         |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-f`, `--force`           | Force this action without further confirmation. This action will delete all host access ips.               |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka smb share host-access add**
 
@@ -11352,19 +11647,19 @@ weka smb share host-access add <share-id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `share-id`\*              | The id of the share                                                                                            |
-| `mode`\*                  | allow/deny host access (format: 'allow' or 'deny')                                                             |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--ips`...                | ips to add (may be repeated or comma-separated)                                                                |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `share-id`\*              | The id of the share                                                                                        |
+| `mode`\*                  | allow/deny host access (format: 'allow' or 'deny')                                                         |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--ips`...                | ips to add (may be repeated or comma-separated)                                                            |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka smb share host-access remove**
 
@@ -11384,18 +11679,18 @@ weka smb share host-access remove <share_id>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `share_id`\*              | The id of the share being removed from                                                                         |
-| `hosts`...                | Hosts IPs to remove                                                                                            |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `share_id`\*              | The id of the share being removed from                                                                     |
+| `hosts`...                | Hosts IPs to remove                                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka smb domain
 
@@ -11413,16 +11708,16 @@ weka smb domain [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka smb domain join**
 
@@ -11447,23 +11742,23 @@ weka smb domain join <username>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `username`\*              | The name of the administrator user to join the domain using it                                                 |
-| `password`                | The administrator user password                                                                                |
-| `--server`                | The domain controller server                                                                                   |
-| `--create-computer`       | Precreate the computer account in a specific OU                                                                |
-| `--extra-options`         | Consult with SMB 'net ads join' manual for extra options                                                       |
-| `-t`, `--timeout`         | Join command timeout in seconds (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                         |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--debug`                 | Run the command in debug mode                                                                                  |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `username`\*              | The name of the administrator user to join the domain using it                                             |
+| `password`                | The administrator user password                                                                            |
+| `--server`                | The domain controller server                                                                               |
+| `--create-computer`       | Precreate the computer account in a specific OU                                                            |
+| `--extra-options`         | Consult with SMB 'net ads join' manual for extra options                                                   |
+| `-t`, `--timeout`         | Join command timeout in seconds (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                     |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--debug`                 | Run the command in debug mode                                                                              |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka smb domain leave**
 
@@ -11485,20 +11780,20 @@ weka smb domain leave <username>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `username`\*              | The name of the administrator user to leave the domain using it                                                |
-| `password`                | The administrator user password                                                                                |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--debug`                 | Run the command in debug mode                                                                                  |
-| `-f`, `--force`           | Force to leave the domain. Use when Active Directory is unresponsive                                           |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `username`\*              | The name of the administrator user to leave the domain using it                                            |
+| `password`                | The administrator user password                                                                            |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--debug`                 | Run the command in debug mode                                                                              |
+| `-f`, `--force`           | Force to leave the domain. Use when Active Directory is unresponsive                                       |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 ### weka stats
 
@@ -11548,8 +11843,8 @@ weka stats [--start-time <start>]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                            |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                            |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                              |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                    |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                  |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                      |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                    |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                        |
 | `--category`...           | Retrieve only statistics of the specified categories (may be repeated or comma-separated)                                                                                                                                                                                                   |
@@ -11602,8 +11897,8 @@ weka stats realtime [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                          |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                          |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                          |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                            |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                  |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                    |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                  |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                      |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: node,hostname,role,mode,writeps,writebps,wlatency,readps,readbps,rlatency,ops,cpu,l6recv,l6send,upload,download,rdmarecv,rdmasend (may be repeated or comma-separated) |
@@ -11645,8 +11940,8 @@ weka stats list-types [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                          |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                              |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: category,clabel,identifier,description,label,type,unit,params,realted,permission,ntype,accumulate,histogram,histogramUnit (may be repeated or comma-separated) |
@@ -11689,18 +11984,18 @@ weka stats retention set [--days days]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--days`                  | Number of days to keep the statistics                                                                          |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--dry-run`               | Only test the command, don't affect the system                                                                 |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--days`                  | Number of days to keep the statistics                                                                      |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--dry-run`               | Only test the command, don't affect the system                                                             |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka stats retention status**
 
@@ -11718,16 +12013,16 @@ weka stats retention status [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka stats retention restore-default**
 
@@ -11746,17 +12041,17 @@ weka stats retention restore-default [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `--dry-run`               | Only test the command, don't affect the system                                                                 |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--dry-run`               | Only test the command, don't affect the system                                                             |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 ### weka status
 
@@ -11781,8 +12076,8 @@ weka status [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
@@ -11812,8 +12107,8 @@ weka status rebuild [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
@@ -11863,6 +12158,60 @@ weka upgrade [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
+#### weka upgrade pause
+
+Pause the upgrade process
+
+```sh
+weka upgrade pause [--color color]
+                   [--HOST HOST]
+                   [--PORT PORT]
+                   [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                   [--TIMEOUT TIMEOUT]
+                   [--profile profile]
+                   [--help]
+                   [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+#### weka upgrade resume
+
+Resume the upgrade process
+
+```sh
+weka upgrade resume [--color color]
+                    [--HOST HOST]
+                    [--PORT PORT]
+                    [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                    [--TIMEOUT TIMEOUT]
+                    [--profile profile]
+                    [--help]
+                    [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
 #### weka upgrade supported-features
 
 List upgrade features supported by the running cluster
@@ -11879,16 +12228,16 @@ weka upgrade supported-features [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 ### weka user
 
@@ -11916,8 +12265,8 @@ weka user [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                          |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,user,source,role,s3Policy,posix\_uid,posix\_gid (may be repeated or comma-separated)                             |
@@ -11955,8 +12304,8 @@ weka user login [username]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                      |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                      |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                      |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                        |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                            |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                              |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                     |
 
@@ -11975,15 +12324,15 @@ weka user logout [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka user whoami
 
@@ -12009,8 +12358,8 @@ weka user whoami [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                       |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                       |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                       |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                         |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                               |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                             |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                 |
 | `--profile`               | Name of the connection and authentication profile to use                                                                               |
 | `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                   |
 | `-o`, `--output`...       | Specify which columns to output. May include any of the following: orgId,orgName,user,source,role (may be repeated or comma-separated) |
@@ -12044,8 +12393,8 @@ weka user passwd [password]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                   |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                   |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                   |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                     |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                         |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                             |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                           |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                  |
 
@@ -12066,17 +12415,17 @@ weka user change-role <username>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `username`\*              | Username of user to change the role of                                                                         |
-| `role`\*                  | New role to set for the user (format: 'clusteradmin', 'orgadmin', 'regular', 'readonly' or 's3')               |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `username`\*              | Username of user to change the role of                                                                     |
+| `role`\*                  | New role to set for the user (format: 'clusteradmin', 'orgadmin', 'regular', 'readonly' or 's3')           |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka user update
 
@@ -12097,19 +12446,19 @@ weka user update <username>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `username`\*              | Username of user to update                                                                                     |
-| `--posix-uid`             | POSIX UID for user (S3 Only)                                                                                   |
-| `--posix-gid`             | POSIX GID for user (S3 Only)                                                                                   |
-| `--role`                  | New role to set for the user (format: 'clusteradmin', 'orgadmin', 'regular', 'readonly' or 's3')               |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `username`\*              | Username of user to update                                                                                 |
+| `--posix-uid`             | POSIX UID for user (S3 Only)                                                                               |
+| `--posix-gid`             | POSIX GID for user (S3 Only)                                                                               |
+| `--role`                  | New role to set for the user (format: 'clusteradmin', 'orgadmin', 'regular', 'readonly' or 's3')           |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka user add
 
@@ -12142,8 +12491,8 @@ weka user add <username>
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                  |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                      |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                          |
 | `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                        |
 | `-h`, `--help`            | Show help message                                                                                                                                                                                                                               |
 | `-J`, `--json`            | Format output as JSON                                                                                                                                                                                                                           |
@@ -12164,16 +12513,16 @@ weka user delete <username>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `username`\*              | User's name                                                                                                    |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `username`\*              | User's name                                                                                                |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka user revoke-tokens
 
@@ -12192,17 +12541,17 @@ weka user revoke-tokens <username>
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `username`\*              | Username of user to revoke the tokens for                                                                      |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `username`\*              | Username of user to revoke the tokens for                                                                  |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka user generate-token
 
@@ -12221,17 +12570,17 @@ weka user generate-token [--access-token-timeout access-token-timeout]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--access-token-timeout`  | In how long should the access token expire (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)              |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--access-token-timeout`  | In how long should the access token expire (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 #### weka user ldap
 
@@ -12249,16 +12598,16 @@ weka user ldap [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka user ldap setup**
 
@@ -12316,8 +12665,8 @@ weka user ldap setup <server-uri>
 | `--color`                      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                          |
 | `-H`, `--HOST`                 | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                          |
 | `-P`, `--PORT`                 | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                          |
-| `-C`, `--CONNECT-TIMEOUT`      | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)            |
-| `-T`, `--TIMEOUT`              | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                  |
+| `-C`, `--CONNECT-TIMEOUT`      | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                |
+| `-T`, `--TIMEOUT`              | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
 | `--profile`                    | Name of the connection and authentication profile to use                                                                  |
 | `-h`, `--help`                 | Show help message                                                                                                         |
 | `-J`, `--json`                 | Format output as JSON                                                                                                     |
@@ -12366,8 +12715,8 @@ weka user ldap setup-ad <server-uri>
 | `--color`                     | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                          |
 | `-H`, `--HOST`                | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                          |
 | `-P`, `--PORT`                | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                          |
-| `-C`, `--CONNECT-TIMEOUT`     | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)            |
-| `-T`, `--TIMEOUT`             | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                  |
+| `-C`, `--CONNECT-TIMEOUT`     | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                |
+| `-T`, `--TIMEOUT`             | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
 | `--profile`                   | Name of the connection and authentication profile to use                                                                  |
 | `-h`, `--help`                | Show help message                                                                                                         |
 | `-J`, `--json`                | Format output as JSON                                                                                                     |
@@ -12431,8 +12780,8 @@ weka user ldap update [--server-uri server-uri]
 | `--color`                      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                          |
 | `-H`, `--HOST`                 | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                          |
 | `-P`, `--PORT`                 | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                          |
-| `-C`, `--CONNECT-TIMEOUT`      | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)            |
-| `-T`, `--TIMEOUT`              | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                  |
+| `-C`, `--CONNECT-TIMEOUT`      | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                |
+| `-T`, `--TIMEOUT`              | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
 | `--profile`                    | Name of the connection and authentication profile to use                                                                  |
 | `-h`, `--help`                 | Show help message                                                                                                         |
 | `-J`, `--json`                 | Format output as JSON                                                                                                     |
@@ -12453,16 +12802,16 @@ weka user ldap enable [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                    |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                               |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                               |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)       |
-| `--profile`               | Name of the connection and authentication profile to use                                                       |
-| `-h`, `--help`            | Show help message                                                                                              |
-| `-J`, `--json`            | Format output as JSON                                                                                          |
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
 
 **weka user ldap disable**
 
@@ -12486,8 +12835,8 @@ weka user ldap disable [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                               |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                               |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                               |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                 |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                       |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                     |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                         |
 | `--profile`               | Name of the connection and authentication profile to use                                                                       |
 | `-f`, `--force`           | Force this action without further confirmation. This would prevent all LDAP users from logging-in until LDAP is enabled again. |
 | `-h`, `--help`            | Show help message                                                                                                              |
@@ -12515,8 +12864,8 @@ weka user ldap reset [--color color]
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to the cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                    |
-| `-T`, `--TIMEOUT`         | Timeout to wait for a response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                          |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
 | `-f`, `--force`           | Force this action without further confirmation. This would prevent all LDAP users from logging-in until LDAP is configured again. |
 | `-h`, `--help`            | Show help message                                                                                                                 |
@@ -12657,3 +13006,173 @@ weka version prepare <version-name> [--color color] [--help] [<containers>]...
 | `containers`...  | The containers to prepare the version for                                        |
 | `--color`        | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help`   | Show help message                                                                |
+
+### weka driver
+
+Manage Weka drivers
+
+```sh
+weka driver [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+#### weka driver download
+
+Downloads drivers from a distribution server.
+
+```sh
+weka driver download [--color color] [--version version] [--kernel-signature kernel-signature] [--from from]... [--help]
+
+```
+
+| Parameter                  | Description                                                                                                                                                                                                                                                                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--color`                  | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                    |
+| `-V`, `--version`          | Weka version for drivers.                                                                                                                                                                                                                                                                           |
+| `-K`, `--kernel-signature` | Kernel signature for drivers.                                                                                                                                                                                                                                                                       |
+| `--from`...                | Download from this distribution server (can be given multiple times). Otherwise distribution servers are taken from the $WEKA\_DIST\_SERVERS environment variable, the /etc/wekaio/dist-servers file, or /etc/wekaio/service.conf in that order of precedence. (may be repeated or comma-separated) |
+| `-h`, `--help`             | Show help message                                                                                                                                                                                                                                                                                   |
+
+#### weka driver install
+
+Installs drivers on the machine where this command is executed.
+
+```sh
+weka driver install [--color color] [--version version] [--help]
+
+```
+
+| Parameter         | Description                                                                      |
+| ----------------- | -------------------------------------------------------------------------------- |
+| `--color`         | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-V`, `--version` | Weka version for drivers.                                                        |
+| `-h`, `--help`    | Show help message                                                                |
+
+#### weka driver build
+
+Compiles drivers for the machine where this command is executed.
+
+```sh
+weka driver build [--color color] [--version version] [--help]
+
+```
+
+| Parameter         | Description                                                                      |
+| ----------------- | -------------------------------------------------------------------------------- |
+| `--color`         | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-V`, `--version` | Weka version for drivers.                                                        |
+| `-h`, `--help`    | Show help message                                                                |
+
+#### weka driver pack
+
+Creates driver package.
+
+```sh
+weka driver pack [--color color] [--version version] [--kernel-signature kernel-signature] [--help]
+
+```
+
+| Parameter                  | Description                                                                      |
+| -------------------------- | -------------------------------------------------------------------------------- |
+| `--color`                  | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-V`, `--version`          | Weka version for drivers.                                                        |
+| `-K`, `--kernel-signature` | Kernel signature for drivers.                                                    |
+| `-h`, `--help`             | Show help message                                                                |
+
+#### weka driver sign
+
+Signs drivers with a private key.
+
+```sh
+weka driver sign <key>
+                 [cert]
+                 [--hash hash]
+                 [--color color]
+                 [--version version]
+                 [--kernel-signature kernel-signature]
+                 [--pack]
+                 [--help]
+
+```
+
+| Parameter                  | Description                                                                                                                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`\*                    | Path to the private key file.                                                                                                                       |
+| `cert`                     | Path to the certificate file.                                                                                                                       |
+| `passwd`\*                 | Password for private key file. (may also be supplied by $WEKA\_SIGNING\_KEY\_PASSWORD, or in the file named by $WEKA\_SIGNING\_KEY\_PASSWORD\_FILE) |
+| `--hash`                   | Hash algorithm used for signing modules. (format: 'sha256', 'sha384' or 'sha512')                                                                   |
+| `--color`                  | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                    |
+| `-V`, `--version`          | Weka version for drivers.                                                                                                                           |
+| `-K`, `--kernel-signature` | Kernel signature for drivers.                                                                                                                       |
+| `--pack`                   | Sign driver package.                                                                                                                                |
+| `-h`, `--help`             | Show help message                                                                                                                                   |
+
+#### weka driver export
+
+Exports drivers from this machine to an archive.
+
+```sh
+weka driver export <path> [--color color] [--version version] [--kernel-signature kernel-signature] [--help]
+
+```
+
+| Parameter                  | Description                                                                      |
+| -------------------------- | -------------------------------------------------------------------------------- |
+| `path`\*                   | Path of the output archive, will be in .zip format.                              |
+| `--color`                  | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-V`, `--version`          | Weka version for drivers.                                                        |
+| `-K`, `--kernel-signature` | Kernel signature for drivers.                                                    |
+| `-h`, `--help`             | Show help message                                                                |
+
+#### weka driver import
+
+Imports drivers from a previously exported archive to this machine.
+
+```sh
+weka driver import <path> [--color color] [--overwrite] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `path`\*       | The path of the importing tar file                                               |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `--overwrite`  | Overwrite existing drivers                                                       |
+| `-h`, `--help` | Show help message                                                                |
+
+#### weka driver kernel
+
+Shows the kernel signature of the system. This signature is used to identify the specific kernel.
+
+```sh
+weka driver kernel [--color color] [--help] [--json]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+| `-J`, `--json` | Format output as JSON                                                            |
+
+#### weka driver ready
+
+Checks if kernel drivers are loaded and ready for Weka.
+
+```sh
+weka driver ready [--color color] [--version version] [--help] [--json] [--quiet]
+
+```
+
+| Parameter         | Description                                                                      |
+| ----------------- | -------------------------------------------------------------------------------- |
+| `--color`         | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-V`, `--version` | Weka version for drivers.                                                        |
+| `-h`, `--help`    | Show help message                                                                |
+| `-J`, `--json`    | Format output as JSON                                                            |
+| `-q`, `--quiet`   | Checks quietly (exit status 0 if drivers are ready, 1 otherwise).                |
