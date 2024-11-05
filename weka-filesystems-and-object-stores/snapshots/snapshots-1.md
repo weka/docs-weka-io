@@ -6,11 +6,12 @@ description: This page describes how to manage snapshots using the CLI.
 
 Using the CLI, you can:
 
-* [Create a snapshot](snapshots-1.md#create-a-snapshot)
-* [Delete a snapshot](snapshots-1.md#delete-a-snapshot)
-* [Restore a snapshot to a filesystem or another snapshot](snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot)
-* [Update a snapshot](snapshots-1.md#update-a-snapshot)
-* [Access the `.snapshots` directory](snapshots-1.md#access-the-.snapshots-directory)
+* [#create-a-snapshot](snapshots-1.md#create-a-snapshot "mention")
+* [#delete-a-snapshot](snapshots-1.md#delete-a-snapshot "mention")
+* [#restore-a-snapshot-to-a-filesystem-or-another-snapshot](snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot "mention")
+* [#update-a-snapshot](snapshots-1.md#update-a-snapshot "mention")
+* [#access-the-.snapshots-directory](snapshots-1.md#access-the-.snapshots-directory "mention")
+* [#retrieve-snapshot-details](snapshots-1.md#retrieve-snapshot-details "mention")
 
 ## Create a snapshot
 
@@ -112,3 +113,20 @@ total 0
 drwxrwxr-x 1 root root 0 Sep 21 02:44 @GMT-2023.09.21-02.44.38 
 [root@ip-172-31-23-177 .snapshots]#
 ```
+
+
+
+## Retrieve snapshot details
+
+**Command:** `weka fs snapshot`
+
+Use the following command to retrieve snapshot details, such as its UID, local object locator, estimated reclaimable space, and metadata size:
+
+{% code overflow="wrap" %}
+```sh
+weka fs snapshot [--file-system file-system] [--name name] [--output output]...
+```
+{% endcode %}
+
+<table><thead><tr><th width="199">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>--file-system</code></td><td>Filesystem name</td></tr><tr><td><code>--name</code></td><td>Snapshot name</td></tr><tr><td><code>-o</code>, <code>--output</code>...</td><td>Specify which columns to output. May include any of the following: uid, id, filesystem, name, access, writeable, created, local_upload_size, remote_upload_size, local_object_status, local_object_progress, local_object_locator, remote_object_status, remote_object_progress, remote_object_locator, removing, prefetched, est_reclaimable_size, metadata_size (may be repeated or comma-separated)</td></tr></tbody></table>
+

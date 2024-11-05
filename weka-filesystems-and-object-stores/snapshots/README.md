@@ -36,6 +36,8 @@ The WEKA system supports the following snapshot operations:
   Moving a file within a snapshot directory or between snapshots is implemented as a copy operation by the kernel, similar to moving between different filesystems. However, such operations for directories will fail.
 * **Working with symlinks (symbolic links):**\
   When accessing symlinks through the `.snapshots` directory, symlinks with absolute paths can lead to the current filesystem. Depending on your needs, consider either not following symlinks or using relative paths.
+* **Snapshot estimated reclaimable space:**\
+  The estimate is an upper limit of capacity that can be freed by deleting the snapshot. It is the size of all data accessible from a snapshot but not accessible from newer snapshots or the active file system. In snapshot chains without writable snapshots, deleting multiple consecutive snapshots (only the oldest N snapshots) release the sum of Estimated Reclaimable Space amounts. Snapshots created before an upgrade to 4.4 or downloaded from OBS may not have an Estimated Reclaimable Space available.
 
 ## Maximum supported snapshots
 
