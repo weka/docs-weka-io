@@ -9,7 +9,7 @@ description: >-
 
 ## Overview
 
-CIDR[^1]-based policies enable administrators to control access to WEKA clusters by setting rules that allow or deny connections based on client IP address ranges. This network-based restriction provides greater control over which servers or devices can access the cluster, offering a more flexible alternative to traditional user authentication. Policies are managed at the organization level, ensuring only authorized clients can connect.
+CIDR[^1]-based policies enable administrators to control access to WEKA clusters by setting rules that allow or deny connections based on client IP address ranges. This network-based restriction provides greater control over which servers or devices can access the cluster, offering a more flexible alternative to traditional user authentication. Policies are managed at the organization level and filesystem for the root organization, ensuring only authorized clients can connect.
 
 **Key benefits:**
 
@@ -22,19 +22,20 @@ CIDR[^1]-based policies enable administrators to control access to WEKA clusters
 When implementing CIDR-based security policies in WEKA, consider the following:
 
 * **Role requirement:** Only users with the **Cluster Admin** role can manage security policies, ensuring that access control remains in the hands of authorized administrators.
-* **Applicable to all organizations**: CIDR-based security policies apply to all organizations, ensuring centralized control across the cluster.
+* **Applicable to all organizations and filesystems**: CIDR-based security policies apply to all organizations and filesystems, ensuring centralized control across the cluster.
 * **Active mounts remain unaffected**: Client revocation is disabled, meaning any changes to policies do not impact active mounts. This ensures ongoing connections remain stable until they are manually disconnected.
 * **Policy order matters**: The order in which policies are attached determines the filtering sequence. For example, if the first policy denies access from IP1 and IP2, and the second policy allows IP1, the first policy takes precedence, overriding subsequent policies. Always review the order to ensure the desired access control.
-* **Default access behavior**: Clients without a related policy are allowed by default. To secure your organization, always include a final policy that denies access to all other IPs after attaching the necessary policies.
+* **Default access behavior**: Clients without a related policy are allowed by default. To secure your organization or filesystem, always include a final policy that denies access to all other IPs after attaching the necessary policies.
 * **Policy capacity:**&#x20;
   * 16 policies can be assigned per organization.
+  * 16 policies can be assigned per filesystem.
   * 8 policies are allowed per client or backend join.
   * Each policy supports up to 32 IP address ranges.
   * A total of 5,120 policies can be defined system-wide.
 
 ## Manage security policies using the CLI
 
-Create and manage security policies so that you can apply them on the organization. You can perform the following:
+Create and manage security policies so that you can apply them on the organization or filesystem. You can perform the following:
 
 * List security policies defined in the WEKA cluster.
 * Display information about a specific security policy.
@@ -333,5 +334,85 @@ weka org security policy detach <org>[<policies>]...
 **Parameters**
 
 <table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from the organization.</td></tr></tbody></table>
+
+## Manage filesystem security policies using the CLI
+
+Once security policies are defined, you can perform the following tasks at the filesystem level:
+
+* List security policies for a specified filesystem.
+* Set security policies for a specified filesystem.
+* Remove all security policies from a specified filesystem.
+* Attach new security policies to a specified filesystem.
+* Detach security policies from a specified filesystem.
+
+### List security policies for a filesystem
+
+**Command:** `weka fs security policy list`
+
+Use the following command to list security policies for a specified filesystem.
+
+```
+weka fs security policy list <fs-name>
+```
+
+**Parameters**
+
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr></tbody></table>
+
+### Set security policies for a  filesystem
+
+**Command:** `weka fs security policy set`
+
+Use the following command to set security policies for a specified filesystem.
+
+```
+weka fs security policy set <fs-name> [<policies>]...
+```
+
+**Parameters**
+
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to set for a filesystem.</td></tr></tbody></table>
+
+### Remove all security policies from a  filesystem
+
+**Command:** `weka fs security policy reset`
+
+Use the following command to remove all security policies from a specified filesystem.
+
+```
+weka fs security policy reset <fs-name>
+```
+
+**Parameters**
+
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr></tbody></table>
+
+### Attach new security policies to a filesystem
+
+**Command:** `weka fs security policy attach`
+
+Use the following command to attach new security policies to the specified filesystem.
+
+```
+weka fs security policy attach <fs-name> [<policies>]...
+```
+
+**Parameters**
+
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to attach new security policies to the specified filesystem.</td></tr></tbody></table>
+
+### Detach security policies from a filesystem
+
+**Command:** `weka fs security policy detach`
+
+Use the following command to detach (remove) security policies from a filesystem.
+
+```
+weka fs security policy detach <fs-name> [<policies>]...
+```
+
+**Parameters**
+
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from the specified filesystem.</td></tr></tbody></table>
 
 [^1]: Classless Inter-Domain Routing
