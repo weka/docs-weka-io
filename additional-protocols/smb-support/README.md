@@ -4,7 +4,7 @@ description: The WEKA configuration of the SMB protocol for shared Windows clien
 
 # Manage the SMB protocol
 
-SMB (Server Message Block) is a network file-sharing protocol facilitating connections to shared file and print services from remote systems. WEKA's implementation features a modern SMB stack (SMB-W), with the option to use the legacy open-source Samba stack if required. Both SMB implementations in WEKA fully support SMB versions 2 and 3.
+SMB (Server Message Block) is a network file-sharing protocol that facilitates connections to shared file and print services from remote systems. WEKA's implementation features a modern SMB stack (SMB-W), with the option to use the legacy open-source Samba stack if required. Both WEKA SMB implementations fully support SMB versions 2 and 3.
 
 WEKA's SMB implementation enables seamless access to storage services for both Windows and macOS clients. It facilitates shared access from multiple clients, supporting a multi-protocol approach that allows files to be accessed simultaneously through SMB, NFS, and WEKA native filesystem drivers.
 
@@ -16,7 +16,7 @@ The legacy open-source Samba stack is deprecated and will not be supported start
 
 The implementation of SMB in the WEKA system is characterized by scalability, resilience, and distribution.
 
-* **Scalability:** WEKA supports an SMB cluster ranging from 3 to 8 servers, with the SMB gateway service running on these servers. The backend filesystem can be any WEKA filesystem, making it virtually unlimited in size and performance.
+* **Scalability:** WEKA supports an SMB cluster ranging from 3 to 8 servers, with the SMB gateway service running on these servers. The backend filesystem can be any WEKA filesystem, making it unlimited in size and performance.
 * **Resilience:** WEKA's SMB implementation provides clustered access to files in a WEKA filesystem, allowing multiple servers to collaborate. In a server failure, another can seamlessly take over operations, ensuring failover support and high availability. The standard resiliency of WEKA against failures also extends to SMB filesystems, with SMB-W supporting transparent failover for enhanced resilience compared to legacy SMB.
 * **Distribution:** A WEKA implementation is distributed over a cluster, where all servers manage all SMB filesystems concurrently. This design allows the performance supported by SMB to scale with additional hardware resources, ensuring high availability. SMB-W introduces support for SMB Multichannel and SMB Direct, providing advanced capabilities compared to the legacy SMB.
 
@@ -123,7 +123,7 @@ To grant root-level access to specific users, assign an Active Directory user wi
 
 #### **Access Control Lists (ACLs)**
 
-The ACL feature enables administrators to manage more granular permissions for SMB shares. Users can select one of the following options when configuring ACLs:
+The ACL feature enables administrators to manage more granular permissions for SMB shares on for SMB-W clusters only. Users can select one of the following options when configuring ACLs:
 
 * **ACLs enabled:** Enable or disable Windows Access-Control Lists (ACLs) for the share. When enabled, the Access Control Model option is applied.
 * **Access control model:** Defines the type of access control used for the share. The available options are:

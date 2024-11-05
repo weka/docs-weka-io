@@ -266,12 +266,14 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
    * **Allow Guest Access:** Select if you want guests to access without authentication.
    * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix). Not supported in SMB-W.
    * **Files/Directories POSIX Mode Mask**: Set the new default file and directory permissions in a numeric (octal) format created through the share.
+   * **ACLs Enabled**: Enables or disables Windows Access-Control Lists (ACLs) for the share. When enabled, WEKA applies the selected Access Control Model. Only applicable for SMB-W.
+   * **Access Control Model:** Specifies the type of access control to use for the share. Options include POSIX, Windows, or Hybrid (default: POSIX). Hybrid ACL allows seamless interoperability between POSIX and Windows systems by exchanging permissions based on timestamps. The most recent permission, regardless of the system it originated from, takes precedence. Only applicable for SMB-W.
    * **Case Sensitivity**: Enables or disables case sensitivity for the specified SMB share (default: ON). When enabled, the share distinguishes between files with the same name but different capitalization. This option applies exclusively to the SMB-W cluster.
    * **ADS:** Enables using Alternate Data Streams (ADS) on a specified SMB share.\
      Possible values: ON, OFF (default: ON).  For **macOS clients**, if ACLs are disabled (`acl=off`), set `enable-ADS` to `off`.  For **Windows clients**, when enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.
 3. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/wmng_smb_share_add_dialog.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/4.4.1_wmng_smb_share_add_dialog.png" alt=""><figcaption></figcaption></figure>
 
 <details>
 
