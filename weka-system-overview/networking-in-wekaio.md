@@ -107,19 +107,29 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 * **UDP clients:**
   * Use a shared networking IP address for all purposes.
 
-## High Availability (HA)
+## **High Availability**
 
-To support HA, the WEKA system must be configured with no single component representing a single point of failure. Multiple switches are required, and servers must have one leg on each.
+To ensure high availability (HA), configure the WEKA system to eliminate any single point of failure (SPOF). This setup requires multiple network switches, with each server connected to both switches for redundancy.
 
-HA for servers is achieved either through implementing two network interfaces on the same server or by LACP (ethernet only, mode 4). A non-LACP approach sets a redundancy that enables the WEKA software to use two interfaces for HA and bandwidth.&#x20;
+Adhere to the following guidelines to achieve high availability:
 
-HA performs failover and failback for reliability and load balancing on both interfaces and is operational for Ethernet and InfiniBand. Not using LACP requires doubling the number of IPs on both the backend containers and the IO processes.
-
-When working with HA networking, labeling the system to send data between servers through the same switch is helpful rather than using the ISL or other paths in the fabric. This can reduce the overall traffic in the network. To label the system for identifying the switch and network port, use the `label` parameter in the `weka cluster container net add` command.&#x20;
-
-{% hint style="info" %}
-LACP (link aggregation, also known as bond interfaces) is currently supported between ports on a single Mellanox NIC and is not supported when using VFs (virtual functions).
-{% endhint %}
+* **Single fabric application**\
+  High availability applies only within a single type of network fabric, such as Ethernet or InfiniBand. You can achieve high availability for each fabric type independently.
+* **Mixed-mode cluster requirements**\
+  In a mixed-mode cluster, all WEKA backends require active connections to both fabric types to participate in cluster operations. Achieving high availability across Ethernet and InfiniBand requires each server to have at least two links of each type.
+* **Server link configuration**\
+  Server high availability is achieved by configuring either two independent network interfaces per server or by using Link Aggregation Control Protocol (LACP) on Ethernet (mode 4). \
+  **Note:** LACP is supported between ports on a single Mellanox NIC and is not supported when using VFs (virtual functions).
+* **Non-LACP configuration**\
+  In non-LACP configurations, the WEKA software uses both network interfaces to enhance availability and increase bandwidth.
+* **Failover and load balancing**\
+  High availability provides failover and failback for both Ethernet and InfiniBand connections, ensuring reliability and load balancing.
+* **IP Addressing requirements**\
+  To configure high availability without LACP, ensure that each backend container has correctly assigned IP addresses for both the management and data planes on each network interface..
+* **Traffic optimization**\
+  To optimize network traffic, label the system to prioritize data paths between servers on the same switch, reducing reliance on inter-switch links (ISL) and other paths.
+* **Labeling for congestion reduction**\
+  Use the `label` parameter with the `weka cluster container net add` command to assign switch and port labels, minimizing congestion and enhancing availability.
 
 ## RDMA and GPUDirect Storage
 

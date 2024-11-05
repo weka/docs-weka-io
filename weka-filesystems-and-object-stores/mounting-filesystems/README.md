@@ -243,7 +243,7 @@ When using a stateless client, it is possible to alter and control many differen
 * Virtual functions
 * IPs&#x20;
 * Gateway (in case the client is on a different subnet)
-* Physical network devices (for performance and HA)
+* Physical network devices (for performance and high availability)
 * UDP mode
 
 Use `-o net=<netdev>` mount option with the various modifiers as described below.
@@ -277,7 +277,7 @@ mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.
 ```
 {% endcode %}
 
-### Multiple physical network devices for performance and HA
+### Multiple physical network devices for performance and high availability
 
 For performance or high availability, it is possible to use more than one physical network device.
 
@@ -291,11 +291,11 @@ For example, the following command will allocate two cores and two physical netw
 mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/weka
 ```
 
-#### Using multiple physical network devices for HA configuration
+#### Using multiple physical network devices for high availability configuration
 
-Multiple NICs can also be configured to achieve redundancy (for details, see the [WEKA networking HA](../../weka-system-overview/networking-in-wekaio.md#ha) section) and higher throughput for a complete, highly available solution. For that, use more than one physical device as previously described, and also, specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
+Multiple NICs can also be configured to achieve redundancy and higher throughput for a complete, highly available solution. For that, use more than one physical device as previously described, and also, specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
 
-For example, the following command will use two network devices for HA networking and allocate both devices to four Frontend processes on the client. The modifier `ha` is used here, which stands for using the device on all processes.
+For example, the following command uses two network devices for high availability and allocate both devices to four Frontend processes on the client. The modifier `ha` is used here, which stands for using the device on all processes.
 
 {% code overflow="wrap" %}
 ```bash
@@ -317,7 +317,7 @@ mount -t wekafs -o num_cores=2 -o net:s2=mlnx0,net:s1=mlnx1 backend1/my_fs /mnt/
 ```
 {% endcode %}
 
-For example**,** in the following HA mounting command, two cores (two Frontend processes) and two physical network devices (`mlnx0`, `mlnx1`) are allocated. By explicitly specifying `s2+1`, `s1-2` modifiers for network devices, both devices will be used by both Frontend processes. Notation `s2+1` stands for the first and second processes, while `s1-2` stands for the range of 1 to 2, and are effectively the same.
+For example**,** in the following mounting command, two cores (two Frontend processes) and two physical network devices (`mlnx0`, `mlnx1`) are allocated. By explicitly specifying `s2+1`, `s1-2` modifiers for network devices, both devices will be used by both Frontend processes. Notation `s2+1` stands for the first and second processes, while `s1-2` stands for the range of 1 to 2, and are effectively the same.
 
 {% code overflow="wrap" %}
 ```bash
@@ -325,21 +325,29 @@ mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -
 ```
 {% endcode %}
 
+**Related topic**
+
+[#high-availability](../../weka-system-overview/networking-in-wekaio.md#high-availability "mention") (in the WEKA Networking topic)
+
 ### UDP mode
 
-If DPDK cannot be used, you can use the WEKA filesystem UDP networking mode through the kernel (for details about UDP mode. see the [WEKA networking](../../weka-system-overview/networking-in-wekaio.md) section). Use `net=udp` in the mount command to set the UDP networking mode, for example:
+If DPDK cannot be used, you can use the WEKA filesystem UDP networking mode through the kernel. Use `net=udp` in the mount command to set the UDP networking mode, for example:
 
 ```bash
 mount -t wekafs -o net=udp backend-server-0/my_fs /mnt/weka
 ```
 
 {% hint style="info" %}
-A client in UDP mode cannot be configured in HA mode. However, the client can still work with a highly available cluster.&#x20;
+A client in UDP mode cannot be configured in high availability mode (`ha`). However, the client can still work with a highly available cluster.&#x20;
 {% endhint %}
 
 {% hint style="info" %}
 Providing multiple IPs in the \<mgmt-ip> in UDP mode uses their network interfaces for more bandwidth, which can be useful in RDMA environments rather than using only one NIC.
 {% endhint %}
+
+**Related topic**
+
+[#udp-mode](../../weka-system-overview/networking-in-wekaio.md#udp-mode "mention") (in the WEKA Networking topic)
 
 ## Mount a filesystem using fstab
 

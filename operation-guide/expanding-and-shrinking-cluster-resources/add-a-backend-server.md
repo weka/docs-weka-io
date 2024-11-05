@@ -62,7 +62,7 @@ cd ~/tools/install/
 
 <details>
 
-<summary>Example of a high-availability system with two network devices</summary>
+<summary>Example of high-availability system with two network devices</summary>
 
 ```
 ./resources_generator.py --net ens4 ens5 --compute-dedicated-cores 3 --drive-dedicated-cores 2 --frontend-dedicated-cores 2
@@ -86,7 +86,7 @@ Add to the `--net` option the following for each network device:\
 </details>
 
 5. Create the drive, compute, and frontend containers, and join the new server's containers to the existing cluster.
-   *   In `management-ips`, specify the management IP address of the new server joining the cluster. Specify two or more comma-separated management IP addresses in a high-availability system.  
+   * In `management-ips`, specify the management IP address of the new server joining the cluster. Specify two or more comma-separated management IP addresses in a high-availability system.  
    * In `join-ips`, specify the management IP of one of the servers in the cluster to join.
 
 <pre><code><strong>weka local setup container --name drives0 --resources-path &#x3C;path>/drives0.json --management-ips=&#x3C;management IPs of the new server> --join-ips=&#x3C;management IP of the existing server>
