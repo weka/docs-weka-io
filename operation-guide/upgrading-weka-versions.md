@@ -204,7 +204,7 @@ weka version get <version>
 weka version prepare <version>
 ```
 
-Where: \<version> is the target WEKA version, for example: `4.3.0`.
+Where: \<version> is the target WEKA version, for example: `4.4.0`.
 
 If the distribution server does not contain the target WEKA version, add the option `--from` to the command, and specify the [get.weka.io](https://get.weka.io/ui/releases/) distribution site, along with the token.
 
@@ -248,7 +248,7 @@ Once the new version is downloaded to one of the backend servers, run the follow
 
 Where:
 
-`<new-version>`: Specify the new version. For example,`4.4.0`.
+`<new-version>`: Specify the new version. For example,`4.4.1`.
 
 ### 4. Upgrade the backend servers
 
@@ -321,7 +321,7 @@ To upgrade a stateless or persistent client locally, connect to the client and r
 
 1. Run: `weka version get <target-version> --from <backend name or IP>:<port>`
 2. Upgrade the agent by running the following (replace the x with the latest minor version):\
-   `weka version set --agent-only 4.3.x`
+   `weka version set --agent-only 4.4.x`
 3. Upgrade the client containers. Do one the following following:
    * For clients connected to a single cluster, run `weka local upgrade`
    * For clients connected to a multiple  clusters, upgrade all containers simultaneously by running  `weka local upgrade --all`
@@ -351,7 +351,7 @@ If an upgrade of a client part of a batch fails, it stops the following batch up
 
 The following command line upgrade two clients in two batches (each batch has one client):
 
-`weka local run -C drive0 --in 4.2.0.78 upgrade --mode=clients-upgrade --client-rolling-batch-size 1`
+`weka local run -C drive0 --in 4.3.0.78 upgrade --mode=clients-upgrade --client-rolling-batch-size 1`
 
 **Output example:**
 
@@ -364,9 +364,9 @@ The following command line upgrade two clients in two batches (each batch has on
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
 {% hint style="success" %}
-**Example:** The following is returned when the system is upgraded to version 4.3.0:
+**Example:** The following is returned when the system is upgraded to version 4.4.0:
 
 `# weka status`  \
-`Weka v4.3.0`   \
+`Weka v4.4.0`   \
 `...`
 {% endhint %}
