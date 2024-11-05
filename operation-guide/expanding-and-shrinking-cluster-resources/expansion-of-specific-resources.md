@@ -237,23 +237,21 @@ COMPUTE     10       <auto>
 
 ## Graceful container management: ensuring safe actions
 
-When running the commands `weka local stop`, `weka local restart`, and `weka local resources apply`, it is crucial to perform these actions safely to minimize the risk of unexpected issues or disruptions. To achieve this, use the `--graceful` option. This practice is particularly important during cluster maintenance.
+The `weka local stop`, `restart`, and `apply resources` commands perform graceful stop operations by default, ensuring actions are executed safely to minimize the risk of unexpected issues or disruptions. The system automatically prioritizes safety during cluster maintenance without requiring the `--graceful` option. If non-graceful action is required, add the `--force` option.
 
-By using the `--graceful` option with these commands, the system prioritizes safety before executing any action.&#x20;
+Additionally, stopping and starting dependent containers is the default behavior for the `weka local stop/start` commands, providing seamless management of dependent services. To override this behavior, use the `--skip-start-and-enable-dependent` or `--skip-stop-and-enable-dependent` options.
 
-{% hint style="info" %}
-The `--graceful` option applies exclusively to cluster containers and not to protocol containers.
-{% endhint %}
+**How the default graceful process works:**
 
-How `--graceful` works:
+* **Action Initiation:** Sends a request to the container for the specified action (STOP, RESTART, or APPLY\_RESOURCES).
+* **Safety check:** Evaluates feasibility based on current state and safety constraints (for example, ensuring sufficient resources post-action).
+* **Draining and execution:** If safe, the container transitions to the DRAINING state to complete ongoing operations. Once DRAINED, the action is executed.
 
-1. **Action initiation:** Sends a request to the container specifying the desired action (STOP, RESTART, or APPLY\_RESOURCES).
-2. **Safety check:** Evaluates feasibility based on current state and safety constraints (for example, sufficient resources post-action).
-3. **Draining and execution:** If safe, the container transitions to the DRAINING state to complete ongoing operations. Once DRAINED, the action is executed.
+**Example: Prioritizing stability**
 
-**Example: prioritizing stability**
+If stopping a container would violate minimum failure domain requirements, the graceful stop prevents the action to maintain system health.
 
-If stopping a container would violate minimum failure domain requirements, `--graceful` prevents the stop to maintain system health.
+The graceful process applies exclusively to cluster containers, not to protocol containers.
 
 <pre class="language-bash" data-title="Example: prioritizing stability" data-full-width="true"><code class="lang-bash"><strong>CONTAINER ID  HOSTNAME  CONTAINER  IPS             STATUS          REQUESTED ACTION  REQUESTED ACTION FAILURE
 </strong>0             Host-0    drives0    10.108.206.201  UP              STOP              Upon completion of this operation, there are 4 reliable containers available for cluster leadership, while the requirement is for 5.                 
