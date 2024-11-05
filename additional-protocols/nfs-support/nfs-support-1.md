@@ -17,7 +17,7 @@ NFSv4 and Kerberos require a persistent cluster-wide configuration filesystem fo
 
 Use the following command line to set the NFS configuration on the configuration filesystem:
 
-`weka nfs global-config set` \[`--mountd-port mountd-port]` \[`--lockmgr-port lockmgr-port]` \[`--statmon-port statmon-port]` \[`--notify-port notify-port] [--config-fs config-fs] [--default-supported-versions default-supported-versions] [--enable-auth-types enable-auth-types]`
+`weka nfs global-config set [--mountd-port mountd-port] [--config-fs config-fs] [--lockmgr-port lockmgr-port] [--statmon-port statmon-port] [--notify-port notify-port] [--acl acl] [--default-acl-type default-acl-type] [--default-supported-versions default-supported-versions]... [--enable-auth-types enable-auth-types]... [--no-restart]`
 
 {% hint style="info" %}
 * To support NFS file-locking, ensure the system meets the prerequisites outlined in [#nfs-file-locking-support](./#nfs-file-locking-support "mention").
@@ -26,7 +26,7 @@ Use the following command line to set the NFS configuration on the configuration
 
 **Parameters**
 
-<table><thead><tr><th width="197">Name</th><th width="348">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>mountd-port</code></td><td>Set the alternate port if the existing mountd service is not operating on the default published port.<br>0 means use the default published port.</td><td><code>0</code></td></tr><tr><td><code>lockmgr-port</code></td><td><p>Set the alternate port for the NFS lock manager used in NFSv3.</p><p>0 means use the default published port.</p></td><td><code>0</code></td></tr><tr><td><code>statmon-port</code></td><td>Set the alternate port for the NFS status monitor used in NFSv3.<br>0 means use the default published port.</td><td><code>0</code></td></tr><tr><td><code>notify-port</code></td><td>Set the alternate port for notification used in NFSv3.<br>0 means use the default published port.</td><td><code>0</code></td></tr><tr><td><code>config-fs</code>*</td><td>The predefined filesystem name for maintaining the persisting cluster-wide protocols' configurations.<br>Verify that the filesystem is already created. If not, create it. For details, see  <a data-mention href="../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations">#dedicated-filesystem-requirement-for-persistent-protocol-configurations</a></td><td></td></tr><tr><td><code>default-supported-versions</code></td><td><p>Determines the default NFS version.<br>Possible values: <br><code>v3</code></p><p><code>v4</code></p><p><code>v3,v4</code></p></td><td><code>v3</code></td></tr><tr><td><code>enable-auth-types</code></td><td><p>A comma-separated list of authentication types that can be used when setting the NFS client permissions.</p><p>Possible values: <code>none,sys,krb5,krb5i,krb5p</code><br>Example:<br><code>krb5,krb5i,krb5p</code></p></td><td><p>Depends on Kerberos configuration:</p><ul><li>If not configured: <code>none,sys</code></li><li>If configured: <code>krb5</code></li></ul></td></tr></tbody></table>
+<table><thead><tr><th width="197">Name</th><th width="348">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>mountd-port</code></td><td>Set the alternate port if the existing mountd service is not operating on the default published port.<br>0 means use the default published port.</td><td><code>0</code></td></tr><tr><td><code>config-fs</code>*</td><td>The predefined filesystem name for maintaining the persisting cluster-wide protocols' configurations.<br>Verify that the filesystem is already created. If not, create it. For details, see  <a data-mention href="../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations">#dedicated-filesystem-requirement-for-persistent-protocol-configurations</a></td><td></td></tr><tr><td><code>lockmgr-port</code></td><td><p>Set the alternate port for the NFS lock manager used in NFSv3.</p><p>0 means use the default published port.</p></td><td><code>0</code></td></tr><tr><td><code>statmon-port</code></td><td>Set the alternate port for the NFS status monitor used in NFSv3.<br>0 means use the default published port.</td><td><code>0</code></td></tr><tr><td><code>notify-port</code></td><td>Set the alternate port for notification used in NFSv3.<br>0 means use the default published port.</td><td><code>0</code></td></tr><tr><td><code>acl</code></td><td>Enables or disables NFSv4 ACL. Options are:  <code>on</code> or <code>off</code>.</td><td><code>on</code></td></tr><tr><td><code>default-acl-type</code></td><td>Specifies the default ACL type. Options are <code>none</code>, <code>posix</code>, <code>nfsv4</code>, or <code>hybrid</code>. For details, see <a data-mention href="./#access-control-list-acl-in-nfs">#access-control-list-acl-in-nfs</a>.</td><td><code>posix</code></td></tr><tr><td><code>default-supported-versions</code></td><td><p>Determines the default NFS version.<br>Possible values: <br><code>v3</code></p><p><code>v4</code></p><p><code>v3,v4</code></p></td><td><code>v3</code></td></tr><tr><td><code>enable-auth-types</code></td><td><p>A comma-separated list of authentication types that can be used when setting the NFS client permissions.</p><p>Possible values: <code>none,sys,krb5,krb5i,krb5p</code><br>Example:<br><code>krb5,krb5i,krb5p</code></p></td><td><p>Depends on Kerberos configuration:</p><ul><li>If not configured: <code>none,sys</code></li><li>If configured: <code>krb5</code></li></ul></td></tr><tr><td><code>no-restart</code></td><td>Prevents the restart of NFS-W containers when applying changes.</td><td>False</td></tr></tbody></table>
 
 #### Show NFS global configuration
 
@@ -34,16 +34,17 @@ Use the following command line to set the NFS configuration on the configuration
 
 **Example**
 
-```
-$ weka nfs global-config show
+<pre><code>$ weka nfs global-config show
 NFS Global Configuration
    mountd port: 0
      Config FS: .config_fs
-Default Supported Versions: V3
-Enabled Auth Types: KRB5, KRB5i, KRB5p
-Default Auth Types: KRB5
-Supported Auth Types: NONE, SYS, KRB5, KRB5i, KRB5p
-```
+   acl: on
+   default acl type: posix
+   Default Supported Versions: V3
+<strong>   Enabled Auth Types: KRB5, KRB5i, KRB5p
+</strong>   Default Auth Types: KRB5
+   Supported Auth Types: NONE, SYS, KRB5, KRB5i, KRB5p
+</code></pre>
 
 {% hint style="info" %}
 The parameters `Default Auth Types` and `Supported Auth Types` are determined internally.
@@ -402,7 +403,7 @@ Use the following command to clear the NFS Kerberos service configuration:
 
 **Parameters**
 
-<table><thead><tr><th width="189">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.<br>Use this flag only to clear the configuration created by a previous call to <code>weka nfs kerberos service setup</code> succeeded.</td><td>Not used</td></tr><tr><td><code>no-restart</code></td><td>When used, it prevents NFS-W containers from restarting to apply changes.</td><td>Not used</td></tr></tbody></table>
+<table><thead><tr><th width="189">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured or registered.<br>Use this flag only to clear the configuration created by a previous call to <code>weka nfs kerberos service setup</code> succeeded.</td><td>False</td></tr><tr><td><code>no-restart</code></td><td>Prevents NFS-W containers from restarting when applying changes.</td><td>False</td></tr></tbody></table>
 
 {% hint style="warning" %}
 In a successful operation, the system automatically restarts the NFS containers, leading to a temporary disruption in the IO service for connected NFS clients. However, if you want to avoid restarting the NFS-W containers, add the `--no-restart` option to the command line.
@@ -480,6 +481,18 @@ reader-user-password
   2. `weka nfs ldap <setup-openldap> <options/params>`
 {% endtab %}
 {% endtabs %}
+
+### Configure NFS for LDAP with ACLs (without Kerberos)
+
+**Command:** `weka nfs ldap setup-ad-nokrb`
+
+Use the following command to configure NFS to use LDAP for ACLs only when Kerberos is not in use:
+
+`weka nfs ldap setup-ad-nokrb <server-name> <ldap-domain> <nfs-service-name> <admin-user-name> [admin-user-password] [--force] [--no-restart]`
+
+**Parameters**
+
+<table><thead><tr><th width="259">Parameter</th><th width="375">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>server-name</code>*</td><td>AD server name.</td><td></td></tr><tr><td><code>ldap-domain</code>*</td><td>AD domain.</td><td></td></tr><tr><td><code>nfs-service-name</code>*</td><td><p>NFS FQDN service name.</p><p>Maximum 20 characters for hostname in FQDN.</p></td><td></td></tr><tr><td><code>admin-user-name</code>*</td><td>AD Admin Name</td><td></td></tr><tr><td><code>admin-user-password</code></td><td>AD Admin password</td><td></td></tr><tr><td><code>force</code></td><td>Force this action when Active Directory LDAP client is already setup.</td><td>False</td></tr><tr><td><code>no-restart</code></td><td>Don't restart the NFS-W containers to apply changes.</td><td>False</td></tr></tbody></table>
 
 ## **Manage the NFS export level (permissions)**
 
@@ -559,11 +572,11 @@ Use the following command lines to add or delete a rule which causes a client to
 
 Use the following command lines to add NFS permissions:
 
-`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port] [--supported-versions supported-versions] [--enable-auth-types enable-auth-types]`
+`weka nfs permission add <filesystem> <group> [--path path] [--permission-type permission-type] [--root-squashing root-squashing] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port] [--acl-type acl-type] [--force-acl-type force-acl-type] [--supported-versions supported-versions]... [--enable-auth-types enable-auth-types]... [--no-restart]`
 
 Use the following command lines to update NFS permissions:
 
-`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port] [--supported-versions supported-versions][--enable-auth-types enable-auth-types]`
+`weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port] [--acl-type acl-type] [--force-acl-type force-acl-type] [--supported-versions supported-versions]... [--enable-auth-types enable-auth-types]... [--no-restart]`
 
 Use the following command lines to delete NFS permissions:
 
@@ -571,7 +584,7 @@ Use the following command lines to delete NFS permissions:
 
 **Parameters**
 
-<table><thead><tr><th width="229">Name</th><th width="320">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>filesystem</code>*</td><td>Existing filesystem name.<br>A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.</td><td></td></tr><tr><td> <code>group</code>*</td><td>Existing client group name.</td><td></td></tr><tr><td> <code>path</code></td><td>The root of the valid share path.</td><td><code>/</code></td></tr><tr><td><code>permission-type</code></td><td>Permission type.<br>Possible values: <code>ro</code> (read-only), <code>rw</code> (read-write)</td><td><code>rw</code></td></tr><tr><td><code>squash</code></td><td>Squashing type.<br>Possible values: <code>none</code>, <code>root</code>, <code>all</code> </td><td><code>none</code></td></tr><tr><td><code>anon-uid</code>*</td><td>Anonymous user ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>anon-gid</code>*</td><td>Anonymous user group ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>obs-direct</code></td><td>See <a href="../../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a>.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>on</code></td></tr><tr><td><code>manage-gids</code></td><td><p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client is replaced by a list determined by an appropriate lookup on the server.<br>Possible values: <code>on</code>, <code>off</code>.</p></td><td><code>off</code></td></tr><tr><td><code>privileged-port</code></td><td>Sets the share only to be mounted via privileged ports (1-1024), usually allowed by the root user.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>off</code></td></tr><tr><td><code>supported-versions</code></td><td>A comma-separated list of supported NFS versions.<br>Possible values: <code>v3</code>, <code>v4</code>.</td><td>The <code>default-supported-versions</code> setting in <a href="nfs-support-1.md#configure-the-nfs-global-settings">NFS global settings</a> determines the default NFS version.</td></tr><tr><td><code>enable-auth-types</code></td><td>A comma-separated list of NFS authentication types.<br>Possible values are determined by the  <code>enable-auth-types</code> in <a href="nfs-support-1.md#configure-the-nfs-global-settings">NFS global settings</a>.</td><td>The <code>default-auth-types</code> in NFS global settings determine the default.</td></tr></tbody></table>
+<table><thead><tr><th width="229">Name</th><th width="320">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>filesystem</code>*</td><td>Existing filesystem name.<br>A filesystem with Required Authentication set to ON cannot be used for NFS client permissions.</td><td></td></tr><tr><td> <code>group</code>*</td><td>Existing client group name.</td><td></td></tr><tr><td> <code>path</code></td><td>The root of the valid share path.</td><td><code>/</code></td></tr><tr><td><code>root-squashing</code></td><td>Toot squashing is a security feature in NFS that prevents root users on client machines from having root privileges on the NFS server. When enabled, it typically maps the root user to an anonymous UID/GID.<br>Possible values: <code>on</code>, <code>off</code></td><td><code>off</code></td></tr><tr><td><code>permission-type</code></td><td>Permission type.<br>Possible values: <code>ro</code> (read-only), <code>rw</code> (read-write)</td><td><code>rw</code></td></tr><tr><td><code>squash</code></td><td><p>Permission squashing. <br>Possible values: <code>none</code>, <code>root</code>, <code>all</code></p><p>The option 'all' can be used only on interface groups with <code>--allow-manage-gids=on</code> </p></td><td><code>none</code></td></tr><tr><td><code>anon-uid</code>*</td><td>Anonymous user ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>anon-gid</code>*</td><td>Anonymous user group ID.<br>Relevant only for root squashing.<br>Possible values: <code>1</code> to <code>65535</code>.</td><td><code>65534</code></td></tr><tr><td><code>obs-direct</code></td><td>See <a href="../../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">Object-store Direct Mount</a>.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>on</code></td></tr><tr><td><code>manage-gids</code></td><td><p>Sets external group IDs resolution.</p><p>The list of group IDs received from the client is replaced by a list determined by an appropriate lookup on the server.<br>Possible values: <code>on</code>, <code>off</code>.</p></td><td><code>off</code></td></tr><tr><td><code>privileged-port</code></td><td>Sets the share only to be mounted via privileged ports (1-1024), usually allowed by the root user.<br>Possible values: <code>on</code>, <code>off</code>.</td><td><code>off</code></td></tr><tr><td><code>acl-type</code></td><td>Specifies the ACL type. Possible values: <code>none</code>, <code>posix</code>, <code>nfsv4</code>, and <code>hybrid</code>. For details, see <a data-mention href="./#access-control-list-acl-in-nfs">#access-control-list-acl-in-nfs</a>.</td><td>Default is determined by the NFS global configuration.</td></tr><tr><td><code>force-acl-type</code></td><td>Forces a change to the ACL type for existing permissions on the same filesystem. Possible values:  <code>on</code> or <code>off</code>.</td><td><code>off</code></td></tr><tr><td><code>supported-versions</code></td><td>A comma-separated list of supported NFS versions.<br>Possible values: <code>v3</code>, <code>v4</code>.</td><td>The <code>default-supported-versions</code> setting in <a href="nfs-support-1.md#configure-the-nfs-global-settings">NFS global settings</a> determines the default NFS version.</td></tr><tr><td><code>enable-auth-types</code></td><td>A comma-separated list of NFS authentication types.<br>Possible values are determined by the  <code>enable-auth-types</code> in <a href="nfs-support-1.md#configure-the-nfs-global-settings">NFS global settings</a>.</td><td>The <code>default-auth-types</code> in NFS global settings determine the default.</td></tr><tr><td><code>no-restart</code></td><td>Prevents NFS-W containers from restarting when applying changes.</td><td>False</td></tr></tbody></table>
 
 ### View connected NFS clients
 

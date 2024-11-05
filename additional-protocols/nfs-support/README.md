@@ -62,12 +62,39 @@ Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zer
 
 The NFS client mount is configured using the standard NFS stack operating system. The NFS server IP address must point to the round-robin DNS name.
 
-### NFS access control (client access groups)
+### Access Control List (ACL) in NFS
 
-The NFS client permission groups are defined to control the access mapping between the servers and the filesystems. Each NFS client permission group contains the following:
+Access Control List (ACL) in NFS (Network File System) provide fine-grained control over file permissions, offering more flexibility than traditional POSIX permissions. NFS supports multiple ACL flavors, each serving different use cases and interoperability needs.
 
-* A list of filters for IP addresses or DNS names of clients that can be connected to the WEKA system by NFS.
-* A collection of rules that control access to specific filesystems.
+**ACL types in NFS**
+
+NFS supports the following ACL types:
+
+* **None**: No ACL enforcement or updates occur, even if POSIX ACLs exist on a file or directory. This flavor is used when ACL management is unnecessary.
+* **POSIX**: NFS enforces POSIX ACLs, ensuring compatibility with other protocols. However, the finer granularity of NFSv4 ACLs is lost when mapped to POSIX ACLs. This option is suitable for environments requiring basic ACL management across multiple protocols.
+* **NFSv4**: NFSv4 ACLs are enforced directly, without mapping to POSIX ACLs. This flavor preserves the full granularity of NFSv4 ACLs but does not support interoperability with other protocols. ACLs are stored as extended attributes and mapped to user and group IDs (UID/GID). Use NFSv4 when full NFSv4 ACL granularity is required, and interoperability with other protocols is not a concern.
+* **Hybrid**: This flavor combines both POSIX and NFSv4 ACLs to support interoperability. NFS ensures consistency between the two ACL types, and if any inconsistency arises, POSIX ACL is used for enforcement. Hybrid is ideal for environments requiring both interoperability and full NFSv4 ACL functionality.
+
+**NFSv3 and ACLs**
+
+NFSv3 supports only the **None** and **POSIX** ACL flavors. Any attempt to set ACLs from NFSv3 clients using other flavors is not applicable. NFS does not enforce ACLs on NFSv3 clients, but the underlying filesystem handles access control if POSIX ACLs are present.
+
+**Managing ACLs in NFS**
+
+ACL configuration and management in NFS can be done through various interfaces:
+
+* **CLI**: The `weka nfs permission` and `weka nfs global-config` commands allow users to configure ACLs at the permission and cluster level. NFS permissions exporting files from the same backend file system must share the same ACL flavor.
+* **GUI**: The NFS settings in the user interface include options to enable ACLs and configure default ACL flavors (None, POSIX, NFSv4, Hybrid). Changes to ACL settings may require restarting the NFS containers.
+* **Configuration filesystem**:\
+  ACL flavors and related configurations are tracked in the global configuration filesystem, ensuring consistent management of permissions across the system.
+
+**LDAP and ACLs**
+
+For ACL functionality, LDAP must be configured to manage user and group information. If Kerberos is set up, no additional LDAP configuration is necessary. Otherwise, LDAP configuration options are provided, supporting both Active Directory (AD) and OpenLDAP.
+
+**Upgrading and ACLs**
+
+When upgrading, the default ACL flavor for all permissions sets to **POSIX**. ACLs are enabled by default. To ensure proper ACL functionality, both `.config_fs` and LDAP must be configured.
 
 ### NFS integration with Kerberos service
 

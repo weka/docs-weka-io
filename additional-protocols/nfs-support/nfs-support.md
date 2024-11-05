@@ -36,6 +36,12 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
 4. In the Global Settings section, select **Update**, and do the following:
    * **Config FS**: Select the cluster-wide configuration filesystem that maintains the NFS and Kerberos configurations.
    * **Supported Versions**: Select the NFS versions you want to support based on your needs. Options include V3, V4, or both.
+   * **ACL**: Sets the ACL to ON (default) or OFF.
+   * **ACL Type**: Defines the default access control method for the share. Options are:
+     * **None:** No ACL enforcement or updates, regardless of existing POSIX ACLs.
+     * **POSIX** (default): Enforces POSIX ACLs, compatible across protocols, but loses NFSv4's finer granularity.
+     * **NFSv4**: Enforces NFSv4 ACLs directly, retaining full granularity, but lacks interoperability with other protocols.
+     * **Hybrid**: Combines both POSIX and NFSv4 ACLs to support interoperability. NFS ensures consistency between the two ACL types, and if any inconsistency arises, POSIX ACL is used for enforcement.
    *   **Authentication Type**: Enable the authentication types that can be used when setting the NFS client permissions. \
        Possible values:
 
@@ -239,7 +245,7 @@ Creating additional client groups helps in better organization, customization of
 ![Add a client group](../../.gitbook/assets/wmng\_add\_nfs\_client\_group\_add.png)
 
 2. In the Create Client Group dialog, set the client group name.
-3. Select **Save**.&#x20;
+3. Select **Save**.
 
 ![Create client group dialog](../../.gitbook/assets/wmng\_add\_nfs\_client\_group\_dialog.png)
 
