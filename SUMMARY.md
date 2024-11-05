@@ -201,6 +201,7 @@
   * [Manage background tasks using the GUI](operation-guide/background-tasks/manage-background-tasks-using-the-gui.md)
   * [Manage background tasks using the CLI](operation-guide/background-tasks/manage-background-tasks-using-the-cli.md)
 * [Upgrade WEKA versions](operation-guide/upgrading-weka-versions.md)
+* [Manage WEKA drivers](operation-guide/manage-weka-drivers.md)
 
 ## Licensing
 
