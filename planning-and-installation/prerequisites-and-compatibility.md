@@ -397,7 +397,7 @@ Virtual Machines (VMs) can be used as clients. Ensure the following prerequisite
   * Meet all the requirements for UDP clients.
   * Additionally, verify that the virtual platform (hypervisor, NICs, CPUs, and their respective versions) fully supports DPDK and the required virtual network drivers.
 
-### **VMware platform**
+### **VMware platform (client only)**
 
 When using **vmxnet3** devices, do not enable the SR-IOV feature, because it disables the vMotion functionality. Each frontend process requires a dedicated **vmxnet3** device and IP address, with an additional device and IP for each client VM to support the management process.
 
