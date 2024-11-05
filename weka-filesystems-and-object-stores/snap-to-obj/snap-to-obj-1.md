@@ -29,15 +29,19 @@ Use the following command line to upload an existing snapshot:
 
 **Command:** `weka fs download`
 
-Use the following command line to create (or recreate) a filesystem from an existing snapshot:
+Use the following command to create or recreate a filesystem from an existing snapshot. If the snapshot originates from an encrypted source, be sure to include the required KMS-related parameters:
 
-`weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs-bucket> <locator> [--additional-obs additional-obs] [--snapshot-name snapshot-name] [--access-point access-point]`
+`weka fs download <name> <group-name> <total-capacity> <ssd-capacity> <obs-bucket> <locator>` \[--auth-required auth-required] `[--additional-obs additional-obs] [--snapshot-name snapshot-name] [--access-point access-point] [--kms-key-identifier kms-key-identifier] [--kms-namespace kms-namespace] [--kms-role-id kms-role-id] [--kms-secret-id kms-secret-id] [--skip-resource-validation]`
 
 When creating a filesystem from a snapshot, a background cluster task automatically prefetches its metadata, providing better latency for metadata queries.
 
 **Parameters**
 
-<table><thead><tr><th width="212">Name</th><th width="317">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem to create.</td><td></td></tr><tr><td><code>group-name</code>*</td><td>Name of the filesystem group in which the new filesystem is placed.</td><td></td></tr><tr><td><code>total-capacity</code>*</td><td>The total capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>ssd-capacity</code>*</td><td>SSD capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>obs-bucket</code>*</td><td>Object store name for tiering.</td><td></td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td><td></td></tr><tr><td><code>additional-obs</code></td><td>An additional object-store name.<br>If the data to recover reside in two object stores (a second object store attached to the filesystem, and the filesystem has not undergone full migration), this object store is attached in a <code>read-only</code> mode.<br>The snapshot locator must be in the primary object store specified in the <code>obs</code> parameter.</td><td></td></tr><tr><td><code>snapshot-name</code></td><td>The downloaded snapshot name.</td><td>The uploaded snapshot name.</td></tr><tr><td><code>access-point</code></td><td>The downloaded snapshot access point. </td><td>The uploaded access point.</td></tr></tbody></table>
+<table><thead><tr><th width="229">Name</th><th width="332">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem to create.</td><td></td></tr><tr><td><code>group-name</code>*</td><td>Name of the filesystem group in which the new filesystem is placed.</td><td></td></tr><tr><td><code>total-capacity</code>*</td><td>The total capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>ssd-capacity</code>*</td><td>SSD capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>obs-bucket</code>*</td><td>Object store name for tiering.</td><td></td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td><td></td></tr><tr><td><code>auth-required</code></td><td>Require authentication for the mounting user when mounting this filesystem. This setting is only applicable in the root organization; users in non-root organizations must always be authenticated to perform a mount operation. Format: <code>yes</code> or <code>no</code>. </td><td><code>no</code></td></tr><tr><td><code>additional-obs</code></td><td>An additional object-store name.<br>If the data to recover reside in two object stores (a second object store attached to the filesystem, and the filesystem has not undergone full migration), this object store is attached in a <code>read-only</code> mode.<br>The snapshot locator must be in the primary object store specified in the <code>obs</code> parameter.</td><td></td></tr><tr><td><code>snapshot-name</code></td><td>The downloaded snapshot name.</td><td>The uploaded snapshot name.</td></tr><tr><td><code>access-point</code></td><td>The downloaded snapshot access point. </td><td>The uploaded access point.</td></tr><tr><td><code>kms-key-identifier</code> </td><td>Customize KMS key name for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>kms-namespace</code></td><td>Customize the KMS role ID for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>kms-role-id</code></td><td>Customize the KMS role ID for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>kms-secret-id</code></td><td>Customize the KMS secret ID for this filesystem (applicable only for HashiCorp Vault).</td><td></td></tr><tr><td><code>skip-resource-validation</code></td><td>Skip verifying RAM and SSD resource allocation for the downloaded filesystem on the cluster.</td><td></td></tr></tbody></table>
+
+{% hint style="info" %}
+For encrypted filesystems, when downloading, you must use the same KMS cluster-wide key or, if configured, the per-filesystem encryption parameters to decrypt the snapshot data. For more information, see [kms-management](../../operation-guide/security/kms-management/ "mention").
+{% endhint %}
 
 The `locator` can be a previously saved locator for disaster scenarios, or you can obtain the `locator` using the `weka fs snapshot` command on a system with a live filesystem with snapshots.
 
@@ -45,10 +49,6 @@ If you need to pause and resume the download process, use the command: `weka clu
 
 {% hint style="info" %}
 Due to the bandwidth characteristics and potential costs when interacting with remote object stores it is not allowed to download a filesystem from a remote object-store bucket. If a snapshot on a local object-store bucket exists, it is advisable to use that one. Otherwise, follow the procedure in[#recover-from-a-remote-snapshot](snap-to-obj-1.md#recover-from-a-remote-snapshot "mention").
-{% endhint %}
-
-{% hint style="info" %}
-For encrypted filesystem, when downloading, you must use the same KMS master key to decrypt the snapshot data. For more information, see [kms-management](../../operation-guide/security/kms-management/ "mention").
 {% endhint %}
 
 ## Manage synchronous snapshots
