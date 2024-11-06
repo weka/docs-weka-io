@@ -6,7 +6,7 @@ description: >-
 
 # WEKA REST API and equivalent CLI commands
 
-`ka nfs ldap export-openldap`To maximize your success with the REST API, it's essential to familiarize yourself with the comprehensive documentation. This valuable resource provides in-depth insights into the subject matter. Moreover, each REST API method corresponds to a CLI command. Additionally, many parameters accessible through the CLI are equally accessible when using the REST API. Run the CLI command help for details. This ensures a smooth and consistent experience across both interfaces.
+To maximize your success with the REST API, it's essential to familiarize yourself with the comprehensive documentation. This valuable resource provides in-depth insights into the subject matter. Moreover, each REST API method corresponds to a CLI command. Additionally, many parameters accessible through the CLI are equally accessible when using the REST API. Run the CLI command help for details. This ensures a smooth and consistent experience across both interfaces.
 
 {% hint style="info" %}
 REST APIs marked with two asterisks (\*\*) are new in version 4.4.1, compared to version 4.3.5.
