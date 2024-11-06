@@ -381,6 +381,7 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\
 * Scality Ring (version 7.4.4.8 and higher)
 * Scality Artesca (version 1.5.2 and higher)
 * SwiftStack (version 6.30 and higher)
+* Dell PowerScale S3 (version 9.8.0.0 and higher)
 
 ## Virtual Machines
 
