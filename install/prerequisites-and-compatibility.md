@@ -368,6 +368,7 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\
 * Scality Artesca (version 1.5.2 and higher)
 * SwiftStack (version 6.30 and higher)
 * Spectra Logic BlackPearl with Vail for remote buckets (version 5.7.1 and higher)
+* Dell PowerScale S3 (version 9.8.0.0 and higher)
 
 ## Virtual Machines
 
