@@ -105,7 +105,7 @@ The S3 local user name and password serve as the S3 access key and secret key, r
 
 ```
 weka user add S3_user S3
-weka s3 policy attach readwrite
+weka s3 policy attach readwrite S3_user
 ```
 
 **Related topics**
@@ -125,7 +125,7 @@ To apply your chosen certificate, download it to your client and place it in the
 **Alternative CLI command**
 
 ```
-weka security tls download
+weka security tls download my_path
 ```
 
 **Related topics**
@@ -204,7 +204,7 @@ weka s3 cluster create default .config_fs --all-servers
 weka s3 bucket create mybucket
 weka user add S3_user S3
 weka s3 policy attach readwrite S3_user
-weka security tls download
+weka security tls download my_path
 python3 s3.py
 ```
 
