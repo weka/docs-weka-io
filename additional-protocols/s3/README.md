@@ -84,7 +84,7 @@ Create of an S3 bucket, a fundamental container for storing and organizing objec
 **Alternative CLI command**
 
 ```
-weka s3 bucket create mybucket
+weka s3 bucket create my_bucket
 ```
 
 **Related topics**
@@ -201,7 +201,7 @@ As a quick workflow guide, here is a summary of the CLI commands for configuring
 
 ```
 weka s3 cluster create default .config_fs --all-servers
-weka s3 bucket create mybucket
+weka s3 bucket create my_bucket
 weka user add S3_user S3
 weka s3 policy attach readwrite S3_user
 weka security tls download my_path
