@@ -110,12 +110,6 @@ Running WEKA in Azure requires Azure cloud resources for compute, storage, netwo
 
 Many customers may have pre-existing Azure environments that include the required resources, though confirmation is necessary. The following steps assume WEKA is being deployed into a “[blank slate](#user-content-fn-2)[^2]” Azure environment. These instructions also help navigate a customer’s existing environment to ensure WEKA prerequisites are met.
 
-{% hint style="info" %}
-The Terraform deployment scripts later in this guide include an option to automatically create all necessary resources for WEKA deployment, except for Resource Groups. To have Terraform create network resources, use the `no_existing_network` example. A Resource Group must be manually configured and supplied as a variable for this option.
-
-For most POC or production deployments, where networking resources are already configured, use the `existing_network` example.
-{% endhint %}
-
 ### Create a Resource Group
 
 A Microsoft Azure Resource Group is a fundamental organizational unit that acts as a logical container for resources within an Azure Subscription. It holds resources such as virtual machines, VNets, security groups, and storage accounts. A Resource Group must be available for deploying WEKA and its dependencies.
