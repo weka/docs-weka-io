@@ -7,8 +7,6 @@ description: >-
 
 # Detailed deployment tutorial: WEKA on Azure using Terraform
 
-## Introduction
-
 Deploying WEKA in Azure involves familiarity with Microsoft Azure Cloud, Terraform (for infrastructure-as-code provisioning), basic Linux operations, and WEKA software. Recognizing that not all individuals responsible for this deployment may have experience in every area, this document offers a comprehensive, step-by-step guide to successfully deploying a WEKA cluster in Azure, even with minimal prior knowledge.
 
 **Document scope**
@@ -26,6 +24,26 @@ This document guides you through:
 The images embedded in this document may appear small when viewed in-line. Double-clicking on an image enlarges it to its original size for easier viewing.
 {% endhint %}
 
+## Introduction
+
+Deploying WEKA in Azure requires knowledge of several technologies, specifically Microsoft Azure Cloud, Terraform (infrastructure-as-code provisioning manager), basic Linux operations, and WEKA software. Understanding that not everyone tasked with deploying WEKA in Azure will have experience in each required domain, this document seeks to provide an end-to-end instruction set that allows its reader to successfully deploy a working WEKA cluster in Azure with minimal knowledge prerequisites.
+
+**Document scope**
+
+This document focuses on deploying WEKA in an Azure environment which has an existing networking configuration. For instance, deploying WEKA for a POC or production purposes necessitates using an Azure customer’s existing VNet, subnet, and Network Security Group.
+
+The reader will be guided through setting up and configuring general Azure requirements, the Azure networking requirements needed to support WEKA, installing Terraform on their local system, using Terraform to deploy WEKA, and verifying a successful deployment.
+
+{% hint style="info" %}
+A similar document is being created which will use the same format to guide a reader through deploying WEKA when Terraform is allowed to create all networking prerequisites and permits direct internet access to the WEKA cluster for logistical ease. This deployment methodology is better suited to quick demos and familiarizing oneself with Weka in Azure. It will likely never be used in a production or POC scenario.
+{% endhint %}
+
+**Attention**
+
+One section of this document falls under the category of a **“one-time setup.”** The entirety of _Section 3: Terraform Preparation and Installation_ only needs to be completed once on a given workstation used for Terraform deployment. If, at any time, a new workstation without Terraform installed is to be used, the steps must be repeated on the new workstation.
+
+The images embedded in this document can appear small when viewed in-line with the document. Double-clicking on the image will enlarge it to its original size for easier viewing.
+
 ## Administrative prerequisites
 
 Before deploying WEKA in Microsoft Azure, ensure that the target environment is properly configured. Several key components must be set up before deploying WEKA using Terraform to ensure a successful outcome. The following subsections provide a step-by-step guide for configuring each component according to WEKA requirements.
@@ -38,13 +56,13 @@ Azure environments are organized within a Subscription[^1], which serves as the 
 
 1. Navigate to the Microsoft Azure Portal. Search for **Subscriptions** and select it.
 
-<figure><img src="../../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (30) (1).png" alt=""><figcaption></figcaption></figure>
 
 2.  On the **Subscriptions** page, locate the subscription you plan to use for deploying WEKA.
 
     Ensure you understand the Azure Subscription structure for your environment before proceeding with the deployment.
 
-<figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (31) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Verify user privileges assignment
 
@@ -52,21 +70,21 @@ To successfully deploy WEKA in Microsoft Azure, ensure the account used is a Sub
 
 #### Procedure
 
-1. Log in to the Azure Portal using the account intended for the WEKA deployment. Search for **Users**  and select it.
+1. Log in to the Azure Portal using the account intended for the WEKA deployment. Search for **Users** and select it.
 
-<figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (32) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Locate the user by typing part of their username and select their name from the list.
 
-<figure><img src="../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (33) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. On the user page, select **Azure Role Assignments**.
 
-<figure><img src="../../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (34) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Verify the user's roles to ensure they are assigned as an **Owner** or **Contributor** for the Subscription used for WEKA deployment.
 
-<figure><img src="../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (35) (1).png" alt=""><figcaption></figcaption></figure>
 
 After confirming the user's permissions, verify the resource quotas.
 
@@ -80,27 +98,27 @@ If you or your customer have not used a particular instance type before, you mus
 
 1. In the Azure Portal, search for **Quotas** and select it.
 
-<figure><img src="../../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (36) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. On the quotas page, select **Compute**.
 
-<figure><img src="../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (37) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. Search for the instance family or specific instance for which you need to set or check the quota. For example, Dsv5 instances.
 
-<figure><img src="../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (38) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Select the checkbox next to the desired instance type, open the **Request quota increase** dropdown, and **Enter a new limit**.
 
-<figure><img src="../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (39) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. In the Request quota increase section, enter the desired number of vCPUs for the instance type or family. For instance, request a new vCPU quota of 150 for the Standard Dsv5 family. Select **Submit**.
 
-<figure><img src="../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (40) (1).png" alt=""><figcaption></figcaption></figure>
 
 6. Most quota increase requests are approved in real-time, without needing Azure support. However, if requesting a large number of vCPUs or a specialized instance, contacting Azure support may be necessary. The example demonstrates a successful vCPU increase request.
 
-<figure><img src="../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (41) (1).png" alt=""><figcaption></figcaption></figure>
 
 7. Ensure quotas are set for all instances required for the deployment. For WEKA backends, set the quota for the Lsv3 instance family, and any other instance families used for WEKA clients. For a complete listing of available instance sizes, see [supported-virtual-machine-types.md](supported-virtual-machine-types.md "mention").
 
@@ -128,30 +146,30 @@ If corporate policies require separating WEKA compute or client instances from n
 
 1. In the Azure Portal, search for **Resource groups** and select it.
 
-<figure><img src="../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (42) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. On the Resource groups page, select **Create**.
 
-<figure><img src="../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (43) (1).png" alt=""><figcaption></figcaption></figure>
 
-3. On the Create resource group page, enter the required details, ensuring you select the correct subscription and region. Select **Review + create**. \
+3. On the Create resource group page, enter the required details, ensuring you select the correct subscription and region. Select **Review + create**.\
    (Once named, a Resource Group cannot be renamed.)
 
-<figure><img src="../../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (44) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Select **Create** to confirm.
 
-<figure><img src="../../.gitbook/assets/image (45).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (45) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Review the newly created Resource Group.
 
-<figure><img src="../../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (46) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Create a VNet
 
 A Virtual Network (VNet) in Microsoft Azure is essential for secure communication between Azure resources, such as virtual machines (VMs), and for connecting to the internet and on-premises networks.
 
-A VNet provides logical isolation within the Azure cloud, dedicated to a subscription, and includes subnets that allocate IP address space to VMs.&#x20;
+A VNet provides logical isolation within the Azure cloud, dedicated to a subscription, and includes subnets that allocate IP address space to VMs.
 
 For WEKA deployment, both management and DPDK traffic must use VNets, with all WEKA cluster backends and POSIX clients placed within the same VNet and subnet. Contact the the [Customer Successes Team](../../support/getting-support-for-your-weka-system.md) for additional guidance.
 
@@ -159,27 +177,27 @@ For WEKA deployment, both management and DPDK traffic must use VNets, with all W
 
 1. In the Azure Portal, search for **Virtual networks** and select it.
 
-<figure><img src="../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (47) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. On the Virtual networks page, Select **Create**.
 
-<figure><img src="../../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (48) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. On the Create virtual network page, enter the VNet configuration details, including the subscription and resource group from the previous step. Provide a VNet name and region, then Select **Next: IP Addresses**.
 
-<figure><img src="../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (49) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. In the IP Addresses section, specify the IP address space and adjust the default subnet configuration as needed. Select **Review + create** when done.
 
-<figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (50) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Select **Creat**e to confirm.
 
-<figure><img src="../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (51) (1).png" alt=""><figcaption></figcaption></figure>
 
 6. After creation, review the confirmation page and verify the new VNet.
 
-<figure><img src="../../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (52) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Create a Network Security Group (NSG)
 
@@ -193,23 +211,23 @@ NSGs start with default rules for basic connectivity, such as allowing outbound 
 
 1. In the Azure Portal, search for **Network security groups** and select it.
 
-<figure><img src="../../.gitbook/assets/image (53).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (53) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. On the Network security groups page, Select **Create**.
 
-<figure><img src="../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (54) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. On the Create network security group page, enter the required details, including the subscription and resource group from earlier steps. Ensure the region matches other resources. Select **Review + create**.
 
-<figure><img src="../../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (55) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Select **Create** to confirm.
 
-<figure><img src="../../.gitbook/assets/image (56).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (56) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. After creation, review the confirmation page and verify the new Network Security Group.
 
-<figure><img src="../../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (57) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Associate a Network Security Group with a Subnet
 
@@ -221,27 +239,27 @@ In a customer environment, it might be necessary to adapt these associations bas
 
 1. Search for **Virtual networks** in the Azure Portal and select it.
 
-<figure><img src="../../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (58) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. Select the relevant virtual network from the list.
 
-<figure><img src="../../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (59) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. In the virtual network configuration screen, Select **Subnets**.
 
-<figure><img src="../../.gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (60) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. Select the relevant subnet (in this example, the default subnet).
 
-<figure><img src="../../.gitbook/assets/image (61).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (61) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. On the subnet configuration screen, locate the **Network security group** dropdown and select the previously created NSG.
 
-<figure><img src="../../.gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (62) (1).png" alt=""><figcaption></figcaption></figure>
 
 6. Confirm the selection and select **Save**.
 
-<figure><img src="../../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (63) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Create and associate a NAT Gateway
 
@@ -257,35 +275,35 @@ NAT Gateways must be created and associated with the subnet needing outbound int
 
 1. In the Azure Portal, search for **NAT gateways** and select it.
 
-<figure><img src="../../.gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (64) (1).png" alt=""><figcaption></figcaption></figure>
 
 2. On the NAT gateways page, select **Create**.
 
-<figure><img src="../../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (65) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. On the Create network address translation (NAT) gateway page, enter the required details. Select the correct subscription and resource group, specify a name and region, and select **Next: Outbound IP**.
 
-<figure><img src="../../.gitbook/assets/image (66).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (66) (1).png" alt=""><figcaption></figcaption></figure>
 
 4. In the Outbound IP section, select **Create a new public IP address**, enter a name for the public IP, and select **OK**.
 
-<figure><img src="../../.gitbook/assets/image (67).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (67) (1).png" alt=""><figcaption></figcaption></figure>
 
 5. Ensure the Public IP address dropdown displays the newly created IP name. Select **Next: Subnet**.
 
-<figure><img src="../../.gitbook/assets/image (68).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (68) (1).png" alt=""><figcaption></figcaption></figure>
 
 6. In the Subnet section, select the previously created VNet and subnet. Select **Review + create**.
 
-<figure><img src="../../.gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (69) (1).png" alt=""><figcaption></figcaption></figure>
 
 7. Select **Create** to confirm.
 
-<figure><img src="../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (70) (1).png" alt=""><figcaption></figcaption></figure>
 
 8. Upon completion, review the newly created NAT Gateway on the confirmation page.
 
-<figure><img src="../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (72) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Install AzureCLI
 
@@ -317,7 +335,7 @@ The installed version of Azure CLI is displayed.
 
 ### Log in to Azure CLI
 
-Terraform uses Azure CLI to perform operations within an Azure subscription.&#x20;
+Terraform uses Azure CLI to perform operations within an Azure subscription.
 
 **Before you begin**
 
@@ -343,7 +361,7 @@ After successful authentication, a confirmation message appears.
 
 <figure><img src="../../.gitbook/assets/image (90).png" alt=""><figcaption></figcaption></figure>
 
-## Deploy WEKA in Azure using Terraform Registry&#x20;
+## Deploy WEKA in Azure using Terraform Registry
 
 The **Terraform Registry** is a repository of modules and resources that simplifies the deployment process by providing reusable components.
 
@@ -433,7 +451,7 @@ To configure the deployment, open the downloaded `main.tf` file in your preferre
 Several default example variables will be modified, and others will be added to align with this guide's deployment into an existing public network.
 
 {% hint style="info" %}
-**Important note:** \
+**Important note:**\
 Many of the Terraform variables listed on the [Terraform Registry page for the Azure WEKA module](https://registry.terraform.io/modules/weka/weka/azure/latest) under the [Inputs](https://registry.terraform.io/modules/weka/weka/azure/latest?tab=inputs) section have pre-set default values. If a variable is not explicitly defined in your `main.tf`, the defaults automatically apply. It is recommended to review these variables to ensure that the defaults meet your deployment needs.
 {% endhint %}
 

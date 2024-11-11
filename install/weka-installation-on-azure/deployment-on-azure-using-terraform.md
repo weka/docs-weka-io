@@ -17,12 +17,6 @@ Applying the Terraform module performs the following:
 
 The total deployment time is about 30 minutes. Half of that time is for resource deployment. The remainder is for the WEKA cluster installation and configuration.
 
-{% hint style="info" %}
-If you do not require auto-scaling support and require a lower level of privileges, an essential WEKA deployment is available. This deployment option eliminates the need for function apps and load balancer resources.
-
-For details, see [weka-essential](https://registry.terraform.io/modules/weka/weka-essential/azure/latest).
-{% endhint %}
-
 ## Prerequisites
 
 Before installing the WEKA software on Azure, the following prerequisites must be met:
