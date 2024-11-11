@@ -59,8 +59,6 @@
   * [Add clients](install/weka-installation-on-azure/add-clients.md)
   * [Troubleshooting](install/weka-installation-on-azure/troubleshooting.md)
   * [Detailed deployment tutorial: WEKA on Azure using Terraform](install/weka-installation-on-azure/detailed-deployment-tutorial-weka-on-azure-using-terraform.md)
-  * [Page](install/weka-installation-on-azure/page/README.md)
-    * [Detailed deployment tutorial: WEKA on Azure using Terraform](install/weka-installation-on-azure/page/detailed-deployment-tutorial-weka-on-azure-using-terraform.md)
 * [WEKA installation on GCP](install/weka-installation-on-gcp/README.md)
   * [WEKA project description](install/weka-installation-on-gcp/weka-project-description.md)
   * [GCP-WEKA deployment Terraform package description](install/weka-installation-on-gcp/gcp-terraform-package-description.md)
