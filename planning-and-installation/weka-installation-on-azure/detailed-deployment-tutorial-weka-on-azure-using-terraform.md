@@ -52,7 +52,7 @@ To successfully deploy WEKA in Microsoft Azure, ensure the account used is a Sub
 
 #### Procedure
 
-1. Log in to the Azure Portal using the account intended for the WEKA deployment. Search for **Users**  and select it.
+1. Log in to the Azure Portal using the account intended for the WEKA deployment. Search for **Users** and select it.
 
 <figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
 
@@ -110,12 +110,6 @@ Running WEKA in Azure requires Azure cloud resources for compute, storage, netwo
 
 Many customers may have pre-existing Azure environments that include the required resources, though confirmation is necessary. The following steps assume WEKA is being deployed into a “[blank slate](#user-content-fn-2)[^2]” Azure environment. These instructions also help navigate a customer’s existing environment to ensure WEKA prerequisites are met.
 
-{% hint style="info" %}
-The Terraform deployment scripts later in this guide include an option to automatically create all necessary resources for WEKA deployment, except for Resource Groups. To have Terraform create network resources, use the `no_existing_network` example. A Resource Group must be manually configured and supplied as a variable for this option.
-
-For most POC or production deployments, where networking resources are already configured, use the `existing_network` example.
-{% endhint %}
-
 ### Create a Resource Group
 
 A Microsoft Azure Resource Group is a fundamental organizational unit that acts as a logical container for resources within an Azure Subscription. It holds resources such as virtual machines, VNets, security groups, and storage accounts. A Resource Group must be available for deploying WEKA and its dependencies.
@@ -134,7 +128,7 @@ If corporate policies require separating WEKA compute or client instances from n
 
 <figure><img src="../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
 
-3. On the Create resource group page, enter the required details, ensuring you select the correct subscription and region. Select **Review + create**. \
+3. On the Create resource group page, enter the required details, ensuring you select the correct subscription and region. Select **Review + create**.\
    (Once named, a Resource Group cannot be renamed.)
 
 <figure><img src="../../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
@@ -151,7 +145,7 @@ If corporate policies require separating WEKA compute or client instances from n
 
 A Virtual Network (VNet) in Microsoft Azure is essential for secure communication between Azure resources, such as virtual machines (VMs), and for connecting to the internet and on-premises networks.
 
-A VNet provides logical isolation within the Azure cloud, dedicated to a subscription, and includes subnets that allocate IP address space to VMs.&#x20;
+A VNet provides logical isolation within the Azure cloud, dedicated to a subscription, and includes subnets that allocate IP address space to VMs.
 
 For WEKA deployment, both management and DPDK traffic must use VNets, with all WEKA cluster backends and POSIX clients placed within the same VNet and subnet. Contact the the [Customer Successes Team](../../support/getting-support-for-your-weka-system.md) for additional guidance.
 
@@ -317,7 +311,7 @@ The installed version of Azure CLI is displayed.
 
 ### Log in to Azure CLI
 
-Terraform uses Azure CLI to perform operations within an Azure subscription.&#x20;
+Terraform uses Azure CLI to perform operations within an Azure subscription.
 
 **Before you begin**
 
@@ -343,7 +337,7 @@ After successful authentication, a confirmation message appears.
 
 <figure><img src="../../.gitbook/assets/image (90).png" alt=""><figcaption></figcaption></figure>
 
-## Deploy WEKA in Azure using Terraform Registry&#x20;
+## Deploy WEKA in Azure using Terraform Registry
 
 The **Terraform Registry** is a repository of modules and resources that simplifies the deployment process by providing reusable components.
 
@@ -433,7 +427,7 @@ To configure the deployment, open the downloaded `main.tf` file in your preferre
 Several default example variables will be modified, and others will be added to align with this guide's deployment into an existing public network.
 
 {% hint style="info" %}
-**Important note:** \
+**Important note:**\
 Many of the Terraform variables listed on the [Terraform Registry page for the Azure WEKA module](https://registry.terraform.io/modules/weka/weka/azure/latest) under the [Inputs](https://registry.terraform.io/modules/weka/weka/azure/latest?tab=inputs) section have pre-set default values. If a variable is not explicitly defined in your `main.tf`, the defaults automatically apply. It is recommended to review these variables to ensure that the defaults meet your deployment needs.
 {% endhint %}
 
