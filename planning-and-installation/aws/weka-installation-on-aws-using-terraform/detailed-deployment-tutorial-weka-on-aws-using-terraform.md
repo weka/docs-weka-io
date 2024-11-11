@@ -628,7 +628,7 @@ Testing the self-healing functionality of a WEKA cluster involves decommissionin
 
 ### Appendix A: Security Groups / network ACL ports
 
-See [#required-ports](../../prerequisites-and-compatibility.md#required-ports "mention")
+See [#required-ports](../../prerequisites-and-compatibility/#required-ports "mention")
 
 ### Appendix B: **Terraform’s r**equired permissions
 

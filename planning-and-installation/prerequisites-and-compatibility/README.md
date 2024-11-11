@@ -21,10 +21,11 @@ In certain instances, WEKA collaborates with Strategic Server Partners to conduc
 <table><thead><tr><th width="338">CPU family/architecture</th><th width="210">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>2013 Intel® Core™ processor family and later</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome), 3rd (Milan-X), and 4th (Genoa) Generations</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span> <br>Single-socket and dual-socket</td></tr></tbody></table>
 
 {% hint style="info" %}
-Ensure the BIOS settings meet the following requirements:
+The following requirements must be met:
 
-* AES must be enabled.
-* Secure Boot must be disabled.
+* AES[^1] is enabled.
+* [Secure Boot](#user-content-fn-2)[^2] is disabled.
+* AVX2[^3] is enabled.
 {% endhint %}
 
 ## Memory
@@ -41,14 +42,15 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% tabs %}
 {% tab title="Backends" %}
 * **RHEL:**
-  * 9.2, 9.1, 9.0
-  * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 9.4, 9.3, 9.2, 9.1, 9.0
+  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux:**
-  * 9.2, 9.1, 9.0
-  * 8.9, 8.8, 8.7, 8.6
+  * 9.4, 9.3, 9.2, 9.1, 9.0
+  * 8.10, 8.9, 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Ubuntu:**
+  * 24.04
   * 22.04
   * 20.04
   * 18.04
@@ -61,14 +63,15 @@ WEKA will support upcoming releases of the operating systems in the lists within
 
 {% tab title="Clients" %}
 * **RHEL:**
-  * 9.2, 9.1, 9.0
-  * 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
+  * 9.4, 9.3, 9.2, 9.1, 9.0
+  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux:**
-  * 9.3, 9.2, 9.1, 9.0
-  * 8.9, 8.8, 8.7, 8.6
+  * 9.4, 9.3, 9.2, 9.1, 9.0
+  * 8.10, 8.9, 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Ubuntu:**
+  * 24.04
   * 22.04
   * 20.04
   * 18.04
@@ -83,6 +86,11 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 12 SP5
 * **Oracle Linux:**
   * 9
+* **Debian:**
+  * 12
+* **AlmaLinux OS:**
+  * 9.4
+  * 8.10
 {% endtab %}
 
 {% tab title="Kernel" %}
@@ -155,15 +163,32 @@ As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to thei
 
 Adhere to the following considerations when choosing the adapters:
 
-* [**LACP**](#user-content-fn-1)[^1]**:**  LACP is supported when connecting ports on a single Mellanox NIC but is not compatible when using Virtual Functions (VFs).
+* [**LACP**](#user-content-fn-4)[^4]**:**  LACP is supported when bonding ports from dual-port Mellanox NICs into a single Mellanox device but is not compatible when using Virtual Functions (VFs).
 * **Intel E810:**
   * Only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, consult with the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
   * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0 are required.
-* [**MTU**](#user-content-fn-2)[^2]**:** It is recommended to set the MTU to at least 4k on the NICs of WEKA cluster servers and the connected switches.
-* [**Jumbo Frames**](#user-content-fn-3)[^3]**:** If any network connection, irrespective of whether it’s InfiniBand or Ethernet, on a given backend possess the capability to transmit frames exceeding 4 KB in size, it is mandatory for all network connections used directly by WEKA on that same backend to have the ability to transmit frames of at least 4 KB.
-* [**IOMMU**](#user-content-fn-4)[^4] **support:** WEKA automatically detects and enable IOMMU for the server and PCI devices. Manual enablement is not required.
-* **Mixed networks:** This term denotes a configuration in which a WEKA cluster is interfaced with both InfiniBand and Ethernet networks. In the event of dual connections, the system gives precedence to the InfiniBand links for managing WEKA traffic, resorting to the Ethernet links only when complications occur with the InfiniBand network. It’s important to note that in a mixed network cluster, the activation of RDMA (Remote Direct Memory Access) is not possible.
-* **IP Addressing for dataplane NICs:** Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
+* [**MTU**](#user-content-fn-5)[^5]\
+  It is recommended to set the MTU to at least 4k on the NICs of WEKA cluster servers and the connected switches.
+* [**Jumbo Frames**](#user-content-fn-6)[^6]\
+  If any network connection, irrespective of whether it’s InfiniBand or Ethernet, on a given backend possess the capability to transmit frames exceeding 4 KB in size, it is mandatory for all network connections used directly by WEKA on that same backend to have the ability to transmit frames of at least 4 KB.
+* [**IOMMU**](#user-content-fn-7)[^7] **support**\
+  WEKA automatically detects and enable IOMMU for the server and PCI devices. Manual enablement is not required.
+*   **Mixed networks**\
+    A mixed network configuration refers to a setup where a WEKA cluster connects to both InfiniBand and Ethernet networks. In such configurations, WEKA prioritizes InfiniBand for traffic management, switching to Ethernet only if issues arise with the InfiniBand network.
+
+    RDMA (Remote Direct Memory Access) is not supported in mixed network clusters.\
+
+
+    **Supported mixed connectivity MTU settings**
+
+    * Ethernet (9000) + InfiniBand (4K)
+
+    **Non-supported mixed connectivity MTU settings**
+
+    * Ethernet (1500) + InfiniBand (4K)
+    * Ethernet (9000) + InfiniBand (2K)
+* **IP addressing for dataplane NICs**\
+  Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
 
 ### Supported network adapters <a href="#networking-ethernet" id="networking-ethernet"></a>
 
@@ -173,7 +198,7 @@ For more information about the supported features, see [networking-in-wekaio.md]
 
 #### Supported network adapters for backends and clients
 
-<table><thead><tr><th>Adapter</th><th width="126">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td><ul><li>SRIOV VF</li></ul></td></tr><tr><td><p>Broadcom BCM957508-P2100G</p><ul><li>Dual-port (2x100Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-5">Single-port (1x200Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SRIOV VF</li><li>HA</li><li>Routed network</li></ul><p>See <a data-mention href="broadcom-adapter-setup-for-weka-system.md">broadcom-adapter-setup-for-weka-system.md</a></p></td></tr><tr><td><p></p><p>Broadcom BCM957608-P2200G</p><ul><li>Dual-port (2x200Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-6">Single-port (1x400Gb/s</a></li></ul></td><td>Ethernet</td><td><p></p><ul><li>Shared networking</li><li>SRIOV VF</li><li>HA</li><li>Routed network</li></ul><p>See <a data-mention href="broadcom-adapter-setup-for-weka-system.md">broadcom-adapter-setup-for-weka-system.md</a></p></td></tr><tr><td>Intel E810 2CQDA2</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><ul><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>HA</li><li>Routed network  (ETH only)</li><li> IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>RDMA (IB only)</li><li> HA</li><li>PKEY (IB only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><ul><li>Mixed networks</li><li>LACP</li><li> HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>rx interrupts</li><li>RDMA (IB only)</li><li>HA</li><li>PKEY (IB only)</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4 LX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>LACP</li><li>rx interrupts</li><li>HA</li><li>Routed network  (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><ul><li>HA</li><li>Routed network</li></ul></td></tr></tbody></table>
+<table><thead><tr><th>Adapter</th><th width="126">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td><ul><li>SRIOV VF</li></ul></td></tr><tr><td><p>Broadcom BCM957508-P2100G</p><ul><li>Dual-port (2x100Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-8">Single-port (1x200Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SRIOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td><p>Broadcom BCM957608-P2200G</p><ul><li>Dual-port (2x200Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-9">Single-port (1x400Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SRIOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>Intel E810 2CQDA2</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><ul><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>HA</li><li>Routed network (ETH only)</li><li> IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>rx interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>Shared networking</li><li>rx interrupts</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RDMA (IB only)</li><li> HA</li><li>PKEY (IB only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><ul><li>Mixed networks</li><li> HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>rx interrupts</li><li>RDMA (IB only)</li><li>HA</li><li>PKEY (IB only)</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4 LX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>rx interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>rx interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><ul><li>HA</li><li>Routed network</li></ul></td></tr></tbody></table>
 
 #### Supported network adapters for clients-only
 
@@ -195,6 +220,7 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
 {% tab title="Ethernet drivers" %}
 *   **Supported Mellanox OFED versions for the Ethernet NICs:**
 
+    * 24.04-07.0.0
     * 23.10-0.5.5.0
     * 23.04-1.1.3.0
     * 5.9-0.5.6.0
@@ -226,7 +252,7 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
 * **Ethernet speeds:**
   * 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **NICs bonding:**
-  * Can bond dual ports on the same NIC (modes 1 and 4). Only supported on NVIDIA Mellanox NICs.
+  * Supports bonding dual ports on the same NVIDIA Mellanox NIC using mode 4 (LACP) to enhance redundancy and performance.
 * **IEEE 802.1Q VLAN encapsulation:**
   * Tagged VLANs are not supported.
 * **VXLAN:**
@@ -246,7 +272,7 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
   * Use a single IP address for all purposes.
 
 {% hint style="info" %}
-When assigning a network device to the WEKA system, no other application can create VFs on that device.
+When assigning a network device to the WEKA system, no other application can create VFs on that device.Ethernet configurations
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -257,6 +283,7 @@ When assigning a network device to the WEKA system, no other application can cre
 {% tab title="InfiniBand drivers" %}
 WEKA supports the following Mellanox OFED versions for the InfiniBand adapters:
 
+* 24.04-07.0.0
 * 23.10-0.5.5.0
 * 23.04-1.1.3.0
 * 5.9-0.5.6.0
@@ -296,7 +323,7 @@ When configuring firewall ingress and egress rules the following access must be 
 Right-scroll the table to view all columns.
 {% endhint %}
 
-<table><thead><tr><th width="211">Purpose</th><th width="124">Source</th><th width="135">Target</th><th width="228">Target Ports</th><th width="135">Protocol</th><th width="352">Comments</th></tr></thead><tbody><tr><td>WEKA server traffic for bare-metal deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14200-14300 (frontend)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default for the Resources Generator for the first three containers. You can customize the ports.</td></tr><tr><td>WEKA client traffic</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA SSH management traffic</td><td>All WEKA backend IPs </td><td>All WEKA backend IPs</td><td>22</td><td>TCP</td><td></td></tr><tr><td>WEKA server traffic for cloud deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p><p>16000-16100 (frontend)</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA client traffic (on cloud)</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p></td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic (on cloud)</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA GUI access </td><td></td><td>All WEKA management IPs</td><td>14000</td><td>TCP</td><td>User web browser IP</td></tr><tr><td>NFS</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>2049<br>&#x3C;mountd port></td><td>TCP and UDP<br>TCP and UDP</td><td>You can set the <code>mountd</code> port using the command: <code>weka nfs global-config set --mountd-port</code></td></tr><tr><td>NFSv3 (used for locking)</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>46999 (status monitor)<br>47000 (lock manager)<br>TBD (notification)</td><td>TCP and UCP</td><td></td></tr><tr><td>SMB/SMB-W</td><td>SMB client IPs</td><td>WEKA SMB backend IPs</td><td>139<br>445</td><td>TCP<br>TCP</td><td></td></tr><tr><td>SMB-W</td><td>WEKA SMB backend IPs</td><td></td><td>2224</td><td>TCP</td><td>This port is required for internal clustering processes.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>All Domain Controllers for the selected Active Directory Domain</td><td><p>88</p><p>389<br>464<br>636<br>3268<br>3269</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are required for SMB/SMB-W to use Active Directory as the identity source. Furthermore, every Domain Controller within the selected AD domain must be accessible from the WEKA SMB servers.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>DNS servers</td><td>53</td><td>TCP and UDP</td><td></td></tr><tr><td>S3</td><td>S3 client IPs</td><td>WEKA S3 backend IPs</td><td>9000</td><td>TCP</td><td>This port is the default. You can customize the port.</td></tr><tr><td>wekatester</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td>Port 8501 is used by wekanetperf.</td></tr><tr><td>WEKA Management Station</td><td>User web browser IP</td><td>WEKA Management Station IP</td><td><p>80  &#x3C;LWH></p><p>443 &#x3C;LWH></p><p>3000 &#x3C;mon></p><p>8760 &#x3C;deploy></p><p>8090 &#x3C;snap></p><p>8501 &#x3C;mgmt><br>9090 &#x3C;mgmt></p><p>9091 &#x3C;mon><br>9093 &#x3C;alerts></p></td><td><p>HTTP</p><p>HTTPS</p><p>TCP</p><p>TCP</p><p>TCP</p><p>TCP<br>TCP</p><p>TCP<br>TCP</p></td><td></td></tr><tr><td>Cloud WEKA Home, Local WEKA Home</td><td>All WEKA backend IPs </td><td>Cloud WEKA Home or Local WEKA Home</td><td>80<br>443</td><td>HTTP<br>HTTPS</td><td>Open according to the directions in the deployment scenario:<br>- WEKA server IPs to CWH or LWH.<br>- LWH to CWH (if forwarding data from LWH to CWH)</td></tr><tr><td>Troubleshooting by the Customer Success Team (CST)</td><td>All WEKA backend IPs </td><td>CST remote access</td><td>4000<br>4001</td><td>TCP<br>TCP</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="211">Purpose</th><th width="124">Source</th><th width="135">Target</th><th width="228">Target Ports</th><th width="135">Protocol</th><th width="352">Comments</th></tr></thead><tbody><tr><td>WEKA server traffic for bare-metal deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14200-14300 (frontend)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default for the Resources Generator for the first three containers. You can customize the ports.</td></tr><tr><td>WEKA client traffic</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA SSH management traffic</td><td>All WEKA backend IPs </td><td>All WEKA backend IPs</td><td>22</td><td>TCP</td><td></td></tr><tr><td>WEKA server traffic for cloud deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p><p>16000-16100 (frontend)</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA client traffic (on cloud)</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p></td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic (on cloud)</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA GUI access </td><td></td><td>All WEKA management IPs</td><td>14000</td><td>TCP</td><td>User web browser IP</td></tr><tr><td>NFS</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>2049<br>&#x3C;mountd port></td><td>TCP and UDP<br>TCP and UDP</td><td>You can set the <code>mountd</code> port using the command: <code>weka nfs global-config set --mountd-port</code></td></tr><tr><td>NFSv3 (used for locking)</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>46999 (status monitor)<br>47000 (lock manager)</td><td>TCP and UCP</td><td></td></tr><tr><td>SMB/SMB-W</td><td>SMB client IPs</td><td>WEKA SMB backend IPs</td><td>139<br>445</td><td>TCP<br>TCP</td><td></td></tr><tr><td>SMB-W</td><td>WEKA SMB backend IPs</td><td></td><td>2224</td><td>TCP</td><td>This port is required for internal clustering processes.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>All Domain Controllers for the selected Active Directory Domain</td><td><p>88</p><p>389<br>464<br>636<br>3268<br>3269</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are required for SMB/SMB-W to use Active Directory as the identity source. Furthermore, every Domain Controller within the selected AD domain must be accessible from the WEKA SMB servers.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>DNS servers</td><td>53</td><td>TCP and UDP</td><td></td></tr><tr><td>S3</td><td>S3 client IPs</td><td>WEKA S3 backend IPs</td><td>9000</td><td>TCP</td><td>This port is the default. You can customize the port.</td></tr><tr><td>wekatester</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td>Port 8501 is used by wekanetperf.</td></tr><tr><td>WEKA Management Station</td><td>User web browser IP</td><td>WEKA Management Station IP</td><td><p>80  &#x3C;LWH></p><p>443 &#x3C;LWH></p><p>3000 &#x3C;mon></p><p>8760 &#x3C;deploy></p><p>8090 &#x3C;snap></p><p>8501 &#x3C;mgmt><br>9090 &#x3C;mgmt></p><p>9091 &#x3C;mon><br>9093 &#x3C;alerts></p></td><td><p>HTTP</p><p>HTTPS</p><p>TCP</p><p>TCP</p><p>TCP</p><p>TCP<br>TCP</p><p>TCP<br>TCP</p></td><td></td></tr><tr><td>Cloud WEKA Home, Local WEKA Home</td><td>All WEKA backend IPs </td><td>Cloud WEKA Home or Local WEKA Home</td><td>80<br>443</td><td>HTTP<br>HTTPS</td><td>Open according to the directions in the deployment scenario:<br>- WEKA server IPs to CWH or LWH.<br>- LWH to CWH (if forwarding data from LWH to CWH)</td></tr><tr><td>Troubleshooting by the Customer Success Team (CST)</td><td>All WEKA backend IPs </td><td>CST remote access</td><td>4000<br>4001</td><td>TCP<br>TCP</td><td></td></tr></tbody></table>
 
 ## HA
 
@@ -352,35 +379,49 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\
 * Scality Ring (version 7.4.4.8 and higher)
 * Scality Artesca (version 1.5.2 and higher)
 * SwiftStack (version 6.30 and higher)
+* Dell PowerScale S3 (version 9.8.0.0 and higher)
 
 ## Virtual Machines
 
-Virtual Machines (VMs) can be used as **clients** only. Ensure the following prerequisites are met for the relevant client type:
+This section outlines the use of virtual machines (VMs) with WEKA, covering backends, clients, VMware platforms, and cloud environments. While VMs can be used in certain configurations, there are specific limitations and best practices to follow.
 
-{% tabs %}
-{% tab title="UDP clients" %}
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the WEKA process by reserving the CPU in the virtual platform and dedicating a core to the WEKA client.
-* The root filesystem must handle a 3K IOPS load by the WEKA client.
+### Backends
+
+Virtual machines may be used as backends for internal training purposes only and are not recommended for production environments.
+
+WEKA provides best-effort support for backends deployed on virtual machines, but full support is not guaranteed. Additionally, WEKA does not guarantee support for components or configurations outside of our documented and supported cloud environments, and performance may vary.
+
+### Clients
+
+Virtual Machines (VMs) can be used as clients. Ensure the following prerequisites are met for each client type:
+
+* **UDP clients**:
+  * Reserve CPU resources and dedicate a core to the client to prevent CPU starvation of the WEKA process.
+  * Ensure the root filesystem supports a 3K IOPS load for the WEKA client.
+* **DPDK clients**:
+  * Meet all the requirements for UDP clients.
+  * Additionally, verify that the virtual platform (hypervisor, NICs, CPUs, and their respective versions) fully supports DPDK and the required virtual network drivers.
+
+### **VMware platform (client only)**
+
+When using **vmxnet3** devices, do not enable the SR-IOV feature, because it disables the vMotion functionality. Each frontend process requires a dedicated **vmxnet3** device and IP address, with an additional device and IP for each client VM to support the management process.
+
+Core dedication is required when using **vmxnet3** devices.
+
+### VMs and instances on cloud environments
+
+Refer to the cloud deployment sections for the most up-to-date list of supported virtual machines and instances in various cloud environments.
+
+**Related topics**
+
+AWS: [supported-ec2-instance-types.md](../aws/weka-installation-on-aws-using-terraform/supported-ec2-instance-types.md "mention")
+
+Azure: [supported-virtual-machine-types.md](../weka-installation-on-azure/supported-virtual-machine-types.md "mention")
+
+GCP: [supported-machine-types-and-storage.md](../weka-installation-on-gcp/supported-machine-types-and-storage.md "mention")
 
 \
-
-{% endtab %}
-
-{% tab title="DPDK clients" %}
-* To avoid irregularities, crashes, and inability to handle application load, make sure there is no CPU starvation to the WEKA process by reserving the CPU in the virtual platform and dedicating a core to the WEKA client.
-* The root filesystem must handle a 3K IOPS load by the WEKA client.
-* The virtual platform interoperability, such as a hypervisor, NICs, CPUs, and different versions, must support DPDK and virtual network driver.
-{% endtab %}
-{% endtabs %}
-
-<details>
-
-<summary>Special note for a VMware platform</summary>
-
-* If using `vmxnet3` devices, do not enable the SR-IOV feature (which prevents the `vMotion` feature). Each frontend process requires a `vmxnet3` device and IP, with an additional device and IP per client VM (for the management process).
-* Using `vmxnet3` is only supported with core dedication.
-
-</details>
+**Related information**
 
 For additional information and how-to articles, search the WEKA Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
@@ -391,14 +432,20 @@ For additional information and how-to articles, search the WEKA Knowledge Base i
   * The KMS must support encryption-as-a-service (KMIP encrypt/decrypt APIs)
   * KMIP certification has been conducted with Equinix SmartKey (powered by [Fortanix KMS](https://fortanix.com/products/sdkms/))
 
-[^1]: LACP stands for "Link Aggregation Control Protocol." It is a networking protocol that enables the bundling of multiple network connections in parallel to increase bandwidth and provide redundancy.
+[^1]: **AES (Advanced Encryption Standard)** in BIOS settings refers to hardware acceleration for AES encryption. Enabled by default, it speeds up encryption tasks using AES-NI. Disabling it may affect performance in encryption-heavy applications.
 
-[^2]: MTU (Maximum Transmission Unit) represents the maximum size of a data packet that can be transmitted over a network.
+[^2]: **Secure Boot** is a BIOS/UEFI feature that ensures only trusted software is loaded during startup. If Secure Boot is disabled, the system allows any software to run.
 
-[^3]: Jumbo Frames refer to network frames that exceed the standard Maximum Transmission Unit (MTU) size, allowing for larger data packets to be transmitted over a network.
+[^3]: **AVX2 (Advanced Vector Extensions 2)** is a CPU instruction set that enhances performance on floating-point and integer operations. It is enabled by default on supported hardware, but can be disabled in virtual machines, depending on the hypervisor configuration. Ensure your VM settings allow AVX2.
 
-[^4]: The IOMMU (Input/Output Memory Management Unit) is a hardware component that manages and controls data transfers between devices (like graphics cards) and a computer's main memory, enhancing system security and performance.
+[^4]: LACP stands for "Link Aggregation Control Protocol." It is a networking protocol that enables the bundling of multiple network connections in parallel to increase bandwidth and provide redundancy.
 
-[^5]: Follow the vendor's guide to configure the single-port speed to 200Gb/s.
+[^5]: MTU (Maximum Transmission Unit) represents the maximum size of a data packet that can be transmitted over a network.
 
-[^6]: Follow the vendor's guide to configure the single-port speed to 200Gb/s.
+[^6]: Jumbo Frames refer to network frames that exceed the standard Maximum Transmission Unit (MTU) size, allowing for larger data packets to be transmitted over a network.
+
+[^7]: The IOMMU (Input/Output Memory Management Unit) is a hardware component that manages and controls data transfers between devices (like graphics cards) and a computer's main memory, enhancing system security and performance.
+
+[^8]: Follow the vendor's guide to configure the single-port speed to 200Gb/s.
+
+[^9]: Follow the vendor's guide to configure the single-port speed to 200Gb/s.

@@ -143,7 +143,7 @@ To enable RDMA and GPUDirect Storage technology, ensure the following requiremen
 * **HCA requirements for RDMA networking**\
   An HCA is considered to support RDMA networking if the following conditions are met:
   * **For GPUDirect Storage:** The network must be InfiniBand. While using an Ethernet network may be possible, this configuration is not supported.
-  * **NIC compatibility:** The Network Interface Card (NIC) must support RDMA. Ensure the appropriate OFED version is installed. For more information, see [#networking-infiniband](../planning-and-installation/prerequisites-and-compatibility.md#networking-infiniband "mention").
+  * **NIC compatibility:** The Network Interface Card (NIC) must support RDMA. Ensure the appropriate OFED version is installed. For more information, see [#networking-infiniband](../planning-and-installation/prerequisites-and-compatibility/#networking-infiniband "mention").
 
 #### Installation notes
 

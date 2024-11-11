@@ -1,566 +1,516 @@
+---
+description: >-
+  This guide provides step-by-step instructions for deploying the WEKA Data
+  Platform on Microsoft Azure using Terraform, tailored for customers, partners,
+  and WEKA teams.
+---
+
 # Detailed deployment tutorial: WEKA on Azure using Terraform
 
-## Introduction
+Introduction
 
-Deploying WEKA in Azure requires knowledge of several technologies, specifically Microsoft Azure Cloud, Terraform (infrastructure-as-code provisioning manager), basic Linux operations, and WEKA software. Understanding that not everyone tasked with deploying WEKA in Azure will have experience in each required domain, this document seeks to provide an end-to-end instruction set that allows its reader to successfully deploy a working WEKA cluster in Azure with minimal knowledge prerequisites.
+Deploying WEKA in Azure involves familiarity with Microsoft Azure Cloud, Terraform (for infrastructure-as-code provisioning), basic Linux operations, and WEKA software. Recognizing that not all individuals responsible for this deployment may have experience in every area, this document offers a comprehensive, step-by-step guide to successfully deploying a WEKA cluster in Azure, even with minimal prior knowledge.
 
 **Document scope**
 
-This document focuses on deploying WEKA in an Azure environment which has an existing networking configuration. For instance, deploying WEKA for a POC or production purposes necessitates using an Azure customer’s existing VNet, subnet, and Network Security Group.
+This document provides guidance on deploying WEKA in an Azure environment with an existing networking configuration. For Proof of Concept (POC) or production deployments, the process involves using the customer's existing Azure Virtual Network (VNet), subnet, and Network Security Group.
 
-The reader will be guided through setting up and configuring general Azure requirements, the Azure networking requirements needed to support WEKA, installing Terraform on their local system, using Terraform to deploy WEKA, and verifying a successful deployment.
+This document guides you through:
 
-{% hint style="info" %}
-A similar document is being created which will use the same format to guide a reader through deploying WEKA when Terraform is allowed to create all networking prerequisites and permits direct internet access to the WEKA cluster for logistical ease. This deployment methodology is better suited to quick demos and familiarizing oneself with Weka in Azure. It will likely never be used in a production or POC scenario.
-{% endhint %}
-
-**Attention**
-
-One section of this document falls under the category of a **“one-time setup.”** The entirety of _Section 3: Terraform Preparation and Installation_ only needs to be completed once on a given workstation used for Terraform deployment. If, at any time, a new workstation without Terraform installed is to be used, the steps must be repeated on the new workstation.
+* General Azure requirements.
+* Azure networking requirements necessary for WEKA.
+* Deployment of WEKA using Terraform.
+* Verification of a successful of WEKA deployment.
 
 {% hint style="info" %}
-The images embedded in this document can appear small when viewed in-line with the document. Double-clicking on the image will enlarge it to its original size for easier viewing.
+The images embedded in this document may appear small when viewed in-line. Double-clicking on an image enlarges it to its original size for easier viewing.
 {% endhint %}
 
-## Administrative Prerequisites
+## Administrative prerequisites
 
-When deploying WEKA in Microsoft Azure, it is necessary to ensure that the target environment is well-suited for the deployment of WEKA software. There are several key components that must be configured prior to deploying WEKA using Terraform to achieve a successful outcome. The subsections below outline in a step-by-step manner how to configure each component in accordance with WEKA requirements.
+Before deploying WEKA in Microsoft Azure, ensure that the target environment is properly configured. Several key components must be set up before deploying WEKA using Terraform to ensure a successful outcome. The following subsections provide a step-by-step guide for configuring each component according to WEKA requirements.
 
-### Azure Subscription
+### Identify your Azure Subscription
 
-Azure environments are contained within a [Subscription](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts#azure-subscription-purposes). The Subscription is the overarching construct that contains resource groups, vnets, subnets, security groups, virtual machine instances, and so on. The first step to deploying WEKA in Azure is identifying the subscription into which the WEKA resources will be deployed.
+Azure environments are organized within a Subscription[^1], which serves as the primary construct containing resource groups, VNets, subnets, security groups, virtual machine instances, and other resources. The initial step in deploying WEKA in Azure is to identify the subscription where the WEKA resources will be deployed.
 
-Follow the steps below to find the correct Azure Subscription.
+#### Procedure
 
-#### Identifying The Subscription
-
-Navigate to the Microsoft Azure Portal. In the search bar, search for “subscriptions.” Select the “Subscriptions” service.
+1. Navigate to the Microsoft Azure Portal. Search for **Subscriptions** and select it.
 
 <figure><img src="../../.gitbook/assets/image (30).png" alt=""><figcaption></figcaption></figure>
 
-On the Subscriptions service page, identify the subscription you wish to use for deploying WEKA.
+2.  On the **Subscriptions** page, locate the subscription you plan to use for deploying WEKA.
 
-{% hint style="info" %}
-Please understand the AWS subscription structure for your environment before deploying.
-{% endhint %}
+    Ensure you understand the Azure Subscription structure for your environment before proceeding with the deployment.
 
 <figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
 
-### User Account Privileges
+### Verify user privileges assignment
 
-To perform the operations necessary for a successful WEKA in Microsoft Azure deployment, you must confirm that the account being used is a Subscription Contributer. If the user chosen for a WEKA deployment in Azure is not a Subscription Contributer, all of the following steps in this guide will not be successful.
+To successfully deploy WEKA in Microsoft Azure, ensure the account used is a Subscription Contributor. If the user lacks this role, the deployment steps will fail. If an existing user cannot be used, create a new user with the necessary rights within the Subscription.
 
-If an existing user cannot be used, it is recommended to create a new user that can have the necessary rights within a Subscription.
+#### Procedure
 
-Follow the steps below to verify user privileges assignment.
-
-#### Confirming Azure User Status
-
-Navigate to the Azure Portal. Login using the account which will be used for the entirety of the WEKA deployment. Once in the Portal, search for “users” in the search bar and then select “Users” from the search bar drop down.
+1. Log in to the Azure Portal using the account intended for the WEKA deployment. Search for **Users**  and select it.
 
 <figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
 
-Search for the intended user by typing part of the username into the search box. Once the desired user appears, select the username.
+2. Locate the user by typing part of their username and select their name from the list.
 
 <figure><img src="../../.gitbook/assets/image (33).png" alt=""><figcaption></figcaption></figure>
 
-Once on the user page, select “Azure Role Assignments.”
+3. On the user page, select **Azure Role Assignments**.
 
 <figure><img src="../../.gitbook/assets/image (34).png" alt=""><figcaption></figcaption></figure>
 
-Next, view the Role Assignments to ensure the user has the proper permissions / roles. Confirm that the user is an “Owner” or “Contributor” for the Subscription you wish to use for deployment of WEKA in Azure.
+4. Verify the user's roles to ensure they are assigned as an **Owner** or **Contributor** for the Subscription used for WEKA deployment.
 
 <figure><img src="../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
 
-Now that you’ve confirmed the proper user permissions, it’s time to confirm sufficient resource quotas.
+After confirming the user's permissions, verify the resource quotas.
 
-### Azure Quotas
+### Verify resource quotas
 
-When deploying resources in Microsoft Azure, sufficient quotas must be set for the deployment of specific resources. For example, when deploying Lsv3 virtual instances for the WEKA backend cluster it is necessary to configure an adequate vCPU quota for the `Lsv3` instance type. Microsoft Azure specifies quota on a per-instance or per-instance-family basis.
+When deploying resources in Microsoft Azure, ensure sufficient quotas are set for the specific resources needed. For instance, when deploying Lsv3 virtual instances for the WEKA backend cluster, configure an adequate vCPU quota for the Lsv3 instance type. Azure specifies quotas on a per-instance or per-instance-family basis.
 
-If you or your customer have never used a specific instance type before, you must set a sufficient quota prior to attempting deployment otherwise failure will be experienced when running your `terraform plan` or `terraform apply` command. The minimum quota required is equal to the total number of vCPUs of a specific instance (example, `Lsv3` for WEKA backends) that will be deployed in support of the WEKA deployment. `terraform plan` and `terraform apply` will be covered in a later section.
+If you or your customer have not used a particular instance type before, you must set a sufficient quota to avoid failures during deployment with Terraform. The minimum quota required is equal to the total number of vCPUs needed for the deployment.
 
-Follow the steps below to ensure sufficient quotas are set.
+#### Procedure
 
-#### Setting Resource Quotas
-
-In the Azure Portal, search for “quotas” in the search bar, and select “Quotas” from the drop down menu.
+1. In the Azure Portal, search for **Quotas** and select it.
 
 <figure><img src="../../.gitbook/assets/image (36).png" alt=""><figcaption></figcaption></figure>
 
-Once on the quotas page, select “Compute.”
+2. On the quotas page, select **Compute**.
 
 <figure><img src="../../.gitbook/assets/image (37).png" alt=""><figcaption></figcaption></figure>
 
-In the search bar, search for the instance family or specific instance for which you’d like to set or check quota. In this example, the instance type `Dsv5` has been used.
+3. Search for the instance family or specific instance for which you need to set or check the quota. For example, Dsv5 instances.
 
 <figure><img src="../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
 
-Check the box next to the desired instance type, then select the dropdown menu labeled “Request quota increase.” Then, select “Enter a new limit.”
+4. Select the checkbox next to the desired instance type, open the **Request quota increase** dropdown, and **Enter a new limit**.
 
 <figure><img src="../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
 
-In the “Request quota increase” blade, enter the desired number of vCPUs to allocate to the instance type or family in question. In this example, we’ll be asking for a new vCPU quota of 150 for the Standard `Dsv5` family of instances. Click “submit.”
+5. In the Request quota increase section, enter the desired number of vCPUs for the instance type or family. For instance, request a new vCPU quota of 150 for the Standard Dsv5 family. Select **Submit**.
 
 <figure><img src="../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
 
-Most quota increase requests are approved in real-time, and there is no interaction with Azure support required. If the requested quota increase is for a particularly expensive or specialized instance, or a large number of vCPUs have been requested, it’s possible the request will be denied and Azure support will need to be contacted. The example below shows a successful request for vCPU increase.
+6. Most quota increase requests are approved in real-time, without needing Azure support. However, if requesting a large number of vCPUs or a specialized instance, contacting Azure support may be necessary. The example demonstrates a successful vCPU increase request.
 
 <figure><img src="../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
 
-Be sure to set quota for any and all instances that will be used as part of the deployment or POC. As documented in the [docs.weka.io supported virtual machine types](https://docs.weka.io/install/weka-installation-on-azure/supported-virtual-machine-types) page, WEKA backends are deployed on `Lsv3` series instances. Reference the link above for a complete listing of the `Lsv3` instance sizes available for use. Quota will need to be set for the `Lsv3` instance family along with whichever instance family will be used for WEKA clients.
+7. Ensure quotas are set for all instances required for the deployment. For WEKA backends, set the quota for the Lsv3 instance family, and any other instance families used for WEKA clients. For a complete listing of available instance sizes, see [supported-virtual-machine-types.md](supported-virtual-machine-types.md "mention").
 
-## Azure Resource Prerequisites
+## Azure resource prerequisites
 
-Running WEKA in Azure requires Azure cloud resources for compute, storage, networking, and security. When deploying WEKA for internal testing, a customer POC, or production deployment, a minimum resource configuration is required for successful deployment and function.
+Running WEKA in Azure requires Azure cloud resources for compute, storage, networking, and security. For internal testing, customer POC, or production deployment, a minimum resource configuration is necessary for successful operation.
 
-Many customers will have pre-existing Azure environments they’d like to use for WEKA. These environments will likely already have the necessary resources deployed, though confirmation will be necessary. To provide a full contextual understanding of deploying WEKA in Azure, the steps outlined below assume that WEKA is being deployed into a “blank slate” Azure environment. The instructions can also be used to navigate a customer’s existing environment to ensure prerequisites for WEKA are met.
-
-{% hint style="info" %}
-The Terraform deployment scripts used later in this guide provide an option to automatically create all necessary resources for WEKA deployment, Resource Groups being the only exception. To have Terraform create the network resources, use the \`no\_existing\_network\` example. A Resource Group must be manually configured (as depicted below) and supplied as a variable to use this option.
-
-In most POC or production deployments, the customer will already have their networking resources configured. In this case, the \`existing\_network\` example should be used.
-{% endhint %}
-
-### Resource Groups
-
-A Microsoft Azure Resource Group is a fundamental organizational structure within the Azure platform. It acts as a logical container for resources deployed within an Azure Subscription. Resource groups can contain any number of Azure cloud resources such as virtual machine instances, vnets, security groups, storage accounts, and other Azure cloud native services. A Resource Group needs to be available for deployment of WEKA and other Azure dependencies.
+Many customers may have pre-existing Azure environments that include the required resources, though confirmation is necessary. The following steps assume WEKA is being deployed into a “[blank slate](#user-content-fn-2)[^2]” Azure environment. These instructions also help navigate a customer’s existing environment to ensure WEKA prerequisites are met.
 
 {% hint style="info" %}
-There are instances where corporate IT or departmental policy requires the separation of WEKA compute instances and / or client instances from the network resources used by WEKA. There are provisions in the Terraform deployment scripts to accommodate this requirement, and these will be covered in a later section.
+The Terraform deployment scripts later in this guide include an option to automatically create all necessary resources for WEKA deployment, except for Resource Groups. To have Terraform create network resources, use the `no_existing_network` example. A Resource Group must be manually configured and supplied as a variable for this option.
+
+For most POC or production deployments, where networking resources are already configured, use the `existing_network` example.
 {% endhint %}
 
-Follow the steps below to create a resource group.
+### Create a Resource Group
 
-#### Creating a Resource Group
+A Microsoft Azure Resource Group is a fundamental organizational unit that acts as a logical container for resources within an Azure Subscription. It holds resources such as virtual machines, VNets, security groups, and storage accounts. A Resource Group must be available for deploying WEKA and its dependencies.
 
-In the Azure Portal, search for “resource group” in the search box. Select “Resource groups.”
+{% hint style="info" %}
+If corporate policies require separating WEKA compute or client instances from network resources, Terraform deployment scripts can accommodate this, as detailed in a later section.
+{% endhint %}
+
+#### Procedure
+
+1. In the Azure Portal, search for **Resource groups** and select it.
 
 <figure><img src="../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
 
-On the Resource groups page, select “Create.”
+2. On the Resource groups page, select **Create**.
 
 <figure><img src="../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
 
-On the Create resource group page, enter the relevant details. Be sure to select the correct subscription and region into which you wish to deploy the WEKA resources. When finished, click “Review + create.”
-
-{% hint style="info" %}
-Once a resource group has been named, it cannot be renamed at a later point in time. Keep this in mind when selecting a naming convention.
-{% endhint %}
+3. On the Create resource group page, enter the required details, ensuring you select the correct subscription and region. Select **Review + create**. \
+   (Once named, a Resource Group cannot be renamed.)
 
 <figure><img src="../../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
 
-Confirm creation by clicking “Create.”
+4. Select **Create** to confirm.
 
 <figure><img src="../../.gitbook/assets/image (45).png" alt=""><figcaption></figcaption></figure>
 
-Review the newly created resource group.
+5. Review the newly created Resource Group.
 
 <figure><img src="../../.gitbook/assets/image (46).png" alt=""><figcaption></figcaption></figure>
 
-### VNets
+### Create a VNet
 
-A VNet, or Virtual Network, in Microsoft Azure is a core component in Azure networking. It allows Azure resources, like virtual machines (VMs), to communicate with each other, the internet, and on-premises networks securely. A VNet is a logical representation of a physical network, and it is a logical isolation of the Azure cloud dedicated to a subscription. WEKA will use VNets for both management and DPDK traffic. DPDK is the preferred method of WEKA deployment to ensure best possible performance. The VNets also contain subnets, providing address space from which virtual machine instances will obtain their IP addresses.
+A Virtual Network (VNet) in Microsoft Azure is essential for secure communication between Azure resources, such as virtual machines (VMs), and for connecting to the internet and on-premises networks.
 
-{% hint style="info" %}
-At this time, WEKA cluster backends and POSIX clients accessing the WEKA storage should be located in the same VNet and on the same subnet. For additional details, contact the Cloud PM team.
-{% endhint %}
+A VNet provides logical isolation within the Azure cloud, dedicated to a subscription, and includes subnets that allocate IP address space to VMs.&#x20;
 
-Follow the instructions below to create an Azure VNet and subnet.
+For WEKA deployment, both management and DPDK traffic must use VNets, with all WEKA cluster backends and POSIX clients placed within the same VNet and subnet. Contact the the [Customer Successes Team](../../support/getting-support-for-your-weka-system.md) for additional guidance.
 
-#### Creating a VNet and Associated Subnet
+**Procedure**
 
-In the Azure Portal, search for “virtual networks” in the search bar. Select “Virtual networks.”
+1. In the Azure Portal, search for **Virtual networks** and select it.
 
 <figure><img src="../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
 
-On the Virtual networks page, select “Create.”
+2. On the Virtual networks page, Select **Create**.
 
 <figure><img src="../../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
 
-On the “Create virtual network” page, enter the desired configuration details for the VNet. Select the proper subscription along with the resource group created in the prior step. Specify a VNet name and region, then select “Next: IP Addresses.”
+3. On the Create virtual network page, enter the VNet configuration details, including the subscription and resource group from the previous step. Provide a VNet name and region, then Select **Next: IP Addresses**.
 
 <figure><img src="../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
 
-In the “IP Addresses” section, specify the relevant IP address space information. The wizard pre-populates IP address space, and also pre-populates a “default” subnet configuration. The pre-populated information can be changed to suit organizational preferences or requirements. When finished, select “Review + create.”
+4. In the IP Addresses section, specify the IP address space and adjust the default subnet configuration as needed. Select **Review + create** when done.
 
 <figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
 
-Confirm creation by selecting “Create” on the next screen.
+5. Select **Creat**e to confirm.
 
 <figure><img src="../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
 
-When creation is complete, a confirmation page will be presented. Review the newly created VNet.
+6. After creation, review the confirmation page and verify the new VNet.
 
 <figure><img src="../../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
 
-### Network Security Groups
+### Create a Network Security Group (NSG)
 
-An Azure Network Security Group (NSG) is a networking construct provided by Azure to allow or deny network traffic to Azure resources based on a set of security rules. Essentially, it acts as a simple firewall to control ingress (incoming) and egress (outgoing) traffic to network interfaces (NICs), virtual machines (VMs), and subnets.
+A Network Security Group (NSG) manages network traffic to Azure resources by applying security rules to control ingress (incoming) and egress (outgoing) traffic. It functions as a firewall for network interfaces (NICs), virtual machines (VMs), and subnets.
 
 {% hint style="info" %}
-Every NSG starts with default rules that ensure basic connectivity. For example, there's a default rule that allows outbound communication from all Azure resources and another default rule that denies all inbound traffic from the internet. These rules have high priority numbers so custom rules can easily override them.
+NSGs start with default rules for basic connectivity, such as allowing outbound communication and denying all inbound traffic from the internet. Custom rules can override these defaults.
 {% endhint %}
 
-Follow the instructions below to create a Network Security Group.
+#### Procedure
 
-#### Creating a Network Security Group
-
-In the Azure Portal, type “network security group” in the search bar. Select “Network security groups.”
+1. In the Azure Portal, search for **Network security groups** and select it.
 
 <figure><img src="../../.gitbook/assets/image (53).png" alt=""><figcaption></figcaption></figure>
 
-On the “Network security groups” page, select “Create.”
+2. On the Network security groups page, Select **Create**.
 
 <figure><img src="../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
 
-On the “Create network security group” page, enter the relevant environmental information. Be sure to select the correct subscription, and use the resource group previously created. Keep the region consistent with the other resources that have been created. Select “Review + create” when finished.
+3. On the Create network security group page, enter the required details, including the subscription and resource group from earlier steps. Ensure the region matches other resources. Select **Review + create**.
 
 <figure><img src="../../.gitbook/assets/image (55).png" alt=""><figcaption></figcaption></figure>
 
-Confirm creation by clicking “Create” on the next screen.
+4. Select **Create** to confirm.
 
 <figure><img src="../../.gitbook/assets/image (56).png" alt=""><figcaption></figcaption></figure>
 
-When creation is complete, a confirmation page will be presented. Review the newly created Network Security Group.
+5. After creation, review the confirmation page and verify the new Network Security Group.
 
 <figure><img src="../../.gitbook/assets/image (57).png" alt=""><figcaption></figcaption></figure>
 
-#### Associating a Security Group with a Subnet
+### Associate a Network Security Group with a Subnet
 
-Azure Network Security Groups must be associated with one of two entities to be active and effective. NSGs can be associated with either a **subnet** or **NIC**. In the context of this deployment, the NSG will be associated with the subnet created earlier in this guide. When deploying in a customer environment, it’s possible the user will encounter
+Azure Network Security Groups (NSGs) must be associated with either a subnet or a network interface card (NIC) to be effective. In this deployment example, associate the NSG with the subnet created earlier.
 
-Follow the instructions below to associate the NSG with a subnet.
+In a customer environment, it might be necessary to adapt these associations based on the existing network architecture and security requirements.
 
-Navigate to the “Virtual networks” page by searching for “virtual networks” from the portal search bar.
+**Procedure**
+
+1. Search for **Virtual networks** in the Azure Portal and select it.
 
 <figure><img src="../../.gitbook/assets/image (58).png" alt=""><figcaption></figcaption></figure>
 
-Select the relevant virtual network from the list presented.
+2. Select the relevant virtual network from the list.
 
 <figure><img src="../../.gitbook/assets/image (59).png" alt=""><figcaption></figcaption></figure>
 
-From the selected virtual network configuration screen, select “Subnets” in the left-hand column.
+3. In the virtual network configuration screen, Select **Subnets**.
 
 <figure><img src="../../.gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
 
-Select the relevant subnet - in this example, the default subnet will be selected.
+4. Select the relevant subnet (in this example, the default subnet).
 
 <figure><img src="../../.gitbook/assets/image (61).png" alt=""><figcaption></figcaption></figure>
 
-From the subnet configuration screen, locate the “Network security group” drop down. Select the previously created network security group.
+5. On the subnet configuration screen, locate the **Network security group** dropdown and select the previously created NSG.
 
 <figure><img src="../../.gitbook/assets/image (62).png" alt=""><figcaption></figcaption></figure>
 
-Confirm the proper NSG selection, then select “Save.”
+6. Confirm the selection and select **Save**.
 
 <figure><img src="../../.gitbook/assets/image (63).png" alt=""><figcaption></figcaption></figure>
 
-### NAT Gateways
+### Create and associate a NAT Gateway
 
-Azure NAT (Network Address Translation) Gateway is a managed networking service provided by Azure to simplify outbound-only Internet connectivity for virtual networks. When VMs or other resources in a virtual network require outbound connectivity to the internet, the NAT Gateway provides source network address translation for their private IP addresses to a public IP address, allowing these resources to connect to external services without exposing them to inbound internet traffic.
+Azure NAT (Network Address Translation) Gateway simplifies outbound-only Internet connectivity for virtual networks. It translates private IP addresses of VMs or other resources to a public IP address, allowing outbound internet access without exposing resources to inbound traffic.
 
-{% hint style="info" %}
-Deploying WEKA generally requires internet access from the subnet where WEKA is being deployed. Internet access is used to access apt repos and obtain the WEKA binaries for install. Rather than assigning public endpoints (public IP addresses) directly to the WEKA backend instances, a NAT Gateway is configured and associated with the WEKA cluster subnet to allow outbound internet access. This provides a greater level of security while still meeting deployment requirements.
-{% endhint %}
+For WEKA deployments, the NAT Gateway provides outbound internet access needed to reach repositories and obtain installation binaries, enhancing security by avoiding public IP assignments on individual instances.
 
-{% hint style="info" %}
-In some cases, customers do not allow any access to the internet from the subnet into which WEKA is being deployed. A solution for this scenario is covered later in this document.
-{% endhint %}
+In environments with restricted internet access, alternative solutions are covered later in this document.
 
-#### Creating and Associating a NAT Gateway
+NAT Gateways must be created and associated with the subnet needing outbound internet access. The creation wizard facilitates both steps in one process.
 
-NAT Gateways must be created and then associated with the subnet that will receive outbound internet access. The NAT Gateway creation wizard allows for both steps to be completed as part of the same process.
+**Procedure**
 
-Follow the instructions below to create and associate a NAT Gateway.
-
-In the Azure Portal, search for “nat” in the search bar. Select “NAT gateways.”
+1. In the Azure Portal, search for **NAT gateways** and select it.
 
 <figure><img src="../../.gitbook/assets/image (64).png" alt=""><figcaption></figcaption></figure>
 
-On the “NAT gateways” page, select “Create.”
+2. On the NAT gateways page, select **Create**.
 
 <figure><img src="../../.gitbook/assets/image (65).png" alt=""><figcaption></figcaption></figure>
 
-On the “Create network address translation (NAT) gateway” page, enter the relevant environmental variables. Use the correct subscription and select the resource group created earlier in this document. Specify a name and region, and select “Next: Outbound IP.”
+3. On the Create network address translation (NAT) gateway page, enter the required details. Select the correct subscription and resource group, specify a name and region, and select **Next: Outbound IP**.
 
 <figure><img src="../../.gitbook/assets/image (66).png" alt=""><figcaption></figcaption></figure>
 
-In the “Outbound IP” section, select “Create a new public IP address.” In the resulting “Add a public IP” entry box, enter a name for the public IP address and select “OK.”
+4. In the Outbound IP section, select **Create a new public IP address**, enter a name for the public IP, and select **OK**.
 
 <figure><img src="../../.gitbook/assets/image (67).png" alt=""><figcaption></figcaption></figure>
 
-Confirm the “Public IP address” dropdown reflects the name just provided. Select “Next: Subnet.”
+5. Ensure the Public IP address dropdown displays the newly created IP name. Select **Next: Subnet**.
 
 <figure><img src="../../.gitbook/assets/image (68).png" alt=""><figcaption></figcaption></figure>
 
-In the “Subnet” section, select the VNet and subnet previously created in this guide. Select “Review + create.”
+6. In the Subnet section, select the previously created VNet and subnet. Select **Review + create**.
 
 <figure><img src="../../.gitbook/assets/image (69).png" alt=""><figcaption></figcaption></figure>
 
-Confirm creation by clicking “Create.”
+7. Select **Create** to confirm.
 
 <figure><img src="../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
 
-When creation is complete, a confirmation page will be presented. Review the newly created NAT Gateway.
+8. Upon completion, review the newly created NAT Gateway on the confirmation page.
 
 <figure><img src="../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
 
-## Terraform Preparation and Installation
+#### Install AzureCLI
 
-HashiCorp Terraform is a tool that allows you to define, provision, and manage infrastructure as code. Instead of manually setting up servers, databases, networks, and other infrastructure components, you describe what you want in a configuration file using a declarative language. Once your desired infrastructure is described in this file, Terraform can automatically create, modify, or delete resources to match your specifications, ensuring your infrastructure is consistently and predictably deployed.
+Terraform uses Azure CLI to pass commands to Azure. It is recommended to install the latest version. The following steps use version 2.50, which is current at the time of writing.
 
-WEKA data platform deployment in Azure is automated using Terraform. Our choice of Terraform was influenced by its widespread adoption by customers, and ubiquity in the Infrastructure as Code (IaC) space. It is commonly embraced by organizations globally, large and small, to deploy stateful infrastructure both on-premises, and in public clouds such as AWS, Azure, or Google Cloud.
+**Procedure**:
 
-To deploy WEKA using Terraform, a number of prerequisites must be installed depending on the platform you wish to use for running Terraform.
-
-HashiCorp’s website provides clear, succinct documentation on how to install Terraform on a number of platforms including Windows, Mac, and Linux. [HashiCorp: How to Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli).
-
-In this guide, installing Terraform for Mac and Linux will be covered in detail.
-
-### Configuring Terraform Prerequisites on Mac
-
-Installing Terraform on Mac for deployment of WEKA requires several dependencies, including the [Homebrew](http://brew.sh) package manager, golang, (also known as Go), and AzureCLI. Follow the instructions in the sections below to install the prerequisites. **The prerequisites only need to be installed once** on the system from which you will be using Terraform to deploy WEKA.
-
-#### Installing Homebrew
-
-In a web browser, visit [https://brew.sh](http://www.brew.sh) and copy the bash script featured prominently on the homepage. For convenience, the bash script is pasted here:
+1. Open a terminal and run the following command to install Azure CLI through Homebrew:
 
 ```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew update && brew install azure-cli
 ```
 
-<figure><img src="../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/azure_cli_install.png" alt=""><figcaption></figcaption></figure>
 
-Open a terminal window, and paste the the Homebrew installation bash script at the terminal prompt.
-
-<figure><img src="../../.gitbook/assets/image (74).png" alt=""><figcaption></figcaption></figure>
-
-The bash script downloads the Homebrew packages and requests permission to install. Press “return” to install.
-
-<figure><img src="../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
-
-The installation completes. Take note of the information pertaining to adding Homebrew to your PATH. Without Homebrew in your PATH, it won’t be possible to run Homebrew in directories outside of Homebrew’s install directory.
-
-<figure><img src="../../.gitbook/assets/image (76).png" alt=""><figcaption></figcaption></figure>
-
-Copy the command supplied under “Next steps” and run it. The screenshot below shows two outcomes when running `brew --version`. The red box shows the outcome when running `brew` commands outside the Homebrew install directory when Homebrew has not been added to your PATH. The purple box shows the outcome when running `brew` commands outside the install directory after adding Homebrew to your PATH using the provided command. Only after adding Homebrew to the PATH did `brew --version` execute correctly.
-
-<figure><img src="../../.gitbook/assets/image (77).png" alt=""><figcaption></figcaption></figure>
-
-Homebrew has now been successfully installed.
-
-#### Installing Go
-
-Terraform leverages Go during its operation. The minimum required version of Go for WEKA deployment via Terraform is 1.19, though it is recommended to download and install the latest version. The following examples use version 1.21, which is the current version at the time of this writing.
-
-Navigate to [https://go.dev/dl](https://go.dev/dl) and select the correct Mac download package for your machine. If your machine is Intel-based, select “x86-64.” If your machine is Apple Silicon based (M1, M2), select “ARM64.”
-
-<figure><img src="../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
-
-The installation package downloads as a standard Mac `.pkg` file. Execute the file once downloaded, and proceed through the install wizard.
-
-<figure><img src="../../.gitbook/assets/image (79).png" alt=""><figcaption></figcaption></figure>
-
-Confirm the successful install of Go by opening a terminal window and executing `go version` at the prompt. If Go has been installed correctly, the version of Go installed should be returned.
-
-<figure><img src="../../.gitbook/assets/image (80).png" alt=""><figcaption></figcaption></figure>
-
-The package installs the Go distribution to /usr/local/go. The package should put the /usr/local/go/bin directory in your PATH environment variable and therefore, unlike Homebrew, you should not have to add it to your PATH manually. You may need to restart any open Terminal sessions for the change to take effect.
-
-#### Installing AzureCLI
-
-Terraform passes commands to Azure by leveraging the AzureCLI. It is recommended to install the most recent version of AzureCLI. The following examples use version 2.50, which is the current version at the time of this writing.
-
-Open a terminal window, and use Homebrew to install AzureCLI by typing `brew update && brew install azure-cli` at the prompt.
-
-<figure><img src="../../.gitbook/assets/image (81).png" alt=""><figcaption></figcaption></figure>
-
-AzureCLI will now install.
+2. Wait for the installation to complete.
 
 <figure><img src="../../.gitbook/assets/image (82).png" alt=""><figcaption></figcaption></figure>
 
-Successful installation can be confirmed by running `az version` at the prompt. A value similar to below should be returned.
+3. To confirm the installation, run:
 
-<figure><img src="../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
+```bash
+az version
+```
 
-### Installing Terraform on Mac
+The installed version of Azure CLI is displayed.
 
-At a minimum, version 1.3.7 needs to be used when using Terraform to deploy WEKA in Microsoft Azure. However, it is recommended to use the latest version of Terraform whenever possible. The following examples use version 1.5.5, which is the current version at the time of this writing. Installing Terraform using Homebrew is straightforward, and the steps to do so are outlined below.
+<figure><img src="../../.gitbook/assets/azure_cli_installed.png" alt=""><figcaption></figcaption></figure>
 
-Begin by opening a terminal window and executing `brew tap hashicorp/tap` at the prompt. This adds the HashiCorp repository to Homebrew.
+### Log in to Azure CLI
 
-<figure><img src="../../.gitbook/assets/image (84).png" alt=""><figcaption></figcaption></figure>
+Terraform uses Azure CLI to perform operations within an Azure subscription.&#x20;
 
-Install Terraform via Homebrew by executing `brew install hashicorp/tap/terraform` at the prompt.
+**Before you begin**
 
-<figure><img src="../../.gitbook/assets/image (85).png" alt=""><figcaption></figcaption></figure>
+Before running Terraform, the Azure user must authenticate through the Azure CLI. See [#identify-your-azure-subscription](detailed-deployment-tutorial-weka-on-azure-using-terraform.md#identify-your-azure-subscription "mention")
 
-Confirm successful installation of Terraform by running `terraform --version`. If the installation has completed successfully, it should look similar to the output below. If your Mac is Intel-based, it will reflect darwin\_amd64.
+**Procedure:**
 
-<figure><img src="../../.gitbook/assets/image (86).png" alt=""><figcaption></figcaption></figure>
+1. Open a terminal session and enter the command:
 
-## Running Terraform and Deploying WEKA in Azure
-
-With Terraform and all of its prerequisites installed, WEKA can now be deployed into Azure in an automated way. In this section, we will cover deploying WEKA in Azure in two different ways: the `existing_network` terraform example, and the `no_existing_network` terraform example.
-
-In most real world situations, the `existing_network` example will be used since the organization will likely have a Azure resource group, VNet, subnet, and network security group preconfigured. In this case, the organization will want to use their existing resources. In this step-by-step deployment tutorial for `existing_network` , real world practices have been adhered to as closely as possible. For instance, the WEKA backends **have not** been assigned public endpoints, and therefore are not accessible from the internet. Jump box servers in both the Linux and Windows flavors have been used to facilitate access to the WEKA backends for the purposes of checking deployment status, and accessing the WEKA GUI.
-
-For demos in a sanboxed environment and familiarizing yourself with WEKA in Azure, the `no_existing_network` example reduces overall friction and minimizes deployment time, especially when the WEKA backends are configured **with** public endpoints to allow for ease of connectivity without the need for jump box servers.
-
-### Logging In to AzureCLI
-
-As mentioned earlier in this document, Terraform leverages AzureCLI to perform operations within an Azure subscription. Prior to using Terraform, the Azure user identified earlier in section 1.2 must be authenticated to Azure from the AzureCLI.
-
-Perform the following steps to authenticate the user.
-
-Open a terminal session and issue the command `az login`.
+```bash
+az login
+```
 
 <figure><img src="../../.gitbook/assets/image (87).png" alt=""><figcaption></figcaption></figure>
 
-A web browser will automatically be opened, and the user will be instructed to select an account for authentication. Select the user or enter the user’s credentials.
+2. A web browser opens, prompting the user to select an account for authentication. Select the user or enter the credentials.
 
-<figure><img src="../../.gitbook/assets/image (88).png" alt=""><figcaption></figcaption></figure>
+After successful authentication, a confirmation message appears.
 
-Upon successful authentication, the user will be informed that the login was successful. The user can now return to the terminal session.
+<figure><img src="../../.gitbook/assets/azure_login.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (89).png" alt=""><figcaption></figcaption></figure>
-
-Upon returning to the terminal, the user will see an output reflecting the authentication status of AzureCLI.
+3. Return to the terminal, where the authentication status of Azure CLI is displayed.
 
 <figure><img src="../../.gitbook/assets/image (90).png" alt=""><figcaption></figcaption></figure>
 
-### Locate the User’s get.weka.io Token
+## Deploy WEKA in Azure using Terraform Registry&#x20;
 
-The [get.weka.io](http://get.weka.io) token provides access to the WEKA binaries, and is used to query get.weka.io during the installation process.
+The **Terraform Registry** is a repository of modules and resources that simplifies the deployment process by providing reusable components.
 
-To find the user’s get.weka.io token, follow the instructions below.
+Before deploying WEKA in Azure with Terraform, several prerequisites must be met. These requirements depend on the type of deployment—whether you're integrating with an existing Azure network and resources or allowing the WEKA Terraform package to automatically create the necessary infrastructure.
 
-In a web browser, navigate to get.weka.io and select the user’s name in the upper righthand corner of the page.
+The following section outlines the required Azure dependencies for Terraform, explaining each in the context of a successful WEKA deployment.
+
+### Terraform dependencies and constructs
+
+When deploying WEKA in Azure using Terraform, several Azure resources must be created either automatically by Terraform or manually in advance, depending on your deployment method. These resources include:
+
+* **Virtual Machine Scale Set (VMSS):** Azure's VMSS service enables the deployment and management of identical virtual machine instances that scale automatically based on demand. In a WEKA deployment, the VMSS hosts all backend instances and uses Placement Groups to optimize performance.
+* **Placement Groups:** These groups control the distribution of VM instances within a scale set, optimizing network traffic and providing fault tolerance. For WEKA, only single-placement groups are supported, allowing up to 100 VM instances in a backend cluster.
+* **Resource Groups:** Azure Resource Groups act as logical containers for cloud resources. A Resource Group must be available to organize and deploy all WEKA and Azure dependencies, including virtual machines, VNets, and security components.
+* **Virtual Network (VNet):** A VNet is a core networking component that allows secure communication between Azure resources and external networks. WEKA uses VNets for management and DPDK traffic to ensure optimal performance. VNets also contain subnets, which assign IP addresses to virtual machines.
+* **Subnet:** Subnets are IP address ranges within a VNet, providing network segmentation to organize and secure resources in a structured manner.
+* **Delegated Subnets:** Delegated subnets allow specific Azure services to create resources within a designated subnet. In WEKA deployments, these are used for function and logic apps that enable cluster scaling and auto-healing.
+* **Network Security Group (NSG):** An NSG acts as a firewall, filtering network traffic to and from Azure resources based on security rules. For WEKA, a self-referencing rule is recommended to facilitate secure communication within the network.
+* **Private DNS Zone:** This zone provides DNS resolution within Azure VNets for private network environments. In a WEKA deployment, it enables name resolution for VMs, application services, and WEKA components connected to the VNets.
+
+### Deployment prerequisites
+
+Before deploying WEKA using Terraform, ensure that any required resources are pre-created if Terraform will not be provisioning them automatically. For example, if you plan to use an existing VNet, it must be created in advance. In most customer environments, many of these resources are likely already available.
+
+The steps in this guide are educational and serve as general guidelines for creating Azure prerequisites, as previously outlined.
+
+#### Navigate the Terraform Registry and obtain the files
+
+Using the Terraform Registry simplifies managing the latest Terraform releases, ensures clean version control, and requires only one `main.tf` file for configuration.
+
+1. Access the WEKA namespace on the Terraform Registry: [Terraform Registry WEKA Namespace](https://registry.terraform.io/namespaces/weka).
+2. Select **weka/weka** module to create weka cluster on Azure using TF.
+3. From the **Examples** options, select the deployment type (`public_network` in this example).
+4. Select the **GitHub source code** link.
+5. On the GitHub page, select the `main.tf` file for the **public\_network** example.
+6. Click **Download raw file** to save the `main.tf` file.
+
+<figure><img src="../../.gitbook/assets/Azure_TF_registry.gif" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+Examples serve as a starting point. Customize the variables to match your specific deployment needs. Do not use the example "as is" expecting it to deliver the exact outcome for your environment.
+{% endhint %}
+
+#### Resources and guidance in the Terraform Registry page
+
+This module provides extensive resources and guidance, divided into several sections:
+
+* **README:** Serves as a detailed guide on how the module works, replacing the traditional GitHub README file.
+* **Inputs:** Lists all configurable variables, such as VNet selection, resource groups, and instance types. This is where you tailor your WEKA deployment.
+* **Outputs:** Lists outputs available after running `terraform apply`, such as cluster status, auto-created WEKA password retrieval from KeyVault, and SSH keys.
+* **Dependencies:** Describes provider dependencies automatically installed during `terraform init`.
+* **Resources:** Lists Azure resources the module may create, depending on user-configured variables.
+
+<figure><img src="../../.gitbook/assets/Azure_Resources_and_guidance.gif" alt=""><figcaption></figcaption></figure>
+
+### Locate the user’s token in get.weka.io
+
+The user's token in get.weka.io provides access to WEKA binaries and is required during installation.
+
+**Procedure:**
+
+1. Visit [get.weka.io](https://get.weka.io/ui/dashboard), and select the user’s name in the upper-right corner.
 
 <figure><img src="../../.gitbook/assets/image (91).png" alt=""><figcaption></figcaption></figure>
 
-From the column on the lefthand side of the page, select “API Tokens.” The user’s API token is presented on the screen. The API token will be used later in the install process.
+2. From the left-hand menu, select **API Tokens**. The user's API token is displayed on the screen and will be used later in the installation process.
 
-### Deploying WEKA in Azure with Terraform - existing\_network example
+### Select variables and edit the main.tf
 
-In the context of a Terraform module or package, the **`examples`** directory is a common convention used by terraform module developers to provide consumers of the module with the following:
+To configure the deployment, open the downloaded `main.tf` file in your preferred code editor. Follow these steps to customize the necessary variables for your environment:
 
-1. **Usage Examples**: Demonstrations of how the module can be used. This helps consumers understand the module's functionality, inputs, and outputs in practical scenarios.
-2. **Test Scenarios**: Some module developers use the **`examples`** directory to define specific scenarios that they then test with automated testing tools. By providing executable examples, developers can ensure that changes to their module don't inadvertently break its functionality.
-3. **Variations**: If a module can be used in multiple ways or has several typical configurations, the **`examples`** directory might contain various subdirectories, each demonstrating a different way of using the module.
+1. **Under provider "azurerm":**
+   * Replace `subscription_id` with the Azure subscription ID for your deployment environment.
+   * Leave the `partner_id` as `f13589d1-f10d-4c3b-ae42-3b1a8337eaf1` (this identifies WEKA as a partner for Azure resource spend).
+2. **Under module "weka\_deployment":**
+   * Set `source = "../../"` to specify the module source location.
+   * Update `prefix = "weka"` to define the cluster prefix for Azure resources.
+   * Set `rg_name = "weka-rg"` to reference the pre-created Azure resource group.
+   * Replace `get_weka_io_token = var.get_weka_io_token` with your unique WEKA software download token from [get.weka.io](https://get.weka.io).
+   * Ensure `subscription_id = var.subscription_id` is set to your Azure subscription ID.
+   * Change `cluster_name = "poc"` to your desired custom cluster name (this will be appended to the prefix).
+   * Set `tiering_enable_obs_integration = true` to enable object tiering if required.
+   * Adjust `cluster_size = 6` to define the number of WEKA backend members for the cluster.
+   * Set `allow_ssh_cidrs = ["0.0.0.0/0"]` to allow SSH access to cluster members from a defined WAN address range (since this is a public network).
+   * Set `allow_weka_api_cidrs = ["0.0.0.0/0"]` to allow API access to WEKA from a defined WAN address range.
 
-When you're checking out a new Terraform module (e.g., from the Terraform Registry or GitHub), it's a good practice to look in the **`examples`** directory (if one exists) to get a sense of how the module is intended to be used. Not all modules will have this directory, but when they do, it's often a valuable resource for understanding and properly implementing the module in your infrastructure.
+Several default example variables will be modified, and others will be added to align with this guide's deployment into an existing public network.
 
-In the context of a WEKA deployment, the `examples` directory contains two subdirectories - `existing_network` and `no_existing_network` . The “network” being referred to is the Azure environment vnet and associated subnet. As discussed earlier, each section up to this point has been constructed with the intent of deploying WEKA via the `existing_network` method. Each subdirectory contains a `main.tf` file which is intended to be customized with input variables that set the primary WEKA cluster configuration and shape the final deployment.
+{% hint style="info" %}
+**Important note:** \
+Many of the Terraform variables listed on the [Terraform Registry page for the Azure WEKA module](https://registry.terraform.io/modules/weka/weka/azure/latest) under the [Inputs](https://registry.terraform.io/modules/weka/weka/azure/latest?tab=inputs) section have pre-set default values. If a variable is not explicitly defined in your `main.tf`, the defaults automatically apply. It is recommended to review these variables to ensure that the defaults meet your deployment needs.
+{% endhint %}
 
-Follow the instructions below to deploy WEKA.
+<figure><img src="../../.gitbook/assets/image (130).png" alt=""><figcaption></figcaption></figure>
 
-#### Preparing the main.tf File
+#### **Customized `main.tf` example**
 
-In the newly unzipped parent directory, navigate to `examples`.
+The following is a customized version of the `main.tf` file, which will be used in this guide to deploy a WEKA cluster.
 
-<figure><img src="../../.gitbook/assets/image (97).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (131).png" alt=""><figcaption></figcaption></figure>
 
-Navigate to `existing_network`.
+**Variable descriptions of the customized `main.tf` example:**
 
-<figure><img src="../../.gitbook/assets/image (98).png" alt=""><figcaption></figcaption></figure>
+* **Under provider "azurerm":**
+  * `subscription_id = "azure_subscription_id_here"`: Fill this in with the Azure subscription associated with your deployment environment.
+* **Under module "weka\_deployment":**
+  * `source = "weka/weka/azure"`: Specifies the Terraform Registry module source for WEKA on Azure.
+  * `version = "4.0.5"`: Sets the version of the WEKA Terraform module.
+  * `prefix = "weka"`: Prefix for the Azure resources created (customizable).
+  * `rg_name = "bgcadv"`: The name of the existing Azure resource group for deployment.
+  * `vnet_name = "bgcadv"`: The existing VNet where WEKA resources will be deployed.
+  * `subnet_name = "default"`: The existing subnet within the VNet for WEKA deployment.
+  * `get_weka_io_token = "your_token_here"`: WEKA download token.
+  * `subscription_id = "azure_subscription_id_here"`: The Azure subscription ID for deployment.
+  * `cluster_name = "bgcadv0"`: Name for the deployed cluster (appended to the prefix).
+  * `tiering_enable_obs_integration = false`: Disables object integration.
+  * `instance_type = "Standard_L8s_v3"`: Specifies the Azure instance type for WEKA backend servers.
+  * `cluster_size = 6`: Defines the number of WEKA backends for deployment.
+  * `allow_ssh_cidrs = ["0.0.0.0/0"]`: Allows SSH access to the cluster from any WAN address.
+  * `allow_weka_api_cidrs = ["0.0.0.0/0"]`: Allows API access from any WAN address.
+  * `clients_number = 2`: Specifies the number of WEKA clients to deploy and mount automatically.
+  * `client_instance_type = "Standard_D4_v4"`: Sets the instance type for the automatically deployed WEKA clients.
+*   The final entry instructs Terraform to output useful information for verifying the WEKA cluster's deployment and connection:
 
-Locate the `main.tf` file.
+    ```hcl
+    output "get-cluster-helpers-commands" {
+       value = module.weka_deployment
+    }
+    ```
 
-<figure><img src="../../.gitbook/assets/image (99).png" alt=""><figcaption></figcaption></figure>
+### Initialize and run Terraform
 
-Open the `main.tf` using your choice of code editor. Some code editors, such as PyCharm or Microsoft VS Code, have terraform plugins that highlight the syntax in a helpful manner which is useful when editing. Review the input variables contained in `main.tf` by default.
+Once the `main.tf` file is customized, do the following:
 
-The default input variables are broken down below.
+1. Open a terminal window on your local machine (or the machine where Terraform will be run).
+2. Navigate to the directory containing the edited `main.tf` file.
+3. Run the following command to initialize Terraform:
 
-```json
-  source            = "../.."  #terraform module location (local)
-  prefix            = "demo" #desired cluster naming convention prefix (specified by user, to be used by Terraform when creating resources.)
-  rg_name           = "bgcweka" #azure resource group name (to be pre-created in Azure by the user, Terraform will use it for placement of created resources.)
-  cluster_name      = "bgc" #cluster naming convention suffix (specified by user, to be used by Terraform when creating resources.)
-  instance_type     = "Standard_L8s_v3" #azure vm instance type, size
-  cluster_size      = 6 #number of WEKA backends in the cluster
-  get_weka_io_token = ".." #get.weka.io token
-  vnet_name         = "bgcweka-vnet" #azure vnet name (to be pre-created in Azure by the user, Terraform will use it for placement of resources.)
-  subnet            = "default" #azure subnet name (to be pre-created in Azure by the user, Terraform will use it for placement of networking resources.)
+```bash
+terraform init
 ```
 
-<figure><img src="../../.gitbook/assets/replacement screenshot weka install.jpg" alt=""><figcaption></figcaption></figure>
+This action downloads the necessary WEKA Azure Terraform modules and provider plugins.
 
-Populate the `main.tf` in accordance with the objectives of the deployment. In the `main.tf` shown below, the default input variable values have been changed to reflect the Azure resources (resource group, vnet, subnet) created earlier in this document. Additionally, three optional input variables have been added to customize this deployment to maintain the objective of simulating a customer POC deployment. The light purple bracket shows the added variables. The light purple bracket shows the variables that should be customized prior to deployment. Save the file after modifying.
+<figure><img src="../../.gitbook/assets/image (132).png" alt=""><figcaption></figcaption></figure>
 
-The added input variables are summarized below.
+4. After initialization, run the following command to perform a dry run:
 
-```json
-  assign_public_ip  = false #do not assign public IPs to backends
-  clients_number    = 2 #automatically create and mount 2 clients
-  client_instance_type = "Standard_D8_v5" #client instance type, size
+```bash
+terraform plan
 ```
 
-{% hint style="info" %}
-The complete list of input variables and usage instructions can be found on the Terraform Registry under the "Readme" section.
+This action checks the deployment configuration for issues but cannot account for quota limitations or naming conflicts (for example, KeyVault).
 
-[https://registry.terraform.io/modules/weka/weka/azure/latest](https://registry.terraform.io/modules/weka/weka/azure/latest)
-{% endhint %}
+<figure><img src="../../.gitbook/assets/image (133).png" alt=""><figcaption></figcaption></figure>
 
-{% hint style="info" %}
-The `subscription_id` is tied to the same subscription identified in the section.
-{% endhint %}
+5. Apply the deployment by running:
 
+```bash
+terraform apply
+```
 
+A successful deployment displays an output similar to the following example, including the `get-cluster-helpers-commands` output for connecting to and verifying the WEKA cluster.
 
-<figure><img src="../../.gitbook/assets/essentials tf correction.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (134).png" alt=""><figcaption></figcaption></figure>
 
-Terraform Init, Plan, and Apply
-
-In this phase of the deployment, terraform will begin deploying resources. Three primary commands will be used to initiate resource deployment:
-
-* `init`: Initializes a Terraform working directory by downloading necessary providers and setting up backend storage.
-* `plan`: Shows a preview of the changes that Terraform will make based on the current configuration.
-* `apply`: Applies the proposed changes to reach the desired state defined in the configuration.
-
-In a terminal window, navigate to the same `existing_network` directory containing the `main.tf` file modified in the steps above.
-
-<figure><img src="../../.gitbook/assets/image (102).png" alt=""><figcaption></figcaption></figure>
-
-Verify the changes made to the `main.tf` file in the previous step were saved correctly, but running `cat main.tf`. Review the contents of the printed file for any errors.
-
-<figure><img src="../../.gitbook/assets/image (103).png" alt=""><figcaption></figcaption></figure>
-
-Initialize terraform by running `terraform init`. The required providers will be downloaded and configured.
-
-<figure><img src="../../.gitbook/assets/image (104).png" alt=""><figcaption></figcaption></figure>
-
-Run `terraform plan` to perform a quick “dry run” of the deployment. `plan` usually catches most configuration issues before running the final `apply` command, and is generally a good idea to run. If there are no errors presented by `terraform plan`, the user can have a high level of confidence that `terraform apply` will run successfully. A successful `plan` run is indicated by a lack of red error outputs and the presence of green “+” symbols next to the resources being created. Look for an output similar to below for confirmation of a successful `plan`.
-
-<figure><img src="../../.gitbook/assets/image (105).png" alt=""><figcaption></figcaption></figure>
-
-Finally, initiate the deployment of Weka in Azure by running `terraform apply`. `apply` executes the creation of Azure resources necessary to run WEKA. Confirm deployment of resources by typing `yes` at the prompt.
-
-{% hint style="info" %}
-Take note of the local directory where Terraform will store the SSH private key associated with the created resources. It will be required for accessing the deployed resources via SSH. Also take note of the SSH username.
-{% endhint %}
-
-<figure><img src="../../.gitbook/assets/image (106).png" alt=""><figcaption></figcaption></figure>
-
-The terraform deployment process begins. Text similar to the output shown below will begin to scroll up the terminal window.
-
-<figure><img src="../../.gitbook/assets/image (107).png" alt=""><figcaption></figcaption></figure>
-
-When the terraform Azure resource deployment process successfully completes, an output similar to below will be shown. Take note of the deployed WEKA backend IPs as well as the deployed client IPs, if clients were configured as part of the initial terraform `main.tf` file. As a reminder, again take note of the SSH private key path and the SSH user name.
-
-<figure><img src="../../.gitbook/assets/image (108).png" alt=""><figcaption></figcaption></figure>
-
-{% hint style="info" %}
-It is important to note that once Terraform has finished deploying Azure resources, WEKA has not finished deploying. Terraform deploys the Azure infrastructure resources necessary to run WEKA, but that is not the final step in a WEKA in Azure deployment. Once Terraform completes resource deployment, \`cloud init\` scripts kick off the installation of WEKA software and finalize clusterization.
-{% endhint %}
-
-{% hint style="info" %}
-In the next section, we’ll cover how to monitor the WEKA software installation and clusterization process to ensure a successfully deployed, working WEKA cluster.
-{% endhint %}
-
-#### Locate and SCP the WEKA Cluster SSH Key to Azure Jump Box
+#### Locate and copy the WEKA Cluster SSH Key to Azure Jump Box
 
 The WEKA cluster SSH key created during terraform deployment is required to access the WEKA cluster backend members, as well as any WEKA clients that were deployed via terraform.
 
@@ -580,7 +530,7 @@ Use SCP to transfer the private key (.pem) file from the local machine’s `/tmp
 
 If the command has been configured correctly, an output similar to below should be printed to the terminal upon completion of private key transfer.
 
-#### Monitoring Deployment Status
+#### Monitor deployment status
 
 When deploying into a customer’s Azure environment, it’s likely they’ll already have some means of connectivity to the vnet and subnet into which WEKA has been deployed. This could be by way of a VPN, [bastion host](https://azure.microsoft.com/en-us/products/azure-bastion), or preconfigured jump box. If the customer doesn’t have any means of accessing the WEKA cluster on the isolated subnet, they’ll need to configure one of the methods mentioned above. In this example, a preconfigured Ubuntu linux jump box with a publicly assigned IP will be used. The jump box is in the same vnet, network security group, and subnet as the WEKA cluster, though inbound access rules have been applied to the network security group to facilitate access from the outside on SSH port 22.
 
@@ -640,9 +590,76 @@ Below, it can be seen that the two clients are successfully connected to the clu
 
 <figure><img src="../../.gitbook/assets/image (118).png" alt=""><figcaption></figcaption></figure>
 
-#### WEKA GUI Login and Review
+### Cluster helper commands
 
-Using a jump box with a GUI deployed into the same vnet and subnet as the WEKA cluster, the WEKA GUI can be accessed via a web browser.
+The cluster helper commands are executed through a terminal and a web browser. The function app, created during deployment, processes these commands, retrieves the necessary information, and returns it to the user.
+
+#### **Retrieve clusterization status**
+
+1. Under the **Get Clusterization Status** section, copy the first line of code.
+
+<figure><img src="../../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
+
+2. Paste the copied code into the terminal, and run. No output will appear—this is expected behavior.
+
+<figure><img src="../../.gitbook/assets/image (136).png" alt=""><figcaption></figcaption></figure>
+
+3. Copy the second line of code from the **Get Clusterization Status** section.
+
+<figure><img src="../../.gitbook/assets/image (137).png" alt=""><figcaption></figcaption></figure>
+
+4. Paste the copied URL into the terminal, and run. The command returns an error message along with a URL. The curl command is designed to fail, providing the URL needed to check the clusterization status.
+
+<figure><img src="../../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
+
+5. Copy the URL and paste it into a web browser. The clusterization status of the deployed WEKA cluster displays. Review the returned data to confirm the cluster deployment.
+
+<figure><img src="../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
+
+#### **Check cluster status**
+
+1. Follow the same steps as retrieving the clusterization status to check the cluster status. This process returns the same information once clusterization completes.
+
+**Retrieve the WEKA cluster password**
+
+1. Ensure the `jq` tool is installed. `jq` is a lightweight command-line tool for processing JSON data, commonly used in system administration. On a Mac, install it using Homebrew by running the following command:
+
+```
+brew install jq
+```
+
+<figure><img src="../../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
+
+The process of installing `jq` begins. Installation completes once a command prompt is returned.
+
+<figure><img src="../../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
+
+2. After `jq` installation, under the **Fetch WEKA Cluster Password** section, copy the command.
+
+<figure><img src="../../.gitbook/assets/image (142).png" alt=""><figcaption></figcaption></figure>
+
+3. Paste the copied command into the terminal, and run it. The WEKA cluster password appears.
+
+<figure><img src="../../.gitbook/assets/image (143).png" alt=""><figcaption></figcaption></figure>
+
+#### **Retrieve WEKA backend IP addresses**
+
+Retrieve the IP addresses of the WEKA backend instances. For a public network deployment, WAN addresses appear. If using a private network, LAN IP addresses are retrieved.
+
+1. Copy the helper command for listing the IP addresses of the VMSS (Virtual Machine Scale Set) that contains the WEKA backend instances
+
+<figure><img src="../../.gitbook/assets/image (144).png" alt=""><figcaption></figcaption></figure>
+
+2. Paste the copied command into the terminal, and run it. The public IP addresses display.
+
+<figure><img src="../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
+
+## **Access the WEKA web interface**
+
+1. Select one of the backend IP addresses, paste it into the browser's address bar, append `:14000`, and press Enter. The WEKA web interface loads.
+2. Log in using the default username `admin` and the password retrieved in the earlier step.
+
+<figure><img src="../../.gitbook/assets/image (146).png" alt=""><figcaption></figcaption></figure>
 
 In the examples below, a Windows 10 instance with a public IP address was deployed in the same vnet, subnet, and security group as the WEKA cluster. Network security group rules were added to allow RDP explicit access to the Windows 10 system.
 
@@ -670,208 +687,6 @@ In the Azure portal Virtual Machines page, view the WEKA cluster instance resour
 
 <figure><img src="../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
 
-## Deploying WEKA in Azure using Terraform&#x20;
+[^1]: An Azure subscription acts as a legal and payment agreement tied to an Azure offer, defines scale limits for resources, and serves as an administrative boundary for managing security and policies. For details, see [Azure subscription purposes](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/fundamental-concepts#azure-subscription-purposes).
 
-WEKA Azure Terraform has a number of prerequisites that need fulfillment prior to running Terraform. The prerequisites are dependent upon the desired type of deployment - for instance, whether an existing network with existing Azure resources will be used, or if the WEKA Terraform package will be permitted to auto-create the required environmental resources.
-
-In the section below, the required Azure dependencies for Terraform will be listed, described, and explained in the context of WEKA and WEKA deployment.
-
-### Terraform Dependencies and Constructs
-
-When invoked, the Terraform package will deploy (or will require their creation in advance, depending on deployment method used) the following Azure environmental resources:
-
-* **VMSS (Virtual Machine Scale Set):** A Microsoft Azure Virtual Machine Scale Set (VMSS) is a service in Azure, which allows for the deployment and management of a set of identical virtual machine instances intended to scale depending on user, application, or infrastructure needs. VMSS is designed for applications that need to quickly scale in or out, based on demand. In the context of WEKA, the VMSS logically contains all of the WEKA backend instances and additionally makes use of Placement Groups.
-* **Placement Groups:** Placement groups are used to control the distribution and placement of the VM instances within a scale set. They are designed to optimize network traffic among VM instances and to provide fault tolerance. In the context of WEKA, currently only single-placement groups are supported which allows for WEKA backend clusters consisting of up to 100 VM instances.
-* **Resource Groups:** A Microsoft Azure Resource Group is a fundamental organizational structure within the Azure platform. It acts as a logical container for resources deployed within an Azure Subscription. Resource groups can contain any number of Azure cloud resources such as virtual machine instances, vnets, security groups, storage accounts, and other Azure cloud native services. A Resource Group needs to be available for deployment of WEKA and other Azure dependencies.
-* **Vnet:** A VNet, or Virtual Network, in Microsoft Azure is a core component in Azure networking. It allows Azure resources, like virtual machines (VMs), to communicate with each other, the internet, and on-premises networks securely. A VNet is a logical representation of a physical network, and it is a logical isolation of the Azure cloud dedicated to a subscription. WEKA will use VNets for both management and DPDK traffic. DPDK is the preferred method of WEKA deployment to ensure best possible performance. The VNets also contain subnets, providing address space from which virtual machine instances will obtain their IP addresses.
-* **Subnet:** An Azure subnet is a range of IP addresses in your virtual network (VNet) in the Microsoft Azure cloud. It allows you to segment the network within your VNet, providing a way to organize and secure resources in a structured manner.
-* **Delegated subnets / subnet delegations:** Azure subnet delegations, often referred to as delegated subnets, is a feature in Azure Networking that allows you to designate a specific subnet (within a Vnet) for a particular Azure service. This delegation grants permissions to the service to create service-specific resources within that subnet. In the context of WEKA, delegated subnets are used for our function apps and logic apps which support features like user driven cluster scaling and cluster auto healing.
-* **Network Security Group (NSG):** An Azure Network Security Group (NSG) is a networking filter (or firewall) used in Microsoft Azure that contains a list of security rules. These rules are used to filter network traffic to and from Azure resources within a Virtual Network (VNet). Each rule in an NSG defines whether to allow or deny traffic based on several parameters, such as source/destination IP addresses, ports, and protocols. In most instances, it is ideal to have a self-referencing rule in place - a self-referencing rule in an NSG is a security rule that references the NSG itself as the source or destination of the traffic.
-* **Private DNS Zone:** A Private DNS zone in Azure is a type of DNS zone that is used to host DNS records for a domain within a private network. Unlike public DNS zones, which resolve domain names on the public internet, private DNS zones are used within Azure Virtual Networks (VNets) to resolve domain names in a private network environment. In the context of WEKA, the private DNS zones are used within Azure VNets. They provide name resolution for VMs, application services, WEKA components and other resources that are connected to these VNets.
-
-### Deploying Terraform from the Terraform Registry
-
-#### Deployment Prerequisites
-
-Prior to deploying WEKA via Terraform, it is important to pre-create some of the dependencies if it has been decided that Terraform will not be creating all prerequisites. For instance - if using an existing Vnet, it is necessary to pre-create that Vnet. In a customer’s environment, it is likely that all pre-existing resources will already be created.
-
-The need to create resources as part of this guide is purely educational. The instructions provided earlier in this document for creating Azure pre-requisites are general guidelines for creating Azure resources.
-
-#### Navigating the Terraform Registry and Obtaining the Files
-
-Deploying WEKA using the Terraform Registry makes it easy to stay up to date with the most recent Terraform releases, cleanly manage versioning, and requires only one `main.tf` file to be downloaded for variable configuration. Access to WEKA’s Terraform Registry Namespace can be found below:
-
-[Terraform Registry WEKA Namespace](https://registry.terraform.io/namespaces/weka)
-
-After arriving at the WEKA Namespace page on the Terraform Registry, select the “weka / weka” module.
-
-<figure><img src="../../.gitbook/assets/image (126).png" alt=""><figcaption></figcaption></figure>
-
-The “weka / weka” module page contains a wealth of resources and information, some of which will be covered in this guide. There are several sections to the module page, as shown below.
-
-The `README` tab replaces the traditional README file typically found on GitHub and explains in detail how the module works.
-
-The `Inputs` tab outlines all the possible variables supported by the module, such as selecting a Vnet, specifying resource groups, indicating desired instance types, and so on. The inputs are how a user configures the features, functions, and capabilities of the WEKA environment that is ultimately deployed by Terraform.
-
-The `Outputs` tab describes the available pieces of information that can be outputted by the Terraform module after the `terraform apply` is complete. These outputs will assist the user in tracking cluster deployment status, retrieving the auto-created WEKA password from the KeyVault, downloading SSH keys, along with other functions that will be discussed later.
-
-The `Dependencies` tab outlines the provider dependencies that will be installed automatically upon running `terraform init` .
-
-The `Resources` tab outlines all of the Azure resources that the module may or may not create, depending upon user input variable selection.
-
-<figure><img src="../../.gitbook/assets/image (127).png" alt=""><figcaption></figcaption></figure>
-
-To download the `main.tf` file and get started, click the “Examples” drop down and select the deployment type relevant to the situation. For this guide, the `public_network` example will be used as a starting point, though we’ll modify it to demonstrate deployment of WEKA into an existing public network rather than having Terraform create the vnet and subnet.
-
-On the following page, select the GitHub source code link.
-
-<figure><img src="../../.gitbook/assets/image (128).png" alt=""><figcaption></figcaption></figure>
-
-On the GitHub page, click the `main.tf` link to open the `public_network` example.
-
-{% hint style="info" %}
-Keep in mind that an example is just that - an example. It provides a starting place to begin assembling the variables specific to your deployment and environment. Examples should not be used “as is” with the expectation that it will have the expected outcome.
-{% endhint %}
-
-<figure><img src="../../.gitbook/assets/image (129).png" alt=""><figcaption></figcaption></figure>
-
-Click the “download” button to download the `main.tf` example file.
-
-Once downloaded, open the `main.tf` file in your preferred code editor. In the following section, the file will be tailored to fit the Azure environment into which WEKA is being deployed, along with specifying the desired WEKA configuration.
-
-#### Selecting Variables and Editing the main.tf Deployment File
-
-Open the downloaded `main.tf` file in your preferred code editor and review the default variables supplied as part of the example.
-
-```jsx
-//Under provider "azurerm"
-subscription_id = var.subscription_id //replace with the Azure subscription id of the deployment environment
-partner_id = "f13589d1-f10d-4c3b-ae42-3b1a8337eaf1" //attributes azure resource spend with WEKA as a partner.  Do not alter.
-
-//Under module "weka_deployment"
-source = "../.." //specifies the module source location
-prefix = "weka" //cluster prefix for resources created in Azure
-rg_name = "weka-rg" //specifies the name of the precreated Azure resource group
-get_weka_io_token = var.get_weka_io_token //replace with your unique get.weka.io software download token
-subscription_id = var.subscription_id //replace with the Azure subscription id of the deployment environment
-cluster_name = "poc" //the custom cluster name, appended to the prefix variable noted above
-tiering_enable_obs_integration = true //specifies whether object tiering should be enabled
-cluster_size = 6 //specifies the number of WEKA backend members to create for the WEKA cluster
-allow_ssh_cidrs = ["0.0.0.0/0"] //since this is a public network example, allow ssh access to cluster members from a defined WAN address range
-allow_weka_api_cidrs = ["0.0.0.0/0"] //since this is a public network example, allow access to WEKA API from a defined WAN address range
-```
-
-Several of the default example variables will be altered and others will be added to customize the deployment for the purposes of this guide. The deployment will be to an existing public network.
-
-{% hint style="info" %}
-Important to note: Many of the Terraform variables listed and described on the \[Terraform Registry page for the Azure Weka / Weka module]\(https://registry.terraform.io/modules/weka/weka/azure/latest) under \[Inputs]\(https://registry.terraform.io/modules/weka/weka/azure/latest?tab=inputs) have been assigned “default variable values.” This means that unless a variable is explicitly included in the \`main.tf\` deployment file, a default value which has been specified in the \`variables.tf\` file will be used and applied. Therefore, it is good practice to review the input variables on the Terraform Registry Azure Weka / Weka module page to determine whether the defaults are acceptable or if the variable should be included and customized in the \`main.tf\` deployment file.
-{% endhint %}
-
-<figure><img src="../../.gitbook/assets/image (130).png" alt=""><figcaption></figcaption></figure>
-
-Shown below is the customized `main.tf` deployment file that will be used to deploy a WEKA cluster as part of this guide. Below the screenshot, all changes have been described in detail.
-
-<figure><img src="../../.gitbook/assets/image (131).png" alt=""><figcaption></figcaption></figure>
-
-```jsx
-//Under provider "azurerm"
-subscription_id = //Has been filled out with the Azure subscription associated with the environment into which WEKA will be deployed.
-
-//Under module "weka_deployment"
-source = "weka/weka/azure" //This value points Terraform to the Terraform Registry - specifically, the Weka Namespace and Weka Module for Azure.
-version = "4.0.5" //Specifies the Weka Terraform module release version for Azure Terraform.
-prefix = "weka" //Prefixes created Azure resources with "weka" - this value can be customized per customer requirements.
-rg_name = "bgcadv" //References the existing Azure resource group for deployment of WEKA resources.
-vnet_name = "bgcadv" //References the existing Azure vnet where deployment of WEKA resources should occur.
-subnet_name = "default" //References the existing Azure subnet within the existing vnet where deployment of Weka resources should occur.
-get_weka_io_token = "your_token_here" //get.weka.io token to be used for downloading WEKA binaries.
-subscription_id = "azure_subscription_id_here" //Has been filled out with the Azure subscription associated with the environment into which WEKA will be deployed.
-cluster_name = "bgcadv0" //Name of deployed cluster resources.  Will be appended to the prefix specified earlier.
-tiering_enable_obs_integration = false //For the purposes of this guide, object integration will not be configured.
-instance_type = "Standard_L8s_v3" //Specify the desired (supported) Azure instance type here for WEKA cluster backends.
-cluster_size = 6 //Specify the number of WEKA backends to be deployed for the WEKA cluster.
-allow_ssh_cidrs = ["0.0.0.0/0"] //Since this is a public network deployment, where the WEKA cluster will be accessible from the internet, specify the WAN address range that can access the WEKA cluster via SSH. 
-allow_weka_api_cidrs = ["0.0.0.0/0"] //Since this is a public network deployment, where the WEKA cluster will be accessible from the internet, specify the WAN address range that can access the WEKA cluster API.
-clients_number = 2 //Number of WEKA clients to be deployed and mounted to the cluster automatically.
-client_instance_type = "Standard_D4_v4" //Specifies the instance type to be used for WEKA clients being deployed automatically.
-
-//The final entry instructs Terraform to output useful information about the WEKA cluster which will help with connecting to and verifying proper function of the WEKA cluster.
-
-output "get-cluster-helpers-commands" {
-	value = module.weka_deployment
-}
-```
-
-Review the variables available for use on the [**Terraform Registry page for the Azure Weka / Weka module**](https://registry.terraform.io/modules/weka/weka/azure/latest) to determine the variables required for your specific deployment needs. Once the `main.tf` file is configured for the deployment, proceed to initializing and running Terraform to deploy WEKA resources Running Terraform init, plan, and apply to Deploy WEKA Cluster Resources
-
-Open a terminal window on your local machine (or on whichever machine Terraform will be run from) and navigate to the directory containing the newly edited `main.tf` file. Once in the directory, execute the `terraform init` command. As shown below, the WEKA Azure Terraform  modules will download followed by the necessary provider plugins.
-
-<figure><img src="../../.gitbook/assets/image (132).png" alt=""><figcaption></figcaption></figure>
-
-Once Terraform is successfully initialized, proceed to running `terraform plan` which performs a dry run of the deployment to detect any configuration issues. That said, it cannot account for certain circumstances which can only be validated during an `apply` , such as whether or not there is sufficient quota for the instance type selected, or if there’s a naming conflict with the Azure KeyVault. If no errors appear after `terraform plan` successfully runs as shown below, it can be reasonably assumed that a `terraform apply` will succeed.
-
-<figure><img src="../../.gitbook/assets/image (133).png" alt=""><figcaption></figcaption></figure>
-
-After a successful `terraform plan` , proceed to executing a `terraform apply` as shown below. If the `apply` completes successfully, an output similar to below will be shown. Also note the `get-cluster-helpers-commands` output.
-
-<figure><img src="../../.gitbook/assets/image (134).png" alt=""><figcaption></figcaption></figure>
-
-#### Using the Outputted Cluster Helper Commands
-
-Using the outputted helper commands is straightforward and is done using the terminal and a web browser. The function app, created as part of the deployment, facilitates processing the commands, obtaining the information, and returning it to the user.
-
-To begin, clusterization status will be retrieved. Under the “Get Clusterization Status” heading, copy the first line of code, enter it at the terminal prompt and execute as shown below. No output will result after command execution - this is expected behavior and not an error.
-
-<figure><img src="../../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
-
-Paste the command at the terminal prompt. Note the command executed and no output was returned.
-
-<figure><img src="../../.gitbook/assets/image (136).png" alt=""><figcaption></figcaption></figure>
-
-Next, copy the line of code immediately following the first line of code under the “Get Clusterization Status” header, paste it at the terminal prompt, and execute.
-
-<figure><img src="../../.gitbook/assets/image (137).png" alt=""><figcaption></figcaption></figure>
-
-Paste at the terminal prompt and execute. This time, an error will be returned followed by a URL. This is expected behavior - the curl command is intended to fail and return only the URL to be used for checking clusterization status by copying and pasting into a web browser.
-
-<figure><img src="../../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
-
-Copy the outputted URL and paste it into the address bar of a web browser. The URL will return the clusterization status of the newly deployed WEKA cluster as shown below. Review the returned data to determine if the cluster has been deployed correctly as anticipated.
-
-<figure><img src="../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
-
-Checking cluster status follows the same process, and will return the same information as “Get Clusterization Status” once the clusterization has completed.
-
-Next, the WEKA cluster password will be fetched. Prior to running the helper command, jq must be installed on the machine running the commands. jq is a lightweight and flexible command-line JSON processor. It is widely used in programming and system administration for parsing and manipulating JSON. To install jq on a Mac, Brew can be used. Simply run `brew install jq` to install jq.
-
-<figure><img src="../../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
-
-The process of installing jq will begin. Installation will be complete once a command prompt is returned.
-
-<figure><img src="../../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
-
-With jq installed, the WEKA cluster password can now be successfully fetched. Under the helper heading “Fetch Weka Cluster Password” copy the function command, paste it at the terminal prompt, and execute.
-
-<figure><img src="../../.gitbook/assets/image (142).png" alt=""><figcaption></figcaption></figure>
-
-Paste at the terminal prompt and execute. The WEKA cluster password will be returned.
-
-<figure><img src="../../.gitbook/assets/image (143).png" alt=""><figcaption></figcaption></figure>
-
-{% hint style="info" %}
-Before accessing the WEKA web interface, the WEKA backend IP addresses must be retrieved. Since the deployment used in this guide was deployed as a \`public\_network\` deployment, and public endpoints were assigned to each WEKA backend instance, the IP addresses retrieved will be WAN IP addresses. Had the cluster been deployed as a \`private\_network\` , LAN IP addresses would be returned.
-{% endhint %}
-
-To obtain the WEKA cluster backend IP addresses, the helper command to list the IP addresses of the VMSS (virtual machine scale set) containing the WEKA backend instances will be used. Copy the command and paste it at the terminal prompt as shown below.
-
-<figure><img src="../../.gitbook/assets/image (144).png" alt=""><figcaption></figcaption></figure>
-
-Paste the command at the prompt and execute to return the public IP addresses.
-
-<figure><img src="../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
-
-Once the IP addresses have been retrieved, they can be used to access the WEKA web interface using a web browser. Select one of the returned WEKA cluster backend IP addresses, paste it into the address bar of a web browser, append port 14000, and execute. The WEKA web interface will appear.
-
-<figure><img src="../../.gitbook/assets/image (146).png" alt=""><figcaption></figcaption></figure>
-
-Login using the default user `admin` and the password retrieved using the function app command in an earlier step.
+[^2]: A "blank slate" refers to a newly set-up Azure environment with no pre-existing configurations or resources.
