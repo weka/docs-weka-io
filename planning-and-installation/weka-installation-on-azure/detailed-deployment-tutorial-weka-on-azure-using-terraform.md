@@ -7,7 +7,7 @@ description: >-
 
 # Detailed deployment tutorial: WEKA on Azure using Terraform
 
-Introduction
+## Introduction
 
 Deploying WEKA in Azure involves familiarity with Microsoft Azure Cloud, Terraform (for infrastructure-as-code provisioning), basic Linux operations, and WEKA software. Recognizing that not all individuals responsible for this deployment may have experience in every area, this document offers a comprehensive, step-by-step guide to successfully deploying a WEKA cluster in Azure, even with minimal prior knowledge.
 
