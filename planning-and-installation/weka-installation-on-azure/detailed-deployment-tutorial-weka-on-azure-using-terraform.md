@@ -508,17 +508,16 @@ A successful deployment displays an output similar to the following example, inc
 
 The WEKA cluster SSH key created during terraform deployment is required to access the WEKA cluster backend members, as well as any WEKA clients that were deployed via terraform.
 
-Follow the instructions below to locate the SSH private key and SCP it to the Azure jump box.
+**Procedure**
 
-Navigate to the `/tmp/` directory.
+1. Navigate to the `/tmp/` directory.
 
 <figure><img src="../../.gitbook/assets/image (109).png" alt=""><figcaption></figcaption></figure>
 
-Locate both the public (.pub) and private (.pem) key files.
-
-Use SCP to transfer the private key (.pem) file from the local machine’s `/tmp/` directory to the Azure linux jump box. Text highlighted in purple should be copied and used directly for your specific SCP command. Text in green should be customized to your unique values.
-
-`azureuser` is the default user account created when creating a new virtual machine instance in Azure. It is recommended to keep this default. The first path highlighted in green is the path to the private key for your Azure jump box. The second path is for the private key for the newly created WEKA cluster you’d like to transfer to the Azure jump box. The IP address should be changed to the Azure public IP of your jump box. The WEKA cluster private key should be transferred to the `.ssh` directory in the default azureuser’s home directory on the jump box.
+2. Locate both the public (.pub) and private (.pem) key files.
+3. Use SCP to transfer the private key (.pem) file from the local machine’s `/tmp/` directory to the Azure linux jump box. Text highlighted in purple should be copied and used directly for your specific SCP command. Text in green should be customized to your unique values.\
+   \
+   `azureuser` is the default user account created when creating a new virtual machine instance in Azure. It is recommended to keep this default. The first path highlighted in green is the path to the private key for your Azure jump box. The second path is for the private key for the newly created WEKA cluster you’d like to transfer to the Azure jump box. The IP address should be changed to the Azure public IP of your jump box. The WEKA cluster private key should be transferred to the `.ssh` directory in the default azureuser’s home directory on the jump box.
 
 <figure><img src="../../.gitbook/assets/image (110).png" alt=""><figcaption></figcaption></figure>
 
@@ -530,17 +529,15 @@ When deploying into a customer’s Azure environment, it’s likely they’ll al
 
 Some form of access to the WEKA cluster will be crucial for monitoring the deployment progress and ensuring everything completes successfully.
 
-Follow the steps below to monitor deployment progress.
+**Procedure**
 
-Navigate to Virtual Machines in the Azure portal. Locate the virtual machine instance with the suffix `clusterizing` . The `clusterizing` suffix is only visible in the Azure portal to denote the WEKA backend cluster member that runs post resource deployment clusterization scripts. You’ll note that the virtual machine’s actual name is `demo-bgc-backend-5`.
-
-Identify the local network IP address of the `clusterizing` instance’s management interface. Take note of the IP address, as it will be used in the next step.
+1. Navigate to Virtual Machines in the Azure portal. Locate the virtual machine instance with the suffix `clusterizing` . The `clusterizing` suffix is only visible in the Azure portal to denote the WEKA backend cluster member that runs post resource deployment clusterization scripts. Note that the virtual machine’s actual name is `demo-bgc-backend-5`.
+2. Identify the local network IP address of the `clusterizing` instance’s management interface. Take note of the IP address, as it will be used in the next step.
 
 <figure><img src="../../.gitbook/assets/image (111).png" alt=""><figcaption></figcaption></figure>
 
-SSH to the Azure linux jump box using the applicable private key and public IP address. This private key is **not** the WEKA cluster SSH private key saved to the `/tmp/` directory by terraform. The jump box private key would’ve been specified or created and downloaded at the time the jump box was manually created in the Azure portal.
-
-Once connected to the jump box, use the local IP address of the `clusterizing` instance identified in the previous step to SSH into the `clusterizing` instance, also known as `demo-bgc-backend-5`.
+3. SSH to the Azure linux jump box using the applicable private key and public IP address. This private key is **not** the WEKA cluster SSH private key saved to the `/tmp/` directory by terraform. The jump box private key would’ve been specified or created and downloaded at the time the jump box was manually created in the Azure portal.
+4. Once connected to the jump box, use the local IP address of the `clusterizing` instance identified in the previous step to SSH into the `clusterizing` instance, also known as `demo-bgc-backend-5`.
 
 {% hint style="info" %}
 The \`clusterizing\` instance will always be the last node of the cluster. For instance, if a 6 node cluster is deployed, the instances will have suffixes \`0-5\`. Instance \`5\` will be the \`clusterizing\` instance. If an 18 node cluster is deployed, the instances will have suffixes \`0-17\`. Instance \`17\` will be the \`clusterizing\` instance.
@@ -548,7 +545,7 @@ The \`clusterizing\` instance will always be the last node of the cluster. For i
 
 <figure><img src="../../.gitbook/assets/image (112).png" alt=""><figcaption></figcaption></figure>
 
-Once connected to the `clusterizing` instance, navigate to the `/var/log` directory. Locate the `cloud-init-output.log` file highlighted in purple. Run the command `tail -f cloud-init-output.log` to tail the logfile to check the status of the deployment. In the example below, the `tail` command was run while WEKA binaries were being downloaded from `get.weka.io`.
+5. Once connected to the `clusterizing` instance, navigate to the `/var/log` directory. Locate the `cloud-init-output.log` file highlighted in purple. Run the command `tail -f cloud-init-output.log` to tail the logfile to check the status of the deployment. In the example below, the `tail` command was run while WEKA binaries were being downloaded from `get.weka.io`.
 
 <figure><img src="../../.gitbook/assets/image (113).png" alt=""><figcaption></figcaption></figure>
 
@@ -580,7 +577,7 @@ When the terraform `main.tf` file was configured for this deployment, two client
 
 <figure><img src="../../.gitbook/assets/image (117).png" alt=""><figcaption></figcaption></figure>
 
-Below, it can be seen that the two clients are successfully connected to the cluster three minutes after cluster io starts.
+The following example shows that the two clients are successfully connected to the cluster three minutes after cluster io starts.
 
 <figure><img src="../../.gitbook/assets/image (118).png" alt=""><figcaption></figcaption></figure>
 
@@ -640,7 +637,7 @@ The process of installing `jq` begins. Installation completes once a command pro
 
 Retrieve the IP addresses of the WEKA backend instances. For a public network deployment, WAN addresses appear. If using a private network, LAN IP addresses are retrieved.
 
-1. Copy the helper command for listing the IP addresses of the VMSS (Virtual Machine Scale Set) that contains the WEKA backend instances
+1. Copy the helper command for listing the IP addresses of the VMSS (Virtual Machine Scale Set) that contains the WEKA backend instances.
 
 <figure><img src="../../.gitbook/assets/image (144).png" alt=""><figcaption></figcaption></figure>
 
@@ -657,27 +654,27 @@ Retrieve the IP addresses of the WEKA backend instances. For a public network de
 
 In the examples below, a Windows 10 instance with a public IP address was deployed in the same vnet, subnet, and security group as the WEKA cluster. Network security group rules were added to allow RDP explicit access to the Windows 10 system.
 
-Open a browser in the Windows 10 jump box and visit `https://<cluster-backend-ip>:14000`. The WEKA GUI login screen should appear. After changing the default password, login.
+3. Open a browser in the Windows 10 jump box and visit `https://<cluster-backend-ip>:14000`. The WEKA GUI login screen should appear. After changing the default password, login.
 
 <figure><img src="../../.gitbook/assets/image (119).png" alt=""><figcaption></figcaption></figure>
 
-View the cluster GUI home screen.
+4. View the cluster GUI home screen.
 
 <figure><img src="../../.gitbook/assets/image (120).png" alt=""><figcaption></figcaption></figure>
 
-Review the cluster backends.
+5. Review the cluster backends.
 
 <figure><img src="../../.gitbook/assets/image (121).png" alt=""><figcaption></figcaption></figure>
 
-Review the clients attached to the cluster as part of the terraform deployment process.
+6. Review the clients attached to the cluster as part of the terraform deployment process.
 
 <figure><img src="../../.gitbook/assets/image (122).png" alt=""><figcaption></figcaption></figure>
 
-Review the file system `default` created as part of the terraform deployment process.
+7. Review the file system `default` created as part of the terraform deployment process.
 
 <figure><img src="../../.gitbook/assets/image (125).png" alt=""><figcaption></figcaption></figure>
 
-In the Azure portal Virtual Machines page, view the WEKA cluster instance resources.
+8. In the Azure portal Virtual Machines page, view the WEKA cluster instance resources.
 
 <figure><img src="../../.gitbook/assets/image (124).png" alt=""><figcaption></figcaption></figure>
 
