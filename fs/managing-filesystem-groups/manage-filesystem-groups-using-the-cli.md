@@ -1,5 +1,5 @@
 ---
-description: This pages describes how to view and manage filesystem groups using the CLI.
+description: This page describes how to view and manage filesystem groups using the CLI.
 ---
 
 # Manage filesystem groups using the CLI
@@ -27,11 +27,11 @@ Use the following command to add a filesystem group:
 
 **Parameters**
 
-| **Name**               | **Type** | **Value**                                                               | **Limitations**        | **Mandatory** | **Default**      |
-| ---------------------- | -------- | ----------------------------------------------------------------------- | ---------------------- | ------------- | ---------------- |
-| `name`                 | String   | Name of the filesystem group being created                              | Must be a valid name   | Yes           | ​                |
-| `target-ssd-retention` | Number   | Target retention period (in seconds) before tiering to the object store | Must be a valid number | No            | 86400 (24 hours) |
-| `start-demote`         | Number   | Target tiering cue (in seconds) before tiering to the object store      | Must be a valid number | No            | 10               |
+| **Name**               | **Type** | **Value**                                                                                                                                                                                 | **Limitations**        | **Mandatory** | **Default**      |
+| ---------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- | ------------- | ---------------- |
+| `name`                 | String   | Name of the filesystem group being created                                                                                                                                                | Must be a valid name   | Yes           | ​                |
+| `target-ssd-retention` | Number   | <p>The time for keeping data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.<br>Format: 3s, 2h, 4m, 1d, 1d5h, 1w.</p> | Must be a valid number | No            | 86400 (24 hours) |
+| `start-demote`         | Number   | <p>The time to wait after the last update before the data is copied from the SSD and sent to the object store.<br>Format: 3s, 2h, 4m, 1d, 1d5h, 1w.</p>                                   | Must be a valid number | No            | 10               |
 
 ## Edit a filesystem group
 
@@ -43,7 +43,7 @@ Use the following command to edit a filesystem group:
 
 **Parameters**
 
-<table data-header-hidden><thead><tr><th width="187">Name</th><th width="168">Type</th><th>Value</th><th>Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>name</code></td><td>String</td><td>Name of the filesystem group being edited</td><td>Must be a valid name</td><td>Yes</td><td>​</td></tr><tr><td><code>new-name</code></td><td>String</td><td>New name for the filesystem group</td><td>Must be a valid name</td><td>Yes</td><td></td></tr><tr><td><code>target-ssd-retention</code></td><td>Number</td><td>New target retention period (in seconds) before tiering to the object store</td><td>Must be a valid number</td><td>No</td><td></td></tr><tr><td><code>start-demote</code></td><td>Number</td><td>New target tiering cue (in seconds) before tiering to the object store</td><td>Must be a valid number</td><td>No</td><td></td></tr></tbody></table>
+<table data-header-hidden><thead><tr><th width="187">Name</th><th width="168">Type</th><th>Value</th><th>Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>name</code></td><td>String</td><td>Name of the filesystem group being edited</td><td>Must be a valid name</td><td>Yes</td><td>​</td></tr><tr><td><code>new-name</code></td><td>String</td><td>New name for the filesystem group</td><td>Must be a valid name</td><td>Yes</td><td></td></tr><tr><td><code>target-ssd-retention</code></td><td>Number</td><td>The time for keeping data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.<br>Format: 3s, 2h, 4m, 1d, 1d5h, 1w.</td><td>Must be a valid number</td><td>No</td><td></td></tr><tr><td><code>start-demote</code></td><td>Number</td><td>The time to wait after the last update before the data is copied from the SSD and sent to the object store.<br>Format: 3s, 2h, 4m, 1d, 1d5h, 1w.</td><td>Must be a valid number</td><td>No</td><td></td></tr></tbody></table>
 
 ## Delete a filesystem group
 
