@@ -126,14 +126,16 @@ If the client networking is defined as based on UDP, there is no allocation of c
 
 ## Network planning
 
-### Backend hosts
+### Backend servers
 
-Weka backend hosts can be connected to both InfiniBand or Ethernet networks. For each network technology used, all backends must be connected via this technology. If backends are connected both through Infiniband and Ethernet, the Weka system will favor the Infiniband links for traffic, unless there are connectivity issues with the Infiniband network. In that case, the system will use the Ethernet links (clients connecting to the system can connect either via Infiniband or Ethernet).
+WEKA backend servers support connections to both InfiniBand and Ethernet networks. When deploying backend servers, ensure that all servers in the WEKA system are connected using the same network technology for each type of network.
+
+If both InfiniBand and Ethernet connections are configured, the WEKA system prioritizes InfiniBand links for data traffic. However, if there is a connectivity issue with the InfiniBand network, the system automatically switches to using Ethernet links as a fallback. Clients can connect to the WEKA system over either InfiniBand or Ethernet.
 
 {% hint style="info" %}
-**Note:** A network port can either be dedicated to the Weka system or run the Weka system with other applications.
+A network port can be dedicated exclusively to the WEKA system or shared between the WEKA system and other applications.
 {% endhint %}
 
-### Client hosts
+### Clients
 
-Client hosts can be configured with networking as above, which provides the highest performance and lowest latency, but requires compatible hardware and dedicated core resources. If compatible hardware is not available, or if allocating a physical core to the Weka system is problematic, the client networking can be configured to use the kernel UDP service. In such cases, performance is reduced, and latency increases.
+Clients can be configured with networking as described above to achieve the highest performance and lowest latency; however, this setup requires compatible hardware and dedicated CPU core resources. If compatible hardware is not available or a dedicated CPU core cannot be allocated to the WEKA system, client networking can instead be configured to use the kernel’s UDP service. This configuration results in reduced performance and increased latency.
