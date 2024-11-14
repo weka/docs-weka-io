@@ -328,7 +328,7 @@ If an upgrade of a client part of a batch fails, it stops the following batch up
 
 The following command line upgrade two clients in two batches (each batch has one client):
 
-`weka local run -C drive0 --in 4.2.0.78 upgrade --mode=clients-upgrade --client-rolling-batch-size 1`
+`weka local run -C drives0 --in 4.2.0.78 upgrade --mode=clients-upgrade --client-rolling-batch-size 1`
 
 **Output example:**
 
