@@ -1,5 +1,5 @@
 ---
-description: This pages provides an overview about managing filesystems.
+description: This page provides an overview about managing filesystems.
 ---
 
 # Manage filesystems

@@ -1,5 +1,5 @@
 ---
-description: This pages describes how to view and manage filesystem groups using the CLI.
+description: This page describes how to view and manage filesystem groups using the CLI.
 ---
 
 # Manage filesystem groups using the CLI

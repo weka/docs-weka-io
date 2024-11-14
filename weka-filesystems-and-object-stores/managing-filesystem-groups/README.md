@@ -1,5 +1,5 @@
 ---
-description: This pages provides an overview about managing filesystem groups.
+description: This page provides an overview about managing filesystem groups.
 ---
 
 # Manage filesystem groups

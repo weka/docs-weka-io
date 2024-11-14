@@ -1,5 +1,5 @@
 ---
-description: This pages describes how to view and manage filesystem groups using the GUI.
+description: This page describes how to view and manage filesystem groups using the GUI.
 ---
 
 # Manage filesystem groups using the GUI
