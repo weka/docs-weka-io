@@ -27,11 +27,11 @@ Use the following command to add a filesystem group:
 
 **Parameters**
 
-| Name                   | Value                                                                   | Default          |
-| ---------------------- | ----------------------------------------------------------------------- | ---------------- |
-| `name`\*               | Name of the filesystem group being created                              | ​                |
-| `target-ssd-retention` | Target retention period (in seconds) before tiering to the object store | 86400 (24 hours) |
-| `start-demote`         | Target tiering cue (in seconds) before tiering to the object store      | 10               |
+| Name                   | Value                                                                                                                                                                                     | Default |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `name`\*               | Set a meaningful name for the filesystem group.                                                                                                                                           | ​       |
+| `target-ssd-retention` | <p>The time for keeping data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.<br>Format: 3s, 2h, 4m, 1d, 1d5h, 1w.</p> | 1d      |
+| `start-demote`         | <p>The time to wait after the last update before the data is copied from the SSD and sent to the object store.<br>Format: 3s, 2h, 4m, 1d, 1d5h, 1w.</p>                                   | 10s     |
 
 ## Edit a filesystem group
 
@@ -43,7 +43,7 @@ Use the following command to edit a filesystem group:
 
 **Parameters**
 
-<table><thead><tr><th width="291.43669250645996">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem group to edit.<br>It must be a valid name.</td></tr><tr><td><code>new-name</code></td><td>New name for the filesystem group.</td></tr><tr><td><code>target-ssd-retention</code></td><td>New target retention period (in seconds) before tiering to the object store.</td></tr><tr><td><code>start-demote</code></td><td>New target tiering cue (in seconds) before tiering to the object store.</td></tr></tbody></table>
+<table><thead><tr><th width="291.43669250645996">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem group to edit.<br>It must be a valid name.</td></tr><tr><td><code>new-name</code></td><td>New name for the filesystem group.</td></tr><tr><td><code>target-ssd-retention</code></td><td>The time for keeping data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.<br>Format: 3s, 2h, 4m, 1d, 1d5h, 1w.</td></tr><tr><td><code>start-demote</code></td><td>The time to wait after the last update before the data is copied from the SSD and sent to the object store.<br>Format: 3s, 2h, 4m, 1d, 1d5h, 1w.</td></tr></tbody></table>
 
 ## Delete a filesystem group
 
