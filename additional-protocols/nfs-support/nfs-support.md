@@ -122,10 +122,6 @@ You might need to remove an interface group due to a change in network configura
 
 ### **Set interface group IPs**
 
-{% hint style="info" %}
-Floating IPs are not supported for cloud-based installation.
-{% endhint %}
-
 **Procedure**
 
 1. In the Configuration tab, select the interface group.
