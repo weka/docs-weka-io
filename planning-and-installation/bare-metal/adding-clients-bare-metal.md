@@ -10,7 +10,7 @@ Clients run applications that access the WEKA filesystem but do not contribute C
 
 By default, WEKA uses Cgroups to limit or isolate resources for its exclusive use, such as assigning specific CPUs.
 
-Cgroups (Control Groups) is a Linux kernel feature that allows you to limit, prioritize, and isolate the resource usage (CPU, memory, disk I/O, network) of a collection of processes. It helps allocate resources among user-defined groups of tasks and manage their performance effectively.
+Cgroups (Control Groups) is a Linux kernel feature that allows you to limit, prioritize, and isolate a collection of processes' resource usage (CPU, memory, disk I/O, network). It helps allocate resources among user-defined groups of tasks and manage their performance effectively.
 
 **Versions of Cgroups:**
 
@@ -75,125 +75,192 @@ Nodes: 2/2 running (2 READY)
 Mounts: 1
 ```
 
-## Add stateless clients
+## Add a stateless client to the cluster
 
-To use the WEKA filesystems from a client, just call the mount command. The mount command automatically installs the software version, and there is no need to join the client to the cluster.
+A **stateless client** is a client that does not persistently store any software or configuration state locally. Instead, it dynamically installs the required software and configuration each time it interacts with the WEKA system. This approach simplifies client management, eliminates the need to join the client to the cluster, and allows for deployment on lightweight, diskless servers.
 
-To mount a filesystem in this method, first, install the WEKA agent from one of the backend instances and then mount the filesystem.
+To enable a stateless client to use the WEKA filesystem, the `mount` command is used. This command installs the WEKA software automatically and configures the client without requiring manual intervention.
 
-Example:
+#### Before you begin
 
-<pre class="language-bash"><code class="lang-bash"># Agent Installation (one time)
-curl http://Backend-1:14000/dist/v1/install | sh
+Ensure each client has a unique IP address and fully qualified domain name (FQDN) for proper cluster identification.
 
-# Creating a mount point (one time)
-mkdir -p /mnt/weka
+**Procedure:**
 
-# Mounting a filesystem
-<strong>mount -t wekafs -o net=eth0 backend-1/my_fs /mnt/weka
-</strong></code></pre>
+1.  **Install the WEKA agent (One-time setup):**\
+    Install the WEKA agent from one of the backend instances. This step prepares the client to interact with the WEKA system. Run the following command:
 
-For the first mount, this installs the WEKA software and automatically configures the client. For more information on mount and configuration options, refer to [Mount a filesystem using the stateless clients feature](../../weka-filesystems-and-object-stores/mounting-filesystems/#mounting-filesystems-using-stateless-clients).
+    ```bash
+    curl http://Backend-1:14000/dist/v1/install | sh
+    ```
+2.  **Create a mount point (one-time setup):**\
+    Create a directory on the client system where the WEKA filesystem will be mounted. For example:
 
-Configuring the client OS to mount the filesystem at boot time automatically is possible. For more information, refer to [Mount a filesystem using the traditional method](../../weka-filesystems-and-object-stores/mounting-filesystems/#mount-a-filesystem-using-the-traditional-method) or [Mount filesystems using autofs](../../weka-filesystems-and-object-stores/mounting-filesystems/#mount-filesystems-using-autofs).
+    ```bash
+    mkdir -p /mnt/weka
+    ```
+3.  **Mount the WEKA filesystem:**\
+    Use the `mount` command to attach the WEKA filesystem to the client. For example:
 
-{% hint style="info" %}
-Clients can be deployed on [diskless servers](https://en.wikipedia.org/wiki/Diskless\_node). They can use RAM for the WEKA client software and NFS mount for the traces. For more information, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
-{% endhint %}
+    ```bash
+    mount -t wekafs -o net=eth0 backend-1/my_fs /mnt/weka
+    ```
 
-{% hint style="info" %}
-Each client must have a unique IP and FQDN.
-{% endhint %}
+    * During the first mount, the required WEKA software is installed, and the client is configured automatically.
 
-## Add persistent clients, which are always part of the cluster
+**Additional configuration**
 
-{% hint style="info" %}
-Adding instances that do not contribute resources to the cluster but are used for mounting filesystems is possible. It is recommended to use the previously described method for adding client instances for mounting purposes. However, in some cases, adding them to the cluster permanently is helpful. For example, use these instances as NFS/SMB servers, which are always expected to be up.
-{% endhint %}
+* **Automatic mounting at boot:**\
+  To configure the client OS to automatically mount the filesystem at boot time, you can use traditional methods or configure `autofs`. For more details, refer to the relevant documentation on  [#mounting-filesystems-using-stateless-clients](../../weka-filesystems-and-object-stores/mounting-filesystems/#mounting-filesystems-using-stateless-clients "mention") **Mount a filesystem using the traditional method** or **Mount filesystems using autofs**.
+* **Diskless deployment:**\
+  Stateless clients can be deployed on [diskless nodes](#user-content-fn-1)[^1] by storing the WEKA client software in RAM and using an NFS mount for traces. For assistance with this setup, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 
-### 1. Install the WEKA software
+**Related topic**
 
-Install the WEKA software.
+[#mounting-filesystems-using-stateless-clients](../../weka-filesystems-and-object-stores/mounting-filesystems/#mounting-filesystems-using-stateless-clients "mention") (for detailed mount and configuration options)
 
-* Once the WEKA software tarball is downloaded from [get.weka.io](https://get.weka.io), run the untar command.
-* Run the `install.sh` command on each server, according to the instructions in the **Install** tab.
+## Add a persistent client (stateful client) to the cluster
 
-{% hint style="info" %}
-All clients in a WEKA system cluster must use the same software version as the backends or a maximum of one version back. The backend containers must run the same WEKA software version except during upgrades (as managed by the upgrade process).
-{% endhint %}
+A **persistent client** (or stateful client) is a client that remains an integral part of the cluster. It does not contribute resources to the cluster but is used for mounting filesystems or serving purposes, such as NFS/SMB servers, that require continuous availability. Adding persistent clients ensures that these servers are always up and accessible for file system operations.
 
-### 2. Join the cluster
+There are two methods for adding a persistent client to the cluster: a **shorter, streamlined option** and a **longer, more detailed option**. Both methods achieve the same outcome but offer different levels of flexibility and control.
 
-**Command:** `weka cluster container add`
+* **Shorter option**: Quick and efficient for most users. It sets up and joins the container with minimal configuration, ideal for persistent clients that do not require specific resource allocations or custom networking.
+* **Longer option**: Provides more control and flexibility, allowing for detailed configuration of the client, making it suitable for environments with specific performance or network requirements.
 
-Once the client is in the stem mode (this is the mode defined immediately after running the `install.sh` command), use the following command line on the client to add it to the cluster:
+Choose the method that best fits your needs based on the level of customization required.
 
-```bash
-weka -H <backend-hostname> cluster container add <client-hostname>
-```
+### Option 1: Shorter method (recommended for most use cases)
 
-**Parameters in the command line**
+This method sets up the client with all required resources in a single step and self-joins the container to the cluster using its management and join IPs.
 
-<table><thead><tr><th width="227">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>backend-hostname</code>*</td><td>An existing hostname (IP or FQDN) of one of the existing backend instances in the cluster.</td></tr><tr><td><code>client-hostname</code>*</td><td>A unique hostname (IP or FQDN) of the client to add.</td></tr></tbody></table>
+1.  **Setup container locally with resources**\
+    This step sets up the client with all necessary resources, such as cores, memory, networking, and ports.
 
-{% hint style="info" %}
-On completion of this stage, the container-id of the newly added container will be received. Make a note of it for the next steps.
-{% endhint %}
+    {% code overflow="wrap" %}
+    ```bash
+    weka local setup container --join-ips <join-ips> --base-port <base-port> --cores <cores> --cores-ids <cores-ids> --only-frontend-cores
+    ```
+    {% endcode %}
 
-### 3. Configure the container as a client
+    Example:
 
-**Command:** `weka cluster container cores`
+    {% code overflow="wrap" %}
+    ```bash
+    weka local setup container --join-ips 10.108.81.144 --base-port 14000 --cores 1 --cores-ids 2 --only-frontend-cores
+    ```
+    {% endcode %}
 
-To configure the new container as a client, run the following command:
+    * `join-ips`: The IP address for joining the cluster.
+    * `base-port`: The base port for container communication.
+    * `cores`: The number of cores to allocate.
+    * `cores-ids`: The cores' identifiers.
+    * `only-frontend-cores`: Indicates that only frontend cores are used.
+2.  **Join the container to the cluster**\
+    After setting up the container, apply the configuration to finalize the process.
 
-{% code overflow="wrap" %}
-```bash
-weka cluster container cores <container-id> <cores> --frontend-dedicated-cores=<frontend-dedicated-cores>
-```
-{% endcode %}
+    ```bash
+    weka local resources --container <client> management-ips <management-ips>
+    weka local resources --container <client> join-ips <join-ips>
+    weka local resources --container <client> base-port <base-port>
+    weka local resources --container <client> apply
+    ```
 
-**Parameters in the command line**
+    Example:
 
-<table data-header-hidden><thead><tr><th width="299">Name</th><th>Value</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Value</strong></td></tr><tr><td><code>container-id</code>*</td><td>A valid identifier of the container to add to the cluster.</td></tr><tr><td><code>cores</code>*</td><td>The number of physical cores to allocate to the WEKA client.</td></tr><tr><td><code>frontend-dedicated-cores</code>*</td><td>The number of physical cores to be dedicated to frontend processes.<br>Mandatory to configure a container as a client.<br>Maximum 19 cores.<br>For clients, the number of total cores and <code>frontend-dedicated-cores</code> must be equal.</td></tr></tbody></table>
+    ```bash
+    weka local resources --container client management-ips 10.108.241.62
+    weka local resources --container client join-ips 10.108.39.212
+    weka local resources --container client base-port 14000
+    weka local resources --container client apply
+    ```
 
-### 4. Configure client networking
+### Option 2: longer method (more control and flexibility)
 
-**Command:** `weka cluster container net add`
+This method involves more detailed steps, allowing you to manually set up the client with specific configurations, including core allocation, networking settings, and container setup.
 
-{% hint style="info" %}
-If the new client is to communicate with the WEKA cluster over the kernel UDP stack, running this command is unnecessary.
-{% endhint %}
+1.  **Install the WEKA software**
 
-If a high-performance client is required and the appropriate network NIC is available, use the following command to configure the networking interface used by the client to communicate with the WEKA cluster:
+    * Install the WEKA software on the client by running the `install.sh` script after downloading the tarball from [get.weka.io](https://get.weka.io). Follow the instructions in the Install tab to complete the installation.
 
-{% code overflow="wrap" %}
-```bash
-weka cluster container net add <container-id> <device> --ips=<ips> --netmask=<netmask> --gateway=<gateway>
-```
-{% endcode %}
+    All clients in a WEKA system cluster must use the same software version as the backends or a maximum of one version back. The backend containers must run the same WEKA software version except during upgrades (as managed by the upgrade process).
+2.  **Join the cluster**
 
-**Parameters**
+    * Once the client is in stem mode, use the following command to add it to the cluster.
 
-<table><thead><tr><th width="189">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-id</code>*</td><td>A valid identifier of the container to add to the cluster.</td></tr><tr><td><code>device</code>*</td><td>A valid network interface device name (for example, <code>eth1</code>).</td></tr><tr><td><code>ips</code>*</td><td>A valid IP address of the new interface.</td></tr><tr><td><code>gateway</code></td><td><p>The IP address of the default routing gateway.<br>The gateway must reside within the same IP network of <code>ips</code> (as described by <code>netmask</code>). </p><p>Not relevant for IB / L2 non-routable networks.</p></td></tr><tr><td><code>netmask</code></td><td>The number of bits that identify a network ID (also known as CIDR). For example, the netmask of <code>255.255.0.0</code> has <code>16</code> netmask bits.</td></tr></tbody></table>
+    ```bash
+    weka -H <backend-hostname> cluster container add <client-hostname>
+    ```
 
-{% hint style="info" %}
-When configuring an InfiniBand client, do not pass the `--ips`, `--netmask` and `--gateway` parameters.
-{% endhint %}
+    Example:
 
-{% hint style="info" %}
-InfiniBand/Ethernet clients can only join a cluster with the same network technology connectivity. It is possible to mix InfiniBand and Ethernet clients in the same cluster as long as the cluster backends are connected to both network technologies.
-{% endhint %}
+    ```bash
+    weka -H backend1.cluster.local cluster container add client1.cluster.local
+    ```
 
-### 5. Apply the container configuration
+    * `backend-hostname`: The hostname (FQDN) or IP address of an existing backend instance.
+    * `client-hostname`: The unique hostname (FQDN) of the client to add.
 
-**Command:** `weka cluster container apply`
+    Once this step is complete, the `container-id` of the newly added container will be displayed. Record it for use in the following steps.
+3.  **Configure the container as a client**
 
-After successfully configuring the container and its network device, run the following command to finalize the configuration by activating the container:
+    * After adding the client to the cluster, configure it by setting the number of cores and frontend-dedicated cores.
 
-```bash
-weka cluster container apply <container-id> [--force]
-```
+    {% code overflow="wrap" %}
+    ```bash
+    weka cluster container cores <container-id> <cores> --frontend-dedicated-cores=<frontend-dedicated-cores>
+    ```
+    {% endcode %}
 
-**Parameters**
+    Example:
 
-<table><thead><tr><th width="188">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-id</code>*</td><td>A comma-separated string of valid identifiers of the containers to add to the cluster.</td></tr><tr><td><code>force</code></td><td>A boolean indicates not to prompt for confirmation.<br>The default is not to force a prompt.</td></tr></tbody></table>
+    ```bash
+    weka cluster container cores container1 4 --frontend-dedicated-cores=4
+    ```
+
+    * `container-id`: The unique identifier of the container.
+    * `cores`: The number of physical cores to allocate to the client.
+    * `frontend-dedicated-cores`: The number of physical cores dedicated to frontend processes (must match `cores` for clients). You can set up to 19 cores.
+4.  **Configure client networking**
+
+    * If needed, configure the client’s network interface for high-performance communication with the WEKA cluster. (For UDP, this step is not needed.)
+    * When configuring an InfiniBand client, do not pass the `--ips`, `--netmask`, or `--gateway` parameters.
+    * InfiniBand and Ethernet clients can only join a cluster with the same network technology connectivity. However, it is possible to mix InfiniBand and Ethernet clients in the same cluster as long as the cluster backends are connected to both network technologies.
+
+    {% code overflow="wrap" %}
+    ```bash
+    weka cluster container net add <container-id> <device> --ips=<ips> --netmask=<netmask> --gateway=<gateway>
+    ```
+    {% endcode %}
+
+    Example:
+
+    {% code overflow="wrap" %}
+    ```bash
+    weka cluster container net add container1 eth1 --ips=10.108.81.100 --netmask=255.255.255.0 --gateway=10.108.81.1
+    ```
+    {% endcode %}
+
+    * `container-id`: A valid identifier for the container to add to the cluster.
+    * `device`: A valid network interface device name (for example, `eth1`).
+    * `ips`: A valid IP address for the new interface.
+    * `gateway`: The IP address of the default routing gateway.\
+      The gateway must be within the same IP network as the provided `ips`, as defined by the `netmask`. Not applicable for IB / L2 non-routable networks.
+    * `netmask`: The number of bits that define the network ID (CIDR notation). For example, a netmask of `255.255.0.0` corresponds to `16` netmask bits.
+5.  **Apply the container configuration**
+
+    * After configuring the container and networking, apply the changes to activate the client container.
+
+    {% code overflow="wrap" %}
+    ```bash
+    weka cluster container apply <container-id> [--force]
+    ```
+    {% endcode %}
+
+    Example:
+
+    ```bash
+    weka cluster container apply container1 --force
+    ```
+
+[^1]: A **diskless node** is a workstation or computer that lacks local disk drives and uses network booting to load its operating system from a server. For details, see [https://en.wikipedia.org/wiki/Diskless\_node](https://en.wikipedia.org/wiki/Diskless\_node)
