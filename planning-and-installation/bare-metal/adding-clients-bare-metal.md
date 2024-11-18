@@ -85,7 +85,7 @@ To enable a stateless client to use the WEKA filesystem, the `mount` command is 
 
 Ensure each client has a unique IP address and fully qualified domain name (FQDN) for proper cluster identification.
 
-**Procedure:**
+**Procedure**
 
 1.  **Install the WEKA agent (One-time setup):**\
     Install the WEKA agent from one of the backend instances. This step prepares the client to interact with the WEKA system. Run the following command:
@@ -134,6 +134,8 @@ Choose the method that best fits your needs based on the level of customization 
 
 This method sets up the client with all required resources in a single step and self-joins the container to the cluster using its management and join IPs.
 
+**Procedure**
+
 1.  **Setup container locally with resources**\
     This step sets up the client with all necessary resources, such as cores, memory, networking, and ports.
 
@@ -178,6 +180,8 @@ This method sets up the client with all required resources in a single step and 
 ### Option 2: longer method (more control and flexibility)
 
 This method involves more detailed steps, allowing you to manually set up the client with specific configurations, including core allocation, networking settings, and container setup.
+
+**Procedure**
 
 1.  **Install the WEKA software**
 
