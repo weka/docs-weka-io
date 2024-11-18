@@ -72,6 +72,10 @@ Once you create an interface group, set its ports. You can set the ports only on
 
 ## **Set interface group IPs**
 
+{% hint style="info" %}
+Floating IPs are not supported in WEKA installations on Azure and GCP.
+{% endhint %}
+
 **Procedure**
 
 1. In the Configuration tab, select the interface group.
