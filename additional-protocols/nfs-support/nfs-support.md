@@ -123,7 +123,7 @@ You might need to remove an interface group due to a change in network configura
 ### **Set interface group IPs**
 
 {% hint style="info" %}
-Floating IPs are not supported for cloud-based installation.
+Floating IPs are not supported in WEKA installations on Azure and GCP.
 {% endhint %}
 
 **Procedure**
