@@ -14,6 +14,10 @@ Using the GUI, you can:
 
 ## Create a bucket <a href="#create-a-bucket" id="create-a-bucket"></a>
 
+**Before you begin**
+
+S3 does not support creating buckets on filesystems with names containing the characters '', '`(`', '`)`', or '`&`'. Verify that the filesystem name excludes these characters. Rename the filesystem if needed before creating the S3 bucket.
+
 **Procedure**
 
 1. From the menu, select **Manage > Protocols**.
