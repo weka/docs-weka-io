@@ -4,6 +4,7 @@ description: Explore the events the WEKA system generates organized by categorie
 
 # List of events
 
+
 ## Agent
 
 **Type** | **Severity** | **Description**
@@ -52,10 +53,10 @@ ClockSkewedHostJoin|MINOR|The container (host) cannot join because of a clock sk
 ClusterInitializationFailed|MAJOR|The cluster initialization is failed.
 ClusterInitialized|INFO|The cluster is successfully initialized.
 ClusteringFailure|MINOR|Conainer clustering failed.
-ConfigChangeSetsSliderFull|MINOR|Configuration changeset slider is full while the process (node) is pulling the configuration.
+ConfigChangeSetsSliderFull|MINOR|Configuration changeset slider is full while the process (node) pulls the configuration.
 ConfigGenerationHasNoFirstChunk|MINOR|Applying a partial configuration generation is prohibited.
 ConfigSnapshotPulled|MINOR|Configuration snapshot is pulled.
-DoubleUnmatchingMachineIdentifier|MAJOR|There is a container with same Agent-Machine-ID, but different SMBIOS UID.
+DoubleUnmatchingMachineIdentifier|MAJOR|There is a container with the same Agent-Machine-ID but a different SMBIOS UID.
 GrimReaperFencingNode|MINOR|A partially connected process (node) is selected to be fenced by the grim-reaper.
 HostActivated|INFO|Host configuration change
 HostAdded|INFO|Host configuration change
@@ -66,7 +67,7 @@ HostRemoved|INFO|Host configuration change
 HostRemovingFailed|INFO|Host configuration change
 HostRemoving|INFO|Host configuration change
 LeaderChanged|WARNING|The cluster leader has changed.
-LeaderSteppingUpAfterUpgrade|INFO|The cluster leader is stepping up after upgrade
+LeaderSteppingUpAfterUpgrade|INFO|The cluster leader is stepping up after the upgrade
 NodeNetworkUnstable|MAJOR|A process (node) with an unstable network is detected.
 NodePartiallyConnected|MINOR|A partially connected process (node) was removed.
 NodeRejoined|INFO|The process (node) has rejoined the cluster.
@@ -115,32 +116,32 @@ Custom|INFO|Custom event
 
 **Type** | **Severity** | **Description**
 -|-|-
-CorruptedDrive|MAJOR|A drive has a valid header but it is corrupted.
+CorruptedDrive|MAJOR|A drive has a valid header, but it is corrupted.
 DriveAdded|INFO|Drive provisioned
 DriveDeactivated|INFO|Drive deactivated
 DriveDead|MAJOR|The drive is unresponsive and fails to return IOs for an extended period.
-DriveExcessiveErrors|WARNING|The drive has excessive error rate and will be phased out. Contact the Customer Success Team.
+DriveExcessiveErrors|WARNING|The drive has an excessive error rate and will be phased out. Contact the Customer Success Team.
 DriveFormatUpgraded|INFO|The drive format was upgraded.
-DriveImmediateShutdown|MAJOR|The drive had to be shutdown immediately. Contact the Customer Success Team.
+DriveImmediateShutdown|MAJOR|The drive had to be shut down immediately. Contact the Customer Success Team.
 DriveInitFailed|MAJOR|A drive failed to initialize.
 DriveIoErrorBMS|MAJOR|A drive found an IO error in a background media scan.
 DriveIoError|MAJOR|A drive has an IO error.
-DriveLimitExceeded|WARNING|An attempt to add more drives than supported.
+DriveLimitExceeded|WARNING|An attempt was made to add more drives than were supported.
 DriveMediumError|MINOR|A drive has a medium error.
-DriveNotUnderIOMMU|MAJOR|The drive is not under IOMMU but the host IOMMU is enabled. Contact the Customer Success Team.
+DriveNotUnderIOMMU|MAJOR|The drive is not under IOMMU, but the host IOMMU is enabled. Contact the Customer Success Team.
 DriveNvmeErrorLog|WARNING|An NVMe drive error log entry.
 DriveNvmeSmartChange|MINOR|The NVMe drive SMART status has changed.
 DriveOutOfNvkvChunks|MAJOR|A drive is out of NVKV chunks
 DriveRemoved|INFO|Drive removed
 DriveSignatureUnknown|MINOR|A drive has an unknown signature.
-DriveSmartCriticalWarning|MINOR|The drive SMART reports a critical warning and therefore fails it immediately.
+DriveSmartCriticalWarning|MINOR|The drive SMART reports a critical warning and fails immediately.
 DriveStateChangesReport|MINOR|Drive state changes.
 DriveStuckIOs|MAJOR|The IOs are stuck for an extended period.
 DriveTrimAborted|WARNING|The drive TRIM commands at the initialization timed out and aborted. Potentially degrading write performance.
 DriveUnresponsive|MAJOR|The drive is unresponsive and fails to return IOs for an extended period.
 DriveWrongFailureDomain|MINOR|A drive is attached to a container (host) from an incorrect failure domain.
-MBufPoison|MAJOR|MBUf got poison error.
-NvmeBindTimingOut|MAJOR|The NVMe device binding is stuck and the server needs a power cycle to recover.
+MBufPoison|MAJOR|MBUf got a poison error.
+NvmeBindTimingOut|MAJOR|The NVMe device binding is stuck, and the server needs a power cycle to recover.
 
 ## Events
 
@@ -162,7 +163,7 @@ BlockReadFailure|CRITICAL|Failed to read a block
 BlockSeekFinished|MAJOR|Block seek finished
 BlockSeekStarted|MAJOR|Block seek started for a secondary metadata block that could not be read
 BrokenFile|MAJOR|File metadata corruption
-CWTaskTemplateFinished|INFO|A cluster wide task (CWTask) template finished.
+CWTaskTemplateFinished|INFO|A cluster-wide task (CWTask) template finished.
 CacheFlushHanging|MAJOR|Host is hanging while trying to sync a file's write cache to the cluster
 ChecksumErrorInBackgroundWrite|MAJOR|Checksum error detected by SSD node in a committing block
 ChecksumErrorInCommit|MAJOR|Checksum error detected by SSD node in a committing block
@@ -175,7 +176,7 @@ DirectoryQuotaSet|INFO|The directory quota was set
 DirectoryQuotaUnset|INFO|The directory quota was unset
 DumpSnapHashCompleted|INFO|Finished a snap hash manifest scan
 ExtentDescsPointsToFreedBlocks|WARNING|Extent points to freed child blocks
-FailedToSplitSliceNoRetry|CRITICAL|Failed to split a directory slice - wont retry
+FailedToSplitSliceNoRetry|CRITICAL|Failed to split a directory slice - won't retry
 FilesystemAdded|INFO|Filesystem configuration change
 FilesystemDeleted|INFO|Filesystem configuration change
 FilesystemDownloadStarted|INFO|Filesystem download started
@@ -192,7 +193,7 @@ FsCapacityLimitReached|WARNING|Filesystem capacity limit has been reached
 HangingBackendIosDetected|CRITICAL|Some IOs are hanging.
 HangingBackendIosNoLongerDetected|INFO|IOs are no longer hanging.
 HangingBucketStepDown|WARNING|Bucket step-down is hanging
-HangingDirectorySplit|MAJOR|Directory split hasn't any made progress for a long time
+HangingDirectorySplit|MAJOR|Directory split hasn't made any progress for a long time
 HangingDriverFrontendIosDetected|CRITICAL|Some IOs are hanging.
 HangingDriverFrontendIosNoLongerDetected|INFO|IOs are no longer hanging.
 HangingNFSFrontendIosDetected|CRITICAL|Some IOs are hanging.
@@ -200,13 +201,13 @@ HangingNFSFrontendIosNoLongerDetected|INFO|IOs are no longer hanging.
 IntegrityCheckFinished|DEBUG|Integrity check has finished.
 IntegrityCheckIssue|CRITICAL|Found a data integrity issue
 IntegrityCheckStarted|DEBUG|Integrity check has started.
-IntegrityCheckTransientIssue|DEBUG|Found a transient state which is expected to be encountered. Can be ignored, unless it persists. In which case a non transient issue event will be produced
+IntegrityCheckTransientIssue|DEBUG|Found a transient state that is expected to be encountered. It can be ignored unless it persists. In which case a non transient issue event will be produced
 ManualOverrideStall|WARNING|A service has been manually overridden and stalled.
 MetadataCommitQueueHang|MINOR|Bucket step down due to hanging metadata commit queue
 ObjectStoreAttachedToFilesystem|INFO|The object store is attached to the filesystem.
 ObjectStoreFinishedDetachingFromFilesystem|INFO|The object store finished detaching from the filesystem.
 ObjectStoreStartedDetachingFromFilesystem|INFO|The object store started detaching from the filesystem.
-QuotaGraceExpired|WARNING|Directory soft capacity quota has been reached and grace period expired
+QuotaGraceExpired|WARNING|Directory soft capacity quota has been reached, and grace period expired
 QuotaHardLimitReached|WARNING|Directory hard capacity quota has been reached
 RAIDDataBlockReadFailureInSnaphashDump|WARNING|Failed to read data block from RAID when dumping the snapshot manifest
 RAIDMDReadFailureInSnaphashDump|WARNING|Failed to read metadata block from RAID when dumping the snapshot manifest
@@ -214,16 +215,16 @@ SnapshotContentCopied|INFO|Snapshot content copied
 SnapshotCreated|INFO|Snapshot created
 SnapshotDeleted|INFO|Snapshot deleted
 SnapshotDownloadStarted|INFO|Snapshot download started
-SnapshotFilesystemRestored|INFO|Filesystem restored from snapshot
+SnapshotFilesystemRestored|INFO|Filesystem restored from the snapshot
 SnapshotParamsUpdated|INFO|Snapshot updated
 SnapshotPrefetchAborted|INFO|Snapshot metadata prefetch aborted
 SnapshotPrefetchFinished|INFO|The snapshot metadata prefetch has finished.
 SnapshotPrefetchStarted|INFO|The snapshot metadata prefetch has started.
 SnapshotUploadFinished|INFO|Snapshot upload finished
 SnapshotUploadStarted|INFO|Snapshot upload started
-SquelchBlockIdSetAbortedFlushed|DEBUG|While setting a squelch block's block id for upgrade was already changed to invalid
-SquelchBlockIdSetAbortedRewritten|WARNING|While setting a squelch block's block id for upgrade was already rewritten to something else
-SuperblockUnreadable|CRITICAL|Superblock of a bucket could not be loaded
+SquelchBlockIdSetAbortedFlushed|DEBUG|While setting a squelch block's block id for the upgrade was already changed to invalid
+SquelchBlockIdSetAbortedRewritten|WARNING|While setting a squelch block's block id for the upgrade was already rewritten to something else
+SuperblockUnreadable|CRITICAL| The Superblock of a bucket could not be loaded
 UnflushedOpOnDeletingSnapview|MAJOR|Unflushed IO on a deleting snapshot
 
 ## IO
@@ -254,7 +255,7 @@ InterfaceGroupUpdated|INFO|Interface group configuration change
 DriverAlert|MAJOR|Driver Alert
 DriverNotAccepting|MAJOR|Driver is not accepting IOs
 
-## KMS
+## Kms
 
 **Type** | **Severity** | **Description**
 -|-|-
@@ -587,9 +588,9 @@ LDAPAuthEnabled|INFO|LDAP authentication enabled
 LDAPConfigUpdated|INFO|LDAP configuration updated
 UserCreated|INFO|The user is created.
 UserDeleted|INFO|The user is deleted.
-UserLoggedIn|INFO|User logged in
-UserLoginFailed|INFO|User login failed
-UserLoginLocked|MINOR|User login locked
+UserLoggedIn|INFO|User logged in.
+UserLoginFailed|INFO|User login failed.
+UserLoginLocked|MINOR|User login locked.
 UserPasswordChangedByAnotherUser|INFO|The administrator changed the user password.
 UserPasswordChanged|INFO|The user changed the password.
 UserRoleChanged|INFO|The user role is changed.
