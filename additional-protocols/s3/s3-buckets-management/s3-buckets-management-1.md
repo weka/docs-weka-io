@@ -19,7 +19,11 @@ Using the CLI, you can:
 
 Use the following command line to create an S3 bucket:
 
-`weka s3 bucket create <name> [--policy policy] [--policy-json policy-json] [--hard-quota hard-quota] [--fs-name fs-name] [--fs-id fs-id] [--existing-path existing-path]` &#x20;
+`weka s3 bucket create <name> [--policy policy] [--policy-json policy-json] [--hard-quota hard-quota] [--fs-name fs-name] [--fs-id fs-id] [--existing-path existing-path]`
+
+{% hint style="info" %}
+S3 does not support creating buckets on filesystems with names containing the characters `'` `', '(',` `')'`, or `'`&`'`. Verify that the filesystem name excludes these characters. Rename the filesystem if needed before creating the S3 bucket.
+{% endhint %}
 
 **Parameters**
 

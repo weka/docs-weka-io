@@ -46,7 +46,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 ![Create filesystem](../../.gitbook/assets/wmng\_create\_fs\_button.png)
 
 3. In the **Create Filesystem** dialog, set the following:
-   * **Name**: Enter a descriptive label for the filesystem, limited to 32 characters and excluding slashes (`/`) or backslashes (`\`).
+   * **Name**: Enter a descriptive label for the filesystem, limited to 32 characters and excluding slash (`/`)  or backslash (`\`).
    * **Group**: Select the filesystem group that fits your filesystem.
    * **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.
 
