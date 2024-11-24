@@ -33,7 +33,7 @@ Before proceeding, it is important to understand several key terms used in this 
 
 ‌[Data Plane Development Kit (DPDK)](http://dpdk.org/) is a set of libraries and network drivers for highly efficient, low-latency packet processing. This is achieved through several techniques, such as kernel TCP/IP bypass, NUMA locality, multi-core processing, and device access via polling to eliminate the performance overhead of interrupt processing. In addition, DPDK ensures transmission reliability, handles retransmission, and controls congestion.
 
-DPDK implementations are available from several sources. OS vendors like [Red Hat](https://access.redhat.com/documentation/en-us/red\_hat\_enterprise\_linux/7/html/virtualization\_deployment\_and\_administration\_guide/sect-pci\_devices-pci\_passthrough) and [Ubuntu](https://help.ubuntu.com/lts/serverguide/DPDK.html) provide DPDK implementations through distribution channels. [Mellanox OpenFabrics Enterprise Distribution for Linux](https://www.mellanox.com/page/products\_dyn?product\_family=26) (Mellanox OFED), a suite of libraries, tools, and drivers supporting Mellanox NICs, offers its own DPDK implementation.
+DPDK implementations are available from several sources. OS vendors like [Red Hat](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-pci_devices-pci_passthrough) and [Ubuntu](https://help.ubuntu.com/lts/serverguide/DPDK.html) provide DPDK implementations through distribution channels. [Mellanox OpenFabrics Enterprise Distribution for Linux](https://www.mellanox.com/page/products_dyn?product_family=26) (Mellanox OFED), a suite of libraries, tools, and drivers supporting Mellanox NICs, offers its own DPDK implementation.
 
 The WEKA system relies on the DPDK implementation provided by Mellanox OFED on servers equipped with Mellanox NICs. For servers equipped with Intel NICs, DPDK support is through the Intel driver for the card.‌
 
@@ -99,7 +99,7 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 * **DPDK backends and clients using NICs supporting dedicated networking:**
   * IP address for management: One per NIC (configured before WEKA installation).
   * IP address for data plane: One per [WEKA core](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (applied during cluster initialization).
-  * [Virtual Functions](https://en.wikipedia.org/wiki/Network\_function\_virtualization) (VFs):
+  * [Virtual Functions](https://en.wikipedia.org/wiki/Network_function_virtualization) (VFs):
     * Ensure the device supports a maximum number of VFs greater than the number of physical cores on the server.
     * Set the number of VFs to match the cores you intend to dedicate to WEKA.
     * Note that some BIOS configurations may be necessary.
@@ -109,27 +109,36 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 
 ## **High Availability**
 
-To ensure high availability (HA), configure the WEKA system to eliminate any single point of failure (SPOF). This setup requires multiple network switches, with each server connected to both switches for redundancy.
+High Availability (HA) in a WEKA cluster is designed to eliminate single points of failure by leveraging redundancy across network components. This configuration ensures the system remains operational even in the event of hardware or connection failures.
 
-Adhere to the following guidelines to achieve high availability:
+**Network redundancy**
 
-* **Single fabric application**\
-  High availability applies only within a single type of network fabric, such as Ethernet or InfiniBand. You can achieve high availability for each fabric type independently.
-* **Mixed-mode cluster requirements**\
-  In a mixed-mode cluster, all WEKA backends require active connections to both fabric types to participate in cluster operations. Achieving high availability across Ethernet and InfiniBand requires each server to have at least two links of each type.
-* **Server link configuration**\
-  Server high availability is achieved by configuring either two independent network interfaces per server or by using Link Aggregation Control Protocol (LACP) on Ethernet (mode 4). \
-  **Note:** LACP is supported between ports on a single Mellanox NIC and is not supported when using VFs (virtual functions).
-* **Non-LACP configuration**\
-  In non-LACP configurations, the WEKA software uses both network interfaces to enhance availability and increase bandwidth.
-* **Failover and load balancing**\
-  High availability provides failover and failback for both Ethernet and InfiniBand connections, ensuring reliability and load balancing.
-* **IP Addressing requirements**\
-  To configure high availability without LACP, ensure that each backend container has correctly assigned IP addresses for both the management and data planes on each network interface..
-* **Traffic optimization**\
-  To optimize network traffic, label the system to prioritize data paths between servers on the same switch, reducing reliance on inter-switch links (ISL) and other paths.
-* **Labeling for congestion reduction**\
-  Use the `label` parameter with the `weka cluster container net add` command to assign switch and port labels, minimizing congestion and enhancing availability.
+To achieve HA, the WEKA system must be deployed with multiple network switches. Each server is connected to at least two switches, ensuring that no single switch failure can disrupt communication. Servers require dual connectivity, achieved either through two independent network interfaces or via Link Aggregation Control Protocol (LACP) in Ethernet environments (mode 4).
+
+**Interface configuration**
+
+* **Non-LACP setup**: Each server uses two network interfaces for redundancy and bandwidth enhancement. This approach doubles the number of IP addresses required on backend containers and IO processes.
+* **LACP setup**: In Ethernet-only configurations, LACP aggregates interfaces to provide reliability and load balancing on a single Mellanox NIC. Note that LACP does not support Virtual Functions (VFs).
+
+**Failover and load balancing**
+
+The HA design supports failover and failback mechanisms, ensuring uninterrupted operations during interface failures. This capability is functional for both Ethernet and InfiniBand environments. When one interface fails, the other seamlessly assumes the workload, maintaining cluster connectivity and performance.
+
+**Mixed-mode behavior**
+
+In scenarios where servers are equipped with one Ethernet and one InfiniBand connection, the system continues operating even if one link is lost. The remaining link automatically handles the cluster’s traffic, ensuring continuity. However, to fully realize HA, redundant connections for each network fabric are recommended.
+
+**Traffic optimization**
+
+To optimize network traffic, the WEKA system can be configured to prioritize intra-switch communication over inter-switch links (ISL). This can be achieved by labeling connections using the `label` parameter in the `weka cluster container net add` command, which helps route data efficiently within the cluster.
+
+**Key considerations**
+
+* Proper redundancy across network switches and interfaces is critical for HA.
+* LACP is supported only on single Mellanox NICs and not on VFs.
+* Labeling ports and switches enhances traffic management, reducing unnecessary overhead in the network fabric.
+
+By adhering to these principles, the WEKA cluster can deliver robust High Availability, ensuring system reliability and uninterrupted data access in diverse operational scenarios.
 
 ## RDMA and GPUDirect Storage
 
