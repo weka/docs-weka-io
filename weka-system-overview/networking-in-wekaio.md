@@ -107,13 +107,13 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 * **UDP clients:**
   * Use a shared networking IP address for all purposes.
 
-## **High Availability**
+## Network **High Availability** <a href="#high-availability" id="high-availability"></a>
 
-High Availability (HA) in a WEKA cluster is designed to eliminate single points of failure by leveraging redundancy across network components. This configuration ensures the system remains operational even in the event of hardware or connection failures.
+Network High Availability (HA) in a WEKA cluster is designed to eliminate single points of failure by leveraging redundancy across network components. This configuration ensures the system remains operational even in the event of hardware or connection failures.
 
 **Network redundancy**
 
-To achieve HA, the WEKA system must be deployed with multiple network switches. Each server is connected to at least two switches, ensuring that no single switch failure can disrupt communication. Servers require dual connectivity, achieved either through two independent network interfaces or via Link Aggregation Control Protocol (LACP) in Ethernet environments (mode 4).
+To achieve HA, the WEKA system requires multiple network switches with servers connected to at least two interfaces of the same type. Dual connectivity is provided either through two independent interfaces or through Link Aggregation Control Protocol (LACP) in Ethernet environments (mode 4).&#x20;
 
 **Interface configuration**
 
@@ -122,23 +122,15 @@ To achieve HA, the WEKA system must be deployed with multiple network switches. 
 
 **Failover and load balancing**
 
-The HA design supports failover and failback mechanisms, ensuring uninterrupted operations during interface failures. This capability is functional for both Ethernet and InfiniBand environments. When one interface fails, the other seamlessly assumes the workload, maintaining cluster connectivity and performance.
+Network HA supports failover and failback mechanisms to maintain reliability and optimize load balancing. This functionality is supported for both Ethernet and InfiniBand networks. When one interface fails, the other seamlessly assumes the workload between the redundant interfaces of the same type (InfiniBand or Ethernet).
 
-**Mixed-mode behavior**
-
-In scenarios where servers are equipped with one Ethernet and one InfiniBand connection, the system continues operating even if one link is lost. The remaining link automatically handles the cluster’s traffic, ensuring continuity. However, to fully realize HA, redundant connections for each network fabric are recommended.
+{% hint style="info" %}
+**Mixed-mode behavior:** In configurations where servers have one Ethernet and one InfiniBand connection, the cluster remains operational if a server loses one of its links, though that server will no longer participate in cluster-level operations. However, if **all** backends lose connectivity on either the Ethernet or InfiniBand medium, the cluster will pause I/O operations.
+{% endhint %}
 
 **Traffic optimization**
 
 To optimize network traffic, the WEKA system can be configured to prioritize intra-switch communication over inter-switch links (ISL). This can be achieved by labeling connections using the `label` parameter in the `weka cluster container net add` command, which helps route data efficiently within the cluster.
-
-**Key considerations**
-
-* Proper redundancy across network switches and interfaces is critical for HA.
-* LACP is supported only on single Mellanox NICs and not on VFs.
-* Labeling ports and switches enhances traffic management, reducing unnecessary overhead in the network fabric.
-
-By adhering to these principles, the WEKA cluster can deliver robust High Availability, ensuring system reliability and uninterrupted data access in diverse operational scenarios.
 
 ## RDMA and GPUDirect Storage
 

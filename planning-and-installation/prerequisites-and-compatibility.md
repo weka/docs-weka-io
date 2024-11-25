@@ -329,7 +329,7 @@ Right-scroll the table to view all columns.
 
 ## HA
 
-See [#high-availability-ha](../weka-system-overview/networking-in-wekaio.md#high-availability-ha "mention").
+See [#high-availability](../weka-system-overview/networking-in-wekaio.md#high-availability "mention")
 
 ## SSDs
 
