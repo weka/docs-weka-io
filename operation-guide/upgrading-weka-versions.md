@@ -8,7 +8,7 @@ description: Upgrade your WEKA system with the latest version.
 
 The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations. When planning an upgrade, adhere to the following guidelines:
 
-* **Supported source versions:** To upgrade to version 4.4.Y, the minimum supported source versions are 4.2.12, 4.3.0, or 4.4.0.
+* **Supported source versions:** To upgrade to version 4.4.Y, the **minimum** supported source versions are 4.2.1. The **maximum** supported source versions are 4.2.12.92, 4.3.5, and 4.4.0.
 * **Upgrade path:** Upgrades must progress from an older version to a newer version. For example, upgrading from version 4.2.X to 4.4.Y is permitted only if version 4.4.Y was released after the 4.2.X Long-Term Support (LTS) release.
 * **Major version compatibility:** Upgrades must remain within the same major version or transition from an older major version to its direct successor.
 * **Version-specific exceptions:** Exceptions to upgrade paths may exist. Always confirm the supported minimum and maximum versions for the desired upgrade. For detailed information on release dates and compatible versions, visit [get.weka.io](https://get.weka.io).
@@ -18,11 +18,11 @@ The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minim
 * **Permitted upgrade:**\
   Upgrading from version 4.2.12.92 LTS (released August 1, 2024) to version 4.4.1 (released November 5, 2024) is allowed.
 * **Restricted upgrade:**\
-  Upgrading from version 4.2.16 (released November 25, 2024) to version 4.4.1 is not allowed because version 4.2.16 was released after 4.4.1.
+  Upgrading from versions 4.2.14, 4.2.15, and 4.2.16 to version 4.4.1 is not allowed.
 
 Always review release notes and guidelines to confirm upgrade eligibility for your specific version.
 
-<figure><img src="../.gitbook/assets/get-weka-io-versions_4.4 (1).png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/get-weka-io-versions_4.4 (3).png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
 
 {% hint style="warning" %}
 The source system must be set up in MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the cluster architecture to MCB. See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention").\
