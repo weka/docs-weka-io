@@ -8,7 +8,7 @@ description: Upgrade your WEKA system with the latest version.
 
 The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations. When planning an upgrade, adhere to the following guidelines:
 
-* **Supported source versions:** To upgrade to version 4.4.Y, the **minimum** supported source versions are 4.2.1. The **maximum** supported source versions are 4.2.12.92, 4.3.5, and 4.4.0.
+* **Supported source versions:** To upgrade to version 4.4.1, the **minimum** supported source version is 4.2.1. The **maximum** supported source versions are 4.2.12.92, 4.3.5, and 4.4.0.
 * **Upgrade path:** Upgrades must progress from an older version to a newer version. For example, upgrading from version 4.2.X to 4.4.Y is permitted only if version 4.4.Y was released after the 4.2.X Long-Term Support (LTS) release.
 * **Major version compatibility:** Upgrades must remain within the same major version or transition from an older major version to its direct successor.
 * **Version-specific exceptions:** Exceptions to upgrade paths may exist. Always confirm the supported minimum and maximum versions for the desired upgrade. For detailed information on release dates and compatible versions, visit [get.weka.io](https://get.weka.io).
