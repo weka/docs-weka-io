@@ -12,7 +12,7 @@ To ensure optimal performance and reliability when using NFS clients with WEKA, 
 
 The following parameters **must** be included alongside the client's default mount options:
 
-* **NFSv3 and NFSv4**: `proto=tcp`
+* **NFSv3** and **NFSv4**: `proto=tcp`
 
 ## Recommended parameters
 
