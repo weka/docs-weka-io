@@ -1,39 +1,36 @@
+---
+description: >-
+  Configure mandatory and recommended NFS client mount options with WEKA based
+  on real-world testing and validation for optimal performance and reliability.
+---
+
 # Supported NFS client mount parameters
 
-For optimal NFS client performance with WEKA, adhere to mandatory and recommended parameters. These parameters are tested and supported in various scenarios, reflecting real-world usage.
+To ensure optimal performance and reliability when using NFS clients with WEKA, it is essential to configure specific mandatory and recommended mount parameters. These parameters have been tested and validated in various real-world scenarios.
 
 ## **Mandatory** parameters
 
-It is imperative to include the following parameters with the client's default mount options:
+The following parameters **must** be included alongside the client's default mount options:
 
-* **NFSv3:**&#x20;
-  * `nolock`
-  * `sec=sys`
-  * `proto=tcp`
-* **NFSv4:**
-  * `sec=sys`
-  * `proto=tcp`
+* **NFSv3** and **NFSv4**: `proto=tcp`
 
 ## Recommended parameters
 
-In addition to the mandatory parameters, consider the following recommendations to enhance performance and stability:
+For enhanced performance and stability, include the following parameters in addition to the mandatory ones:
 
-* **NFSv3:**
+* **NFSv3**:
   * `hard`
   * `vers=3`
-* **NFSv4:**
+* **NFSv4**:
   * `hard`
   * `vers=4`
 
 ## Additional information
 
-* **NFS client version:** Specify the NFS client version as `vers=3` or `vers=4` to prevent unexpected negotiations during server configuration changes.
-* **Resiliency:** Explicitly set `hard` for resilience to temporary network interruptions.
-* **NFS performance:** For users of the latest WEKA versions, consider setting `nconnect` to a value greater than 1 for potential NFS performance improvement.
-
-{% hint style="info" %}
-This page discusses client options specifically supported for clients of WEKA NFS. Beyond these, the default NFS client options negotiated at mount time are appropriate for most use cases. For guidance on other NFS client options, consult the client's operating system documentation.
-{% endhint %}
+* **Specifying NFS Client Version:** Always explicitly define the NFS client version (`vers=3` or `vers=4`) to prevent unexpected protocol negotiation during server configuration changes.
+* **Resiliency to network interruptions:** Use the `hard` option to ensure the client retries operations during temporary network interruptions, maintaining data integrity and operation continuity.
+* **Improving NFS performance:** For the latest WEKA versions, consider setting the `nconnect` parameter to a value greater than `1` to optimize NFS performance by enabling multiple TCP connections.
+* **Default NFS client options:** Beyond the parameters listed above, the default options negotiated by the NFS client at mount time are suitable for most use cases. For advanced configurations or additional NFS client options, refer to the documentation provided by your operating system.
 
 **Related topic**
 
