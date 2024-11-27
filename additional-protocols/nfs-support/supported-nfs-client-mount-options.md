@@ -1,8 +1,14 @@
-# Optimize NFS client performance with WEKA
+---
+description: >-
+  Configure mandatory and recommended NFS client mount options with WEKA based
+  on real-world testing and validation for optimal performance and reliability.
+---
 
-To ensure optimal performance and reliability when using NFS clients with WEKA, it is essential to configure specific mandatory and recommended parameters. These parameters have been tested and validated in various real-world scenarios.
+# Supported NFS client mount parameters
 
-## **Mandatory** parameters
+To ensure optimal performance and reliability when using NFS clients with WEKA, it is essential to configure specific mandatory and recommended mount parameters. These parameters have been tested and validated in various real-world scenarios.
+
+## **Mandatory parameters**
 
 The following parameters **must** be included alongside the client's default mount options:
 

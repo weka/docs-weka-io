@@ -124,7 +124,7 @@
 
 * [Additional protocol containers](additional-protocols/additional-protocols-overview.md)
 * [Manage the NFS protocol](additional-protocols/nfs-support/README.md)
-  * [Optimize NFS client performance with WEKA](additional-protocols/nfs-support/supported-nfs-client-mount-options.md)
+  * [Supported NFS client mount parameters](additional-protocols/nfs-support/supported-nfs-client-mount-options.md)
   * [Manage NFS networking using the GUI](additional-protocols/nfs-support/nfs-support.md)
   * [Manage NFS networking using the CLI](additional-protocols/nfs-support/nfs-support-1.md)
 * [Manage the S3 protocol](additional-protocols/s3/README.md)
