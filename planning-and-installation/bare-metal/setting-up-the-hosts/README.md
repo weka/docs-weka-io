@@ -289,32 +289,32 @@ The following steps provide guidance for configuring dual-network links with pol
 Network scripts are deprecated in RHEL/Rocky 8. For RHEL/Rocky 9, use the Network Manager.
 {% endhint %}
 
-5. Navigate to `/etc/sysconfig/network-scripts/`.
-6.  Create the file `/etc/sysconfig/network-scripts/route-mlnx0` with the following content:
+1. Navigate to `/etc/sysconfig/network-scripts/`.
+2.  Create the file `/etc/sysconfig/network-scripts/route-mlnx0` with the following content:
 
     ```bash
     10.90.0.0/16 dev mlnx0 src 10.90.0.1 table weka1
     default via 10.90.2.1 dev mlnx0 table weka1
     ```
-7.  Create the file `/etc/sysconfig/network-scripts/route-mlnx1` with the following content:
+3.  Create the file `/etc/sysconfig/network-scripts/route-mlnx1` with the following content:
 
     ```bash
     10.90.0.0/16 dev mlnx1 src 10.90.1.1 table weka2
     default via 10.90.2.1 dev mlnx1 table weka2
     ```
-8.  Create the files `/etc/sysconfig/network-scripts/rule-mlnx0` and `/etc/sysconfig/network-scripts/rule-mlnx1` with the following content:
+4.  Create the files `/etc/sysconfig/network-scripts/rule-mlnx0` and `/etc/sysconfig/network-scripts/rule-mlnx1` with the following content:
 
     ```bash
     table weka1 from 10.90.0.1
     table weka2 from 10.90.1.1
     ```
-9.  Open `/etc/iproute2/rt_tables` and add the following lines:
+5.  Open `/etc/iproute2/rt_tables` and add the following lines:
 
     ```bash
     100 weka1
     101 weka2
     ```
-10. Save the changes.
+6. Save the changes.
 
 ### RHEL/Rocky 9 routing configuration using the Network Manager
 
@@ -347,7 +347,7 @@ The route's first IP address in the above commands signifies the network's subne
 
 ### **Ubuntu Netplan configuration**
 
-11. Open the Netplan configuration file `/etc/netplan/01-netcfg.yaml` and adjust it:
+1.  Open the Netplan configuration file `/etc/netplan/01-netcfg.yaml` and adjust it:
 
     ```yaml
     network:
@@ -384,7 +384,7 @@ The route's first IP address in the above commands signifies the network's subne
                           priority: 32765
                 ignore-carrier: true
     ```
-12. After adjusting the Netplan configuration file, run the following commands:
+2.  After adjusting the Netplan configuration file, run the following commands:
 
     ```bash
     ip route add 10.222.0.0/24 via 10.222.0.10 dev ib1 table 100
@@ -393,33 +393,33 @@ The route's first IP address in the above commands signifies the network's subne
 
 ### **SLES/SUSE configuration**
 
-13. Create `/etc/sysconfig/network/ifrule-eth2` with:
+1.  Create `/etc/sysconfig/network/ifrule-eth2` with:
 
     ```bash
     ipv4 from 192.168.11.21 table 100
     ```
-14. Create `/etc/sysconfig/network/ifrule-eth4` with:
+2.  Create `/etc/sysconfig/network/ifrule-eth4` with:
 
     ```bash
     ipv4 from 192.168.11.31 table 101
     ```
-15. Create `/etc/sysconfig/network/scripts/ifup-route.eth2` with:
+3.  Create `/etc/sysconfig/network/scripts/ifup-route.eth2` with:
 
     ```bash
     ip route add 192.168.11.0/24 dev eth2 src 192.168.11.21 table weka1
     ```
-16. Create `/etc/sysconfig/network/scripts/ifup-route.eth4` with:
+4.  Create `/etc/sysconfig/network/scripts/ifup-route.eth4` with:
 
     ```bash
     ip route add 192.168.11.0/24 dev eth4 src 192.168.11.31 table weka2
     ```
-17. Add the weka lines to `/etc/iproute2/rt_tables`:
+5.  Add the weka lines to `/etc/iproute2/rt_tables`:
 
     ```bash
     100 weka1
     101 weka2
     ```
-18. Restart the interfaces or reboot the machine:
+6.  Restart the interfaces or reboot the machine:
 
     ```bash
     ifdown eth2; ifdown eth4; ifup eth2; ifup eth4
