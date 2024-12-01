@@ -87,6 +87,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 12 SP5
 * **Oracle Linux:**
   * 9
+  * 8.9
 * **Debian:**
   * 12
   * 10
