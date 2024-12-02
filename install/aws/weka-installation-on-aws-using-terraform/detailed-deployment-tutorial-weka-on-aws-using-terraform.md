@@ -44,7 +44,7 @@ If deploying into a WEKA customer environment, the customer should understand th
 
 ### User Account Privileges
 
-To carry out the necessary operations for a successful WEKA deployment in AWS using Terraform, you must ensure that an [AWS IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_users.html) has the appropriate permissions listed in **Appendix B** below (i.e., the Appendices section). The IAM user must be permitted to create, modify, and delete AWS resources as dictated by Terraform Configuration Files used for WEKA deployment.
+To carry out the necessary operations for a successful WEKA deployment in AWS using Terraform, you must ensure that an [AWS IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) has the appropriate permissions listed in **Appendix B** below (i.e., the Appendices section). The IAM user must be permitted to create, modify, and delete AWS resources as dictated by Terraform Configuration Files used for WEKA deployment.
 
 If the current IAM user does not have these permissions, it is advisable to either update the permissions or create a new IAM user with the required privileges.
 
@@ -243,7 +243,7 @@ module "weka_deployment" {
 }
 ```
 
-Authentication is handled in the “provider” section. You will need either the “**Access key ID**” and the “**Secret access key**” for the AWS account’s IAM user that will be authenticated in AWS for WEKA deployment or have AWS CLI configured which still requires the Access key ID and the Secret access key, but only to authenticate once. If the AWS IAM user doesn’t already have both the “Access key ID” and “Secret access key”, instructions on how to create both can be found here. [https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_credentials\_access-keys.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_credentials\_access-keys.html)
+Authentication is handled in the “provider” section. You will need either the “**Access key ID**” and the “**Secret access key**” for the AWS account’s IAM user that will be authenticated in AWS for WEKA deployment or have AWS CLI configured which still requires the Access key ID and the Secret access key, but only to authenticate once. If the AWS IAM user doesn’t already have both the “Access key ID” and “Secret access key”, instructions on how to create both can be found here. [https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_credentials\_access-keys.html](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
 
 Authentication can be accomplished by editing the provider section to one of the following.
 
@@ -1088,7 +1088,8 @@ The policies below are required for all the components to function on AWS. Terra
 },
 {
 "Action": [
-"secretsmanager:GetSecretValue"
+"secretsmanager:GetSecretValue",
+"secretsmanager:PutSecretValue"
 ],
 "Effect": "Allow",
 "Resource": [
