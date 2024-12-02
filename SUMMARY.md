@@ -240,6 +240,11 @@
   * [Avoid conflicting CPU allocations](best-practice-guides/weka-and-slurm-integration/avoid-conflicting-cpu-allocations.md)
 * [Storage expansion best practice](best-practice-guides/storage-expansion-best-practice.md)
 
+## AWS Solutions
+
+* [SageMaker HyperPod and WEKA Integrations](aws-solutions/sagemaker-hyperpod-and-weka-integrations/README.md)
+  * [Integrate SageMaker HyperPod with WEKA using Slurm](aws-solutions/sagemaker-hyperpod-and-weka-integrations/integrate-sagemaker-hyperpod-with-weka-using-slurm.md)
+
 ## WEKApod
 
 * [WEKApod Data Platform Appliance overview](wekapod/overview.md)
