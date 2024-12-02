@@ -1124,7 +1124,8 @@ The following policies are essential for all components to function on AWS. Terr
 },
 {
 "Action": [
-"secretsmanager:GetSecretValue"
+"secretsmanager:GetSecretValue",
+"secretsmanager:PutSecretValue"
 ],
 "Effect": "Allow",
 "Resource": [
