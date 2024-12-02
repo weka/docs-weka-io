@@ -37,7 +37,7 @@ To install Terraform, we recommend following the [official installation guides](
 
 ### Locate the AWS Account
 
-1. Access the AWS Management Console**.**
+1. Access the AWS Management Consol&#x65;**.**
 2. In the top-right corner, search for **Account ID**.
 
 <figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
@@ -49,7 +49,7 @@ To install Terraform, we recommend following the [official installation guides](
 
 ### Confirm user account permissions
 
-To ensure a successful WEKA deployment in AWS using Terraform, verify that the [AWS IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id\_users.html) has the required permissions listed in [#appendix-b-terraforms-required-permissions](detailed-deployment-tutorial-weka-on-aws-using-terraform.md#appendix-b-terraforms-required-permissions "mention"). The user must have permissions to create, modify, and delete AWS resources as specified by the Terraform configuration files.
+To ensure a successful WEKA deployment in AWS using Terraform, verify that the [AWS IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) has the required permissions listed in [#appendix-b-terraforms-required-permissions](detailed-deployment-tutorial-weka-on-aws-using-terraform.md#appendix-b-terraforms-required-permissions "mention"). The user must have permissions to create, modify, and delete AWS resources as specified by the Terraform configuration files.
 
 If the IAM user lacks these permissions, update their permissions or create a new IAM user with the necessary permissions.
 
@@ -1200,7 +1200,8 @@ The following policies are essential for all components to function on AWS. Terr
 },
 {
 "Action": [
-"secretsmanager:GetSecretValue"
+"secretsmanager:GetSecretValue",
+"secretsmanager:PutSecretValue"
 ],
 "Effect": "Allow",
 "Resource": [
