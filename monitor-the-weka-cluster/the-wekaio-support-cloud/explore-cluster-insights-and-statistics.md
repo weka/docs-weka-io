@@ -1,4 +1,4 @@
-# Explore cluster insights and statistics
+# Explore cluster insights
 
 ## Clusters
 
@@ -182,13 +182,3 @@ The anonymization option is supported with WEKA clusters of version 3.14.2 and a
 {% endhint %}
 
 <figure><img src="../../.gitbook/assets/download_usage_analytics_reports (3).png" alt=""><figcaption><p>Download Usage Report and Analytics</p></figcaption></figure>
-
-## Performance Statistics
-
-You can open the Grafana application to view some of the various performance visualizations directly from the Local WEKA Home.
-
-From the **Cluster Configuration** menu, select **Performance Statistics**.
-
-<figure><img src="../../.gitbook/assets/lwh_cluster_stats1.png" alt=""><figcaption><p>Cluster Summary in Grafana</p></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/lwh_cluster_stats2.png" alt=""><figcaption><p>WEKA Home Health Dashboard in Grafana</p></figcaption></figure>
