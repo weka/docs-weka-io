@@ -12572,7 +12572,7 @@ weka user generate-token [--access-token-timeout access-token-timeout]
 
 | Parameter                 | Description                                                                                                |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `--access-token-timeout`  | In how long should the access token expire (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)          |
+| `--access-token-timeout`  | In how long should the access token expire (format: 3s, 2h, 4m, 1d, 1d5h, 1w)                              |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
