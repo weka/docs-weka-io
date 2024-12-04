@@ -39,6 +39,12 @@ In environments using **HashiCorp Vault** for secure credential management, the 
 
 ### Set up roles for cluster access
 
+**Enable AppRole authentication**
+
+```
+$ vault auth enable approle
+```
+
 **Role for cluster**
 
 ```shell
@@ -216,7 +222,7 @@ token/       token       token based credentials
 $ vault auth enable token
 ```
 
-* Log into the KMS system using any of the identity methods Vault supports. The identity should have permission to use the previously set master key.&#x20;
+* Log into the KMS system using any of the identity methods Vault supports. The identity must have permission to use the previously set master key.&#x20;
 * Create a token role for the identity using the following command:
 
 {% code overflow="wrap" %}
@@ -248,7 +254,7 @@ policies             ["default"]
 For more information on obtaining an API token, refer to [Vault Tokens documentation](https://learn.hashicorp.com/vault/security/tokens).
 
 {% hint style="warning" %}
-The WEKA system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max\_lease\_ttl).
+The WEKA system does not automatically renew the API token lease. It can be renewed using the [Vault CLI/API](https://learn.hashicorp.com/vault/security/tokens#step-3-renew-service-tokens). It is also possible to define a higher maximum token value (`max_lease_ttl)`by changing the [Vault Configuration file](https://www.vaultproject.io/docs/configuration/index.html#max_lease_ttl).
 {% endhint %}
 
 ## Obtain a certificate for a KMIP-based KMS
