@@ -466,7 +466,7 @@ kubectl delete pvc -l app.kubernetes.io/name=nats -n home-weka-io
 
 **Procedure**
 
-1. Download the latest Local WEKA Home package (_wekahome-vm-docker-images_). See the location in Download the Local Weka Home and Minikube packages_._
+1. Download the latest Local WEKA Home package (_wekahome-vm-docker-images_). See the location in Download the Local Weka Home and Minikube package&#x73;_._
 2. Unpack the Local Weka Home package to the same directory used for installing the LWH. `tar xvf <file name> -C <path>`
 3. From the `wekahome_offline` sub-directory, run `./update_config.sh`
 4. If you want to modify the existing configuration, open the `/root/.config/wekahome/config.yaml` file and do the following:

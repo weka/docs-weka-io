@@ -185,7 +185,7 @@ You can add new SSD drives to a container. However, adding SSD drives may alter 
    Where:\
    `container-id` is the Identifier of the drive container to add the local SSD drives.\
    `device-paths` is a list of block devices that identify local SSDs. \
-   It must be a valid Unix network device name**.**\
+   It must be a valid Unix network device nam&#x65;**.**\
    Format: Space-separated strings. Example:  `/dev/nvme0n1 /dev/nvme1n1`
 
 ## weka local resources command description

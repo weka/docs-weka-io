@@ -7,7 +7,7 @@ Applying the created `main.tf` file performs the following:
 * Creates VPC networks and subnets on the GCP project.
 * Deploys GCP instances.
 * Installs the WEKA software.
-* Configures the WEKA cluster**.**
+* Configures the WEKA cluste&#x72;**.**
 * Additional GCP objects.
 
 ## Prerequisites

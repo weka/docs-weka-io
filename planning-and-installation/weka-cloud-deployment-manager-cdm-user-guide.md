@@ -62,7 +62,7 @@ The workflow navigation panel visually indicates the completeness of the configu
 
 You can navigate between different workflow pages and view associated configuration input panels by clicking the **Next** button or selecting the desired tab from the workflow navigation panel.
 
-<figure><img src="../.gitbook/assets/image (257).png" alt=""><figcaption><p>Basic configuration page</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/CDM_panel.png" alt=""><figcaption><p>Basic configuration page</p></figcaption></figure>
 
 ### Configuration input panel
 

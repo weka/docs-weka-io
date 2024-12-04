@@ -62,7 +62,7 @@ Add object store buckets to be used for tiering or snapshots.
 1. From the menu, select **Manage > Object Stores**.
 2. Select the **+Create** button.
 
-![Create object store bucket](../../.gitbook/assets/wmng\_create\_obs\_button.png)
+![Create object store bucket](../../.gitbook/assets/wmng_create_obs_button.png)
 
 3. In the **Create Object Store Bucket** dialog, set the following:
    * **Name**: Enter a meaningful name for the bucket.
@@ -132,7 +132,7 @@ Set the following:
 {% endtab %}
 {% endtabs %}
 
-4. Optional**:** If your deployment requires a specific upload and download configuration, select **Advanced**, and set the parameters:
+4. Optiona&#x6C;**:** If your deployment requires a specific upload and download configuration, select **Advanced**, and set the parameters:
    * **Download Bandwidth**: Object store download bandwidth limitation per core (Mbps).
    * **Upload Bandwidth**: Object store upload bandwidth limitation per core (Mbps).
    * **Max concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
@@ -140,7 +140,7 @@ Set the following:
    * **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
    * **Enable Upload Tags**: Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not.
 
-![Advanced upload and download configuration](<../../.gitbook/assets/wmng\_create\_obs\_advanced (1).png>)
+![Advanced upload and download configuration](<../../.gitbook/assets/wmng_create_obs_advanced (1).png>)
 
 6. To validate the connection to the object store bucket, select **Validate**.
 7. Select **Create**.
@@ -159,7 +159,7 @@ The object store buckets are displayed on the **Object Stores** page. Each objec
 
 The following example shows two object store buckets.
 
-![View object store buckets](../../.gitbook/assets/wmng\_view\_obs\_buckets.png)
+![View object store buckets](../../.gitbook/assets/wmng_view_obs_buckets.png)
 
 ## Edit an object store bucket <a href="#edit-an-object-store-bucket" id="edit-an-object-store-bucket"></a>
 
@@ -170,11 +170,11 @@ You can modify the object store bucket parameters according to your demand chang
 1. From the menu, select **Manage > Object Stores**.
 2. Select the three dots on the right of the object store you want to modify and select **Edit**.
 
-![Edit an object store bucket](<../../.gitbook/assets/wmng\_edit\_obs\_button (1).png>)
+![Edit an object store bucket](<../../.gitbook/assets/wmng_edit_obs_button (1).png>)
 
 3. In the Edit Object Store Bucket dialog, modify the details, and select **Update**.
 
-![Edit an object store bucket](<../../.gitbook/assets/wmng\_edit\_obs (1).png>)
+![Edit an object store bucket](<../../.gitbook/assets/wmng_edit_obs (1).png>)
 
 ## Show recent operations of an object store bucket
 
@@ -203,6 +203,6 @@ You can delete an object store bucket if it is no longer required. The data in t
 2. Select the three dots on the right of the object store bucket you want to delete, and select **Remove**.
 3. To confirm the object store bucket deletion, select **Yes**.
 
-[^1]: WEKA supports the AWS Security Token Service (STS) that enables you to request temporary, limited-privilege credentials for users using the [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API\_AssumeRole.html) API.
+[^1]: WEKA supports the AWS Security Token Service (STS) that enables you to request temporary, limited-privilege credentials for users using the [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html) API.
 
 [^2]: The length must be between 2 and 64 characters. Allowed characters include alphanumeric characters (upper and lower case), underscore (\_), equal sign (=), comma (,), period (.), at symbol (@), and hyphen (-). Space is not allowed.

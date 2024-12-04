@@ -13,7 +13,7 @@ Applying the Terraform module performs the following:
 * Creates resources in a predefined resource group, such as virtual machines, network interfaces, function apps, load balancer, and more.
 * Deploys Azure virtual machines.
 * Installs the WEKA software.
-* Configures the WEKA cluster**.**
+* Configures the WEKA cluste&#x72;**.**
 
 The total deployment time is about 30 minutes. Half of that time is for resource deployment. The remainder is for the WEKA cluster installation and configuration.
 
