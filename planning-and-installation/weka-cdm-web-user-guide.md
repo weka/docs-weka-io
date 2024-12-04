@@ -62,7 +62,7 @@ The workflow navigation panel visually indicates the completeness of the configu
 
 You can navigate between different workflow pages and view associated configuration input panels by clicking the **Next** button or selecting the desired tab from the workflow navigation panel.
 
-<figure><img src="../.gitbook/assets/image (257).png" alt=""><figcaption><p>Basic configuration page</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/CDM_panel.png" alt="" width="563"><figcaption><p>Basic configuration page</p></figcaption></figure>
 
 ### Configuration input panel
 
@@ -123,7 +123,7 @@ The dynamic content sidebar enhances user experience by displaying contextually 
 <figure><img src="../.gitbook/assets/image (263).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="success" %}
-All tabs in the workflow navigation panel display green status bubbles with check marks, indicating the configuration is complete and ready for a minimally viable WEKA deployment based on the user's selected parameters. Once all status bubbles are green, the dynamic content sidebar will only show the **TF File Preview** tab, **File Format** toggle, and **Download** button.
+All tabs in the workflow navigation panel display green status bubbles with check marks, indicating the configuration is complete and ready for a minimally viable WEKA deployment based on the user's selected parameters. Once all status bubbles are green, the dynamic content sidebar only shows the **TF File Preview** tab, **File Format** toggle, and **Download** button.
 {% endhint %}
 
 ### Finalize the WEKA deployment

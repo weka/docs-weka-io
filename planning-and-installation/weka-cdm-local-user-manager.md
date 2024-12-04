@@ -45,7 +45,7 @@ For Google Cloud CLI, use the `gcloud auth application-default login` command to
      * Intel-based: cdm-linux-amd64
      * ARM-based: cdm-linux-arm64
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 10.19.47 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/CDM_download.png" alt=""><figcaption></figcaption></figure>
 
 ## Launch CDM Local
 
@@ -189,14 +189,14 @@ If any errors occur during the validation, a popup window appears with details a
 * **Purpose:** Enables users to download or copy the completed configuration file for local use.
 * **Functionality:** The **Download** and **Copy** button allow you to save the file locally or copy it, to manually execute the relevant Terraform `plan`, and `apply` commands for WEKA cluster deployment.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.43.21 AM.png" alt=""><figcaption><p>Download and copy the finalized terraform configuration file</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/CDM_Download_and_copy.png" alt=""><figcaption><p>Download and copy the finalized</p></figcaption></figure>
 
 #### Deploy WEKA Cluster
 
 * **Purpose:** Executes the deployment of the configured WEKA cluster.
 * **Functionality:** The **CREATE** button initiates the execution of a Terraform `apply` action. If Terraform is not present on the client system, it installs in the user's home directory.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.04.25 AM copy.png" alt=""><figcaption><p>The CREATE button will deploy the configured WEKA cluster</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/CDM_create.png" alt=""><figcaption><p>The CREATE button will deploy the configured WEKA cluster</p></figcaption></figure>
 
 ### Modify the configuration of a deployed WEKA cluster
 
@@ -211,7 +211,7 @@ Clicking on a cluster opens its configuration, allowing you to make changes. Use
 * **Purpose**: Applies updates to the configuration of the deployed WEKA cluster.
 * **Functionality**: The **UPDATE** button initiates a Terraform `apply` action, enabling post-deployment changes to the cluster configuration, such as adding Protocol Servers.
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 12.22.13 PM.png" alt=""><figcaption><p>The UPDATE button applies changes to the configured WEKA cluster</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/CDM_update.png" alt=""><figcaption><p>The UPDATE button applies changes to the configured WEKA cluster</p></figcaption></figure>
 
 ### Retrieve Information on deployed WEKA clusters
 
@@ -253,7 +253,7 @@ When the WEKA clusterization process finishes, a random password is generated fo
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 5.png" alt=""><figcaption><p>Get the auto generated password for the 'admin' user on the WEKA cluster</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.24.22 AM.png" alt="" width="412"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/CDM_password.png" alt=""><figcaption></figcaption></figure>
 
 #### Backend IPs
 
@@ -261,7 +261,7 @@ You can retrieve the IP addresses for backend access using the **Get Backend IPs
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 6.png" alt=""><figcaption><p>Get the backend IP addresses of the WEKA cluster</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.24.37 AM.png" alt="" width="402"><figcaption><p>If public IPs were assigned, they will display otherwise the private IPs will display.</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/CDM_IPs.png" alt=""><figcaption><p>Public IPs (if assigned. Otherwise, private IPs are shown</p></figcaption></figure>
 
 
 
