@@ -267,9 +267,9 @@ To assign the VF IP addresses or when the client resides in a different subnet a
 
     Ensure that the WEKA cluster default data networking is configured prior to running the mount command. For details, see [Configure default data networking (optional)](../../planning-and-installation/bare-metal/perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional).
 
-#### Example: allocate two cores and a single physical network device (intel0)
+#### Example: Configure VFs in a single physical network device
 
-The following command configures two VFs for the device and assign each one of them to one of the frontend processes. The first container receives a 192.168.1.100 IP address, and the second uses a 192.168.1.101 IP address. Both IPs have 24 network mask bits and a default gateway of 192.168.1.254.
+The following command configures virtual functions (VFs) for the specified device and assigns each VF to one of the frontend processes. The first process is assigned the IP address 192.168.1.100, while the second process uses 192.168.1.101. Both IP addresses are configured with a 24-bit subnet mask and a default gateway of 192.168.1.254.
 
 {% code overflow="wrap" %}
 ```bash
@@ -281,7 +281,7 @@ mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.
 
 For performance or high availability, it is possible to use more than one physical network device.
 
-#### Using multiple physical network devices for better performance
+#### Multiple physical network devices for better performance
 
 It's easy to saturate the bandwidth of a single network interface when using WekaFS. For higher throughput, it is possible to leverage multiple network interface cards (NICs). The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to the WekaFS server driver.
 
@@ -291,7 +291,7 @@ For example, the following command will allocate two cores and two physical netw
 mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/weka
 ```
 
-#### Using multiple physical network devices for high availability configuration
+#### Multiple physical network devices for high availability configuration
 
 Multiple NICs can also be configured to achieve redundancy and higher throughput for a complete, highly available solution. For that, use more than one physical device as previously described, and also, specify the client management IPs using `-o mgmt_ip=<ip>+<ip2>` command-line option.
 
