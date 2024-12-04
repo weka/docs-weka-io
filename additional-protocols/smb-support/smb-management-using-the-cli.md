@@ -52,29 +52,30 @@ The `weka smb cluster create` command creates an SMB-W cluster. To create a lega
 
 <table><thead><tr><th width="210">Name</th><th width="361">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>netbios-name</code>*</td><td>NetBIOS name for the SMB cluster must be 1-15 characters long, using only alphanumeric characters (A-Z, 0-9) and hyphens (-). Names are case-insensitive, cannot start with a hyphen, and must be unique within the network. Spaces and special characters are not allowed.<br>This will be the name of the Active Directory computer object and the hostname part of the FQDN.</td><td></td></tr><tr><td><code>domain</code>*</td><td>The Active Directory domain to which the SMB cluster will be joined.</td><td>​</td></tr><tr><td><code>config-fs-name</code>*</td><td>The predefined filesystem for storing persistent cluster-wide protocol configurations. Ensure the filesystem exists; if not, create it.<br>For details, see <a data-mention href="../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations">#dedicated-filesystem-requirement-for-persistent-protocol-configurations</a></td><td></td></tr><tr><td><code>domain-netbios-name</code></td><td>Domain NetBIOS name.</td><td>The first part of the <code>domain</code> parameter</td></tr><tr><td><code>idmap-backend</code></td><td>The ID mapping method to use.<br>Possible values: <code>rfc2307</code> or <code>rid</code></td><td><code>rfc2307</code></td></tr><tr><td><code>default-domain-mapping-from-id</code></td><td>The first ID of the range for the default AD ID mapping (for trusted domains that have no defined range).<br>Not supported in SMB-W yet.</td><td>4290000001</td></tr><tr><td><code>default-domain-mapping-to-id</code></td><td>The last ID of the range for the default AD ID mapping (for trusted domains that have no defined range).<br>Not supported in SMB-W yet.</td><td>4291000000</td></tr><tr><td><code>joined-domain-mapping-from-id</code></td><td>The first ID of the range for the main AD ID mapping.</td><td>0</td></tr><tr><td><code>joined-domain-mapping-to-id</code></td><td>The last ID of the range for the main AD ID mapping.</td><td>4290000000</td></tr><tr><td><code>encryption</code></td><td><p>The global encryption policy to use:</p><ul><li><code>enabled</code> - enables encryption negotiation but doesn't turn it on automatically for supported sessions and share connections.</li><li><code>disabled</code> - doesn't support encrypted connections.</li><li><code>desired</code> - enables encryption negotiation and turns on data encryption on supported sessions and share connections.</li><li><code>required</code> - enforces data encryption on sessions and share connections. Clients that do not support encryption will be denied access to the server.</li></ul><p>SMB-W possible values: <code>enabled</code>, <code>desired</code>, <code>required</code><br><br>Legacy SMB possible values: <code>enabled</code>, <code>disabled</code>, <code>desired</code>, <code>required</code></p></td><td><code>enabled</code></td></tr><tr><td><code>smb-conf-extra</code></td><td>Additional SMB configuration options.</td><td></td></tr><tr><td><code>container-ids</code></td><td>The container IDs of the containers with a frontend process to serve the SMB service.<br>Minimum of 3 containers.</td><td></td></tr><tr><td><code>smb-ips-pool</code></td><td><p>A pool of virtual IPs, used as floating IPs for the SMB cluster to provide HA to clients.</p><p>These IPs must be unique; do not assign these IPs to any host on the network.<br>Format: comma-separated IP addresses.</p></td><td></td></tr><tr><td><code>smb-ips-range</code></td><td><p>A range of virtual IPs, used as floating IPs for the SMB cluster to provide HA to clients.</p><p>These IPs must be unique; do not assign these IPs to any host on the network.<br>Format: <code>A.B.C.D-E</code><br>Example: <code>10.10.0.1-100</code></p></td><td></td></tr><tr><td><code>symlink</code></td><td><p>Determines if symbolic links are allowed in the SMB cluster.</p><ul><li><code>on</code>: Enables symbolic links. Use with caution, as it can introduce security risks by exposing data across shares.</li><li><code>off</code>: Disables symbolic links, enhancing security by preventing link-based vulnerabilities.</li></ul><p><strong>Important</strong>: If a symbolic link in one share points to a file system in another share, users in the first share can access the data in the second share. Ensure you understand the security implications before enabling this option.</p><p></p><p>Only applicable for SMB-W clusters.</p></td><td><code>Off</code></td></tr></tbody></table>
 
-{% hint style="info" %}
-To enable HA through IP takeover, all IPs must reside on the same subnet.
-{% endhint %}
+### Guidelines for configuring an SMB cluster
 
-{% hint style="info" %}
-The floating IPs configured but **MUST NOT** be in use by any other application/server in the subnet, including WEKA system management nodes, WEKA system IO nodes, or WEKA system NFS floating IPs. Setting a list of SMB floating IPs in all-cloud installations is impossible due to cloud provider network limitations. In this case, the SMB service must be accessed by using the primary addresses of the cluster nodes.
-{% endhint %}
+* **Enable High Availability (HA):**
+  * Ensure all floating IPs reside on the same subnet to enable IP takeover for HA.
+* **Floating IP requirements:**
+  * Floating IPs must not be used by any other applications, servers, or WEKA components, including:
+    * WEKA system management nodes
+    * WEKA system IO nodes
+    * WEKA system NFS floating IPs
+  * In all-cloud installations, where listing SMB floating IPs is restricted by cloud provider network limitations, access the SMB service via the primary addresses of the cluster nodes.
+* **Configure SMB floating IPs:**
+  * Use the `--smb-ips` parameter to specify the virtual IPs exposed by the SMB cluster.
+  * Clients must connect through one of these virtual IPs to ensure automatic reconnection if an SMB container fails.
+* **Customizing SMB library options:**
+  * If global options for the SMB library need adjustment, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
 
-{% hint style="info" %}
-The `--smb-ips` parameter must accept the virtual IPs that the SMB cluster exposes. To mount the SMB cluster in an high-availability manner, clients must be connected through one of the exposed virtual IPs, thereby ensuring that they automatically reconnect if one of the SMB containers fail.
-{% endhint %}
+**Example command:**\
+In this example, an SMB cluster named `wekaSMB` is created using containers 0-4, within the domain `mydomain`. The cluster is configured with virtual IPs ranging from 1.1.1.1 to 1.1.1.5.
 
-{% hint style="info" %}
-If setting the global options to the SMB library is required, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md).
-{% endhint %}
-
-{% hint style="success" %}
-**Example:**
-
-`weka smb cluster create wekaSMB mydomain --container-ids 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5`
-
-In this example of a full command, an SMB cluster is configured over the WEKA system containers 0-4. The SMB cluster is called `wekaSMB,`the domain name is called `mydomain`, and is directed to use virtual IPs `1.1.1.1` to `1.1.1.5`.
-{% endhint %}
+{% code overflow="wrap" %}
+```bash
+weka smb cluster create wekaSMB mydomain --container-ids 0,1,2,3,4 --smb-ips-pool 1.1.1.1,1.1.1.2 --smb-ips-range 1.1.1.3-5  
+```
+{% endcode %}
 
 ## Update the SMB cluster <a href="#update-smb-cluster" id="update-smb-cluster"></a>
 
@@ -204,18 +205,38 @@ The mount mode for the SMB share is `readcache` and cannot be modified.
 
 <table><thead><tr><th>Name</th><th width="322">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>share-name</code>*</td><td><p>A unique name of the share to add to the filesystem. The share name must adhere to the following rules:</p><ul><li>Alphanumeric characters: A-Z, a-z, 0-9.</li><li>Maximum length: 80 characters.</li><li>Allowed special characters: hyphens (<code>-</code>) and underscores (<code>_</code>).</li><li>Prohibited special characters: space ( ), backslash (<code>\</code>), slash (/), colon (<code>:</code>), semicolon (<code>;</code>).</li><li>Prohibited <a data-footnote-ref href="#user-content-fn-1">control characters</a>: 0x00 through 0x1F.</li><li>No reserved names: Avoid using reserved names such as CON, PRN, AUX, NUL, COM1, LPT1. They may cause conflicts.</li></ul><p>SMB-W: Do not create the same share name with different case insensitivity.</p></td><td>​</td></tr><tr><td><code>fs-name</code>*</td><td>Valid name of the filesystem to share.<br>A filesystem with Required Authentication set to ON cannot be used for SMB share.</td><td>​</td></tr><tr><td><code>description</code></td><td>The description of the share received in remote views.</td><td>​</td></tr><tr><td><code>internal-path</code></td><td>The internal valid path within the filesystem (relative to its root) which will be exposed.</td><td>.</td></tr><tr><td><code>file-create-mask</code></td><td>POSIX permissions for the file created through the SMB share.<br>Numeric (octal) notation.<br>Maximum value: 0777.</td><td>0744</td></tr><tr><td><code>directory-create-mask</code></td><td>POSIX permissions for directories created through the SMB share.<br>Numeric (octal) notation.<br>Maximum value: 0777.<br>SMB-W: the specified string must be greater or equal to 0600.</td><td>0755</td></tr><tr><td><code>acl</code></td><td>Enable Windows ACLs on the share (translated to POSIX).<br>Supports up to 16 ACLs per file depending on the available space in the Extended Attribute (xattr). Only applicable for SMB-W.<br>For details, see <a data-mention href="../../weka-system-overview/filesystems.md#filesystem-extended-attributes-considerations">#filesystem-extended-attributes-considerations</a><br>Possible values: <code>on</code>, <code>off</code><br>For a MAC client, if <code>acl</code> is <code>off</code>, set <code>enable-ADS</code> to <code>off</code>.</td><td><code>off</code></td></tr><tr><td><code>map-acl</code></td><td><p>Specifies the type of access control to use for the share. Options include POSIX, Windows, or Hybrid. </p><p>Hybrid ACL allows seamless interoperability between POSIX and Windows systems by exchanging permissions based on timestamps. Regardless of the system it originated from, the most recent permission takes precedence.<br>Only applicable for SMB-W.</p></td><td><code>POSIX</code></td></tr><tr><td><code>case-sensitivity</code></td><td><p>Enables or disables case sensitivity for the specified SMB share. When enabled, the share distinguishes between files with the same name but different capitalization.</p><p>This option applies exclusively to SMB-W cluster.</p></td><td><code>on</code></td></tr><tr><td><code>obs-direct</code></td><td><p>A special mount option to bypass the time-based policies. </p><p>For details, see <a data-mention href="../../weka-filesystems-and-object-stores/tiering/advanced-time-based-policies-for-data-storage-location.md#object-store-direct-mount-option">#object-store-direct-mount-option</a><br>Possible values: <code>on</code>, <code>off</code></p></td><td><code>off</code></td></tr><tr><td><code>encryption</code></td><td><p>The share encryption policy.</p><p><code>cluster_default:</code> The share encryption policy follows the global SMB cluster setting.</p><p><code>desired</code>: If negotiation is enabled globally, it turns on data encryption for this share for clients that support encryption.</p><p><code>required</code>: Enforces encryption for the shares. Clients that do not support encryption are denied when accessing the share. If the global option is <code>disabled</code>, the access is restricted to these shares for all clients.<br>Possible value for SMB-W: <code>cluster_default</code><br>Possible values: <code>cluster_default</code> , <code>desired</code>, <code>required</code></p></td><td><code>cluster_default</code></td></tr><tr><td><code>read-only</code></td><td>Sets the share as read-only. Users cannot create or modify files in this share.<br>Possible values: <code>on</code>, <code>off</code></td><td><code>off</code></td></tr><tr><td><code>user-list-type</code></td><td><p>The type of initial permissions list for <code>users</code>.<br>Possible values:<br><code>read_only</code> : List of users who have been denied write access to the share, regardless of the <code>read-only</code> setting.<br><code>read_write</code>: List of users given write access to the share, regardless of the <code>read-only</code> setting.</p><p><code>valid</code> : List of users that are allowed to log in to this share (empty list = all users are allowed)<br><code>invalid</code> - list of users that are not allowed to log in to this share</p></td><td></td></tr><tr><td><code>allow-guest-access</code></td><td>Allows connecting to the SMB service without a password. Permissions are as the <code>nobody</code> user account permissions.<br>Possible values: <code>on</code>, <code>off</code><br>SMB-W: not supported</td><td><code>off</code></td></tr><tr><td><code>enable-ADS</code></td><td><p>Enables using Alternate Data Streams (ADS) on a specified SMB share.<br>Possible values: <code>yes</code>, <code>no</code></p><p><br><strong>macOS clients</strong>:<br>If ACLs are disabled (<code>acl=off</code>), set <code>enable-ADS</code> to <code>off</code>.</p><p><br><strong>Windows clients</strong>:<br>When enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.</p></td><td><code>on</code></td></tr><tr><td><code>hidden</code></td><td>Sets the share as non-browsable. It will be accessible for mounting and IOs but not discoverable by SMB clients.<br>Possible values: <code>on</code>, <code>off</code></td><td><code>off</code></td></tr><tr><td><code>vfs-zerocopy-read</code></td><td><p>If supported, enable zero-copy reads. This allows data to transfer directly from disk to application memory without intermediate copying, reducing CPU usage and latency and enhancing throughput and efficiency for large file access.</p><p>Possible values: <code>on</code>, <code>off</code>.</p></td><td><code>on</code></td></tr><tr><td><code>users</code></td><td><p>A list of users to use with the <code>user-list-type</code> list.</p><p>Format: Domain short name followed by group name, for example <code>WEKAAD\internalShareUsers</code><br>Possible values: Up to 8 users/groups for all lists combined per share.</p></td><td>Empty list</td></tr></tbody></table>
 
-{% hint style="info" %}
-If it is necessary to set a share with specific options to the SMB library, contact the Customer Success Team.
-{% endhint %}
+### Guidelines for adding an SMB share
 
-{% hint style="success" %}
-**Example:** The following is an example for adding users to a share mounted on a filesystem named "default":
+* **Adding SMB shares:**
+  *   Example commands:
 
-`weka smb share add rootShare default`\
-`weka smb share add internalShare default --internal-path some/dir --description "Exposed share"`
+      ```bash
+      weka smb share add rootShare default  
+      weka smb share add internalShare default --internal-path some/dir --description "Exposed share"  
+      ```
 
-In this example, the first SMB share added has the WEKA system share for default. The second SMB share has internal for default.
-{% endhint %}
+      The first command creates a root SMB share for the `default` filesystem.
+
+      The second command creates an internal SMB share for the `default` filesystem with a specified subdirectory and description.
+* **Custom SMB library options:** For configuring SMB shares with specific library options, contact the Customer Success Team.
+* **Setting share permissions:** After adding an SMB share, configure POSIX permissions to grant SMB users access.\
+  **Examples:**
+  *   Grant full access:
+
+      ```bash
+      mount -t wekafs smbw-fs /mnt/smbw  
+      chmod 777 /mnt/smbw  
+      umount /mnt/smbw  
+      ```
+  *   Assign group ownership:
+
+      ```bash
+      mount -t wekafs smbw-fs /mnt/smbw  
+      chown :smb-group /mnt/smbw  
+      umount /mnt/smbw  
+      ```
+
+For more details, see [#filesystem-permissions-and-access-rights-configuration](./#filesystem-permissions-and-access-rights-configuration "mention").
 
 ## Update SMB shares <a href="#update-smb-shares" id="update-smb-shares"></a>
 
