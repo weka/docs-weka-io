@@ -261,7 +261,7 @@ You can retrieve the IP addresses for backend access using the **Get Backend IPs
 
 <figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 6.png" alt=""><figcaption><p>Get the backend IP addresses of the WEKA cluster</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/CDM_IPs.png" alt=""><figcaption><p>Backend IP address list: Public (if assigned) or private</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/CDM_IPs.png" alt=""><figcaption><p>Backend IP address list: public (if assigned) or private</p></figcaption></figure>
 
 
 
