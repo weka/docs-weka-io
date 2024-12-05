@@ -131,7 +131,7 @@ For detailed instructions on setting the configuration options, see general Linu
 Each server has the WEKA Tools pre-installed in `/opt/tools`, including:
 
 * `wekanetperf`: This tool runs `iperf` between the servers to ensure line rate can be achieved.
-* `wekachecker`: This tool checks a variety of network settings and more. For details, see [#validate-the-system-preparation](setting-up-the-hosts/#validate-the-system-preparation "mention").
+* `wekachecker`: This tool checks a variety of network settings and more. For details, see [#id-11.-validate-the-system-preparation](setting-up-the-hosts/#id-11.-validate-the-system-preparation "mention").
 * `bios_tool`: This tool helps you to set the required BIOS settings on the servers.
 
 ### 4. Validate the WEKA software installation

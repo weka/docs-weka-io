@@ -34,21 +34,47 @@ Adhere to the following concepts:
 
 ## Workflow
 
-1. Configure a WEKA cluster with the WEKA Configurator.
-2. Apply the configuration (`config.sh`).
+1. Access the WEKA tools.
+2. Configure a WEKA cluster with the WEKA Configurator.
+3. Apply the configuration (`config.sh`).
 
-### 1. Configure a WEKA cluster with the WEKA Configurator
+### 1. Access the WEKA tools
 
-1. Download the WEKA’s tools repository to one of the servers by running the following:\
-   `git clone https://github.com/weka/tools`
-2. Connect to the server using `ssh`, change the directory to `tools/install`, and run `./wekaconfig`.
+1.  **If you do not use WSA or WEKApod**:\
+    Download the WEKA tools repository to one of the servers by running the following command:
 
-The `wekaconfig` scans the environment, detects the servers, and determines if the group of servers is homogeneous. The following example shows the servers do not have a homogeneous number of cores.
+    ```bash
+    git clone https://github.com/weka/tools
+    ```
+2.  **If you use WSA or WEKApod**:\
+    The tools are pre-installed and can be found at the following location:
+
+    ```bash
+    /opt/tools/install  
+    ```
+
+### 2. Configure a WEKA cluster with the WEKA Configurator
+
+1. **Run the `wekaconfig` Tool:**
+   1. Connect to one of the backend servers or the WMS server (if it exists) using SSH.
+   2.  Navigate to the `tools/install` directory:
+
+       ```bash
+       bcd tools/install
+       ```
+   3.  Run the `wekaconfig` tool:
+
+       ```bash
+       ./wekaconfig
+       ```
+
+The `wekaconfig` tool scans the environment, detects the servers, and evaluates whether the group of servers is homogeneous. The following example demonstrates a scenario where the servers do not have a homogeneous number of CPU cores.
 
 <figure><img src="../../.gitbook/assets/wekaconfig_detection.png" alt="" width="563"><figcaption><p>Example: <code>wekaconfig</code> detection results</p></figcaption></figure>
 
-3. Review the detection results. If the configuration meets your requirements, press **Enter**. \
-   Select each of the following tabs to set the WEKA configuration.
+2. **Review the detection results:**
+   1. If the detected configuration meets your requirements, press **Enter** to proceed.
+   2. Navigate through the available tabs to configure the WEKA settings as needed.
 
 {% tabs %}
 {% tab title="1. DP Networks" %}
@@ -140,7 +166,11 @@ The following example shows a stripe width of 6 (4+2) on 7 servers, and one hot 
 {% endtab %}
 {% endtabs %}
 
-Once you have set the WEKA configuration, using the arrows, select **Done** and press **Enter**. The wekaconfig creates the **config.sh** file.
+3.  **Finalize the configuration:**
+
+    After completing the WEKA configuration, use the arrow keys to select **Done** and press **Enter**.
+
+    The `wekaconfig` tool generates the `config.sh` file based on your settings.
 
 <details>
 
@@ -148,7 +178,6 @@ Once you have set the WEKA configuration, using the arrows, select **Done** and 
 
 ```bash
 #!/bin/bash
-
 usage() {
 	echo "Usage: $0 [--no-parallel]"
 	echo "  Use --no-parallel to prevent parallel execution"
@@ -261,7 +290,6 @@ para ${PARA} sudo weka cluster drive add 4 /dev/nvme0n1 /dev/nvme1n1 /dev/nvme2n
 para ${PARA} sudo weka cluster drive add 5 /dev/nvme0n1 /dev/nvme1n1 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1 
 para ${PARA} sudo weka cluster drive add 6 /dev/nvme0n1 /dev/nvme1n1 /dev/nvme2n1 /dev/nvme3n1 /dev/nvme4n1 /dev/nvme5n1 
 
-
 wait
 sudo weka cluster update --data-drives=4 --parity-drives=2
 sudo weka cluster hot-spare 1
@@ -284,20 +312,21 @@ para ${PARA} ssh weka69 sudo weka local setup container --name frontend0 --resou
 
 wait
 echo Configuration process complete
-
 ```
 
 </details>
 
 {% hint style="info" %}
-Advanced users can edit the config.sh using `vim` or `nano` (or any text editor) to further customize the configuration. If editing is necessary, consult the Customer Success Team.
+Advanced users can customize the configuration by editing the `config.sh` file using a text editor such as `vim` or `nano`. If modifications are required, consult the Customer Success Team for guidance.
 
-Regarding the drive selection, it is not possible to select the data drives (NVMe SSD) to include in the configuration. WEKA clusters are typically dedicated to running WEKA services and homogeneous, therefore `wekaconfig` includes all NVMe drives that are over about 1.5 GB in size (typical). To change the drives used in the cluster, edit the `config.sh` (see the`config.sh` output example above).
+Regarding drive selection: it is not possible to manually select the data drives (NVMe SSDs) for inclusion in the configuration. WEKA clusters are typically dedicated to running WEKA services and are designed to be homogeneous. As a result, the `wekaconfig` tool automatically includes all NVMe drives that are larger than approximately 1.5 GB in size.
+
+To modify the drives used in the cluster, manually edit the `config.sh` file. Refer to the example output for `config.sh` provided above for guidance.
 {% endhint %}
 
 ### 2. Apply the configuration
 
-From the install directory, run `./config.sh`.
+* From the install directory, run `./config.sh`.
 
 <figure><img src="../../.gitbook/assets/wekaconfig_run_config.sh.png" alt="" width="563"><figcaption><p>Apply the configuration </p></figcaption></figure>
 

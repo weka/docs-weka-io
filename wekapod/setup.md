@@ -67,9 +67,7 @@ The pre-configured IP address of the iDRAC/BMC interfaces of the backend servers
 1. Connect a crash cart (KVM) to the server.
 2. Power on or reboot the server.
 
-<figure><img src="../.gitbook/assets/idrac_1.png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../.gitbook/assets/idrac_1.png" alt="" width="563"><figcaption></figcaption></figure>
 
 3. Press **F2** when prompted to enter the **System Setup**.
 
@@ -77,7 +75,7 @@ The pre-configured IP address of the iDRAC/BMC interfaces of the backend servers
 Alternatively, you can configure these settings using the **Lifecycle Controller** (press **F10** during boot).
 {% endhint %}
 
-<figure><img src="../.gitbook/assets/idrac_2.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/idrac_2.png" alt="" width="563"><figcaption></figcaption></figure>
 
 4. Navigate to **Network** settings.
 
@@ -123,7 +121,7 @@ If your WEKApod system does not include a WMS server and Ethernet switch, refer 
 <figure><img src="../.gitbook/assets/WP_WMS_2_deploy.png" alt="" width="563"><figcaption></figcaption></figure>
 
 5. Select **WEKApod Install**.
-6. In Step 1 - Number of servers, the default is set to 8. If your deployment requires a different number, adjust this value as needed, then click **Next**.
+6. In Step 1 - Number of servers, the default **Server Count** is set to 8. If your deployment requires a different number, adjust this value as needed, then click **Next**.
 
 <figure><img src="../.gitbook/assets/WP_WMS_4_step_1.png" alt=""><figcaption></figcaption></figure>
 
@@ -131,15 +129,13 @@ If your WEKApod system does not include a WMS server and Ethernet switch, refer 
 
 <figure><img src="../.gitbook/assets/WP_WMS_5_step_2.png" alt=""><figcaption></figcaption></figure>
 
-8. In Step 3 - Dataplane Settings, enter the required IP information for the Dataplane network, then click **Update Dataplanes**.
+8. In Step 3 - Dataplane Settings, do the following:
+   1. Enter the required IP information for the Dataplane network, then click **Update Dataplanes**.
+   2. Ensure the Dataplanes are configured correctly, then click **Next**.
 
 <figure><img src="../.gitbook/assets/WP_WMS_6_step_3.png" alt=""><figcaption></figcaption></figure>
 
-9. Ensure the Dataplanes are configured correctly, then click **Next**.
-
-<figure><img src="../.gitbook/assets/wekapod_wms_dataplane.png" alt=""><figcaption></figcaption></figure>
-
-10. In Step 4 - Save Files and Run Validation Checks, click **Save Files and Run Validation Checks**.
+9. In Step 4 - Save Files and Run Validation Checks, click **Save Files and Run Validation Checks**.
 
 <figure><img src="../.gitbook/assets/WP_WMS_7_step_4.png" alt=""><figcaption></figcaption></figure>
 
@@ -159,11 +155,15 @@ If your WEKApod system does not include a WMS server and Ethernet switch, refer 
 
 <figure><img src="../.gitbook/assets/WP_WMS_9_step_5.png" alt=""><figcaption></figcaption></figure>
 
-13. In Step 6 - Apply OS and Dataplane Settings, click **Run Post-Install Scripts**. This process typically takes 3-5 minutes for an 8-server cluster, but larger clusters take longer.
+13. In Step 6 - Apply OS and Dataplane settings, click **Run system configuration scripts**. This process typically takes 3-5 minutes for an 8-server cluster, but larger clusters take longer.
 
 <figure><img src="../.gitbook/assets/WP_WMS_10_step_6.png" alt=""><figcaption></figcaption></figure>
 
-14. Upon completion of the preceding steps, proceed with the standard configuration of the cluster as outlined in [configure-the-weka-cluster-using-the-weka-configurator.md](../planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md "mention").
+14. Optional. You can review the messages providing a summary of the installation. To display more details, click **Show Data**.
+
+<figure><img src="../.gitbook/assets/WP_WMS_14_messages.png" alt=""><figcaption></figcaption></figure>
+
+15. Upon completion of the preceding steps, proceed with the standard configuration of the cluster as outlined in [configure-the-weka-cluster-using-the-weka-configurator.md](../planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md "mention").
 
 ## Next steps
 
