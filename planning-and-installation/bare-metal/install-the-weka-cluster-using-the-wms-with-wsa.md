@@ -163,7 +163,7 @@ The WSA packages that appear in the list are taken from `/home/weka`. You can ha
    * **Option 2: Upload CSV file to pre-populate data:**\
      If you have the environment data in a CSV file, click this option. **Step 3 - CSV File Upload** section opens. Drag or click to upload the CSV file, and click **Next**.
 
-<figure><img src="../../.gitbook/assets/wsa_step_02-03.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/WSA_step3.png" alt=""><figcaption></figcaption></figure>
 
 **CSV template example**
 
@@ -183,7 +183,7 @@ IPMI_IP,Username,Password,OS_Mgmt_IP,Hostname,OS_Netmask,OS_Gateway,MTU,DNS,Host
 
 4. In **Step 4 - Number of servers to deploy**, enter a Server Count (default is 8), and click **Next**.
 
-<figure><img src="../../.gitbook/assets/wsa_step_02-04.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/WSA_step4.png" alt=""><figcaption></figcaption></figure>
 
 In the following steps, if you uploaded a CSV file, the data is pre-populated. You can review the data and if no editing is necessary, select **Next**.
 
@@ -204,7 +204,7 @@ In the following steps, if you uploaded a CSV file, the data is pre-populated. Y
    * Verify that the OS IP settings are correct. You can repeatedly click **Fill OS table** to make adjustments.
    * Verify that all is correct, and then click **Next**.
 
-<figure><img src="../../.gitbook/assets/wsa_step_06.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/WSA_step6_with_details.png" alt=""><figcaption></figcaption></figure>
 
 7.  In **Step 7 - Dataplane settings**, do the following:
 
@@ -221,17 +221,17 @@ In the following steps, if you uploaded a CSV file, the data is pre-populated. Y
 
 
 
-    <figure><img src="../../.gitbook/assets/wsa_step_08.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/WSA_step8.png" alt=""><figcaption></figcaption></figure>
 9.  In **Step 9 - Prepare WSA ISO for installation**, click **Prepare WSA ISO for install**. \
     The WMS updates the kickstart on the ISO to match the WMS deployment data (it takes about 30 seconds).
 
 
 
-    <figure><img src="../../.gitbook/assets/WSA_step_09.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/WSA_step9.png" alt=""><figcaption></figcaption></figure>
 
 When the WSA ISO preparation is completed, the output is displayed. Verify that no errors appear. Then, click **Next**.
 
-<figure><img src="../../.gitbook/assets/wsa_09_1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/WSA_step9_1.png" alt=""><figcaption></figcaption></figure>
 
 10. In **Step 10 - Start Installation**, do the following:
     1. Select **Confirm overwrite of all boot drive OS and data on hosts**.
@@ -241,12 +241,12 @@ When the WSA ISO preparation is completed, the output is displayed. Verify that 
 
 
 
-        <figure><img src="../../.gitbook/assets/wsa_step_10.png" alt=""><figcaption></figcaption></figure>
+        <figure><img src="../../.gitbook/assets/WSA_step10.png" alt=""><figcaption></figcaption></figure>
 
         The installation process takes about 30 minutes, depending on several factors, such as network speed. Verify that the server’s BMC completed the restart.
 11. In **Step 11 -  Run OS and Dataplane Configuration Scripts**, click **Run system configuration scripts**.  This action runs scripts to configure the servers with the specified dataplane IPs and perform additional tasks, such as populating `/etc/hosts`.
 
-<figure><img src="../../.gitbook/assets/wsa_step_11.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/WSA_step11.png" alt=""><figcaption></figcaption></figure>
 
 ## What to do next?
 
