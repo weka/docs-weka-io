@@ -59,10 +59,12 @@ Adhere to the following concepts:
 
 1. **Run the `wekaconfig` Tool:**
    1. Connect to one of the backend servers or the WMS server (if it exists) using SSH.
-   2.  Navigate to the `tools/install` directory:
+   2.  Navigate to the tools directory directory:
 
        ```bash
-       bcd tools/install
+       cd tools/install
+       - or -
+       cd opt/tools/install
        ```
    3.  Run the `wekaconfig` tool:
 
