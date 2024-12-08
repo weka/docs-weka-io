@@ -63,7 +63,7 @@ The workflow to manage the synchronous snapshots includes:
 
 **Command:** `weka fs snapshot download`
 
-Use the following command line to download a synchronous snapshot. This command is only relevant for snapshots uploaded from a system of version 4.0 and higher:
+Use the following command line to download a synchronous snapshot. This command is only relevant for snapshots uploaded from a system of version 4.3 and later:
 
 &#x20;`weka fs snapshot download <file-system> <locator>`
 

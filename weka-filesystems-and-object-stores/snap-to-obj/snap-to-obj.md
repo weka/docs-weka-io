@@ -25,12 +25,12 @@ You can upload a snapshot to a local, remote, or both object store buckets.
 1. From the menu, select **Manage > Snapshots**.
 2. Select the three dots on the right of the required snapshot. From the menu, select **Upload To Object Store**.
 
-![Upload a snapshot to the object store](../../.gitbook/assets/wmng\_upload\_snapshot\_menu.png)
+![Upload a snapshot to the object store](../../.gitbook/assets/wmng_upload_snapshot_menu.png)
 
 3. A relevant message appears if a local or remote object store bucket is not attached to the filesystem. It enables opening a dialog to select an object store bucket and attach it to the filesystem. To add an object store, select **Yes**.
 4. In the Attach Object Store to Filesystem dialog, select the object store bucket to attach the snapshot.
 
-![Upload a snapshot](../../.gitbook/assets/wmng\_upload\_snapshot.png)
+![Upload a snapshot](../../.gitbook/assets/wmng_upload_snapshot.png)
 
 5. Select **Save**.\
    The snapshot is uploaded to the target object store bucket.
@@ -38,7 +38,7 @@ You can upload a snapshot to a local, remote, or both object store buckets.
    * Select the three dots on the right of the required snapshot, and select **Copy Locator to Clipboard**.
    * Save the locator in a dedicated file so later you can use it for creating a filesystem from the uploaded snapshot.
 
-![Copy snapshot locator](../../.gitbook/assets/wmng\_copy\_snapshot\_locator.gif)
+![Copy snapshot locator](../../.gitbook/assets/wmng_copy_snapshot_locator.gif)
 
 ***
 
@@ -74,14 +74,14 @@ When recreating a filesystem from a snapshot, adhere to the following guidelines
      In the Access Point, set a meaningful access point name to override the default (uploaded access point name) for the directory that serves as the snapshot's access point.
 4. Select **Save**.
 
-![Create a filesystem from an uploaded snapshot](../../.gitbook/assets/Create\_fs\_from\_snapshot\_animated.gif)
+![Create a filesystem from an uploaded snapshot](../../.gitbook/assets/Create_fs_from_snapshot_animated.gif)
 
 ## Sync a filesystem from a snapshot <a href="#sync-a-filesystem-from-a-snapshot" id="sync-a-filesystem-from-a-snapshot"></a>
 
 You can synchronize a filesystem from a snapshot using the Synchronous Snap feature (incremental snapshot). Synchronous Snap only downloads changes since the last snapshot from the object store bucket.
 
 {% hint style="info" %}
-Only snapshots uploaded from version 4.0 or higher can be downloaded using Synchronous Snap.
+Only snapshots uploaded from version 4.3 or later can be downloaded using Synchronous Snap.
 {% endhint %}
 
 **Before you begin**
