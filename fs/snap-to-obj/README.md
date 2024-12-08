@@ -138,6 +138,10 @@ This capability for filesystem snapshots potentially makes them more cost-effect
 
 It is recommended that the synchronous snapshots be downloaded in chronological order.
 
+{% hint style="warning" %}
+The **Synchronous Snap** feature, which allows incremental snapshots to be downloaded from an object store, was temporarily disabled in version 4.2.3. It has been re-enabled in version 4.3.0.
+{% endhint %}
+
 ## Delete snapshots residing on an object store
 
 Deleting a snapshot uploaded from a filesystem removes all its data from the local object store bucket. It does not remove any data from a remote object store bucket.

@@ -35,10 +35,6 @@ Use the following command line to create (or recreate) a filesystem from an exis
 
 When creating a filesystem from a snapshot, a background cluster task automatically prefetches its metadata, providing better latency for metadata queries.
 
-{% hint style="warning" %}
-The **Synchronous Snap** feature, which allows incremental snapshots to be downloaded from an object store, was temporarily disabled in version 4.2.3. It has been re-enabled in version 4.3.0.
-{% endhint %}
-
 **Parameters**
 
 <table><thead><tr><th width="212">Name</th><th width="317">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem to create.</td><td></td></tr><tr><td><code>group-name</code>*</td><td>Name of the filesystem group in which the new filesystem is placed.</td><td></td></tr><tr><td><code>total-capacity</code>*</td><td>The total capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>ssd-capacity</code>*</td><td>SSD capacity of the downloaded filesystem.</td><td></td></tr><tr><td><code>obs-bucket</code>*</td><td>Object store name for tiering.</td><td></td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td><td></td></tr><tr><td><code>additional-obs</code></td><td>An additional object store name.<br>If the data to recover resides in two object stores (a second object store attached to the filesystem, and the filesystem has not undergone full migration), this object store is attached in <code>read-only</code> mode.<br>The snapshot locator must be in the primary object store specified in the <code>obs</code> parameter.</td><td></td></tr><tr><td><code>snapshot-name</code></td><td>The downloaded snapshot name.</td><td>The uploaded snapshot name.</td></tr><tr><td><code>access-point</code></td><td>The downloaded snapshot access point. </td><td>The uploaded access point.</td></tr></tbody></table>
@@ -57,35 +53,9 @@ For encrypted filesystem, when downloading, you must use the same KMS master key
 
 ## Manage synchronous snapshots
 
-The workflow to manage the synchronous snapshots includes:
-
-1. Upload snapshots using, for example, the snapshots scheduler. See [#upload-a-snapshot](snap-to-obj-1.md#upload-a-snapshot "mention").
-2. Download the synchronous snapshot (described below).
-3. Restore a specific snapshot to a filesystem. See [Restore a snapshot to a filesystem or another snapshot](../snapshots/snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot).
-
-### Download a synchronous snapshot
-
-**Command:** `weka fs snapshot download`
-
-Use the following command line to download a synchronous snapshot. This command is only relevant for snapshots uploaded from a system of version 4.0 and higher:
-
-&#x20;`weka fs snapshot download <file-system> <locator>`
-
 {% hint style="warning" %}
-Make sure to download synchronous snapshots in chronological order. Non-chronological snapshots are inefficient and are not synchronous.&#x20;
-
-If you need to download a snapshot earlier than the latest downloaded one, for example, when you need one of the daily synchronous snapshots after the weekly synchronous snapshot was downloaded, add the `--allow-non-chronological` flag to download it anyway.
+The **Synchronous Snap** feature, which allows incremental snapshots to be downloaded from an object store, was temporarily disabled in version 4.2.3. It has been re-enabled in version 4.3.0.
 {% endhint %}
-
-**Parameters**
-
-<table><thead><tr><th width="304">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>file-system</code>*</td><td>Name of the filesystem.</td></tr><tr><td><code>locator</code>*</td><td>Object store locator obtained from a previously successful snapshot upload.</td></tr></tbody></table>
-
-If you need to pause and resume the download process, use the command: `weka cluster task pause / resume`. To abort the download process, delete the downloaded snapshot directly. For details, see [Manage background tasks](../../usage/background-tasks/#managing-background-tasks).
-
-**Related topics**
-
-[#synchronous-snapshots](./#synchronous-snapshots "mention")
 
 ## Recover from a remote snapshot
 
