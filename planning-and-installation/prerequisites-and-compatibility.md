@@ -193,6 +193,10 @@ Adhere to the following considerations when choosing the adapters:
 * **IP addressing for dataplane NICs**\
   Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
 
+{% hint style="info" %}
+IPv4 Network Address Translation (NAT) is not supported for WEKA clients or backends.
+{% endhint %}
+
 ### Supported network adapters <a href="#networking-ethernet" id="networking-ethernet"></a>
 
 The following table provides the supported network adapters along with their supported features for backends and clients, and clients-only.
