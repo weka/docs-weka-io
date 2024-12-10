@@ -77,6 +77,13 @@ nmr_backup  wekalow-nmrbackup    519.07 GB                 518.05 GB       0.19 
 
 ```
 
+Where:
+
+* **TOTAL CONSUMED CAPACITY**: The total storage allocated or provisioned for the filesystem, including space for data, metadata, and system overhead.
+* **USED CAPACITY**: The storage actively used by data written to the filesystem.
+* **RECLAIMABLE%**: Represents the percentage of storage in the tier that can potentially be reclaimed, typically consisting of data that is no longer actively used or referenced but has not yet been deleted or overwritten.
+* **RECLAIMABLE THRESHOLD%**: The predefined percentage at which the system begins prioritizing the reclamation of reclaimable storage to free up capacity.
+
 To list the data capacities of a specific filesystem, add the option `--filesystem <filesystem name>`.
 
 Example:
