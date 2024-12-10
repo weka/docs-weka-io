@@ -179,7 +179,7 @@ Selecting the OBS Buckets title displays the **object store buckets** page.
 
 Timestamps in events and statistics are logged internally in UTC. Weka GUI displays the timestamps in local or system time. You can switch between the local and system time.
 
-Switching the display time may be required when the customer, Weka support, and the Weka system are in different time zones. In this situation, the customer and Weka support can switch the display to system time instead of local time so both view the identical timestamps.
+Switching the display time may be required when the customer, WEKA support, and the WEKA system are in different time zones. In this situation, the customer and WEKA support can switch the display to system time instead of local time so both view the identical timestamps.
 
 **Procedure**
 
@@ -215,3 +215,11 @@ When managing filesystems, snapshots, and object stores, the displayed tables li
 * You can customize the columns displayed on the table using the column selector.
 
 <figure><img src="../.gitbook/assets/wmng_display_tables.png" alt=""><figcaption><p>Example: Display the filesystems table</p></figcaption></figure>
+
+## Switch display units between Base 2 and Base 10
+
+You can switch the display units for numeric values in the GUI between Base 2 (binary) and Base 10 (decimal). This option lets you view values, such as capacity sizes and metrics, in your preferred unit format.
+
+To switch the display units, open the user profile menu and select either **Base 2 units** or **Base 10 units**.
+
+<figure><img src="../.gitbook/assets/switch_base2-10.gif" alt=""><figcaption></figcaption></figure>
