@@ -12,7 +12,7 @@ The resource generator generates three resource files on each server in the `/tm
 
 ## Before you begin
 
-1. Download the resource generator from the GitHub repository to your local server: [https://github.com/weka/tools/blob/master/install/resources\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py).
+1. Download the resource generator from the GitHub repository to your local server: [https://github.com/weka/tools/blob/master/install/resources\_generator.py](https://github.com/weka/tools/blob/master/install/resources_generator.py).
 
 Example:&#x20;
 
@@ -41,14 +41,14 @@ pdsh -R ssh -w "weka0-[0-7]" 'chmod +x /tmp/resources_generator.py'
 
 ## Workflow
 
-1. [Remove the default container](manually-configure-the-weka-cluster-using-the-resource-generator.md#1.-remove-the-default-container)
-2. [Generate the resource files](manually-configure-the-weka-cluster-using-the-resource-generator.md#2.-generate-the-resource-files)
-3. [Create drive containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#3.-create-drive-containers)
-4. [Create a cluster](manually-configure-the-weka-cluster-using-the-resource-generator.md#id-4.-create-a-cluster)
-5. [Configure the SSD drives](manually-configure-the-weka-cluster-using-the-resource-generator.md#5.-configure-the-ssd-drives)
-6. [Create compute containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#6.-create-compute-containers)
-7. [Create frontend containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#7.-create-frontend-containers)
-8. [Name the cluster](manually-configure-the-weka-cluster-using-the-resource-generator.md#8.-name-the-cluster)
+1. [Remove the default container](./#1.-remove-the-default-container)
+2. [Generate the resource files](./#2.-generate-the-resource-files)
+3. [Create drive containers](./#3.-create-drive-containers)
+4. [Create a cluster](./#id-4.-create-a-cluster)
+5. [Configure the SSD drives](./#5.-configure-the-ssd-drives)
+6. [Create compute containers](./#6.-create-compute-containers)
+7. [Create frontend containers](./#7.-create-frontend-containers)
+8. [Name the cluster](./#8.-name-the-cluster)
 
 ### 1. Remove the default container
 
@@ -196,4 +196,4 @@ weka local setup container --client --restricted --join-ips <IP addresses> --res
 
 ## What to do next?
 
-[perform-post-configuration-procedures.md](perform-post-configuration-procedures.md "mention")
+[perform-post-configuration-procedures.md](../perform-post-configuration-procedures.md "mention")

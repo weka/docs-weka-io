@@ -602,4 +602,4 @@ If you can use the WEKA Configurator, go to:
 
 Otherwise, go to:
 
-[manually-configure-the-weka-cluster-using-the-resource-generator.md](../manually-configure-the-weka-cluster-using-the-resource-generator.md "mention")
+[manually-configure-the-weka-cluster-using-the-resource-generator](../manually-configure-the-weka-cluster-using-the-resource-generator/ "mention")
