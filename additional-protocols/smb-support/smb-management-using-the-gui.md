@@ -63,7 +63,7 @@ Due to cloud provider network limitations, setting a list of SMB floating IPs in
 
 Once the system completes configuration, the server statuses change from not ready (❌) to ready (✅).
 
-![SMB cluster configuration example](../../.gitbook/assets/wmng\_smb\_configure\_result.png)
+![SMB cluster configuration example](../../.gitbook/assets/wmng_smb_configure_result.png)
 
 ## Edit the SMB cluster <a href="#edit-the-smb-cluster" id="edit-the-smb-cluster"></a>
 
@@ -120,10 +120,10 @@ Replace `8.8.8.8` and `8.8.4.4` with the appropriate nameserver IP addresses for
 
 2. In the Join to Active Directory dialog, set the following properties:
    * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials. Instead, the SMB cluster creates a computer account for use.
-   * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server based on the AD domain name. You do not need to set the server name. In some cases, specify the AD server if required. (This is not applicable for SMB-W yet.)
-   * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account that the joining account has permission to, such as SMB servers or corporate computers. (This is not applicable for SMB-W yet.)
+   * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server based on the AD domain name. You do not need to set the server name. In some cases, specify the AD server if required.
+   * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account that the joining account has permission to, such as SMB servers or corporate computers.
 
-![Join Active Directory dialog](../../.gitbook/assets/wmng\_smb\_join\_ad\_dialog.png)
+![Join Active Directory dialog](../../.gitbook/assets/wmng_smb_join_ad_dialog.png)
 
 Once the SMB cluster joins the Active Directory domain, the join status next to the domain changes to **Joined**.
 
@@ -226,7 +226,7 @@ Deleting the SMB cluster resets its configuration data. Deleting an SMB cluster 
 
 1. In the SMB Cluster Configuration, select the **trash** icon.
 
-![Delete the SMB cluster configuration](../../.gitbook/assets/wmng\_smb\_cluster\_remove.png)
+![Delete the SMB cluster configuration](../../.gitbook/assets/wmng_smb_cluster_remove.png)
 
 2. In the SMB Configuration Reset message, select **Reset**.
 
@@ -241,7 +241,7 @@ The Shares tab displays the SMB shares created in the system. You can also custo
 3. Select the **Shares** tab.\
    You can filter the list using any column in the table.
 
-![SMB shares list](../../.gitbook/assets/wmng\_smb\_list\_shares.png)
+![SMB shares list](../../.gitbook/assets/wmng_smb_list_shares.png)
 
 ## Add an SMB share <a href="#add-an-smb-share" id="add-an-smb-share"></a>
 
@@ -306,7 +306,7 @@ You can update some of the SMB share settings. These include encryption, hiding 
 
 1. In the Shares tab, select the three dots of the share and select **Remove**.
 
-![Remove an SMB share](../../.gitbook/assets/wmng\_smb\_share\_remove.png)
+![Remove an SMB share](../../.gitbook/assets/wmng_smb_share_remove.png)
 
 2. In the confirmation message that appears, select **Confirm**.\
    The removed share no longer appears in the SMB Shares list.
