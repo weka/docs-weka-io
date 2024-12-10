@@ -53,11 +53,11 @@ To modify the trace retention setting of a single client, you can use the `trace
 
 ### Set the freeze period
 
-**Command:** `weka debug traces freeze set [--start-time start-time] [--end-time end-time] [--retention retention]`
+**Command:** `weka debug traces freeze set <comment> [--start-time start-time] [--end-time end-time] [--retention retention]`
 
 **Parameters**
 
-<table><thead><tr><th width="152">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>start-time</code></td><td><p>The start time of the frozen period.</p><p>Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 2019-Nov-17 11:11:00.309, 9:15Z, 10:00+2:00</p></td></tr><tr><td><code>end-time</code></td><td><p>The end time of the frozen period.</p><p>Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 2019-Nov-17 11:11:00.309, 9:15Z, 10:00+2:00</p></td></tr><tr><td><code>retention</code></td><td><p>The time to retain the traces.</p><p>Format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited</p></td></tr></tbody></table>
+<table><thead><tr><th width="190">Parameter</th><th>Description</th></tr></thead><tbody><tr><td> <code>comment</code> *</td><td>A descriptive note providing context for easier tracking and review of debug traces.</td></tr><tr><td><code>start-time</code></td><td><p>The start time of the frozen period.</p><p>Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 2019-Nov-17 11:11:00.309, 9:15Z, 10:00+2:00</p></td></tr><tr><td><code>end-time</code> </td><td><p>The end time of the frozen period.</p><p>Format: 5m, -5m, -1d, -1w, 1:00, 01:00, 18:30, 18:30:07, 2018-12-31 10:00, 2018/12/31 10:00, 2018-12-31T10:00, 2019-Nov-17 11:11:00.309, 9:15Z, 10:00+2:00</p></td></tr><tr><td><code>retention</code> </td><td><p>The time to retain the traces.</p><p>Format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited</p></td></tr></tbody></table>
 
 ### Reset the traces freeze period and delete the existing frozen traces
 
