@@ -8,48 +8,59 @@ description: >-
 
 ## User types
 
-Access to a WEKA system cluster is controlled by creating, modifying, and deleting users. You can add up to 1152 local users to work with a WEKA system cluster. A username identifies each user and must provide a password for authentication to work with the WEKA system GUI, CLI, and API.
+Access to a WEKA system cluster is managed by creating, modifying, and deleting user accounts. Each user is identified by a unique username and must provide a password for authentication to access the WEKA system through the GUI, CLI, or API. The system supports up to 1,152 local users.
 
-Every WEKA system user has one of the following defined roles:
+Each user is assigned one of the following predefined roles, which determine their permissions and level of access within the WEKA system:
 
-* **Cluster Admin**: A user role with additional privileges. See [Cluster Admin role privileges](./#cluster-admin-role-privileges).
-* **Organization Admin**: A user role with additional privileges within an organization. This role is relevant when working with different organizations. See [Organization Admin role privileges](../organizations/#organization-admin-role-privileges).
-*   **Read-only:** A user role with limited privileges across the GUI, CLI, and API interfaces. Users with this role are restricted from making any changes to the system configuration, including tasks like creating file systems, protocols, and user accounts. Their permissions are strictly limited to 'read' operations, allowing them to view system settings and data but not to modify them.
+### Role descriptions&#x20;
 
-    The term 'read-only' does not apply to authenticated mounts. In such cases, even users with a read-only role can still authenticate and write data to a mounted location.
-* **S3:** A user role to run S3 commands and APIs. This user can operate within the limits of the S3 IAM policy attached to it. An S3 user can create S3 service accounts with a specific policy.
-* **Regular**: A user role only used for mounting filesystems. This user can sign in to obtain an access token and change the password but cannot access the GUI or run other CLI/API commands.
+<table><thead><tr><th width="154">Role</th><th width="164">Purpose</th><th width="225">Key permissions</th><th>Restrictions</th></tr></thead><tbody><tr><td><strong>Cluster Admin</strong></td><td>Advanced administrative tasks for managing the cluster.</td><td>Full access to system configuration, user management, and performance tuning.</td><td>None. <br>For details, see <a data-mention href="./#cluster-admin-first-user">#cluster-admin-first-user</a> </td></tr><tr><td><strong>CSI</strong></td><td>Interfacing with the WEKA cluster through the <a data-mention href="../../appendices/weka-csi-plugin/">weka-csi-plugin</a> for Kubernetes.</td><td><ul><li>Provisioning, mounting, and unmounting file systems.</li><li>Storage management tasks through CLI and API.</li></ul></td><td><ul><li>Limited to storage management.</li><li>No access to broader administrative functions.</li></ul></td></tr><tr><td><strong>Organization Admin</strong></td><td>Administrative tasks within a single organization.</td><td>Privileges limited to managing the assigned organization.</td><td>Cannot perform cluster-wide administrative tasks.<br>For details, see <a data-mention href="../organizations/#organization-admin-role-privileges">#organization-admin-role-privileges</a></td></tr><tr><td><strong>Read-only</strong></td><td>Viewing system configurations and data without making changes.</td><td><ul><li>View system settings and data through GUI, CLI, and API.</li><li>Authenticate and write data to mounted locations (exception for authenticated mounts).</li></ul></td><td><ul><li>Cannot modify system settings.</li><li>Cannot create file systems, protocols, or user accounts.</li></ul></td></tr><tr><td><strong>Regular</strong></td><td>Basic role for mounting filesystems.</td><td><ul><li>Sign in to obtain an access token.</li><li>Change own password.</li></ul></td><td><ul><li>No GUI access.</li><li>No CLI or API commands beyond mounting tasks.</li></ul></td></tr><tr><td><strong>S3</strong></td><td>Running S3 commands and APIs.</td><td><ul><li>Perform S3 operations within the limits of the assigned IAM policy.</li><li>Create S3 service accounts with specific policies.</li></ul></td><td>Limited to actions allowed by the attached S3 IAM policy.</td></tr></tbody></table>
 
-## Cluster Admin **(**&#x74;he first user)
+## Cluster Admin **(**&#x66;irst user)
 
-By default, when a WEKA cluster is created, the first user with an `admin` username and password is created. A prompt to change the password on the first login is displayed. This user has a Cluster Admin role, which allows running all commands.&#x20;
+When a WEKA cluster is created, the system automatically generates the first user account with the `admin` username and a default password. Upon first login, the system prompts this user to change their password. This initial user is assigned the **Cluster Admin** role, granting them full access to all commands and administrative capabilities.
 
-Cluster Admin users are responsible for managing the cluster as a whole. When using multiple organizations, there is a difference between managing a single organization and managing the cluster because managing the cluster also covers the management of the cluster hardware and resources. These are the additional permissions given to a Cluster Admin compared to an Organization Admin.
+**Responsibilities**
 
-The WEKA Customer Success Team must have at least one defined **internal** Cluster Admin user. Howeve&#x72;**,** it is possible to create a Cluster Admin user with a different name and delete the default admin user if required.
+Cluster Admin users are responsible for managing the entire cluster, including:
 
-### Cluster Admin role privileges
+* Cluster-wide operations that span all organizations within the system.
+* Management of cluster hardware, resources, and global configurations.
 
-Cluster Admin users have additional privileges over regular users. These include the ability to:
+When multiple organizations are used, there is a distinction between managing a specific organization (handled by an Organization Admin) and managing the overall cluster. A Cluster Admin oversees tasks beyond organizational boundaries, including infrastructure-level management.
 
-* Create new users
-* Delete existing users
-* Change user passwords
-* Set user roles
-* Manage LDAP configurations
-* Manage organizations
+**Cluster admin role privileges**
 
-Additionally, the following restrictions apply to Cluster Admin users to avoid situations where a Cluster Admin loses access to the WEKA cluster:
+Cluster Admin users have additional privileges compared to other user roles. These privileges include the ability to:
 
-* Cluster Admins cannot delete themselves.
-* Cluster Admins cannot change their role to a regular user role.
+* Create new users.
+* Delete existing users.
+* Change user passwords.
+* Assign or modify user roles.
+* Manage LDAP configurations.
+* Manage organizations.
 
-### Password requirements
+**Restrictions**
 
-* at least 8 characters
-* an uppercase letter
-* a lowercase letter
-* a number or a special character
+To ensure a Cluster Admin user retains access to the WEKA cluster, the following restrictions are in place:
+
+* Cluster Admins cannot delete their own user accounts.
+* Cluster Admins cannot change their own role to a regular user role.
+
+**Password requirements**
+
+All Cluster Admin accounts must adhere to the following password policy:
+
+* At least 8 characters.
+* At least one uppercase letter.
+* At least one lowercase letter.
+* At least one number or special character.
+
+**Key points**
+
+* The WEKA Customer Success Team requires at least one internal Cluster Admin account to be defined for support purposes.
+* Additional Cluster Admin accounts can be created with unique usernames.
+* The default `admin` user can be renamed or deleted if a replacement Cluster Admin account is created.
 
 
 

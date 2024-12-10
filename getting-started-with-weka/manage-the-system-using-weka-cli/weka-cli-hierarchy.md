@@ -430,6 +430,7 @@ weka security
       |update
       |test
       |join
+          |list
           |set
           |attach
           |detach

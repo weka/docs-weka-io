@@ -52,7 +52,7 @@ Create and manage security policies so that you can apply them on the organizati
 
 ### List security policies
 
-**Command:** weka security policy list
+**Command:** `weka security policy list`
 
 Use the following command line to list security policies defined in the WEKA cluster.
 

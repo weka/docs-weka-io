@@ -15,7 +15,7 @@ Using the GUI, you can:
 
 Local users are created in the local system instead of domain users that the organization's User Directory manages. You can create up to 1152 local users to work with a WEKA system cluster.
 
-![User Management: Local Users page](../../.gitbook/assets/wmng\_local\_users.png)
+![User Management: Local Users page](../../.gitbook/assets/wmng_local_users.png)
 
 ### Create a local user
 
@@ -27,10 +27,10 @@ Local users are created in the local system instead of domain users that the org
    * **Username:** Set the user name for the local user.
    * **Password:** Set a password according to the requirements. The password must contain at least 8 characters: an uppercase letter, a lowercase letter, and a number or a special character.
    * **Confirm Password:** Type the same password again.
-   * **Role:** Select the role for the local user. If you select an S3 user role, select the relevant S3 policy and, optionally, the [POSIX UID](#user-content-fn-1)[^1] and [POSIX GID](#user-content-fn-2)[^2]**.**
+   * **Role:** Select the role for the local user. If you select an S3 user role, select the relevant S3 policy and, optionally, the [POSIX UID](#user-content-fn-1)[^1] and [POSIX GID](#user-content-fn-2)[^2]**.** For role details, see [#role-descriptions](./#role-descriptions "mention").
 4. Select **Save**.
 
-![Create a new user dialog](<../../.gitbook/assets/wmng\_local\_users\_add (2).png>)
+![Create a new user dialog](<../../.gitbook/assets/wmng_local_users_add (2).png>)
 
 ### Edit a local user
 
@@ -42,7 +42,7 @@ You can modify the role of a local user but not your role (the signed-in user). 
 2. From the Role property, select the required role. If you modify the role to S3, you can set the S3 policy, POSIX UID, and POSIX GID.
 3. Select **Save**.
 
-![Edit a local user](../../.gitbook/assets/wmng\_local\_users\_edit.png)
+<figure><img src="../../.gitbook/assets/4.4.2_local_users_edit.png" alt=""><figcaption><p>Edit a local user</p></figcaption></figure>
 
 ### Change a local user password
 
@@ -62,7 +62,7 @@ To regain access to the system after changing the password, the user must re-aut
    * **Revoke Tokens:** If the user's existing tokens are compromised, you can revoke all of the user's tokens and change their password. To regain access to the system, the user must re-authenticate with the new password or obtain new tokens through the API.
 3. Select **Save**.
 
-![Change the password for a local user](../../.gitbook/assets/wmng\_local\_users\_change\_psw.png)
+![Change the password for a local user](../../.gitbook/assets/wmng_local_users_change_psw.png)
 
 ### Change your password
 
@@ -72,7 +72,7 @@ You can change your password at any time.
 
 1. From the top bar, select the signed-in user, then select **Change Password**.
 
-![Change your password (signed-in user)](../../.gitbook/assets/wmng\_change\_your\_password.png)
+![Change your password (signed-in user)](../../.gitbook/assets/wmng_change_your_password.png)
 
 2. In the Change Password dialog, set the properties described in the [Change a local user password](user-management.md#change-a-local-user-password) topic.
 3. Select **Save**.
@@ -85,7 +85,7 @@ If the user's existing tokens are compromised, you can revoke all the user's tok
 
 1. In the Local Users tab, select the three dots of the local user you want to revoke the user tokens, then select **Revoke User Tokens**.
 
-![Revoke local user tokens](../../.gitbook/assets/wmng\_revoke\_user\_tokens\_menu.png)
+![Revoke local user tokens](../../.gitbook/assets/wmng_revoke_user_tokens_menu.png)
 
 2. In the confirmation message, select **Revoke Tokens**.
 
@@ -97,7 +97,7 @@ You can remove a local user that is no longer required.
 
 1. In the Local Users tab, select the three dots of the local user to remove, then select **Remove User**.
 
-![Remove a local user](../../.gitbook/assets/wmng\_remove\_user\_menu.png)
+![Remove a local user](../../.gitbook/assets/wmng_remove_user_menu.png)
 
 In the confirmation message, select **Yes**.
 
@@ -105,7 +105,7 @@ In the confirmation message, select **Yes**.
 
 You can set user access to the Weka system from the organization user directory, either by LDAP or Active Directory.
 
-![User directory tab](../../.gitbook/assets/user\_directory\_tab\_no\_conf.png)
+![User directory tab](../../.gitbook/assets/user_directory_tab_no_conf.png)
 
 ### Configure LDAP
 
@@ -168,7 +168,7 @@ To use LDAP for authenticating users, set the property values based on your spec
 4. Set all properties based on your specific LDAP environment and configuration.
 5. Select **Save**.
 
-![Configure LDAP dialog](../../.gitbook/assets/wmng\_configure\_ldap.png)
+![Configure LDAP dialog](../../.gitbook/assets/wmng_configure_ldap.png)
 
 Once the LDAP configuration is completed, the User Directory tab displays the details. You can disable the LDAP configuration, update the configuration, or reset the configuration values.
 
@@ -213,7 +213,7 @@ To use Active Directory for authenticating users, set the property values based 
 4. Set all properties based on your specific Active Directory environment and configuration.
 5. Select **Save**.
 
-![Configure Active Directory dialog](../../.gitbook/assets/wmng\_configure\_active\_directory.png)
+![Configure Active Directory dialog](../../.gitbook/assets/wmng_configure_active_directory.png)
 
 Once the Active Directory configuration is completed, the User Directory tab displays the details. You can disable the Active Directory configuration, update the configuration, or reset the configuration values.
 

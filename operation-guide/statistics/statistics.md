@@ -44,7 +44,7 @@ You can add charts to the statistics page to display up to a maximum of five cha
    * From the Categories pane, select a category, and then from the Statistics Name pane select the required chart. You multiple charts (up to 5) at once. The number next to the category name indicates the number of charts already selected.
    * Search for a chart using the **Filter**. Type a keyword or two related to the chart, and then from the Statistics Name pane select the required chart.
 
-![Add a chart to the statistics page](../../.gitbook/assets/wmng\_statistics\_add\_chart.gif)
+![Add a chart to the statistics page](../../.gitbook/assets/wmng_statistics_add_chart.gif)
 
 ## Remove a chart from the statistics page <a href="#remove-a-chart-from-the-statistics-page" id="remove-a-chart-from-the-statistics-page"></a>
 
@@ -54,7 +54,7 @@ You can remove a chart that is no longer required to free space for adding anoth
 
 1. On the upper left corner of the chart, select **X**.
 
-![Remove a chart](../../.gitbook/assets/wmng\_statistics\_remove\_chart.png)
+![Remove a chart](../../.gitbook/assets/wmng_statistics_remove_chart.png)
 
 ## Set the timeframe  <a href="#set-the-timeframe" id="set-the-timeframe"></a>
 
@@ -65,7 +65,7 @@ The Statistics page contains a time axis for all the displayed charts. To invest
 1. To display the charts for the last period: **Hour**, **Day**, or **Week**, in the **Last** line, select the relevant button.
 2. To display the charts for a specific period, in the **Range** line select the calendar, and set the start time and end time for the timeframe.
 
-![Set the charts time frame](../../.gitbook/assets/wmng\_statistics\_modify\_chart\_scale.png)
+![Set the charts time frame](../../.gitbook/assets/wmng_statistics_modify_chart_scale.png)
 
 ## Display events from a chart <a href="#display-events-from-a-chart" id="display-events-from-a-chart"></a>
 
@@ -76,8 +76,4 @@ If events occur during the period of the displayed charts, a purple box indicate
 1. On the time axis, select the purple box (it only appears if events occur).
 2. From the popup box, select **Show All**.
 
-![Example: Display events from a chart](../../.gitbook/assets/wmng\_statistics\_display\_events.gif)
-
-**Related topic**
-
-[list-of-statistics.md](list-of-statistics.md "mention")
+![Example: Display events from a chart](../../.gitbook/assets/wmng_statistics_display_events.gif)

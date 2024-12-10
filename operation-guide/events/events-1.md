@@ -47,9 +47,3 @@ This command is helpful for the following cases:
 It can be useful to mark specific activities, maintenance work, or important changes/new usage of the system, and see that as part of the system events timeline.&#x20;
 
 To trigger a custom event, use `weka events trigger-event <text>`
-
-
-
-**Related topics**
-
-[list-of-events.md](list-of-events.md "mention")

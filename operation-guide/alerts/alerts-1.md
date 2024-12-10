@@ -58,9 +58,3 @@ Use the following command line to unmute a muted alert-type:
 **Parameters**
 
 <table><thead><tr><th width="221">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>alert-type</code>*</td><td>An alert-type to unmute, use <code>weka alerts types</code> to list types.</td></tr></tbody></table>
-
-
-
-**Related topics**
-
-[list-of-alerts.md](list-of-alerts.md "mention")

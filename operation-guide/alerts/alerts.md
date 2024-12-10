@@ -16,13 +16,13 @@ The bell icon on the top bar indicates the number of existing active alerts in t
 
 If there are no alerts (active or muted), the alerts pane is empty, and the bell does not specify any number.
 
-![View alerts](../../.gitbook/assets/wmng\_alerts\_overview.png)
+![View alerts](../../.gitbook/assets/wmng_alerts_overview.png)
 
 **Procedure**
 
 1. To display the alert details, select the bell icon or select any alert.
 
-![View alert details](../../.gitbook/assets/wmng\_alerts.png)
+![View alert details](../../.gitbook/assets/wmng_alerts.png)
 
 ## Mute alerts
 
@@ -37,7 +37,7 @@ The system automatically unmutes the muted alerts after the expiry period.
 
 The muted alert is moved to the Muted Alerts area. The total number of active alerts is deducted by the number of muted alerts.
 
-![Mute alerts](../../.gitbook/assets/wmng\_alerts\_mute.gif)
+![Mute alerts](../../.gitbook/assets/wmng_alerts_mute.gif)
 
 ## Unmute alerts
 
@@ -47,8 +47,4 @@ Muted alerts appear under the Muted Alerts area. You can unmute an alert manuall
 
 1. Under the Muted Alerts area, select the bell of the alert you want to unmute.
 
-![Unmute an alert](../../.gitbook/assets/wmng\_unmute\_alert.png)
-
-**Related topics**
-
-[list-of-alerts.md](list-of-alerts.md "mention")
+![Unmute an alert](../../.gitbook/assets/wmng_unmute_alert.png)

@@ -45,6 +45,7 @@ Subcommands:
    user              List users defined in the Weka cluster
    version           When run without arguments, lists the versions available on this machine. Subcommands allow for
                      downloading versions, setting the current version, and other actions to manage versions.
+   driver            Manage Weka drivers      
 
 Options:
    --agent         Start the agent service

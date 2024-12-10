@@ -29,13 +29,13 @@ You can select the **Advanced** switch to display internal events. This option i
 
 1. From the menu, select **Investigate > Events**.
 
-![System events](../../.gitbook/assets/wmng\_events\_view.png)
+![System events](../../.gitbook/assets/wmng_events_view.png)
 
 ## Filter events
 
 You can filter the events according to the event severity, timestamp, category, or event name. You can also filter events by multiple categories and multiple event names.
 
-![Example: view all warning events (and higher severity events) related to resources](../../.gitbook/assets/wmng\_events\_filter\_example.gif)
+![Example: view all warning events (and higher severity events) related to resources](../../.gitbook/assets/wmng_events_filter_example.gif)
 
 #### Procedures
 
@@ -47,7 +47,7 @@ You can filter the events according to the event severity, timestamp, category, 
 2. Select the required minimum severity.\
    For example, the Critical events are displayed if you select the Major severity.
 
-![](../../.gitbook/assets/wmng\_events\_filter\_severity.png)
+![](../../.gitbook/assets/wmng_events_filter_severity.png)
 
 
 
@@ -63,7 +63,7 @@ You can filter the events according to the event severity, timestamp, category, 
 4. Select **OK**.
 5. Select **Filter**.
 
-![](../../.gitbook/assets/wmng\_events\_filter\_timestamp.png)
+![](../../.gitbook/assets/wmng_events_filter_timestamp.png)
 
 </details>
 
@@ -75,7 +75,7 @@ You can filter the events according to the event severity, timestamp, category, 
 2. In the **Filter Categories**, select the category you want to display. You can select multiple categories.
 3. Select **Filter**.
 
-![](../../.gitbook/assets/wmng\_events\_filter\_category.png)
+![](../../.gitbook/assets/wmng_events_filter_category.png)
 
 </details>
 
@@ -87,7 +87,7 @@ You can filter the events according to the event severity, timestamp, category, 
 2. In the **Events Filter**, select the event name you want to display. You can select multiple event names.
 3. Select **Filter**.
 
-![](../../.gitbook/assets/wmng\_events\_filter\_by\_events.png)
+![](../../.gitbook/assets/wmng_events_filter_by_events.png)
 
 </details>
 
@@ -106,8 +106,6 @@ The predefined templates include protocols, object store, cluster-wide tasks, fi
 
 
 
-**Related topics**
-
-[list-of-events.md](list-of-events.md "mention")
+**Related topic**
 
 [#switch-the-display-time](../../getting-started-with-weka/manage-the-system-using-weka-gui.md#switch-the-display-time "mention")
