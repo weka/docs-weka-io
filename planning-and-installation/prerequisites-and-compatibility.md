@@ -16,6 +16,14 @@ Check the release notes for details about any updates or changes accompanying th
 In certain instances, WEKA collaborates with Strategic Server Partners to conduct platform qualifications alongside complementary components. If you have any inquiries, contact your designated WEKA representative.
 {% endhint %}
 
+## Minimal server configuration for a WEKA cluster
+
+The minimal configuration for a new WEKA cluster installation is **8 servers**. This ensures optimal performance, resilience, and scalability for most deployments.
+
+{% hint style="info" %}
+For cloud-based installations, WEKA supports a minimal configuration of **6 servers** to accommodate the unique requirements of cloud environments.
+{% endhint %}
+
 ## CPU
 
 <table><thead><tr><th width="338">CPU family/architecture</th><th width="210">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>2013 Intel® Core™ processor family and later</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome), 3rd (Milan-X), and 4th (Genoa) Generations</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span> <br>Single-socket and dual-socket</td></tr></tbody></table>
