@@ -19,7 +19,7 @@ Configure the KMS of either HashiCorp Vault or KMIP within the WEKA system to en
 
 **Before you begin**
 
-Ensure that the KMS is preconfigured, and both the key and a valid token are readily available.
+Ensure the KMS is preconfigured, and the key and a valid token are readily available.
 
 **Procedure**
 
@@ -35,14 +35,15 @@ For the **HashiCorp Vault** type, set the following:
 
 * **Address**: The KMS address.
 * **Key Identifier**: Key name to secure the filesystem keys (encryption-as-a-service).
-* **Token**: The authentication API token you obtain from the vault to access the KMS.
+* **Role Id:** Role ID for KMS access with per-filesystem encryption. Required if KMS Namespace is defined. Provided by Vault administrator in HashiCorp environments.
+* **Secret ID:** Secret ID for KMS access. Required if KMS Namespace is defined. Can also be set with WEKA\_KMS\_SECRET\_ID. Provided by Vault administrator in HashiCorp environments.
 * **Namespace:** The namespace name that identifies the logical partition within the vault. It is used to organize and isolate data, policies, and configurations. Namespace names must not end with "/", avoid spaces, and refrain from using reserved names like `root`, `sys`, `audit`, `auth`, `cubbyhole`, and `identity`.
 
-<div align="left">
+{% hint style="info" %}
+The **Token** parameter is deprecated. Set the **Role Id** and **Secret ID** instead.
+{% endhint %}
 
-<img src="../../../.gitbook/assets/wmng_configure_KMS_Hashicorp (1).png" alt="HashiCorp Vault type configuration">
-
-</div>
+<div align="left"><img src="../../../.gitbook/assets/4.4.2_configure_KMS_Hashicorp.png" alt="HashiCorp Vault type configuration"></div>
 {% endtab %}
 
 {% tab title="KMIP " %}
@@ -58,7 +59,7 @@ For the **KMIP** type, set the following:
 {% endtab %}
 {% endtabs %}
 
-6. Click **Save**.
+6. Select **Save**.
 
 
 
@@ -76,23 +77,27 @@ For the **KMIP** type, set the following:
 2. From the left pane, select **Security**.\
    The **Security** page displays the configured KMS.
 
-![View the configured KMS](../../../.gitbook/assets/wmng\_view\_kms\_settings.png)
+![View the configured KMS](../../../.gitbook/assets/wmng_view_kms_settings.png)
 
 ## Update the KMS configuration
 
 Update the KMS configuration in the WEKA system when changes occur in the KMS server details or cryptographic keys, ensuring seamless integration and continued secure filesystem key encryption.
+
+{% hint style="info" %}
+If your system is upgraded to version 4.4.2 or higher, the **Update KMS Configuration** screen displays a configuration with the Token parameter. Reset the KMS configuration and configure it using the new **Role ID** and **Secret ID** parameters.
+{% endhint %}
 
 **Procedure**
 
 1. From the menu, select **Configure > Cluster Settings**.
 2. From the left pane, select **Security**.
 3. The **Security** page displays the configured KMS.
-4. Select **Update KMS**, and update its settings.
+4. Select **Update KMS**, and update the settings. For the parameter descriptions, see [#configure-a-kms](kms-management.md#configure-a-kms "mention").
 5. Select **Save**.
 
-## Remove the KMS configuration
+## Reset the KMS configuration
 
-Removing a KMS configuration is possible only if no encrypted filesystems exist.
+Reseting a KMS configuration is possible only if no encrypted filesystems exist.
 
 **Procedure**
 
