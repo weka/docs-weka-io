@@ -200,6 +200,9 @@ Adhere to the following considerations when choosing the adapters:
     * Ethernet (9000) + InfiniBand (2K)
 * **IP addressing for dataplane NICs**\
   Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
+*   **WEKA peer connectivity requires NAT-free networking**
+
+    WEKA requires visibility and connectivity to all peers, without interference from networking technologies like network address translation, or NAT.
 
 ### Supported network adapters <a href="#networking-ethernet" id="networking-ethernet"></a>
 
