@@ -20,8 +20,8 @@ Refer to the Appendix: [bios-tool.md](../../appendices/bios-tool.md "mention") f
 
 **Required packages**
 
-| RHEL and derivatives                                                                                                 | Ubuntu                                                                                                        |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| RHEL and derivatives                                                                                                      | Ubuntu                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | <pre><code>elfutils-libelf-devel
 gcc
 glibc-headers
@@ -31,6 +31,7 @@ perl
 rpcbind
 xfsprogs
 kernel-devel
+sssd
 </code></pre> | <pre><code>libelf-dev
 linux-headers-$(uname -r)
 gcc
