@@ -176,6 +176,8 @@ Adhere to the following considerations when choosing the adapters:
 * [**IOMMU**](#user-content-fn-4)[^4] **support:** WEKA automatically detects and enables IOMMU for the server and PCI devices. Manual enablement is not required.
 * **Mixed networks:** This term denotes a configuration in which a WEKA cluster is interfaced with both InfiniBand and Ethernet networks. In the event of dual connections, the system gives precedence to the InfiniBand links for managing WEKA traffic, resorting to the Ethernet links only when complications occur with the InfiniBand network. It’s important to note that in a mixed network cluster, the activation of RDMA (Remote Direct Memory Access) is not possible.
 * **IP Addressing for dataplane NICs:** Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
+* **WEKA peer connectivity requires NAT-free networking**\
+  WEKA requires visibility and connectivity to all peers, without interference from networking technologies like network address translation, or NAT.
 
 ### Supported network adapters <a href="#networking-ethernet" id="networking-ethernet"></a>
 
@@ -356,19 +358,19 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
       Remember, retrieval times, minimum storage periods, and potential charges due to object compaction may apply. If unsure, use S3 Intelligent-Tiering.
 * Azure Blob Storage
 * Google Cloud Storage (GCS)
-* Cloudian HyperStore (version 7.3 and higher)
+* Cloudian HyperStore (version 7.3)
 * Dell EMC ECS (v3.5 and higher)
 * HCP Classic V9.2 and up (with versioned buckets only)
 * HCP for Cloud-Scale V2.x
-* IBM Cloud Object Storage System (version 3.14.7 and higher)
-* Lenovo MagnaScale (version 3.0 and higher)
-* Quantum ActiveScale (version 5.5.1 and higher)
-* Red Hat Ceph Storage (version 5.0 and higher)
-* Scality Ring (version 7.4.4.8 and higher)
-* Scality Artesca (version 1.5.2 and higher)
-* SwiftStack (version 6.30 and higher)
-* Spectra Logic BlackPearl with Vail for remote buckets (version 5.7.1 and higher)
-* Dell PowerScale S3 (version 9.8.0.0 and higher)
+* IBM Cloud Object Storage System (version 3.14.7)
+* Lenovo MagnaScale (version 3.0)
+* Quantum ActiveScale (version 5.5.1)
+* Red Hat Ceph Storage (version 5.0)
+* Scality Ring (version 7.4.4.8)
+* Scality Artesca (version 1.5.2)
+* SwiftStack (version 6.30)
+* Spectra Logic BlackPearl with Vail for remote buckets (version 5.7.1)
+* Dell PowerScale S3 (version 9.8.0.0)
 
 ## Virtual Machines
 

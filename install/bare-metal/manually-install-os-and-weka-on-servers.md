@@ -14,8 +14,8 @@ If you are not using the WMS or WSA automated tools for installing a WEKA cluste
 
 **Required packages**
 
-| RHEL and derivatives                                                                                                 | Ubuntu                                                                                                        |
-| -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| RHEL and derivatives                                                                                                      | Ubuntu                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | <pre><code>elfutils-libelf-devel
 gcc
 glibc-headers
@@ -25,6 +25,7 @@ perl
 rpcbind
 xfsprogs
 kernel-devel
+sssd
 </code></pre> | <pre><code>libelf-dev
 linux-headers-$(uname -r)
 gcc
