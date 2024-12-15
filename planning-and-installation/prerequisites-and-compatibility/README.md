@@ -190,6 +190,8 @@ Adhere to the following considerations when choosing the adapters:
     * Ethernet (9000) + InfiniBand (2K)
 * **IP addressing for dataplane NICs**\
   Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
+* **WEKA peer connectivity requires NAT-free networking**\
+  WEKA requires visibility and connectivity to all peers, without interference from networking technologies like network address translation, or NAT.
 
 ### Supported network adapters <a href="#networking-ethernet" id="networking-ethernet"></a>
 
@@ -369,18 +371,18 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
       Remember, retrieval times, minimum storage periods, and potential charges due to object compaction may apply. If unsure, use S3 Intelligent-Tiering.
 * Azure Blob Storage
 * Google Cloud Storage (GCS)
-* Cloudian HyperStore (version 7.3 and higher)
-* Dell EMC ECS (version 3.5 and higher)
+* Cloudian HyperStore (version 7.3)
+* Dell EMC ECS (version 3.5)
 * HCP Classic V9.2 and up (with versioned buckets only)
 * HCP for Cloud-Scale V2.x
-* IBM Cloud Object Storage System (version 3.14.7 and higher)
-* Lenovo MagnaScale (version 3.0 and higher)
-* Quantum ActiveScale (version 5.5.1 and higher)
-* Red Hat Ceph Storage (version 5.0 and higher)
-* Scality Ring (version 7.4.4.8 and higher)
-* Scality Artesca (version 1.5.2 and higher)
-* SwiftStack (version 6.30 and higher)
-* Dell PowerScale S3 (version 9.8.0.0 and higher)
+* IBM Cloud Object Storage System (version 3.14.7)
+* Lenovo MagnaScale (version 3.0)
+* Quantum ActiveScale (version 5.5.1)
+* Red Hat Ceph Storage (version 5.0)
+* Scality Ring (version 7.4.4.8)
+* Scality Artesca (version 1.5.2)
+* SwiftStack (version 6.30)
+* Dell PowerScale S3 (version 9.8.0.0)
 
 ## Virtual Machines
 
