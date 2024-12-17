@@ -58,13 +58,13 @@ After configuring the switch, update the Linux system interfaces to recognize th
 Mount a filesystem with a specified NIC and VLAN tag:
 
 ```bash
-mount -o net=<nic>/vlan=<tag> <mountpoint>
+mount -o net=<nic>/vlan@<tag> <mountpoint>
 ```
 
 Example:
 
 ```bash
-mount -o net=mlnx0/vlan=501 /mnt/weka
+mount -o net=mlnx0/vlan@501 /mnt/weka
 ```
 
 **Extended network configuration**
@@ -72,14 +72,16 @@ mount -o net=mlnx0/vlan=501 /mnt/weka
 Include gateway, IP, and netmask for advanced configurations:
 
 ```bash
-mount -o net=<nic>/vlan=<tag>/gw=<gateway>/ip=<ip>/netmask=<netmask> <mountpoint>
+mount -o net=<nic>/vlan@<tag>/gw=<gateway>/ip=<ip>/netmask=<netmask> <mountpoint>
 ```
 
 Example:
 
+{% code overflow="wrap" %}
 ```bash
-mount -o net=mlnx0/vlan=501/gw=192.168.1.1/ip=192.168.1.10/netmask=255.255.255.0 /mnt/weka
+mount -o net=mlnx0/vlan@501/gw=192.168.1.1/ip=192.168.1.10/netmask=255.255.255.0 /mnt/weka
 ```
+{% endcode %}
 
 **Syntax guidelines:**
 
