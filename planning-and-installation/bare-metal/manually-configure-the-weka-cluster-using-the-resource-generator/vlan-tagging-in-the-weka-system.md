@@ -72,20 +72,20 @@ mount -o net=mlnx0/vlan@501 /mnt/weka
 Include gateway, IP, and netmask for advanced configurations:
 
 ```bash
-mount -o net=<nic>/vlan@<tag>/gw=<gateway>/ip=<ip>/netmask=<netmask> <mountpoint>
+mount -o net=<nic>/vlan@<tag>/gw@<gateway>/ip@<ip>/netmask@<netmask> <mountpoint>
 ```
 
 Example:
 
 {% code overflow="wrap" %}
 ```bash
-mount -o net=mlnx0/vlan@501/gw=192.168.1.1/ip=192.168.1.10/netmask=255.255.255.0 /mnt/weka
+mount -o net=mlnx0/vlan@501/gw@192.168.1.1/ip@192.168.1.10/netmask@255.255.255.0 /mnt/weka
 ```
 {% endcode %}
 
 **Syntax guidelines:**
 
-* Include additional named parameters (for example, `gw=`, `ip=`, `netmask=`) directly in the command syntax.
+* Include additional named parameters (for example, `gw@`, `ip@`, `netmask@`) directly in the command syntax.
 * Alternatively, use the legacy style by specifying name-value pairs after the positional parameters.
 * Separate all parameters using `/`.
 
