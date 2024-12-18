@@ -274,7 +274,6 @@ If you already ran the preparation step, the upgrade command skips the download 
     --ndu-frontends-phase
     --ndu-computes-phase
     ```
-* In a successful process, the upgrade stops the cluster IO service, switches all servers to the new release, and then turns the IO service back on. This process takes about 1 minute, depending on the cluster size.
 * If the container running the upgrade process uses a port other than the default (14000), include the option `--mgmt-port <existing-port>` to the command.
 
 ### 5. Verify LLQ and WC are enabled in AWS
