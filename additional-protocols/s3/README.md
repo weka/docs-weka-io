@@ -201,10 +201,10 @@ As a quick workflow guide, here is a summary of the CLI commands for configuring
 
 ```
 weka s3 cluster create default .config_fs --all-servers
-weka s3 bucket create my_bucket
+weka s3 bucket create mybucket
 weka user add S3_user S3
-weka s3 policy attach readwrite S3_user
-weka security tls download my_path
+weka s3 policy attach readwrite S3user
+weka security tls download mypath
 python3 s3.py
 ```
 
