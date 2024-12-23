@@ -44,10 +44,10 @@ This client image creation procedure is effective in on-premises environments, u
 
 </details>
 
-3. Remove the machine identifier file:\
+3. Check for the machine identifier file, and if it exists, remove it using the command:\
    `rm /opt/weka/data/agent/machine-identifier`
 4. Stop the weka-agent service:\
-   `service weka-agent stop`
+   `systemctl stop weka-agent`
 5. Optional: If you used the tarball, remove it and the unzipped directory.
 6. Create the image of the WEKA client using the method that is preferred for your environment.
    * If you use the Bright Cluster Manager's `grabimage` command, exclude `/opt/weka/*` from the `imageupdate` command.
@@ -55,9 +55,9 @@ This client image creation procedure is effective in on-premises environments, u
 
 **Related information**
 
-[Bright Cluster Manager Administrator Guide](https://docs.nvidia.com/bright-cluster-manager/archives/6.0-admin-manual.pdf)
+[NVIDIA Base Command Manager](https://docs.nvidia.com/base-command-manager/index.html#product-manuals)
 
-[Create an AMI from an Amazon EC2 Instance](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/tkv-create-ami-from-instance.html)
+[Create an AMI from an Amazon EC2 Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html)
 
 
 
