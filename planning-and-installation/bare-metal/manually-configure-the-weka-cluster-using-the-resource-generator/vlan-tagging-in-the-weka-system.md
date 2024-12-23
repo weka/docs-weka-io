@@ -79,7 +79,7 @@ Example:
 
 {% code overflow="wrap" %}
 ```bash
-mount -o net=mlnx0/vlan@501/gw@192.168.1.1/ip@192.168.1.10/netmask@255.255.255.0 /mnt/weka
+mount -o net=mlnx0/vlan@501/gw@192.168.1.1/ip@192.168.1.10/netmask@22 /mnt/weka
 ```
 {% endcode %}
 
