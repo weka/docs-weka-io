@@ -6,14 +6,14 @@ description: >-
 
 # Set up the SnapTool external snapshots manager
 
-WEKA provides an external snapshots manager called SnapTool, allowing you to schedule and manage snapshots for your WEKA cluster efficiently.
+WEKA provides an external snapshots manager called SnapTool, allowing you to efficiently schedule and manage filesystem snapshots for your WEKA cluster.
 
 Key features of SnapTool include:
 
 * Schedule snapshots at monthly, daily, or minute-level intervals throughout the day.
 * Set the number of snapshot copies to retain for each schedule.
 * Automatically delete expired snapshots.
-* Automatically upload snapshots to an object store.
+* Automatically upload snapshots of a filesystem to its configured object store.
 * Perform uploads and deletions in the background.
 * Access a Web Status GUI to view snapshot schedules, upload/download queues, locator IDs for uploaded snapshots, and logs. The default URL is http://\<snaptool server hostname/IP>:8090.
 
