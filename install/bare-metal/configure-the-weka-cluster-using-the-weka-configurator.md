@@ -132,7 +132,7 @@ The stripe and other settings include:
 * **Hot Spares:** The number of Hot Spare members.
 * **Reserved RAM per Host:** Extra RAM in GB reserved on each host for various purposes, like supporting Protocols or Applications.
 
-These settings are in terms of servers, not SSDs. WEKA stripes over the entire servers, not over individual drives. For more details, see [WEKA cluster installation using the resource generator (for advanced users)](broken-reference).
+These settings are in terms of servers, not SSDs. WEKA stripes over the entire servers, not over individual drives. For more details, see [manually-configure-the-weka-cluster-using-the-resource-generator.md](manually-configure-the-weka-cluster-using-the-resource-generator.md "mention").
 
 The following example shows a stripe width of 6 (4+2) on 7 servers, and one hot spare.
 
