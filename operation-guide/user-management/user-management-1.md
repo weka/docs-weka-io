@@ -111,7 +111,7 @@ weka user login user1 password1
 
 **Related topic**
 
-[obtain-authentication-tokens.md](../security/obtain-authentication-tokens.md "mention")
+[obtain-authentication-tokens](../security/obtain-authentication-tokens/ "mention")
 
 ## Change a local user password
 

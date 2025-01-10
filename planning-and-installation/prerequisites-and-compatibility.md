@@ -184,20 +184,22 @@ Adhere to the following considerations when choosing the adapters:
   If any network connection, irrespective of whether it’s InfiniBand or Ethernet, on a given backend possess the capability to transmit frames exceeding 4 KB in size, it is mandatory for all network connections used directly by WEKA on that same backend to have the ability to transmit frames of at least 4 KB.
 * [**IOMMU**](#user-content-fn-7)[^7] **support**\
   WEKA automatically detects and enables IOMMU for the server and PCI devices. Manual enablement is not required.
-*   **Mixed networks**\
+*   **Mixed networks**
+
     A mixed network configuration refers to a setup where a WEKA cluster connects to both InfiniBand and Ethernet networks. In such configurations, WEKA prioritizes InfiniBand for traffic management, switching to Ethernet only if issues arise with the InfiniBand network.
 
-    RDMA (Remote Direct Memory Access) is not supported in mixed network clusters.\
+    \
+    Certain features and configurations are not supported in mixed network setups. Review the following limitations and supported settings:
 
-
-    **Supported mixed connectivity MTU settings**
-
-    * Ethernet (9000) + InfiniBand (4K)
-
-    **Non-supported mixed connectivity MTU settings**
-
-    * Ethernet (1500) + InfiniBand (4K)
-    * Ethernet (9000) + InfiniBand (2K)
+    * **Non-supported features in mixed networks:**
+      * RDMA
+      * VLAN
+      * IPv6
+    * **Supported MTU settings in mixed networks:**
+      * Ethernet (9000) + InfiniBand (4K)
+    * **Non-supported MTU settings in mixed networks:**
+      * Ethernet (1500) + InfiniBand (4K)
+      * Ethernet (9000) + InfiniBand (2K)
 * **IP addressing for dataplane NICs**\
   Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
 *   **WEKA peer connectivity requires NAT-free networking**

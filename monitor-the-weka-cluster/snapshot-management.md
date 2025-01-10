@@ -82,7 +82,7 @@ Perform the following steps on the **SnapTool host**.
 
 [#create-a-local-user](../operation-guide/user-management/user-management.md#create-a-local-user "mention")
 
-[obtain-authentication-tokens.md](../operation-guide/security/obtain-authentication-tokens.md "mention")
+[obtain-authentication-tokens](../operation-guide/security/obtain-authentication-tokens/ "mention")
 
 ### Option 1: Install the SnapTool package with the systemd service
 

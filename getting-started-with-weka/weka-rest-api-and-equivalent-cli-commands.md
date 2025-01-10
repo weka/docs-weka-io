@@ -250,7 +250,7 @@ Related information: [account-lockout-threshold-policy-management](../operation-
 
 ## Login
 
-Related information: [obtain-authentication-tokens.md](../operation-guide/security/obtain-authentication-tokens.md "mention")
+Related information: [obtain-authentication-tokens](../operation-guide/security/obtain-authentication-tokens/ "mention")
 
 | Task                                                                                                                                                                                                                                                  | REST API                                                                                    | CLI               |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------- |

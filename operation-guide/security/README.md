@@ -19,11 +19,9 @@ The security controls include the following:
 * **Login banner:** The login banner provides a security statement or a legal message on the sign-in page.
 * **GUI session automatic termination:** The user is signed out after 30 minutes of inactivity.
 
-
-
 **Related topics**
 
-[obtain-authentication-tokens.md](obtain-authentication-tokens.md "mention")
+[obtain-authentication-tokens](obtain-authentication-tokens/ "mention")
 
 [kms-management](kms-management/ "mention")
 
@@ -32,7 +30,7 @@ The security controls include the following:
 [ca-certificate-management](ca-certificate-management/ "mention")
 
 [organizations](../organizations/ "mention")\
-&#x20;   (security topics related to mounting and separation of organizations)
+(security topics related to mounting and separation of organizations)
 
 [user-management](../user-management/ "mention")\
-&#x20;   (authentication of different user roles and AD/LDAP)
+(authentication of different user roles and AD/LDAP)
