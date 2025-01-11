@@ -295,42 +295,9 @@ If the mount point you want to set in the fstab is already mounted,  unmount it 
 
 **Procedure**
 
-1. Remove the `/etc/init.d/weka-agent` file.
-2. Create a file named `weka-agent.service` with the following content and save it in `/etc/systemd/system`.
-
-{% code title="weka-agent.service" %}
-```
-[Unit]
-Description=WEKA Agent Service
-Wants=network.target network-online.target
-After=network.target network-online.target rpcbind.service
-Documentation=http://docs.weka.io
-Before=remote-fs-pre.target remote-fs.target
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/weka --agent
-Restart=always
-WorkingDirectory=/
-EnvironmentFile=/etc/environment
-# Increase the default a bit in order to allow many simultaneous
-# files to be monitored, we might need a lot of fds.
-LimitNOFILE=65535
-
-[Install]
-RequiredBy=remote-fs-pre.target remote-fs.target
-```
-{% endcode %}
-
-3. Run the following command:
-
-```bash
-systemctl daemon-reload; systemctl enable --now weka-agent.service
-```
-
-4. Create a mount point.\
+1. Create a mount point.\
    Example: `mkdir -p /mnt/weka/my_fs`
-5. Edit `/etc/fstab` file.
+2. Edit `/etc/fstab` file.
 
 **fstab structure**
 
