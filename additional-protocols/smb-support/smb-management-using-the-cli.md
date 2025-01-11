@@ -180,7 +180,7 @@ Use the following command line to remove an SMB-trusted domain:
 {% hint style="info" %}
 **SMB-W cluster restart and verification**
 
-The commands `weka smb cluster trusted-domains add` and `weka smb cluster trusted-domains remove` trigger a background restart of the SMB-W cluster. This restart is necessary for the changes to take effect.
+The commands  `weka smb cluster trusted-domains add` and `weka smb cluster trusted-domains remove` (and the related APIs) trigger a background restart of the SMB-W cluster. This restart is necessary for the changes to take effect.
 
 To confirm that the cluster has resumed normal operation following the restart, run the command: `weka smb cluster status`
 
