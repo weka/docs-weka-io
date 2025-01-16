@@ -2,13 +2,13 @@
 
 The WEKApod™ is a turnkey data platform appliance that delivers high-performance storage solutions supporting NVIDIA DGX SuperPOD and other environments. Each appliance includes pre-configured storage servers and integrated software, enabling simplified deployment and faster time to value.
 
-It is powered by the WEKA Data Platform and supports NVMe technology (POSIX, RDMA, and TCP), Magnum IOTM GPUDirect Storage (GDS), NFS, S3, and SMB protocol. The WEKApod starts with a minimum of 8 severs and scales to hundreds of servers.
+It is powered by the WEKA Data Platform and supports NVMe technology (POSIX, RDMA, and TCP), Magnum IO™ GPUDirect Storage (GDS), NFS, S3, and SMB protocol. The WEKApod starts with a minimum of 8 servers and scales to hundreds of servers.
 
 <figure><img src="../.gitbook/assets/WEKApod_overview.png" alt=""><figcaption><p>WEKApod overview</p></figcaption></figure>
 
 #### Purpose and benefits of the WEKA data platform appliance
 
-The WEKApod appliance is designed to overcome traditional storage scaling and file sharing limitations, and it allows parallel file access to the same namespace through POSIX, NFS, SMB, S3, and Magnum IOTM GPUDirect Storage.
+The WEKApod appliance is designed to overcome traditional storage scaling and file sharing limitations, and it allows parallel file access to the same namespace through POSIX, NFS, SMB, S3, and Magnum IO™ GPUDirect Storage.
 
 It provides a rich enterprise feature set, including local snapshots, automated tiering, self healing, private cloud multi-tenancy, backup, encryption, authentication, key management, user groups, quotas, and more.
 
@@ -37,7 +37,7 @@ Each section guides you through key processes to ensure a smooth setup and opera
 
 [WEKA Data Platform introduction](https://app.gitbook.com/s/lGKb8DZItQx3Jy6unw5f/weka-system-overview/about "mention")
 
-[broken-reference](broken-reference/ "mention")
+[Broken link](broken-reference "mention")
 
 **Related information**
 
