@@ -501,7 +501,7 @@ nginx:
 </details>
 
 5. Run `./wekahome-install.sh`. For an upgrade, it takes about 2 minutes.
-6. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
+6. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods statuses, run `watch kubectl get pods`.)
 7. Verify the Local WEKA Home is upgraded successfully. Run the following command line:\
    `helm status homewekaio -n home-weka-io`
 8. If any changes made to the _config.yaml_ required setting `force_update: true`, change it back to `false`.
