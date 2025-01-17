@@ -1,3 +1,22 @@
+---
+cover: .gitbook/assets/doc_banner.png
+coverY: 0
+layout:
+  cover:
+    visible: true
+    size: hero
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
 # WEKA v4.3 documentation
 
 Welcome to the WEKA Documentation Portal, your guide to the latest WEKA version. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies. Choose your WEKA version from the top menu for version-specific documentation.
@@ -12,7 +31,7 @@ Check the release notes for details about any updates or changes accompanying th
 
 ## Find answers in WEKA documentation with Sevii
 
-Sevii, your AI chat companion, makes finding answers in WEKA documentation fast and easy. Just type your question and click  ![](.gitbook/assets/sevii\_submit.png) to get started. Sevii is ready to help—whether you're exploring a topic or need a specific answer.
+Sevii, your AI chat companion, makes finding answers in WEKA documentation fast and easy. Just type your question and click  ![](.gitbook/assets/sevii_submit.png) to get started. Sevii is ready to help—whether you're exploring a topic or need a specific answer.
 
 For the best results, ask clear, context-rich questions. If unsure, start with related keywords, and Sevii will guide you.
 
