@@ -157,19 +157,28 @@ Unlike HashiCorp Vault KMS, re-wrapping a KMIP-based KMS necessitates generating
 
 ### Enable 'Transit' secret engine in vault
 
-The WEKA system uses [encryption-as-a-service](https://learn.hashicorp.com/vault/encryption-as-a-service/eaas-transit) capabilities of the KMS to encrypt/decrypt the filesystem keys. This requires the configuration of Vault with the `transit` secret engine.
+The WEKA system uses [encryption-as-a-service](https://learn.hashicorp.com/vault/encryption-as-a-service/eaas-transit) capabilities of the KMS to encrypt/decrypt the filesystem keys. This requires the configuration of Vault with the `transit` secret engine with this command:
 
-```bash
-$ vault secrets enable transit
-Success! Enabled the transit secrets engine at: transit/
 ```
+vault secrets enable transit
+```
+
+The expected output is:
+
+<pre class="language-bash"><code class="lang-bash"><strong>Success! Enabled the transit secrets engine at: transit/
+</strong></code></pre>
 
 ### Set up a master key for the WEKA system
 
-Once the `transit` secret engine is set up, a master key for use with the WEKA system must be created.
+Once the `transit` secret engine is set up, a master key for use with the WEKA system must be created with this command:
+
+```
+vault write -f transit/keys/weka-key
+```
+
+The expected output is:
 
 ```bash
-$ vault write -f transit/keys/weka-key
 Success! Data written to: transit/keys/weka-key
 ```
 
@@ -199,7 +208,7 @@ This limits the capabilities so there is no permission to destroy the key, using
 * Create the policy using the following command:
 
 ```bash
-$ vault policy write weka weka_policy.hcl
+vault policy write weka weka_policy.hcl
 ```
 
 ### Obtain an API token from the vault
@@ -208,8 +217,14 @@ Authentication from the WEKA system to Vault relies on an API token. Since the W
 
 * Verify that the`token` authentication method in Vault is enabled. This can be performed using the following command:
 
+```
+vault auth list
+```
+
+The expected output is:
+
 ```bash
-$ vault auth list
+vault auth list
 
 Path         Type        Description
 ----         ----        -----------
@@ -219,7 +234,7 @@ token/       token       token based credentials
 * To enable the token authentication method use the following command:
 
 ```
-$ vault auth enable token
+vault auth enable token
 ```
 
 * Log into the KMS system using any of the identity methods Vault supports. The identity must have permission to use the previously set master key.&#x20;
@@ -227,7 +242,7 @@ $ vault auth enable token
 
 {% code overflow="wrap" %}
 ```bash
-$ vault write auth/token/roles/weka allowed_policies="weka" period="768h"
+vault write auth/token/roles/weka allowed_policies="weka" period="768h"
 ```
 {% endcode %}
 
@@ -237,8 +252,14 @@ The `period` is the designated timeframe for a renewal request. If a renewal is 
 
 * Generate a token for the logged-in identity using the following command:
 
+```
+vault token create -role=weka
+```
+
+The expected output is:
+
 ```bash
-$ vault token create -role=weka
+vault token create -role=weka
 
 Key                  Value
 ---                  -----
