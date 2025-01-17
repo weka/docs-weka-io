@@ -1,3 +1,22 @@
+---
+cover: .gitbook/assets/doc_banner.png
+coverY: 93
+layout:
+  cover:
+    visible: true
+    size: hero
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
 # WEKA v4.4 documentation
 
 Welcome to the WEKA documentation portal, your guide to the latest WEKA version. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies. Choose your WEKA version from the top menu for version-specific documentation.

@@ -16,13 +16,13 @@ The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minim
 **Examples:**
 
 * **Permitted upgrade:**\
-  Upgrading from version 4.2.12.92 LTS (released August 1, 2024) to version 4.4.1 (released November 5, 2024) is allowed.
+  Upgrading from version 4.2.12.92 (released August 1, 2024) to version 4.4.1 (released November 5, 2024) is allowed. In addition, the maximum versions 4.3.5.105 and 4.4.0 are allowed.
 * **Restricted upgrade:**\
   Upgrading from versions 4.2.14, 4.2.15, and 4.2.16 to version 4.4.1 is not allowed.
 
 Always review release notes and guidelines to confirm upgrade eligibility for your specific version.
 
-<figure><img src="../.gitbook/assets/get-weka-io-versions_4.4 (3).png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/get-weka-io-versions_4.4.png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
 
 {% hint style="warning" %}
 The source system must be set up in MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the cluster architecture to MCB. See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention").\
