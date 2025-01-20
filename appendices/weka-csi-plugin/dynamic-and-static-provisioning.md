@@ -23,7 +23,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: storageclass-wekafs-dir
+  storageClassName: storageclass-wekafs-dir-api
   volumeMode: Filesystem
   resources:
     requests:
