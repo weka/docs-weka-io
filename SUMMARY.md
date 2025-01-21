@@ -258,7 +258,8 @@
 
 ## Kubernetes
 
-* [WEKA Operator deployment guide](kubernetes/weka-operator-deployment-guide.md)
+* [WEKA Operator deployment](kubernetes/weka-operator-deployment.md)
+* [WEKA Operator day-2 operations](kubernetes/weka-operator-day-2-operations.md)
 
 ## Appendices
 

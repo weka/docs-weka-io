@@ -5,7 +5,7 @@ description: >-
   compute-intensive workloads like AI and HPC.
 ---
 
-# WEKA Operator deployment guide
+# WEKA Operator deployment
 
 ## Overview
 
@@ -249,8 +249,8 @@ If both components are needed, ensure that you begin with the **WekaCluster CR**
 
 To install the WekaCluster using the WekaCluster Custom Resource (CR), follow this high-level process:
 
-1. **Configure driver distribution:** Set up the driver distribution service as with WEKA clients. See [#id-4.-set-up-driver-distribution](weka-operator-deployment-guide.md#id-4.-set-up-driver-distribution "mention").
-2. **Sign and discover drives:** Use the `WekaManualOperation` (recommended for first-time setup) or `WekaPolicy` to sign and discover drives. See [#discover-drives-for-weka-cluster-provisioning](weka-operator-deployment-guide.md#discover-drives-for-weka-cluster-provisioning "mention").
+1. **Configure driver distribution:** Set up the driver distribution service as with WEKA clients. See [#id-4.-set-up-driver-distribution](weka-operator-deployment.md#id-4.-set-up-driver-distribution "mention").
+2. **Sign and discover drives:** Use the `WekaManualOperation` (recommended for first-time setup) or `WekaPolicy` to sign and discover drives. See [#discover-drives-for-weka-cluster-provisioning](weka-operator-deployment.md#discover-drives-for-weka-cluster-provisioning "mention").
 3.  **Define the WekaCluster specification:** Create a WekaCluster CR with the necessary parameters, as demonstrated in the following example:
 
     ```yaml
@@ -555,7 +555,7 @@ Upgrading the WEKA Operator involves updating the Operator and managing `wekaCli
 **Procedure:**
 
 1. **Upgrade the WEKA Operator**\
-   Follow the steps in [Install the WEKA Operator](weka-operator-deployment-guide.md#id-3.-install-the-weka-operator) using the latest version. Re-running the installation process with the updated version upgrades the WEKA Operator without requiring additional setup.
+   Follow the steps in [Install the WEKA Operator](weka-operator-deployment.md#id-3.-install-the-weka-operator) using the latest version. Re-running the installation process with the updated version upgrades the WEKA Operator without requiring additional setup.
 2.  **Configure upgrade policies for `wekaClient`**\
     The `upgradePolicy` parameter in the `wekaClient` Custom Resource (CR) specification controls how client pods are updated when the WEKA version changes. Options include:
 
