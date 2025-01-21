@@ -162,11 +162,12 @@ The following procedures are provided for reference purposes. For specific steps
 Repeat the following steps for every backend participating in the SMB protocol.
 
 1. Navigate to **Start > Programs > Administrative Tools > Active Directory Users and Computers**.
-2. In the **Computers** section, right-click on an SMB protocol backend and select **Properties**.
-3. Go to the **Attribute Editor** tab and modify the following:
-   * Locate the **uidNumber** attribute and set its value to **0**.
+2. From the **View** menu, select **Advanced Features**.
+3. In the **Computers** section, right-click on an SMB protocol backend and select **Properties**.
+4. Select the **Attribute Editor** tab and modify the following:
    * Locate the **gidNumber** attribute and set its value to **0**.
-4. Select **OK** to save the changes.
+   * Locate the **uidNumber** attribute and set its value to **0**.
+5. Select **OK** to save the changes.
 
 </details>
 
