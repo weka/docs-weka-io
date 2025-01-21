@@ -256,6 +256,10 @@
 * [WEKApod initial system setup and configuration](wekapod/setup.md)
 * [WEKApod support process](wekapod/support.md)
 
+## Kubernetes
+
+* [WEKA Operator deployment guide](kubernetes/weka-operator-deployment-guide.md)
+
 ## Appendices
 
 * [WEKA CSI Plugin](appendices/weka-csi-plugin/README.md)
