@@ -19,6 +19,10 @@ There are two methods available for mounting a filesystem on a client host:
 
 If you need to mount a single client to multiple clusters, see [mount-filesystems-from-multiple-clusters-on-a-single-client.md](mount-filesystems-from-multiple-clusters-on-a-single-client.md "mention").
 
+***
+
+
+
 ## Mount a filesystem using the stateful client method
 
 Before using the mount command, you must install the WEKA client, configure it, and join it to a WEKA cluster. This process involves adding clients, which can be done either for bare metal installation or as part of the WEKA deployment on one of the supported clouds.
@@ -49,6 +53,10 @@ When mounting a filesystem on a cluster client, you have two options: **read cac
 [add-clients.md](../../install/weka-installation-on-azure/add-clients.md "mention") (on Azure deployment)
 
 [add-clients.md](../../install/weka-installation-on-azure/add-clients.md "mention") (on GCP deployment)
+
+***
+
+
 
 ## Mount a filesystem using the stateless client method <a href="#mounting-filesystems-using-stateless-clients" id="mounting-filesystems-using-stateless-clients"></a>
 
@@ -87,6 +95,10 @@ mount -t wekafs -o <options> <backend0>[,<backend1>,...,<backendN>]:/<fs> <mount
 **Parameters**
 
 <table><thead><tr><th width="250">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>options</code></td><td>See Additional Mount Options below.</td></tr><tr><td><code>backend</code></td><td>IP/hostname of a backend container.<br>Mandatory.</td></tr><tr><td><code>fs</code></td><td>Filesystem name.<br>Mandatory.</td></tr><tr><td><code>mount-point</code></td><td>Path to mount on the local server.<br>Mandatory.</td></tr></tbody></table>
+
+***
+
+
 
 ## Mount command options
 
@@ -285,55 +297,102 @@ A client in UDP mode cannot be configured in HA mode. However, the client can st
 Providing multiple IPs in the \<mgmt-ip> in UDP mode uses their network interfaces for more bandwidth, which can be useful in RDMA environments rather than using only one NIC.
 {% endhint %}
 
+***
+
+
+
 ## Mount a filesystem using fstab
 
-Using the _fstab_ (filesystem table) enables automatic remount after reboot. It applies to **stateless clients** running on an OS that supports `systemd`, such as RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, and Amazon Linux 2 LTS.
+Using the fstab (filesystem table) enables automatic remount after a reboot. This applies to stateless clients running on an OS that supports systemd, such as RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, and Amazon Linux 2 LTS.
 
-**Before you begin**
+#### Before you begin
 
-If the mount point you want to set in the fstab is already mounted,  unmount it before setting the fstab file.
+* If the mount point you want to set in the fstab is already mounted, unmount it before setting the fstab file.
 
-**Procedure**
+#### Procedure
 
-1. Create a mount point.\
-   Example: `mkdir -p /mnt/weka/my_fs`
-2. Edit `/etc/fstab` file.
+**If your WEKA version is 4.2.14 or lower, start with steps 1 and 2. Otherwise, skip to step 3.**
+
+1. **Create the WEKA agent service:** Create a file named `weka-agent.service` in `/etc/systemd/system` with the following content:
+
+```
+[Unit]  
+Description=WEKA Agent Service  
+Wants=network.target network-online.target  
+After=network.target network-online.target rpcbind.service  
+Documentation=http://docs.weka.io  
+Before=remote-fs-pre.target remote-fs.target  
+SourcePath=/etc/init.d/weka-agent  
+
+[Service]  
+Type=forking  
+Restart=always  
+WorkingDirectory=/  
+EnvironmentFile=/etc/environment  
+IgnoreSIGPIPE=no  
+KillMode=process  
+GuessMainPID=yes  
+SuccessExitStatus=5 6  
+ExecStart=/etc/init.d/weka-agent start  
+ExecStop=/etc/init.d/weka-agent stop  
+ExecReload=/etc/init.d/weka-agent reload  
+CPUAffinity=  
+Delegate=yes  
+
+[Install]  
+RequiredBy=remote-fs-pre.target remote-fs.target  
+```
+
+2. **Enable and start the WEKA agent service:** Run the following commands to enable and start the service:
+
+```bash
+systemctl daemon-reload  
+systemctl enable --now weka-agent.service  
+```
+
+***
+
+**For all versions**
+
+3. **Create a mount point:** Run the following command to create a mount point:
+
+```
+mkdir -p /mnt/weka/my_fs  
+```
+
+4. **Edit the `/etc/fstab` file:** Add the entry for the WEKA filesystem.
 
 **fstab structure**
 
 {% code overflow="wrap" %}
-```bash
-<backend servers/my_fs> <mount point> <filesystem type> <mount options> <systemd mount options>  0     0
-
+```php-template
+<backend servers/my_fs> <mount point> <filesystem type> <mount options> <systemd mount options> 0 0  
 ```
 {% endcode %}
 
-**fstab example**
+**Example**
 
 {% code overflow="wrap" %}
-```bash
-backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  num_cores=1,net=eth1,x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev   0       0
-
+```
+backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs wekafs num_cores=1,net=eth1,x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev 0 0  
 ```
 {% endcode %}
 
-**fstab structure descriptions**
+**fstab configuration parameters**
 
-* **Backend servers/my\_fs:** A comma-separated list of backend servers with the filesystem name
-* **Mount point:** If the client mounts multiple clusters, specify a unique name for each client container. Example: For two client containers, set `container_name=client1` and  `container_name=client2`.
-* **Filesystem type:** `wekafs`
-* **Mount options:**
-  * See [Additional mount options using the stateless clients feature](./#additional-mount-options-using-the-stateless-clients-feature).
-  * **Systemd mount options:**\
-    `x-systemd.after=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`\
-    You can set the `mount-timeout` based on your preferences, such as `180` seconds. This flexibility allows you to customize the timeout according to your specific system needs.
+<table><thead><tr><th width="298">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Backend servers/my_fs</td><td>Comma-separated list of backend servers with the filesystem name.</td></tr><tr><td>Mount point</td><td><p>If mounting multiple clusters, specify a unique name.</p><p>For two client containers, set <code>container_name=client1</code> and <code>container_name=client2</code>.</p></td></tr><tr><td>Filesystem type</td><td>Must be <code>wekafs</code>.</td></tr><tr><td>Systemd mount options</td><td><ul><li><code>x-systemd.after=weka-agent.service</code></li><li><code>x-systemd.mount-timeout=infinity</code></li><li><code>_netdev</code></li></ul><p>Adjust the mount-timeout to your preference, for example, 180 seconds.</p></td></tr><tr><td>Mount options</td><td>See <a data-mention href="./#additional-mount-options-using-the-stateless-clients-feature">#additional-mount-options-using-the-stateless-clients-feature</a></td></tr></tbody></table>
 
-7. Mount the the filesystem to test the fstab setting by running the command, for example:\
-   `mount /mnt/weka/my_fs`
-8. To test the fstab implementation, reboot the server.\
-   WEKA creates the mounts for the next boot.
+5. **Mount the filesystem:** Test the fstab setting by running:
 
-The filesystem is mounted automatically after server reboot.
+```
+mount /mnt/weka/my_fs  
+```
+
+6. **Reboot the server:** Reboot the server to test the fstab implementation. The filesystem is automatically mounted after the reboot.
+
+***
+
+
 
 ## Mount a filesystem using autofs
 
