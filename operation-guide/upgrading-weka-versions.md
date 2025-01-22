@@ -16,9 +16,9 @@ The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minim
 **Examples:**
 
 * **Permitted upgrade:**\
-  Upgrading from version 4.2.12.92 (released August 1, 2024) to version 4.4.1 (released November 5, 2024) is allowed. In addition, the maximum versions 4.3.5.105 and 4.4.0 are allowed.
+  Upgrading from version 4.2.12.92 (released August 1, 2024) to version 4.4.2.113 (released December 10, 2024) is allowed. In addition, the maximum versions 4.3.5.105 and 4.4.1 are allowed.
 * **Restricted upgrade:**\
-  Upgrading from versions 4.2.14, 4.2.15, and 4.2.16 to version 4.4.1 is not allowed.
+  Upgrading from versions 4.2.14 to 4.2.17.77 to version 4.4.2.113 are not allowed.
 
 Always review release notes and guidelines to confirm upgrade eligibility for your specific version.
 
