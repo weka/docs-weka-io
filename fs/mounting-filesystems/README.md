@@ -396,62 +396,70 @@ mount /mnt/weka/my_fs
 
 ## Mount a filesystem using autofs
 
-**Procedure:**
+Autofs allows filesystems to be mounted dynamically when accessed and unmounted after a period of inactivity. This approach reduces system overhead and ensures efficient resource utilization. Follow these steps to configure autofs for mounting Weka filesystems.
 
-1. Install `autofs` on the server using one of the following commands according to your deployment:
+#### Procedure
 
-* On Red Hat or CentOS:&#x20;
+1. **Install autofs on the server:** Install the autofs package based on your operating system:
+   *   **For Red Hat or CentOS**:
 
-```bash
-yum install -y autofs
-```
+       ```
+       yum install -y autofs
+       ```
+   *   **For Debian or Ubuntu**:
 
-* On Debian or Ubuntu:
+       ```
+       apt-get install -y autofs
+       ```
+2. **Configure autofs for WEKA filesystems:** Set up the autofs configuration files according to the client type:
+   *   **Stateless client**: Run the following commands, replacing `<backend-1>`, `<backend-2>`, and `<netdevice>` with appropriate values:
 
-```bash
-apt-get install -y autofs
-```
+       {% code overflow="wrap" %}
+       ```
+       echo "/mnt/weka /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
+       echo "* <backend-1>,<backend-2>/&" > /etc/auto.wekafs
+       ```
+       {% endcode %}
+   *   **Persistent client**: Run the following commands:
 
-2\. To create the `autofs` configuration files for Weka filesystems, do one of the following\
-&#x20;   depending on the client type:
+       {% code overflow="wrap" %}
+       ```
+       echo "/mnt/weka /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
+       echo "* &" > /etc/auto.wekafs
+       ```
+       {% endcode %}
+3.  **Restart the autofs service:** Apply the changes by restarting the autofs service:
 
-* For a stateless client, run the following commands (specify the backend names as parameters):
+    ```
+    service autofs restart
+    ```
+4.  **Ensure autofs starts automatically on reboot:** Verify that autofs is configured to start on reboot:
 
-{% code overflow="wrap" %}
-```bash
-echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
-echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
-```
-{% endcode %}
+    ```bash
+    systemctl is-enabled autofs
+    ```
 
-* For a stateful client (traditional), run the following commands:
+    * If the output is `enabled`, no further action is required.
 
-{% code overflow="wrap" %}
-```bash
-echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
-echo "*   &" > /etc/auto.wekafs
-```
-{% endcode %}
+    **For Amazon Linux**: Use `chkconfig` to confirm autofs is enabled for the current runlevel:
 
-3\. Restart the `autofs` service:
+    ```
+    chkconfig | grep autofs
+    ```
 
-```
-service autofs restart
-```
+    Ensure the output indicates `on` for the active runlevel.\
+    Example output:
 
-4\. The configuration is distribution-dependent. Verify that the service is configured to start\
-&#x20;    automatically after restarting the server. Run the following command:\
-&#x20;    `systemctl is-enabled autofs.` \
-&#x20;   If the output is `enabled` the service is configured to start automatically.
+    ```
+    autofs 0:off 1:off 2:off 3:on 4:on 5:on 6:off
+    ```
+5.  **Access the WEKA filesystem:** Navigate to the mount point to access the WEKA filesystem. Replace `<fs-name>` with the desired filesystem name:
+
+    ```
+    cd /mnt/weka/<fs-name>
+    ```
 
 {% hint style="info" %}
-**Example:** In Amazon Linux, you can verify that the `autofs` service is configured to start automatically by running the command `chkconfig`. \
-If the output is `on` for the current _runlevel_ (you can check with the`runlevel` command), `autofs` is enabled upon restart.
-
-```
-# chkconfig | grep autofs
-autofs         0:off 1:off 2:off 3:on 4:on 5:on 6:off
-```
+* Adjust backend and network device configurations as needed for your deployment.
+* Review distribution-specific documentation for additional configuration options.
 {% endhint %}
-
-&#x20;Once you complete this procedure, it is possible to access Weka filesystems using the command `cd /mnt/weka/<fs-name>`.
