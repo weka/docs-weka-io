@@ -68,15 +68,16 @@ Follow these steps to build and manage WEKA drivers for a specific OS and WEKA k
 4.  **Sign drivers (optional):**\
     To enable secure boot, sign the drivers by running:
 
-    <pre class="language-bash"><code class="lang-bash">weka driver <a data-footnote-ref href="#user-content-fn-1">sign</a> &#x3C;key> --pack
-    </code></pre>
+    ```bash
+    weka driver sign <key> --pack
+    ```
 
     This signs the drivers or the entire distribution package, replacing any existing signatures, making the package secure for deployment.
 5.  **Export the driver archive:**\
     Run the following command to export the driver package:
 
     ```bash
-    weka driver export
+    weka driver export <path>
     ```
 
     Copy the exported archive to all backends in the WEKA cluster.
@@ -86,5 +87,3 @@ Follow these steps to build and manage WEKA drivers for a specific OS and WEKA k
     ```bash
     weka driver import <path>
     ```
-
-[^1]: 
