@@ -53,7 +53,7 @@ Follow these steps to build and manage WEKA drivers for a specific OS and WEKA k
     Use the following command to download only the source code packages needed to build the drivers:
 
     ```bash
-    weka version get --driver-only
+    weka version get <version> --driver-only
     ```
 
     This allows you to compile the required drivers without installing the full WEKA software.
