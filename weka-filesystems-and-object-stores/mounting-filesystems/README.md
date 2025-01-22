@@ -341,114 +341,126 @@ A client in UDP mode cannot be configured in HA mode. However, the client can st
 Providing multiple IPs in the \<mgmt-ip> in UDP mode uses their network interfaces for more bandwidth, which can be useful in RDMA environments rather than using only one NIC.
 {% endhint %}
 
+***
+
+
+
 ## Mount a filesystem using fstab
 
-Using the _fstab_ (filesystem table) enables automatic remount after reboot. It applies to **stateless clients** running on an OS that supports `systemd`, such as RHEL/CentOS 8.0 and up, Ubuntu 18.04 and up, and Amazon Linux 2 LTS.
+Using the fstab (filesystem table) enables automatic remount after a reboot. This applies to stateless clients running on an OS that supports systemd, such as RHEL/CentOS 7.2 and up, Ubuntu 16.04 and up, and Amazon Linux 2 LTS.
 
-**Before you begin**
+#### Before you begin
 
-If the mount point you want to set in the fstab is already mounted,  unmount it before setting the fstab file.
+* If the mount point you want to set in the fstab is already mounted, unmount it before setting the fstab file.
 
-**Procedure**
+#### Procedure
 
-1. Create a mount point.\
-   Example: `mkdir -p /mnt/weka/my_fs`
-2. Edit `/etc/fstab` file.
+1. **Create a mount point:** Run the following command to create a mount point:
+
+```
+mkdir -p /mnt/weka/my_fs  
+```
+
+2. **Edit the `/etc/fstab` file:** Add the entry for the WEKA filesystem.
 
 **fstab structure**
 
 {% code overflow="wrap" %}
-```bash
-<backend servers/my_fs> <mount point> <filesystem type> <mount options> <systemd mount options>  0     0
-
+```php-template
+<backend servers/my_fs> <mount point> <filesystem type> <mount options> <systemd mount options> 0 0  
 ```
 {% endcode %}
 
-**fstab example**
+**Example**
 
 {% code overflow="wrap" %}
-```bash
-backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs  wekafs  num_cores=1,net=eth1,x-systemd.after=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev   0       0
-
+```
+backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs wekafs num_cores=1,net=eth1,x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev 0 0  
 ```
 {% endcode %}
 
-**fstab structure descriptions**
+**fstab configuration parameters**
 
-* **Backend servers/my\_fs:** A comma-separated list of backend servers with the filesystem name
-* **Mount point:** If the client mounts multiple clusters, specify a unique name for each client container. Example: For two client containers, set `container_name=client1` and  `container_name=client2`.
-* **Filesystem type:** `wekafs`
-* **Mount options:**
-  * See [Additional mount options using the stateless clients feature](./#additional-mount-options-using-the-stateless-clients-feature).
-  * **Systemd mount options:**\
-    `x-systemd.after=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev`\
-    You can set the `mount-timeout` based on your preferences, such as `180` seconds. This flexibility allows you to customize the timeout according to your specific system needs.
+<table><thead><tr><th width="298">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>Backend servers/my_fs</td><td>Comma-separated list of backend servers with the filesystem name.</td></tr><tr><td>Mount point</td><td><p>If mounting multiple clusters, specify a unique name.</p><p>For two client containers, set <code>container_name=client1</code> and <code>container_name=client2</code>.</p></td></tr><tr><td>Filesystem type</td><td>Must be <code>wekafs</code>.</td></tr><tr><td>Systemd mount options</td><td><ul><li><code>x-systemd.after=weka-agent.service</code></li><li><code>x-systemd.mount-timeout=infinity</code></li><li><code>_netdev</code></li></ul><p>Adjust the mount-timeout to your preference, for example, 180 seconds.</p></td></tr><tr><td>Mount options</td><td>See <a data-mention href="./#additional-mount-options-using-the-stateless-clients-feature">#additional-mount-options-using-the-stateless-clients-feature</a></td></tr></tbody></table>
 
-7. Mount the the filesystem to test the fstab setting by running the command, for example:\
-   `mount /mnt/weka/my_fs`
-8. To test the fstab implementation, reboot the server.\
-   WEKA creates the mounts for the next boot.
+3. **Mount the filesystem:** Test the fstab setting by running:
 
-The filesystem is mounted automatically after server reboot.
+```
+mount /mnt/weka/my_fs  
+```
+
+4. **Reboot the server:** Reboot the server to test the fstab implementation. The filesystem is automatically mounted after the reboot.
+
+***
+
+
 
 ## Mount a filesystem using autofs
 
-**Procedure:**
+Autofs allows filesystems to be mounted dynamically when accessed and unmounted after a period of inactivity. This approach reduces system overhead and ensures efficient resource utilization. Follow these steps to configure autofs for mounting Weka filesystems.
 
-1. Install `autofs` on the server using one of the following commands according to your deployment:
+#### Procedure
 
-* On Red Hat or CentOS:&#x20;
+1. **Install autofs on the server:** Install the autofs package based on your operating system:
+   *   **For Red Hat or CentOS**:
 
-```bash
-yum install -y autofs
-```
+       ```
+       yum install -y autofs
+       ```
+   *   **For Debian or Ubuntu**:
 
-* On Debian or Ubuntu:
+       ```
+       apt-get install -y autofs
+       ```
+2. **Configure autofs for WEKA filesystems:** Set up the autofs configuration files according to the client type:
+   *   **Stateless client**: Run the following commands, replacing `<backend-1>`, `<backend-2>`, and `<netdevice>` with appropriate values:
 
-```bash
-apt-get install -y autofs
-```
+       {% code overflow="wrap" %}
+       ```
+       echo "/mnt/weka /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
+       echo "* <backend-1>,<backend-2>/&" > /etc/auto.wekafs
+       ```
+       {% endcode %}
+   *   **Persistent client**: Run the following commands:
 
-2\. To create the `autofs` configuration files for Weka filesystems, do one of the following\
-&#x20;   depending on the client type:
+       {% code overflow="wrap" %}
+       ```
+       echo "/mnt/weka /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
+       echo "* &" > /etc/auto.wekafs
+       ```
+       {% endcode %}
+3.  **Restart the autofs service:** Apply the changes by restarting the autofs service:
 
-* For a stateless client, run the following commands (specify the backend names as parameters):
+    ```
+    service autofs restart
+    ```
+4.  **Ensure autofs starts automatically on reboot:** Verify that autofs is configured to start on reboot:
 
-{% code overflow="wrap" %}
-```bash
-echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
-echo "*   <backend-1>,<backend-2>/&" > /etc/auto.wekafs
-```
-{% endcode %}
+    ```bash
+    systemctl is-enabled autofs
+    ```
 
-* For a persistent client, run the following commands:
+    * If the output is `enabled`, no further action is required.
 
-{% code overflow="wrap" %}
-```bash
-echo "/mnt/weka   /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
-echo "*   &" > /etc/auto.wekafs
-```
-{% endcode %}
+    **For Amazon Linux**: Use `chkconfig` to confirm autofs is enabled for the current runlevel:
 
-3\. Restart the `autofs` service:
+    ```
+    chkconfig | grep autofs
+    ```
 
-```
-service autofs restart
-```
+    Ensure the output indicates `on` for the active runlevel.\
+    Example output:
 
-4\. The configuration is distribution-dependent. Verify that the service is configured to start\
-&#x20;    automatically after restarting the server. Run the following command:\
-&#x20;    `systemctl is-enabled autofs.` \
-&#x20;   If the output is `enabled` the service is configured to start automatically.
+    ```
+    autofs 0:off 1:off 2:off 3:on 4:on 5:on 6:off
+    ```
+5.  **Access the WEKA filesystem:** Navigate to the mount point to access the WEKA filesystem. Replace `<fs-name>` with the desired filesystem name:
+
+    ```
+    cd /mnt/weka/<fs-name>
+    ```
 
 {% hint style="info" %}
-**Example:** In Amazon Linux, you can verify that the `autofs` service is configured to start automatically by running the command `chkconfig`. \
-If the output is `on` for the current _runlevel_ (you can check with the`runlevel` command), `autofs` is enabled upon restart.
-
-```
-# chkconfig | grep autofs
-autofs         0:off 1:off 2:off 3:on 4:on 5:on 6:off
-```
+* Adjust backend and network device configurations as needed for your deployment.
+* Review distribution-specific documentation for additional configuration options.
 {% endhint %}
-
-&#x20;Once you complete this procedure, it is possible to access Weka filesystems using the command `cd /mnt/weka/<fs-name>`.
