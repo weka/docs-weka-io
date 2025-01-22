@@ -55,15 +55,19 @@ This portal encompasses all documentation essential for comprehending and operat
 
 **Operation guide:** Navigate through various WEKA system operations, including events, statistics, user management, upgrades, expansion, and more.
 
-**Billing & licensing:** Gain insights into WEKA system licensing options and alternative billing approaches.
+**Licensing:** Gain insights into WEKA system licensing options.
 
 **Monitor the WEKA cluster:** Deploy the WEKA Management Server (WMS) alongside tools like Local WEKA Home, WEKAmon, and SnapTool to effectively monitor your WEKA cluster.
 
-**WEKA support:** Find guidance on obtaining support for the WEKA system and effectively managing diagnostics.
+**Support:** Find guidance on obtaining support for the WEKA system and effectively managing diagnostics.
 
 **Best practice guides:** Explore our carefully selected guides, starting with WEKA and Slurm integration, to discover expert-recommended strategies and insights for optimizing your WEKA system and achieving peak performance in various scenarios.
 
+**AWS solutions**: The AWS solutions guide shows how to integrate WEKA with SageMaker HyperPod for training large language and foundation models. Learn how to leverage high-performance storage for distributed machine learning at scale.
+
 **WEKApod:** Explore the WEKApod Data Platform Appliance Guide for step-by-step instructions on setting up and configuring the WEKApod™. This turnkey solution, designed for NVIDIA DGX SuperPOD, features pre-configured storage and software for quick deployment and faster value.
+
+**Kubernetes**: The Kubernetes guides cover deploying and managing the WEKA Data Platform. Learn how to use the WEKA Operator for high-performance storage deployment and handle day-2 operations including scaling, hardware management, and performance optimization.
 
 **Appendices:** Explore the Appendices for various topics, including the WEKA CSI Plugin, which connects Kubernetes worker nodes to the WEKA data platform, and other tools and procedures that can enhance your work with WEKA.
 
