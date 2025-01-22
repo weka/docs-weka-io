@@ -15,11 +15,11 @@ The Admin page provides a comprehensive set of administrative and audit features
 
 * **Cluster Audit:** Monitor and maintain a detailed record of audited activities, including actions such as muting or unmuting clusters and modifying maintenance windows. Access a comprehensive history to track when these actions were performed.
 
-<figure><img src="../../.gitbook/assets/Admin_and_cluster_audit.png" alt=""><figcaption><p>Admin and cluster audit page</p></figcaption></figure>
-
 **Cluster API Keys section:**
 
 * **Cluster API Keys**: Enable the creation of cluster-specific API keys to facilitate the use of the statistics export API for a designated cluster.
+
+<figure><img src="../../.gitbook/assets/Admin_and_cluster_audit.png" alt=""><figcaption><p>Admin and cluster audit page</p></figcaption></figure>
 
 ## Users management
 
