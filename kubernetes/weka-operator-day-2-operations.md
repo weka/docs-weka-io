@@ -1016,6 +1016,233 @@ node/3.250.187.202 labeled
 
 
 
+### Replace a Kubernetes node
+
+This procedure enables systematic node replacement while maintaining cluster functionality and minimizing service interruption, addressing performance issues, hardware failures, or routine maintenance needs.
+
+#### Prerequisites
+
+* Identification of the node to be replaced.
+* A new node prepared for integration into the cluster.
+
+#### Procedure
+
+1. **Remove node deployment label**: Remove the existing label used to deploy the cluster from the node:
+
+```
+kubectl label nodes <old-node-ip> weka.io/supports-backends-
+```
+
+<details>
+
+<summary>Example</summary>
+
+```
+$ kubectl label nodes 54.247.143.85 weka.io/supports-backends-
+node/54.247.143.85 unlabeled
+```
+
+</details>
+
+2. **List existing WEKA containers to identify containers on the node**:
+
+```
+kubectl get wekacontainers --all-namespaces -o wide
+```
+
+<details>
+
+<summary>Example</summary>
+
+```
+$ kubectl get wekacontainers --all-namespaces -o wide
+NAMESPACE              NAME                                                       STATUS      MODE              MANAGEMENT IP   NODE             PROCESSES   DRIVES   MOUNTS   CPU   AGE   WEKA CID   MESSAGE
+weka-operator-system   cluster-dev-compute-16ab60f0-5386-4366-97c3-b1e1e674969a   Running     compute           10.0.85.156     52.211.177.232                                       54m   3          
+weka-operator-system   cluster-dev-compute-6c61590e-84a6-40c4-8f4b-f225232336ac   Running     compute           10.0.64.153     3.255.86.119                                         54m   5          
+weka-operator-system   cluster-dev-compute-85da88e2-a554-4bea-b2c6-55cab244f0b8   Running     compute           10.0.102.49     34.242.209.110                                       54m   1          
+weka-operator-system   cluster-dev-compute-c92918d4-55fb-4cfe-b79f-db7341df4654   Running     compute           10.0.65.129     18.201.119.122                                       54m   8          
+weka-operator-system   cluster-dev-compute-ca3b9771-0ddc-4237-9e75-3af1fe5dc1ee   Running     compute           10.0.102.67     54.247.143.85                                        28m   2          
+weka-operator-system   cluster-dev-compute-d4fc062a-aa22-4c47-a81e-67e8ec7e5f44   Running     compute           10.0.79.86      34.243.254.47                                        54m   0          
+weka-operator-system   cluster-dev-drive-1d000410-af7f-4984-8e89-7718bc8f4963     Running     drive             10.0.65.129     18.201.119.122                                       54m   6          
+weka-operator-system   cluster-dev-drive-333de17c-be86-4601-bbca-6140cab8e98b     Running     drive             10.0.102.67     54.247.143.85                                        27m   4          
+weka-operator-system   cluster-dev-drive-3cebf172-89a3-44f5-b0ef-7734027dab62     Running     drive             10.0.85.156     52.211.177.232                                       54m   10         
+weka-operator-system   cluster-dev-drive-5274dd78-449c-4e2a-8063-5bde4bed4823     Running     drive             10.0.79.86      34.243.254.47                                        54m   7          
+weka-operator-system   cluster-dev-drive-6ce82377-e934-48ca-8dea-4678708b04cd     Running     drive             10.0.64.153     3.255.86.119                                         54m   11         
+weka-operator-system   cluster-dev-drive-d3eac8b6-505d-4e9e-90c8-c7e360e0bf3e     Running     drive             10.0.102.49     34.242.209.110                                       54m   9          
+weka-operator-system   weka-driver-dist                                           Running     drivers-dist                                                                           54m              
+weka-operator-system   weka-drivers-builder                                       Completed   drivers-builder                                                                        54m              
+```
+
+</details>
+
+3. **Delete the compute and drive containers specific to the node**:
+
+```
+kubectl delete wekacontainer <compute-container-name> -n weka-operator-system
+kubectl delete wekacontainer <drive-container-name> -n weka-operator-system
+```
+
+<details>
+
+<summary>Example</summary>
+
+```
+$ kubectl delete wekacontainer cluster-dev-compute-ca3b9771-0ddc-4237-9e75-3af1fe5dc1ee -n weka-operator-system
+wekacontainer.weka.weka.io "cluster-dev-compute-ca3b9771-0ddc-4237-9e75-3af1fe5dc1ee" deleted
+
+$ kubectl delete wekacontainer cluster-dev-drive-333de17c-be86-4601-bbca-6140cab8e98b -n weka-operator-system
+wekacontainer.weka.weka.io "cluster-dev-drive-333de17c-be86-4601-bbca-6140cab8e98b" deleted
+
+```
+
+</details>
+
+4. **Verify container deletion:**
+   1. Verify containers are in `PodNotRunning` status.
+   2.  Confirm no containers are running on the old node.&#x20;
+
+       Look for:
+
+       * `STATUS` column showing `PodNotRunning`.
+       * No containers associated with the old node.
+
+```bash
+kubectl get wekacontainers --all-namespaces -o wide
+```
+
+<details>
+
+<summary>Example</summary>
+
+```
+$ kubectl get wekacontainers --all-namespaces -o wide
+NAMESPACE              NAME                                                       STATUS          MODE              MANAGEMENT IP   NODE             PROCESSES   DRIVES   MOUNTS   CPU   AGE     WEKA CID   MESSAGE
+weka-operator-system   cluster-dev-compute-16ab60f0-5386-4366-97c3-b1e1e674969a   Running         compute           10.0.85.156     52.211.177.232                                       59m     3          
+weka-operator-system   cluster-dev-compute-484d6228-e833-4337-a2dd-be8755063ef1   PodNotRunning   compute                                                                                2m47s              
+weka-operator-system   cluster-dev-compute-6c61590e-84a6-40c4-8f4b-f225232336ac   Running         compute           10.0.64.153     3.255.86.119                                         59m     5          
+weka-operator-system   cluster-dev-compute-85da88e2-a554-4bea-b2c6-55cab244f0b8   Running         compute           10.0.102.49     34.242.209.110                                       59m     1          
+weka-operator-system   cluster-dev-compute-c92918d4-55fb-4cfe-b79f-db7341df4654   Running         compute           10.0.65.129     18.201.119.122                                       59m     8          
+weka-operator-system   cluster-dev-compute-d4fc062a-aa22-4c47-a81e-67e8ec7e5f44   Running         compute           10.0.79.86      34.243.254.47                                        59m     0          
+weka-operator-system   cluster-dev-drive-1d000410-af7f-4984-8e89-7718bc8f4963     Running         drive             10.0.65.129     18.201.119.122                                       59m     6          
+weka-operator-system   cluster-dev-drive-3cebf172-89a3-44f5-b0ef-7734027dab62     Running         drive             10.0.85.156     52.211.177.232                                       59m     10         
+weka-operator-system   cluster-dev-drive-5274dd78-449c-4e2a-8063-5bde4bed4823     Running         drive             10.0.79.86      34.243.254.47                                        59m     7          
+weka-operator-system   cluster-dev-drive-6ce82377-e934-48ca-8dea-4678708b04cd     Running         drive             10.0.64.153     3.255.86.119                                         59m     11         
+weka-operator-system   cluster-dev-drive-b9204e9c-31f0-4eae-9a93-aed4aecc9555     PodNotRunning   drive                                                                                  16s                
+weka-operator-system   cluster-dev-drive-d3eac8b6-505d-4e9e-90c8-c7e360e0bf3e     Running         drive             10.0.102.49     34.242.209.110                                       59m     9          
+weka-operator-system   weka-driver-dist                                           Running         drivers-dist                                                                           59m                
+weka-operator-system   weka-drivers-builder                                       Completed       drivers-builder                   
+
+```
+
+</details>
+
+5. **Add backend label to new node**: Label the new node to support backends:
+
+```
+kubectl label nodes <new-node-ip> weka.io/supports-backends=true
+```
+
+<details>
+
+<summary>Example</summary>
+
+```
+$ kubectl label nodes 54.73.54.127 weka.io/supports-backends=true
+node/54.73.54.127 labeled
+```
+
+</details>
+
+6. **Sign drives on new node**:&#x20;
+   1.  Create a WekaManualOperation configuration to sign drives:
+
+       ```yaml
+       apiVersion: weka.weka.io/v1alpha1
+       kind: WekaManualOperation
+       metadata:
+         name: sign-specific-drives
+         namespace: weka-operator-system
+       spec:
+         action: "sign-drives"
+         image: quay.io/weka.io/weka-in-container:4.4.2.144-k8s
+         imagePullSecret: "quay-io-robot-secret"
+         payload:
+           signDrivesPayload:
+             type: device-paths
+             nodeSelector:
+               weka.io/supports-backends: "true"
+             devicePaths:
+               - /dev/nvme0n1
+               - /dev/nvme1n1
+       ```
+   2.  Apply the configuration:
+
+       ```bash
+       kubectl apply -f sign_devicepath_drive.yaml
+       ```
+
+<details>
+
+<summary>Example</summary>
+
+```
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaManualOperation
+metadata:
+  name: sign-specific-drives
+  namespace: weka-operator-system
+spec:
+  action: "sign-drives"
+  image: quay.io/weka.io/weka-in-container:4.4.2.144-k8s
+  imagePullSecret: "quay-io-robot-secret"
+  payload:
+    signDrivesPayload:
+      type: device-paths
+      nodeSelector:
+        weka.io/supports-backends: "true"
+      devicePaths:
+        - /dev/nvme0n1
+        - /dev/nvme1n1
+
+$ kubectl apply -f sign_devicepath_drive.yaml 
+wekamanualoperation.weka.weka.io/sign-specific-drives created
+```
+
+</details>
+
+7.  **Verification steps**:&#x20;
+
+    1. Verify WEKA containers are rescheduled.
+    2. Check that new containers are running on the new node's IP.
+    3. Validate cluster status using WEKA CLI.
+
+    For details, see [#verification-steps](weka-operator-day-2-operations.md#verification-steps "mention").
+
+{% hint style="info" %}
+**Faulty node replacement**:\
+When a node becomes dead or faulty, delete the non-functional node:\
+`kubectl delete node <node-name>`
+
+Kubernetes automatically handles the following:
+
+* Detects node failure.
+* Removes affected containers.
+* Reschedules containers to available nodes.
+{% endhint %}
+
+#### Troubleshooting
+
+If containers fail to reschedule, check:
+
+* Node labels
+* Drive signing process
+* Cluster resource availability
+* Network connectivity
+
+***
+
+
+
 ### Remove WEKA container from a failed node
 
 Removing a WEKA container from a failed node is necessary to maintain cluster health and prevent any negative impact on system performance. This procedure ensures that the container is removed safely and the cluster remains operational.
