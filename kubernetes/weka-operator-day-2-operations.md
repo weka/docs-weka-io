@@ -1219,8 +1219,8 @@ wekamanualoperation.weka.weka.io/sign-specific-drives created
     For details, see [#verification-steps](weka-operator-day-2-operations.md#verification-steps "mention").
 
 {% hint style="info" %}
-**Faulty node replacement**:\
-When a node becomes dead or faulty, delete the non-functional node:\
+**Non-functional node replacement**:\
+When a node becomes unresponsive or faulty, delete the non-functional node:\
 `kubectl delete node <node-name>`
 
 Kubernetes automatically handles the following:
