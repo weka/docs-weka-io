@@ -13,7 +13,7 @@ The Admin page provides a comprehensive set of administrative and audit features
 
 **AUDIT:**
 
-* **לֹךודאקרCluster Audit:** Monitor and maintain a detailed record of audited activities, including actions such as muting or unmuting clusters and modifying maintenance windows. Access a comprehensive history to track when these actions were performed.
+* **Cluster Audit:** Monitor and maintain a detailed record of audited activities, including actions such as muting or unmuting clusters and modifying maintenance windows. Access a comprehensive history to track when these actions were performed.
 
 **CLUSTER API KEYS:**
 
