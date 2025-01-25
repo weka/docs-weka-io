@@ -4,22 +4,22 @@
 
 The Admin page provides a comprehensive set of administrative and audit features, all conveniently located in one place:
 
-**Configuration section:**
+**CONFIGURATION:**
 
 * **Mute Cluster:** Temporarily disable alert and event notifications from the cluster to Local WEKA Home. This feature is useful for reducing alert noise during maintenance activities.
 * **Delete Cluster:** Remove a legacy WEKA cluster from the Local WEKA Home without affecting the cluster itself.
 * **Maintenance Window:** Define a specific time period during which alert and event notifications—such as email, SNMP, and PagerDuty alerts—are suppressed.
 * **Freeze Cluster Retention:** Temporarily halt the data retention policy for a specified period.
 
-**Cluster Audit section:**
+**AUDIT:**
 
-* **Cluster Audit:** Monitor and maintain a detailed record of audited activities, including actions such as muting or unmuting clusters and modifying maintenance windows. Access a comprehensive history to track when these actions were performed.
+* **לֹךודאקרCluster Audit:** Monitor and maintain a detailed record of audited activities, including actions such as muting or unmuting clusters and modifying maintenance windows. Access a comprehensive history to track when these actions were performed.
 
-**Cluster API Keys section:**
+**CLUSTER API KEYS:**
 
 * **Cluster API Keys**: Enable the creation of cluster-specific API keys to facilitate the use of the statistics export API for a designated cluster.
 
-<figure><img src="../../.gitbook/assets/Admin_and_cluster_audit.png" alt=""><figcaption><p>Admin and cluster audit page</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Admin and cluster audit page</p></figcaption></figure>
 
 ## Users management
 

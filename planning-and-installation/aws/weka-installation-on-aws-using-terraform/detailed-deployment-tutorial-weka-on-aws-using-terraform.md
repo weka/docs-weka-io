@@ -40,7 +40,7 @@ To install Terraform, we recommend following the [official installation guides](
 1. Access the AWS Management Consol&#x65;**.**
 2. In the top-right corner, search for **Account ID**.
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 * If deploying into a WEKA customer environment, ensure the customer understands their subscription structure.
