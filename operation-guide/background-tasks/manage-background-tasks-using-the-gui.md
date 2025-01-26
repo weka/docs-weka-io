@@ -1,16 +1,17 @@
 # Manage background tasks using the GUI
 
-The GUI provides a background tasks page displaying the active background tasks and their details, including the duration since they last started, state, phase, and progress percentage.&#x20;
+The GUI includes a **Background Tasks** page that displays both active and pending tasks, along with details such as their duration since initiation, state, phase, and progress percentage.
 
-If other background tasks or activities are of higher priority, you can pause and resume the background task later.
+If other tasks have higher priority, you can pause and resume tasks as needed.
 
-The abort action is applicable for some of the tasks, such as checking metadata integrity. For other tasks, such as downloading a filesystem or a snapshot, squashing a filesystem, and detaching object storage from a filesystem, the abort action is not applicable. To abort such a task, delete its entity.
+The **Abort** action is available for specific tasks, such as checking metadata integrity. However, it is not applicable to tasks like downloading a filesystem or snapshot, squashing a filesystem, or detaching object storage. To terminate these tasks, delete the associated entity.
 
-<figure><img src="../../.gitbook/assets/wmng_bkg_tasks.png" alt=""><figcaption><p>Background Tasks</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_bkg_tasks.gif" alt=""><figcaption><p>Background Tasks</p></figcaption></figure>
 
 **Procedure:**
 
-1. From Monitor, select **Background Tasks**.
-2. To pause a task, select **Pause**. (The button toggles to **Resume**.)
+1. From the **Monitor** tab, select **Background Tasks**.
+2. To pause a task, select **Pause** (the button will toggle to **Resume**).
 3. To resume a paused task, select **Resume**.
 4. To abort a task, select **Abort**.
+5. To view waiting tasks (pending), toggle the **Show Waiting Tasks** switch.

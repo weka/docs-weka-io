@@ -28,7 +28,7 @@ The WEKA system supports the following snapshot operations:
 * Restore a filesystem from a snapshot.
 * Create a snapshot of a snapshot (relevant for writable snapshots or read-only snapshots before being made writable).
 * List the snapshots and obtain their metadata.
-* Schedule automatic snapshots. For details, see [snapshot-management.md](../../monitor-the-weka-cluster/snapshot-management.md "mention").
+* Schedule automatic snapshots. For details, see [snapshot-policies](../snapshot-policies/ "mention").
 
 To access the hidden `.snapshot` directory, see [#access-the-.snapshots-directory](snapshots-1.md#access-the-.snapshots-directory "mention").
 

@@ -19,6 +19,10 @@ Key features of SnapTool include:
 
 Configuration of SnapTool is managed by editing the `snaptool.yml` file before installation. To adjust SnapTool’s behavior after installation, update this file. SnapTool automatically monitors the configuration file and reloads it approximately every minute when changes are detected.
 
+{% hint style="info" %}
+The Snapshot Policies feature replaces the SnapTool external snapshot manager. Snapshot Policies offer greater flexibility and improved control for creating and managing snapshots. See [snapshot-policies](../weka-filesystems-and-object-stores/snapshot-policies/ "mention").
+{% endhint %}
+
 ## **SnapTool installation and communication with WEKA cluster**
 
 The SnapTool runs on any Linux-based physical server or VM, communicating with the WEKA cluster via an IP connection to a WEKA host using the WEKA REST API. It can be installed as a systemd service or within a Docker container.

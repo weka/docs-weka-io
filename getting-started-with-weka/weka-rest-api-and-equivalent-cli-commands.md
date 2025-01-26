@@ -433,6 +433,21 @@ Related information: [expanding-and-shrinking-cluster-resources](../operation-gu
 | **View cluster servers:** See a list of all servers within the cluster.                        | [GET ​/servers](https://api.docs.weka.io/?urls.primaryName=4.4#/Servers/getServers)             | `weka cluster servers list` |
 | **View server details:** See specific information about an individual server based on its UID. | [GET ​/servers​/{uid}](https://api.docs.weka.io/?urls.primaryName=4.4#/Servers/getSingleServer) | `weka cluster servers show` |
 
+## Snapshot Policy
+
+Related information: [snapshot-policies](../weka-filesystems-and-object-stores/snapshot-policies/ "mention")
+
+| Task                                               | REST API                                                                                                                                         | CLI                                          |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| **Create snapshot policy**                         | [POST​/snapshotPolicy](https://api.docs.weka.io/?urls.primaryName=4.4#/Snapshot%20Policy/createSnapshotPolicy)                                   | `weka fs protection snapshot-policy create`  |
+| **View snapshot policies**                         | [GET​/snapshotPolicy](https://api.docs.weka.io/?urls.primaryName=4.4#/Snapshot%20Policy/listSnapPolicies)                                        | `weka fs protection snapshot-policy list`    |
+| **View snapshot policy details**                   | [GET​/snapshotPolicy​/{uid}](https://api.docs.weka.io/?urls.primaryName=4.4#/Snapshot%20Policy/showSnapshotPolicy)                               | `weka fs protection snapshot-policy show`    |
+| **Update snapshot policy:**                        | [PUT​/snapshotPolicy​/{uid}](https://api.docs.weka.io/?urls.primaryName=4.4#/Snapshot%20Policy/updateSnapshotPolicy)                             | `weka fs protection snapshot-policy update`  |
+| **Delete snapshot policy:**                        | [DELETE​/snapshotPolicy​/{uid}](https://api.docs.weka.io/?urls.primaryName=4.4#/Snapshot%20Policy/deleteSnapshotPolicy)                          | `weka fs protection snapshot-policy delete`  |
+| **List filesystems attached to a snapshot policy** | [GET​/snapshotPolicy​/{uid}​/filesystems](https://api.docs.weka.io/?urls.primaryName=4.4#/Snapshot%20Policy/listFsAttachedToSnapshotPolicy)      | `weka fs protection snapshot-policy show`    |
+| **Attach filesystems to snapshot policy**          | [POST​/snapshotPolicy​/{uid}​/filesystems​/attach](https://api.docs.weka.io/?urls.primaryName=4.4#/Snapshot%20Policy/attachFsToSnapshotPolicy)   | `weka fs protection snapshot-policy attach`  |
+| **Detach filesystems from snapshot policy**        | [POST​/snapshotPolicy​/{uid}​/filesystems​/detach](https://api.docs.weka.io/?urls.primaryName=4.4#/Snapshot%20Policy/detachFsFromSnapshotPolicy) | `weka fs protection snapshot-policy detach`  |
+
 ## Snapshots
 
 Related information:
