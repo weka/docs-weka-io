@@ -13,34 +13,30 @@ WEKA provides a 24/7 technical support service according to WEKA's technical sup
 Choose the classification option to access detailed information and necessary steps for further action.
 
 {% tabs %}
-{% tab title="Critical" %}
-The _Critical_ classification is exclusively reserved for critical business systems that hinder the functioning of business operations, leading to decreased productivity or financial losses, and potentially resulting in data loss or corruption.
+{% tab title="Severity 1" %}
+**Severity 1**: Indicates system-wide outages that critically impair business operations, potentially causing significant productivity loss, financial impact, or data integrity risks.
 
 Do one of the following:
 
-#### **Call WEKA support number: +1 (844) 392-0665**
-
-Leave a voice message, which is directed to the active support personnel.
-
-#### Open a ticket in the Support Portal
-
-To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). Then, open a ticket and select the _Critical_ classification.
-
-You can monitor tickets and receive timely notifications and updates whenever any changes occur to the tickets.
+* **Call WEKA support number: +1 (844) 392-0665:** Leave a voice message, which is directed to the active support personnel.
+* **Open a ticket in the Support Portal**: To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). Then, open a ticket and select the _Severity 1_ classification.\
+  \
+  You can monitor tickets and receive timely notifications and updates whenever any changes occur to the tickets.
 {% endtab %}
 
-{% tab title="Major / Minor / Question " %}
-For _Major_, _Minor_, and _Question_ classifications, do one of the following:
+{% tab title="Severity levels 2, 3. and 4" %}
+Severity levels:
 
-#### Open a ticket in the Support Portal
+* **Severity 2**: Significant service degradation or performance issues.
+* **Severity 3**: Limited feature functionality or minor system impairments.
+* **Severity 4**: Inquiries and potential product improvement suggestions.
 
-To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). Then, open a ticket and select the appropriate classification according to the issue severity.
+Do one of the following:
 
-You can track tickets and receive notifications and updates when there are changes to the tickets.
-
-#### Send an email to [support@weka.io](mailto:support@weka.io)
-
-To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). When you send an email, it automatically creates a ticket in the Support Portal. Problem notifications sent via email are not considered critical.
+* **Open a ticket in the Support Porta**l: To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). Then, open a ticket and select the appropriate classification according to the issue severity.\
+  \
+  You can track tickets and receive notifications and updates when there are changes to the tickets.
+* **Send an email to** [**support@weka.io**](mailto:support@weka.io): To get started, sign up as a user in the Support Portal: [support.weka.io](http://support.weka.io/) (if not done yet). When you send an email, it automatically creates a ticket in the Support Portal. Problem notifications sent via email are not considered critical.
 
 {% hint style="info" %}
 If you have a feature request, contact your sales team to submit the request.&#x20;
