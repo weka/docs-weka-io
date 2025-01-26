@@ -102,6 +102,9 @@ WEKA will support upcoming releases of the operating systems in the lists within
 * **AlmaLinux OS:**
   * 9.4
   * 8.10
+* **Proxmox**:
+  * 8.2
+  * 8.14
 {% endtab %}
 
 {% tab title="Kernel" %}
