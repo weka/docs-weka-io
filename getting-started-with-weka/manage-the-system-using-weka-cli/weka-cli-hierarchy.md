@@ -188,7 +188,17 @@ weka fs
             |set
             |reset
             |attach
-            |detach        
+            |detach    
+    |protection **
+        |snapshot-policy
+            |list
+            |show
+            |create
+            |export
+            |attach
+            |detach
+            |update
+            |delete  
 ```
 
 ### weka dataservice
@@ -333,6 +343,7 @@ weka org
          |reset
          |attach
          |detach
+      |revoke-tokens
 ```
 
 ### **weka s3**
@@ -401,6 +412,12 @@ weka security
       |download
       |set
       |unset
+      |local **
+         |set
+         |unset
+      |token-expiry **
+         |show
+         |set
    |lockout-config
       |set
       |reset

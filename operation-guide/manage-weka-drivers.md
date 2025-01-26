@@ -37,7 +37,7 @@ The WEKA driver directory structure is organized to help you manage driver packa
 
 **Related topic**
 
-[cli-reference-guide.md](../getting-started-with-weka/manage-the-system-using-weka-cli/cli-reference-guide.md "mention")
+[Broken link](broken-reference "mention")
 
 ## Manage WEKA drivers
 

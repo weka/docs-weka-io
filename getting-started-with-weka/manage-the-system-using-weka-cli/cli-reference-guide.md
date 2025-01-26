@@ -968,26 +968,26 @@ weka cluster drive [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                                                                                          |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `uuids`...                | A list of drive IDs or UUIDs to list. If no ID is specified, all drives are listed.                                                                                                                                                                                                                  |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                     |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                     |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                     |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                           |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                               |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                             |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                 |
-| `--container`...          | Only return the drives of these container IDs, if not specified, all drives are listed (may be repeated or comma-separated)                                                                                                                                                                          |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,uuid,host,hostname,node,path,size,status,stime,fdName,fdId,writable,used,nvkvused,attachment,vendor,firmware,serial,model,added,removed,block,remain,threshold,drive\_status\_message (may be repeated or comma-separated) |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                              |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                |
-| `--show-removed`          | Show drives that were removed from the cluster                                                                                                                                                                                                                                                       |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                    |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                    |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                   |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                           |
+| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `uuids`...                | A list of drive IDs or UUIDs to list. If no ID is specified, all drives are listed.                                                                                                                                                                                                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                 |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                     |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                   |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                       |
+| `--container`...          | Only return the drives of these container IDs, if not specified, all drives are listed (may be repeated or comma-separated)                                                                                                                                                                                                                |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,uuid,host,hostname,node,path,size,status,stime,fdName,fdId,writable,used,nvkvused,attachment,vendor,firmware,serial,model,added,removed,block,remain,threshold,drive\_status\_message,pci\_vid,pci\_id,pci\_ssvid,pci\_ssid (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                    |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                      |
+| `--show-removed`          | Show drives that were removed from the cluster                                                                                                                                                                                                                                                                                             |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                          |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                          |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                      |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                         |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                 |
 
 **weka cluster drive scan**
 
@@ -1374,29 +1374,29 @@ weka cluster container [--color color]
 
 ```
 
-| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `container-ids`...        | Only return these container IDs.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,hostname,container,machineIdentifier,ips,status,requestedAction,software,release,mode,fd,fdName,fdType,fdId,cores,feCores,driveCores,coreIds,memory,bw,scrubberLimit,dedicated,autoRemove,leadership,uptime,failureText,failure,failureTime,failureCode,requestedActionFailureText,requestedActionFailure,requestedActionFailureTime,requestedActionFailureCode,added,cloudProvider,availabilityZone,instanceType,instanceId,kernelName,kernelRelease,kernelVersion,platform (may be repeated or comma-separated) |
-| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `--local`                 | Get result from local weka host                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `-b`, `--backends`        | Only return backend containers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `-c`, `--clients`         | Only return client containers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `-l`, `--leadership`      | Only return containers that are part of the cluster leadership                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `-L`, `--leader`          | Only return the cluster leader                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Parameter                 | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `container-ids`...        | Only return these container IDs.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,hostname,container,machineIdentifier,ips,status,requestedAction,software,release,mode,fd,fdName,fdType,fdId,cores,feCores,driveCores,coreIds,memory,bw,scrubberLimit,dedicated,autoRemove,leadership,uptime,failureText,failure,failureTime,failureCode,requestedActionFailureText,requestedActionFailure,requestedActionFailureTime,requestedActionFailureCode,added,cloudProvider,availabilityZone,instanceType,instanceId,kernelName,kernelRelease,kernelVersion,platform,tlsStrictnessLevel (may be repeated or comma-separated) |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `--local`                 | Get result from local weka host                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `-b`, `--backends`        | Only return backend containers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `-c`, `--clients`         | Only return client containers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `-l`, `--leadership`      | Only return containers that are part of the cluster leadership                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `-L`, `--leader`          | Only return the cluster leader                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `-h`, `--help`            | Show help message                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
 **weka cluster container info-hw**
 
@@ -4987,6 +4987,310 @@ weka fs security policy detach <fs-name>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
+#### weka fs protection
+
+Commands used to manage file system protection
+
+```sh
+weka fs protection [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+**weka fs protection snapshot-policy**
+
+Snapshot policy management commands
+
+```sh
+weka fs protection snapshot-policy [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+**weka fs protection snapshot-policy list**
+
+List snapshot policies
+
+```sh
+weka fs protection snapshot-policy list [--color color]
+                                        [--HOST HOST]
+                                        [--PORT PORT]
+                                        [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                        [--TIMEOUT TIMEOUT]
+                                        [--profile profile]
+                                        [--format format]
+                                        [--output output]...
+                                        [--sort sort]...
+                                        [--filter filter]...
+                                        [--help]
+                                        [--raw-units]
+                                        [--UTC]
+                                        [--no-header]
+                                        [--verbose]
+
+```
+
+| Parameter                 | Description                                                                                                                                                                             |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                                                                        |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                                                                        |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                                                                        |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                              |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                  |
+| `--profile`               | Name of the connection and authentication profile to use                                                                                                                                |
+| `-f`, `--format`          | Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or 'oldview')                                                                                    |
+| `-o`, `--output`...       | Specify which columns to output. May include any of the following: uid,id,name,enable,description,filesystems (may be repeated or comma-separated)                                      |
+| `-s`, `--sort`...         | Specify which column(s) to take into account when sorting the output. May include a '+' or '-' before the column name to sort in ascending or descending order respectively. Usage: \[+ |
+| `-F`, `--filter`...       | Specify what values to filter by in a specific column. Usage: column1=val1\[,column2=val2\[,..]] (may be repeated or comma-separated)                                                   |
+| `-h`, `--help`            | Show help message                                                                                                                                                                       |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.                                                       |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                   |
+| `--no-header`             | Don't show column headers when printing the output                                                                                                                                      |
+| `-v`, `--verbose`         | Show all columns in output                                                                                                                                                              |
+
+**weka fs protection snapshot-policy show**
+
+Show snapshot policy configuration
+
+```sh
+weka fs protection snapshot-policy show <name>
+                                        [--color color]
+                                        [--HOST HOST]
+                                        [--PORT PORT]
+                                        [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                        [--TIMEOUT TIMEOUT]
+                                        [--profile profile]
+                                        [--help]
+                                        [--raw-units]
+                                        [--UTC]
+                                        [--json]
+
+```
+
+| Parameter                 | Description                                                                                                                       |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Policy name                                                                                                                       |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
+| `--profile`               | Name of the connection and authentication profile to use                                                                          |
+| `-h`, `--help`            | Show help message                                                                                                                 |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
+| `-J`, `--json`            | Format output as JSON                                                                                                             |
+
+**weka fs protection snapshot-policy create**
+
+Create a new snapshot policy
+
+```sh
+weka fs protection snapshot-policy create <name>
+                                          <path>
+                                          [--description description]
+                                          [--enabled enabled]
+                                          [--color color]
+                                          [--HOST HOST]
+                                          [--PORT PORT]
+                                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                          [--TIMEOUT TIMEOUT]
+                                          [--profile profile]
+                                          [--help]
+                                          [--json]
+                                          [--raw-units]
+                                          [--UTC]
+
+```
+
+| Parameter                 | Description                                                                                                                       |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | The snapshot policy name (up to 12 alphanumeric characters, hyphens (-), underscores (\_), and periods (.))                       |
+| `path`\*                  | The path to the snapshot policy file, must be in JSON format                                                                      |
+| `--description`           | Policy description (up to 128 characters)                                                                                         |
+| `--enabled`               | Set snapshot policy status, can be true/false , default is true                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
+| `--profile`               | Name of the connection and authentication profile to use                                                                          |
+| `-h`, `--help`            | Show help message                                                                                                                 |
+| `-J`, `--json`            | Format output as JSON                                                                                                             |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
+
+**weka fs protection snapshot-policy export**
+
+Export snapshot policy configuration, use policy sys-default to export the cluster default configuration
+
+```sh
+weka fs protection snapshot-policy export <name>
+                                          <path>
+                                          [--color color]
+                                          [--HOST HOST]
+                                          [--PORT PORT]
+                                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                          [--TIMEOUT TIMEOUT]
+                                          [--profile profile]
+                                          [--help]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | The snapshot policy you want to export                                                                     |
+| `path`\*                  | The path where export policy file will be located                                                          |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+
+**weka fs protection snapshot-policy attach**
+
+Attach existing filesystems to snapshot policy
+
+```sh
+weka fs protection snapshot-policy attach <name>
+                                          [--color color]
+                                          [--HOST HOST]
+                                          [--PORT PORT]
+                                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                          [--TIMEOUT TIMEOUT]
+                                          [--profile profile]
+                                          [--help]
+                                          [--raw-units]
+                                          [--UTC]
+                                          [<filesystems>]...
+
+```
+
+| Parameter                 | Description                                                                                                                       |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | The snapshot policy name                                                                                                          |
+| `filesystems`...          | A list of filesystems you want to attach to the policy                                                                            |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
+| `--profile`               | Name of the connection and authentication profile to use                                                                          |
+| `-h`, `--help`            | Show help message                                                                                                                 |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
+
+**weka fs protection snapshot-policy detach**
+
+Detach existing filesystems from the snapshot policy
+
+```sh
+weka fs protection snapshot-policy detach <name>
+                                          [--color color]
+                                          [--HOST HOST]
+                                          [--PORT PORT]
+                                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                          [--TIMEOUT TIMEOUT]
+                                          [--profile profile]
+                                          [--remove-waiting-tasks]
+                                          [--help]
+                                          [--raw-units]
+                                          [--UTC]
+                                          [--force]
+                                          [<filesystems>]...
+
+```
+
+| Parameter                 | Description                                                                                                                           |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | The snapshot policy name                                                                                                              |
+| `filesystems`...          | A list of filesystems you want to detach from the policy                                                                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                      |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                      |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                      |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                |
+| `--profile`               | Name of the connection and authentication profile to use                                                                              |
+| `--remove-waiting-tasks`  | Allow to delete all waiting tasks corresponding to the filesystems.                                                                   |
+| `-h`, `--help`            | Show help message                                                                                                                     |
+| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB.     |
+| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                 |
+| `-f`, `--force`           | Force this action without further confirmation. This action detach existing filesystem from the snapshot policy and cannot be undone. |
+
+**weka fs protection snapshot-policy update**
+
+Update a snapshot policy
+
+```sh
+weka fs protection snapshot-policy update <name>
+                                          [--new-name new-name]
+                                          [--description description]
+                                          [--path path]
+                                          [--enabled enabled]
+                                          [--color color]
+                                          [--HOST HOST]
+                                          [--PORT PORT]
+                                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                          [--TIMEOUT TIMEOUT]
+                                          [--profile profile]
+                                          [--help]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Existing snapshot policy name                                                                              |
+| `--new-name`              | New policy name (up to 12 alphanumeric characters, hyphens (-), underscores (\_), and periods (.))         |
+| `--description`           | New policy description (up to 128 characters)                                                              |
+| `--path`                  | The path to the new/modified snapshot policy file, must be in JSON format                                  |
+| `--enabled`               | Set snapshot policy status, can be true/false                                                              |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+
+**weka fs protection snapshot-policy delete**
+
+Delete a snapshot policy
+
+```sh
+weka fs protection snapshot-policy delete <name>
+                                          [--color color]
+                                          [--HOST HOST]
+                                          [--PORT PORT]
+                                          [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                          [--TIMEOUT TIMEOUT]
+                                          [--profile profile]
+                                          [--force]
+                                          [--help]
+
+```
+
+| Parameter                 | Description                                                                                                   |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `name`\*                  | Existing snapshot policy name                                                                                 |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                              |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                              |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                              |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)    |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
+| `--profile`               | Name of the connection and authentication profile to use                                                      |
+| `-f`, `--force`           | Force this action without further confirmation. This action deletes the snapshot policy and cannot be undone. |
+| `-h`, `--help`            | Show help message                                                                                             |
+
 ### weka dataservice
 
 Commands that manage dataservice
@@ -8249,6 +8553,35 @@ weka org security policy detach <org>
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
 
+**weka org security revoke-tokens**
+
+Revokes all API tokens issued for this organization.
+
+```sh
+weka org security revoke-tokens <org>
+                                [--color color]
+                                [--HOST HOST]
+                                [--PORT PORT]
+                                [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                [--TIMEOUT TIMEOUT]
+                                [--profile profile]
+                                [--help]
+                                [--force]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `org`\*                   | Organization name or ID.                                                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-f`, `--force`           | Force this action without further confirmation. This action will log all users out of the organization.    |
+
 ### weka s3
 
 Commands that manage Weka's S3 container
@@ -9867,6 +10200,88 @@ weka security tls unset [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
+**weka security tls local**
+
+TLS local configuration commands
+
+```sh
+weka security tls local [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+**weka security tls local set**
+
+Make HTTP server use local TLS configuration. If local TLS already configured, updates the configuration.
+
+```sh
+weka security tls local set [--private-key private-key]
+                            [--certificate certificate]
+                            [--ca-cert ca-cert]
+                            [--color color]
+                            [--HOST HOST]
+                            [--PORT PORT]
+                            [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                            [--TIMEOUT TIMEOUT]
+                            [--profile profile]
+                            [--all]
+                            [--help]
+                            [<container-ids>]...
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-ids`...        | A list of container ids to apply local TLS configuration                                                   |
+| `--private-key`           | Path to TLS private key pem file                                                                           |
+| `--certificate`           | Path to TLS certificate pem file                                                                           |
+| `--ca-cert`               | Path to TLS CA certificate pem file                                                                        |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--all`                   | Apply TLS configuration on all the backend containers in the cluster                                       |
+| `-h`, `--help`            | Show help message                                                                                          |
+
+**weka security tls local unset**
+
+Removes the local TLS configuration.
+
+```sh
+weka security tls local unset [--color color]
+                              [--HOST HOST]
+                              [--PORT PORT]
+                              [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                              [--TIMEOUT TIMEOUT]
+                              [--profile profile]
+                              [--private-key]
+                              [--ca-cert]
+                              [--all]
+                              [--help]
+                              [<container-ids>]...
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `container-ids`...        | A list of container ids to apply local TLS configuration                                                   |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `--private-key`           | Remove local TLS private key and associated certificate                                                    |
+| `--ca-cert`               | Remove local TLS CA certificate                                                                            |
+| `--all`                   | Apply TLS configuration on all the backend containers in the cluster                                       |
+| `-h`, `--help`            | Show help message                                                                                          |
+
 #### weka security lockout-config
 
 Commands used to interact with the account lockout config parameters
@@ -9961,6 +10376,80 @@ weka security lockout-config show [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 | `-J`, `--json`            | Format output as JSON                                                                                      |
+
+#### weka security token-expiry
+
+Commands used to interact with the auth token expiration parameters
+
+```sh
+weka security token-expiry [--color color] [--help]
+
+```
+
+| Parameter      | Description                                                                      |
+| -------------- | -------------------------------------------------------------------------------- |
+| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
+| `-h`, `--help` | Show help message                                                                |
+
+**weka security token-expiry show**
+
+Show the current expiration limits for auth tokens
+
+```sh
+weka security token-expiry show [--color color]
+                                [--HOST HOST]
+                                [--PORT PORT]
+                                [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                [--TIMEOUT TIMEOUT]
+                                [--profile profile]
+                                [--help]
+                                [--json]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
+| `-J`, `--json`            | Format output as JSON                                                                                      |
+
+**weka security token-expiry set**
+
+Configure the times for which auth tokens will be valid
+
+```sh
+weka security token-expiry set [--access-token access-token]
+                               [--refresh-token refresh-token]
+                               [--access-token-max access-token-max]
+                               [--refresh-token-max refresh-token-max]
+                               [--color color]
+                               [--HOST HOST]
+                               [--PORT PORT]
+                               [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                               [--TIMEOUT TIMEOUT]
+                               [--profile profile]
+                               [--help]
+
+```
+
+| Parameter                 | Description                                                                                                |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `--access-token`          | How long access tokens are valid by default (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)         |
+| `--refresh-token`         | How long refresh tokens are valid by default (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
+| `--access-token-max`      | Maximum duration allowed for access tokens (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)          |
+| `--refresh-token-max`     | Maximum duration allowed for refresh tokens (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)         |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
+| `--profile`               | Name of the connection and authentication profile to use                                                   |
+| `-h`, `--help`            | Show help message                                                                                          |
 
 #### weka security login-banner
 
@@ -12571,7 +13060,7 @@ weka user generate-token [--access-token-timeout access-token-timeout]
 
 | Parameter                 | Description                                                                                                |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `--access-token-timeout`  | In how long should the access token expire (format: 3s, 2h, 4m, 1d, 1d5h, 1w)                              |
+| `--access-token-timeout`  | In how long should the access token expire (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)          |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
 | `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
 | `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
