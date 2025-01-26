@@ -260,7 +260,6 @@ Once security policies are defined, you can perform the following tasks at the o
 * Remove all security policies from a specified organization.
 * Attach new security policies to a specified organization.
 * Detach security policies from a specified organization.
-* Revoke all API tokens from an organization.
 
 ### List the organization security policies
 
@@ -335,18 +334,6 @@ weka org security policy detach <org>[<policies>]...
 **Parameters**
 
 <table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from the organization.</td></tr></tbody></table>
-
-### Revoke all API tokens from an organization
-
-Use the following command to revoke all API tokens from an organization.
-
-```
-weka org security revoke-tokens <org>
-```
-
-**Parameters**
-
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr></tbody></table>
 
 ## Manage filesystem security policies using the CLI
 
