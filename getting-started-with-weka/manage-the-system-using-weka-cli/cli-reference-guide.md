@@ -12236,8 +12236,8 @@ weka smb domain join <username>
 | ------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `username`\*              | The name of the administrator user to join the domain using it                                             |
 | `password`                | The administrator user password                                                                            |
-| `--server`                | The domain controller server                                                                               |
-| `--create-computer`       | Precreate the computer account in a specific OU                                                            |
+| `--server`                | Specifies the remote domain controller for SMB-W domain join commands                                      |
+| `--create-computer`       | Creates an SMB cluster computer account in AD under a specified OU                                         |
 | `--extra-options`         | Consult with SMB 'net ads join' manual for extra options                                                   |
 | `-t`, `--timeout`         | Join command timeout in seconds (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                     |
 | `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |

@@ -120,7 +120,7 @@ Replace `8.8.8.8` and `8.8.4.4` with the appropriate nameserver IP addresses for
 
 2. In the Join to Active Directory dialog, set the following properties:
    * **Username** and **Password**: A username and password of an account that has join privileges to the Active Directory domain. WEKA does not save these credentials. Instead, the SMB cluster creates a computer account for use.
-   * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server based on the AD domain name. You do not need to set the server name. In some cases, specify the AD server if required.
+   * **Server**: (Optional) WEKA automatically identifies an AD Domain Controller server (from `/etc/resolv.conf`) based on the AD domain name. You do not need to set the server name. In some cases, specify the AD server if required.
    * **Computers Org. Unit**: The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account that the joining account has permission to, such as SMB servers or corporate computers.
 
 ![Join Active Directory dialog](../../.gitbook/assets/wmng_smb_join_ad_dialog.png)

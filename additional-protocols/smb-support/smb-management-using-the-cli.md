@@ -109,7 +109,12 @@ Ensure the AD servers are resolvable to all WEKA servers. This resolution enable
 
 **Parameters**
 
-<table><thead><tr><th width="207">Name</th><th width="332">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>username</code>*</td><td>Name of an AD user with permission to add a server to the domain.</td><td></td></tr><tr><td><code>password</code>*</td><td>The password of the AD user.  This password is not retained or cached.</td><td></td></tr><tr><td><code>server</code></td><td>Specifies the remote server for SMB command connections or operations. The command designates the domain controller for domain joining.</td><td>The domain controller is automatically identified based on the domain name. </td></tr><tr><td><code>create-computer</code></td><td>The default AD organizational unit (OU) for the computer account is the Computers directory. You can define any OU to create the computer account in - that the joining account has permissions to - such as SMB Servers or Corporate Computers.</td><td>The Computers directory.</td></tr></tbody></table>
+| Name              | Value                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `username`\*      | Name of an AD user with permission to add a server to the domain.                                                                                                                                                                                                                                                                                                                                                                                       |
+| `password`\*      | The password of the AD user.  This password is not retained or cached.                                                                                                                                                                                                                                                                                                                                                                                  |
+| `server`          | <p>Specifies the remote domain controller for SMB-W domain join commands.<br>WEKA automatically identifies an AD Domain Controller server (from <code>/etc/resolv.conf</code>) based on the AD domain name. <br>You do not need to set the server name. In some cases, specify the AD server if required.<br>See <a data-mention href="smb-management-using-the-gui.md#resolve-the-a-d-domain-controllers">#resolve-the-a-d-domain-controllers</a>.</p> |
+| `create-computer` | <p>Creates an SMB cluster computer account in AD under a specified OU.<br>The default is the "Computers" container in AD.</p>                                                                                                                                                                                                                                                                                                                           |
 
 To join an existing SMB cluster to another Active Directory domain, leave the current Active Directory using the following command line:
 
@@ -121,7 +126,7 @@ On completion of this operation, it is possible to join the SMB cluster to anoth
 
 **Command:** `weka smb cluster destroy`
 
-Use this command to destroy an SMB cluster managed by the Weka system.
+Use this command to destroy an SMB cluster managed by the WEKA system.
 
 Deleting an existing SMB cluster managed by the WEKA system does not delete the backend WEKA filesystems but removes the SMB share exposures of these filesystems.
 

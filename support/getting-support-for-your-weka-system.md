@@ -24,7 +24,7 @@ Do one of the following:
   You can monitor tickets and receive timely notifications and updates whenever any changes occur to the tickets.
 {% endtab %}
 
-{% tab title="Severity levels 2, 3. and 4" %}
+{% tab title="Severity levels 2, 3, and 4" %}
 Severity levels:
 
 * **Severity 2**: Significant service degradation or performance issues.
