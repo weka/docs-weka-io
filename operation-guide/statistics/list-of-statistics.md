@@ -6,14 +6,6 @@ description: >-
 
 # List of statistics
 
-|                                      |   |   |
-| ------------------------------------ | - | - |
-| ashjsahjshs\_dadad\_adDD\_ddadadadda |   |   |
-|                                      |   |   |
-|                                      |   |   |
-
-
-
 ### Assert failures
 
 | **Type**                                          | **Description**                                                       | **Units**          |
@@ -37,7 +29,15 @@ description: >-
 
 ### Block Cache
 
-<table data-header-hidden><thead><tr><th width="396"></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Type</strong></td><td><strong>Description</strong></td><td><strong>Units</strong></td></tr><tr><td>BUCKET_CACHED_METADATA_BLOCKS</td><td>Bucket number of cached metadata blocks</td><td>Blocks</td></tr><tr><td>BUCKET_CACHED_REGISTRY_L2_BLOCKS</td><td>Bucket number of cached registry L2 blocks</td><td>Blocks</td></tr><tr><td>BUCKET_CACHE_METADATA_HITS</td><td>Bucket block cache metadata hits</td><td>Queries</td></tr><tr><td>BUCKET_CACHE_METADATA_MISSES</td><td>Bucket block cache metadata misses</td><td>Queries</td></tr><tr><td>BUCKET_CACHE_REGISTRY_L2_HITS</td><td>Bucket block cache registry L2 hits</td><td>Queries</td></tr><tr><td>BUCKET_CACHE_REGISTRY_L2_MISSES</td><td>Bucket block cache registry L2 misses</td><td>Queries</td></tr><tr><td>BUCKET_REGISTRY_L2_BLOCKS_NUM</td><td>Bucket number of registry L2 blocks</td><td>Blocks</td></tr></tbody></table>
+| **Type**                             | **Description**                            | **Units** |
+| ------------------------------------ | ------------------------------------------ | --------- |
+| BUCKET\_CACHED\_METADATA\_BLOCKS     | Bucket number of cached metadata blocks    | Blocks    |
+| BUCKET\_CACHED\_REGISTRY\_L2\_BLOCKS | Bucket number of cached registry L2 blocks | Blocks    |
+| BUCKET\_CACHE\_METADATA\_HITS        | Bucket block cache metadata hits           | Queries   |
+| BUCKET\_CACHE\_METADATA\_MISSES      | Bucket block cache metadata misses         | Queries   |
+| BUCKET\_CACHE\_REGISTRY\_L2\_HITS    | Bucket block cache registry L2 hits        | Queries   |
+| BUCKET\_CACHE\_REGISTRY\_L2\_MISSES  | Bucket block cache registry L2 misses      | Queries   |
+| BUCKET\_REGISTRY\_L2\_BLOCKS\_NUM    | Bucket number of registry L2 blocks        | Blocks    |
 
 ### Block Writes
 
