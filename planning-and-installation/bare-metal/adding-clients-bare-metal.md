@@ -58,7 +58,7 @@ You can set the Cgroups mode in the service configuration file for clients and b
    * `cgroups_mode=force`
    * `cgroups_mode=force_v2`
    * `cgroups_mode=none`
-2. Restart the WEKA agent service.
+2. Restart the WEKA agent service: Run `service weka-agent restart`.
 3. Restart the containers to apply the Cgroups settings:
    * Run `weka local restart` to restart all containers, or specify a container, for example, `weka local restart client` for the client container. If WEKA is mounted, unmount it before restarting.
 4. Verify the Cgroups settings by running the `weka local status` command.
@@ -267,4 +267,4 @@ This method involves more detailed steps, allowing you to manually set up the cl
     weka cluster container apply container1 --force
     ```
 
-[^1]: A **diskless node** is a workstation or computer that lacks local disk drives and uses network booting to load its operating system from a server. For details, see [https://en.wikipedia.org/wiki/Diskless\_node](https://en.wikipedia.org/wiki/Diskless\_node)
+[^1]: A **diskless node** is a workstation or computer that lacks local disk drives and uses network booting to load its operating system from a server. For details, see [https://en.wikipedia.org/wiki/Diskless\_node](https://en.wikipedia.org/wiki/Diskless_node)
