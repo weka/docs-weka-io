@@ -251,6 +251,10 @@
 * [SageMaker HyperPod and WEKA Integrations](aws-solutions/sagemaker-hyperpod-and-weka-integrations/README.md)
   * [Integrate SageMaker HyperPod with WEKA using Slurm](aws-solutions/sagemaker-hyperpod-and-weka-integrations/integrate-sagemaker-hyperpod-with-weka-using-slurm.md)
 
+## Azure Solutions
+
+* [Azure CycleCloud for SLURM and WEKA Integration](azure-solutions/azure-cyclecloud-for-slurm-and-weka-integration.md)
+
 ## WEKApod
 
 * [WEKApod Data Platform Appliance overview](wekapod/overview.md)
