@@ -8,13 +8,13 @@ description: >-
 
 Once the Cluster Admin has created an organization and the Organization Admin has created filesystems, users, or configured the LDAP for the organization, regular organization users can mount filesystems.
 
-The purpose of organizations is to provide separation and security for organization data, which requires authentication of the Weka system filesystem mounts. This authentication of mounts prevents users of other organizations and even the Cluster Admin from accessing organization filesystems.
+The purpose of organizations is to provide separation and security for organization data, which requires authentication of the WEKA system filesystem mounts. This authentication of mounts prevents users of other organizations and even the Cluster Admin from accessing organization filesystems.
 
 Mounting filesystems in an organization (other than the Root organization) is only supported using a stateless client. A login prompt appears as part of the mount command if the user is not logged into the system.
 
 ## Mount a filesystem
 
-To securely mount a filesystem, first log into the Weka system:
+To securely mount a filesystem, first log into the WEKA system:
 
 ```
 weka user login my_user my_password --org my_org -H backend-host-0
@@ -30,9 +30,9 @@ For all mount options, see [Mount Command Options](../../weka-filesystems-and-ob
 
 ## Authentication‌
 
-Authentication is achieved by obtaining a mount token and including it in the mount command. Logging into the Weka system using the CLI (the `weka user login` command) creates an authentication token and saves it in the client (default to `~/.weka/auth-token.json,` which can be changed using the`--path`attribute).
+Authentication is achieved by obtaining a mount token and including it in the mount command. Logging into the WEKA system using the CLI (the `weka user login` command) creates an authentication token and saves it in the client (default to `~/.weka/auth-token.json,` which can be changed using the`--path`attribute).
 
-The Weka system assigns the token that relates to a specific organization. Only mounts that pass the path to a correct token can successfully access the filesystems of the organization.
+The WEKA system assigns the token that relates to a specific organization. Only mounts that pass the path to a correct token can successfully access the filesystems of the organization.
 
 Once the system authenticates a user, the mount command uses the default location of the authentication token. It is possible to change the token location/name and pass it as a parameter in the mount command using the `auth_token_path` mount option, or the`WEKA_TOKEN` environment variable.
 
