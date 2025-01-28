@@ -38,8 +38,8 @@ When multiple organizations exist, Organization Admins manage specific organizat
 
 The WEKA user login process involves authenticating users and managing access. The following steps outline the key components:
 
-* **Local user login**: The system first searches for the user among local accounts created using the `weka user add` command.
-* **LDAP integration**: If the user is not found locally but exists in an integrated LDAP directory, the system verifies their credentials using LDAP. Integration must be configured beforehand.
+* **Local user login**: The system first searches for the user among local accounts created using the GUI or the `weka user add` command.
+* **LDAP or AD integration**: If the user is not found locally but exists in an integrated LDAP or AD directory, the system verifies their credentials using LDAP. Integration must be configured beforehand.
 * **Login events**:
   * **Successful login**: Triggers a `UserLoggedIn` event, logging the username, role, and user type (local or LDAP).
   * **Failed login**: Prompts an "Invalid username or password" message and triggers a `UserLoginFailed` event with details of the failure.
