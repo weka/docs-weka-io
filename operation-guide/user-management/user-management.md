@@ -1,7 +1,7 @@
 ---
 description: >-
-  Explore the management of users licensed to work with the WEKA system using
-  the GUI.
+  Explore the GUI to manage local users and configure the user directories LDAP
+  or AD.
 ---
 
 # Manage users using the GUI
@@ -101,9 +101,9 @@ You can remove a local user that is no longer required.
 
 In the confirmation message, select **Yes**.
 
-## Manage user directory
+## Configure LDAP/AD in WEKA
 
-You can set user access to the Weka system from the organization user directory, either by LDAP or Active Directory.
+You can set the user access to the WEKA system from the organization user directory, either by Light Access Directory Protocol (LADP) or Active Directory (AD).
 
 ![User directory tab](../../.gitbook/assets/user_directory_tab_no_conf.png)
 

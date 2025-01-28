@@ -1,24 +1,13 @@
 ---
 description: >-
-  Explore the management of users licensed to work with the WEKA system using
-  the CLI.
+  Explore the CLI to perform a broader range of user management tasks, including
+  creating, updating, and deleting local users, managing access, and
+  authenticating users through the LDAP or AD directory.
 ---
 
 # Manage users using the CLI
 
-## User login **process** overview
-
-In the WEKA user login process (sign-in), the following steps outline the authentication and user management:
-
-* **Local user login:** When users log in, the system initially searches for them within the list of local users (internal users), specifically those created using the `weka user add` command.
-* **LDAP integration: i**n cases where a user isn't internally registered but exists in an LDAP directory, there's an option to integrate the LDAP user directory with the WEKA system. This integration allows the system to search for the user in the directory and perform password verification.
-* **Login events:** Successful logins trigger a `UserLoggedIn` event, which provides essential details such as the username, role, and user type (internal or LDAP). On the other hand, unsuccessful logins prompt an "Invalid username or password" message and trigger a `UserLoginFailedevent`, which contains the username and the reason for the failure.
-* **GUI login:** The GUI login process requires users to input their username and password. Users can leverage the WEKA\_USERNAME and WEKA\_PASSWORD environment variables to pass this information to the CLI.
-* **CLI login:** Users can log in with a specific identity using the `weka user login <username> <password>` command for CLI access. This establishes the user context for each subsequent CLI command. Upon logging in, a token file is generated for authentication, with the default path set to `~/.weka/auth-token.json` (adjustable using the `--path` attribute). You can use the `weka user whoami` command to check the CLI user who is currently logged in.
-* **Persistence and defaults:** The `weka user login` command's persistence applies only to the server where it is set. If the WEKA\_USERNAME and WEKA\_PASSWORD environment variables are unspecified, the CLI defaults to the token file. In cases where no CLI user is explicitly logged in, and no token file is present, the CLI resorts to the default 'admin/admin' credentials.
-* **Custom token file path:** Users who prefer a non-default path for the token file can use the `WEKA_TOKEN` environment variable.
-
-To perform various operations through the CLI, you can:
+Using the CLI, you can:
 
 * [Create a local user](user-management-1.md#create-a-local-user)
 * [Log-in to the WEKA cluster](user-management-1.md#log-in-to-the-weka-cluster)
