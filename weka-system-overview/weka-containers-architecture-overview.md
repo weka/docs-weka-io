@@ -20,11 +20,15 @@ The WEKA system uses different types of processes, each dedicated to specific fu
 * **Frontend processes**: Also known as client processes, manage POSIX client access and coordinate IO operations with compute and drive processes. Each frontend process needs a dedicated core to maintain responsive client interactions.
 * **Management processes**: Oversee the overall cluster operations. Unlike other process types, management processes can share cores as they have lower resource demands.
 
+{% hint style="info" %}
+Drive, compute, and management processes are considered backend processes, while frontend processes handle client interactions.
+{% endhint %}
+
 ## Multi-Container Backend architecture (MCB)
 
 In the WEKA cluster, each server implements a multi-container backend architecture where containers are specialized by process type (drive, compute, or frontend).
 
-<figure><img src="../.gitbook/assets/MCB_arch_4.2.png" alt=""><figcaption><p>Multi-container backend architecture (MCB)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/MCB_architecture.png" alt=""><figcaption><p>Multi-container backend architecture (MCB)</p></figcaption></figure>
 
 ## Benefits of MCB architecture
 
