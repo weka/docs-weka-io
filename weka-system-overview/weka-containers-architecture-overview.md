@@ -45,10 +45,10 @@ In the WEKA cluster, each server implements a multi-container backend architectu
 
 **Process limits**
 
-* Total processes per cluster: 65,534 (includes all process types: management, drive, compute, and frontend)
-* Maximum backend processes: 25,000 (excludes frontend processes)
-* Maximum management processes: 32,767
-* Maximum drive processes: 62,244
+* Total processes per cluster: 40,000 (includes all process types: management, drive, compute, and frontend)
+* Maximum backend processes: 4,096 (excludes frontend processes)
+* Maximum management processes: 20,000
+* Maximum drive processes: 38,00
 
 **Server and container limits**
 
