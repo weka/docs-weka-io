@@ -28,7 +28,7 @@ Drive, compute, and management processes are considered backend processes, while
 
 In the WEKA cluster, each server implements a multi-container backend architecture where containers are specialized by process type (drive, compute, or frontend).
 
-<figure><img src="../.gitbook/assets/MCB_arch_4.2.png" alt=""><figcaption><p>Multi-container backend architecture (MCB)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/MCB_architecture.png" alt=""><figcaption><p>Multi-container backend architecture (MCB)</p></figcaption></figure>
 
 ## Benefits of MCB architecture
 
