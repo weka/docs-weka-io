@@ -196,7 +196,7 @@ Supported ice drivers:
   * Weka system management IP address: One IP per server (configured before Weka installation)
   * Weka system data plane IP address: One IP address for each [Weka core](../install/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (Weka will apply these IPs during the cluster initialization)
   * Weka system management IP: Ability to communicate with all Weka system data plane IPs
-  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network\_function\_virtualization): The maximum number of VFs supported by the device must be bigger than the number of physical cores on the server; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configurations may be required in the BIOS
+  * [Virtual Functions (VFs)](https://en.wikipedia.org/wiki/Network_function_virtualization): The maximum number of VFs supported by the device must be bigger than the number of physical cores on the server; you should set the number of VFs to the number of cores you wish to dedicate to Weka; some configurations may be required in the BIOS
   * SR-IOV: Enabled in BIOS
 
 {% hint style="info" %}
@@ -250,7 +250,7 @@ Supported Mellanox OFED versions:
 * IOMMU mode for SSD drives is not supported. When IOMMU configuration is required on the Weka cluster servers (e.g., due to specific applications when running the Weka cluster in converged mode), contact the [Customer Success Team](getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 {% hint style="info" %}
-**Note:** To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim\_\(computing\)) is supported by the device and enabled in the operating system.
+**Note:** To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(computing\)) is supported by the device and enabled in the operating system.
 {% endhint %}
 
 ## Object store
@@ -286,6 +286,7 @@ Certified object stores:
 * Scality Ring8 (version 7.4.4.8 and up)
 * Scality Artesca (version 1.5.2 and up)
 * SwiftStack (version 6.30 and up)
+* WEKA S3
 
 ## Virtual Machines
 
