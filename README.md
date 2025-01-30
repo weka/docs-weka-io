@@ -63,7 +63,9 @@ This portal encompasses all documentation essential for comprehending and operat
 
 **Best practice guides:** Explore our carefully selected guides, starting with WEKA and Slurm integration, to discover expert-recommended strategies and insights for optimizing your WEKA system and achieving peak performance in various scenarios.
 
-**AWS solutions**: The AWS solutions guide shows how to integrate WEKA with SageMaker HyperPod for training large language and foundation models. Learn how to leverage high-performance storage for distributed machine learning at scale.
+**AWS solutions**: Learn how to integrate the WEKA Data Platform with Amazon SageMaker HyperPod to enable high-performance distributed training of large language and foundation models. Explore best practices for configuring storage, optimizing performance, and scaling machine learning workloads in AWS environments.
+
+**Azure solutions**: Learn how to integrate the WEKA Data Platform with Azure CycleCloud and SLURM scheduler for streamlined HPC cluster management. Learn configuration steps, performance optimization, and architectural patterns for running AI, machine learning, and analytics workloads at scale in Azure environments.
 
 **WEKApod:** Explore the WEKApod Data Platform Appliance Guide for step-by-step instructions on setting up and configuring the WEKApod™. This turnkey solution, designed for NVIDIA DGX SuperPOD, features pre-configured storage and software for quick deployment and faster value.
 
