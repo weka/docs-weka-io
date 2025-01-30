@@ -58,6 +58,8 @@ The example below demonstrates how to configure a policy using the GUI. The poli
   * Snapshots created by policies cannot be manually uploaded to an object store. Ensure all uploads align with the configured policy.
 * **Retaining snapshots outside rotation:**
   * To prevent a snapshot from being deleted during the rotation process, rename the snapshot to exclude it from automated deletion.
+* **Manually upload snapshots to object store:**
+  * To manually upload a policy-created snapshot that isn't configured for automatic object store upload, rename the snapshot. Renaming both enables manual upload and prevents automatic deletion.
 * **Snapshot deletion with disabled policy:**
   * Snapshots of attached filesystems may still be deleted even when the policy is disabled. If the retention period is reduced, snapshots are deleted according to the updated retention settings, regardless of the policy's status.
 *   **Snapshot behavior during DST transitions**:
