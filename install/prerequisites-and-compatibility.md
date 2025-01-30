@@ -360,6 +360,7 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
 * Google Cloud Storage (GCS)
 * Cloudian HyperStore (version 7.3)
 * Dell EMC ECS (v3.5 and higher)
+* Dell PowerScale S3 (version 9.8.0.0)
 * HCP Classic V9.2 and up (with versioned buckets only)
 * HCP for Cloud-Scale V2.x
 * IBM Cloud Object Storage System (version 3.14.7)
@@ -370,7 +371,7 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
 * Scality Artesca (version 1.5.2)
 * SwiftStack (version 6.30)
 * Spectra Logic BlackPearl with Vail for remote buckets (version 5.7.1)
-* Dell PowerScale S3 (version 9.8.0.0)
+* WEKA S3
 
 ## Virtual Machines
 
