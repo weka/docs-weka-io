@@ -373,6 +373,7 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
 * Google Cloud Storage (GCS)
 * Cloudian HyperStore (version 7.3)
 * Dell EMC ECS (version 3.5)
+* Dell PowerScale S3 (version 9.8.0.0)
 * HCP Classic V9.2 and up (with versioned buckets only)
 * HCP for Cloud-Scale V2.x
 * IBM Cloud Object Storage System (version 3.14.7)
@@ -382,7 +383,7 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
 * Scality Ring (version 7.4.4.8)
 * Scality Artesca (version 1.5.2)
 * SwiftStack (version 6.30)
-* Dell PowerScale S3 (version 9.8.0.0)
+* WEKA S3
 
 ## Virtual Machines
 
