@@ -115,7 +115,7 @@ Consider the following regarding the CPU allocation strategy:
 * Cores in a cgroup are not available to run any other user processes.
 * On systems with Intel hyper-threading enabled, the corresponding sibling cores are placed into a cgroup along with the physical ones.
 
-### Backend servers
+### Backend CPU usage
 
 Plan the number of physical cores dedicated to the WEKA software according to the following guidelines and limitations:
 
@@ -129,11 +129,11 @@ Plan the number of physical cores dedicated to the WEKA software according to th
 * Allocate enough memory to match core allocation, as discussed above.
 * Running other applications on the same server (converged WEKA system deployment) is supported. For details, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 
-### Clients
+### Client CPU usage
 
-On the client side, the WEKA software consumes a single physical core by default. The WEKA software consumes two logical cores if the client is configured with hyper-threading.
+The WEKA client software requires one physical CPU core by default. When running on systems with hyper-threading enabled, WEKA consumes two logical cores.
 
-If the client networking is defined as UDP, dedicated CPU core resources are not allocated to WEKA. Instead, the operating system allocates CPU resources to the WEKA processes like any other.
+In UDP networking, the operating system pins WEKA processes to specific CPU cores. These processes maintain guaranteed access to their assigned cores, but the operating system can still schedule other processes to run on the same cores. This contrasts with exclusive CPU allocation, where WEKA reserves cores solely for its processes.
 
 ## Network planning
 
