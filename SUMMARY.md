@@ -249,7 +249,8 @@
 ## AWS Solutions
 
 * [SageMaker HyperPod and WEKA Integrations](aws-solutions/sagemaker-hyperpod-and-weka-integrations/README.md)
-  * [Integrate SageMaker HyperPod with WEKA using Slurm](aws-solutions/sagemaker-hyperpod-and-weka-integrations/integrate-sagemaker-hyperpod-with-weka-using-slurm.md)
+  * [Deploy a new SageMaker HyperPod cluster with WEKA](aws-solutions/sagemaker-hyperpod-and-weka-integrations/deploy-a-new-sagemaker-hyperpod-cluster-with-weka.md)
+  * [Add WEKA to an existing SageMaker HyperPod cluster](aws-solutions/sagemaker-hyperpod-and-weka-integrations/add-weka-to-an-existing-sagemaker-hyperpod-cluster.md)
 
 ## Azure Solutions
 
