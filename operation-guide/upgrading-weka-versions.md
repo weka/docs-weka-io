@@ -6,21 +6,48 @@ description: Upgrade your WEKA system with the latest version.
 
 ## Upgrade overview
 
-The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations. When planning an upgrade, adhere to the following guidelines:
+The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations.&#x20;
 
-* **Supported source versions:** To upgrade to version 4.4.1, the **minimum** supported source version is 4.2.1. The **maximum** supported source versions are 4.2.12.92, 4.3.5.105, and 4.4.0.
-* **Upgrade path:** Upgrades must progress from an older version to a newer version. For example, upgrading from version 4.2.X to 4.4.Y is permitted only if version 4.4.Y was released after the 4.2.X Long-Term Support (LTS) release.
-* **Major version compatibility:** Upgrades must remain within the same major version or transition from an older major version to its direct successor.
-* **Version-specific exceptions:** Exceptions to upgrade paths may exist. Always confirm the supported minimum and maximum versions for the desired upgrade. For detailed information on release dates and compatible versions, visit [get.weka.io](https://get.weka.io).
+**Supported source versions for upgrading to version 4.4.3**:
 
-**Examples:**
+* The **minimum** supported source version is 4.2.1.
+* The **maximum** supported source versions are 4.2.12.92, 4.3.5.105, and 4.4.2.113
 
-* **Permitted upgrade:**\
-  Upgrading from version 4.2.12.92 (released August 1, 2024) to version 4.4.2.113 (released December 10, 2024) is allowed. In addition, the maximum versions 4.3.5.105 and 4.4.1 are allowed.
-* **Restricted upgrade:**\
-  Upgrading from versions 4.2.14 to 4.2.17.77 to version 4.4.2.113 are not allowed.
+### Upgrade guidelines
 
-Always review release notes and guidelines to confirm upgrade eligibility for your specific version.
+#### Version requirements
+
+* Upgrades must progress from older versions to newer versions.
+* Version compatibility is based on release dates relative to LTS releases.
+* Major version upgrades must be to the next consecutive version only.
+
+#### Version compatibility rules
+
+* When upgrading from version 4.2.X to 4.4.Y:
+  * Version 4.4.Y must have been released after the 4.2.X LTS release
+  * All intermediate versions must be supported versions
+* Confirm specific version compatibility at [get.weka.io](https://get.weka.io).
+
+### **Upgrade example**
+
+#### Supported upgrades
+
+```
+4.4.1     → 4.4.2.113    Maximum supported direct upgrade
+4.3.5.105 → 4.4.2.113    Maximum supported intermediate version
+4.2.12.92 → 4.4.2.113    Released: Aug 1, 2024 → Dec 10, 2024
+```
+
+#### Unsupported upgrades
+
+```
+4.2.17.77 → 4.4.2.113    Version not in supported range
+4.2.16    → 4.4.2.113    Version not in supported range
+4.2.15    → 4.4.2.113    Version not in supported range
+4.2.14    → 4.4.2.113    Version not in supported range
+```
+
+Always review release notes for version-specific upgrade requirements.
 
 <figure><img src="../.gitbook/assets/get-weka-io-versions_4.4.png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
 
