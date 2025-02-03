@@ -178,7 +178,7 @@ When a mount option has been explicitly changed, you must set it again in the re
 </code></pre><p><strong>Restrictions</strong>:</p><ul><li>Core IDs must be unique and available on system</li><li>Cannot be used with <code>num_cores</code> parameter</li><li>Core 0 not allowed</li></ul></td><td></td><td>No</td></tr><tr><td><code>net=&#x3C;netdev>[/&#x3C;ip>/&#x3C;bits>[/&#x3C;gateway>]]</code></td><td><p>Specifies network devices for WekaFS client connections. Required for on-premises installations.</p><p>Format:</p><ul><li>Single device: <code>-o net=eth1</code></li><li>Multiple devices: <code>-o net=eth1 -o net=eth2 -o net=eth3</code></li></ul><p><strong>Important</strong>:</p><ul><li>For NICs with Virtual Functions (VFs), the number of network devices must equal <code>num_cores</code></li><li>Supports both physical NICs and virtual functions</li><li>Must specify at least one network device</li></ul><p>For additional options, see: <a data-mention href="./#advanced-network-configuration-by-mount-options">#advanced-network-configuration-by-mount-options</a> </p></td><td></td><td>No</td></tr><tr><td><code>remove_after_secs=&#x3C;secs></code></td><td>The time in seconds without connectivity, after which the client is removed from the cluster. <br>Minimum value: <code>60</code> seconds.<br><code>3600</code> seconds = 1 hour.</td><td><code>3600</code></td><td>Yes</td></tr><tr><td><code>traces_capacity_mb=&#x3C;size-in-mb></code></td><td><p>Traces capacity limit in MB.</p><p>Minimum value: 512 MB.</p></td><td></td><td>No</td></tr><tr><td><code>reserve_1g_hugepages=&#x3C;true or false></code></td><td>Controls the page allocation algorithm to reserve hugepages.<br>Possible values:<br><code>true</code>: reserves 1 GB<br><code>false</code>: reserves 2 MB</td><td><code>true</code></td><td>Yes</td></tr><tr><td><code>readahead_kb=&#x3C;readahead></code></td><td>The readahead size in KB per mount. A higher readahead is better for sequential reads of large files.</td><td><code>32768</code></td><td>Yes</td></tr><tr><td><code>auth_token_path</code></td><td>The path to the mount authentication token (per mount).</td><td><code>~/.weka/auth-token.json</code></td><td>No</td></tr><tr><td><code>dedicated_mode</code></td><td>Determine whether DPDK networking dedicates a core (<code>full</code>) or not (<code>none</code>). none can only be set when the NIC driver supports it. See <a href="../../weka-system-overview/networking-in-wekaio.md#dpdk-without-the-core-dedication">DPDK without the core dedication</a>. <br>This option is relevant when using DPDK networking (<code>net=udp</code> is not set).<br>Possible values: <code>full</code> or <code>none</code></td><td><code>full</code></td><td>No</td></tr><tr><td><code>qos_preferred_throughput_mbps</code></td><td>Preferred requests rate for QoS in megabytes per second.</td><td><code>0</code> (unlimited)<br></td><td>Yes</td></tr><tr><td><code>qos_max_throughput_mbps</code></td><td>Maximum requests rate for QoS in megabytes per second.<br>This option allows bursting above the specified limit but aims to keep this limit on average.<br>The cluster admin can set the default value. See <a href="./#set-mount-option-default-values">Set mount option default values</a>.</td><td><code>0</code> (unlimited)</td><td>Yes</td></tr><tr><td><code>qos_max_ops</code></td><td>Maximum number of IO operations a client can perform per second.<br>Set a limit to a client or clients to prevent starvation from the rest of the clients. (Do not set this option for mounting from a backend.)</td><td><code>0</code> (unlimited)</td><td>Yes</td></tr><tr><td><code>connect_timeout_secs</code></td><td>The timeout, in seconds, for establishing a connection to a single server. </td><td><code>10</code></td><td>Yes</td></tr><tr><td><code>response_timeout_secs</code></td><td>The timeout, in seconds, waiting for the response from a single server.</td><td><code>60</code></td><td>Yes</td></tr><tr><td><code>join_timeout_secs</code></td><td>The timeout, in seconds, for the client container to join the Weka cluster.</td><td><code>360</code></td><td>Yes</td></tr><tr><td><code>dpdk_base_memory_mb</code></td><td>The base memory in MB to allocate for DPDK. Set this option when mounting to a WEKA cluster on GCP.<br>Example: <code>-o dpdk_base_memory_mb=16</code></td><td><code>0</code></td><td>Yes</td></tr><tr><td><code>weka_version</code></td><td>The WEKA client version to run.</td><td>The cluster version</td><td>No</td></tr><tr><td><code>restricted</code></td><td>Restricts a stateless client’s operations to only the essential APIs for mounting and unmounting operations.</td><td></td><td>No</td></tr></tbody></table>
 
 {% hint style="info" %}
-These parameters, if not stated otherwise, are only effective on the first mount command for each client.
+The additional mount options parameters above are only effective on the first mount command for each client, unless stated otherwise.
 {% endhint %}
 
 {% hint style="info" %}
@@ -205,11 +205,21 @@ Running this command uses [UDP mode ](../../weka-system-overview/networking-in-w
 Running this command on an AWS EC2 instance allocates two cores (multiple-frontends), attaches and configures two ENIs on the new client. The client attempts to rejoin the cluster through all three backends specified in the command line.
 {% endhint %}
 
-For stateless clients, the first `mount` command installs the weka client software and joins the cluster). Any subsequent `mount` command, can either use the same syntax or just the persistent/per-mount parameters as defined in [Mounting Filesystems](./#mount-mode-command-options) since it is not necessary to join a cluster.
+For stateless clients, the first `mount` command serves a dual purpose:
 
-It is now possible to access Weka filesystems via the mount-point, e.g., by `cd /mnt/weka/` command.
+1. It installs the WEKA client software.
+2. It joins the WEKA cluster.
 
-After the execution of an`umount` command, which unmounts the last Weka filesystem, the client is disconnected from the cluster and will be uninstalled by the agent. Consequently, executing a new `mount` command requires the specification of the cluster, cores, and networking parameters again.
+Subsequent `mount` commands can be simplified, requiring only the persistent or per-mount parameters as defined in the [#mount-command-options](./#mount-command-options "mention"). The full cluster configuration is not needed for these additional mounts.
+
+WEKA filesystems can be accessed directly through the mount point. You can navigate to the filesystem using standard directory commands, such as `cd /mnt/weka/`.
+
+When the final WEKA filesystem is unmounted using the `umount` command, two key actions occur:
+
+* The client is automatically disconnected from the cluster.
+* The WEKA client software is uninstalled by the agent.
+
+As a result, initiating a new `mount` operation requires re-specifying the complete cluster configuration, including cluster details, cores, and networking parameters.
 
 {% hint style="info" %}
 When running in AWS, the instance IAM role must provide permissions to several AWS APIs (see the [IAM role created in template](../../planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/cloudformation.md#iam-role-created-in-the-template) section).
@@ -219,76 +229,116 @@ When running in AWS, the instance IAM role must provide permissions to several A
 Memory allocation for a client is predefined. To change the memory allocation, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
-### Remount of stateless clients options
+### Remount options for stateless clients
 
-Mount options marked as `Remount Supported` in the above table can be remounted (using `mount -o remount`). When a mount option is not set in the remount operation, it will retain its current value. To set a mount option back to its default value, use the `default` modifier (e.g., `memory_mb=default)`.
+Mount options explicitly marked as `Remount Supported` can be modified using the `mount -o remount` command. During a remount operation:
+
+* Unspecified mount options retain their current configuration.
+* To reset a specific option to its default value, use the `default` modifier.
+
+Example of resetting an option to its default:
+
+* `memory_mb=default` restores the default memory configuration.
+
+This approach allows for flexible, granular adjustments to mount parameters without requiring a complete filesystem unmount and remount.
 
 ### Set mount option default values <a href="#set-mount-option-default-values" id="set-mount-option-default-values"></a>
 
-The defaults of the mount options `qos_max_throughput_mbps` and `qos_preferred_throughput_mbps` have no limit.
+Default throughput settings:
 
-The cluster admin can set these default values to meet the organization's requirements, reset them to the initial default values (no limit), or show the existing values.
+* `qos_max_throughput_mbps` and `qos_preferred_throughput_mbps` are initially set with no limit.
 
-The mount option defaults are only relevant for new mounts performed and do not influence the existing ones.
+Cluster administrator capabilities:
 
-**Commands:**
+* Set custom default values aligned with organizational requirements.
+* Reset to initial unlimited configuration.
+* View current default settings.
 
-`weka cluster mount-defaults set`
+Key characteristics:
 
-`weka cluster mount-defaults reset`
+* Default value modifications only affect new mounts.
+* Existing mount configurations remain unchanged.
 
-`weka cluster mount-defaults show`
+Available commands:
 
-To set the mount option default values, run the following command:
+* Set defaults: `weka cluster mount-defaults set`
+* Reset to initial values: `weka cluster mount-defaults reset`
+* Display current defaults: `weka cluster mount-defaults show`
+
+Command syntax:
 
 {% code overflow="wrap" %}
-```bash
+```
 weka cluster mount-defaults set [--qos-max-throughput qos-max-throughput] [--qos-preferred-throughput qos-preferred-throughput]
 ```
 {% endcode %}
 
 **Parameters**
 
-<table><thead><tr><th width="309">Option</th><th>Description</th></tr></thead><tbody><tr><td><code>qos_max_throughput</code></td><td>Sets the default value for the <code>qos_max_throughput_mbps</code> option, which is the max requests rate for QoS in megabytes per second.</td></tr><tr><td><code>qos_preferred_throughput</code></td><td>Sets the default value for the <code>qos_preferred_throughput_mbps</code> option, which is the preferred requests rate for QoS in megabytes per second.</td></tr></tbody></table>
-
-***
+<table><thead><tr><th width="309">Option</th><th>Description</th></tr></thead><tbody><tr><td><code>qos_max_throughput</code></td><td>Specifies maximum requests rate for Quality of Service (QoS) in megabytes per second</td></tr><tr><td><code>qos_preferred_throughput</code></td><td>Specifies preferred requests rate for Quality of Service (QoS) in megabytes per second</td></tr></tbody></table>
 
 
 
-## Advanced network configuration by mount options
+## Advanced network configuration for stateless clients
 
-When using a stateless client, it is possible to alter and control many different networking options, such as:
+Stateless clients allow for customizable network configurations to enhance performance and connectivity. The following parameters can be adjusted:
 
-* Virtual functions
-* IPs&#x20;
-* Gateway (in case the client is on a different subnet)
-* Physical network devices (for performance and high availability)
+* Virtual Functions (VFs)
+* IP addresses
+* Gateway configuration (required if the client is on a different subnet)
+* Physical network devices (for improved performance and high availability)
 * UDP mode
 
-Use `-o net=<netdev>` mount option with the various modifiers as described below.
+To configure networking, use the `-o net=<netdev>` mount option with the appropriate modifiers.
 
-`<netdev>` is either the name, MAC address, or PCI address of the physical network device (can be a bond device) to allocate for the client.
+#### **Identify `<netdev>`**
+
+`<netdev>` can be specified using:
+
+* Network interface name
+* MAC address
+* PCI address of the physical network device
+* Bonded device for redundancy and load balancing
+
+#### **Networking technology compatibility**
+
+When using WEKA mounts (`wekafs`), ensure that clients and backends use the same network type. Supported options include InfiniBand (IB) or Ethernet.
+
+#### **Key considerations**
+
+* The `-o net=<netdev>` option provides detailed control over network interfaces.
+* Selecting the appropriate configuration helps optimize performance and connectivity.
+* Consistent networking technology is essential for system reliability.
+
+### **Configure IP, subnet, gateway, and Virtual Functions (VFs)**
+
+For improved performance, multiple frontend processes may be required. When using a Network Interface Card (NIC) other than Mellanox or Intel E810, or when deploying a DPDK client on a virtual machine (VM), **Single Root I/O Virtualization (SR-IOV)** must be used to expose a **Virtual Function (VF)** of the physical device to the client. Once exposed, the VF can be configured using the `mount` command.
+
+#### **Assign VF IP addresses and routing**
+
+To assign an IP address to a VF or to enable routing when the client is in a different subnet, use the following format:
+
+```bash
+net=<netdev>/[ip]/[bits]/[gateway]
+```
+
+* `ip`, `bits`, and `gateway` are optional parameters.
+* If these parameters are not provided, the WEKA system assigns values based on the environment:
+  * **Cloud environment**: The system automatically deduces the IP address, subnet mask, and gateway.
+  * **On-premises environment**: The system assigns values based on the cluster’s default network configuration.
+    * If the default network is not set, the WEKA cluster may fail to allocate an IP address for the client.
 
 {% hint style="warning" %}
-When using `wekafs` mounts, both clients and backends should use the same type of networking technology (either IB or Ethernet).
+**Important:** Ensure that the **WEKA cluster default data networking** is configured before executing the `mount` command. For configuration details, see [#id-6.-configure-default-data-networking-optional](../../planning-and-installation/bare-metal/perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional "mention").
 {% endhint %}
 
-### IP, subnet, gateway, and virtual functions
+#### **Example: Configuring VFs on a single physical network device**
 
-For higher performance, the usage of multiple Frontends may be required. When using a NIC other than Mellanox or Intel E810 or mounting a DPDK client on a VM, it is required to use [SR-IOV](../../planning-and-installation/bare-metal/setting-up-the-hosts/#sr-iov-enablement) to expose a VF of the physical device to the client. Once exposed, it can be configured via the mount command.
+The following command configures VFs for a specified network device and assigns each VF to a frontend process.
 
-To assign the VF IP addresses or when the client resides in a different subnet and routing is needed in the data network, use`net=<netdev>/[ip]/[bits]/[gateway]`.
-
-`ip, bits, gateway` are optional. If these options are not provided, the WEKA system performs one of the following depending on the environment:
-
-* **Cloud environment:** The WEKA system deduces the values of the `ip, bits, gateway` options.
-*   **On-premises environment:** The WEKA system allocates values to the `ip, bits, gateway` options based on the cluster default network. Failure to set the default network may result in the WEKA cluster failing to allocate an IP address for the client.
-
-    Ensure that the WEKA cluster default data networking is configured prior to running the mount command. For details, see [Configure default data networking (optional)](../../planning-and-installation/bare-metal/perform-post-configuration-procedures.md#id-6.-configure-default-data-networking-optional).
-
-#### Example: Configure VFs in a single physical network device
-
-The following command configures virtual functions (VFs) for the specified device and assigns each VF to one of the frontend processes. The first process is assigned the IP address 192.168.1.100, while the second process uses 192.168.1.101. Both IP addresses are configured with a 24-bit subnet mask and a default gateway of 192.168.1.254.
+* The first frontend process is assigned **192.168.1.100**.
+* The second frontend process is assigned **192.168.1.101**.
+* Both IPs are configured with a **24-bit subnet mask** and a **default gateway of 192.168.1.254**.
 
 {% code overflow="wrap" %}
 ```bash
