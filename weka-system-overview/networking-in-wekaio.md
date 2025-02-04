@@ -93,7 +93,7 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 
 ### Configuration guidelines
 
-* **DPDK backends and clients using NICs supporting shared networking:**
+* **DPDK backends and clients using NICs supporting shared networking (single IP):**
   * Require one IP address per client for both management and data plane.
   * SR-IOV enabled is not required.
 * **DPDK backends and clients using NICs supporting dedicated networking:**
@@ -105,7 +105,7 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
     * Note that some BIOS configurations may be necessary.
   * SR-IOV: Enabled in BIOS.
 * **UDP clients:**
-  * Use a shared networking IP address for all purposes.
+  * Use a shared networking (single IP) for all purposes.
 
 ## Network **High Availability** <a href="#high-availability" id="high-availability"></a>
 
