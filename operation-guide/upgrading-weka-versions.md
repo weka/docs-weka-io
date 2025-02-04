@@ -8,10 +8,10 @@ description: Upgrade your WEKA system with the latest version.
 
 The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations.&#x20;
 
-**Supported source versions for upgrading to version 4.4.3**:
+**Supported source versions for upgrading to version 4.4.4**:
 
 * The **minimum** supported source version is 4.2.1.
-* The **maximum** supported source versions are 4.2.12.92, 4.3.5.105, and 4.4.2.113
+* The **maximum** supported source versions are 4.2.12.92, 4.3.5.105, and 4.4.3
 
 ### Upgrade guidelines
 
