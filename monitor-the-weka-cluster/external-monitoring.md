@@ -99,6 +99,7 @@ Perform the following steps on an **existing host with access to the WEKA CLI**,
 
 Perform the following steps on the **WEKAmon host**.
 
+* **Prerequisite**: Ensure the authentication token file (`/weka/.weka/auth-token.json`) is readable by the user running the WEKAmon container. If the container operates with restricted permissions, adjust the file permissions accordingly. Typically, you can determine the container’s user using `docker inspect`.
 *   **Create a directory for the authentication token:** Run the following command:
 
     `mkdir /opt/weka-mon/.weka`
