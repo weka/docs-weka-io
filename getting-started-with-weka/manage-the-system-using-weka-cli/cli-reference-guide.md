@@ -2698,7 +2698,6 @@ weka fs create <name>
                [--TIMEOUT TIMEOUT]
                [--profile profile]
                [--encrypted]
-               [--allow-no-kms]
                [--data-reduction]
                [--help]
                [--json]
@@ -2723,7 +2722,6 @@ weka fs create <name>
 | `-T`, `--TIMEOUT`          | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                                                                                                                                        |
 | `--profile`                | Name of the connection and authentication profile to use                                                                                                                                                                                      |
 | `--encrypted`              | Creates an encrypted filesystem                                                                                                                                                                                                               |
-| `--allow-no-kms`           | Allow (insecurely) creating an encrypted filesystem without a KMS configured                                                                                                                                                                  |
 | `--data-reduction`         | Enable data reduction                                                                                                                                                                                                                         |
 | `-h`, `--help`             | Show help message                                                                                                                                                                                                                             |
 | `-J`, `--json`             | Format output as JSON                                                                                                                                                                                                                         |
