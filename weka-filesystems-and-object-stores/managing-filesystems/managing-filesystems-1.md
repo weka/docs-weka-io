@@ -33,13 +33,9 @@ Use the following command line to create a filesystem:
 
 
 {% hint style="info" %}
-When creating an encrypted filesystem a KMS must be defined.
-{% endhint %}
+To create an encrypted filesystem, you must define a KMS.
 
-{% hint style="warning" %}
-To define an encrypted filesystem without a KMS, it is possible to use the`--allow-no-kms` parameter in the command. This can be useful when running POCs but should not be used in production since the security chain is compromised when a KMS is not used.
-
-If filesystem keys exist when adding a KMS, they are automatically re-encrypted by the KMS for any future use.
+If a KMS is unavailable for a POC, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for guidance.
 {% endhint %}
 
 ## Add a filesystem when thin-provisioning is used&#x20;
