@@ -65,11 +65,12 @@ Perform the following steps on an **existing host with access to the WEKA CLI**,
 
 Perform the following steps on the **WEKAmon host**.
 
-1.  **Create a directory for the authentication token:** Run the following command:
+1. **Prerequisite**: Ensure the authentication token file (`/weka/.weka/auth-token.json`) is readable by the user running the WEKAmon container. If the container operates with restricted permissions, adjust the file permissions accordingly. Typically, you can determine the container’s user using `docker inspect`.
+2.  **Create a directory for the authentication token:** Run the following command:
 
     `mkdir /root/.weka`
-2. **Move the previously-created authentication token into the new directory: :** Run the following command: `mv ~/wekamon-authtoken.json /root/.weka/auth-token.json`
-3. **Ensure appropriate ownership and permissions are set:** Run the following commands:\
+3. **Move the previously-created authentication token into the new directory: :** Run the following command: `mv ~/wekamon-authtoken.json /root/.weka/auth-token.json`
+4. **Ensure appropriate ownership and permissions are set:** Run the following commands:\
    `chown root:root /root/.weka/auth-token.json`\
    `chmod 400 /root/.weka/auth-token.json`
 
