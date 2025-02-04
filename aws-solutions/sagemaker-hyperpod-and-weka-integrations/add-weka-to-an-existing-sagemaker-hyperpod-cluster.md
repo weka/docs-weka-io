@@ -25,7 +25,7 @@ cd cloud-solutions/aws/sagemaker-hyperpod/
 
 #### Step 2: Verify region configuration
 
-1. Verify AWS cli region configuration:
+1. Verify AWS CLI region configuration:
 
 ```
 aws configure list
