@@ -53,7 +53,7 @@ After configuring the switch, update the Linux system interfaces to recognize th
 
 ## Mount filesystems with tagged VLANs
 
-**Basic VLAN tagging**
+### **Basic VLAN tagging**
 
 Mount a filesystem with a specified NIC and VLAN tag:
 
@@ -67,7 +67,7 @@ Example:
 mount -o net=mlnx0/vlan@501 /mnt/weka
 ```
 
-**Extended network configuration**
+### **Extended network configuration**
 
 Include gateway, IP, and netmask for advanced configurations:
 

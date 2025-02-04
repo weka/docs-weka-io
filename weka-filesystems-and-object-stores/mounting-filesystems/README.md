@@ -346,6 +346,11 @@ mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.
 ```
 {% endcode %}
 
+#### Set maximum VFs on stateless mounts for Intel E810 and Broadcom P2100/2200 NICs
+
+For Intel E810 and Broadcom P2100/2200 NICs, WEKA requires one VF per dedicated core. By default, the system creates 32 VFs. If your WEKA system uses fewer dedicated cores, specify the desired maximum number of VFs using the `-o net` mount option. \
+For example, if the system uses 8 dedicated cores, add the following to the mount command: `-o net=bcm0/vfs@8`.
+
 ### Multiple physical network devices for performance and high availability
 
 For performance or high availability, it is possible to use more than one physical network device.
