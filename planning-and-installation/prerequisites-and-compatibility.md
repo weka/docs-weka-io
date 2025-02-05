@@ -267,6 +267,8 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
   * A current driver from an official OS repository is recommended
 * **Supported ice drivers:**
   * 1.9.11
+* **Supported Broadcom drivers**:
+  * 228
 {% endtab %}
 
 {% tab title="Ethernet configurations" %}
