@@ -29,68 +29,6 @@ Run the following command to establish a connection between the WEKA system and 
 
 <table><thead><tr><th width="209">Name</th><th width="284">Value</th><th>Considerations</th></tr></thead><tbody><tr><td><code>type</code>*</td><td>Type of the KMS.</td><td>Possible values:<br><code>vault</code> or <code>kmip</code></td></tr><tr><td><code>address</code>*</td><td>KMS server address. </td><td><p><code>URL</code> for <code>vault</code></p><p><code>hostname:port</code> for <code>kmip</code></p></td></tr><tr><td><code>key-identifier</code>*</td><td>Key name for <code>vault</code> or UID for <code>kmip</code> to secure filesystem keys.</td><td></td></tr><tr><td><code>token</code></td><td>API token to access HashiCorp Vault KMS.</td><td><p>This applies only to <code>vault</code>.<br>Prohibited for <code>kmip</code>.</p><ul><li>For cluster-wide encryption, specify the <code>token</code>.</li><li>For per-filesystem encryption, specify the <code>role-id</code> and <code>secret-id</code> parameters below instead of the <code>token</code>.</li></ul><p>The access token must have:</p><ul><li>Read permissions to <code>transit/keys/&#x3C;master-key-name></code></li><li>Write permissions to <code>transit/encrypt/&#x3C;master-key-name></code> and <code>transit/decrypt/&#x3C;masterkeyname></code> </li><li>Permissions to <code>/transit/rewrap</code> and <code>auth/token/lookup</code></li></ul></td></tr><tr><td><code>namespace</code></td><td>The namespace name in HashiCorp Vault.</td><td>Namespace names must not end with "/", avoid spaces, and refrain from using reserved names like <code>root</code>, <code>sys</code>, <code>audit</code>, <code>auth</code>, <code>cubbyhole</code>, and <code>identity</code>.</td></tr><tr><td><code>client-cert</code></td><td>Path to the client certificate PEM file.<br></td><td><p>Must permit <code>encrypt</code> and <code>decrypt</code> permissions.<br>Mandatory for <code>kmip</code> .</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>client-key</code></td><td>Path to the client key PEM file.</td><td><p>Mandatory for <code>kmip</code> .</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>ca-cert</code></td><td>Path to the CA certificate PEM file.<br></td><td><p>Optional for <code>kmip</code>.</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>role-id</code></td><td>Role ID for KMS access with per-filesystem encryption.<br>To obtain the <code>role-id</code> and <code>secret-id</code>, see the section below.</td><td>Mandatory if KMS Namespace is defined.</td></tr><tr><td><code>secret-id</code></td><td>Secret ID for KMS access with per-filesystem encryption.</td><td><p>Mandatory if KMS Namespace is defined.</p><p>You can also specify the secret ID using the environment variable <code>WEKA_KMS_SECRET_ID</code>.</p></td></tr><tr><td><code>convert-to-cluster-key-on-fs</code></td><td>Convert all encrypted filesystems to use cluster key.</td><td></td></tr></tbody></table>
 
-<details>
-
-<summary>Obtain <code>role-id</code> and <code>secret-id</code> from HashiCorp Vault</summary>
-
-In environments using **HashiCorp Vault** for secure credential management, the Vault administrator would provide the `role-id` and `secret-id` needed for access.
-
-**Disclaimer**: The following example is provided as a courtesy to illustrate possible integration with **HashiCorp Vault** and is not part of our product.
-
-### Set up roles for cluster access
-
-**Enable AppRole authentication**
-
-```
-$ vault auth enable approle
-```
-
-**Role for cluster**
-
-```shell
-$ vault write -f auth/approle/role/weka-role-cluster
-Success! Data written to: auth/approle/role/weka-role-cluster
-
-$ vault write -f auth/approle/role/weka-role-cluster token_policies="weka_cluster_role_key_policy"
-Success! Data written to: auth/approle/role/weka-role-cluster
-```
-
-Retrieve the **role-id**:
-
-```shell
-$ vault read auth/approle/role/weka-role-cluster/role-id
-```
-
-**Role for Key1**
-
-```shell
-$ vault write -f auth/approle/role/weka-role-1
-Success! Data written to: auth/approle/role/weka-role-1
-
-$ vault write -f auth/approle/role/weka-role-1 token_policies="weka_fs_role_key1_policy"
-Success! Data written to: auth/approle/role/weka-role-1
-```
-
-Retrieve the **role-id** and generate a **secret-id**:
-
-```shell
-$ vault read auth/approle/role/weka-role-1/role-id
-Key        Value
----        -----
-role_id    5a574437-72b8-17b0-dbce-f36731d77663
-
-$ vault write -f auth/approle/role/weka-role-1/secret-id
-Key                   Value
----                   -----
-secret_id             69c26538-27cb-bcce-1ac2-27d4de590d5b
-secret_id_accessor    a3b885ff-ba25-560d-cc56-58df99962b2d
-secret_id_num_uses    0
-secret_id_ttl         0s 
-
-```
-
-</details>
-
 ### Obtain `role-id` and `secret-id` from HashiCorp Vault
 
 In environments using **HashiCorp Vault** for secure credential management, the Vault administrator would provide the `role-id` and `secret-id` needed for access.
