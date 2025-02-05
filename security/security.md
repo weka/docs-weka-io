@@ -57,7 +57,9 @@ The following is an overview of WEKA’s key security features and management pr
   * Essential for disaster recovery and snapshots.
   * Must be highly available for uninterrupted operations.
 
-**Related topic**: [kms-management](kms-management/ "mention")
+**Related topic**:
+
+[kms-management](kms-management/ "mention")
 
 ***
 
@@ -84,7 +86,7 @@ The following is an overview of WEKA’s key security features and management pr
   * Uses firewalls and network ACLs to restrict communication.
   * Supports Intrusion Detection and Prevention Systems (IDS/IPS).
 
-**Related topics**:&#x20;
+**Related topic**:&#x20;
 
 [manage-cidr-based-security-policies.md](manage-cidr-based-security-policies.md "mention")
 
@@ -113,7 +115,9 @@ The following is an overview of WEKA’s key security features and management pr
 * **Session management**:
   * Automatic logout after 30 minutes of inactivity to prevent unauthorized access.
 
-**Related topic**: [manage-the-login-banner.md](manage-the-login-banner.md "mention")
+**Related topic**:
+
+[manage-the-login-banner.md](manage-the-login-banner.md "mention")
 
 ***
 
