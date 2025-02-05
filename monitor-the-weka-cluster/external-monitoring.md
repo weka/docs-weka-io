@@ -114,7 +114,7 @@ Perform the following steps on the **WEKAmon host**.
 
 [#create-a-local-user](../operation-guide/user-management/user-management.md#create-a-local-user "mention")
 
-[obtain-authentication-tokens](../operation-guide/security/obtain-authentication-tokens/ "mention")
+[obtain-authentication-tokens.md](../security/obtain-authentication-tokens.md "mention")
 
 ### 3. Run the install.sh script
 

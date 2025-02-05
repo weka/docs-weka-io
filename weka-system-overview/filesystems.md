@@ -72,7 +72,7 @@ Data encryption settings can only be configured during the initial creation of a
 
 **Related topics**
 
-[kms-management](../operation-guide/security/kms-management/ "mention")
+[kms-management](../security/kms-management/ "mention")
 
 ### Metadata limitations **in WEKA filesystems**
 

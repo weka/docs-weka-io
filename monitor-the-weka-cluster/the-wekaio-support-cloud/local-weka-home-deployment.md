@@ -174,7 +174,7 @@ To use an IP address as a hostname and to have a valid certificate, make sure yo
 
 **Related topic**
 
-[tls-certificate-management](../../operation-guide/security/tls-certificate-management/ "mention")
+[tls-certificate-management](../../security/tls-certificate-management/ "mention")
 
 </details>
 

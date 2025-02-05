@@ -130,9 +130,9 @@ weka security tls download my_path
 
 **Related topics**
 
-&#x20;[manage-the-tls-certificate-using-the-gui.md](../../operation-guide/security/tls-certificate-management/manage-the-tls-certificate-using-the-gui.md "mention")
+&#x20;[manage-the-tls-certificate-using-the-gui.md](../../security/tls-certificate-management/manage-the-tls-certificate-using-the-gui.md "mention")
 
-[manage-the-tls-certificate-using-the-cli.md](../../operation-guide/security/tls-certificate-management/manage-the-tls-certificate-using-the-cli.md "mention")
+[manage-the-tls-certificate-using-the-cli.md](../../security/tls-certificate-management/manage-the-tls-certificate-using-the-cli.md "mention")
 {% endtab %}
 
 {% tab title="5. Test the upload and download objects from S3 buckets" %}

@@ -23,7 +23,7 @@ Ensure a filesystem group is set with the required tiering policy. See [#add-a-f
 
 1. From the menu, select **Manage > Filesystems**.
 
-![View filesystems example](../../.gitbook/assets/wmng\_view\_filesystems.png)
+![View filesystems example](../../.gitbook/assets/wmng_view_filesystems.png)
 
 ## Create a filesystem
 
@@ -43,7 +43,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 1. From the menu, select **Manage > Filesystems**.
 2. Select the **+Create** button.
 
-![Create filesystem](../../.gitbook/assets/wmng\_create\_fs\_button.png)
+![Create filesystem](../../.gitbook/assets/wmng_create_fs_button.png)
 
 3. In the **Create Filesystem** dialog, set the following:
    * **Name**: Enter a descriptive label for the filesystem, limited to 32 characters and excluding slash (`/`)  or backslash (`\`).
@@ -61,7 +61,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 
     When you set tiering, you can create the filesystem from an uploaded snapshot. See the related topics below.
 
-![Tiering](../../.gitbook/assets/wmng\_fs\_tiering.png)
+![Tiering](../../.gitbook/assets/wmng_fs_tiering.png)
 
 5. Optional: **Thin Provision**.\
    If Thin Provision is required, select the toggle button, and set the minimum (guaranteed) and the maximum capacity for the thin provisioned filesystem.\
@@ -69,7 +69,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
    You can set any maximum capacity, but the available capacity depends on the actual free space of the SSD capacity.\
    Thin provisioning is mandatory when enabling data reduction.
 
-![Thin provisioning](../../.gitbook/assets/wmng\_fs\_thin\_provisioning.png)
+![Thin provisioning](../../.gitbook/assets/wmng_fs_thin_provisioning.png)
 
 6. Optional: **Data Reduction**.\
    Data reduction can be enabled only on thin provision, non-tiered, and unencrypted filesystems on a cluster with a valid data reduction license (you can verify the data reduction license in the cluster settings). For more details, see the related topics below. \
@@ -92,7 +92,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 
 [managing-object-stores](../managing-object-stores/ "mention")
 
-[kms-management](../../operation-guide/security/kms-management/ "mention")
+[kms-management](../../security/kms-management/ "mention")
 
 [overview.md](../../licensing/overview.md "mention")
 
@@ -109,7 +109,7 @@ You can modify the filesystem parameters according to your demand changes over t
 1. From the menu, select **Manage > Filesystems**.
 2. Select the three dots on the right of the filesystem you want to modify, and select **Edit**.
 
-![Filesystem menu](../../.gitbook/assets/wmng\_edit\_fs\_menu.png)
+![Filesystem menu](../../.gitbook/assets/wmng_edit_fs_menu.png)
 
 3. In the **Edit Filesystem** dialog, modify the parameters according to your requirements. (See the parameter descriptions in the [Add a filesystem](managing-filesystems.md#add-a-filesystem) topic.)
 
@@ -131,4 +131,4 @@ If you must also delete the data in the tiered object store bucket, see the [Del
 2. Select the three dots on the right of the filesystem you want to delete, and select **Remove**.
 3. To confirm the filesystem deletion, enter the filesystem name and select **Confirm**.
 
-![Delete a filesystem](../../.gitbook/assets/wmng\_delete\_fs\_animated.gif)
+![Delete a filesystem](../../.gitbook/assets/wmng_delete_fs_animated.gif)

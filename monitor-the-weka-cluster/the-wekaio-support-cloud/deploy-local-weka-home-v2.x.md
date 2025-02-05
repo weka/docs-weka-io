@@ -226,7 +226,7 @@ You can generate a self-signed certificate using the following example:\
 
 **Related topic**
 
-[tls-certificate-management](../../operation-guide/security/tls-certificate-management/ "mention")
+[tls-certificate-management](../../security/tls-certificate-management/ "mention")
 
 </details>
 

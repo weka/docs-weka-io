@@ -14,7 +14,7 @@ Using the CLI, you can perform the following actions:
 * [Rewrap the filesystem encryption key](managing-filesystems-1.md#rewrap-the-filesystem-encryption-key)
 
 {% hint style="info" %}
-Several parameters in this topic relate to Key Management System (KMS) configuration, which supports both per-filesystem encryption keys and cluster encryption keys. For more information about how KMS integration works and setup guidance, see  [kms-management](../../operation-guide/security/kms-management/ "mention").
+Several parameters in this topic relate to Key Management System (KMS) configuration, which supports both per-filesystem encryption keys and cluster encryption keys. For more information about how KMS integration works and setup guidance, see  [kms-management](../../security/kms-management/ "mention").
 {% endhint %}
 
 ## View filesystems

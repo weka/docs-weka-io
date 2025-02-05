@@ -208,7 +208,7 @@ Related information: [nfs-support](../additional-protocols/nfs-support/ "mention
 
 ## KMS
 
-Related information: [kms-management](../operation-guide/security/kms-management/ "mention")
+Related information: [kms-management](../security/kms-management/ "mention")
 
 | Task                                                                                                                    | REST API                                                                                                                                                         | CLI                                                       |
 | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
@@ -240,7 +240,7 @@ Related information: [overview.md](../licensing/overview.md "mention")
 
 ## Lockout policy
 
-Related information: [account-lockout-threshold-policy-management](../operation-guide/security/account-lockout-threshold-policy-management/ "mention")
+Related information: [account-lockout-threshold-policy-management.md](../security/account-lockout-threshold-policy-management.md "mention")
 
 | Task                                                                                                        | REST API                                                                                                      | CLI                                  |
 | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
@@ -250,7 +250,7 @@ Related information: [account-lockout-threshold-policy-management](../operation-
 
 ## Login
 
-Related information: [obtain-authentication-tokens](../operation-guide/security/obtain-authentication-tokens/ "mention")
+Related information: [obtain-authentication-tokens.md](../security/obtain-authentication-tokens.md "mention")
 
 | Task                                                                                                                                                                                                                                                  | REST API                                                                                    | CLI               |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------- |
@@ -399,7 +399,7 @@ Related information: [smb-support](../additional-protocols/smb-support/ "mention
 
 ## Security
 
-Related information: [security](../operation-guide/security/ "mention")
+Related information: [security.md](../security/security.md "mention")
 
 | Task                                                                                                                                                                  | REST API                                                                                                                                                 | CLI                                             |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
@@ -510,7 +510,7 @@ The new Telemetry REST APIs are preparatory additions in version 4.4.1 and are t
 
 ## TLS
 
-Related information: [tls-certificate-management](../operation-guide/security/tls-certificate-management/ "mention")
+Related information: [tls-certificate-management](../security/tls-certificate-management/ "mention")
 
 | Task                                                                                                   | REST API                                                                                        | CLI                          |
 | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- | ---------------------------- |
