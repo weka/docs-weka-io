@@ -92,29 +92,12 @@ Optionally, you may also promote data back to on-premises by doing the following
 
 ## Snapshots management considerations
 
-When uploading a snapshot to an object store or downloading snapshots to filesystems, adhere to the following considerations:
-
-### Simultaneous snapshot uploads
-
-WEKA supports simultaneous uploading multiple snapshots from different filesystems to remote and local object stores.
-
-### A writeable snapshot cannot be uploaded
-
-A writeable snapshot is a clone of the live filesystem or other snapshots at a specific time, and its data keeps changing. Therefore, its data is tiered according to the tiering policies but cannot be uploaded to the object store as a read-only snapshot.
-
-### Upload in chronological order to the remote object store
-
-Uploading all snapshots or the same snapshots to a local object store is not required. However, once a snapshot is uploaded to the remote object store (a monthly snapshot), uploading a previous snapshot (for example, the daily snapshot before it) to the remote object store could be more efficient.
-
-### No deletion in parallel to snapshot upload
-
-This requirement is critical when uploading snapshots to the local and remote object stores in parallel. Consider the following:
-
-In this scenario, the local snapshot upload waits for the pending deletion of the snapshot, which occurs only once the remote snapshot upload is done.
-
-### Pause or abort a snapshot upload
-
-You can pause or abort a snapshot upload using the commands described in the background tasks section if required.
+* **Simultaneous snapshot uploads**: WEKA supports concurrent uploads of multiple snapshots from different filesystems to both remote and local object stores.
+* **Writeable snapshots cannot be uploaded**: A writeable snapshot is a clone of the live filesystem or other snapshots at a specific point in time. Because its data continues to change, the snapshot cannot be uploaded to the object store as a read-only snapshot and is tiered according to existing policies.
+* **Snapshot upload order**: Uploading snapshots to a remote object store benefits from a chronological approach. When uploading a monthly snapshot, it may be more efficient to first upload the preceding daily snapshots.
+* **Snapshot deletion and upload constraints**: Parallel deletion during snapshot upload requires careful handling. The local snapshot upload pauses and waits for any pending snapshot deletion, which only proceeds after the remote snapshot upload is complete.
+* **Pausing or aborting snapshot uploads**: Users can pause or abort snapshot uploads using commands detailed in the background tasks section.
+* **New filesystem creation from snapshots**: When creating a new filesystem from a snap-to-object operation, the original filesystem quotas are not preserved in the new filesystem.
 
 ## Synchronous snapshots
 
