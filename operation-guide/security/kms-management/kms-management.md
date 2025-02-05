@@ -40,7 +40,7 @@ For the **HashiCorp Vault** type, set the following:
 * **Namespace:** The namespace name that identifies the logical partition within the vault. It is used to organize and isolate data, policies, and configurations. Namespace names must not end with "/", avoid spaces, and refrain from using reserved names like `root`, `sys`, `audit`, `auth`, `cubbyhole`, and `identity`.
 
 {% hint style="info" %}
-The **Token** parameter is deprecated. Set the **Role Id** and **Secret ID** instead.
+Set the **Role ID** and **Secret ID** instead of the **Token**, as the Token has been deprecated from the GUI. However, you can still set the Token using the CLI.
 {% endhint %}
 
 <div align="left"><img src="../../../.gitbook/assets/4.4.2_configure_KMS_Hashicorp.png" alt="HashiCorp Vault type configuration"></div>

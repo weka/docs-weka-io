@@ -91,7 +91,64 @@ secret_id_ttl         0s
 
 </details>
 
-**Examples:**
+### Obtain `role-id` and `secret-id` from HashiCorp Vault
+
+In environments using **HashiCorp Vault** for secure credential management, the Vault administrator would provide the `role-id` and `secret-id` needed for access.
+
+**Disclaimer**: The following example is provided as a courtesy to illustrate possible integration with **HashiCorp Vault** and is not part of our product.
+
+#### Set up roles for cluster access
+
+Enable AppRole authentication:
+
+```
+$ vault auth enable approle
+```
+
+Role for cluster:
+
+```shell
+$ vault write -f auth/approle/role/weka-role-cluster
+Success! Data written to: auth/approle/role/weka-role-cluster
+
+$ vault write -f auth/approle/role/weka-role-cluster token_policies="weka_cluster_role_key_policy"
+Success! Data written to: auth/approle/role/weka-role-cluster
+```
+
+Retrieve the **role-id**:
+
+```shell
+$ vault read auth/approle/role/weka-role-cluster/role-id
+```
+
+Role for **Key1**:
+
+```shell
+$ vault write -f auth/approle/role/weka-role-1
+Success! Data written to: auth/approle/role/weka-role-1
+
+$ vault write -f auth/approle/role/weka-role-1 token_policies="weka_fs_role_key1_policy"
+Success! Data written to: auth/approle/role/weka-role-1
+```
+
+Retrieve the **role-id** and generate a **secret-id**:
+
+```
+$ vault read auth/approle/role/weka-role-1/role-id
+Key        Value
+---        -----
+role_id    5a574437-72b8-17b0-dbce-f36731d77663
+
+$ vault write -f auth/approle/role/weka-role-1/secret-id
+Key                   Value
+---                   -----
+secret_id             69c26538-27cb-bcce-1ac2-27d4de590d5b
+secret_id_accessor    a3b885ff-ba25-560d-cc56-58df99962b2d
+secret_id_num_uses    0
+secret_id_ttl         0s 
+```
+
+### **Examples**
 
 **Setting the WEKA system with a HashiCorp Vault KMS for cluster-wide encryption:**
 
