@@ -1,10 +1,10 @@
 ---
-cover: .gitbook/assets/doc_banner (1).png
+cover: .gitbook/assets/doc_banner_servers.png
 coverY: 0
 layout:
   cover:
     visible: true
-    size: hero
+    size: full
   title:
     visible: true
   description:
@@ -28,12 +28,6 @@ Welcome to the WEKA Documentation Portal, your guide to the latest WEKA version.
 
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
-
-## Find answers in WEKA documentation with Sevii
-
-Sevii, your AI chat companion, makes finding answers in WEKA documentation fast and easy. Just type your question and click ![](.gitbook/assets/sevii_submit.png) to get started. Sevii is ready to help—whether you're exploring a topic or need a specific answer. For the best results, ask clear, context-rich questions. If unsure, start with related keywords, and Sevii will guide you.
-
-{% @sevii-ai/sevii-gitbook-test %}
 
 ## About WEKA documentation
 
