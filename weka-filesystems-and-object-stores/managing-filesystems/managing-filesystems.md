@@ -96,7 +96,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 
 [overview.md](../../licensing/overview.md "mention")
 
-[#data-reduction](../../weka-system-overview/filesystems.md#data-reduction "mention")
+[#data-reduction-in-weka-filesystems](../../weka-system-overview/filesystems.md#data-reduction-in-weka-filesystems "mention")
 
 [#create-a-filesystem-from-an-uploaded-snapshot](../snap-to-obj/snap-to-obj.md#create-a-filesystem-from-an-uploaded-snapshot "mention")
 
