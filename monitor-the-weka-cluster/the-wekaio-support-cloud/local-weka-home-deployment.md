@@ -67,9 +67,12 @@ For using other operating systems, contact the [Customer Success Team](../../sup
     `80`        (Local WEKA Home, WEKA cluster, and web browser)
 
     `443`      (Local WEKA Home, WEKA cluster, and web browser)
-4. Ensure the following networks are trusted:
-   1. `10.42.0.0/16` (pods)
-   2. `10.43.0.0/16` (services)
+4.  Ensure the following networks are trusted:
+
+    1. `10.42.0.0/16` (pods)
+    2. `10.43.0.0/16` (service)
+
+    If these networks are not available, you can customize them in the configuration file before running the installation.
 
 {% hint style="info" %}
 If you forward data from the Local WEKA Home to the Cloud WEKA Home, ensure the outbound traffic on port 443 is open.
@@ -87,6 +90,20 @@ Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download
    * Re-login to the server.
    * Run the following command: `source /etc/profile`
 3. To customize the configuration, create a `config.json` file from the following examples and the template located in `/opt/wekahome/current/config.json.sample`.
+
+<details>
+
+<summary>Trusted network for pods and services (optional)</summary>
+
+If the networks for the pods (cluster) and service (`10.42.0.0/16` and `10.43.0.0/16`, are not available, set your available networks as shown in the following example:
+
+```
+"k3sArgs": ["--cluster-cidr=10.142.0.0/16", "--service-cidr=10.143.0.0/16"]
+```
+
+Replace the `cluster-cidr` and `service-cidr` values with your available networks.
+
+</details>
 
 <details>
 
