@@ -240,6 +240,8 @@ Avoid using the Intel X550-T1 adapter in a single client connected to multiple c
   * A current driver from an official OS repository is recommended
 * **Supported ice drivers:**
   * 1.9.11
+* **Supported Broadcom drivers**:
+  * 228
 {% endtab %}
 
 {% tab title="Ethernet configurations" %}
