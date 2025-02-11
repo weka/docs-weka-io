@@ -223,7 +223,7 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
 {% tab title="Ethernet drivers" %}
 *   **Supported Mellanox OFED versions for the Ethernet NICs:**
 
-    * 24.04-07.0.0
+    * 24.04-0.7.0.0
     * 23.10-0.5.5.0
     * 23.04-1.1.3.0
     * 5.9-0.5.6.0
@@ -288,7 +288,7 @@ When assigning a network device to the WEKA system, no other application can cre
 {% tab title="InfiniBand drivers" %}
 WEKA supports the following Mellanox OFED versions for the InfiniBand adapters:
 
-* 24.04-07.0.0
+* 24.04-0.7.0.0
 * 23.10-0.5.5.0
 * 23.04-1.1.3.0
 * 5.9-0.5.6.0
