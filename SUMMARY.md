@@ -167,8 +167,8 @@
   * [Manage TLS certificates using GUI](security/tls-certificate-management/manage-the-tls-certificate-using-the-gui.md)
   * [Manage TLS certificates using CLI](security/tls-certificate-management/manage-the-tls-certificate-using-the-cli.md)
 * [Manage Cross-Origin Resource Sharing](security/manage-cross-origin-resource-sharing.md)
-* [Manage CIDR-based security policies](security/manage-cidr-based-security-policies.md)
-* [Manage login banner](security/manage-the-login-banner.md)
+* [Manage CIDR-based security policies](operation-guide/security/manage-cidr-based-security-policies.md)
+* [Manage login banner](operation-guide/security/manage-the-login-banner/README.md)
 
 ## Operation Guide
 

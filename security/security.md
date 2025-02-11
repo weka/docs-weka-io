@@ -88,7 +88,7 @@ The following is an overview of WEKA’s key security features and management pr
 
 **Related topic**:&#x20;
 
-[manage-cidr-based-security-policies.md](manage-cidr-based-security-policies.md "mention")
+[manage-cidr-based-security-policies.md](../operation-guide/security/manage-cidr-based-security-policies.md "mention")
 
 ***
 
@@ -117,7 +117,7 @@ The following is an overview of WEKA’s key security features and management pr
 
 **Related topic**:
 
-[manage-the-login-banner.md](manage-the-login-banner.md "mention")
+[manage-the-login-banner](../operation-guide/security/manage-the-login-banner/ "mention")
 
 ***
 
