@@ -93,6 +93,34 @@ Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download
 
 <details>
 
+<summary>GitHub SSO integration</summary>
+
+Centralize and secure organizational access through GitHub Single Sign-On (SSO), simplifying authentication and user management.
+
+**Prerequisites:** Prepare GitHub OAuth App
+
+1. Go to GitHub Developer Settings.
+2. Create a new OAuth application.
+3. Set the Authorization Callback URL the same as your Homepage URL.
+4. Note the Client ID and Client Secret.
+
+**Implement GitHub-based login**
+
+Add the following lines to the configuration file.
+
+```
+"githubSSO": {
+    "enabled": true,
+    "clientId": "your_github_oauth_client_id",
+    "clientSecret": "your_github_oauth_client_secret",
+    "emailDomain": "weka.io",
+}
+```
+
+</details>
+
+<details>
+
 <summary>Trusted network for pods and services (optional)</summary>
 
 If the networks for the pods (cluster) and service (`10.42.0.0/16` and `10.43.0.0/16`, are not available, set your available networks as shown in the following example:

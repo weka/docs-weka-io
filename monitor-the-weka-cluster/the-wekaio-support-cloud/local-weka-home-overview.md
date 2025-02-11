@@ -8,7 +8,7 @@ description: >-
 
 In scenarios where a customer lacks connectivity to the public instance of WEKA Home, such as when the WEKA cluster is deployed in a dark site or VPC, WEKA offers the option to deploy a Local WEKA Home. This is a private instance of WEKA Home, hosted on a management server or VM, designed to meet your specific needs.
 
-### **Key functions of Local WEKA Home**
+## **Key functions of Local WEKA Home**
 
 The Local WEKA Home serves the following key functions:
 
@@ -19,7 +19,7 @@ The Local WEKA Home serves the following key functions:
 * **Diagnostics support:** The Local WEKA Home receives support files (diagnostics) from the WEKA cluster, stores them, and makes them accessible for remote viewing by the Customer Success Team.
 * **Usage and performance insights:** It receives usage, analytics, and performance statistics from the WEKA cluster, stores, displays, and enables querying and filtering this data.
 
-### **Key features and capabilities**
+## **Key features and capabilities**
 
 Local WEKA Home offers the following features and capabilities, categorized as follows:
 
@@ -49,7 +49,60 @@ Local WEKA Home offers the following features and capabilities, categorized as f
 
 <figure><img src="../../.gitbook/assets/LWH_overview.gif" alt=""><figcaption><p>Local WEKA Home application overview</p></figcaption></figure>
 
+## Sign in to Local WEKA Home
+
+Authentication methods:
+
+* Local users
+* GitHub SSO
+
+<figure><img src="../../.gitbook/assets/LWH_sign-in.png" alt="" width="563"><figcaption><p>Sign-in to Local WEKA Home</p></figcaption></figure>
+
+### Local user sign-in flow
+
+1. Initiate sign-in
+   * Enter email and password
+   * Click **Login**
+2. User validation
+   * Check email and password in internal LWH database
+   * Existing user: Direct sign-in
+   * Non-existent user: Return `401` error
+3. Access granted
+   * Successful authentication
+   * Enter application
+
+### GitHub SSO sign-in flow
+
+GitHub SSO provides secure, streamlined authentication by:
+
+* Centralizing user access management
+* Simplifying login process
+* Enforcing organizational access controls
+* Reducing manual user provisioning
+
+Sign-in steps:
+
+1. Initiate sign-in
+   * Click **Sign in with GitHub**
+   * Redirect to GitHub authentication
+2. GitHub authentication
+   * Grant access
+   * Retrieve public email
+   * No public email: Return `400` error
+3. User validation
+   * Check email in internal LWH database
+   * Existing user: Direct sign-in
+   * New user:
+     * Validate email domain matches `emailDomain`
+     * Matching domain: Auto-create account
+     * Non-matching domain: Return `401` error
+4. Access granted
+   * Successful authentication
+   * Enter application
+
 **Related topics**
+
+[local-weka-home-deployment.md](local-weka-home-deployment.md "mention")
 
 [explore-cluster-insights-and-statistics.md](explore-cluster-insights-and-statistics.md "mention")
 
