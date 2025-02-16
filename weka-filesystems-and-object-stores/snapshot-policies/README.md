@@ -42,15 +42,16 @@ The example below demonstrates how to configure a policy using the GUI. The poli
   * Consolidate policies wherever possible to reduce complexity and duplication.
 * **Monitor object store connectivity:**
   * Ensure that each filesystem is properly connected to a local or remote object store to enable seamless assignment to a snapshot policy.
-* **Multiple schedules overlap:**&#x20;
-  *   When multiple schedules overlap on the same filesystem, only one snapshot is taken, following this priority:&#x20;
+*   **Multiple schedules overlap:**&#x20;
 
-      * Hourly takes precedence over periodic.
-      * Daily takes precedence over hourly.
-      * Weekly takes precedence over daily.
-      * Monthly takes precedence over weekly.
+    * When multiple schedules overlap on the same filesystem, only one snapshot is taken, following this priority:&#x20;
+      1. **Monthly** (highest priority)
+      2. **Weekly**
+      3. **Daily**
+      4. **Hourly**
+      5. **Periodic** (lowest priority)
 
-      This hierarchy is by design to prevent redundant snapshots. Plan schedules accordingly.
+    This means that if multiple schedules overlap, the snapshot with the highest priority (for example, Monthly) are taken, and the lower-priority ones (for example, Weekly, Daily, Hourly, Periodic) are skipped. This hierarchy prevents redundant snapshots. Plan schedules accordingly.
 * **Snapshot name format:**
   * \<policy name>-\<schedule type>.\<time-stamp format: YYMMDDHHMM>
   * Example: `policy1-weekly.2412301152`
@@ -59,7 +60,7 @@ The example below demonstrates how to configure a policy using the GUI. The poli
 * **Retaining snapshots outside rotation:**
   * To prevent a snapshot from being deleted during the rotation process, rename the snapshot to exclude it from automated deletion.
 * **Manually upload snapshots to object store:**
-  * To manually upload a policy-created snapshot that isn't configured for automatic object store upload, rename the snapshot. Renaming both enables manual upload and prevents automatic deletion.
+  * To manually upload a policy-created snapshot that isn't configured for automatic object store upload, rename the snapshot. This change enables you to manually upload the snapshot and prevents automatic deletion.
 * **Snapshot deletion with disabled policy:**
   * Snapshots of attached filesystems may still be deleted even when the policy is disabled. If the retention period is reduced, snapshots are deleted according to the updated retention settings, regardless of the policy's status.
 *   **Snapshot behavior during DST transitions**:

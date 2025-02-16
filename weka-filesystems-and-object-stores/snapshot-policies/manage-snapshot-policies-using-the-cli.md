@@ -267,10 +267,10 @@ weka fs protection snapshot-policy attach <name> [<filesystems>]...
 
 **Parameters**
 
-| Parameter        | Description                                             |
-| ---------------- | ------------------------------------------------------- |
-| `name`\*         | The snapshot policy name.                               |
-| `filesystems`... | A list of filesystems you want to attach to the policy. |
+| Parameter           | Description                                             |
+| ------------------- | ------------------------------------------------------- |
+| `name`\*            | The snapshot policy name.                               |
+| `filesystems`... \* | A list of filesystems you want to attach to the policy. |
 
 <details>
 
@@ -294,15 +294,12 @@ SNAPSHOT POLICY ID  NAME         IS ENABLED  DESCRIPTION                     ATT
 
 This command detaches the specified filesystems from the snapshot policy. To remove waiting tasks associated with the filesystems, add the `--remove-waiting-tasks`  option.
 
-{% code overflow="wrap" %}
-```
-weka fs protection snapshot-policy detach <name> [--remove-waiting-tasks] [<filesystems>]...
-```
-{% endcode %}
+<pre data-overflow="wrap"><code><strong>weka fs protection snapshot-policy detach &#x3C;name> [--remove-waiting-tasks] [&#x3C;filesystems>]...
+</strong></code></pre>
 
 **Parameters**
 
-<table><thead><tr><th width="289">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The snapshot policy name</td></tr><tr><td><code>filesystems</code>...</td><td>A list of filesystems you want to detach from the policy</td></tr><tr><td><code>remove-waiting-tasks</code></td><td>Allow to delete all waiting tasks corresponding to the filesystems.</td></tr></tbody></table>
+<table><thead><tr><th width="289">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The snapshot policy name.</td></tr><tr><td><code>filesystems</code>... *</td><td>A list of filesystems you want to detach from the policy.</td></tr><tr><td><code>remove-waiting-tasks</code></td><td>Allow to delete all waiting tasks corresponding to the filesystems.</td></tr></tbody></table>
 
 <details>
 
