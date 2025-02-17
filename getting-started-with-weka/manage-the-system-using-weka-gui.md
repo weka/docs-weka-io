@@ -36,7 +36,7 @@ WEKA GUI application supports the following functions:
   * View the frontend, compute, and drive cores usage.
   * View the hardware components (active/total).
 
-![WEKA GUI overview](../.gitbook/assets/wmng\_gui\_overview.gif)
+![WEKA GUI overview](../.gitbook/assets/wmng_gui_overview.gif)
 
 ## Access the WEKA GUI
 
@@ -60,11 +60,11 @@ Make sure that port 14000 is open in the firewall of your organization.
 1. In your browser, go to `https://<weka system or server name>:14000`.\
    The sign-in page opens.
 
-![Sign in to the WEKA GUI](<../.gitbook/assets/wmng\_sign\_in (1).png>)
+![Sign in to the WEKA GUI](<../.gitbook/assets/wmng_sign_in (1).png>)
 
 2\. Sign in with the username and password of an account with cluster administration or\
 organization administration privileges. For details about the account types, see\
-_User management_ in the related topics.
+&#xNAN;_&#x55;ser management_ in the related topics.
 
 The system dashboard opens.
 
@@ -82,7 +82,7 @@ The system dashboard contains widgets that provide an overview of the WEKA syste
 
 The system dashboard opens by default when you sign in. If you select another menu and want to display the dashboard again, select **Monitor > System Dashboard**, or click the **WEKA** logo.
 
-![System Dashboard](../.gitbook/assets/wmng\_system\_dashboard.png)
+![System Dashboard](../.gitbook/assets/wmng_system_dashboard.png)
 
 ### Cluster Protection and Availability widget
 
@@ -94,7 +94,7 @@ The overall status widget includes the following indications:
 * **Data Protection**: The number of data drives and protection parity drives. The color of the protection parity drives indicates their status.
 * **Virtual (Hot) Spares**: The number of failure domains the system can lose and still complete the data rebuild while maintaining the same net capacity.
 
-![Overall status widget](../.gitbook/assets/wmng\_dashboard\_Overall\_status\_widget.png)
+![Overall status widget](../.gitbook/assets/wmng_dashboard_Overall_status_widget.png)
 
 ### R/W Throughput widget
 
@@ -107,7 +107,7 @@ The R/W Throughput widget includes the following indications:
 * **Latency**: The average latency of R/W operations.
 * **Active clients**: The number of clients connected to the cluster.
 
-![R/W Throughput widget](../.gitbook/assets/wmng\_dashboard\_Throughput\_widget.png)
+![R/W Throughput widget](../.gitbook/assets/wmng_dashboard_Throughput_widget.png)
 
 {% hint style="info" %}
 Selecting one of the R/W Throughput, Latency, and Total Ops titles displays the statistics page.
@@ -119,13 +119,13 @@ Selecting the Active clients title displays the clients tab.
 
 This widget shows the top 5 backend servers and clients in the system. You can sort the list of servers by total IO operations per second or total throughput.
 
-![Top Consumers widget](../.gitbook/assets/wmng\_dashboard\_Top\_Consumers\_widget.png)
+![Top Consumers widget](../.gitbook/assets/wmng_dashboard_Top_Consumers_widget.png)
 
 ### Alerts widget
 
 This widget shows the alerts that are not muted.
 
-![Alerts widget](../.gitbook/assets/wmng\_dashboard\_Alerts\_widget.png)
+![Alerts widget](../.gitbook/assets/wmng_dashboard_Alerts_widget.png)
 
 ### Capacity widget
 
@@ -135,7 +135,7 @@ The top bar indicates the total capacity provisioned for all filesystems and the
 
 The bottom bar indicates the total SSD capacity available in the system, the provisioned capacity, and the used capacity.
 
-![Capacity widget](<../.gitbook/assets/wmng\_dashboard\_Capacity\_widget (1).png>)
+![Capacity widget](<../.gitbook/assets/wmng_dashboard_Capacity_widget (1).png>)
 
 {% hint style="info" %}
 Selecting the Capacity title displays the filesystems page.
@@ -158,7 +158,7 @@ The hardware components include:
 * **Drives**: The number of drives.
 * **OBS Buckets**: The number of the object store buckets.
 
-![Hardware widget](../.gitbook/assets/wmng\_dashboard\_Hardware\_widget.png)
+![Hardware widget](../.gitbook/assets/wmng_dashboard_Hardware_widget.png)
 
 {% hint style="info" %}
 Selecting one of the Backends, Cores, or Drives titles displays the **backend servers** page.
@@ -177,7 +177,7 @@ Switching the display time may be required when the customer, Weka support, and 
 1. On the top bar, point to the timestamp.
 2. Depending on the displayed time, select **Switch to System Time** or **Switch to Local Time**.
 
-![Switch display time](../.gitbook/assets/wmng\_sw\_display\_time.gif)
+![Switch display time](../.gitbook/assets/wmng_sw_display_time.gif)
 
 ## Switch the GUI between light and dark modes
 
@@ -188,7 +188,7 @@ You can switch the GUI between light and dark modes according to your preference
 1. Depending on the current display mode, point to the sun or moon symbol on the top bar.
 2. Select **Switch to the light mode** or **Switch to dark mode**.
 
-![Switch the GUI between light and dark modes](../.gitbook/assets/wmng\_sw\_dark\_mode.gif)
+![Switch the GUI between light and dark modes](../.gitbook/assets/wmng_sw_dark_mode.gif)
 
 ## Display servers in 3D view
 

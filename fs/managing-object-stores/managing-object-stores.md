@@ -38,7 +38,7 @@ Editing the default object store provides you with the following additional adva
 If using the AWS object store type and access from the WEKA EC2 instances to the object store is granted by the IAM roles, it is not mandatory to set the access and secret keys in the Edit Object Store dialog.
 {% endhint %}
 
-![Edit the default-remote object store ](<../../.gitbook/assets/wmng\_edit\_default\_obs (1).gif>)
+![Edit the default-remote object store ](<../../.gitbook/assets/wmng_edit_default_obs (1).gif>)
 
 ## View object store buckets <a href="#view-object-store-buckets" id="view-object-store-buckets"></a>
 
@@ -50,7 +50,7 @@ The object store buckets are displayed on the **Object Stores** page. Each objec
 
 The following example shows two object store buckets.
 
-![View object store buckets](../../.gitbook/assets/wmng\_view\_obs\_buckets.png)
+![View object store buckets](../../.gitbook/assets/wmng_view_obs_buckets.png)
 
 ## Add an object store bucket <a href="#add-an-object-store-bucket" id="add-an-object-store-bucket"></a>
 
@@ -61,7 +61,7 @@ Add object store buckets to be used for tiering or snapshots.
 1. From the menu, select **Manage > Object Stores**.
 2. Select the **+Create** button.
 
-![Create object store bucket](../../.gitbook/assets/wmng\_create\_obs\_button.png)
+![Create object store bucket](../../.gitbook/assets/wmng_create_obs_button.png)
 
 3. In the **Create Object Store Bucket** dialog, set the following:
    * **Name**: Enter a meaningful name for the bucket.
@@ -84,7 +84,7 @@ Add object store buckets to be used for tiering or snapshots.
 {% endtabs %}
 
 5. To validate the connection to the object store bucket, select **Validate**.
-6. Optional**:** If your deployment requires a specific upload and download configuration, select **Advanced**, and set the parameters:
+6. Optiona&#x6C;**:** If your deployment requires a specific upload and download configuration, select **Advanced**, and set the parameters:
    * **Download Bandwidth**: Object store download bandwidth limitation per core (Mbps).
    * **Upload Bandwidth**: Object store upload bandwidth limitation per core (Mbps).
    * **Max Concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
@@ -92,7 +92,7 @@ Add object store buckets to be used for tiering or snapshots.
    * **Max Concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
    * **Enable Upload Tags**: Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not.
 
-![Advanced upload and download configuration](../../.gitbook/assets/wmng\_create\_obs\_advanced.png)
+![Advanced upload and download configuration](../../.gitbook/assets/wmng_create_obs_advanced.png)
 
 7. Select **Create**.
 
@@ -109,11 +109,11 @@ You can modify the object store bucket parameters according to your demand chang
 1. From the menu, select **Manage > Object Stores**.
 2. Select the three dots on the right of the object store you want to modify, and select **Edit**.
 
-![Edit an object store bucket](../../.gitbook/assets/wmng\_edit\_obs\_button.png)
+![Edit an object store bucket](../../.gitbook/assets/wmng_edit_obs_button.png)
 
 3. In the Edit Object Store Bucket dialog, modify the details, and select **Update**.
 
-![Edit an object store bucket](../../.gitbook/assets/wmng\_edit\_obs.png)
+![Edit an object store bucket](../../.gitbook/assets/wmng_edit_obs.png)
 
 ## Show recent operations of an object store bucket
 
@@ -142,4 +142,4 @@ You can delete an object store bucket if it is no longer required. The data in t
 2. Select the three dots on the right of the object store bucket you want to delete, and select **Remove**.
 3. To confirm the object store bucket deletion, select **Yes**.
 
-![Delete an object store bucket](../../.gitbook/assets/wmng\_delete\_obs.gif)
+![Delete an object store bucket](../../.gitbook/assets/wmng_delete_obs.gif)

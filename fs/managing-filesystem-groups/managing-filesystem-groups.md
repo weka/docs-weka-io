@@ -19,7 +19,7 @@ The filesystem groups are displayed on the **Filesystems** page. Each filesystem
 
 1. From the menu, select **Manage > Filesystems**.
 
-![Filesystem groups example](../../.gitbook/assets/wmng\_view\_filesystem\_groups.png)
+![Filesystem groups example](../../.gitbook/assets/wmng_view_filesystem_groups.png)
 
 ## Add a filesystem group
 
@@ -34,7 +34,7 @@ Adding a filesystem group is required when adding a filesystem. You can create m
    * **Drive Retention Period**: Set the period to keep the data on the SSD after it is copied to the object store. After this period, the copy of the data is deleted from the SSD.
    * **Tiering Cue**: Set the time to wait after the last update before the data is copied from the SSD and sent to the object store.
 
-![Add a filesystem group](../../.gitbook/assets/wmng\_add\_fsg.gif)
+![Add a filesystem group](../../.gitbook/assets/wmng_add_fsg.gif)
 
 4\. Select **Create**.
 
@@ -42,7 +42,7 @@ Adding a filesystem group is required when adding a filesystem. You can create m
 
 **Related topics**
 
-To learn more about the drive retention period and tiering cue, see**:**
+To learn more about the drive retention period and tiering cue, se&#x65;**:**
 
 [advanced-time-based-policies-for-data-storage-location.md](../tiering/advanced-time-based-policies-for-data-storage-location.md "mention")
 
@@ -57,7 +57,7 @@ You can edit the filesystem group policy according to your system requirements.
 3. Select the pencil sign right to the filesystem group name.
 4. In the **Edit Filesystem Group** dialog, update the settings as you need. (See the parameter descriptions in the [Add a filesystem group](managing-filesystem-groups.md#add-a-filesystem-group) topic.)
 
-![Edit a filesystem group](../../.gitbook/assets/wmng\_edit\_fsg\_animated.gif)
+![Edit a filesystem group](../../.gitbook/assets/wmng_edit_fsg_animated.gif)
 
 5. Select **Update**.
 
@@ -71,6 +71,6 @@ You can delete a filesystem group no longer used by any filesystem.
 2. Select the filesystem group you want to delete.
 3. Verify that the filesystem group is not used by any filesystems (indicates 0 filesystems).
 
-![Delete a filesystem group](../../.gitbook/assets/wmng\_delete\_fsg.png)
+![Delete a filesystem group](../../.gitbook/assets/wmng_delete_fsg.png)
 
 4. Select the **Remove** icon. In the pop-up message, select **Yes** to delete the filesystem group.

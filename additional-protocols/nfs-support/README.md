@@ -8,7 +8,7 @@ description: >-
 
 NFS (Network File System) is a protocol that allows clients to access the WEKA filesystem without installing WEKA’s client software using the standard NFS implementation of the client operating system.
 
-WEKA’s default NFS implementation is NFS**-**W. NFS-W allows overcoming the inherent limitation in the NFS protocol of up to 16 security groups a user can be part of. It supports the NFSv3, NFSv4.0, and NFSv4.1 protocols.&#x20;
+WEKA’s default NFS implementation is NF&#x53;**-**&#x57;. NFS-W allows overcoming the inherent limitation in the NFS protocol of up to 16 security groups a user can be part of. It supports the NFSv3, NFSv4.0, and NFSv4.1 protocols.&#x20;
 
 In addition, the legacy NFS stack is also available for backward compatibility. The legacy NFS supports only the NFSv3 protocol, and up to 16 security groups a user can be part of.
 
@@ -48,7 +48,7 @@ Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zer
 
 **Related information**
 
-[Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS)
+[Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS)
 
 ### NFS client mount&#x20;
 

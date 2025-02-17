@@ -25,7 +25,7 @@ You can upload a snapshot to a local, remote, or both object store buckets.
 1. From the menu, select **Manage > Snapshots**.
 2. Select the three dots on the right of the required snapshot. From the menu, select **Upload To Object Store**.
 
-![Upload a snapshot to the object store](../../.gitbook/assets/wmng\_upload\_snapshot\_menu.png)
+![Upload a snapshot to the object store](../../.gitbook/assets/wmng_upload_snapshot_menu.png)
 
 3\. A relevant message appears if a local or remote object store bucket is not attached to the\
 &#x20;   filesystem. It enables opening a dialog to select an object store bucket and attach it to the\
@@ -34,7 +34,7 @@ You can upload a snapshot to a local, remote, or both object store buckets.
 4\. In the Attach Object Store to Filesystem dialog, select the object store bucket to attach the\
 &#x20;   snapshot.
 
-![Upload a snapshot](../../.gitbook/assets/wmng\_upload\_snapshot.png)
+![Upload a snapshot](../../.gitbook/assets/wmng_upload_snapshot.png)
 
 4\. Select **Save**.\
 The snapshot is uploaded to the target object store bucket.
@@ -44,9 +44,9 @@ The snapshot is uploaded to the target object store bucket.
 * Select the three dots on the right of the required snapshot, and select **Copy Locator to Clipboard**.&#x20;
 * Save the locator in a dedicated file so later you can use it for creating a filesystem from the uploaded snapshot.
 
-![Copy snapshot locator](../../.gitbook/assets/wmng\_copy\_snapshot\_locator.gif)
+![Copy snapshot locator](../../.gitbook/assets/wmng_copy_snapshot_locator.gif)
 
-
+***
 
 **Related topics**
 
@@ -80,7 +80,7 @@ When recreating a filesystem from a snapshot, adhere to the following guidelines
      In the Access Point, set a meaningful access point name to override the default (uploaded access point name) for the directory that serves as the snapshot's access point.
 4. Select **Save**.
 
-![Create a filesystem from an uploaded snapshot](../../.gitbook/assets/Create\_fs\_from\_snapshot\_animated.gif)
+![Create a filesystem from an uploaded snapshot](../../.gitbook/assets/Create_fs_from_snapshot_animated.gif)
 
 ## Sync a filesystem from a snapshot <a href="#sync-a-filesystem-from-a-snapshot" id="sync-a-filesystem-from-a-snapshot"></a>
 

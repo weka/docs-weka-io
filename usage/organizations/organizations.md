@@ -28,7 +28,7 @@ Only a Cluster Admin can create an organization.
    * **Set Organization Total Quota**: Turn on the switch and set the total capacity limitation for the organization (SSD and object store bucket). &#x20;
 4. Select **Save**.
 
-![Create an organization](../../.gitbook/assets/wmng\_create\_org.png)
+![Create an organization](../../.gitbook/assets/wmng_create_org.png)
 
 ## View organizations
 
@@ -40,9 +40,9 @@ As an Organization Admin, you can view only the organization you are assigned to
 
 1. From the menu, select **Configure > Organizations**.
 
-![View organization by a Cluster Admin](../../.gitbook/assets/wmng\_view\_organizations.png)
+![View organization by a Cluster Admin](../../.gitbook/assets/wmng_view_organizations.png)
 
-![View organization by an Organization Admin](../../.gitbook/assets/wmng\_view\_by\_org\_admin.png)
+![View organization by an Organization Admin](../../.gitbook/assets/wmng_view_by_org_admin.png)
 
 ## Edit an organization
 
@@ -53,7 +53,7 @@ You can modify an organization's SSD and total quota to meet the capacity demand
 1. From the menu, select **Configure > Organizations**.
 2. On the Organizations tab, select the three dots of the organization to edit and select **Edit**.
 
-![Edit organization](../../.gitbook/assets/wmng\_edit\_org\_button.png)
+![Edit organization](../../.gitbook/assets/wmng_edit_org_button.png)
 
 3\. In the Edit Organization dialog, set the following properties:
 
@@ -62,14 +62,14 @@ You can modify an organization's SSD and total quota to meet the capacity demand
 
 4\. Select **Save**.
 
-![Edit organization dialog](../../.gitbook/assets/wmng\_edit\_org.png)
+![Edit organization dialog](../../.gitbook/assets/wmng_edit_org.png)
 
 ## Delete an organization
 
 If an organization is no longer required, you can remove it. You cannot remove the root organization.
 
 {% hint style="danger" %}
-**Warning:** Deleting an organization is irreversible**.** It removes all entities related to the organization, such as filesystems, object stores, and users.
+**Warning:** Deleting an organization is irreversibl&#x65;**.** It removes all entities related to the organization, such as filesystems, object stores, and users.
 {% endhint %}
 
 **Procedure**
@@ -77,6 +77,6 @@ If an organization is no longer required, you can remove it. You cannot remove t
 1. From the menu, select **Configure > Organizations**.
 2. On the Organizations tab, select the three dots of the organization to edit and select **Remove**.
 
-![Remove an organization](../../.gitbook/assets/wmng\_remove\_org.png)
+![Remove an organization](../../.gitbook/assets/wmng_remove_org.png)
 
 3\. In the confirmation message, select **Yes**.

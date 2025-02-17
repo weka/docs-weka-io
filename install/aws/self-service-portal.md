@@ -40,14 +40,14 @@ Once the configuration to be deployed has been found, click the Deploy to AWS bu
 Once everything is ready to deploy the cluster, click the Deploy to AWS button. This will display the AWS CloudFormation screen with a template containing the configured cluster.
 
 {% hint style="info" %}
-**Note:** Before deploying the configuration**,** please refer to the [Prerequisites for Deployment](deployment-types.md#prerequisites-for-deployment) section.
+**Note:** Before deploying the configuratio&#x6E;**,** please refer to the [Prerequisites for Deployment](deployment-types.md#prerequisites-for-deployment) section.
 {% endhint %}
 
 ## CloudFormation screen
 
 After clicking the Deploy to AWS button, the AWS CloudFormation screen is displayed, requiring the creation of stacks.
 
-![AWS Create Stack Screen](../../.gitbook/assets/CF\_3\_13.png)
+![AWS Create Stack Screen](../../.gitbook/assets/CF_3_13.png)
 
 In the Create Stack screen, define the parameters which are specific to your AWS account.
 
@@ -100,7 +100,7 @@ In the Create Stack screen, define the parameters specific to your AWS account.
 **Note:** To run this stack, `enableDnsHostnames`  and `enableDnsSupport` [DNS attributes](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-support) should be enabled for the VPC.
 {% endhint %}
 
-![AWS Create Prerequisites Stack Screen](../../.gitbook/assets/CF\_pre\_3\_13.png)
+![AWS Create Prerequisites Stack Screen](../../.gitbook/assets/CF_pre_3_13.png)
 
 | **Parameter**      | **Description**                                                                                                                                                                |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
