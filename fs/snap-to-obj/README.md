@@ -138,6 +138,10 @@ This capability for filesystem snapshots potentially makes them more cost-effect
 
 Incremental snapshots download and restore are only available through the CLI. It is recommended to download the Incremental snapshots in chronological order. Only snapshots uploaded from a 4.0 version or above can be downloaded as increments.
 
+{% hint style="info" %}
+Downloading or restoring a filesystem from a snapshot stored in an object store within the same cluster is not supported.
+{% endhint %}
+
 ## Delete snapshots residing on an object store
 
 Deleting a snapshot from a filesystem that uploaded it removes all of its data from the local object store bucket. It does not remove any data from a remote object store bucket.
