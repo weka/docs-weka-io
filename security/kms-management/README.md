@@ -5,7 +5,7 @@ description: >-
   resilience.
 ---
 
-# KMS management
+# Manage KMS
 
 ## Overview
 
@@ -20,10 +20,14 @@ To enhance security, WEKA does not store any data that could reconstruct the KMS
 
 **KMS encryption options:**
 
-* **Cluster encryption key:** WEKA supports both [**KMIP-compliant KMS**](http://docs.oasis-open.org/kmip/spec/v1.2/os/kmip-spec-v1.2-os.html) (protocol version 1.2 and above) and [**HashiCorp Vault**](https://www.hashicorp.com/products/vault/) (versions 1.1.5 to 1.14.x) for cluster key management. This configuration applies a single encryption key that serves as the master key across the entire WEKA cluster.
+{% include "../../.gitbook/includes/supported-kms-types.md" %}
+
+**KMS encryption options:**
+
+* **Cluster encryption key**:  A single encryption key used as the master key for the entire WEKA cluster.
 * **Per-filesystem encryption keys:** Available exclusively with **HashiCorp Vault**, this option allows each filesystem to have its own encryption key, providing enhanced data isolation between tenants.
 
-**KMS integration best practices**
+### **KMS integration best practices**
 
 The KMS is the sole authority for decrypting WEKA filesystem keys. To ensure seamless operations and safeguard your data, adhere to the following best practices:
 
@@ -45,7 +49,7 @@ The following steps outline the process for managing encryption keys across the 
 2. **Encryption process:** During normal operation, encrypted FS keys are stored in the configuration table. FS keys in-memory are used for real-time encryption/decryption. After a restart, encrypted FS keys are retrieved and decrypted using the cluster key.
 3. **Rewrap operation:** The rewrap process involves decrypting the FS key, retrieving it, and then re-encrypting the FS key with a new version of the cluster key. This ensures that the FS keys remain protected with updated encryption, enhancing security based on KMS policies.
 
-<figure><img src="../../../.gitbook/assets/KMS-cluster-wide (3).png" alt=""><figcaption><p>KMS integration with cluster encryption keys</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/KMS-cluster-wide (3).png" alt=""><figcaption><p>KMS integration with cluster encryption keys</p></figcaption></figure>
 
 ## KMS integration: per-filesystem encryption keys
 
@@ -64,29 +68,29 @@ In multi-tenant setups, individual tenants require secure, isolated encryption k
 
 The following diagram illustrates how the WEKA cluster is integrated with HashiCorp Vault to manage encryption keys per filesystem.
 
-<figure><img src="../../../.gitbook/assets/KMS-per-fs.png" alt=""><figcaption><p>KMS integration with per-filesystem encryption keys</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/KMS-per-fs.png" alt=""><figcaption><p>KMS integration with per-filesystem encryption keys</p></figcaption></figure>
 
 #### **Configuration process**
 
 Administrators must configure multiple keys within the KMS, one for each filesystem. During the creation of a filesystem, specific parameters are required, including the namespace, KMS key identifier, role ID, and secret ID. This configuration ensures that the filesystem operates with its dedicated encryption key.
 
-The `weka fs create` command supports this process. For details, see [#create-a-filesystem](../../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention").
+The `weka fs create` command supports this process. For details, see [#create-a-filesystem](../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention").
 
 #### **Key update and fallback**
 
 Filesystem keys can be updated when necessary, such as when transitioning from Key1 to Key2. Administrators also have the option to revert to the cluster key, which involves removing the individual filesystem keys and returning to the previous setup.
 
-The `weka fs update` command supports these updates. For details, see [#edit-a-filesystem](../../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#edit-a-filesystem "mention").
+The `weka fs update` command supports these updates. For details, see [#edit-a-filesystem](../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#edit-a-filesystem "mention").
 
 **Rewrap KMS security key for a specific filesystem**
 
 Rewrap operations can be performed per filesystem, enabling each key to be re-encrypted with a new version if there are concerns about key compromise.
 
-The `weka fs kms-rewrap` command supports this operation. For details, see [#rewrap-the-filesystem-encryption-key](../../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#rewrap-the-filesystem-encryption-key "mention").
+The `weka fs kms-rewrap` command supports this operation. For details, see [#rewrap-the-filesystem-encryption-key](../../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#rewrap-the-filesystem-encryption-key "mention").
 
 #### Create a filesystem from an encrypted snapshot
 
-To create a filesystem from an uploaded snapshot originating from an encrypted source, use the `weka fs download` command. For details, see [#create-a-filesystem-from-an-uploaded-snapshot](../../../weka-filesystems-and-object-stores/snap-to-obj/snap-to-obj-1.md#create-a-filesystem-from-an-uploaded-snapshot "mention").
+To create a filesystem from an uploaded snapshot originating from an encrypted source, use the `weka fs download` command. For details, see [#create-a-filesystem-from-an-uploaded-snapshot](../../weka-filesystems-and-object-stores/snap-to-obj/snap-to-obj-1.md#create-a-filesystem-from-an-uploaded-snapshot "mention").
 
 #### **Security configuration**
 

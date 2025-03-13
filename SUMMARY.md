@@ -158,7 +158,6 @@
 
 * [WEKA security overview](security/security.md)
 * [Obtain authentication tokens](security/obtain-authentication-tokens.md)
-* [Manage token expiration](security/manage-token-expiration.md)
 * [Manage account lockout threshold policy](security/account-lockout-threshold-policy-management.md)
 * [Manage KMS](security/kms-management/README.md)
   * [Manage KMS using GUI](security/kms-management/kms-management.md)
@@ -167,8 +166,8 @@
   * [Manage TLS certificates using GUI](security/tls-certificate-management/manage-the-tls-certificate-using-the-gui.md)
   * [Manage TLS certificates using CLI](security/tls-certificate-management/manage-the-tls-certificate-using-the-cli.md)
 * [Manage Cross-Origin Resource Sharing](security/manage-cross-origin-resource-sharing.md)
-* [Manage CIDR-based security policies](operation-guide/security/manage-cidr-based-security-policies.md)
-* [Manage login banner](operation-guide/security/manage-the-login-banner/README.md)
+* [Manage CIDR-based security policies](security/manage-cidr-based-security-policies.md)
+* [Manage login banner](security/manage-the-login-banner.md)
 
 ## Operation Guide
 
@@ -244,9 +243,10 @@
 
 ## AWS Solutions
 
-* [SageMaker HyperPod and WEKA Integrations](aws-solutions/sagemaker-hyperpod-and-weka-integrations/README.md)
-  * [Deploy a new SageMaker HyperPod cluster with WEKA](aws-solutions/sagemaker-hyperpod-and-weka-integrations/deploy-a-new-sagemaker-hyperpod-cluster-with-weka.md)
-  * [Add WEKA to an existing SageMaker HyperPod cluster](aws-solutions/sagemaker-hyperpod-and-weka-integrations/add-weka-to-an-existing-sagemaker-hyperpod-cluster.md)
+* [Amazon SageMaker HyperPod and WEKA Integrations](aws-solutions/amazon-sagemaker-hyperpod-and-weka-integrations/README.md)
+  * [Deploy a new Amazon SageMaker HyperPod cluster with WEKA](aws-solutions/amazon-sagemaker-hyperpod-and-weka-integrations/deploy-a-new-amazon-sagemaker-hyperpod-cluster-with-weka.md)
+  * [Add WEKA to an existing Amazon SageMaker HyperPod cluster](aws-solutions/amazon-sagemaker-hyperpod-and-weka-integrations/add-weka-to-an-existing-amazon-sagemaker-hyperpod-cluster.md)
+* [AWS ParallelCluster and WEKA Integration](aws-solutions/aws-parallelcluster-and-weka-integration.md)
 
 ## Azure Solutions
 
@@ -262,6 +262,7 @@
 
 ## Kubernetes
 
+* [Multi-tenancy in WEKA](kubernetes/multi-tenancy-in-weka.md)
 * [WEKA Operator deployment](kubernetes/weka-operator-deployment.md)
 * [WEKA Operator day-2 operations](kubernetes/weka-operator-day-2-operations.md)
 

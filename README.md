@@ -29,7 +29,14 @@ Welcome to the WEKA documentation portal, your guide to the latest WEKA version.
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
 
-### About WEKA documentation
+## **Get answers from WEKA documentation with Sevii AI**
+
+Sevii AI quickly delivers answers from WEKA documentation. Type your question and click <img src=".gitbook/assets/sevii-button.png" alt="" data-size="line">.\
+For the best results, ask clear, context-rich questions.
+
+{% @sevii-ai/sevii-gitbook %}
+
+## About WEKA documentation
 
 This portal encompasses all documentation essential for comprehending and operating the WEKA system. It covers a range of topics:
 

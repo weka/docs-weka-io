@@ -58,14 +58,14 @@ The WEKA Operator client deployment uses the WekaClient custom resource to manag
 1. Obtain setup information.
 2. Prepare Kubernetes environment.
 3. Install the WEKA Operator.
-4. Set up driver distribution.
-5. Install the WekaCluster and WekaClient custom resources.
+4. Install the WekaCluster and WekaClient custom resources.
+5. Set up driver distribution.
 
 ### 1. Obtain setup information
 
 To deploy the WEKA Operator in your Kubernetes environment, contact the WEKA Customer Success Team to obtain the necessary setup information.
 
-<table><thead><tr><th width="202">Component</th><th width="272">Parameter</th><th>Example</th></tr></thead><tbody><tr><td><p>Container repository (<a href="http://quay.io/">quay.io</a>)</p><p>Includes: Image pull secrets and Docker</p></td><td><code>QUAY_USERNAME</code> <code>QUAY_PASSWORD</code><br><code>QUAY_SECRET_KEY</code></td><td><code>example_user</code><br><code>example_password</code><br><code>quay-io-robot-secret</code></td></tr><tr><td>WEKA Operator Version</td><td><code>WEKA_OPERATOR_VERSION</code></td><td><code>v1.1.0</code></td></tr><tr><td>WEKA Image</td><td><code>WEKA_IMAGE_VERSION_TAG</code></td><td><code>4.3.5.105-dist-drivers.5</code></td></tr></tbody></table>
+<table><thead><tr><th width="202">Component</th><th width="272">Parameter</th><th>Example</th></tr></thead><tbody><tr><td><p>Container repository (<a href="http://quay.io/">quay.io</a>)</p><p>Includes: Image pull secrets and Docker</p></td><td><code>QUAY_USERNAME</code> <code>QUAY_PASSWORD</code><br><code>QUAY_SECRET_KEY</code></td><td><code>example_user</code><br><code>example_password</code><br><code>quay-io-robot-secret</code></td></tr><tr><td>WEKA Operator Version</td><td><code>WEKA_OPERATOR_VERSION</code></td><td><code>v1.4.0</code></td></tr><tr><td>WEKA Image</td><td><code>WEKA_IMAGE_VERSION_TAG</code></td><td><code>4.3.5.105-dist-drivers.5</code></td></tr></tbody></table>
 
 By gathering this information in advance, you have all the required values to complete the deployment workflow efficiently. Replace the placeholders with the actual values in the setup files.
 
@@ -92,6 +92,9 @@ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scrip
 
 Ensure that Kubernetes is correctly set up and configured to handle WEKA workloads.
 
+* Minimum Kubernetes version: 1.25
+* Minimum OpenShift version: 4.17
+
 1. **Kernel headers**: Ensure kernel headers on each node match the kernel version.
 2. **Storage**: Allocate storage on `/opt/k8s-weka` for WEKA containers.\
    Estimate: \~10 GiB per WEKA container + 20 GiB per CPU core in use.
@@ -112,7 +115,7 @@ Ensure that Kubernetes is correctly set up and configured to handle WEKA workloa
    `reservedSystemCPUs: "0"`\
    `cpuManagerPolicy: static`
 2. Check which configmap holds the kubelet config.\
-   `kubectl get cm -A|grep kubeletg`\
+   `kubectl get cm -A|grep kubelet`\
    If there are more than one kubelet config, modify the config for worker nodes.
 3. Edit the kubelet config map to add the CPU settings.\
    `kubectl edit cm -n kube-system kubelet-config`
@@ -127,7 +130,7 @@ Ensure that Kubernetes is correctly set up and configured to handle WEKA workloa
 The following example creates a secret for quay.io authentication for both the `weka-operator-system` namespace and the `default` namespace. Repeat as necessary for namespaces. Replace the placeholders with the actual values.
 
 ```bash
-export QUAY_USERNAME='QUAY_USERNME' # Replace with the actual value
+export QUAY_USERNAME='QUAY_USERNAME' # Replace with the actual value
 export QUAY_PASSWORD='QUAY_PASSWORD' # Replace with the actual value
 
 kubectl create ns weka-operator-system
@@ -174,69 +177,7 @@ NAME                                               READY  STATUS  RESTARTS   AGE
 weka-operator-controller-manager-564bfd6b49-p6k7d   2/2   Running     0      13s
 ```
 
-### 4. Set up driver distribution
-
-Driver distribution applies to client and backend entities.
-
-1. **Verify driver distribution prerequisites**:
-   1. Ensure a WEKA-compatible image (`weka-in-container`) is accessible through the registry and has the necessary credentials (`imagePullSecret`).
-   2. Define node selection criteria, especially for the Driver Builder role, to match the kernel requirements of target nodes.
-2. **Set up the driver distribution service and driver builder:** Replace the container version tag (WEKA\_IMAGE\_VERSION\_TAG) placeholders with the actual values:
-
-```yaml
-apiVersion: weka.weka.io/v1alpha1
-kind: WekaContainer
-metadata:
-  name: weka-drivers-dist
-  namespace: default
-  labels:
-    app: weka-drivers-dist
-spec:
-  agentPort: 60001
-  image: quay.io/weka.io/weka-in-container:<WEKA_IMAGE_VERSION_TAG> # Replace with the actual value
-  imagePullSecret: "<QUAY_SECRET_KEY>" # Replace with the actual value
-  mode: "drivers-loader"
-  name: dist
-  numCores: 1
-  port: 60002
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: weka-drivers-dist
-  namespace: default
-spec:
-  type: ClusterIP
-  ports:
-    - name: weka-drivers-dist
-      port: 60002
-      targetPort: 60002
-  selector:
-    app: weka-drivers-dist
----
-apiVersion: weka.weka.io/v1alpha1
-kind: WekaContainer
-metadata:
-  name: weka-drivers-builder
-  namespace: default
-spec:
-  agentPort: 60001
-  image: quay.io/weka.io/weka-in-container:<WEKA_IMAGE_VERSION_TAG> # Replace with the actual value
-  imagePullSecret: "<QUAY_SECRET_KEY>" # Replace with the actual value
-  mode: "drivers-loader"
-  name: dist 
-  numCores: 1
-  port: 60002
-```
-
-{% hint style="info" %}
-Ensure that `nodeSelector` or `nodeAffinity` aligns with the kernel requirements of the build nodes.
-{% endhint %}
-
-4. Save the manifest above to `weka-driver.yaml` , and apply it:\
-   `kubectl apply -f weka-driver.yaml`
-
-### 5. Install the WekaCluster and WekaClient custom resources
+### 4. Install the WekaCluster and WekaClient custom resources
 
 To proceed, choose one or both of the following options based on your requirements:
 
@@ -487,7 +428,7 @@ The WEKA system supports two primary methods for drive discovery:
 * **WekaPolicy**\
   An automated, policy-driven approach that performs periodic discovery across all matching nodes. The `WekaPolicy` method operates on an event-driven model, initiating discovery immediately when relevant changes (such as node updates or drive additions) are detected.
 
-Example manual operations:
+Manual operations example:
 
 The following operation signs specific drives:
 
@@ -547,6 +488,68 @@ Key fields:
 
 * `nodeSelector` (payload): Limits the operation to specific nodes.
 * `tolerations` (spec): Supports Kubernetes tolerations for high-level objects like WekaCluster and WekaClient. Only `tolerations` are supported for WekaManualOperation, WekaContainer, and WekaPolicy.
+
+### 5. Set up driver distribution
+
+Driver distribution applies to client and backend entities.
+
+1. **Verify driver distribution prerequisites**:
+   1. Ensure a WEKA-compatible image (`weka-in-container`) is accessible through the registry and has the necessary credentials (`imagePullSecret`).
+   2. Define node selection criteria, especially for the Driver Builder role, to match the kernel requirements of target nodes.
+2. **Set up the driver distribution service and driver builder:** Replace the container version tag (WEKA\_IMAGE\_VERSION\_TAG) placeholders with the actual values:
+
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaContainer
+metadata:
+  name: weka-drivers-dist
+  namespace: default
+  labels:
+    app: weka-drivers-dist
+spec:
+  agentPort: 60001
+  image: quay.io/weka.io/weka-in-container:<WEKA_IMAGE_VERSION_TAG> # Replace with the actual value
+  imagePullSecret: "<QUAY_SECRET_KEY>" # Replace with the actual value
+  mode: "drivers-dist"
+  name: dist
+  numCores: 1
+  port: 60002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weka-drivers-dist
+  namespace: default
+spec:
+  type: ClusterIP
+  ports:
+    - name: weka-drivers-dist
+      port: 60002
+      targetPort: 60002
+  selector:
+    app: weka-drivers-dist
+---
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaContainer
+metadata:
+  name: weka-drivers-builder
+  namespace: default
+spec:
+  agentPort: 60001
+  image: quay.io/weka.io/weka-in-container:<WEKA_IMAGE_VERSION_TAG> # Replace with the actual value
+  imagePullSecret: "<QUAY_SECRET_KEY>" # Replace with the actual value
+  mode: "drivers-loader"
+  name: dist 
+  numCores: 1
+  port: 60002
+```
+
+{% hint style="info" %}
+Ensure that `nodeSelector` or `nodeAffinity` aligns with the kernel requirements of the build nodes.
+{% endhint %}
+
+4. Save the manifest above to `weka-driver.yaml` , and apply it:\
+   `kubectl apply -f weka-driver.yaml`
 
 ## Upgrade the WEKA Operator
 

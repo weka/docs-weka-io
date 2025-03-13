@@ -198,14 +198,18 @@ Demo: WEKA Upgrade Checker
    * **Method B:** Update from existing tools repository
      * If you have previously downloaded the tools repository, navigate to the **tools** directory.
      * Run `git pull` to update the tools repository with the latest enhancements. (The WEKA tools, including the WEKA Upgrade Checker, continuously evolve.)
-3.  **Run the WEKA Upgrade Checker:** Navigate to the weka\_upgrade\_checker directory. It includes a binary version and a Python script of the tool. A minimum of Python 3.8 is required if you run the Python script.
+3.  **Run the WEKA Upgrade Checker:** Navigate to the `weka_upgrade_checker` directory. It includes a binary version and a Python script of the tool. A minimum of Python 3.8 is required if you run the Python script.
 
-    * Run the Python script: `python3.8 ./weka_upgrade_checker.py`
+    *   Run the Python script:
+
+        `python3.8 ./weka_upgrade_checker.py --target-version <version>`
 
     Or
 
-    * Run the Python precompiled script `./weka_upgrade_checker`
+    * Run the Python precompiled script:\
+      &#x20;`./weka_upgrade_checker --target-version <version>`
 
+    Replace `<version>` with your target version. For example `4.4.4`.\
     The tool scans the backend servers and verifies the upgrade prerequisites.
 4. **Review the results:**
    * Pay attention to the following indicators:

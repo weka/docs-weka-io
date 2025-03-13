@@ -36,15 +36,15 @@ It's important to note that the [stripe width](#user-content-fn-2)[^2] must be l
 
 ## Prioritized data rebuild process
 
-In the event of a failure in the WEKA system, the data recovery process commences by reading all the affected data stripes, rebuilding the data, and restoring complete data protection. If a second failure occurs, there are three types of stripes:
+In the event of a failure in the WEKA system, the data recovery process begins by reading all affected data stripes, reconstructing the lost data, and restoring full protection. If multiple failures occur, the affected stripes can be categorized as follows:
 
-* Stripes not impacted by either of the failed components, requiring no action.
-* Stripes affected by only one of the failed components.
-* Stripes affected by both failed components.
+* Stripes unaffected by any of the failed components, requiring no action.
+* Stripes affected by one of the failed components.
+* Stripes affected by multiple failed components.
 
-Typically, the number of stripes affected by two failed components is much smaller than that of a single failed component. However, if any stripes influenced by both failed components are yet to be rebuilt, a third component failure could result in data loss.
+Typically, the number of stripes affected by multiple failed components is significantly smaller than those affected by a single failed component. However, if any of these multi-affected stripes remain unrecovered, additional failures could lead to data loss.
 
-To mitigate this risk, the WEKA system employs a prioritized rebuild process. It begins with the quick restoration of stripes affected by two failed components, as these are fewer in number and can be addressed within minutes. Afterward, the system rebuilds stripes affected by only one failed component. This prioritized approach ensures that data loss is rare and service and availability are consistently maintained.
+To mitigate this risk, the WEKA system employs a **prioritized rebuild process**. The system first restores stripes affected by the greatest number of failed components, depending on the data protection level, as these are fewer in number and can be recovered quickly. Once these high-risk stripes are rebuilt, the system proceeds with restoring stripes impacted by fewer failures. This structured approach ensures that the probability of data loss remains low while maintaining system performance and availability.
 
 ## **Seamless distribution, scaling, and enhanced performance**
 

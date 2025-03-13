@@ -64,20 +64,30 @@ Last login: Tue Sep 10 23:43:40 2024 from 10.41.226.0
 
     {% code overflow="wrap" %}
     ```bash
-    reposync --setopt=reposdir=./reposdir --download-metadata --repo=lts-8.6-hashed-ciq_lts_86 --download-path ./weka-patches --norepopath --newest-only
+    reposync --destdir=./reposdir --download-metadata --repoid=lts-8.6-hashed-ciq_lts_86 --download-path ./weka-patches --norepopath
     ```
     {% endcode %}
 
     Example output:
 
     ```
-    LTS for Rocky Linux 8.6                                                                                                          13 kB/s | 3.4 kB     00:00
-    LTS for Rocky Linux 8.6                                                                                                         1.8 MB/s |  14 MB     00:07
-    (1/1986): ciq-lts86-rocky-release-8.6-6.el8.noarch.rpm                                                                           84 kB/s |  22 kB     00:00
-    (2/1986): rocky-gpg-keys-8.6-6.el8.noarch.rpm                                                                                    45 kB/s |  12 kB     00:00
-    (3/1986): ciq-rocky86-repos-8.6-6.el8.noarch.rpm                                                                                 53 kB/s |  15 kB     00:00
-    (4/1986): stalld-1.17.1-2.el8.ciqlts.x86_64.rpm
-    ...
+    LTS for Rocky Linux 8.6
+    LTS for Rocky Linux 8.6                                                               11 kB/s  |  3.4 kB   00:00
+    [SKIPPED] rocky-gpg-keys-8.6-6.el8.noarch.rpm: Already downloaded                     6.8 MB/s |  12 MB    00:01
+    [SKIPPED] ciq-rocky86-repos-8.6-6.el8.noarch.rpm: Already downloaded
+    [SKIPPED] ciq-lts86-rocky-release-8.6-6.el8.noarch.rpm: Already downloaded
+    [SKIPPED] stalld-1.17.1-2.el8.ciqlts.x86_64.rpm: Already downloaded
+    [SKIPPED] libkadm5-1.18.2-16.el8_6.86ciq_lts.x86_64.rpm: Already downloaded
+    [SKIPPED] krb5-workstation-1.18.2-16.el8_6.86ciq_lts.x86_64.rpm: Already downloaded
+    [SKIPPED] krb5-server-ldap-1.18.2-16.el8_6.86ciq_lts.x86_64.rpm: Already downloaded
+    [SKIPPED] krb5-server-1.18.2-16.el8_6.86ciq_lts.x86_64.rpm: Already downloaded
+    [SKIPPED] krb5-pkinit-1.18.2-16.el8_6.86ciq_lts.x86_64.rpm: Already downloaded
+    [SKIPPED] krb5-libs-1.18.2-16.el8_6.86ciq_lts.x86_64.rpm: Already downloaded
+    [SKIPPED] krb5-devel-1.18.2-16.el8_6.86ciq_lts.x86_64.rpm: Already downloaded
+    [SKIPPED] dpdk-tools-21.11-3.el8.ciqlts.x86_64.rpm: Already downloaded
+    [SKIPPED] dpdk-devel-21.11-3.el8.ciqlts.x86_64.rpm: Already downloaded
+    (14/2191): libXpm-devel-3.5.12-9.el8_6.0.ciqlts.x86_64.rpm                             84 kB/s  |  38 kB    00:00
+    (15/2191): libXpm-3.5.12-9.el8_6.0.ciqlts.x86_64.rpm                                   264 kB/s |  57 kB    00:00
     ```
 3. **Transfer repository to dark site:**
    * Copy the `weka-patches` directory to a location accessible to the WSA systems in the dark site. This can be a local repository server or a directory on the WSA image.

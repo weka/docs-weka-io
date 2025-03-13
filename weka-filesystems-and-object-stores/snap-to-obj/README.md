@@ -99,6 +99,10 @@ Optionally, you may also promote data back to on-premises by doing the following
 * **Pausing or aborting snapshot uploads**: Users can pause or abort snapshot uploads using commands detailed in the background tasks section.
 * **New filesystem creation from snapshots**: When creating a new filesystem from a snap-to-object operation, the original filesystem quotas are not preserved in the new filesystem.
 
+{% hint style="warning" %}
+Downloading or restoring a filesystem from a snapshot stored in an object store within the same cluster is not supported.
+{% endhint %}
+
 ## Synchronous snapshots
 
 Synchronous snapshots are point-in-time backups for filesystems. When taken, they consist only of the changes since the last snapshot (incremental snapshots). When you download and restore a snapshot to a live filesystem, the system reconstructs the filesystem on the fly with the changes since the previous snapshot.

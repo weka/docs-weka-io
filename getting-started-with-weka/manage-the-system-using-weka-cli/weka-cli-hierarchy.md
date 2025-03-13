@@ -415,9 +415,6 @@ weka security
       |local **
          |set
          |unset
-      |token-expiry **
-         |show
-         |set
    |lockout-config
       |set
       |reset

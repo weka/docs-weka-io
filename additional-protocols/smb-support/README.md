@@ -9,7 +9,7 @@ SMB (Server Message Block) is a network file-sharing protocol that facilitates c
 WEKA's SMB implementation enables seamless access to storage services for both Windows and macOS clients. It facilitates shared access from multiple clients, supporting a multi-protocol approach that allows files to be accessed simultaneously through SMB, NFS, and WEKA native filesystem drivers.
 
 {% hint style="info" %}
-The legacy open-source Samba stack is deprecated and will not be supported starting from version 4.4.5 LTS.
+The legacy open-source Samba stack (type: SMB)  is deprecated in favor of SMB-W and will not be supported after version 4.4.6.   To determine if you are using Samba, run the command `weka smb cluster` and note whether the `Type` field reports `smb` or `smbw.`  If it reports `smb`,  open a support case with WEKA to begin planning a migration to SMB-W.
 {% endhint %}
 
 ## Key features of SMB implementation in WEKA
@@ -39,6 +39,13 @@ When working with SMB clusters, it's important to understand the following point
 * When managing an SMB-W cluster through the GUI, any limitations in the CLI for SMB-W also apply.
 * You can manage, but not configure or delete, legacy SMB clusters through the GUI. For configuration and deletion, refer to [smb-management-using-the-cli.md](smb-management-using-the-cli.md "mention").
 * Use ASCII format when configuring name fields, such as domain and shares.
+
+{% hint style="warning" %}
+**Public cloud requirements:**\
+Ensure Active Directory and DNS services are configured before installing the WEKA SMB protocol.
+
+For example, WEKA in AWS has been tested with AWS Managed Microsoft AD and Amazon Route 53 Resolver. If these services are not already configured, follow AWS guidelines to set up [AWS Managed Microsoft AD](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started.html) and  [Amazon Route 53 Resolver](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-getting-started.html).
+{% endhint %}
 
 ## SMB user mapping in the WEKA system
 

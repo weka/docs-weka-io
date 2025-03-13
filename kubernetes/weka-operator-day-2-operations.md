@@ -3423,7 +3423,7 @@ This procedure demonstrates how to migrate from specific port and agentPort conf
 1.  Deploy the initial client configuration with specific ports:
 
     ```yaml
-    yamlCopyspec:
+    spec:
       port: 45001
       agentPort: 45000
     ```
@@ -3440,7 +3440,7 @@ This procedure demonstrates how to migrate from specific port and agentPort conf
 4.  Update the client YAML by removing the port and agentPort specifications and adding portRange:
 
     ```yaml
-    yamlCopyspec:
+    spec:
       portRange:
         basePort: 45000
     ```
@@ -3545,8 +3545,7 @@ apiVersion: weka.weka.io/v1alpha1
 kind: WekaCluster
 metadata:
   name: cluster-dev
-  namespace: weka-operator-system # temporary hack to save on copying node info configmap. Should either remove configmap concept, or copy it for mounting
-spec:
+  namespace: weka-operator-system
   template: dynamic
   dynamicTemplate:
     computeContainers: 6

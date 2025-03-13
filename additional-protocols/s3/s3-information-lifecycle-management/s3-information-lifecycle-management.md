@@ -25,8 +25,8 @@ You can add a lifecycle rule to an object (bucket) that defines an expiration du
 
 2\. In the Add a Lifecycle Rule dialog set the following:&#x20;
 
-* **Expiration days:** The minimum number of days before expiring the object.
-* **Prefix:** The prefix of objects to apply the rule to.
+* **Expiration days:** The minimum number of days before the object is eligible for expiration. ILM processes the object shortly after this period based on its modified timestamp, but processing may be delayed if the queue is long.
+* **Prefix:** The object prefix to which the rule applies. Wildcards are not supported.
 * **Tags:** One or more object tags to apply the ILM policy rule. The tags are key-value pairs. Example: \<k1>=\<v1>.
 
 3\. Select **Save**.

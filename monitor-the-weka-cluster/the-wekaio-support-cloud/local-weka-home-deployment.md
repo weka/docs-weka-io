@@ -12,15 +12,16 @@ This Local WEKA Home v3.0 (or higher) runs on K3s, a lightweight Kubernetes inst
 
 ## Workflow: Local WEKA Home deployment
 
-If you have deployed the WMS, follow the procedure:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](../deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, perform the following workflow:
+If you have deployed the WMS and do not require IPv6 networking, follow the procedure:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](../deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, perform the following workflow:
 
-1. [Verify prerequisites](local-weka-home-deployment.md#id-1.-verify-prerequisites).
-2. [Prepare the physical server (or VM)](local-weka-home-deployment.md#id-2.-prepare-the-physical-server-or-vm).
-3. [Download the Local WEKA Home bundle](local-weka-home-deployment.md#id-3.-download-the-local-weka-home-bundle).
-4. [Install and configure the Local WEKA Home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home).
-5. [Access the Local WEKA Home portal and Grafana](local-weka-home-deployment.md#id-5.-access-the-local-weka-home-portal-and-grafana).
-6. [Enable the WEKA cluster to send data to the Local WEKA Home](local-weka-home-deployment.md#id-6.-enable-the-weka-cluster-to-send-information-to-the-local-weka-home).
-7. [Test the deployment](local-weka-home-deployment.md#id-7.-test-the-deployment).
+1. Verify prerequisites.
+2. Prepare the physical server (or VM).
+3. Configure IPv6 (optional).
+4. Download the Local WEKA Home bundle.
+5. Install and configure the Local WEKA Home.
+6. Access the Local WEKA Home portal and Grafana.
+7. Enable the WEKA cluster to send data to the Local WEKA Home.
+8. Test the deployment.
 
 ### 1.  Verify prerequisites
 
@@ -78,11 +79,79 @@ For using other operating systems, contact the [Customer Success Team](../../sup
 If you forward data from the Local WEKA Home to the Cloud WEKA Home, ensure the outbound traffic on port 443 is open.
 {% endhint %}
 
-### 3. Download the Local WEKA Home bundle
+### 3. Configure IPv6 (optional)
+
+Local WEKA Home (LWH) supports dual-stack networking, allowing communication over both IPv4 and IPv6 protocols. Enabling IPv6 ensures LWH can function in modern network environments that require IPv6 compliance and connectivity. Both IPv4 and IPv6 can operate simultaneously, providing flexibility and compatibility.
+
+**Benefits of IPv6 configuration**
+
+* Support IPv6-only and dual-stack environments for seamless communication.
+* Enable network segmentation to meet enterprise deployment requirements.
+* Ensure compatibility with IPv6-enabled client applications.
+* Future-proof LWH deployments for evolving IPv6 adoption.
+
+#### Prerequisites
+
+Before configuring IPv6 support, ensure the following requirements are met:
+
+* The host system has IPv6 networking enabled.
+* Client machines have IPv6 connectivity to access LWH over IPv6.
+* Required IPv6 network ranges are available. If unavailable, customize them (refer to the relevant step in the procedure):
+  * Pod network: `2001:cafe:42::/56`
+  * Service network: `2001:cafe:43::/112`
+* LWH installation has not been completed.
+
+{% hint style="info" %}
+Dual-stack networking must be configured during cluster creation. It cannot be enabled later if the cluster was initially deployed with IPv4-only.
+{% endhint %}
+
+#### Procedure
+
+1. Verify IPv6 readiness:
+
+```sh
+cat /proc/sys/net/ipv6/conf/all/disable_ipv6
+```
+
+Ensure the output is `0` to confirm IPv6 is enabled.
+
+2. Verify network interface IPv6 assignment:
+
+```shell
+ip -6 addr show
+```
+
+Confirm the presence of a **global** IPv6 address (`scopeid 0x0<global>`) on your intended network interface.
+
+Example:
+
+```sh
+ifconfig ens5
+ens5: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+       inet 10.0.4.73  netmask 255.255.0.0  broadcast 10.0.255.255
+       inet6 fe80::8b1:29ff:fea7:a707  prefixlen 64  scopeid 0x20<link>
+       inet6 2a05:d018:d69:4ef6:65c9:843e:ef26:a5b3  prefixlen 128  scopeid 0x0<global>
+       ether 0a:b1:29:a7:a7:07  txqueuelen 1000  (Ethernet)
+```
+
+3. If using **custom** network ranges for dual-stack networking, modify the k3s arguments in your LWH configuration:
+
+```shell
+"k3sArgs": [
+  "--cluster-cidr=10.142.0.0/16,2001:cafe:46::/56",
+  "--service-cidr=10.143.0.0/16,2001:cafe:48::/112"
+]
+```
+
+Replace the `cluster-cidr` and `service-cidr` values with your available networks.
+
+4. Validate the IPv6 configuration **after** the LWH deployment (see [#ipv6-validation](local-weka-home-deployment.md#ipv6-validation "mention")).
+
+### 4. Download the Local WEKA Home bundle
 
 Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download) (v3.0 or above) to the dedicated server or VM.
 
-### 4. Install and configure Local WEKA Home
+### 5. Install and configure Local WEKA Home
 
 1. Run the Local WEKA Home setup bundle as a root user (where `*` is wekahome version):\
    `bash wekahome-*.bundle`
@@ -361,7 +430,7 @@ Easy wekahoming!
 
 </details>
 
-### 5. Access the Local WEKA Home portal and Grafana
+### 6. Access the Local WEKA Home portal and Grafana
 
 * **URLs:**
   * **LWH portal:** `https://<your_domain>`
@@ -376,7 +445,7 @@ Easy wekahoming!
   * **Obtain the WEKA Home secret key:** Run the command:\
     `kubectl get secret -n home-weka-io wekahome-encryption-key -o jsonpath='{.data.encryptionKey}' | base64 -d`
 
-### 6. Enable the WEKA cluster to send information to the Local WEKA Home
+### 7. Enable the WEKA cluster to send information to the Local WEKA Home
 
 By default, the WEKA cluster is set to send information to the public instance of WEKA Home. To get the information in the Local WEKA Home, connect to the WEKA cluster and run one of the following commands depending on the configuration:
 
@@ -392,23 +461,99 @@ weka cloud enable --cloud-url http://<ip or hostname of the Local WEKA Home serv
 weka cloud enable --cloud-url https://<ip or hostname of the Local WEKA Home server> 
 ```
 
-### 7. Test the deployment
+### 8. Test the deployment
 
 The WEKA cluster periodically and on-demand uploads data to the Local WEKA Home according to its information type (see [#which-information-is-uploaded-to-weka-home](./#which-information-is-uploaded-to-weka-home "mention")).&#x20;
 
-Access the WEKA Home portal and verify that the test data appears.
+1. Access the WEKA Home portal and verify that the test data appears.
+2. To trigger a test event, run `weka events trigger-event test` and verify the test event is received in the Local WEKA Home portal under the **Events** section.
+3. If required, go to `/var/log/pods` and review the relevant log according to the timestamp (for example, `wekahome-install-03-08-2023_16-29.log`).
 
-To trigger a test event, run `weka events trigger-event test` and verify the test event is received in the Local WEKA Home portal under the **Events** section.
+#### **IPv6 validation**
 
-If required, go to `/var/log/pods` and review the relevant log according to the timestamp (for example, `wekahome-install-03-08-2023_16-29.log`).
+1. **Confirm IPv4 and IPv6 networking**:\
+   Run the following and confirm both IPv4 and IPv6 addresses are listed in the output.
+
+```shell
+kubectl get nodes wekahome.local -o jsonpath='{.status.addresses}'
+```
+
+Example output:&#x20;
+
+```json
+[
+  {
+    "address": "10.0.4.73",
+    "type": "InternalIP"
+  },
+  {
+    "address": "2a05:d018:d69:4ef6:65c9:843e:ef26:a5b3",
+    "type": "InternalIP"
+  },
+  {
+    "address": "wekahome.local",
+    "type": "Hostname"
+  }
+]
+```
+
+2. **Access LWH using IPv4:**\
+   Replace `<IPv4_address>` with the actual IPv4 address of the LWH and run the following command:
+
+```shell
+curl -4 http://<IPv4_address>/api/v3/auth/login/sso/github
+```
+
+Example:
+
+```shell
+curl -4 http://10.0.4.73/api/v3/auth/login/sso/github
+```
+
+Expected response:
+
+```json
+{"enabled":false}
+```
+
+3. **Access LWH using IPv6:**\
+   Replace `<IPv6_address>` with the actual IPv6 address of the LWH and run the following command:
+
+```shell
+curl -6 "http://[<IPv6_address>]/api/v3/auth/login/sso/github"
+```
+
+Example:
+
+```shell
+curl -6 "http://[2a05:d018:d69:4ef6:65c9:843e:ef26:a5b3]/api/v3/auth/login/sso/github"
+```
+
+Expected respons&#x65;**:**
+
+```json
+{"enabled":false}
+```
+
+#### Troubleshoot IPv6 issues
+
+* IPv6 address not assigned:
+  * Verify network interface configuration.
+  * Check network connectivity with IPv6 ping.
+  * Ensure router advertisements are enabled if using SLAAC.
+* Connection failures:
+  * Verify firewall rules allow IPv6 traffic.
+  * Confirm client machine has global IPv6 connectivity.
+  * Check network security group configurations.
 
 ## Upgrade the Local WEKA Home
 
 The upgrade process takes up to 5 minutes. It is recommended to perform the upgrade during a maintenance window.
 
-{% hint style="info" %}
-Upgrading from `minikube` or WMS to the new Local WEKA Home 3.0 bundle (based on `K3s`) is not supported. To upgrade, install the new Local WEKA Home bundle to the new server and add API forwarding from the `minikube` cluster to the new `K3s` cluster.&#x20;
-{% endhint %}
+Certain upgrades require a fresh installation, as direct in-place upgrades are not supported in some cases.
+
+* Upgrading from **minikube or WMS** to the **Local WEKA Home 3.0 bundle** (based on K3s) is not supported. To upgrade, install the new Local WEKA Home bundle on a new server and configure API forwarding from the minikube cluster to the new K3s cluster.
+* **IPv6 support requires a fresh installation.** It is not possible to upgrade an existing LWH deployment with IPv4 to include IPv6. If IPv6 is needed, install a new LWH instance with dual-stack networking configured during cluster creation.
 
 **Procedure**
 

@@ -1,7 +1,7 @@
 ---
 description: >-
-  With tagged VLANs, WEKA clusters can participate in secure, scalable, and
-  isolated communication between clients and backend servers.
+  WEKA tenant clusters use VLAN tagging to enable isolated network communication
+  between clusters and their clients.
 ---
 
 # VLAN tagging in the WEKA system
@@ -10,11 +10,9 @@ description: >-
 
 WEKA support for IEEE 802.1Q VLAN encapsulation ("tagged VLAN IDs" or "tagged VLANs") enables isolation and segregation of network traffic while still granting connectivity between WEKA clients and backend servers.
 
-Each WEKA cluster is limited to one VLAN, as each container can be assigned one VLAN per NIC. This provides granular control over network configurations while maintaining compatibility with existing workflows.
+A WEKA tenant cluster operates on a single VLAN ID, where all containers within that cluster must use the same VLAN ID. All clients connecting to a tenant cluster must use that cluster's assigned VLAN ID. When using the WEKA Kubernetes Operator, this VLAN ID consistency between the tenant cluster and its clients is automatically maintained.
 
-When paired with the WEKA Kubernetes Operator for backends, each tenant cluster and tenant client shares the same VLAN.
-
-Tagged VLAN ID support is also extended to WEKA clients.
+In multi-cluster environments, each tenant cluster can operate on a different VLAN ID. For example, you can assign VLAN ID 100 to Tenant Cluster A and VLAN ID 200 to Tenant Cluster B, providing network isolation between clusters.
 
 ## **Enable WEKA tagged VLAN support**
 

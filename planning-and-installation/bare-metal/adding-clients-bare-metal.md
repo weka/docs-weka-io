@@ -4,44 +4,44 @@ description: This page describes how to add clients to a bare-metal cluster.
 
 # Add clients to an on-premises WEKA cluster
 
-## Cgroups configuration
+## cgroups configuration
 
 Clients run applications that access the WEKA filesystem but do not contribute CPUs or drives to the cluster. They connect solely to use the filesystems.
 
-By default, WEKA uses Cgroups to limit or isolate resources for its exclusive use, such as assigning specific CPUs.
+By default, WEKA uses cgroups to limit or isolate resources for its exclusive use, such as assigning specific CPUs.
 
-Cgroups (Control Groups) is a Linux kernel feature that allows you to limit, prioritize, and isolate a collection of processes' resource usage (CPU, memory, disk I/O, network). It helps allocate resources among user-defined groups of tasks and manage their performance effectively.
+cgroups (Control Groups) is a Linux kernel feature that allows you to limit, prioritize, and isolate a collection of processes' resource usage (CPU, memory, disk I/O, network). It helps allocate resources among user-defined groups of tasks and manage their performance effectively.
 
-**Versions of Cgroups:**
+**Versions of cgroups:**
 
-* **CgroupsV1**: Uses multiple hierarchies for different resource controllers, offering fine-grained control but with increased complexity.
-* **CgroupsV2**: Combines all resource controllers into a single unified hierarchy, simplifying management and providing better resource isolation and a more consistent interface.
+* **cgroupsV1**: Uses multiple hierarchies for different resource controllers, offering fine-grained control but with increased complexity.
+* **cgroupsV2**: Combines all resource controllers into a single unified hierarchy, simplifying management and providing better resource isolation and a more consistent interface.
 
 {% hint style="info" %}
-**Hybrid mode**: If the OS is configured with hybrid mode (CgroupsV1 and CgroupsV2), WEKA defaults to using CgroupsV1.
+**Hybrid mode**: If the OS is configured with hybrid mode (cgroupsV1 and cgroupsV2), WEKA defaults to using cgroupsV1.
 {% endhint %}
 
 **WEKA requirements:**
 
-* **Backends and clients serving protocols:** Must run on an OS with CgroupsV1 support. CgroupsV2 is supported on backends and clients but is incompatible with protocol cluster deployments.
-* **Cgroups mode compatibility:** When setting up Cgroups on clients or backends, ensure that the Cgroups configuration (whether using CgroupsV1 or CgroupsV2) aligns with the operating system's capabilities and configuration.
+* **Backends and clients serving protocols:** Must run on an OS with cgroupsV1 support. cgroupsV2 is supported on backends and clients but is incompatible with protocol cluster deployments.
+* **cgroups mode compatibility:** When setting up cgroups on clients or backends, ensure that the cgroups configuration (whether using cgroupsV1 or cgroupsV2) aligns with the operating system's capabilities and configuration.
 
-### Cgroups configuration and compatibility
+### cgroups configuration and compatibility
 
-The configuration of Cgroups depends on the installed operating system, and it is important that the cluster server settings match the OS configuration to ensure proper resource management and compatibility.
+The configuration of cgroups depends on the installed operating system, and it is important that the cluster server settings match the OS configuration to ensure proper resource management and compatibility.
 
-Customers using a supported OS with CgroupsV2 or wanting to modify the Cgroups usage can set the cgroups usage during the agent installation or by editing the service configuration file. The specified mode must match the existing Cgroups configuration in the OS.
+Customers using a supported OS with cgroupsV2 or wanting to modify the cgroups usage can set the cgroups usage during the agent installation or by editing the service configuration file. The specified mode must match the existing cgroups configuration in the OS.
 
-The Cgroups setting includes the following modes:
+The cgroups setting includes the following modes:
 
-* `auto`: WEKA tries using CgroupsV1 (default). If it fails, the Cgroups is set to none automatically.
-* `force`: WEKA uses CgroupsV1. If the OS does not support it, WEKA fails.
-* `force_v2`: WEKA uses CgroupsV2. If the OS does not support it, WEKA fails. This mode is not supported in protocol cluster deployments.
-* `none`: WEKA never uses Cgroups, even if it runs on an OS with CgroupsV1.
+* `auto`: WEKA tries using cgroupsV1 (default). If it fails, the cgroups is set to none automatically.
+* `force`: WEKA uses cgroupsV1. If the OS does not support it, WEKA fails.
+* `force_v2`: WEKA uses cgroupsV2. If the OS does not support it, WEKA fails. This mode is not supported in protocol cluster deployments.
+* `none`: WEKA never uses cgroups, even if it runs on an OS with cgroupsV1.
 
-### Set the Cgroups mode during the client or backend installation
+### Set the cgroups mode during the client or backend installation
 
-In the installation command line, specify the required Cgroups mode (`WEKA_CGROUPS_MODE`).
+In the installation command line, specify the required cgroups mode (`WEKA_CGROUPS_MODE`).
 
 Example:
 
@@ -49,9 +49,9 @@ Example:
 curl http://Backend-1:14000/dist/v1/install | WEKA_CGROUPS_MODE=none sh
 ```
 
-### Set the Cgroups mode in the service configuration file
+### Set the cgroups mode in the service configuration file
 
-You can set the Cgroups mode in the service configuration file for clients and backends.
+You can set the cgroups mode in the service configuration file for clients and backends.
 
 1. Open the service configuration file `/etc/wekaio/service.conf` and add one of the following:
    * `cgroups_mode=auto`
@@ -59,16 +59,16 @@ You can set the Cgroups mode in the service configuration file for clients and b
    * `cgroups_mode=force_v2`
    * `cgroups_mode=none`
 2. Restart the WEKA agent service: Run `service weka-agent restart`.
-3. Restart the containers to apply the Cgroups settings:
+3. Restart the containers to apply the cgroups settings:
    * Run `weka local restart` to restart all containers, or specify a container, for example, `weka local restart client` for the client container. If WEKA is mounted, unmount it before restarting.
-4. Verify the Cgroups settings by running the `weka local status` command.
+4. Verify the cgroups settings by running the `weka local status` command.
 
 Example:
 
 ```bash
 [root@weka-cluster] #weka local status
 Weka v4.2.0 (CLI build 4.2.0)
-Cgroups: mode=auto, enabled=true
+cgroups: mode=auto, enabled=true
 
 Containers: 1/1 running (1 weka)
 Nodes: 2/2 running (2 READY)
@@ -88,10 +88,10 @@ Ensure each client has a unique IP address and fully qualified domain name (FQDN
 **Procedure**
 
 1.  **Install the WEKA agent (One-time setup):**\
-    Install the WEKA agent from one of the backend instances. This step prepares the client to interact with the WEKA system. Run the following command:
+    Install the WEKA agent from one of the backend instances. This step prepares the client to interact with the WEKA system. Run the following command (where `backend-1` resolves to the IP address of one of the WEKA backend servers):
 
     ```bash
-    curl http://Backend-1:14000/dist/v1/install | sh
+    curl http://backend-1:14000/dist/v1/install | sh
     ```
 2.  **Create a mount point (one-time setup):**\
     Create a directory on the client system where the WEKA filesystem will be mounted. For example:
@@ -100,7 +100,7 @@ Ensure each client has a unique IP address and fully qualified domain name (FQDN
     mkdir -p /mnt/weka
     ```
 3.  **Mount the WEKA filesystem:**\
-    Use the `mount` command to attach the WEKA filesystem to the client. For example:
+    Use the `mount` command to attach the WEKA filesystem to the client (where `my_fs` is the name of the WEKA filesystem). For example:
 
     ```bash
     mount -t wekafs -o net=eth0 backend-1/my_fs /mnt/weka
@@ -123,10 +123,10 @@ Ensure each client has a unique IP address and fully qualified domain name (FQDN
 
 A **persistent client** (or stateful client) is a client that remains an integral part of the cluster. It does not contribute resources to the cluster but is used for mounting filesystems or serving purposes, such as NFS/SMB servers, that require continuous availability. Adding persistent clients ensures that these servers are always up and accessible for file system operations.
 
-There are two methods for adding a persistent client to the cluster: a **shorter, streamlined option** and a **longer, more detailed option**. Both methods achieve the same outcome but offer different levels of flexibility and control.
+There are two methods for adding a persistent client to the cluster: a **shorter**, streamlined method and a **longer**, more detailed method. Both methods achieve the same outcome but offer different levels of flexibility and control.
 
-* **Shorter option**: Quick and efficient for most users. It sets up and joins the container with minimal configuration, ideal for persistent clients that do not require specific resource allocations or custom networking.
-* **Longer option**: Provides more control and flexibility, allowing for detailed configuration of the client, making it suitable for environments with specific performance or network requirements.
+* **Shorter method**: Quick and efficient for most users. It sets up and joins the container with minimal configuration, ideal for persistent clients that do not require specific resource allocations or custom networking.
+* **Longer method**: Provides more control and flexibility, allowing for detailed configuration of the client, making it suitable for environments with specific performance or network requirements.
 
 Choose the method that best fits your needs based on the level of customization required.
 
@@ -177,7 +177,7 @@ This method sets up the client with all required resources in a single step and 
     weka local resources --container client apply
     ```
 
-### Option 2: longer method (more control and flexibility)
+### Option 2: Longer method (more control and flexibility)
 
 This method involves more detailed steps, allowing you to manually set up the client with specific configurations, including core allocation, networking settings, and container setup.
 

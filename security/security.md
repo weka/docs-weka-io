@@ -17,14 +17,11 @@ The following is an overview of WEKA’s key security features and management pr
 * **Authentication tokens**: WEKA employs a dual-token system for secure access management:
   * **Access tokens:** Short-lived (5-minute validity) for API access and filesystem mounting.
   * **Refresh tokens:** Long-lived (configurable, default 1 month) for obtaining new access tokens.
-* **Token expiry management**: Configurable using `weka security token-expiry` commands to enforce security compliance and reduce risks.
 * **Role-Based Access Control (RBAC) and ACLs**: Enables fine-grained permissions, ensuring users have access only to authorized data.
 
 **Related topics**:
 
 [obtain-authentication-tokens.md](obtain-authentication-tokens.md "mention")
-
-[manage-token-expiration.md](manage-token-expiration.md "mention")
 
 [#access-control-lists-acls](../additional-protocols/smb-support/#access-control-lists-acls "mention") (in SMB)
 
@@ -88,7 +85,7 @@ The following is an overview of WEKA’s key security features and management pr
 
 **Related topic**:&#x20;
 
-[manage-cidr-based-security-policies.md](../operation-guide/security/manage-cidr-based-security-policies.md "mention")
+[manage-cidr-based-security-policies.md](manage-cidr-based-security-policies.md "mention")
 
 ***
 
@@ -117,7 +114,7 @@ The following is an overview of WEKA’s key security features and management pr
 
 **Related topic**:
 
-[manage-the-login-banner](../operation-guide/security/manage-the-login-banner/ "mention")
+[manage-the-login-banner.md](manage-the-login-banner.md "mention")
 
 ***
 

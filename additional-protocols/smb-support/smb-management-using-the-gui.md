@@ -258,25 +258,30 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
 **Procedure**
 
 1. In the Shares tab, select **+Create**.
-2. In the Add SMB Share dialog, set the following properties:
-   * **Name**: A meaningful name for the SMB share.
-   * **Filesystem**: The filesystem name that includes the directory to share. Select one from the list. A filesystem with Required Authentication set to ON cannot be used for SMB share.
-   * **Description**: A description or purpose of the SMB share.
-   * **Path**: A valid internal path, relative to the root, within the filesystem to expose the SMB share.
-   * **Encryption:** Select in-transit encryption enforcement of the share. The global cluster encryption settings can affect the actual encryption.
-   * **Read Only:** Select to set the share as read-only.
-   * **Hidden:** Select if you want to hide the share so it is not visible when viewing the list of system shares.
-   * **Allow Guest Access:** Select if you want guests to access without authentication.
-   * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix). Not supported in SMB-W.
-   * **Files/Directories POSIX Mode Mask**: Set the new default file and directory permissions in a numeric (octal) format created through the share.
-   * **ACLs Enabled**: Enables or disables Windows Access-Control Lists (ACLs) for the share. When enabled, WEKA applies the selected Access Control Model. Only applicable for SMB-W.
-   * **Access Control Model:** Specifies the type of access control to use for the share. Options include POSIX, Windows, or Hybrid (default: POSIX). Hybrid ACL allows seamless interoperability between POSIX and Windows systems by exchanging permissions based on timestamps. The most recent permission, regardless of the system it originated from, takes precedence. Only applicable for SMB-W.
-   * **Case Sensitivity**: Enables or disables case sensitivity for the specified SMB share (default: ON). When enabled, the share distinguishes between files with the same name but different capitalization. This option applies exclusively to the SMB-W cluster.
-   * **ADS:** Enables using Alternate Data Streams (ADS) on a specified SMB share.\
-     Possible values: ON, OFF (default: ON).  For **macOS clients**, if ACLs are disabled (`acl=off`), set `enable-ADS` to `off`.  For **Windows clients**, when enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.
+2.  In the Add SMB Share dialog, set the following properties:
+
+    * **Name**: A meaningful name for the SMB share.
+    * **Filesystem**: The filesystem name that includes the directory to share. Select one from the list. A filesystem with Required Authentication set to ON cannot be used for SMB share.
+    * **Description**: A description or purpose of the SMB share.
+    * **Path**: A valid internal path, relative to the root, within the filesystem to expose the SMB share.
+
+    If required, select **Advanced** and set the following:
+
+    * **Encryption:** Select in-transit encryption enforcement of the share. The global cluster encryption settings can affect the actual encryption.
+    * **Direct Object Store Sync:** Enables immediate synchronization of files to the object store, bypassing time-based file retention policies. When enabled, newly created or modified files in the share are prioritized for release without delay.
+    * **Read Only:** Select to set the share as read-only.
+    * **Hidden:** Select if you want to hide the share so it is not visible when viewing the list of system shares.
+    * **Allow Guest Access:** Select if you want guests to access without authentication.
+    * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix). Not supported in SMB-W.
+    * **Files/Directories POSIX Mode Mask**: Set the new default file and directory permissions in a numeric (octal) format created through the share.
+    * **ACLs Enabled**: Enables or disables Windows Access-Control Lists (ACLs) for the share. When enabled, WEKA applies the selected Access Control Model. Only applicable for SMB-W.
+    * **Access Control Model:** Specifies the type of access control to use for the share. Options include POSIX, Windows, or Hybrid (default: POSIX). Hybrid ACL allows seamless interoperability between POSIX and Windows systems by exchanging permissions based on timestamps. The most recent permission, regardless of the system it originated from, takes precedence. Only applicable for SMB-W.
+    * **Case Sensitivity**: Enables or disables case sensitivity for the specified SMB share (default: ON). When enabled, the share distinguishes between files with the same name but different capitalization. This option applies exclusively to the SMB-W cluster.
+    * **ADS:** Enables using Alternate Data Streams (ADS) on a specified SMB share.\
+      Possible values: ON, OFF (default: ON).  For **macOS clients**, if ACLs are disabled (`acl=off`), set `enable-ADS` to `off`. For **Windows clients**, when enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.
 3. Select **Save**.
 
-<figure><img src="../../.gitbook/assets/4.4.1_wmng_smb_share_add_dialog.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Add_SMB_share.png" alt=""><figcaption></figcaption></figure>
 
 <details>
 

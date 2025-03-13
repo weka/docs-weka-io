@@ -122,48 +122,44 @@ To achieve HA, the WEKA system requires multiple network switches with servers c
 
 **Failover and load balancing**
 
-Network HA supports failover and failback mechanisms to maintain reliability and optimize load balancing. This functionality is supported for both Ethernet and InfiniBand networks. When one interface fails, the other seamlessly assumes the workload between the redundant interfaces of the same type (InfiniBand or Ethernet).
+Network HA ensures reliability and optimizes load balancing through failover and failback mechanisms. These mechanisms operate independently for InfiniBand and Ethernet networks. If an interface fails, another interface of the same type (InfiniBand or Ethernet) seamlessly takes over the workload.
 
 {% hint style="info" %}
-**Mixed-mode behavior:** In configurations where servers have one Ethernet and one InfiniBand connection, the cluster remains operational if a server loses one of its links, though that server will no longer participate in cluster-level operations. However, if **all** backends lose connectivity on either the Ethernet or InfiniBand medium, the cluster will pause I/O operations.
+**Mixed-mode behavior:** In a cluster with servers equipped with both Ethernet and InfiniBand connections, the system remains operational even if a single server loses one of its connections. However, that server is excluded from participating in cluster-level operations. The cluster will continue I/O operations unless all servers lose connectivity on **either** the Ethernet or InfiniBand network; in that case, I/O operations will pause.
 {% endhint %}
 
 **Traffic optimization**
 
 To optimize network traffic, the WEKA system can be configured to prioritize intra-switch communication over inter-switch links (ISL). This can be achieved by labeling connections using the `label` parameter in the `weka cluster container net add` command, which helps route data efficiently within the cluster.
 
-## RDMA and GPUDirect Storage
+## RDMA, RoCE, and GPUDirect Storage
 
-GPUDirect Storage establishes a direct data path between storage and GPU memory, bypassing unnecessary data copies through the CPU's memory. This approach allows a Direct Memory Access (DMA) engine near the NIC or storage to transfer data directly to or from GPU memory without involving the CPU or GPU.
+RDMA, RoCE, and GPUDirect Storage (GDS) establish a direct data path between storage and memory (GPU memory in case of GDS) bypassing unnecessary data copies through the operating system. This approach allows Direct Memory Access (DMA) through the NIC to transfer data directly to or from application or GPU memory bypassing the operating system.
 
-When RDMA and GPUDirect Storage are enabled, the WEKA system automatically uses the RDMA data path and GPUDirect Storage in supported environments. The system dynamically detects when RDMA is available, both in UDP and DPDK modes, and applies it to workloads that can benefit from RDMA (typically for I/O sizes of 32KB or larger for reads and 256KB or larger for writes).
+When RDMA and GDS are enabled, the WEKA system automatically uses the RDMA data path and GDS in supported environments. The system dynamically detects when RDMA is available—including in [RoCE v1](#user-content-fn-1)[^1], [RoCE v2](#user-content-fn-2)[^2], UDP, and DPDK modes—and applies it to workloads that can benefit from RDMA. Typically, RDMA is advantageous for I/O sizes of 32KB or larger for reads and 256KB or larger for writes.
 
-By leveraging RDMA and GPUDirect Storage, you can achieve enhanced performance. A UDP client, which doesn't require dedicating a core to the WEKA system, can deliver significantly higher performance. Additionally, a DPDK client can experience an extra performance boost, or you can assign fewer cores to the WEKA system while maintaining the same level of performance in DPDK mode.
+By leveraging RDMA and GDS, you can achieve enhanced performance. A UDP client, which doesn't require dedicating a core to the WEKA system, can deliver significantly higher performance. Additionally, a DPDK client can experience an extra performance boost, or you can assign fewer cores to the WEKA system while maintaining the same level of performance in DPDK mode.
 
-### Requirements and considerations for enabling RDMA and GPUDirect Storage
+### Requirements and considerations for enabling RDMA and GDS
 
-To enable RDMA and GPUDirect Storage technology, ensure the following requirements are met:
+To enable RDMA and GDS technology, ensure the following requirements are met:
 
 * **Cluster requirements**
   * **RDMA networking:** All servers in the cluster must support RDMA networking.
 * **Client requirements**
-  * **GPUDirect Storage:** The InfiniBand (IB) interfaces added to the NVIDIA GPUDirect configuration must support RDMA.
-  * **RDMA:** All InfiniBand Host Channel Adapters (HCAs) used by WEKA must support RDMA networking.
+  * **GDS:** The InfiniBand or Ethernet interfaces added to the GDS configuration must support RDMA networking.
+  * **RDMA networking:** All InfiniBand and Ethernet interfaces used by WEKA must support RDMA networking.
 * **Encrypted filesystems**
-  * RDMA and GPUDirect Storage are not utilized for encrypted filesystems. In these cases, the system reverts to standard I/O operations without RDMA or GPUDirect Storage.
-* **HCA requirements for RDMA networking**\
-  An HCA is considered to support RDMA networking if the following conditions are met:
-  * **For GPUDirect Storage:** The network must be InfiniBand. While using an Ethernet network may be possible, this configuration is not supported.
-  * **NIC compatibility:** The Network Interface Card (NIC) must support RDMA. Ensure the appropriate OFED version is installed. For more information, see [#networking-infiniband](../planning-and-installation/prerequisites-and-compatibility.md#networking-infiniband "mention").
+  * RDMA and GDS are not utilized for encrypted filesystems. In these cases, the system reverts to standard I/O operations without RDMA or GDS.
 
 #### Installation notes
 
-* **GPUDirect Storage:** Install the OFED with the `--upstream-libs` and `--dpdk` options.
-* **Kernel bypass:** GPUDirect Storage bypasses the kernel and does not use the page cache. However, standard RDMA clients still use the page cache.
+* **GDS:** Install the OFED with the `--upstream-libs` and `--dpdk` options.
+* **Kernel bypass:** GDS bypasses the kernel and does not use the page cache. However, standard RDMA clients still use the page cache.
 
 #### Unsupported configuration
 
-* **Mixed networking clusters:** RDMA and GPUDirect Storage are not supported in clusters using a mix of InfiniBand and Ethernet networking.
+* **Mixed networking clusters:** RDMA and GDS are not supported in clusters using a mix of InfiniBand and Ethernet networking.
 
 #### Verification
 
@@ -202,5 +198,13 @@ PROCESS ID  HOSTNAME  CONTAINER   IPS         STATUS  ROLES       NETWORK      C
 ```
 
 {% hint style="info" %}
-GPUDirect Storage is automatically enabled and detected by the system. To enable or disable RDMA networking for the cluster or a specific client, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+GDS is automatically enabled and detected by the system. To enable or disable RDMA networking for the cluster or a specific client, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
+
+**Related topic**
+
+[#networking](../planning-and-installation/prerequisites-and-compatibility.md#networking "mention") (in the **Prerequisites and compatibility** topic)
+
+[^1]: RoCE v1 (RDMA over Converged Ethernet) in a single subnet.
+
+[^2]: RoCE v2 (RDMA over Converged Ethernet) across multiple single subnets.

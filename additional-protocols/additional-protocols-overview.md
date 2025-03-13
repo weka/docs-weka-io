@@ -27,7 +27,7 @@ When establishing a Data Services container for background tasks, it is recommen
 
 <summary>.config_fs setting example</summary>
 
-![](../.gitbook/assets/wmng\_config\_fs.png)
+![](../.gitbook/assets/wmng_config_fs.png)
 
 **Related topics**
 
@@ -55,6 +55,8 @@ Dedicated protocol servers enhance the cluster's capabilities and address divers
 
 These dedicated protocol servers function as complete and permanent members of the WEKA cluster. They run essential processes to access WEKA filesystems and incorporate switches supporting the protocols.
 
+#### Benefits
+
 Dedicated protocol servers offer the following advantages:
 
 * **Optimized performance:** Leverage dedicated CPU resources for tailored and efficient performance, optimizing overall resource usage.
@@ -73,41 +75,44 @@ Dedicated protocol servers offer the following advantages:
        sudo weka version get 4.2.7.64                                      # Get the full software
        sudo weka version set 4.2.7.64                                      # Set a default version
        ```
-2.  **Create the WEKA container for running protocols:** The dedicated protocol servers must be flagged as permanent members of the WEKA cluster that can execute protocols. Although a backend typically fulfills this role, you can create containers on protocol servers with specified options using the following command example:\
+2. **Configure the WEKA container for running protocols:**
 
+* To configure the protocol containers with **DPDK** networking for optimal performance, run the following command:
 
-    {% code overflow="wrap" %}
-    ```bash
-    sudo weka local setup container --name frontend0 --only-frontend-cores --cores 1 --join-ips <EXISTING-BACKEND-IP> --allow-protocols true
-    ```
-    {% endcode %}
+{% code overflow="wrap" %}
+```bash
+sudo weka local setup container --name frontend0 --only-frontend-cores --cores 1 --join-ips <EXISTING-BACKEND-IP> --allow-protocols true --net=<NETWORK_INTERFACE>/<IP_ADDRESS>/<SUBNET_MASK>
+```
+{% endcode %}
 
-<details>
+{% hint style="info" %}
+Replace the network configuration parameters with values appropriate for your environment. For example: `--net=eth1/192.168.114.50/24`.
+{% endhint %}
 
-<summary><strong>Configure dedicated protocol</strong> servers <strong>for optimal performance</strong></summary>
+* To configure the protocol containers with **UDP** networking, run the following command:
 
-The execution of the `setup` command results in the creation of a local container named `frontend0`, providing access to the WEKA filesystems. Similar to setting up a backend container, this command necessitates specifying parameters such as `cores` and `net` options.
+{% code overflow="wrap" %}
+```
+sudo weka local setup container --name frontend0 --only-frontend-cores --cores 1 --join-ips <EXISTING-BACKEND-IP> --allow-protocols true --net=UDP
+```
+{% endcode %}
 
-While the example above illustrates using in-kernel UDP networking for simplicity, dedicated networking (DPDK) is strongly recommended for enhanced performance.
+3. **Verify protocol server configuration:** Confirm the dedicated protocol servers have joined the cluster:
 
-Specify the DPDK networking using a flag similar to `--net=eth1/192.168.114.XXX/24`. As with other DPDK interfaces in WEKA, an interface specified here is claimed by WEKA's DPDK implementation, making it unavailable to the Linux kernel for communication.
+```
+weka cluster containers
+```
 
-Ensure adequate network interfaces are available on your dedicated protocol servers, particularly if you intend to dedicate NICs to WEKA. This precaution ensures a smooth and optimized configuration aligning with WEKA's performance recommendations.
+Expected response example:
 
-</details>
+```bash
+CONTAINER ID  HOSTNAME        CONTAINER  IPS              STATUS  RELEASE  FAILURE DOMAIN  CORES  MEMORY   LAST FAILURE  UPTIME
+42            protocol-node1  frontend0  192.168.114.31   UP      4.2.7.64 AUTO            1      1.47 GB                0:09:54h
+43            protocol-node2  frontend0  192.168.114.115  UP      4.2.7.64 AUTO            1      1.47 GB                0:09:08h
+44            protocol-node3  frontend0  192.168.114.13   UP      4.2.7.64 AUTO            1      1.47 GB                0:04:46h
+```
 
-3.  **Check the dedicated protocol servers:** The servers join the cluster and can be verified using the command:
-
-    ```bash
-    weka cluster containers
-    #Expected response example
-    CONTAINER ID  HOSTNAME        CONTAINER  IPS              STATUS  RELEASE  FAILURE DOMAIN  CORES  MEMORY   LAST FAILURE  UPTIME
-    42            protocol-node1  frontend0  192.168.114.31   UP      4.2.7.64 AUTO            1      1.47 GB                0:09:54h
-    43            protocol-node2  frontend0  192.168.114.115  UP      4.2.7.64 AUTO            1      1.47 GB                0:09:08h
-    44            protocol-node3  frontend0  192.168.114.13   UP      4.2.7.64 AUTO            1      1.47 GB                0:04:46h
-    ```
-
-With dedicated protocol servers in place, the next step is to manage individual protocols.
+With dedicated protocol servers in place, proceed to manage individual protocols.
 
 **Related topics**
 

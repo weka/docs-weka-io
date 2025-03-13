@@ -4,11 +4,17 @@
 
 ### View clusters list
 
-Local WEKA Home provides monitoring and reporting capabilities for multiple clusters within your organization. When you access the Local WEKA Home interface, the initial screen displays a list of all the WEKA clusters in your environment that have been configured to send telemetry data to your Local WEKA Home instance.
+The Local WEKA Home interface provides comprehensive multi-cluster monitoring across your WEKA environment. The initial dashboard displays all registered WEKA clusters that report telemetry data to your Local WEKA Home instance.
 
 To view the cluster overview, select it from the list, or select the 3-dot icon on the right and select **Open in new tab**.
 
 <figure><img src="../../.gitbook/assets/clusters-page (1).png" alt=""><figcaption><p>Clusters page</p></figcaption></figure>
+
+**Clusters graphs view**
+
+Toggle between List and Graph views using the Graphs View selector. The Graph view presents analytical visualizations of cluster distribution by version, protocol usage, installation location, network link layer (IPv4/IPv6), OBS bucket type, and reporting status (WEKA Home-connected vs. dark site installations).
+
+<figure><img src="../../.gitbook/assets/lwh_clusters_graphs_view.png" alt=""><figcaption><p><strong>Clusters graphs view</strong></p></figcaption></figure>
 
 ### Filter clusters list
 
@@ -26,11 +32,32 @@ To download a report of all your clusters, select the **Download** icon.
 
 ## Overview
 
-The Overview displays multiple panels summarizing key cluster-wide information, including health, configuration, alerts, events, performance, and more.
-
-You can access the other view pages, such as events and filesystems, by either selecting them from the left menu or selecting the corresponding panel titles.
+The Overview page provides a consolidated dashboard of critical cluster-wide metrics and operational status. This interface displays multiple monitoring panels that facilitate rapid assessment of cluster health, configuration parameters, active alerts, system events, and performance metrics.
 
 <figure><img src="../../.gitbook/assets/cluster-overview-page.png" alt=""><figcaption><p>Cluster overview</p></figcaption></figure>
+
+#### Navigation
+
+Access specialized view pages by either:
+
+* Selecting the corresponding option in the left navigation menu.
+* Clicking directly on panel titles within the Overview dashboard.
+
+#### Panel functionality
+
+Each panel in the Overview dashboard serves as both a summary display and an entry point to more detailed information:
+
+**Alerts panel**
+
+The Alerts panel displays severity-categorized cluster alerts with interactive drill-down capabilities. Click any alert to access complete diagnostic details including severity classification, timestamp, condition description, and prescribed remediation steps.
+
+**Hardware Panel** (example of drill-down functionality)
+
+The Hardware panel provides visibility into physical and logical cluster components through the Backends and Clients tabs, displaying servers, containers, processes, drives, OBS, and link layer with relevant operational metrics. Each component supports drill-down functionality for detailed diagnostics.
+
+<figure><img src="../../.gitbook/assets/LWH_overview_panels.gif" alt=""><figcaption><p>Panel functionality</p></figcaption></figure>
+
+Additional panels provide similar drill-down functionality for their respective domains, following the same interaction pattern demonstrated in the Alerts and Hardware panels.
 
 ## Events
 
@@ -133,6 +160,20 @@ You can further refine your task list and customize the display order of informa
 To access detailed information about a specific task, select its row to view it in JSON format.
 
 <figure><img src="../../.gitbook/assets/cluster-tasks.png" alt=""><figcaption><p>Tasks view</p></figcaption></figure>
+
+## Snapshot Locators
+
+The Snapshot Locators page displays a list of snapshot locators, which serve as unique references to snapshots stored in an object store. These locators are essential for restoring filesystems, managing snapshots, and recovering data. Each locator enables the system to access and manipulate the corresponding snapshot data.
+
+The page presents the following details in a table format for each locator:
+
+* Locator: The unique identifier of the snapshot in the object store.
+* Snapshot: The name or ID of the associated snapshot.
+* Filesystem: The filesystem from which the snapshot was created.
+* OBS Site: The object store site where the snapshot is stored.
+* Event Time: The timestamp of when the snapshot was created or modified.
+
+<figure><img src="../../.gitbook/assets/LWH_Snapshot_Locators.png" alt=""><figcaption><p>Snapshot Locators</p></figcaption></figure>
 
 ## Download Usage Report and Analytics
 

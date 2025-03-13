@@ -20,7 +20,9 @@ After setting up the Data Service container, you can manage it like any other co
 
 **Before you begin**
 
-1. Ensure the server where you’re adding this container has a minimum of 5.5 GB of memory available for the container’s use.
+1. Ensure the server where you’re adding this container has sufficient memory available:
+   * 3.5 GB if no dedicated core is specified.
+   * 5.5 GB if a dedicated core is specified.
 2. The Data Service containers require a persistent 22 GB filesystem for intermediate global configuration data. Do one of the following:
    * If a configuration filesystem for the protocol containers exists (typically named `.config_fs`), use it and expand its size by 22 GB. See [#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations](../../additional-protocols/additional-protocols-overview.md#dedicated-filesystem-requirement-for-cluster-wide-persistent-protocol-configurations "mention")
    * If a configuration filesystem does not exist, create a dedicated 22 GB configuration filesystem for the Data Service containers.
@@ -42,35 +44,17 @@ By default, the Data Service containers share the core of the Management process
 
 **Procedure**
 
-1. **Identify the leader IP address:** Run the following command:
-
-```
-weka cluster process --leader'. This IP is used in the join-ips parameter
-```
-
-<details>
-
-<summary>Example</summary>
-
-```bash
-$ weka cluster process --leader
-PROCESS ID  HOSTNAME        CONTAINER  IPS             STATUS  RELEASE  ROLES       NETWORK  CPU  MEMORY  UPTIME    LAST FAILURE
-60          DatSphere-1     drives0    10.108.234.164  UP      4.3.2    MANAGEMENT  UDP           N/A     1:21:05h
-```
-
-</details>
-
-2. **Set up the Data Services container:** Run the following command:
+1. **Set up the Data Services container:** Run the following command:
 
 {% code overflow="wrap" %}
 ```bash
-weka local setup container --name <container_name> --base-port <base-port> --join-ips <leader-IP>  --only-dataserv-cores --memory 1.5GB --allow-mix-setting
+weka local setup container --name <container_name> --base-port <base-port> --join-ips <management-ip> --only-dataserv-cores --allow-mix-setting
 ```
 {% endcode %}
 
 Parameters:
 
-<table><thead><tr><th width="255">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The Data Services container name. Set<code>dataserv0</code> to avoid confusion.</td></tr><tr><td><code>only-dataserv-cores</code>*</td><td>Creates a Data Services container. This parameter is mandatory.</td></tr><tr><td><code>base-port</code></td><td>If a base-port is not specified, the Data Services container may still initialize as it attempts to allocate an available port range and could succeed. However, for optimal operation, it is recommended to provide the base port externally.</td></tr><tr><td><code>join-ips</code>*</td><td>The cluster's leader IP address. This parameter is mandatory to join the Data Services container to the cluster.</td></tr><tr><td><code>management-ips</code></td><td>This is optional. If not provided, it automatically takes the management IP of the server.</td></tr><tr><td><code>memory</code></td><td>Configure the container memory to be allocated for huge pages. It is recommended to set it to 1.5 GB.</td></tr></tbody></table>
+<table><thead><tr><th width="255">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>The Data Services container name. Set<code>dataserv0</code> to avoid confusion.</td></tr><tr><td><code>only-dataserv-cores</code>*</td><td>Creates a Data Services container. This parameter is mandatory.</td></tr><tr><td><code>base-port</code></td><td>If a base-port is not specified, the Data Services container may still initialize as it attempts to allocate an available port range and could succeed. However, for optimal operation, it is recommended to provide the base port externally.</td></tr><tr><td><code>join-ips</code>*</td><td>Specify the management IP of one of the servers in the cluster to join.</td></tr><tr><td><code>management-ips</code></td><td>This is optional. If not provided, it automatically takes the management IP of the server.</td></tr><tr><td><code>memory</code></td><td>Configure the container memory to be allocated for huge pages. It is recommended to set it to 1.5 GB.</td></tr><tr><td><code>allow-mix-setting</code></td><td>This option enables using specified core IDs, even when containers with AUTO core ID allocation run on the same server. It is required if the core allocation is not explicitly specified.</td></tr></tbody></table>
 
 <details>
 
@@ -78,7 +62,7 @@ Parameters:
 
 {% code overflow="wrap" %}
 ```bash
-$ weka local setup container --name dataserv0 --base-port 14400 --join-ips 10.108.234.164  --only-dataserv-cores --memory 1.5GB --allow-mix-setting
+$ weka local setup container --name dataserv0 --base-port 14400 --join-ips 10.108.234.164  --only-dataserv-cores --allow-mix-setting
 Version 4.3.2 is already downloaded.
 Created Weka container named dataserv0
 Preparing version 4.3.2 of container dataserv0
@@ -92,7 +76,7 @@ Container "dataserv0" is ready (pid = 66904)
 
 </details>
 
-3. **Verify the Data Services container is up**: Run `weka local ps`.
+2. **Verify the Data Services container is up**: Run `weka local ps`.
 
 <details>
 
@@ -109,7 +93,7 @@ frontend0  Running  False     1:21:15h  True        True        14200  45680  Re
 
 </details>
 
-4. **Verify the Data Services container is visible in the cluster:** Run `weka cluster container`.
+3. **Verify the Data Services container is visible in the cluster:** Run `weka cluster container`.
 
 <details>
 
@@ -140,7 +124,7 @@ CONTAINER ID  HOSTNAME        CONTAINER  IPS             STATUS  RELEASE  FAILUR
 
 </details>
 
-5. **Verify the data services and management processes have joined the cluster:** Run `weka cluster process`.
+4. **Verify the data services and management processes have joined the cluster:** Run `weka cluster process`.
 
 <details>
 
