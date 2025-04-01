@@ -50,9 +50,7 @@ When mounting a filesystem on a cluster client, you have two options: **read cac
 
 [adding-clients.md](../../install/aws/weka-installation-on-aws-using-the-cloud-formation/adding-clients.md "mention") (on AWS deployment)
 
-[add-clients.md](../../install/weka-installation-on-azure/add-clients.md "mention") (on Azure deployment)
-
-[add-clients.md](../../install/weka-installation-on-azure/add-clients.md "mention") (on GCP deployment)
+[add-clients.md](../../install/weka-installation-on-gcp/add-clients.md "mention") (on GCP deployment)
 
 ***
 

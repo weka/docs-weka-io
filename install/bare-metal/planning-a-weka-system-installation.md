@@ -141,11 +141,11 @@ If the client networking is defined as UDP, dedicated CPU core resources are not
 
 WEKA backend servers support connections to both InfiniBand and Ethernet networks, using [compatible network interface cards](../prerequisites-and-compatibility.md#networking-ethernet) (NICs). When deploying backend servers, ensure that all servers in the WEKA system are connected using the same network technology for each type of network.
 
-If both InfiniBand and Ethernet connections are configured, the WEKA system prioritizes InfiniBand links for data traffic. However, if there is a connectivity issue with the InfiniBand network, the system automatically switches to using Ethernet links as a fallback. Clients can connect to the WEKA system over either InfiniBand or Ethernet.
+InfiniBand connections are prioritized over Ethernet links for data traffic. Both network types must be operational to ensure system availability, so consider adding redundant ports for each network type.
 
-{% hint style="info" %}
+Clients can connect to the WEKA system over either InfiniBand or Ethernet.
+
 A network port can be dedicated exclusively to the WEKA system or shared between the WEKA system and other applications.
-{% endhint %}
 
 ### Clients
 

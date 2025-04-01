@@ -176,7 +176,7 @@ Adhere to the following considerations when choosing the adapters:
 * [**IOMMU**](#user-content-fn-4)[^4] **support:** WEKA automatically detects and enables IOMMU for the server and PCI devices. Manual enablement is not required.
 * **Shared networking**\
   Also known as single IP, allows a single IP address to be assigned to the Physical Function (PF) and shared across multiple Virtual Functions (VFs).
-* **Mixed networks:** This term denotes a configuration in which a WEKA cluster is interfaced with both InfiniBand and Ethernet networks. In the event of dual connections, the system gives precedence to the InfiniBand links for managing WEKA traffic, resorting to the Ethernet links only when complications occur with the InfiniBand network. It’s important to note that in a mixed network cluster, the activation of RDMA (Remote Direct Memory Access) is not possible.
+* **Mixed networks:** A mixed network configuration refers to a setup where a WEKA cluster connects to both InfiniBand and Ethernet networks. RDMA is not supported in mixed networks.
 * **IP Addressing for dataplane NICs:** Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
 * **WEKA peer connectivity requires NAT-free networking**\
   WEKA requires visibility and connectivity to all peers, without interference from networking technologies like network address translation, or NAT.

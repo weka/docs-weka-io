@@ -13,7 +13,6 @@ In cloud environments, setting up protocol services on existing backend servers 
 For more details, refer to the relevant deployment section:
 
 * [deployment-on-aws-using-terraform.md](../install/aws/weka-installation-on-aws-using-terraform/deployment-on-aws-using-terraform.md "mention")
-* [deployment-on-azure-using-terraform.md](../install/weka-installation-on-azure/deployment-on-azure-using-terraform.md "mention")
 * [deployment-on-gcp-using-terraform.md](../install/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md "mention")
 {% endhint %}
 
@@ -25,7 +24,7 @@ It is required to have a dedicated filesystem that stores persistent protocol co
 
 <summary>.config_fs setting example</summary>
 
-![](../.gitbook/assets/wmng\_config\_fs.png)
+![](../.gitbook/assets/wmng_config_fs.png)
 
 **Related topic**
 

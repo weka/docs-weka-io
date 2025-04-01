@@ -29,6 +29,13 @@ Welcome to the WEKA Documentation Portal, your guide to the latest WEKA version.
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
 
+## **Get answers from WEKA documentation with Sevii AI**
+
+Sevii AI quickly delivers answers from WEKA documentation. Type your question and click <img src=".gitbook/assets/sevii-button.png" alt="" data-size="line">.\
+For the best results, ask clear, context-rich questions.
+
+{% @sevii-ai/sevii-gitbook %}
+
 ## About WEKA documentation
 
 This portal encompasses all documentation essential for comprehending and operating the WEKA system. It covers a range of topics:
@@ -59,10 +66,10 @@ This portal encompasses all documentation essential for comprehending and operat
 For maintenance and troubleshooting articles, search the WEKA Knowledge Base in the [WEKA support portal](https://support.weka.io/s/) or contact the [Customer Success Team](support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 {% endhint %}
 
-## Conventions
+### Conventions
 
 The documentation marks the CLI mandatory parameters with an asterisk (\*).
 
-## Documentation feedback
+### Documentation feedback
 
-We are committed to delivering top-notch documentation and value your feedback. If you have comments or suggestions, email us at [documentation@weka.io](mailto:documentation@weka.io). When providing feedback, include the document version, topic title, and your suggestions for improvement. For technical questions, contact our [Customer Success Team](support/getting-support-for-your-weka-system.md).
+We welcome your feedback to improve our documentation. Include the document version and topic title with your suggestions and email them to [documentation@weka.io](mailto:documentation@weka.io). For technical inquiries, contact our [Customer Success Team](support/getting-support-for-your-weka-system.md). Thank you for helping us maintain high-quality resources.
