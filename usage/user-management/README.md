@@ -18,13 +18,13 @@ Every Weka system user has one of the following defined roles:
 * **S3:** A user to run S3 commands and APIs. This user can operate within the limits of the S3 IAM policy attached to it. An S3 user can create S3 service accounts with a specific policy.
 * **Regular**: A user that is only used for mounting filesystems. This user can sign in to obtain an access token and change the password but cannot access the GUI or run other CLI/API commands.
 
-## Cluster Admin **(**the first user)
+## Cluster Admin **(**&#x74;he first user)
 
 By default, when a Weka cluster is created, a first user with an `admin` username and password is created. A prompt to change the password on the first login is displayed. This user has a Cluster Admin role, which allows running all commands.&#x20;
 
 Cluster Admin users are responsible for managing the cluster as a whole. When using multiple organizations, there is a difference between managing a single organization and managing the cluster because managing the cluster also covers the management of the cluster hardware and resources. These are the additional permissions given to a Cluster Admin compared to an Organization Admin.
 
-A Weka system cluster must have at least one defined **internal** Cluster Admin user. However**,** it is possible to create a Cluster Admin user with a different name and delete the default admin user, if required.
+A Weka system cluster must have at least one defined **internal** Cluster Admin user. Howeve&#x72;**,** it is possible to create a Cluster Admin user with a different name and delete the default admin user, if required.
 
 ### Cluster Admin role privileges
 
@@ -53,6 +53,6 @@ Additionally, the following restrictions apply to Cluster Admin users to avoid s
 
 **Related topics**
 
-****[user-management.md](user-management.md "mention")****
+[user-management.md](user-management.md "mention")
 
-****[user-management-1.md](user-management-1.md "mention")****
+[user-management-1.md](user-management-1.md "mention")

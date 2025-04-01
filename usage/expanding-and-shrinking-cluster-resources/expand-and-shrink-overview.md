@@ -21,7 +21,7 @@ In the Weka system, it is possible to expand and shrink a cluster as follows:
 {% hint style="info" %}
 **Note:** The cluster expansion process described here is only applicable to a homogeneous Weka system configuration, which is highly recommended. For non-homogeneous Weka system configurations, contact the Weka Support Team.
 
-For AWS deployments, _\*\*_CloudFormation should only be used for initial deployment, and not for expanding & shrinking cluster resources.
+For AWS deployments, _\*\*_&#x43;loudFormation should only be used for initial deployment, and not for expanding & shrinking cluster resources.
 {% endhint %}
 
 ## Expand or shrink plan

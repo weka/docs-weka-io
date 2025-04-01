@@ -23,7 +23,7 @@ Using the GUI, you can:
 
 ## **Configure the SMB cluster** <a href="#configure-the-smb-cluster" id="configure-the-smb-cluster"></a>
 
-Define the Weka system hosts that participate in the SMB cluster**.**
+Define the Weka system hosts that participate in the SMB cluste&#x72;**.**
 
 **Procedure**
 
@@ -31,7 +31,7 @@ Define the Weka system hosts that participate in the SMB cluster**.**
 2. From the Protocols pane, select **SMB**.
 3. On the Configuration tab, select **Configure**.
 
-![SMB cluster configuration tab](../../.gitbook/assets/wmng\_smb\_configure\_button.png)
+![SMB cluster configuration tab](../../.gitbook/assets/wmng_smb_configure_button.png)
 
 4\. In the SMB Cluster Configuration dialog, set the following properties:
 
@@ -55,11 +55,11 @@ In AWS installations, it is not possible to set a list of SMB service addresses.
 
 5\. Select **Save**.
 
-![SMB Cluster Configuration dialog](../../.gitbook/assets/wmng\_smb\_configure\_dialog.gif)
+![SMB Cluster Configuration dialog](../../.gitbook/assets/wmng_smb_configure_dialog.gif)
 
 Once the system completes the configuration process, the host statuses change from not ready (red X icon) to ready (green V icon), as shown in the following example:
 
-![SMB cluster configuration example](../../.gitbook/assets/wmng\_smb\_configure\_result.png)
+![SMB cluster configuration example](../../.gitbook/assets/wmng_smb_configure_result.png)
 
 ## Edit the SMB cluster <a href="#edit-the-smb-cluster" id="edit-the-smb-cluster"></a>
 
@@ -89,7 +89,7 @@ To enable the Weka storage nodes to join the AD domain, verify that the AD serve
 
 1. In the SMB Cluster Configuration, select **Join**.
 
-![Join the SMB cluster in the Active Directory](<../../.gitbook/assets/wmng\_smb\_join\_ad\_button (1).png>)
+![Join the SMB cluster in the Active Directory](<../../.gitbook/assets/wmng_smb_join_ad_button (1).png>)
 
 
 
@@ -99,7 +99,7 @@ To enable the Weka storage nodes to join the AD domain, verify that the AD serve
 * **Server**: (Optional) Weka identifies the AD server automatically based on the AD name. You do not need to set the server name. In some cases, if required, specify the AD server.
 * **Computers Org. Unit**: The default organization unit is the Computers directory. You can define any other directory to connect to in Active Directory, such as SMB servers or Corporate computers.
 
-![Join Active Directory dialog](../../.gitbook/assets/wmng\_smb\_join\_ad\_dialog.png)
+![Join Active Directory dialog](../../.gitbook/assets/wmng_smb_join_ad_dialog.png)
 
 Once the SMB cluster joins in the Active Directory, the join status next to the domain changes to **Joined**.
 
@@ -115,7 +115,7 @@ Deleting the SMB cluster resets its configuration data.
 
 1. In the SMB Cluster Configuration, select the **trash** icon.
 
-![Delete the SMB cluster configuration](../../.gitbook/assets/wmng\_smb\_cluster\_remove.png)
+![Delete the SMB cluster configuration](../../.gitbook/assets/wmng_smb_cluster_remove.png)
 
 2\. In the SMB Configuration Reset message, select **Reset**.
 
@@ -130,7 +130,7 @@ The Shares tab displays the list of SMB shares that are already created in the s
 3. Select the **Shares** tab.\
    You can filter the list using any column in the table.
 
-![SMB shares list](../../.gitbook/assets/wmng\_smb\_list\_shares.png)
+![SMB shares list](../../.gitbook/assets/wmng_smb_list_shares.png)
 
 ## Add an SMB share <a href="#add-an-smb-share" id="add-an-smb-share"></a>
 
@@ -138,7 +138,7 @@ The Shares tab displays the list of SMB shares that are already created in the s
 
 1. In the Shares tab, select **+Create**.
 
-![Create an SMB share](../../.gitbook/assets/wmng\_smb\_share\_create\_button.png)
+![Create an SMB share](../../.gitbook/assets/wmng_smb_share_create_button.png)
 
 2\. In the Add SMB Share dialog, set the following properties:
 
@@ -156,7 +156,7 @@ The Shares tab displays the list of SMB shares that are already created in the s
 
 3\. Select **Save**.
 
-![Add SMB Share dialog](../../.gitbook/assets/wmng\_smb\_share\_add\_dialog.png)
+![Add SMB Share dialog](../../.gitbook/assets/wmng_smb_share_add_dialog.png)
 
 ## Edit an SMB share <a href="#edit-an-smb-share" id="edit-an-smb-share"></a>
 
@@ -178,7 +178,7 @@ You can update some of the SMB share settings. These include encryption, hiding 
 
 1. In the Shares tab, select the three dots of the share and select **Remove**.
 
-![Remove an SMB . share](../../.gitbook/assets/wmng\_smb\_share\_remove.png)
+![Remove an SMB . share](../../.gitbook/assets/wmng_smb_share_remove.png)
 
 2\. In the confirmation message that appears, select **Confirm**.\
 &#x20;   The removed share no longer appears in the SMB Shares list.

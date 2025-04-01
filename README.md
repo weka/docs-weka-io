@@ -16,7 +16,7 @@ This portal contains all the documentation necessary for understanding and worki
 
 **Performance:** A description and results of the FIO performance tests on the WEKA filesystem.
 
-**WEKA filesystems & object stores:** A review of the role and management of filesystems, object stores**,** filesystem groups, and key-management systems in WEKA system configurations.
+**WEKA filesystems & object stores:** A review of the role and management of filesystems, object store&#x73;**,** filesystem groups, and key-management systems in WEKA system configurations.
 
 **Additional protocols:** Review other supported protocols, including NFS, SMB, and S3, for accessing data stored in a WEKA filesystem.
 
