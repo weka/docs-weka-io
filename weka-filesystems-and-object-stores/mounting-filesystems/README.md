@@ -28,7 +28,7 @@ In addition, you can mount a filesystem using **fstab** or **autofs**.
 
 [#mount-a-filesystem-using-autofs](./#mount-a-filesystem-using-autofs "mention")
 
-[mount-filesystems-from-multiple-clusters-on-a-single-client.md](mount-filesystems-from-multiple-clusters-on-a-single-client.md "mention")
+[mount-fs-from-scmc.md](mount-fs-from-scmc.md "mention")
 
 ***
 

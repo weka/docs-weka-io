@@ -109,7 +109,7 @@
   * [Transition between tiered and SSD-only filesystems](weka-filesystems-and-object-stores/tiering/transition-between-tiered-and-ssd-only-filesystems.md)
   * [Manual fetch and release of data](weka-filesystems-and-object-stores/tiering/pre-fetching-from-object-store.md)
 * [Mount filesystems](weka-filesystems-and-object-stores/mounting-filesystems/README.md)
-  * [Mount filesystems from multiple clusters on a single client](weka-filesystems-and-object-stores/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)
+  * [Mount filesystems from Single Client to Multiple Clusters (SCMC)](weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md)
   * [Manage authentication across multiple clusters with connection profiles](weka-filesystems-and-object-stores/mounting-filesystems/manage-authentication-across-multiple-clusters-with-connection-profiles.md)
 * [Snapshots](weka-filesystems-and-object-stores/snapshots/README.md)
   * [Manage snapshots using the GUI](weka-filesystems-and-object-stores/snapshots/snapshots.md)
@@ -150,6 +150,7 @@
     * [Example: How to use Splunk to audit S3](additional-protocols/s3/audit-s3-apis/audit-s3-apis-1.md)
   * [S3 supported APIs and limitations](additional-protocols/s3/s3-limitations.md)
   * [S3 examples using boto3](additional-protocols/s3/s3-examples-using-boto3.md)
+  * [Access S3 using AWS CLI](additional-protocols/s3/access-s3-using-aws-cli.md)
 * [Manage the SMB protocol](additional-protocols/smb-support/README.md)
   * [Manage SMB using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
   * [Manage SMB using the CLI](additional-protocols/smb-support/smb-management-using-the-cli.md)
@@ -168,6 +169,11 @@
 * [Manage Cross-Origin Resource Sharing](security/manage-cross-origin-resource-sharing.md)
 * [Manage CIDR-based security policies](security/manage-cidr-based-security-policies.md)
 * [Manage login banner](security/manage-the-login-banner.md)
+
+## Licensing
+
+* [License overview](licensing/overview.md)
+* [Classic license](licensing/classic-licensing.md)
 
 ## Operation Guide
 
@@ -203,11 +209,6 @@
 * [Upgrade WEKA versions](operation-guide/upgrading-weka-versions.md)
 * [Manage WEKA drivers](operation-guide/manage-weka-drivers.md)
 
-## Licensing
-
-* [License overview](licensing/overview.md)
-* [Classic license](licensing/classic-licensing.md)
-
 ## Monitor the WEKA Cluster
 
 * [Deploy monitoring tools using the WEKA Management Station (WMS)](monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md)
@@ -223,23 +224,19 @@
 * [Set up the WEKAmon external monitoring](monitor-the-weka-cluster/external-monitoring.md)
 * [Set up the SnapTool external snapshots manager](monitor-the-weka-cluster/snapshot-management.md)
 
-## Support
+## Kubernetes
 
-* [Get support for your WEKA system](support/getting-support-for-your-weka-system.md)
-* [Diagnostics management](support/diagnostics-management/README.md)
-  * [Traces management](support/diagnostics-management/traces-management/README.md)
-    * [Manage traces using the GUI](support/diagnostics-management/traces-management/manage-traces-using-the-gui.md)
-    * [Manage traces using the CLI](support/diagnostics-management/traces-management/manage-traces-using-the-cli.md)
-  * [Protocols debug level management](support/diagnostics-management/protocols-debug-level-management/README.md)
-    * [Manage protocols debug level using the GUI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-gui.md)
-    * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
-  * [Diagnostics data management](support/diagnostics-management/diagnostics-utility.md)
+* [Multi-tenancy in WEKA](kubernetes/multi-tenancy-in-weka.md)
+* [WEKA Operator deployment](kubernetes/weka-operator-deployment.md)
+* [WEKA Operator day-2 operations](kubernetes/weka-operator-day-2-operations.md)
 
-## Best Practice Guides
+## WEKApod
 
-* [WEKA and Slurm integration](best-practice-guides/weka-and-slurm-integration/README.md)
-  * [Avoid conflicting CPU allocations](best-practice-guides/weka-and-slurm-integration/avoid-conflicting-cpu-allocations.md)
-* [Storage expansion best practice](best-practice-guides/storage-expansion-best-practice.md)
+* [WEKApod Data Platform Appliance overview](wekapod/overview.md)
+* [WEKApod servers overview](wekapod/server-overview.md)
+* [Rack installation](wekapod/rack-installation.md)
+* [WEKApod initial system setup and configuration](wekapod/setup.md)
+* [WEKApod support process](wekapod/support.md)
 
 ## AWS Solutions
 
@@ -252,19 +249,23 @@
 
 * [Azure CycleCloud for SLURM and WEKA Integration](azure-solutions/azure-cyclecloud-for-slurm-and-weka-integration.md)
 
-## WEKApod
+## Best Practice Guides
 
-* [WEKApod Data Platform Appliance overview](wekapod/overview.md)
-* [WEKApod servers overview](wekapod/server-overview.md)
-* [Rack installation](wekapod/rack-installation.md)
-* [WEKApod initial system setup and configuration](wekapod/setup.md)
-* [WEKApod support process](wekapod/support.md)
+* [WEKA and Slurm integration](best-practice-guides/weka-and-slurm-integration/README.md)
+  * [Avoid conflicting CPU allocations](best-practice-guides/weka-and-slurm-integration/avoid-conflicting-cpu-allocations.md)
+* [Storage expansion best practice](best-practice-guides/storage-expansion-best-practice.md)
 
-## Kubernetes
+## Support
 
-* [Multi-tenancy in WEKA](kubernetes/multi-tenancy-in-weka.md)
-* [WEKA Operator deployment](kubernetes/weka-operator-deployment.md)
-* [WEKA Operator day-2 operations](kubernetes/weka-operator-day-2-operations.md)
+* [Get support for your WEKA system](support/getting-support-for-your-weka-system.md)
+* [Diagnostics management](support/diagnostics-management/README.md)
+  * [Traces management](support/diagnostics-management/traces-management/README.md)
+    * [Manage traces using the GUI](support/diagnostics-management/traces-management/manage-traces-using-the-gui.md)
+    * [Manage traces using the CLI](support/diagnostics-management/traces-management/manage-traces-using-the-cli.md)
+  * [Protocols debug level management](support/diagnostics-management/protocols-debug-level-management/README.md)
+    * [Manage protocols debug level using the GUI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-gui.md)
+    * [Manage protocols debug level using the CLI](support/diagnostics-management/protocols-debug-level-management/manage-protocols-debug-level-using-the-cli.md)
+  * [Diagnostics data management](support/diagnostics-management/diagnostics-utility.md)
 
 ## Appendices
 

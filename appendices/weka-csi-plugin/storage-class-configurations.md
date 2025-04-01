@@ -135,7 +135,7 @@ Filesystem names used for k8s (defined in the storage classes) must be unique ac
 
 **Related topic**
 
-[mount-filesystems-from-multiple-clusters-on-a-single-client.md](../../weka-filesystems-and-object-stores/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md "mention")
+[mount-fs-from-scmc.md](../../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention")
 
 ## Configure directory-backed StorageClass
 

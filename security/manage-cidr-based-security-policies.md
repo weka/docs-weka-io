@@ -9,7 +9,7 @@ description: >-
 
 ## Overview
 
-CIDR[^1]-based policies enable administrators to control access to WEKA clusters by setting rules that allow or deny connections based on client IP address ranges. This network-based restriction provides greater control over which servers or devices can access the cluster, offering a more flexible alternative to traditional user authentication. Policies are managed at the organization level and filesystem for the root organization, ensuring only authorized clients can connect.
+CIDR[^1]-based policies allow administrators to control access to WEKA cluster management and filesystems over POSIX clients by specifying permitted and restricted IP address ranges. This network-level security measure complements traditional user authentication, providing organizations with finer control over cluster access.
 
 **Key benefits:**
 
@@ -21,8 +21,7 @@ CIDR[^1]-based policies enable administrators to control access to WEKA clusters
 
 When implementing CIDR-based security policies in WEKA, consider the following:
 
-* **Role requirement:** Only users with the **Cluster Admin** role can manage security policies, ensuring that access control remains in the hands of authorized administrators.
-* **Applicable to all organizations and filesystems**: CIDR-based security policies apply to all organizations and filesystems, ensuring centralized control across the cluster.
+* **Role requirement:** Only users with the **ClusterAdmin** role can manage security policies for the root organization. For non-root organizations, only the **OrgAdmin** can manage security policies.
 * **Active mounts remain unaffected**: Client revocation is disabled, meaning any changes to policies do not impact active mounts. This ensures ongoing connections remain stable until they are manually disconnected.
 * **Policy order matters**: The order in which policies are attached determines the filtering sequence. For example, if the first policy denies access from IP1 and IP2, and the second policy allows IP1, the first policy takes precedence, overriding subsequent policies. Always review the order to ensure the desired access control.
 * **Default access behavior**: Clients without a related policy are allowed by default. To secure your organization or filesystem, always include a final policy that denies access to all other IPs after attaching the necessary policies.
@@ -99,7 +98,7 @@ Example:
 
 {% code overflow="wrap" %}
 ```
-weka security policy create admin_network --action allow --ips 10.1.0.0/16,10.2.1.0/24 --role clusteradmin
+weka security policy create admin_network --action allow --ips 10.1.0.0/16,10.2.1.0/24 --roles clusteradmin
 ```
 {% endcode %}
 
@@ -260,7 +259,6 @@ Once security policies are defined, you can perform the following tasks at the o
 * Remove all security policies from a specified organization.
 * Attach new security policies to a specified organization.
 * Detach security policies from a specified organization.
-* Revoke all API tokens from an organization.
 
 ### List the organization security policies
 
@@ -335,18 +333,6 @@ weka org security policy detach <org>[<policies>]...
 **Parameters**
 
 <table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from the organization.</td></tr></tbody></table>
-
-### Revoke all API tokens from an organization
-
-Use the following command to revoke all API tokens from an organization.
-
-```
-weka org security revoke-tokens <org>
-```
-
-**Parameters**
-
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr></tbody></table>
 
 ## Manage filesystem security policies using the CLI
 

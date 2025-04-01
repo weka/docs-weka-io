@@ -96,7 +96,7 @@ A hot spare is reserved capacity designed to handle data rebuilds while maintain
 All failure domains actively contribute to data storage, and the hot spare capacity is evenly distributed among them. While a higher hot spare count requires additional hardware to maintain the same net capacity, it provides greater flexibility for IT maintenance and hardware replacements.
 
 {% hint style="info" %}
-The default hot spare setting in a WEKA cluster is 1 for 6 failure domains and 2 for more⁠⁠. The hot spare can be configured during cluster formation and reconfigured anytime.
+If not configured, the hot spare is automatically set to 1.
 {% endhint %}
 
 ## WEKA filesystem overhead

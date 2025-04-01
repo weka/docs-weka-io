@@ -298,7 +298,7 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
 * **NICs bonding:**
   * Supports bonding dual ports on the same NVIDIA Mellanox NIC using mode 4 (LACP) to enhance redundancy and performance.
 * **IEEE 802.1Q VLAN encapsulation:**
-  * Tagged VLANs are not supported.
+  * Supports VLAN tagging with a single VLAN tag on NVIDIA Mellanox NICs.
 * **VXLAN:**
   * Virtual Extensible LANs are not supported.
 * **DPDK backends and clients using NICs supporting shared networking (single IP):**

@@ -27,6 +27,9 @@ The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minim
   * Version 4.4.Y must have been released after the 4.2.X LTS release
   * All intermediate versions must be supported versions
 * Confirm specific version compatibility at [get.weka.io](https://get.weka.io).
+* Make sure the client's version is compatible with the backend upgrade version you intend to deploy.
+  * The `client-target-version` parameter must be consistently defined and identical across all clusters within a Single Client Multiple Clusters (SCMC). \
+    See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
 
 ### **Upgrade example**
 
@@ -337,7 +340,7 @@ The minimum source version for client upgrades is 4.3.X.
 #### Stateless client upgrade options
 
 * If a stateless client is mounted on a single cluster, it is automatically upgraded to the backend version after rebooting, or a complete `umount` and `mount` is performed.
-* If a stateless client is mounted on multiple clusters, the client container version is the same as the `client-target-version` in the cluster (see [Mount filesystems from multiple clusters on a single client](../weka-filesystems-and-object-stores/mounting-filesystems/mount-filesystems-from-multiple-clusters-on-a-single-client.md)).
+* If a stateless client is mounted on multiple clusters, the client container version is the same as the `client-target-version` in the cluster (see [Mount filesystems from multiple clusters on a single client](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md)).
 * Stateless clients can also be upgraded manually.
 * Use the `--client-only` flag in the `weka version get` command to ensure that only the essential components relevant to the stateless client operation are downloaded, excluding non-relevant packages.
 * To limit the display of versions unless the complete set of components is present, use the `--full` flag with the `weka version` command  This provides you with finer control over version information visibility.

@@ -20,8 +20,8 @@ Refer to the Appendix: [bios-tool.md](../../appendices/bios-tool.md "mention") f
 
 **Required packages**
 
-| RHEL and derivatives                                                                                                      | Ubuntu                                                                                                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| RHEL and derivatives                                                                                                      | Ubuntu                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | <pre><code>elfutils-libelf-devel
 gcc
 glibc-headers
@@ -37,7 +37,6 @@ linux-headers-$(uname -r)
 gcc
 make
 perl
-<a data-footnote-ref href="#user-content-fn-1">python2-minimal</a>
 rpcbind
 xfsprogs
 sssd
@@ -130,5 +129,3 @@ If a failure occurs during the WEKA software installation process, an error mess
 ## What to do next?
 
 [setting-up-the-hosts](setting-up-the-hosts/ "mention")
-
-[^1]: The `python2-minimal` package is no longer available in the official repositories for Ubuntu 24.04 LTS and later versions. Users requiring Python 2 must install it from source. For detailed steps, refer to guides such as [How to Install Python 2.7 on Ubuntu 24.04 Noble LTS](https://linux.how2shout.com/how-to-install-python-2-7-on-ubuntu-24-04-noble-lts-linux/).

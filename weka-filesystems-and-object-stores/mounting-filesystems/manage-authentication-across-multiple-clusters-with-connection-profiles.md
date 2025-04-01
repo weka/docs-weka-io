@@ -75,4 +75,4 @@ The `--profile` option is not supported with `weka diag` commands. The default p
 
 **Related topic**
 
-[mount-filesystems-from-multiple-clusters-on-a-single-client.md](mount-filesystems-from-multiple-clusters-on-a-single-client.md "mention")
+[mount-fs-from-scmc.md](mount-fs-from-scmc.md "mention")
