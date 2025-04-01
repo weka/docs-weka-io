@@ -21,7 +21,7 @@ Use the following command line to set the NFS configuration on the configuration
 
 {% hint style="info" %}
 * To support NFS file-locking, ensure the system meets the prerequisites outlined in [#nfs-file-locking-support](./#nfs-file-locking-support "mention").
-* For the default published ports, see the [#required-ports](../../planning-and-installation/prerequisites-and-compatibility/#required-ports "mention").
+* For the default published ports, see the [#required-ports](../../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention").
 {% endhint %}
 
 **Parameters**
@@ -328,7 +328,7 @@ weka nfs kerberos registration setup-mit myservicename.test.example.com myservic
 
 **Parameters**
 
-<table><thead><tr><th width="227">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters.</td><td></td></tr><tr><td><code>keytab-file</code>*</td><td>The path to the pre-generated keytab file containing the keys for the NFS service’s unique identity in <a data-footnote-ref href="#user-content-fn-3">base64</a> format.</td><td></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
+<table><thead><tr><th width="227">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters.</td><td></td></tr><tr><td><code>keytab-file</code>*</td><td>The path to the pre-generated keytab file containing the keys for the NFS service’s unique identity in <a data-footnote-ref href="#user-content-fn-1">base64</a> format.</td><td></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
 
 #### Set up Kerberos to use OpenLDAP
 
@@ -588,5 +588,3 @@ Use the following command line to view insights of NFS clients connected to the 
 [^1]: A binary data in an American Standard Code for Information Interchange (ASCII) string format.
 
 [^2]: All Kerberos server machines need a keytab file, called `/etc/krb5.keytab`, to authenticate to the KDC. For details, see [https://web.mit.edu/kerberos/krb5-1.5/krb5-1.5.4/doc/krb5-install/The-Keytab-File.html](https://web.mit.edu/kerberos/krb5-1.5/krb5-1.5.4/doc/krb5-install/The-Keytab-File.html).
-
-[^3]: A binary data in an American Standard Code for Information Interchange (ASCII) string format.

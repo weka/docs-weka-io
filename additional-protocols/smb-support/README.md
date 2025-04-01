@@ -36,6 +36,11 @@ When working with SMB clusters, it's important to understand the following point
 * You can manage, but not configure or delete, legacy SMB clusters through the GUI. For configuration and deletion, refer to [smb-management-using-the-cli.md](smb-management-using-the-cli.md "mention").
 * Use ASCII format when configuring name fields, such as domain and shares.
 
+{% hint style="warning" %}
+**Public Cloud requirements:** Ensure Active Directory and DNS services are already configured **before** installing WEKA SMB protocol. \
+For example, WEKA in AWS has been tested to work with AWS Managed Microsoft AD and Amazon Route 53 Resolver. If there services are not configured already. Follow the AWS guidelines to configure [AWS Managed Microsoft AD](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started.html) and  [Amazon Route 53 Resolver](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-getting-started.html).
+{% endhint %}
+
 ## SMB user mapping in the WEKA system
 
 Authentication in the WEKA SMB system is supported by a single Active Directory with multiple trusted domains. To enable SMB access, the Active Directory must resolve POSIX users (uid) and groups (gid) mapping.

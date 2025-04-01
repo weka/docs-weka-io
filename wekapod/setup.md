@@ -141,7 +141,7 @@ If your WEKApod system does not include a WMS server and Ethernet switch, refer 
 
 9. Ensure the Dataplanes are configured correctly, then click **Next**.
 
-<figure><img src="../.gitbook/assets/image (265).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (279).png" alt=""><figcaption></figcaption></figure>
 
 10. In Step 4 - Save Files and Run Validation Checks, click **Save Files and Run Validation Checks**.
 

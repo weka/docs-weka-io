@@ -33,7 +33,7 @@ Before proceeding, it is important to understand several key terms used in this 
 
 ‌[Data Plane Development Kit (DPDK)](http://dpdk.org/) is a set of libraries and network drivers for highly efficient, low-latency packet processing. This is achieved through several techniques, such as kernel TCP/IP bypass, NUMA locality, multi-core processing, and device access via polling to eliminate the performance overhead of interrupt processing. In addition, DPDK ensures transmission reliability, handles retransmission, and controls congestion.
 
-DPDK implementations are available from several sources. OS vendors like [Red Hat](https://access.redhat.com/documentation/en-us/red\_hat\_enterprise\_linux/7/html/virtualization\_deployment\_and\_administration\_guide/sect-pci\_devices-pci\_passthrough) and [Ubuntu](https://help.ubuntu.com/lts/serverguide/DPDK.html) provide DPDK implementations through distribution channels. [Mellanox OpenFabrics Enterprise Distribution for Linux](https://www.mellanox.com/page/products\_dyn?product\_family=26) (Mellanox OFED), a suite of libraries, tools, and drivers supporting Mellanox NICs, offers its own DPDK implementation.
+DPDK implementations are available from several sources. OS vendors like [Red Hat](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-pci_devices-pci_passthrough) and [Ubuntu](https://help.ubuntu.com/lts/serverguide/DPDK.html) provide DPDK implementations through distribution channels. [Mellanox OpenFabrics Enterprise Distribution for Linux](https://www.mellanox.com/page/products_dyn?product_family=26) (Mellanox OFED), a suite of libraries, tools, and drivers supporting Mellanox NICs, offers its own DPDK implementation.
 
 The WEKA system relies on the DPDK implementation provided by Mellanox OFED on servers equipped with Mellanox NICs. For servers equipped with Intel NICs, DPDK support is through the Intel driver for the card.‌
 
@@ -99,7 +99,7 @@ While WEKA backend servers must include DPDK and SR-IOV, WEKA clients in applica
 * **DPDK backends and clients using NICs supporting dedicated networking:**
   * IP address for management: One per NIC (configured before WEKA installation).
   * IP address for data plane: One per [WEKA core](../planning-and-installation/bare-metal/planning-a-weka-system-installation.md#cpu-resource-planning) in each server (applied during cluster initialization).
-  * [Virtual Functions](https://en.wikipedia.org/wiki/Network\_function\_virtualization) (VFs):
+  * [Virtual Functions](https://en.wikipedia.org/wiki/Network_function_virtualization) (VFs):
     * Ensure the device supports a maximum number of VFs greater than the number of physical cores on the server.
     * Set the number of VFs to match the cores you intend to dedicate to WEKA.
     * Note that some BIOS configurations may be necessary.
@@ -143,7 +143,7 @@ To enable RDMA and GPUDirect Storage technology, ensure the following requiremen
 * **HCA requirements for RDMA networking**\
   An HCA is considered to support RDMA networking if the following conditions are met:
   * **For GPUDirect Storage:** The network must be InfiniBand. While using an Ethernet network may be possible, this configuration is not supported.
-  * **NIC compatibility:** The Network Interface Card (NIC) must support RDMA. Ensure the appropriate OFED version is installed. For more information, see [#networking-infiniband](../planning-and-installation/prerequisites-and-compatibility/#networking-infiniband "mention").
+  * **NIC compatibility:** The Network Interface Card (NIC) must support RDMA. Ensure the appropriate OFED version is installed. For more information, see [#networking-infiniband](../planning-and-installation/prerequisites-and-compatibility.md#networking-infiniband "mention").
 
 #### Installation notes
 

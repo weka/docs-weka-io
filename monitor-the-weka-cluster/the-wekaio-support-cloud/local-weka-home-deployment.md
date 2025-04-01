@@ -369,9 +369,10 @@ Upgrading from `minikube` or WMS to the new Local WEKA Home 3.0 bundle (based on
 
 1. Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download) to the dedicated physical server (or VM).
 2. Run `bash wekahome-*.bundle`
-3. To modify the existing configuration, open the `/opt/wekahome/config/config.json` file and modify the settings. See [#id-4.-install-and-configure-local-weka-home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home "mention").
+3. To modify the existing configuration, open the `/opt/wekahome/config/config.json` file and modify the settings. See[#id-4.-install-and-configure-local-weka-home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home "mention").
 4. Run `homecli local upgrade`. For an upgrade, it takes about 2 minutes.
-5. Run `kubectl get pods` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods' statuses, run `watch kubectl get pods`.)
+5. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**. \
+   To wait for the pods' statuses, run `watch kubectl get pods -n home-weka-io`.
 6. Verify the Local WEKA Home is upgraded successfully. Run the following command line:\
    `helm status wekahome -n home-weka-io`
 
@@ -383,7 +384,8 @@ If there is a change in the TLS certificates, SMTP server in your environment, o
 
 1. Open the `/opt/wekahome/config/config.json` file and modify the settings. See [#id-4.-install-and-configure-local-weka-home](local-weka-home-deployment.md#id-4.-install-and-configure-local-weka-home "mention").
 2. Run `homecli local upgrade`
-3. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**. (To wait for the pods' statuses, run `watch kubectl get pods`.)
+3. Run `kubectl get pods -n home-weka-io` and verify in the results that all pods have the status **Running** or **Completed**.\
+   To wait for the pods' statuses, run `watch kubectl get pods -n home-weka-io`.
 4. Verify the Local WEKA Home is updated successfully. Run the following command line:\
    `helm status wekahome -n home-weka-io`
 

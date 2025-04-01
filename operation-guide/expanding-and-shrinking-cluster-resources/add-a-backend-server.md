@@ -44,7 +44,7 @@ weka local stop default && weka local rm -f default
 
 ```
 
-3. Download the Weka tools from the GitHub repository.
+3. Download the WEKA tools from the GitHub repository.
 
 ```
 cd ~
@@ -53,7 +53,7 @@ cd ~/tools/install/
 
 ```
 
-4. Generate the resource files with the same network devices and options as the existing Weka cluster servers.&#x20;
+4. Generate the resource files with the same network devices and options as the existing WEKA cluster servers.&#x20;
 
 ```
 ./resources_generator.py --net <net-devices> [options]
@@ -64,10 +64,12 @@ cd ~/tools/install/
 
 <summary>Example of a high-availability system with two network devices</summary>
 
+{% code overflow="wrap" %}
 ```
 ./resources_generator.py --net ens4 ens5 --compute-dedicated-cores 3 --drive-dedicated-cores 2 --frontend-dedicated-cores 2
 
 ```
+{% endcode %}
 
 </details>
 
@@ -78,18 +80,23 @@ cd ~/tools/install/
 Add to the `--net` option the following for each network device:\
 `<net device name>/<net device IP>/<net mask>/<gateway IP>`
 
+{% code overflow="wrap" %}
 ```
 ./resources_generator.py --net enp197s0np0/172.25.5.132/16/172.25.5.2 enp129s0np0/172.25.6.132/16/172.25.5.2 --compute-dedicated-cores 12 --drive-dedicated-cores 12 --frontend-dedicated-cores 1
 
 ```
+{% endcode %}
 
 </details>
 
-5. Create the drive, compute, and frontend containers, and join the new server's containers to the existing cluster.
-   *   In `management-ips`, specify the management IP address of the new server joining the cluster. Specify two or more comma-separated management IP addresses in a high-availability system.  
-   * In `join-ips`, specify the management IP of one of the servers in the cluster to join.
+5. Create the drive, compute, and frontend containers, and join them to the existing cluster. Use the following options to specify the required parameters:
+   * `resources-path` : Specify the path to the resource file (`drives0.json`, `compute0`.json, or `frontend0.json`) created in Step 4 using the resource generator.
+   * `management-ips`: Specify the management IP of the new server joining the cluster. For high availability, provide two or more comma-separated IPs.
+   * `join-ips`: Specify the management IP of an existing cluster server.
 
-<pre><code><strong>weka local setup container --name drives0 --resources-path &#x3C;path>/drives0.json --management-ips=&#x3C;management IPs of the new server> --join-ips=&#x3C;management IP of the existing server>
+Run the following commands:
+
+<pre data-overflow="wrap"><code><strong>weka local setup container --name drives0 --resources-path &#x3C;path>/drives0.json --management-ips=&#x3C;management IPs of the new server> --join-ips=&#x3C;management IP of the existing server>
 </strong>
 weka local setup container --name compute0 --resources-path &#x3C;path>/compute0.json --management-ips=&#x3C;management IPs of the new server> --join-ips=&#x3C;management IP of the existing server>
 

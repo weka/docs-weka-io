@@ -10,7 +10,7 @@ The [Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-star
 
 #### Procedure
 
-1. Review the [Terraform-AWS-WEKA example](https://registry.terraform.io/modules/weka/weka/aws/latest/examples/public\_network) and use it as a reference for creating the `main.tf` according to your deployment specifics on AWS.
+1. Review the [Terraform-AWS-WEKA example](https://registry.terraform.io/modules/weka/weka/aws/latest/examples/public_network) and use it as a reference for creating the `main.tf` according to your deployment specifics on AWS.
 2. Tailor the `main.tf` file to create SMB-W or NFS protocol clusters by adding the relevant code snippet. Adjust parameters like the number of gateways, instance types, domain name, and share naming:
 
 * **SMB-W**
@@ -52,7 +52,7 @@ As a best practice, it’s recommended to create a dedicated local user in the W
 **Procedure**
 
 1. Create a local user with the Cluster Admin role in the WEKA cluster.
-2. In the **AWS Secrets Manager**, navigate to **Secretes**.
+2. In the **AWS Secrets Manager**, navigate to **Secrets**.
 3. Update the `weka_username` and `weka_password` services with the username and password of the newly created local user.
 4. Validate the changes by checking the [AWS Step Functions](#user-content-fn-1)[^1] execution results and ensuring they pass successfully.
 

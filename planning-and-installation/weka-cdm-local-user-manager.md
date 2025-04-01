@@ -133,11 +133,11 @@ Certain fields within the configuration input panel require manual user input. O
 
 {% tabs %}
 {% tab title="Instance Type" %}
-<figure><img src="../.gitbook/assets/image (259).png" alt="" width="290"><figcaption><p>Instance Type</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (224).png" alt="" width="290"><figcaption><p>Instance Type</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Region" %}
-<figure><img src="../.gitbook/assets/image (260).png" alt="" width="290"><figcaption><p>Region</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (225).png" alt="" width="290"><figcaption><p>Region</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="WEKA Version" %}
@@ -145,7 +145,7 @@ The WEKA software release dropdown menu is designed to auto-populate with the mo
 
 To enter a WEKA software release that is not listed in the dropdown, click directly in the WEKA Version input field and type the desired release. This feature is particularly useful when deploying a WEKA cluster with a customer-specific software release.
 
-<figure><img src="../.gitbook/assets/image (261).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (226).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
@@ -268,7 +268,5 @@ You can retrieve the IP addresses for backend access using the Get Backend IPs m
 **Related topics**
 
 [deployment-on-aws-using-terraform.md](aws/weka-installation-on-aws-using-terraform/deployment-on-aws-using-terraform.md "mention")
-
-[deployment-on-azure-using-terraform.md](weka-installation-on-azure/deployment-on-azure-using-terraform.md "mention")
 
 [deployment-on-gcp-using-terraform.md](weka-installation-on-gcp/deployment-on-gcp-using-terraform.md "mention")

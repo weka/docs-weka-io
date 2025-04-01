@@ -67,7 +67,7 @@ WEKA clients can be configured to mount in DPDK or UDP mode.
 
 **DPDK mode** is optimized for single-process performance and must be used when possible. When using DPDK mode, specific requirements must be met by the client host system.
 
-The Frontend process on clients uses CPU cores and memory while the mount is active. This implies that sufficient compute cores and memory resources must be available to run the WEKA Frontend process and other user applications. Additionally, NIC hardware must have a [Poll Mode Driver](#user-content-fn-1)[^1] (PMD) and be supported by WEKA. See [Prerequisites and compatibility](../../planning-and-installation/prerequisites-and-compatibility/#networking-ethernet) for more information on supported NIC hardware for bare-metal and cloud-native systems.
+The Frontend process on clients uses CPU cores and memory while the mount is active. This implies that sufficient compute cores and memory resources must be available to run the WEKA Frontend process and other user applications. Additionally, NIC hardware must have a [Poll Mode Driver](#user-content-fn-1)[^1] (PMD) and be supported by WEKA. See [Prerequisites and compatibility](../../planning-and-installation/prerequisites-and-compatibility.md#networking-ethernet) for more information on supported NIC hardware for bare-metal and cloud-native systems.
 
 **UDP mode** is an option for limited-throughput WekaFS filesystem access when DPDK mode is not feasible due to network, hardware, or operating system limitations. It can serve as an alternative when necessary.
 
@@ -285,9 +285,9 @@ Set each compute node definition in the slurm.conf file to allocate exclusive co
 
 Set the following parameters in the slurm.conf file:
 
-* [`RealMemory`](https://slurm.schedmd.com/slurm.conf.html#OPT\_RealMemory)_:_ Specify the available memory on each compute node.
-* [`CPUSpecList`](https://slurm.schedmd.com/slurm.conf.html#OPT\_CpuSpecList)_:_ Define a list of virtual CPU IDs reserved for system use, including WEKA nodes.
-* [`MemSpecLimit`](https://slurm.schedmd.com/slurm.conf.html#OPT\_MemSpecLimit)**:** When using `SelectTypeParameters=CR_Core_Memory,` specify the amount of memory (in MB) reserved for system use.
+* [`RealMemory`](https://slurm.schedmd.com/slurm.conf.html#OPT_RealMemory)_:_ Specify the available memory on each compute node.
+* [`CPUSpecList`](https://slurm.schedmd.com/slurm.conf.html#OPT_CpuSpecList)_:_ Define a list of virtual CPU IDs reserved for system use, including WEKA nodes.
+* [`MemSpecLimit`](https://slurm.schedmd.com/slurm.conf.html#OPT_MemSpecLimit)**:** When using `SelectTypeParameters=CR_Core_Memory,` specify the amount of memory (in MB) reserved for system use.
 
 {% hint style="info" %}
 To use the `CPUSpecLis`t and `MemSpecLimit` parameters, ensure the following are set in the `cgroup.conf` file:
@@ -345,7 +345,7 @@ NodeName=compute-node-0 CPUs=96 Boards=1 SocketsPerBoard=2 CoresPerSocket=24 Thr
 
 If you are always reserving the last cores for WEKA, an alternative approach is to use the `CoreSpecCount` parameter in the compute node configuration in slurm.conf to specify the number of physical cores for resource specialization.
 
-When using the `CoreSpecCount` parameter, the first core selected is the highest numbered core on the highest numbered socket by default (see [core selection](https://slurm.schedmd.com/core\_spec.html#core) in Slurm documentation). Subsequent cores selected are the highest numbered core on lower numbered sockets. In this case, use the snippet below to reserve core 47 (processors 47 and 95) for WEKA.
+When using the `CoreSpecCount` parameter, the first core selected is the highest numbered core on the highest numbered socket by default (see [core selection](https://slurm.schedmd.com/core_spec.html#core) in Slurm documentation). Subsequent cores selected are the highest numbered core on lower numbered sockets. In this case, use the snippet below to reserve core 47 (processors 47 and 95) for WEKA.
 
 {% code title="slurm.conf" overflow="wrap" %}
 ```
@@ -384,7 +384,7 @@ sudo systemctl restart weka-agent
 
 For more information, see [#modify-the-cgroups-usage](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md#modify-the-cgroups-usage "mention")
 
-[^1]: See [DPDK Poll Mode Driver](https://doc.dpdk.org/guides-16.04/prog\_guide/poll\_mode\_drv.html)
+[^1]: See [DPDK Poll Mode Driver](https://doc.dpdk.org/guides-16.04/prog_guide/poll_mode_drv.html)
 
 [^2]: For more details, see the official [Slurm Workload Manager Documentation](https://slurm.schedmd.com/).
 
@@ -397,16 +397,16 @@ For more information, see [#modify-the-cgroups-usage](../../planning-and-install
 
 [^6]: MariaDB is an open-source RDBMS, a MySQL fork known for high performance and scalability. Retains MySQL compatibility, favored in the open-source community.
 
-[^7]: For details, see [Slurm Quick Start Administrator Guide](https://slurm.schedmd.com/quickstart\_admin.html).
+[^7]: For details, see [Slurm Quick Start Administrator Guide](https://slurm.schedmd.com/quickstart_admin.html).
 
 [^8]: "Configless" Slurm is a feature that allows the compute nodes — specifically the slurmd process — and user commands running on login nodes to pull configuration information directly from the slurmctld instead of from a pre-distributed local file.\
-    For details, see ["Configless" Slurm](https://slurm.schedmd.com/configless\_slurm.html).
+    For details, see ["Configless" Slurm](https://slurm.schedmd.com/configless_slurm.html).
 
 [^9]: In the `sysconfdir` parameter, you specify the Slurm configuration file location. The default value is PREFIX/etc.\
-    For details, see the [Slurm Quick Start Administrator Guide](https://slurm.schedmd.com/quickstart\_admin.html).
+    For details, see the [Slurm Quick Start Administrator Guide](https://slurm.schedmd.com/quickstart_admin.html).
 
 [^10]: Core specialization is a feature designed to isolate system overhead (system interrupts, etc.) to designated cores on a compute node. This can reduce context switching in applications to improve completion time. The job processes will not be able to directly use the specialized cores.\
-    For details, see [Core Specialization](https://slurm.schedmd.com/core\_spec.html).
+    For details, see [Core Specialization](https://slurm.schedmd.com/core_spec.html).
 
 [^11]: The purpose of this module is to prevent users from sshing into nodes that they do not have a running job on, and to track the ssh connection and any other spawned processes for accounting and to ensure complete job cleanup when the job is completed.\
-    For details, see [pam\_slurm\_adopt](https://slurm.schedmd.com/pam\_slurm\_adopt.html).
+    For details, see [pam\_slurm\_adopt](https://slurm.schedmd.com/pam_slurm_adopt.html).
