@@ -30,7 +30,7 @@
     * [Broadcom adapter setup for WEKA system](install/bare-metal/setting-up-the-hosts/broadcom-adapter-setup-for-weka-system.md)
     * [Enable the SR-IOV](install/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Configure the WEKA cluster using the WEKA Configurator](install/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md)
-  * [Manually configure the WEKA cluster using the resource generator](install/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator.md)
+  * [Manually configure the WEKA cluster using the resources generator](install/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator.md)
   * [Perform post-configuration procedures](install/bare-metal/perform-post-configuration-procedures.md)
   * [Add clients](install/bare-metal/adding-clients-bare-metal.md)
 * [WEKA installation on AWS](install/aws/README.md)

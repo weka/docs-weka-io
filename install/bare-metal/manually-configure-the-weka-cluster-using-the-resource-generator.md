@@ -1,18 +1,18 @@
 ---
 description: >-
-  Detailed workflow for manually configuring the WEKA cluster using the resource
-  generator in a multi-container backend architecture.
+  Detailed workflow for manually configuring the WEKA cluster using the
+  resources generator in a multi-container backend architecture.
 ---
 
-# Manually configure the WEKA cluster using the resource generator
+# Manually configure the WEKA cluster using the resources generator
 
-Perform this workflow using the resource generator only if you are not using the automated WMS, WSA, or WEKA Configurator.
+Perform this workflow using the resources generator only if you are not using the automated WMS, WSA, or WEKA Configurator.
 
-The resource generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you create the containers using these generated files of the cluster servers.&#x20;
+The resources generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you create the containers using these generated files of the cluster servers.&#x20;
 
 ## Before you begin
 
-1. Download the resource generator from the GitHub repository to your local server: [https://github.com/weka/tools/blob/master/install/resources\_generator.py](https://github.com/weka/tools/blob/master/install/resources\_generator.py).
+1. Download the resources generator from the GitHub repository to your local server: [https://github.com/weka/tools/blob/master/install/resources\_generator.py](https://github.com/weka/tools/blob/master/install/resources_generator.py).
 
 Example:&#x20;
 
@@ -21,7 +21,7 @@ wget https://raw.githubusercontent.com/weka/tools/master/install/resources_gener
 
 ```
 
-2. Copy the resource generator from your local server to all servers in the cluster.
+2. Copy the resources generator from your local server to all servers in the cluster.
 
 Example for a cluster with 8 servers:&#x20;
 
@@ -30,7 +30,7 @@ for i in {0..7}; do scp resources_generator.py weka0-$i:/tmp/resources_generator
 
 ```
 
-2. To enable execution, change the mode of the resource generator on all servers in the cluster.
+2. To enable execution, change the mode of the resources generator on all servers in the cluster.
 
 Example for a cluster with 8 servers:&#x20;
 
@@ -41,14 +41,16 @@ pdsh -R ssh -w "weka0-[0-7]" 'chmod +x /tmp/resources_generator.py'
 
 ## Workflow
 
-1. [Remove the default container](manually-configure-the-weka-cluster-using-the-resource-generator.md#1.-remove-the-default-container)
-2. [Generate the resource files](manually-configure-the-weka-cluster-using-the-resource-generator.md#2.-generate-the-resource-files)
-3. [Create drive containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#3.-create-drive-containers)
-4. [Create a cluster](manually-configure-the-weka-cluster-using-the-resource-generator.md#id-4.-create-a-cluster)
-5. [Configure the SSD drives](manually-configure-the-weka-cluster-using-the-resource-generator.md#5.-configure-the-ssd-drives)
-6. [Create compute containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#6.-create-compute-containers)
-7. [Create frontend containers](manually-configure-the-weka-cluster-using-the-resource-generator.md#7.-create-frontend-containers)
-8. [Name the cluster](manually-configure-the-weka-cluster-using-the-resource-generator.md#8.-name-the-cluster)
+1. Remove the default container
+2. Generate the resource files
+3. Create drive containers
+4. Create a cluster
+5. Configure the SSD drives
+6. Create compute containers
+7. Create frontend containers
+8. Configure the number of data and parity drives
+9. Configure the number of hot spares
+10. Name the cluster
 
 ### 1. Remove the default container
 
@@ -64,7 +66,7 @@ To generate the resource files for the drive, compute, and frontend processes, r
 
 `./resources_generator.py --net <net-devices> [options]`
 
-The resource generator allocates the number of cores, memory, and other resources according to the values specified in the parameters.&#x20;
+The resources generator allocates the number of cores, memory, and other resources according to the values specified in the parameters.&#x20;
 
 The best practice for resources allocation is as follows:
 
@@ -180,7 +182,19 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 <table><thead><tr><th width="209">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td>IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.<br>Format: comma-separated IP addresses.<br>Example:  <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></td></tr></tbody></table>
 
-### 8. Name the cluster
+### 8.  Configure the number of data and parity drives
+
+**Command:** `weka cluster update --data-drives=<count> --parity-drives=<count>`
+
+**Example:** `weka cluster update --data-drives=4 --parity-drives=2`
+
+### 9.  Configure the number of hot spares
+
+**Command:** `weka cluster hot-spare <count>`
+
+**Example:** `weka cluster hot-spare 1`
+
+### 10. Name the cluster
 
 **Command:** `weka cluster update --cluster-name=<cluster name>`
 

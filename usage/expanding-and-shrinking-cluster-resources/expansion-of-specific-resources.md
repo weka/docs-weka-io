@@ -133,7 +133,7 @@ For clarity, the following procedure exemplifies expansion on the container runn
 2. Run the following command line to set the number of dedicate cores to the compute container:\
    `weka cluster container cores <container-id> <number of total cores> --compute-dedicated-cores <number of total cores> --no-frontends`
 3. Apply the changes. Run the following command:\
-   `weka cluster container apply <containr-id>`
+   `weka cluster container apply <container-id>`
 4. Check the number of cores dedicated to the compute processes. Run the following command: \
    `weka cluster container <container-ids>`
 
