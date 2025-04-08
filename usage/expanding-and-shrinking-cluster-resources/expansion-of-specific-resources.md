@@ -19,7 +19,7 @@ Adhere to the following guidelines when expanding specific resources:
 
 * **Specify the container:** Run the relevant `weka cluster container` command with the specific `container-id` you want to expand. Once you run the command, the container is staged to update in the cluster.
 * **View existing resources:** To view the non-applied configuration, run the `weka cluster container resources <container-id>`command.
-* **Apply changes on a specific container:** To apply changes on a specific container in the cluster, run the `weka cluster container apply <container-id>` command.  It is possible to accumulate several changes on a container and apply only once on completion.
+* **Apply changes on a specific container:** To apply changes on a specific container in the cluster, run the `weka cluster container apply <container-ids>` command.  It is possible to accumulate several changes on a container and apply only once on completion.
 * **Apply changes on a local server:** To apply changes in the local container, run the `weka local resources apply` command.
 * **The apply command saves the last configuration:** Once the apply command completes, the last local configuration of the container successfully joined the cluster is saved.\
   If a failure occurs with the new configuration, the container automatically remains with the existing stable configuration. \
@@ -133,7 +133,7 @@ For clarity, the following procedure exemplifies expansion on the container runn
 2. Run the following command line to set the number of dedicate cores to the compute container:\
    `weka cluster container cores <container-id> <number of total cores> --compute-dedicated-cores <number of total cores> --no-frontends`
 3. Apply the changes. Run the following command:\
-   `weka cluster container apply <container-id>`
+   `weka cluster container apply <container-ids>`
 4. Check the number of cores dedicated to the compute processes. Run the following command: \
    `weka cluster container <container-ids>`
 
