@@ -251,7 +251,7 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
 
 {% tab title="Ethernet configurations" %}
 * **Ethernet speeds:**
-  * 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
+  * 400 GbE / 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **NICs bonding:**
   * Supports bonding dual ports on the same NVIDIA Mellanox NIC using mode 4 (LACP) to enhance redundancy and performance.
 * **IEEE 802.1Q VLAN encapsulation:**
