@@ -432,7 +432,7 @@ The probable cause can be issues related to the SMTP server, such as wrong crede
 1. On the **Integration** page, select **Test Integration**.\
    Wait until an error appears.
 2. Retrieve the logs and search for the error. On the Local WEKA Home terminal, run the following command:\
-   ``for dep in `kubectl get deployment -n home-weka-io -o name`; do echo -----$dep-----; kubectl logs $dep --all-containers=true --timestamps=true --since=5m ; done``
+   ``for dep in `kubectl get deployment -n home-weka-io -o name`; do echo -----$dep-----; kubectl logs $dep -n home-weka-io --all-containers=true --timestamps=true --since=5m ; done``
 
 ## Collect LWH deployment diagnostics
 
