@@ -77,7 +77,7 @@ cat file-list | xargs -P32 -n200 weka fs tier release
 
 Depending on the retention period in the tiering policy, files can be found on the object store or the SSD or both locations as follows:
 
-* Before the file is tired to the object store, it is found in the SSD.
+* Before the file is tiered to the object store, it is found in the SSD.
 * During data tiering, the tiered data is on the SSD (read cache) and the object store.
 * Once the entire file data is tiered and the retention period has past, the complete file is found in the object store only.
 
@@ -103,7 +103,7 @@ To find all files in a single directory, use the following command:
 
 #### Examples of a tiered file location during the data lifecycle management
 
-1. Before the file named `image` is tired to the object store, it is found in the SSD (WRITE-CACHE).
+1. Before the file named `image` is tiered to the object store, it is found in the SSD (WRITE-CACHE).
 
 ```
 [root@kenny-0 weka] 2023-07-13 14:57:11 $ weka fs tier location image
