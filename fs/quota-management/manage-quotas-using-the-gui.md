@@ -12,7 +12,9 @@ Using the GUI, you can:
 * [Update a directory quota or default quota](manage-quotas-using-the-gui.md#update-a-directory-quota-or-default-quota)
 * [Remove the default quota for new directories](manage-quotas-using-the-gui.md#remove-the-default-quota-for-new-directories)
 
-To set a new directory quota or default quota, use the CLI.
+{% hint style="info" %}
+To set a new directory quota or default quota, use the CLI. See [#set-directory-quota-default-quota](quota-management.md#set-directory-quota-default-quota "mention").
+{% endhint %}
 
 ## View directory quotas and default quota
 
