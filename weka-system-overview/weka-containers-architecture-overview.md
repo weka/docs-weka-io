@@ -40,7 +40,7 @@ In the WEKA cluster, each server implements a multi-container backend architectu
   * Supports up to 64 WEKA cores per server
   * Multiple containers per process type
   * Flexible core allocation across containers
-  * Up to 19 processes per container
+  * Up to 19 cores per container
 * **Improved maintenance operations:**
   * Selective process management
   * Ability to maintain drive processes while stopping compute and frontend processes
@@ -57,4 +57,4 @@ In the WEKA cluster, each server implements a multi-container backend architectu
 **Server and container limits**
 
 * Maximum WEKA cores per server: 64
-* Maximum processes per container: 19
+* Maximum cores per container: 19
