@@ -22,27 +22,19 @@ Using the GUI, you can:
 3. On the **Security** page, select **Configure KMS**.
 4. On the **Configure KMS** dialog, select the KMS type to deploy: **HashiCorp Vault** or **Kmip**.
 
-<div align="left">
-
-<img src="../../../.gitbook/assets/wmng_add_kms_hashicorp.png" alt="Configure KMS of HashiCorp Vault type">
-
- 
-
-<img src="../../../.gitbook/assets/wmng_add_kms_kmpi.png" alt="Configure KMS of Kmpi type">
-
-</div>
+<div align="left"><img src="../../../.gitbook/assets/wmng_add_kms_hashicorp.png" alt="Configure KMS of HashiCorp Vault type"> <img src="../../../.gitbook/assets/wmng_add_kms_kmpi.png" alt="Configure KMS of Kmpi type"></div>
 
 5\. Enter the connection properties. The required properties depend on the KMS type you select.
 
 For the **HashiCorp Vault** type, enter the following:
 
-* **Address**: The KMS address
+* **Address**: The KMS address in URL format and hostname:port.
 * **Key Identifier**: The identifier of the KMS.
 * **Token**: The API token that you obtain from the vault.
 
 For the **Kmip** type, enter the following:
 
-* **Address**: The KMS address
+* **Address**: The KMS address in hostname:port format.
 * **KMS Identifier**: The identifier of the KMS.
 * **Client Cert** and **Client Key**: The client certificate and key that you obtain for the Kmip-based KMS.
 * **CA Cert**: (Optional) A digital certificate from the Certificate Authority (CA).
@@ -65,7 +57,7 @@ For the **Kmip** type, enter the following:
 2. From the left pane, select **Security**.
 3. The **Security** page displays the configured KMS.
 
-![View the configured KMS](../../../.gitbook/assets/wmng\_view\_kms.png)
+![View the configured KMS](../../../.gitbook/assets/wmng_view_kms.png)
 
 ## Update the KMS configuration
 
@@ -76,7 +68,7 @@ For the **Kmip** type, enter the following:
 3. The **Security** page displays the configured KMS.
 4. Select **Update KMS**, and update its settings.
 
-![Update the KMS](../../../.gitbook/assets/wmng\_update\_kms.png)
+![Update the KMS](../../../.gitbook/assets/wmng_update_kms.png)
 
 5\. Select **Save**.
 
