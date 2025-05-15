@@ -10,13 +10,16 @@ Using the CLI, you can:
 * [Set directory quota](quota-management.md#set-directory-quota)
 * [List directory quotas/default quotas](quota-management.md#list-directory-quotas-default-quotas)
 * [Unset default quota](quota-management.md#unset-default-quota)
-* [Unset directory quota](quota-management.md#unset-directory-quota)
+* [Reset directory quota](quota-management.md#reset-directory-quota)
 
 ## Set default quota
 
 **Command**: `weka fs quota set-default`
 
-Before using this command, verify a mount point to the relevant filesystem is set.
+Before using this command, ensure the following requirements are met:
+
+* A mount point to the relevant filesystem is set.
+* Deploy at least one Data Services container before setting any quotas. If not running, quota operations defaults to single-process mode, potentially causing CLI to hang for extended periods. See [set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention").
 
 Default quotas apply to newly created subdirectories, not the directory or existing children.
 
@@ -80,13 +83,13 @@ Use the following command to unset a default quota of a directory:
 
 <table><thead><tr><th width="244">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>path</code>*</td><td>Path to the directory to set the quota.<br>The relevant filesystem must be mounted when setting the quota.</td></tr></tbody></table>
 
-## Unset directory quota
+## Reset directory quota
 
-**Command**: `weka fs quota unset`
+**Command**: `weka fs quota reset`
 
-Use the following command to unset a directory quota:
+Use the following command to reset a directory quota:
 
-`weka fs quota unset <path>`
+`weka fs quota reset <path>`
 
 #### **Parameters**
 

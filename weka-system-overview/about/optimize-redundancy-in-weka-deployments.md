@@ -1,29 +1,46 @@
-# Optimize redundancy in WEKA deployments
+# Redundancy optimization in WEKA
 
-Redundancy in WEKA system deployments can vary, ranging from 3+2 to 16+4. Choosing the most suitable configuration involves several key considerations, including redundancy levels, data stripe width, hot spare capacity, and the performance required during data rebuilds.
+## **Redundancy levels**
 
-### **Redundancy levels**
+WEKA’s distributed RAID supports a range of redundancy configurations, from 3+2 to 16+4. It uses a D+P model, where _D_ is the number of data drives and _P_ is the number of parity drives. This is represented as N+2, N+3, or N+4, all supported by WEKA. The number of data drives must be greater than the number of parity drives. Configurations like 3+3 are not allowed.
 
-Redundancy can be configured as N+2 or N+4, directly impacting capacity and performance. A redundancy level of 2 is typically sufficient for most configurations, while redundancy levels of 4 are reserved for larger clusters with 100 or more backends or critical data scenarios.
+Choosing the appropriate redundancy level balances fault tolerance, usable capacity, and performance:
 
-### **Data stripe width**
+* **N+2:** Recommended for most environments; provides standard fault tolerance.
+* **N+3:** Offers increased protection; suitable for higher availability requirements.
+* **N+4:** Designed for large-scale clusters (100+ backends) or critical data scenarios requiring maximum redundancy.
 
-Data stripe width, ranging from 3 to 16, is crucial in optimizing net capacity. Larger stripe widths offer more net capacity but may affect performance during data rebuilds, particularly for highly critical data. Consultation with the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) is recommended in such cases.
+## **Stripe width** and capacity optimization
 
-### **Hot spare capacity**
+Stripe width, the number of drives participating in each distributed RAID stripe, is configurable between 3 and 16, affects both capacity efficiency and rebuild performance. Wider stripes increase net usable capacity by reducing parity overhead but may degrade rebuild speed, as more drives must be read from concurrently during recovery operations.
 
-The required hot spare capacity depends on how quickly faulty components can be replaced. Systems with faster response times or guaranteed 24/7 service require less hot spare capacity than systems with less frequent component replacement schedules.
+For deployments with stringent performance or data protection requirements, it is recommended to consult with the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to determine the optimal configuration.
 
-### **Performance required during data rebuilds**
+## **Hot spare capacity**
 
-The performance required during a data rebuild from a failure primarily relates to read rebuild operations. Unlike many other storage systems, write performance remains unaffected by failures and rebuilds in WEKA systems because they continue to write to functioning backends within the cluster. However, read performance can be impacted when reading data from a failed component, as this process requires retrieving data from the entire stripe. It requires simultaneous operations and immediate priority for data read operations.\
-\
-For instance, consider a scenario where a single failure occurs in a cluster of 100 backends. In this case, the overall performance is affected by a relatively modest 1%. However, in a cluster of 100 backends with a stripe width of 16, the initial phase of the rebuild can lead to a more significant reduction in performance, up to 16%.\
-\
-In large clusters, the cluster size may exceed the stripe width or the number of failure domains. To maintain optimal performance during rebuilds, it is advisable to ensure that the stripe width is carefully chosen relative to the cluster size.
+By default, WEKA allocates 1/N of the total space as virtual hot spare capacity. For example, a 3+2 configuration is deployed as 3+2+1, reserving one-sixth of the cluster’s capacity for redundancy. This proactive provisioning ensures availability for immediate failure tolerance.
 
-As a general guideline for large clusters, it's recommended that the stripe width should not exceed 25% of the cluster size. For example, in a cluster composed of 40 backends, an 8+2 protection scheme is advisable. This configuration helps mitigate the impact on performance in case of a failure, ensuring that it does not exceed 25%.
+In cases where hardware failures persist and components are not replaced promptly, WEKA employs a mechanism called failure domain folding to maintain write availability. This mechanism temporarily relaxes the requirement that each RAID stripe must span only distinct failure domains (for example, one per backend storage server). It allows a single failure domain to appear multiple times in a stripe, enabling the system to allocate new stripes and continue accepting write operations even in degraded states.
 
-#### **Enhance write performance with a larger stripe width**
+### Failure domain folding process
 
-Write performance in the WEKA system improves as the stripe width increases. This improvement is due to the system having to compute a smaller proportion of protected data than actual data. This effect is particularly notable in scenarios involving substantial write operations, such as systems accumulating data for the first time.
+Failure domain folding is automatically triggered when the number of active failure domains becomes insufficient to satisfy the original stripe width, typically due to server deactivation or loss of multiple drives. This approach ensures that the system can remain operational during extended fault conditions without immediate hardware replacement.
+
+The following illustration demonstrates how WEKA maintains write capability during sustained component failures by applying failure domain folding. It shows three stages:
+
+* **Stage A: Normal operation with all drives active:** In the initial state, all backend storage servers are operational. Each server is treated as a distinct failure domain, represented vertically in the diagram. RAID stripes span horizontally across all failure domains, combining data (yellow) and parity (purple) blocks. Although each block is shown as one NVMe drive for clarity, actual allocation occurs at the stripe level.\
+  To tolerate hardware failures, WEKA is configured with hot spare capacity, equivalent to the capacity of two full servers (6 drives). This reserve is not tied to specific drives but is notionally allocated across the system. At this stage, new stripe allocations proceed normally using free space across all failure domains.
+* **Stage B: Write blocking after a drive failure:** When a single drive fails, any new stripe that must span all failure domains can no longer be allocated if any one domain lacks space. Even though only one drive has failed, this strict requirement effectively blocks new writes, since the allocation rule cannot be satisfied. This results in a disproportionate loss of writable capacity relative to the size of the failure, particularly in systems with fewer drives per server.
+* **Stage C: Write recovery through failure domain folding:** To mitigate the blocked write condition, the affected storage server can be manually deactivated. This allows WEKA to apply failure domain folding, which permits the reuse of the same failure domain within a stripe. By relaxing the one-domain-per-stripe rule, new stripes can once again be allocated despite the failed drive. This folding mechanism restores write capability without immediate hardware replacement, ensuring continued system operation under degraded conditions.
+
+<figure><img src="../../.gitbook/assets/failure_domain_folding.png" alt=""><figcaption><p>Failure domain in action (example)</p></figcaption></figure>
+
+## **Performance during data rebuilds**
+
+Rebuild operations in WEKA are primarily read-intensive, as the system reconstructs missing data by reading from all drives in the stripe. While read performance may degrade slightly during this process, **write performance remains unaffected**, as the system continues writing to available backends.
+
+WEKA provides a critical optimization during rebuilds. If a failed component, such as drive or server, comes back online after a rebuild has started, the rebuild is automatically aborted. This approach prevents unnecessary data movement and quickly restores normal operations in the case of temporary failures, such as servers returning from maintenance. This behavior significantly differentiates WEKA from traditional systems that continue rebuilding even after transient faults are resolved.
+
+### **Write performance and stripe width**
+
+Larger stripe widths improve write throughput by reducing the proportion of parity overhead in write operations. This benefit is especially important for high-ingest workloads, such as initial data loading or write-heavy applications.

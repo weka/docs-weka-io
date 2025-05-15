@@ -8,7 +8,7 @@ The following diagram provides an overview of the various steps automated with t
 
 ### Workflow description
 
-* **Create AWS Placement Groups:** Create Placement Groups to enhance WEKA system resilience to hardware failures.
+* **Create AWS Placement Groups:** Create Cluster Placement Groups to reduce network latency between WEKA nodes. This configuration prioritizes performance over resilience and may reduce fault tolerance in the event of hardware failures.
 *   **Create AWS Launch Template and Auto Scaling Group for WEKA cluster expansion:** Create an AWS Launch Template and Auto Scaling Group to provision EC2 instances for the WEKA cluster.
 
     The launch template automates the deployment script to install and configure WEKA software during initial cluster creation and expand the cluster with additional instances.

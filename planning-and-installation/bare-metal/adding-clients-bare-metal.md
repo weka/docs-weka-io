@@ -141,7 +141,7 @@ This method sets up the client with all required resources in a single step and 
 
     {% code overflow="wrap" %}
     ```bash
-    weka local setup container --join-ips <join-ips> --base-port <base-port> --cores <cores> --cores-ids <cores-ids> --only-frontend-cores
+    weka local setup container --join-ips <join-ips> --base-port <base-port> --cores <cores> --core-ids <core-ids> --only-frontend-cores
     ```
     {% endcode %}
 
@@ -149,33 +149,15 @@ This method sets up the client with all required resources in a single step and 
 
     {% code overflow="wrap" %}
     ```bash
-    weka local setup container --join-ips 10.108.81.144 --base-port 14000 --cores 1 --cores-ids 2 --only-frontend-cores
+    weka local setup container --join-ips 10.108.81.144 --base-port 14000 --cores 1 --core-ids 2 --only-frontend-cores
     ```
     {% endcode %}
 
     * `join-ips`: The IP address for joining the cluster.
     * `base-port`: The base port for container communication.
     * `cores`: The number of cores to allocate.
-    * `cores-ids`: The cores' identifiers.
+    * `core-ids`: The cores' identifiers.
     * `only-frontend-cores`: Indicates that only frontend cores are used.
-2.  **Join the container to the cluster**\
-    After setting up the container, apply the configuration to finalize the process.
-
-    ```bash
-    weka local resources --container <client> management-ips <management-ips>
-    weka local resources --container <client> join-ips <join-ips>
-    weka local resources --container <client> base-port <base-port>
-    weka local resources --container <client> apply
-    ```
-
-    Example:
-
-    ```bash
-    weka local resources --container client management-ips 10.108.241.62
-    weka local resources --container client join-ips 10.108.39.212
-    weka local resources --container client base-port 14000
-    weka local resources --container client apply
-    ```
 
 ### Option 2: Longer method (more control and flexibility)
 

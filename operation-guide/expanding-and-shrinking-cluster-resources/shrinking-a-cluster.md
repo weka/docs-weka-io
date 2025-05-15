@@ -7,7 +7,7 @@ You can shrink the cluster by performing one of the following:
 * Remove only some drives from the cluster.
 * Remove containers with their allocated drives.
 
-Removing drives or containers requires deactivating the drives you want to remove. But, if the deactivation leads to insufficient SSD capacity of the currently-provisioned filesystems, the WEKA system does not deactivate the drives, and shrinking the cluster is not allowed.
+Removing cores, drives, or containers requires deactivating the drives you want to remove. But, if the deactivation leads to insufficient SSD capacity of the currently-provisioned filesystems, the WEKA system does not deactivate the drives, and shrinking the cluster is not allowed.
 
 ### Before you begin
 

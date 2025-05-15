@@ -117,8 +117,15 @@ To achieve HA, the WEKA system requires multiple network switches with servers c
 
 **Interface configuration**
 
-* **Non-LACP setup**: Each server uses two network interfaces for redundancy and bandwidth enhancement. This approach doubles the number of IP addresses required on backend containers and IO processes.
-* **LACP setup**: In Ethernet-only configurations, LACP aggregates interfaces to provide reliability and load balancing on a single Mellanox NIC. Note that LACP does not support Virtual Functions (VFs).
+* **Non-LACP configuration**: Each server uses two network interfaces for redundancy and bandwidth enhancement. This approach doubles the number of IP addresses required on backend containers and IO processes.
+*   **LACP configuration (Ethernet-only)**: LACP aggregates interfaces on a single Mellanox NIC for improved reliability and load balancing in Ethernet-only setups.
+
+    Specifications and requirements:
+
+    * LACP is not supported with Virtual Functions (VFs).
+    * NIC must be set to `HW_LAG` (IEEE 802.3ad) with `queue_affinity` enabled and hashing disabled.
+    * At least two WEKA processes must use DPDK.
+    * Switch must support IEEE 802.3ad in active/active mode.
 
 **Failover and load balancing**
 

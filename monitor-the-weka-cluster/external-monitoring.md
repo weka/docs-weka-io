@@ -1,26 +1,26 @@
 ---
 description: >-
-  The WEKAmon is an external monitoring package that provides enriched
-  monitoring capabilities using the Grafana and Prometheus tools.
+  Configure WEKAmon to integrate Grafana and Prometheus for centralized
+  monitoring of WEKA cluster metrics, logs, alerts, and statistics.
 ---
 
-# Set up the WEKAmon external monitoring
+# Set up WEKAmon for external monitoring
 
-WEKA provides an external monitoring package named **WEKAmon**. The package implements the well-known [_Grafana_](https://grafana.com/) dashboard with [_Prometheus_](https://prometheus.io/docs/introduction/overview/), which provides a central monitoring dashboard of metrics, logs, alerts, and statistics with enriched capabilities.
+WEKAmon is an external monitoring package integrating Grafana[^1] and Prometheus[^2] to provide a centralized metrics, logs, alerts, and statistics dashboard.
 
-The package also includes the following components:
+WEKAmon includes the following components:
 
-* **Exporter**: The Exporter gets the data from the WEKA cluster and sends the data to Prometheus.
-* **Quota Export**:  The Quota Export manages the quotas and sends the data to Prometheus.
-* **Alert Manager**:  The Alert Manger alerts users through an SMTP server when they reach their soft quota limits.
+* **Exporter**: Collects data from the WEKA cluster and sends it to Prometheus.
+* **Quota Export**: Manages storage quotas and exports quota data to Prometheus.
+* **Alert Manager**: Sends alerts via SMTP when users approach soft quota limits.
 
-You can set up the WEKAmon package regardless of the data monitoring provided by the Weka GUI.
+You can set up WEKAmon independently of the WEKA GUI's built-in monitoring.
 
 <figure><img src="../.gitbook/assets/wekamon_deployment.png" alt=""><figcaption><p>WEKAmon setup</p></figcaption></figure>
 
-One of the advantages of setting up the WEKAmon package is that if you already use the Grafana and Prometheus tools for monitoring other products, you can integrate these tools with WEKA to correlate and display monitoring information from all your products on the same dashboard.
+If you already use Grafana and Prometheus for other products, you can integrate WEKAmon to visualize all monitoring data on a unified dashboard.
 
-![WEKA enriched monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (165).png>)
+![WEKA monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (158).png>)
 
 {% hint style="info" %}
 If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.
@@ -225,7 +225,11 @@ In the Grafana application, import the dashboard `JSON` files from the directory
 
 ### 3. Edit the export.yml and quota-export.yml files&#x20;
 
-Follow steps [3](external-monitoring.md#3.-edit-the-export.yml-file) and [4](external-monitoring.md#4.-edit-the-quota-export.yml-file) in the above sections.
+Perform the steps in the following sections above:
+
+[#id-4.-edit-the-export.yml-file](external-monitoring.md#id-4.-edit-the-export.yml-file "mention")
+
+[#id-5.-edit-the-quota-export.yml-file](external-monitoring.md#id-5.-edit-the-quota-export.yml-file "mention")
 
 ### 4. Run the exporter
 
@@ -312,3 +316,7 @@ The exporter always tries to allocate one host per thread but does not exceed th
 
 In a cluster with 3000 hosts, `max_procs` = 8,  and `max_threads_per_proc`= 100, only 8 processes running. Each process with 100 threads, but there are close to 4 hosts serviced per thread instead of the default 1 host.
 {% endhint %}
+
+[^1]: [Grafana](https://grafana.com/) is an open-source analytics and interactive visualization web application used for monitoring application performance. It allows users to ingest data from a wide range of sources, query and display it in customizable charts, set alerts for abnormal behavior, and visualize data on dashboards.
+
+[^2]: [Prometheus](https://prometheus.io/docs/introduction/overview/) is an open-source systems monitoring and alerting toolkit originally built at SoundCloud.

@@ -228,13 +228,13 @@ $ vi /tmp/policy_template
 
 ## Create snapshot policy
 
-**Command:** `weka fs protection snapshot-policy create`
+**Command:** `weka fs protection snapshot-policy add`
 
 This command creates a new snapshot policy based on a specified template file. Provide the policy name, template file path, and optional parameters such as a description or enabled status.
 
 {% code overflow="wrap" %}
 ```sh
-weka fs protection snapshot-policy create <name> <path> [--description description] [--enabled enabled]
+weka fs protection snapshot-policy add <name> <path> [--description description] [--enabled enabled]
 ```
 {% endcode %}
 

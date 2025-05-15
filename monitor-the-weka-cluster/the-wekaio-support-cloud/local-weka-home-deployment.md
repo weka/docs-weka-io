@@ -48,14 +48,15 @@ For using other operating systems, contact the [Customer Success Team](../../sup
 
 ### 2. Prepare the physical server (or VM)
 
-1. It's recommended to disable the _SELinux_.
-2.  If enabled, it is required to disable nm-cloud-setup and reboot the node:
+1. If you added an extra disk to hold the  `/opt/wekahome` data, make sure to format and mount it.  Then ensure it is remounted on reboot.&#x20;
+2. It's recommended to disable the _SELinux_.
+3.  If enabled, it is required to disable nm-cloud-setup and reboot the node:
 
     ```
     systemctl disable nm-cloud-setup.service nm-cloud-setup.timer
     reboot
     ```
-3.  Ensure the following ports are open and not used by any other process. Each port is used for the process specified in the brackets. `homecli` adds firewall rules automatically during installation for supported systems `(firewalld`, `ufw)`. For any other setup, check the following ports:
+4.  Ensure the following ports are open and not used by any other process. Each port is used for the process specified in the brackets. `homecli` adds firewall rules automatically during installation for supported systems `(firewalld`, `ufw)`. For any other setup, check the following ports:
 
     `6443`   (kube-apiserver)
 
@@ -68,7 +69,7 @@ For using other operating systems, contact the [Customer Success Team](../../sup
     `80`        (Local WEKA Home, WEKA cluster, and web browser)
 
     `443`      (Local WEKA Home, WEKA cluster, and web browser)
-4.  Ensure the following networks are trusted:
+5.  Ensure the following networks are trusted:
 
     1. `10.42.0.0/16` (pods)
     2. `10.43.0.0/16` (service)
@@ -155,10 +156,7 @@ Download the latest [Local WEKA Home bundle](https://get.weka.io/ui/lwh/download
 
 1. Run the Local WEKA Home setup bundle as a root user (where `*` is wekahome version):\
    `bash wekahome-*.bundle`
-2. To update the environment, do one of the following:
-   * Re-login to the server.
-   * Run the following command: `source /etc/profile`
-3. To customize the configuration, create a `config.json` file from the following examples and the template located in `/opt/wekahome/current/config.json.sample`.
+2. To customize the configuration, create a `config.json` file from the following examples and the template located in `/opt/wekahome/current/config.json.sample`.
 
 <details>
 
@@ -353,20 +351,30 @@ The supported proxy types include:
 
 </details>
 
-4. To initialize the setup, run the following command from the root user: \
-   `homecli local setup -c config.json`\
-   \
-   For a fresh installation, expect approximately 5 minutes for completion.\
-   \
-   **Options:**
-   * You can use the default configuration by running: \
-     `homecli local setup`
-   * Specify the network interface or bind address for the cluster using:\
-     `homecli local setup --iface <interface> --ip <IP address>`
-   * Set your domain name or external IP as the host with:\
-     `homecli local setup --host <host.domain.com>`&#x20;
-   * Enable HTTPS by providing a certificate and key directly to the command instead of using the  `config.json`:\
-     `homecli local setup --iface <interface> --tls-cert <cert.pem> --tls-key <key.pem>`
+4. To reload your path variable do one of the following:
+   * Re-login to the server.
+   * Run the following command: `source /etc/profile`
+5.  To initialize the setup, run the following command from the root user: \
+    `homecli local setup -c config.json`\
+    \
+    For a fresh installation, expect approximately 5 minutes for completion.\
+
+
+    {% hint style="success" %}
+    If you get a "command not found" error, make sure you did not skip step 4 above.
+    {% endhint %}
+
+    \
+    **Options:**
+
+    * You can use the default configuration by running: \
+      `homecli local setup`
+    * Specify the network interface or bind address for the cluster using:\
+      `homecli local setup --iface <interface> --ip <IP address>`
+    * Set your domain name or external IP as the host with:\
+      `homecli local setup --host <host.domain.com>`&#x20;
+    * Enable HTTPS by providing a certificate and key directly to the command instead of using the  `config.json`:\
+      `homecli local setup --iface <interface> --tls-cert <cert.pem> --tls-key <key.pem>`
 
 <details>
 
@@ -579,6 +587,76 @@ If there is a change in the TLS certificates, SMTP server in your environment, o
 4. Verify the Local WEKA Home is updated successfully. Run the following command line:\
    `helm status wekahome -n home-weka-io`
 
+## Check Local WEKA Home health&#x20;
+
+After deploying Local WEKA Home (LWH), it is essential to verify its health to ensure all components are functioning correctly. A healthy LWH means that all pods are running without issues, CPU and memory usage are within acceptable limits, and there are no critical low disk space.
+
+If some pods are restarting frequently, producing errors, or failing to start, LWH is considered unhealthy and may require intervention. The following steps guide you in checking the health status of LWH.
+
+#### Procedure
+
+1.  **Check the status of all pods**\
+    Run the following command to get an overview of the pod statuses:
+
+    ```sh
+    homecli local status pods
+    ```
+
+    * If all pods are running, the system is **healthy**.
+    * If any pods are faulty, proceed with a detailed check.
+2.  **Get detailed pod status**\
+    To identify specific faulty pods and their issues, use the following command:
+
+    ```sh
+    homecli local status pods --detailed
+    ```
+
+    (For more information on the pod statuses and reasons, see the **kubectl** documentation.)\
+    Example output for a faulty pod:
+
+    ```
+    Faulty pods:
+
+      Pod Name  Status   Reason        
+      pod-1     Pending  ErrImagePull  
+    ```
+3.  **Check pod status in JSON format (optional)**\
+    For automated processing, output can be formatted in JSON:
+
+    ```sh
+    homecli local status pods -o json
+    ```
+
+    * A response of `{ "healthy": true }` indicates that all pods are running correctly.
+    *   If any pod has issues, to get detailed JSON output, use the following command:
+
+        ```sh
+        homecli local status pods -o json --detailed
+        ```
+
+        Example output showing a faulty pod:
+
+        ```json
+        {
+          "faultyPods": [
+            {
+              "name": "pod-1",
+              "reason": "ImagePullBackOff",
+              "status": "Pending"
+            }
+          ],
+          "healthy": false
+        }
+        ```
+4.  **Verify ingress address response**\
+    The ingress address in the `home-weka-io` namespace should return HTTP 200, indicating that the service is reachable:
+
+    ```sh
+    homecli local status wekahome
+    ```
+
+    * If this check fails, LWH might be experiencing connectivity or service-related issues.
+
 ## Troubleshoot the Local WEKA Home deployment
 
 ### Symptom: browsing to the Local WEKA Home returns an error
@@ -630,7 +708,7 @@ The probable cause can be issues related to the SMTP server, such as wrong crede
 
 {% code overflow="wrap" %}
 ```bash
-for dep in `kubectl get deployment -n home-weka-io -o name`; do echo -----$dep-----; kubectl logs $dep --all-containers=true --timestamps=true --since=5m ; done
+for dep in `kubectl get deployment -n home-weka-io -o name`; do echo -----$dep-----; kubectl logs $dep -n home-weka-io --all-containers=true --timestamps=true --since=5m ; done
 ```
 {% endcode %}
 

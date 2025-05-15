@@ -4,15 +4,15 @@ description: >-
   generator in a multi-container backend architecture.
 ---
 
-# Manually configure the WEKA cluster using the resource generator
+# Manually configure the WEKA cluster using the resources generator
 
-Perform this workflow using the resource generator only if you are not using the automated WMS, WSA, or WEKA Configurator.
+Perform this workflow using the resources generator only if you are not using the automated WMS, WSA, or WEKA Configurator.
 
-The resource generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you create the containers using these generated files of the cluster servers.&#x20;
+The resources generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you create the containers using these generated files of the cluster servers.&#x20;
 
 ## Before you begin
 
-1. Download the resource generator from the GitHub repository to your local server: [https://github.com/weka/tools/blob/master/install/resources\_generator.py](https://github.com/weka/tools/blob/master/install/resources_generator.py).
+1. Download the resources generator from the GitHub repository to your local server: [https://github.com/weka/tools/blob/master/install/resources\_generator.py](https://github.com/weka/tools/blob/master/install/resources_generator.py).
 
 Example:&#x20;
 
@@ -21,7 +21,7 @@ wget https://raw.githubusercontent.com/weka/tools/master/install/resources_gener
 
 ```
 
-2. Copy the resource generator from your local server to all servers in the cluster.
+2. Copy the resources generator from your local server to all servers in the cluster.
 
 Example for a cluster with 8 servers:&#x20;
 
@@ -30,7 +30,7 @@ for i in {0..7}; do scp resources_generator.py weka0-$i:/tmp/resources_generator
 
 ```
 
-2. To enable execution, change the mode of the resource generator on all servers in the cluster.
+2. To enable execution, change the mode of the resources generator on all servers in the cluster.
 
 Example for a cluster with 8 servers:&#x20;
 
@@ -41,14 +41,16 @@ pdsh -R ssh -w "weka0-[0-7]" 'chmod +x /tmp/resources_generator.py'
 
 ## Workflow
 
-1. [Remove the default container](./#1.-remove-the-default-container)
-2. [Generate the resource files](./#2.-generate-the-resource-files)
-3. [Create drive containers](./#3.-create-drive-containers)
-4. [Create a cluster](./#id-4.-create-a-cluster)
-5. [Configure the SSD drives](./#5.-configure-the-ssd-drives)
-6. [Create compute containers](./#6.-create-compute-containers)
-7. [Create frontend containers](./#7.-create-frontend-containers)
-8. [Name the cluster](./#8.-name-the-cluster)
+1. Remove the default container
+2. Generate the resource files
+3. Create drive containers
+4. Create a cluster
+5. Configure the SSD drives
+6. Create compute containers
+7. Create frontend containers
+8. Configure number of data and parity drives
+9. Configure number of hot spares
+10. Name the cluster
 
 ### 1. Remove the default container
 
@@ -64,7 +66,7 @@ To generate the resource files for the drive, compute, and frontend processes, r
 
 `./resources_generator.py --net <net-devices> [options]`
 
-The resource generator allocates the number of cores, memory, and other resources according to the values specified in the parameters.&#x20;
+The resources generator allocates the number of cores, memory, and other resources according to the values specified in the parameters.&#x20;
 
 The best practice for resources allocation is as follows:
 
@@ -99,7 +101,7 @@ Contact Professional Services for the recommended resource allocation settings f
 
 **Command:** `weka local setup container`
 
-For each server in the cluster, create the drive containers using the resource generator output file `drives0.json`.
+For each server in the cluster, create the drive containers using the resources generator output file `drives0.json`.
 
 The drives JSON file includes all the required values for creating the drive containers. Only the path to the JSON resource file is required (before cluster creation, the optional parameter `join-ips`  is not relevant).&#x20;
 
@@ -115,21 +117,23 @@ weka local setup container --resources-path <resources-path>/drives0.json
 
 ### 4. Create a cluster
 
-**Command:** `weka cluster create`
+**Command:** `weka cluster add`
 
 To create a cluster of the allocated containers, use the following command:
 
 ```
-weka cluster create <hostnames> [--host-ips <ips | ip+ip+ip+ip>]
+weka cluster add <hostnames> [--host-ips <ips | ip+ip+ip+ip>]
 ```
 
 **Parameters**
 
-<table><thead><tr><th width="181">Name</th><th width="390.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>hostnames</code>*</td><td>Hostnames or IP addresses.<br>If port 14000 is not the default for the drives, you can specify hostnames:port or ips:port.<br>Minimum cluster size: 6<br>Format: space-separated strings</td><td></td></tr><tr><td><code>host-ips</code></td><td>IP addresses of the management interfaces. Use a list of <code>ip+ip</code> addresses pairs of two cards for HA configuration. In case the cluster is connected to both IB and Ethernet, it is possible to set up to 4 management IPs for redundancy of both the IB and Ethernet networks using a list of <code>ip+ip+ip+ip</code> addresses.<br>The same number of values as in <code>hostnames</code>.<br>Format: comma-separated IP addresses.<br></td><td>IP of the first network device of the container</td></tr></tbody></table>
+<table><thead><tr><th width="181">Name</th><th width="420.3333333333333">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>hostnames</code>*</td><td>Hostnames or IP addresses.<br>If port 14000 is not the default for the drives, you can specify hostnames:port or ips:port.<br>Minimum cluster size: 6<br>Format: Space-separated strings</td><td></td></tr><tr><td><code>host-ips</code></td><td><p>IP addresses of the management interfaces. Use a list of <code>ip+ip</code> address pairs for HA configuration.</p><p>If the cluster is connected to both IB and Ethernet, you can specify up to four management IPs (<code>ip+ip+ip+ip</code>) for redundancy across both networks.<br>Format: Comma-separated IP addresses.</p></td><td>IP of the first network device of the container</td></tr></tbody></table>
 
 {% hint style="info" %}
 **Notes:**
 
+* The command preserves existing valid IP configurations in the host's `resource.json` file, only modifying entries that are empty or contain the default local address `127.0.0.1`. This allows preconfigured addresses in the resource file to be used without requiring manual input. To force overwriting the `ips` field, use the\
+  `--overwrite_resource_ips` flag.
 * It is possible to use a hostname or an IP address. This string serves as the container's identifier in subsequent commands.
 * If a hostname is used, ensure the hostname to IP resolution mechanism is reliable.
 * Once the cluster creation is successfully completed, the cluster is in the initialization phase, and some commands can only run in this phase.
@@ -156,7 +160,7 @@ weka cluster drive add <container-id> <device-paths>
 
 **Command:** `weka local setup container`
 
-For each server in the cluster, create the compute containers using the resource generator output file `compute0.json`.
+For each server in the cluster, create the compute containers using the resources generator output file `compute0.json`.
 
 ```
 weka local setup container --join-ips <IP addresses> --resources-path <resources-path>/compute0.json
@@ -170,7 +174,7 @@ weka local setup container --join-ips <IP addresses> --resources-path <resources
 
 **Command:** `weka local setup container`
 
-For each server in the cluster, create the frontend containers using the resource generator output file `frontend0.json`.
+For each server in the cluster, create the frontend containers using the resources generator output file `frontend0.json`.
 
 {% code overflow="wrap" %}
 ```bash
@@ -190,7 +194,19 @@ weka local setup container --client --auto-remove-timeout <auto-remove-timeout> 
 
 <table><thead><tr><th width="242.9765625">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td>IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.<br>Format: comma-separated IP addresses.<br>Example:  <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></td></tr><tr><td><code>client</code></td><td>Set the container as a client.</td></tr><tr><td><code>auto-remove-timeout</code></td><td>Specify timeout (in seconds) for automatically removing inactive client containers. Only applicable when used with the <code>--client</code> flag.</td></tr><tr><td><code>restricted</code></td><td>Set a client container with restricted privileges as a regular user regardless of the logged-in role.</td></tr></tbody></table>
 
-### 8. Name the cluster
+### 8.  Configure the number of data and parity drives
+
+**Command:** `weka cluster update --data-drives=<count> --parity-drives=<count>`
+
+**Example:** `weka cluster update --data-drives=4 --parity-drives=2`
+
+### 9.  Configure the number of hot spares
+
+**Command:** `weka cluster hot-spare <count>`
+
+**Example:** `weka cluster hot-spare 1`
+
+### 10. Name the cluster
 
 **Command:** `weka cluster update --cluster-name=<cluster name>`
 

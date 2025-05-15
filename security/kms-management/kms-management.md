@@ -4,7 +4,7 @@ description: >-
   the WEKA system using the GUI.
 ---
 
-# Manage KMS using the GUI
+# Manage KMS using GUI
 
 Using the GUI, you can:
 
@@ -44,19 +44,19 @@ The **Token** parameter, used for cluster-wide encryption, has been deprecated f
 For per-filesystem encryption, use the **Role ID** and **Secret ID** instead.
 {% endhint %}
 
-<div align="left"><img src="../../../.gitbook/assets/4.4.2_configure_KMS_Hashicorp.png" alt="HashiCorp Vault type configuration"></div>
+<div align="left"><img src="../../.gitbook/assets/4.4.2_configure_KMS_Hashicorp.png" alt="HashiCorp Vault type configuration"></div>
 {% endtab %}
 
 {% tab title="KMIP " %}
 For the **KMIP** type, set the following:
 
-* **Address**: The address of the KMS in hostname:port format.
+* **Address**: Hostname and port of the KMS in the format `hostname:port`. Do not include any protocol prefixes such as `https://`. The hostname can be either a fully qualified domain name (FQDN) or an IP address. Port 5696 is the default for KMIP, but this may vary depending on the server configuration.
 * **KMS Identifier**: Key UID to secure the filesystem keys (encryption-as-a-service).
 * **Client Certificate:** The client certificate content of the PEM file.
 * **Client Key**: The client key content of the PEM file.
 * **CA Certificate**: (Optional) The CA certificate content of the PEM file.
 
-<figure><img src="../../../.gitbook/assets/wmng_configure_KMIP.png" alt=""><figcaption><p>KMIP type configuration </p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/wmng_configure_KMIP.png" alt=""><figcaption><p>KMIP type configuration </p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
@@ -78,7 +78,7 @@ For the **KMIP** type, set the following:
 2. From the left pane, select **Security**.\
    The **Security** page displays the configured KMS.
 
-![View the configured KMS](../../../.gitbook/assets/wmng_view_kms_settings.png)
+![View the configured KMS](../../.gitbook/assets/wmng_view_kms_settings.png)
 
 ## Update the KMS configuration
 

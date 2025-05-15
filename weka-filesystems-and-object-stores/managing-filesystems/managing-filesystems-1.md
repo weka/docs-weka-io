@@ -7,14 +7,14 @@ description: This page describes how to view and manage filesystems using the CL
 Using the CLI, you can perform the following actions:
 
 * [View filesystems](managing-filesystems-1.md#view-filesystems)
-* [Create a filesystem](managing-filesystems-1.md#add-a-filesystem)
+* [Add a filesystem](managing-filesystems-1.md#add-a-filesystem)
 * [Add a filesystem when thin-provisioning is used](managing-filesystems-1.md#add-a-filesystem-when-thin-provisioning-is-used)
 * [Edit a filesystem](managing-filesystems-1.md#edit-a-filesystem)
-* [Delete a filesystem](managing-filesystems-1.md#delete-a-filesystem)
+* [Remove a filesystem](managing-filesystems-1.md#remove-a-filesystem)
 * [Rewrap the filesystem encryption key](managing-filesystems-1.md#rewrap-the-filesystem-encryption-key)
 
 {% hint style="info" %}
-Several parameters in this topic relate to Key Management System (KMS) configuration, which supports both per-filesystem encryption keys and cluster encryption keys. For more information about how KMS integration works and setup guidance, see  [kms-management](../../security/kms-management/ "mention").
+Several parameters in this topic relate to Key Management System (KMS) configuration, which supports both per-filesystem encryption keys and cluster encryption keys. For more information about how KMS integration works and setup guidance, see [kms-management](../../security/kms-management/ "mention").
 {% endhint %}
 
 ## View filesystems
@@ -23,13 +23,13 @@ Several parameters in this topic relate to Key Management System (KMS) configura
 
 Use this command to view information on the filesystems in the WEKA system.
 
-## Create a filesystem
+## Add a filesystem
 
-**Command:** `weka fs create`
+**Command:** `weka fs add`
 
 Use the following command line to create a filesystem:
 
-`weka fs create <name> <group-name> <total-capacity> [--obs-name <obs-name>] [--ssd-capacity <ssd-capacity>] [--thin-provision-min-ssd <thin-provision-min-ssd>] [--thin-provision-max-ssd <thin-provision-max-ssd>] [--kms-key-identifier kms-key-identifier]  [--kms-namespace kms-namespace] [--kms-role-id kms-role-id] [--kms-secret-id kms-secret-id] [--auth-required auth-required] [--encrypted] [--data-reduction]`
+`weka fs add <name> <group-name> <total-capacity> [--obs-name <obs-name>] [--ssd-capacity <ssd-capacity>] [--thin-provision-min-ssd <thin-provision-min-ssd>] [--thin-provision-max-ssd <thin-provision-max-ssd>] [--kms-key-identifier kms-key-identifier]  [--kms-namespace kms-namespace] [--kms-role-id kms-role-id] [--kms-secret-id kms-secret-id] [--auth-required auth-required] [--encrypted] [--data-reduction]`
 
 **Parameters**
 
@@ -43,11 +43,11 @@ To create an encrypted filesystem, you must define a KMS.
 If a KMS is unavailable for a POC, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team) for guidance.
 {% endhint %}
 
-## Add a filesystem when thin-provisioning is used&#x20;
+## Remove a filesystem when thin-provisioning is used&#x20;
 
 To create a new filesystem, the SSD space for the filesystem must be free and unprovisioned. When using thin-provisioned filesystems, that might not be the case. SSD space can be occupied for the thin-provisioned portion of other filesystems. Even if those are tiered, and data can be released (to object-store) or deleted, the SSD space can still get filled when data keeps being written or promoted from the object-store.
 
-To create a new filesystem, in this case, use the `weka fs reserve` CLI command. Once enough space is cleared from the SSD (either by releasing to object-store or explicitly deleting data), it is possible to create the new filesystem using the reserved space.
+To add a new filesystem, in this case, use the `weka fs reserve` CLI command. Once enough space is cleared from the SSD (either by releasing to object-store or explicitly deleting data), it is possible to add the new filesystem using the reserved space.
 
 ## Edit a filesystem
 
@@ -61,13 +61,13 @@ Use the following command line to edit an existing filesystem:
 
 <table><thead><tr><th width="328">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the filesystem to edit.</td></tr><tr><td><code>new-name</code></td><td>New name for the filesystem.</td></tr><tr><td><code>total-capacity</code></td><td>Total capacity of the edited filesystem.</td></tr><tr><td><code>ssd-capacity</code></td><td>SSD capacity of the edited filesystem.<br>Minimum value: 1GiB.</td></tr><tr><td><code>thin-provision-min-ssd</code></td><td>For <a href="../../weka-system-overview/filesystems.md#thin-provisioning">thin-provisioned</a> filesystems, this is the minimum SSD capacity that is ensured to be always available to this filesystem.<br>Minimum value: 1GiB.</td></tr><tr><td><code>thin-provision-max-ssd</code></td><td>For <a href="../../weka-system-overview/filesystems.md#thin-provisioning">thin-proviosined</a> filesystem, this is the maximum SSD capacity the filesystem can consume.<br>The value must not exceed the <code>total-capacity</code>.</td></tr><tr><td><code>data-reduction</code></td><td>Enable data reduction.<br>The filesystem must be non-tired and thin-provisioned. A license with data reduction is required.</td></tr><tr><td><code>auth-required</code></td><td>Determines if mounting the filesystem requires being authenticated to Weka (<a href="../../operation-guide/user-management/#user-log-in">weka user login</a>).<br>Possible values: <code>yes</code> or <code>no</code>.</td></tr><tr><td><code>kms-key-identifier</code></td><td>Customize KMS key identifier for this filesystem (only for HashiCorp Vault).</td></tr><tr><td><code>kms-namespace</code></td><td>Customize KMS namespace for this filesystem (only for HashiCorp Vault).</td></tr><tr><td><code>kms-role-id</code></td><td>Customize KMS role-id for this filesystem (only for HashiCorp Vault).</td></tr><tr><td><code>kms-secret-id</code></td><td>Customize KMS secret-id for this filesystem (only for HashiCorp Vault).</td></tr><tr><td><code>use-cluster-kms-key-identifier</code></td><td>Enable cluster KMS configuration for this filesystem, which removes any custom KMS settings previously applied to it.</td></tr></tbody></table>
 
-## Delete a filesystem
+## Remove a filesystem
 
-**Command:** `weka fs delete`
+**Command:** `weka fs remove`
 
-Use the following command line to delete a filesystem:
+Use the following command line to remove a filesystem:
 
-`weka fs delete <name> [--purge-from-obs]`
+`weka fs`` ``remove <name> [--purge-from-obs]`
 
 **Parameters**
 

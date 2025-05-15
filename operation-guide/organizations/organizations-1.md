@@ -6,19 +6,19 @@ description: Explore how to manage organizations using the CLI.
 
 Using the CLI, you can:
 
-* [Create an organization](organizations-1.md#create-an-organization)
+* [Add an organization](organizations-1.md#add-an-organization)
 * [View organizations](organizations-1.md#view-organizations)
 * [Rename an organization](organizations-1.md#rename-an-organization)
 * [Update the quota of an organization](organizations-1.md#update-the-quota-of-an-organization)
-* [Delete an organization](organizations-1.md#delete-an-organization)
+* Remove an organization
 
-## Create an organization
+## Add an organization
 
-**Command:** `weka org create`
+**Command:** `weka org add`
 
 Use the following command line to create an organization:
 
-`weka org create <name> <username> <password> [--ssd-quota ssd-quota] [--total-quota total-quota]`
+`weka org add <name> <username> <password> [--ssd-quota ssd-quota] [--total-quota total-quota]`
 
 **Parameters**
 
@@ -62,16 +62,16 @@ Use the following command line to update an organization's quota:
 
 <table><thead><tr><th width="215">Name</th><th>Value</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Value</strong></td></tr><tr><td><code>org</code>*</td><td>Organization name or ID.<br>The root organization (org ID = 0 cannot be limited)</td></tr><tr><td><code>ssd-quota</code></td><td>Allowed quota out of the system SSDs to be used by the organization</td></tr><tr><td><code>total-quota</code></td><td>Total allowed quota for the organization (SSD and object store)</td></tr></tbody></table>
 
-## Delete an organization
+## Remove an organization
 
-**Command:** `weka org delete`
+**Command:** `weka org remove`
 
-Use the following command line to delete an organization:
+Use the following command line to remove an organization:
 
-`weka org delete <org>`
+`weka org remove <org>`
 
 {% hint style="danger" %}
-Deleting an organization is irreversible. It removes all entities related to the organization, such as filesystems, object stores, and users.
+Removing an organization is irreversible. It removes all entities related to the organization, such as filesystems, object stores, and users.
 {% endhint %}
 
 **Parameters**

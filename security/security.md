@@ -18,14 +18,18 @@ The following is an overview of WEKA’s key security features and management pr
   * **Access tokens:** Short-lived (5-minute validity) for API access and filesystem mounting.
   * **Refresh tokens:** Long-lived (configurable, default 1 month) for obtaining new access tokens.
 * **Role-Based Access Control (RBAC) and ACLs**: Enables fine-grained permissions, ensuring users have access only to authorized data.
+* **Token expiry management**: Configurable using `weka security token-expiry` commands to enforce security compliance and reduce risks.
+* **Secure cluster membership with join secret authentication:** Administrators can enable join secret authentication to enhance cluster security. When enabled, only backends with the correct secret can join, preventing accidental cross-cluster joins and unauthorized access in a multi-cluster environment.
 
-**Related topics**:
+**Related topics**
 
 [obtain-authentication-tokens.md](obtain-authentication-tokens.md "mention")
 
 [#access-control-lists-acls](../additional-protocols/smb-support/#access-control-lists-acls "mention") (in SMB)
 
 [#access-control-list-acl-in-nfs](../additional-protocols/nfs-support/#access-control-list-acl-in-nfs "mention")
+
+[secure-cluster-membership-with-join-secret-authentication.md](../secure-cluster-membership-with-join-secret-authentication.md "mention")
 
 ***
 

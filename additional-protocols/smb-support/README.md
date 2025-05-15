@@ -24,8 +24,8 @@ The implementation of SMB in the WEKA system is characterized by scalability, re
 
 In addition to legacy SMB features, SMB-W introduces the following capabilities:
 
-* **SMB Multichannel:** WEKA supports SMB clients configured with multichannel, enhancing performance in such configurations.
-* **SMB Transparent Failover:** This feature ensures continuous IO availability during failover scenarios.
+* **SMB multichannel:** WEKA supports SMB clients configured with multichannel, enhancing performance in such configurations.
+* **High availability and failover support:** If a server running an SMB-W container becomes isolated from the cluster, the container stops. Other servers in the SMB cluster take over operations, ensuring continuous service availability (to manually recover a stopped SMB-W container, run: weka local restart smbw).
 * **SMB Direct:** SMB over Remote Direct Memory Access (RDMA). To enable SMB Direct, ensure the following prerequisites are met:
   * SMB-W servers are RDMA-enabled in both hardware and OS.
   * For Windows clients, configure the SMB client as multichannel.

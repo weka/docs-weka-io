@@ -12,7 +12,7 @@ The system provides the alert name, description, and corrective action for each 
 
 Usually, an alert is introduced alongside an equivalent event. This can help identify the point when the problematic state occurred and its root cause.
 
-![Example: active alerts page](<../../.gitbook/assets/wmng\_alerts\_overview (1).png>)
+![Example: active alerts page](<../../.gitbook/assets/wmng_alerts_overview (1).png>)
 
 
 
@@ -22,4 +22,4 @@ Usually, an alert is introduced alongside an equivalent event. This can help ide
 
 [alerts-1.md](alerts-1.md "mention")
 
-[list-of-alerts.md](list-of-alerts.md "mention")
+[list-of-alerts-and-corrective-actions.md](list-of-alerts-and-corrective-actions.md "mention")

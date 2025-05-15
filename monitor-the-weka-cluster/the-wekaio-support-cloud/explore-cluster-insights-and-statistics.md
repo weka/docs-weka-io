@@ -83,11 +83,11 @@ Select each tab to explore the topology screens.
 
 {% tabs %}
 {% tab title="Servers" %}
-<figure><img src="../../.gitbook/assets/cluster-topology-servers-view.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/cluster-topology-servers-view (1).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="Containers" %}
-<figure><img src="../../.gitbook/assets/cluster-topology-containers.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/cluster-topology-containers (1).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="Processes" %}

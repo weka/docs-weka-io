@@ -20,6 +20,8 @@ To enable WEKA tagged VLAN support, add the desired VLAN IDs to the switch ports
 
 After configuring the switch, update the Linux system interfaces to recognize the VLAN IDs and verify connectivity.
 
+Use the following procedure on each WEKA backend and each WEKA stateful client. You do not need to perform this procedure on WEKA stateless clients because it is automatically applied during the mount command.
+
 **Procedure**
 
 1.  **Assign a VLAN tag to a network interface**\
@@ -49,35 +51,59 @@ After configuring the switch, update the Linux system interfaces to recognize th
 3. **Apply configuration changes**\
    Restart all containers to apply the VLAN configuration updates.
 
+## Confirm which tagged VLAN is attached to the interfaces
+
+To determine which tagged VLANs are configured, query the local resources of a container using a command like this:
+
+```
+weka local resources -C <containername>
+```
+
+Example:
+
+```bash
+weka local resources -C drives0
+```
+
+You can also display the cluster container network data with this command by requesting verbose output with `-v` to list the VLAN ID or by using syntax like  `-o id,hostname,name,ips,vlan`:
+
+```
+weka cluster container net -v
+```
+
 ## Mount filesystems with tagged VLANs
+
+When running a mount command on a WEKA stateless client where the backends have a tagged VLAN, specify the same VLAN in the mount command as follows:
 
 ### **Basic VLAN tagging**
 
 Mount a filesystem with a specified NIC and VLAN tag:
 
 ```bash
-mount -o net=<nic>/vlan@<tag> <mountpoint>
+mount -o net=<nic>/vlan@<tag> <backendip/filesystem> <mountpoint>
 ```
 
 Example:
 
 ```bash
-mount -o net=mlnx0/vlan@501 /mnt/weka
+mount -o net=mlnx0/vlan@501 10.10.0.10/default /mnt/weka
 ```
 
 ### **Extended network configuration**
 
 Include gateway, IP, and netmask for advanced configurations:
 
+{% code overflow="wrap" %}
 ```bash
-mount -o net=<nic>/vlan@<tag>/gw@<gateway>/ip@<ip>/netmask@<netmask> <mountpoint>
+mount -o net=<nic>/vlan@<tag>/gw@<gateway>/ip@<ip>/netmask@<netmask> <backendip/filesystem> <mountpoint>
 ```
+{% endcode %}
 
 Example:
 
 {% code overflow="wrap" %}
 ```bash
-mount -o net=mlnx0/vlan@501/gw@192.168.1.1/ip@192.168.1.10/netmask@255.255.255.0 /mnt/weka
+mount -o net=mlnx0/vlan@501/gw@192.168.1.1/ip@192.168.1.10/netmask@255.255.255.0 10.10.0.10/default /mnt/weka
 ```
 {% endcode %}
 

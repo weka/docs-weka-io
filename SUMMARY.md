@@ -8,7 +8,7 @@
 * [Introduction](weka-system-overview/about/README.md)
   * [WEKA system functionality features](weka-system-overview/about/weka-system-functionality-features.md)
   * [Converged WEKA system deployment](weka-system-overview/about/converged-weka-system-deployment.md)
-  * [Optimize redundancy in WEKA deployments](weka-system-overview/about/optimize-redundancy-in-weka-deployments.md)
+  * [Redundancy optimization in WEKA](weka-system-overview/about/optimize-redundancy-in-weka-deployments.md)
 * [SSD capacity management](weka-system-overview/ssd-capacity-management.md)
 * [Filesystems, object stores, and filesystem groups](weka-system-overview/filesystems.md)
 * [WEKA networking](weka-system-overview/networking-in-wekaio.md)
@@ -30,7 +30,7 @@
     * [Broadcom adapter setup for WEKA system](planning-and-installation/bare-metal/setting-up-the-hosts/broadcom-adapter-setup-for-weka-system.md)
     * [Enable the SR-IOV](planning-and-installation/bare-metal/setting-up-the-hosts/sr-iov-enablement.md)
   * [Configure the WEKA cluster using the WEKA Configurator](planning-and-installation/bare-metal/configure-the-weka-cluster-using-the-weka-configurator.md)
-  * [Manually configure the WEKA cluster using the resource generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/README.md)
+  * [Manually configure the WEKA cluster using the resources generator](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/README.md)
     * [VLAN tagging in the WEKA system](planning-and-installation/bare-metal/manually-configure-the-weka-cluster-using-the-resource-generator/vlan-tagging-in-the-weka-system.md)
   * [Perform post-configuration procedures](planning-and-installation/bare-metal/perform-post-configuration-procedures.md)
   * [Add clients to an on-premises WEKA cluster](planning-and-installation/bare-metal/adding-clients-bare-metal.md)
@@ -73,6 +73,7 @@
   * [Troubleshooting](planning-and-installation/weka-installation-on-gcp/troubleshooting.md)
   * [Detailed deployment tutorial: WEKA on GCP using Terraform](planning-and-installation/weka-installation-on-gcp/detailed-deployment-tutorial-weka-on-gcp-using-terraform.md)
   * [Google Kubernetes Engine and WEKA over POSIX deployment](planning-and-installation/weka-installation-on-gcp/google-kubernetes-engine-and-weka-over-posix-deployment.md)
+* [WEKA installation on OCI](planning-and-installation/weka-installation-on-oci.md)
 
 ## Getting Started with WEKA
 
@@ -148,9 +149,10 @@
     * [Configure audit webhook using the GUI](additional-protocols/s3/audit-s3-apis/configure-audit-webhook-using-the-gui.md)
     * [Configure audit webhook using the CLI](additional-protocols/s3/audit-s3-apis/audit-s3-apis.md)
     * [Example: How to use Splunk to audit S3](additional-protocols/s3/audit-s3-apis/audit-s3-apis-1.md)
+    * [Example: How to use S3 audit events for tracking and security](additional-protocols/s3/audit-s3-apis/example-how-to-use-s3-audit-events-for-tracking-and-security.md)
   * [S3 supported APIs and limitations](additional-protocols/s3/s3-limitations.md)
   * [S3 examples using boto3](additional-protocols/s3/s3-examples-using-boto3.md)
-  * [Access S3 using AWS CLI](additional-protocols/s3/access-s3-using-aws-cli.md)
+  * [Configure and use AWS CLI with WEKA S3 storage](additional-protocols/s3/configure-and-use-aws-cli-with-weka-s3-storage.md)
 * [Manage the SMB protocol](additional-protocols/smb-support/README.md)
   * [Manage SMB using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
   * [Manage SMB using the CLI](additional-protocols/smb-support/smb-management-using-the-cli.md)
@@ -159,6 +161,7 @@
 
 * [WEKA security overview](security/security.md)
 * [Obtain authentication tokens](security/obtain-authentication-tokens.md)
+* [Manage token expiration](security/manage-token-expiration.md)
 * [Manage account lockout threshold policy](security/account-lockout-threshold-policy-management.md)
 * [Manage KMS](security/kms-management/README.md)
   * [Manage KMS using GUI](security/kms-management/kms-management.md)
@@ -170,6 +173,10 @@
 * [Manage CIDR-based security policies](security/manage-cidr-based-security-policies.md)
 * [Manage login banner](security/manage-the-login-banner.md)
 
+***
+
+* [Secure cluster membership with join secret authentication](secure-cluster-membership-with-join-secret-authentication.md)
+
 ## Licensing
 
 * [License overview](licensing/overview.md)
@@ -180,7 +187,7 @@
 * [Alerts](operation-guide/alerts/README.md)
   * [Manage alerts using the GUI](operation-guide/alerts/alerts.md)
   * [Manage alerts using the CLI](operation-guide/alerts/alerts-1.md)
-  * [List of alerts and corrective actions](operation-guide/alerts/list-of-alerts.md)
+  * [List of alerts and corrective actions](operation-guide/alerts/list-of-alerts-and-corrective-actions.md)
 * [Events](operation-guide/events/README.md)
   * [Manage events using the GUI](operation-guide/events/events.md)
   * [Manage events using the CLI](operation-guide/events/events-1.md)
@@ -221,12 +228,13 @@
   * [Manage alerts and integrations](monitor-the-weka-cluster/the-wekaio-support-cloud/manage-alerts-and-integrations.md)
   * [Enforce security and compliance](monitor-the-weka-cluster/the-wekaio-support-cloud/enforce-security-and-compliance.md)
   * [Optimize support and data management](monitor-the-weka-cluster/the-wekaio-support-cloud/optimize-support-and-data-management.md)
-* [Set up the WEKAmon external monitoring](monitor-the-weka-cluster/external-monitoring.md)
+  * [Export cluster metrics to Prometheus](monitor-the-weka-cluster/the-wekaio-support-cloud/export-cluster-metrics-to-prometheus.md)
+* [Set up WEKAmon for external monitoring](monitor-the-weka-cluster/external-monitoring.md)
 * [Set up the SnapTool external snapshots manager](monitor-the-weka-cluster/snapshot-management.md)
 
 ## Kubernetes
 
-* [Multi-tenancy in WEKA](kubernetes/multi-tenancy-in-weka.md)
+* [Composable clusters for multi-tenancy in Kubernetes](kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md)
 * [WEKA Operator deployment](kubernetes/weka-operator-deployment.md)
 * [WEKA Operator day-2 operations](kubernetes/weka-operator-day-2-operations.md)
 

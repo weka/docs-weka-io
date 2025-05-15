@@ -97,7 +97,7 @@ Alternatively, you can configure these settings using the **Lifecycle Controller
 
 For WEKApod systems that include a WMS server and Ethernet switch, follow the steps below to configure the software using the WMS.
 
-If your WEKApod system does not include a WMS server and Ethernet switch, refer to the instructions for reinstalling the operating system, WEKA software, and configuring the system. See .
+If your WEKApod system does not include a WMS server and Ethernet switch, refer to the instructions for reinstalling the operating system, WEKA software, and configuring the system. See [install-the-weka-cluster-using-the-wms-with-wsa.md](../planning-and-installation/bare-metal/install-the-weka-cluster-using-the-wms-with-wsa.md "mention").
 
 #### Configuration tips and troubleshooting
 

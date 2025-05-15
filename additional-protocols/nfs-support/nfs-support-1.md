@@ -74,13 +74,13 @@ Use the following command line to add an interface group:
 
 `weka nfs interface-group port add`
 
-`weka nfs interface-group port delete`
+`weka nfs interface-group port remove`
 
-Use the following command lines to add or delete an interface group port:
+Use the following command lines to add or remove an interface group port:
 
 `weka nfs interface-group port add <name> <container-id> <port>`
 
-`weka nfs interface-group port delete <name> <container-id> <port>`
+`weka nfs interface-group port remove <name> <container-id> <port>`
 
 **Example**
 
@@ -98,13 +98,13 @@ The following command line adds the interface `enp2s0` on the Frontend container
 
 `weka nfs interface-group ip-range add`
 
-`weka nfs interface-group ip-range delete`
+`weka nfs interface-group ip-range remove`
 
-Use the following command lines to add/delete an interface group IP:
+Use the following command lines to add or remove an interface group IP:
 
 `weka nfs interface-group ip-range add <name> <ips>`
 
-`weka nfs interface-group ip-range delete <name> <ips>`
+`weka nfs interface-group ip-range remove <name> <ips>`
 
 **Example**
 
@@ -329,7 +329,7 @@ weka nfs kerberos registration setup-mit myservicename.test.example.com myservic
 
 **Parameters**
 
-<table><thead><tr><th width="227">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters.</td><td></td></tr><tr><td><code>keytab-file</code>*</td><td>The path to the pre-generated keytab file containing the keys for the NFS service’s unique identity in <a data-footnote-ref href="#user-content-fn-3">base64</a> format.</td><td></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
+<table><thead><tr><th width="227">Name</th><th width="407">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>nfs-service-name</code>*</td><td>Fully Qualified Domain Name (FQDN) for the NFS Service. This refers to the complete domain name for a specific NFS server. The hostname part of the FQDN is restricted to a maximum of 20 characters.</td><td></td></tr><tr><td><code>keytab-file</code>*</td><td>The path to the pre-generated keytab file containing the keys for the NFS service’s unique identity in <a data-footnote-ref href="#user-content-fn-1">base64</a> format.</td><td></td></tr><tr><td><code>force</code></td><td>When used, it forces the action to proceed without further confirmation. Typically used when the service is configured.</td><td>Not used</td></tr><tr><td><code>restart</code></td><td>When used, the command restarts the NFS-W containers after the changes are applied.</td><td>Not used</td></tr></tbody></table>
 
 #### Set up Kerberos to use OpenLDAP
 
@@ -500,11 +500,11 @@ Use the following command to configure NFS to use LDAP for ACLs only when Kerber
 
 **Command:** `weka nfs client-group`
 
-Use the following command lines to add/delete a client access group:
+Use the following command lines to add or remove a client access group:
 
 `weka nfs client-group add <name>`
 
-`weka nfs client-group delete <name>`
+`weka nfs client-group remove <name>`
 
 **Parameters**
 
@@ -526,15 +526,15 @@ Use the following command lines to add a rule that causes a client to be part of
 
 &#x20;`weka nfs rules add dns client-group1 hostname.example.com`
 
-#### **Delete DNS-based client group rules**
+#### **Remove DNS-based client group rules**
 
-Use the following command lines to delete a rule that causes a client to be part of a client group based on its DNS hostname:
+Use the following command lines to remove a rule that causes a client to be part of a client group based on its DNS hostname:
 
-`weka nfs rules delete dns <name> <dns>`
+`weka nfs rules remove dns <name> <dns>`
 
 **Example**
 
-`weka nfs rules delete dns client-group1 hostname.example.com`
+`weka nfs rules remove dns client-group1 hostname.example.com`
 
 **Parameters**
 
@@ -544,7 +544,7 @@ Use the following command lines to delete a rule that causes a client to be part
 
 **Command:** `weka nfs rules`
 
-Use the following command lines to add or delete a rule which causes a client to be part of a client group based on its IP and subnet mask (both CIDR and standard subnet mask formats are supported for enhanced flexibility):
+Use the following command lines to add or remove a rule which causes a client to be part of a client group based on its IP and subnet mask (both CIDR and standard subnet mask formats are supported for enhanced flexibility):
 
 `weka nfs rules add ip <name> <ip>`
 
@@ -553,14 +553,14 @@ Use the following command lines to add or delete a rule which causes a client to
 &#x20;`weka nfs rules add ip client-group1 192.168.114.0/8`\
 &#x20;`weka nfs rules add ip client-group2 172.16.0.0/255.255.0.0`
 
-#### **Delete IP-based client group rules**
+#### **Remove IP-based client group rules**
 
-`weka nfs rules delete ip <name> <ip>`
+`weka nfs rules remove ip <name> <ip>`
 
 **Examples**
 
-&#x20;`weka nfs rules delete ip client-group1 192.168.114.0/255.255.255.0`\
-&#x20;`weka nfs rules delete ip client-group2 172.16.0.0/16`
+&#x20;`weka nfs rules remove ip client-group1 192.168.114.0/255.255.255.0`\
+&#x20;`weka nfs rules remove ip client-group2 172.16.0.0/16`
 
 **Parameters**
 
@@ -578,9 +578,9 @@ Use the following command lines to update NFS permissions:
 
 `weka nfs permission update <filesystem> <group> [--path path] [--permission-type permission-type] [--squash squash] [--anon-uid anon-uid] [--anon-gid anon-gid] [--obs-direct obs-direct] [--manage-gids manage-gids] [--privileged-port privileged-port] [--acl-type acl-type] [--force-acl-type force-acl-type] [--supported-versions supported-versions]... [--enable-auth-types enable-auth-types]... [--no-restart]`
 
-Use the following command lines to delete NFS permissions:
+Use the following command lines to remove NFS permissions:
 
-`weka nfs permission delete <filesystem> <group> [--path path]`
+`weka nfs permission remove <filesystem> <group> [--path path]`
 
 **Parameters**
 
@@ -601,5 +601,3 @@ Use the following command line to view insights of NFS clients connected to the 
 [^1]: A binary data in an American Standard Code for Information Interchange (ASCII) string format.
 
 [^2]: All Kerberos server machines need a keytab file, called `/etc/krb5.keytab`, to authenticate to the KDC. For details, see [https://web.mit.edu/kerberos/krb5-1.5/krb5-1.5.4/doc/krb5-install/The-Keytab-File.html](https://web.mit.edu/kerberos/krb5-1.5/krb5-1.5.4/doc/krb5-install/The-Keytab-File.html).
-
-[^3]: A binary data in an American Standard Code for Information Interchange (ASCII) string format.

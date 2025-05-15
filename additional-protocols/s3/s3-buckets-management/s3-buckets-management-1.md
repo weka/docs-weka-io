@@ -6,20 +6,20 @@ description: This page describes how to manage S3 buckets using the CLI.
 
 Using the CLI, you can:
 
-* [Create a bucket](s3-buckets-management-1.md#add-a-bucket)
+* [Add a bucket](s3-buckets-management-1.md#add-a-bucket)
 * [List buckets](s3-buckets-management-1.md#list-buckets)
 * [Set a bucket quota](s3-buckets-management-1.md#set-a-bucket-quota)
 * [Unset a bucket quota](s3-buckets-management-1.md#unset-a-bucket-quota)
-* [Delete a bucket](s3-buckets-management-1.md#delete-a-bucket)
+* Remove a bucket
 * [Manage bucket policies](s3-buckets-management-1.md#manage-bucket-policies)
 
-## Create a bucket
+## Add a bucket
 
-**Command:** `weka s3 bucket create`
+**Command:** `weka s3 bucket add`
 
-Use the following command line to create an S3 bucket:
+Use the following command line to add an S3 bucket:
 
-`weka s3 bucket create <name> [--policy policy] [--policy-json policy-json] [--hard-quota hard-quota] [--fs-name fs-name] [--fs-id fs-id] [--existing-path existing-path]`
+`weka s3 bucket add <name> [--policy policy] [--policy-json policy-json] [--hard-quota hard-quota] [--fs-name fs-name] [--fs-id fs-id] [--existing-path existing-path]`
 
 {% hint style="info" %}
 S3 does not support creating buckets on filesystems with names containing the characters ' ', '`(`', '`)`', or '`&`'. Verify that the filesystem name excludes these characters. Rename the filesystem if needed before creating the S3 bucket.
@@ -47,23 +47,23 @@ Use the following command line to set an S3 bucket quota:
 
 <table><thead><tr><th width="215">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>bucket-name</code>*</td><td>The name of an existing S3 bucket.</td></tr><tr><td><code>hard-quota</code>*</td><td>Hard quota for the S3 bucket.<br>You can only set it initially on an empty bucket. Calling this command on a bucket that already has a quota changes the quota limitation.</td></tr></tbody></table>
 
-## Unset a bucket quota
+## Reset a bucket quota
 
-**Command:** `weka s3 bucket quota unset <bucket-name>`
+**Command:** `weka s3 bucket quota reset <bucket-name>`
 
-Use this command to unset an existing bucket quota.
+Use this command to reset an existing bucket quota.
 
 {% hint style="info" %}
 If the bucket point to a directory shared with other protocols, changing the quota affects all protocols (changes the associated directory quota).
 {% endhint %}
 
-## Delete a bucket
+## Remove a bucket
 
-**Command:** `weka s3 bucket destroy`
+**Command:** `weka s3 bucket remove`
 
-Use this command to delete an existing bucket from the filesystem only if the bucket is empty. If the bucket is not empty, you can keep the data on the filesystem and remove the bucket from the S3 configuration.
+Use this command to remove an existing bucket from the filesystem only if the bucket is empty. If the bucket is not empty, you can keep the data on the filesystem and remove the bucket from the S3 configuration.
 
-`weka s3 bucket destroy <name> [--unlink]`
+`weka s3 bucket remove <name> [--unlink]`
 
 **Parameters**
 

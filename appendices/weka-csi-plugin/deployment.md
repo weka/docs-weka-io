@@ -39,7 +39,7 @@ The WEKA client must be installed on the Kubernetes worker nodes. Follow these g
 
 ## Installation
 
-### Install CSI Snapshot Controller and Snapshot CRDs
+### Install CSI Snapshot Controller and Snapshot CRDs (optional)
 
 To enable Kubernetes-controlled snapshots, install the CSI Snapshot Controller and the [CSI external-snapshotter](#user-content-fn-1)[^1] CRD manifests.
 
@@ -53,18 +53,18 @@ On RedHat OpenShift Container Platform (OCP) those definitions might be preinsta
 git clone https://github.com/kubernetes-csi/external-snapshotter  
 ```
 
-2. Switch to the directory created by the Git clone.
+2. Create and deploy the proper Custom Resource Definitions for the CSI external-snapshotter.
 
+{% code overflow="wrap" %}
 ```
-cd external-snapshotter 
+kubectl -n kube-system kustomize external-snapshotter/deploy/kubernetes/snapshot-controller | kubectl create -f -
+kubectl kustomize external-snapshotter/client/config/crd | kubectl create -f -
 ```
+{% endcode %}
 
-3. Create and deploy the proper Custom Resource Definitions for the CSI external-snapshotter.
-
-```
-kubectl -n kube-system kustomize deploy/kubernetes/snapshot-controller | kubectl create -f -
-kubectl kustomize client/config/crd | kubectl create -f -
-```
+{% hint style="info" %}
+A directory snapshot results in a snapshot of the entire filesystem.
+{% endhint %}
 
 ### WEKAFS CSI
 
@@ -77,10 +77,12 @@ helm repo add csi-wekafs https://weka.github.io/csi-wekafs
 
 2. Install the WEKA CSI Plugin. Run the following command:
 
+{% code overflow="wrap" %}
 ```
 helm install csi-wekafs csi-wekafs/csi-wekafsplugin --namespace csi-wekafs --create-namespace
 
 ```
+{% endcode %}
 
 {% hint style="info" %}
 If you need SELinux support, see the [SELinux support](add-selinux-support.md) section.

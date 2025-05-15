@@ -8,21 +8,21 @@ description: >-
 
 Using the CLI, you can:
 
-* [Create an S3 cluster](s3-cluster-management-1.md#create-an-s3-cluster)
+* [Add an S3 cluster](s3-cluster-management-1.md#add-an-s3-cluster)
 * [Check the status of the S3 cluster readiness](s3-cluster-management-1.md#check-the-status-of-the-s3-cluster-readiness)
 * [List the S3 cluster containers](s3-cluster-management-1.md#list-the-s3-cluster-containers)
 * [Update an S3 cluster configuration](s3-cluster-management-1.md#update-an-s3-cluster-configuration)
 * [Add containers to the S3 cluster](s3-cluster-management-1.md#add-containers-to-the-s3-cluster)
 * [Remove containers from the S3 cluster](s3-cluster-management-1.md#remove-hosts-from-the-s3-cluster)
-* [Delete an S3 cluster](s3-cluster-management-1.md#delete-an-s3-cluster)
+* [Remove an S3 cluster](s3-cluster-management-1.md#remove-an-s3-cluster)
 
-## Create an S3 cluster
+## Add an S3 cluster
 
-**Command:** `weka s3 cluster create`
+**Command:** `weka s3 cluster add`
 
-Use the following command line to create an S3 cluster:
+Use the following command line to add an S3 cluster:
 
-`weka s3 cluster create <default-fs-name> <config-fs-name> [--port port] [--key key] [--secret secret] [--max-buckets-limit max-buckets-limit] [--anonymous-posix-uid anonymous-posix-uid] [--anonymous-posix-gid anonymous-posix-gid] [--domain domain] [--container container]... [--all-servers]`
+`weka s3 cluster add <default-fs-name> <config-fs-name> [--port port] [--key key] [--secret secret] [--max-buckets-limit max-buckets-limit] [--anonymous-posix-uid anonymous-posix-uid] [--anonymous-posix-gid anonymous-posix-gid] [--domain domain] [--container container]... [--all-servers]`
 
 **Parameters**
 
@@ -36,7 +36,7 @@ The S3 cluster is comprised of a few S3 containers. Use this command to check th
 
 ## List the S3 cluster containers <a href="#list-the-s3-cluster-containers" id="list-the-s3-cluster-containers"></a>
 
-**Command:** `weka s3 cluster containers list`
+**Command:** `weka s3 cluster container list`
 
 Use this command to list the containers that serve the S3 cluster.
 
@@ -58,15 +58,15 @@ Instead of using the `weka s3 cluster update` command for adding or removing con
 
 ## Add containers to the S3 cluster
 
-**Command:** `weka s3 cluster containers add`
+**Command:** `weka s3 cluster container add`
 
 Use the following command line to add containers to the S3 cluster:
 
-`weka s3 cluster containers add <container-ids>`
+`weka s3 cluster container add <container-ids>`
 
 The following command example adds two containers with the IDs 8 and 9:
 
-`weka s3 cluster containers add 8 9`
+`weka s3 cluster container add 8 9`
 
 **Parameters**
 
@@ -74,20 +74,20 @@ The following command example adds two containers with the IDs 8 and 9:
 
 ## Remove containers from the S3 cluster
 
-**Command:** `weka s3 cluster containers remove`
+**Command:** `weka s3 cluster container remove`
 
 Use the following command line to remove containers from the S3 cluster:
 
-`weka s3 cluster containers remove <container-ids>`
+`weka s3 cluster container remove <container-ids>`
 
 **Parameters**
 
 <table><thead><tr><th width="281">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-ids</code>*</td><td>Container IDs to remove from the S3 cluster.<br>Space-separated list of numbers</td></tr></tbody></table>
 
-## Delete an S3 cluster
+## Remove an S3 cluster
 
-**Command:** `weka s3 cluster destroy`
+**Command:** `weka s3 cluster remove`
 
-Use this command to destroy an S3 cluster managed by the Weka system.
+Use this command to remove an S3 cluster managed by the WEKA system.
 
-Deleting an existing S3 cluster removes the S3 service and configuration, such as IAM policies, buckets, and ILM rules. S3 access is no longer available for clients. Data that resides within the buckets is not deleted. Internal users with S3 roles are deleted from the system.
+Removing an existing S3 cluster removes the S3 service and configuration, such as IAM policies, buckets, and ILM rules. S3 access is no longer available for clients. Data that resides within the buckets is not deleted. Internal users with S3 roles are deleted from the system.

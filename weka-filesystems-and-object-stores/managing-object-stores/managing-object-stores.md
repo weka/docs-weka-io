@@ -39,17 +39,17 @@ It is not mandatory to set the Access Key and Secret Key in the **Edit Object St
 
 If you select **Enable AssumeRole API**, set also the **Role ARN** and **Role Session Name**. For details, see the [Add an object store bucket](managing-object-stores.md#add-an-object-store-bucket) topic.
 
-<figure><img src="../../.gitbook/assets/wmng_edit_default_obs_aws.png" alt=""><figcaption><p>Edit local default object store for AWS</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/edit_local_default_obs_aws.png" alt=""><figcaption><p>Edit local default object store for AWS</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="GCP" %}
 It is not mandatory to set the Access Key and Secret Key in the **Edit Object Store** dialog in GCP. Google Cloud Storage is accessed using a service account attached to each Compute Engine Instance that is running WEKA software, provided that the service account has the required permissions granted by the IAM role (`storage.admin` for creating buckets.  `storage.objectAdmin` for using an existing bucket ).
 
-<figure><img src="../../.gitbook/assets/wmng_edit_default_obs_gcp.png" alt=""><figcaption><p>Edit local default object store for GCP</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/edit_local_default_obs_other.png" alt=""><figcaption><p>Edit local default object store for GCP</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Azure" %}
-<figure><img src="../../.gitbook/assets/wmng_edit_default_obs_azure.png" alt=""><figcaption><p>Edit local default object store for Azure</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/edit_local_default_obs_azure.png" alt=""><figcaption><p>Edit local default object store for Azure</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
@@ -92,18 +92,17 @@ Set the following:
 
        Possible values: 900 - 43200 (default 3600).
    * **Access Key and Secret Key:** Set the keys of the user granted with the AssumeRole permissions.
+6. **Advanced settings:**
+   * **Download Bandwidth**: Object store download bandwidth limitation per core (Mbps).
+   * **Upload Bandwidth**: Object store upload bandwidth limitation per core (Mbps).
+   * **Max concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
+   * **Max concurrent Uploads**: Maximum number of uploads concurrently performed on this object store in a single IO node.
+   * **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
+   * **Enable Upload Tags**: Enable tagging of uploaded objects. For details, see [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging).
+   * **Data Storage Class**: Configurable Amazon S3 storage classes, allowing users to optimize storage based on cost and access needs. Supports STANDARD, REDUCED\_REDUNDANCY, STANDARD\_IA, ONEZONE\_IA, INTELLIGENT\_TIERING, OUTPOSTS, GLACIER\_IR, and EXPRESS\_ONEZONE. For details, For details, see the documentation for Amazon S3 Storage Classes.
+   * **Metadata Storage Class:** Configurable Amazon S3 storage classes for metadata. Supports STANDARD, REDUCED\_REDUNDANCY, STANDARD\_IA, ONEZONE\_IA, INTELLIGENT\_TIERING, OUTPOSTS, GLACIER\_IR, and EXPRESS\_ONEZONE.
 
-{% hint style="success" %}
-When creating the object store bucket in AWS, to use the storage classes: S3 Intelligent-Tiering, S3 Standard-IA, S3 One Zone-IA, and S3 Glacier Instant Retrieval, do the following:
-
-1. Create the bucket in S3 Standard.
-2. Create an AWS lifecycle policy to transition objects to these storage classes.
-3. Make the relevant changes and click **Update** to update the object store bucket.
-{% endhint %}
-
-<figure><img src="../../.gitbook/assets/wmng_obs_on_aws_1 (1).png" alt=""><figcaption><p>AWS S3 bucket creation for WEKA cluster on EC2</p></figcaption></figure>
-
-<figure><img src="../../.gitbook/assets/wmng_obs_on_aws_2 (12).png" alt=""><figcaption><p>AWS S3 bucket creation for WEKA cluster is not on EC2 using STS</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/create_obs_aws_advanced.png" alt=""><figcaption><p>AWS S3 bucket creation for WEKA cluster on EC2</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="GCP" %}
@@ -115,8 +114,15 @@ Set the following:
 * **Auth Method:** Select the authentication method to connect to the bucket.
 * **Region:** Set the region assigned to work with (usually you can leave it empty).
 * **Access Key and Secret Key:** If the service account has the required permissions granted by the IAM role, then it is not required to provide the Access Key and Secret Key. If the WEKA cluster is not running on GCP instances then the Access Key and Secret Key are required.
+* **Advanced settings:**
+  * **Download Bandwidth**: Object store download bandwidth limitation per core (Mbps).
+  * **Upload Bandwidth**: Object store upload bandwidth limitation per core (Mbps).
+  * **Max concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
+  * **Max concurrent Uploads**: Maximum number of uploads concurrently performed on this object store in a single IO node.
+  * **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
+  * **Enable Upload Tags**: Enable tagging of uploaded objects. For details, see [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging).
 
-<figure><img src="../../.gitbook/assets/wmng_obs_on_gcp (2).png" alt=""><figcaption><p>GCP S3 bucket creation</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/create_obs_other_advanced.png" alt=""><figcaption><p>GCP S3 bucket creation</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Azure" %}
@@ -127,23 +133,22 @@ Set the following:
 3. **Bucket:** Set the name of the bucket to store and access data.
 4. **Auth Method:** Select the authentication method to connect to the bucket.
 5. **Access Key and Secret Key:** Set the the Access Key and Secret Key of the user granted with read/write access to the bucket.
-
-<figure><img src="../../.gitbook/assets/wmng_create_obs_azure (1).png" alt=""><figcaption><p>Azure S3 bucket creation</p></figcaption></figure>
-{% endtab %}
-{% endtabs %}
-
-4. Optiona&#x6C;**:** If your deployment requires a specific upload and download configuration, select **Advanced**, and set the parameters:
+6. **Advanced settings:**
    * **Download Bandwidth**: Object store download bandwidth limitation per core (Mbps).
    * **Upload Bandwidth**: Object store upload bandwidth limitation per core (Mbps).
    * **Max concurrent Downloads**: Maximum number of downloads concurrently performed on this object store in a single IO node.
    * **Max concurrent Uploads**: Maximum number of uploads concurrently performed on this object store in a single IO node.
    * **Max concurrent Removals**: Maximum number of removals concurrently performed on this object store in a single IO node.
-   * **Enable Upload Tags**: Whether to enable [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging) or not.
+   * **Enable Upload Tags**: Enable tagging of uploaded objects. For details, see [object-tagging](../tiering/data-management-in-tiered-filesystems.md#object-tagging).
+   * **Data Storage Class:** Configurable Azure access storage tier, allowing users to optimize storage based on cost and access needs. Supports HOT, COOL, and COLD. For details, see the documentation for Azure Access tiers for blob data.
+   * **Metadata Storage Class:** Configurable Azure access storage tier for metadata. Supports HOT, COOL, and COLD.
 
-![Advanced upload and download configuration](<../../.gitbook/assets/wmng_create_obs_advanced (1).png>)
+<figure><img src="../../.gitbook/assets/create_obs_azure_advanced (1).png" alt=""><figcaption><p>Azure S3 bucket creation</p></figcaption></figure>
+{% endtab %}
+{% endtabs %}
 
-6. To validate the connection to the object store bucket, select **Validate**.
-7. Select **Create**.
+4. To validate the connection to the object store bucket, select **Validate**.
+5. Select **Create**.
 
 {% hint style="info" %}
 If an error message about the object store bucket configuration appears, to save the configuration, select **Create Anyway**.
@@ -170,11 +175,11 @@ You can modify the object store bucket parameters according to your demand chang
 1. From the menu, select **Manage > Object Stores**.
 2. Select the three dots on the right of the object store you want to modify and select **Edit**.
 
-![Edit an object store bucket](<../../.gitbook/assets/wmng_edit_obs_button (1).png>)
+![Edit an object store bucket](../../.gitbook/assets/edit_obs_menu.png)
 
 3. In the Edit Object Store Bucket dialog, modify the details, and select **Update**.
 
-![Edit an object store bucket](<../../.gitbook/assets/wmng_edit_obs (1).png>)
+![Edit an object store bucket](<../../.gitbook/assets/edit_obs_aws (1).png>)
 
 ## Show recent operations of an object store bucket
 

@@ -6,7 +6,7 @@ description: >-
 
 # WEKA Operator day-2 operations
 
-WEKA Operator day-2 operations maintain and optimize WEKA environments in Kubernetes clusters through three core operational areas:
+0WEKA Operator day-2 operations maintain and optimize WEKA environments in Kubernetes clusters through three core operational areas:
 
 * **Hardware maintenance**
   * Component replacement and node management
@@ -17,12 +17,11 @@ WEKA Operator day-2 operations maintain and optimize WEKA environments in Kubern
 * **Cluster maintenance**
   * Configuration updates
   * Pod rotation
+* **WekaContainer lifecycle management**
 
 Administrators execute both planned maintenance and emergency responses while following standardized procedures to ensure high availability and minimize service disruption.
 
 ***
-
-
 
 ## **Hardware maintenance**
 
@@ -3855,6 +3854,49 @@ weka-operator-system weka-operator-controller-manager-569444c54c-48kkj:
 - The system maintains availability during pod rotation.
 - Wait for each set of pods to begin restarting before proceeding to the next set.
 {% endhint %}
+
+## WekaContainer lifecycle management
+
+The WekaContainer serves as a critical persistence layer within a Kubernetes environment. Understanding its lifecycle is crucial because deleting a WekaContainer, whether gracefully or forcefully, results in the permanent loss of all associated data.
+
+The following diagram provides a visual overview of the WekaContainer's lifecycle in Kubernetes, illustrating the flow from creation through running states and the various paths taken during deletion. The subsequent sections elaborate on the specific states, processes, and decision points shown.
+
+<figure><img src="../.gitbook/assets/WekaContainer_Lifecycle_in_K8s.png" alt=""><figcaption><p>WekaContainer lifecycle in Kubernetes</p></figcaption></figure>
+
+**Key deletion states**
+
+The deletion process involves two primary states the container can enter:
+
+* **`Deleting`**: This state signifies a graceful shutdown process triggered by standard Kubernetes deletion or pod deletion timeouts. It involves the controlled _Deactivation_ sequence shown in the diagram before the container is removed.
+* **`Destroying`**: This state represents a forced, immediate removal, bypassing the deactivation steps. As the diagram shows, this is typically triggered by a _Cluster destroy_ event.
+
+&#x20;**Deletion triggers and paths**
+
+The specific path taken upon deletion depends on the trigger:
+
+* **Kubernetes resource deletion:** When a user deletes the WekaContainer custom resource directly (for example, `kubectl delete wekacontainer...`), Kubernetes initiates the process leading to the `Deleting` state, starting the graceful deactivation cycle.
+* **Pod termination (user-initiated or node drain):** As shown in the _Pod termination_ path, if the specific Pod hosting the WekaContainer is terminated, while the `WekaContainer` Custom Resource (CR) still exists (for example, due to node failure, eviction, or direct `kubectl delete pod`):
+  * Kubernetes first attempts to gracefully stop the Weka process within that pod using `weka local stop`, allowing a 5-minute grace period.
+  * If successful, the process stops cleanly. If `weka local stop` times out or fails, the specific Weka container _instance_ tied to that terminating pod may transition to the `Deleting` state (as per the diagram) to ensure proper deactivation and removal from the Weka cluster's perspective (leading to data loss for that instance).
+  * **Important:** Because the `WekaContainer` CR itself has _not_ been deleted and still defines the desired state, the WEKA Operator detects that the required pod is missing. Consequently, the Operator automatically attempts to create a **new pod** to replace the terminated one, aiming to bring the system back to the _Running_ state defined by the CR. This new pod starts fresh.
+* **Cluster destruction:** A cluster destroy operation does not immediately transition containers to the Destroying state. By default, WekaCluster uses a graceful termination period (`spec.gracefulDestroyDuration`, set to 24 hours). When the WekaCluster custom resource is deleted, WekaContainers first enter a _Paused_ state (pods are terminated), but the containers and their data remain intact. After the graceful period ends, containers transition to the _Destroying_ state for forced removal, bypassing any graceful shutdown attempts.
+
+**The deactivation process (graceful deletion)**
+
+When a WekaContainer follows the path into the `Deleting` state, it undergoes the multi-step _Deactivation_ process shown before drives are resigned. This sequence ensures safe removal from the WEKA cluster and includes:
+
+* Cluster deactivation.
+* Removal from the S3 cluster (if applicable).
+* Removal from the main WEKA cluster.
+* Skipping deactivation: By setting `overrides.skipDeactivate=true`, you can bypass the deactivation steps and route the flow directly to _Resigned drives_. However, this is considered unsafe.
+
+**Drive management**
+
+Regardless of whether the path taken was `Deleting` (with or without deactivation) or `Destroying`, the process ends with the storage drives being **resigned**. This makes them available for reuse.
+
+**Health state and replacement**
+
+In this flow diagram, it's crucial to understand that WekaContainers in the `Deleting` or `Destroying` states are deemed unhealthy. This informs Kubernetes and the WEKA operator that the container is non-functional, typically prompting replacement attempts based on the deployment configuration. However, that data from the deleted container is permanently lost.
 
 [^1]: Kubernetes cordon is an operation that marks or taints a node in your existing node pool as unschedulable. By using it on a node, you can be sure that no new pods will be scheduled for this node.
 

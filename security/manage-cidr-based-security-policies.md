@@ -34,12 +34,12 @@ When implementing CIDR-based security policies in WEKA, consider the following:
 
 ## Manage security policies using the CLI
 
-Create and manage security policies so that you can apply them on the organization or filesystem. You can perform the following:
+Add and manage security policies so that you can apply them on the organization or filesystem. You can perform the following:
 
 * List security policies defined in the WEKA cluster.
 * Display information about a specific security policy.
-* Create a new security policy.
-* Delete a security policy.
+* Add a new security policy.
+* Remove a security policy.
 * Duplicate an existing security policy, creating a new one.
 * Update the settings of an existing security policy.
 * Simulate the effect of one or more security policies.
@@ -77,15 +77,15 @@ weka security policy show <policy>
 
 <table><thead><tr><th width="190">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name or ID of security policy.</td></tr></tbody></table>
 
-### Create a new security policy
+### Add a new security policy
 
-**Command:** `weka security policy create`
+**Command:** `weka security policy add`
 
-Use the following command line to  create a new security policy.
+Use the following command line to add a new security policy.
 
 {% code overflow="wrap" %}
 ```sh
-weka security policy create <name> [--description description] [--action action]
+weka security policy add <name> [--description description] [--action action]
 [--ips ips]...[--roles roles]...
 ```
 {% endcode %}
@@ -94,7 +94,7 @@ weka security policy create <name> [--description description] [--action action]
 
 <table><thead><tr><th width="192">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>name</code>*</td><td>Name of the new security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (_), and periods (.), starting with a letter)</td></tr><tr><td><code>description</code></td><td>Description of the security policy. (up to 256 characters)</td></tr><tr><td><code>action</code></td><td>Whether access is granted or denied when the security policy matches. (format: <code>allow</code> or '<code>deny</code>)</td></tr><tr><td><code>ips</code>...</td><td>IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)</td></tr><tr><td><code>roles</code>...</td><td>User roles to which the security policy applies. (format: <code>clusteradmin</code>, <code>orgadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated)</td></tr></tbody></table>
 
-Example:
+In this example a policy is created that allows access by users with the clusteradmin role from two specific subnets:
 
 {% code overflow="wrap" %}
 ```
@@ -102,14 +102,14 @@ weka security policy create admin_network --action allow --ips 10.1.0.0/16,10.2.
 ```
 {% endcode %}
 
-### Delete a security policy
+### Remove a security policy
 
-**Command:** `weka security policy delete`
+**Command:** `weka security policy remove`
 
 Use the following command line to delete a security policy.
 
 ```sh
-weka security policy delete <policy>
+weka security policy remove <policy>
 ```
 
 **Parameters**
@@ -150,13 +150,13 @@ weka security policy update <policy> [--description description] [--action actio
 
 **Parameters**
 
-<table><thead><tr><th width="212">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name or ID of security policy.</td></tr><tr><td><code>--description</code></td><td>Updates the description of the security policy. (up to 256 characters)</td></tr><tr><td><code>--action</code></td><td>Changes whether access is granted when the security policy matches. (format: <code>allow</code> or <code>deny</code>)</td></tr><tr><td><code>--new-name</code></td><td>New name of the security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (_), and periods (.), starting with a letter)</td></tr><tr><td><code>--roles</code>...</td><td>User roles to which the security policy applies. (format: <code>clusteradmin</code>, <code>orgadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>,  may be repeated or comma-separated)</td></tr><tr><td><code>--add-roles</code>...</td><td>User roles to append to the security policy. (format: <code>clusteradmin</code>, <code>orgadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated)</td></tr><tr><td><code>--remove-roles</code>...</td><td>User roles to remove from the security policy. (format: <code>clusteradmin</code>, <code>orgadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated)</td></tr><tr><td><code>ips</code></td><td>IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)</td></tr><tr><td><code>add-ips</code></td><td>IP address ranges to append to the security policy. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)</td></tr><tr><td><code>remove-ips</code></td><td>IP address ranges to remove from the security policy. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)</td></tr></tbody></table>
+<table><thead><tr><th width="212">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name or ID of security policy.</td></tr><tr><td><code>--description</code></td><td>Updates the description of the security policy. (up to 256 characters)</td></tr><tr><td><code>--action</code></td><td>Changes whether access is granted when the security policy matches. (format: <code>allow</code> or <code>deny</code>)</td></tr><tr><td><code>--new-name</code></td><td>New name of the security policy. (up to 64 alphanumeric characters, hyphens (-), underscores (_), and periods (.), starting with a letter)</td></tr><tr><td><code>--roles</code>...</td><td>User roles to which the security policy applies. (format: <code>clusteradmin</code>, <code>orgadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated)</td></tr><tr><td><code>--add-roles</code>...</td><td>User roles to append to the security policy. (format: <code>clusteradmin</code>, <code>orgadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated)</td></tr><tr><td><code>--remove-roles</code>...</td><td>User roles to remove from the security policy. (format: <code>clusteradmin</code>, <code>orgadmin</code>, <code>regular</code>, <code>readonly</code> or <code>s3</code>, may be repeated or comma-separated)</td></tr><tr><td><code>ips</code></td><td>IP address ranges to which the security policy applies. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)</td></tr><tr><td><code>add-ips</code></td><td>IP address ranges to append to the security policy. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)</td></tr><tr><td><code>remove-ips</code></td><td>IP address ranges to remove from the security policy. (format: IP or IP/CIDR or IP1-IP2 or A.B.C.D-E, may be repeated or comma-separated)</td></tr></tbody></table>
 
-Example:&#x20;
+In this example the <kbd>readonly</kbd> role is added to an existing security policy called <kbd>admin\_network</kbd>:
 
 {% code overflow="wrap" %}
 ```
-weka security policy update admin-net --add-roles clusteradmin --description "Limit Cluster Admin Access to HQ Network"
+weka security policy update admin_network --add-roles readonly --description "Limit Cluster Admin Access to HQ Network"
 ```
 {% endcode %}
 
@@ -229,7 +229,7 @@ weka security policy join attach [--client] [--backend] [<policies>]...
 Use the following command line to remove security policies applied when joining cluster.
 
 ```sh
-weka security policy join detach [--client] [--backend]  [<policies>]...
+weka security policy join detach [--client] [--backend] [<policies>]...
 ```
 
 **Parameters**
@@ -282,7 +282,7 @@ The command `weka org` also displays the attached policies for each organization
 
 Command: `weka org security policy set`
 
-Use the following command to set security policies for an organization, replacing the existing list of policies.
+Use the following command to set security policies for an organization, replacing the existing list of policies. If setting multiple policies, separate each with a space.&#x20;
 
 ```
 weka org security policy set <org> [<policies>]...
@@ -290,7 +290,7 @@ weka org security policy set <org> [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to assign to the organization.</td></tr></tbody></table>
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to assign to the organization, space separated.</td></tr></tbody></table>
 
 ### Remove all security policies from an organization
 
@@ -310,7 +310,7 @@ weka org security policy reset <org>
 
 **Command:** `weka org security policy attach`
 
-Use the following command to attach new security policies to an organization, adding them to the existing policies.
+Use the following command to attach new security policies to an organization, adding them to the existing policies. If attaching multiple policies, separate each with a space.
 
 ```sh
 weka org security policy attach <org> [<policies>]...
@@ -318,13 +318,13 @@ weka org security policy attach <org> [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to attach to the organization.</td></tr></tbody></table>
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to attach to the organization, space separated.</td></tr></tbody></table>
 
 ### Detach security policies from an organization
 
 **Command:** `weka org security policy detach`
 
-Use the following command to detach (remove) security policies from an organization.
+Use the following command to detach (remove) security policies from an organization. If detaching multiple policies, separate each with a space.
 
 ```sh
 weka org security policy detach <org>[<policies>]...
@@ -332,7 +332,7 @@ weka org security policy detach <org>[<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from the organization.</td></tr></tbody></table>
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>org</code>*</td><td>Organization name or ID.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from the organization, space separated.</td></tr></tbody></table>
 
 ## Manage filesystem security policies using the CLI
 
@@ -358,11 +358,11 @@ weka fs security policy list <fs-name>
 
 <table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr></tbody></table>
 
-### Set security policies for a  filesystem
+### Set security policies for a filesystem
 
 **Command:** `weka fs security policy set`
 
-Use the following command to set security policies for a specified filesystem.
+Use the following command to set security policies for a specified filesystem, replacing the existing list of policies. If setting multiple policies, separate each with a space.
 
 ```
 weka fs security policy set <fs-name> [<policies>]...
@@ -370,9 +370,15 @@ weka fs security policy set <fs-name> [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to set for a filesystem.</td></tr></tbody></table>
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to set for a filesystem, space separated.</td></tr></tbody></table>
 
-### Remove all security policies from a  filesystem
+Example to apply two security policies to a filesystem named <kbd>fs0</kbd>:&#x20;
+
+```
+weka fs security policy set fs0 fs0allow denyall
+```
+
+### Remove all security policies from a filesystem
 
 **Command:** `weka fs security policy reset`
 
@@ -390,7 +396,7 @@ weka fs security policy reset <fs-name>
 
 **Command:** `weka fs security policy attach`
 
-Use the following command to attach new security policies to the specified filesystem.
+Use the following command to attach additional security policies to the specified filesystem. If attaching multiple policies, separate each with a space.&#x20;
 
 ```
 weka fs security policy attach <fs-name> [<policies>]...
@@ -398,13 +404,13 @@ weka fs security policy attach <fs-name> [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to attach new security policies to the specified filesystem.</td></tr></tbody></table>
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to attach new security policies to the specified filesystem, space separated.</td></tr></tbody></table>
 
 ### Detach security policies from a filesystem
 
 **Command:** `weka fs security policy detach`
 
-Use the following command to detach (remove) security policies from a filesystem.
+Use the following command to detach (remove) security policies from a filesystem. If detaching multiple policies, separate each with a space.&#x20;
 
 ```
 weka fs security policy detach <fs-name> [<policies>]...
@@ -412,6 +418,6 @@ weka fs security policy detach <fs-name> [<policies>]...
 
 **Parameters**
 
-<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from the specified filesystem.</td></tr></tbody></table>
+<table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from the specified filesystem, space separated.</td></tr></tbody></table>
 
 [^1]: Classless Inter-Domain Routing

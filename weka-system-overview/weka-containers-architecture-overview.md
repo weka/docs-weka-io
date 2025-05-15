@@ -9,26 +9,22 @@ description: >-
 
 ## Cluster architecture basics
 
-In the WEKA system, servers operate as members of a cluster, with each server hosting multiple containers. These containers run software instances, referred to as processes, that collaborate and communicate within the cluster to deliver robust and efficient storage services. This architecture ensures scalability and fault tolerance by distributing storage functionality across interconnected containers.
+In the WEKA system, servers operate as cluster members, each server hosting multiple containers. These containers run software instances, referred to as processes, that collaborate and communicate within the cluster to deliver robust and efficient storage services. This architecture ensures scalability and fault tolerance by distributing storage functionality across interconnected containers.
 
 ### Process types and core requirements
 
 The WEKA system uses different types of processes, each dedicated to specific functions:
 
-* **Drive processes**: Manage SSD drives and handle IO operations to drives. These processes are fundamental to storage operations and each requires a dedicated core to ensure optimal performance.
-* **Compute processes:** Handle filesystems, cluster-level functions, and IO from clients. The dedicated core requirement for each compute process ensures consistent processing power for these critical operations.
-* **Frontend processes**: Also known as client processes, manage POSIX client access and coordinate IO operations with compute and drive processes. Each frontend process needs a dedicated core to maintain responsive client interactions.
-* **Management processes**: Oversee the overall cluster operations. Unlike other process types, management processes can share cores as they have lower resource demands.
+* **Drive processes**: A backend process that manages SSD drives and handle IO operations to drives. These processes are fundamental to storage operations and each requires a dedicated core to ensure optimal performance.
+* **Compute processes:** A backend process that handles filesystems, cluster-level functions, and IO from clients. Each compute process requires a dedicated core to ensure consistent processing power for these critical operations.
+* **Frontend processes**: A client process that manages POSIX client access and coordinates IO operations with compute and drive processes. Each frontend process requires a dedicated core to maintain responsive client interactions.
+* **Management process**: A backend process that oversees overall cluster operations. It has lower resource demands and can share cores. The process uses kernel networking and unallocated OS-available cores.
 
-{% hint style="info" %}
-Drive, compute, and management processes are considered backend processes, while frontend processes handle client interactions.
-{% endhint %}
+## Multi-container backend (MCB) architecture
 
-## Multi-Container Backend architecture (MCB)
+In the WEKA cluster, each server implements a multi-container backend architecture where containers are specialized by process type: drive, compute, or frontend.
 
-In the WEKA cluster, each server implements a multi-container backend architecture where containers are specialized by process type (drive, compute, or frontend).
-
-<figure><img src="../.gitbook/assets/MCB_architecture.png" alt=""><figcaption><p>Multi-container backend architecture (MCB)</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/MCB_architecture.png" alt=""><figcaption><p>MCB architecture</p></figcaption></figure>
 
 ## Benefits of MCB architecture
 
@@ -40,20 +36,22 @@ In the WEKA cluster, each server implements a multi-container backend architectu
   * Supports up to 64 WEKA cores per server
   * Multiple containers per process type
   * Flexible core allocation across containers
-  * Up to 19 processes per container
+  * Up to 19 cores per container
 * **Improved maintenance operations:**
   * Selective process management
   * Ability to maintain drive processes while stopping compute and frontend processes
 
 ## System limitations and specifications
 
-**Process limits**
+### **Process limits**
 
-* Total processes per cluster: 65,534 (includes all process types: management, drive, compute, and frontend)
-* Maximum management processes: 32,767
-* Maximum drive processes: 62,244
+* Total processes per cluster: 65,534 (includes all process types: management, drive, compute, and frontend).
+* Maximum management processes: 32,767.
+* Maximum drive processes: 62,244.
 
-**Server and container limits**
+### **Server and container limits**
+
+Each server has resource limits that affect how many containers it can run and how cores are allocated:
 
 * Maximum WEKA cores per server: 64
-* Maximum processes per container: 19
+* Maximum cores per container: 19

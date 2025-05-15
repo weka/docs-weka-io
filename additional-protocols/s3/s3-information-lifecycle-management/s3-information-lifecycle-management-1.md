@@ -10,7 +10,7 @@ Using the CLI, you can:
 
 * [Add a lifecycle rule](s3-information-lifecycle-management-1.md#create-an-ilm-rule)
 * [View lifecycle rules](s3-information-lifecycle-management-1.md#viewing-ilm-rules)
-* [Delete a lifecycle rule](s3-information-lifecycle-management-1.md#delete-an-ilm-rule)
+* [Remove a lifecycle rule](s3-information-lifecycle-management-1.md#remove-a-lifecycle-rule)
 * [Reset the lifecycle rules of a bucket](s3-information-lifecycle-management-1.md#reset-ilm-rules-of-a-bucket)
 
 ## Add a lifecycle rule

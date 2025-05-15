@@ -1,90 +1,104 @@
 ---
 description: >-
-  Gain insights into the conceptual framework of organizations and the operation
-  of various WEKA system features within this context.
+  Understand how WEKA supports multi-tenancy by logically separating users and
+  resources using organizations.
 ---
 
 # Organizations management
 
-Organizations are used for the separation of duties between different groups of users on the same WEKA system. So that an organization cannot control or view other organization data. It is possible to create up to 256 organizations.
+## Overview
 
-Within an organization, the Organization Admin manages the logical entities participating in obtaining data control (the Cluster Admin cannot manage these entities).
+Organizations enable separation of duties between user groups within the same WEKA system. Each organization is isolated from others. Users in one organization cannot access or manage data from another.
 
-The Cluster Admin can perform the following activities:
+* Up to 256 organizations can be created.
+* Each organization is managed by an Organization Admin.
+* A Cluster Admin oversees the overall system but cannot access organization-specific data.
 
-* Create new organizations and define the Organization Admin.
-* Delete existing organizations.
-* Monitor per organization the total capacity used by all the organization filesystems.
+## Cluster Admin responsibilities
 
-‌While Cluster Admins are trusted by different organizations (for example, they have root access to the backend servers), they are obscured from the organization data in the WEKA system. The Cluster Admin separation is partial. For example, they can still see the events of all organizations. The WEKA system ensures the separation of sensitive information between different organizations.
+Cluster Admins manage the system-wide configuration and can:
+
+* Create and delete organizations.
+* Assign an Organization Admin to each organization.
+* Monitor total capacity used by each organization.
+
+Although Cluster Admins have backend access (for example, root on servers), they cannot access user data within organizations. They may still view events across all organizations.
 
 {% hint style="info" %}
-* The data at the hardware level is not separated. While the WEKA system is highly scalable and serves IOs fairly among filesystems, there is no QoS guarantee between organizations. The system limits are according to the entire system. Consequently, a single organization's workload or configuration can exhaust the entire cluster limits.
-* When creating mounts, you can specify the maximum and preferred throughput. See   [Set mount option default values](../../weka-filesystems-and-object-stores/mounting-filesystems/#set-mount-option-default-values).
+* **QoS between organizations**: Data is not physically separated at the hardware level. While the system balances IO fairly, there is no QoS guarantee between organizations. One organization’s activity can affect cluster-wide performance.
+* **Mount configuration:** Mounts can be configured with maximum and preferred throughput settings. For more information, see [Set mount option default values](../../weka-filesystems-and-object-stores/mounting-filesystems/#set-mount-option-default-values).
 {% endhint %}
 
-## Organization management use cases&#x20;
+## Organization use cases&#x20;
 
 ### Private cloud multi-tenancy
 
-Working with organizations makes it possible to manage different departments. While this requires more configuration, for example, different LDAP configurations are usually unnecessary between various departments in the same organization, the Cluster Admin is fully trusted.
+Organizations can be used to logically separate departments (for example, IT, Finance, Genomics). While setup may require extra configuration, such as per-organization LDAP, the underlying cluster infrastructure remains shared and trusted.
 
-It is possible to separate and obscure specific departments, such as IT, Finance, Life Sciences, Genomics, and even particular projects in departments.
+### Logical separation of external groups
 
-### Logical separation of external user groups
+For environments with multiple independent user groups, organizations provide stronger data isolation and management boundaries.
 
-When multiple independent groups use the same infrastructure, using multiple organizations provides much better security, obscuration, and separation of data.
+## System entity management
 
-## Cluster level entities
+### Cluster-level entities
 
-The Cluster Admin manages the following entities at the cluster level:
+Managed by the Cluster Admin:
 
 * Hardware
-* NFS service (NFS groups and IP/interfaces)
+* NFS service (including NFS groups and IP interfaces)
 * SMB service
-* Filesystem groups - definition of tiering policies for the different groups, while the Organization Admin selects the filesystem group from the predefined list of groups for each filesystem created
-* KMS
+* S3 service
+* Filesystem groups (used by Organization Admins when creating filesystems)
+* Encryption settings (KMS)
+* User management for the root organization
 
-## Organization level entities
+{% hint style="info" %}
+Protocol services (NFS, SMB, S3) are only available in the root organization. Filesystems cannot be moved between organizations, including into or out of the root organization.
+{% endhint %}
 
-Only the relevant Organization Admin manages all system entities at the organization level, while the users can only view the system entities within the organization.
+### Organization-level entities
 
-Cluster Admins **do not** have permissions to view or manage the system entities within the organization, which include the following:
+Managed exclusively by the Organization Admin:
 
-* Filesystems, and the option to mount the filesystems (also, a Cluster Admin cannot  mount  the filesystems)
+* Filesystems (including encryption)&#x20;
 * Object store buckets
-* LDAP server
-* NFS exports (NFS client permissions)
+* LDAP server configuration
+* NFS exports and client permissions
+* User management for their specific organization
 
-{% hint style="warning" %}
-* Different protocols are only supported in the **root** organization.
-* Only the 'legacy' NFS stack exports can be managed within a **non-root** organization.
-* A filesystem cannot be moved between organizations, including to or from the root organization.
+{% hint style="info" %}
+In an organization, only authenticated users with the Regular or Organization Admin role can mount the filesystems.
 {% endhint %}
 
 ## Manage organizations
 
-Only users defined as Cluster Admins can manage organizations. When no organization is created, the root organization is the default organization, and all operations are regular. It is unnecessary to authenticate the mounts or supply an organization name when logging in using the GUI/CLI.
+Only Cluster Admins can create or delete organizations. If no organizations are configured, the root organization is used by default, and mounts do not require authentication.
 
-Once a new organization is created, the organization name must be provided in every login command, using the `--org` attribute in the `weka user login` command.
+After creating an organization, users must specify the organization name when logging in, using the `--org` flag in the `weka user login` command.
 
 ## Usage and quota management
 
-Cluster Admins can view an organization's usage (SSD and total) and limit usage with quotas per organization. This can be leveraged for charge-backs on either used or allocated capacity of SSD or object store data.
+Cluster Admins can:
 
-## Organization admin role privileges
+* Monitor per-organization SSD and total usage.
+* Set quotas to limit usage by capacity type.
 
-When a new organization is created, the Cluster Admin creates an Organization Admin user for the organization, who is the administrator within the organization responsible for managing each organization-level entity.
+This supports chargeback models based on actual or allocated storage usage.
 
-Organization Admins have similar privileges to Cluster Admins, except that these privileges are limited to the organization level. They can perform the following within the organization:
+## Organization admin privileges
 
-* Create new users
-* Delete existing users
-* Change user passwords
-* Set user roles
-* Manage the organization's LDAP configuration
+When an organization is created, the Cluster Admin assigns an Organization Admin who manages the organization-level resources.
 
-To avoid situations where an Organization Admin loses access to a Weka system cluster, the following restrictions are implemented on Organization Admins:
+Organization Admins can:
 
-* Cannot delete themselves
-* Cannot change their role
+* Create, delete, and manage users
+* Set user roles and change passwords
+* Manage the organization’s LDAP configuration
+
+#### Restrictions
+
+To ensure Organization Admins do not lose access:
+
+* They cannot delete their own user account.
+* They cannot change their own role.

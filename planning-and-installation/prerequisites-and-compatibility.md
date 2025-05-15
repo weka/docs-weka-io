@@ -26,7 +26,7 @@ For cloud-based installations, WEKA supports a minimal configuration of **6 serv
 
 ## CPU
 
-<table><thead><tr><th width="338">CPU family/architecture</th><th width="210">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>2013 Intel® Core™ processor family and later</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome), 3rd (Milan-X), and 4th (Genoa) Generations</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span> <br>Single-socket and dual-socket</td></tr></tbody></table>
+<table><thead><tr><th width="338">CPU family/architecture</th><th width="210">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>2013 Intel® Core™ processor family and later</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome), 3rd (Milan-X), and 4th (Genoa) Generations</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span> <br>Single-socket and dual-socket</td></tr><tr><td>Aarch64</td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Nvidia Grace</td></tr></tbody></table>
 
 {% hint style="info" %}
 The following requirements must be met:
@@ -49,12 +49,12 @@ WEKA will support upcoming releases of the operating systems in the lists within
 
 {% tabs %}
 {% tab title="Backends" %}
-* **RHEL:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Rocky Linux:**
   * 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6
+* **RHEL:**
+  * 9.4, 9.3, 9.2, 9.1, 9.0
+  * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Ubuntu:**
@@ -70,12 +70,13 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% endtab %}
 
 {% tab title="Clients" %}
+* **Rocky Linux:**
+  * Supported on ARM: 9.5
+  * 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
+  * 8.10, 8.9, 8.8, 8.7, 8.6
 * **RHEL:**
   * 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
-* **Rocky Linux:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
-  * 8.10, 8.9, 8.8, 8.7, 8.6
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Ubuntu:**
@@ -88,7 +89,9 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * AMI 2017.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
   * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
+  * Also supported on ARM
 * **SLES:**
+  * 15 DP6
   * 15 SP5
   * 15 SP4
   * 15 SP2
@@ -97,7 +100,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 9
   * 8.9
 * **Debian:**
-  * 12
+  * 12 (with Linux kernel 6.6)
   * 10
 * **AlmaLinux OS:**
   * 9.4
@@ -110,6 +113,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% tab title="Kernel" %}
 The following kernel versions are supported:
 
+* 6.8
 * 6.0 to 6.5
 * 5.3 to 5.19
 * 4.4.0-1106 to 4.19
@@ -154,8 +158,10 @@ As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to thei
 
 ## WEKA installation directory
 
-* **WEKA installation directory**: `/opt/weka`
-  * `/opt/weka` must be a direct path. Do not use a symbolic link (symlink).
+* **WEKA installation directory**:&#x20;
+  * The WEKA installation directory must be set to `/opt/weka`.
+  * Use a direct path; symbolic links (symlinks) are not supported.
+  * The /`opt/weka` directory is critical for proper WEKA operation. If it resides on shared storage, the storage must be highly available.
 * **Boot drive minimum requirements**:
   * Capacity: NVMe SSD with 960 GB capacity
   * Durability: 1 DWPD (Drive Writes Per Day)
@@ -165,7 +171,7 @@ As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to thei
   * Do not mount using NFS.
   * Do not use a RAM drive remotely.
   * If two boot drives are available:
-    * It is recommended to dedicate one boot drive for the OS and the other for the /opt/weka directory.
+    * It is recommended to dedicate one boot drive for the OS and the other for the `/opt/weka` directory.
     * Do not use software RAID to have two boot drives.
 * **Software required space**:
   * Ensure that at least 26 GB is available for the WEKA system installation.
@@ -294,7 +300,7 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
 
 {% tab title="Ethernet configurations" %}
 * **Ethernet speeds:**
-  * 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
+  * 400 GbE / 200 GbE / 100 GbE / 50GbE / 40 GbE / 25 GbE / 10 GbE.
 * **NICs bonding:**
   * Supports bonding dual ports on the same NVIDIA Mellanox NIC using mode 4 (LACP) to enhance redundancy and performance.
 * **IEEE 802.1Q VLAN encapsulation:**
@@ -367,7 +373,7 @@ When configuring firewall ingress and egress rules the following access must be 
 Right-scroll the table to view all columns.
 {% endhint %}
 
-<table><thead><tr><th width="211">Purpose</th><th width="124">Source</th><th width="135">Target</th><th width="228">Target Ports</th><th width="135">Protocol</th><th width="352">Comments</th></tr></thead><tbody><tr><td>WEKA server traffic for bare-metal deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14200-14300 (frontend)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default for the Resources Generator for the first three containers. You can customize the ports.</td></tr><tr><td>WEKA client traffic</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA SSH management traffic</td><td>All WEKA backend IPs </td><td>All WEKA backend IPs</td><td>22</td><td>TCP</td><td></td></tr><tr><td>WEKA server traffic for cloud deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p><p>16000-16100 (frontend)</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA client traffic (on cloud)</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p></td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic (on cloud)</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA GUI access </td><td>Admin workstation IPs</td><td>All WEKA management IPs</td><td>14000</td><td>TCP</td><td>User web browser IP</td></tr><tr><td>NFS</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>2049<br>&#x3C;mountd port></td><td>TCP and UDP<br>TCP and UDP</td><td>You can set the <code>mountd</code> port using the command: <code>weka nfs global-config set --mountd-port</code></td></tr><tr><td>NFSv3 (used for locking)</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>46999 (status monitor)<br>47000 (lock manager)</td><td>TCP and UDP</td><td></td></tr><tr><td>SMB/SMB-W</td><td>SMB client IPs</td><td>WEKA SMB backend IPs</td><td>139<br>445</td><td>TCP<br>TCP</td><td></td></tr><tr><td>SMB-W</td><td>All WEKA SMB-W backend IPs</td><td>All WEKA SMB-W backend IPs</td><td>2224</td><td>TCP</td><td>This port is required for internal clustering processes.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>All Domain Controllers for the selected Active Directory Domain</td><td><p>88</p><p>389<br>464<br>636<br>3268<br>3269</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are required for SMB/SMB-W to use Active Directory as the identity source. Furthermore, every Domain Controller within the selected AD domain must be accessible from the WEKA SMB servers.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>DNS servers</td><td>53</td><td>TCP and UDP</td><td></td></tr><tr><td>S3</td><td>S3 client IPs</td><td>WEKA S3 backend IPs</td><td>9000</td><td>TCP</td><td>This port is the default. You can customize the port.</td></tr><tr><td>wekatester</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td>Port 8501 is used by wekanetperf.</td></tr><tr><td>WEKA Management Station</td><td>User web browser IP</td><td>WEKA Management Station IP</td><td><p>80  &#x3C;LWH></p><p>443 &#x3C;LWH></p><p>3000 &#x3C;mon></p><p>7860 &#x3C;admin UI></p><p>8760 &#x3C;deploy></p><p>8090 &#x3C;snap></p><p>8501 &#x3C;mgmt><br>9090 &#x3C;mgmt></p><p>9091 &#x3C;mon><br>9093 &#x3C;alerts></p></td><td><p>HTTP</p><p>HTTPS</p><p>TCP</p><p>TCP</p><p>TCP</p><p>TCP<br>TCP</p><p>TCP<br>TCP</p></td><td></td></tr><tr><td>Cloud WEKA Home, Local WEKA Home</td><td>All WEKA backend IPs </td><td>Cloud WEKA Home or Local WEKA Home</td><td>80<br>443</td><td>HTTP<br>HTTPS</td><td>Open according to the directions in the deployment scenario:<br>- WEKA server IPs to CWH or LWH.<br>- LWH to CWH (if forwarding data from LWH to CWH)</td></tr><tr><td>Troubleshooting by the Customer Success Team (CST)</td><td>All WEKA backend IPs </td><td>CST remote access</td><td>4000<br>4001</td><td>TCP<br>TCP</td><td></td></tr><tr><td>KMS: Hashicorp Vault</td><td>All WEKA backend IPs </td><td>Hashicorp Vault server</td><td>8200<br>8201</td><td>TCP<br>TCP</td><td>Default vault ports: 8200 is configurable for client requests, while 8201 (base_port+1) handles internal cluster communication.</td></tr><tr><td>KMS: KMIP</td><td>All WEKA backend IPs</td><td>KMIP server</td><td>5696</td><td>TCP</td><td>The default KMIP port, 5696, is configurable. Per the KMIP specification, servers must use this port when operating with the <a data-footnote-ref href="#user-content-fn-9">TTLV</a> encoding format.</td></tr></tbody></table>
+<table><thead><tr><th width="211">Purpose</th><th width="124">Source</th><th width="135">Target</th><th width="228">Target Ports</th><th width="135">Protocol</th><th width="352">Comments</th></tr></thead><tbody><tr><td>WEKA server traffic for bare-metal deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14200-14300 (frontend)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default for the Resources Generator for the first three containers. You can customize the ports.</td></tr><tr><td>WEKA client traffic</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA SSH management traffic</td><td>All WEKA backend IPs </td><td>All WEKA backend IPs</td><td>22</td><td>TCP</td><td></td></tr><tr><td>WEKA server traffic for cloud deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p><p>16000-16100 (frontend)</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA client traffic (on cloud)</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p></td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic (on cloud)</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA GUI access </td><td>Admin workstation IPs</td><td>All WEKA management IPs</td><td>14000</td><td>TCP</td><td>User web browser IP</td></tr><tr><td>NFS</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>2049<br>&#x3C;mountd port></td><td>TCP and UDP<br>TCP and UDP</td><td>You can set the <code>mountd</code> port using the command: <code>weka nfs global-config set --mountd-port</code></td></tr><tr><td>NFSv3 (used for locking)</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>46999 (status monitor)<br>47000 (lock manager)</td><td>TCP and UDP</td><td></td></tr><tr><td>SMB/SMB-W</td><td>SMB client IPs</td><td>WEKA SMB backend IPs</td><td>139<br>445</td><td>TCP<br>TCP</td><td></td></tr><tr><td>SMB-W</td><td>All WEKA SMB-W backend IPs</td><td>All WEKA SMB-W backend IPs</td><td>2224</td><td>TCP</td><td>This port is required for internal clustering processes.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>All Domain Controllers for the selected Active Directory Domain</td><td><p>88</p><p>389<br>464<br>636<br>3268<br>3269</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are required for SMB/SMB-W to use Active Directory as the identity source. Furthermore, every Domain Controller within the selected AD domain must be accessible from the WEKA SMB servers.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>DNS servers</td><td>53</td><td>TCP and UDP</td><td></td></tr><tr><td>S3</td><td>S3 client IPs</td><td>WEKA S3 backend IPs</td><td>9000</td><td>TCP</td><td>This port is the default. You can customize the port.</td></tr><tr><td>wekatester</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td>Port 8501 is used by wekanetperf.</td></tr><tr><td>WEKA Management Station</td><td>User web browser IP</td><td>WEKA Management Station IP</td><td><p>80  &#x3C;LWH></p><p>443 &#x3C;LWH></p><p>3000 &#x3C;mon></p><p>7860 &#x3C;admin UI></p><p>8760 &#x3C;deploy></p><p>8090 &#x3C;snap></p><p>8501 &#x3C;mgmt><br>9090 &#x3C;mgmt></p><p>9091 &#x3C;mon><br>9093 &#x3C;alerts></p></td><td><p>HTTP</p><p>HTTPS</p><p>TCP</p><p>TCP</p><p>TCP</p><p>TCP<br>TCP</p><p>TCP<br>TCP</p></td><td></td></tr><tr><td>Cloud WEKA Home, Local WEKA Home</td><td>All WEKA backend IPs </td><td>Cloud WEKA Home or Local WEKA Home</td><td>80<br>443</td><td>HTTP<br>HTTPS</td><td>Open according to the directions in the deployment scenario:<br>- WEKA server IPs to CWH or LWH.<br>- LWH to CWH (if forwarding data from LWH to CWH)</td></tr><tr><td>Troubleshooting by the Customer Success Team (CST)</td><td>All WEKA backend IPs </td><td>CST remote access</td><td>4000<br>4001</td><td>TCP<br>TCP</td><td></td></tr><tr><td>Traces remote viewer</td><td>All WEKA backend IPs</td><td>CST remote access</td><td>443</td><td>TCP</td><td></td></tr><tr><td>KMS: Hashicorp Vault</td><td>All WEKA backend IPs </td><td>Hashicorp Vault server</td><td>8200<br>8201</td><td>TCP<br>TCP</td><td>Default vault ports: 8200 is configurable for client requests, while 8201 (base_port+1) handles internal cluster communication.</td></tr><tr><td>KMS: KMIP</td><td>All WEKA backend IPs</td><td>KMIP server</td><td>5696</td><td>TCP</td><td>The default KMIP port, 5696, is configurable. Per the KMIP specification, servers must use this port when operating with the <a data-footnote-ref href="#user-content-fn-9">TTLV</a> encoding format.</td></tr></tbody></table>
 
 ## HA
 

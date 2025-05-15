@@ -13,8 +13,8 @@ Once the WEKA cluster is installed and configured, perform the following:
 
 Enable event notifications to the cloud for support purposes using one of the following options:
 
-* Enable support through Weka Home
-* Enable support through a private instance of Weka Home
+* Enable support through WEKA Home
+* Enable support through a private instance of WEKA Home
 
 ### **Enable support through Weka Home**
 
@@ -24,7 +24,7 @@ This command enables cloud event notification (via Weka Home), which allows the 
 
 To learn more about this and how to enable cloud event notification, see [the-wekaio-support-cloud](../../monitor-the-weka-cluster/the-wekaio-support-cloud/ "mention").
 
-### **Enable support through** Local Weka Home
+### **Enable support through** Local WEKA Home
 
 In closed environments, such as dark sites and private VPCs, it is possible to install Local WEKA Home, which is a private instance of WEKA Home.
 

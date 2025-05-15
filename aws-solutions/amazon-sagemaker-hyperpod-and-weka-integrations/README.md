@@ -23,4 +23,4 @@ The integration of WEKA with SageMaker HyperPod using Slurm comprises two primar
 3. **Data management and tiering**\
    To optimize data handling, WEKA employs an Amazon S3 bucket for data tiering. This system ensures that data is automatically allocated to the appropriate storage tier based on access patterns and cost-efficiency considerations. Furthermore, WEKA leverages S3 for storing snapshots, providing an additional layer of data resilience and enabling robust disaster recovery.
 
-<figure><img src="../../.gitbook/assets/hyperpod_slurm_diagram.png" alt=""><figcaption><p>Slurm based architecture with SageMaker HyperPod</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/hyperpod_slurm_diagram (1).png" alt=""><figcaption><p>Slurm based architecture with SageMaker HyperPod</p></figcaption></figure>

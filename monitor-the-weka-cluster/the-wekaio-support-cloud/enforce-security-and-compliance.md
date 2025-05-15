@@ -19,7 +19,7 @@ The Admin page provides a comprehensive set of administrative and audit features
 
 * **Cluster API Keys**: Enable the creation of cluster-specific API keys to facilitate the use of the statistics export API for a designated cluster.
 
-<figure><img src="../../.gitbook/assets/image (272).png" alt=""><figcaption><p>Admin and cluster audit page</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (265).png" alt=""><figcaption><p>Admin and cluster audit page</p></figcaption></figure>
 
 ## Users management
 

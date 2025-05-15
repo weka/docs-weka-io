@@ -15,7 +15,7 @@ The WEKA CLI is installed on each WEKA server and is available through the `weka
 
 ```
 $ weka -h
-Usage:
+UUsage:
     weka [--color color] [--help] [--build] [--version] [--legal]
 
 Description:
@@ -25,15 +25,17 @@ Subcommands:
    access-group      Commands that manage the cluster access-groups
    agent             Commands that control the weka agent (outside the weka containers)
    alerts            List alerts in the Weka cluster
-   cloud             Cloud commands. List the cluster's cloud status if no subcommand is supplied.
+   cloud             Cloud commands. List the cluster's cloud status, if no subcommand supplied.
    cluster           Commands that manage the cluster
+   dataservice       Commands that manage dataservice
    diags             Diagnostics commands to help understand the status of the cluster and its environment
+   driver            Manage Weka drivers
    events            List all events that conform to the filter criteria
    fs                List filesystems defined in this Weka cluster
    interface-group   List interface groups
-   local             Commands that control Weka and its containers on the local machine
+   local             Commands that control weka and its containers on the local machine
    mount             Mounts a wekafs filesystem. This is the helper utility installed at /sbin/mount.wekafs.
-   nfs               Commands that manage client groups, permissions, and interface groups
+   nfs               Commands that manage client-groups, permissions and interface-groups
    org               List organizations defined in the Weka cluster
    s3                Commands that manage Weka's S3 container
    security          Security commands.
@@ -41,11 +43,11 @@ Subcommands:
    stats             List all statistics that conform to the filter criteria
    status            Get an overall status of the Weka cluster
    umount            Unmounts wekafs filesystems. This is the helper utility installed at /sbin/umount.wekafs.
-   upgrade           Commands that control the upgrade procedure of Weka
+   upgrade           Commands that control the upgrade precedure of Weka
    user              List users defined in the Weka cluster
-   version           When run without arguments, lists the versions available on this machine. Subcommands allow for
-                     downloading versions, setting the current version, and other actions to manage versions.
-   driver            Manage Weka drivers      
+   version           When run without arguments, lists the versions available on this machine. Subcommands
+                             allow for downloading of versions, setting the current version and other actions to manage
+                             versions.
 
 Options:
    --agent         Start the agent service
@@ -53,7 +55,7 @@ Options:
    -h, --help      Show help message
    --build         Prints the CLI build number and exits
    -v, --version   Prints the CLI version and exits
-   --legal         Prints software license information and exits 
+   --legal         Prints software license information and exits
 
 ```
 
@@ -85,14 +87,17 @@ $ weka fs
 $ weka fs -h
 Usage:
     weka fs [--name name]
+            [--color color]
             [--HOST HOST]
             [--PORT PORT]
             [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
             [--TIMEOUT TIMEOUT]
+            [--profile profile]
             [--format format]
             [--output output]...
             [--sort sort]...
             [--filter filter]...
+            [--filter-color filter-color]...
             [--capacities]
             [--force-fresh]
             [--help]
@@ -105,42 +110,49 @@ Description:
     List filesystems defined in this Weka cluster
 
 Subcommands:
-   create     Create a filesystem
-   download   Download a filesystem from object store
-   update     Update a filesystem
-   delete     Delete a filesystem
-   restore    Restore filesystem content from a snapshot
-   quota      Commands used to control directory quotas
-   group      List filesystem groups
-   snapshot   List snapshots
-   tier       Show object store connectivity for each node in the cluster
-   reserve    Thin provisioning reserve for organizations
+   add          Create a filesystem
+   remove       Delete a filesystem
+   download     Download a filesystem from object store
+   group        List filesystem groups
+   kms-rewrap   Rewrap the key of Filesystem
+   protection   Commands used to manage file system protection
+   quota        Commands used to control directory quotas
+   reserve      Thin provisioning reserve for organizations
+   restore      Restore filesystem content from a snapshot
+   security     Manage filesystem security
+   snapshot     List snapshots
+   tier         Show object store connectivity for each node in the cluster
+   update       Update a filesystem
 
 Options:
    --name                  Filesystem name
+   --color                 Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')
    -H, --HOST              Specify the host. Alternatively, use the WEKA_HOST env variable
    -P, --PORT              Specify the port. Alternatively, use the WEKA_PORT env variable
    -C, --CONNECT-TIMEOUT   Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w,
                            infinite/unlimited)
    -T, --TIMEOUT           Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w,
                            infinite/unlimited)
-   -f, --format            Specify in what format to output the result. Available options are:
-                           view|csv|markdown|json|oldview (format: 'view', 'csv', 'markdown', 'json' or 'oldview')
+   --profile               Name of the connection and authentication profile to use
+   -f, --format            Specify in what format to output the result (format: 'view', 'csv', 'markdown', 'json' or
+                           'oldview')
    -o, --output            Specify which columns to output. May include any of the following:
-                           uid, id, name, group, usedSSD, usedSSDD, usedSSDM, freeSSD, availableSSDM, availableSSD, usedTotal, usedTotalD, freeTotal, availableTotal, maxFiles, status, encrypted, stores, auth, thinProvisioned, thinProvisioningMinSSDBugdet, thinProvisioningMaxSSDBugdet, usedSSDWD, usedSSDRD
-   -s, --sort              Specify which column(s) to consider when sorting the output. May include a '+' or
+                           uid,id,name,group,usedSSD,usedSSDD,usedSSDM,freeSSD,availableSSDM,availableSSD,usedTotal,usedTotalD,freeTotal,availableTotal,maxFiles,status,encrypted,stores,auth,thinProvisioned,thinProvisioningMinSSDBudget,thinProvisioningMaxSSDBudget,usedSSDWD,usedSSDRD,reductionRatio,pendingReduction,dataReduction,reducedProcessedSize,reducedSize,kmsKey,kmsNamespace,kmsRole,processedReductionRatio
+                           (may be repeated or comma-separated)
+   -s, --sort              Specify which column(s) to take into account when sorting the output. May include a '+' or
                            '-' before the column name to sort in ascending or descending order respectively. Usage:
-                           [+|-]column1[,[+|-]column2[,..]]
+                           [+|-]column1[,[+|-]column2[,..]] (may be repeated or comma-separated)
    -F, --filter            Specify what values to filter by in a specific column. Usage:
-                           column1=val1[,column2=val2[,..]]
+                           column1=val1[,column2=val2[,..]] (may be repeated or comma-separated)
+   --filter-color          Filter rows with specific colors (red/yellow/green) (may be repeated or comma-separated)
    --capacities            Display all capacity columns
-   --force-fresh           Refresh the capacities to make sure they are the most updated
+   --force-fresh           Refresh the capacities to make sure they are most updated
    -h, --help              Show help message
    -R, --raw-units         Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in
-                           human-readable format, e.g. 1KiB 234MiB 2GiB.
+                           human-readable format, e.g 1KiB 234MiB 2GiB.
    -U, --UTC               Print times in UTC. When not set, times are converted to the local time of this host.
    --no-header             Don't show column headers when printing the output
-   -v, --verbose           Show all columns in the output
+   -v, --verbose           Show all columns in output
 
 ```
 
@@ -157,6 +169,44 @@ To disable the auto-completion script, run `weka agent autocomplete uninstall`
 To (re-)install the script on a server, run `weka agent autocomplete install` and re-enter your shell session.
 
 You can also use `weka agent autocomplete export` to get the bash completions script and write it to any desired location.
+
+## Standardized CLI command actions and entities
+
+`weka` commands with different names but similar meanings have been standardized. Preferred names are now documented, while aliases remain for backward compatibility. Most commands now accept both singular and plural forms.
+
+#### Standardized commands
+
+The first name in each list is the documented one, followed by its aliases. Aliases ensure existing commands and scripts remain functional.
+
+* **Actions:**
+  * `add` (`create`, `new`)
+  * `remove` (`destroy`, `delete`)
+  * `attach` (`assign`)
+  * `detach` (`unassign`)
+  * `reset` (`unset`)
+  * `update` (`updates`)
+* **Entities:**
+  * `drive` (`drives`)
+  * `driver` (`drivers`)
+  * `container` (`containers`)
+  * `alerts` (`alert`)
+  * `task` (`tasks`)
+  * `process` (`node`, `processes`, `nodes`)
+  * `resources` (`resource`)
+  * `hot-spare` (`hot-spares`, `hotspare`, `hotspares`)
+  * `bucket` (`buckets`)
+  * `events` (`event`)
+  * `denylist` (`blacklist`)
+  * `permission` (`permissions`)
+  * `client-group` (`client-groups`, `clientgroup`, `client-groups`)
+  * `interface-group` (`interface-groups`, `interfacegroup`, `interfacegroups`)
+  * `service-account` (`service-accounts`, `serviceaccount`, `serviceaccounts`)
+  * `share` (`shares`)
+  * `list` (`lists`)
+  * `group` (`groups`)
+  * `snapshot` (`snapshots`)
+  * `user` (`users`)
+  * `policy` (`policies`)
 
 ## WEKA CLI command output colors
 

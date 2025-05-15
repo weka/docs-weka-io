@@ -10,7 +10,7 @@ Using the CLI, you can manage both SMB-W and legacy SMB:
 
 * [Show the SMB cluster](smb-management-using-the-cli.md#show-the-smb-cluster)
 * [Show the SMB domain configuration](smb-management-using-the-cli.md#show-smb-domain-cfg)
-* [Create the SMB cluster](smb-management-using-the-cli.md#create-smb-cluster)
+* [Add an SMB cluster](smb-management-using-the-cli.md#create-smb-cluster)
 * [Update the SMB cluster](smb-management-using-the-cli.md#update-smb-cluster)
 * [Check the status of SMB cluster readiness](smb-management-using-the-cli.md#check-status-smb-host-readiness)
 * [Join an SMB cluster in Active Directory](smb-management-using-the-cli.md#join-smb-cluster-in-a-d)
@@ -36,13 +36,13 @@ Use this command to view information about the SMB cluster managed by the WEKA s
 
 Use this command to view information about the SMB domain configuration.
 
-## Create the SMB cluster <a href="#create-smb-cluster" id="create-smb-cluster"></a>
+## Add an SMB cluster <a href="#create-smb-cluster" id="create-smb-cluster"></a>
 
-**Command:** `weka smb cluster create`
+**Command:** `weka smb cluster add`
 
 Use the following command line to create a new SMB cluster to be managed by the WEKA system:
 
-`weka smb cluster create <netbios-name> <domain> <config-fs-name> [--domain-netbios-name domain-netbios-name] [--idmap-backend idmap-backend] [--default-domain-mapping-from-id default-domain-mapping-from-id] [--default-domain-mapping-to-id default-domain-mapping-to-id] [--joined-domain-mapping-from-id joined-domain-mapping-from-id] [--joined-domain-mapping-to-id joined-domain-mapping-to-id] [--encryption encryption] [--smb-conf-extra smb-conf-extra] [--container-ids container-ids]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range]...[--symlink symlink]`
+`weka smb cluster add <netbios-name> <domain> <config-fs-name> [--domain-netbios-name domain-netbios-name] [--idmap-backend idmap-backend] [--default-domain-mapping-from-id default-domain-mapping-from-id] [--default-domain-mapping-to-id default-domain-mapping-to-id] [--joined-domain-mapping-from-id joined-domain-mapping-from-id] [--joined-domain-mapping-to-id joined-domain-mapping-to-id] [--encryption encryption] [--smb-conf-extra smb-conf-extra] [--container-ids container-ids]... [--smb-ips-pool smb-ips-pool]... [--smb-ips-range smb-ips-range]...[--symlink symlink]`
 
 {% hint style="info" %}
 The `weka smb cluster create` command creates an SMB-W cluster. To create a legacy SMB cluster, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
@@ -122,25 +122,25 @@ To join an existing SMB cluster to another Active Directory domain, leave the cu
 
 On completion of this operation, it is possible to join the SMB cluster to another Active Directory domain.
 
-## Delete an SMB cluster <a href="#delete-an-smb-cluster" id="delete-an-smb-cluster"></a>
+## Remove an SMB cluster <a href="#delete-an-smb-cluster" id="delete-an-smb-cluster"></a>
 
-**Command:** `weka smb cluster destroy`
+**Command:** `weka smb cluster remove`
 
-Use this command to destroy an SMB cluster managed by the WEKA system.
+Use this command to remove an SMB cluster managed by the WEKA system.
 
-Deleting an existing SMB cluster managed by the WEKA system does not delete the backend WEKA filesystems but removes the SMB share exposures of these filesystems.
+Removing an existing SMB cluster managed by the WEKA system does not delete the backend WEKA filesystems but removes the SMB share exposures of these filesystems.
 
 ## Add or remove SMB cluster containers <a href="#add-or-remove-smb-cluster-hosts" id="add-or-remove-smb-cluster-hosts"></a>
 
-**Command:** `weka smb cluster containers add`
+**Command:** `weka smb cluster container add`
 
-**Command:** `weka smb cluster containers remove`
+**Command:** `weka smb cluster container remove`
 
 Use these commands to add or remove containers from the SMB cluster.
 
-`weka smb cluster containers add [--containers-id containers-id]...`
+`weka smb cluster container add [--containers-id containers-id]...`
 
-`weka smb cluster containers remove [--containers-id containers-id]...`
+`weka smb cluster container remove [--containers-id containers-id]...`
 
 {% hint style="info" %}
 This operation might take some time to complete. During that time, SMB IOs are stalled.
@@ -267,15 +267,15 @@ Use the following command line to update an existing share:
 
 ## **Control SMB share user-lists** <a href="#control-smb-share-user-lists" id="control-smb-share-user-lists"></a>
 
-**Command:** `weka smb share lists show`
+**Command:** `weka smb share list show`
 
 Use this command to view the various user-list settings.
 
-**Command:** `weka smb share lists add`
+**Command:** `weka smb share list add`
 
 Use the following command line to add users to a share user-list:
 
-`weka smb share lists add <share-id> <user-list-type> <--users users>...`
+`weka smb share list add <share-id> <user-list-type> <--users users>...`
 
 **Parameters**
 
@@ -283,11 +283,11 @@ Use the following command line to add users to a share user-list:
 
 ***
 
-**Command:** `weka smb share lists remove`
+**Command:** `weka smb share list remove`
 
 Use the following command line to remove users from a share user-list:
 
-`weka smb share lists remove <share-id> <user-list-type> <--users users>...`
+`weka smb share list remove <share-id> <user-list-type> <--users users>...`
 
 **Parameters**
 
@@ -295,11 +295,11 @@ Use the following command line to remove users from a share user-list:
 
 ***
 
-**Command:** `weka smb share lists reset`
+**Command:** `weka smb share list reset`
 
 Use the following command line to remove all users from a share user-list:
 
-`weka smb share lists reset <share-id> <user-list-type>`
+`weka smb share list reset <share-id> <user-list-type>`
 
 **Parameters**
 

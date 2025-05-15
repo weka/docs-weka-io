@@ -6,20 +6,20 @@ description: This page describes how to manage snapshots using the CLI.
 
 Using the CLI, you can:
 
-* [#create-a-snapshot](snapshots-1.md#create-a-snapshot "mention")
-* [#delete-a-snapshot](snapshots-1.md#delete-a-snapshot "mention")
+* [#add-a-snapshot](snapshots-1.md#add-a-snapshot "mention")
+* [#remove-a-snapshot](snapshots-1.md#remove-a-snapshot "mention")
 * [#restore-a-snapshot-to-a-filesystem-or-another-snapshot](snapshots-1.md#restore-a-snapshot-to-a-filesystem-or-another-snapshot "mention")
 * [#update-a-snapshot](snapshots-1.md#update-a-snapshot "mention")
 * [#access-the-.snapshots-directory](snapshots-1.md#access-the-.snapshots-directory "mention")
 * [#retrieve-snapshot-details](snapshots-1.md#retrieve-snapshot-details "mention")
 
-## Create a snapshot
+## Add a snapshot
 
-**Command:** `weka fs snapshot create`
+**Command:** `weka fs snapshot add`
 
 Use the following command line to create a snapshot:
 
-`weka fs snapshot create <file-system> <name> [--access-point access-point] [--source-snap=<source-snap>] [--is-writable]`
+`weka fs snapshot add <file-system> <name> [--access-point access-point] [--source-snap=<source-snap>] [--is-writable]`
 
 {% hint style="info" %}
 The newly created snapshot is saved in the `.snapshot` directory. \
@@ -30,13 +30,13 @@ See [#access-the-.snapshots-directory](snapshots-1.md#access-the-.snapshots-dire
 
 <table data-header-hidden><thead><tr><th>Name</th><th width="150">Type</th><th>Value</th><th>Limitations</th><th>Mandatory</th><th>Default</th></tr></thead><tbody><tr><td><strong>Name</strong></td><td><strong>Type</strong></td><td><strong>Value</strong></td><td><strong>Limitations</strong></td><td><strong>Mandatory</strong></td><td><strong>Default</strong></td></tr><tr><td><code>file-system</code></td><td>String</td><td>A valid filesystem identifier</td><td>Must be a valid name</td><td>Yes</td><td>​</td></tr><tr><td><code>name</code></td><td>String</td><td>Unique name for filesystem snapshot</td><td>Must be a valid name</td><td>Yes</td><td></td></tr><tr><td><code>access-point</code></td><td>String</td><td>Name of the newly-created directory for filesystem-level snapshots, which serves as the access point for the snapshots</td><td>Must be a valid name</td><td>No</td><td>Controlled by <code>weka fs snapshot access-point-naming-convention update &#x3C;date/name>.</code> By default it is <code>&#x3C;date></code> format: <code>@GMT_%Y.%m.%d-%H.%M.%S</code> which is compatible with <a href="../../additional-protocols/smb-support/#integration-with-windows-previous-versions">windows previous versions format for SMB</a>.</td></tr><tr><td><code>source-snap</code></td><td>String</td><td>Must be an existing snapshot</td><td>Must be a valid name</td><td>No</td><td>The snapshot name of the specified filesystem.</td></tr><tr><td><code>is-writable</code></td><td>Boolean</td><td>Sets the created snapshot to be writable</td><td></td><td>No</td><td>False</td></tr></tbody></table>
 
-## Delete a snapshot
+## Remove a snapshot
 
-**Command:** `weka fs snapshot delete`
+**Command:** `weka fs snapshot remove`
 
-Use the following command line to delete a snapshot:
+Use the following command line to remove a snapshot:
 
-`weka fs snapshot delete <file-system> <name>`
+`weka fs snapshot remove <file-system> <name>`
 
 **Parameters**
 
