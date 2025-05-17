@@ -6,15 +6,16 @@ Before a WEKA system can use a Broadcom adapters, the server must have the neces
 
 **Procedure:**
 
-1. **Download software bundle**: Access Broadcom's download center and download the software bundle onto the target server. Carefully review the instructions included in the bundle.
-2. **Compile and install**: Follow the provided instructions to compile and install the following components:
+1. **Prerequisites:** Enable SR-IOV in both the BIOS and the NIC settings. See [sr-iov-enablement.md](sr-iov-enablement.md "mention").
+2. **Download software bundle**: Access Broadcom's download center and download the software bundle onto the target server. Carefully review the instructions included in the bundle.
+3. **Compile and install**: Follow the provided instructions to compile and install the following components:
    * `bnxt_en` driver.
    * `sliff` driver.
    * `niccli` command line utility.
-3. **Post-installation steps**: After installation, run one of the following commands based on the Linux distribution:
+4. **Post-installation steps**: After installation, run one of the following commands based on the Linux distribution:
    * `dracut -f`
    * `update-initramfs -u`
-4. **Reboot the server**: Reboot the server to apply the changes.
+5. **Reboot the server**: Reboot the server to apply the changes.
 
 ## **Install the firmware**
 

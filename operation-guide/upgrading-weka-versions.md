@@ -8,10 +8,9 @@ description: Upgrade your WEKA system with the latest version.
 
 The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations.&#x20;
 
-**Supported source versions for upgrading to version 4.4.4**:
+**Supported source versions for upgrading to version 4.4.6**:
 
 * The **minimum** supported source version is 4.2.1.
-* The **maximum** supported source versions are 4.2.12.92, 4.3.5.105, and 4.4.3
 
 ### Upgrade guidelines
 
@@ -334,8 +333,9 @@ Enabling the Low Latency Queue (LLQ) improves data processing efficiency in AWS 
 
 ### 6. Upgrade the clients
 
-Once all backends are upgraded, the clients remain with the existing version and continue working with the upgraded backends. The client's version can only be one major version behind the version of the backends. Therefore, clients must be upgraded before the next cluster software version upgrade.\
-The minimum source version for client upgrades is 4.3.X.
+After all backend components have been upgraded, clients continue operating with their existing version and can interact with the upgraded backends. Typically, a client version is supported only if it is no more than one major version behind the backend version. Therefore, clients must be upgraded before the subsequent cluster software version upgrade to maintain compatibility.
+
+An exception to this rule is that clients running version 4.2.1 or later are compatible with clusters running version 4.4.6.
 
 #### Stateless client upgrade options
 

@@ -295,7 +295,8 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
 * **Supported ice drivers:**
   * 1.9.11
 * **Supported Broadcom drivers**:
-  * 228
+  * 228: Minimum required for 100/200 Gbps 57508 NIC
+  * 231: Minimum required for 200/400 Gbps 57608 NIC
 {% endtab %}
 
 {% tab title="Ethernet configurations" %}

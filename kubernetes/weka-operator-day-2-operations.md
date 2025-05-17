@@ -2962,7 +2962,7 @@ The following procedure exemplifies increase of the computeCores and driveCores 
 1. Modify the cluster YAML configuration to update core allocation:
 
 ```yaml
-yamlCopytemplate: dynamic
+template: dynamic
 dynamicTemplate:
   computeContainers: 6
   driveContainers: 6
