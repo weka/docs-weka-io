@@ -35,10 +35,6 @@ The WEKA driver directory structure is organized to help you manage driver packa
 * `weka driver kernel`: Shows the kernel signature of the system.
 * `weka driver ready`: Checks if drivers are loaded.
 
-**Related topic**
-
-[Broken link](broken-reference "mention")
-
 ## Manage WEKA drivers
 
 Follow these steps to build and manage WEKA drivers for a specific OS and WEKA kernel version on a system running the **target OS kernel version**. This system, which can be a virtual machine (VM), **must** have the exact kernel version that you intend to use for distribution across the WEKA cluster.
