@@ -14,24 +14,22 @@ Mount options are key-value pairs specified during volume mounting that modify t
 
 * **Tailor performance:** Optimize caching strategies for read-heavy or write-intensive workloads (`noatime`, `readcache`).
 * **Enhance data integrity:** Enforce data consistency and reliability (example: `sync`).
-* **Customize behavior:** Adjust settings like filesystem size limits for specific use cases (example: `fstype`).
 * **Troubleshoot issues:** Fine-tune settings to resolve performance bottlenecks or compatibility problems.
 
 ### **Standard mount options and use cases**
 
 The CSI Plugin supports all standard mount options except the read-only (`ro`) option. The following table briefly lists the supported mount options for convenience.
 
-| Option         | Description                                                | Use cases                                           |
-| -------------- | ---------------------------------------------------------- | --------------------------------------------------- |
-| `sync`         | Ensure data is written to disk before mount                | Database workloads requiring high data integrity    |
-| `noatime`      | Disable write timestamp updates                            | Reduce write amplification, improve performance     |
-| `nodev`        | Disallow device nodes                                      | Security-sensitive environments                     |
-| `noexec`       | Disallow program execution                                 | Security-focused deployments                        |
-| `atime`        | Enable access time recording                               | Monitor file access patterns                        |
-| `diratime`     | Enable directory access time recording                     | Track directory access time                         |
-| `relatime`     | Update access and modification times relative to stat time | Reduce write amplification, improve performance     |
-| `data=ordered` | Ensure sequential writes are flushed to disk immediately   | Databases requiring strict write ordering           |
-| `fstype`       | Specify the filesystem type                                | Use case-specific filesystems (examples: XFS, ext4) |
+| Option         | Description                                                | Use cases                                        |
+| -------------- | ---------------------------------------------------------- | ------------------------------------------------ |
+| `sync`         | Ensure data is written to disk before mount                | Database workloads requiring high data integrity |
+| `noatime`      | Disable write timestamp updates                            | Reduce write amplification, improve performance  |
+| `nodev`        | Disallow device nodes                                      | Security-sensitive environments                  |
+| `noexec`       | Disallow program execution                                 | Security-focused deployments                     |
+| `atime`        | Enable access time recording                               | Monitor file access patterns                     |
+| `diratime`     | Enable directory access time recording                     | Track directory access time                      |
+| `relatime`     | Update access and modification times relative to stat time | Reduce write amplification, improve performance  |
+| `data=ordered` | Ensure sequential writes are flushed to disk immediately   | Databases requiring strict write ordering        |
 
 ## **Set custom mount options with CSI Plugin**
 

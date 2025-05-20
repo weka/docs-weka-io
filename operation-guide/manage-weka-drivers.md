@@ -77,9 +77,32 @@ Follow these steps to build and manage WEKA drivers for a specific OS and WEKA k
     ```
 
     Copy the exported archive to all backends in the WEKA cluster.
-6.  **Import the driver package**\
+6.  **Import the driver package:**\
     On each backend, import the driver package from the location where it was copied by running:
 
     ```bash
     weka driver import <path>
     ```
+7.  **Install the imported driver**:
+
+    Install the driver on each backend using the following command:
+
+    ```bash
+    weka driver install
+    ```
+
+    This command builds and installs the driver for the current kernel, ensuring it is ready for use by the system.
+
+<details>
+
+<summary>Example: Import and installation flow on a client</summary>
+
+1. Copy the exported driver archive to the client: \
+   `scp <driver-package>.tar.gz user@:/tmp/<client>:/tmp/`
+2. SSH into the backend: `ssh user@<client>`
+3. Import the driver archive: `weka driver import /tmp/.tar.gz`
+4. Install the imported driver: `weka driver install`
+5. After running weka driver install, the driver is built and loaded for the kernel running on the client. Use the following command to verify the driver status: \
+   `weka driver ready`
+
+</details>

@@ -77,7 +77,7 @@ Mounts: 1
 
 ## Add a stateless client to the cluster
 
-A **stateless client** is a client that does not persistently store any software or configuration state locally. Instead, it dynamically installs the required software and configuration each time it interacts with the WEKA system. This approach simplifies client management, eliminates the need to join the client to the cluster, and allows for deployment on lightweight, diskless servers.
+A **stateless client** is a client that does not persistently store any software or configuration state locally. Instead, it dynamically installs the required software and configuration each time it interacts with the WEKA system. This approach simplifies client management by eliminating the need for persistent local installations, though the client still temporarily joins the cluster during operations. Stateless clients are particularly useful for deployment on lightweight, diskless servers.
 
 To enable a stateless client to use the WEKA filesystem, the `mount` command is used. This command installs the WEKA software automatically and configures the client without requiring manual intervention.
 
