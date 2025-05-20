@@ -56,7 +56,7 @@ Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zer
 
 **Related information**
 
-[Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS)
+[Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS)
 
 ### NFS client mount&#x20;
 
@@ -146,7 +146,7 @@ To ensure the resilience of the service if a server fails, the system reassigns 
 
 ### NFS file-locking support
 
-NFS file-locking is a mechanism that ensures synchronized access to files by multiple processes in a networked environment. It maintains data integrity and consistency by preventing simultaneous access to the same file, thereby preventing potential data corruption.
+WEKA supports NFS byte-range [advisory locking](#user-content-fn-4)[^4] for NFS versions 3, 4, and 4.1. This mechanism ensures synchronized access to files in a networked environment by allowing multiple processes to coordinate access to shared files. It helps maintain data integrity and consistency by preventing concurrent modifications that could lead to data corruption. WEKA’s implementation is interoperable with POSIX byte-range advisory locks, enabling compatibility and coordination between NFS clients and WEKA’s filesystem.
 
 #### NFS file-locking prerequisites for NFSv3
 
@@ -161,9 +161,9 @@ NFS file-locking is a mechanism that ensures synchronized access to files by mul
 
       ```
       status		46999/tcp		# rpc status
-      status		46999/ucp		# rpc status
+      status		46999/udp		# rpc status
       nlockmgr 	47000/tcp		# nlockmgr
-      nlockmgr 	47000/ucp		# nlockmgr
+      nlockmgr 	47000/udp		# nlockmgr
       ```
 * **NFS client prerequisite:** To use NFSv3 with locking on an NFS client, ensure the `rpc.statd` service runs in the NFS client. This enables clients to mount NFSv3 shares.
 
@@ -202,3 +202,7 @@ For detailed procedures, see the related topics.
 [^2]: **Floating IPs**: Dynamic IP addresses that can be reassigned to manage network traffic.
 
 [^3]: **GARP (Gratuitous Address Resolution Protocol)**: Network protocol used for IP address reassignment.
+
+[^4]: **Advisory locking**
+
+    A file locking mechanism where processes voluntarily check for and honor locks set by others. It requires all cooperating processes to follow the locking protocol, as the operating system does not enforce it automatically.
