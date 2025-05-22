@@ -162,7 +162,7 @@ Each mount option can be passed by an individual `-o` flag to `mount.`
 
 ### For all clients types
 
-<table><thead><tr><th width="235">Option</th><th width="306">Description</th><th width="97">Default</th><th>Remount Supported</th></tr></thead><tbody><tr><td><code>readcache</code></td><td><p>Set the mount mode to read from the cache. This action automatically turns off the <code>writecache.</code></p><p><strong>Note:</strong> The SMB share mount mode is always <code>readcache</code>. Set this option to <code>Yes</code>. </p></td><td>No</td><td>Yes</td></tr><tr><td><code>writecache</code></td><td>Set the mount mode to write to the cache.</td><td>Yes</td><td>Yes</td></tr><tr><td><code>forcedirect</code></td><td><p>Set the mount mode to directly read from and write to storage, avoiding the cache. This action automatically turns off both the <code>writecache</code> and <code>readcache</code>.</p><p><strong>Note:</strong> Enabling this option could impact performance. Use it carefully. If you’re unsure, contact the <a href="../../support/getting-support-for-your-weka-system.md#contact-customer-success-team">Customer Success Team</a>.<br>Do not use this option for SMB shares.</p></td><td>No</td><td>Yes</td></tr><tr><td><code>dentry_max_age_positive</code></td><td>The time in milliseconds after which the system refreshes the metadata cached entry. This refresh informs the WEKA client about metadata changes performed by other clients.</td><td>1000</td><td>Yes</td></tr><tr><td><code>dentry_max_age_negative</code></td><td>Each time a file or directory lookup fails, the local entry cache creates an entry specifying that the file or directory does not exist.<br>This entry is refreshed after the specified time (number in milliseconds), allowing the WEKA client to use files or directories created by other clients.</td><td>0</td><td>Yes</td></tr><tr><td><code>ro</code></td><td>Mount filesystem as read-only.</td><td>No</td><td>Yes</td></tr><tr><td><code>rw</code></td><td>Mount filesystem as read-write.</td><td>Yes</td><td>Yes</td></tr><tr><td><code>inode_bits</code></td><td>The inode size in bits may be required for 32-bit applications.<br>Possible values: <code>32</code>, <code>64</code>, or <code>auto</code></td><td>Auto</td><td>No</td></tr><tr><td><code>verbose</code></td><td>Write debug logs to the console.</td><td>No</td><td>Yes</td></tr><tr><td><code>quiet</code></td><td>Don't show any logs to console.</td><td>No</td><td>Yes</td></tr><tr><td><code>acl</code></td><td><p>Can be defined per mount. </p><p>Setting POSIX ACLs can change the effective group permissions (via the <code>mask</code> permissions). When ACLs are defined but the mount has no ACL, the effective group permissions are granted.</p></td><td>No</td><td>No</td></tr><tr><td><code>obs_direct</code></td><td>See <a data-mention href="../tiering/advanced-time-based-policies-for-data-storage-location.md#direct-object-store-mount-option">#direct-object-store-mount-option</a></td><td>No</td><td>Yes</td></tr><tr><td><code>noatime</code></td><td>Do not update inode access times.</td><td>No</td><td>Yes</td></tr><tr><td><code>strictatime</code></td><td>Always update inode access times.</td><td>No</td><td>Yes</td></tr><tr><td><code>relatime</code></td><td>Update inode access times only on modification or change, or if inode has been accessed and <code>relatime_threshold</code> has passed.</td><td>Yes</td><td>Yes</td></tr><tr><td><code>relatime_threshold</code></td><td><p>The time (number in seconds) to wait since an inode has been accessed (not modified) before updating the access time. </p><p>0 means never update the access time on access only.</p><p>This option is relevant only if the <code>relatime</code> is on.</p></td><td>0 (infinite)</td><td>Yes</td></tr><tr><td><code>nosuid</code></td><td>Do not take <code>suid</code>/<code>sgid</code> bits into effect.</td><td>No</td><td>Yes</td></tr><tr><td><code>nodev</code></td><td>Do not interpret character or block special devices.</td><td>No</td><td>Yes</td></tr><tr><td><code>noexec</code></td><td>Do not allow direct execution of any binaries.</td><td>No</td><td>Yes</td></tr><tr><td><code>file_create_mask</code></td><td><p>File creation mask. A numeric (octal) notation of POSIX permissions.<br>Newly created file permissions are masked with the creation mask. For example, if a user creates a file with permissions=777 but the <code>file_create_mask</code> is 770, the file is created with 770 permissions. </p><p>First, the <code>umask</code> is taken into account, followed by the <code>file_create_mask</code> and then the <code>force_file_mode</code>.</p></td><td>0777</td><td>Yes</td></tr><tr><td><code>directory_create_mask</code></td><td><p>Directory creation mask. A numeric (octal) notation of POSIX permissions.<br>Newly created directory permissions are masked with the creation mask. For example, if a user creates a directory with permissions=777 but the <code>directory_create_mask</code> is 770, the directory will be created with 770 permissions. </p><p>First, the <code>umask</code> is taken into account, followed by the <code>directory_create_mask</code> and then the <code>force_directory_mode</code>.</p></td><td>0777</td><td>Yes</td></tr><tr><td><code>force_file_mode</code></td><td><p>Force file mode. A numeric (octal) notation of POSIX permissions.<br>Newly created file permissions are logically OR'ed with the mode. <br>For example, if a user creates a file with permissions 770 but the <code>force_file_mode</code> is 775, the resulting file is created with mode 775. </p><p>First, the <code>umask</code> is taken into account, followed by the <code>file_create_mask</code> and then the <code>force_file_mode</code>.</p></td><td>0</td><td>Yes</td></tr><tr><td><code>force_directory_mode</code></td><td><p>Force directory mode. A numeric (octal) notation of POSIX permissions.<br>Newly created directory permissions are logically OR'ed with the mode. For example, if a user creates a directory with permissions 770 but the <code>force_directory_mode</code> is 775, the resulting directory will be created with mode 775. </p><p>First, the <code>umask</code> is taken into account, followed by the <code>directory_create_mask</code> and then the <code>force_directory_mode</code>.</p></td><td>0</td><td>Yes</td></tr><tr><td><code>sync_on_close</code></td><td>This option ensures that all data for a file is written to the server when the file is closed. This means that changes made to the file by the client are immediately written to the server's disk upon close, which can provide greater data consistency and reliability.<br>It simulates the open-to-close semantics of NFS when working with <code>writecache</code> mount mode and directory quotas. <br>Enabling this option is essential when applications expect returned write errors at syscall close if the quota is exceeded.</td><td>No</td><td>Yes</td></tr><tr><td><code>nosync_on_close</code></td><td>This option disables the <code>sync_on_close</code> behavior of file writes. When <code>nosync_on_close</code> is enabled, the client does not wait for the server to confirm that all file data has been written to disk before closing the file.<br>This means that any changes made to the file by the client may not be immediately written to the server's disk when the file is closed. Instead, the changes are buffered in memory and written to disk asynchronously later.</td><td>No</td><td>Yes</td></tr></tbody></table>
+<table><thead><tr><th width="235">Option</th><th width="306">Description</th><th width="97">Default</th><th>Remount Supported</th></tr></thead><tbody><tr><td><code>readcache</code></td><td><p>Set the mount mode to read from the cache. This action automatically turns off the <code>writecache.</code></p><p><strong>Note:</strong> The SMB share mount mode is always <code>readcache</code>. Set this option to <code>Yes</code>. </p></td><td>No</td><td>Yes</td></tr><tr><td><code>writecache</code></td><td>Set the mount mode to write to the cache.</td><td>Yes</td><td>Yes</td></tr><tr><td><code>forcedirect</code></td><td><p>Set the mount mode to directly read from and write to storage, avoiding the cache. This action automatically turns off both the <code>writecache</code> and <code>readcache</code>.</p><p><strong>Note:</strong> Enabling this option can impact performance. Use it carefully. If you’re unsure, contact the <a href="../../support/getting-support-for-your-weka-system.md#contact-customer-success-team">Customer Success Team</a>.<br>Do not use this option for SMB shares.</p></td><td>No</td><td>Yes</td></tr><tr><td><code>dentry_max_age_positive</code></td><td>The time in milliseconds after which the system refreshes the metadata cached entry. This refresh informs the WEKA client about metadata changes performed by other clients.</td><td>1000</td><td>Yes</td></tr><tr><td><code>dentry_max_age_negative</code></td><td>Each time a file or directory lookup fails, the local entry cache creates an entry specifying that the file or directory does not exist.<br>This entry is refreshed after the specified time (number in milliseconds), allowing the WEKA client to use files or directories created by other clients.</td><td>0</td><td>Yes</td></tr><tr><td><code>ro</code></td><td>Mount filesystem as read-only.</td><td>No</td><td>Yes</td></tr><tr><td><code>rw</code></td><td>Mount filesystem as read-write.</td><td>Yes</td><td>Yes</td></tr><tr><td><code>inode_bits</code></td><td>The inode size in bits may be required for 32-bit applications.<br>Possible values: <code>32</code>, <code>64</code>, or <code>auto</code></td><td>Auto</td><td>No</td></tr><tr><td><code>verbose</code></td><td>Write debug logs to the console.</td><td>No</td><td>Yes</td></tr><tr><td><code>quiet</code></td><td>Don't show any logs to console.</td><td>No</td><td>Yes</td></tr><tr><td><code>acl</code></td><td><p>Can be defined per mount. </p><p>Setting POSIX ACLs can change the effective group permissions (via the <code>mask</code> permissions). When ACLs are defined but the mount has no ACL, the effective group permissions are granted.</p></td><td>No</td><td>No</td></tr><tr><td><code>obs_direct</code></td><td>See <a data-mention href="../tiering/advanced-time-based-policies-for-data-storage-location.md#direct-object-store-mount-option">#direct-object-store-mount-option</a></td><td>No</td><td>Yes</td></tr><tr><td><code>noatime</code></td><td>Do not update inode access times.</td><td>No</td><td>Yes</td></tr><tr><td><code>strictatime</code></td><td>Always update inode access times.</td><td>No</td><td>Yes</td></tr><tr><td><code>relatime</code></td><td>Update inode access times only on modification or change, or if inode has been accessed and <code>relatime_threshold</code> has passed.</td><td>Yes</td><td>Yes</td></tr><tr><td><code>relatime_threshold</code></td><td><p>The time (number in seconds) to wait since an inode has been accessed (not modified) before updating the access time. </p><p>0 means never update the access time on access only.</p><p>This option is relevant only if the <code>relatime</code> is on.</p></td><td>0 (infinite)</td><td>Yes</td></tr><tr><td><code>nosuid</code></td><td>Do not take <code>suid</code>/<code>sgid</code> bits into effect.</td><td>No</td><td>Yes</td></tr><tr><td><code>nodev</code></td><td>Do not interpret character or block special devices.</td><td>No</td><td>Yes</td></tr><tr><td><code>noexec</code></td><td>Do not allow direct execution of any binaries.</td><td>No</td><td>Yes</td></tr><tr><td><code>file_create_mask</code></td><td><p>File creation mask. A numeric (octal) notation of POSIX permissions.<br>Newly created file permissions are masked with the creation mask. For example, if a user creates a file with permissions=777 but the <code>file_create_mask</code> is 770, the file is created with 770 permissions. </p><p>First, the <code>umask</code> is taken into account, followed by the <code>file_create_mask</code> and then the <code>force_file_mode</code>.</p></td><td>0777</td><td>Yes</td></tr><tr><td><code>directory_create_mask</code></td><td><p>Directory creation mask. A numeric (octal) notation of POSIX permissions.<br>Newly created directory permissions are masked with the creation mask. For example, if a user creates a directory with permissions=777 but the <code>directory_create_mask</code> is 770, the directory will be created with 770 permissions. </p><p>First, the <code>umask</code> is taken into account, followed by the <code>directory_create_mask</code> and then the <code>force_directory_mode</code>.</p></td><td>0777</td><td>Yes</td></tr><tr><td><code>force_file_mode</code></td><td><p>Force file mode. A numeric (octal) notation of POSIX permissions.<br>Newly created file permissions are logically OR'ed with the mode. <br>For example, if a user creates a file with permissions 770 but the <code>force_file_mode</code> is 775, the resulting file is created with mode 775. </p><p>First, the <code>umask</code> is taken into account, followed by the <code>file_create_mask</code> and then the <code>force_file_mode</code>.</p></td><td>0</td><td>Yes</td></tr><tr><td><code>force_directory_mode</code></td><td><p>Force directory mode. A numeric (octal) notation of POSIX permissions.<br>Newly created directory permissions are logically OR'ed with the mode. For example, if a user creates a directory with permissions 770 but the <code>force_directory_mode</code> is 775, the resulting directory will be created with mode 775. </p><p>First, the <code>umask</code> is taken into account, followed by the <code>directory_create_mask</code> and then the <code>force_directory_mode</code>.</p></td><td>0</td><td>Yes</td></tr><tr><td><code>sync_on_close</code></td><td>This option ensures that all data for a file is written to the server when the file is closed. This means that changes made to the file by the client are immediately written to the server's disk upon close, which can provide greater data consistency and reliability.<br>It simulates the open-to-close semantics of NFS when working with <code>writecache</code> mount mode and directory quotas. <br>Enabling this option is essential when applications expect returned write errors at syscall close if the quota is exceeded.</td><td>No</td><td>Yes</td></tr><tr><td><code>nosync_on_close</code></td><td>This option disables the <code>sync_on_close</code> behavior of file writes. When <code>nosync_on_close</code> is enabled, the client does not wait for the server to confirm that all file data has been written to disk before closing the file.<br>This means that any changes made to the file by the client may not be immediately written to the server's disk when the file is closed. Instead, the changes are buffered in memory and written to disk asynchronously later.</td><td>No</td><td>Yes</td></tr></tbody></table>
 
 ### Remount of general options
 
@@ -361,19 +361,37 @@ mount -t wekafs -o num_cores=2 -o net=intel0/192.168.1.100+192.168.1.101/24/192.
 
 ### Multiple physical network devices for performance and high availability
 
-For performance or high availability, it is possible to use more than one physical network device.
+Utilizing multiple physical network interface cards (NICs) on a WEKA client can unlock significant gains in data throughput and enhance system resilience. By strategically distributing network traffic across several interfaces, you can overcome single-NIC bottlenecks for demanding applications and ensure continuous data access even if one network path fails.
 
-#### Multiple physical network devices for better performance
+This section delves into the various methods for configuring and managing multiple NICs with WEKA. It covers how to:
 
-It's easy to saturate the bandwidth of a single network interface when using WEKA. For higher throughput, it is possible to leverage multiple network interface cards (NICs). The `-o net` notation shown in the examples above can be used to pass the names of specific NICs to the WEKA server driver.
+* Aggregate NICs for increased overall performance.
+* Set up redundant configurations to achieve high availability.
+* Implement advanced NUMA-aware setups for optimal efficiency on multi-socket servers.
+* Use specific mount options, including detailed slot notation, to precisely control how client processes uses the available network interfaces.
 
-For example, the following command will allocate two cores and two physical network devices for increased throughput:
+The following subsections provide detailed explanations and practical examples for each of these configurations, enabling you to tailor your WEKA client's network setup to your specific performance and availability requirements.
+
+<details>
+
+<summary>Multiple physical network devices for better performance</summary>
+
+Demanding workloads on WEKA can readily saturate the bandwidth of a single network interface. For higher throughput, you can leverage multiple network interface cards (NICs). By using the `-o net=<interface>` mount option for each desired NIC, you instruct the WEKA client driver to utilize these specific interfaces, potentially distributing the load and increasing overall bandwidth.
+
+For example, the following command allocates two cores and two physical network devices for increased throughput:
 
 ```bash
-mount -t wekafs -o num_cores=2 -o net=mlnx0 -o net=mlnx1 backend1/my_fs /mnt/weka
+mount -t wekafs \
+-o num_cores=2 \
+-o net=mlnx0 -o net=mlnx1 \
+backend1/my_fs /mnt/weka
 ```
 
-#### Multiple physical network devices for high availability configuration
+</details>
+
+<details>
+
+<summary>Multiple physical network devices for high availability configuration</summary>
 
 Multiple NICs can also be configured to achieve redundancy and higher throughput for a complete, highly available solution. For that, use more than one physical device as previously described, and also, specify the client management IPs using `-o mgmt_ip=<ip1>+<ip2>` command-line option.
 
@@ -381,21 +399,83 @@ For example, the following command uses two network devices (`mlnx0` and `mlnx1`
 
 {% code overflow="wrap" %}
 ```bash
-mount -t wekafs -o num_cores=4 -o net:ha=mlnx0,net:ha=mlnx1 -o mgmt_ip=10.0.0.1+10.0.0.2 backend1/my_fs /mnt/weka
+mount -t wekafs \
+-o num_cores=4 \
+-o net:ha=mlnx0,net:ha=mlnx1 \
+-o mgmt_ip=10.0.0.1+10.0.0.2 \
+backend1/my_fs /mnt/weka
 ```
 {% endcode %}
 
-**Advanced mounting options for multiple physical network devices**
+</details>
+
+<details>
+
+<summary>Advanced configuration: NUMA affinity with multiple physical network devices and sockets</summary>
+
+For more complex systems, especially those with multiple CPU sockets and NUMA (Non-Uniform Memory Access) nodes, you can achieve higher performance and efficiency by pinning client processes and their network traffic to specific NUMA nodes. This involves assigning cores from a specific NUMA node to WekaFS client processes and then mapping these processes to a network interface card (NIC) physically located on the same NUMA node.
+
+Consider a server with four NUMA nodes and four InfiniBand (IB) network interfaces, where each IB interface is assumed to reside on a different NUMA node. The NUMA configuration of the CPUs is as follows:
+
+* NUMA node0 CPU(s): 0-63
+* NUMA node1 CPU(s): 64-127
+* NUMA node2 CPU(s): 128-191
+* NUMA node3 CPU(s): 192-255
+
+Let's assume you have four IB interfaces: `ib0` (on NUMA node0), `ib1` (on NUMA node1), `ib2` (on NUMA node2), and `ib3` (on NUMA node3). To configure WekaFS for optimal NUMA affinity, you would pin specific cores from each NUMA node to WekaFS frontend processes and then map these groups of processes to their corresponding NUMA-local IB interface. Management IPs must also be specified for high availability.
+
+**Example:**
+
+The following command configures 16 WekaFS client processes. Four processes are pinned to cores on each of the four NUMA nodes. Each group of four processes is then mapped to its local IB interface.
+
+```
+mount -t wekafs \
+-o core=63 -o core=62 -o core=61 -o core=60 \
+-o core=127 -o core=126 -o core=125 -o core=124 \
+-o core=191 -o core=190 -o core=189 -o core=188 \
+-o core=255 -o core=254 -o core=253 -o core=252 \
+-o net:s1-4=ib0 \
+-o net:s4-6=ib1 \
+-o net:s7-9=ib2 \
+-o net:s10-12=ib3 \
+backend_servers/my_fs /mnt/weka
+```
+
+**Explanation of the options in this example:**
+
+* **`-o core=...`**: Sixteen specific CPU cores are assigned to WekaFS client processes:
+  * Cores 63, 62, 61, 60 are on NUMA node0.
+  * Cores 127, 126, 125, 124 are on NUMA node1.
+  * Cores 191, 190, 189, 188 are on NUMA node2.
+  * Cores 255, 254, 253, 252 are on NUMA node3. This creates 16 frontend processes, with each group of four processes affinitized to a specific NUMA node.
+* **`-o net:s1-4=ib0, net:s4-6=ib1, net:s7-9=ib2, net:s10-12=ib3`**: These options use the "multiple NIC slot notation" to map the WekaFS client processes (referred to by "slots") to the specified network interfaces (`ib0`, `ib1`, `ib2`, `ib3`). In this configuration with 16 frontend processes, the intended mapping is:
+  * The first group of four processes (running on cores 63,62,61,60 on NUMA0) uses `ib0` (assumed to be on NUMA0).
+  * The second group of four processes (running on cores 127,126,125,124 on NUMA1) uses `ib1` (assumed to be on NUMA1).
+  * The third group of four processes (running on cores 191,190,189,188 on NUMA2) uses `ib2` (assumed to be on NUMA2).
+  * The fourth group of four processes (running on cores 255,254,253,252 on NUMA3) uses `ib3` (assumed to be on NUMA3). This setup ensures that network traffic for processes on a given NUMA node utilizes the NIC local to that NUMA node, minimizing cross-NUMA data transfers and potentially improving performance.
+
+- **`backend_servers/my_fs`**: Replace with your WekaFS backend server address(es) and filesystem name.
+- **`/mnt/weka`**: Replace with your desired mount point.
+
+This type of granular configuration is beneficial for maximizing throughput and minimizing latency in high-performance computing (HPC) and AI workloads that are sensitive to NUMA effects.
+
+</details>
+
+<details>
+
+<summary>Advanced mounting options for multiple physical network devices</summary>
 
 With multiple Frontend processes (as expressed by `-o num_cores=X`), it is possible to control what processes use what NICs. This can be accomplished through the use of special command line modifiers called _slots_. In WEKA, _slot_ is synonymous with a process number. Typically, the first WEKA Frontend process will occupy slot 1, then the second - slot 2 and so on.
 
 Examples of slot notation include `s1`, `s2`, `s2+1`, `s1-2`, `slots1+3`, `slot1`, `slots1-4` , where `-` specifies a range of devices, while `+` specifies a list. For example, `s1-4` implies slots 1, 2, 3, and 4, while `s1+4` specifies slots 1 and 4.
 
-For example, in the following command, `mlnx0` is bound to the second Frontend process while`mlnx1` to the first one for improved performance.
+For example, in the following command, `mlnx0` is bound to the second Frontend process while `mlnx1` to the first one for improved performance.
 
 {% code overflow="wrap" %}
 ```bash
-mount -t wekafs -o num_cores=2 -o net:s2=mlnx0,net:s1=mlnx1 backend1/my_fs /mnt/weka
+mount -t wekafs \
+-o num_cores=2 -o net:s2=mlnx0,net:s1=mlnx1 \
+backend1/my_fs /mnt/weka
 ```
 {% endcode %}
 
@@ -403,9 +483,15 @@ For exampl&#x65;**,** in the following mounting command, two cores (two Frontend
 
 {% code overflow="wrap" %}
 ```bash
-mount -t wekafs -o num_cores=2 -o net:s2+1=mlnx0,net:s1-2=mlnx1 backend1/my_fs -o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
+mount -t wekafs \
+-o num_cores=2 \
+-o net:s2+1=mlnx0,net:s1-2=mlnx1 \
+backend1/my_fs \
+-o mgmt_ip=10.0.0.1+10.0.0.2 /mnt/weka
 ```
 {% endcode %}
+
+</details>
 
 **Related topic**
 
