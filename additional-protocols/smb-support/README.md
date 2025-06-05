@@ -9,7 +9,9 @@ SMB (Server Message Block) is a network file-sharing protocol that facilitates c
 WEKA's SMB implementation enables seamless access to storage services for both Windows and macOS clients. It facilitates shared access from multiple clients, supporting a multi-protocol approach that allows files to be accessed simultaneously through SMB, NFS, and WEKA native filesystem drivers.
 
 {% hint style="info" %}
-The legacy open-source Samba stack (type: SMB)  is deprecated in favor of SMB-W and will not be supported after version 4.4.6.   To determine if you are using Samba, run the command `weka smb cluster` and note whether the `Type` field reports `smb` or `smbw.`  If it reports `smb`,  open a support case with WEKA to begin planning a migration to SMB-W.
+The legacy open-source Samba stack (type: SMB)  is deprecated in favor of SMB-W and will not be supported after version 4.4.6.
+
+To determine if you are using Samba, run the command `weka smb cluster` and note whether the `Type` field reports `smb` or `smbw`. If it reports `smb`,  open a support case with WEKA to begin planning a migration to SMB-W.
 {% endhint %}
 
 ## Key features of SMB implementation in WEKA

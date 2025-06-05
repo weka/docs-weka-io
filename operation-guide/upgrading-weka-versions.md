@@ -8,9 +8,13 @@ description: Upgrade your WEKA system with the latest version.
 
 The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations.&#x20;
 
-**Supported source versions for upgrading to version 4.4.6**:
+**Supported source versions for upgrading to version 4.4.7**:
 
-* The **minimum** supported source version is 4.2.1.
+* The **minimum** supported source version is 4.2.5.
+
+{% hint style="info" %}
+Upgrading to version 4.4.7 on Azure deployments is not supported.
+{% endhint %}
 
 ### Upgrade guidelines
 

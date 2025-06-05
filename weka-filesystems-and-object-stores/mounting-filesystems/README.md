@@ -435,9 +435,9 @@ mount -t wekafs \
 -o core=191 -o core=190 -o core=189 -o core=188 \
 -o core=255 -o core=254 -o core=253 -o core=252 \
 -o net:s1-4=ib0 \
--o net:s4-6=ib1 \
--o net:s7-9=ib2 \
--o net:s10-12=ib3 \
+-o net:s5-8=ib1 \
+-o net:s9-12=ib2 \
+-o net:s13-16=ib3 \
 backend_servers/my_fs /mnt/weka
 ```
 
@@ -448,7 +448,7 @@ backend_servers/my_fs /mnt/weka
   * Cores 127, 126, 125, 124 are on NUMA node1.
   * Cores 191, 190, 189, 188 are on NUMA node2.
   * Cores 255, 254, 253, 252 are on NUMA node3. This creates 16 frontend processes, with each group of four processes affinitized to a specific NUMA node.
-* **`-o net:s1-4=ib0, net:s4-6=ib1, net:s7-9=ib2, net:s10-12=ib3`**: These options use the "multiple NIC slot notation" to map the WekaFS client processes (referred to by "slots") to the specified network interfaces (`ib0`, `ib1`, `ib2`, `ib3`). In this configuration with 16 frontend processes, the intended mapping is:
+* **`-o net:s1-4=ib0, net:s5-8=ib1, net:s9-12=ib2, net:s13-16=ib3`**: These options use the "multiple NIC slot notation" to map the WekaFS client processes (referred to by "slots") to the specified network interfaces (`ib0`, `ib1`, `ib2`, `ib3`). In this configuration with 16 frontend processes, the intended mapping is:
   * The first group of four processes (running on cores 63,62,61,60 on NUMA0) uses `ib0` (assumed to be on NUMA0).
   * The second group of four processes (running on cores 127,126,125,124 on NUMA1) uses `ib1` (assumed to be on NUMA1).
   * The third group of four processes (running on cores 191,190,189,188 on NUMA2) uses `ib2` (assumed to be on NUMA2).
@@ -492,6 +492,61 @@ backend1/my_fs \
 {% endcode %}
 
 </details>
+
+### Network label configuration for stateless clients
+
+In environments with stateless clients and high-availability backend networks, configuring network labels is essential for optimizing data path locality and minimizing inter-switch traffic.
+
+Stateless clients, which typically lack persistent state or configuration storage, often connect to a single top-of-rack switch. In contrast, backend servers are usually dual-connected across multiple switches to ensure high availability. In topologies where these switches are interconnected via inter-switch links (ISLs), traffic between nodes may traverse these ISLs unnecessarily if peer selection is left to default behavior. This can introduce additional latency and consume limited east-west bandwidth.
+
+To influence peer selection and ensure efficient traffic routing, stateless clients can use **network labels**. These labels bind the client’s traffic to a specific network segment or switch, helping ensure that peering remains within the local switch when possible.
+
+**Use case**
+
+This configuration is especially beneficial in:
+
+* Two-switch topologies with ISL connections.
+* Deployments where backend nodes are dual-attached and clients are single-attached.
+* Scenarios requiring controlled peering to reduce east-west traffic.
+
+**Configuration**
+
+To assign a network label, use the `-o net` mount option in the following format:
+
+```
+mount -t wekafs -o net=<device>/label@<label> <filesystem> <mountpoint>
+```
+
+**Parameters:**
+
+* `<device>`: The name of the client’s network interface (for example, `eth0`).
+* `<label>`: The label that corresponds to the client’s network attachment point.
+* `<filesystem>`: The WEKA filesystem to mount.
+* `<mountpoint`>: The local directory where the filesystem will be mounted.
+
+**Example:**
+
+```
+mount -t wekafs -o net=eth0/label@datacenter-a  project-fs1/data
+```
+
+In this example:
+
+* The client uses the `eth0` interface.
+* The label `datacenter-a` indicates the switch or network zone the interface is connected to.
+* The `project-fs1` WEKA filesystem is mounted at `/data`.
+
+By using a label that reflects the client’s physical or logical network location, the system can make more informed decisions about peering and data path selection, reducing cross-switch communication and improving overall performance.
+
+**Remount support**
+
+The network label configuration using the `-o net` option is also supported during remount operations. This allows administrators to change the network label dynamically without needing to fully unmount and remount the filesystem. For example:
+
+```
+mount -o remount,net=eth0/label@datacenter-b /data
+```
+
+In this scenario, the client updates the network label to datacenter-b for the existing mount at `/data`. This flexibility is useful when network topology or client attachment changes, allowing adjustments to peering behavior with minimal disruption.
 
 **Related topic**
 

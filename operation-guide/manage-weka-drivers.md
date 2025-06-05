@@ -39,6 +39,10 @@ The WEKA driver directory structure is organized to help you manage driver packa
 
 Follow these steps to build and manage WEKA drivers for a specific OS and WEKA kernel version on a system running the **target OS kernel version**. This system, which can be a virtual machine (VM), **must** have the exact kernel version that you intend to use for distribution across the WEKA cluster.
 
+{% hint style="info" %}
+The `weka driver` commands described in this section provide a high-level overview. For a complete list of arguments and options, refer to the CLI reference guide in the [manage-the-system-using-weka-cli](../getting-started-with-weka/manage-the-system-using-weka-cli/ "mention") section.
+{% endhint %}
+
 1.  **Install the WEKA agent:**\
     Run the following command to install the WEKA agent on the VM:
 
@@ -57,10 +61,12 @@ Follow these steps to build and manage WEKA drivers for a specific OS and WEKA k
     Build the necessary drivers by running:
 
     ```bash
-    weka driver pack
+    weka driver pack --version <version>
     ```
 
-    This command packages the drivers for the specified OS and WEKA kernel versions into an archive, which can be deployed across the cluster.
+    This command packages the drivers for the specified OS and WEKA kernel versions into an archive, which can be deployed across the cluster.&#x20;
+
+    The `--version` option is required only if a full WEKA installation is not present or the version is not set. If both are available, the command defaults to the version reported by the installed WEKA software.
 4.  **Sign drivers (optional):**\
     To enable secure boot, sign the drivers by running:
 
@@ -98,9 +104,9 @@ Follow these steps to build and manage WEKA drivers for a specific OS and WEKA k
 <summary>Example: Import and installation flow on a client</summary>
 
 1. Copy the exported driver archive to the client: \
-   `scp <driver-package>.tar.gz user@:/tmp/<client>:/tmp/`
+   `scp <driver-package>.tar.gz user@<client>:/tmp/`
 2. SSH into the backend: `ssh user@<client>`
-3. Import the driver archive: `weka driver import /tmp/.tar.gz`
+3. Import the driver archive: `weka driver import /tmp/<driver-package>.tar.gz`
 4. Install the imported driver: `weka driver install`
 5. After running weka driver install, the driver is built and loaded for the kernel running on the client. Use the following command to verify the driver status: \
    `weka driver ready`

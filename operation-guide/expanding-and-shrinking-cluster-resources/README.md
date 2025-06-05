@@ -36,7 +36,7 @@ The expansion procedures are similar to the _WEKA installation on bare metal_ pr
 * **Memory expansion:** When expanding memory resources, the new containers must have the same memory allocated as the existing containers.
 
 {% hint style="info" %}
-To calculate the capacity of the WEKA cluster after expansion, refer to the [SSD net storage capacity calculation](../../weka-system-overview/ssd-capacity-management.md#ssd-net-storage-capacity-calculation) section.
+To calculate the capacity of the WEKA cluster after expansion, see [#ssd-net-storage-capacity-calculation](../../weka-system-overview/cluster-capacity-and-redundancy-management.md#ssd-net-storage-capacity-calculation "mention").
 {% endhint %}
 
 **Related topics**

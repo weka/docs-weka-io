@@ -283,10 +283,10 @@ The following steps provide guidance for configuring dual-network links with pol
     sysctl -p /etc/sysctl.conf
     ```
 
-### **RHEL/Rocky/CentOS routing configuration using the Network Scripts**
+### **RHEL/Rocky/CentOS routing configuration using the network scripts**
 
 {% hint style="info" %}
-Network scripts are deprecated in RHEL/Rocky 8. For RHEL/Rocky 9, use the Network Manager.
+Network scripts are deprecated in RHEL/Rocky 8. For RHEL/Rocky 8 and onwards, use the Network Manager.
 {% endhint %}
 
 1. Navigate to `/etc/sysconfig/network-scripts/`.
@@ -316,7 +316,7 @@ Network scripts are deprecated in RHEL/Rocky 8. For RHEL/Rocky 9, use the Networ
     ```
 6. Save the changes.
 
-### RHEL/Rocky 9 routing configuration using the Network Manager
+### RHEL/Rocky 8+ routing configuration using the Network Manager
 
 * **For Ethernet (ETH):** To set up routing for Ethernet connections, use the following commands:
 

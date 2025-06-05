@@ -59,8 +59,8 @@ Uploading information to WEKA Home from the WEKA cluster backend servers and cli
 
 [list-of-alerts-and-corrective-actions.md](../../operation-guide/alerts/list-of-alerts-and-corrective-actions.md "mention")
 
-[list-of-events.md](../../operation-guide/events/list-of-events.md "mention")
+[events-list.md](../../operation-guide/events/events-list.md "mention")
 
-[list-of-statistics.md](../../operation-guide/statistics/list-of-statistics.md "mention")
+[statistics-list.md](../../operation-guide/statistics/statistics-list.md "mention")
 
 [#upload-diagnostics-data-to-weka-home](../../support/diagnostics-management/diagnostics-utility.md#upload-diagnostics-data-to-weka-home "mention")

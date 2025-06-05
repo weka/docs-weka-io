@@ -272,7 +272,7 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
     * **Read Only:** Select to set the share as read-only.
     * **Hidden:** Select if you want to hide the share so it is not visible when viewing the list of system shares.
     * **Allow Guest Access:** Select if you want guests to access without authentication.
-    * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix). Not supported in SMB-W.
+    * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix). Supported in SMB-W starting from version 4.4.7. Not supported in version 4.4.6 or earlier.
     * **Files/Directories POSIX Mode Mask**: Set the new default file and directory permissions in a numeric (octal) format created through the share.
     * **ACLs Enabled**: Enables or disables Windows Access-Control Lists (ACLs) for the share. When enabled, WEKA applies the selected Access Control Model. Only applicable for SMB-W.
     * **Access Control Model:** Specifies the type of access control to use for the share. Options include POSIX, Windows, or Hybrid (default: POSIX). Hybrid ACL allows seamless interoperability between POSIX and Windows systems by exchanging permissions based on timestamps. The most recent permission, regardless of the system it originated from, takes precedence. Only applicable for SMB-W.

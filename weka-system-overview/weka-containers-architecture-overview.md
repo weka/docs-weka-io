@@ -55,3 +55,5 @@ Each server has resource limits that affect how many containers it can run and h
 
 * Maximum WEKA cores per server: 64
 * Maximum cores per container: 19
+* Maximum containers of any type per server: 32
+  * &#x20;Within this total, the maximum frontend containers per server is 7.

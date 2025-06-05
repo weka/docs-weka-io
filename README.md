@@ -36,6 +36,10 @@ For the best results, ask clear, context-rich questions.
 
 {% @sevii-ai/sevii-gitbook %}
 
+{% hint style="info" %}
+Sevii, our AI-powered assistant, is built into the documentation to support your search experience. However, it might provide inaccurate information. Always use the **Ask or search** options at the top right to find and verify answers directly from the source.
+{% endhint %}
+
 ## About WEKA documentation
 
 This portal encompasses all documentation essential for comprehending and operating the WEKA system. It covers a range of topics:

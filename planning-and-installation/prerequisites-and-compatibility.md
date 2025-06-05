@@ -71,7 +71,6 @@ WEKA will support upcoming releases of the operating systems in the lists within
 
 {% tab title="Clients" %}
 * **Rocky Linux:**
-  * Supported on ARM: 9.5
   * 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6
 * **RHEL:**
@@ -88,8 +87,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * AMI 2018.03
   * AMI 2017.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
-  * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
-  * Also supported on ARM
+  * Latest update package that was certified: 5.10.176-157.645.amzn2.x86\_64
 * **SLES:**
   * 15 DP6
   * 15 SP5

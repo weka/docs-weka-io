@@ -18,10 +18,10 @@ A WEKA system cluster runs on a group of servers with local SSDs. To plan these 
 
 1. **Capacity:** Plan your net SSD capacity. The data management to object stores can be added after the installation. In the context of the planning stage, only the SSD capacity is required.
 2. **Redundancy scheme:** Define the optimal redundancy scheme required for the WEKA system, as explained in [Selecting a Redundancy Scheme](../../weka-system-overview/about/#selecting-a-redundancy-scheme).
-3. **Failure domains:** Determine whether to use failure domains (optional), and if yes, determine the number of failure domains and the potential number of servers in each failure domain, as described in [Failure Domains](../../weka-system-overview/ssd-capacity-management.md#failure-domains-optional), and plan accordingly.
-4. **Hot spare**: Define the required hot spare count described in [Hot Spare](../../weka-system-overview/ssd-capacity-management.md#hot-spare).
+3. **Failure domains:** Determine whether to use failure domains (optional), and if yes, determine the number of failure domains and the potential number of servers in each failure domain, as described in [Failure Domains](broken-reference), and plan accordingly.
+4. **Hot spare**: Define the required hot spare count (see [#hot-spare-capacity](../../weka-system-overview/cluster-capacity-and-redundancy-management.md#hot-spare-capacity "mention")).
 
-Once all this data is clarified, you can plan the SSD net storage capacity accordingly, as defined in the [SSD Capacity Management formula](../../weka-system-overview/ssd-capacity-management.md#formula-for-calculating-ssd-net-storage-capacity). Adhere to the following information, which is required during the installation process:
+Once all this data is clarified, you can plan the SSD net storage capacity accordingly (see [#ssd-net-storage-capacity-calculation](../../weka-system-overview/cluster-capacity-and-redundancy-management.md#ssd-net-storage-capacity-calculation "mention")). Adhere to the following information, which is required during the installation process:
 
 1. Cluster size (number of servers).
 2. SSD capacity for each server, for example, 12 servers with a capacity of 6 TB each.

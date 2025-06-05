@@ -10,7 +10,7 @@ WEKA events provide essential information about the WEKA cluster and customer en
 
 The WEKA cluster sends all events to a predefined central monitoring system, WEKA Home or Local WEKA Home. The GUI displays the events retrieved from the central monitoring system.
 
-![System events](../../.gitbook/assets/wmng\_events\_overview.png)
+![System events](../../.gitbook/assets/wmng_events_overview.png)
 
 ### Events triggered by alerts
 
@@ -30,6 +30,6 @@ The following processes ensure systematic and efficient handling of events trigg
 
 [events-1.md](events-1.md "mention")
 
-[list-of-events.md](list-of-events.md "mention")
+[events-list.md](events-list.md "mention")
 
 [the-wekaio-support-cloud](../../monitor-the-weka-cluster/the-wekaio-support-cloud/ "mention")

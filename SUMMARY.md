@@ -8,8 +8,7 @@
 * [Introduction](weka-system-overview/about/README.md)
   * [WEKA system functionality features](weka-system-overview/about/weka-system-functionality-features.md)
   * [Converged WEKA system deployment](weka-system-overview/about/converged-weka-system-deployment.md)
-  * [Redundancy optimization in WEKA](weka-system-overview/about/optimize-redundancy-in-weka-deployments.md)
-* [SSD capacity management](weka-system-overview/ssd-capacity-management.md)
+* [Cluster capacity and redundancy management](weka-system-overview/cluster-capacity-and-redundancy-management.md)
 * [Filesystems, object stores, and filesystem groups](weka-system-overview/filesystems.md)
 * [WEKA networking](weka-system-overview/networking-in-wekaio.md)
 * [Data lifecycle management](weka-system-overview/data-storage.md)
@@ -191,11 +190,11 @@
 * [Events](operation-guide/events/README.md)
   * [Manage events using the GUI](operation-guide/events/events.md)
   * [Manage events using the CLI](operation-guide/events/events-1.md)
-  * [List of events](operation-guide/events/list-of-events.md)
+  * [Events list](operation-guide/events/events-list.md)
 * [Statistics](operation-guide/statistics/README.md)
   * [Manage statistics using the GUI](operation-guide/statistics/statistics.md)
   * [Manage statistics using the CLI](operation-guide/statistics/statistics-1.md)
-  * [List of statistics](operation-guide/statistics/list-of-statistics.md)
+  * [Statistics list](operation-guide/statistics/statistics-list.md)
 * [Insights](operation-guide/insights.md)
 * [System congestion](operation-guide/system-congestion.md)
 * [User management](operation-guide/user-management/README.md)
@@ -216,6 +215,10 @@
 * [Upgrade WEKA versions](operation-guide/upgrading-weka-versions.md)
 * [Manage WEKA drivers](operation-guide/manage-weka-drivers.md)
 
+***
+
+* [Drivers distribution service](drivers-distribution-service.md)
+
 ## Monitor the WEKA Cluster
 
 * [Deploy monitoring tools using the WEKA Management Station (WMS)](monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md)
@@ -235,7 +238,8 @@
 ## Kubernetes
 
 * [Composable clusters for multi-tenancy in Kubernetes](kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md)
-* [WEKA Operator deployment](kubernetes/weka-operator-deployment.md)
+* [WEKA Operator deployment](kubernetes/weka-operator-deployment/README.md)
+  * [Deploy the WEKA client on Amazon EKS](kubernetes/weka-operator-deployment/deploy-the-weka-client-on-amazon-eks.md)
 * [WEKA Operator day-2 operations](kubernetes/weka-operator-day-2-operations.md)
 
 ## WEKApod

@@ -24,7 +24,7 @@ The system also provides advanced statistic charts aimed to be used by the Custo
 
 The default statistics page displays charts of the last hour of operation, presenting the system operation average value per second in one minute range.
 
-![Statistics page](../../.gitbook/assets/wmng\_statistics\_overview.gif)
+![Statistics page](../../.gitbook/assets/wmng_statistics_overview.gif)
 
 ## **Drill-down options**
 
@@ -56,4 +56,4 @@ The WEKA cluster does not hold historical statistics data. For historical statis
 
 [statistics-1.md](statistics-1.md "mention")
 
-[list-of-statistics.md](list-of-statistics.md "mention")
+[statistics-list.md](statistics-list.md "mention")

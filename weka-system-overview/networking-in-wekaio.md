@@ -147,30 +147,32 @@ When RDMA and GDS are enabled, the WEKA system automatically uses the RDMA data 
 
 By leveraging RDMA and GDS, you can achieve enhanced performance. A UDP client, which doesn't require dedicating a core to the WEKA system, can deliver significantly higher performance. Additionally, a DPDK client can experience an extra performance boost, or you can assign fewer cores to the WEKA system while maintaining the same level of performance in DPDK mode.
 
-### Requirements and considerations for enabling RDMA and GDS
+### Requirements and considerations for RDMA and GDS support
 
-To enable RDMA and GDS technology, ensure the following requirements are met:
+RDMA, including RoCE, is enabled by default. To support RDMA and GDS technologies, the following requirements and considerations must be met:
 
 * **Cluster requirements**
-  * **RDMA networking:** All servers in the cluster must support RDMA networking.
+  * **RDMA networking:** All servers within the cluster must be equipped with RDMA-capable networking interfaces.
 * **Client requirements**
-  * **GDS:** The InfiniBand or Ethernet interfaces added to the GDS configuration must support RDMA networking.
-  * **RDMA networking:** All InfiniBand and Ethernet interfaces used by WEKA must support RDMA networking.
-* **Encrypted filesystems**
-  * RDMA and GDS are not utilized for encrypted filesystems. In these cases, the system reverts to standard I/O operations without RDMA or GDS.
+  * **GDS support:** The InfiniBand or Ethernet interfaces included in the GDS configuration must support RDMA networking.
+  * **RDMA support:** All InfiniBand and Ethernet interfaces used by WEKA must support RDMA networking.
 
-#### Installation notes
+**Fallback to standard I/O**
 
-* **GDS:** Install the OFED with the `--upstream-libs` and `--dpdk` options.
-* **Kernel bypass:** GDS bypasses the kernel and does not use the page cache. However, standard RDMA clients still use the page cache.
+* RDMA and GDS are not supported for encrypted filesystems.
+* If any requirement for RDMA or GDS is not met, the system automatically reverts to standard I/O operations without RDMA or GDS acceleration.
 
-#### Unsupported configuration
-
-* **Mixed networking clusters:** RDMA and GDS are not supported in clusters using a mix of InfiniBand and Ethernet networking.
+{% hint style="info" %}
+**Kernel bypass:** GDS bypasses the kernel and does not use the page cache. In contrast, standard RDMA clients continue to use the page cache.
+{% endhint %}
 
 #### Verification
 
-* To verify if RDMA is used, run the `weka cluster processes` command.
+To confirm RDMA usage, run the following command:
+
+```
+weka cluster processes
+```
 
 Example:
 

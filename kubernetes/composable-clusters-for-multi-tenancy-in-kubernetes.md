@@ -36,7 +36,7 @@ WEKA’s multi-tenant architecture delivers a highly secure, scalable, and cost-
 
 For detailed deployment procedures and day-2 operations see:
 
-* [weka-operator-deployment.md](weka-operator-deployment.md "mention")
+* [weka-operator-deployment](weka-operator-deployment/ "mention")
 * [weka-operator-day-2-operations.md](weka-operator-day-2-operations.md "mention")
 
 [^1]: **NCP (NVIDIA Cloud Platform)**: A framework or set of guidelines for designing scalable, high-performance, and multi-tenant network architectures. It includes a common network reference architecture to ensure interoperability, optimize resource utilization, and simplify network management.

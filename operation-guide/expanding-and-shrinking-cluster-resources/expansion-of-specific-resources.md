@@ -18,7 +18,7 @@ The following commands are available to expand the containers' resources:
 Adhere to the following guidelines when expanding specific resources:
 
 * **Specify the container:** Run the relevant `weka cluster container` command with the specific `container-id` you want to expand. Once you run the command, the container is staged to update in the cluster.
-* **View existing resources:** To view the non-applied configuration, run the `weka cluster container resources <container-id>`command.
+* **View existing resources:** To view the non-applied configuration, run the `weka cluster container resources <container-id>` command.
 * **Apply changes on a specific container:** To apply changes on a specific container in the cluster, run the `weka cluster container apply <container-ids>` command.  It is possible to accumulate several changes on a container and apply only once on completion.
 * **Apply changes on a local server:** To apply changes in the local container, run the `weka local resources apply` command.
 * **The apply command saves the last configuration:** Once the apply command is complete, the last local configuration of the container that successfully joined the cluster is saved.\
