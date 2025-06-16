@@ -87,7 +87,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * AMI 2018.03
   * AMI 2017.09
 * **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
-  * Latest update package that was certified: 5.10.176-157.645.amzn2.x86\_64
+  * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
 * **SLES:**
   * 15 DP6
   * 15 SP5
@@ -159,7 +159,7 @@ As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to thei
 * **WEKA installation directory**:&#x20;
   * The WEKA installation directory must be set to `/opt/weka`.
   * Use a direct path; symbolic links (symlinks) are not supported.
-  * The /`opt/weka` directory is critical for proper WEKA operation. If it resides on shared storage, the storage must be highly available.
+  * The `/opt/weka` directory is critical for proper WEKA operation. If it resides on shared storage, the storage must be highly available.
 * **Boot drive minimum requirements**:
   * Capacity: NVMe SSD with 960 GB capacity
   * Durability: 1 DWPD (Drive Writes Per Day)
@@ -182,9 +182,6 @@ As of version 4.3.2, RHEL 7.X and CentOS 7.X are no longer supported due to thei
 Adhere to the following considerations when choosing the adapters:
 
 * [**LACP**](#user-content-fn-4)[^4]**:**  LACP is supported when bonding ports from dual-port Mellanox NICs into a single Mellanox device but is not compatible when using Virtual Functions (VFs).
-* **Intel E810:**
-  * Only supported on RHEL 8.6 and Rocky Linux 8.6. For other operating systems, consult with the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
-  * The ice Linux Base Driver version 1.9.11 and firmware version 4.0.0 are required.
 * [**MTU**](#user-content-fn-5)[^5]\
   It is recommended to set the MTU to at least 4k on the NICs of WEKA cluster servers and the connected switches.
 * [**Jumbo Frames**](#user-content-fn-6)[^6]\
@@ -201,7 +198,7 @@ Adhere to the following considerations when choosing the adapters:
 Shared networking configuration for NIC models:
 
 * NVIDIA NICs: When implementing Shared Networking (Single IP), Virtual Functions (VFs) are not required.
-* Broadcom/Intel E810 NICs: VFs must be configured when deploying Shared Networking architecture.
+* Broadcom NICs: VFs must be configured when deploying Shared Networking architecture.
 {% endhint %}
 
 *   **Mixed networks**
@@ -244,7 +241,7 @@ The following table provides the supported network adapters along with their sup
 
 #### Supported network adapters for backends and clients
 
-<table><thead><tr><th>Adapter</th><th width="126">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td><ul><li>SR-IOV VF</li></ul></td></tr><tr><td><p>Broadcom BCM957508-P2100G</p><ul><li>Dual-port (2x100Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-8">Single-port (1x200Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SR-IOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td><p>Broadcom BCM957608-P2200G</p><ul><li>Dual-port (2x200Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-8">Single-port (1x400Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SR-IOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>Intel E810 2CQDA2</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><ul><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><ul><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>RDMA</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RDMA</li><li>HA</li><li>PKEY (IB only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><ul><li>Mixed networks</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY (IB only)</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4 LX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><ul><li>HA</li><li>Routed network</li></ul></td></tr></tbody></table>
+<table><thead><tr><th>Adapter</th><th width="126">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td><ul><li>SR-IOV VF</li></ul></td></tr><tr><td><p>Broadcom BCM957508-P2100G</p><ul><li>Dual-port (2x100Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-8">Single-port (1x200Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SR-IOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td><p>Broadcom BCM957608-P2200G</p><ul><li>Dual-port (2x200Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-8">Single-port (1x400Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SR-IOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><ul><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><ul><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>RDMA</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RDMA</li><li>HA</li><li>PKEY (IB only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><ul><li>Mixed networks</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY (IB only)</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4 LX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><ul><li>HA</li><li>Routed network</li></ul></td></tr></tbody></table>
 
 #### Supported network adapters for clients-only
 
@@ -287,11 +284,6 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
 * **Supported ixgbevf drivers:**
   * 3.2.2 - 4.1.2
   * A current driver from an official OS repository is recommended
-* **Supported Intel 40 drivers:**
-  * 3.0.1-k - 4.1.0
-  * A current driver from an official OS repository is recommended
-* **Supported ice drivers:**
-  * 1.9.11
 * **Supported Broadcom drivers**:
   * 228: Minimum required for 100/200 Gbps 57508 NIC
   * 231: Minimum required for 200/400 Gbps 57608 NIC
@@ -321,7 +313,7 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
   * Use a single IP address for all purposes.
 
 {% hint style="info" %}
-When assigning a network device to the WEKA system, no other application can create VFs on that device.Ethernet configurations
+When assigning a network device to the WEKA system, no other application can create VFs on that device.
 {% endhint %}
 {% endtab %}
 {% endtabs %}
@@ -426,7 +418,8 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
 * Lenovo MagnaScale (version 3.0)
 * Quantum ActiveScale (version 5.5.1)
 * Red Hat Ceph Storage (version 5.0)
-* Scality Ring (version 7.4.4.8)
+* Scality RING with S3 connector (version 8.5)
+* Scality RING with WEKA connector (version 9.5)
 * Scality Artesca (version 1.5.2)
 * SwiftStack (version 6.30)
 * WEKA S3
@@ -476,8 +469,6 @@ GCP: [supported-machine-types-and-storage.md](weka-installation-on-gcp/supported
 For additional information and how-to articles, search the WEKA Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 ## KMS
-
-{% include "../.gitbook/includes/supported-kms-types.md" %}
 
 [^1]: **AES (Advanced Encryption Standard)** in BIOS settings refers to hardware acceleration for AES encryption. Enabled by default, it speeds up encryption tasks using AES-NI. Disabling it may affect performance in encryption-heavy applications.
 

@@ -1,14 +1,14 @@
 ---
 description: >-
-  This page provides procedures for setting up an SMB cluster over WEKA
-  filesystems and managing the cluster itself, using the GUI.
+  Use the GUI to configure an SMB-W cluster on WEKA filesystems and manage
+  cluster settings, shares, and Active Directory integration.
 ---
 
 # Manage SMB using the GUI
 
 Using the GUI, you can:
 
-* [Configure the SMB cluster](smb-management-using-the-gui.md#configure-the-smb-cluster) (not applicable for legacy SMB)
+* [Configure the SMB cluster](smb-management-using-the-gui.md#configure-the-smb-cluster)
 * [Edit the SMB cluster](smb-management-using-the-gui.md#edit-the-smb-cluster)
 * [Join the SMB cluster to Active Directory](smb-management-using-the-gui.md#join-the-smb-cluster-in-the-active-directory)
 * [Add servers to the SMB cluster](smb-management-using-the-gui.md#add-or-remove-smb-cluster-hosts)
@@ -18,6 +18,10 @@ Using the GUI, you can:
 * [Add an SMB share](smb-management-using-the-gui.md#add-an-smb-share)
 * [Edit an SMB share](smb-management-using-the-gui.md#edit-an-smb-share)
 * [Remove an SMB share](smb-management-using-the-gui.md#remove-an-smb-share)
+
+{% hint style="info" %}
+The GUI refers to the feature as SMB, but it applies to SMB-W only. Support for the legacy SMB implementation has been removed.
+{% endhint %}
 
 ## **Configure the SMB cluster** <a href="#configure-the-smb-cluster" id="configure-the-smb-cluster"></a>
 
@@ -267,18 +271,21 @@ Once the SMB cluster is created, you can create SMB shares (maximum of 1024). Ea
 
     If required, select **Advanced** and set the following:
 
-    * **Encryption:** Select in-transit encryption enforcement of the share. The global cluster encryption settings can affect the actual encryption.
-    * **Direct Object Store Sync:** Enables immediate synchronization of files to the object store, bypassing time-based file retention policies. When enabled, newly created or modified files in the share are prioritized for release without delay.
+    * **ACLs Enabled**: Enables or disables Windows Access-Control Lists (ACLs) for the share. When enabled, WEKA applies the selected Access Control Model. Only applicable for SMB-W.
+    * **Access Control Model:** Specifies the type of access control to use for the share. Options include POSIX, Windows, or Hybrid (default: POSIX). Hybrid ACL allows seamless interoperability between POSIX and Windows systems by exchanging permissions based on timestamps. The most recent permission, regardless of the system it originated from, takes precedence. Only applicable for SMB-W.
+    * **File Default Permission:** The new default file permissions for the POSIX mode mask in a numeric (octal) format created through the share. Default 0744.
+    * **Directory Default Permission:** The new default directory permissions for the POSIX mode mask in a numeric (octal) format created through the share. Default 0755.
+    * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix).
+    * **Users List:** Users and groups list (add '@' as a group prefix). Don’t use the following characters: / \[ ] : ; | = + \* ? < > ".
+    * **Types:** Select the users or groups allowed to access the share and the access type.
     * **Read Only:** Select to set the share as read-only.
     * **Hidden:** Select if you want to hide the share so it is not visible when viewing the list of system shares.
     * **Allow Guest Access:** Select if you want guests to access without authentication.
-    * **Access Permissions:** Define the share access permissions. If you select ON, select the access type and the users or groups allowed to access the share (comma-separated users and groups list, add '@' as a group prefix). Supported in SMB-W starting from version 4.4.7. Not supported in version 4.4.6 or earlier.
-    * **Files/Directories POSIX Mode Mask**: Set the new default file and directory permissions in a numeric (octal) format created through the share.
-    * **ACLs Enabled**: Enables or disables Windows Access-Control Lists (ACLs) for the share. When enabled, WEKA applies the selected Access Control Model. Only applicable for SMB-W.
-    * **Access Control Model:** Specifies the type of access control to use for the share. Options include POSIX, Windows, or Hybrid (default: POSIX). Hybrid ACL allows seamless interoperability between POSIX and Windows systems by exchanging permissions based on timestamps. The most recent permission, regardless of the system it originated from, takes precedence. Only applicable for SMB-W.
     * **Case Sensitivity**: Enables or disables case sensitivity for the specified SMB share (default: ON). When enabled, the share distinguishes between files with the same name but different capitalization. This option applies exclusively to the SMB-W cluster.
     * **ADS:** Enables using Alternate Data Streams (ADS) on a specified SMB share.\
       Possible values: ON, OFF (default: ON).  For **macOS clients**, if ACLs are disabled (`acl=off`), set `enable-ADS` to `off`. For **Windows clients**, when enabled, ADS data is stored in the file’s extended attributes (XAttr), which consumes XAttr space.
+    * **Encryption:** Select in-transit encryption enforcement of the share. The global cluster encryption settings can affect the actual encryption.
+    * **Direct Object Store Sync:** Enables immediate synchronization of files to the object store, bypassing time-based file retention policies. When enabled, newly created or modified files in the share are prioritized for release without delay.
 3. Select **Save**.
 
 <figure><img src="../../.gitbook/assets/Add_SMB_share.png" alt=""><figcaption></figcaption></figure>

@@ -1,154 +1,172 @@
 ---
-description: The WEKA configuration of the SMB protocol for shared Windows clients.
+description: >-
+  Configure and control WEKA's SMB-W implementation for seamless cross-platform
+  file access across Windows, Linux, and macOS clients with concurrent
+  multi-protocol support.
 ---
 
 # Manage the SMB protocol
 
-SMB (Server Message Block) is a network file-sharing protocol that facilitates connections to shared file and print services from remote systems. WEKA's implementation features a modern SMB stack (SMB-W), with the option to use the legacy open-source Samba stack if required. Both WEKA SMB implementations fully support SMB versions 2 and 3.
+SMB (Server Message Block) is a network file-sharing protocol that facilitates connections to shared file and print services from remote systems. WEKA implements a modern SMB stack, referred to as SMB-W, which supports SMB versions 2 and 3.
 
-WEKA's SMB implementation enables seamless access to storage services for both Windows and macOS clients. It facilitates shared access from multiple clients, supporting a multi-protocol approach that allows files to be accessed simultaneously through SMB, NFS, and WEKA native filesystem drivers.
+WEKA SMB-W is an implementation of an SMB protocol enabling Windows, Linux CIFS, and macOS clients to access WEKA storage services with support for multi-protocol concurrent file access through SMB stack.
 
-{% hint style="info" %}
-The legacy open-source Samba stack (type: SMB)  is deprecated in favor of SMB-W and will not be supported after version 4.4.6.
+## Key features of SMB in WEKA
 
-To determine if you are using Samba, run the command `weka smb cluster` and note whether the `Type` field reports `smb` or `smbw`. If it reports `smb`,  open a support case with WEKA to begin planning a migration to SMB-W.
-{% endhint %}
+The SMB-W stack is designed for scalability, resilience, and distributed performance.
 
-## Key features of SMB implementation in WEKA
+* **Scalability**: WEKA supports an SMB-W cluster consisting of 3 to 8 servers, each running the SMB gateway service. The backend can be any WEKA filesystem, with no limitations on size or performance.
+* **Resilience**: SMB-W provides clustered file access with transparent failover. If a server fails, another server in the cluster automatically takes over operations, maintaining high availability.
+* **Distribution**: All servers in the SMB-W cluster manage SMB filesystems concurrently. Performance scales with added hardware. SMB-W supports SMB Multichannel and SMB Direct, delivering advanced throughput and reliability.
 
-The implementation of SMB in the WEKA system is characterized by scalability, resilience, and distribution.
+### Advanced capabilities of SMB-W
 
-* **Scalability:** WEKA supports an SMB cluster ranging from 3 to 8 servers, with the SMB gateway service running on these servers. The backend filesystem can be any WEKA filesystem, making it unlimited in size and performance.
-* **Resilience:** WEKA's SMB implementation provides clustered access to files in a WEKA filesystem, allowing multiple servers to collaborate. In a server failure, another can seamlessly take over operations, ensuring failover support and high availability. The standard resiliency of WEKA against failures also extends to SMB filesystems, with SMB-W supporting transparent failover for enhanced resilience compared to legacy SMB.
-* **Distribution:** A WEKA implementation is distributed over a cluster, where all servers manage all SMB filesystems concurrently. This design allows the performance supported by SMB to scale with additional hardware resources, ensuring high availability. SMB-W introduces support for SMB Multichannel and SMB Direct, providing advanced capabilities compared to the legacy SMB.
+* **SMB multichannel:** Enhances performance by leveraging multiple network connections simultaneously. Supported for properly configured SMB clients.
+* **High availability and failover:** If an SMB-W container becomes isolated from the cluster, it stops automatically. Other servers take over its operations. (To manually restart a stopped container, run: `weka local restart smbw`).
+*   **SMB Direct:** Enables SMB over RDMA (Remote Direct Memory Access) for reduced latency and improved performance.&#x20;
 
-## Additional features of SMB-W
+    To enable SMB Direct, ensure the following prerequisites are met:
 
-In addition to legacy SMB features, SMB-W introduces the following capabilities:
-
-* **SMB multichannel:** WEKA supports SMB clients configured with multichannel, enhancing performance in such configurations.
-* **High availability and failover support:** If a server running an SMB-W container becomes isolated from the cluster, the container stops. Other servers in the SMB cluster take over operations, ensuring continuous service availability (to manually recover a stopped SMB-W container, run: weka local restart smbw).
-* **SMB Direct:** SMB over Remote Direct Memory Access (RDMA). To enable SMB Direct, ensure the following prerequisites are met:
-  * SMB-W servers are RDMA-enabled in both hardware and OS.
-  * For Windows clients, configure the SMB client as multichannel.
-  * When configuring a CIFS client to work with RDMA, perform the mounting on the host IP (not the floating IP).
+    * SMB-W servers are RDMA-enabled in both hardware and OS.
+    * For Windows clients, configure the SMB client as multichannel.
+    * When configuring a CIFS client to work with RDMA, perform the mounting on the host IP (not the floating IP).
 
 ## **SMB usage considerations**
 
-When working with SMB clusters, it's important to understand the following points to ensure smooth management and configuration:
+* When managing SMB-W clusters through the GUI, note that any CLI limitations also apply to the GUI.
+* Use ASCII format for fields such as domain names and share names.
 
-* The default SMB cluster configuration is SMB-W. Contact the Customer Success Team if you need to create a legacy SMB cluster.
-* When managing an SMB-W cluster through the GUI, any limitations in the CLI for SMB-W also apply.
-* You can manage, but not configure or delete, legacy SMB clusters through the GUI. For configuration and deletion, refer to [smb-management-using-the-cli.md](smb-management-using-the-cli.md "mention").
-* Use ASCII format when configuring name fields, such as domain and shares.
+#### Public cloud requirements
 
-{% hint style="warning" %}
-**Public cloud requirements:**\
-Ensure Active Directory and DNS services are configured before installing the WEKA SMB protocol.
+Before deploying SMB-W in public cloud environments:
 
-For example, WEKA in AWS has been tested with AWS Managed Microsoft AD and Amazon Route 53 Resolver. If these services are not already configured, follow AWS guidelines to set up [AWS Managed Microsoft AD](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started.html) and  [Amazon Route 53 Resolver](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-getting-started.html).
+* Ensure Active Directory and DNS services are properly configured.
+* For AWS, WEKA has been validated with:
+  * [AWS Managed Microsoft AD](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started.html)
+  * [Amazon Route 53 Resolver](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-getting-started.html)
+
+Follow AWS guidance to configure these services if they are not already deployed.
+
+{% hint style="info" %}
+High availability (HA) for SMB-W is not supported in public cloud environments.
 {% endhint %}
 
-## SMB user mapping in the WEKA system
+## SMB-W user mapping in WEKA
 
-Authentication in the WEKA SMB system is supported by a single Active Directory with multiple trusted domains. To enable SMB access, the Active Directory must resolve POSIX users (uid) and groups (gid) mapping.
+Authentication in the WEKA SMB-W cluster is integrated with a single Active Directory (AD) that can include multiple trusted domains. For SMB-W access, the Active Directory must support POSIX user (UID) and group (GID) resolution.
 
 ### **ID mapping from Active Directory**
 
-The WEKA system automatically pulls user and group information from the Active Directory, supporting two types of id-mapping:
+WEKA supports two types of ID mapping from Active Directory:
 
-* **RFC2307:** Requires `uidNumber` and `gidNumber` to be defined in the AD user attributes.
-* **rid:** Creates a local mapping with AD users and groups. Using rid mapping simplifies configuration as user IDs are automatically tracked. All domain user accounts and groups become available on the domain member without additional attribute settings. However, changes to the rid AD range configuration may result in altered user mapping and incorrect uid/gid resolution.
+* **RFC2307 mapping:** Requires `uidNumber` and `gidNumber` attributes to be defined for users and groups in AD. This method provides explicit control over UID/GID values.
+*   **RID mapping:** Automatically maps AD users and groups without requiring additional attribute configuration. User IDs are derived from the AD security identifier (SID), simplifying deployment.
 
-### **Active Directory attributes**
+    (Changes to RID range configuration may affect UID/GID resolution and result in mismatches.)
 
-For RFC2307, the following Active Directory attributes are relevant for users:
+### **Relevant Active Directory attributes**
 
-<table><thead><tr><th width="265">AD Attribute</th><th>Values</th></tr></thead><tbody><tr><td><code>uidNumber</code></td><td>0-4290000000</td></tr><tr><td><code>gidNumber</code></td><td>0-4290000000; must correlate with a real group</td></tr></tbody></table>
+For **RFC2307** mapping, ensure the following attributes are met:
 
-For groups of users according to RFC2307:
-
-<table><thead><tr><th width="266">AD Attribute</th><th>Values</th></tr></thead><tbody><tr><td><code>gidNumber</code></td><td>0-4290000000</td></tr></tbody></table>
+* Users:
+  * `uidNumber`: 0-4290000000
+  * `gidNumber`: 0-4290000000; must correlate with a real group
+* Groups:
+  * `gidNumber:` 0-4290000000
 
 ### **ID range configuration**
 
-The default configuration for the WEKA system's AD server IDs can be changed and serves as the primary AD range (if additional trusted domains are defined).
+The WEKA system allows custom configuration of AD ID ranges to prevent UID/GID overlap across domains:
 
-To avoid ID overlapping and collisions, set the range or ranges for multiple domains.
+* Each trusted domain must have a distinct ID range.
+* The primary domain uses a default configurable range.
+* A fallback range is available for users not assigned to any domain.
 
-When joining multiple domains, the ID range must be set for each, ensuring they do not overlap. A configurable default mapping range exists for users not part of any domain.
+To prevent ID collisions, configure non-overlapping ranges for all domains.
 
-For more details about Active Directory properties, refer to the Microsoft site.
+For authoritative reference on Active Directory schema attributes, consult Microsoft documentation.
 
 ## Workflow overview: configure SMB support
 
-This workflow concisely overviews the essential steps to configure SMB support in the WEKA system. Detailed procedures for both [GUI](smb-management-using-the-gui.md) and [CLI](smb-management-using-the-cli.md) implementations can be found in the following "How-To" sections.
+This workflow outlines the key steps to configure SMB-W support in the WEKA system. For detailed CLI and GUI procedures, refer to the related How-To sections.
 
 **Before you begin**
 
-Verify that the dedicated filesystem for persistent protocol configurations is created. If not, create it. For details, see [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
+Ensure that a dedicated filesystem exists for storing persistent protocol configurations. If not, create one. For guidance, [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
 
 **Workflow**
 
-1. **Configure SMB cluster**: Set the WEKA system servers participating in the SMB cluster and the domain name.
-   * In on-premises deployments, it is possible to configure a list of public IP addresses distributed across the SMB cluster. If a server fails, the IP addresses from that server are reassigned to another server.
-2. **Join the SMB cluster to the Active Directory (AD) domain:** Connect and define the WEKA system in the AD domain. This process includes pre-configuration in the and post-configuration in the DNS Manager and Active Directory.
-3. **Create shares and folders and set permissions:** By default, the filesystem permissions are root/root/755 and can initially only be set by a WekaFS/NFS mount.
+1. **Configure SMB-W cluster**:  Define the WEKA system servers that will participate in the SMB-W cluster and specify the Active Directory (AD) domain name.\
+   In on-premises deployments, you can configure a pool of public IP addresses distributed across the SMB-W cluster. If a server fails, its IP addresses are reassigned to other servers in the cluster to maintain availability.
+2. **Join the SMB-W cluster to the Active Directory domain:** Connect the WEKA system to the target AD domain. This includes required pre-configuration in AD and post-configuration in both the DNS Manager and Active Directory Users and Computers.
+3. **Create SMB shares and set permissions:** Create the required shares and directories. By default, filesystem permissions are `root:root` with 755 access and must initially be set using a WEKA filesystem or NFS mount.
 
-Once these steps are completed, you can connect as an administrator and define permissions through the Windows operating system.
+After the initial configuration, administrators can connect through Windows to manage and refine share-level permissions.
 
-## **Round-robin DNS server configuration for SMB load balancing**
+## **Round-robin DNS configuration for SMB-W load balancing**
 
-For effective load balancing across multiple WEKA servers serving SMB, it is recommended to configure a round-robin DNS entry that resolves to the list of floating IPs.
+To achieve effective load balancing across multiple WEKA servers running SMB-W, configure a round-robin DNS entry that resolves to the list of floating IPs assigned to the SMB-W cluster.
 
-Follow these steps to optimize the DNS configuration:
+#### Configuration steps
 
-1. **Configure round-robin DNS entry:** Set the round-robin entry to distribute the load evenly among the WEKA servers. This entry must resolve to the list of floating IPs associated with the SMB servers. Ensure the cluster name matches the DNS name, with a maximum length of 15 characters.
-2. **Adjust TTL (Time to Live):** To prevent caching of IP addresses by clients or DNS servers, set the TTL for all records assigned to the SMB servers to 0 (Zero). This ensures dynamic and real-time resolution of IPs for efficient load balancing.
+1. **Create round-robin DNS entry**:
+   * Define a DNS A record that maps to all floating IPs associated with the SMB-W servers.
+   * The DNS entry must use the SMB-W cluster name, which must not exceed 15 characters.
+2. **Set TTL to zero**:
+   * Configure the TTL (Time to Live) value for each DNS record to 0.
+   * This prevents client-side and recursive DNS caching, ensuring real-time IP resolution and balanced connection distribution.
 
-**Related information**
+#### Related Information
 
-For more details on round-robin DNS configurations, refer to the relevant documentation or resources related to round-robin DNS.
+Refer to your DNS provider’s documentation for configuring round-robin DNS entries and TTL settings.
 
-## SMB share creation
+## SMB-W share creation
 
-After setting up the SMB cluster, you can create SMB shares. Each share must be assigned a name and a shared path to the filesystem, which can be either the filesystem's root or a sub-directory.
+After configuring the SMB-W cluster, you can create SMB shares. Each share must include a unique name and a path within the target filesystem, either the root or a specific subdirectory.
 
-If a share is created without specifying a sub-directory, the root of the filesystem is automatically used, and creating a separate root folder is unnecessary.&#x20;
+* If no subdirectory is specified, the share maps to the root of the filesystem. Creating a separate root folder is not required in this case.
+* To create subdirectories, mount the filesystem locally or through shell access. Create the required directories and set appropriate ownership and permissions before assigning them to SMB shares.
 
-To create sub-directories, mount the filesystem locally or through the shell, then create the desired sub-directories and adjust their permissions as needed.
+## Filesystem permissions and access rights for SMB-W
 
-## Filesystem permissions and access rights configuration
+When integrating SMB-W clusters with Active Directory (AD), administrators can manage permissions and access rights for SMB-W filesystems using POSIX standards, Windows Access-Control Lists (ACLs), or a combination of both. This ensures secure, consistent access control across mixed environments.
 
-When integrating the SMB cluster with Active Directory, administrators can configure permissions and access rights for SMB cluster filesystems, ensuring proper access control for users and groups. WEKA provides flexibility in managing these permissions through POSIX guidelines and Windows Access-Control Lists (ACLs), allowing seamless interoperability between systems.
+#### **Grant root access**
 
-#### **POSIX permissions and Windows integration**
+To assign root-level access to an AD user:
 
-Permissions for SMB shares in WEKA adhere to POSIX standards, with Windows permissions stored and translated within the POSIX system. Any modifications to Windows permissions are automatically synchronized with POSIX permissions, ensuring consistent access control across environments. Administrators can configure initial POSIX permissions through the driver/NFS interface.
+* Set both the `uidNumber` and `gidNumber` attributes of the user to 0.
 
-#### **Root access to SMB shares**
-
-To grant root-level access to specific users, assign an Active Directory user with a `uidNumber` and `gidNumber` both set to 0. This setup provides full administrative control over the shares.
+This setup grants full administrative control over all SMB-W shares.
 
 #### **Access Control Lists (ACLs)**
 
-The ACL feature enables administrators to manage more granular permissions for SMB shares on for SMB-W clusters only. Users can select one of the following options when configuring ACLs:
+ACLs in SMB-W allow fine-grained permission management for shares. Administrators can configure the following:
 
-* **ACLs enabled:** Enable or disable Windows Access-Control Lists (ACLs) for the share. When enabled, the Access Control Model option is applied.
-* **Access control model:** Defines the type of access control used for the share. The available options are:
-  * **POSIX:** Adheres to POSIX permissions.
-  * **Windows:** Follows Windows security models.
-  * **Hybrid (default: POSIX):** Enables POSIX and Windows interoperability, with the most recent permission taking precedence across systems.
+* **ACLs enabled:** Enables or disables Windows ACL support for the share. When enabled, the selected access control model is applied.
+* **Access control model:**
+  * **POSIX**: Enforces POSIX permission rules only.
+  * **Windows**: Applies Windows-style security descriptors.
+  * **Hybrid** _(default: POSIX)_: Supports both models, with the most recent change taking precedence.
 
-This enhanced flexibility allows administrators to choose the most appropriate model based on their environment and operational requirements, simplifying the management of permissions across mixed systems.
+This flexibility enables tailored access control strategies aligned with enterprise security policies and operational requirements.
 
-## WEKA filesystem snapshots integration with Windows' previous versions
+## Integrate WEKA filesystem snapshots with Windows previous versions
 
-Generating WEKA filesystem snapshots and labeling the access point in the `@GMT_%Y.%m.%d-%H.%M.%S` format makes them accessible through the Windows previous versions mechanism.
+WEKA supports integration with the Windows **Previous Version**s feature by creating filesystem snapshots using a specific access point format. When snapshots are labeled using the `@GMT_%Y.%m.%d-%H.%M.%S` syntax, they become visible to Windows clients through the Previous Versions tab.
 
-To access a list of previous versions associated with the filesystem snapshots, right-click on a file or folder within the WEKA SMB share on the Windows client and navigate to **Properties -> Previous Versions**.
+#### Access snapshots from Windows
 
-**Example**: Create snapshots using CLI with the required access point syntax.
+To view available snapshots:
+
+1. Right-click any file or folder within a WEKA SMB-W share on a Windows client.
+2. Select **Properties → Previous Versions**.
+
+Available snapshots are listed by timestamp, corresponding to the snapshot access point labels.
+
+#### Example: Create a snapshot using the CLI
+
+Use the following command to create a timestamped snapshot accessible from Windows:
 
 {% code overflow="wrap" %}
 ```
@@ -156,7 +174,7 @@ $ weka fs snapshot create fs_name snapshot_name --access-point `TZ=GMT date +@GM
 ```
 {% endcode %}
 
-
+Ensure the access point is generated in GMT to align with Windows expectations.
 
 **Related topics**
 

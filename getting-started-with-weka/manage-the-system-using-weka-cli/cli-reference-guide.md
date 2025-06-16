@@ -1481,6 +1481,36 @@ weka cluster container remove <container-id>
 | `--no-unimprint`          | Don't remotely unimprint the container, just remove it from the cluster configuration                      |
 | `-h`, `--help`            | Show help message                                                                                          |
 
+**weka cluster container requested-action**
+
+Set the requested action of the supplied containers to one of: STOP, RESTART, APPLY\_RESOURCES to gracefully stop,\
+restart or apply resources to the containers.
+
+```sh
+weka cluster container requested-action <requested_action>
+                                        [--color color]
+                                        [--HOST HOST]
+                                        [--PORT PORT]
+                                        [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
+                                        [--TIMEOUT TIMEOUT]
+                                        [--profile profile]
+                                        [--help]
+                                        [<container-ids>]...
+
+```
+
+| Parameter                 | Description                                                                                                        |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `requested_action`\*      | The requested action to set the containers to (format: 'none', 'stop', 'restart', 'apply\_resources' or 'upgrade') |
+| `container-ids`...        | A list of container ids for which to set flow                                                                      |
+| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                   |
+| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                   |
+| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                   |
+| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)         |
+| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)             |
+| `--profile`               | Name of the connection and authentication profile to use                                                           |
+| `-h`, `--help`            | Show help message                                                                                                  |
+
 **weka cluster container resources**
 
 Get the resources of the supplied container
@@ -2250,50 +2280,6 @@ weka cluster process [--color color]
 | `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                                                                                                                                                                                                                                                                                  |
 | `--no-header`             | Don't show column headers when printing the output                                                                                                                                                                                                                                                                                                                                     |
 | `-v`, `--verbose`         | Show all columns in output                                                                                                                                                                                                                                                                                                                                                             |
-
-#### weka cluster requested-action
-
-Manage requested actions
-
-```sh
-weka cluster requested-action [--color color] [--help]
-
-```
-
-| Parameter      | Description                                                                      |
-| -------------- | -------------------------------------------------------------------------------- |
-| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
-| `-h`, `--help` | Show help message                                                                |
-
-**weka cluster requested-action set**
-
-Set the requested action of the supplied containers to one of: STOP, RESTART, APPLY\_RESOURCES to gracefully stop,\
-restart or apply resources to the containers.
-
-```sh
-weka cluster requested-action set <requested_action>
-                                  [--color color]
-                                  [--HOST HOST]
-                                  [--PORT PORT]
-                                  [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                                  [--TIMEOUT TIMEOUT]
-                                  [--profile profile]
-                                  [--help]
-                                  [<container-ids>]...
-
-```
-
-| Parameter                 | Description                                                                                                        |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `requested_action`\*      | The requested action to set the containers to (format: 'none', 'stop', 'restart', 'apply\_resources' or 'upgrade') |
-| `container-ids`...        | A list of container ids for which to set flow                                                                      |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                   |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                   |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                   |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)         |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)             |
-| `--profile`               | Name of the connection and authentication profile to use                                                           |
-| `-h`, `--help`            | Show help message                                                                                                  |
 
 #### weka cluster servers
 
@@ -11811,80 +11797,6 @@ weka security tls reset [--color color]
 | `--profile`               | Name of the connection and authentication profile to use                                                   |
 | `-h`, `--help`            | Show help message                                                                                          |
 
-#### weka security token-expiry
-
-Commands used to interact with the auth token expiration parameters
-
-```sh
-weka security token-expiry [--color color] [--help]
-
-```
-
-| Parameter      | Description                                                                      |
-| -------------- | -------------------------------------------------------------------------------- |
-| `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
-| `-h`, `--help` | Show help message                                                                |
-
-**weka security token-expiry set**
-
-Configure the times for which auth tokens will be valid
-
-```sh
-weka security token-expiry set [--access-token access-token]
-                               [--refresh-token refresh-token]
-                               [--access-token-max access-token-max]
-                               [--refresh-token-max refresh-token-max]
-                               [--color color]
-                               [--HOST HOST]
-                               [--PORT PORT]
-                               [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                               [--TIMEOUT TIMEOUT]
-                               [--profile profile]
-                               [--help]
-
-```
-
-| Parameter                 | Description                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `--access-token`          | How long access tokens are valid by default (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)         |
-| `--refresh-token`         | How long refresh tokens are valid by default (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)        |
-| `--access-token-max`      | Maximum duration allowed for access tokens (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)          |
-| `--refresh-token-max`     | Maximum duration allowed for refresh tokens (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)         |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `-h`, `--help`            | Show help message                                                                                          |
-
-**weka security token-expiry show**
-
-Show the current expiration limits for auth tokens
-
-```sh
-weka security token-expiry show [--color color]
-                                [--HOST HOST]
-                                [--PORT PORT]
-                                [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                                [--TIMEOUT TIMEOUT]
-                                [--profile profile]
-                                [--help]
-                                [--json]
-
-```
-
-| Parameter                 | Description                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `-h`, `--help`            | Show help message                                                                                          |
-| `-J`, `--json`            | Format output as JSON                                                                                      |
-
 ### weka smb
 
 Commands that manage Weka's SMB container
@@ -13151,7 +13063,6 @@ weka status [--color color]
             [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
             [--TIMEOUT TIMEOUT]
             [--profile profile]
-            [--detailed-capacity]
             [--help]
             [--json]
             [--raw-units]
@@ -13167,7 +13078,6 @@ weka status [--color color]
 | `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
 | `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
 | `--profile`               | Name of the connection and authentication profile to use                                                                          |
-| `--detailed-capacity`     | Include more detailed capacity information                                                                                        |
 | `-h`, `--help`            | Show help message                                                                                                                 |
 | `-J`, `--json`            | Format output as JSON                                                                                                             |
 | `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
@@ -13188,37 +13098,6 @@ weka status rebuild [--color color]
                     [--json]
                     [--raw-units]
                     [--UTC]
-
-```
-
-| Parameter                 | Description                                                                                                                       |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                                                  |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                                                  |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                                                  |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                        |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)                            |
-| `--profile`               | Name of the connection and authentication profile to use                                                                          |
-| `-h`, `--help`            | Show help message                                                                                                                 |
-| `-J`, `--json`            | Format output as JSON                                                                                                             |
-| `-R`, `--raw-units`       | Print values in raw units (bytes, seconds, etc.). When not set, sizes are printed in human-readable format, e.g 1KiB 234MiB 2GiB. |
-| `-U`, `--UTC`             | Print times in UTC. When not set, times are converted to the local time of this host.                                             |
-
-#### weka status reduction
-
-Show cluster data reduction information'
-
-```sh
-weka status reduction [--color color]
-                      [--HOST HOST]
-                      [--PORT PORT]
-                      [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                      [--TIMEOUT TIMEOUT]
-                      [--profile profile]
-                      [--help]
-                      [--json]
-                      [--raw-units]
-                      [--UTC]
 
 ```
 

@@ -133,20 +133,20 @@ helm upgrade \
 {% code title="ensure-nics.yaml" %}
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
-kind: WekaManualOperation
+kind: WekaPolicy
 metadata:
-  name: ensure-nics-manual-op
-  namespace: default
+  name: ensure-nics-policy
+  namespace: weka-operator-system
 spec:
-  action: "ensure-nics"
+  type: "ensure-nics"
   image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
   imagePullSecret: "quay-io-robot-secret"
   payload:
     ensureNICsPayload:
       type: aws
       nodeSelector:
-        weka.io/supports-clients: "true"
-      dataNICsNumber: 4
+        support-client: "true"
+      dataNICsNumber: 2
 ```
 {% endcode %}
 

@@ -70,13 +70,12 @@ VCN capacity planning must account for both WEKA Data Platform and high-performa
    2. Select the computer image:
       * Find your preferred OS version on [#operating-system](prerequisites-and-compatibility.md#operating-system "mention").
       * Select a matching image from the OCI instance image gallery.
-   3. Select the appropriate server shape:
-      * Select the **Bare Metal** option.
-      * Select one the Bare Metal shapes, such as:
-        * **BM.Optimized3.36**
-        * **BM.DenseIO.E5.128**
-        * **BM.HPC.E5.144**
-        * **BM.GPU.H100, BM.GPU.H200, and BM.GPU.A100**
+   3. Select the appropriate server shape. Supported shapes:
+      * BM.Optimized3.36
+      * BM.DenseIO.E5.128
+      * BM.HPC.E5.144
+      * BM.GPU.H100, BM.GPU.H200, and BM.GPU.A100
+      * VM.Standard.E5.Flex
    4. Configure the boot volume:
       * Access the **Size and Performance** settings panel for the boot volume.
       * Switch to **Custom Configuration** mode.

@@ -420,4 +420,98 @@ weka fs security policy detach <fs-name> [<policies>]...
 
 <table><thead><tr><th width="237">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>fs-name*</td><td>Filesystem name.</td></tr><tr><td><code>policies</code>...</td><td>Security policy names or IDs to remove from the specified filesystem, space separated.</td></tr></tbody></table>
 
+## Examples: Implementing CIDR-based security policies
+
+This section provides practical examples of implementing CIDR-based security policies for common use cases.
+
+### Example 1: Restrict cluster admin access to backend network
+
+This example demonstrates how to allow only `clusteradmin` access from a specific backend subnet while denying all other IP addresses.
+
+**Scenario:** Allow cluster administrators to access the cluster only from the backend network (10.10.0.0/16) and implicitly deny access from all other IP addresses.
+
+1. **Create the security policy:** Create an allow policy for cluster administrators from the backend subnet:
+
+{% code overflow="wrap" %}
+```bash
+weka security policy add allow-cluster-admins-backend \
+  --action allow \
+  --ips 10.10.0.0/16 \
+  --roles clusteradmin
+```
+{% endcode %}
+
+2. **Attach policy to the root organization:** Attach the policy to the root organization to enforce it cluster-wide:
+
+```bash
+weka security policy attach root allow-cluster-admins-backend
+```
+
+**Result:** Only users with the `clusteradmin` role connecting from IP addresses within the 10.10.0.0/16 range can access the cluster. All other connections are implicitly denied.
+
+### Example 2: Multi-network access control
+
+This example shows how to allow access from multiple networks, such as backend infrastructure and administrative workstations.
+
+**Scenario:** Allow `clusteradmin` access from both the backend network (10.10.0.0/16) and administrative workstations (192.168.100.0/24).
+
+1. **Create a policy for backend access:**
+
+{% code overflow="wrap" %}
+```bash
+weka security policy add allow-backend-admins \
+  --action allow \
+  --ips 10.10.0.0/16 \
+  --roles clusteradmin
+```
+{% endcode %}
+
+2. **Create a policy for admin workstation access:**
+
+{% code overflow="wrap" %}
+```bash
+weka security policy add allow-admin-workstations \
+  --action allow \  
+  --ips 192.168.100.0/24 \
+  --roles clusteradmin
+```
+{% endcode %}
+
+3. **Attach both policies:** Attach both policies to the root organization:
+
+{% code overflow="wrap" %}
+```bash
+weka org security policy attach root allow-backend-admins allow-admin-workstations
+```
+{% endcode %}
+
+**Result:** Cluster administrators can access the cluster from either the backend network or designated admin workstations.
+
+### Example 3: Read-only filesystem access
+
+This example demonstrates how to provide read-only access to filesystems from specific networks.
+
+**Scenario:** Allow read-only access to a filesystem from a data analysis network (172.16.0.0/12) while maintaining full access control for other roles.
+
+1. **Create read-only access policy:** Create a policy allowing readonly role access from the analysis network:
+
+{% code overflow="wrap" %}
+```bash
+weka security policy add readonly-analysis-network \
+   --action allow \
+   --ips 172.16.0.0/12 \
+   --roles readonly
+```
+{% endcode %}
+
+2. Apply policy to specific filesystem: Apply the policy to a specific filesystem (for example, `data-warehouse`):
+
+{% code overflow="wrap" %}
+```bash
+weka fs security policy attach data-warehouse readonly-analysis-network
+```
+{% endcode %}
+
+**Result:** Users with the `readonly` role can access the "data-warehouse" filesystem from the analysis network for read-only operations.
+
 [^1]: Classless Inter-Domain Routing

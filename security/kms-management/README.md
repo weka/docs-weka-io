@@ -20,8 +20,6 @@ To enhance security, WEKA does not store any data that could reconstruct the KMS
 
 **KMS encryption options:**
 
-{% include "../../.gitbook/includes/supported-kms-types.md" %}
-
 **KMS encryption options:**
 
 * **Cluster encryption key**:  A single encryption key used as the master key for the entire WEKA cluster.

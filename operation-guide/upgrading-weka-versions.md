@@ -8,13 +8,10 @@ description: Upgrade your WEKA system with the latest version.
 
 The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations.&#x20;
 
-**Supported source versions for upgrading to version 4.4.7**:
+**Supported source versions for upgrading to version 5.0.1**:
 
-* The **minimum** supported source version is 4.2.5.
-
-{% hint style="info" %}
-Upgrading to version 4.4.7 on Azure deployments is not supported.
-{% endhint %}
+* Minimum required version to upgrade from: 4.4.6.
+* Maximum version: 4.4.6.122.
 
 ### Upgrade guidelines
 
@@ -26,8 +23,8 @@ Upgrading to version 4.4.7 on Azure deployments is not supported.
 
 #### Version compatibility rules
 
-* When upgrading from version 4.2.X to 4.4.Y:
-  * Version 4.4.Y must have been released after the 4.2.X LTS release
+* When upgrading from version 4.4.X to 5.0.Y:
+  * Version 5.0.Y must have been released after the 4.4.X LTS release
   * All intermediate versions must be supported versions
 * Confirm specific version compatibility at [get.weka.io](https://get.weka.io).
 * Make sure the client's version is compatible with the backend upgrade version you intend to deploy.
@@ -39,23 +36,25 @@ Upgrading to version 4.4.7 on Azure deployments is not supported.
 #### Supported upgrades
 
 ```
-4.4.1     → 4.4.2.113    Maximum supported direct upgrade
-4.3.5.105 → 4.4.2.113    Maximum supported intermediate version
-4.2.12.92 → 4.4.2.113    Released: Aug 1, 2024 → Dec 10, 2024
+4.4.6.122 → 5.0.1.101    Maximum supported version
+                         (released: May 15, 2025 → June 16, 2025)
+4.4.6.114 → 5.0.1.101    Supported intermediate version
+4.4.6     → 5.0.1.101    Minimum supported version
 ```
 
 #### Unsupported upgrades
 
 ```
-4.2.17.77 → 4.4.2.113    Version not in supported range
-4.2.16    → 4.4.2.113    Version not in supported range
-4.2.15    → 4.4.2.113    Version not in supported range
-4.2.14    → 4.4.2.113    Version not in supported range
+4.4.8.83  → 5.0.1.101     Version not in supported range
+4.4.7.89  → 5.0.1.101     Version not in supported range (released after 5.0.1 code freeze)
+4.4.4     → 5.0.1.101     Version not in supported range
+4.4.3     → 5.0.1.101     Version not in supported range
+...
 ```
 
 Always review release notes for version-specific upgrade requirements.
 
-<figure><img src="../.gitbook/assets/get-weka-io-versions_4.4.png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/supported_upgrades.png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
 
 {% hint style="warning" %}
 The source system must be set up in MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the cluster architecture to MCB. See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention").\

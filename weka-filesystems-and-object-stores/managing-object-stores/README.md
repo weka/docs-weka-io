@@ -30,7 +30,3 @@ Multiple object store buckets offer flexibility for various use cases, including
 * Backing up data in a remote site.
 
 In cloud environments, users can employ cloud lifecycle policies to transition storage tiers or classes. For example, in AWS, users can move objects from the S3 standard storage class to the S3 intelligent tiering storage class for long-term retention using the AWS lifecycle policy.
-
-**Related topics**
-
-[#about-object-stores](../../weka-system-overview/filesystems.md#about-object-stores "mention")

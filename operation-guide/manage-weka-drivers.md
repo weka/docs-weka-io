@@ -105,7 +105,7 @@ The `weka driver` commands described in this section provide a high-level overvi
 
 1. Copy the exported driver archive to the client: \
    `scp <driver-package>.tar.gz user@<client>:/tmp/`
-2. SSH into the backend: `ssh user@<client>`
+2. SSH into the client: `ssh user@<client>`
 3. Import the driver archive: `weka driver import /tmp/<driver-package>.tar.gz`
 4. Install the imported driver: `weka driver install`
 5. After running weka driver install, the driver is built and loaded for the kernel running on the client. Use the following command to verify the driver status: \

@@ -70,7 +70,7 @@ If the WEKA cluster is outside the Kubernetes cluster but you have workloads ins
 
 To deploy the WEKA Operator in your Kubernetes environment, contact the WEKA Customer Success Team to obtain the necessary setup information.
 
-<table><thead><tr><th width="202">Component</th><th width="272">Parameter</th><th>Example</th></tr></thead><tbody><tr><td><p>Container repository (<a href="http://quay.io/">quay.io</a>)</p><p>Includes: Image pull secrets and Docker</p></td><td><code>QUAY_USERNAME</code> <code>QUAY_PASSWORD</code><br><code>QUAY_SECRET_KEY</code></td><td><code>example_user</code><br><code>example_password</code><br><code>quay-io-robot-secret</code></td></tr><tr><td>WEKA Operator Version</td><td><code>WEKA_OPERATOR_VERSION</code></td><td><code>v1.4.0</code></td></tr><tr><td>WEKA Image</td><td><code>WEKA_IMAGE_VERSION_TAG</code></td><td><code>4.3.5.105-dist-drivers.5</code></td></tr></tbody></table>
+<table><thead><tr><th width="202">Component</th><th width="272">Parameter</th><th>Example</th></tr></thead><tbody><tr><td><p>Container repository (<a href="http://quay.io/">quay.io</a>)</p><p>Includes: Image pull secrets and Docker</p></td><td><code>QUAY_USERNAME</code> <code>QUAY_PASSWORD</code><br><code>QUAY_SECRET_KEY</code></td><td><code>example_user</code><br><code>example_password</code><br><code>quay-io-robot-secret</code></td></tr><tr><td>WEKA Operator Version</td><td><code>WEKA_OPERATOR_VERSION</code></td><td><code>v1.6.</code></td></tr><tr><td>WEKA Image</td><td><code>WEKA_IMAGE_VERSION_TAG</code></td><td><code>4.4.5.118-k8s.4</code></td></tr></tbody></table>
 
 By gathering this information in advance, you have all the required values to complete the deployment workflow efficiently. Replace the placeholders with the actual values in the setup files.
 
@@ -196,7 +196,169 @@ Driver distribution applies to client and backend entities.
 1. **Verify driver distribution prerequisites**:
    1. Ensure a WEKA-compatible image (`weka-in-container`) is accessible through the registry and has the necessary credentials (`imagePullSecret`).
    2. Define node selection criteria, especially for the Driver Builder role, to match the kernel requirements of target nodes.
-2. **Set up the driver distribution service and driver builder:** Replace the container version tag (WEKA\_IMAGE\_VERSION\_TAG) placeholders with the actual values:
+2.  **Set up the driver distribution service and driver builder:** Driver distribution is typically included as part of the operator installation process. Therefore, it is not necessary to install drivers separately unless you are also installing the operator.To build and distribute WEKA drivers, the standard approach involves deploying the following components:CommentShare feedback on the editor
+
+    * CommentShare feedback on the editor**drivers-builder container:** One container per combination of Weka version, kernel version, and architecture.
+    * CommentShare feedback on the editor**drivers-dist container:** A single container responsible for serving the compiled drivers.
+    * CommentShare feedback on the editor**Service:** Exposes the drivers-dist container.
+
+    This setup supports scenarios such as handling multiple kernel versions and executing custom pre-run scripts.Important notes:CommentShare feedback on the editor
+
+    * CommentShare feedback on the editorDeploy multiple drivers-builder containers only if you need to support multiple kernel versions or multiple WEKA versions.
+    * CommentShare feedback on the editorReplace placeholder versions with your target WekaClient and WekaCluster versions.
+    * CommentShare feedback on the editorThe image versions used in the builder containers must match the corresponding WEKA versions.
+
+<details>
+
+<summary>Driver distribution service for WEKA Operator using WekaPolicy, starting from version 1.6.0</summary>
+
+The WEKA operator supports driver distribution deployment using the WEKA policy. When a valid policy is applied, the operator automatically creates the required resources as shown in the examples.
+
+**Requirements:** When configuring driver distribution, the following elements must be preserved exactly as shown in the provided configuration snippets:
+
+* Ports
+* Network modes
+* Core configurations
+* Container name (spec.name)
+
+#### Example 1: Manual deployment of WEKA driver distribution and builder containers
+
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaContainer
+metadata:
+  name: weka-drivers-dist
+  namespace: weka-operator-system
+  labels:
+    app: weka-drivers-dist
+spec:
+  agentPort: 60001
+  image: quay.io/weka.io/weka-in-container:4.4.2.144-k8s
+  imagePullSecret: "quay-io-robot-secret"
+  mode: "drivers-dist"
+  name: dist
+  numCores: 1
+  port: 60002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weka-drivers-dist
+  namespace: weka-operator-system
+spec:
+  type: ClusterIP
+  ports:
+    - name: weka-drivers-dist
+      port: 60002
+      targetPort: 60002
+  selector:
+    app: weka-drivers-dist
+---
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaContainer
+metadata:
+  name: weka-drivers-builder-157
+  namespace: weka-operator-system
+spec:
+  agentPort: 60001
+  image: quay.io/weka.io/weka-in-container:4.4.2.157-k8s
+  imagePullSecret: "quay-io-robot-secret"
+  mode: "drivers-builder"
+  name: dist # WEKA container name
+  numCores: 1
+  uploadResultsTo: "weka-drivers-dist"
+  port: 60002
+  nodeSelector:
+    weka.io/supports-backends: "true"
+---
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaContainer
+metadata:
+  name: weka-drivers-builder-157-ubuntu-1
+  namespace: weka-operator-system
+spec:
+  agentPort: 60001
+  image: quay.io/weka.io/weka-in-container:4.4.2.157-k8s
+  imagePullSecret: "quay-io-robot-secret"
+  mode: "drivers-builder"
+  name: dist # WEKA container name
+  numCores: 1
+  uploadResultsTo: "weka-drivers-dist"
+  port: 60002
+  nodeSelector:
+    weka.io/supports-backends: "true"
+    weka.io/kernel: "6.5.0-45-generic"
+  overrides:
+    preRunScript: "apt-get update && apt-get install -y gcc-12"
+```
+
+#### Example 2: Example: WekaPolicy for enabling local driver distribution
+
+{% code overflow="wrap" %}
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaPolicy
+metadata:
+  name: weka-drivers
+  namespace: weka-operator-system # Specify the namespace where the Weka operator is deployed
+spec:
+  type: "enable-local-drivers-distribution"
+  # Base image used for the drivers-dist container; also used as the default for driver builders
+  image: "quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4" # Replace with the target Weka image version
+  imagePullSecret: "quay-io-robot-secret" # Replace with your image pull secret for accessing the image registry
+  tolerations:
+  - key: "example-key"
+    operator: "Exists"
+    effect: "NoSchedule"
+  payload:
+    interval: "1m" # Reconciliation interval for the policy
+    driverDistPayload: # Required: configuration for driver distribution
+      # List of additional Weka images for which drivers should be prebuilt
+      # These are in addition to any images detected from existing WekaCluster/WekaClient resources
+      ensureImages:
+        - "quay.io/weka.io/weka-in-container:4.4.2.157-k8s.2" # Example image for proactive driver build
+        - "quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4" # Another example
+      # Node selectors defining where builder containers can be scheduled
+      # Builders run on nodes matching both these selectors and the discovered kernel/architecture
+      nodeSelectors:
+        - role: "worker-nodes"
+          environment: "production"
+        - custom-label: "drivers-build-pool"
+      # Optional: Override default label keys for kernel and architecture detection
+      # Defaults: weka.io/kernel and weka.io/architecture
+      # kernelLabelKey: "custom.io/kernel-version"
+      # architectureLabelKey: "custom.io/arch"
+      # Optional: Node selector for the driver distribution container
+      # Leave empty to allow scheduling on any node
+      # distNodeSelector: {}
+      # Optional: Script to run in builder containers after kernel validation and before the build process
+      builderPreRunScript: |
+        #!/bin/sh
+        apt-get update && apt-get install -y gcc-12
+```
+{% endcode %}
+
+#### Example 3: Minimal policy for drivers distribution
+
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaPolicy
+metadata:
+  name: weka-drivers
+  namespace: weka-operator-system
+spec:
+  image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
+  payload:
+    driverDistPayload: {}
+    interval: 1m
+  type: enable-local-drivers-distributio
+```
+
+</details>
+
+<details>
+
+<summary>Driver distribution service for WEKA Operator version 1.4.x</summary>
 
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
@@ -244,11 +406,13 @@ spec:
   port: 60002
 ```
 
+</details>
+
 {% hint style="info" %}
 Ensure that `nodeSelector` or `nodeAffinity` aligns with the kernel requirements of the build nodes.
 {% endhint %}
 
-4. Save the manifest above to `weka-driver.yaml` , and apply it:\
+3. Save the manifest above to `weka-driver.yaml` , and apply it:\
    `kubectl apply -f weka-driver.yaml`
 
 ### 5. Discover drives for WEKA cluster provisioning
@@ -279,9 +443,40 @@ The WEKA system supports two primary methods for drive discovery:
 * **WekaPolicy**\
   An automated, policy-driven approach that performs periodic discovery across all matching nodes. The `WekaPolicy` method operates on an event-driven model, initiating discovery immediately when relevant changes (such as node updates or drive additions) are detected.
 
-Manual operations example:
+**Operations examples**
 
-The following operation signs specific drives:
+<details>
+
+<summary>Sign drivers using the WekaPolicy starting from WEKA Operator 1.6.x</summary>
+
+Drive containers will be scheduled on nodes with available signed drives.
+
+To identify drives that can be used by Weka and sign them, apply the following policy:
+
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaPolicy
+metadata:
+  name: sign-drives
+  namespace: weka-operator-system # Replace with your namespace
+spec:
+  type: sign-drives
+  payload:
+    signDrivesPayload:
+      type: "all-not-root"
+```
+
+**Drive selection types:**
+
+* `all-not-root`: Avoids using additional block devices aside from the root device.
+* `aws-all`: AWS-specific, detects NVMe devices by AWS PCI identifiers.
+* `device-paths`: Lists specific device paths, as shown in the example. Each node presents its subset of this list.
+
+</details>
+
+<details>
+
+<summary>Sign specific drives manually in WEKA Operator 1.4.x</summary>
 
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
@@ -309,13 +504,11 @@ spec:
         - /dev/nvme7n1
 ```
 
-Drive selection types:
+</details>
 
-* `all-not-root`: Avoids using additional block devices aside from the root device.
-* `aws-all`: AWS-specific, detects NVMe devices by AWS PCI identifiers.
-* `device-paths`: Lists specific device paths, as shown in the example. Each node presents its subset of this list.
+<details>
 
-Drive discovery example:
+<summary>Discover drives</summary>
 
 The following example initiates a drive discovery operation:
 
@@ -339,6 +532,8 @@ Key fields:
 
 * `nodeSelector` (payload): Limits the operation to specific nodes.
 * `tolerations` (spec): Supports Kubernetes tolerations for high-level objects like WekaCluster and WekaClient. Only `tolerations` are supported for WekaManualOperation, WekaContainer, and WekaPolicy.
+
+</details>
 
 ### 6. Install the WekaCluster and WekaClient custom resources
 
@@ -572,7 +767,18 @@ kubectl patch WekaCluster cluster-dev -n weka-operator-system --type='merge' -p=
 
 </details>
 
-**Example: Connecting to internal WEKA cluster**
+{% hint style="info" %}
+**Label propagation behavior:** All labels are automatically propagated from parent objects to the child objects they create. The propagation behavior is as follows:
+
+* WekaContainer propagates labels to the corresponding Pods.
+* WekaCluster propagates labels to the WekaContainer objects it creates.
+* WekaPolicy propagates labels to the WekaContainer objects it creates.
+* WekaClient propagates labels to the WekaContainer objects it creates.
+{% endhint %}
+
+<details>
+
+<summary>Example: Connect to an internal WEKA cluster</summary>
 
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
@@ -595,7 +801,11 @@ spec:
     ethDevice: mlnx0
 ```
 
-**Example: Connecting to external WEKA cluster**
+</details>
+
+<details>
+
+<summary>Example: Connect to an external WEKA cluster</summary>
 
 <pre class="language-yaml"><code class="lang-yaml"><strong>apiVersion: weka.weka.io/v1alpha1
 </strong>kind: WekaClient
@@ -614,6 +824,8 @@ spec:
   network:
     ethDevice: mlnx0
 </code></pre>
+
+</details>
 
 Apply the manifest:
 
@@ -658,7 +870,9 @@ Upgrading the WEKA Operator involves updating the Operator and managing `wekaCli
 
 To optimize runtime and minimize delays, preloading images during the reading or preparation phase can significantly reduce waiting time in subsequent steps. Without preloading, some servers may sit idle while images download, leading to further delays when all servers advance to the next step.
 
-**Sample DaemonSet configuration for preloading images:**
+<details>
+
+<summary>Sample DaemonSet configuration for preloading images</summary>
 
 ```yaml
 apiVersion: apps/v1
@@ -700,6 +914,8 @@ spec:
               cpu: "500m"
               memory: "256Mi"
 ```
+
+</details>
 
 ### Display custom fields
 

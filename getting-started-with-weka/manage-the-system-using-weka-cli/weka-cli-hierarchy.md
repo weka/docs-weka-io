@@ -7,7 +7,7 @@ description: >-
 # WEKA CLI hierarchy
 
 {% hint style="info" %}
-New commands in V4.4.6 CLI, compared to V4.3.5, are marked with \*\*.
+There are no changes to the CLI commands between versions 4.4.7 and 5.0.1.
 {% endhint %}
 
 ### weka agent
@@ -64,18 +64,18 @@ weka cluster
        |clear-failure
        |cores
        |deactivate
-       |deactivation-check **
+       |deactivation-chec 
        |dedicate
        |failure-domain
        |info-hw
-       |join-secret **
+       |join-secret
        |management-ips
        |memory
        |net
           |add
           |remove
        |remove
-       |requested-action **
+       |requested-action
        |resources
        |restore
     |add
@@ -112,11 +112,11 @@ weka cluster
     |stop-io
     |task
         |abort
-        |bucket **
+        |bucket
         |limits
         |pause
         |resume
-        |throttle **§
+        |throttle
     |update    
 ```
 
@@ -142,7 +142,7 @@ weka diags
 ### weka driver
 
 ```
-weka driver **
+weka driver
    |build
    |download
    |export
@@ -174,8 +174,8 @@ weka fs
         |add
         |remove
         |update
-    |kms-rewrap **
-    |protection **
+    |kms-rewrap
+    |protection
         |snapshot-policy
             |attach
             |add
@@ -184,7 +184,7 @@ weka fs
             |duplicate
             |export
             |list
-            |run-once **
+            |run-once
             |show
             |update
      |quota
@@ -199,7 +199,7 @@ weka fs
         |status
         |reset
     |restore
-    |security **
+    |security
         |policy
             |attach
             |detach
@@ -238,7 +238,7 @@ weka fs
 ### weka interface-group
 
 ```
-weka interface-group **
+weka interface-group
     |add
     |assignment
     |remove
@@ -265,17 +265,17 @@ weka local
     |reset-data
     |resources
         |apply
-        |auto-remove-timeout **
+        |auto-remove-timeout
         |bandwidth
         |base-port
         |cores
         |dedicate
         |export
         |failure-domain
-        |fqdn **
+        |fqdn
         |import
         |join-ips
-        |join-secret **
+        |join-secret
         |management-ips
         |memory       
         |net
@@ -286,11 +286,11 @@ weka local
     |rm
     |run
     |setup
-        |client **
+        |client
         |container
-        |envoy **
-        |services **
-        |taskmon **
+        |envoy
+        |services
+        |taskmon
         |weka
     |start  
     |status
@@ -311,7 +311,7 @@ weka nfs
     |client-group
         |add
         |remove
-    |clients **
+    |clients
         |show
     |debug-level
         |set
@@ -321,7 +321,7 @@ weka nfs
         |show
     |interface-group
         |add
-        |assignmment **
+        |assignmment
         |remove
         |ip-range
             |add
@@ -340,11 +340,11 @@ weka nfs
             |setup
             |show
      |ldap
-        |export-openldap **
-        |import-openldap **
+        |export-openldap
+        |import-openldap
         |reset
         |setup-ad
-        |setup-ad-nokrb **
+        |setup-ad-nokrb
         |setup-openldap
         |show
     |permission
@@ -367,7 +367,7 @@ weka org
    |add
    |remove
    |rename
-   |security **
+   |security
       |policy
          |attach
          |detach
@@ -459,7 +459,7 @@ weka security
       |reset
       |set
       |show
-   |policy **
+   |policy
       |add
       |remove
       |duplicate
@@ -475,15 +475,12 @@ weka security
       |update     
    |tls
       |download
-      |local **
+      |local
          |set
          |reset
       |set
       |status
       |reset
-   |token-expiry **
-      |set
-      |show
 ```
 
 ### **weka smb**
@@ -550,7 +547,7 @@ weka unmount
 ### **weka upgrade**
 
 ```
-weka upgrade **
+weka upgrade
    |pause
    |resume
    |supported-features

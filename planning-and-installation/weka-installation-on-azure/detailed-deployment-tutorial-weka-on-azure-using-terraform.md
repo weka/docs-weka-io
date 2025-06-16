@@ -293,7 +293,7 @@ Terraform uses Azure CLI to pass commands to Azure. It is recommended to install
 brew update && brew install azure-cli
 ```
 
-<figure><img src="../../.gitbook/assets/azure_cli_install.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/weka/docs-weka-io/blob/4.4/.gitbook/assets/azure_cli_install.png" alt=""><figcaption></figcaption></figure>
 
 2. Wait for the installation to complete.
 
@@ -307,7 +307,7 @@ az version
 
 The installed version of Azure CLI is displayed.
 
-<figure><img src="../../.gitbook/assets/azure_cli_installed.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/weka/docs-weka-io/blob/4.4/.gitbook/assets/azure_cli_installed.png" alt=""><figcaption></figcaption></figure>
 
 ### Log in to Azure CLI
 
@@ -331,7 +331,7 @@ az login
 
 After successful authentication, a confirmation message appears.
 
-<figure><img src="../../.gitbook/assets/azure_login.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/weka/docs-weka-io/blob/4.4/.gitbook/assets/azure_login.png" alt=""><figcaption></figcaption></figure>
 
 3. Return to the terminal, where the authentication status of Azure CLI is displayed.
 
@@ -375,7 +375,7 @@ Using the Terraform Registry simplifies managing the latest Terraform releases, 
 5. On the GitHub page, select the `main.tf` file for the **public\_network** example.
 6. Click **Download raw file** to save the `main.tf` file.
 
-<figure><img src="../../.gitbook/assets/Azure_TF_registry.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/weka/docs-weka-io/blob/4.4/.gitbook/assets/Azure_TF_registry.gif" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Examples serve as a starting point. Customize the variables to match your specific deployment needs. Do not use the example "as is" expecting it to deliver the exact outcome for your environment.
@@ -391,7 +391,7 @@ This module provides extensive resources and guidance, divided into several sect
 * **Dependencies:** Describes provider dependencies automatically installed during `terraform init`.
 * **Resources:** Lists Azure resources the module may create, depending on user-configured variables.
 
-<figure><img src="../../.gitbook/assets/Azure_Resources_and_guidance.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/weka/docs-weka-io/blob/4.4/.gitbook/assets/Azure_Resources_and_guidance.gif" alt=""><figcaption></figcaption></figure>
 
 ### Locate the user’s token in get.weka.io
 
