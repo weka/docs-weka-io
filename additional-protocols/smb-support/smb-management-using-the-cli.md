@@ -52,7 +52,7 @@ Use the following command line to create a new SMB cluster to be managed by the 
 {% endhint %}
 
 {% hint style="info" %}
-**Note:** The IPs must be configured but **MUST NOT** be in use by any other application/host in the subnet, including Weka system management nodes, Weka system IO nodes, or Weka system NFS floating IPs. In AWS environments, this is not supported and these IPs should not be provided**.**
+**Note:** The IPs must be configured but **MUST NOT** be in use by any other application/host in the subnet, including Weka system management nodes, Weka system IO nodes, or Weka system NFS floating IPs. In AWS environments, this is not supported and these IPs should not be provide&#x64;**.**
 {% endhint %}
 
 {% hint style="info" %}

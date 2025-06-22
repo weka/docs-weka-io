@@ -42,7 +42,7 @@ The following SMB Cluster Configuration window will be displayed:
 
 To join the SMB cluster to an Active Directory, click the Join button when all hosts have been prepared and are ready. The following window will be displayed:
 
-![Join SMB Cluster to Active Directory Window](../../.gitbook/assets/Selection\_758.png)
+![Join SMB Cluster to Active Directory Window](../../.gitbook/assets/Selection_758.png)
 
 Enter the provided username and password in order to access the Active Directory. The Server input field is optional. The default for the Computers Org.Unit field is the Computers directory, but it is possible to define any other directory in Active Directory to be connected, such as SMB servers or Corporate computers.
 
@@ -70,7 +70,7 @@ Confirm the deletion by clicking the Reset button.
 
 ## **Listing SMB Shares**
 
-To access SMB shares**,** click the SMB Shares tab in the SMB Service Overview screen. A list of all SMB shares will be displayed**:**
+To access SMB share&#x73;**,** click the SMB Shares tab in the SMB Service Overview screen. A list of all SMB shares will be displaye&#x64;**:**
 
 ![SMB Shares List](<../../.gitbook/assets/SMB shares biew 3.6.png>)
 
@@ -92,7 +92,7 @@ To remove an SMB share, click anywhere on the row to be removed and then click t
 
 ![Removing an SMB Share](<../../.gitbook/assets/SMB shares biew 3.6.png>)
 
-The SMB Share Deletion window will be displayed**:**
+The SMB Share Deletion window will be displaye&#x64;**:**
 
 ![SMB Share Deletion Window](<../../.gitbook/assets/SMB share deletion 3.6.png>)
 

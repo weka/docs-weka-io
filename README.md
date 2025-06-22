@@ -14,7 +14,7 @@ This portal contains all the documentation necessary for understanding and worki
 
 **Performance:** A description and results of the FIO performance tests on WekaFS.
 
-**WekaFS Filesystems in the Weka System:** A review of the role and management of filesystems, object stores**,** filesystem groups, and key-management systems in Weka system configurations.
+**WekaFS Filesystems in the Weka System:** A review of the role and management of filesystems, object store&#x73;**,** filesystem groups, and key-management systems in Weka system configurations.
 
 **Additional Protocols:** A review of additional protocols support as NFS and SMB for accessing data stored in a WekaFS filesystem.
 
