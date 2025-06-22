@@ -56,7 +56,7 @@ Set the TTL (Time to Live) for all records assigned to the NFS servers to 0 (Zer
 
 **Related information**
 
-[Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin\_DNS)
+[Round-robin DNS](https://en.wikipedia.org/wiki/Round-robin_DNS)
 
 ### NFS client mount&#x20;
 
@@ -134,9 +134,9 @@ NFS file-locking is a mechanism that ensures synchronized access to files by mul
 
       ```
       status		46999/tcp		# rpc status
-      status		46999/ucp		# rpc status
+      status		46999/udp		# rpc status
       nlockmgr 	47000/tcp		# nlockmgr
-      nlockmgr 	47000/ucp		# nlockmgr
+      nlockmgr 	47000/udp		# nlockmgr
       ```
 * **NFS client prerequisite:** To use NFSv3 with locking on an NFS client, ensure the `rpc.statd` service runs in the NFS client. This enables clients to mount NFSv3 shares.
 

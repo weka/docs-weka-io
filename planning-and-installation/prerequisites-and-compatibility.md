@@ -50,7 +50,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Ubuntu:**
-  * 24.04 (only with kernel version 6.8.0-1008-aws)
+  * 24.04
   * 22.04
   * 20.04
   * 18.04
@@ -71,7 +71,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **Ubuntu:**
-  * 24.04 (only with kernel version 6.8.0-1008-aws)
+  * 24.04
   * 22.04
   * 20.04
   * 18.04
@@ -97,7 +97,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% tab title="Kernel" %}
 The following kernel versions are supported:
 
-* 6.8.0-1008-aws (only with Ubuntu 24.04)
+* 6.8
 * 6.0 to 6.2
 * 5.3 to 5.19
 * 4.4.0-1106 to 4.19
