@@ -372,7 +372,7 @@ mkdir -p /mnt/weka/my_fs
 
 {% code overflow="wrap" %}
 ```
-backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs wekafs num_cores=1,net=eth1,x-systemd.requires=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev 0 0  
+backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs wekafs num_cores=1,net=eth1,x-systemd.after=weka-agent.service,x-systemd.mount-timeout=infinity,_netdev 0 0  
 ```
 {% endcode %}
 
@@ -386,7 +386,7 @@ backend-0,backend-1,backend-3/my_fs /mnt/weka/my_fs wekafs num_cores=1,net=eth1,
 mount /mnt/weka/my_fs  
 ```
 
-6. **Reboot the server:** Reboot the server to test the fstab implementation. The filesystem is automatically mounted after the reboot.
+6. **Reboot the server:** Reboot the server to apply the fstab settings. The filesystem is automatically mounted after the reboot.
 
 ***
 

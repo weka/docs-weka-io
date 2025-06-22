@@ -58,6 +58,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Ubuntu:**
+  * 24.04
   * 22.04
   * 20.04
   * 18.04
@@ -80,6 +81,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
   * 7.9, 7.8, 7.7, 7.6, 7.5, 7.4, 7.3, 7.2
 * **Ubuntu:**
+  * 24.04
   * 22.04
   * 20.04
   * 18.04
@@ -105,6 +107,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% tab title="Kernel" %}
 The following kernel versions are supported:
 
+* 6.8
 * 6.0 to 6.5
 * 5.3 to 5.19
 * 4.4.0-1106 to 4.19

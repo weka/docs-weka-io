@@ -38,17 +38,13 @@ For the **HashiCorp Vault** type, set the following:
 * **Token**: The authentication API token you obtain from the vault to access the KMS.
 * **Namespace:** The namespace name that identifies the logical partition within the vault. It is used to organize and isolate data, policies, and configurations. Namespace names must not end with "/", avoid spaces, and refrain from using reserved names like `root`, `sys`, `audit`, `auth`, `cubbyhole`, and `identity`. (Available from v4.2.7.)
 
-<div align="left">
-
-<img src="../../../.gitbook/assets/wmng_configure_KMS_Hashicorp (1).png" alt="HashiCorp Vault type configuration">
-
-</div>
+<div align="left"><img src="../../../.gitbook/assets/wmng_configure_KMS_Hashicorp (1).png" alt="HashiCorp Vault type configuration"></div>
 {% endtab %}
 
 {% tab title="KMIP " %}
 For the **KMIP** type, set the following:
 
-* **Address**: The address of the KMS in hostname:port format.
+* **Address**: Hostname and port of the KMS in the format `hostname:port`. Do not include any protocol prefixes such as `https://`. The hostname can be either a fully qualified domain name (FQDN) or an IP address. Port 5696 is the default for KMIP, but this may vary depending on the server configuration.
 * **KMS Identifier**: Key UID to secure the filesystem keys (encryption-as-a-service).
 * **Client Certificate:** The client certificate content of the PEM file.
 * **Client Key**: The client key content of the PEM file.
@@ -76,7 +72,7 @@ For the **KMIP** type, set the following:
 2. From the left pane, select **Security**.\
    The **Security** page displays the configured KMS.
 
-![View the configured KMS](../../../.gitbook/assets/wmng\_view\_kms\_settings.png)
+![View the configured KMS](../../../.gitbook/assets/wmng_view_kms_settings.png)
 
 ## Update the KMS configuration
 
