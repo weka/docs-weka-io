@@ -864,6 +864,34 @@ Upgrading the WEKA Operator involves updating the Operator and managing `wekaCli
    * **Create a new builder**: For each WEKA version, create a new builder instance with an updated `wekaContainer` meta name that corresponds to the new version. This ensures that clients and resources linked to specific kernel versions can continue to operate without conflicts.
    * **Cleanup outdated builders**: Once the upgrade is validated and previous versions are no longer needed, you can delete outdated builder instances associated with those older versions. This cleanup step optimizes resources but allows you to maintain multiple builder instances if supporting different kernel versions is required.
 
+## Delete a WekaCluster
+
+When you delete a WekaCluster, the system enforces a 24-hour grace period before completing the removal. To expedite this process and delete the cluster immediately, you can set the graceful destroy duration to zero before initiating the deletion.
+
+**Procedure**
+
+1.  Run the following command to set the graceful destroy duration to zero:
+
+    {% code overflow="wrap" %}
+    ```bash
+    kubectl patch WekaCluster <cluster name> --type='merge' -p='{"spec":{"gracefulDestroyDuration": "0"}}'
+    ```
+    {% endcode %}
+
+    **Where:**
+
+    * `<cluster name>`: Specifies the name of your WekaCluster.
+2.  Run the following command to delete the WekaCluster:
+
+    ```bash
+    kubectl delete WekaCluster <cluster name> --namespace <cluster namespace>
+    ```
+
+    **Where:**
+
+    * `<cluster name>`: Specifies the name of the WekaCluster you want to delete.
+    * `<cluster namespace>`: Specifies the namespace where the cluster is located.
+
 ## Best practices
 
 ### Preloading images

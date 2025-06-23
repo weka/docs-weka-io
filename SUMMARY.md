@@ -87,7 +87,7 @@
 ## Performance
 
 * [WEKA performance tests](performance/testing-weka-system-performance/README.md)
-  * [Test environment details](performance/testing-weka-system-performance/test-environment-details.md)
+  * [Performance test environment configurations](performance/testing-weka-system-performance/test-environment-details.md)
 
 ## WEKA Filesystems & Object Stores
 

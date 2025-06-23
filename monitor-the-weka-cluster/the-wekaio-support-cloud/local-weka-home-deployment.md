@@ -587,9 +587,26 @@ If there is a change in the TLS certificates, SMTP server in your environment, o
 4. Verify the Local WEKA Home is updated successfully. Run the following command line:\
    `helm status wekahome -n home-weka-io`
 
+## Change the Local WEKA Home listening ports
+
+The LWH uses ports 80 for HTTP and 443 for HTTPS by default. You can reconfigure these ports if they are already in use on the management host. Changing the ports allows LWH to run without conflicting with existing applications.
+
+**Procedure**
+
+1.  Run the following command to edit the `traefik` service configuration that manages ingress traffic for LWH:
+
+    ```
+    kubectl -n kube-system edit svc traefik
+    ```
+2. In the configuration file that opens, locate the entries for `port: 80` and `port: 443`.
+3. Update the port numbers to the alternative ports you require.
+4. Save the file and exit the text editor. For example, in the `vi` editor, type `:wq` and press **Enter**.
+
+The changes take effect immediately.
+
 ## Check Local WEKA Home health&#x20;
 
-After deploying Local WEKA Home (LWH), it is essential to verify its health to ensure all components are functioning correctly. A healthy LWH means that all pods are running without issues, CPU and memory usage are within acceptable limits, and there are no critical low disk space.
+After deploying LWH, it is essential to verify its health to ensure all components are functioning correctly. A healthy LWH means that all pods are running without issues, CPU and memory usage are within acceptable limits, and there are no critical low disk space.
 
 If some pods are restarting frequently, producing errors, or failing to start, LWH is considered unhealthy and may require intervention. The following steps guide you in checking the health status of LWH.
 
