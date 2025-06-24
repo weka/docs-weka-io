@@ -18,9 +18,9 @@ Example:
 
 ```
 # weka cluster task
-Type       | State   | Progress | Description
------------+---------+----------+-----------------------------------------------------------
-OBS_DETACH | RUNNING | 94       | Detaching Object Storage `obs_1` from filesystem `default`
+Type        | State   | Progress | Description
+------------+---------+----------+-----------------------------------------------------------
+OBS_DETACH2 | RUNNING | 94       | Detaching Object Storage `obs_1` from filesystem `default`
 ```
 
 ## ‌Limit background task resources

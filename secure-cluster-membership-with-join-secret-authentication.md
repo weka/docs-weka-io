@@ -1,6 +1,10 @@
 # Secure cluster membership with join secret authentication
 
-To enhance security in multi-cluster environments, WEKA supports join secret authentication, which ensures that only authorized backends with the correct secret can join a cluster. This mechanism prevents accidental cross-cluster joins and unauthorized access, maintaining a secure and isolated cluster environment.
+To enhance security in multi-cluster environments, WEKA supports join secret authentication in on-premises deployments, which ensures that only authorized backends with the correct secret can join a cluster. This mechanism prevents accidental cross-cluster joins and unauthorized access, maintaining a secure and isolated cluster environment.
+
+{% hint style="info" %}
+Join secret authentication is not supported on cloud deployments.
+{% endhint %}
 
 ## Enable join secret authentication
 
