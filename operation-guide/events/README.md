@@ -1,12 +1,12 @@
 ---
 description: >-
-  This page describes the events available in the WEKA system and how to work
-  with them.
+  WEKA system events provide timestamped information about cluster operations
+  and changes.
 ---
 
 # Events
 
-WEKA events provide essential information about the WEKA cluster and customer environment. Cluster and customer operations and changes in the background can trigger these timestamped events. They may convey information, signal a system issue, or report a previously resolved problem.
+WEKA events provide essential information about the WEKA cluster and customer environment. Cluster and customer operations and changes in the background can trigger these timestamped events. They may convey information, signal a system issue, or report a previously resolved problem. The system stores a maximum of 300,000 notifications in the events folder.
 
 The WEKA cluster sends all events to a predefined central monitoring system, WEKA Home or Local WEKA Home. The GUI displays the events retrieved from the central monitoring system.
 
@@ -30,6 +30,6 @@ The following processes ensure systematic and efficient handling of events trigg
 
 [events-1.md](events-1.md "mention")
 
-[events-list.md](events-list.md "mention")
+[Broken link](broken-reference "mention")
 
 [the-wekaio-support-cloud](../../monitor-the-weka-cluster/the-wekaio-support-cloud/ "mention")

@@ -30,4 +30,4 @@ By ensuring consistent driver availability across supported environments, DDS en
 
 Configure your WEKA clusters and clients to automatically download drivers from: [https://drivers.weka.io](https://drivers.weka.io).
 
-For a configuration example, see [deploy-the-weka-client-on-amazon-eks.md](kubernetes/weka-operator-deployment/deploy-the-weka-client-on-amazon-eks.md "mention").
+For a configuration example, see [deploy-the-weka-client-on-amazon-eks.md](kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks.md "mention").

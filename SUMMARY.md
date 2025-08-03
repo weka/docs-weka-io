@@ -212,6 +212,9 @@
   * [Set up a Data Services container for background tasks](operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md)
   * [Manage background tasks using the GUI](operation-guide/background-tasks/manage-background-tasks-using-the-gui.md)
   * [Manage background tasks using the CLI](operation-guide/background-tasks/manage-background-tasks-using-the-cli.md)
+* [Audit and forwarding management](operation-guide/audit-and-forwarding-management/README.md)
+  * [Manage audit and forwarding using the GUI](operation-guide/audit-and-forwarding-management/manage-audit-and-forwarding-using-the-gui.md)
+  * [Manage audit and forwarding using the CLI](operation-guide/audit-and-forwarding-management/manage-audit-and-forwarding-using-the-cli.md)
 * [Upgrade WEKA versions](operation-guide/upgrading-weka-versions.md)
 * [Manage WEKA drivers](operation-guide/manage-weka-drivers.md)
 
@@ -238,9 +241,9 @@
 ## Kubernetes
 
 * [Composable clusters for multi-tenancy in Kubernetes](kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md)
-* [WEKA Operator deployment](kubernetes/weka-operator-deployment/README.md)
-  * [Deploy the WEKA client on Amazon EKS](kubernetes/weka-operator-deployment/deploy-the-weka-client-on-amazon-eks.md)
-* [WEKA Operator day-2 operations](kubernetes/weka-operator-day-2-operations.md)
+* [WEKA Operator deployments](kubernetes/weka-operator-deployments/README.md)
+  * [Deploy the WEKA client on Amazon EKS](kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks.md)
+* [WEKA Operator day-2 operationsWEKA Operator:CLI](kubernetes/weka-operator-day-2-operationsweka-operator-cli.md)
 
 ## WEKApod
 
@@ -269,6 +272,7 @@
 
 ## Support
 
+* [Release support and commitments](support/release-support-and-commitments.md)
 * [Get support for your WEKA system](support/getting-support-for-your-weka-system.md)
 * [Diagnostics management](support/diagnostics-management/README.md)
   * [Traces management](support/diagnostics-management/traces-management/README.md)

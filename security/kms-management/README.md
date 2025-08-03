@@ -18,16 +18,30 @@ To enhance security, WEKA does not store any data that could reconstruct the KMS
 * **Disaster recovery strategy:** Loss of the KMS configuration can result in the loss of encrypted data. A robust Disaster Recovery (DR) plan is essential in production environments.
 * **High availability:** The KMS must be available during system startup, filesystem creation, and key rotations. Ensuring high availability for the KMS is highly recommended.
 
-**KMS encryption options:**
+{% include "../../.gitbook/includes/supported-kms-types.md" %}
 
-**KMS encryption options:**
+### **KMS encryption models**
 
-* **Cluster encryption key**:  A single encryption key used as the master key for the entire WEKA cluster.
-* **Per-filesystem encryption keys:** Available exclusively with **HashiCorp Vault**, this option allows each filesystem to have its own encryption key, providing enhanced data isolation between tenants.
+WEKA supports two primary models for KMS integration.
 
-### **KMS integration best practices**
+#### **Cluster encryption key**
 
-The KMS is the sole authority for decrypting WEKA filesystem keys. To ensure seamless operations and safeguard your data, adhere to the following best practices:
+In this model, a single encryption key from the KMS serves as the master key for the entire WEKA cluster. All individual filesystem keys are encrypted (wrapped) by this cluster key.
+
+For HashiCorp Vault integration, this model supports two authentication methods:
+
+* **Token-based authentication:** Uses a Vault token for authentication.
+* **AppRole authentication:** Uses a **Role ID** and **Secret ID** for more structured, automated authentication.
+
+#### **Per-filesystem encryption keys**
+
+This model, available exclusively with HashiCorp Vault, allows each filesystem to have its own unique encryption key sourced from the KMS. This approach provides enhanced data isolation, which is ideal for multi-tenant environments where each tenant requires a distinct, customer-controlled encryption key.
+
+This configuration requires using **AppRole authentication**. Filesystems can share authentication credentials if they are in the same KMS namespace, or you can use cluster-level credentials for key access.
+
+## **KMS integration best practices**
+
+To ensure seamless operations and safeguard your data, adhere to the following best practices:
 
 * **Disaster recovery setup:** Establish a robust backup or replication mechanism for the KMS to minimize the risk of data loss.
 * **High availability:** Ensure that the KMS remains highly available, as the WEKA system identifies it through a single address. Downtime in KMS availability could disrupt critical operations.
@@ -51,20 +65,26 @@ The following steps outline the process for managing encryption keys across the 
 
 ## KMS integration: per-filesystem encryption keys
 
-In multi-tenant environments, such as clusters providing POSIX or S3 services to multiple customers, strong data isolation is critical. Each tenant requires the ability to protect their data with unique, customer-controlled encryption keys. To address this, WEKA extends its KMS integration to support independent encryption keys per filesystem using HashiCorp Vault.
+In multi-tenant environments, such as clusters offering POSIX or S3 services to multiple customers, strong data isolation is essential. To meet this requirement, WEKA extends its KMS integration to support per-filesystem encryption keys using HashiCorp Vault. This enables each tenant to use a distinct, customer-controlled encryption key.
 
-#### **Why per-filesystem keys?**
+#### Why use per-filesystem encryption keys?
 
-In multi-tenant setups, individual tenants require secure, isolated encryption keys. By assigning a unique key managed by the KMS to each filesystem, tenants can avoid sharing the cluster key, ensuring greater confidentiality.
+In multi-tenant deployments, isolating encryption keys by tenant ensures that no single key compromises data confidentiality across the environment. Assigning a unique encryption key to each filesystem, managed externally by a KMS, eliminates shared cluster-wide keys and enhances security.
 
-#### **Key features:**
+#### **Key features**
 
-* **Per-filesystem encryption keys:** Each filesystem can be assigned an independent external encryption key, ensuring tenant data isolation.
-* **Shared credentials option:** Filesystems within the same namespace can share authentication credentials for key access.
-* **Cluster-level authentication:** Provides the option to use cluster authentication credentials if needed.
-* **Role-based access:** Supports role-based authentication for secure key access management.
+* **Independent encryption keys per filesystem:** Enables tenant-level data isolation by assigning a unique external key to each filesystem.
+* **Shared credentials option:** Filesystems within the same namespace can share authentication credentials if appropriate.
+* **Cluster-level authentication support:** Optionally allows use of cluster-wide credentials for key access.
+* **Role-based access control (RBAC):** Supports role-based authentication to enforce secure and auditable key access.
 
-The following diagram illustrates how the WEKA cluster is integrated with HashiCorp Vault to manage encryption keys per filesystem.
+#### Authentication method
+
+WEKA integrates with HashiCorp Vault using the **AppRole** authentication method, enabling each filesystem to use a distinct, revokable identity for secure key access. This design is critical for ensuring tenant-level isolation and key management flexibility.
+
+#### Architecture overview
+
+The following diagram illustrates how WEKA integrates with HashiCorp Vault to manage per-filesystem encryption keys:
 
 <figure><img src="../../.gitbook/assets/KMS-per-fs.png" alt=""><figcaption><p>KMS integration with per-filesystem encryption keys</p></figcaption></figure>
 

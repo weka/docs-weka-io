@@ -31,30 +31,29 @@ Ensure the KMS is preconfigured, and the key and a valid token are readily avail
 
 {% tabs %}
 {% tab title="Hashicorp Vault" %}
-For the **HashiCorp Vault** type, set the following:
+To configure the HashiCorp Vault connection from the GUI, set the following properties.
 
-* **Address**: The KMS address.
-* **Key Identifier**: Key name to secure the filesystem keys (encryption-as-a-service).
-* **Role Id:** Role ID for KMS access with per-filesystem encryption. Required if KMS Namespace is defined. Provided by Vault administrator in HashiCorp environments.
-* **Secret ID:** Secret ID for KMS access. Required if KMS Namespace is defined. Can also be set with WEKA\_KMS\_SECRET\_ID. Provided by Vault administrator in HashiCorp environments.
-* **Namespace:** The namespace name that identifies the logical partition within the vault. It is used to organize and isolate data, policies, and configurations. Namespace names must not end with "/", avoid spaces, and refrain from using reserved names like `root`, `sys`, `audit`, `auth`, `cubbyhole`, and `identity`.
+* **Address:** The KMS server address.
+* **Key Identifier:** The key name used to secure the filesystem keys.
+* **Role ID:** The Role ID for AppRole authentication, provided by the Vault administrator.
+* **Secret ID:** The Secret ID for AppRole authentication, provided by the Vault administrator.
+* **Namespace:** The namespace in Vault that identifies the logical partition for organizing data and policies. Namespace names must not end with `/`, avoid spaces, and refrain from using reserved names like `root`, `sys`, `audit`, `auth`, `cubbyhole`, and `identity`.
 
 {% hint style="info" %}
-The **Token** parameter, used for cluster-wide encryption, has been deprecated from the GUI but can still be set through the CLI (see [#configure-the-kms](kms-management-1.md#configure-the-kms "mention")).\
-For per-filesystem encryption, use the **Role ID** and **Secret ID** instead.
+The GUI procedure configures HashiCorp Vault for **per-filesystem encryption**, which uses the AppRole authentication method. To configure cluster-wide encryption (using either a token or AppRole), use the CLI. See [#configure-the-kms](kms-management-1.md#configure-the-kms "mention").
 {% endhint %}
 
 <div align="left"><img src="../../.gitbook/assets/4.4.2_configure_KMS_Hashicorp.png" alt="HashiCorp Vault type configuration"></div>
 {% endtab %}
 
 {% tab title="KMIP " %}
-For the **KMIP** type, set the following:
+To configure the KMIP connection, set the following properties:
 
-* **Address**: Hostname and port of the KMS in the format `hostname:port`. Do not include any protocol prefixes such as `https://`. The hostname can be either a fully qualified domain name (FQDN) or an IP address. Port 5696 is the default for KMIP, but this may vary depending on the server configuration.
-* **KMS Identifier**: Key UID to secure the filesystem keys (encryption-as-a-service).
-* **Client Certificate:** The client certificate content of the PEM file.
-* **Client Key**: The client key content of the PEM file.
-* **CA Certificate**: (Optional) The CA certificate content of the PEM file.
+* **Address:** The hostname and port of the KMS, in `hostname:port` format. The hostname can be a fully qualified domain name (FQDN) or an IP address. Do not include protocol prefixes such as `https://`. The default port for KMIP is 5696, but this can vary based on the server configuration.
+* **KMS Identifier:** The key UID used to secure the filesystem keys.
+* **Client Certificate:** The content of the client certificate PEM file.
+* **Client Key:** The content of the client key PEM file.
+* **CA Certificate:** (Optional) The content of the CA certificate PEM file.
 
 <figure><img src="../../.gitbook/assets/wmng_configure_KMIP.png" alt=""><figcaption><p>KMIP type configuration </p></figcaption></figure>
 {% endtab %}

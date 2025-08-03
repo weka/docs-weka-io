@@ -66,6 +66,10 @@ The NFS client mount is configured using the standard NFS stack operating system
 
 Access Control List (ACL) in NFS (Network File System) provide fine-grained control over file permissions, offering more flexibility than traditional POSIX permissions. NFS supports multiple ACL flavors, each serving different use cases and interoperability needs.
 
+{% hint style="info" %}
+To enable ACL functionality, you must configure LDAP to manage user and group information.
+{% endhint %}
+
 **ACL types in NFS**
 
 NFS supports the following ACL types:
@@ -87,10 +91,6 @@ ACL configuration and management in NFS can be done through various interfaces:
 * **GUI**: The NFS settings in the user interface include options to enable ACLs and configure default ACL flavors (None, POSIX, NFSv4, Hybrid). Changes to ACL settings may require restarting the NFS containers.
 * **Configuration filesystem**:\
   ACL flavors and related configurations are tracked in the global configuration filesystem, ensuring consistent management of permissions across the system.
-
-**LDAP and ACLs**
-
-For ACL functionality, LDAP must be configured to manage user and group information. If Kerberos is set up, no additional LDAP configuration is necessary. Otherwise, LDAP configuration options are provided, supporting both Active Directory (AD) and OpenLDAP.
 
 **Upgrading and ACLs**
 
@@ -136,17 +136,17 @@ This diagram illustrates the Kerberos service interactions in a simplified manne
 
 ### Scalability, load balancing, and resiliency&#x20;
 
-Add as many servers as possible to the interface group for performance scalability.
+For performance scalability, add as many servers as possible to the interface group.
 
-[Floating IPs](#user-content-fn-2)[^2] facilitate load balancing by evenly distributing them across all interface group servers and ports, given the system has 50 or fewer NFS interfaces. However, with the limitation of 50 floating IPs per cluster, systems with more than 50 NFS interfaces may not have a floating IP for each interface.
+The cluster supports a maximum of 200 floating IPs to facilitate load balancing by distributing them evenly across all interface group servers and ports. In systems with more NFS interfaces than this limit, not every interface will have a dedicated floating IP.
 
-When different clients resolve the DNS name into an IP service, each receives a different IP address, ensuring that other clients access different servers. This allows the WEKA system to scale and service thousands of clients.
+When different clients resolve the DNS name into an IP service, each receives a different IP address, ensuring that other clients access different servers. This design allows the WEKA system to scale and service thousands of clients.
 
-To ensure the resilience of the service if a server fails, the system reassigns all IP addresses associated with the failed server to other servers (using the GARP[^3] network messages), and the clients reconnect to the new servers without any reconfiguration or service interruption.
+To ensure service resilience, if a server fails, the system reassigns all IP addresses associated with the failed server to other servers using GARP[^2] network messages. The clients then reconnect to the new servers without any reconfiguration or service interruption.
 
 ### NFS file-locking support
 
-WEKA supports NFS byte-range [advisory locking](#user-content-fn-4)[^4] for NFS versions 3, 4, and 4.1. This mechanism ensures synchronized access to files in a networked environment by allowing multiple processes to coordinate access to shared files. It helps maintain data integrity and consistency by preventing concurrent modifications that could lead to data corruption. WEKA’s implementation is interoperable with POSIX byte-range advisory locks, enabling compatibility and coordination between NFS clients and WEKA’s filesystem.
+WEKA supports NFS byte-range [advisory locking](#user-content-fn-3)[^3] for NFS versions 3, 4, and 4.1. This mechanism ensures synchronized access to files in a networked environment by allowing multiple processes to coordinate access to shared files. It helps maintain data integrity and consistency by preventing concurrent modifications that could lead to data corruption. WEKA’s implementation is interoperable with POSIX byte-range advisory locks, enabling compatibility and coordination between NFS clients and WEKA’s filesystem.
 
 #### NFS file-locking prerequisites for NFSv3
 
@@ -199,10 +199,8 @@ For detailed procedures, see the related topics.
 
 [^1]: NFSv4.0 and NFSv4.1
 
-[^2]: **Floating IPs**: Dynamic IP addresses that can be reassigned to manage network traffic.
+[^2]: **GARP (Gratuitous Address Resolution Protocol)**: Network protocol used for IP address reassignment.
 
-[^3]: **GARP (Gratuitous Address Resolution Protocol)**: Network protocol used for IP address reassignment.
-
-[^4]: **Advisory locking**
+[^3]: **Advisory locking**
 
     A file locking mechanism where processes voluntarily check for and honor locks set by others. It requires all cooperating processes to follow the locking protocol, as the operating system does not enforce it automatically.

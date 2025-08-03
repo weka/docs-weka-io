@@ -1,11 +1,15 @@
 # Add WEKA to an existing Amazon SageMaker HyperPod cluster
 
-## Deployment workflow for existing Amazon SageMaker Hyperpod cluster
+## Deployment workflow for an existing Amazon SageMaker Hyperpod cluster
 
-1. [Deploy WEKA Cluster using Terraform](add-weka-to-an-existing-amazon-sagemaker-hyperpod-cluster.md#deploy-weka-cluster-using-terraform).&#x20;
-2. [Deploy WEKA clients in SageMaker Hyperpod](add-weka-to-an-existing-amazon-sagemaker-hyperpod-cluster.md#deploy-weka-clients-in-sagemaker-hyperpod)
+1. Deploy WEKA Cluster using Terraform.&#x20;
+2. Deploy WEKA clients in SageMaker Hyperpod.
 
-## Deploy WEKA clients in Amazon SageMaker Hyperpod
+### Deploy WEKA Cluster using Terraform
+
+{% include "https://app.gitbook.com/s/VJsIYq2tJgf6IfttPZ6j/~/reusable/qlBVdh8Mg4s4nZrLZclb/" %}
+
+### Deploy WEKA clients in Amazon SageMaker Hyperpod
 
 #### Step 1: Download integration scripts from GitHub
 

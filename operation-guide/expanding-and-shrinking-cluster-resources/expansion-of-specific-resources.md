@@ -168,24 +168,34 @@ COMPUTE     10       <auto>
 
 </details>
 
-### Expand SSDs only
+### Add SSDs to a container
 
-You can add new SSD drives to a container. However, adding SSD drives may alter the ratio between SSDs and drive cores, potentially impacting performance. For optimal system efficiency, take note of this adjustment when considering expansion.
+You can expand the cluster storage capacity by adding new SSD drives to a specific container.
 
-#### Procedure
+When adding drives, you can assign them to specific drive pools, such as `iu4k` or `legacy`. This allows for the integration of diverse SSD types within a single cluster, providing greater hardware flexibility.
 
-1. Ensure the cluster has a drive core to allocate for the new SSD.
-2. Identify the relevant container ID to which you want to add the SSD drive. Run the command:\
-   `weka cluster container`
-3. Scan for new drives. Run the command:\
-   `weka cluster drive scan`
-4. To add the SSDs, run the following command:\
-   `weka cluster drive add <container-id> <device-paths>`\
-   Where:\
-   `container-id` is the Identifier of the drive container to add the local SSD drives.\
-   `device-paths` is a list of block devices that identify local SSDs. \
-   It must be a valid Unix network device nam&#x65;**.**\
-   Format: Space-separated strings. Example:  `/dev/nvme0n1 /dev/nvme1n1`
+Adding SSD drives might alter the ratio between SSDs and drive cores, which can impact performance.
+
+{% hint style="info" %}
+Support for mixed drive pools is only available for clusters newly installed with this software version and is not supported for upgraded clusters.
+{% endhint %}
+
+**Before you begin**
+
+* Ensure the cluster has a drive core available to allocate to the new SSD.
+* Identify the container ID for the SSD addition.
+
+**Procedure**
+
+1. Identify the relevant container ID to which you want to add the SSD drive. Run the following command: `weka cluster container`
+2. Scan for new drives. Run the following command: `weka cluster drive scan`
+3.  To add the SSDs, run the following command: `weka cluster drive add <container-id> <device-paths> [--pool <pool>]`&#x20;
+
+
+
+**Parameters**
+
+<table><thead><tr><th width="171.95703125">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>container-id</code>*</td><td>The identifier of the drive container to which to add the local SSD drives.</td></tr><tr><td><code>device-paths</code>*</td><td><p>A list of block devices that identify local SSDs. It must be a valid Unix network device name. </p><p>Format: Space-separated strings.</p><p>Example: <code>/dev/nvme0n1 /dev/nvme1n1</code></p></td></tr><tr><td><code>pool</code></td><td><p>Specifies the disk pool to which you add the drive. Disk pools help organize drives based on their indirection unit (IU) size to optimize performance and endurance.</p><p>Possible values include:</p><ul><li><code>auto</code>: Automatically selects the appropriate pool by detecting the drive's characteristics.</li><li><code>iu4k</code>: Adds the drive to the Indirection Unit 4K pool. This pool is for drives with a 4KiB indirection unit size.</li><li><code>iubig</code>: Adds the drive to the Indirection Unit "big" pool. This pool is for drives with large indirection units, such as 32KiB.</li><li><code>legacy</code>: Adds the drive to the legacy pool. Use this option for compatibility with systems that were set up before the introduction of indirection unit-based pooling.</li></ul></td></tr></tbody></table>
 
 ## weka local resources command description
 

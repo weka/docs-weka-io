@@ -500,14 +500,36 @@ The synchronization of time on computers and networks is considered good practic
 
 Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the WEKA software.
 
-## **8. Disable the NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
+## **8. Disable** persistent **NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
 
-The WEKA system autonomously manages NUMA balancing, making optimal decisions. Therefore, turning off the Linux kernel’s NUMA balancing feature is a **mandatory requirement** to prevent extra latencies in operations. It’s crucial that the disabled NUMA balancing remains consistent and isn’t altered by a server reboot.
+The WEKA system autonomously manages NUMA balancing to make optimal decisions. Disabling the Linux kernel’s NUMA balancing feature is a mandatory requirement to prevent adding latencies to operations. It is crucial that NUMA balancing remains disabled and is not altered by a server reboot.
 
-To persistently disable NUMA balancing, follow these steps:
+This procedure modifies the `sysctl.conf` file to ensure the setting persists across server reboots.
 
-1. Open the file located at: `/etc/sysctl.conf`
-2. Append the following line: `kernel.numa_balancing=disable`
+**Procedure**
+
+1.  Open the `/etc/sysctl.conf` file using a text editor, such as `vi` or `nano`, with root privileges.
+
+    ```
+    sudo vi /etc/sysctl.conf
+    ```
+2.  Add the following line to the file:
+
+    ```
+    kernel.numa_balancing = 0
+    ```
+3. Save your changes and exit the editor.
+4.  Apply the setting immediately without rebooting the server.
+
+    ```
+    sudo sysctl -p 
+    ```
+
+    The command's output confirms the change:
+
+    ```
+    kernel.numa_balancing = 0
+    ```
 
 ## **9. Enable kdump and set kernel panic reboot timer**
 

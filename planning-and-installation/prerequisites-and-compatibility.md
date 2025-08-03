@@ -375,8 +375,6 @@ See [#high-availability](../weka-system-overview/networking-in-wekaio.md#high-av
 * The SSDs must support PLP (Power Loss Protection).
 * WEKA system storage must be dedicated, and partitioning is not supported.
 * The supported drive capacity is up to 30 TB.
-* IOMMU mode is not supported for SSD drives.\
-  If you need to configure IOMMU on WEKA cluster servers, for instance, due to specific applications when running the WEKA cluster in converged mode, contact our [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team) for assistance.
 * The ratio between the cluster's smallest and the largest SSD capacity must not exceed 8:1.
 
 {% hint style="info" %}
@@ -469,6 +467,8 @@ GCP: [supported-machine-types-and-storage.md](weka-installation-on-gcp/supported
 For additional information and how-to articles, search the WEKA Knowledge Base in the [WEKA support portal](http://support.weka.io) or contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team).
 
 ## KMS
+
+{% include "../.gitbook/includes/supported-kms-types.md" %}
 
 [^1]: **AES (Advanced Encryption Standard)** in BIOS settings refers to hardware acceleration for AES encryption. Enabled by default, it speeds up encryption tasks using AES-NI. Disabling it may affect performance in encryption-heavy applications.
 

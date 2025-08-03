@@ -44,6 +44,7 @@ The following standard S3 APIs are supported:
   * [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html)
   * [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
   * [DELETE Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html)
+  * [DELETE Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html)
   * [COPY Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html)
   * [HEAD Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html)
 * **Object Tagging APIs:**

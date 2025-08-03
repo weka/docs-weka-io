@@ -8,10 +8,10 @@ description: Upgrade your WEKA system with the latest version.
 
 The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations.&#x20;
 
-**Supported source versions for upgrading to version 5.0.1**:
+**Supported source versions for upgrading to version 5.0.2**:
 
 * Minimum required version to upgrade from: 4.4.6.
-* Maximum version: 4.4.6.122.
+* Maximum version: 4.4.8 and 5.0.1.
 
 ### Upgrade guidelines
 
@@ -45,7 +45,7 @@ The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minim
 #### Unsupported upgrades
 
 ```
-4.4.8.83  → 5.0.1.101     Version not in supported range
+4.4.8.53  → 5.0.1.101     Version not in supported range
 4.4.7.89  → 5.0.1.101     Version not in supported range (released after 5.0.1 code freeze)
 4.4.4     → 5.0.1.101     Version not in supported range
 4.4.3     → 5.0.1.101     Version not in supported range
@@ -404,10 +404,10 @@ The following command line upgrade two clients in two batches (each batch has on
 
 Once the upgrade is complete, verify that the cluster is in the new version by running the `weka status` command.
 
-{% hint style="success" %}
-**Example:** The following is returned when the system is upgraded to version 4.4.0:
+**Example:** The following is returned when the system is upgraded to version 5.0.1:
 
-`# weka status`  \
-`Weka v4.4.0`   \
-`...`
-{% endhint %}
+```
+# weka status
+Weka v5.0.1
+...
+```

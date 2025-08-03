@@ -7,7 +7,7 @@ description: >-
 # WEKA CLI hierarchy
 
 {% hint style="info" %}
-There are no changes to the CLI commands between versions 4.4.7 and 5.0.1.
+CLI commands marked with two asterisks (\*\*) are new in version 5.0.2, compared to version 4.4.7.
 {% endhint %}
 
 ### weka agent
@@ -31,6 +31,29 @@ weka alerts
    |mute
    |types
    |unmute
+```
+
+### **weka audit**
+
+```
+weka audit **
+   |cluster
+      |disable
+      |enable
+      |enhancer
+         |disable
+         |enable
+      |resolve-paths
+         |disable
+         |enable
+      |set-global-operations
+      |stats
+      |status
+   |fs
+      |disable
+      |enable
+      |set-operations
+      |status
 ```
 
 ### **weka cloud**
@@ -76,6 +99,7 @@ weka cluster
           |remove
        |remove
        |requested-action
+          |elective-protection **
        |resources
        |restore
     |add
@@ -105,6 +129,9 @@ weka cluster
         |set
         |show   
     |process
+    |requested-action **
+        |elective-protection
+        |set
     |servers
         |list
         |show
@@ -291,6 +318,7 @@ weka local
         |envoy
         |services
         |taskmon
+        |telemetry **
         |weka
     |start  
     |status

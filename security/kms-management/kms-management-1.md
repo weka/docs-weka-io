@@ -4,7 +4,7 @@ description: >-
   WEKA system using the CLI.
 ---
 
-# Manage KMS using the CLI
+# Manage KMS using CLI
 
 Using the CLI, you can:
 
@@ -19,7 +19,9 @@ Using the CLI, you can:
 
 **Command:** `weka security kms set`
 
-To integrate the Key Management Service (KMS) with the WEKA system, use the provided command line for adding or updating the KMS configuration. Ensure that the KMS is preconfigured, and both the key and a valid token are readily available.
+Use this command to add or update the KMS configuration. For HashiCorp Vault, you can configure a single cluster-wide encryption key or enable per-filesystem encryption keys.
+
+Per-filesystem encryption requires using Vault's [AppRole](https://developer.hashicorp.com/vault/docs/auth/approle) authentication method, which you configure using the `--role-id` and `--secret-id` parameters.
 
 Run the following command to establish a connection between the WEKA system and the configured Vault KMS.
 
@@ -27,13 +29,27 @@ Run the following command to establish a connection between the WEKA system and 
 
 **Parameters**
 
-<table><thead><tr><th width="209">Name</th><th width="284">Value</th><th>Considerations</th></tr></thead><tbody><tr><td><code>type</code>*</td><td>Type of the KMS.</td><td>Possible values:<br><code>vault</code> or <code>kmip</code></td></tr><tr><td><code>address</code>*</td><td>KMS server address. </td><td><p><code>URL</code> for <code>vault</code></p><p><code>hostname:port</code> for <code>kmip</code></p></td></tr><tr><td><code>key-identifier</code>*</td><td>Key name for <code>vault</code> or UID for <code>kmip</code> to secure filesystem keys.</td><td></td></tr><tr><td><code>token</code></td><td>API token to access HashiCorp Vault KMS.</td><td><p>This applies only to <code>vault</code>.<br>Prohibited for <code>kmip</code>.</p><ul><li>For cluster-wide encryption, specify the <code>token</code>.</li><li>For per-filesystem encryption, specify the <code>role-id</code> and <code>secret-id</code> parameters below instead of the <code>token</code>.</li></ul><p>The access token must have:</p><ul><li>Read permissions to <code>transit/keys/&#x3C;master-key-name></code></li><li>Write permissions to <code>transit/encrypt/&#x3C;master-key-name></code> and <code>transit/decrypt/&#x3C;masterkeyname></code> </li><li>Permissions to <code>/transit/rewrap</code> and <code>auth/token/lookup</code></li></ul></td></tr><tr><td><code>namespace</code></td><td>The namespace name in HashiCorp Vault.</td><td>Namespace names must not end with "/", avoid spaces, and refrain from using reserved names like <code>root</code>, <code>sys</code>, <code>audit</code>, <code>auth</code>, <code>cubbyhole</code>, and <code>identity</code>.</td></tr><tr><td><code>client-cert</code></td><td>Path to the client certificate PEM file.<br></td><td><p>Must permit <code>encrypt</code> and <code>decrypt</code> permissions.<br>Mandatory for <code>kmip</code> .</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>client-key</code></td><td>Path to the client key PEM file.</td><td><p>Mandatory for <code>kmip</code> .</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>ca-cert</code></td><td>Path to the CA certificate PEM file.<br></td><td><p>Optional for <code>kmip</code>.</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>role-id</code></td><td>Role ID for KMS access with per-filesystem encryption.<br>To obtain the <code>role-id</code> and <code>secret-id</code>, see the section below.</td><td>Mandatory if KMS Namespace is defined.</td></tr><tr><td><code>secret-id</code></td><td>Secret ID for KMS access with per-filesystem encryption.</td><td><p>Mandatory if KMS Namespace is defined.</p><p>You can also specify the secret ID using the environment variable <code>WEKA_KMS_SECRET_ID</code>.</p></td></tr><tr><td><code>convert-to-cluster-key-on-fs</code></td><td>Convert all encrypted filesystems to use cluster key.</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="209">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>type</code>*</td><td>Type of the KMS.<br>Values: <code>vault</code> or <code>kmip</code></td></tr><tr><td><code>address</code>*</td><td><p>KMS server address.<br>Values:<br><code>URL</code> for <code>vault</code></p><p><code>hostname:port</code> for <code>kmip</code></p></td></tr><tr><td><code>key-identifier</code>*</td><td><p>Key name for <code>vault</code> </p><p>UID for <code>kmip</code> to secure filesystem keys.</p></td></tr><tr><td><code>token</code></td><td><p>The API token for authenticating with a HashiCorp Vault KMS.</p><p>This parameter applies only to <strong>Vault</strong> and is used for <strong>cluster-wide encryption</strong>. It cannot be used with the <code>role-id</code> or <code>secret-id</code> parameters, which are used for AppRole authentication.</p><p>The access token must have the following permissions in Vault:</p><ul><li><p>Read access to</p><p><code>transit/keys/&#x3C;master-key-name></code></p></li><li><p>Write access to</p><p><code>transit/encrypt/&#x3C;master-key-name></code> and <code>transit/decrypt/&#x3C;master-key-name></code></p></li><li><p>Permissions for</p><p><code>/transit/rewrap</code> and <code>auth/token/lookup</code></p></li></ul></td></tr><tr><td><code>namespace</code></td><td>The namespace name in HashiCorp Vault.<br>Namespace names must not end with "/", avoid spaces, and refrain from using reserved names like <code>root</code>, <code>sys</code>, <code>audit</code>, <code>auth</code>, <code>cubbyhole</code>, and <code>identity</code>.</td></tr><tr><td><code>client-cert</code></td><td><p>Path to the client certificate PEM file.<br>Must permit <code>encrypt</code> and <code>decrypt</code> permissions.<br>Mandatory for <code>kmip</code> .</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>client-key</code></td><td><p>Path to the client key PEM file.<br>Mandatory for <code>kmip</code> .</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>ca-cert</code></td><td><p>Path to the CA certificate PEM file.<br>Optional for <code>kmip</code>.</p><p>Prohibited for <code>vault</code>.</p></td></tr><tr><td><code>role-id</code></td><td>Role ID for HashiCorp Vault's AppRole authentication method, which is provided by the Vault administrator. This parameter must be used with <code>secret-id</code> and cannot be used with <code>token</code>.</td></tr><tr><td><code>secret-id</code></td><td><p>Secret ID for HashiCorp Vault's AppRole authentication, which is provided by the Vault administrator. This parameter must be used with <code>role-id</code>. Alternatively, you can set this value using the</p><p><code>WEKA_KMS_SECRET_ID</code> environment variable.</p></td></tr><tr><td><code>convert-to-cluster-key-on-fs</code></td><td>Convert all encrypted filesystems to use cluster key.</td></tr></tbody></table>
 
 ### Obtain `role-id` and `secret-id` from HashiCorp Vault
 
-In environments using **HashiCorp Vault** for secure credential management, the Vault administrator would provide the `role-id` and `secret-id` needed for access.
+Use this procedure when configuring HashiCorp Vault with AppRole authentication. This method is required for per-filesystem encryption and is an option for cluster-wide encryption. The Vault administrator provides the `role-id` and `secret-id` needed for access.
 
+#### **Recommendation: use batch tokens for per-filesystem encryption**
+
+For per-filesystem encryption, it is recommended to configure the AppRole with **batch tokens** to ensure optimal performance and scalability in your HashiCorp Vault environment.
+
+Unlike standard service tokens, which generate a new lease for each authentication request, batch tokens are designed for high-volume, automated workflows. They do not create new leases upon use, which is critical for maintaining efficiency in environments with many filesystems.
+
+While batch tokens can be used multiple times, their lifetime is limited by a Time-to-Live (TTL). It is recommended to set a short TTL (for example, 20 minutes) to align with security best practices.
+
+Batch tokens are not single-use but are limited by their TTL, and they do not create new leases upon use, which prevents this scalability problem. To implement this, create your AppRole with the `token_type` set to `batch`.
+
+For more information, refer to the official HashiCorp Vault documentation.
+
+{% hint style="warning" %}
 **Disclaimer**: The following example is provided as a courtesy to illustrate possible integration with **HashiCorp Vault** and is not part of our product.
+{% endhint %}
 
 #### Set up roles for cluster access
 
@@ -138,7 +154,7 @@ If the KMS key is compromised or requires rotation, the KMS administrator can ro
 
 **Parameters**
 
-<table><thead><tr><th width="335">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>new-key-uid</code>*</td><td>Unique identifier for the new key to be used to wrap filesystem keys.<br>Mandatory for <code>kmip</code> only.<br>Do not specify any value for <code>vault</code>.</td></tr><tr><td><code>all</code></td><td>Rewrap all the filesystem encryption keys. Applicable when using HashiCorp Vault for per-filesystem encryption keys.<br>Without the <code>--all</code> option, the command re-encrypts only the keys of filesystems that use the cluster key for encryption.</td></tr><tr><td><code>convert-to-cluster-key-on-fs</code></td><td>Convert all encrypted filesystems to use the KMS cluster key.</td></tr></tbody></table>
+<table><thead><tr><th width="273.8984375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>new-key-uid</code>*</td><td>Unique identifier for the new key to be used to wrap filesystem keys.<br>Mandatory for <code>kmip</code> only.<br>Do not specify any value for <code>vault</code>.</td></tr><tr><td><code>all</code></td><td>Rewrap all the filesystem encryption keys. Applicable when using HashiCorp Vault for per-filesystem encryption keys.<br>Without the <code>--all</code> option, the command re-encrypts only the keys of filesystems that use the cluster key for encryption.</td></tr><tr><td><code>convert-to-cluster-key-on-fs</code></td><td>Convert all encrypted filesystems to use the KMS cluster key.</td></tr></tbody></table>
 
 {% hint style="info" %}
 WEKA does not automatically re-encrypt existing filesystem keys with the new KMS key for snapshots that were previously uploaded with the old encrypted keys.

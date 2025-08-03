@@ -23,7 +23,7 @@ Ensure a filesystem group is set with the required tiering policy. See [#add-a-f
 
 1. From the menu, select **Manage > Filesystems**.
 
-![View filesystems example](../../.gitbook/assets/wmng_view_filesystems.png)
+![View filesystems example](../../.gitbook/assets/view_fs.png)
 
 ## Create a filesystem
 
@@ -36,6 +36,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 * Verify that the system has free capacity.
 * Verify that a filesystem group is already set.
 * If tiering is required, verify that an object store bucket is set.
+* If audit logging required, verify that the Audit and Forwarding feature is enabled and configured.
 * If encryption is required, verify that a KMS is configured.
 
 **Procedure**
@@ -50,7 +51,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
    * **Group**: Select the filesystem group that fits your filesystem.
    * **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.
 
-<figure><img src="../../.gitbook/assets/wmng_create_fs.png" alt=""><figcaption><p>Create filesystem</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/create_fs.png" alt=""><figcaption><p>Create filesystem</p></figcaption></figure>
 
 4.  Optional: [**Tiering**](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).\
     If tiering is required, an object store bucket is already defined, and data reduction is not enabled, select the toggle button and set the details of the object store bucket:
@@ -77,12 +78,18 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 
 <figure><img src="../../.gitbook/assets/wmng_fs_data_reduction.png" alt=""><figcaption><p>Data reduction</p></figcaption></figure>
 
-7. Optional: If **Encryption** is required and your WEKA system is deployed with a KMS, select the toggle button.
-8. Optional: **Required Authentication**.\
+7. Optional: If **Audit Logging** is required for this filesystem, select the toggle button. When on, the WEKA system Forwards this filesystem's audit logs to a configured events monitoring platform, provided that cluster-wide auditing is also enabled.&#x20;
+
+{% hint style="info" %}
+To use the **Audit Logging** option, ensure the **Audit and Forwarding** feature is enabled and configured. For more information, see [audit-and-forwarding-management](../../operation-guide/audit-and-forwarding-management/ "mention").
+{% endhint %}
+
+8. Optional: If **Encryption** is required and your WEKA system is deployed with a KMS, select the toggle button.
+9. Optional: **Required Authentication**.\
    When ON, user authentication is required when mounting to the filesystem. This option is only relevant to a filesystem created in the root organization.\
    Enabling authentication is not allowed for a filesystem hosting NFS client permissions or SMB shares.\
    To authenticate during mount, the user must run the `weka user login` command or use the `auth_token_path` parameter.
-9. Select **Save**.
+10. Select **Save**.
 
 
 
@@ -113,7 +120,7 @@ You can modify the filesystem parameters according to your demand changes over t
 
 3. In the **Edit Filesystem** dialog, modify the parameters according to your requirements. (See the parameter descriptions in the [Add a filesystem](managing-filesystems.md#add-a-filesystem) topic.)
 
-<figure><img src="../../.gitbook/assets/wmng_edit_fs.png" alt=""><figcaption><p>Edit a filesystem</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Edit_fs.png" alt=""><figcaption><p>Edit a filesystem</p></figcaption></figure>
 
 4. Select **Save**.
 

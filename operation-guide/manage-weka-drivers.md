@@ -16,13 +16,13 @@ Updating WEKA drivers ensures compatibility with new kernels, improves performan
 * **Support for requirements**: Includes local builds, driver signing, and archive distribution for different kernels and architectures.
 * **Consistency and flexibility**: Ensures consistent archives and kernel signatures across systems, streamlining version management.
 
-#### WEKA driver directory structure
+#### WEKA drivers directory structure
 
 The WEKA driver directory structure is organized to help you manage driver packages and files efficiently. Here's an overview of the key directories and their contents:
 
-* `/opt/weka/dist/driver`: Stores driver packages by name, version, and kernel signature.
-* `/opt/weka/data/driver`: Parent directory for all driver-related files.
-* `/opt/weka/data/driver/*driver-package*/stage`: Contains staged drivers and kernel object files (`.ko` files ).
+* `/opt/weka/dist/drivers`: Stores driver packages by name, version, and kernel signature.
+* `/opt/weka/data/drivers`: Parent directory for all driver-related files.
+* `/opt/weka/data/drivers/*driver-package*/stage`: Contains staged drivers and kernel object files (`.ko` files ).
 
 ### weka driver subcommands
 

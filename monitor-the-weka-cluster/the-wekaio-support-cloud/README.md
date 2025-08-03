@@ -59,7 +59,7 @@ Uploading information to WEKA Home from the WEKA cluster backend servers and cli
 
 [list-of-alerts-and-corrective-actions.md](../../operation-guide/alerts/list-of-alerts-and-corrective-actions.md "mention")
 
-[Broken link](broken-reference "mention")
+[events-list.md](../../operation-guide/events/events-list.md "mention")
 
 [statistics-list.md](../../operation-guide/statistics/statistics-list.md "mention")
 

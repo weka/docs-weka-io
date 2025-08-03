@@ -30,6 +30,8 @@ The integration of WEKA with AWS ParallelCluster using Slurm consists of two mai
 
 ### Deploy WEKA Cluster using Terraform
 
+{% include "https://app.gitbook.com/s/VJsIYq2tJgf6IfttPZ6j/~/reusable/qlBVdh8Mg4s4nZrLZclb/" %}
+
 ### Prepare for AWS ParallelCluster deployment
 
 **Step 1: AWS ParallelCluster CLI installation**

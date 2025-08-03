@@ -21,6 +21,8 @@
 
 ### Deploy WEKA cluster using Terraform
 
+{% include "https://app.gitbook.com/s/VJsIYq2tJgf6IfttPZ6j/~/reusable/qlBVdh8Mg4s4nZrLZclb/" %}
+
 ### Create Amazon SageMaker HyperPod cluster
 
 1.  **Clone the WEKA cloud solutions repository**\
