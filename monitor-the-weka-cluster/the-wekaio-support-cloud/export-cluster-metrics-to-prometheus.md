@@ -77,7 +77,7 @@ type: total, unprovisioned, unavailable, hotSpare
 
 </details>
 
-<figure><img src="../../.gitbook/assets/Cluster_metrics_sync_with_Prometheus.png" alt=""><figcaption><p>Cluster metrics sync with Prometheus</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets//Cluster_metrics_sync_with_Prometheus.png" alt=""><figcaption><p>Cluster metrics sync with Prometheus</p></figcaption></figure>
 
 ## Export Prometheus metrics from CWH
 
