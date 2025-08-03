@@ -472,7 +472,7 @@ The WEKA system autonomously manages NUMA balancing, making optimal decisions. T
 To persistently disable NUMA balancing, follow these steps:
 
 1. Open the file located at: `/etc/sysctl.conf`
-2. Append the following line: `kernel.numa_balancing=disable`
+2. Append the following line: `kernel.numa_balancing=0`
 
 ## **9. Enable kdump and set kernel panic reboot timer**
 

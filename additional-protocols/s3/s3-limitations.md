@@ -21,38 +21,39 @@ The addressing style used to construct the request is determined by the S3 clien
 The following standard S3 APIs are supported:
 
 * **Bucket APIs:**&#x20;
-  * [HEAD Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_HeadBucket.html)
-  * [GET Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetBucket.html)
-  * [PUT Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_CreateBucket.html)
-  * [DELETE Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteBucket.html)
-  * [List Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_ListObjects.html)
-  * [List Objects V2](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_ListObjectsV2.html)
+  * [HEAD Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html)
+  * [GET Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucket.html)
+  * [PUT Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html)
+  * [DELETE Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html)
+  * [List Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html)
+  * [List Objects V2](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html)
 * **Bucket Lifecycle APIs:**
-  * [GET Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetBucketLifecycleConfiguration.html)
-  * [PUT Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_PutBucketLifecycleConfiguration.html)
-  * [DELETE Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteBucketLifecycle.html)
+  * [GET Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycleConfiguration.html)
+  * [PUT Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html)
+  * [DELETE Bucket Lifecycle](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketLifecycle.html)
 * **Bucket Policy APIs:**
-  * [GET Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetBucketPolicy.html)
-  * [PUT Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_PutBucketPolicy.html)
-  * [DELETE Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteBucketPolicy.html)
+  * [GET Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketPolicy.html)
+  * [PUT Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html)
+  * [DELETE Bucket Policy](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketPolicy.html)
 * **Bucket Tagging APIs:**
-  * [GET Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetBucketTagging.html)
-  * [PUT Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_PutBucketTagging.html)
-  * [DELETE Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteBucketTagging.html)
+  * [GET Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html)
+  * [PUT Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html)
+  * [DELETE Bucket Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html)
 * **Object APIs:**
-  * [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetObject.html)
-  * [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_PutObject.html)
-  * [DELETE Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteObject.html)
+  * [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html)
+  * [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
+  * [DELETE Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html)
+  * ​[DELETE Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html)
 * **Object Tagging APIs:**
-  * [GET Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_GetObjectTagging.html)
-  * [PUT Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_PutObjectTagging.html)
-  * [DELETE Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_DeleteObjectTagging.html)
+  * [GET Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html)
+  * [PUT Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html)
+  * [DELETE Object Tagging](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectTagging.html)
 * **Object Multipart APIs:**
-  * [POST Create Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_CreateMultipartUpload.html)
-  * [POST Complete Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_CompleteMultipartUpload.html)
-  * [GET Object Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_ListParts.html)
-  * [PUT Part](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_UploadPart.html)
-  * [DELETE Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API\_AbortMultipartUpload.html)
+  * [POST Create Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html)
+  * [POST Complete Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html)
+  * [GET Object Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)
+  * [PUT Part](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
+  * [DELETE Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html)
 
 ## General limits
 
@@ -75,8 +76,8 @@ The following standard S3 APIs are supported:
 * Adding a forward slash ("`/`") in the object's prefix after the first character is interpreted as a directory. Such directory segments are limited to 255 characters.
 
 {% hint style="info" %}
-* For naming convention details, see [Creating object key names](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html) (AWS portal).
-* Ensure the object key name is also compatible with protocols other than S3. Specifically, avoid special characters that might be unsupported in the other protocols.&#x20;
+- For naming convention details, see [Creating object key names](https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html) (AWS portal).
+- Ensure the object key name is also compatible with protocols other than S3. Specifically, avoid special characters that might be unsupported in the other protocols.&#x20;
 {% endhint %}
 
 ## Policy limitations
