@@ -188,6 +188,11 @@ Adhere to the following considerations when choosing the adapters:
   If any network connection, irrespective of whether it’s InfiniBand or Ethernet, on a given backend possess the capability to transmit frames exceeding 4 KB in size, it is mandatory for all network connections used directly by WEKA on that same backend to have the ability to transmit frames of at least 4 KB.
 * [**IOMMU**](#user-content-fn-7)[^7] **support**\
   WEKA automatically detects and enables IOMMU for the server and PCI devices. Manual enablement is not required.
+
+{% hint style="info" %}
+When the Linux operating system is configured with `iommu=1`, IOMMU is enabled system-wide, and all PCI devices operate under IOMMU control. It is not possible to selectively exclude specific PCI devices from IOMMU when this mode is active.
+{% endhint %}
+
 * **Shared networking**\
   Shared networking (also known as single IP) allows a single IP address to be assigned to the Physical Function (PF) and shared across multiple Virtual Functions (VFs). This means that a single IP can be shared by every WEKA process on that server, while still being available to the host operating system.
 *   **SR-IOV VF**

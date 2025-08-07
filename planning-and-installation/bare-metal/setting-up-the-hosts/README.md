@@ -595,7 +595,7 @@ The `wekachecker` performs the following validations:
 * RAM state
 * XFS FS type installed
 * Mellanox OFED is installed
-* IOMMU mode for SSD drives is disabled
+* IOMMU setting in all servers is consistent, either all enabled or all disabled.
 * rpcbind utility is enabled
 * SquashFS is enabled
 * noexec mount option on /tmp
@@ -647,7 +647,7 @@ Checking if Numa balancing is enabled                        [WARN]
 Checking RAM state for errors                                [PASS]
 Check for XFS FS type installed                              [PASS]
 Check if Mellanox OFED is installed                          [PASS]
-Check for IOMMU disabled                                     [PASS]
+Check for consistent IOMMU                                   [PASS]
 Check for rpcbind enabled                                    [PASS]
 Check for squashfs enabled                                   [PASS]
 Check for /tmp noexec mount                                  [PASS]

@@ -6,30 +6,24 @@ description: Upgrade your WEKA system with the latest version.
 
 ## Upgrade overview
 
-The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations.&#x20;
-
-**Supported source versions for upgrading to version 5.0.2**:
-
-* Minimum required version to upgrade from: 4.4.6.
-* Maximum version: 4.4.8 and 5.0.1.
+The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations. For a complete list of supported source and target versions, refer to the official compatibility information at [get.weka.io](https://get.weka.io/).
 
 ### Upgrade guidelines
 
-#### Version requirements
+**Version requirements**
 
 * Upgrades must progress from older versions to newer versions.
 * Version compatibility is based on release dates relative to LTS releases.
 * Major version upgrades must be to the next consecutive version only.
+* Confirm specific version compatibility at  [get.weka.io](https://get.weka.io).
+* Make sure the client's version is compatible with the backend upgrade version you intend to deploy. The `client-target-version` parameter must be consistently defined and identical across all clusters within a Single Client Multiple Clusters (SCMC). See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
 
-#### Version compatibility rules
+**Version compatibility rules**
 
-* When upgrading from version 4.4.X to 5.0.Y:
-  * Version 5.0.Y must have been released after the 4.4.X LTS release
-  * All intermediate versions must be supported versions
-* Confirm specific version compatibility at [get.weka.io](https://get.weka.io).
-* Make sure the client's version is compatible with the backend upgrade version you intend to deploy.
-  * The `client-target-version` parameter must be consistently defined and identical across all clusters within a Single Client Multiple Clusters (SCMC). \
-    See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
+When upgrading from version 4.4.X to 5.0.Y:
+
+* Version 5.0.Y must have been released after the 4.4.X LTS release.
+* All intermediate versions must be supported versions.
 
 ### **Upgrade example**
 

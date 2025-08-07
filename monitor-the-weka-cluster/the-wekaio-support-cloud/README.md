@@ -30,13 +30,21 @@ The WEKA cluster periodically and on-demand uploads various information types to
 
 * **Alerts:** Alerts indicate problematic ongoing states that are impacting the cluster. Alerts are uploaded immediately when a cluster container (host) creates an alert.
 * **Events:** Events contain relevant information for the WEKA cluster and customer environment. Triggered by a customer or an environmental change, events can be informational, indicate an issue with the cluster, or a previously resolved issue. Events are uploaded immediately when a cluster container creates an event.
-* **Statistics:** Statistics help analyze the WEKA system performance and determine the source of any issue. Statistics are uploaded every minute from each container.
+* **Statistics:** Statistics help analyze the WEKA system performance and determine the source of any issue. The uploaded statistics information includes a subset of the complete list available  from the cluster, such as IOPS, throughput, latency, metadata, and block size. Statistics are uploaded every minute from each container.
 * **Usage reports:**  Usage reports provide metrics for interface groups, containers, processes (nodes), drives, status, version, and filesystems. Usage reports are uploaded every minute.
-* **Analytics:** Analytics provide metrics for the cluster, drives, filesystem settings, containers, network devices, nodes, protocols, and more. Analytics are uploaded every 30 minutes.
+* **Analytics:** Analytics provide metrics for the cluster configuration, including drives, filesystem settings, containers, network devices, nodes, protocols, and more. Analytics are uploaded every 30 minutes.
 
 **On-demand uploads:**
 
 * **Diagnostics (support files):** These are uploaded on-demand from the container that collected the diagnostics.
+
+{% hint style="info" %}
+**WEKA Home data privacy notice:** WEKA Home is committed to safeguarding your data privacy. To ensure the confidentiality and security of your information, the WEKA Home support cloud explicitly excludes the following from upload and collection:
+
+* File and directory names
+* File contents
+* User passwords
+{% endhint %}
 
 ## Upload information from the WEKA cluster to the WEKA Home
 

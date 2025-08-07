@@ -1,12 +1,12 @@
 ---
 description: >-
   Explore the various statistics the WEKA system produces, organized according
-  to their respective categories.
+  to their respective category labels.
 ---
 
 # Statistics list
 
-### API statistics
+### api statistics
 
 | **Type**       | **Description**    | **Units** |
 | -------------- | ------------------ | --------- |
@@ -16,7 +16,7 @@ description: >-
 | TOTAL\_4xx\_RQ | Total 4xx requests | Requests  |
 | TOTAL\_5xx\_RQ | Total 5xx requests | Requests  |
 
-### Assert Failures
+### Assert failures
 
 | **Type**                                          | **Description**                                                        | **Units**          |
 | ------------------------------------------------- | ---------------------------------------------------------------------- | ------------------ |

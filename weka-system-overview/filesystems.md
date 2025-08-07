@@ -39,26 +39,53 @@ Thin provisioning proves beneficial in diverse scenarios:
 
 ### Data reduction **in WEKA filesystems**
 
-WEKA introduces a cluster-wide data reduction feature that can be activated for individual filesystems. This capability incorporates block-variable differential compression and advanced de-duplication techniques across all filesystems, significantly reducing the required storage capacity for user data and delivering substantial cost savings.
+Data reduction is a cluster-wide feature that you can activate for individual filesystems. This feature uses block-variable differential compression and advanced deduplication techniques across all enabled filesystems. The result is a significant reduction in the storage capacity required for user data, which can lead to substantial cost savings. The capacity savings from a data reduction-enabled filesystem are returned to the cluster, not to the filesystem itself.
 
-The effectiveness of the compression ratio hinges on the specific workload. It is particularly efficient for text-based data, large-scale unstructured datasets, log analysis, databases, code repositories, and sensor data.
+The effectiveness of the data reduction ratio depends on the workload. It is particularly effective for text-based data, large-scale unstructured datasets, log analysis, databases, code repositories, and sensor data.
 
-The data reduction applies exclusively to user data (not metadata) per filesystem. The data reduction can be enabled only on thin-provision, non-tiered, and unencrypted filesystems within a cluster holding a valid Data Efficiency Option (DEO) license.
+Data reduction applies only to user data, not metadata, on a per-filesystem basis.
+
+For example, the image below shows a cluster with a total physical SSD capacity of 979.2 TB. Thanks to data reduction, the cluster achieves a Data Reduction Ratio of 2.78:1, which results in 574.6 TB of saved capacity. This saving allows the cluster to have 1.6 PB of provisioned space, which is 159% of the actual physical capacity.
+
+<figure><img src="../.gitbook/assets/data_reduction_capacity_saving_example.png" alt="" width="422"><figcaption><p>Data reduction capcity saving</p></figcaption></figure>
+
+#### Prerequisites
+
+To enable data reduction on a filesystem, the following conditions must be met:
+
+* The filesystem is thin-provisioned.
+* The filesystem is non-tiered.
+* The filesystem is not encrypted.
+* The cluster has a valid Data Efficiency Option (DEO) license.
 
 #### How data reduction operates
 
-Data reduction is a post-process activity. New data written to the cluster is uncompressed. The data reduction process runs as a background task with lower priority than tasks serving user IO requests. It starts when enough data is written to the filesystems.
+Data reduction is a post-process, background activity with a lower priority than user I/O requests. When new data is written to a filesystem with data reduction enabled, it is initially stored uncompressed. The reduction process begins automatically as a background task once a sufficient amount of data accumulates.
 
-**Data reduction tasks:**
+The data reduction process during write involves the following tasks:
 
-* **Ingestion:**
-  * _Clusterization_**:** This technique is applied to data blocks at the 4K block level. The system identifies similarity across uncompressed data in all filesystems enabled for data reduction.
-  * _Compression_: The system reads similar and unique blocks, compressing each type separately. Compressed data is then written to the filesystem.
-* **Defragmentation**:&#x20;
-  * Uncompressed data related to successful compression is marked for deletion.
-  * The defrag process waits for sufficient blocks to be invalidated and then permanently deletes them.
+1. **Fingerprinting and ingestion:** As data is written, the system performs fingerprinting by calculating similarity hashes. A background ingest task then uses these hashes to find similar data blocks across all filesystems that have data reduction enabled. This technique, known as clusterization, operates at the 4K block level to identify similarities.
+2. **Compression:** The system reads the similar and unique data blocks and compresses them. The newly compressed data is then written back to the filesystem.
+3. **Defragmentation:** After data is successfully compressed, the original, uncompressed blocks are marked for deletion. A defragmentation process waits for a sufficient number of these blocks to be invalidated and then permanently deletes them, freeing up SSD capacity.
 
-<figure><img src="../.gitbook/assets/DataReduction.gif" alt=""><figcaption><p>Data reduction process at a glance</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/DataReduction.gif" alt=""><figcaption><p>Data reduction process during write at a glance</p></figcaption></figure>
+
+The data reduction process during read involves decompressio&#x6E;**.** When a client reads compressed data, the system performs decompression inline as part of the read operation. This decompression is handled by the drive containers.
+
+#### Performance monitoring
+
+You can monitor the performance and impact of data reduction using a dedicated Grafana dashboard. This dashboard provides insights into the resources being used and the efficiency of the reduction process.
+
+Key monitoring panels include:
+
+* **CPU Time % in background fibers:** Shows the percentage of CPU capacity used by background tasks, including data reduction.
+* **Data Reduction Ingest Rate:** Tracks the rate (in blocks) at which data is being ingested for reduction.
+* **Fingerprints - Performed FP Calcs:** Displays the rate of fingerprint calculations being performed per second.
+* **Fingerprints - Skipped FP Calcs:** Shows the rate of fingerprint calculations that were skipped. An increase in skipped calculations can indicate a high system load.
+
+<figure><img src="../.gitbook/assets/data_reduction_monitoring_2.png" alt=""><figcaption><p>Cluster CPU statistics</p></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/data_reduction_monitoring_1.png" alt=""><figcaption><p>Data reduction fingerprints and ingest rate</p></figcaption></figure>
 
 ### Encrypted filesystems in WEKA
 

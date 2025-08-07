@@ -86,3 +86,21 @@ To enable WEKA system compatibility, configure certain NVM options to increase t
 4. **Reboot the server**: Reboot the server to apply the changes.
 
 The adapter is ready for use by the WEKA system.
+
+## Configure Broadcom P2100G adapters for 200 Gbps operation
+
+Convert a dual-port 100 Gbps Broadcom P2100G adapter into a single-port 200 Gbps configuration by consolidating both ports. This mode is optimal for high-throughput applications requiring maximum bandwidth on a single interface.
+
+#### Procedure
+
+1.  **Determine NIC index:** Run the following command to list all installed NICs and determine the correct index (`<index>`) of the target P2100G adapter:
+
+    ```
+    niccli list
+    ```
+2.  **Set link speed and port:** Use the Linux `niccli` tools to set the default link speed to 200G for both the driver (when the OS is running) and the firmware (PXE boot), and hide the second network port with the following commands:
+
+    ```
+    niccli -i <index> nvm --setoption firmware_link_speed_d0 --scope 0 --value 0x07
+    niccli -i <index> nvm --setoption port_operation_mode --value 
+    ```
