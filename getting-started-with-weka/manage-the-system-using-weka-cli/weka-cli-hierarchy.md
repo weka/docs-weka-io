@@ -99,7 +99,6 @@ weka cluster
           |remove
        |remove
        |requested-action
-          |elective-protection **
        |resources
        |restore
     |add

@@ -2584,35 +2584,6 @@ weka cluster requested-action [--color color] [--help]
 | `--color`      | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled') |
 | `-h`, `--help` | Show help message                                                                |
 
-**weka cluster requested-action elective-protection**
-
-Set the elective protection level of the cluster
-
-```sh
-weka cluster requested-action elective-protection <value>
-                                                  [--color color]
-                                                  [--HOST HOST]
-                                                  [--PORT PORT]
-                                                  [--CONNECT-TIMEOUT CONNECT-TIMEOUT]
-                                                  [--TIMEOUT TIMEOUT]
-                                                  [--profile profile]
-                                                  [--help]
-                                                  [--json]
-
-```
-
-| Parameter                 | Description                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `value`\*                 | The elective protection level to set. Must be a positive integer (default: 2)                              |
-| `--color`                 | Specify whether to use color in output (format: 'auto', 'disabled' or 'enabled')                           |
-| `-H`, `--HOST`            | Specify the host. Alternatively, use the WEKA\_HOST env variable                                           |
-| `-P`, `--PORT`            | Specify the port. Alternatively, use the WEKA\_PORT env variable                                           |
-| `-C`, `--CONNECT-TIMEOUT` | Timeout for connecting to cluster, default: 10 secs (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited) |
-| `-T`, `--TIMEOUT`         | Timeout to wait for response, default: 1 minute (format: 3s, 2h, 4m, 1d, 1d5h, 1w, infinite/unlimited)     |
-| `--profile`               | Name of the connection and authentication profile to use                                                   |
-| `-h`, `--help`            | Show help message                                                                                          |
-| `-J`, `--json`            | Format output as JSON                                                                                      |
-
 **weka cluster requested-action set**
 
 Set the requested action of the supplied containers to one of: STOP, RESTART, APPLY\_RESOURCES to gracefully stop, restart or apply resources to the containers.
