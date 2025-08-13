@@ -10,6 +10,10 @@ Follow these procedures to complete the installation, initial setup, and configu
 4. [#configure-the-idrac](setup.md#configure-the-idrac "mention") (if the WMS server and Ethernet switch are unavailable)
 5. [#configure-the-weka-software-using-wms](setup.md#configure-the-weka-software-using-wms "mention")
 
+{% hint style="info" %}
+The WEKA Management Server (WMS) is an optional component. If a WMS is not part of your deployment, omit the WMS-related steps.
+{% endhint %}
+
 ### Prepare for installation
 
 Ensure the customer site is ready for deployment according to the site requirements outlined during the service personnel's site survey.
