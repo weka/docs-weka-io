@@ -27,11 +27,47 @@ Use this command to describe all the alert types the WEKA cluster can return, al
 
 Use the following command line to list all alerts (muted and unmuted) in the WEKA cluster:
 
-`weka alerts [--muted]`
+`weka alerts [--severity severity]`` ``[--muted]`
 
 **Parameters**
 
-<table><thead><tr><th width="208">Name</th><th width="355">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>muted</code></td><td>List muted alerts alongside unmuted ones.</td><td>False</td></tr></tbody></table>
+<table><thead><tr><th width="221.9609375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>severity</code></td><td>Include event with equal and higher severity, default: WARNING Format: <code>debug</code>, <code>warning</code>, <code>minor</code>, <code>major</code> or <code>critical</code></td></tr><tr><td><code>muted</code></td><td>List muted alerts alongside unmuted ones.</td></tr></tbody></table>
+
+#### `weka alerts` output parameters
+
+Explore the output parameters of the `weka alerts` command.
+
+<table><thead><tr><th width="217.90234375">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>action</code></td><td>Displays the recommended action to resolve the alert.</td></tr><tr><td><code>active_duration</code></td><td>Indicates the duration for which the alert has been active.</td></tr><tr><td><code>comment</code></td><td>Shows any user-added comments for the alert.</td></tr><tr><td><code>count</code></td><td>Provides the number of times the alert has occurred.</td></tr><tr><td><code>description</code></td><td>Explains the alert in detail.</td></tr><tr><td><code>end_time</code></td><td>Specifies the time when the alert was resolved.</td></tr><tr><td><code>mute_time_remaining</code></td><td>Indicates the remaining time until the alert is unmuted.</td></tr><tr><td><code>muted</code></td><td>Shows whether the alert is currently muted (<code>muted</code> or <code>unmuted</code>).</td></tr><tr><td><code>severity</code></td><td>Defines the severity level of the alert, for example, <code>WARNING</code>.</td></tr><tr><td><code>start_time</code></td><td>Specifies the start time when an alert type first started, not when each individual alert instance was generated.</td></tr><tr><td><code>title</code></td><td>Provides a concise title for the alert.</td></tr><tr><td><code>type</code></td><td>Identifies the unique type of the alert.</td></tr></tbody></table>
+
+<details>
+
+<summary>Example</summary>
+
+```
+$weka alerts
+TYPE              SEVERITY  MUTED  START TIME  COUNT  TITLE                                MUTE TIME REMAINING  COMMENT
+SystemDefinedTLS  WARNING   Muted  11:30:55h       1  TLS certificate is not user-defined        30d 12:32:37h
+
+$weka alerts --format json
+[
+    {
+        "action": "Replace the auto-generated self-signed certificate with a user-defined certificate by running the command 'weka security tls set'.",
+        "active_duration": null,
+        "comment": null,
+        "count": 1,
+        "description": "The system uses an auto-generated self-signed TLS certificate.",
+        "end_time": "",
+        "mute_time_remaining": 2637140,
+        "muted": true,
+        "severity": "WARNING",
+        "start_time": "2025-08-13T03:33:18.807934Z",
+        "title": "TLS certificate is not user-defined",
+        "type": "SystemDefinedTLS"
+    }
+]
+```
+
+</details>
 
 ## **Mute alerts**
 
