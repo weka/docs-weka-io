@@ -234,7 +234,7 @@ Shared networking configuration for NIC models:
   Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
 *   **WEKA peer connectivity requires NAT-free networking**
 
-    WEKA requires visibility and connectivity to all peers, without interference from networking technologies like network address translation, or NAT.
+    WEKA requires visibility and connectivity to all peers, without interference from networking technologies like Network Address Translation (NAT).
 
 **Related topics**
 
