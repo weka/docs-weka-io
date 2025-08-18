@@ -183,7 +183,7 @@ Adhere to the following considerations when choosing the adapters:
 * **Mixed networks:** A mixed network configuration refers to a setup where a WEKA cluster connects to both InfiniBand and Ethernet networks. RDMA is not supported in mixed networks.
 * **IP Addressing for dataplane NICs:** Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
 * **WEKA peer connectivity requires NAT-free networking**\
-  WEKA requires visibility and connectivity to all peers, without interference from networking technologies like network address translation, or NAT.
+  WEKA requires visibility and connectivity to all peers, without interference from networking technologies like Network Address Translation (NAT).
 
 ### Supported network adapters <a href="#networking-ethernet" id="networking-ethernet"></a>
 
