@@ -1,6 +1,6 @@
 # Table of contents
 
-* [WEKA v4.3 documentationUMA balancing 0 not dia](README.md)
+* [WEKA v4.3 documentation](README.md)
   * [Documentation revision history](readme/documentation-revision-history.md)
 
 ## WEKA System Overview

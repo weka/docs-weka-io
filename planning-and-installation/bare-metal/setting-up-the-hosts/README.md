@@ -265,16 +265,16 @@ The following steps provide guidance for configuring dual-network links with pol
     net.ipv4.conf.ib1.arp_announce = 2
     net.ipv4.conf.ib0.arp_filter = 1
     net.ipv4.conf.ib1.arp_filter = 1
-    net.ipv4.conf.ib0.arp_ignore = 0
-    net.ipv4.conf.ib1.arp_ignore = 0
+    net.ipv4.conf.ib0.arp_ignore = 1
+    net.ipv4.conf.ib1.arp_ignore = 1
 
     # As an alternative set for all interfaces by default
     net.ipv4.conf.all.arp_filter = 1
     net.ipv4.conf.default.arp_filter = 1
     net.ipv4.conf.all.arp_announce = 2
     net.ipv4.conf.default.arp_announce = 2
-    net.ipv4.conf.all.arp_ignore = 0
-    net.ipv4.conf.default.arp_ignore = 0
+    net.ipv4.conf.all.arp_ignore = 1
+    net.ipv4.conf.default.arp_ignore = 1
     ```
 3. Save the file.
 4.  Apply the new settings by running:
