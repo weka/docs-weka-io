@@ -34,14 +34,10 @@ Some of the examples contain version-specific information. The software is updat
 
 * To install Mellanox OFED, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
 * To install Broadcom driver, see [broadcom-adapter-setup-for-weka-system.md](broadcom-adapter-setup-for-weka-system.md "mention").
-* To install Intel driver, see [Latest Drivers & Software downloads](https://www.intel.com/content/www/us/en/products/sku/210969/intel-ethernet-network-adapter-e8102cqda2/downloads.html).
 
 ## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
-Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following cases:
-
-* The servers are equipped with Intel NICs.&#x20;
-* When working with client VMs, a physical NIC's virtual functions (VFs) must be exposed to the virtual NICs.
+Enabling Single Root I/O Virtualization (SR-IOV) is mandatory when deploying client VMs. The physical NIC must expose its virtual functions (VFs) to the corresponding virtual NICs to ensure proper functionality and performance.
 
 **Related topic**
 
