@@ -71,7 +71,82 @@ Enabling Single Root I/O Virtualization (SR-IOV) is mandatory when deploying cli
 
 For additional details, refer to the NVIDIA ConnectX documentation.
 
-## 4. Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
+## 4. Set custom kernel parameters <a href="#configure-the-networking" id="configure-the-networking"></a>
+
+To ensure optimal performance and stability, configure the Linux kernel with custom parameters that:
+
+* Disable NUMA balancing to reduce latency (mandatory).
+* Enable automatic reboots after kernel panic to minimize downtime.
+* Optimize ARP behavior for improved network performance.
+
+The recommended approach is to consolidate all custom kernel parameters into a single configuration file: `/etc/sysctl.d/99-weka.conf`. This ensures the settings persist across reboots, simplifies administration, and avoids conflicts with package updates.
+
+#### Procedure
+
+1.  **Create the configuration file:** Open a new file under `/etc/sysctl.d/` to store all custom kernel parameters:
+
+    ```bash
+    sudo vi /etc/sysctl.d/99-weka.conf
+    ```
+2.  **Add kernel parameter settings:** Insert the following lines into the file. Comments are included for clarity:
+
+    {% code title="/etc/sysctl.d/99-weka.conf" %}
+    ```
+    # --- Disable NUMA balancing (Mandatory) ---
+    kernel.numa_balancing = 0
+
+    # --- Configure automatic reboot on kernel panic ---
+    kernel.panic = 300
+
+    # --- Minimal configuration per specific IB/Eth interface ---
+    # Replace ib0 and ib1 with your specific interface names
+    net.ipv4.conf.ib0.arp_announce = 2
+    net.ipv4.conf.ib1.arp_announce = 2
+    net.ipv4.conf.ib0.arp_filter = 1
+    net.ipv4.conf.ib1.arp_filter = 1
+    net.ipv4.conf.ib0.arp_ignore = 1
+    net.ipv4.conf.ib1.arp_ignore = 1
+
+    # --- Alternative network ARP settings for all interfaces ---
+    net.ipv4.conf.all.arp_filter = 1
+    net.ipv4.conf.default.arp_filter = 1
+    net.ipv4.conf.all.arp_announce = 2
+    net.ipv4.conf.default.arp_announce = 2
+    net.ipv4.conf.all.arp_ignore = 1
+    net.ipv4.conf.default.arp_ignore = 1
+    ```
+    {% endcode %}
+3. **Save the file and exit the editor.**
+4.  **Apply the new settings:** Reload all kernel parameters from configuration files without rebooting:
+
+    ```bash
+    sudo sysctl --system
+    ```
+5. **Verify configuration changes:**
+   1.  Verify NUMA balancing:
+
+       ```bash
+       sysctl kernel.numa_balancing
+       ```
+
+       Expected output:
+
+       ```bash
+       kernel.numa_balancing = 0
+       ```
+   2.  Verify kernel panic timer:
+
+       ```bash
+       sysctl kernel.panic
+       ```
+
+       Expected output:
+
+       ```bash
+       kernel.panic = 300
+       ```
+
+## 5. Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
 
 ### Ethernet configuration
 
@@ -246,38 +321,9 @@ ignore-carrier=ib0,ib1
 
 3. Restart the NetworkManager service for the changes to take effect.
 
-## 5. Configure dual-network links with policy-based routing <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
+## 6. Configure dual-network links with policy-based routing <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
 
 The following steps provide guidance for configuring dual-network links with policy-based routing on Linux systems. Adjust IP addresses and interface names according to your environment.
-
-### **General Settings in `/etc/sysctl.conf`**
-
-1. Open the `/etc/sysctl.conf` file using a text editor.
-2.  Add the following lines at the end of the file to set minimal configurations per InfiniBand (IB) or Ethernet (Eth) interface:
-
-    ```bash
-    # Minimal configuration, set per IB/Eth interface
-    net.ipv4.conf.ib0.arp_announce = 2
-    net.ipv4.conf.ib1.arp_announce = 2
-    net.ipv4.conf.ib0.arp_filter = 1
-    net.ipv4.conf.ib1.arp_filter = 1
-    net.ipv4.conf.ib0.arp_ignore = 1
-    net.ipv4.conf.ib1.arp_ignore = 1
-
-    # As an alternative set for all interfaces by default
-    net.ipv4.conf.all.arp_filter = 1
-    net.ipv4.conf.default.arp_filter = 1
-    net.ipv4.conf.all.arp_announce = 2
-    net.ipv4.conf.default.arp_announce = 2
-    net.ipv4.conf.all.arp_ignore = 1
-    net.ipv4.conf.default.arp_ignore = 1
-    ```
-3. Save the file.
-4.  Apply the new settings by running:
-
-    ```bash
-    sysctl -p /etc/sysctl.conf
-    ```
 
 ### **RHEL/Rocky/CentOS routing configuration using the network scripts**
 
@@ -466,7 +512,7 @@ DNS configuration:
 
 [#high-availability-ha](../../../weka-system-overview/networking-in-wekaio.md#high-availability-ha "mention")
 
-## 6. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
+## 7. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
 
 Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the servers:
 
@@ -490,50 +536,13 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 All WEKA server interfaces within the same subnet must have connectivity and be able to ping each other.
 {% endhint %}
 
-## 7. Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
+## 8. Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
 
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the WEKA system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
 Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the WEKA software.
 
-## **8. Disable** persistent **NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
-
-The WEKA system autonomously manages NUMA balancing to make optimal decisions. Disabling the Linux kernel’s NUMA balancing feature is a mandatory requirement to prevent adding latencies to operations. It is crucial that NUMA balancing remains disabled and is not altered by a server reboot.
-
-This procedure modifies the `sysctl.conf` file to ensure the setting persists across server reboots.
-
-**Procedure**
-
-1.  Open the `/etc/sysctl.conf` file using a text editor, such as `vi` or `nano`, with root privileges.
-
-    ```
-    sudo vi /etc/sysctl.conf
-    ```
-2.  Add the following line to the file:
-
-    ```
-    kernel.numa_balancing = 0
-    ```
-3. Save your changes and exit the editor.
-4.  Apply the setting immediately without rebooting the server.
-
-    ```
-    sudo sysctl -p 
-    ```
-
-    The command's output confirms the change:
-
-    ```
-    kernel.numa_balancing = 0
-    ```
-
-## **9. Enable kdump and set kernel panic reboot timer**
-
-Enabling kdump and configuring the kernel panic reboot timer ensures system crashes leave log files for analysis and automate system reboot after a kernel panic to minimize downtime.
-
-<details>
-
-<summary><strong>Enable kdump</strong></summary>
+## **9. Enable kdump**
 
 Enabling kdump ensures crash diagnostic data is captured (`/var/crash`).
 
@@ -546,20 +555,6 @@ Enabling kdump ensures crash diagnostic data is captured (`/var/crash`).
 path /var/crash
 core_collector makedumpfile -c --message-level 1 -d 31
 ```
-
-</details>
-
-<details>
-
-<summary><strong>Set kernel panic reboot timer</strong></summary>
-
-Setting `kernel.panic` to reboot after 300 seconds automates recovery from kernel panics, reducing server downtime and aiding in faster issue resolution.
-
-1. Open the file located at: `/etc/sysctl.conf`
-2. Append the following line: `kernel.panic = 300`
-3. Apply changes: `sudo sysctl -p`
-
-</details>
 
 ## 10. Disable swap (if any)
 
