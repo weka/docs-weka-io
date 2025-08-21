@@ -13,12 +13,12 @@ This preparation consists of the following steps:
 1. Install NIC drivers
 2. Enable SR-IOV (when required)
 3. Set up ConnectX cards
-4. Configure the networking
-5. Configure the HA networking
-6. Verify the network configuration
-7. Configure the clock synchronization
-8. Disable the NUMA balancing
-9. Enable kdump and set kernel panic reboot timer
+4. Set custom kernel parameters
+5. Configure the networking
+6. Configure the HA networking
+7. Verify the network configuration
+8. Configure the clock synchronization
+9. Enable kdump
 10. Disable swap (if any)
 11. Validate the system preparation
 
