@@ -95,13 +95,11 @@ csi.weka.io/selinux_enabled="true"
 $ helm install --upgrade csi-wekafsplugin csi-wekafs/csi-wekafsplugin --namespace csi-wekafsplugin --create-namespace --set selinuxSupport=mixed --set selinuxNodeLabel="selinux_enabled"
 ```
 
-* If a node lab
-
 ### Test the WEKA CSI plugin operation <a href="#test-csi-plugin" id="test-csi-plugin"></a>
 
-1. Make sure you have configured a valid CSI API [`secret`](https://github.com/weka/csi-wekafs/blob/d15a5e14b53056d1d2f2f5f36fdc4534711a1756/examples/common/csi-wekafs-api-secret.yaml). Create a valid WEKA CSI Plugin [`storageClass`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic\_directory/storageclass-wekafs-dir-api.yaml).
-2. Provision a [`PersistentVolumeClaim`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic\_directory/pvc-wekafs-dir-api.yaml).
-3. Provision a [`DaemonSet`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic\_directory/csi-daemonset.app-on-dir-api.yaml) to enable access to all pods on all nodes.
+1. Make sure you have configured a valid CSI API [`secret`](https://github.com/weka/csi-wekafs/blob/d15a5e14b53056d1d2f2f5f36fdc4534711a1756/examples/common/csi-wekafs-api-secret.yaml). Create a valid WEKA CSI Plugin [`storageClass`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic_directory/storageclass-wekafs-dir-api.yaml).
+2. Provision a [`PersistentVolumeClaim`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic_directory/pvc-wekafs-dir-api.yaml).
+3. Provision a [`DaemonSet`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic_directory/csi-daemonset.app-on-dir-api.yaml) to enable access to all pods on all nodes.
 4.  Monitor the pod logs using the following command (expect no printing in the log files):
 
     ```
