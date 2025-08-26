@@ -80,7 +80,7 @@ Follow these considerations:
   * When `selinuxSupport` is `off`, only non-SELinux CSI plugin node components are installed.
 *   The SELinux status cannot be known from within the CSI plugin pod. Therefore, a way of distinguishing between SELinux-enabled and non-SELinux nodes is required. WEKA CSI Plugin relies on the node affinity mechanism by matching the value of a certain node label in a mutually exclusive way. Only when the label exists and is set to true, an SELinux-enabled node component will start on that node. Otherwise, the non-SELinux node component will start.
 
-    To ensure that the plugin starts in compatibility mode, set the following label on each SELinux-enabled Kubernetes node:&#x20;
+    To ensure that the plugin starts in compatibility mode, set the following label on each SELinux-enabled Kubernetes node:
 * If a node label is modified after installing the WEKA CSI Plugin node component on that node, terminate the csi-wekafs-node-XXXX component on the affected node. As a result, a replacement pod is automatically scheduled on the node but with the correct SELinux configuration.
 
 ```
@@ -95,13 +95,11 @@ csi.weka.io/selinux_enabled="true"
 $ helm install --upgrade csi-wekafsplugin csi-wekafs/csi-wekafsplugin --namespace csi-wekafsplugin --create-namespace --set selinuxSupport=mixed --set selinuxNodeLabel="selinux_enabled"
 ```
 
-* If a node lab
-
 ### Test the WEKA CSI plugin operation <a href="#test-csi-plugin" id="test-csi-plugin"></a>
 
-1. Make sure you have configured a valid CSI API [`secret`](https://github.com/weka/csi-wekafs/blob/d15a5e14b53056d1d2f2f5f36fdc4534711a1756/examples/common/csi-wekafs-api-secret.yaml). Create a valid WEKA CSI Plugin [`storageClass`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic\_directory/storageclass-wekafs-dir-api.yaml).
-2. Provision a [`PersistentVolumeClaim`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic\_directory/pvc-wekafs-dir-api.yaml).
-3. Provision a [`DaemonSet`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic\_directory/csi-daemonset.app-on-dir-api.yaml) to enable access to all pods on all nodes.
+1. Make sure you have configured a valid CSI API [`secret`](https://github.com/weka/csi-wekafs/blob/d15a5e14b53056d1d2f2f5f36fdc4534711a1756/examples/common/csi-wekafs-api-secret.yaml). Create a valid WEKA CSI Plugin [`storageClass`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic_directory/storageclass-wekafs-dir-api.yaml).
+2. Provision a [`PersistentVolumeClaim`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic_directory/pvc-wekafs-dir-api.yaml).
+3. Provision a [`DaemonSet`](https://github.com/weka/csi-wekafs/blob/main/examples/dynamic_directory/csi-daemonset.app-on-dir-api.yaml) to enable access to all pods on all nodes.
 4.  Monitor the pod logs using the following command (expect no printing in the log files):
 
     ```
@@ -142,8 +140,6 @@ $ helm install --upgrade csi-wekafsplugin csi-wekafs/csi-wekafsplugin --namespac
     ```
 
     *   If the output is empty, Perform the [Install and configure the Weka CSI Plugin](add-selinux-support.md#install-config-csi-plugin) procedure.
-
-
 
         If the label was missing and added by you during troubleshooting, the CSI node server component must be restarted on the node.\
         Perform the following command to terminate the relevant pod, and another instance will start automatically:

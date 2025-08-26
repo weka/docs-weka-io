@@ -369,7 +369,7 @@ spec:
   payload:
     driverDistPayload: {}
     interval: 1m
-  type: enable-local-drivers-distributio
+  type: enable-local-drivers-distribution
 ```
 
 </details>
