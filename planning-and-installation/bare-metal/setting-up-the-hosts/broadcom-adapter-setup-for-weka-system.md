@@ -37,7 +37,7 @@ Scrutiny NIC CLI v227.0.130.0 - Broadcom Inc. (c) 2023 (Bld-61.52.25.90.16.0)
 2. **Identify the device**: From the `niccli --list` output, choose the device identifier (for example, `1` for `BCM57508`).
 
 ```
-# niccli -dev 1 install BCM957508-P2100G.pkg
+# niccli --dev 1 install BCM957508-P2100G.pkg
 ```
 
 3. **Confirm and complete the installation**: Follow the prompts to confirm and complete the firmware update.
@@ -67,20 +67,20 @@ To enable WEKA system compatibility, configure certain NVM options to increase t
 1.  **Increase the number of VFs to 64**: Run the following commands:
 
     ```shell
-    niccli -dev 1 nvm -setoption enable_sriov -value 1
-    niccli -dev 1 nvm -setoption number_of_vfs_per_pf -scope 0 -value 0x40
-    niccli -dev 1 nvm -setoption number_of_vfs_per_pf -scope 1 -value 0x40
+    niccli --dev 1 nvm --setoption enable_sriov --value 1
+    niccli --dev 1 nvm --setoption number_of_vfs_per_pf --scope 0 --value 0x40
+    niccli --dev 1 nvm --setoption number_of_vfs_per_pf --scope 1 --value 0x40
     ```
 2.  **Enable TruFlow**: Run the following commands:
 
     ```shell
-    niccli -dev 1 nvm -setoption enable_truflow -scope 0 -value 1
-    niccli -dev 1 nvm -setoption enable_truflow -scope 1 -value 1
+    niccli --dev 1 nvm --setoption enable_truflow --scope 0 --value 1
+    niccli --dev 1 nvm --setoption enable_truflow --scope 1 --value 1
     ```
 3.  **Additional configuration for BCM57508-P2100G**: Run the following command:
 
     ```shell
-    niccli -dev 1 nvm -setoption afm_rm_resc_strategy -value 1
+    niccli --dev 1 nvm --setoption afm_rm_resc_strategy --value 1
     ```
 4. **Reboot the server**: Reboot the server to apply the changes.
 
