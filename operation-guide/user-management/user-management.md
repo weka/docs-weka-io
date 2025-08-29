@@ -103,119 +103,55 @@ In the confirmation message, select **Yes**.
 
 ## Configure LDAP/AD in WEKA
 
-You can set the user access to the WEKA system from the organization user directory, either by Light Access Directory Protocol (LADP) or Active Directory (AD).
+Integrate the WEKA system with your organization's user directory using either Lightweight Directory Access Protocol (LDAP) or Active Directory (AD) for centralized user authentication. This allows users to access the WEKA system with their existing credentials.
+
+From the menu, navigate to Configure > User Management and select the User Directory tab. The system displays options to configure either LDAP or Active Directory.
 
 ![User directory tab](../../.gitbook/assets/user_directory_tab_no_conf.png)
 
 ### Configure LDAP
 
-To use LDAP for authenticating users, set the property values based on your specific LDAP environment and configuration.
+Connect to an LDAP server to authenticate and authorize users for access to the WEKA system.
 
 <details>
 
-<summary>LDAP property descriptions</summary>
+<summary>LDAP property reference</summary>
 
-* **Server URI:** The URI or address of the LDAP server, including the protocol (in this case, LDAP), the server's hostname or IP address, and the port number.\
-  Example value: `ldap://ldap.example.com:389`
-* **Protocol Version:** The version of the LDAP protocol being used. Common versions include LDAPv2 and LDAPv3.\
-  Example value: `3`
-* **Start TLS:** When enabled, this option initiates a Transport Layer Security (TLS) connection with the LDAP server. TLS provides encryption and secure communication between the client and server, protecting the confidentiality and integrity of data transmitted over the network.
-*   **Ignore Certificate Failures:** When enabled, this option instructs the LDAP client to ignore certificate validation failures during the TLS/SSL handshake process. Certificate validation failures can include expired, self-signed, or mismatched certificates. Enabling this option allows the client to establish a connection even if the server's certificate cannot be fully validated. Use this option cautiously, as it may expose the connection to potential security risks.
-
-    Enabling _Start TLS_ and _Ignore Certificate Failures_ must be done based on your specific security requirements and the configuration of your LDAP server.
-* **Server Timeout Seconds:** The maximum amount of time, in seconds, the client waits for a response from the LDAP server before timing out.\
-  Example value: `30`
-* **Base DN :** The base distinguished name (DN) is the starting point for searching the directory tree. It represents the top-level entry in the LDAP directory.\
-  Example Value: `dc=example,dc=com`
-* **Reader Username:** The username or distinguished name (DN) of a dedicated reader user account used for authenticating and reading data from the LDAP server.\
-  Example value: `cn=reader,dc=example,dc=com`
-* **Reader Password:** The password is associated with the reader user account for authentication purposes.\
-  Example Value: `********`
-* **User ID Attribute:** The attribute in the LDAP schema that represents the unique identifier or username for user entries.\
-  Example value: `uid`
-* **User Object Class:** The object class or object type in the LDAP schema defines the structure and attributes of user entries.\
-  Example value: `person`
-* **User Revocation Attribute:** An attribute indicates a user account's revocation status, typically a boolean attribute set to true or false.\
-  Example value: `isRevoked`
-* **Group ID Attribute:** The attribute in the LDAP schema represents the unique identifier or name for group entries.\
-  Example value: `cn`
-* **Group Membership Attribute:** The attribute establishes the membership relationship between users and groups, specifying which users are members of a particular group.\
-  Example value: `member`
-* **Group Object Class:** The object class or object type in the LDAP schema defines the structure and attributes of group entries.\
-  Example value: `groupOfNames`
-* **Cluster Admin Group:** The LDAP group granted administrative privileges for managing the LDAP cluster.\
-  Example value: `cn=cluster_admins,ou=groups,dc=example,dc=com`\
-  `sAMAccountName: cluster_admins`
-* **Organization Admin Role Group:** The LDAP group granted administrative privileges for managing specific organizations or units within the LDAP directory.\
-  Example value: `cn=org_admins,ou=groups,dc=example,dc=com`\
-  `sAMAccountName: org_admins`
-* **Regular User Role Group:** The group in LDAP represents regular users with standard access privileges.\
-  Example value: `cn=regular_users,ou=groups,dc=example,dc=com`\
-  `sAMAccountName: regular_users`
-* **Read-only User Role Group:** The group in LDAP represents users with read-only access privileges restricted from making modifications.\
-  Example value: `cn=read_only_users,ou=groups,dc=example,dc=com`\
-  `sAMAccountName: read_only_users`
-
-**Note:** The `sAMAccountName` (user logon name) in the Cluster Admin, Organization Admin, Regular User, and Read-only User Role Groups can be up to 20 characters long.
+<table><thead><tr><th width="178.890625">Property</th><th>Description</th></tr></thead><tbody><tr><td>Server URI</td><td>The address of the LDAP server. For example: ldap://ldap.example.com:389.</td></tr><tr><td>Protocol Version</td><td>The version of the LDAP protocol. For example: 3.</td></tr><tr><td>Start TLS</td><td>When enabled, initiates a Transport Layer Security (TLS) connection with the LDAP server for encrypted communication.</td></tr><tr><td>Ignore Certificate Failures</td><td>When enabled, the LDAP client ignores certificate validation failures during the TLS/SSL handshake. Use this option cautiously, as it may pose a security risk.</td></tr><tr><td>Server Timeout Seconds</td><td>The maximum time in seconds the client waits for a response from the LDAP server before timing out. For example: 30.</td></tr><tr><td>Base DN</td><td>The base distinguished name (DN) that serves as the starting point for directory tree searches. For example: dc=example,dc=com.</td></tr><tr><td>Reader Username</td><td>The username or DN of a dedicated user account for reading data from the LDAP server. For example: cn=reader,dc=example,dc=com.</td></tr><tr><td>Reader Password</td><td>The password for the reader user account.</td></tr><tr><td>User ID Attribute</td><td>The attribute in the LDAP schema that uniquely identifies user entries. For example: uid.</td></tr><tr><td>User Object Class</td><td>The object class in the LDAP schema that defines the structure of user entries. For example: person.</td></tr><tr><td>User Revocation Attribute</td><td>An attribute that indicates a user account's revocation status. For example: isRevoked.</td></tr><tr><td>Group ID Attribute</td><td>The attribute in the LDAP schema that uniquely identifies group entries. For example: cn.</td></tr><tr><td>Group Membership Attribute</td><td>The attribute that specifies which users are members of a particular group. For example: member.</td></tr><tr><td>Group Object Class</td><td>The object class in the LDAP schema that defines the structure of group entries. For example: groupOfNames.</td></tr><tr><td>Cluster Admin Group</td><td>The LDAP group granted administrative privileges for the cluster. The sAMAccountName can be up to 20 characters. For example: cn=cluster_admins,ou=groups,dc=example,dc=com.</td></tr><tr><td>Organization Admin Role Group</td><td>The LDAP group granted administrative privileges for specific organizations. The sAMAccountName can be up to 20 characters. For example: cn=org_admins,ou=groups,dc=example,dc=com.</td></tr><tr><td>Regular User Role Group</td><td>The LDAP group for users with standard access privileges. The sAMAccountName can be up to 20 characters. For example: cn=regular_users,ou=groups,dc=example,dc=com.</td></tr><tr><td>Read-only User Role Group</td><td>The LDAP group for users with read-only access privileges. The sAMAccountName can be up to 20 characters. For example: cn=read_only_users,ou=groups,dc=example,dc=com.</td></tr></tbody></table>
 
 </details>
 
 **Procedure**
 
-1. From the menu, select **Configure > User Management**.
-2. Select the User Directory tab.
-3. Select **Configure LDAP**.
-4. Set all properties based on your specific LDAP environment and configuration.
-5. Select **Save**.
+1. On the **User Directory** tab, select **Configure LDAP**.
+2. In the Configure LDAP dialog, set the properties according to your LDAP environment. For details about each property, see the **LDAP property reference**.
+3. Select **Save**.
 
 ![Configure LDAP dialog](../../.gitbook/assets/wmng_configure_ldap.png)
 
-Once the LDAP configuration is completed, the User Directory tab displays the details. You can disable the LDAP configuration, update the configuration, or reset the configuration values.
+After saving the configuration, the **User Directory** tab displays the LDAP connection details. From this view, you can update, disable, or reset the configuration.
 
 ### Configure Active Directory
 
-To use Active Directory for authenticating users, set the property values based on your specific Active Directory environment and configuration.
+Connect to an Active Directory (AD) domain to authenticate and authorize users for access to the WEKA system.
 
 <details>
 
-<summary>Active Directory property descriptions</summary>
+<summary>Active Directory property reference</summary>
 
-* **Domain:** The domain name of the Active Directory environment. It represents the network boundary and provides a way to organize and manage resources, users, and groups.\
-  Example value: `example.com`
-* **Server URI:** The URI or address of the Active Directory server, including the protocol (in this case, LDAP) and the server's hostname or IP address.\
-  Example value: `ldap://ad.example.com`
-* **Reader Username:** A dedicated reader user account's username or user principal name (UPN) used for authenticating and reading data from the Active Directory.\
-  Example value: `readeruser@ad.example.com`
-* **Reader Password:** The password associated with the reader user account for authentication purposes.\
-  Example Value: `********`
-* **Cluster Admin Role Group:** The group in Active Directory granted administrative privileges for managing the cluster or server infrastructure.\
-  Example value: `CN=ClusterAdmins,CN=Users,DC=example,DC=com`\
-  `sAMAccountName: ClusterAdmins`
-* **Organization Admin Role Group:** The group in Active Directory granted administrative privileges for managing specific organizations or units within the Active Directory environment.\
-  Example value: `CN=OrgAdmins,CN=Users,DC=example,DC=com`\
-  `sAMAccountName: OrgAdmins`
-* **Regular User Role Group:** The group in Active Directory represents regular users with standard access privileges.\
-  Example value: `CN=RegularUsers,CN=Users,DC=example,DC=com`\
-  `sAMAccountName:  RegularUsers`
-* **Read-only User Role Group:** The group in Active Directory represents users with read-only access privileges, restricted from making modifications.\
-  Example value: `CN=ReadOnlyUsers,CN=Users,DC=example,DC=com`\
-  `sAMAccountName:  ReadOnlyUsers`
-
-**Note:** The `sAMAccountName` (user logon name) in the Cluster Admin, Organization Admin, Regular User, and Read-only User Role Groups can be up to 20 characters long.
+<table><thead><tr><th width="161.91015625">Property</th><th>Description</th></tr></thead><tbody><tr><td>Domain</td><td>The domain name of the Active Directory environment. For example: example.com.</td></tr><tr><td>Server URI</td><td>The address of the Active Directory server. For example: ldap://ad.example.com.</td></tr><tr><td>Reader Username</td><td>The username or user principal name (UPN) of a dedicated user account for reading data from Active Directory. For example: readeruser@ad.example.com.</td></tr><tr><td>Reader Password</td><td>The password for the reader user account.</td></tr><tr><td>Cluster Admin Role Group</td><td>The Active Directory group granted administrative privileges for the cluster. The sAMAccountName can be up to 20 characters. For example: CN=ClusterAdmins,CN=Users,DC=example,DC=com.</td></tr><tr><td>Organization Admin Role Group</td><td>The Active Directory group granted administrative privileges for specific organizations. The sAMAccountName can be up to 20 characters. For example: CN=OrgAdmins,CN=Users,DC=example,DC=com.</td></tr><tr><td>Regular User Role Group</td><td>The Active Directory group for users with standard access privileges. The sAMAccountName can be up to 20 characters. For example: CN=RegularUsers,CN=Users,DC=example,DC=com.</td></tr><tr><td>Read-only User Role Group</td><td>The Active Directory group for users with read-only access privileges. The sAMAccountName can be up to 20 characters. For example: CN=ReadOnlyUsers,CN=Users,DC=example,DC=com.</td></tr></tbody></table>
 
 </details>
 
 **Procedure**
 
-1. From the menu, select **Configure > User Management**.
-2. Select the User Directory tab.
-3. Select **Configure Active Directory**.
-4. Set all properties based on your specific Active Directory environment and configuration.
-5. Select **Save**.
+1. On the **User Directory** tab, select **Configure Active Directory**.
+2. In the Configure Active Directory dialog, set the properties according to your AD environment. For details about each property, see the **Active Directory property reference**.
+3. Select **Save**.
 
 ![Configure Active Directory dialog](../../.gitbook/assets/wmng_configure_active_directory.png)
 
-Once the Active Directory configuration is completed, the User Directory tab displays the details. You can disable the Active Directory configuration, update the configuration, or reset the configuration values.
+After saving the configuration, the User Directory tab displays the Active Directory connection details. From this view, you can update, disable, or reset the configuration.
 
 [^1]: POSIX UID of underlying files representing objects created by this S3 user access/keys credentials.\
     For S3 user roles only.
