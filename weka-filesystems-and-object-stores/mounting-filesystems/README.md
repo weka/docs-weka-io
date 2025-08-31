@@ -243,6 +243,10 @@ Example of resetting an option to its default:
 
 This approach allows for flexible, granular adjustments to mount parameters without requiring a complete filesystem unmount and remount.
 
+{% hint style="info" %}
+Remounting a stateless client restarts the client container. Once the restart process is complete, all active I/O operations of that client resume automatically.
+{% endhint %}
+
 ### Set mount option default values <a href="#set-mount-option-default-values" id="set-mount-option-default-values"></a>
 
 #### Default throughput settings

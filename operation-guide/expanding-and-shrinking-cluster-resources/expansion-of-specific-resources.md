@@ -26,6 +26,10 @@ Adhere to the following guidelines when expanding specific resources:
   Run the `weka cluster container resources <container-id> --stable` command to view the existing configuration.
 * **Expansion on active or deactivated containers:** Some resources can be expanded on active containers, such as adding CPU cores. Others require container deactivation, like setting failure domain. If deactivation is required, you can use the `--deactivation-check` option to check if the specified containers can be deactivated.
 
+{% hint style="info" %}
+Applying changes to a client container restarts the container. Once the restart process is complete, all active I/O operations of that client resume automatically.
+{% endhint %}
+
 ## weka cluster container command description
 
 **Command:** `weka cluster container <sub-command> <container-id> [options]`
