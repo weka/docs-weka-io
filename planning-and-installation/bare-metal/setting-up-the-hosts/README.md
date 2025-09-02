@@ -114,6 +114,7 @@ The recommended approach is to consolidate all custom kernel parameters into a s
     net.ipv4.conf.default.arp_announce = 2
     net.ipv4.conf.all.arp_ignore = 1
     net.ipv4.conf.default.arp_ignore = 1
+    net.ipv4.conf.all.ignore_routes_with_linkdown = 1
     ```
     {% endcode %}
 3. **Save the file and exit the editor.**
