@@ -92,7 +92,7 @@ hwloc
 iperf
 ipmitool
 kexec-tools
-jk
+jq
 ldap-client
 libaio-dev
 lldpd
