@@ -29,7 +29,7 @@ Adhere to the following concepts:
 
 ## Prerequisites
 
-* **System preparation is validated:** Ensure the system preparation is validated using the `wekachecker` (on WSA installations this is already installed under `/opt/weka/tools`). See [#id-11.-validate-the-system-preparation](setting-up-the-hosts/#id-11.-validate-the-system-preparation "mention").
+* **System preparation is validated:** Ensure the system preparation is validated using the `wekachecker` (on WSA installations this is already installed under `/opt/tools/install`). See [#id-11.-validate-the-system-preparation](setting-up-the-hosts/#id-11.-validate-the-system-preparation "mention").
 * **The WEKA software is installed on all cluster servers**: If not installed using the WSA, follow the instructions in the **Install** tab of [get.weka.io](https://get.weka.io/ui/dashboard). Once completed, the WEKA software is installed on all the allocated servers and runs in STEM mode.
 
 ## Workflow
