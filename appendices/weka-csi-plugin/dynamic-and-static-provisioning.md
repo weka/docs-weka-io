@@ -83,9 +83,9 @@ You can use an existing storage class from dynamic provisioning for static provi
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-wekafs-dir-static
+  name: pv-wekafs-dir-static-api
 spec:
-  storageClassName: storageclass-wekafs-dir-api
+  storageClassName: storageclass-wekafs-dir-static-api
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
@@ -94,10 +94,16 @@ spec:
     storage: 1Gi
   csi:
     driver: csi.weka.io
-    # volumeHandle must be formatted as following:
+    # volumeHandle must be formatted as follows:
     # dir/v1/<FILE_SYSTEM_NAME>/<INNER_PATH_IN_FILESYSTEM>
-    # The path must exist, otherwise publish request will fail
-    volumeHandle: dir/v1/podsFilesystem/my-dir
+    # The path must exist, otherwise the publish request fails
+    volumeHandle: dir/v1/testfs/testdir
+    nodePublishSecretRef:
+      name: csi-wekafs-api-secret
+      namespace: csi-wekafs
+    controllerExpandSecretRef:
+      name: csi-wekafs-api-secret
+      namespace: csi-wekafs
 ```
 {% endcode %}
 

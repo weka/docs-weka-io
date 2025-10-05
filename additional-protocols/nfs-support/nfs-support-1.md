@@ -13,16 +13,16 @@ Using the CLI, you can:
 
 ## Configure the NFS global settings
 
-NFSv4 and Kerberos require a persistent cluster-wide configuration filesystem for the protocol's internal operations.
+A persistent cluster-wide configuration filesystem (`config-fs`) is required for the internal operations of Kerberos and NFS file-locking (V4 and V3).
 
 Use the following command line to set the NFS configuration on the configuration filesystem:
 
 `weka nfs global-config set [--mountd-port mountd-port] [--config-fs config-fs] [--lockmgr-port lockmgr-port] [--statmon-port statmon-port] [--notify-port notify-port] [--acl acl] [--extended-stats extended-stats] [--default-acl-type default-acl-type] [--default-supported-versions default-supported-versions]... [--enable-auth-types enable-auth-types]... [--no-restart]`
 
-{% hint style="info" %}
+**Before you begin**
+
 * To support NFS file-locking, ensure the system meets the prerequisites outlined in [#nfs-file-locking-support](./#nfs-file-locking-support "mention").
 * For the default published ports, see the [#required-ports](../../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention").
-{% endhint %}
 
 **Parameters**
 

@@ -32,8 +32,7 @@ Some of the examples contain version-specific information. The software is updat
 
 ## 1. Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
-* To install Mellanox OFED, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
-* To install Broadcom driver, see [broadcom-adapter-setup-for-weka-system.md](broadcom-adapter-setup-for-weka-system.md "mention").
+For Mellanox OFED setup, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
 
 ## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
@@ -601,13 +600,15 @@ The `wekachecker`tool applies to all WEKA versions. From V4.0, the following val
 
 **Procedure**
 
-1. Download the **wekachecker** tarball from [https://github.com/weka/tools/blob/master/install/wekachecker](https://github.com/weka/tools/blob/master/install/wekachecker) and extract it.
-2. From the install directory, run `./wekachecker <hostnames/IPs>`\
+1. Clone the the **tools** repository:\
+   `git clone --depth 1` [`https://github.com/weka/tools.git`](https://github.com/weka/tools.git)
+2. Change directory to **tools/install**.
+3. From the **install** directory, run `./wekachecker <hostnames/IPs>`\
    Where:\
    The `hostnames/IPs` is a space-separated list of all the cluster hostnames or IP addresses connected to the **high-speed networking**.\
    Example:\
    `./wekachecker 10.1.1.11 10.1.1.12 10.1.1.4 10.1.1.5 10.1.1.6 10.1.1.7 10.1.1.8`
-3. Review the output. If failures or warnings are reported, investigate them and correct them as necessary. Repeat the validation until no important issues are reported.\
+4. Review the output. If failures or warnings are reported, investigate them and correct them as necessary. Repeat the validation until no important issues are reported.\
    The `wekachecker` writes any failures or warnings to the file: **`test_results.txt`**.
 
 Once the report has no failures or warnings that must be fixed, you can install the WEKA software.

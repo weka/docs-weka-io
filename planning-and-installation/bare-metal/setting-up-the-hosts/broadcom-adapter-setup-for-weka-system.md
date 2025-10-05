@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Broadcom adapter setup for WEKA system
 
 Before a WEKA system can use a Broadcom adapters, the server must have the necessary drivers and firmware from Broadcom's download center.

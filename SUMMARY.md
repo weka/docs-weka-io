@@ -80,7 +80,7 @@
 * [Manage the system using the WEKA CLI](getting-started-with-weka/manage-the-system-using-weka-cli/README.md)
   * [WEKA CLI hierarchy](getting-started-with-weka/manage-the-system-using-weka-cli/weka-cli-hierarchy.md)
   * [CLI reference guide](getting-started-with-weka/manage-the-system-using-weka-cli/cli-reference-guide.md)
-* [Run first IOs with WEKA filesystem](getting-started-with-weka/performing-the-first-io.md)
+* [Perform a basic IO sanity check](getting-started-with-weka/performing-the-first-io.md)
 * [Getting started with WEKA REST API](getting-started-with-weka/getting-started-with-weka-rest-api.md)
 * [WEKA REST API and equivalent CLI commands](getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md)
 
@@ -237,13 +237,14 @@
   * [Export cluster metrics to Prometheus](monitor-the-weka-cluster/the-wekaio-support-cloud/export-cluster-metrics-to-prometheus.md)
 * [Set up WEKAmon for external monitoring](monitor-the-weka-cluster/external-monitoring.md)
 * [Set up the SnapTool external snapshots manager](monitor-the-weka-cluster/snapshot-management.md)
+* [Monitor WEKA clusters in Kubernetes with Prometheus and Grafana](monitor-the-weka-cluster/monitor-weka-clusters-in-kubernetes-with-prometheus-and-grafana.md)
 
 ## Kubernetes
 
 * [Composable clusters for multi-tenancy in Kubernetes](kubernetes/composable-clusters-for-multi-tenancy-in-kubernetes.md)
 * [WEKA Operator deployments](kubernetes/weka-operator-deployments/README.md)
   * [Deploy the WEKA client on Amazon EKS](kubernetes/weka-operator-deployments/deploy-the-weka-client-on-amazon-eks.md)
-* [WEKA Operator day-2 operationsWEKA Operator:CLI](kubernetes/weka-operator-day-2-operationsweka-operator-cli.md)
+* [WEKA Operator day-2 operations](kubernetes/weka-operator-day-2-operations.md)
 
 ## WEKApod
 
@@ -291,6 +292,7 @@
   * [Tailor your storage class configuration with mount options](appendices/weka-csi-plugin/tailor-your-storage-class-configuration-with-mount-options.md)
   * [Dynamic and static provisioning](appendices/weka-csi-plugin/dynamic-and-static-provisioning.md)
   * [Launch an application using WEKA as the POD's storage](appendices/weka-csi-plugin/launch-an-application-using-weka-as-the-pods-storage.md)
+  * [Configure topology-aware volume provisioning](appendices/weka-csi-plugin/configure-topology-aware-volume-provisioning.md)
   * [Add SELinux support](appendices/weka-csi-plugin/add-selinux-support.md)
   * [NFS transport failback](appendices/weka-csi-plugin/nfs-transport-failback.md)
   * [Upgrade legacy persistent volumes for capacity enforcement](appendices/weka-csi-plugin/upgrade-legacy-persistent-volumes-for-capacity-enforcement.md)

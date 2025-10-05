@@ -105,6 +105,8 @@ The WEKA software on a client requires 5 GB minimum additional memory.
 
 ## CPU resource planning
 
+Learn about the CPU allocation strategy and resource planning for backend, additional protocols, and client processes.
+
 ### CPU allocation strategy
 
 The WEKA system implements a Non-Uniform Memory Access (NUMA) aware CPU allocation strategy to maximize the overall performance of the system. The cores allocation uses all NUMAs equally to balance memory usage from all NUMAs.
@@ -113,7 +115,6 @@ Consider the following regarding the CPU allocation strategy:
 
 * The code allocates CPU resources by assigning individual cores to tasks in a cgroup.
 * Cores in a cgroup are not available to run any other user processes.
-* On systems with Intel hyper-threading enabled, the corresponding sibling cores are placed into a cgroup along with the physical ones.
 
 ### Backend CPU usage
 
@@ -128,6 +129,14 @@ Plan the number of physical cores dedicated to the WEKA software according to th
   * For finer tuning, please contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 * Allocate enough memory to match core allocation, as discussed above.
 * Running other applications on the same server (converged WEKA system deployment) is supported. For details, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
+
+### Additional protocols CPU usage
+
+The SMB, NFS, and S3 protocol services run in dedicated protocol containers alongside frontend containers and consume CPU resources.
+
+Allocating additional CPU cores to protocol and frontend containers generally improves protocol performance. However, CPU scaling is effective only up to the network limit.
+
+For detailed sizing guidelines and performance tuning recommendations tailored to your specific protocol workloads, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 
 ### Client CPU usage
 

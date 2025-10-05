@@ -1,13 +1,15 @@
 ---
 description: >-
-  WEKA Operator day-2 operations involve managing hardware, scaling clusters,
-  and optimizing resources to ensure system stability and performance.
+  Manage hardware, scale clusters, and optimize resources to ensure system
+  stability and performance.
 ---
 
 # WEKA Operator day-2 operations
 
-WEKA Operator day-2 operations maintain and optimize WEKA environments in Kubernetes clusters by focusing in the core areas:
+WEKA Operator day-2 operations maintain and optimize WEKA environments in Kubernetes clusters by focusing in these core areas:
 
+* **Observability and monitoring**
+  * Scraping and visualizing metrics with standard Kubernetes monitoring tools such as Prometheus and Grafana.
 * **Hardware maintenance**
   * Component replacement and node management
   * Hardware failure remediation
@@ -23,6 +25,14 @@ WEKA Operator day-2 operations maintain and optimize WEKA environments in Kubern
 Administrators execute both planned maintenance and emergency responses while following standardized procedures to ensure high availability and minimize service disruption.
 
 ***
+
+## Observability and monitoring
+
+Starting with version v1.7.0, the WEKA Operator exposes health and performance metrics for WEKA clusters, including throughput, CPU utilization, IOPS, and API requests. These metrics are available by default and can be collected and visualized using standard Kubernetes monitoring tools such as Prometheus and Grafana. No additional installation flags or custom Prometheus configurations are required.
+
+**Related topic**
+
+[monitor-weka-clusters-in-kubernetes-with-prometheus-and-grafana.md](../monitor-the-weka-cluster/monitor-weka-clusters-in-kubernetes-with-prometheus-and-grafana.md "mention")
 
 ## **Hardware maintenance**
 
@@ -1238,44 +1248,19 @@ Removing a WEKA container from a failed node is necessary to maintain cluster he
 
 #### Procedure: Remove WEKA container from an active node
 
-Follow these steps to remove a WEKA container when the node is responsive:
+To remove a WEKA container when the node is responsive, run the following:
 
-1.  Request WEKA container deletion by setting the deletion timestamp:
+```
+kubectl delete wekacontainer <container-name> -n weka-operator-system
+```
+
+#### Procedure: Remove WEKA container from a failed node (unresponsive)
+
+1.  Apply the configuration:
 
     ```bash
     kubectl delete wekacontainer <container-name> -n weka-operator-system
     ```
-2.  If this is a drive container, deactivate the drives:
-
-    ```bash
-    weka cluster drive deactivate
-    ```
-3.  Deactivate the container:
-
-    ```bash
-    weka cluster container deactivate
-    ```
-4.  For drive containers, remove the drives:
-
-    ```bash
-    weka cluster drive remove
-    ```
-5.  Remove the WEKA container:
-
-    ```bash
-    weka cluster container remove
-    ```
-6.  For drive containers, force resign the drives:
-
-    ```bash
-    kubectl apply -f resign-drives.yaml
-    ```
-
-#### Procedure: Remove WEKA container from a failed node
-
-When the node is unresponsive, follow these steps:
-
-1. Follow steps 1-5 from the active node procedure above.
 2.  If the resign drives operation fails with the error "container node is not ready, cannot perform resign drives operation", set the skip flag:
 
     ```bash
@@ -1287,7 +1272,7 @@ When the node is unresponsive, follow these steps:
 3. Wait for the pod to enter the `Terminating` state.
 
 {% hint style="info" %}
-If the dead node is removed from the Kubernetes cluster, the WEKA Container and corresponding stuck pod are automatically removed.
+If the failed node is removed from the Kubernetes cluster, the WEKA container and corresponding stuck pod are automatically removed.
 {% endhint %}
 
 #### Resign drives manually
@@ -1306,11 +1291,11 @@ spec:
   imagePullSecret: "quay-io-robot-secret"
   payload:
     forceResignDrivesPayload:
-      node_name: "<node-name>"
-      device_serials:
+      nodeName: "<node-name>"
+      deviceSerials:
         - <device-serial>
-      # Alternative: use device_paths instead of device_serials
-      # device_paths:
+      # Alternative: use devicePaths instead of deviceSerials
+      # devicePaths:
       #   - /dev/nmve1
 ```
 

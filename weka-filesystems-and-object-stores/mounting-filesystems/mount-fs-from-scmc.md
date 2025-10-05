@@ -1,19 +1,19 @@
 ---
 description: >-
-  Mount a single WEKA client to multiple clusters simultaneously, optimizing
-  data access and workload distribution.
+  Mount a single stateless WEKA client to multiple clusters simultaneously,
+  optimizing data access and workload distribution.
 ---
 
 # Mount filesystems from Single Client to Multiple Clusters (SCMC)
 
 ## Overview
 
-Mounting filesystems from a single WEKA client to multiple clusters provides several advantages:
+Mounting filesystems from a single stateless WEKA client to multiple clusters provides the following benefits:
 
-* **Expanded cluster connectivity:** A single client can connect to up to seven clusters simultaneously, increasing storage capacity and computational capabilities.
-* **Unified data access:** Provides a consolidated view of data across multiple clusters, simplifying access and management while improving data availability, flexibility, and resource efficiency.
-* **Optimized workload distribution:** Enables efficient workload distribution across clusters, supporting scalable applications and enhancing overall performance.
-* **Seamless integration:** WEKA’s SCMC feature ensures smooth and efficient integration for clients accessing multiple clusters.
+* **Expanded cluster connectivity:** A single stateless client can establish connections with up to seven clusters concurrently, thereby increasing the aggregate storage capacity and computational resources available.
+* **Unified data access:** Enables a consolidated view of data across multiple clusters, streamlining data access and management while improving availability, flexibility, and overall resource utilization.
+* **Optimized workload distribution:** Facilitates the efficient distribution of workloads across clusters, supporting scalable application deployments and enhancing system performance.
+* **Seamless integration:** The WEKA SCMC feature ensures reliable and efficient integration for stateless clients requiring access to multiple clusters.
 
 <figure><img src="../../.gitbook/assets/single_client_multi-clusters (1).png" alt=""><figcaption><p>Mount filesystems from Single Client to Multiple Clusters (SCMC)</p></figcaption></figure>
 
@@ -31,15 +31,11 @@ Ensure the following requirements are met:
 
 * All clusters that run in this configuration must be at least version 4.2.
 * All client containers in the WEKA client must run the same minor version, at least version 4.2. The client version must be the same as the cluster or, at most, one version earlier.
-* All client containers must be of the same type, persistent or stateless clients. Mixing different client types in a single WEKA client is not allowed.
+* All client containers must be configured as stateless clients.
 * Each client container must run on its port. The default ports are 14000, 14101, 14201, 14301, 14401, 14501, and 14601. Ensure these ports allow egress on the client and ingress on the cluster.
 * For DPDK, each client container must have 5 GB of free RAM, and it is recommended to have a dedicated CPU core to get optimal performance.
 
 &#x20;Mounting a filesystem without these requirements may fail or overload the WEKA client.
-
-{% hint style="info" %}
-Mounting a persistent client using **autofs** is only supported on filesystems on a single cluster.
-{% endhint %}
 
 ## Set the client target version in the clusters
 
@@ -90,16 +86,6 @@ To mount a stateless client using UDP mode, add `-o net=udp -o core=<core-id>` t
 mount -t wekafs backend-server-0/my_fs /mnt/weka -o net=udp -o core=2 -o container_name=frontend0
 ```
 {% endcode %}
-
-## Mount persistent client containers on multiple clusters
-
-For persistent client containers, the `client-target-version` parameter is not relevant. The version of the client container is determined when creating the container in the WEKA client using the `weka local setup container` command. Therefore, ensure that all client containers in the WEKA client have the same minor version as in the clusters.
-
-To mount a persistent client container to a cluster, specify the container name for that mount.&#x20;
-
-```bash
-mount -t wekafs <fs-name> <mount-point> -o container_name=<container-name>
-```
 
 ## Run commands from a server with multiple client containers
 

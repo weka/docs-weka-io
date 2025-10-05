@@ -167,7 +167,7 @@ The WEKA NFS service provides a similar model with four distinct flavors to mana
     * POSIX and SMB clients see a translated POSIX ACL.
 
     However, similar to the SMB Hybrid flavor, any direct update to the POSIX ACL invalidates the corresponding ACL stored in the `xattr`. This action invalidates the ACL of the opposing protocol. For instance, an ACL update from an NFS client overrides the POSIX ACL and invalidates a previously set Windows ACL.
-* **None:** This flavor disables all ACL enforcement and updates for the share, even if POSIX ACLs exist on an object.
+* **None:** No ACL enforcement or updates occur, even if POSIX ACLs exist on a file or directory.&#x20;
 
 **ACL best practices**
 
@@ -307,7 +307,7 @@ The WEKA platform uses encryption to protect data confidentiality by scrambling 
 WEKA applies encryption in two primary contexts:
 
 * **Encryption at rest:** Secures data stored on the physical media within the cluster.
-* **Encryption in motion:** Secures data as it travels across the network between clients and the cluster.
+* **Encryption in transit:** Secures data as it travels across the network between clients and the cluster.
 
 ### **Encryption at rest**
 
@@ -325,9 +325,9 @@ Using a KMS is vital for security when you use the Snap-to-object feature. Witho
 
 [kms-management](kms-management/ "mention")
 
-### **Encryption in motion**
+### **Encryption in transit**
 
-Encryption in motion protects data as it travels across networks, such as between clients and the WEKA cluster. This process is essential for preventing unauthorized interception, eavesdropping, or tampering with data during transmission. The WEKA platform provides distinct encryption methods for its various data protocols to ensure the confidentiality and integrity of your data in transit.
+Encryption in transit protects data as it travels across networks, such as between clients and the WEKA cluster. This process is essential for preventing unauthorized interception, eavesdropping, or tampering with data during transmission. The WEKA platform provides distinct encryption methods for its various data protocols to ensure the confidentiality and integrity of your data in transit.
 
 **POSIX**
 
@@ -344,7 +344,7 @@ The WEKA system supports both NFSv3 and NFSv4. NFSv3 does not have a native data
 
 #### **SMB**
 
-You can encrypt SMB share access to secure data in motion. When a supported client sends an encrypted request, the WEKA SMB-W service replies with an encrypted message. You can also configure the cluster to always encrypt outgoing SMB traffic, regardless of the client’s settings.
+You can encrypt SMB share access to secure data in transit. When a supported client sends an encrypted request, the WEKA SMB-W service replies with an encrypted message. You can also configure the cluster to always encrypt outgoing SMB traffic, regardless of the client’s settings.
 
 By default, WEKA SMB-W follows the client’s message signing preference; the server signs its response only if the client signs its request. The message signing algorithm depends on the SMB version:
 
@@ -353,4 +353,4 @@ By default, WEKA SMB-W follows the client’s message signing preference; the se
 
 #### **S3**
 
-The WEKA S3 service uses Transport Layer Security (TLS) to secure data in motion, ensuring confidentiality, integrity, and authentication between clients and the S3 service. It supports both TLS 1.2 and 1.3 and leverages modern cipher suites, including AES-256-GCM and ChaCha20-Poly1305. The implementation, built on OpenSSL 3.3, provides enhanced performance for HTTPS connections and adheres to strong cryptographic standards.
+The WEKA S3 service uses Transport Layer Security (TLS) to secure data in transit, ensuring confidentiality, integrity, and authentication between clients and the S3 service. It supports both TLS 1.2 and 1.3 and leverages modern cipher suites, including AES-256-GCM and ChaCha20-Poly1305. The implementation, built on OpenSSL 3.3, provides enhanced performance for HTTPS connections and adheres to strong cryptographic standards.

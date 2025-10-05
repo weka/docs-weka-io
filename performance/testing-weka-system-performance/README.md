@@ -28,14 +28,15 @@ Using `wekatester` is the recommended approach for performance testing as it pro
 
 **Before you begin**
 
-* Download the `wekatester` tool from the [WEKA repository](https://github.com/weka/wekatester) on GitHub.
 * Ensure [FIO](https://linux.die.net/man/1/fio) is installed on all client hosts participating in the test ([FIO documentation](https://fio.readthedocs.io/en/latest/fio_doc.html)).
 
 **Procedure**
 
 1. Log in to a client with access to the WEKA cluster.
-2. Navigate to the directory containing the `wekatester` tool.
-3.  Run the performance test suite using the following command:
+2. Clone the the **tools** repository:\
+   `git clone --depth 1` [`https://github.com/weka/tools.git`](https://github.com/weka/tools.git)
+3. Change directory to **tools/wekatester**.
+4.  Run the performance test suite using the following command:
 
     ```bash
     ./wekatester -c

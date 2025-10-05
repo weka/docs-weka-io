@@ -1,66 +1,62 @@
 ---
 description: >-
-  This is a quick reference guide using the CLI to perform the first IO in the
-  WEKA filesystem.
+  Use this procedure to perform a basic input/output (IO) sanity check on a
+  newly installed WEKA cluster to confirm it is operational.
 ---
 
-# Run first IOs with WEKA filesystem
+# Perform a basic IO sanity check
 
-Once the system is installed and you are familiar with the CLI and GUI, you can connect to one of the servers and try it out.
+Use this procedure to perform a basic input/output (IO) sanity check on a newly installed WEKA cluster. This check involves creating a filesystem, mounting it, and writing a small amount of data to confirm the system is operational.
 
-To perform a sanity check that the WEKA cluster is configured and IOs can be performed on it, do the following procedures:
+After completing this sanity check, you can proceed to validate that the WEKA cluster and your IT environment are configured for optimal performance.
 
-1. [Create the first filesystem](performing-the-first-io.md#create-the-first-filesystem).
-2. [Mount the filesystem](performing-the-first-io.md#mount-the-filesystem).
-3. [Writing to the filesystem](performing-the-first-io.md#write-to-the-filesystem).
+## Create a filesystem
 
-To validate that the WEKA cluster and IT environment are best configured to benefit from the WEKA filesystem, do the following procedure:
+To create a filesystem, you first create a filesystem group and then create the filesystem within that group.
 
-* [Validate the configuration](performing-the-first-io.md#validate-the-configuration).
+**Procedure**
 
-## Create the first filesystem
+1.  Create a filesystem group. A filesystem must reside in a group.
 
-1. A filesystem must reside in a filesystem group. Create a filesystem group:
+    ```bash
+    $ weka fs group create my_fs_group
+    FSGroupId: 0
+    ```
+2.  View the existing filesystem groups to confirm the creation.
 
-```
-# to create a new filesystem group
-$ weka fs group create my_fs_group
-FSGroupId: 0
+    ```bash
+    $ weka fs group
+    FileSystem Group ID | Name        | target-ssd-retention | start-demote
+    FSGroupId: 0          | my_fs_group | 1d 0:00:00h          | 0:15:00h
+    ```
+3.  Create a filesystem within the new group.
 
-# to view existing filesystem groups details in the WEKA system
-$weka fs group
-FileSystem Group ID | Name        | target-ssd-retention | start-demote
---------------------+-------------+----------------------+-------------
-FSGroupId: 0        | my_fs_group | 1d 0:00:00h          | 0:15:00h
-```
+    ```bash
+    $ weka fs create new_fs my_fs_group 1TiB
+    FSId: 0
+    ```
+4.  View the existing filesystems to confirm the creation
 
-2\. Create a filesystem within that group:
-
-```
-# to create a new filesystem
-$ weka fs create new_fs my_fs_group 1TiB
-FSId: 0
-
-# to view existing filesystems details in the WEKA system
-$ weka fs
-Filesystem ID | Filesystem Name | Group       | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
---------------+-----------------+-------------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------
-0             | new_fs          | my_fs_group | 0 B             | 4.09 KB         | 4.09 KB  | 1.09 TB  | 274.87 GB            | 1.09 TB       | 0 B               | 4.09 KB    | 1.09 TB    | 1.09 TB         | 22107463  | READY  | False     |                 | False
-```
+    ```bash
+    $ weka fs
+    Filesystem ID | Filesystem Name | Group       | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
+    +-------------+-----------------+-------------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+---------------+
+    0             | new_fs          | my_fs_group | 0 B             | 4.09 KB         | 4.09 KB  | 1.09 TB  | 274.87 GB            | 1.09 TB       | 0 B               | 4.09 KB    | 1.09 TB    | 1.09 TB         | 22107463  | READY  | False     |                 | False
+    ```
 
 {% hint style="info" %}
-In AWS installation via the [self-service portal](https://start.weka.io/), the default filesystem group and filesystem are created. The `default` filesystem is created with the entire SSD capacity.
+On WEKA systems installed in AWS through the [self-service portal,](https://start.weka.io/) a `default` filesystem group and a `default` filesystem are created automatically. The `default` filesystem uses the entire available SSD capacity.
 
-For creating an additional filesystem, it is first needed to decrease the `default` filesystem SSD size:
+To create an additional filesystem, first reduce the size of the `default` filesystem.
 
 ```
-# to reduce the size of the default filesystem
+# Reduce the size of the default filesystem
 $ weka fs update default --total-capacity 1GiB
 
-# to create a new filesystem in the default group
+# Create a new filesystem in the default group
 $ weka fs create new_fs default 1GiB
 
-# to view existing filesystems details in the WEKA system
+# View the existing filesystems
 $ weka fs
 Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
 --------------+-----------------+---------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------
@@ -69,69 +65,73 @@ Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | 
 ```
 {% endhint %}
 
-For more information about filesystems and filesystem groups, see [filesystems.md](../weka-system-overview/filesystems.md "mention").
-
 ## Mount the filesystem
 
-1. To mount a filesystem, create a mount point and call the mount command:
+To mount the filesystem, create a mount point directory on your server and use the `mount` command.
 
-```
-$ sudo mkdir -p /mnt/weka
-$ sudo mount -t wekafs new_fs /mnt/weka
+**Procedure**
 
-```
+1.  Create a directory to serve as the mount point and mount the filesystem.
 
-2\. Check that the filesystem is mounted:
+    ```bash
+    $ sudo mkdir -p /mnt/weka
+    $ sudo mount -t wekafs new_fs /mnt/weka
+    ```
+2.  Verify that the filesystem is mounted.
 
-```
-# using the mount command
-$ mount | grep new_fs
-new_fs on /mnt/weka type wekafs (rw,relatime,writecache,inode_bits=64,dentry_max_age_positive=1000,dentry_max_age_negative=0)
-```
-
-{% hint style="info" %}
-In AWS installation via the [self-service portal](https://start.weka.io/), the `default` filesystem is already mounted under `/mnt/weka.`
-{% endhint %}
-
-For more information about mounting filesystems and mount options, refer to [mounting-filesystems](../weka-filesystems-and-object-stores/mounting-filesystems/ "mention").
-
-## Write to the filesystem
-
-Write data to the filesystem:
-
-```
-# to perform random writes
-$ sudo dd if=/dev/urandom of=/mnt/weka/my_first_data bs=4096 count=10000
-10000+0 records in
-10000+0 records out
-40960000 bytes (41 MB) copied, 4.02885 s, 10.2 MB/s
-
-# to see the new file creted
-$ ll /mnt/weka
-total 40000
--rw-r--r-- 1 root root 40960000 Oct 30 11:58 my_first_data
-
-# to check the WekaFS filesystems via the CLI shows the used SSD capacity:
-$ weka fs
-Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
---------------+-----------------+---------+-----------------+-----------------+----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+--------------
-0             | default         | default | 40.95 MB        | 180.22 KB       | 41.14 MB | 1.03 GB  | 268.43 MB            | 1.07 GB       | 40.95 MB          | 41.14 MB   | 1.03 GB    | 1.07 GB         | 21589     | READY  | False     |                 | False
-```
-
-This has completed the sanity check that the WEKA cluster is configured and IOs can be performed on it.
-
-## Validate the configuration
-
-To ensure that the WEKA cluster and the IT environment are well configured, more complex IO patterns and benchmark tests should be conducted using the FIO utility.
-
-Although results can vary using different servers and networking, it is not expected to be very different than what many other customers and we achieved. A properly configured WEKA cluster and IT environment should yield similar results described in the WEKA performance tests section.
+    ```bash
+    $ mount | grep new_fs
+    new_fs on /mnt/weka type wekafs (rw,relatime,writecache,inode_bits=64,dentry_max_age_positive=1000,dentry_max_age_negative=0)
+    ```
 
 {% hint style="info" %}
-The numbers achieved in the benchmark tests, as described in the WEKA performance tests section, are not just achieved in a controlled environment. Similar numbers should be achieved using a similar configuration if the WEKA cluster and IT environment are properly configured.
-
-If the numbers achieved in your environment significantly vary from those, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) before running any other workload on the WEKA cluster.
+On WEKA systems installed in AWS through the [self-service portal](https://start.weka.io/), the `default` filesystem is already mounted under `/mnt/weka`.
 {% endhint %}
 
-**Related topic**
+## Write data to the filesystem
+
+Write a test file to the mounted filesystem to confirm that IO operations are working correctly.
+
+**Procedure**
+
+1.  Use the `dd` command to write a small file to the mount point.
+
+    ```bash
+    $ sudo dd if=/dev/urandom of=/mnt/weka/my_first_data bs=4096 count=10000
+    10000+0 records in
+    10000+0 records out
+    40960000 bytes (41 MB) copied, 4.02885 s, 10.2 MB/s
+    ```
+2.  List the contents of the directory to see the new file.
+
+    ```bash
+    $ ls -l /mnt/weka
+    total 40000
+    -rw-r--r-- 1 root root 40960000 Oct 30 11:58 my_first_data
+    ```
+3.  View the filesystem details to see the change in used SSD capacity.
+
+    ```bash
+    $ weka fs
+    Filesystem ID | Filesystem Name | Group   | Used SSD (Data) | Used SSD (Meta) | Used SSD  | Free SSD | Available SSD (Meta) | Available SSD | Used Total (Data) | Used Total | Free Total | Available Total | Max Files | Status | Encrypted | Object Storages | Auth Required
+    +-------------+-----------------+---------+-----------------+-----------------+-----------+----------+----------------------+---------------+-------------------+------------+------------+-----------------+-----------+--------+-----------+-----------------+---------------+
+    0             | default         | default | 40.95 MB        | 180.22 KB       | 41.14 MB  | 1.03 GB  | 268.43 MB            | 1.07 GB       | 40.95 MB          | 41.14 MB   | 1.03 GB    | 1.07 GB         | 21589     | READY  | False     |                 | False
+    ```
+
+    This completes the basic sanity check.
+
+## Validate the cluster configuration
+
+To ensure the WEKA cluster and your IT environment are optimally configured, run benchmark tests using a tool such as FIO. A properly configured environment should produce performance results similar to those documented in the official WEKA performance tests.
+
+If your benchmark results differ significantly from the expected values, contact the Customer Success Team for assistance before running production workloads on the cluster.
+
+**Related topics**
+
+[filesystems.md](../weka-system-overview/filesystems.md "mention")
+
+[mounting-filesystems](../weka-filesystems-and-object-stores/mounting-filesystems/ "mention")
 
 [testing-weka-system-performance](../performance/testing-weka-system-performance/ "mention")
+
+[#contact-customer-success-team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team "mention")

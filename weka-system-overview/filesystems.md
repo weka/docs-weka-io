@@ -33,9 +33,9 @@ Thin provisioning proves beneficial in diverse scenarios:
 * **Number of filesystems:** up to 1024
 * **Number of files or directories:** Up to 6.4 trillion (6.4 \* 10^12)
 * **Number of files in a single directory:** Up to 6.4 billion (6.4 \* 10^9)
-* **Total capacity with object store:** Up to 14 EB&#x20;
-* **Total SSD capacity:** Up to 512 PB&#x20;
-* **File size:** Up to 4 PB
+* **Total capacity with object store:** Up to 14 EiB&#x20;
+* **Total SSD capacity:** Up to 1 EiB&#x20;
+* **File size:** Up to 4 PiB
 
 ### Data reduction **in WEKA filesystems**
 
@@ -47,7 +47,7 @@ Data reduction applies only to user data, not metadata, on a per-filesystem basi
 
 For example, the image below shows a cluster with a total physical SSD capacity of 979.2 TB. Thanks to data reduction, the cluster achieves a Data Reduction Ratio of 2.78:1, which results in 574.6 TB of saved capacity. This saving allows the cluster to have 1.6 PB of provisioned space, which is 159% of the actual physical capacity.
 
-<figure><img src="../.gitbook/assets/data_reduction_capacity_saving_example.png" alt="" width="422"><figcaption><p>Data reduction capcity saving</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/data_reduction_capacity_saving_example.png" alt="" width="422"><figcaption><p>Data reduction capacity saving</p></figcaption></figure>
 
 #### Prerequisites
 

@@ -13,7 +13,7 @@ S3 lifecycle rules management in WEKA enable you to automate the organization an
 
 * **Customizable object expiration:** Define rules to automatically expire objects based on prefixes or tags, providing precise control over data retention.
 * **Extensive rule support:** Apply up to 1,000 rules per bucket to address diverse data lifecycle requirements.
-* **Priority handling:** If multiple rules apply to the same object, the rule with the earliest expiration takes precedence.
+* **Priority handling:** When multiple rules apply to the same object, the rule with the earliest expiration takes precedence. For example, if rule A applies to objects with a certain prefix and expires after 200 days, while rule B applies to a subset of the same prefix and expires after 30 days, then rule B takes precedence. As a result, rule A is only partially applicable.
 
 **Related topics**
 

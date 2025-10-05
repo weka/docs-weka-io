@@ -4,30 +4,50 @@ description: Upgrade your WEKA system with the latest version.
 
 # Upgrade WEKA versions
 
-## Upgrade overview
+## WEKA release model
 
-The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations. For a complete list of supported source and target versions, refer to the official compatibility information at [get.weka.io](https://get.weka.io/).
+WEKA operates a dual-track release model with two types of versions: Innovation releases and Long-Term Support (LTS) releases.
 
-### Upgrade guidelines
+* Innovation releases deliver new features and enhancements frequently, providing early access to cutting-edge functionality.
+* LTS releases focus on stability and reliability.
 
-**Version requirements**
+Each release in [get.weka.io](https://get.weka.io) is tagged as either **Innovation** or **LTS**.
 
-* Upgrades must progress from older versions to newer versions.
-* Version compatibility is based on release dates relative to LTS releases.
-* Major version upgrades must be to the next consecutive version only.
-* Confirm specific version compatibility at  [get.weka.io](https://get.weka.io).
-* Make sure the client's version is compatible with the backend upgrade version you intend to deploy. The `client-target-version` parameter must be consistently defined and identical across all clusters within a Single Client Multiple Clusters (SCMC). See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
+### Software versions
 
-**Version compatibility rules**
+WEKA uses a structured versioning scheme to indicate the scope and type of changes introduced in each release. This helps users quickly identify whether a release includes major new features, minor improvements, or incremental fixes.
 
-When upgrading from version 4.4.X to 5.0.Y:
+* **Major version:** The major version represents substantial changes, such as new features, architectural updates, or significant enhancements.
+  * Defined by the first two numbers in the version string.
+  * Example: In 4.4.9, the major version is 4.4.
+* **Minor version:** The minor version reflects smaller updates, such as bug fixes, performance improvements, or minor feature additions.
+  * Defined by the third number in the version string.
+  * Example: In 4.4.9, the minor version is 9.
+* **Build number:** The build number (fourth component, if present) identifies incremental builds.
+  * Used for hotfixes or release candidates that address specific issues without altering core functionality.
+  * Example: In 4.4.9.130, the build number is 130.
 
-* Version 5.0.Y must have been released after the 4.4.X LTS release.
-* All intermediate versions must be supported versions.
+## Version compatibility guidelines
 
-### **Upgrade example**
+* **Upgrade direction:** Upgrades must always progress from older to newer versions.
+* **Compatibility basis:** Compatibility is determined by the release date of the target version relative to the source version.
+* **Major version upgrades:** Upgrades must follow consecutive order (for example, 4.2  → 4.3). LTS releases upgrade to Innovation, and Innovation releases upgrade to the next LTS.
+* **LTS upgrades:** Clusters and clients can be upgraded between consecutive LTS releases (for example, 4.2.6 and above may be upgraded to the latest minor release of 4.4).
+* **Client upgrades:** Clients are supported if they are at most one major version behind the backend. In multi-hop upgrades, such as from 4.2 to 4.4 to 5.0, clients must be upgraded before the cluster to maintain compatibility.
+* **SCMC deployments:** The client-target-version parameter must be identical across all clusters and compatible with the target backend upgrade. See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
+* **Reference information:** For detailed source-to-target support per release, refer to the upgrade section at [get.weka.io](https://get.weka.io).
 
-#### Supported upgrades
+{% hint style="warning" %}
+Upgrading to version 4.4.7 on Azure deployments is not supported.
+{% endhint %}
+
+### **Upgrade examples**
+
+<details>
+
+<summary>Target version: 5.0.1.101</summary>
+
+**Supported upgrades**
 
 ```
 4.4.6.122 → 5.0.1.101    Maximum supported version
@@ -36,19 +56,29 @@ When upgrading from version 4.4.X to 5.0.Y:
 4.4.6     → 5.0.1.101    Minimum supported version
 ```
 
-#### Unsupported upgrades
+**Unsupported upgrades**
 
 ```
 4.4.8.53  → 5.0.1.101     Version not in supported range
-4.4.7.89  → 5.0.1.101     Version not in supported range (released after 5.0.1 code freeze)
+4.4.7.89  → 5.0.1.101     Version not in supported range 
+                          (released after 5.0.1 code freeze)
 4.4.4     → 5.0.1.101     Version not in supported range
 4.4.3     → 5.0.1.101     Version not in supported range
-...
 ```
 
-Always review release notes for version-specific upgrade requirements.
-
 <figure><img src="../.gitbook/assets/supported_upgrades.png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
+
+</details>
+
+<details>
+
+<summary>Target version: 4.4.9.130</summary>
+
+4.4.9.130 was release on August 20, 2025. The minimum required version to upgrade from is 4.2.1.
+
+<figure><img src="../.gitbook/assets/upgarde_compatibility_4.4.9.png" alt=""><figcaption></figcaption></figure>
+
+</details>
 
 {% hint style="warning" %}
 The source system must be set up in MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the cluster architecture to MCB. See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention").\
@@ -74,7 +104,19 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 1. Downloading the version and preparing all backend servers.
 2. Rolling upgrade of the **drive** containers.
 3. Rolling upgrade of the **compute** containers.
-4. Rolling upgrade of the **frontend** and **protocol** containers and the protocol gateways.
+4. Rolling upgrade of the **frontend** configured with backend mode and **protocol** containers (including frontend and protocol containers hosted on a dedicated protocol server).
+
+{% hint style="info" %}
+To review the frontend containers that will be upgraded, check their configuration mode by running the following command:  `$ weka cluster process --role frontend -o containerId,hostname,mode`
+
+Example output:
+
+`CONTAINER ID HOSTNAME          MODE`\
+`10           DataSphere-1      backend`\
+`13           DataSphere-2      backend`\
+`14           DataSphere-3      backend`\
+`16           DataSphere-6      client`
+{% endhint %}
 
 <figure><img src="../.gitbook/assets/NDU_process_4.2.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
 
@@ -330,9 +372,7 @@ Enabling the Low Latency Queue (LLQ) improves data processing efficiency in AWS 
 
 ### 6. Upgrade the clients
 
-After all backend components have been upgraded, clients continue operating with their existing version and can interact with the upgraded backends. Typically, a client version is supported only if it is no more than one major version behind the backend version. Therefore, clients must be upgraded before the subsequent cluster software version upgrade to maintain compatibility.
-
-An exception to this rule is that clients running version 4.2.1 or later are compatible with clusters running version 4.4.6.
+After all backend components have been upgraded, clients continue operating with their existing version and can interact with the upgraded backends. For version compatibility guidelines, see [#version-compatibility-guidelines](upgrading-weka-versions.md#version-compatibility-guidelines "mention").
 
 #### Stateless client upgrade options
 
