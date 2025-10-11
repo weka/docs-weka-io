@@ -61,8 +61,7 @@ Enabling Single Root I/O Virtualization (SR-IOV) is mandatory when deploying cli
    If applicable, set the port mode with the following command, where 1=InfiniBand and 2=Ethernet:\
    `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P<1,2>=<1,2>`\
    \
-   For example, the following command sets port 2 to InfiniBand:\
-   `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`\
+   For example, the following command sets port 2 to InfiniBand:  `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`\
 
 3. **Reboot the system:** A reboot is required after applying the firmware settings to ensure the changes take effect.
 
@@ -424,7 +423,7 @@ ens1: connected to ens1
 
 DNS configuration:
         servers: 10.219.59.120 10.211.188.61 10.211.188.73
-        domains: coupang.net
+        domains: example.net
         interface: eno12409
 ```
 
