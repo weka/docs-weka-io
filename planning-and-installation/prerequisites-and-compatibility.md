@@ -329,23 +329,21 @@ When assigning a network device to the WEKA system, no other application can cre
 
 {% tabs %}
 {% tab title="InfiniBand drivers" %}
-WEKA supports the following Mellanox OFED versions for the InfiniBand adapters:
+WEKA supports the following Nvidia major OFED versions for the InfiniBand adapters:
 
-* 24.04-0.7.0.0
-* 23.10-0.5.5.0
-* 23.04-1.1.3.0
-* 5.9-0.5.6.0
-* 5.8-1.1.2.1 LTS
-* 5.8-3.0.7.0
-* 5.7-1.0.2.0
-* 5.6-2.0.9.0
-* 5.6-1.0.3.3
-* 5.4-3.5.8.0 LTS
-* 5.4-3.4.0.0 LTS
-* 5.1-2.6.2.0
-* 5.1-2.5.8.0
+* 24.04
+* 23.10
+* 23.04
+* 5.9
+* 5.8
+* 5.7
+* 5.6
+* 5.4
+* 5.1
 
-**Note:** Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
+{% hint style="info" %}
+Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
+{% endhint %}
 {% endtab %}
 
 {% tab title="InfiniBand configurations" %}
