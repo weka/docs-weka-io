@@ -885,10 +885,10 @@ Upgrading the WEKA Operator involves updating the Operator and managing `wekaCli
     * **manual**: No automatic pod replacements are performed by the operator. Manual deletion of each client pod is required, after which the pod restarts with the updated version. Use `kubectl delete pod <pod-name>` to delete each pod manually.
     * **all-at-once**: The operator updates all client pods simultaneously, applying the new version cluster-wide in a single step.
 
-    To apply the upgrade, update the `weka-in-container` version by:
+    To apply the upgrade, update the `weka-in-container` version:
 
-    * Directly editing the version with `kubectl edit` on the `wekaClient` CR.
-    * Modifying the client configuration manifest, then reapplying it with `kubectl apply -f <manifest-file>`.
+    * Edit the version with `kubectl edit` on the `wekaClient` CR.
+    * Modify the client configuration manifest, then reapply it with `kubectl apply -f <manifest-file>`.
 3. **Create a new builder Instance for each WEKA version**\
    Rather than updating existing builder instances, create a new instance of the builder with each WEKA kernel version. Each builder must have a unique `wekaContainer` metadata name to support version-specific compatibility.
    * **Create a new builder**: For each WEKA version, create a new builder instance with an updated `wekaContainer` meta name that corresponds to the new version. This ensures that clients and resources linked to specific kernel versions can continue to operate without conflicts.
