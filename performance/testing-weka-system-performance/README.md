@@ -1,6 +1,6 @@
 ---
 description: >-
-  Measure the key performance metrics of a WEKA cluster—latency, IOPS, and
+  Measure the key performance metrics of a storage system—latency, IOPS, and
   bandwidth—using standardized testing procedures.
 ---
 
@@ -8,67 +8,110 @@ description: >-
 
 ## Overview
 
-When measuring a storage system's performance, there are three primary metrics:
+When evaluating a storage system’s performance, three primary metrics are considered:
 
-* **Latency**: The time from the initiation of an operation to its completion.
-* **IOPS**: The number of I/O operations (such as read, write, or metadata) that the system can process concurrently.
-* **Bandwidth**: The amount of data that the system can process concurrently.
+* **Latency:** The time between the initiation and completion of an I/O operation.
+* **IOPS:** The number of I/O operations (read, write, or metadata) that the system can process per second.
+* **Bandwidth:** The amount of data transferred per second during I/O operations.
 
-Each metric applies to read operations, write operations, or a mixture of both. Different [mount modes](../../weka-system-overview/weka-client-and-mount-modes.md) can produce different performance characteristics. Additionally, the client's network configuration, such as using user-space DPDK networking or kernel UDP, significantly affects performance.
+Each metric applies to read, write, or mixed workloads. Performance characteristics may vary depending on the mount mode and network configuration (for example, user-space DPDK vs. kernel UDP).
 
-It is important to distinguish between single-client and aggregated performance. Running tests from a single client will likely be limited by the client's own performance capabilities. In general, maximizing the performance of a WEKA cluster requires running tests from several clients simultaneously.
+It is important to distinguish between single-client and aggregated performance. A single client may be limited by its local resources, so for accurate cluster-wide measurements, run tests from multiple clients simultaneously.
 
-To ensure that test results reflect the filesystem's ability to deliver data independent of client-side caching, the benchmarks are designed to negate the effects of caching where possible. This is achieved by using `o_direct` calls to bypass the client's cache for file testing and by flushing Linux caches between tests.
+To ensure that results reflect the filesystem’s true capabilities rather than client-side caching, all benchmarks use direct I/O (O\_DIRECT) and clear Linux caches between tests.
 
-## Testing WEKA performance with wekatester
+## Test performance with wekatester
 
-Use the `wekatester` command-line utility to measure the performance of a WEKA cluster. This tool automates a series of standardized FIO tests to measure key performance indicators (KPIs), such as throughput, IOPS, and latency.
+Use the `wekatester` command-line utility to perform manual performance testing across multiple client hosts. The tool runs FIO (Flexible I/O) workloads on client systems, also referred to as compute nodes, that are connected to a shared network filesystem.
 
-Using `wekatester` is the recommended approach for performance testing as it provides consistent, reproducible, and easy-to-interpret results.
+This approach enables consistent, reproducible, and comparable (“apples-to-apples”) performance benchmarking across different storage systems.
 
-**Before you begin**
+{% hint style="info" %}
+Unlike previous versions, automatic cluster and client discovery (`wekatester -c`) is no longer available.
 
-* Ensure [FIO](https://linux.die.net/man/1/fio) is installed on all client hosts participating in the test ([FIO documentation](https://fio.readthedocs.io/en/latest/fio_doc.html)).
+All servers must now be specified manually when running tests.
+{% endhint %}
 
-**Procedure**
+#### **Before you begin**
 
-1. Log in to a client with access to the WEKA cluster.
-2. Clone the the **tools** repository:\
-   `git clone --depth 1` [`https://github.com/weka/tools.git`](https://github.com/weka/tools.git)
-3. Change directory to **tools/wekatester**.
-4.  Run the performance test suite using the following command:
+Ensure that FIO is installed on all client hosts participating in the tests.
 
-    ```bash
-    ./wekatester -c
-    ```
+FIO is included in most Linux distributions and can typically be installed using your system’s package manager, for example:
 
-    The tool automatically discovers the cluster and clients, prepares the hosts for testing, runs the full suite of performance tests, and reports the aggregated results.
+```
+dnf install fio
+# or
+apt install fio
+```
 
-**Result example**
+For more information on installation and usage, see [FIO documentation](https://fio.readthedocs.io/en/latest/fio_doc.html).
+
+#### **Procedure**
+
+1. Log in to a client with access to the system under test.
+2. Clone the tools repository:
+
+```bash
+   git clone --depth 1 https://github.com/weka/tools.git
+```
+
+3. Navigate to the `wekatester` directory:
+
+```bash
+cd tools/wekatester
+```
+
+3. Run the performance test manually using the following syntax:
+
+```bash
+./wekatester.py -d <directory> [-w <workload>] [--fio-bin <path>] [server ...]
+```
+
+#### **Command properties**
+
+All command properties are optional except the `server` property.
+
+<table><thead><tr><th width="192.7734375">Option</th><th>Description</th></tr></thead><tbody><tr><td><code>server</code>*</td><td>Required. One or more server hostnames or IPs to use as workers.</td></tr><tr><td><code>-d, --directory</code> </td><td><p>Target directory on the workers where test files will be created. The target filesystem must be mounted at this directory or at a parent directory.</p><p>Default: <code>/mnt/weka</code>.</p></td></tr><tr><td><code>-w, --workload</code> </td><td><p>Specifies the workload definition directory from the <code>fio-jobfiles</code> subdirectory structure.</p><p>Default: <code>default</code></p><p>Built-in workload options:</p><ul><li><strong><code>default</code></strong>: Four-corners test suite covering read/write bandwidth, latency, and IOPS</li><li><strong><code>mixed</code></strong>: 70/30 read/write mixed workload patterns</li></ul><p>You can create custom workload directories under <code>fio-jobfiles/</code> and reference them with this option.</p><p>Example:</p><pre class="language-bash"><code class="lang-bash">./wekatester.py -d /mnt/weka -w mixed server1 server2 server3
+</code></pre></td></tr><tr><td><code>--fio-bin</code> </td><td><p>Specifies the path to the <code>fio</code> binary on target servers.</p><p>Default: <code>/usr/bin/fio</code></p><p>Use this option when <code>fio</code> is installed in a non-standard location or when you want to use a specific <code>fio</code> version.</p><p>Example:</p><pre class="language-bash"><code class="lang-bash">./wekatester.py -d /mnt/weka --fio-bin /opt/fio/bin/fio server1 server2
+</code></pre></td></tr><tr><td><code>-v, --verbosity</code></td><td><p>Increases output verbosity for debugging and detailed monitoring.</p><p>Verbosity levels:</p><ul><li><code>-v</code>: Basic verbose output</li><li><code>-vv</code>: Detailed verbose output</li><li><code>-vvv</code>: Maximum verbosity with debug information</li></ul></td></tr><tr><td><code>-V, --version</code></td><td>Displays the <code>wekatester</code> version number.</td></tr></tbody></table>
+
+#### Example default usage
+
+```bash
+./wekatester server1 server2 server3... 
+```
+
+During execution, `wekatester` distributes and runs FIO workloads on the specified servers, collects performance data, and summarizes the results.
+
+#### Example output
 
 The command displays a summary of the performance results, providing a clear overview of the cluster's capabilities.
 
 ```
-read bandwidth: 434.52 GiB/s
-total bandwidth: 434.52 GiB/s
-average bandwidth: 27.16 GiB/s per host
+starting test run for job 011-bandwidthR.job on <hostname> with <n> workers:
+    read bandwidth: 9.37 GiB/s
+    total bandwidth: 9.37 GiB/s
+    average bandwidth: 2.34 GiB/s per host
 
-write bandwidth: 258.49 GiB/s
-total bandwidth: 258.49 GiB/s
-average bandwidth: 16.16 GiB/s per host
+starting test run for job 012-bandwidthW.job on <hostname> with <n> workers:
+    write bandwidth: 7.72 GiB/s
+    total bandwidth: 7.72 GiB/s
+    average bandwidth: 1.93 GiB/s per host
 
-read latency: 143 us
+starting test run for job 021-latencyR.job on <hostname> with <n> workers:
+    read latency: 237 us
 
-write latency: 134 us
-
-read iops: 16,526,081/s
-total iops: 16,526,081/s
-average iops: 1,032,880/s per host
-
-write iops: 4,089,720/s
-total iops: 4,089,720/s
-average iops: 255,607/s per host
+starting test run for job 022-latencyW.job on <hostname> with <n> workers:
+    write latency: 180 us
 ```
+
+Raw FIO results are stored as JSON files, for example:
+
+```
+results_2025-10-07_1112.json
+```
+
+These files contain the full FIO output for detailed analysis.
 
 ### Wekatester FIO job definitions
 
