@@ -54,13 +54,20 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 <figure><img src="../../.gitbook/assets/create_fs.png" alt=""><figcaption><p>Create filesystem</p></figcaption></figure>
 
 4.  Optional: [**Tiering**](../tiering/advanced-time-based-policies-for-data-storage-location.md#tiering-cue-policy).\
-    If tiering is required, an object store bucket is already defined, and data reduction is not enabled, select the toggle button and set the details of the object store bucket:
+    If tiering is required, and the following conditions are met:
+
+    * An object store bucket is already defined.
+    * Data reduction is not enabled.
+
+    Then, enable tiering by selecting the Tiering toggle and specifying the following details:
 
     * **Object Store Bucket:** Select a predefined object store bucket from the list.
-    * **Drive Capacity**: Enter the capacity to provision on the SSD, or select **Use All** to use all free capacity.
-    * **Total Capacity**: Enter the total capacity of the object store bucket, including the drive capacity.
+    * **Drive Capacity:** Enter the SSD capacity to provision, or select **Use All** to allocate all available free capacity.
+    * **Total Capacity:** Enter the total capacity of the object store bucket, including the drive capacity.
 
-    When you set tiering, you can create the filesystem from an uploaded snapshot. See the related topics below.
+    **Best practice:** Use a 1:4 ratio between the drive capacity and total capacity, as shown in the example below.
+
+    When tiering is enabled, you can also create the file system from an uploaded snapshot. For more information, see the related topics below.
 
 ![Tiering](../../.gitbook/assets/wmng_fs_tiering.png)
 
