@@ -79,7 +79,7 @@ The stateless mount mode simplifies client management by deferring the joining o
 
 **Prerequisites**
 
-* The stateless clients must have a connection to all the backends, protocol gateway servers and stateful clients.
+* The stateless clients must have a connection to all the backends, dedicated protocol servers  (gateways), and persistent clients.
 * Ensure the WEKA agent is installed on your client to utilize the stateless mount mode. See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
 
 **Mount a filesystem**
