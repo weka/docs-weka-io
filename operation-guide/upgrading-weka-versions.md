@@ -37,10 +37,6 @@ WEKA uses a structured versioning scheme to indicate the scope and type of chang
 * **SCMC deployments:** The client-target-version parameter must be identical across all clusters and compatible with the target backend upgrade. See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
 * **Reference information:** For detailed source-to-target support per release, refer to the upgrade section at [get.weka.io](https://get.weka.io).
 
-{% hint style="warning" %}
-Upgrading to version 4.4.7 on Azure deployments is not supported.
-{% endhint %}
-
 ### **Upgrade examples**
 
 <details>

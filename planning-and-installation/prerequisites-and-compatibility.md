@@ -111,6 +111,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% tab title="Kernel" %}
 The following kernel versions are supported:
 
+* 6.14
 * 6.8
 * 6.0 to 6.5
 * 5.3 to 5.19
