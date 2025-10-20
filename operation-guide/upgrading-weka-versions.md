@@ -317,7 +317,9 @@ The preparation phase prepares all the connected backend servers for the upgrade
 
 Once the new version is downloaded to one of the backend servers, run the following CLI command:
 
-`weka local run --container drives0 --in <new-version> upgrade --prepare-only`
+```bash
+weka local run --container drives0 --in <new-version> upgrade --distribute-version
+```
 
 Where:
 
@@ -329,7 +331,9 @@ Once a new software version is installed on one of the backend servers, upgrade 
 
 If you already ran the preparation step, the upgrade command skips the download and preparation operations.
 
-`weka local run --container drives0 --in <new-version> upgrade`
+```bash
+weka local run --container drives0 --in <new-version> upgrade
+```
 
 **Consider the following guidelines:**
 
