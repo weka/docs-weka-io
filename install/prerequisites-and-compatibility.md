@@ -63,7 +63,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 20.04
   * 18.04
 * **Amazon Linux 2023** (AL2023) with x86 distribution
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12) with x86 distribution
+* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12) with x86\_64 distribution
 * **Amazon Linux:**
   * AMI 2018.03
   * AMI 2017.09
