@@ -44,7 +44,7 @@ The following requirements must be met:
 ## Operating system
 
 {% hint style="info" %}
-WEKA will support upcoming releases of the operating systems in the lists within one quarter (three months) of their respective General Availability (GA) dates.
+Every effort is made to support upcoming releases of the operating systems in the lists within one quarter (three months) of their respective General Availability (GA) dates. When an operating system version is deprecated, WEKA will cease to ensure its software continues to work with that operating system version.
 {% endhint %}
 
 {% tabs %}
