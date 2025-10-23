@@ -389,44 +389,35 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
 
 ## Object store
 
-* API must be S3 compatible:
-  * GET
-    * Including byte-range support with expected performance gain when fetching partial objects
-  * PUT
-    * Supports any byte size of up to 65 MiB
-  * DELETE
-* Data Consistency: [Amazon S3 consistency model](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel):
-  * GET after a single PUT is strongly consistent
-  * Multiple PUTs are eventually consistent
+WEKA integrates with object stores for two primary purposes: extending the filesystem capacity with a lower-cost tier and creating remote backups for disaster recovery. Support for these functions varies by the object store provider and its specific configuration.
 
-### Certified object stores
+* **Tiering:** Moves inactive data from the high-performance SSD tier to a designated object store bucket. This frees up SSD capacity while keeping the data accessible within the unified filesystem namespace. Tiering requires high performance and consistency from the object store.
+* **Snap-to-Object:** Sends immutable snapshots of a filesystem to a remote object store. This provides an efficient and secure method for remote backup and disaster recovery.
 
-* Amazon S3
-  * S3 Standard
-  * S3 Intelligent-Tiering
-  *   These storage classes are ideal for remote buckets where data is written once and accessed in critical situations, such as during disaster recovery:
+### Certified object stores and support status
 
-      * S3 Standard-IA
-      * S3 One Zone-IA
-      * S3 Glacier Instant Retrieval
+The following table details the support status for certified object store solutions.
 
-      Remember, retrieval times, minimum storage periods, and potential charges due to object compaction may apply. If unsure, use S3 Intelligent-Tiering.
-* Azure Blob Storage
-* Google Cloud Storage (GCS)
-* Cloudian HyperStore (version 7.3)
-* Dell EMC ECS (version 3.5)
-* Dell PowerScale S3 (version 9.8.0.0)
-* HCP Classic V9.2 and up (with versioned buckets only)
-* HCP for Cloud-Scale V2.x
-* IBM Cloud Object Storage System (version 3.14.7)
-* Lenovo MagnaScale (version 3.0)
-* Quantum ActiveScale (version 5.5.1)
-* Red Hat Ceph Storage (version 5.0)
-* Scality RING with S3 connector (version 8.5)
-* Scality RING with WEKA connector (version 9.5)
-* Scality Artesca (version 1.5.2)
-* SwiftStack (version 6.30)
-* WEKA S3
+<table><thead><tr><th width="187.92578125">Object Store</th><th width="186.94921875">Storage Class / Version</th><th>Supportability notes</th></tr></thead><tbody><tr><td>Amazon S3</td><td><p>S3 Standard</p><p>S3 Intelligent-Tiering</p></td><td>Tiering and snap-to-object</td></tr><tr><td></td><td>S3 Standard-IA<br>S3 One Zone-IA<br>S3 Glacier Instant Retrieval</td><td>Snap-to-object supported; tiering not recommended (slow retrieval, storage period, access costs). Best for backups/DR. Use Intelligent-Tiering if unsure.</td></tr><tr><td>Azure Blob Storage</td><td></td><td>Tiering and snap-to-object</td></tr><tr><td>Cloudian HyperStore</td><td>7.3</td><td>Tiering and snap-to-object</td></tr><tr><td>CoreWeave AI Object Storage (CAIOS)</td><td></td><td>Snap-to-object; tiering not supported</td></tr><tr><td>Google Cloud Storage (GCS)</td><td></td><td>Tiering and snap-to-object</td></tr><tr><td>Dell EMC ECS</td><td>3.5</td><td>Tiering and snap-to-object</td></tr><tr><td>Dell PowerScale S3</td><td>9.8.0.0</td><td>Tiering and snap-to-object (all-flash models only)</td></tr><tr><td>HCP Classic</td><td>9.2+ (versioned buckets)</td><td>Tiering and snap-to-object</td></tr><tr><td>HCP for Cloud-Scale</td><td>2.x</td><td>Tiering and snap-to-object</td></tr><tr><td>IBM Cloud Object Storage</td><td>3.14.7</td><td>Tiering and snap-to-object</td></tr><tr><td>Lenovo MagnaScale</td><td>3</td><td>Tiering and snap-to-object</td></tr><tr><td>Quantum ActiveScale</td><td>5.5.1</td><td>Tiering and snap-to-object</td></tr><tr><td>Red Hat Ceph Storage</td><td>5</td><td>Tiering and snap-to-object</td></tr><tr><td>Scality Artesca</td><td>1.5.2</td><td>Tiering and snap-to-object</td></tr><tr><td>Scality RING S3 Connector</td><td>8.5</td><td>Tiering and snap-to-object</td></tr><tr><td>Scality RING WEKA Connector</td><td>9.5</td><td>Tiering and snap-to-object</td></tr><tr><td>SwiftStack</td><td>6.3</td><td>Tiering and snap-to-object</td></tr><tr><td>WEKA S3</td><td></td><td>Tiering and snap-to-object</td></tr></tbody></table>
+
+### S3-Compatible object store requirements
+
+To ensure stability, performance, and data integrity, any S3-compatible object store used with WEKA must meet the following minimum requirements.
+
+**API requirements**
+
+The object store must provide a fully S3-compatible API that supports the following operations:
+
+* **GET**: Must include support for byte-range requests to allow for efficient fetching of partial objects.
+* **PUT**: Must support uploads of any object size up to 65 MiB.
+* **DELETE**: Must support standard object deletion.
+
+**Data consistency requirements**
+
+The object store must adhere to the [Amazon S3 data consistency model](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel):
+
+* **Strong read-after-write consistency:** A `GET` request for an object that occurs after a successful `PUT` request has created that object must immediately return the new object's data.
+* **Eventual consistency:** `PUT` requests that overwrite existing objects, or `DELETE` requests, are eventually consistent. This means that a subsequent `GET` request might temporarily return the older version of the data before the update or deletion has fully propagated across the system.
 
 ## Virtual Machines
 
