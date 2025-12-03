@@ -6,7 +6,7 @@ description: This page describes how to set up, update, monitor, and delete an S
 
 ## Considerations
 
-* **Performance scale:** The S3 service can be exposed from the cluster container&#x73;**.** The service performance scales linearly as the S3 cluster scales. Depending on the workload, you may need several Frontend cores to gain maximum performance.
+* **Performance and scalability:** The S3 service is delivered through WEKA cluster containers and exhibits near-linear scaling as additional S3 containers join the cluster. Both throughput and concurrency scale proportionally with cluster size. In well-sized deployments, S3 performance can reach millions of requests per second on medium-sized clusters (\~30 servers) and tens of millions of requests per second on larger clusters (\~100 servers).
 * **Redundancy:** A minimum of two containers is required for the S3 cluster to ensure redundancy and fault tolerance. However, creating a single-container S3 cluster is possible, so there will be no redundancy.
 * **Cluster-wide configuration filesystem:** Verify that the dedicated filesystem for persistent protocol configurations is created. If not, create it. For details, see [#dedicated-filesystem-requirement-for-persistent-protocol-configurations](../../additional-protocols-overview.md#dedicated-filesystem-requirement-for-persistent-protocol-configurations "mention").
 * **Interfaces:** The S3 protocol can be accessed using the assigned port (default: 9000) on all configured interfaces on each WEKA server where the protocol is enabled. It does not use dedicated or floating IPs.  &#x20;
