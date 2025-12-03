@@ -114,6 +114,18 @@ The S3 protocol implementation supports the following policy actions:
 * `s3:GetBucketTagging`
 * `s3:PutBucketTagging`
 
+The WEKA S3 implementation supports the following checksum algorithms for data integrity:
+
+* CRC64NVME
+* CRC32
+* CRC32C
+* SHA1
+* SHA256
+
+{% hint style="info" %}
+For optimal performance, CRC32 or CRC32C is recommended.
+{% endhint %}
+
 ## Supported AWS-aligned integrity algorithms
 
 The WEKA system supports end-to-end checksum validation for S3 data integrity protections. The following AWS-aligned integrity algorithms are supported:
