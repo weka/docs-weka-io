@@ -22,9 +22,9 @@ Description:
     The base command for all weka related CLIs
 
 Subcommands:
-   access-group      Commands that manage the cluster access-groups
    agent             Commands that control the weka agent (outside the weka containers)
    alerts            List alerts in the Weka cluster
+   audit             Commands used for audit in a weka cluster
    cloud             Cloud commands. List the cluster's cloud status, if no subcommand supplied.
    cluster           Commands that manage the cluster
    dataservice       Commands that manage dataservice
@@ -235,6 +235,22 @@ When the `auto` value is selected, the [`NO_COLOR`](#user-content-fn-1)[^1] envi
 ### `WEKA_CLI_COLOR` environment variable usage
 
 This environment variable can set the color output with the same possible values as the `--color` parameter (`enabled`, `disabled`, `auto`). However, if the `--color` parameter is specified, it overrides the `WEKA_CLI_COLOR` environment variable.
+
+### CLI Boolean value aliases
+
+The CLI supports aliases for Boolean options across all commands. This support accepts values like `yes`, `no`, `true`, `false`, `on`, `off`, `y`, or `n`. The system automatically converts these values to the internal true/false format.
+
+Using aliases streamlines administrative operations and provides a consistent, flexible way to configure Boolean parameters. This eliminates the need to remember specific command-by-command requirements.
+
+**Example**
+
+The argument `<on>` accepts any of the supported Boolean aliases:
+
+```
+weka cluster container dedicate <container-id> <on>
+```
+
+Accepted values for a Boolean argument include: `yes`, `no`, `true`, `false`, `on`, `off`, `y`, or `n`.
 
 ## Cluster status
 
