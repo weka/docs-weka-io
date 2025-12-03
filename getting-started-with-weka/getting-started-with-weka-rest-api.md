@@ -12,7 +12,7 @@ You can access the REST API using one of the following methods:
   ![](../.gitbook/assets/wmng_access_rest_api.png)
 *   **WEKA static API:** Browse to [api.docs.weka.io](https://api.docs.weka.io/) and select the required REST API version from the definition selector. You can also generate client code by using the OpenAPI client generator with the corresponding .json definition file.<br>
 
-    <figure><img src="../.gitbook/assets/5_0_static_api_docs.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/static_api_docs.png" alt=""><figcaption></figcaption></figure>
 
 ## Explore the REST API through the GUI
 
