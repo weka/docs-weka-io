@@ -101,7 +101,7 @@ Every effort is made to support upcoming releases of the operating systems in th
   * 12 (with Linux kernel 6.6)
   * 10
 * **AlmaLinux OS:**
-  * 9.4
+  * 9.6, 9.4
   * 8.10
 * **Proxmox Virtual Environment**:
   * 8.2
@@ -119,7 +119,7 @@ The following kernel versions are supported:
 * 3.10
 
 {% hint style="info" %}
-- Kernels 5.15 and higher are not supported with Amazon Linux 2 (AL2) operating system.
+- Kernels 5.15 and higher are not supported with Amazon Linux operating systems.
 - It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
 - Confirm that both the kernel version and the operating system version are listed as supported, as these are distinct components with their own compatibility considerations.
 - For clarity, the range of supported versions is inclusive.
@@ -376,18 +376,31 @@ Right-scroll the table to view all columns.
 
 See [#high-availability](../weka-system-overview/networking-in-wekaio.md#high-availability "mention")
 
-## SSDs
+## SSD requirements
 
-* The SSDs must support PLP (Power Loss Protection).
-* WEKA system storage must be dedicated, and partitioning is not supported.
-* The supported drive capacity is up to 30 TB.
-* The ratio between the cluster's smallest and the largest SSD capacity must not exceed 8:1.
+Review the requirements for SSDs used in a WEKA cluster.
+
+* SSDs must support Power Loss Protection (PLP).
+* Dedicate the entire SSD for WEKA system storage. Partitioning the drive is not supported.
+* Use SSDs with a capacity of up to 30 TB.
+* Maintain a capacity ratio of 8:1 or less between the smallest and largest SSDs in the cluster.
+* Maintain a ratio of 8000:1 or less between the total SSD capacity and the total RAM of the cluster.
 
 {% hint style="info" %}
 To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(computing\)) is supported by the device and enabled in the operating system.
 {% endhint %}
 
 ## Object store
+
+* API must be S3 compatible:
+  * GET
+    * Including byte-range support with expected performance gain when fetching partial objects
+  * PUT
+    * Supports any byte size of up to 65 MiB
+  * DELETE
+* Data consistency: [Amazon S3 consistency model](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel):
+  * GET after a single PUT is strongly consistent
+  * Multiple PUTs are eventually consistent
 
 WEKA integrates with object stores for two primary purposes: extending the filesystem capacity with a lower-cost tier and creating remote backups for disaster recovery. Support for these functions varies by the object store provider and its specific configuration.
 
