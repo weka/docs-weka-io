@@ -114,9 +114,23 @@ The S3 protocol implementation supports the following policy actions:
 * `s3:GetBucketTagging`
 * `s3:PutBucketTagging`
 
-## Supported checksum&#x20;
+## Supported AWS-aligned integrity algorithms
 
-Only MD5 checksum algorithm is supported.
+The WEKA system supports end-to-end checksum validation for S3 data integrity protections. The following AWS-aligned integrity algorithms are supported:
+
+* CRC32
+* CRC32C
+* CRC64NVME
+* SHA1
+* SHA256
+
+The system provides validation at the whole-object (`FULL_OBJECT`) and part-level, and supports trailer-based signed chunked uploads. Clients can select the desired algorithm on a per-request basis.
+
+## ETag handling in WEKA S3
+
+The WEKA S3 cluster manages the S3 object ETag field using the MD5 algorithm to generate checksums based on the specific upload method. For standard single-part uploads, the returned ETag represents the MD5 checksum of the uploaded data.
+
+In multipart uploads, the system generates an MD5 ETag for each part and ensures sequential validation, deriving the final object ETag from a checksum calculated across the individual parts' ETags.
 
 ## Lifecycle configuration
 
