@@ -14,7 +14,7 @@ The WEKA cluster is deployed in a single virtual network (VNet, similar to VPC i
 
 Depending on the required security level, you can deploy the WEKA cluster using the Terraform package on one of the following subnet types:
 
-* **Public subnets:** Use a single public subnet within your VNet with an internet gateway, and allow public IP addresses for your virtual machines.&#x20;
+* **Public subnets:** Use a single public subnet within your VNet with an internet gateway, and allow public IP addresses for your virtual machines.
 * **Private subnets:** Use a single private subnet within your VNet with access to an APT repository containing the required deployment packages.
 
 <figure><img src="../../.gitbook/assets/azure_deployment_single_subnet.png" alt=""><figcaption><p>WEKA cluster on Azure deployment</p></figcaption></figure>
@@ -41,7 +41,7 @@ Terraform is the primary tool for deploying WEKA on Azure.
 
 <img src="../../.gitbook/assets/Terraform_overview.png" alt="" data-size="original">
 
-### How does Terraform work?
+#### How does Terraform work?
 
 A deployment with Terraform involves three phases:
 
@@ -59,14 +59,10 @@ A deployment with Terraform involves three phases:
 
 </details>
 
-
-
 **Related topics**
 
 [weka-containers-architecture-overview.md](../../weka-system-overview/weka-containers-architecture-overview.md "mention")
 
-
-
 **Related information**
 
-[Weka® Data Platform on Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/weka1652213882079.weka\_data\_platform?exp=ubp8\&tab=Overview)
+[Weka® Data Platform on Microsoft Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/weka1652213882079.weka_data_platform?exp=ubp8\&tab=Overview)

@@ -131,7 +131,7 @@ The Settings page displays a variety of panels containing information such as tr
 
 <figure><img src="../../.gitbook/assets/cluster-settings.png" alt=""><figcaption><p>Setting page</p></figcaption></figure>
 
-## Diagnostics&#x20;
+## Diagnostics
 
 The Diagnostics page displays the content of all diagnostic files uploaded from the cluster. Diagnostics are neatly organized in a file system tree structure for convenient navigation.
 
@@ -222,4 +222,4 @@ The following properties are affected by anonymization:
 The anonymization option is supported with WEKA clusters of version 3.14.2 and above.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/download_usage_analytics_reports (3).png" alt=""><figcaption><p>Download Usage Report and Analytics</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/download_usage_analytics_reports (1).png" alt=""><figcaption><p>Download Usage Report and Analytics</p></figcaption></figure>

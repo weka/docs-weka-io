@@ -116,7 +116,7 @@ cyclecloud import_template -f /home/weka/cyclecloud-weka/templates/slurm-weka.tx
 
     <figure><img src="../.gitbook/assets/CycleCloud_1-4 (1).png" alt=""><figcaption><p>CycleCloud GUI</p></figcaption></figure>
 5.  **Review the template configuration**\
-    Click on the newly imported template. It includes a section labeled **Weka Cluster Info.** You will  configure this section in a later step of this guide.<br>
+    Click on the newly imported template. It includes a section labeled **Weka Cluster Info.** You will configure this section in a later step of this guide.<br>
 
     <figure><img src="../.gitbook/assets/CycleCloud_1-5 (1).png" alt=""><figcaption><p>WEKA Cluster Info</p></figcaption></figure>
 
@@ -133,9 +133,9 @@ For step-by-step guidance on enabling DPDK and configuring dual NICs for high-pe
 **Procedure**
 
 1.  **Log in to the Azure CycleCloud VM**\
-    Access the VM where Azure CycleCloud is installed. <br>
+    Access the VM where Azure CycleCloud is installed.<br>
 
-    <figure><img src="../.gitbook/assets/CycleCloud_2-1.png" alt=""><figcaption><p>Log in to the Azure CycleCloud VM</p></figcaption></figure>
+    <figure><img src="../.gitbook/assets/CycleCloud_1-1 (1).png" alt=""><figcaption><p>Log in to the Azure CycleCloud VM</p></figcaption></figure>
 2. **Open the CycleCloud/WEKA template**\
    Navigate to the template downloaded in [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#step-1-download-the-azure-cyclecloud-weka-integration-template), and open it using a text editor.
 3.  **Modify the template to support dual NICs**\
@@ -197,7 +197,7 @@ Depending on your deployment, you may create separate CycleCloud specifications 
    2. Navigate to the cluster configuration you wish to edit.
    3.  Click **Edit** to modify the settings.<br>
 
-       <figure><img src="../.gitbook/assets/CycleCloud_3-2 (2).png" alt=""><figcaption><p>Edit cluster configuration in the CycleCloud GUI</p></figcaption></figure>
+       <figure><img src="../.gitbook/assets/CycleCloud_3-2 (1).png" alt=""><figcaption><p>Edit cluster configuration in the CycleCloud GUI</p></figcaption></figure>
 2.  **Attach the cluster initialization script**
 
     1.  In the **Advanced Settings** section, scroll to the **Cluster Init** section near the bottom of the page.<br>
@@ -242,8 +242,6 @@ The **cluster-init script** used in the previous step requires specific configur
        * **Mount point**: Specify the desired mount point for the nodes.
        * **WEKA filesystem**: Enter the name of the selected WEKA filesystem from [**Step 1**](azure-cyclecloud-for-slurm-and-weka-integration.md#workflow-integrate-azure-cyclecloud-with-weka).
 
-
-
        <figure><img src="../.gitbook/assets/CycleCloud_4-4.png" alt=""><figcaption><p>Example configuration</p></figcaption></figure>
 3. **Save the configuration**
    1. Click **Save** to apply the changes.
@@ -284,8 +282,6 @@ To validate the integration, run a SLURM job across multiple nodes and confirm t
         ```bash
         tail -f <script-name>  
         ```
-
-
 
     <figure><img src="../.gitbook/assets/CycleCloud_5-3.png" alt=""><figcaption></figcaption></figure>
 3.  **Verify on the WEKA GUI**:

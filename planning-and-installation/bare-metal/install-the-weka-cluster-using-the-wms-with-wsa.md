@@ -22,19 +22,19 @@ Using the WMS with WSA to install a WEKA cluster requires a physical server (or 
 * **Minimum boot drive capacity:**
   * If not configuring LWH: SSD 141 GB (131 GiB).
   * If configuring LWH: See the SSD-backed storage requirements section in [#1.-verify-prerequisites](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
-* **Boot type:** UEFI boot.&#x20;
+* **Boot type:** UEFI boot.
 * **Cores and RAM:**
   * If not configuring LWH: minimum 4 cores and 16 GiB.
   * If configuring LWH, see the Server minimum CPU and RAM requirements section in [#1.-verify-prerequisites](../../monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md#1.-verify-prerequisites "mention").
 * **Network interface:** 1 Gbps.
 
-### Prerequisites for the target bare metal servers&#x20;
+### Prerequisites for the target bare metal servers
 
 * Target servers must be **Dell, HPE,** **Supermicro,** or **Lenovo**. Other servers are not supported.
 * The RedFish[^1] interface must be installed, enabled, and licensed for all target servers.
 * The WMS must be able to connect over Ethernet to the following servers’ interfaces:
   * OS management interface, typically 1 Gbps. It must be connected to a switch.
-  * Base Management Controller (BMC), such as IPMI[^2], iDRAC[^3], or iLO[^4] interfaces. The BMC interface must be configured with an IP address.&#x20;
+  * Base Management Controller (BMC), such as IPMI[^2], iDRAC[^3], or iLO[^4] interfaces. The BMC interface must be configured with an IP address.
 * All the servers' dataplane[^5] interfaces must be connected to the switches.
 * The bare metal servers must conform to the [prerequisites-and-compatibility.md](../prerequisites-and-compatibility.md "mention").
 * The bare metal servers must have an OS management network interface for administering the servers.
@@ -53,7 +53,7 @@ Before deploying the WMS, adhere to the following:
 * The WEKA user password is `weka.io123`
 * If errors occur during installation and the installation halts (no error messages appear), use the system console to review the logs in `/tmp`. The primary log is `/tmp/ks-pre.log`.
 * To get a command prompt from the Installation GUI, do one of the following:
-  * On macOS, type **ctrl+option+f2**&#x20;
+  * On macOS, type **ctrl+option+f2**
   * On Windows, type **ctrl+alt+f2**.
 
 ## WMS deployment workflow
@@ -77,7 +77,7 @@ Depending on the server manufacturer, consult the documentation for the server�
 
 * A workstation or laptop sent to the BMC through the web browser.
 * An SMB share in a Windows server or a Samba server.
-* An NFS share.&#x20;
+* An NFS share.
 {% endtab %}
 
 {% tab title="Use PXE boot" %}
@@ -138,7 +138,7 @@ Change the port from 9090 to 8051, which is the WMS Admin port.
 
 1. Download the latest release of the WSA package from [get.weka.io](https://get.weka.io/ui/dashboard) dashboard.
 2. Copy the WSA package to **/home/weka** .\
-   For example:  `scp <wsa.iso> weka@<wms-server>:`
+   For example: `scp <wsa.iso> weka@<wms-server>:`
 
 ### 4. Install a WEKA Cluster
 
@@ -163,7 +163,7 @@ The WSA packages that appear in the list are taken from `/home/weka`. You can ha
    * **Option 2: Upload CSV file to pre-populate data:**\
      If you have the environment data in a CSV file, click this option. **Step 3 - CSV File Upload** section opens. Drag or click to upload the CSV file, and click **Next**.
 
-<figure><img src="../../.gitbook/assets/wsa_step_02-03.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/WSA_step3.png" alt=""><figcaption></figcaption></figure>
 
 **CSV template example**
 
@@ -183,7 +183,7 @@ IPMI_IP,Username,Password,OS_Mgmt_IP,Hostname,OS_Netmask,OS_Gateway,MTU,DNS,Host
 
 4. In **Step 4 - Number of servers to deploy**, enter a Server Count (default is 8), and click **Next**.
 
-<figure><img src="../../.gitbook/assets/wsa_step_02-04.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/WSA_step4.png" alt=""><figcaption></figcaption></figure>
 
 In the following steps, if you uploaded a CSV file, the data is pre-populated. You can review the data and if no editing is necessary, select **Next**.
 
@@ -214,20 +214,14 @@ In the following steps, if you uploaded a CSV file, the data is pre-populated. Y
     * You can repeatedly click **Update Dataplanes** to make adjustments.
     * Verify that all is correct, and then click **Next**.
 
-
-
     <figure><img src="../../.gitbook/assets/wsa_step_07.png" alt=""><figcaption></figcaption></figure>
 8.  In **Step 8 - Save configuration files and inventory**, click **Save Files** to save the configuration files, and then click **Next**.
 
-
-
-    <figure><img src="../../.gitbook/assets/wsa_step_08.png" alt=""><figcaption></figcaption></figure>
-9.  In **Step 9 - Prepare WSA ISO for installation**, click **Prepare WSA ISO for install**. \
+    <figure><img src="../../.gitbook/assets/WSA_step8.png" alt=""><figcaption></figcaption></figure>
+9.  In **Step 9 - Prepare WSA ISO for installation**, click **Prepare WSA ISO for install**.\
     The WMS updates the kickstart on the ISO to match the WMS deployment data (it takes about 30 seconds).
 
-
-
-    <figure><img src="../../.gitbook/assets/WSA_step_09.png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../../.gitbook/assets/WSA_step9.png" alt=""><figcaption></figcaption></figure>
 
 When the WSA ISO preparation is completed, the output is displayed. Verify that no errors appear. Then, click **Next**.
 
@@ -239,14 +233,12 @@ When the WSA ISO preparation is completed, the output is displayed. Verify that 
         The WMS loads the WSA on the servers previously defined and starts the installation.\
         The installation can take several minutes and displays output when complete. Verify that no errors appear.
 
-
-
-        <figure><img src="../../.gitbook/assets/wsa_step_10.png" alt=""><figcaption></figcaption></figure>
+        <figure><img src="../../.gitbook/assets/WSA_step10.png" alt=""><figcaption></figcaption></figure>
 
         The installation process takes about 30 minutes, depending on several factors, such as network speed. Verify that the server’s BMC completed the restart.
-11. In **Step 11 -  Run OS and Dataplane Configuration Scripts**, click **Run system configuration scripts**. This action runs scripts to configure the servers with the specified dataplane IPs and perform additional tasks, such as populating `/etc/hosts`.
+11. In **Step 11 - Run OS and Dataplane Configuration Scripts**, click **Run system configuration scripts**. This action runs scripts to configure the servers with the specified dataplane IPs and perform additional tasks, such as populating `/etc/hosts`.
 
-<figure><img src="../../.gitbook/assets/wsa_step_11.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/WSA_step11.png" alt=""><figcaption></figcaption></figure>
 
 ## What to do next?
 

@@ -102,7 +102,7 @@ Ensure SSH access to the GKE worker nodes is available to install the WEKA clien
 
 {% tabs %}
 {% tab title="Transferring SSH keys to the VM" %}
-<figure><img src="../../.gitbook/assets/image (250).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (230).png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="Authorize" %}
@@ -118,7 +118,7 @@ Ensure SSH access to the GKE worker nodes is available to install the WEKA clien
 {% endtab %}
 {% endtabs %}
 
-### 3.  Configure automated WEKA setup client on worker nodes
+### 3. Configure automated WEKA setup client on worker nodes
 
 Google Cloud Platform (GCP) allows the addition of startup scripts at the project level, ensuring each new instance runs the script. By using metadata lookups, the WEKA client installation you can restrict to GKE cluster systems.
 
@@ -251,8 +251,6 @@ fi
 ) >/root/startup.out 2>/root/startup.err
 ```
 {% endcode %}
-
-
 
 </details>
 

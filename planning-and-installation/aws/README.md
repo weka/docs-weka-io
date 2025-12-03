@@ -48,7 +48,7 @@ A _security group_ controls the traffic that is allowed to reach and leave the r
 
 <summary>Amazon EC2 instances</summary>
 
-Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable computing capacity—literally, servers in Amazon's data centers—that you use to build and host your software systems.&#x20;
+Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides resizable computing capacity—literally, servers in Amazon's data centers—that you use to build and host your software systems.
 
 Amazon EC2 provides different instance types to choose the CPU, memory, storage, and networking capacity you need to run your applications.
 
@@ -90,7 +90,7 @@ Terraform is an open-source project from Hashicorp. It creates and manages resou
 
 <img src="../../.gitbook/assets/Terraform_overview.png" alt="" data-size="original">
 
-### How does Terraform work?
+#### How does Terraform work?
 
 A deployment with Terraform involves three phases:
 
@@ -119,8 +119,6 @@ AWS CloudFormation enables you to create and provision AWS infrastructure deploy
 </details>
 
 To install WEKA on AWS, an AWS account is required. Visit the AWS site to create an [AWS account](https://aws.amazon.com/account/).
-
-
 
 **Related topics**
 

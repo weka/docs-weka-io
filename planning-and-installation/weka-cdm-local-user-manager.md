@@ -133,11 +133,11 @@ Certain fields within the configuration input panel require manual user input. O
 
 {% tabs %}
 {% tab title="Instance Type" %}
-<figure><img src="../.gitbook/assets/image (259).png" alt="" width="290"><figcaption><p>Instance Type</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (238).png" alt="" width="290"><figcaption><p>Instance Type</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="Region" %}
-<figure><img src="../.gitbook/assets/image (260).png" alt="" width="290"><figcaption><p>Region</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (239).png" alt="" width="290"><figcaption><p>Region</p></figcaption></figure>
 {% endtab %}
 
 {% tab title="WEKA Version" %}
@@ -145,7 +145,7 @@ The WEKA software release dropdown menu is designed to auto-populate with the mo
 
 To enter a WEKA software release that is not listed in the dropdown, click directly in the WEKA Version input field and type the desired release. This feature is particularly useful when deploying a WEKA cluster with a customer-specific software release.
 
-<figure><img src="../.gitbook/assets/image (261).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (240).png" alt="" width="290"><figcaption><p>WEKA Version</p></figcaption></figure>
 {% endtab %}
 {% endtabs %}
 
@@ -262,8 +262,6 @@ You can retrieve the IP addresses for backend access using the **Get Backend IPs
 <figure><img src="../.gitbook/assets/Screenshot 2024-10-22 at 11.07.13 AM copy 6.png" alt=""><figcaption><p>Get the backend IP addresses of the WEKA cluster</p></figcaption></figure>
 
 <figure><img src="../.gitbook/assets/CDM_IPs.png" alt=""><figcaption><p>Backend IP address list: public (if assigned) or private</p></figcaption></figure>
-
-
 
 **Related topics**
 

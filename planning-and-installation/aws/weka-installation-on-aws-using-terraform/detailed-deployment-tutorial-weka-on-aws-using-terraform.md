@@ -99,10 +99,10 @@ Before deploying WEKA on AWS using Terraform, ensure your AWS account has suffic
 
 <figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
-5. **Specify  number of vCPUs:** In the Request quota increase form, specify the number of vCPUs you need. For example, if 150 vCPUs are required for the i3en instance family, enter this number and submit your request.
+5. **Specify number of vCPUs:** In the Request quota increase form, specify the number of vCPUs you need. For example, if 150 vCPUs are required for the i3en instance family, enter this number and submit your request.
 
 {% hint style="info" %}
-Quota increase requests are typically processed immediately. However, requests for a large number of vCPUs or specialized instance types may require manual review by AWS support. \
+Quota increase requests are typically processed immediately. However, requests for a large number of vCPUs or specialized instance types may require manual review by AWS support.\
 Confirm that you have requested and obtained the necessary quotas for all instance types used for WEKA backend servers and any associated application servers running WEKA client software. WEKA supports i3en series instances for backend servers.
 {% endhint %}
 
@@ -155,7 +155,7 @@ By default, ACLs include rules that ensure basic connectivity, such as allowing 
 
 **Related topic**
 
-[#appendix-a-security-groups-network-acl-ports](detailed-deployment-tutorial-weka-on-aws-using-terraform.md#appendix-a-security-groups-network-acl-ports "mention") (ensure you have defined all the relevant ports before manually creating ACLs ).&#x20;
+[#appendix-a-security-groups-network-acl-ports](detailed-deployment-tutorial-weka-on-aws-using-terraform.md#appendix-a-security-groups-network-acl-ports "mention") (ensure you have defined all the relevant ports before manually creating ACLs ).
 
 ## Deploy WEKA on AWS using Terraform
 
@@ -242,7 +242,7 @@ The WEKA user token grants access to WEKA binaries and is required for accessing
 
 <figure><img src="../../../.gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
 
-3. From the left-hand menu, select **API Tokens**.&#x20;
+3. From the left-hand menu, select **API Tokens**.
 4. The user’s API token displays on the screen. Use this token later in the installation process.
 
 <figure><img src="../../../.gitbook/assets/image (16).png" alt=""><figcaption></figcaption></figure>
@@ -435,7 +435,7 @@ You can retrieve the password using one of the following options:
 2. In the search bar, type **Secrets Manager** and select it from the search results.
 3. In the Secrets Manager, select **Secrets** from the left-hand menu.
 4. Find the secret corresponding to your deployment by looking for a name that includes your deployment’s `prefix` and `cluster_name`, along with the word **password**.
-5. Retrieve the password: Click the identified secret to open its details, and select the **Retrieve secret value** button. \
+5. Retrieve the password: Click the identified secret to open its details, and select the **Retrieve secret value** button.\
    The console displays the randomly generated password assigned to the WEKA user `admin`.\
    Store it securely and use it according to your organization's security policies.
 
@@ -528,11 +528,11 @@ Scaling your WEKA cluster, whether scale-out (expanding) or scale-in (contractin
 1. Navigate to the AutoScaling Group page in the AWS Management Console.
 2. Select **Edit** to adjust the desired capacity.
 
-<figure><img src="../../../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (27) (1).png" alt=""><figcaption></figcaption></figure>
 
 3. Set the capacity to your preferred cluster size (for example, increase from 6 to 10 servers).
 
-<figure><img src="../../../.gitbook/assets/image (29).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (28).png" alt="" width="375"><figcaption></figcaption></figure>
 
 4. Select **Update** to save the updated settings to initiate scaling operations.
 

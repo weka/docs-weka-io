@@ -20,7 +20,7 @@ You can set up WEKAmon independently of the WEKA GUI's built-in monitoring.
 
 If you already use Grafana and Prometheus for other products, you can integrate WEKAmon to visualize all monitoring data on a unified dashboard.
 
-![WEKA monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (158).png>)
+![WEKA monitoring data on the Grafana dashboard example](<../.gitbook/assets/image (152).png>)
 
 {% hint style="info" %}
 If you have deployed the WMS, follow the procedure in:[deploy-monitoring-tools-using-the-weka-management-station-wms.md](deploy-monitoring-tools-using-the-weka-management-station-wms.md "mention"). Otherwise, continue with this workflow.
@@ -52,13 +52,13 @@ Setting up a dedicated physical server (or VM) for the installation is recommend
 3. [Run the install.sh script](external-monitoring.md#id-3.-run-the-install.sh-script): The script creates a few directories and sets their permissions.
 4. [Edit the export.yml file:](external-monitoring.md#id-4.-edit-the-export.yml-file) The `export.yml` file contains the WEKAmon and the exporter configuration. Customize the file according to your actual WEKA deployment.
 5. [Edit the quota-export.yml file](external-monitoring.md#id-5.-edit-the-quota-export.yml-file): The `quota-export.yml` file contains the configuration of the quota-export container. Customize the file according to your actual WEKA deployment.
-6. [Start the docker-compose containers](external-monitoring.md#id-6.-start-the-docker-compose-containers): Once done, you can connect to Grafana on port 3000 of the physical server running the docker containers.&#x20;
+6. [Start the docker-compose containers](external-monitoring.md#id-6.-start-the-docker-compose-containers): Once done, you can connect to Grafana on port 3000 of the physical server running the docker containers.
 
 ### 1. Obtain the WEKAmon package
 
 The WEKAmon package resides on the GitHub repository. Obtain the WEKAmon package using one of the following methods:
 
-* [Download the WEKAmon source code](external-monitoring.md#download-the-wekamon-source-code)&#x20;
+* [Download the WEKAmon source code](external-monitoring.md#download-the-wekamon-source-code)
 * [Clone the repository](external-monitoring.md#clone-the-repository)
 
 #### Download the WEKAmon source code
@@ -79,7 +79,7 @@ git clone https://github.com/weka/weka-mon
 cd /opt/weka-mon
 ```
 
-### 2.  Set the WEKAmon authentication
+### 2. Set the WEKAmon authentication
 
 For the WEKAmon host to communicate with the WEKA cluster, a security token is necessary. However, the WEKAmon host is not required to have the WEKA client installed.
 
@@ -107,8 +107,6 @@ Perform the following steps on the **WEKAmon host**.
 * **Ensure appropriate ownership and permissions are set:** Run the following commands:\
   `chown root:root /opt/weka-mon/.weka/auth-token.json`\
   `chmod 400 /opt/weka-mon/.weka/auth-token.json`
-
-
 
 **Related topics**
 
@@ -223,7 +221,7 @@ Follow the steps in the [1. Obtain the WEKAmon package](external-monitoring.md#1
 
 In the Grafana application, import the dashboard `JSON` files from the directory `weka-mon/var_lib_grafana/dashboards`. For instructions, see the [Import dashboard](https://grafana.com/docs/grafana/v9.0/dashboards/export-import/#importing-a-dashboard) topic in Grafana documentation.
 
-### 3. Edit the export.yml and quota-export.yml files&#x20;
+### 3. Edit the export.yml and quota-export.yml files
 
 Perform the steps in the following sections above:
 
@@ -245,7 +243,7 @@ Get and run the container (the `export.yml` configuration file is already edited
 
 The following example maps the `export.yml` configuration file in several volumes in the container:
 
-* &#x20;`~/.weka directory` to enable the container to read the authentication file.
+* `~/.weka directory` to enable the container to read the authentication file.
 * `/dev/log` to enable entries in the Syslog.
 * `/etc/hosts` to enable the hostname resolution (a DNS can also be used, if exists in the docker environment).
 
@@ -307,14 +305,14 @@ exporter:
 
 #### **Exporter section parameters**
 
-<table><thead><tr><th width="263">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>listen_port</code></td><td>The Prometheus listening port. Do not modify this port unless you modify the Prometheus configuration.</td></tr><tr><td><code>loki_host</code> </td><td>If using the Weka-mon setup, do not modify the hostname. Leave blank to disable sending events to Loki.</td></tr><tr><td><code>loki_port</code></td><td>If using the Weka-mon setup, do not modify the port.</td></tr><tr><td><code>timeout</code></td><td>The max time in seconds to wait for an API call to return. The default value is sufficient for most purposes.</td></tr><tr><td><code>max_procs</code> and <code>max_threads_per_proc</code></td><td>Define the scaling behavior. If the number of hosts (servers and clients) exceeds <code>max_threads_per_proc</code>, the exporter runs more processes accordingly.<br><strong>Example:</strong> a cluster with 80 Weka servers and 200 compute nodes (aka clients) has 280 hosts. With the default <code>max_threads_per_proc</code> of 100, it runs 3 processes (280 / 100 ~ 3).<br>It's recommended to have 1 available core per process. In this cluster example, deploy at least 4 available cores on the server/VM.</td></tr><tr><td><code>backends_only</code></td><td>Run only on the Weka backend hosts</td></tr></tbody></table>
+<table><thead><tr><th width="263">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>listen_port</code></td><td>The Prometheus listening port. Do not modify this port unless you modify the Prometheus configuration.</td></tr><tr><td><code>loki_host</code></td><td>If using the Weka-mon setup, do not modify the hostname. Leave blank to disable sending events to Loki.</td></tr><tr><td><code>loki_port</code></td><td>If using the Weka-mon setup, do not modify the port.</td></tr><tr><td><code>timeout</code></td><td>The max time in seconds to wait for an API call to return. The default value is sufficient for most purposes.</td></tr><tr><td><code>max_procs</code> and <code>max_threads_per_proc</code></td><td>Define the scaling behavior. If the number of hosts (servers and clients) exceeds <code>max_threads_per_proc</code>, the exporter runs more processes accordingly.<br><strong>Example:</strong> a cluster with 80 Weka servers and 200 compute nodes (aka clients) has 280 hosts. With the default <code>max_threads_per_proc</code> of 100, it runs 3 processes (280 / 100 ~ 3).<br>It's recommended to have 1 available core per process. In this cluster example, deploy at least 4 available cores on the server/VM.</td></tr><tr><td><code>backends_only</code></td><td>Run only on the Weka backend hosts</td></tr></tbody></table>
 
 The exporter always tries to allocate one host per thread but does not exceed the maximum processes specified in the `max_procs` parameter. In a cluster with 1000 hosts, it doubles or triples up the hosts on the threads.
 
 {% hint style="success" %}
 **Example:**
 
-In a cluster with 3000 hosts, `max_procs` = 8,  and `max_threads_per_proc`= 100, only 8 processes running. Each process with 100 threads, but there are close to 4 hosts serviced per thread instead of the default 1 host.
+In a cluster with 3000 hosts, `max_procs` = 8, and `max_threads_per_proc`= 100, only 8 processes running. Each process with 100 threads, but there are close to 4 hosts serviced per thread instead of the default 1 host.
 {% endhint %}
 
 [^1]: [Grafana](https://grafana.com/) is an open-source analytics and interactive visualization web application used for monitoring application performance. It allows users to ingest data from a wide range of sources, query and display it in customizable charts, set alerts for abnormal behavior, and visualize data on dashboards.

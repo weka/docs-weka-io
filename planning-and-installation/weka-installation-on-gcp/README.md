@@ -27,7 +27,7 @@ For a WEKA instance using seven NICs, the alignment is as follows:
 * eth5: Compute vpc-5
 * eth6: Frontend vpc-6
 
-If the frontend container is not deployed, then its core is instead used by the compute process.&#x20;
+If the frontend container is not deployed, then its core is instead used by the compute process.
 
 VPC peering facilitates communication between the WEKA processes, each using its NIC. The maximum allowable number of peers within a VPC is limited to 25 by GCP (you can request GCP to increase the quota, but it depends on the GCP resources availability).
 
@@ -43,7 +43,7 @@ The GCP Console is already installed with Terraform by default. It is the primar
 
 <img src="../../.gitbook/assets/Terraform_overview.png" alt="" data-size="original">
 
-### How does Terraform work?
+#### How does Terraform work?
 
 A deployment with Terraform involves three phases:
 

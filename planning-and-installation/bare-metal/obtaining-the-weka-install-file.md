@@ -19,11 +19,11 @@ To sign in to [get.weka.io](http://get.weka.io), you first need to create an acc
 The Send Registration Email page opens.
 
 2\. Fill in your organization's email address (private mail is prohibited).\
-&#x20;   Select **I’m not a robot**, and then select **Send Registration Email.**
+Select **I’m not a robot**, and then select **Send Registration Email.**
 
-3\. Check your inbox for a registration email from Weka.io. \
-&#x20;   To confirm your registration, select the link.\
-&#x20;   The Create Your Account page opens.
+3\. Check your inbox for a registration email from Weka.io.\
+To confirm your registration, select the link.\
+The Create Your Account page opens.
 
 4\. Fill in your email address, full name, and password. Then, select **Create Account**.
 
@@ -35,7 +35,7 @@ Your request for access to [get.weka.io](http://get.weka.io) is sent to WEKA for
 
 Download the required WEKA installation packages according to the workflow path.
 
-* Path A (automated with WMS and WSA): Download the WMS and WSA ISOs from [get.weka.io](https://get.weka.io/ui/dashboard). The WMS is downloaded from a dedicated dropdown.  The WSA is found in the relevant release page.
+* Path A (automated with WMS and WSA): Download the WMS and WSA ISOs from [get.weka.io](https://get.weka.io/ui/dashboard). The WMS is downloaded from a dedicated dropdown. The WSA is found in the relevant release page.
 * Path B (automated with WSA): Download the WSA package from [get.weka.io](https://get.weka.io/ui/dashboard) The WSA is found in the relevant release page.
 * Path C (manual installation and configuration): Download the WEKA software tarball from [get.weka.io](https://get.weka.io/ui/dashboard). The tarball is found in the relevant release page.
 
@@ -49,7 +49,7 @@ You can only sign in and download the packages if you are a registered user.
 
 [get.weka.io](http://get.weka.io) page opens.
 
-<figure><img src="../../.gitbook/assets/2023-12-20_09-17-44 (2).jpg" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/2023-12-20_09-17-44 (1).jpg" alt=""><figcaption><p>get.weka.io dashboard</p></figcaption></figure>
 
 2. Do one of the following:
    * Select the required package from the dashboard.
