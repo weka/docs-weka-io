@@ -651,20 +651,14 @@ Autofs allows filesystems to be mounted dynamically when accessed and unmounted 
 2. **Configure autofs for WEKA filesystems:** Set up the autofs configuration files according to the client type:
    *   **Stateless client**: Run the following commands, replacing `<backend-1>`, `<backend-2>`, and `<netdevice>` with appropriate values:
 
-       {% code overflow="wrap" %}
-       ```
-       echo "/mnt/weka /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=<netdevice>" > /etc/auto.master.d/wekafs.autofs
-       echo "* <backend-1>,<backend-2>/&" > /etc/auto.wekafs
-       ```
-       {% endcode %}
+       <pre data-overflow="wrap"><code>echo "/mnt/weka /etc/auto.wekafs -fstype=wekafs,num_cores=1,net=&#x3C;netdevice>" > /etc/auto.master.d/wekafs.autofs
+       echo "* &#x3C;backend-1>,&#x3C;backend-2>/&#x26;" > /etc/auto.wekafs
+       </code></pre>
    *   **Persistent client**: Run the following commands:
 
-       {% code overflow="wrap" %}
-       ```
-       echo "/mnt/weka /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
-       echo "* &" > /etc/auto.wekafs
-       ```
-       {% endcode %}
+       <pre data-overflow="wrap"><code>echo "/mnt/weka /etc/auto.wekafs -fstype=wekafs" > /etc/auto.master.d/wekafs.autofs
+       echo "* &#x26;" > /etc/auto.wekafs
+       </code></pre>
 3.  **Restart the autofs service:** Apply the changes by restarting the autofs service:
 
     ```

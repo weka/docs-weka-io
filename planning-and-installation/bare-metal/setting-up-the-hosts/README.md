@@ -51,18 +51,14 @@ Enabling Single Root I/O Virtualization (SR-IOV) is mandatory when deploying cli
 
     Use the following command to apply these settings to all MLX devices:
 
-    {% code overflow="wrap" %}
-    ```
-    mst start && for MLXDEV in /dev/mst/* ; do mlxconfig -d ${MLXDEV} -y set ADVANCED_PCI_SETTINGS=1 PCI_WR_ORDERING=1; done
-    ```
-    {% endcode %}
+    <pre data-overflow="wrap"><code>mst start &#x26;&#x26; for MLXDEV in /dev/mst/* ; do mlxconfig -d ${MLXDEV} -y set ADVANCED_PCI_SETTINGS=1 PCI_WR_ORDERING=1; done
+    </code></pre>
 2. **Set link type:** Certain ConnectX VPI cards require modification of the link type, to specifically set the port to use InfiniBand or Ethernet networking.\
    \
    If applicable, set the port mode with the following command, where 1=InfiniBand and 2=Ethernet:\
    `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P<1,2>=<1,2>`\
    \
-   For example, the following command sets port 2 to InfiniBand:  `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`\
-
+   For example, the following command sets port 2 to InfiniBand:  `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`<br>
 3. **Reboot the system:** A reboot is required after applying the firmware settings to ensure the changes take effect.
 
 **Related information**
@@ -88,9 +84,7 @@ The recommended approach is to consolidate all custom kernel parameters into a s
     ```
 2.  **Add kernel parameter settings:** Insert the following lines into the file. Comments are included for clarity:
 
-    {% code title="/etc/sysctl.d/99-weka.conf" %}
-    ```
-    # --- Disable NUMA balancing (Mandatory) ---
+    <pre data-title="/etc/sysctl.d/99-weka.conf"><code># --- Disable NUMA balancing (Mandatory) ---
     kernel.numa_balancing = 0
 
     # --- Configure automatic reboot on kernel panic ---
@@ -113,8 +107,7 @@ The recommended approach is to consolidate all custom kernel parameters into a s
     net.ipv4.conf.all.arp_ignore = 1
     net.ipv4.conf.default.arp_ignore = 1
     net.ipv4.conf.all.ignore_routes_with_linkdown = 1
-    ```
-    {% endcode %}
+    </code></pre>
 3. **Save the file and exit the editor.**
 4.  **Apply the new settings:** Reload all kernel parameters from configuration files without rebooting:
 

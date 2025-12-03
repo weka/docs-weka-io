@@ -16,10 +16,15 @@ Ensure the following prerequisites are met:
 
 ### Prerequisites for using WekaFS transport
 
-The WEKA client must be installed on the Kubernetes worker nodes. Follow these guidelines:
+Kubernetes workloads can access WEKA filesystems using WEKA clients. The WEKA filesystems can be deployed on Kubernetes, or on baremetal/VMs. While volume CRUD[^1] requires the WEKA CSI Plugin, Kubernetes client access for WEKA filesystems does not require the CSI Plugin to be installed.
 
-* It is recommended to use a WEKA persistent client (a client that is part of the cluster) rather than a stateless client. See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
-* If the Kubernetes worker nodes are running on WEKA cluster backends (converged mode), ensure the WEKA processes are running before the `kubelet` process starts.
+A WEKA client must be installed on all Kubernetes worker nodes.
+
+* **Recommended:** Use a WEKA Operator-based client (WekaClient Custom Resource) with WEKA CSI. This combination provides tight integration and superior resource management. See [#weka-operator-client-deployment-overview](../../kubernetes/weka-operator-deployments/#weka-operator-client-deployment-overview "mention").
+* **Alternative:** WEKA also supports persistent and stateless clients for WEKA CSI. If you cannot use the WEKA Operator, WEKA recommends using a persistent client (a client that is part of the cluster) rather than a stateless client.
+  * See [adding-clients-bare-metal.md](../../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention").
+  * See [best-practices-for-weka-stateless-client-and-kubernetes.md](../../best-practice-guides/best-practices-for-weka-stateless-client-and-kubernetes.md "mention").
+* **Converged mode:** If the Kubernetes worker nodes run on WEKA cluster backends (converged mode), ensure the WEKA processes are running before the `kubelet` process starts.
 
 ### **Prerequisites for Using NFS transport**
 
@@ -41,7 +46,7 @@ The WEKA client must be installed on the Kubernetes worker nodes. Follow these g
 
 ### Install CSI Snapshot Controller and Snapshot CRDs (optional)
 
-To enable Kubernetes-controlled snapshots, install the CSI Snapshot Controller and the [CSI external-snapshotter](#user-content-fn-1)[^1] CRD manifests.
+To enable Kubernetes-controlled snapshots, install the CSI Snapshot Controller and the [CSI external-snapshotter](#user-content-fn-2)[^2] CRD manifests.
 
 {% hint style="info" %}
 On RedHat OpenShift Container Platform (OCP) those definitions might be preinstalled.
@@ -252,4 +257,8 @@ kubectl delete pod -n csi-wekafs -lapp=csi-wekafs-controller
 kubectl delete pod -n csi-wekafs -lapp=csi-wekafs-node
 ```
 
-[^1]: The **CSI external-snapshotter** is a sidecar container in Kubernetes. It monitors for `VolumeSnapshot` and `VolumeSnapshotContent` objects and triggers snapshot operations against a CSI endpoint. It’s part of the Kubernetes’ CSI implementation.
+[^1]: CRUD stands for Create, Read, Update, and Delete.
+
+    It represents the four basic operations for managing persistent data in a system.
+
+[^2]: The **CSI external-snapshotter** is a sidecar container in Kubernetes. It monitors for `VolumeSnapshot` and `VolumeSnapshotContent` objects and triggers snapshot operations against a CSI endpoint. It’s part of the Kubernetes’ CSI implementation.

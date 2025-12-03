@@ -139,19 +139,13 @@ This method sets up the client with all required resources in a single step and 
 1.  **Setup container locally with resources**\
     This step sets up the client with all necessary resources, such as cores, memory, networking, and ports.
 
-    {% code overflow="wrap" %}
-    ```bash
-    weka local setup container --join-ips <join-ips> --base-port <base-port> --cores <cores> --core-ids <core-ids> --only-frontend-cores
-    ```
-    {% endcode %}
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka local setup container --join-ips &#x3C;join-ips> --base-port &#x3C;base-port> --cores &#x3C;cores> --core-ids &#x3C;core-ids> --only-frontend-cores
+    </code></pre>
 
     Example:
 
-    {% code overflow="wrap" %}
-    ```bash
-    weka local setup container --join-ips 10.108.81.144 --base-port 14000 --cores 1 --core-ids 2 --only-frontend-cores
-    ```
-    {% endcode %}
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka local setup container --join-ips 10.108.81.144 --base-port 14000 --cores 1 --core-ids 2 --only-frontend-cores
+    </code></pre>
 
     * `join-ips`: The IP address for joining the cluster.
     * `base-port`: The base port for container communication.
@@ -192,11 +186,8 @@ This method involves more detailed steps, allowing you to manually set up the cl
 
     * After adding the client to the cluster, configure it by setting the number of cores and frontend-dedicated cores.
 
-    {% code overflow="wrap" %}
-    ```bash
-    weka cluster container cores <container-id> <cores> --frontend-dedicated-cores=<frontend-dedicated-cores>
-    ```
-    {% endcode %}
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka cluster container cores &#x3C;container-id> &#x3C;cores> --frontend-dedicated-cores=&#x3C;frontend-dedicated-cores>
+    </code></pre>
 
     Example:
 
@@ -213,19 +204,13 @@ This method involves more detailed steps, allowing you to manually set up the cl
     * When configuring an InfiniBand client, do not pass the `--ips`, `--netmask`, or `--gateway` parameters.
     * InfiniBand and Ethernet clients can only join a cluster with the same network technology connectivity. However, it is possible to mix InfiniBand and Ethernet clients in the same cluster as long as the cluster backends are connected to both network technologies.
 
-    {% code overflow="wrap" %}
-    ```bash
-    weka cluster container net add <container-id> <device> --ips=<ips> --netmask=<netmask> --gateway=<gateway>
-    ```
-    {% endcode %}
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka cluster container net add &#x3C;container-id> &#x3C;device> --ips=&#x3C;ips> --netmask=&#x3C;netmask> --gateway=&#x3C;gateway>
+    </code></pre>
 
     Example:
 
-    {% code overflow="wrap" %}
-    ```bash
-    weka cluster container net add container1 eth1 --ips=10.108.81.100 --netmask=255.255.255.0 --gateway=10.108.81.1
-    ```
-    {% endcode %}
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka cluster container net add container1 eth1 --ips=10.108.81.100 --netmask=255.255.255.0 --gateway=10.108.81.1
+    </code></pre>
 
     * `container-id`: A valid identifier for the container to add to the cluster.
     * `device`: A valid network interface device name (for example, `eth1`).
@@ -237,11 +222,8 @@ This method involves more detailed steps, allowing you to manually set up the cl
 
     * After configuring the container and networking, apply the changes to activate the client container.
 
-    {% code overflow="wrap" %}
-    ```bash
-    weka cluster container apply <container-id> [--force]
-    ```
-    {% endcode %}
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka cluster container apply &#x3C;container-id> [--force]
+    </code></pre>
 
     Example:
 

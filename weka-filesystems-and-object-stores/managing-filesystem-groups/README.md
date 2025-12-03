@@ -10,7 +10,7 @@ When you add a filesystem, it must be associated with a filesystem group to appl
 
 **Related topics**
 
-[filesystems.md](../../weka-system-overview/filesystems.md "mention")
+[filesystems](../../weka-system-overview/filesystems/ "mention")
 
 [managing-filesystem-groups.md](managing-filesystem-groups.md "mention")
 

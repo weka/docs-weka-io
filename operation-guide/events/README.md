@@ -30,6 +30,6 @@ The following processes ensure systematic and efficient handling of events trigg
 
 [events-1.md](events-1.md "mention")
 
-[Broken link](broken-reference "mention")
+[Broken link](/broken/pages/Mpr7248Agyc54SlVITjS "mention")
 
 [the-wekaio-support-cloud](../../monitor-the-weka-cluster/the-wekaio-support-cloud/ "mention")

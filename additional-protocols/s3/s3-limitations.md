@@ -22,7 +22,6 @@ The following standard S3 APIs are supported:
 
 * **Bucket APIs:**&#x20;
   * [HEAD Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html)
-  * [GET Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucket.html)
   * [CREATE Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html)
   * [DELETE Bucket](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html)
   * [LIST Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html)
@@ -57,6 +56,11 @@ The following standard S3 APIs are supported:
   * [GET Object Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)
   * [PUT Part](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
   * [DELETE Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html)
+* **Bucket Notification APIs:**
+  * [GET Bucket Notification](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotification.html)
+  * [GET Bucket Notification Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotificationConfiguration.html)
+  * [PUT Bucket Notification](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotification.html)
+  * [PUT Bucket Notification Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html)
 
 ## General limits
 

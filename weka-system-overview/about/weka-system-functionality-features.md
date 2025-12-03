@@ -60,7 +60,7 @@ The speed of these seamless operations depends on the capacity of the backends a
 
 WEKA offers a cluster-wide data reduction feature that can be activated for individual filesystems. This capability employs block-variable differential compression and advanced de-duplication techniques across all filesystems to significantly reduce the storage capacity required for user data, resulting in substantial cost savings for customers.
 
-The effectiveness of the compression ratio depends on the specific workload. It is particularly efficient when applied to text-based data, large-scale unstructured datasets, log analysis, databases, code repositories, and sensor data. For more information, see [#data-reduction-in-weka-filesystems](../filesystems.md#data-reduction-in-weka-filesystems "mention").
+The effectiveness of the compression ratio depends on the specific workload. It is particularly efficient when applied to text-based data, large-scale unstructured datasets, log analysis, databases, code repositories, and sensor data. For more information, see [#data-reduction-in-weka-filesystems](../filesystems/#data-reduction-in-weka-filesystems "mention").
 
 [^1]: **ToR switch**
 

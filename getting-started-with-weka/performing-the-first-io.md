@@ -128,7 +128,7 @@ If your benchmark results differ significantly from the expected values, contact
 
 **Related topics**
 
-[filesystems.md](../weka-system-overview/filesystems.md "mention")
+[filesystems](../weka-system-overview/filesystems/ "mention")
 
 [mounting-filesystems](../weka-filesystems-and-object-stores/mounting-filesystems/ "mention")
 

@@ -52,11 +52,8 @@ Uploading information to WEKA Home from the WEKA cluster backend servers and cli
 
 **Before you begin**
 
-* Ensure the Cloud WEKA Home and Customer Success Team remote access ports are open. For details, see [#required-ports](../../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention").
+* Ensure your firewall is configured to allow access to all Cloud WEKA Home destinations. For the complete list of ports and URLs, see [#required-ports](../../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention").
 * If the connection to the Cloud WEKA Home is through a proxy, set the proxy by running the command: `weka cloud proxy --set <proxy_url>`.&#x20;
-* Ensure that the proxy allow list includes the following two endpoints:
-  * `api.home.weka.io`
-  * `get.weka.io`
 
 **Procedure**
 

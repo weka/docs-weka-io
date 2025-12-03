@@ -1,9 +1,13 @@
 # WEKA REST API and equivalent CLI commands
 
-To maximize your success with the REST API, it's essential to familiarize yourself with the comprehensive documentation. This valuable resource provides in-depth insights into the subject matter. Moreover, each REST API method corresponds to a CLI command. Additionally, many parameters accessible through the CLI are equally accessible when using the REST API. Run the CLI command help for details. This ensures a smooth and consistent experience across both interfaces.
+To use the REST API effectively, review the comprehensive documentation, which provides detailed guidance on all available methods. Each REST API method corresponds to a CLI command, and most CLI parameters are also supported through the REST API. Use the CLI command help to view parameter details. This alignment ensures a consistent experience across both interfaces.
+
+**Related topic**
+
+[getting-started-with-weka-rest-api.md](getting-started-with-weka-rest-api.md "mention")
 
 {% hint style="info" %}
-New REST APIs in version 5.0.2, compared to 4.4.7, are marked with two asterisks (\*\*).
+New REST APIs in version 5.0.3, compared to 4.4.7, are marked with two asterisks (\*\*).
 {% endhint %}
 
 ## Active directory
@@ -130,7 +134,7 @@ Related information: [cluster-capacity-and-redundancy-management.md](../weka-sys
 
 Related information:
 
-* [filesystems.md](../weka-system-overview/filesystems.md "mention")
+* [filesystems](../weka-system-overview/filesystems/ "mention")
 * [managing-filesystems](../weka-filesystems-and-object-stores/managing-filesystems/ "mention")
 * [attaching-detaching-object-stores-to-from-filesystems](../weka-filesystems-and-object-stores/attaching-detaching-object-stores-to-from-filesystems/ "mention")
 
@@ -235,8 +239,7 @@ Related information: [account-lockout-threshold-policy-management.md](../securit
 
 ## Login
 
-Related information: [obtain-authentication-tokens.md](../security/obtain-authentication-tokens.md "mention")\
-
+Related information: [obtain-authentication-tokens.md](../security/obtain-authentication-tokens.md "mention")<br>
 
 | Task                                                                                                                                                                                                                                                   | REST API                                                                                    | CLI               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- | ----------------- |
@@ -266,22 +269,22 @@ Related information: [nfs-support](../additional-protocols/nfs-support/ "mention
 
 Related information: [managing-object-stores](../weka-filesystems-and-object-stores/managing-object-stores/ "mention")
 
-| Task                                                                                                                                                                                             | REST API                                                                                              | CLI                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| <p><strong>Update a specific object store:</strong> Updates the connection details for an existing object store. Use this to manage download bandwidth and simplify adding new buckets.<br> </p> | [PUT ​/objectStores​/{uid}](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store/updateObs) | `weka fs tier obs update <obs-name>` |
+| Task                                                                                              | REST API                                                                                              | CLI                                  |
+| ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| **Update a specific object store:** Updates the connection details for an existing object store.  | [PUT ​/objectStores​/{uid}](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store/updateObs) | `weka fs tier obs update <obs-name>` |
 
 ## Object store bucket
 
 Related information: [managing-object-stores](../weka-filesystems-and-object-stores/managing-object-stores/ "mention")
 
-| Task                                                                                                                                                                                                                                                                                                                     | REST API                                                                                                                                | CLI                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| **Get S3 object store bucket configurations:** Returns a list of all S3 object store bucket configurations and status.                                                                                                                                                                                                   | [GET ​/objectStoreBuckets](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/getAllObsBuckets)                    | `weka fs tier s3`                                            |
-| <p><strong>Create an object store bucket configuration:</strong> </p><p>Establishes a new S3 object store bucket configuration. This allows the system to use the external bucket as a cost-effective storage tier for warm (infrequently accessed) data, complementing the high-performance SSDs used for hot data.</p> | [POST ​/objectStoreBuckets](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/createObsBucket)                    | `weka fs tier s3 add <obs-name>`                             |
-| **Get a specific S3 object store bucket configuration:** Returns a specific S3 object store bucket configuration and status.                                                                                                                                                                                             | [GET ​/objectStoreBuckets​/{uid}](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/getObsBuckets)                | `weka fs tier s3 --obs-name <obs-name> --name <bucket-name>` |
-| **Delete an object store bucket configuration:** Removes an existing S3 object store bucket configuration if the bucket is not attached to a filesystem.                                                                                                                                                                 | [DELETE ​/objectStoreBuckets​/{uid}](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/deleteObsBucket)           | `weka fs tier s3 delete <obs-name>`                          |
-| **Update an object store bucket configuration:** Modifies an existing object store bucket configuration.                                                                                                                                                                                                                 | [PUT ​/objectStoreBuckets​/{uid}](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/updateObsBucket)              | `weka fs tier s3 update <bucket-name>`                       |
-| **Get object store bucket operations:** Returns a list of live, low-level I/O operations (such as uploads and downloads) for a specific object store bucket.                                                                                                                                                             | [GET ​/objectStoreBuckets​/{uid}​/operations](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/getObsOperations) | `weka fs tier s3 snapshot list <bucket-name>`                |
+| Task                                                                                                                                                         | REST API                                                                                                                                | CLI                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **Get  object store bucket configurations:** Returns a list of all object store bucket configurations and status.                                            | [GET ​/objectStoreBuckets](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/getAllObsBuckets)                    | `weka fs tier s3`                                            |
+| <p><strong>Create an object store bucket configuration:</strong> </p><p>Establishes a new object store bucket configuration.</p>                             | [POST ​/objectStoreBuckets](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/createObsBucket)                    | `weka fs tier s3 add <obs-name>`                             |
+| **Get a specific object store bucket configuration:** Returns a specific object store bucket configuration and status.                                       | [GET ​/objectStoreBuckets​/{uid}](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/getObsBuckets)                | `weka fs tier s3 --obs-name <obs-name> --name <bucket-name>` |
+| **Delete an object store bucket configuration:** Removes an existing object store bucket configuration if the bucket is not attached to a filesystem.        | [DELETE ​/objectStoreBuckets​/{uid}](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/deleteObsBucket)           | `weka fs tier s3 delete <obs-name>`                          |
+| **Update an object store bucket configuration:** Modifies an existing object store bucket configuration.                                                     | [PUT ​/objectStoreBuckets​/{uid}](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/updateObsBucket)              | `weka fs tier s3 update <bucket-name>`                       |
+| **Get object store bucket operations:** Returns a list of live, low-level I/O operations (such as uploads and downloads) for a specific object store bucket. | [GET ​/objectStoreBuckets​/{uid}​/operations](https://api.docs.weka.io/?urls.primaryName=5.0#/Object%20store%20bucket/getObsOperations) | `weka fs tier ops`                                           |
 
 ## Organization
 

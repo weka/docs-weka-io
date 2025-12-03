@@ -3201,11 +3201,8 @@ After completing each of the following procedures, all pods restart within a few
 
 1.  Open your cluster.yaml file and update the DriversDistService value:
 
-    {% code overflow="wrap" %}
-    ```yaml
-    driversDistService: "https://weka-driver-dist.namespace.svc.cluster.local:60002"
-    ```
-    {% endcode %}
+    <pre class="language-yaml" data-overflow="wrap"><code class="lang-yaml">driversDistService: "https://weka-driver-dist.namespace.svc.cluster.local:60002"
+    </code></pre>
 2.  Apply the updated configuration:
 
     ```bash
@@ -3834,22 +3831,16 @@ The join token must be generated from within one of the WEKA backend containers.
     ```
 2.  **Connect to a backend pod and generate the token:**
 
-    {% code overflow="wrap" %}
-    ```bash
-    kubectl exec -it -n weka-operator-system <POD_NAME>
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">kubectl exec -it -n weka-operator-system &#x3C;POD_NAME>
     weka cluster join-token generate --access-token-timeout 52w
-    ```
-    {% endcode %}
+    </code></pre>
 
     This command creates a token that remains valid for 52 weeks (one year). The system generates an output a JWT token similar to:
 
-    {% code overflow="wrap" %}
-    ```
-    eyJhbGciOiJSUzI1NiIsIml0dCI6IkNMSUVOVCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODA1OTQ1NTIsImlhdCI6MTc0O
+    <pre data-overflow="wrap"><code>eyJhbGciOiJSUzI1NiIsIml0dCI6IkNMSUVOVCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODA1OTQ1NTIsImlhdCI6MTc0O
     ...truncated purposely...
     cRQZBPGSRJRWGwXAO1C_NMALdKxnABt6olHzW_gBiEQ42O30L3xF-ym3pDPrHhFQ
-    ```
-    {% endcode %}
+    </code></pre>
 3. **Encode the token:** The generated token must be base64-encoded before use in the Kubernetes secret:
 
 ```bash

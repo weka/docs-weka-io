@@ -1,5 +1,7 @@
 # Additional protocol containers
 
+## Introduction
+
 In a WEKA cluster, the frontend container provides the default POSIX protocol, serving as the primary access point for the distributed filesystem. You can also define protocol containers for NFS, SMB, and S3 clients.
 
 To configure protocol containers, you have two options for creating a cluster for the specified protocol:
@@ -17,7 +19,7 @@ For more details, refer to the relevant deployment section:
 * [deployment-on-gcp-using-terraform.md](../planning-and-installation/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md "mention")
 {% endhint %}
 
-### Dedicated filesystem requirement for cluster-wide persistent protocol configurations
+## Dedicated filesystem requirement for cluster-wide persistent protocol configurations
 
 A dedicated filesystem is required to maintain persistent protocol configurations across a cluster. This filesystem is pivotal in orchestrating coherent, synchronized access to files from multiple servers. It is recommended that this configuration filesystem be named with a significant name, for instance, `.config_fs`. The total capacity must be **100 GB** while refraining from employing additional features such as tiering and thin-provisioning.
 
@@ -113,6 +115,67 @@ CONTAINER ID  HOSTNAME        CONTAINER  IPS              STATUS  RELEASE  FAILU
 ```
 
 With dedicated protocol servers in place, proceed to manage individual protocols.
+
+## Multi-protocol access considerations
+
+Learn about the considerations for accessing the same WEKA filesystem data through multiple protocols, including POSIX, NFS, SMB, and S3.
+
+While the WEKA system provides unified data access, each protocol enforces different rules for filenames, permissions, and file locking. Understanding these differences is crucial to prevent access issues or unexpected behavior when data is written by one protocol and read by another.
+
+### File naming conventions
+
+A primary source of conflict is the different character sets and case-sensitivity rules protocols use for filenames.
+
+* **SMB:** Prohibits the use of specific characters, including `\`, `/`, `:`, `*`, `?`, `"`, `<`, `>`, and `|`. SMB is typically case-insensitive.
+* **POSIX and NFS:** Are case-sensitive and highly flexible, disallowing only the `NULL` character and the forward slash (`/`) path separator.
+* **S3:** Is case-sensitive. Object keys (filenames) can contain any UTF-8 character, and the forward slash (`/`) is treated as part of the key, not a directory separator. For details, see [#directory-structure](additional-protocols-overview.md#directory-structure "mention").
+
+{% hint style="info" %}
+**Potential issues:**&#x20;
+
+* A POSIX or NFS user creates a file named `report:final.pdf`. SMB clients cannot access or see this file because the colon (`:`) is illegal in SMB.
+* A POSIX client creates two separate files: `data.log` and `DATA.LOG`. An SMB client may only see one of these files or experience unpredictable behavior due to case-insensitivity.
+{% endhint %}
+
+### Permissions and access control
+
+Each protocol uses a distinct permission model, which the WEKA system must translate.
+
+* **NFS and POSIX:** Use POSIX mode bits (read, write, execute) for owner, group, and other. NFS can also use NFSv4 ACLs, which provide more granular control. The system can be set to enforce POSIX ACLs, NFSv4 ACLs, or a hybrid model.
+* **SMB:** Uses Windows-style NTFS ACLs, which are fundamentally different from POSIX permissions.
+* **S3:** Uses AWS-style IAM policies and S3 bucket policies for access control, which are based on users and actions, not file-level permissions.
+
+{% hint style="info" %}
+**Potential issues:**
+
+* Complex NFSv4 or SMB permissions may not translate perfectly to POSIX ACLs.
+* Access decisions for S3 are managed separately from the filesystem's POSIX or SMB permissions.
+{% endhint %}
+
+### Locking
+
+Protocols handle file locking differently, which is critical in multi-user environments.
+
+* **NFS:** The system supports NFS byte range advisory locks for versions 3, 4, and 4.1. These locks are interoperable with the system's POSIX byte range advisory locks.
+* **S3:** Does not require traditional file locking because its operations are atomic. A PUT operation, for example, replaces an object entirely in a single step, ensuring consistency. Additionally, S3 does not natively support file append operations, which are a primary reason for locking in file-based systems.
+
+{% hint style="info" %}
+**Potential issue:** A file lock acquired by an SMB client is not honored by an NFS client (or vice-versa). This can lead to data corruption if applications on different protocols attempt to write to the same file simultaneously.
+{% endhint %}
+
+### Directory structure
+
+POSIX, NFS, and SMB clients interact with a traditional hierarchical filesystem of directories and files.
+
+S3 clients interact with a flat object store structure (buckets and keys). The WEKA system presents the filesystem hierarchy to S3 clients by using the forward slash (`/`) as a delimiter in object keys. This simulation allows S3 clients to "browse" the directory structure, but the underlying concept is different.
+
+### Interoperability guidelines
+
+To ensure the best compatibility when accessing the same data from different protocols:
+
+* **Use SMB-compatible filenames:** For all new files, avoid characters that are illegal in SMB (`\ / : * ? " < > |`) and do not rely on case-sensitivity.
+* **Manage permissions carefully:** Choose a primary protocol (like SMB or NFS) for managing permissions and understand how those permissions translate to other protocols. For details, see [#access-control-lists-acls](../security/security.md#access-control-lists-acls "mention").
+* **Avoid simultaneous writes:** Do not allow applications using different protocols (for example, an NFS client and an SMB client) to write to the same file at the same time, as locks are not shared between them.
 
 **Related topics**
 

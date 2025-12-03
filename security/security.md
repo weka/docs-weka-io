@@ -159,6 +159,10 @@ WEKA SMB supports three ACL flavors to manage permissions in different environme
 
 The WEKA NFS service provides a similar model with four distinct flavors to manage permissions.
 
+{% hint style="info" %}
+The **NFSv4** flavor is experimental and is not recommended to be used in production environments.
+{% endhint %}
+
 * **NFSv4:** When you set an ACL through an NFSv4 client, the system stores it in the `xattr`. This enforces native NFSv4 ACLs, which offer fine-grained control. However, this limits interoperability, as SMB and POSIX clients will not see this ACL.
 * **POSIX:** When you set an ACL through an NFS or POSIX client, the system stores it in the POSIX metadata, ensuring compatibility across different protocols. All clients (NFS, POSIX, and SMB) will see the same POSIX ACL.
 *   **Hybrid:** When you set an ACL through an NFSv4 client, the system combines both POSIX and NFSv4 ACLs to ensure consistency. As a result:

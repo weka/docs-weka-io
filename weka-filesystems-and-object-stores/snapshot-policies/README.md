@@ -65,10 +65,10 @@ The example below demonstrates how to configure a policy using the GUI. The poli
   * Snapshots of attached filesystems may still be deleted even when the policy is disabled. If the retention period is reduced, snapshots are deleted according to the updated retention settings, regardless of the policy's status.
 *   **Snapshot behavior during DST transitions**:
 
-    During Daylight Saving Time (DST) transitions, the following behavior applies to snapshot schedules (for example, every 15 minutes):
+    The following behavior applies to snapshot schedules during Daylight Saving Time (DST) transitions:
 
-    * **DST start (clocks move forward):** Snapshots in the skipped hour (for example, 1:15 AM to 2:00 AM) are not created. For example, after a snapshot at 1:00 AM, the next one is at 2:15 AM.
-    * **DST end (clocks move back):** Snapshots in the repeated hour (for example, 1:15 AM to 2:00 AM) are not duplicated, as they are already created during the first pass.
+    * **DST starts (clocks move forward):** The system creates snapshots scheduled in the skipped hour (for example, 2:00 AM to 3:00 AM) after the corresponding duration in the skipped interval, immediately following clock adjustment. For example, if a snapshot is scheduled for 2:15 AM, the system creates it at 3:15 AM. The system skips any other snapshot for the same schedule between 2:15 AM and 3:15 AM.
+    * **DST ends (clocks move back):** The system does not duplicate snapshots scheduled in the repeated hour (for example, 1:00 AM to 2:00 AM), because the system already created them during the first pass.
 
 {% hint style="info" %}
 The Snapshot Policies feature replaces the external SnapTool, which will be deprecated in a future release.

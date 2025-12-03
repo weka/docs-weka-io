@@ -15,7 +15,7 @@ The WEKA CLI is installed on each WEKA server and is available through the `weka
 
 ```
 $ weka -h
-UUsage:
+Usage:
     weka [--color color] [--help] [--build] [--version] [--legal]
 
 Description:

@@ -15,9 +15,15 @@ Snapshots allow the saving of a filesystem state to a hidden `.snapshots` direct
 
 Snapshots do not impact system performance and can be taken for each filesystem while applications run. They consume minimal space, according to the differences between the filesystem and the snapshots, or between the snapshots, in 4K granularity.
 
-By default, snapshots are read-only, and any attempt to change the content of a read-only snapshot returns an error message.
+Snapshot space consumption is taken from the free space available in the filesystem. As snapshots grow due to changes in the filesystem, they continue to consume additional space.
 
-It is possible to create a writable snapshot. A writable snapshot cannot be changed to a read-only snapshot.
+{% hint style="info" %}
+If the filesystem reaches its free space limit, additional writes may be temporarily restricted until space is freed. In such cases, managing available storage—such as deleting older snapshots or optimizing storage usage—can help maintain smooth system operation.
+
+You can retrieve the estimated reclaimable space using the command: `weka fs snapshot`. See [#working-with-snapshots-considerations](./#working-with-snapshots-considerations "mention").
+{% endhint %}
+
+You can create a writable snapshot. A writable snapshot cannot be changed to a read-only snapshot.
 
 The WEKA system supports the following snapshot operations:
 
@@ -38,8 +44,12 @@ To access the hidden `.snapshot` directory, see [#access-the-.snapshots-director
   Moving a file within a snapshot directory or between snapshots is implemented as a copy operation by the kernel, similar to moving between different filesystems. However, such operations for directories will fail.
 * **Working with symlinks (symbolic links):**\
   When accessing symlinks through the `.snapshots` directory, symlinks with absolute paths can lead to the current filesystem. Depending on your needs, consider either not following symlinks or using relative paths.
-* **Snapshot estimated reclaimable space:**\
-  The estimate is an upper limit of capacity that can be freed by deleting the snapshot. It is the size of all data accessible from a snapshot but not accessible from newer snapshots or the active file system. In snapshot chains without writable snapshots, deleting multiple consecutive snapshots (only the oldest N snapshots) release the sum of Estimated Reclaimable Space amounts. Snapshots created before an upgrade to 4.4 or downloaded from OBS may not have an Estimated Reclaimable Space available.
+*   **Snapshot estimated reclaimable space:**\
+    The estimated reclaimable space represents the upper limit of capacity that can be freed by deleting a snapshot. It corresponds to the total size of data that is accessible from a snapshot but not from newer snapshots or the active filesystem.
+
+    In snapshot chains without writable snapshots, deleting multiple consecutive snapshots (only the oldest N snapshots) releases the combined total of their respective Estimated Reclaimable Space values.
+
+    Snapshots created before an upgrade to version 4.4 or downloaded from OBS may not have an Estimated Reclaimable Space value available.
 
 ## Maximum supported snapshots
 

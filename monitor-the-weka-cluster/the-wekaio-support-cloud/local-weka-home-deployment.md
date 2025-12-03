@@ -1,14 +1,15 @@
 ---
 description: >-
-  Explore procedures for deploying the Local WEKA Home v3.0 or higher,
-  upgrading, modifying the configuration, and troubleshooting.
+  Learn how to deploy, upgrade, configure, and troubleshoot Local WEKA Home v3x
+  on a lightweight Kubernetes (K3s), an on-premises, observability solution for
+  WEKA clusters.
 ---
 
-# Deploy Local WEKA Home v3.0 or higher
+# Deploy Local WEKA Home v3.x on K3s
 
-This Local WEKA Home v3.0 (or higher) runs on K3s, a lightweight Kubernetes installed on a single node cluster. Customize the deployment by specifying configuration parameters in the `config.json` file.
+The Local WEKA Home v3.x runs on K3s, a lightweight Kubernetes installed on a single node cluster. Customize the deployment by specifying configuration parameters in the `config.json` file.
 
-<figure><img src="../../.gitbook/assets/LWH_on_K3s.png" alt=""><figcaption><p>Local WEKA Home v3.0 or higher deployment</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/LWH_on_K3s.png" alt=""><figcaption><p>Local WEKA Home v3.x deployment on K3s</p></figcaption></figure>
 
 ## Workflow: Local WEKA Home deployment
 
@@ -357,12 +358,9 @@ The supported proxy types include:
 5.  To initialize the setup, run the following command from the root user: \
     `homecli local setup -c config.json`\
     \
-    For a fresh installation, expect approximately 5 minutes for completion.\
+    For a fresh installation, expect approximately 5 minutes for completion.<br>
 
-
-    {% hint style="success" %}
-    If you get a "command not found" error, make sure you did not skip step 4 above.
-    {% endhint %}
+    <div data-gb-custom-block data-tag="hint" data-style="success" class="hint hint-success"><p>If you get a "command not found" error, make sure you did not skip step 4 above.</p></div>
 
     \
     **Options:**

@@ -402,11 +402,8 @@ To upgrade a stateless or persistent client locally, connect to the client and p
 
 1.  Download the target version package from the backend.
 
-    {% code overflow="wrap" %}
-    ```
-    weka version get <target-version> --clien-only --from <backend-name-or-IP>:<port>
-    ```
-    {% endcode %}
+    <pre data-overflow="wrap"><code>weka version get &#x3C;target-version> --client-only --from &#x3C;backend-name-or-IP>:&#x3C;port>
+    </code></pre>
 
     * Use the `--from <backend-name-or-IP>` option to download the package directly from a backend server instead of from `get.weka.io`. The default port is `14000`.
 2.  Upgrade the agent software.

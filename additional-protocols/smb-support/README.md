@@ -35,17 +35,13 @@ The SMB-W stack is designed for scalability, resilience, and distributed perform
 
 * When managing SMB-W clusters through the GUI, note that any CLI limitations also apply to the GUI.
 * Use ASCII format for fields such as domain names and share names.
+* Before deploying SMB-W, ensure Active Directory and DNS services are properly configured.
+*   Public cloud requirements: For AWS, WEKA has been validated with:
 
-#### Public cloud requirements
+    * [AWS Managed Microsoft AD](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started.html)
+    * [Amazon Route 53 Resolver](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-getting-started.html)
 
-Before deploying SMB-W in public cloud environments:
-
-* Ensure Active Directory and DNS services are properly configured.
-* For AWS, WEKA has been validated with:
-  * [AWS Managed Microsoft AD](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started.html)
-  * [Amazon Route 53 Resolver](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-getting-started.html)
-
-Follow AWS guidance to configure these services if they are not already deployed.
+    Follow AWS guidance to configure these services if they are not already deployed.
 
 {% hint style="info" %}
 High availability (HA) for SMB-W is not supported in public cloud environments.

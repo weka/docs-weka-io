@@ -96,6 +96,7 @@ Ensure the following requirements are met:
 * Kubernetes port requirements
 * Kubelet requirements
 * Image pull secrets requirements
+* Set up control plane with HA
 
 #### **Local server requirements**
 
@@ -136,14 +137,26 @@ Ensure ports availability according to the following table:
 
 #### **Kubelet requirements**
 
-1. Configure Kubelet with static CPU management to enable exclusive CPU allocation:\
-   `reservedSystemCPUs: "0"`\
-   `cpuManagerPolicy: static`
-2. Check which configmap holds the kubelet config.\
-   `kubectl get cm -A|grep kubelet`\
-   If there are more than one kubelet config, modify the config for worker nodes.
-3. Edit the kubelet config map to add the CPU settings.\
-   `kubectl edit cm -n kube-system kubelet-config`
+1. **Identify the Kubelet ConfigMap:** Find the name of the ConfigMap that defines the Kubelet configuration for your worker nodes, typically located in the `kube-system` namespace.
+
+```bash
+kubectl get cm -A | grep kubelet
+```
+
+2. **Open the ConfigMap for editing:** Use the identified ConfigMap name (`<kubelet-configmap-name>`) to open it for editing within the `kube-system` namespace.
+
+```bash
+kubectl edit cm -n kube-system <kubelet-configmap-name>
+```
+
+3. **Add or update CPU management settings:** Within the opened editor, locate the kubelet section and add or update the following key settings to enable static CPU management and reserve CPU `0` for the system:
+
+```yaml
+kubelet:
+  ...
+  reservedSystemCPUs: "0"
+  cpuManagerPolicy: static
+```
 
 #### **Image pull secrets requirements**
 
@@ -173,6 +186,20 @@ kubectl create secret docker-registry QUAY_SECRET_KEY \ # Replace with the actua
   --docker-email=$QUAY_USERNAME \
   --namespace=default
 ```
+
+#### Set up control plane with HA
+
+Ensure the Kubernetes control plane is configured for high availability (HA) to match the overall resiliency of a WEKA deployment.
+
+A highly available control plane depends on `etcd` quorum tolerance.
+
+* `etcd` requires an odd number of members, represented as N.
+* It can tolerate failures up to (N-1)/2 members.
+* Production setups typically use at least five or nine `etcd` members to align with high-availability storage backends.
+
+Consider using an external `etcd` cluster or distributing control-plane components across multiple failure domains.
+
+For more information, see the official [Kubernetes HA topology guidance](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/).
 
 ### 3. Install the WEKA Operator
 
@@ -239,7 +266,34 @@ The WEKA operator supports driver distribution deployment using the WEKA policy.
 * Core configurations
 * Container name (spec.name)
 
-#### Example 1: Manual deployment of WEKA driver distribution and builder containers
+#### Example 1: Minimal policy for drivers distribution (typical)
+
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaPolicy
+metadata:
+  name: weka-drivers
+  namespace: weka-operator-system
+spec:
+  image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
+  imagePullSecret:  "quay-io-robot-secret"
+  payload:
+    driverDistPayload: {}
+    interval: 1m
+  nodeSelector:
+    weka.io/supports-backends: "true"
+  type: enable-local-drivers-distribution
+```
+
+**WekaPolicy additional attributes**
+
+You can use the following attributers if needed in addition to to the minimal policy:
+
+* `ensureNICsPayload`: Defines the configuration for ensuring a specific number of data NICs on selected nodes.
+* `interval`: Defines how often to reconcile the policy.
+* `signDrivesPayload`: Configures parameters to scan and sign drives for WEKA backend containers.
+
+#### Example 2: Manual deployment of WEKA drivers distribution and builder containers
 
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
@@ -310,7 +364,7 @@ spec:
     preRunScript: "apt-get update && apt-get install -y gcc-12"
 ```
 
-#### Example 2: Example: WekaPolicy for enabling local driver distribution
+#### Example 3: Example: WekaPolicy for enabling local drivers distribution
 
 {% code overflow="wrap" %}
 ```yaml
@@ -356,21 +410,7 @@ spec:
 ```
 {% endcode %}
 
-#### Example 3: Minimal policy for drivers distribution
 
-```yaml
-apiVersion: weka.weka.io/v1alpha1
-kind: WekaPolicy
-metadata:
-  name: weka-drivers
-  namespace: weka-operator-system
-spec:
-  image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
-  payload:
-    driverDistPayload: {}
-    interval: 1m
-  type: enable-local-drivers-distribution
-```
 
 </details>
 
@@ -465,7 +505,7 @@ The WEKA system supports two primary methods for drive discovery:
 
 <details>
 
-<summary>Sign drivers using the WekaPolicy starting from WEKA Operator 1.6.x</summary>
+<summary>Sign drives using the WekaPolicy starting from WEKA Operator 1.6.x</summary>
 
 Drive containers will be scheduled on nodes with available signed drives.
 
@@ -494,7 +534,7 @@ spec:
 
 <details>
 
-<summary>Sign specific drivers manually in WEKA Operator 1.4.x</summary>
+<summary>Sign specific drives manually in WEKA Operator 1.4.x</summary>
 
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
@@ -902,11 +942,8 @@ When you delete a WekaCluster, the system enforces a 24-hour grace period before
 
 1.  Run the following command to set the graceful destroy duration to zero:
 
-    {% code overflow="wrap" %}
-    ```bash
-    kubectl patch WekaCluster <cluster name> --type='merge' -p='{"spec":{"gracefulDestroyDuration": "0"}}'
-    ```
-    {% endcode %}
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">kubectl patch WekaCluster &#x3C;cluster name> --type='merge' -p='{"spec":{"gracefulDestroyDuration": "0"}}'
+    </code></pre>
 
     **Where:**
 

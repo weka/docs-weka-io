@@ -49,7 +49,25 @@ Local WEKA Home offers the following features and capabilities, categorized as f
 
 <figure><img src="../../.gitbook/assets/LWH_overview.gif" alt=""><figcaption><p>Local WEKA Home application overview</p></figcaption></figure>
 
-## Sign in to Local WEKA Home
+## Deployment overview
+
+You can deploy Local WEKA Home (LWH) using one of the following environment-specific options:
+
+* **Deploy Local WEKA Home v4.x on K8s:** Deploying LWH on K8s supports scale-out environments and large cluster configurations. This architecture uses Kubernetes' orchestration capabilities for high availability, automated recovery, and simplified lifecycle management of the LWH components.
+* **Deploy Local WEKA Home v3.x on K3s:** Local WEKA Home v3.x runs on K3s, a lightweight Kubernetes installed on a single-node cluster. You can customize the deployment by specifying configuration parameters in the `config.json` file.
+* **Deploy Local WEKA Home v2.x on Minikube:** Local WEKA Home v2.x runs on Minikube, a lightweight Kubernetes implementation, installed on a single Docker container. You specify the configuration parameters in the `config.yaml` file as part of the deployment workflow.
+
+**Related topics**
+
+[deploy-local-weka-home-v4.x-on-k8s.md](deploy-local-weka-home-v4.x-on-k8s.md "mention")
+
+[local-weka-home-deployment.md](local-weka-home-deployment.md "mention")
+
+[deploy-local-weka-home-v2.x.md](deploy-local-weka-home-v2.x.md "mention")
+
+## Local WEKA Home application overview
+
+### Sign in to Local WEKA Home
 
 Authentication methods:
 
@@ -101,8 +119,6 @@ Sign-in steps:
    * Enter application
 
 **Related topics**
-
-[local-weka-home-deployment.md](local-weka-home-deployment.md "mention")
 
 [explore-cluster-insights-and-statistics.md](explore-cluster-insights-and-statistics.md "mention")
 

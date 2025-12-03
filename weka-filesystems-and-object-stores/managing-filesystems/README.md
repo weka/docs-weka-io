@@ -14,7 +14,7 @@ The WEKA system can support up to 1024 filesystems. Effective management ensures
 
 **Related topics**
 
-[filesystems.md](../../weka-system-overview/filesystems.md "mention") (detailed overview)
+[filesystems](../../weka-system-overview/filesystems/ "mention") (detailed overview)
 
 [managing-filesystems.md](managing-filesystems.md "mention")
 

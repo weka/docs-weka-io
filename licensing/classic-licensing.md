@@ -16,7 +16,7 @@ Only users with the Account Owner role can manage licenses.
 
 #### **Before you begin**
 
-1. **WEKA account:** Ensure you have a WEKA account. If not, follow the instructions in[#register-to-get.weka.io](../planning-and-installation/bare-metal/obtaining-the-weka-install-file.md#register-to-get.weka.io "mention").
+1. **WEKA account:** Ensure you have a WEKA account. If not, follow the instructions in [#register-to-get.weka.io](../planning-and-installation/bare-metal/obtaining-the-weka-install-file.md#register-to-get.weka.io "mention").
 2. **Cluster information:** Collect your cluster’s GUID and capacity values by running the following command on your WEKA system:
 
 ```

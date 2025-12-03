@@ -9,7 +9,8 @@
   * [WEKA system functionality features](weka-system-overview/about/weka-system-functionality-features.md)
   * [Converged WEKA system deployment](weka-system-overview/about/converged-weka-system-deployment.md)
 * [Cluster capacity and redundancy management](weka-system-overview/cluster-capacity-and-redundancy-management.md)
-* [Filesystems, object stores, and filesystem groups](weka-system-overview/filesystems.md)
+* [Filesystems, object stores, and filesystem groups](weka-system-overview/filesystems/README.md)
+  * [Cluster and filesystem capacity counter definitions](weka-system-overview/filesystems/cluster-and-filesystem-capacity-counter-definitions.md)
 * [WEKA networking](weka-system-overview/networking-in-wekaio.md)
 * [Data lifecycle management](weka-system-overview/data-storage.md)
 * [WEKA client and mount modes](weka-system-overview/weka-client-and-mount-modes.md)
@@ -152,6 +153,7 @@
   * [S3 supported APIs and limitations](additional-protocols/s3/s3-limitations.md)
   * [S3 examples using boto3](additional-protocols/s3/s3-examples-using-boto3.md)
   * [Configure and use AWS CLI with WEKA S3 storage](additional-protocols/s3/configure-and-use-aws-cli-with-weka-s3-storage.md)
+  * [S3 bucket notifications](additional-protocols/s3/s3-bucket-notifications.md)
 * [Manage the SMB protocol](additional-protocols/smb-support/README.md)
   * [Manage SMB using the GUI](additional-protocols/smb-support/smb-management-using-the-gui.md)
   * [Manage SMB using the CLI](additional-protocols/smb-support/smb-management-using-the-cli.md)
@@ -227,8 +229,9 @@
 * [Deploy monitoring tools using the WEKA Management Station (WMS)](monitor-the-weka-cluster/deploy-monitoring-tools-using-the-weka-management-station-wms.md)
 * [WEKA Home - The WEKA support cloud](monitor-the-weka-cluster/the-wekaio-support-cloud/README.md)
   * [Local WEKA Home overview](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-overview.md)
-  * [Deploy Local WEKA Home v3.0 or higher](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)
-  * [Deploy Local WEKA Home v2.x](monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v2.x.md)
+  * [Deploy Local WEKA Home v4.x on K8s](monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v4.x-on-k8s.md)
+  * [Deploy Local WEKA Home v3.x on K3s](monitor-the-weka-cluster/the-wekaio-support-cloud/local-weka-home-deployment.md)
+  * [Deploy Local WEKA Home v2.x on Minikube](monitor-the-weka-cluster/the-wekaio-support-cloud/deploy-local-weka-home-v2.x.md)
   * [Explore cluster insights](monitor-the-weka-cluster/the-wekaio-support-cloud/explore-cluster-insights-and-statistics.md)
   * [Explore performance statistics in Grafana](monitor-the-weka-cluster/the-wekaio-support-cloud/explore-performance-statistics-in-grafana.md)
   * [Manage alerts and integrations](monitor-the-weka-cluster/the-wekaio-support-cloud/manage-alerts-and-integrations.md)
@@ -269,6 +272,7 @@
 
 * [WEKA and Slurm integration](best-practice-guides/weka-and-slurm-integration/README.md)
   * [Avoid conflicting CPU allocations](best-practice-guides/weka-and-slurm-integration/avoid-conflicting-cpu-allocations.md)
+* [Best practices for WEKA stateless client and Kubernetes](best-practice-guides/best-practices-for-weka-stateless-client-and-kubernetes.md)
 * [Storage expansion best practice](best-practice-guides/storage-expansion-best-practice.md)
 
 ## Support
