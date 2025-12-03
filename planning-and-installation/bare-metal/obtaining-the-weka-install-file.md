@@ -14,7 +14,7 @@ To sign in to [get.weka.io](http://get.weka.io), you first need to create an acc
 
 1. Go to the [get.weka.io](https://get.weka.io/ui/dashboard) download site, and select **Create an account.**
 
-![Create an account](../../.gitbook/assets/Sign-in\_create\_an\_account.png)
+![Create an account](../../.gitbook/assets/Sign-in_create_an_account.png)
 
 The Send Registration Email page opens.
 
@@ -27,7 +27,7 @@ The Send Registration Email page opens.
 
 4\. Fill in your email address, full name, and password. Then, select **Create Account**.
 
-![Create account](../../.gitbook/assets/Create\_an\_account.png)
+![Create account](../../.gitbook/assets/Create_an_account.png)
 
 Your request for access to [get.weka.io](http://get.weka.io) is sent to WEKA for review. Wait for a validation email. Once your registration is approved, you can sign in to [get.weka.io](http://get.weka.io).
 
@@ -66,4 +66,4 @@ Depending on the workflow path you follow, go to one of the following:
 
 [install-the-weka-cluster-using-the-wsa.md](install-the-weka-cluster-using-the-wsa.md "mention") (path B)
 
-[manually-install-os-and-weka-on-servers.md](manually-install-os-and-weka-on-servers.md "mention") (path C)
+[manually-install-os-and-weka-on-servers](manually-install-os-and-weka-on-servers/ "mention") (path C)

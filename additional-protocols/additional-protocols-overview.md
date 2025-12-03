@@ -69,7 +69,7 @@ Dedicated protocol servers offer the following advantages:
 **Procedure**
 
 1. **Install the WEKA software on the dedicated protocol servers:** Do one of the following:
-   * Follow the default method as specified in [manually-install-os-and-weka-on-servers.md](../planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers.md "mention").
+   * Follow the default method as specified in [manually-install-os-and-weka-on-servers](../planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/ "mention").
    *   Use the WEKA agent to install from a working backend. The following commands  demonstrate this method:
 
        ```bash
