@@ -124,38 +124,61 @@ A container with two IP addresses uses HA networking. A container with only one 
 
 If the cluster uses InfiniBand and Ethernet network technologies, you can define up to four IP addresses.
 
-### Add CPU cores to a container
+### Modify the number of cores for a container
 
-You can add dedicated CPU cores to a container locally and on an active container.
+You can increase or decrease the number of dedicated cores for a container locally, even while the container is active.
 
-For clarity, the following procedure exemplifies expansion on the container running the compute processes.
+* Increasing cores does not require deactivating the container for any container type.
+* Decreasing cores does not require deactivating the container for compute and drive containers. However, for frontend containers, you must deactivate the container first.
 
-{% hint style="info" %}
-Decreasing the number of cores, requires container deactivation before setting the number of cores, using the command: `weka cluster container deactivate <container-ids>`.
+**Prerequisites for decreasing frontend cores**
 
-Reactivate the container after completing the procedure below.
-{% endhint %}
+Before decreasing the number of dedicated cores for a frontend container, you must deactivate it using the following command:
 
-**Procedure**
+```
+weka cluster container deactivate <container-ids>
+```
 
-1. Run the following command line to set the number of dedicate cores to the compute container:\
-   `weka cluster container cores <container-id> <number of total cores> --compute-dedicated-cores <number of total cores> --no-frontends`
-2. Apply the changes. Run the following command:\
-   `weka cluster container apply <container-ids>`
-3. Check the number of cores dedicated to the compute processes. Run the following command: \
-   `weka cluster container <container-ids>`
+After completing the core modification procedure below, remember to reactivate the container.
+
+**Procedure: Set the number of dedicated cores**
+
+Run the following command line to set the number of dedicated cores to a container. The procedure below exemplifies the modification of a compute container, which runs compute processes.
+
+1.  Set the number of dedicated cores for the container:
+
+    ```bash
+    weka cluster container cores <container-id> <number of total cores> / 
+    --compute-dedicated-cores <number of total cores> --no-frontends
+    ```
+
+    To ensure the cores are allocated to compute processes, make sure to add the `--no-frontends` flag.
+2.  Apply the changes to the container.
+
+    ```bash
+    weka cluster container apply <container-ids>
+    ```
+3.  Check the number of cores dedicated to the compute processes.
+
+    ```bash
+    weka cluster container <container-ids>
+    ```
 
 <details>
 
-<summary>Example</summary>
+<summary>Example: Setting 10 cores for compute container</summary>
 
-The following example sets 10 cores to the `compute0` container. The container id is 1. It is important to add `--no-frontends` to allocate the cores dedicated to the compute processes.
+The following example sets 10 cores to the container with ID 1, which is running compute processes.
 
 ```
 weka cluster container cores 1 10 --compute-dedicated-cores 10 --no-frontends
 weka cluster container apply 1
 weka cluster container 1
-//response
+```
+
+**Respnse:**
+
+```
 ROLES       NODE ID  CORE ID
 MANAGEMENT  0        <auto>
 COMPUTE     1        <auto>
@@ -174,28 +197,36 @@ COMPUTE     10       <auto>
 
 ### Add SSDs to a container
 
-You can expand the cluster storage capacity by adding new SSD drives to a specific container.
+Expand the cluster's storage capacity by adding new SSD drives to a specific container.
 
-When adding drives, you can assign them to specific drive pools, such as `iu4k` or `legacy`. This allows for the integration of diverse SSD types within a single cluster, providing greater hardware flexibility.
-
-Adding SSD drives might alter the ratio between SSDs and drive cores, which can impact performance.
+Adding SSD drives might alter the ratio between SSDs and drive cores, which can impact performance. When adding drives, you can assign them to specific drive pools, such as `iu4k` or `legacy`. This capability allows for integrating diverse SSD types within a single cluster, providing greater hardware flexibility.
 
 {% hint style="info" %}
 Support for mixed drive pools is only available for clusters newly installed with this software version and is not supported for upgraded clusters.
 {% endhint %}
 
-**Before you begin**
+**Prerequisites**
 
-* Ensure the cluster has a drive core available to allocate to the new SSD.
+* Ensure the cluster has an available drive core to allocate to the new SSD.
 * Identify the container ID for the SSD addition.
 
 **Procedure**
 
-1. Identify the relevant container ID to which you want to add the SSD drive. Run the following command: `weka cluster container`
-2. Scan for new drives. Run the following command: `weka cluster drive scan`
-3.  To add the SSDs, run the following command: `weka cluster drive add <container-id> <device-paths> [--pool <pool>]`&#x20;
+1.  Identify the relevant container ID to which you want to add the SSD drive.
 
+    ```bash
+    weka cluster container
+    ```
+2.  Scan for new drives.
 
+    ```bash
+    weka cluster drive scan
+    ```
+3.  Add the SSDs to the container. You can optionally specify a drive pool.
+
+    ```bash
+    weka cluster drive add <container-id> <device-paths> [--pool <pool>]
+    ```
 
 **Parameters**
 
@@ -211,7 +242,7 @@ These local commands have the same semantics as their remote counterpart. You do
 
 **Subcommands**
 
-<table><thead><tr><th width="192.33333333333331">Sub-command</th><th width="342">Description</th><th>Comment</th></tr></thead><tbody><tr><td><code>apply</code></td><td>Apply changes to the resources locally.</td><td></td></tr><tr><td><code>auto-remove-timeout</code></td><td>Set the time to wait before removing the containers from clients if they disconnect from the cluster. The minimum value is 60. Use 0 to disable automatic removal.</td><td>This subcommand only applies to clients.</td></tr><tr><td><code>bandwidth</code></td><td>Limit the bandwidth of the container.</td><td></td></tr><tr><td><code>base-port</code></td><td>Change the port range used by the container. WEKA containers require 100 ports to operate.</td><td></td></tr><tr><td><code>cores</code></td><td>Change the number of cores in the container.</td><td>Increasing the number of cores does not require deactivating the container, whereas decreasing the core count requires deactivation.</td></tr><tr><td><code>dedicate</code></td><td>Set the container to be dedicated to the WEKA cluster.</td><td></td></tr><tr><td><code>export</code></td><td>Export stable resources to a file.</td><td></td></tr><tr><td><code>failure-domain</code></td><td>Set the container failure-domain.</td><td>Requires deactivating the container.</td></tr><tr><td><code>fqdn</code></td><td>Configure the FQDN for other containers for TLS hostname verification when interacting with the cluster.</td><td></td></tr><tr><td><code>import</code></td><td>Import resources from a file.</td><td></td></tr><tr><td> <code>join-ips</code></td><td>Set the IPs and ports of all containers in the cluster. This enables the container to join the cluster using these IPs.</td><td></td></tr><tr><td><code>join-secret</code></td><td>Configure the secret used when joining a cluster as a backend.</td><td></td></tr><tr><td><code>management-ips</code></td><td>Set the container's management IPs. To achieve high-availability, set two IPs.</td><td></td></tr><tr><td><code>memory</code></td><td>Set the RAM size dedicated to the container.</td><td></td></tr><tr><td><code>net</code></td><td>List the WEKA-dedicated networking devices in a container.</td><td></td></tr><tr><td><code>restore</code></td><td>Restore resources from stable resources.</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="192.33333333333331">Sub-command</th><th width="285">Description</th><th>Comment</th></tr></thead><tbody><tr><td><code>apply</code></td><td>Apply changes to the resources locally.</td><td></td></tr><tr><td><code>auto-remove-timeout</code></td><td>Set the time to wait before removing the containers from clients if they disconnect from the cluster. The minimum value is 60. Use 0 to disable automatic removal.</td><td>This subcommand only applies to clients.</td></tr><tr><td><code>bandwidth</code></td><td>Limit the bandwidth of the container.</td><td></td></tr><tr><td><code>base-port</code></td><td>Change the port range used by the container. WEKA containers require 100 ports to operate.</td><td></td></tr><tr><td><code>cores</code></td><td>Change the number of cores in the container.</td><td><ul><li>Increasing the number of cores does not require deactivating the container for any container type.</li><li>Decreasing the number of cores does not require deactivating the container for compute and drive types. However, for frontend container type deactivation is required.</li></ul></td></tr><tr><td><code>dedicate</code></td><td>Set the container to be dedicated to the WEKA cluster.</td><td></td></tr><tr><td><code>export</code></td><td>Export stable resources to a file.</td><td></td></tr><tr><td><code>failure-domain</code></td><td>Set the container failure-domain.</td><td>Requires deactivating the container.</td></tr><tr><td><code>fqdn</code></td><td>Configure the FQDN for other containers for TLS hostname verification when interacting with the cluster.</td><td></td></tr><tr><td><code>import</code></td><td>Import resources from a file.</td><td></td></tr><tr><td> <code>join-ips</code></td><td>Set the IPs and ports of all containers in the cluster. This enables the container to join the cluster using these IPs.</td><td></td></tr><tr><td><code>join-secret</code></td><td>Configure the secret used when joining a cluster as a backend.</td><td></td></tr><tr><td><code>management-ips</code></td><td>Set the container's management IPs. To achieve high-availability, set two IPs.</td><td></td></tr><tr><td><code>memory</code></td><td>Set the RAM size dedicated to the container.</td><td></td></tr><tr><td><code>net</code></td><td>List the WEKA-dedicated networking devices in a container.</td><td></td></tr><tr><td><code>restore</code></td><td>Restore resources from stable resources.</td><td></td></tr></tbody></table>
 
 **Options**
 

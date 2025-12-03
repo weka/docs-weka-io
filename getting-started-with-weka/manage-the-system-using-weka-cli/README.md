@@ -42,12 +42,12 @@ Subcommands:
    smb               Commands that manage Weka's SMB container
    stats             List all statistics that conform to the filter criteria
    status            Get an overall status of the Weka cluster
+   telemetry         Commands that manage the telemetry gateway
    umount            Unmounts wekafs filesystems. This is the helper utility installed at /sbin/umount.wekafs.
    upgrade           Commands that control the upgrade precedure of Weka
    user              List users defined in the Weka cluster
    version           When run without arguments, lists the versions available on this machine. Subcommands
-                             allow for downloading of versions, setting the current version and other actions to manage
-                             versions.
+                     allow for downloading of versions, setting the current version and other actions to manage versions.
 
 Options:
    --agent         Start the agent service
