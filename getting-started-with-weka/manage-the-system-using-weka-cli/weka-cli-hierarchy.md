@@ -7,7 +7,7 @@ description: >-
 # WEKA CLI hierarchy
 
 {% hint style="info" %}
-New commands in V4.4.6 CLI, compared to V4.3.5, are marked with \*\*.
+New commands in V4.4.9 CLI, compared to V4.3.5, are marked with \*\*.
 {% endhint %}
 
 ### weka agent
@@ -383,6 +383,10 @@ weka org
 ```
 weka s3
    |bucket
+      |checksum **
+         |get
+         |set
+         |reset
       |add
       |remove     
       |lifecycle-rule
@@ -391,6 +395,10 @@ weka s3
          |remove
          |reset
       |list
+      |notification **
+         |add
+         |list
+         |remove
       |policy
          |get
          |get-json
@@ -411,6 +419,17 @@ weka s3
          |remove
       |add
       |remove
+      |notification-target **
+         |add
+         |cert
+           |add
+           |list
+           |remove 
+         |list
+         |remove
+         |show
+         |status
+         |update
       |status
       |update
   |log-level
@@ -539,6 +558,7 @@ weka stats
 ```
 weka status
    |rebuild
+   |reduction **
 ```
 
 ### weka umount

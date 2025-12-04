@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes limitations concerning the S3 service and protocol
-  implementation.
+  Explore the supported S3 APIs, key limitations, and configuration options for
+  managing S3 resources.
 ---
 
 # S3 supported APIs and limitations
@@ -44,6 +44,7 @@ The following standard S3 APIs are supported:
   * [GET Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html)
   * [PUT Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
   * [DELETE Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html)
+  * ​[DELETE Objects](https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html)
   * [COPY Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html)
   * [HEAD Object](https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html)
 * **Object Tagging APIs:**
@@ -56,10 +57,15 @@ The following standard S3 APIs are supported:
   * [GET Object Parts](https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html)
   * [PUT Part](https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
   * [DELETE Multipart Upload](https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html)
+* **Bucket Notification APIs:**
+  * [GET Bucket Notification](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotification.html)
+  * [GET Bucket Notification Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotificationConfiguration.html)
+  * [PUT Bucket Notification](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotification.html)
+  * [PUT Bucket Notification Configuration](https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html)
 
 ## General limits
 
-<table><thead><tr><th width="471">Item</th><th>Limits</th></tr></thead><tbody><tr><td>Maximum number of buckets</td><td>10000</td></tr><tr><td>Maximum object size</td><td>5 TiB</td></tr><tr><td>Maximum number of parts per upload</td><td>10000</td></tr><tr><td>Part numbers</td><td>1 to 10000 (inclusive)</td></tr><tr><td>Part size</td><td>5 MiB to 5 GiB. <br>The last part can be &#x3C; 5 MiB</td></tr><tr><td>Maximum number of parts returned for a list parts request</td><td>1000</td></tr><tr><td>Maximum number of multipart uploads returned in a list multipart uploads request</td><td>1000</td></tr><tr><td>User-defined metadata per object</td><td>2 KB</td></tr><tr><td>Maximum length of an S3 IAM user policy</td><td>2048</td></tr><tr><td>Maximum number of S3 IAM user policies</td><td>1024</td></tr><tr><td>Maximum number of S3 regular users</td><td>1024</td></tr><tr><td>Maximum number of S3 service accounts</td><td>5000</td></tr><tr><td>Maximum number of S3 STS credentials</td><td>5000</td></tr></tbody></table>
+<table><thead><tr><th width="510.78125">Item</th><th>Limits</th></tr></thead><tbody><tr><td>Maximum number of buckets</td><td>10000</td></tr><tr><td>Maximum object size</td><td>5 TiB</td></tr><tr><td>Maximum number of parts per upload</td><td>10000</td></tr><tr><td>Part numbers</td><td>1 to 10000 (inclusive)</td></tr><tr><td>Part size</td><td>5 MiB to 5 GiB. The last part can be less than 5 MiB</td></tr><tr><td>Maximum number of parts returned for a list parts request</td><td>1000</td></tr><tr><td>Maximum number of multipart uploads returned in a list multipart uploads request</td><td>1000</td></tr><tr><td>User-defined metadata per object</td><td>2 KB</td></tr><tr><td>Maximum length of an S3 IAM user policy</td><td>2048</td></tr><tr><td>Maximum number of S3 IAM user policies</td><td>1024</td></tr><tr><td>Maximum number of ILM rules</td><td>5000</td></tr><tr><td>Maximum number of ILM rules per bucket</td><td>10</td></tr><tr><td>Number of tags in an ILM rule filter</td><td>6 <code>tag=value</code> pairs</td></tr><tr><td>Maximum length of an ILM rule prefix</td><td>256 characters</td></tr><tr><td>Maximum number of S3 regular users</td><td>1024</td></tr><tr><td>Maximum number of S3 service accounts</td><td>5000</td></tr><tr><td>Maximum number of S3 STS credentials</td><td>5000</td></tr></tbody></table>
 
 ## Naming limitations
 
@@ -111,7 +117,17 @@ The S3 protocol implementation supports the following policy actions:
 
 ## Supported checksum&#x20;
 
-Only MD5 checksum algorithm is supported.
+The WEKA S3 implementation supports the following checksum algorithms for data integrity:
+
+* CRC64NVME
+* CRC32
+* CRC32C
+* SHA1
+* SHA256
+
+{% hint style="info" %}
+For optimal performance, CRC32 or CRC32C is recommended.
+{% endhint %}
 
 ## Lifecycle configuration
 

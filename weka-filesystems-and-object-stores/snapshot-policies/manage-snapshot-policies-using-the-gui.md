@@ -112,8 +112,7 @@ You can enable or disable a policy directly from the policies list pane, for exa
 **Procedure**
 
 1. In the policies list pane, locate the desired policy.
-2.  Click on the current status of the policy (Enabled or Disabled).\
-
+2.  Click on the current status of the policy (Enabled or Disabled).<br>
 
     <div align="left"><figure><img src="../../.gitbook/assets/snap-policy-status.png" alt="" width="455"><figcaption></figcaption></figure></div>
 3. In the confirmation message that appears, select **Yes** to confirm the status change.\

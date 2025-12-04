@@ -57,3 +57,7 @@ Each server has resource limits that affect how many containers it can run and h
 * Maximum cores per container: 19
 * Maximum containers of any type per server: 32
   * &#x20;Within this total, the maximum frontend containers per server is 7.
+
+{% hint style="info" %}
+When WEKA is deployed on Kubernetes as a multi-tenant solution, the limits above apply per tenant.
+{% endhint %}

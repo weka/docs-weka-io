@@ -1,7 +1,7 @@
 ---
 description: >-
-  This page describes the events available in the WEKA system and how to work
-  with them.
+  WEKA system events provide timestamped information about cluster operations
+  and changes.
 ---
 
 # Events

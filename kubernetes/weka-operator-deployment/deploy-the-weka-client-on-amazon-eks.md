@@ -16,7 +16,7 @@ The WEKA client enables Kubernetes workloads on Amazon EKS to connect to and acc
    * [#kubernetes-port-requirements](./#kubernetes-port-requirements "mention") (in the **WEKA Operator deployment** topic).
 3. **Obtain setup information:** Contact the [WEKA Customer Success Team](../../support/getting-support-for-your-weka-system.md) to obtain the necessary setup information.
 
-<table><thead><tr><th width="202">Component</th><th width="272">Parameter</th><th>Example</th></tr></thead><tbody><tr><td>Container repository (<a href="http://quay.io/">quay.io</a>)</td><td><code>QUAY_USERNAME</code> <code>QUAY_PASSWORD</code></td><td><code>example_user</code><br><code>example_password</code></td></tr><tr><td>WEKA Operator Version</td><td><code>VERSION</code></td><td><code>v1.6.0</code></td></tr><tr><td>WEKA Image</td><td><code>WEKA_IMAGE_VERSION_TAG</code></td><td><code>4.4.5.118-k8s.4</code></td></tr></tbody></table>
+<table><thead><tr><th width="202">Component</th><th width="272">Parameter</th><th>Example</th></tr></thead><tbody><tr><td>Container repository (<a href="http://quay.io/">quay.io</a>)</td><td><code>QUAY_USERNAME</code> <code>QUAY_PASSWORD</code></td><td><code>example_user</code><br><code>example_password</code></td></tr><tr><td>WEKA Operator Version</td><td><code>VERSION</code></td><td><p><code>v1.6.1</code></p><p><code>v1.7.1</code></p></td></tr><tr><td>WEKA Image</td><td><code>WEKA_IMAGE_VERSION_TAG</code></td><td><code>4.4.5.118-k8s.4</code></td></tr></tbody></table>
 
 By gathering this information in advance, you have all the required values to complete the deployment workflow efficiently. Replace the placeholders with the actual values in the setup files.
 
@@ -92,7 +92,7 @@ fi
 
 #### Procedure
 
-1. **Label the EKS nodes:** Label EKS worker nodes intended for WEKA client deployment. Apply the label to each node designated to host WEKA client pods.
+1. **Label the EKS nodes (optional):** Label EKS worker nodes intended for WEKA client deployment. Apply the label to each node designated to host WEKA client pods.
 
 ```bash
 kubectl label nodes <node-name> weka.io/supports-clients=true
@@ -124,8 +124,7 @@ kubectl create secret docker-registry quay-io-robot-secret \
 helm upgrade \
   --install weka-operator oci://quay.io/weka.io/helm/weka-operator \
   --namespace weka-operator-system \
-  --version v1.6.0 \
-  --set imagePullSecret=quay-io-robot-secret
+  --version v1.6.1
 ```
 
 4. **Configure NICs:** Create the `ensure-nics.yaml` manifest to enable multi-NIC support on selected nodes:
@@ -133,20 +132,20 @@ helm upgrade \
 {% code title="ensure-nics.yaml" %}
 ```yaml
 apiVersion: weka.weka.io/v1alpha1
-kind: WekaManualOperation
+kind: WekaPolicy
 metadata:
-  name: ensure-nics-manual-op
-  namespace: default
+  name: ensure-nics-policy
+  namespace: weka-operator-system
 spec:
-  action: "ensure-nics"
+  type: "ensure-nics"
   image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
   imagePullSecret: "quay-io-robot-secret"
   payload:
     ensureNICsPayload:
       type: aws
       nodeSelector:
-        weka.io/supports-clients: "true"
-      dataNICsNumber: 4
+        support-client: "true"
+      dataNICsNumber: 2
 ```
 {% endcode %}
 

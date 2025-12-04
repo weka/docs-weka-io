@@ -4,7 +4,7 @@
 
 The following EC2 instance models can operate as **backend**, **client,** or **converged** instances. The default EC2 instance model for backends is **i3en.2xlarge**.
 
-<table><thead><tr><th width="237">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>I3en</td><td>i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge</td></tr></tbody></table>
+<table><thead><tr><th width="237">EC2 instance type</th><th>Supported instances</th></tr></thead><tbody><tr><td>i8ge</td><td>i8ge.2xlarge, i8ge.3xlarge, i8ge.6xlarge, i8ge.12xlarge, i8ge.18xlarge, i8ge.24xlarge, i8ge.48xlarge</td></tr><tr><td>I3en</td><td>i3en.2xlarge, i3en.3xlarge, i3en.6xlarge, i3en.12xlarge, i3en.24xlarge</td></tr></tbody></table>
 
 ## Client EC2 instances
 

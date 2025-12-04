@@ -7,7 +7,7 @@ description: >-
 # Prerequisites and compatibility
 
 {% hint style="warning" %}
-**Important:** The versions mentioned on the prerequisites and compatibility page apply to the WEKA system's **latest minor version** (4.4.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
+**Important:** The versions mentioned on the prerequisites and compatibility page apply to the WEKA system's **latest minor version** (5.0.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
 
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
@@ -26,7 +26,7 @@ For cloud-based installations, WEKA supports a minimal configuration of **6 serv
 
 ## CPU
 
-<table><thead><tr><th width="338">CPU family/architecture</th><th width="210">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>2013 Intel® Core™ processor family and later</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome), 3rd (Milan-X), and 4th (Genoa) Generations</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span> <br>Single-socket and dual-socket</td></tr><tr><td>Aarch64</td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Nvidia Grace</td></tr></tbody></table>
+<table><thead><tr><th width="338">CPU family/architecture</th><th width="210">Supported on backends</th><th>Supported on clients</th></tr></thead><tbody><tr><td>2013 Intel® Core™ processor family and later</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Dual-socket</td></tr><tr><td>AMD EPYC™ processor families 2nd (Rome), 3rd (Milan-X), and 4th (Genoa) Generations</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Single-socket</td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span> <br>Single-socket and dual-socket</td></tr><tr><td>ARM (AArch64)</td><td></td><td><span data-gb-custom-inline data-tag="emoji" data-code="1f44d">👍</span><br>Nvidia Grace</td></tr></tbody></table>
 
 {% hint style="info" %}
 The following requirements must be met:
@@ -44,16 +44,16 @@ The following requirements must be met:
 ## Operating system
 
 {% hint style="info" %}
-WEKA will support upcoming releases of the operating systems in the lists within one quarter (three months) of their respective General Availability (GA) dates.
+Every effort is made to support upcoming releases of the operating systems in the lists within one quarter (three months) of their respective General Availability (GA) dates. When an operating system version is deprecated, WEKA will cease to ensure its software continues to work with that operating system version.
 {% endhint %}
 
 {% tabs %}
 {% tab title="Backends" %}
 * **Rocky Linux:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
+  * 9.6, 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6
 * **RHEL:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
+  * 9.6, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
@@ -62,19 +62,24 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 22.04
   * 20.04
   * 18.04
+* **Amazon Linux 2023** (AL2023) with x86 distribution
+* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12) with x86\_64 distribution
 * **Amazon Linux:**
   * AMI 2018.03
   * AMI 2017.09
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
-  * Latest update package that was tested: 5.10.176-157.645.amzn2.x86\_64
+* **Oracle Linux:**
+  * 9.6, 9
+  * 8.7, 8.5
 {% endtab %}
 
 {% tab title="Clients" %}
 * **Rocky Linux:**
-  * 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
+  * Supported on ARM: 9.5, 9.3
+  * 9.6, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6
 * **RHEL:**
-  * 9.4, 9.3, 9.2, 9.1, 9.0
+  * Supported on ARM: 9.3
+  * 9.6, 9.5, 9.4, 9.3, 9.2, 9.1, 9.0
   * 8.10, 8.9, 8.8, 8.7, 8.6, 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
 * **CentOS:**
   * 8.5, 8.4, 8.3, 8.2, 8.1, 8.0
@@ -83,20 +88,20 @@ WEKA will support upcoming releases of the operating systems in the lists within
   * 22.04
   * 20.04
   * 18.04
+* **Amazon Linux 2023** (AL2023) with x86 and ARM distributions
+* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12) with x86 and ARM distributions
 * **Amazon Linux:**
   * AMI 2018.03
   * AMI 2017.09
-* **Amazon Linux 2 LTS** (formerly Amazon Linux 2 LTS 17.12)
-  * Latest update package that was certified: 5.10.176-157.645.amzn2.x86\_64
 * **SLES:**
-  * 15 DP6
+  * 15 SP6
   * 15 SP5
   * 15 SP4
   * 15 SP2
   * 12 SP5
 * **Oracle Linux:**
-  * 9
-  * 8.9
+  * 9.6, 9
+  * 8.9 (ARM), 8.7, 8.5
 * **Debian:**
   * 12 (with Linux kernel 6.6)
   * 10
@@ -111,6 +116,7 @@ WEKA will support upcoming releases of the operating systems in the lists within
 {% tab title="Kernel" %}
 The following kernel versions are supported:
 
+* 6.14
 * 6.8
 * 6.0 to 6.5
 * 5.3 to 5.19
@@ -118,7 +124,7 @@ The following kernel versions are supported:
 * 3.10
 
 {% hint style="info" %}
-- Kernels 5.15 and higher are not supported with Amazon Linux operating systems.
+- Kernels 5.15 and higher are not supported with Amazon Linux 2 (AL2) operating system.
 - It is recommended to turn off auto kernel updates, so it will not get upgraded to an unsupported version.
 - Confirm that both the kernel version and the operating system version are listed as supported, as these are distinct components with their own compatibility considerations.
 - For clarity, the range of supported versions is inclusive.
@@ -191,8 +197,8 @@ Adhere to the following considerations when choosing the adapters:
   If any network connection, irrespective of whether it’s InfiniBand or Ethernet, on a given backend possess the capability to transmit frames exceeding 4 KB in size, it is mandatory for all network connections used directly by WEKA on that same backend to have the ability to transmit frames of at least 4 KB.
 * [**IOMMU**](#user-content-fn-7)[^7] **support**\
   WEKA automatically detects and enables IOMMU for the server and PCI devices. Manual enablement is not required.
-* **Shared networking**\
-  Shared networking (also known as single IP) allows a single IP address to be assigned to the Physical Function (PF) and shared across multiple Virtual Functions (VFs). This means that a single IP can be shared by every WEKA process on that server, while still being available to the host operating system.
+* **Single IP**\
+  Single IP (also known as shared networking) allows a single IP address to be assigned to the Physical Function (PF) and shared across multiple Virtual Functions (VFs). This means that a single IP can be shared by every WEKA process on that server, while still being available to the host operating system.
 *   **SR-IOV VF**
 
     Single Root I/O Virtualization Virtual Functions enable direct hardware access for virtual machines, improving network performance by reducing CPU overhead.
@@ -232,23 +238,21 @@ Shared networking configuration for NIC models:
   Exclusively use static IP addressing. DHCP is not supported for dataplane NICs.
 *   **WEKA peer connectivity requires NAT-free networking**
 
-    WEKA requires visibility and connectivity to all peers, without interference from networking technologies like network address translation, or NAT.
+    WEKA requires visibility and connectivity to all peers, without interference from networking technologies like Network Address Translation (NAT).
 
 **Related topics**
 
 [networking-in-wekaio.md](../weka-system-overview/networking-in-wekaio.md "mention")
 
-### Supported network adapters <a href="#networking-ethernet" id="networking-ethernet"></a>
+### Supported network adapters for backends and clients <a href="#networking-ethernet" id="networking-ethernet"></a>
 
-The following table provides the supported network adapters along with their supported features for backends and clients, and clients-only.
+The WEKA system is compatible with various network adapters for both backend servers and clients. The following table lists these adapters, detailing their protocol type and a breakdown of both supported and unsupported features. Use this information to verify hardware compatibility and understand the specific capabilities of each adapter within a WEKA environment.
 
-#### Supported network adapters for backends and clients
+<table><thead><tr><th>Adapter</th><th width="126">Protocol</th><th>Supported features</th><th>Unsupported features </th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td><ul><li>SR-IOV VF</li></ul></td><td><ul><li>Single IP</li><li>HA</li><li>Routed network</li><li>LACP</li><li>Mixed networks</li><li>RX interrupts</li><li>RDMA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>Intel E810 2CQDA2<br><br><strong>Note:</strong> This adapter is not supported beyond 4.4.x version series.</td><td>Ethernet</td><td><p></p><ul><li>Shared networking</li><li>HA</li><li>Routed network</li></ul></td><td><ul><li>LACP</li><li>Mixed networks</li><li>RX interrupts</li><li>RDMA</li><li>PKEY</li><li>SR-IOV VF</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><ul><li>Single IP</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td><td><ul><li>LACP</li><li>Mixed networks</li><li>SR-IOV VF</li><li>Routed network</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><ul><li>Single IP</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td><td><ul><li>LACP</li><li>Mixed networks</li><li>SR-IOV VF</li><li>Routed network</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><ul><li>Single IP</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td><td><ul><li>LACP</li><li>Mixed networks</li><li>SR-IOV VF</li><li>RX interrupts</li><li>PKEY</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Single IP</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td><td><ul><li>Mixed networks</li><li>SR-IOV VF</li><li>RX interrupts</li><li>PKEY</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><ul><li>Single IP</li><li>RDMA</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td><td><ul><li>LACP</li><li>Mixed networks</li><li>SR-IOV VF</li><li>PKEY</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Single IP</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td><td><ul><li>Mixed networks</li><li>SR-IOV VF</li><li>PKEY</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>Single IP</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td><td><ul><li>Routed network</li><li>LACP</li><li>SR-IOV VF</li><li>PKEY</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RDMA</li><li>HA</li><li>PKEY (IB only)</li><li>IOMMU</li></ul></td><td><ul><li>Single IP</li><li>Routed network</li><li>LACP</li><li>SR-IOV VF</li><li>RX interrupts</li><li>PKEY (ETH)</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><ul><li>Mixed networks</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td><td><ul><li>Single IP</li><li>Routed network</li><li>LACP</li><li>SR-IOV VF</li><li>RX interrupts</li><li>PKEY</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>PKEY (IB only)</li><li>IOMMU</li></ul></td><td><ul><li>Single IP</li><li>LACP</li><li>SR-IOV VF</li><li>Routed network (IB)</li><li>PKEY (ETH)</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4 LX<br><strong>Note:</strong> This adapter was announced to be end-of-life by the manufacturer in January 2022. Its functionality in WEKA cannot be guaranteed, due to dependencies on DPDK18, limited features, and limited availability. </td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td><td><ul><li>Single IP</li><li>RDMA</li><li>LACP</li><li>SR-IOV VF</li><li>Routed network (IB)</li><li>PKEY</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td><td><ul><li>Single IP</li><li>RDMA</li><li>LACP</li><li>SR-IOV VF</li><li>Routed network (IB)</li><li>PKEY</li></ul></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><ul><li>HA</li><li>Routed network</li></ul></td><td><ul><li>Single IP</li><li>LACP</li><li>Mixed networks</li><li>RX interrupts</li><li>SR-IOV VF</li><li>PKEY</li><li>IOMMU</li></ul></td></tr></tbody></table>
 
-<table><thead><tr><th>Adapter</th><th width="126">Protocol</th><th>Supported features</th></tr></thead><tbody><tr><td>Amazon ENA</td><td>Ethernet</td><td><ul><li>SR-IOV VF</li></ul></td></tr><tr><td><p>Broadcom BCM957508-P2100G</p><ul><li>Dual-port (2x100Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-8">Single-port (1x200Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SR-IOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td><p>Broadcom BCM957608-P2200G</p><ul><li>Dual-port (2x200Gb/s)</li><li><a data-footnote-ref href="#user-content-fn-8">Single-port (1x400Gb/s</a></li></ul></td><td>Ethernet</td><td><ul><li>Shared networking</li><li>SR-IOV VF</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>Intel E810 2CQDA2</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>HA</li><li>Routed network</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 single-port</td><td>InfiniBand</td><td><ul><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7 dual-port</td><td>InfiniBand</td><td><ul><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH single-port</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-7-ETH dual-port</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 LX</td><td>Ethernet</td><td><ul><li>Shared networking</li><li>RDMA</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6 DX</td><td>Ethernet</td><td><ul><li>LACP</li><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-6</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>Shared networking</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 EX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RDMA</li><li>HA</li><li>PKEY (IB only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5 BF</td><td>Ethernet</td><td><ul><li>Mixed networks</li><li>RDMA</li><li>HA</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-5</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>RDMA</li><li>HA</li><li>PKEY (IB only)</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4 LX</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>NVIDIA Mellanox CX-4</td><td>Ethernet InfiniBand</td><td><ul><li>Mixed networks</li><li>RX interrupts</li><li>HA</li><li>Routed network (ETH only)</li><li>IOMMU</li></ul></td></tr><tr><td>VirtIO</td><td>Ethernet</td><td><ul><li>HA</li><li>Routed network</li></ul></td></tr></tbody></table>
+### Supported network adapters for clients-only
 
-#### Supported network adapters for clients-only
-
-The following network adapters support Ethernet and SRIOV VF for clients only:
+The following network adapters support Ethernet and SR-IOV VF for clients only:
 
 * Intel X540
 * Intel X550-T1 (avoid using this adapter in a single client connected to multiple clusters)
@@ -259,6 +263,8 @@ The following network adapters support Ethernet and SRIOV VF for clients only:
 * Intel XXV710
 * Intel 82599ES
 * Intel 82599
+* Broadcom BCM957508-P2100G
+* Broadcom BCM957608-P2200G
 
 ### Ethernet drivers and configurations
 
@@ -330,23 +336,21 @@ When assigning a network device to the WEKA system, no other application can cre
 
 {% tabs %}
 {% tab title="InfiniBand drivers" %}
-WEKA supports the following Mellanox OFED versions for the InfiniBand adapters:
+WEKA supports the following Nvidia major OFED versions for the InfiniBand adapters:
 
-* 24.04-0.7.0.0
-* 23.10-0.5.5.0
-* 23.04-1.1.3.0
-* 5.9-0.5.6.0
-* 5.8-1.1.2.1 LTS
-* 5.8-3.0.7.0
-* 5.7-1.0.2.0
-* 5.6-2.0.9.0
-* 5.6-1.0.3.3
-* 5.4-3.5.8.0 LTS
-* 5.4-3.4.0.0 LTS
-* 5.1-2.6.2.0
-* 5.1-2.5.8.0
+* 24.04
+* 23.10
+* 23.04
+* 5.9
+* 5.8
+* 5.7
+* 5.6
+* 5.4
+* 5.1
 
-**Note:** Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
+{% hint style="info" %}
+Subsequent OFED minor versions are expected to be compatible with Nvidia hardware due to Nvidia's commitment to backwards compatibility.
+{% endhint %}
 {% endtab %}
 
 {% tab title="InfiniBand configurations" %}
@@ -372,7 +376,7 @@ When configuring firewall ingress and egress rules the following access must be 
 Right-scroll the table to view all columns.
 {% endhint %}
 
-<table><thead><tr><th width="211">Purpose</th><th width="124">Source</th><th width="135">Target</th><th width="228">Target Ports</th><th width="135">Protocol</th><th width="352">Comments</th></tr></thead><tbody><tr><td>WEKA server traffic for bare-metal deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14200-14300 (frontend)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default for the Resources Generator for the first three containers. You can customize the ports.</td></tr><tr><td>WEKA client traffic</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA SSH management traffic</td><td>All WEKA backend IPs </td><td>All WEKA backend IPs</td><td>22</td><td>TCP</td><td></td></tr><tr><td>WEKA server traffic for cloud deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p><p>16000-16100 (frontend)</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA client traffic (on cloud)</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p></td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic (on cloud)</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA GUI access </td><td>Admin workstation IPs</td><td>All WEKA management IPs</td><td>14000</td><td>TCP</td><td>User web browser IP</td></tr><tr><td>NFS</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>2049<br>&#x3C;mountd port></td><td>TCP and UDP<br>TCP and UDP</td><td>You can set the <code>mountd</code> port using the command: <code>weka nfs global-config set --mountd-port</code></td></tr><tr><td>NFSv3 (used for locking)</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>46999 (status monitor)<br>47000 (lock manager)</td><td>TCP and UDP</td><td></td></tr><tr><td>SMB/SMB-W</td><td>SMB client IPs</td><td>WEKA SMB backend IPs</td><td>139<br>445</td><td>TCP<br>TCP</td><td></td></tr><tr><td>SMB-W</td><td>All WEKA SMB-W backend IPs</td><td>All WEKA SMB-W backend IPs</td><td>2224</td><td>TCP</td><td>This port is required for internal clustering processes.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>All Domain Controllers for the selected Active Directory Domain</td><td><p>88</p><p>389<br>464<br>636<br>3268<br>3269</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are required for SMB/SMB-W to use Active Directory as the identity source. Furthermore, every Domain Controller within the selected AD domain must be accessible from the WEKA SMB servers.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>DNS servers</td><td>53</td><td>TCP and UDP</td><td></td></tr><tr><td>S3</td><td>S3 client IPs</td><td>WEKA S3 backend IPs</td><td>9000</td><td>TCP</td><td>This port is the default. You can customize the port.</td></tr><tr><td>wekatester</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td>Port 8501 is used by wekanetperf.</td></tr><tr><td>WEKA Management Station</td><td>User web browser IP</td><td>WEKA Management Station IP</td><td><p>80  &#x3C;LWH></p><p>443 &#x3C;LWH></p><p>3000 &#x3C;mon></p><p>7860 &#x3C;admin UI></p><p>8760 &#x3C;deploy></p><p>8090 &#x3C;snap></p><p>8501 &#x3C;mgmt><br>9090 &#x3C;mgmt></p><p>9091 &#x3C;mon><br>9093 &#x3C;alerts></p></td><td><p>HTTP</p><p>HTTPS</p><p>TCP</p><p>TCP</p><p>TCP</p><p>TCP<br>TCP</p><p>TCP<br>TCP</p></td><td></td></tr><tr><td>Cloud WEKA Home, Local WEKA Home</td><td>All WEKA backend IPs </td><td>Cloud WEKA Home or Local WEKA Home</td><td>80<br>443</td><td>HTTP<br>HTTPS</td><td>Open according to the directions in the deployment scenario:<br>- WEKA server IPs to CWH or LWH.<br>- LWH to CWH (if forwarding data from LWH to CWH)</td></tr><tr><td>Troubleshooting by the Customer Success Team (CST)</td><td>All WEKA backend IPs </td><td>CST remote access</td><td>4000<br>4001</td><td>TCP<br>TCP</td><td></td></tr><tr><td>Traces remote viewer</td><td>All WEKA backend IPs</td><td>CST remote access</td><td>443</td><td>TCP</td><td></td></tr><tr><td>KMS: Hashicorp Vault</td><td>All WEKA backend IPs </td><td>Hashicorp Vault server</td><td>8200<br>8201</td><td>TCP<br>TCP</td><td>Default vault ports: 8200 is configurable for client requests, while 8201 (base_port+1) handles internal cluster communication.</td></tr><tr><td>KMS: KMIP</td><td>All WEKA backend IPs</td><td>KMIP server</td><td>5696</td><td>TCP</td><td>The default KMIP port, 5696, is configurable. Per the KMIP specification, servers must use this port when operating with the <a data-footnote-ref href="#user-content-fn-9">TTLV</a> encoding format.</td></tr></tbody></table>
+<table><thead><tr><th width="211">Purpose</th><th width="124">Source</th><th width="135">Target</th><th width="228">Target Ports</th><th width="135">Protocol</th><th width="352">Comments</th></tr></thead><tbody><tr><td>WEKA server traffic for bare-metal deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14200-14300 (frontend)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default for the Resources Generator for the first three containers. You can customize the ports.</td></tr><tr><td>WEKA client traffic</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td>14000-14100 (drives)<br>14300-14400 (compute)</td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA SSH management traffic</td><td>All WEKA backend IPs </td><td>All WEKA backend IPs</td><td>22</td><td>TCP</td><td></td></tr><tr><td>WEKA server traffic for cloud deployments</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p><p>16000-16100 (frontend)</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA client traffic (on cloud)</td><td>Client host IPs </td><td>All WEKA backend IPs</td><td><p>14000-14100 (drives)</p><p>15000-15100 (compute)</p></td><td>TCP and UDP<br>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA backend to client traffic (on cloud)</td><td>All WEKA backend IPs</td><td>Client host IPs </td><td>14000-14100 (frontend)</td><td>TCP and UDP</td><td>These ports are the default. You can customize the ports.</td></tr><tr><td>WEKA GUI access </td><td>Admin workstation IPs</td><td>All WEKA management IPs</td><td>14000</td><td>TCP</td><td>User web browser IP</td></tr><tr><td>NFS</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>2049<br>&#x3C;mountd port></td><td>TCP and UDP<br>TCP and UDP</td><td>You can set the <code>mountd</code> port using the command: <code>weka nfs global-config set --mountd-port</code></td></tr><tr><td>NFSv3 (used for locking)</td><td>NFS client IPs</td><td>WEKA NFS backend  IPs</td><td>46999 (status monitor)<br>47000 (lock manager)</td><td>TCP and UDP</td><td></td></tr><tr><td>SMB/SMB-W</td><td>SMB client IPs</td><td>WEKA SMB backend IPs</td><td>139<br>445</td><td>TCP<br>TCP</td><td></td></tr><tr><td>SMB-W</td><td>All WEKA SMB-W backend IPs</td><td>All WEKA SMB-W backend IPs</td><td>2224</td><td>TCP</td><td>This port is required for internal clustering processes.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>All Domain Controllers for the selected Active Directory Domain</td><td><p>88</p><p>389<br>464<br>636<br>3268<br>3269</p></td><td>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP<br>TCP and UDP</td><td>These ports are required for SMB/SMB-W to use Active Directory as the identity source. Furthermore, every Domain Controller within the selected AD domain must be accessible from the WEKA SMB servers.</td></tr><tr><td>SMB/SMB-W</td><td>WEKA SMB backend IPs</td><td>DNS servers</td><td>53</td><td>TCP and UDP</td><td></td></tr><tr><td>S3</td><td>S3 client IPs</td><td>WEKA S3 backend IPs</td><td>9000</td><td>TCP</td><td>This port is the default. You can customize the port.</td></tr><tr><td>wekatester</td><td>All WEKA backend IPs</td><td>All WEKA backend IPs</td><td>8501<br>9090</td><td>TCP<br>TCP</td><td>Port 8501 is used by wekanetperf.</td></tr><tr><td>WEKA Management Station</td><td>User web browser IP</td><td>WEKA Management Station IP</td><td><p>80  &#x3C;LWH></p><p>443 &#x3C;LWH></p><p>3000 &#x3C;mon></p><p>7860 &#x3C;admin UI></p><p>8760 &#x3C;deploy></p><p>8090 &#x3C;snap></p><p>8501 &#x3C;mgmt><br>9090 &#x3C;mgmt></p><p>9091 &#x3C;mon><br>9093 &#x3C;alerts></p></td><td><p>HTTP</p><p>HTTPS</p><p>TCP</p><p>TCP</p><p>TCP</p><p>TCP<br>TCP</p><p>TCP<br>TCP</p></td><td></td></tr><tr><td>Cloud WEKA Home, Local WEKA Home</td><td>All WEKA backend IPs </td><td>Cloud WEKA Home or Local WEKA Home</td><td>80<br>443</td><td>HTTP<br>HTTPS</td><td>Open according to the directions in the deployment scenario:<br>- WEKA server IPs to CWH or LWH.<br>- LWH to CWH (if forwarding data from LWH to CWH)</td></tr><tr><td>Troubleshooting by the Customer Success Team (CST)</td><td>All WEKA backend IPs </td><td>CST remote access</td><td>4000<br>4001</td><td>TCP<br>TCP</td><td></td></tr><tr><td>Traces remote viewer</td><td>All WEKA backend IPs</td><td>CST remote access</td><td>443</td><td>TCP</td><td></td></tr><tr><td>KMS: Hashicorp Vault</td><td>All WEKA backend IPs </td><td>Hashicorp Vault server</td><td>8200<br>8201</td><td>TCP<br>TCP</td><td>Default vault ports: 8200 is configurable for client requests, while 8201 (base_port+1) handles internal cluster communication.</td></tr><tr><td>KMS: KMIP</td><td>All WEKA backend IPs</td><td>KMIP server</td><td>5696</td><td>TCP</td><td>The default KMIP port, 5696, is configurable. Per the KMIP specification, servers must use this port when operating with the <a data-footnote-ref href="#user-content-fn-8">TTLV</a> encoding format.</td></tr></tbody></table>
 
 ## HA
 
@@ -383,8 +387,6 @@ See [#high-availability](../weka-system-overview/networking-in-wekaio.md#high-av
 * The SSDs must support PLP (Power Loss Protection).
 * WEKA system storage must be dedicated, and partitioning is not supported.
 * The supported drive capacity is up to 30 TB.
-* IOMMU mode is not supported for SSD drives.\
-  If you need to configure IOMMU on WEKA cluster servers, for instance, due to specific applications when running the WEKA cluster in converged mode, contact our [Customer Success Team](../support/getting-support-for-your-weka-system.md#contacting-weka-technical-support-team) for assistance.
 * The ratio between the cluster's smallest and the largest SSD capacity must not exceed 8:1.
 
 {% hint style="info" %}
@@ -393,43 +395,35 @@ To get the best performance, ensure [TRIM](https://en.wikipedia.org/wiki/Trim_\(
 
 ## Object store
 
-* API must be S3 compatible:
-  * GET
-    * Including byte-range support with expected performance gain when fetching partial objects
-  * PUT
-    * Supports any byte size of up to 65 MiB
-  * DELETE
-* Data Consistency: [Amazon S3 consistency model](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel):
-  * GET after a single PUT is strongly consistent
-  * Multiple PUTs are eventually consistent
+WEKA integrates with object stores for two primary purposes: extending the filesystem capacity with a lower-cost tier and creating remote backups for disaster recovery. Support for these functions varies by the object store provider and its specific configuration.
 
-### Certified object stores
+* **Tiering:** Moves inactive data from the high-performance SSD tier to a designated object store bucket. This frees up SSD capacity while keeping the data accessible within the unified filesystem namespace. Tiering requires high performance and consistency from the object store.
+* **Snap-to-Object:** Sends immutable snapshots of a filesystem to a remote object store. This provides an efficient and secure method for remote backup and disaster recovery.
 
-* Amazon S3
-  * S3 Standard
-  * S3 Intelligent-Tiering
-  *   These storage classes are ideal for remote buckets where data is written once and accessed in critical situations, such as during disaster recovery:
+### Certified object stores and support status
 
-      * S3 Standard-IA
-      * S3 One Zone-IA
-      * S3 Glacier Instant Retrieval
+The following table details the support status for certified object store solutions.
 
-      Remember, retrieval times, minimum storage periods, and potential charges due to object compaction may apply. If unsure, use S3 Intelligent-Tiering.
-* Azure Blob Storage
-* Google Cloud Storage (GCS)
-* Cloudian HyperStore (version 7.3)
-* Dell EMC ECS (version 3.5)
-* Dell PowerScale S3 (version 9.8.0.0)
-* HCP Classic V9.2 and up (with versioned buckets only)
-* HCP for Cloud-Scale V2.x
-* IBM Cloud Object Storage System (version 3.14.7)
-* Lenovo MagnaScale (version 3.0)
-* Quantum ActiveScale (version 5.5.1)
-* Red Hat Ceph Storage (version 5.0)
-* Scality Ring (version 7.4.4.8)
-* Scality Artesca (version 1.5.2)
-* SwiftStack (version 6.30)
-* WEKA S3
+<table><thead><tr><th width="187.92578125">Object Store</th><th width="186.94921875">Storage Class / Version</th><th>Supportability notes</th></tr></thead><tbody><tr><td>Amazon S3</td><td><p>S3 Standard</p><p>S3 Intelligent-Tiering</p></td><td>Tiering and snap-to-object</td></tr><tr><td></td><td>S3 Standard-IA<br>S3 One Zone-IA<br>S3 Glacier Instant Retrieval</td><td>Snap-to-object supported; tiering not recommended (slow retrieval, storage period, access costs). Best for backups/DR. Use Intelligent-Tiering if unsure.</td></tr><tr><td>Azure Blob Storage</td><td></td><td>Tiering and snap-to-object</td></tr><tr><td>Cloudian HyperStore</td><td>7.3</td><td>Tiering and snap-to-object</td></tr><tr><td>CoreWeave AI Object Storage (CAIOS)</td><td></td><td>Snap-to-object; tiering not supported</td></tr><tr><td>Google Cloud Storage (GCS)</td><td></td><td>Tiering and snap-to-object</td></tr><tr><td>Dell EMC ECS</td><td>3.5</td><td>Tiering and snap-to-object</td></tr><tr><td>Dell PowerScale S3</td><td>9.8.0.0</td><td>Tiering and snap-to-object (all-flash models only)</td></tr><tr><td>HCP Classic</td><td>9.2+ (versioned buckets)</td><td>Tiering and snap-to-object</td></tr><tr><td>HCP for Cloud-Scale</td><td>2.x</td><td>Tiering and snap-to-object</td></tr><tr><td>IBM Cloud Object Storage</td><td>3.14.7</td><td>Tiering and snap-to-object</td></tr><tr><td>Lenovo MagnaScale</td><td>3</td><td>Tiering and snap-to-object</td></tr><tr><td>Quantum ActiveScale</td><td>5.5.1</td><td>Tiering and snap-to-object</td></tr><tr><td>Red Hat Ceph Storage</td><td>5</td><td>Tiering and snap-to-object</td></tr><tr><td>Scality Artesca</td><td>1.5.2</td><td>Tiering and snap-to-object</td></tr><tr><td>Scality RING S3 Connector</td><td>8.5</td><td>Tiering and snap-to-object</td></tr><tr><td>Scality RING WEKA Connector</td><td>9.5</td><td>Tiering and snap-to-object</td></tr><tr><td>SwiftStack</td><td>6.3</td><td>Tiering and snap-to-object</td></tr><tr><td>WEKA S3</td><td></td><td>Tiering and snap-to-object</td></tr></tbody></table>
+
+### S3-Compatible object store requirements
+
+To ensure stability, performance, and data integrity, any S3-compatible object store used with WEKA must meet the following minimum requirements.
+
+**API requirements**
+
+The object store must provide a fully S3-compatible API that supports the following operations:
+
+* **GET**: Must include support for byte-range requests to allow for efficient fetching of partial objects.
+* **PUT**: Must support uploads of any object size up to 65 MiB.
+* **DELETE**: Must support standard object deletion.
+
+**Data consistency requirements**
+
+The object store must adhere to the [Amazon S3 data consistency model](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel):
+
+* **Strong read-after-write consistency:** A `GET` request for an object that occurs after a successful `PUT` request has created that object must immediately return the new object's data.
+* **Eventual consistency:** `PUT` requests that overwrite existing objects, or `DELETE` requests, are eventually consistent. This means that a subsequent `GET` request might temporarily return the older version of the data before the update or deletion has fully propagated across the system.
 
 ## Virtual Machines
 
@@ -493,6 +487,4 @@ For additional information and how-to articles, search the WEKA Knowledge Base i
 
 [^7]: The IOMMU (Input/Output Memory Management Unit) is a hardware component that manages and controls data transfers between devices (like graphics cards) and a computer's main memory, enhancing system security and performance.
 
-[^8]: Follow the vendor's guide to configure the single-port speed to 200Gb/s.
-
-[^9]: **TTLV (Tag-Length-Value)** is a binary encoding format used in KMIP for structured and efficient messaging between a KMS and its clients. It consists of a tag (data type), length (size), and value (data).
+[^8]: **TTLV (Tag-Length-Value)** is a binary encoding format used in KMIP for structured and efficient messaging between a KMS and its clients. It consists of a tag (data type), length (size), and value (data).

@@ -6,7 +6,7 @@ description: >-
 
 # WEKA Operator day-2 operations
 
-0WEKA Operator day-2 operations maintain and optimize WEKA environments in Kubernetes clusters through three core operational areas:
+WEKA Operator day-2 operations maintain and optimize WEKA environments in Kubernetes clusters by focusing on the following core areas:
 
 * **Hardware maintenance**
   * Component replacement and node management
@@ -17,6 +17,7 @@ description: >-
 * **Cluster maintenance**
   * Configuration updates
   * Pod rotation
+  * Token secret management
 * **WekaContainer lifecycle management**
 
 Administrators execute both planned maintenance and emergency responses while following standardized procedures to ensure high availability and minimize service disruption.
@@ -240,8 +241,6 @@ weka-operator-system   weka-operator-controller-manager-bcf48df44-lk6cx   2/2   
 </details>
 
 ***
-
-
 
 ### Force reboot a machine
 
@@ -529,7 +528,7 @@ sudo reboot -f
 Rebooting.
 ```
 
-2. After the client k8s nodes are up, uncordon the client k8s node.\
+4. After the client k8s nodes are up, uncordon the client k8s node.\
    Example for one client k8s node:
 
 ```
@@ -543,7 +542,7 @@ kubectl uncordon 3.252.130.226
 node/3.252.130.226 uncordoned
 ```
 
-3. Verify that after uncordoning all client Kubernetes nodes:
+5. Verify that after uncordoning all client Kubernetes nodes:
    * All regular pods remain scheduled and running on those nodes.
    * All client containers within the cluster are joined and operational.
    * Only pods designated for data I/O operations are evicted.
@@ -631,8 +630,6 @@ See examples in [#perform-standard-verification-steps](weka-operator-day-2-opera
 
 ***
 
-
-
 ### Remove a rack or Kubernetes node
 
 Removing a rack or Kubernetes (k8s) node is necessary when you need to decommission hardware, replace failed components, or reconfigure your cluster. This procedure guides you through safely removing nodes without disrupting your system operations.
@@ -719,8 +716,6 @@ If workloads do not redistribute as expected after node drain:
 
 ***
 
-
-
 ### Perform a graceful node reboot on client nodes
 
 A graceful node reboot ensures minimal service disruption when you need to restart a node for maintenance, updates, or configuration changes. The procedure involves cordoning the node, draining workloads, performing the reboot, and then returning the node to service.
@@ -792,8 +787,6 @@ If pods fail to start after the reboot:
 3. Examine system logs for any errors or warnings.
 
 ***
-
-
 
 ### Replace a drive in a converged setup
 
@@ -1012,8 +1005,6 @@ node/3.250.187.202 labeled
 {% endhint %}
 
 ***
-
-
 
 ### Replace a Kubernetes node
 
@@ -1240,52 +1231,25 @@ If containers fail to reschedule, check:
 
 ***
 
-
-
 ### Remove WEKA container from a failed node
 
 Removing a WEKA container from a failed node is necessary to maintain cluster health and prevent any negative impact on system performance. This procedure ensures that the container is removed safely and the cluster remains operational.
 
 #### Procedure: Remove WEKA container from an active node
 
-Follow these steps to remove a WEKA container when the node is responsive:
+To remove a WEKA container when the node is responsive, run the following:
 
-1.  Request WEKA container deletion by setting the deletion timestamp:
+```
+kubectl delete wekacontainer <container-name> -n weka-operator-system
+```
+
+#### Procedure: Remove WEKA container from a failed node (unresponsive)
+
+1.  Apply the configuration:
 
     ```bash
     kubectl delete wekacontainer <container-name> -n weka-operator-system
     ```
-2.  If this is a drive container, deactivate the drives:
-
-    ```bash
-    weka cluster drive deactivate
-    ```
-3.  Deactivate the container:
-
-    ```bash
-    weka cluster container deactivate
-    ```
-4.  For drive containers, remove the drives:
-
-    ```bash
-    weka cluster drive remove
-    ```
-5.  Remove the WEKA container:
-
-    ```bash
-    weka cluster container remove
-    ```
-6.  For drive containers, force resign the drives:
-
-    ```bash
-    kubectl apply -f resign-drives.yaml
-    ```
-
-#### Procedure: Remove WEKA container from a failed node
-
-When the node is unresponsive, follow these steps:
-
-1. Follow steps 1-5 from the active node procedure above.
 2.  If the resign drives operation fails with the error "container node is not ready, cannot perform resign drives operation", set the skip flag:
 
     ```bash
@@ -1297,7 +1261,7 @@ When the node is unresponsive, follow these steps:
 3. Wait for the pod to enter the `Terminating` state.
 
 {% hint style="info" %}
-If the dead node is removed from the Kubernetes cluster, the WEKA Container and corresponding stuck pod are automatically removed.
+If the failed node is removed from the Kubernetes cluster, the WEKA container and corresponding stuck pod are automatically removed.
 {% endhint %}
 
 #### Resign drives manually
@@ -1464,8 +1428,6 @@ You can verify the removal process by checking the WEKA container conditions. A 
 5. ContainerDrivesResigned
 
 ***
-
-
 
 ### Replace a container on an active node
 
@@ -1690,8 +1652,6 @@ For failed container starts, check:
 * Service status
 
 ***
-
-
 
 ### Replace a container on a denylisted node
 
@@ -1955,8 +1915,6 @@ If the pod schedules successfully on the denied node:
 
 ***
 
-
-
 ## Cluster scaling
 
 Adjusting the size of a WEKA cluster ensures optimal performance and cost efficiency. Expand to meet growing workloads or shrink to reduce resources as demand decreases.
@@ -2042,8 +2000,6 @@ If your cluster has resource constraints or insufficient nodes, container creati
 {% endhint %}
 
 ***
-
-
 
 ### Expand an S3 cluster
 
@@ -2364,8 +2320,6 @@ ID  HOSTNAME        S3 STATUS  IP           PORT   VERSION  UPTIME    ACTIVE REQ
 
 ***
 
-
-
 ### Shrink a cluster
 
 A WEKA cluster shrink operation reduces compute and drive containers to optimize resources and system footprint. Shrinking may free resources, lower costs, align capacity with demand, or decommission infrastructure. Perform carefully to ensure data integrity and service availability.
@@ -2664,8 +2618,6 @@ Events:           <none>
 
 ***
 
-
-
 ### Increase client cores
 
 When system demands increase, you may need to add more processing power by increasing the number of client cores. This procedure shows how to increase client cores from 1 to 2 cores to improve system performance while maintaining stability.
@@ -2949,8 +2901,6 @@ If clients fail to restart:
 
 ***
 
-
-
 ### Increase backend cores
 
 Increase the number of cores allocated to compute and drive containers to improve processing capacity for intensive workloads.
@@ -3171,8 +3121,6 @@ kubectl describe wekacluster cluster-dev -n weka-operator-system
 
 ***
 
-
-
 ## **Cluster maintenance**
 
 Cluster maintenance ensures optimal performance, security, and reliability through regular updates. Key tasks include updating WekaCluster and WekaClient configurations and rotating pods to apply changes.
@@ -3242,11 +3190,8 @@ After completing each of the following procedures, all pods restart within a few
 
 1.  Open your cluster.yaml file and update the DriversDistService value:
 
-    {% code overflow="wrap" %}
-    ```yaml
-    driversDistService: "https://weka-driver-dist.namespace.svc.cluster.local:60002"
-    ```
-    {% endcode %}
+    <pre class="language-yaml" data-overflow="wrap"><code class="lang-yaml">driversDistService: "https://weka-driver-dist.namespace.svc.cluster.local:60002"
+    </code></pre>
 2.  Apply the updated configuration:
 
     ```bash
@@ -3285,8 +3230,6 @@ If pods do not restart automatically or the new configuration is not applied, ve
 * The cluster is in a healthy state.
 
 ***
-
-
 
 ### Update WekaClient configuration
 
@@ -3489,8 +3432,6 @@ If pods do not restart automatically or the new configuration is not applied, ve
 * The specified ports are available and not blocked by network policies.
 
 ***
-
-
 
 ### Rotate all pods when applying changes
 
@@ -3854,6 +3795,356 @@ weka-operator-system weka-operator-controller-manager-569444c54c-48kkj:
 - The system maintains availability during pod rotation.
 - Wait for each set of pods to begin restarting before proceeding to the next set.
 {% endhint %}
+
+***
+
+### Create token secret for WekaClient
+
+WekaClient tokens used for cluster authentication have a limited lifespan and will eventually expire. This guide walks you through the process of generating a new token, encoding it properly, and creating the necessary Kubernetes secret to maintain WekaClient connectivity.
+
+#### Prerequisites
+
+* Access to a running WEKA cluster with backend servers
+* Kubernetes cluster with WEKA Operator deployed
+* kubectl access with appropriate permissions
+* Access to the `weka-operator-system` namespace
+
+#### Step 1: Generate a new join token and encode it
+
+The join token must be generated from within one of the WEKA backend containers. Follow these steps to create a long-lived token:
+
+1.  **List the available pods in the weka-operator-system namespace:**
+
+    ```bash
+    kubectl get pods -n weka-operator-system
+    ```
+2.  **Connect to a backend pod and generate the token:**
+
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">kubectl exec -it -n weka-operator-system &#x3C;POD_NAME>
+    weka cluster join-token generate --access-token-timeout 52w
+    </code></pre>
+
+    This command creates a token that remains valid for 52 weeks (one year). The system generates an output a JWT token similar to:
+
+    <pre data-overflow="wrap"><code>eyJhbGciOiJSUzI1NiIsIml0dCI6IkNMSUVOVCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODA1OTQ1NTIsImlhdCI6MTc0O
+    ...truncated purposely...
+    cRQZBPGSRJRWGwXAO1C_NMALdKxnABt6olHzW_gBiEQ42O30L3xF-ym3pDPrHhFQ
+    </code></pre>
+3. **Encode the token:** The generated token must be base64-encoded before use in the Kubernetes secret:
+
+```bash
+echo <TOKEN> | base64 -w 0 && echo
+```
+
+Save the base64-encoded output for use in the secret configuration.
+
+<details>
+
+<summary>Example</summary>
+
+{% code overflow="wrap" %}
+```bash
+[ec2-user@ip-10-0-4-244 ~]$ kubect get pods -n weka-operator-system 
+NAME                                                    READY   STATUS RESTARTS   AGE
+cluster1-clients-ip-10-0-4-244.ec2.internal             1/1     Running   0          88m
+cluster1-compute-11b1fa70-c78c-48c2-90f8-056fda395eb9   1/1     Running   0          94m
+cluster1-compute-395553b9-21ea-4c04-b20a-ce2b4c7e3b04   1/1     Running   0          94m
+cluster1-compute-61b33b86-c67c-482e-8d4e-12efaf07d814   1/1     Running   0          94m
+cluster1-compute-8cb4ea2f-e908-4314-9e4b-dd6a1cc9319e   1/1     Running   0          94m
+cluster1-compute-c5f376ff-1cdd-4ef6-b59a-a360a20d24d0   1/1     Running   0          94m
+cluster1-compute-d4c70979-e967-43b4-b414-3a291bd81179   1/1     Running   0          94m
+cluster1-drive-56aacf86-27da-4252-9393-b19bd0913acd     1/1     Running   0          94m
+cluster1-drive-5b51ac03-8c88-4a23-8220-15c90fdba644     1/1     Running   0          94m
+cluster1-drive-67943209-1365-469b-b9a2-e7a902ff94e1     1/1     Running   0          94m
+cluster1-drive-affaf947-3827-4edf-9acd-fb4e007c6426     1/1     Running   0          94m
+cluster1-drive-c8475e40-62dc-4636-9d57-baf5b7c9edaf     1/1     Running   0          94m
+cluster1-drive-d0bc2984-d33d-4115-86a3-4acb7c983ebb     1/1     Running   0          94m
+monitoring-cluster1-5ff69896f4-qmtg8                    1/1     Running   0          93m
+weka-operator-controller-manager-d5f455f7b-5nwfb        2/2     Running   0          136m
+weka-operator-node-agent-4pbhn                          1/1     Running   0          136m
+weka-operator-node-agent-64mh7                          1/1     Running   0          136m
+weka-operator-node-agent-ctt2n                          1/1     Running   0          136m
+weka-operator-node-agent-f9rrk                          1/1     Running   0          136m
+weka-operator-node-agent-jmhfh                          1/1     Running   0          136m
+weka-operator-node-agent-p26vl                          1/1     Running   0          95m
+weka-operator-node-agent-sc594                          1/1     Running   0          136m
+
+[ec2-user@ip-10-0-4-244 ~]$ kubect exec -it -n weka-operator-system cluster1-compute-11b1fa70-c78c-48c2-90f8-056fda395eb9 -- bash
+root@ip-10-0-13-252:/# weka cluster join-token generate --access-token-timeout 52w
+API access token has been generated: 
+
+eyJhbGciOiJSUzI1NiIsIml0dCI6IkNMSUVOVCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODA1OTQ1N...truncated purposely...ufVkgmsLyIN21_C-cRQZBPGSRJRWGwXAO1C_NMALdKxnABt6olHzW_gBiEQ42O30L3xF-ym3pDPrHhFQ
+
+root@ip-10-0-13-252:/# echo eyJhbGciOiJSUzI1NiIsIml0dCI6IkNMSUVOVCIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODA1OTQ1N...truncated purposely...cRQZBPGSRJRWGwXAO1C_NMALdKxnABt6olHzW_gBiEQ42O30L3xF-ym3pDPrHhFQ | base64 -w 0 && echo
+
+ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbWwwZENJNklrTk1TVVZPVkNJc0luUjVjQ0k2SWtwWFZDSjkuZX...truncated purposely...
+TQzlFckNpV19CVWtsV3NTaUk4cHhLXzZEcDNIVXV6OFpyYXVmVmtnbXNMeUlOMjFfQy1jUlFaQlBH
+```
+{% endcode %}
+
+</details>
+
+#### Step 2: Create the Kubernetes secret
+
+#### Option A: Using YAML template
+
+Create a YAML file with the following template, replacing the placeholder values:
+
+{% code overflow="wrap" %}
+```yaml
+apiVersion: v1
+data:
+  join-secret: <BASE64_ENCODED_TOKEN>
+  org: <BASE64_VALUE>
+  password: <BASE64_VALUE>
+  username: <BASE64_VALUE>
+kind: Secret
+metadata:
+  name: weka-client-cluster1
+  namespace: <NAMESPACE>
+type: Opaque
+```
+{% endcode %}
+
+{% hint style="info" %}
+**Configuration notes:**
+
+* **join-secret**: Use the base64-encoded token from Step 2
+* **org, username, password**: Copy these values from the existing secret or create new base64-encoded values
+* **namespace**: Use `default` or specify your target namespace
+{% endhint %}
+
+#### Option B: Copy from existing secret
+
+To preserve existing credentials, export the current secret and modify only the token:
+
+{% code overflow="wrap" %}
+```bash
+kubectl get secret -n weka-operator-system weka-client-cluster1 -o yaml > weka-client-cluster1_new.yaml
+```
+{% endcode %}
+
+Edit the file to update the `join-secret` field with your new base64-encoded token.
+
+#### Step 3: Apply the secret
+
+Deploy the new secret to your Kubernetes cluster:
+
+```bash
+kubectl apply -f <secret_yaml_file>.yaml
+```
+
+Verify the secret creation:
+
+```bash
+kubectl get secret -n <namespace>
+```
+
+<details>
+
+<summary>Example</summary>
+
+In the following example, the secret is created in the default name space with name `new-weka-client-secret-cluster1`
+
+{% code overflow="wrap" %}
+```bash
+[ec2-user@ip-10-0-4-244 ~]$ kubectl get secret -n weka-operator-system weka-client-cluster1 -o yaml > weka-client-cluster1_default.yaml
+[ec2-user@ip-10-0-4-244 ~]$ nano weka-client-cluster1_default.yaml
+[ec2-user@ip-10-0-4-244 ~]$ cat weka-client-cluster1_default.yaml 
+apiVersion: v1
+data:
+  join-secret: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbWwwZENJNklrTk1TVVZPVkNJc0luUjVjQ0k2SWtwWFZDSjkuZX...Truncated purposely.. UlFaQlBHU1JKUldHd1hBTzFDX05NQUxkS3huQUJ0Nm9sSHpXX2dCaUVRNDJPMzBMM3hGLXltM3BEUHJIaEZRCg==
+  org: Um9vdA==
+  password: aDc5Q3g0M1lLNndOQjNxNnhwWHdOSW1xQmJHOE5nMjE=
+  username: d2VrYWNsaWVudDQ2MDVhYWI0MWE3ZA==
+kind: Secret
+metadata:
+  creationTimestamp: "2025-06-05T16:04:56Z"
+  name: new-weka-client-secret-cluster1
+  namespace: default
+type: Opaque
+[ec2-user@ip-10-0-4-244 ~]$ kubectl apply -f weka-client-cluster1_default.yaml 
+secret/weka-client-cluster1 created
+[ec2-user@ip-10-0-4-244 ~]$ kubectl get secret -n default
+NAME                   TYPE                             DATA   AGE
+quay-io-robot-secret   kubernetes.io/dockerconfigjson   1      164m
+weka-client-cluster1   Opaque                           4      8s
+```
+{% endcode %}
+
+The following yaml file creates a new client with the name `new-cluster1-clients` in the default name space using the `new-weka-client-secret-cluster1` secret.
+
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaClient
+metadata:
+  name: new-cluster1-clients
+  namespace: default
+spec:
+  image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4
+  imagePullSecret: quay-io-robot-secret
+  driversDistService: "https://drivers.weka.io"
+  nodeSelector:
+    weka.io/supports-clients: "true"
+  wekaSecretRef: new-weka-client-secret-cluster1 # Must match secret name created using secret yaml 
+  targetCluster:
+    name: cluster1
+    namespace: weka-operator-system
+  portRange:
+    basePort: 45000
+```
+
+</details>
+
+#### Step 4: Update WekaClient configuration
+
+Remove any existing client instances and ensure no pods are actively using WEKA storage on the target node.
+
+#### Remove active workloads
+
+1.  **Identify pods using Weka on the target node:**
+
+    ```bash
+    kubectl get pods --field-selector spec.nodeName=<node-name>
+    ```
+2.  **Stop workloads using Weka storage:**
+
+    ```bash
+    kubectl delete pod <pod-name>
+    ```
+
+#### Remove existing WekaClient
+
+1.  **List current WekaClient instances:**
+
+    ```bash
+    kubectl get wekaclient -n weka-operator-system
+    ```
+2.  **Delete the existing client:**
+
+    ```bash
+    kubectl delete wekaclient -n weka-operator-system <client-name>
+    ```
+
+#### Deploy new WekaClient
+
+Create a new WekaClient configuration that references your updated secret:
+
+{% code overflow="wrap" %}
+```yaml
+apiVersion: weka.weka.io/v1alpha1
+kind: WekaClient
+metadata:
+  name: new-cluster1-clients
+  namespace: default
+spec:  image: quay.io/weka.io/weka-in-container:4.4.5.118-k8s.4  
+  imagePullSecret: quay-io-robot-secret
+  driversDistService: "https://drivers.weka.io" 
+  nodeSelector:    weka.io/supports-clients: "true"
+  wekaSecretRef: weka-client-cluster1  # Must match your secret name
+  targetCluster:
+    name: cluster1
+    namespace: weka-operator-system
+  portRange:
+    basePort: 45000
+```
+{% endcode %}
+
+Apply the configuration:
+
+```bash
+kubectl apply -f new-weka-client.yaml
+```
+
+#### Step 5: Verify client status
+
+Monitor the new WekaClient deployment:
+
+```bash
+kubectl get wekaclientskubectl get pods
+```
+
+The new client should show a **Running** status. CSI pods may temporarily enter `CrashLoopBackOff` state while the client initializes, but will recover automatically once the client is ready.
+
+<details>
+
+<summary>Example</summary>
+
+```bash
+[root@ip-10-0-4-244 ec2-user]# kubectl get wekaclients
+NAME                   STATUS    TARGET CLUSTER   CORES   CONTAINERS(A/C/D)
+new-cluster1-clients   Running   cluster1                 
+[root@ip-10-0-4-244 ec2-user]# kubectl get pods
+NAME                                              READY   STATUS    RESTARTS   AGE
+new-cluster1-clients-ip-10-0-4-244.ec2.internal   1/1     Running   0          22s
+[root@ip-10-0-4-244 ec2-user]# kubectl get pods -n csi-wekafs 
+NAME                                     READY   STATUS             RESTARTS      AGE
+csi-wekafs-controller-75cc977744-7vpwx   6/6     Running            6 (84s ago)   8m28s
+csi-wekafs-node-zfbw4                    2/3     CrashLoopBackOff   6 (13s ago)   8m26s
+[root@ip-10-0-4-244 ec2-user]# kubectl get pods -n csi-wekafs 
+NAME                                     READY   STATUS             RESTARTS      AGE
+csi-wekafs-controller-75cc977744-7vpwx   6/6     Running            6 (87s ago)   8m31s
+csi-wekafs-node-zfbw4                    2/3     CrashLoopBackOff   6 (16s ago)   8m29s
+[root@ip-10-0-4-244 ec2-user]# kubectl get pods -n csi-wekafs 
+NAME                                     READY   STATUS             RESTARTS      AGE
+csi-wekafs-controller-75cc977744-7vpwx   6/6     Running            6 (89s ago)   8m33s
+csi-wekafs-node-zfbw4                    2/3     CrashLoopBackOff   6 (18s ago)   8m31s
+[root@ip-10-0-4-244 ec2-user]# kubectl get pods -n csi-wekafs 
+NAME                                     READY   STATUS             RESTARTS      AGE
+csi-wekafs-controller-75cc977744-7vpwx   6/6     Running            6 (96s ago)   8m40s
+csi-wekafs-node-zfbw4                    2/3     CrashLoopBackOff   6 (25s ago)   8m38s
+[root@ip-10-0-4-244 ec2-user]# kubectl delete pod -n csi-wekafs csi-wekafs-node-zfbw4 
+pod "csi-wekafs-node-zfbw4" deleted
+[root@ip-10-0-4-244 ec2-user]# kubectl get pods -n csi-wekafs 
+NAME                                     READY   STATUS    RESTARTS       AGE
+csi-wekafs-controller-75cc977744-7vpwx   6/6     Running   6 (115s ago)   8m59s
+csi-wekafs-node-8q472                    3/3     Running   0              3s
+```
+
+</details>
+
+#### Troubleshooting
+
+#### CSI Pods in CrashLoopBackOff
+
+If CSI pods remain in a failed state after the WekaClient is running, manually restart them:
+
+```bash
+kubectl delete pod -n csi-wekafs <csi-pod-name>
+```
+
+#### Token validation
+
+To verify your token is working correctly, check the WekaClient logs:
+
+```bash
+kubectl logs -n <namespace> <wekaclient-pod-name>
+```
+
+#### Secret verification
+
+Confirm your secret contains the correct base64-encoded values:
+
+```bash
+kubectl get secret <secret-name> -n <namespace> -o yaml
+```
+
+#### Best practices
+
+* **Token Lifetime**: Generate tokens with appropriate expiration times based on your maintenance schedule
+* **Secret Management**: Store secrets in appropriate namespaces with proper RBAC controls
+* **Documentation**: Maintain records of token generation dates and expiration times
+* **Monitoring**: Implement alerts for token expiration to prevent service disruptions
+* **Testing**: Validate new tokens in non-production environments before deploying to production
+
+#### Security considerations
+
+* Limit access to token generation commands to authorized personnel only
+* Use namespaces to isolate secrets from different environments
+* Regularly rotate tokens as part of your security policy
+* Monitor and audit secret access and modifications
+
+***
 
 ## WekaContainer lifecycle management
 

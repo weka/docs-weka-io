@@ -1,12 +1,15 @@
 ---
-description: The WEKA configuration of the SMB protocol for shared Windows clients.
+description: >-
+  Configure and control WEKA's SMB-W implementation for seamless cross-platform
+  file access across Windows, Linux CIFS, and macOS clients with concurrent
+  multi-protocol support.
 ---
 
 # Manage the SMB protocol
 
 SMB (Server Message Block) is a network file-sharing protocol that facilitates connections to shared file and print services from remote systems. WEKA's implementation features a modern SMB stack (SMB-W), with the option to use the legacy open-source Samba stack if required. Both WEKA SMB implementations fully support SMB versions 2 and 3.
 
-WEKA's SMB implementation enables seamless access to storage services for both Windows and macOS clients. It facilitates shared access from multiple clients, supporting a multi-protocol approach that allows files to be accessed simultaneously through SMB, NFS, and WEKA native filesystem drivers.
+WEKA SMB-W is an implementation of an SMB protocol enabling Windows, Linux CIFS, and macOS clients to access WEKA storage services with support for multi-protocol concurrent file access through SMB stack.
 
 {% hint style="info" %}
 The legacy open-source Samba stack (type: SMB)  is deprecated in favor of SMB-W and will not be supported after version 4.4.6.
@@ -41,12 +44,16 @@ When working with SMB clusters, it's important to understand the following point
 * When managing an SMB-W cluster through the GUI, any limitations in the CLI for SMB-W also apply.
 * You can manage, but not configure or delete, legacy SMB clusters through the GUI. For configuration and deletion, refer to [smb-management-using-the-cli.md](smb-management-using-the-cli.md "mention").
 * Use ASCII format when configuring name fields, such as domain and shares.
+* Before deploying SMB-W, ensure Active Directory and DNS services are properly configured.
+*   Public cloud requirements: For AWS, WEKA has been validated with:
 
-{% hint style="warning" %}
-**Public cloud requirements:**\
-Ensure Active Directory and DNS services are configured before installing the WEKA SMB protocol.
+    * [AWS Managed Microsoft AD](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started.html)
+    * [Amazon Route 53 Resolver](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-getting-started.html)
 
-For example, WEKA in AWS has been tested with AWS Managed Microsoft AD and Amazon Route 53 Resolver. If these services are not already configured, follow AWS guidelines to set up [AWS Managed Microsoft AD](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started.html) and  [Amazon Route 53 Resolver](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver-getting-started.html).
+    Follow AWS guidance to configure these services if they are not already deployed.
+
+{% hint style="info" %}
+High availability (HA) for SMB-W is not supported in public cloud environments.
 {% endhint %}
 
 ## SMB user mapping in the WEKA system
@@ -142,11 +149,11 @@ The ACL feature enables administrators to manage more granular permissions for S
 
 This enhanced flexibility allows administrators to choose the most appropriate model based on their environment and operational requirements, simplifying the management of permissions across mixed systems.
 
-## WEKA filesystem snapshots integration with Windows' previous versions
+## WEKA filesystem snapshots integration with Windows' previous versions <a href="#windows-previous-versions" id="windows-previous-versions"></a>
 
 Generating WEKA filesystem snapshots and labeling the access point in the `@GMT_%Y.%m.%d-%H.%M.%S` format makes them accessible through the Windows previous versions mechanism.
 
-To access a list of previous versions associated with the filesystem snapshots, right-click on a file or folder within the WEKA SMB share on the Windows client and navigate to **Properties -> Previous Versions**.
+To access a list of previous versions associated with the filesystem snapshots, right-click on a file or folder within the WEKA SMB share on the Windows client and navigate to **Properties > Previous Versions**.
 
 **Example**: Create snapshots using CLI with the required access point syntax.
 

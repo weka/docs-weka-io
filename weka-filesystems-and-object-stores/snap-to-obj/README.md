@@ -100,7 +100,7 @@ Optionally, you may also promote data back to on-premises by doing the following
 * **New filesystem creation from snapshots**: When creating a new filesystem from a snap-to-object operation, the original filesystem quotas are not preserved in the new filesystem.
 
 {% hint style="warning" %}
-Downloading or restoring a filesystem from a snapshot stored in an object store within the same cluster is not supported.
+The system does not support restoring or downloading a filesystem from snapshots stored in object storage when the object store is located within the same cluster.
 {% endhint %}
 
 ## Synchronous snapshots

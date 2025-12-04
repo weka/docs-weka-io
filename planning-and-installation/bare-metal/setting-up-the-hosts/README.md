@@ -13,12 +13,12 @@ This preparation consists of the following steps:
 1. Install NIC drivers
 2. Enable SR-IOV (when required)
 3. Set up ConnectX cards
-4. Configure the networking
-5. Configure the HA networking
-6. Verify the network configuration
-7. Configure the clock synchronization
-8. Disable the NUMA balancing
-9. Enable kdump and set kernel panic reboot timer
+4. Set custom kernel parameters
+5. Configure the networking
+6. Configure the HA networking
+7. Verify the network configuration
+8. Configure the clock synchronization
+9. Enable kdump
 10. Disable swap (if any)
 11. Validate the system preparation
 
@@ -32,9 +32,8 @@ Some of the examples contain version-specific information. The software is updat
 
 ## 1. Install NIC drivers <a href="#install-nic-drivers" id="install-nic-drivers"></a>
 
-* To install Mellanox OFED, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
-* To install Broadcom driver, see [broadcom-adapter-setup-for-weka-system.md](broadcom-adapter-setup-for-weka-system.md "mention").
-* To install Intel driver, see [Latest Drivers & Software downloads](https://www.intel.com/content/www/us/en/products/sku/210969/intel-ethernet-network-adapter-e8102cqda2/downloads.html).
+* For Mellanox OFED setup, see [NVIDIA Documentation - Installing Mellanox OFED](https://docs.nvidia.com/networking/display/mlnxofedv461000/installing+mellanox+ofed).
+* For Intel NIC setup, see [Latest Drivers & Software downloads](https://www.intel.com/content/www/us/en/products/sku/210969/intel-ethernet-network-adapter-e8102cqda2/downloads.html).
 
 ## 2. Enable SR-IOV <a href="#enable-sr-iov" id="enable-sr-iov"></a>
 
@@ -56,26 +55,95 @@ Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following
 
     Use the following command to apply these settings to all MLX devices:
 
-    {% code overflow="wrap" %}
-    ```
-    mst start && for MLXDEV in /dev/mst/* ; do mlxconfig -d ${MLXDEV} -y set ADVANCED_PCI_SETTINGS=1 PCI_WR_ORDERING=1; done
-    ```
-    {% endcode %}
+    <pre data-overflow="wrap"><code>mst start &#x26;&#x26; for MLXDEV in /dev/mst/* ; do mlxconfig -d ${MLXDEV} -y set ADVANCED_PCI_SETTINGS=1 PCI_WR_ORDERING=1; done
+    </code></pre>
 2. **Set link type:** Certain ConnectX VPI cards require modification of the link type, to specifically set the port to use InfiniBand or Ethernet networking.\
    \
    If applicable, set the port mode with the following command, where 1=InfiniBand and 2=Ethernet:\
    `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P<1,2>=<1,2>`\
    \
    For example, the following command sets port 2 to InfiniBand:\
-   `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`\
-
+   `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`<br>
 3. **Reboot the system:** A reboot is required after applying the firmware settings to ensure the changes take effect.
 
 **Related information**
 
 For additional details, refer to the NVIDIA ConnectX documentation.
 
-## 4. Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
+## 4. Set custom kernel parameters <a href="#configure-the-networking" id="configure-the-networking"></a>
+
+To ensure optimal performance and stability, configure the Linux kernel with custom parameters that:
+
+* Disable NUMA balancing to reduce latency (mandatory).
+* Enable automatic reboots after kernel panic to minimize downtime.
+* Optimize ARP behavior for improved network performance.
+
+The recommended approach is to consolidate all custom kernel parameters into a single configuration file: `/etc/sysctl.d/99-weka.conf`. This ensures the settings persist across reboots, simplifies administration, and avoids conflicts with package updates.
+
+#### Procedure
+
+1.  **Create the configuration file:** Open a new file under `/etc/sysctl.d/` to store all custom kernel parameters:
+
+    ```bash
+    sudo vi /etc/sysctl.d/99-weka.conf
+    ```
+2.  **Add kernel parameter settings:** Insert the following lines into the file. Comments are included for clarity:
+
+    <pre data-title="/etc/sysctl.d/99-weka.conf"><code># --- Disable NUMA balancing (Mandatory) ---
+    kernel.numa_balancing = 0
+
+    # --- Configure automatic reboot on kernel panic ---
+    kernel.panic = 300
+
+    # --- Minimal configuration per specific IB/Eth interface ---
+    # Replace ib0 and ib1 with your specific interface names
+    net.ipv4.conf.ib0.arp_announce = 2
+    net.ipv4.conf.ib1.arp_announce = 2
+    net.ipv4.conf.ib0.arp_filter = 1
+    net.ipv4.conf.ib1.arp_filter = 1
+    net.ipv4.conf.ib0.arp_ignore = 1
+    net.ipv4.conf.ib1.arp_ignore = 1
+
+    # --- Alternative network ARP settings for all interfaces ---
+    net.ipv4.conf.all.arp_filter = 1
+    net.ipv4.conf.default.arp_filter = 1
+    net.ipv4.conf.all.arp_announce = 2
+    net.ipv4.conf.default.arp_announce = 2
+    net.ipv4.conf.all.arp_ignore = 1
+    net.ipv4.conf.default.arp_ignore = 1
+    net.ipv4.conf.all.ignore_routes_with_linkdown = 1
+    </code></pre>
+3. **Save the file and exit the editor.**
+4.  **Apply the new settings:** Reload all kernel parameters from configuration files without rebooting:
+
+    ```bash
+    sudo sysctl --system
+    ```
+5. **Verify configuration changes:**
+   1.  Verify NUMA balancing:
+
+       ```bash
+       sysctl kernel.numa_balancing
+       ```
+
+       Expected output:
+
+       ```bash
+       kernel.numa_balancing = 0
+       ```
+   2.  Verify kernel panic timer:
+
+       ```bash
+       sysctl kernel.panic
+       ```
+
+       Expected output:
+
+       ```bash
+       kernel.panic = 300
+       ```
+
+## 5. Configure the networking <a href="#configure-the-networking" id="configure-the-networking"></a>
 
 ### Ethernet configuration
 
@@ -250,38 +318,9 @@ ignore-carrier=ib0,ib1
 
 3. Restart the NetworkManager service for the changes to take effect.
 
-## 5. Configure dual-network links with policy-based routing <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
+## 6. Configure dual-network links with policy-based routing <a href="#configure-the-ha-networking" id="configure-the-ha-networking"></a>
 
 The following steps provide guidance for configuring dual-network links with policy-based routing on Linux systems. Adjust IP addresses and interface names according to your environment.
-
-### **General Settings in `/etc/sysctl.conf`**
-
-1. Open the `/etc/sysctl.conf` file using a text editor.
-2.  Add the following lines at the end of the file to set minimal configurations per InfiniBand (IB) or Ethernet (Eth) interface:
-
-    ```bash
-    # Minimal configuration, set per IB/Eth interface
-    net.ipv4.conf.ib0.arp_announce = 2
-    net.ipv4.conf.ib1.arp_announce = 2
-    net.ipv4.conf.ib0.arp_filter = 1
-    net.ipv4.conf.ib1.arp_filter = 1
-    net.ipv4.conf.ib0.arp_ignore = 0
-    net.ipv4.conf.ib1.arp_ignore = 0
-
-    # As an alternative set for all interfaces by default
-    net.ipv4.conf.all.arp_filter = 1
-    net.ipv4.conf.default.arp_filter = 1
-    net.ipv4.conf.all.arp_announce = 2
-    net.ipv4.conf.default.arp_announce = 2
-    net.ipv4.conf.all.arp_ignore = 0
-    net.ipv4.conf.default.arp_ignore = 0
-    ```
-3. Save the file.
-4.  Apply the new settings by running:
-
-    ```bash
-    sysctl -p /etc/sysctl.conf
-    ```
 
 ### **RHEL/Rocky/CentOS routing configuration using the network scripts**
 
@@ -429,7 +468,7 @@ The route's first IP address in the above commands signifies the network's subne
 
 [#high-availability-ha](../../../weka-system-overview/networking-in-wekaio.md#high-availability-ha "mention")
 
-## 6. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
+## 7. Verify the network configuration <a href="#verify-the-network-configuration" id="verify-the-network-configuration"></a>
 
 Use a large-size ICMP ping to check the basic TCP/IP connectivity between the interfaces of the servers:
 
@@ -453,28 +492,13 @@ The`-M do` flag prohibits packet fragmentation, which allows verification of cor
 All WEKA server interfaces within the same subnet must have connectivity and be able to ping each other.
 {% endhint %}
 
-## 7. Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
+## 8. Configure the clock synchronization <a href="#configure-sync" id="configure-sync"></a>
 
 The synchronization of time on computers and networks is considered good practice and is vitally important for the stability of the WEKA system. Proper timestamp alignment in packets and logs is very helpful for the efficient and quick resolution of issues.
 
 Configure the clock synchronization software on the backends and clients according to the specific vendor instructions (see your OS documentation), before installing the WEKA software.
 
-## **8. Disable the NUMA balancing** <a href="#disable-the-numa-balancing" id="disable-the-numa-balancing"></a>
-
-The WEKA system autonomously manages NUMA balancing, making optimal decisions. Therefore, turning off the Linux kernel’s NUMA balancing feature is a **mandatory requirement** to prevent extra latencies in operations. It’s crucial that the disabled NUMA balancing remains consistent and isn’t altered by a server reboot.
-
-To persistently disable NUMA balancing, follow these steps:
-
-1. Open the file located at: `/etc/sysctl.conf`
-2. Append the following line: `kernel.numa_balancing=disable`
-
-## **9. Enable kdump and set kernel panic reboot timer**
-
-Enabling kdump and configuring the kernel panic reboot timer ensures system crashes leave log files for analysis and automate system reboot after a kernel panic to minimize downtime.
-
-<details>
-
-<summary><strong>Enable kdump</strong></summary>
+## **9. Enable kdump**
 
 Enabling kdump ensures crash diagnostic data is captured (`/var/crash`).
 
@@ -487,20 +511,6 @@ Enabling kdump ensures crash diagnostic data is captured (`/var/crash`).
 path /var/crash
 core_collector makedumpfile -c --message-level 1 -d 31
 ```
-
-</details>
-
-<details>
-
-<summary><strong>Set kernel panic reboot timer</strong></summary>
-
-Setting `kernel.panic` to reboot after 300 seconds automates recovery from kernel panics, reducing server downtime and aiding in faster issue resolution.
-
-1. Open the file located at: `/etc/sysctl.conf`
-2. Append the following line: `kernel.panic = 300`
-3. Apply changes: `sudo sysctl -p`
-
-</details>
 
 ## 10. Disable swap (if any)
 
@@ -546,13 +556,15 @@ The `wekachecker`tool applies to all WEKA versions. From V4.0, the following val
 
 **Procedure**
 
-1. Download the **wekachecker** tarball from [https://github.com/weka/tools/blob/master/install/wekachecker](https://github.com/weka/tools/blob/master/install/wekachecker) and extract it.
-2. From the install directory, run `./wekachecker <hostnames/IPs>`\
+1. Clone the the **tools** repository:\
+   `git clone --depth 1` [`https://github.com/weka/tools.git`](https://github.com/weka/tools.git)
+2. Change directory to **tools/install**.
+3. From the install directory, run `./wekachecker <hostnames/IPs>`\
    Where:\
    The `hostnames/IPs` is a space-separated list of all the cluster hostnames or IP addresses connected to the **high-speed networking**.\
    Example:\
    `./wekachecker 10.1.1.11 10.1.1.12 10.1.1.4 10.1.1.5 10.1.1.6 10.1.1.7 10.1.1.8`
-3. Review the output. If failures or warnings are reported, investigate them and correct them as necessary. Repeat the validation until no important issues are reported.\
+4. Review the output. If failures or warnings are reported, investigate them and correct them as necessary. Repeat the validation until no important issues are reported.\
    The `wekachecker` writes any failures or warnings to the file: **`test_results.txt`**.
 
 Once the report has no failures or warnings that must be fixed, you can install the WEKA software.

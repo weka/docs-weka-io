@@ -91,7 +91,7 @@ mount -o net=mlnx0/vlan@501 10.10.0.10/default /mnt/weka
 
 ### **Extended network configuration**
 
-Include gateway, IP, and netmask for advanced configurations:
+Include gateway, IP, and netmask (in CIDR format) for advanced configurations:
 
 {% code overflow="wrap" %}
 ```bash
@@ -103,7 +103,7 @@ Example:
 
 {% code overflow="wrap" %}
 ```bash
-mount -o net=mlnx0/vlan@501/gw@192.168.1.1/ip@192.168.1.10/netmask@255.255.255.0 10.10.0.10/default /mnt/weka
+mount -o net=mlnx0/vlan@501/gw@192.168.1.1/ip@192.168.1.10/netmask@22 10.10.0.10/default /mnt/weka
 ```
 {% endcode %}
 

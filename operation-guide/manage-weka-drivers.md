@@ -16,13 +16,13 @@ Updating WEKA drivers ensures compatibility with new kernels, improves performan
 * **Support for requirements**: Includes local builds, driver signing, and archive distribution for different kernels and architectures.
 * **Consistency and flexibility**: Ensures consistent archives and kernel signatures across systems, streamlining version management.
 
-#### WEKA driver directory structure
+#### WEKA drivers directory structure
 
-The WEKA driver directory structure is organized to help you manage driver packages and files efficiently. Here's an overview of the key directories and their contents:
+The WEKA drivers directory structure is organized to help you manage driver packages and files efficiently. Here's an overview of the key directories and their contents:
 
-* `/opt/weka/dist/driver`: Stores driver packages by name, version, and kernel signature.
-* `/opt/weka/data/driver`: Parent directory for all driver-related files.
-* `/opt/weka/data/driver/*driver-package*/stage`: Contains staged drivers and kernel object files (`.ko` files ).
+* `/opt/weka/dist/drivers`: Stores driver packages by name, version, and kernel signature.
+* `/opt/weka/data/drivers`: Parent directory for all driver-related files.
+* `/opt/weka/data/drivers/*driver-package*/stage`: Contains staged drivers and kernel object files (`.ko` files ).
 
 ### weka driver subcommands
 
@@ -105,7 +105,7 @@ The `weka driver` commands described in this section provide a high-level overvi
 
 1. Copy the exported driver archive to the client: \
    `scp <driver-package>.tar.gz user@<client>:/tmp/`
-2. SSH into the backend: `ssh user@<client>`
+2. SSH into the client: `ssh user@<client>`
 3. Import the driver archive: `weka driver import /tmp/<driver-package>.tar.gz`
 4. Install the imported driver: `weka driver install`
 5. After running weka driver install, the driver is built and loaded for the kernel running on the client. Use the following command to verify the driver status: \

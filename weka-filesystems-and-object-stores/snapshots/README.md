@@ -59,8 +59,34 @@ Some examples of mixing maximum read-only and writable snapshots that a system c
 A live filesystem is counted as part of the maximum writable snapshots.
 {% endhint %}
 
+## Track filesystem changes with the DiffList REST API
+
+Use the DiffList REST API to identify and list changes between two filesystem states, such as two snapshots or a snapshot and the live state. This function supports backup, auditing, and data movement workflows by detecting changes without performing a full filesystem scan.
+
+The DiffList API service runs on a configured and active Data Service container (`dataserv`). You can compare any two filesystem states, regardless of their creation order. For example, you can compare an early snapshot with a more recent one. The API returns paginated results to effectively manage large datasets.
+
+Each change entry provides an operation type (`opType`) that combines the object type and the change action. The entry also includes attributes that describe the event, such as its path, size, and whether it was renamed.
+
+Using the API is a two-step process that supports parallel processing, enabling fast, large-scale change analysis for automated workflows
+
+**Before you begin**
+
+* Ensure at least one `dataserv` container is configured and running.
+* Enable the DiffList feature by running the `weka debug override add --key snapshot_difflist.enabled` command.
+
+**Procedure**
+
+1. Prepare the change query using the `POST /snapshots/diff/prepare` endpoint to obtain processing tokens.
+2. Retrieve the paginated change lists using the `POST /snapshots/diff/getResults` endpoint.
+
+
+
 **Related topics**
 
 [snapshots.md](snapshots.md "mention")
 
 [snapshots-1.md](snapshots-1.md "mention")
+
+[weka-rest-api-and-equivalent-cli-commands.md](../../getting-started-with-weka/weka-rest-api-and-equivalent-cli-commands.md "mention") (Snapshots)
+
+[set-up-a-data-services-container-for-background-tasks.md](../../operation-guide/background-tasks/set-up-a-data-services-container-for-background-tasks.md "mention")

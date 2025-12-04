@@ -1,40 +1,19 @@
 # Getting started with WEKA REST API
 
-The WEKA system provides a RESTful API, enabling you to automate interactions with the WEKA system and integrate them into your workflows or monitoring systems.
-
-{% hint style="info" %}
-It is essential to have a solid understanding of the WEKA CLI commands and parameters related to the REST API services.
-
-For example, to create a filesystem using the `POST /fileSystems` service, see the related documentation in [#create-a-filesystem](../weka-filesystems-and-object-stores/managing-filesystems/managing-filesystems-1.md#create-a-filesystem "mention") (using the CLI).
-{% endhint %}
+The WEKA system provides a RESTful API that allows you to automate operations and integrate them into your workflows or monitoring systems. A solid understanding of the relevant WEKA CLI commands and parameters is important when working with the REST API. For example, when creating a filesystem using the `POST /fileSystems` service, refer to the corresponding CLI documentation for guidance.
 
 ## Access the REST API
 
 You can access the REST API using one of the following methods:
 
-{% tabs %}
-{% tab title="Direct access" %}
-Using port 14000 and the URL `/api/v2`.
-{% endtab %}
+* **Direct access:** Use port 14000 and the URL `/api/v2`.
+* **Through the cluster:** Browse to `https://<cluster name or IP>:14000/api/v2/docs`.
+*   **Through the WEKA GUI:** Select the three dots on the upper right menu and select **REST API**.
 
-{% tab title="Through the cluster" %}
-By browsing to: `https://<cluster name>:14000/api/v2/docs`
-{% endtab %}
+    <figure><img src="../.gitbook/assets/wmng_access_rest_api.png" alt=""><figcaption><p>Access the REST API through the WEKA GUI</p></figcaption></figure>
+* **WEKA static API:** Browse to [api.docs.weka.io](https://api.docs.weka.io/) and select the required REST API version from the definition selector. You can also generate client code by using the OpenAPI client generator with the corresponding .json definition file.
 
-{% tab title="Through the WEKA GUI" %}
-Select the three dots on the upper right menu and select **REST API**.
-
-<figure><img src="../.gitbook/assets/wmng_access_rest_api.png" alt=""><figcaption><p>Access the REST API through the WEKA GUI</p></figcaption></figure>
-{% endtab %}
-
-{% tab title="WEKA static API" %}
-Browse to [api.docs.weka.io](https://api.docs.weka.io) and select the REST API version from the definition selector.
-
-In addition, you can create a client code using the OpenAPI client generator and the `.json` file.
-
-<figure><img src="../.gitbook/assets/static-api-docs.png" alt=""><figcaption><p>api.docs.weka.io</p></figcaption></figure>
-{% endtab %}
-{% endtabs %}
+<figure><img src="../.gitbook/assets/4_4_static_api_docs.png" alt=""><figcaption><p>api.docs.weka.io</p></figcaption></figure>
 
 ## Explore the REST API through the GUI
 

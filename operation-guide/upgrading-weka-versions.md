@@ -4,37 +4,60 @@ description: Upgrade your WEKA system with the latest version.
 
 # Upgrade WEKA versions
 
-## Upgrade overview
+## WEKA release model
 
-The WEKA upgrade process supports non-disruptive upgrades (NDUs) to ensure minimal impact on system operations.&#x20;
+WEKA operates a dual-track release model with two types of versions: Innovation releases and Long-Term Support (LTS) releases.
 
-**Supported source versions for upgrading to version 4.4.7**:
+* Innovation releases deliver new features and enhancements frequently, providing early access to cutting-edge functionality.
+* LTS releases focus on stability and reliability.
 
-* The **minimum** supported source version is 4.2.5.
+Each release in [get.weka.io](https://get.weka.io) is tagged as either **Innovation** or **LTS**.
 
-{% hint style="info" %}
+### Software versions
+
+WEKA uses a structured versioning scheme to indicate the scope and type of changes introduced in each release. This helps users quickly identify whether a release includes major new features, minor improvements, or incremental fixes.
+
+* **Major version:** The major version represents substantial changes, such as new features, architectural updates, or significant enhancements.
+  * Defined by the first two numbers in the version string.
+  * Example: In 4.4.9, the major version is 4.4.
+* **Minor version:** The minor version reflects smaller updates, such as bug fixes, performance improvements, or minor feature additions.
+  * Defined by the third number in the version string.
+  * Example: In 4.4.9, the minor version is 9.
+* **Build number:** The build number (fourth component, if present) identifies incremental builds.
+  * Used for hotfixes or release candidates that address specific issues without altering core functionality.
+  * Example: In 4.4.9.130, the build number is 130.
+
+## Version compatibility guidelines
+
+* **Upgrade direction:** Upgrades must always progress from older to newer versions.
+* **Compatibility basis:** Compatibility is determined by the release date of the target version relative to the source version.
+* **Major version upgrades:** Upgrades must follow consecutive order (for example, 4.2  → 4.3). LTS releases upgrade to Innovation, and Innovation releases upgrade to the next LTS.
+* **LTS upgrades:** Clusters and clients can be upgraded between consecutive LTS releases (for example, 4.2.6 and above may be upgraded to the latest minor release of 4.4).
+* **Client upgrades:** Clients are supported if they are at most one major version behind the backend. For example, 4.2 client → 4.4 backend target version.
+* **SCMC deployments:** The client-target-version parameter must be identical across all clusters and compatible with the target backend upgrade. See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
+* **Reference information:** For detailed source-to-target support per release, refer to the upgrade section at [get.weka.io](https://get.weka.io).
+
+{% hint style="warning" %}
 Upgrading to version 4.4.7 on Azure deployments is not supported.
 {% endhint %}
 
-### Upgrade guidelines
+### **Upgrade examples**
 
-#### Version requirements
+<details>
 
-* Upgrades must progress from older versions to newer versions.
-* Version compatibility is based on release dates relative to LTS releases.
-* Major version upgrades must be to the next consecutive version only.
+<summary>Target version: 4.4.9</summary>
 
-#### Version compatibility rules
+4.4.9.130 was release on August 20, 2025. The minimum required version to upgrade from is 4.2.1.
 
-* When upgrading from version 4.2.X to 4.4.Y:
-  * Version 4.4.Y must have been released after the 4.2.X LTS release
-  * All intermediate versions must be supported versions
-* Confirm specific version compatibility at [get.weka.io](https://get.weka.io).
-* Make sure the client's version is compatible with the backend upgrade version you intend to deploy.
-  * The `client-target-version` parameter must be consistently defined and identical across all clusters within a Single Client Multiple Clusters (SCMC). \
-    See [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention").
+<figure><img src="../.gitbook/assets/upgarde_compatibility_4.4.9.png" alt=""><figcaption></figcaption></figure>
 
-### **Upgrade example**
+
+
+</details>
+
+<details>
+
+<summary>Target version: 4.4.2.113</summary>
 
 #### Supported upgrades
 
@@ -53,9 +76,9 @@ Upgrading to version 4.4.7 on Azure deployments is not supported.
 4.2.14    → 4.4.2.113    Version not in supported range
 ```
 
-Always review release notes for version-specific upgrade requirements.
+<figure><img src="../.gitbook/assets/get-weka-io-versions_4.4.png" alt=""><figcaption><p>Release example at get.weka.io</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/get-weka-io-versions_4.4.png" alt=""><figcaption><p>Releases example on get.weka.io</p></figcaption></figure>
+</details>
 
 {% hint style="warning" %}
 The source system must be set up in MCB architecture. If not, contact the [Customer Success Team](../support/getting-support-for-your-weka-system.md#contact-customer-success-team) to convert the cluster architecture to MCB. See [convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md](../appendices/convert-the-cluster-architecture-from-a-single-container-backend-to-a-multi-container-backend.md "mention").\
@@ -81,7 +104,19 @@ Once you run the upgrade command in `ndu` mode, the following occurs:
 1. Downloading the version and preparing all backend servers.
 2. Rolling upgrade of the **drive** containers.
 3. Rolling upgrade of the **compute** containers.
-4. Rolling upgrade of the **frontend** and **protocol** containers and the protocol gateways.
+4. Rolling upgrade of the **frontend** configured with backend mode and **protocol** containers (including frontend and protocol containers hosted on a dedicated protocol server).
+
+{% hint style="info" %}
+To review the frontend containers that will be upgraded, check their configuration mode by running the following command:  `$ weka cluster process --role frontend -o containerId,hostname,mode`
+
+Example output:
+
+`CONTAINER ID HOSTNAME          MODE`\
+`10           DataSphere-1      backend`\
+`13           DataSphere-2      backend`\
+`14           DataSphere-3      backend`\
+`16           DataSphere-6      client`
+{% endhint %}
 
 <figure><img src="../.gitbook/assets/NDU_process_4.2.png" alt=""><figcaption><p>NDU process at a glance</p></figcaption></figure>
 
@@ -252,7 +287,7 @@ If the distribution server does not contain the target WEKA version, add the opt
 
 Example:
 
-```
+```bash
 weka version get <version> --from https://[GET.WEKA.IO-TOKEN]@get.weka.io
 weka version prepare <version>
 ```
@@ -286,11 +321,13 @@ The preparation phase prepares all the connected backend servers for the upgrade
 
 Once the new version is downloaded to one of the backend servers, run the following CLI command:
 
-`weka local run --container drives0 --in <new-version> upgrade --prepare-only`
+```bash
+weka local run --container drives0 --in <new-version> upgrade --distribute-version
+```
 
 Where:
 
-`<new-version>`: Specify the new version. For example,`4.4.1`.
+`<new-version>`: Specify the new version. For example, `4.4.6`.
 
 ### 4. Upgrade the backend servers
 
@@ -298,7 +335,9 @@ Once a new software version is installed on one of the backend servers, upgrade 
 
 If you already ran the preparation step, the upgrade command skips the download and preparation operations.
 
-`weka local run --container drives0 --in <new-version> upgrade`
+```bash
+weka local run --container drives0 --in <new-version> upgrade
+```
 
 **Consider the following guidelines:**
 
@@ -337,65 +376,89 @@ Enabling the Low Latency Queue (LLQ) improves data processing efficiency in AWS 
 
 ### 6. Upgrade the clients
 
-After all backend components have been upgraded, clients continue operating with their existing version and can interact with the upgraded backends. Typically, a client version is supported only if it is no more than one major version behind the backend version. Therefore, clients must be upgraded before the subsequent cluster software version upgrade to maintain compatibility.
+After upgrading all backend components, you can upgrade the clients. Clients can continue operating with their existing version while interacting with the upgraded backends. For specific version compatibility information, see [#version-compatibility-guidelines](upgrading-weka-versions.md#version-compatibility-guidelines "mention").
 
-An exception to this rule is that clients running version 4.2.1 or later are compatible with clusters running version 4.4.6.
+The upgrade process supports hot upgrade, which allows clients to remain mounted. However, performing the upgrade during a scheduled maintenance window with low traffic is recommended.
 
 #### Stateless client upgrade options
 
-* If a stateless client is mounted on a single cluster, it is automatically upgraded to the backend version after rebooting, or a complete `umount` and `mount` is performed.
-* If a stateless client is mounted on multiple clusters, the client container version is the same as the `client-target-version` in the cluster (see [Mount filesystems from multiple clusters on a single client](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md)).
-* Stateless clients can also be upgraded manually.
-* Use the `--client-only` flag in the `weka version get` command to ensure that only the essential components relevant to the stateless client operation are downloaded, excluding non-relevant packages.
-* To limit the display of versions unless the complete set of components is present, use the `--full` flag with the `weka version` command  This provides you with finer control over version information visibility.
-* You can manually upgrade the clients locally (one by one) or remotely (in batches), usually during a maintenance window.
+You can upgrade stateless clients automatically or manually.
+
+* **Automatic upgrade:** A stateless client mounted on a single cluster automatically upgrades to the backend version after a reboot or a complete unmount and remount.
+* **Multi-cluster clients:** For a stateless client mounted on multiple clusters, the client container version aligns with the `client-target-version` set in the cluster. For details. see [mount-fs-from-scmc.md](../weka-filesystems-and-object-stores/mounting-filesystems/mount-fs-from-scmc.md "mention")
+* **Manual client upgrade:** You can also upgrade stateless clients manually.
+  * Use the `--client-only` flag with the `weka version get` command to download only the essential components for the stateless client operation. This excludes any non-relevant packages.
+  * Use the `--full` flag with the `weka version` command to display versions only when the complete set of components is present. This provides finer control over version information visibility.
 
 #### Persistent client upgrade options
 
-* Clients can be upgraded manually. This can be done either locally on each client individually or remotely in batches. This process typically occurs during a scheduled maintenance window.
-* An upgrade is performed on a gateway, which is a persistent client that runs a specific protocol. This gateway is associated with containers with the `allow_protocols` parameter set to true. The upgrade process involves interaction with backend servers.
+A persistent client that operates as a dedicated protocol server (gateway) manages containers configured with `allow-protocols true`. During the upgrade process, the client coordinates with backend servers to ensure uninterrupted protocol service availability.
 
-#### Client upgrade procedures
+#### Manual client upgrade
+
+You can upgrade clients manually, either by connecting to each client individually or by upgrading them remotely in batches.
 
 {% tabs %}
 {% tab title="Upgrade a client locally" %}
-To upgrade a stateless or persistent client locally, connect to the client and run the following command line:
+To upgrade a stateless or persistent client locally, connect to the client and perform the following steps.
 
-1. Run: `weka version get <target-version> --from <backend name or IP>:<port>`
-2. Upgrade the agent by running the following (replace the x with the latest minor version):\
-   `weka version set --agent-only 4.4.x`
-3. Upgrade the client containers. Do one the following following:
-   * For clients connected to a single cluster, run `weka local upgrade`
-   * For clients connected to a multiple  clusters, upgrade all containers simultaneously by running  `weka local upgrade --all`
+**Procedure**
 
-An alert is raised if there is a mismatch between the clients' and the cluster versions.
+1.  Download the target version package from the backend.
 
-Add the `--from <backend name or IP>` option to download the client package only from the backend, thus avoiding downloading from get.weka.io. The default port is 14000.
+    <pre data-overflow="wrap"><code>weka version get &#x3C;target-version> --client-only --from &#x3C;backend-name-or-IP>:&#x3C;port>
+    </code></pre>
+
+    * Use the `--from <backend-name-or-IP>` option to download the package directly from a backend server instead of from `get.weka.io`. The default port is `14000`.
+2.  Upgrade the agent software.
+
+    ```
+    weka version set --agent-only 4.4.x
+    ```
+
+    Replace `x` with the target minor version.
+3. Upgrade the client containers. Select the command that matches your environment:
+   *   For a client connected to a single cluster, run the following command:
+
+       ```
+       weka local upgrade
+       ```
+   *   For a client connected to multiple clusters, run the following command to upgrade all containers simultaneously:
+
+       ```
+       weka local upgrade --all
+       ```
+
+An alert is raised if a version mismatch between the clients and the cluster is detected.
 {% endtab %}
 
 {% tab title="Upgrade remote clients in batches" %}
-To upgrade stateless or persistent clients remotely in batches, add the following options to the  `weka local upgrade` command:
+To upgrade multiple stateless or persistent clients remotely, use the `weka local run` command with the options described below.
 
-* `--mode=clients-upgrade`: This option activates the remote upgrade.
-* `--client-rolling-batch-size`: This option determines the number of clients to upgrade in each batch.  For example, if there are 100 clients, you can set this option to 10 and the upgrade will run 10 batches of 10 clients each.
+* `--mode=clients-upgrade`: Activates the remote upgrade process.
+* `--client-rolling-batch-size`: Defines the number of clients to upgrade in each batch. For example, if you have 100 clients and set this option to `10`, the upgrade runs in 10 batches of 10 clients each.
+* `--clients-to-upgrade`: Specifies the exact clients to upgrade using a comma-separated list of client IDs. Example: `--clients-to-upgrade 33,34,35`.
+* `--drop-host`: Skips the upgrade for specific clients using a comma-separated list of client IDs. Example: `--drop-host 22,23`.
 
-If you need upgrade specific clients, add the `--clients-to-upgrade` and the clients' ids to upgrade. For example, `--clients-to-upgrade 33,34,34`.
-
-If you need to skip upgrade of specific clients, add the `--drop-host`  and the clients' ids to skip. For example, `--drop-host 22,23`.
-
-If an upgrade of a client part of a batch fails, it stops the following batch upgrade. The current running batch continues the upgrade.
+If a client upgrade fails, the current batch continues, but subsequent batches are stopped.
 
 **Command syntax**
 
-`weka local run -C <backend name> --in <target release> upgrade --mode=clients-upgrade --client-rolling-batch-size <number of clients in a batch> --clients-to-upgrade <comma separated clients' ids> --drop-host <comma separated clients' ids> --from backends`
+{% code overflow="wrap" %}
+```
+weka local run -C <container-name> --in <target-release> upgrade --mode=clients-upgrade --client-rolling-batch-size <batch-size> [--clients-to-upgrade <client-ids>] [--drop-host <client-ids>] --from backends
+```
+{% endcode %}
 
 **Example**
 
-The following command line upgrade two clients in two batches (each batch has one client):
+The following command upgrades two clients in two sequential batches, with each batch containing one client:
 
-`weka local run -C drives0 --in 4.3.0.78 upgrade --mode=clients-upgrade --client-rolling-batch-size 1`
-
-**Output example:**
+{% code overflow="wrap" %}
+```
+weka local run -C drives0 --in 4.2.0.78 upgrade --mode=clients-upgrade --client-rolling-batch-size 1
+```
+{% endcode %}
 
 <figure><img src="../.gitbook/assets/multiple_clients_upgrade_example.png" alt=""><figcaption><p>Upgrade one client per batch</p></figcaption></figure>
 {% endtab %}

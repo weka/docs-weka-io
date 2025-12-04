@@ -77,7 +77,7 @@ type: total, unprovisioned, unavailable, hotSpare
 
 </details>
 
-<figure><img src="../../.gitbook/assets//Cluster_metrics_sync_with_Prometheus.png" alt=""><figcaption><p>Cluster metrics sync with Prometheus</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Cluster_metrics_sync_with_Prometheus.png" alt=""><figcaption><p>Cluster metrics sync with Prometheus</p></figcaption></figure>
 
 ## Export Prometheus metrics from CWH
 
@@ -85,22 +85,19 @@ To export Prometheus metrics from CWH, implement the Prometheus API call within 
 
 **Procedure**
 
-1. **Obtain the CWH cluster API key:**
+1. **Obtain the CWH cluster API key:**&#x20;
    * Contact the Customer Success Team to obtain the API key.
-2.  **Export metrics in Prometheus format:**
+2.  **Export metrics in Prometheus format**
 
     *   Use the following API call, replacing `<cluster_id>` with your cluster ID and `<cluster_api_key>` with the API key from Step 1:
 
-        {% code overflow="wrap" %}
-        ```bash
-        curl --location \
-        'https://api.home.weka.io/api/v3/clusters/<cluster_id>/stats/prometheus' \
-        --header 'Authorization: token <cluster_api_key>'
-        ```
-        {% endcode %}
+        <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">curl --location \
+        'https://api.home.weka.io/api/v3/clusters/&#x3C;cluster_id>/stats/prometheus' \
+        --header 'Authorization: token &#x3C;cluster_api_key>'
+        </code></pre>
 
     The command returns Prometheus-formatted metrics cluster information.
-3. **Import the metrics into Prometheus:**
+3. **Import the metrics into Prometheus**
    1. Configure Prometheus to import the exported metrics.&#x20;
    2. Use the Prometheus UI to visualize and monitor the metrics.
 

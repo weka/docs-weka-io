@@ -66,6 +66,10 @@ The NFS client mount is configured using the standard NFS stack operating system
 
 Access Control List (ACL) in NFS (Network File System) provide fine-grained control over file permissions, offering more flexibility than traditional POSIX permissions. NFS supports multiple ACL flavors, each serving different use cases and interoperability needs.
 
+{% hint style="info" %}
+To enable ACL functionality, you must configure LDAP to manage user and group information.
+{% endhint %}
+
 **ACL types in NFS**
 
 NFS supports the following ACL types:
@@ -75,9 +79,9 @@ NFS supports the following ACL types:
 * **NFSv4**: NFSv4 ACLs are enforced directly, without mapping to POSIX ACLs. This flavor preserves the full granularity of NFSv4 ACLs but does not support interoperability with other protocols. ACLs are stored as extended attributes and mapped to user and group IDs (UID/GID). Use NFSv4 when full NFSv4 ACL granularity is required, and interoperability with other protocols is not a concern.
 * **Hybrid**: This flavor combines both POSIX and NFSv4 ACLs to support interoperability. NFS ensures consistency between the two ACL types, and if any inconsistency arises, POSIX ACL is used for enforcement. Hybrid is ideal for environments requiring both interoperability and full NFSv4 ACL functionality.
 
-**NFSv3 and ACLs**
-
-NFSv3 supports only the **None** and **POSIX** ACL flavors. Any attempt to set ACLs from NFSv3 clients using other flavors is not applicable. NFS does not enforce ACLs on NFSv3 clients, but the underlying filesystem handles access control if POSIX ACLs are present.
+{% hint style="info" %}
+**NFSv3 and ACLs:** The NFSv3 implementation does not support ACLs. Access control for NFSv3 clients is enforced by the underlying filesystem using standard POSIX file permissions.
+{% endhint %}
 
 **Managing ACLs in NFS**
 
@@ -87,10 +91,6 @@ ACL configuration and management in NFS can be done through various interfaces:
 * **GUI**: The NFS settings in the user interface include options to enable ACLs and configure default ACL flavors (None, POSIX, NFSv4, Hybrid). Changes to ACL settings may require restarting the NFS containers.
 * **Configuration filesystem**:\
   ACL flavors and related configurations are tracked in the global configuration filesystem, ensuring consistent management of permissions across the system.
-
-**LDAP and ACLs**
-
-For ACL functionality, LDAP must be configured to manage user and group information. If Kerberos is set up, no additional LDAP configuration is necessary. Otherwise, LDAP configuration options are provided, supporting both Active Directory (AD) and OpenLDAP.
 
 **Upgrading and ACLs**
 

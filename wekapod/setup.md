@@ -171,6 +171,6 @@ After configuring the WEKApod servers, start managing the system using the GUI, 
 
 **Related topics**
 
-[Broken link](broken-reference "mention")
+[Broken link](/broken/pages/KEOEQRdsKM2PB9lTiaPg "mention")
 
 [adding-clients-bare-metal.md](../planning-and-installation/bare-metal/adding-clients-bare-metal.md "mention")

@@ -357,12 +357,9 @@ The supported proxy types include:
 5.  To initialize the setup, run the following command from the root user: \
     `homecli local setup -c config.json`\
     \
-    For a fresh installation, expect approximately 5 minutes for completion.\
+    For a fresh installation, expect approximately 5 minutes for completion.<br>
 
-
-    {% hint style="success" %}
-    If you get a "command not found" error, make sure you did not skip step 4 above.
-    {% endhint %}
+    <div data-gb-custom-block data-tag="hint" data-style="success" class="hint hint-success"><p>If you get a "command not found" error, make sure you did not skip step 4 above.</p></div>
 
     \
     **Options:**

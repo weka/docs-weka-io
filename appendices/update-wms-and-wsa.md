@@ -62,11 +62,8 @@ Last login: Tue Sep 10 23:43:40 2024 from 10.41.226.0
     * Use the `reposync` command to download the contents of the patch repository.
     * Run the following command, specifying the `reposdir` directory and download path:
 
-    {% code overflow="wrap" %}
-    ```bash
-    reposync --destdir=./reposdir --download-metadata --repoid=lts-8.6-hashed-ciq_lts_86 --download-path ./weka-patches --norepopath
-    ```
-    {% endcode %}
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">reposync --destdir=./reposdir --download-metadata --repoid=lts-8.6-hashed-ciq_lts_86 --download-path ./weka-patches --norepopath
+    </code></pre>
 
     Example output:
 
