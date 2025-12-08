@@ -37,7 +37,7 @@ VPC peering facilitates communication between the WEKA processes, each using its
 
 <summary>Terraform overview</summary>
 
-Terraform is an open-source project from Hashicorp. It creates and manages resources on cloud platforms and on-premises clouds. Unlike AWS CloudFormation, it works with many APIs from multiple platforms and services.
+Terraform is an open-source project from HashiCorp. It creates and manages resources on cloud platforms and on-premises environments. It interacts with numerous APIs from multiple platforms and services, providing a unified workflow for infrastructure management.
 
 The GCP Console is already installed with Terraform by default. It is the primary tool for deploying WEKA on GCP. Terraform can be used outside of GCP or independent of GCP Console.
 

@@ -47,10 +47,6 @@ You can access the WEKA GUI with any standard browser using the address:\
 
 For example: `https://WekaProd:14000` or `https://weka01:14000`.
 
-{% hint style="info" %}
-On AWS installations, you can access the WEKA GUI from the self-service portal. In the **Outputs** tab of the **CloudFormation** stack, click the **GUI** link.
-{% endhint %}
-
 **Before you begin**
 
 Make sure that port 14000 is open in the firewall of your organization.
@@ -64,7 +60,7 @@ Make sure that port 14000 is open in the firewall of your organization.
 
 2. Sign in with the username and password of an account with cluster administration or\
    organization administration privileges. For details about the account types, see\
-   &#xNAN;_&#x55;ser management_ in the related topics.
+   \&#xNAN;_User management_ in the related topics.
 
 The system dashboard opens.
 

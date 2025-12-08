@@ -29,10 +29,6 @@ This automation ensures that your infrastructure is consistently and predictably
 
 Organizations worldwide use Terraform to deploy stateful infrastructure both on-premises and across public clouds like AWS, Azure, and Google Cloud Platform.
 
-{% hint style="info" %}
-You can deploy WEKA in AWS using [AWS CloudFormation](https://start.weka.io/), allowing them to choose their preferred deployment method.
-{% endhint %}
-
 To install Terraform, we recommend following the [official installation guides](https://developer.hashicorp.com/terraform/install) provided by HashiCorp.
 
 ### Locate the AWS Account

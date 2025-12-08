@@ -12,8 +12,7 @@ A WEKA cluster is a collection of backend servers configured with containers, SS
 The expansion and shrinking procedures only apply to homogeneous WEKA clusters in which all the cluster servers are similar and have the same number of cores, memory, SSD capacity per server, and servers per failure domain (if any).
 
 {% hint style="info" %}
-* For heterogeneous WEKA cluster configurations and estimation of the performance change, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
-* For AWS deployments, use the CloudFormation for the initial deployment, not for expanding and shrinking cluster resources.
+For heterogeneous WEKA cluster configurations and estimation of the performance change, contact the [Customer Success Team](../../support/getting-support-for-your-weka-system.md#contact-customer-success-team).
 {% endhint %}
 
 The expansion and shrinking procedures include:
@@ -49,7 +48,7 @@ To calculate the capacity of the WEKA cluster after expansion, see [#ssd-net-sto
 
 Once the WEKA cluster expansion or shrinking is completed, the system starts a redistribution process. This involves redistributing all the existing data, to be balanced between the original system SSDs and newly added SSDs.
 
-The redistribution process time depends on the cluster capacity and the networking CPU resources. It can take between minutes and hours.&#x20;
+The redistribution process time depends on the cluster capacity and the networking CPU resources. It can take between minutes and hours.
 
 The capacity increase is instant. Therefore, it is possible to define more filesystems immediately without waiting to complete the redistribution process.
 

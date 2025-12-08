@@ -105,7 +105,7 @@ Amazon Simple Storage Service (Amazon S3) is an object storage service that offe
 
 <summary>Terraform</summary>
 
-Terraform is an open-source project from Hashicorp. It creates and manages resources on cloud platforms and on-premises clouds. Unlike AWS CloudFormation, it works with many APIs from multiple platforms and services.
+Terraform is an open-source project from HashiCorp. It creates and manages resources on cloud platforms and on-premises environments. It interacts with numerous APIs from multiple platforms and services, providing a unified workflow for infrastructure management.
 
 <img src="../../.gitbook/assets/Terraform_overview.png" alt="" data-size="original">
 
