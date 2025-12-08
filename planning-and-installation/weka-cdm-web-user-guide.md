@@ -134,7 +134,7 @@ This means that Terraform, all its dependencies, relevant public cloud CLIs, and
 
 **Related topics**
 
-[deployment-on-aws-using-terraform.md](aws/weka-installation-on-aws-using-terraform/deployment-on-aws-using-terraform.md "mention")
+[deployment-on-aws-using-terraform.md](aws/deployment-on-aws-using-terraform.md "mention")
 
 [deployment-on-azure-using-terraform.md](weka-installation-on-azure/deployment-on-azure-using-terraform.md "mention")
 

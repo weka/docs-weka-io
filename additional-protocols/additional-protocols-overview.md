@@ -14,7 +14,7 @@ In cloud environments, setting up protocol services on existing backend servers 
 
 For more details, refer to the relevant deployment section:
 
-* [deployment-on-aws-using-terraform.md](../planning-and-installation/aws/weka-installation-on-aws-using-terraform/deployment-on-aws-using-terraform.md "mention")
+* [deployment-on-aws-using-terraform.md](../planning-and-installation/aws/deployment-on-aws-using-terraform.md "mention")
 * [deployment-on-azure-using-terraform.md](../planning-and-installation/weka-installation-on-azure/deployment-on-azure-using-terraform.md "mention")
 * [deployment-on-gcp-using-terraform.md](../planning-and-installation/weka-installation-on-gcp/deployment-on-gcp-using-terraform.md "mention")
 {% endhint %}
@@ -70,7 +70,7 @@ Dedicated protocol servers offer the following advantages:
 
 1. **Install the WEKA software on the dedicated protocol servers:** Do one of the following:
    * Follow the default method as specified in [manually-install-os-and-weka-on-servers](../planning-and-installation/bare-metal/manually-install-os-and-weka-on-servers/ "mention").
-   *   Use the WEKA agent to install from a working backend. The following commands  demonstrate this method:
+   *   Use the WEKA agent to install from a working backend. The following commands demonstrate this method:
 
        ```bash
        curl http://<EXISTING-BACKEND-IP>:14000/dist/v1/install | sudo sh   # Install the agent
@@ -131,7 +131,7 @@ A primary source of conflict is the different character sets and case-sensitivit
 * **S3:** Is case-sensitive. Object keys (filenames) can contain any UTF-8 character, and the forward slash (`/`) is treated as part of the key, not a directory separator. For details, see [#directory-structure](additional-protocols-overview.md#directory-structure "mention").
 
 {% hint style="info" %}
-**Potential issues:**&#x20;
+**Potential issues:**
 
 * A POSIX or NFS user creates a file named `report:final.pdf`. SMB clients cannot access or see this file because the colon (`:`) is illegal in SMB.
 * A POSIX client creates two separate files: `data.log` and `DATA.LOG`. An SMB client may only see one of these files or experience unpredictable behavior due to case-insensitivity.

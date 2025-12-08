@@ -43,7 +43,7 @@ If you select **Enable AssumeRole API**, set also the **Role ARN** and **Role Se
 {% endtab %}
 
 {% tab title="GCP" %}
-It is not mandatory to set the Access Key and Secret Key in the **Edit Object Store** dialog in GCP. Google Cloud Storage is accessed using a service account attached to each Compute Engine Instance that is running WEKA software, provided that the service account has the required permissions granted by the IAM role (`storage.admin` for creating buckets.  `storage.objectAdmin` for using an existing bucket ).
+It is not mandatory to set the Access Key and Secret Key in the **Edit Object Store** dialog in GCP. Google Cloud Storage is accessed using a service account attached to each Compute Engine Instance that is running WEKA software, provided that the service account has the required permissions granted by the IAM role (`storage.admin` for creating buckets. `storage.objectAdmin` for using an existing bucket ).
 
 <figure><img src="../../.gitbook/assets/edit_local_default_obs_other.png" alt=""><figcaption><p>Edit local default object store for GCP</p></figcaption></figure>
 {% endtab %}
@@ -86,7 +86,7 @@ Set the following:
    If the WEKA EC2 instances have the required permissions granted by the IAM role, then it is not required to provide the Access Key and Secret Key. Otherwise, set the Access Key and Secret Key of the user granted with read/write access to the bucket.
 5. **For AWS S3 bucket creation for WEKA cluster not on EC2 using STS:**
    * Select **Enable AssumeRole API**.
-   * **Role ARN:** Set the Amazon Resource Name (ARN) to assume. The ARN must have the equivalent permissions defined in the IAM role for S3 access. See [IAM role created in the template](../../planning-and-installation/aws/weka-installation-on-aws-using-the-cloud-formation/cloudformation.md#iam-role-created-in-the-template).
+   * **Role ARN:** Set the Amazon Resource Name (ARN) to assume. The ARN must have the equivalent permissions defined in the IAM role for S3 access. See [IAM role created in the template](/broken/pages/-L7TzTC5r8BR5kqD5J-u#iam-role-created-in-the-template).
    * **Role Session Name:** Set a unique identifier[^2] for the assumed role session.
    *   **Session Duration:** Set the duration of the temporary security credentials in seconds.
 
@@ -185,7 +185,7 @@ You can modify the object store bucket parameters according to your demand chang
 
 For active object store buckets connected to filesystems, the system tracks this activity and provides details about each activity on the Bucket Operations page.
 
-The details include the operation type (download or upload), start time, execution time, previous attempts results, cURL errors, and more.&#x20;
+The details include the operation type (download or upload), start time, execution time, previous attempts results, cURL errors, and more.
 
 **Procedure**
 

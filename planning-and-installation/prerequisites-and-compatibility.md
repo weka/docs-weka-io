@@ -465,7 +465,7 @@ Refer to the cloud deployment sections for the most up-to-date list of supported
 
 **Related topics**
 
-AWS: [supported-ec2-instance-types.md](aws/weka-installation-on-aws-using-terraform/supported-ec2-instance-types.md "mention")
+AWS: [supported-ec2-instance-types.md](aws/supported-ec2-instance-types.md "mention")
 
 Azure: [supported-virtual-machine-types.md](weka-installation-on-azure/supported-virtual-machine-types.md "mention")
 

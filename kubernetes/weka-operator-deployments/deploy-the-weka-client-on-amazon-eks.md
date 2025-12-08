@@ -24,7 +24,7 @@ The WEKA client enables Kubernetes workloads on Amazon EKS to connect to and acc
        * For the most current operator and image versions, refer to the WEKA Operator page at [https://get.weka.io/ui/operator](https://get.weka.io/ui/operator). From there, you can obtain the latest `WEKA_OPERATOR_VERSION` and `WEKA_IMAGE_VERSION_TAG`.
 
        Gathering this information in advance provides all the required values to complete the deployment workflow efficiently. Use these values to replace the placeholders in the setup files.
-4. **A deployed WEKA cluster is required:** Use the same subnets and security groups from the WEKA cluster when configuring the EKS environment for client deployment. For guidance on deploying the WEKA cluster with Terraform, see [weka-installation-on-aws-using-terraform](../../planning-and-installation/aws/weka-installation-on-aws-using-terraform/ "mention").
+4. **A deployed WEKA cluster is required:** Use the same subnets and security groups from the WEKA cluster when configuring the EKS environment for client deployment. For guidance on deploying the WEKA cluster with Terraform, see [Broken link](/broken/pages/y2EAY4cv7TM3FfMR45Jv "mention").
 5. **EKS deployment prerequisites:** Configure the EKS cluster with the following global settings:
    * **IAM Role and policy configuration:** Configure the appropriate IAM roles and policies for both the EKS cluster and its worker nodes:
    *   **Cluster IAM role**
@@ -57,7 +57,7 @@ The WEKA client enables Kubernetes workloads on Amazon EKS to connect to and acc
 
 <details>
 
-<summary>Example: How to set up CPU allocation and hugepages </summary>
+<summary>Example: How to set up CPU allocation and hugepages</summary>
 
 Add to the worker nodes launch template the following sections:
 
@@ -160,7 +160,7 @@ Apply the manifest:
 kubectl apply -f ensure-nics.yaml
 ```
 
-5. **Deploy the WEKA client resource:**  Define the WEKA client custom resource. Replace the `joinIpPorts` value with a valid IP or ALB DNS of the deployed WEKA cluster:
+5. **Deploy the WEKA client resource:** Define the WEKA client custom resource. Replace the `joinIpPorts` value with a valid IP or ALB DNS of the deployed WEKA cluster:
 
 {% code title="weka-client.yaml" %}
 ```yaml

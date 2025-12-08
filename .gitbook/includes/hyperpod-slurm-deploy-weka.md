@@ -4,7 +4,7 @@ title: Hyperpod-Slurm-Deploy-Weka
 
 You can deploy a WEKA cluster using Terraform by choosing one of the following methods:
 
-* Refer to the comprehensive documentation provided in [weka-installation-on-aws-using-terraform](../../planning-and-installation/aws/weka-installation-on-aws-using-terraform/ "mention").\
+* Refer to the comprehensive documentation provided in [Broken link](/broken/pages/y2EAY4cv7TM3FfMR45Jv "mention").\
   This option is ideal if you are new to the process and require detailed guidance, including explanations of the concepts involved.
 * Follow the concise step-by-step instructions provided below.\
   This option assumes you are already familiar with the subject and are looking for a quick reference.
