@@ -8,7 +8,7 @@ description: >-
 
 Perform this workflow using the resources generator only if you are not using the automated WMS, WSA, or WEKA Configurator.
 
-The resources generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you create the containers using these generated files of the cluster servers.&#x20;
+The resources generator generates three resource files on each server in the `/tmp` directory: `drives0.json`, `compute0.json`, and `frontend0.json`. Then, you create the containers using these generated files of the cluster servers.
 
 ## Before you begin
 
@@ -32,7 +32,7 @@ for i in {0..7}; do scp resources_generator.py weka0-$i:/tmp/resources_generator
 
 2. To enable execution, change the mode of the resources generator on all servers in the cluster.
 
-Example for a cluster with 8 servers:&#x20;
+Example for a cluster with 8 servers:
 
 ```
 pdsh -R ssh -w "weka0-[0-7]" 'chmod +x /tmp/resources_generator.py'
@@ -43,14 +43,13 @@ pdsh -R ssh -w "weka0-[0-7]" 'chmod +x /tmp/resources_generator.py'
 
 1. Remove the default container
 2. Generate the resource files
-3. Create drive containers
-4. Create a cluster
-5. Configure the SSD drives
-6. Create compute containers
-7. Create frontend containers
-8. Configure number of data and parity drives
-9. Configure number of hot spares
-10. Name the cluster
+3. Create a cluster
+4. Configure the SSD drives
+5. Create compute containers
+6. Create frontend containers
+7. Configure number of data and parity drives
+8. Configure number of hot spares
+9. Name the cluster
 
 ### 1. Remove the default container
 
@@ -66,12 +65,12 @@ To generate the resource files for the drive, compute, and frontend processes, r
 
 `./resources_generator.py --net <net-devices> [options]`
 
-The resources generator allocates the number of cores, memory, and other resources according to the values specified in the parameters.&#x20;
+The resources generator allocates the number of cores, memory, and other resources according to the values specified in the parameters.
 
 The best practice for resources allocation is as follows:
 
 * 1 drive core per NVMe device (SSD).
-* 2-3 compute cores per drive core.&#x20;
+* 2-3 compute cores per drive core.
 * 1-2 frontend cores if deploying a protocol container. If there is a spare core, it is used for a frontend container.
 * Minimum of 1 core for the OS.
 
@@ -95,7 +94,7 @@ Contact Professional Services for the recommended resource allocation settings f
 
 **Parameters**
 
-<table><thead><tr><th width="307">Name</th><th width="292">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>compute-core-ids</code></td><td>Specify the CPUs to allocate for the compute processes.<br>Format: space-separated numbers</td><td></td></tr><tr><td><code>compute-dedicated-cores</code></td><td>Specify the number of cores to dedicate for the compute processes.</td><td>The maximum available cores</td></tr><tr><td><code>compute-memory</code></td><td><p>Specify the total memory to allocate for the compute processes.</p><p>Format: value and unit without a space.</p><p>Examples: 1024B, 10GiB, 5TiB.</p></td><td>The maximum available memory</td></tr><tr><td><code>core-ids</code></td><td>Specify the CPUs to allocate for the WEKA processes.<br>Format: space-separated numbers.</td><td></td></tr><tr><td><code>drive-core-ids</code></td><td>Specify the CPUs to allocate for the drive processes.<br>Format: space-separated numbers.</td><td></td></tr><tr><td><code>drive-dedicated-cores</code></td><td>Specify the number of cores to dedicate for the drive processes.</td><td>1 core per each detected drive</td></tr><tr><td><code>drives</code></td><td><p>Specify the drives to use. </p><p>This option overrides automatic detection.<br>Format: space-separated strings.</p></td><td>All unmounted NVME devices</td></tr><tr><td><code>frontend-core-ids</code></td><td>Specify the CPUs to allocate for the frontend processes.<br>Format: space-separated numbers.</td><td>-</td></tr><tr><td><code>frontend-dedicated-cores</code></td><td>Specify the number of cores to dedicate for the frontend processes.</td><td>1</td></tr><tr><td><code>max-cores-per-container</code></td><td>Override the default maximum number of cores per container for IO processes (19). If provided, the new value must be lower.</td><td>19</td></tr><tr><td><code>minimal-memory</code></td><td>Set each container's hugepages memory to 1.4 GiB * number of IO processes on the container.</td><td></td></tr><tr><td><code>net</code>*</td><td>Specify the network devices to use.<br>Format: space-separated strings.</td><td></td></tr><tr><td><code>no-rdma</code></td><td>Don't take RDMA support into account when computing memory requirements.</td><td>False</td></tr><tr><td><code>num-cores</code></td><td>Override the auto-deduction of the number of cores.</td><td>All available cores</td></tr><tr><td><code>path</code></td><td>Specify the path to write the resource files.</td><td>'.'</td></tr><tr><td><code>spare-cores</code></td><td>Specify the number of cores to leave for OS and non-WEKA processes.</td><td>1</td></tr><tr><td><code>spare-memory</code></td><td><p>Specify the memory to reserve for non-WEKA requirements.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p></td><td>The maximum between 8 GiB and 2% of the total RAM</td></tr><tr><td><code>weka-hugepages-memory</code></td><td><p>Specify the memory to allocate for compute, frontend, and drive processes.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p></td><td>The maximum available memory</td></tr></tbody></table>
+<table><thead><tr><th width="307">Name</th><th width="292">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>compute-core-ids</code></td><td>Specify the CPUs to allocate for the compute processes.<br>Format: space-separated numbers</td><td></td></tr><tr><td><code>compute-dedicated-cores</code></td><td>Specify the number of cores to dedicate for the compute processes.</td><td>The maximum available cores</td></tr><tr><td><code>compute-memory</code></td><td><p>Specify the total memory to allocate for the compute processes.</p><p>Format: value and unit without a space.</p><p>Examples: 1024B, 10GiB, 5TiB.</p></td><td>The maximum available memory</td></tr><tr><td><code>core-ids</code></td><td>Specify the CPUs to allocate for the WEKA processes.<br>Format: space-separated numbers.</td><td></td></tr><tr><td><code>drive-core-ids</code></td><td>Specify the CPUs to allocate for the drive processes.<br>Format: space-separated numbers.</td><td></td></tr><tr><td><code>drive-dedicated-cores</code></td><td>Specify the number of cores to dedicate for the drive processes.</td><td>1 core per each detected drive</td></tr><tr><td><code>drives</code></td><td><p>Specify the drives to use.</p><p>This option overrides automatic detection.<br>Format: space-separated strings.</p></td><td>All unmounted NVME devices</td></tr><tr><td><code>frontend-core-ids</code></td><td>Specify the CPUs to allocate for the frontend processes.<br>Format: space-separated numbers.</td><td>-</td></tr><tr><td><code>frontend-dedicated-cores</code></td><td>Specify the number of cores to dedicate for the frontend processes.</td><td>1</td></tr><tr><td><code>max-cores-per-container</code></td><td>Override the default maximum number of cores per container for IO processes (19). If provided, the new value must be lower.</td><td>19</td></tr><tr><td><code>minimal-memory</code></td><td>Set each container's hugepages memory to 1.4 GiB * number of IO processes on the container.</td><td></td></tr><tr><td><code>net</code>*</td><td>Specify the network devices to use.<br>Format: space-separated strings.</td><td></td></tr><tr><td><code>no-rdma</code></td><td>Don't take RDMA support into account when computing memory requirements.</td><td>False</td></tr><tr><td><code>num-cores</code></td><td>Override the auto-deduction of the number of cores.</td><td>All available cores</td></tr><tr><td><code>path</code></td><td>Specify the path to write the resource files.</td><td>'.'</td></tr><tr><td><code>spare-cores</code></td><td>Specify the number of cores to leave for OS and non-WEKA processes.</td><td>1</td></tr><tr><td><code>spare-memory</code></td><td><p>Specify the memory to reserve for non-WEKA requirements.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p></td><td>The maximum between 8 GiB and 2% of the total RAM</td></tr><tr><td><code>weka-hugepages-memory</code></td><td><p>Specify the memory to allocate for compute, frontend, and drive processes.</p><p>Argument format: a value and unit without a space.</p><p>Examples: 10GiB, 1024B, 5TiB.</p></td><td>The maximum available memory</td></tr></tbody></table>
 
 ### 3. Create a cluster
 
@@ -135,12 +134,12 @@ This method involves two main stages. First, you create the initial `drives0` co
 
 **Parameters**
 
-<table><thead><tr><th width="158.6484375">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>hostnames*</code></td><td>(Required) Hostnames or IP addresses, separated by spaces. If port 14000 is not the default for the drives, you can specify <code>hostnames:port</code> or <code>ips:port</code>.</td></tr><tr><td><code>host-ips</code></td><td><p>IP addresses of the management interfaces, separated by commas. </p><ul><li>Use a list of <code>ip+ip</code> address pairs for a high availability (HA) configuration.</li><li>If the cluster connects to both IB and Ethernet, you can specify up to four management IPs (<code>ip+ip+ip+ip</code>) for redundancy.</li><li>Default: IP of the first network device of the container.</li></ul></td></tr></tbody></table>
+<table><thead><tr><th width="158.6484375">Parameter</th><th>Description</th></tr></thead><tbody><tr><td><code>hostnames*</code></td><td>(Required) Hostnames or IP addresses, separated by spaces. If port 14000 is not the default for the drives, you can specify <code>hostnames:port</code> or <code>ips:port</code>.</td></tr><tr><td><code>host-ips</code></td><td><p>IP addresses of the management interfaces, separated by commas.</p><ul><li>Use a list of <code>ip+ip</code> address pairs for a high availability (HA) configuration.</li><li>If the cluster connects to both IB and Ethernet, you can specify up to four management IPs (<code>ip+ip+ip+ip</code>) for redundancy.</li><li>Default: IP of the first network device of the container.</li></ul></td></tr></tbody></table>
 
 {% hint style="info" %}
 **Notes:**
 
-* The `weka local setup container` command uses pre-configured IP addresses from the generated  resource file. It only modifies entries that are empty or contain the default `127.0.0.1` address. To force an overwrite of the `ips` field, use the `--overwrite_resource_ips` flag.
+* The `weka local setup container` command uses pre-configured IP addresses from the generated resource file. It only modifies entries that are empty or contain the default `127.0.0.1` address. To force an overwrite of the `ips` field, use the `--overwrite_resource_ips` flag.
 * If you use hostnames, ensure a reliable hostname-to-IP resolution mechanism is in place.
 * For a high availability (HA) configuration, you must define at least two network cards for each container.
 * After the command succeeds, the cluster enters an initialization phase. Some commands only run during this phase.
@@ -197,7 +196,7 @@ weka cluster drive add <container-id> <device-paths>
 
 **Parameters**
 
-<table><thead><tr><th width="195.71484375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-id</code>*</td><td>The Identifier of the drive container to add the local SSD drives.</td></tr><tr><td><code>device-paths</code>*</td><td>List of block devices that identify local SSDs. <br>It must be a valid Unix network device name<strong>.</strong><br>Format: Space-separated strings.<br>Example,  <code>/dev/nvme0n1 /dev/nvme1n1</code></td></tr></tbody></table>
+<table><thead><tr><th width="195.71484375">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>container-id</code>*</td><td>The Identifier of the drive container to add the local SSD drives.</td></tr><tr><td><code>device-paths</code>*</td><td>List of block devices that identify local SSDs.<br>It must be a valid Unix network device name<strong>.</strong><br>Format: Space-separated strings.<br>Example, <code>/dev/nvme0n1 /dev/nvme1n1</code></td></tr></tbody></table>
 
 ### 5. Create compute containers
 
@@ -214,7 +213,7 @@ weka local setup container --join-ips <IP addresses> \
 
 <table><thead><tr><th width="217">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td><p><code>IP:port</code> pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.</p><p>To restrict the client’s operations to only the essential APIs for mounting and unmounting operations, connect to WEKA clusters through TCP base port + 3 (for example, 14003).</p><p>The <code>IP:port</code> value must match the value used to create the container.<br>Format: comma-separated IP addresses.<br>Example: <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></p></td></tr></tbody></table>
 
-### 6.  Create frontend containers
+### 6. Create frontend containers
 
 **Command:** `weka local setup container`
 
@@ -236,15 +235,15 @@ weka local setup container --client --auto-remove-timeout <auto-remove-timeout> 
 
 **Parameters**
 
-<table><thead><tr><th width="242.9765625">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td>IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.<br>Format: comma-separated IP addresses.<br>Example:  <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></td></tr><tr><td><code>client</code></td><td>Set the container as a client.</td></tr><tr><td><code>auto-remove-timeout</code></td><td>Specify timeout (in seconds) for automatically removing inactive client containers. Only applicable when used with the <code>--client</code> flag.</td></tr><tr><td><code>restricted</code></td><td>Set a client container with restricted privileges as a regular user regardless of the logged-in role.</td></tr></tbody></table>
+<table><thead><tr><th width="242.9765625">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>resources-path</code>*</td><td>A valid path to the resource file.</td></tr><tr><td><code>join-ips</code></td><td>IP:port pairs for the management processes to join the cluster. In the absence of a specified port, the command defaults to using the standard WEKA port 14000. Set the values, only if you want to customize the port.<br>Format: comma-separated IP addresses.<br>Example: <code>--join-ips 10.10.10.1,10.10.10.2,10.10.10.3:15000</code></td></tr><tr><td><code>client</code></td><td>Set the container as a client.</td></tr><tr><td><code>auto-remove-timeout</code></td><td>Specify timeout (in seconds) for automatically removing inactive client containers. Only applicable when used with the <code>--client</code> flag.</td></tr><tr><td><code>restricted</code></td><td>Set a client container with restricted privileges as a regular user regardless of the logged-in role.</td></tr></tbody></table>
 
-### 7.  Configure the number of data and parity drives
+### 7. Configure the number of data and parity drives
 
 **Command:** `weka cluster update --data-drives=<count> --parity-drives=<count>`
 
 **Example:** `weka cluster update --data-drives=4 --parity-drives=2`
 
-### 8.  Configure the number of hot spares
+### 8. Configure the number of hot spares
 
 **Command:** `weka cluster hot-spare <count>`
 
