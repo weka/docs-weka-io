@@ -29,7 +29,7 @@ Ensure a filesystem group is set with the required tiering policy. See [#add-a-f
 
 When deploying a WEKA system on-premises, no filesystem is initially provided. You must create the filesystem and configure its properties, including capacity, group, tiering, thin provisioning, encryption, and required authentication during mounting.
 
-When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terraform or AWS CloudFormation, the WEKA system includes a default filesystem configured to maximum capacity. If your deployment necessitates additional filesystems with varied settings, reduce the provisioned capacity of the default filesystem and create a new filesystem with the desired properties to meet your specific requirements.
+When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP), the WEKA system includes a default filesystem configured to maximum capacity. If your deployment necessitates additional filesystems with varied settings, reduce the provisioned capacity of the default filesystem and create a new filesystem with the desired properties to meet your specific requirements.
 
 **Before you begin**
 
@@ -47,7 +47,7 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 ![Create filesystem](../../.gitbook/assets/wmng_create_fs_button.png)
 
 3. In the **Create Filesystem** dialog, set the following:
-   * **Name**: Enter a descriptive label for the filesystem, limited to 32 characters and excluding slash (`/`)  or backslash (`\`).
+   * **Name**: Enter a descriptive label for the filesystem, limited to 32 characters and excluding slash (`/`) or backslash (`\`).
    * **Group**: Select the filesystem group that fits your filesystem.
    * **Capacity**: Enter the storage size to provision, or select **Use All** to provision all the free capacity.
 
@@ -80,12 +80,12 @@ When deploying a WEKA system on a cloud platform (AWS, Azure, or GCP) using Terr
 ![Thin provisioning](../../.gitbook/assets/wmng_fs_thin_provisioning.png)
 
 6. Optional: **Data Reduction**.\
-   Data reduction can be enabled only on thin provision, non-tiered, and unencrypted filesystems on a cluster with a valid data reduction license (you can verify the data reduction license in the cluster settings). For more details, see the related topics below. \
+   Data reduction can be enabled only on thin provision, non-tiered, and unencrypted filesystems on a cluster with a valid data reduction license (you can verify the data reduction license in the cluster settings). For more details, see the related topics below.\
    To enable the Data Reduction, select the toggle button.
 
 <figure><img src="../../.gitbook/assets/wmng_fs_data_reduction.png" alt=""><figcaption><p>Data reduction</p></figcaption></figure>
 
-7. Optional: If **Audit Logging** is required for this filesystem, select the toggle button. When on, the WEKA system Forwards this filesystem's audit logs to a configured events monitoring platform, provided that cluster-wide auditing is also enabled.&#x20;
+7. Optional: If **Audit Logging** is required for this filesystem, select the toggle button. When on, the WEKA system Forwards this filesystem's audit logs to a configured events monitoring platform, provided that cluster-wide auditing is also enabled.
 
 {% hint style="info" %}
 To use the **Audit Logging** option, ensure the **Audit and Forwarding** feature is enabled and configured. For more information, see [audit-and-forwarding-management](../../operation-guide/audit-and-forwarding-management/ "mention").
@@ -97,8 +97,6 @@ To use the **Audit Logging** option, ensure the **Audit and Forwarding** feature
    Enabling authentication is not allowed for a filesystem hosting NFS client permissions or SMB shares.\
    To authenticate during mount, the user must run the `weka user login` command or use the `auth_token_path` parameter.
 10. Select **Save**.
-
-
 
 **Related topics**
 
