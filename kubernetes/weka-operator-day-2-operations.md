@@ -2238,7 +2238,7 @@ Status:
   Status:           Ready
   Throughput:       
 Events:             <none>
-kavya.kv@U-1L2T6ZMZJ23X9:~/Downloads/Archive/manualoperations$ kubectl exec -it cluster-dev-compute-05a6a09a-432d-42fe-9df4-c129780aa410 -n weka-operator-system -- /bin/bash
+$ kubectl exec -it cluster-dev-compute-05a6a09a-432d-42fe-9df4-c129780aa410 -n weka-operator-system -- /bin/bash
 root@ip-10-0-93-212:/# weka status
 WekaIO v4.4.1 (CLI build 4.4.1)
 
