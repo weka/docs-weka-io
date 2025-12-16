@@ -55,7 +55,7 @@ Subdivide the cluster into Organizations to support multi-tenancy. Security poli
 
 NeuralMesh Axon requires specific infrastructure configurations for both Linux servers and Kubernetes runtime environments.
 
-* **Network infrastructure:**  Configure the following network settings:
+* **Network infrastructure:** Configure the following network settings:
   * Non-blocking network topology with zero over-subscribed segments.
   * Jumbo frames enabled: 9k MTU for Ethernet, 4k MTU for Infiniband.
   * Source Based Routing policies applied to each dataplane network device.
