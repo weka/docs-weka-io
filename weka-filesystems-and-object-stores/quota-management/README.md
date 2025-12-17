@@ -14,8 +14,6 @@ The WEKA system offers multiple layers where you can limit capacity usage:
 * **Filesystem level**: Allocate a unique filesystem for each department or project.
 * **Directory level**: Assign a unique quota for each project directory (beneficial when users are involved in multiple projects) or for each user’s home directory.
 
-In the context of directory quotas, the organization admin can set a quota on a directory. This action initiates the calculation of the current directory usage, which is instantaneous for empty directories. The quota is considered once this calculation is complete.
-
 In the context of directory quotas, the organization admin can set a quota on a directory. This action initiates calculating the current directory usage in a background task. Once this calculation is complete, the quota is considered.
 
 {% hint style="info" %}

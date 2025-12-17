@@ -164,9 +164,7 @@ By default, the WEKA CSI Plugin components do not start if a WEKA driver is dete
 4. **Set additional parameters:** Set any additional parameters in the `values.yaml` file or pass them as command-line arguments to the Helm install command.
 5.  **Run the Helm install command:** Run the following example Helm install command for using NFS transport:
 
-    {% code overflow="wrap" %}
-    ```bash
-    helm upgrade csi-wekafs -n csi-wekafs --create-namespace --install csi-wekafs/csi-wekafsplugin csi-wekafs \
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">helm upgrade csi-wekafs -n csi-wekafs --create-namespace --install csi-wekafs/csi-wekafsplugin csi-wekafs \
     --set logLevel=6 \
     --set pluginConfig.mountProtocol.allowNfsFailback=true \
     --set pluginConfig.allowInsecureHttps=true \
@@ -174,5 +172,4 @@ By default, the WEKA CSI Plugin components do not start if a WEKA driver is dete
     # optional, recommended if multiple interface groups are defined
     [ --set pluginConfig.mountProtocol.clientGroupName=MyClientGroup \ ]    
     # optional, recommended if the client group is predefined
-    ```
-    {% endcode %}
+    </code></pre>

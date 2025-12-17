@@ -63,8 +63,7 @@ Amazon Route 53 Resolver responds recursively to DNS queries from AWS resources 
 **Procedure**
 
 1. **Create a security group:**
-   1.  In the AWS Console and go to the **VPC** service page.\
-
+   1.  In the AWS Console and go to the **VPC** service page.<br>
 
        <figure><img src="../../.gitbook/assets/image (265).png" alt=""><figcaption></figcaption></figure>
    2. Select **Security Groups** and click **Create security group**.
@@ -73,31 +72,26 @@ Amazon Route 53 Resolver responds recursively to DNS queries from AWS resources 
       * Rule 1: Allow DNS (TCP) traffic.
       * Rule 2: Allow DNS (UDP) traffic.
    5. Set the **CIDR of the VPC** as the custom source for both rules.
-   6.  Click **Create security group**.\
-
+   6.  Click **Create security group**.<br>
 
        <figure><img src="../../.gitbook/assets/image (266).png" alt=""><figcaption></figcaption></figure>
 2. **Access Route 53 Resolver:**
    1. In the AWS Console, go to the **Route 53 Resolver** page.
-   2.  Click **Configure endpoints**.\
-
+   2.  Click **Configure endpoints**.<br>
 
        <figure><img src="../../.gitbook/assets/image (267).png" alt=""><figcaption></figcaption></figure>
 3. **Set up outbound endpoint:**
    1. Select **Outbound only**.
-   2.  Click **Next**.\
-
+   2.  Click **Next**.<br>
 
        <figure><img src="../../.gitbook/assets/image (268).png" alt=""><figcaption></figcaption></figure>
    3. Enter an **Endpoint name**.
    4. Select the appropriate **VPC** and **Security group** (click the arrow to refresh if needed).
-   5.  Set **Endpoint Type** to **IPv4** and **Protocols** to **Do53**.\
-
+   5.  Set **Endpoint Type** to **IPv4** and **Protocols** to **Do53**.<br>
 
        <figure><img src="../../.gitbook/assets/image (269).png" alt=""><figcaption></figcaption></figure>
    6. Select the **Availability Zone** and **Subnet**. Opt for **Use an IPv4 address that is selected automatically**.
-   7.  Click **Next**.\
-
+   7.  Click **Next**.<br>
 
        <figure><img src="../../.gitbook/assets/image (270).png" alt=""><figcaption></figcaption></figure>
 4. **Create forwarding rule:**
@@ -105,8 +99,7 @@ Amazon Route 53 Resolver responds recursively to DNS queries from AWS resources 
    2. Set **Rule type** to **forward**.
    3. Input the **Domain name** of the Active Directory.
    4. Select the **VPC** and specify the **Target IP addresses** for both domain controllers that you noted from the Domain controller creation in step **6 Record the IP addresses**, of [#id-1.-install-aws-managed-microsoft-a-d](install-smb-on-aws.md#id-1.-install-aws-managed-microsoft-a-d "mention").
-   5.  Click **Next**.\
-
+   5.  Click **Next**.<br>
 
        <figure><img src="../../.gitbook/assets/image (271).png" alt=""><figcaption></figcaption></figure>
 5. **Review and submit:**
@@ -214,21 +207,17 @@ By setting up a Windows client in your AWS environment, you can manage and inter
        ```
 5. **Join the domain:**
    1. Select the **Start** menu and open **Control Panel**.
-   2.  Select **System and Security** > **System** > **See the name of this computer**.\
-
+   2.  Select **System and Security** > **System** > **See the name of this computer**.<br>
 
        <figure><img src="../../.gitbook/assets/image (273).png" alt=""><figcaption></figcaption></figure>
-   3.  Click **Change Settings**.\
-
+   3.  Click **Change Settings**.<br>
 
        <figure><img src="../../.gitbook/assets/image (274).png" alt=""><figcaption></figcaption></figure>
    4.  In the **Computer Name** tab, click **Change…**.\
-       \
-
+       <br>
 
        <div align="left"><figure><img src="../../.gitbook/assets/image (275).png" alt="" width="375"><figcaption></figcaption></figure></div>
-   5.  In the **Member of** section, select **Domain** and and enter your domain name. Example: `weka.local`.\
-
+   5.  In the **Member of** section, select **Domain** and and enter your domain name. Example: `weka.local`.<br>
 
        <div align="left"><figure><img src="../../.gitbook/assets/image (276).png" alt="" width="320"><figcaption></figcaption></figure></div>
    6. Click **OK** and enter the domain credentials:

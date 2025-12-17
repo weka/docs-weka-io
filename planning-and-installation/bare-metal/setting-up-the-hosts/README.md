@@ -56,19 +56,15 @@ Single Root I/O Virtualization (SR-IOV) enablement is mandatory in the following
 
     Use the following command to apply these settings to all MLX devices:
 
-    {% code overflow="wrap" %}
-    ```
-    mst start && for MLXDEV in /dev/mst/* ; do mlxconfig -d ${MLXDEV} -y set ADVANCED_PCI_SETTINGS=1 PCI_WR_ORDERING=1; done
-    ```
-    {% endcode %}
+    <pre data-overflow="wrap"><code>mst start &#x26;&#x26; for MLXDEV in /dev/mst/* ; do mlxconfig -d ${MLXDEV} -y set ADVANCED_PCI_SETTINGS=1 PCI_WR_ORDERING=1; done
+    </code></pre>
 2. **Set link type:** Certain ConnectX VPI cards require modification of the link type, to specifically set the port to use InfiniBand or Ethernet networking.\
    \
    If applicable, set the port mode with the following command, where 1=InfiniBand and 2=Ethernet:\
    `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P<1,2>=<1,2>`\
    \
    For example, the following command sets port 2 to InfiniBand:\
-   `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`\
-
+   `mlxconfig -y -d /dev/mst/<dev> set LINK_TYPE_P2=1`<br>
 3. **Reboot the system:** A reboot is required after applying the firmware settings to ensure the changes take effect.
 
 **Related information**

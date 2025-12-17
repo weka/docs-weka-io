@@ -72,14 +72,10 @@ Dedicated protocol servers offer the following advantages:
        sudo weka version get 4.2.7.64                                      # Get the full software
        sudo weka version set 4.2.7.64                                      # Set a default version
        ```
-2.  **Create the WEKA container for running protocols:** The dedicated protocol servers must be flagged as permanent members of the WEKA cluster that can execute protocols. Although a backend typically fulfills this role, you can create containers on protocol servers with specified options using the following command example:\
+2.  **Create the WEKA container for running protocols:** The dedicated protocol servers must be flagged as permanent members of the WEKA cluster that can execute protocols. Although a backend typically fulfills this role, you can create containers on protocol servers with specified options using the following command example:<br>
 
-
-    {% code overflow="wrap" %}
-    ```bash
-    sudo weka local setup container --name frontend0 --only-frontend-cores --cores 1 --join-ips <EXISTING-BACKEND-IP> --allow-protocols true
-    ```
-    {% endcode %}
+    <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">sudo weka local setup container --name frontend0 --only-frontend-cores --cores 1 --join-ips &#x3C;EXISTING-BACKEND-IP> --allow-protocols true
+    </code></pre>
 
 <details>
 

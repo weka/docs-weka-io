@@ -50,17 +50,14 @@ This example procedure demonstrates how to set custom mount options using the WE
 
     b. Add the following content to define the StorageClass with custom mount options:
 
-    {% code overflow="wrap" %}
-    ```yaml
-    apiVersion: storage.k8s.io/v1
+    <pre class="language-yaml" data-overflow="wrap"><code class="lang-yaml">apiVersion: storage.k8s.io/v1
     kind: StorageClass
     metadata:
       name: storageclass-wekafs-mountoptions
     provisioner: csi.weka.io
     parameters:
       mountOptions: "rw,relatime,readcache,noatime,readahead_kb=32768,dentry_max_age_positive=1000,dentry_max_age_negative=0"
-    ```
-    {% endcode %}
+    </code></pre>
 
 
 
