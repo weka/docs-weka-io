@@ -55,8 +55,7 @@ This method is the most preferable option to install the WEKA cluster assuming t
 {% endtab %}
 
 {% tab title="Path B: Automated with WSA only" %}
-If the OS (Rocky 8.6) meets your needs but the bare-metal servers are not HPe, Dell, or Supermicro, this is the second preferred option to install and configure the WEKA cluster.\
-
+If the OS (Rocky 8.6) meets your needs but the bare-metal servers are not HPe, Dell, or Supermicro, this is the second preferred option to install and configure the WEKA cluster.<br>
 
 <figure><img src="../../.gitbook/assets/workflow_path_B.png" alt=""><figcaption><p>Path B</p></figcaption></figure>
 {% endtab %}

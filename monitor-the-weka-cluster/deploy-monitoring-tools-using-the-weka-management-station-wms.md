@@ -209,19 +209,13 @@ Set up email notifications by configuring the SMTP Relay to enable WMS for sendi
    * Choose one of the backend servers in your cluster to run the command.
    *   Run the appropriate command based on your TLS configuration. If TLS is configured, use the following command with the WMS server IP or hostname:
 
-       {% code overflow="wrap" %}
-       ```bash
-       weka cloud enable --cloud-url https://<WMS server IP or hostname>
-       ```
-       {% endcode %}
+       <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka cloud enable --cloud-url https://&#x3C;WMS server IP or hostname>
+       </code></pre>
 
        If TLS is not configured, use the following command with the WMS server IP or hostname:
 
-       {% code overflow="wrap" %}
-       ```bash
-       weka cloud enable --cloud-url http://<WMS server IP or hostname>
-       ```
-       {% endcode %}
+       <pre class="language-bash" data-overflow="wrap"><code class="lang-bash">weka cloud enable --cloud-url http://&#x3C;WMS server IP or hostname>
+       </code></pre>
 
        Ensure that the provided WMS server IP or hostname matches the WMS instance information.
 

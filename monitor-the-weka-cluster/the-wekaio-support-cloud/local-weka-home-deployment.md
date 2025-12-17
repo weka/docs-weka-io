@@ -146,7 +146,7 @@ Ensure to enable the SMTP relay service in your SMTP service.&#x20;
 
 The Google SMTP server requires an [app password](https://support.google.com/mail/answer/185833?hl=en).
 
-Once the Local Weka Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See the [Set the Local Weka Home to send alerts](broken-reference) topic.
+Once the Local Weka Home is deployed, you can set it to send alerts by email, SNMP, or PagerDuty. See the [Set the Local Weka Home to send alerts](/broken/pages/JVhGKiVosYvNa7eMwnrI) topic.
 
 </details>
 
