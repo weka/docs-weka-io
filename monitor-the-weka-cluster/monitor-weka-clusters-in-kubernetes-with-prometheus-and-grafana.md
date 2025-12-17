@@ -87,7 +87,7 @@ prometheus-server.prometheus.svc.cluster.local
 ```
 
 4. Install Grafana.\
-   To configure persistent storage, add the flag: \
+   To configure persistent storage, add the flag:\
    `--set persistence.enabled=true,persistence.storageClassName=<your-storage-class>`.
 
 <pre class="language-bash"><code class="lang-bash"><strong>$ helm upgrade --install grafana grafana/grafana \
@@ -137,7 +137,7 @@ After installation, access the Prometheus web UI to verify that it is scraping m
 3. Verify that WEKA metrics are available.
    * In the query field, type `weka_`. All WEKA metrics follow this naming convention.
 
-<figure><img src="../.gitbook/assets/Prom demo.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="/broken/files/5fapuvagE8UgRsSnroZH" alt=""><figcaption></figcaption></figure>
 
 #### Step 4: Access Grafana landing page
 
@@ -168,7 +168,7 @@ Access the Grafana UI to configure the Prometheus data source and import the pre
 <figure><img src="../.gitbook/assets/Prom datasource.gif" alt=""><figcaption></figcaption></figure>
 
 5. Import the WEKA dashboard.
-   1. Navigate to the [WEKA GitHub repository](https://raw.githubusercontent.com/balaramesh2/weka-metrics/refs/heads/main/weka-dashboard.json) and copy the `weka-dashboard.json` content.&#x20;
+   1. Navigate to the [WEKA GitHub repository](https://raw.githubusercontent.com/balaramesh2/weka-metrics/refs/heads/main/weka-dashboard.json) and copy the `weka-dashboard.json` content.
    2. On Grafana, select **Dashboards**.
    3. Select **WEKA**.
    4. Select **New > Import**.
