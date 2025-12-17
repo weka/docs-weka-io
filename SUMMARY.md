@@ -171,10 +171,7 @@
 * [Manage Cross-Origin Resource Sharing](security/manage-cross-origin-resource-sharing.md)
 * [Manage CIDR-based security policies](security/manage-cidr-based-security-policies.md)
 * [Manage login banner](security/manage-the-login-banner.md)
-
-***
-
-* [Secure cluster membership with join secret authentication](secure-cluster-membership-with-join-secret-authentication.md)
+* [Secure cluster membership with join secret authentication](security/secure-cluster-membership-with-join-secret-authentication.md)
 
 ## Licensing
 
@@ -217,10 +214,7 @@
   * [Manage audit and forwarding using the CLI](operation-guide/audit-and-forwarding-management/manage-audit-and-forwarding-using-the-cli.md)
 * [Upgrade WEKA versions](operation-guide/upgrading-weka-versions.md)
 * [Manage WEKA drivers](operation-guide/manage-weka-drivers.md)
-
-***
-
-* [Drivers distribution service](drivers-distribution-service.md)
+* [Drivers distribution service](operation-guide/drivers-distribution-service.md)
 
 ## Monitor the WEKA Cluster
 

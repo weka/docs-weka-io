@@ -10,7 +10,7 @@ The WEKA client enables Kubernetes workloads on Amazon EKS to connect to and acc
 
 #### Prerequisites
 
-1. **Verify network access to the WEKA driver distribution service:** Ensure that the deployment environment has network access to `https://drivers.weka.io`. The WEKA client pods automatically download the required driver components from this public distribution service to interface with the WEKA filesystem. For more information, see [drivers-distribution-service.md](../../drivers-distribution-service.md "mention").
+1. **Verify network access to the WEKA driver distribution service:** Ensure that the deployment environment has network access to `https://drivers.weka.io`. The WEKA client pods automatically download the required driver components from this public distribution service to interface with the WEKA filesystem. For more information, see [drivers-distribution-service.md](../../operation-guide/drivers-distribution-service.md "mention").
 2. **Verify security groups and** [**NACL**](#user-content-fn-1)[^1] **configuration:** The WEKA client requires the ports specified in the following topics:
    * [#required-ports](../../planning-and-installation/prerequisites-and-compatibility.md#required-ports "mention") (in the **WEKA Prerequisites and compatibility** topic).
    * [#kubernetes-port-requirements](./#kubernetes-port-requirements "mention") (in the **WEKA Operator deployment** topic).

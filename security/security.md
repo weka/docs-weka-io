@@ -117,7 +117,7 @@ To add the join secret to a backend container, run `weka local resources join-se
 
 **Related topic**
 
-[secure-cluster-membership-with-join-secret-authentication.md](../secure-cluster-membership-with-join-secret-authentication.md "mention")
+[secure-cluster-membership-with-join-secret-authentication.md](secure-cluster-membership-with-join-secret-authentication.md "mention")
 
 ***
 
@@ -171,7 +171,7 @@ The **NFSv4** flavor is experimental and is not recommended to be used in produc
     * POSIX and SMB clients see a translated POSIX ACL.
 
     However, similar to the SMB Hybrid flavor, any direct update to the POSIX ACL invalidates the corresponding ACL stored in the `xattr`. This action invalidates the ACL of the opposing protocol. For instance, an ACL update from an NFS client overrides the POSIX ACL and invalidates a previously set Windows ACL.
-* **None:** No ACL enforcement or updates occur, even if POSIX ACLs exist on a file or directory.&#x20;
+* **None:** No ACL enforcement or updates occur, even if POSIX ACLs exist on a file or directory.
 
 **ACL best practices**
 
