@@ -1,6 +1,6 @@
 # Table of contents
 
-* [WEKA v4.2 documentation](README.md)
+* [WEKA documentation](README.md)
   * [Documentation revision history](readme/documentation-revision-history.md)
 
 ## WEKA System Overview <a href="#overview" id="overview"></a>
