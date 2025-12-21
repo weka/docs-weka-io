@@ -1,19 +1,22 @@
 ---
+description: Version 5.0
 cover: .gitbook/assets/doc_banner_servers.png
 coverY: 0
 ---
 
-# WEKA v5.0 documentation
+# WEKA documentation
 
-Welcome to the WEKA documentation portal, your guide to the latest WEKA version. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies. Choose your WEKA version from the top menu for version-specific documentation.
-
-<figure><img src=".gitbook/assets/5.0_version_selector.gif" alt=""><figcaption><p>WEKA version selector</p></figcaption></figure>
+Welcome to the WEKA documentation portal, your guide to the latest WEKA version. Whether you're a newcomer or a seasoned user, explore topics from system fundamentals to advanced optimization strategies.
 
 {% hint style="warning" %}
 **Important:** This documentation applies to the WEKA system's **latest minor version** (5.0.**X**). For information on new features and supported prerequisites released with each minor version, refer to the relevant release notes available at [get.weka.io](https://get.weka.io/).
 
 Check the release notes for details about any updates or changes accompanying the latest releases.
 {% endhint %}
+
+Select your version from the dropdown menu located at the top of the left-hand navigation bar.&#x20;
+
+<div align="left" data-with-frame="true"><figure><img src=".gitbook/assets/version_selector.jpg" alt="" width="169"><figcaption></figcaption></figure></div>
 
 ## **Get answers from WEKA documentation with Sevii AI**
 
