@@ -9,6 +9,7 @@ Using the GUI, you can:
 * [Configure the NFS global settings](nfs-support.md#configure-the-nfs-global-settings)
 * [Configure the NFS cluster level](nfs-support.md#create-interface-groups)
 * [Integrate the NFS and Kerberos service](nfs-support.md#integrate-the-nfs-and-kerberos-service)
+* [Configure the LDAP service](nfs-support.md#configure-the-ldap-service)
 * [Configure the NFS export level (permissions)](nfs-support.md#configure-the-nfs-export-level-permissions)
 
 ## Configure the NFS global settings
@@ -18,7 +19,7 @@ NFS global settings consist of parameters that enable you to customize various a
 By tailoring these settings, you can ensure that the NFS service meets your needs and requirements, such as supporting NFS V3 and V4 for compatibility with different client systems.
 
 {% hint style="info" %}
-The possible Kerberos authentication types are available only after configuring the Kerberos integration.&#x20;
+The possible Kerberos authentication types are available only after configuring the Kerberos integration.
 {% endhint %}
 
 **Before you begin**
@@ -42,17 +43,17 @@ To support NFS file-locking, ensure the system meets the prerequisites outlined 
      * **POSIX** (default): Enforces POSIX ACLs, compatible across protocols, but loses NFSv4's finer granularity.
      * **NFSv4**: Enforces NFSv4 ACLs directly, retaining full granularity, but lacks interoperability with other protocols. (The **NFSv4** flavor is experimental and is not recommended to be used in production environments.)
      * **Hybrid**: Combines both POSIX and NFSv4 ACLs to support interoperability. NFS ensures consistency between the two ACL types, and if any inconsistency arises, POSIX ACL is used for enforcement.
-   *   **Authentication Type**: Enable the authentication types that can be used when setting the NFS client permissions. \
+   *   **Authentication Type**: Enable the authentication types that can be used when setting the NFS client permissions.\
        Possible values:
 
-       * NONE: No authentication.
-       * SYS: System authentication.
-       * KRB5: Basic Kerberos authentication.
-       * KRB5i: Kerberos authentication with data integrity.
-       * KRB5p: Kerberos authentication with data integrity and privacy.
+       * **NONE:** No authentication.
+       * **SYS:** System authentication.
+       * **KRB5:** Basic Kerberos authentication.
+       * **KRB5i:** Kerberos authentication with data integrity.
+       * **KRB5p:** Kerberos authentication with data integrity and privacy.
 
        The Kerberos authentication types are visible only if Kerberos is configured.\
-       Example: KRB5  KRB5i  KRB5p.\
+       Example: KRB5 KRB5i KRB5p.\
        The default values depend on Kerberos configuration:
 
        * If not configured: NONE SYS
@@ -80,7 +81,7 @@ Configuring the NFS cluster level involves creating an interface group and assig
 
 1. From the menu, select **Manage > Protocols**.
 2. On the left pane, select **NFS**.
-3. In the Configuration tab, select the **+** sign near the Interface Groups title.&#x20;
+3. In the Configuration tab, select the **+** sign near the Interface Groups title.
 
 ![Add an NFS interface group](../../.gitbook/assets/wmng_add_nfs_group_add.png)
 
@@ -122,7 +123,7 @@ You might need to remove an interface group due to a change in network configura
 **Procedure**
 
 1. In the Configuration tab, select the interface group.
-2. In the Group Ports table, select the three dots, and from the menu, select **Remove**.&#x20;
+2. In the Group Ports table, select the three dots, and from the menu, select **Remove**.
 
 ![Remove an interface group port](../../.gitbook/assets/wmng_add_nfs_group_ports_remove.png)
 
@@ -194,7 +195,7 @@ Configuring the NFS-Kerberos service integration automatically restarts the NFS 
 {% endtab %}
 
 {% tab title="Configure Kerberos service with MIT" %}
-1. In From the Kerberos Authentication Type, select MIT.&#x20;
+1. In From the Kerberos Authentication Type, select MIT.
 2. Set the following parameters to the MIT KDC servers:
    1. **KDC Realm Name**: Specifies the realm (domain) used by Kerberos.
    2. **KDC Primary Server**: Identifies the server hosting the primary Key Distribution Center service.
@@ -231,6 +232,51 @@ Upon resetting the Kerberos configuration, it triggers the following two actions
 {% hint style="info" %}
 These actions may impact your system’s performance and functionality. Proceed with caution.
 {% endhint %}
+
+## Configure the LDAP service
+
+Configure the LDAP service for NFS to manage user access and permissions efficiently. You can set up the configuration to use Active Directory (AD) LDAP for Access Control Lists (ACLs) when Kerberos is not in use, or configure it for OpenLDAP.
+
+**Procedure**
+
+1. From the menu, select **Manage > Protocols**.
+2. On the left pane, select **NFS**.
+3. Select the **Settings** tab.
+4. In the **LDAP Service** section, select **Configure**.
+5. Select the **LDAP type** that corresponds to your environment and follow the relevant steps below.
+
+{% tabs %}
+{% tab title="Configure for Active Directory" %}
+Use this option to configure NFS to use Active Directory LDAP for ACLs when Kerberos is not used.
+
+1. **LDAP Type:** Select Active Directory.
+2. Set the following parameters:
+   * **LDAP Server:** The Fully Qualified Domain Name (FQDN) of the AD server. Example: `myldapserver.example.com`
+   * **LDAP Domain:** The AD domain name. Example: `myldapdomain.example.com`
+   * **LDAP FQDN Service Name:** The FQDN of the NFS service. Example: `nfs-service-name.test.domain.com`
+   * **LDAP Admin Name:** The administrative username for accessing the LDAP directory. Specify the account name only. Example: `orgadmin`
+   * **LDAP Admin Password:** The password for the administrative user.
+3. Select **Configure**.
+
+<figure><img src="../../.gitbook/assets/nfs-configure-ldap-service.png" alt=""><figcaption></figcaption></figure>
+{% endtab %}
+
+{% tab title="Configure for OpenLDAP" %}
+Use this option to configure NFS to use OpenLDAP.
+
+1. LDAP Type: Select **Open LDAP**.
+2. Set the following parameters:
+   * **LDAP Server:** The server hosting the LDAP service. Example: `myldapserver.example.com`
+   * **LDAP Domain:** The domain the LDAP service will access. Example: `myldapdomain.example.com`
+   * **LDAP Reader User Name:** The username of the administrative user. Example: `orgadmin`
+   * **LDAP Reader User Password:** The password for the administrative user.
+   * **LDAP Base DN:** The base Distinguished Name (DN) for the LDAP directory tree. Example: `dc=test,dc=example,dc=com`
+   * **LDAP Port:** The port number the LDAP server listens on. Default: `389`
+3. Select **Configure**.
+
+<figure><img src="../../.gitbook/assets/nfs-configure-openldap-service.png" alt=""><figcaption></figcaption></figure>
+{% endtab %}
+{% endtabs %}
 
 ## Configure the NFS export level (permissions)
 
@@ -314,7 +360,7 @@ If you create an NFS v4 client permission, verify that a global configuration fi
 
 ### Edit NFS client permission <a href="#edit-nfs-client-permission" id="edit-nfs-client-permission"></a>
 
-You can edit the existing NFS permission settings for a client group.  You can also move the priority to the top or bottom priority (related to other client group priorities). If the client group permission setting is no longer required, you can remove it.
+You can edit the existing NFS permission settings for a client group. You can also move the priority to the top or bottom priority (related to other client group priorities). If the client group permission setting is no longer required, you can remove it.
 
 **Procedure**
 
