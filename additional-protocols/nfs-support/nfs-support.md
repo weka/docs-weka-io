@@ -9,6 +9,7 @@ Using the GUI, you can:
 * [Configure the NFS global settings](nfs-support.md#configure-the-nfs-global-settings)
 * [Configure the NFS cluster level](nfs-support.md#create-interface-groups)
 * [Integrate the NFS and Kerberos service](nfs-support.md#integrate-the-nfs-and-kerberos-service)
+* [Configure the LDAP service](nfs-support.md#configure-the-ldap-service)
 * [Configure the NFS export level (permissions)](nfs-support.md#configure-the-nfs-export-level-permissions)
 
 ## Configure the NFS global settings
@@ -231,6 +232,53 @@ Upon resetting the Kerberos configuration, it triggers the following two actions
 {% hint style="info" %}
 These actions may impact your system’s performance and functionality. Proceed with caution.
 {% endhint %}
+
+## Configure the LDAP service
+
+Configure the LDAP service for NFS to manage user access and permissions efficiently. You can set up the configuration to use Active Directory (AD) LDAP for Access Control Lists (ACLs) when Kerberos is not in use, or configure it for OpenLDAP.
+
+**Procedure**
+
+1. From the menu, select **Manage > Protocols**.
+2. On the left pane, select **NFS**.
+3. Select the **Settings** tab.
+4. In the **LDAP Service** section, select **Configure**.
+5. Select the **LDAP type** that corresponds to your environment and follow the relevant steps below.
+
+{% tabs %}
+{% tab title="Configure for Active Directory" %}
+Use this option to configure NFS to use Active Directory LDAP for ACLs when Kerberos is not used.
+
+1. **LDAP Type:** Select Active Directory.
+2. Set the following parameters:
+   * **LDAP Server:** The Fully Qualified Domain Name (FQDN) of the AD server. Example: `myldapserver.example.com`
+   * **LDAP Domain:** The AD domain name. Example: `myldapdomain.example.com`
+   * **LDAP FQDN Service Name:** The FQDN of the NFS service. Example: `nfs-service-name.test.domain.com`
+   * **LDAP Admin Name:** The administrative username for accessing the LDAP directory. Specify the account name only. Example: `orgadmin`
+   * **LDAP Admin Password:** The password for the administrative user.
+3. Select **Configure**.
+
+<figure><img src="../../.gitbook/assets/nfs-configure-ldap-service.png" alt=""><figcaption></figcaption></figure>
+{% endtab %}
+
+{% tab title="Configure for OpenLDAP" %}
+Use this option to configure NFS to use OpenLDAP.
+
+1. LDAP Type: Select **Open LDAP**.
+2. Set the following parameters:
+   * **LDAP Server:** The server hosting the LDAP service. Example: `myldapserver.example.com`
+   * **LDAP Domain:** The domain the LDAP service will access. Example: `myldapdomain.example.com`
+   * **LDAP Reader User Name:** The username of the administrative user. Example: `orgadmin`
+   * **LDAP Reader User Password:** The password for the administrative user.
+   * **LDAP Base DN:** The base Distinguished Name (DN) for the LDAP directory tree. Example: `dc=test,dc=example,dc=com`
+   * **LDAP Port:** The port number the LDAP server listens on. Default: `389`
+3. Select **Configure**.
+
+<figure><img src="../../.gitbook/assets/nfs-configure-openldap-service.png" alt=""><figcaption></figcaption></figure>
+{% endtab %}
+{% endtabs %}
+
+
 
 ## Configure the NFS export level (permissions)
 
