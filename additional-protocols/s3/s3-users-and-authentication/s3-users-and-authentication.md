@@ -129,7 +129,7 @@ Use the following command line to attach an IAM policy to an S3 user:‌
 
 **Parameters**
 
-<table><thead><tr><th width="248">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name of an existing IAM policy.</td></tr><tr><td><code>user</code>*</td><td>Name of an existing S3 user.</td></tr></tbody></table>
+<table><thead><tr><th width="248">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>policy</code>*</td><td>Name of an existing IAM policy.</td></tr><tr><td><code>user</code>*</td><td>Name of a local WEKA S3 user.</td></tr></tbody></table>
 
 ## Detach a policy from an S3 user <a href="#creating-a-new-iam-policies-1" id="creating-a-new-iam-policies-1"></a>
 
@@ -141,7 +141,7 @@ Use the following command line to detach an IAM policy from an S3 user:‌‌
 
 **Parameters**
 
-<table><thead><tr><th width="247">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>user</code>*</td><td>Name of an existing S3 user.</td></tr></tbody></table>
+<table><thead><tr><th width="247">Name</th><th>Value</th></tr></thead><tbody><tr><td><code>user</code>*</td><td>Name of a local WEKA S3 user.</td></tr></tbody></table>
 
 ## Generate a temporary security token
 
@@ -153,7 +153,7 @@ Use the following command line to generate a temporary security token:
 
 **Parameters**
 
-<table><thead><tr><th width="186">Name</th><th width="349">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>access-key</code>*</td><td>An S3 user access key</td><td></td></tr><tr><td><code>secret-key</code></td><td>An S3 user secret key</td><td>If not supplied, the command prompts to supply the secret-key.</td></tr><tr><td><code>policy-file</code></td><td>Path to a custom JSON file representing an IAM policy for anonymous access.<br>You cannot gain additional capabilities to the IAM policy attached to this S3 user.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>. </td><td>​</td></tr><tr><td><code>duration</code>*</td><td>Duration for the token validity.<br>Possible values between 15 minutes and 1 week. Format: <code>900s</code>, <code>60m</code>, <code>2d</code>, <code>1w</code></td><td>​</td></tr></tbody></table>
+<table><thead><tr><th width="186">Name</th><th width="349">Value</th><th>Default</th></tr></thead><tbody><tr><td><code>access-key</code>*</td><td>A local WEKA S3 user access key</td><td></td></tr><tr><td><code>secret-key</code></td><td>A local WEKA S3 user secret key</td><td>If not supplied, the command prompts to supply the secret-key.</td></tr><tr><td><code>policy-file</code></td><td>Path to a custom JSON file representing an IAM policy for anonymous access.<br>You cannot gain additional capabilities to the IAM policy attached to this S3 user.<br>See <a href="../s3-limitations.md#supported-policy-actions">Supported Policy Actions</a>. </td><td>​</td></tr><tr><td><code>duration</code>*</td><td>Duration for the token validity.<br>Possible values between 15 minutes and 1 week. Format: <code>900s</code>, <code>60m</code>, <code>2d</code>, <code>1w</code></td><td>​</td></tr></tbody></table>
 
 An example response:
 
